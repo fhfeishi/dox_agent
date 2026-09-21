@@ -1,0 +1,82 @@
+# dox_agent 当前开发情况
+
+- 更新日期：2026-09-21
+- 依据：本仓库已复制源码 `src/`、`frontend/`、`launch.sh`、`.env.example`。以下结论由实际阅读源码得出，历史记录不在本文件内（见 `archive/`）。
+- 定位现状：本地单用户 Agentic RAG 文档问答。语料目前是 LangChain/LangGraph/Deep Agents 官方文档与本地文本/PDF，**尚未切换为科学基金历史报告**。
+- 接口与实现设计：见 [`design/`](design/README.md)（[`HLD.md`](design/HLD.md) / [`API.md`](design/API.md) / [`LLD.md`](design/LLD.md)），由实际阅读源码整理。
+
+## 1. 技术与运行
+
+- 后端：Python 3.12、FastAPI、LangGraph、Deep Agents；SQLite 保存原文与版本；BM25Plus 稀疏检索；可选本地 HuggingFace embedding + Chroma，并与 BM25 做 RRF 融合。
+- 前端：React 19 + TypeScript + Tailwind 4 + Vite 7；生产构建由 FastAPI 托管（`frontend/dist`）。
+- 启动：`launch.sh` 复用/创建虚拟环境，依赖签名来自 `pyproject.toml`。
+- **运行状态**：`pyproject.toml` 与 `tests/` 已补齐，`.venv` 已安装依赖（含 `web`/`embedding` extras），`launch.sh` 可完成安装与启动。后端运行与真实模型问答已完成端到端验证（见第 6 节）。
+  - 本机以 CPU 后端安装 `torch==2.14.0+cpu`（`uv --torch-backend cpu`），避免默认 CUDA 栈。
+  - 演示语料来自 `knowledge/lcdata`（157 份 LangChain/LangGraph/Deep Agents 官方文档 + 已构建的 Chroma 索引），`DATA_DIR` 指向该目录；启动即可问答。**尚未切换为科学基金报告**，切换后需重跑验收。
+  - 演示默认 `QUERY_ROUTING=knowledge_only`：未限定资料的问题也走检索并给出引用；仅问候等社交输入直答。
+- 命名：`static1` → `dox-agent` 改名已完成（源码、配置、前端 dist）。
+
+## 2. 已实现的后端接口
+
+| 接口 | 说明 |
+|---|---|
+| `GET /api/health` | status、app_id（dox-agent）、model、docs_count、api_key_configured、defaults、preparation、index_progress |
+| `GET /api/documents` | 文档摘要列表，`pages` 仅为页数、不含正文 |
+| `GET /api/documents/{doc_id}` | 按 `page`/`start_line`/`version` 读取原文；`section=true` 走章节/代码块窗口 |
+| `POST /api/ingest/local` | 导入配置目录中的 txt/md 与 knowledge 中的 PDF（LiteParse） |
+| `POST /api/ingest/text` | 手工补充正文，同来源更新版本 |
+| `GET|POST /api/official-docs` | 官方 Markdown 分区发现与批量更新任务状态 |
+| `POST /api/web/preview` | 网页抓取预览（Crawl4AI 或 Firecrawl），不入库 |
+| `POST /api/web/confirm/{preview_id}` | 确认最新预览入库 |
+| `POST /api/chat` | SSE 流式问答 |
+| `GET /api/workspace/{sessions|notes}` | 会话与笔记列表；笔记带来源版本状态 |
+| `PUT /api/workspace/{sessions|notes}/{key}` | 保存会话/笔记，revision 冲突返回 409，单记录上限 4MB |
+| 前端静态资源 | `/{asset_path}` 托管 `frontend/dist` |
+
+## 3. 已实现的问答能力（Agent / 检索）
+
+- 流程：`understand` → `direct` 或 `research` → `validate` → `answer` → `finish`。
+- 研究工具：`search_docs`、`read_doc`、`check_corpus_page`、`finish_research`；带有限补查、预算（`MAX_SEARCHES`、`MAX_READS`、`MAX_MODEL_CALLS`、超时）与硬停止。
+- 证据：`evidence_id` 绑定 doc_id/page/start_line/version；版本核验；来源卡片带 citation。
+- 对话契约字段：`messages`、`run_id`、可选 `execution_mode`（auto/quick/research）、`query_routing`（auto/knowledge_only）、`evidence_level`（low/middle/high）、`allowed_doc_ids`（1–20 份）。
+- SSE 事件：`status`、`policy`、`step`、`telemetry`、`sources`、`token`、`usage`、`done`、`error`。
+- 检索：BM25Plus；指定资料范围时只走 BM25（不同步子集到共享 Chroma）；可选 dense + RRF；结果按来源分散。
+
+## 4. 已实现的前端能力
+
+- 对话：流式回答、停止、重新生成、复制、步骤过程、耗时与 token 用量、错误提示。
+- 会话：自动保存/恢复、切换、重命名、归档/恢复、编辑历史问题并创建分支。
+- 资料：资料范围多选（≤20 份）、筛选、正文补充、本地导入、网页预览入库、在线文档源导入/更新（来源与分区由服务端决定，前端不写死）。
+- 空状态：建议问题由当前已加载资料标题生成，不含任何语料特定文案，便于切换基金报告语料。
+- 状态：服务/知识库/密钥分离展示，约 3 秒健康轮询。
+- 未挂载：`frontend/src/Notes.tsx` 已存在但未挂载到 `main.tsx`。
+
+## 5. 尚未实现（对照 `demand.md`）
+
+- 科学基金报告语料与元数据（报告年份、领域标签、基金/项目类别、项目编号、解析状态）。
+- 检索前的领域/年份过滤。
+- 问题分类与"材料遵循"选项的移除（仍保留 `query_routing`/`evidence_level`/`execution_mode`）。
+- 右侧本地文档目录树、原始 PDF/Markdown 文件服务、PDF.js 阅读窗口、引用跳页。
+- 统一报告生成入口与四个模板（`achievements`/`hotspots`/`future_directions`/`comprehensive`）。
+- 报告预览/复制/Markdown 下载。
+- 任务系统：`task1`–`task4` 与会话绑定、`src/prompts/` 提示词目录、`GET /api/tasks`（设计见 [`plan/plan.md`](plan/plan.md) 的设计指南）。
+- ChatGPT 式会话栏：`+` 任务选择、搜索、时间分组、任务徽标。
+
+## 6. 本次实际验证
+
+| 检查 | 结果 |
+|---|---|
+| `grep` 全量扫描 `static1` 标识 | 无残留 |
+| `.venv/bin/python -m py_compile src/*.py src/agent/*.py` | 通过 |
+| `cd frontend && npm run build`（tsc --noEmit + vite build） | 通过，dist 已重建 |
+| `.venv/bin/python -m pytest tests -q`（A2 恢复的回归套件） | 83 passed |
+| `uv pip install -e ".[dev]"` / `-e ".[web,embedding]"`（A1） | 均成功；`torch 2.14.0+cpu`、`Crawl4AI 0.9.3`、`sentence-transformers 5.7.0` |
+| `bash launch.sh` 启动（A3，BM25 模式） | 安装步骤执行、服务在 `127.0.0.1:8000` 启动 |
+| `GET /api/health`（A3） | `preparation=ready`、`docs_count=157`、`app_id=dox-agent` |
+| `POST /api/chat` 真实模型问答（A3） | research 路线；8 条带 `doc_id/page/start_line/version` 的引用来源；正文含 `[1][4][5][6][7]`；流式 `done` |
+| 启用 embedding 的 DenseIndex（A3 旁证） | 本地模型权重加载成功、索引构建启动（因 CPU 全量索引 6667 chunks 约需小时级，未等其完成；BM25 模式已完整验收） |
+| 前端构建（去硬编码后） | `npm run build` 通过；产物无 `南溪`、`LangChain 官方文档` 等语料特定文案，含新文案`在线文档源`与资料建议。 |
+| 演示语料接入（本次） | `knowledge/lcdata` 的 Chroma 集合名由旧 `static1-53eb4e...` 改为当前代码使用的 `dox-agent-53eb4e...`（签名一致）；服务启动后 `preparation=ready`、`docs_count=157`、`index_progress=ready 6717/6717`（复用而非重建）。 |
+| 演示问答（本次，UI 默认） | `POST /api/chat`（不传 query_routing，取默认 `knowledge_only`）→ research 路线，8 条引用来源，流式 `done`。 |
+
+> 维护约定：每次开发后更新本文件第 5、6 节；任务拆解与完成记录写入 `plan/plan.md`。

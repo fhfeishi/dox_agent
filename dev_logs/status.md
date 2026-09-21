@@ -13,14 +13,14 @@
 - **运行状态**：`pyproject.toml` 与 `tests/` 已补齐，`.venv` 已安装依赖（含 `web`/`embedding` extras），`launch.sh` 可完成安装与启动。后端运行与真实模型问答已完成端到端验证（见第 6 节）。
   - 本机以 CPU 后端安装 `torch==2.14.0+cpu`（`uv --torch-backend cpu`），避免默认 CUDA 栈。
   - 演示语料来自 `knowledge/lcdata`（157 份 LangChain/LangGraph/Deep Agents 官方文档 + 已构建的 Chroma 索引），`DATA_DIR` 指向该目录；启动即可问答。**尚未切换为科学基金报告**，切换后需重跑验收。
-  - 演示默认 `QUERY_ROUTING=knowledge_only`：未限定资料的问题也走检索并给出引用；仅问候等社交输入直答。
+  - 问答已固定为带引用的专业模式（阶段 C 移除了意图分类与 `query_routing`/`evidence_level`/`execution_mode`）；未限定资料的问题也走检索并给出引用。
 - 命名：`static1` → `dox-agent` 改名已完成（源码、配置、前端 dist）。
 
 ## 2. 已实现的后端接口
 
 | 接口 | 说明 |
 |---|---|
-| `GET /api/health` | status、app_id（dox-agent）、model、docs_count、api_key_configured、defaults、preparation、index_progress |
+| `GET /api/health` | status、app_id（dox-agent）、model、docs_count、api_key_configured、preparation、index_progress |
 | `GET /api/documents` | 文档摘要列表，`pages` 仅为页数、不含正文 |
 | `GET /api/documents/{doc_id}` | 按 `page`/`start_line`/`version` 读取原文；`section=true` 走章节/代码块窗口 |
 | `POST /api/ingest/local` | 导入配置目录中的 txt/md 与 knowledge 中的 PDF（LiteParse） |
@@ -76,7 +76,7 @@
 | 启用 embedding 的 DenseIndex（A3 旁证） | 本地模型权重加载成功、索引构建启动（因 CPU 全量索引 6667 chunks 约需小时级，未等其完成；BM25 模式已完整验收） |
 | 前端构建（去硬编码后） | `npm run build` 通过；产物无 `南溪`、`LangChain 官方文档` 等语料特定文案，含新文案`在线文档源`与资料建议。 |
 | 演示语料接入（本次） | `knowledge/lcdata` 的 Chroma 集合名由旧 `static1-53eb4e...` 改为当前代码使用的 `dox-agent-53eb4e...`（签名一致）；服务启动后 `preparation=ready`、`docs_count=157`、`index_progress=ready 6717/6717`（复用而非重建）。 |
-| 演示问答（本次，UI 默认） | `POST /api/chat`（不传 query_routing，取默认 `knowledge_only`）→ research 路线，8 条引用来源，流式 `done`。 |
+| 演示问答（阶段 C 之前，旧默认 `knowledge_only`） | `POST /api/chat` → research 路线，8 条引用来源，流式 `done`。 |
 | 阶段 C 后端（本次） | 移除 `execution_mode`/`query_routing`/`evidence_level`：`GET /api/health` 无 `defaults`；`POST /api/chat` 传旧字段返回 422；不传策略字段 → 固定 research，8 条引用来源、`done`。 |
 | 阶段 C 测试（本次） | `pytest tests -q` → 64 passed；新增 `tests/test_professional_policy.py`，删除旧分类套件 `test_query_routing.py`。 |
 | 阶段 C 旁带修复（本次） | 快速查证（`quick.verify`）的模型调用此前未计入 usage；现显式传入本轮回调，`test_usage` 验证 research+answer 两次调用共 26 tokens。 |

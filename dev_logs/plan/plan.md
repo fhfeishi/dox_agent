@@ -1,6 +1,6 @@
 # dox_agent 实施计划与完成情况
 
-- 依据需求：[`../demand.md`](../demand.md)（含 2026-09-21 15:09 功能更新）
+- 依据需求：[`../demand.md`](../demand.md)（以该文件最新版为准）
 - 当前状态：[`../status.md`](../status.md)
 - 已实现接口与实现：[`../design/`](../design/README.md)
 - 状态标记：✅ 已完成 · 🟡 部分完成 · ⬜ 未开始
@@ -12,7 +12,7 @@
 |---|---|---|
 | A 工程基线 | 让仓库可运行、可测试 | 🟡 |
 | B 语料与元数据 | 基金报告入库并支持领域/年份过滤 | ⬜ |
-| C 问答入口收敛 | 移除分类/材料遵循/执行模式选项，固定专业问答 | ⬜ |
+| C 问答入口收敛 | 移除分类/材料遵循/执行模式选项，固定专业问答 | 🟡 |
 | D 本地文档窗口 | 目录树 + 原始 PDF/Markdown + 引用跳页 | ⬜ |
 | E 专项报告 | 统一生成入口 + 四模板 | ⬜ |
 | F 验收 | 真实基金报告样本验收 | ⬜ |
@@ -193,7 +193,7 @@ src/prompts/
 | A4 | 命名与配置 `static1` → `dox-agent` | ✅ |
 | A5 | `dev_logs` 目录整理（历史归档 + 现状 + 计划） | ✅ |
 | A6 | 接口设计与实现落盘（`dev_logs/design/`：HLD / API / LLD） | ✅ |
-| A7 | 契约同步：随 C/D/E/G 更新 `design/API.md`/`LLD.md`/`HLD.md`（如涉及）与 `status.md` | ⬜ |
+| A7 | 契约同步：随 C/D/E/G 更新 `design/API.md`/`LLD.md`/`HLD.md`（如涉及）与 `status.md` | 🟡 |
 
 ## B. 语料与元数据（demand §4.2）
 
@@ -203,7 +203,7 @@ src/prompts/
 | B2 | 元数据：文档 ID、标题、相对目录、报告年份、领域标签、基金/项目类别、内容版本、解析状态、项目编号 | ⬜ |
 | B3 | 简单元数据清单补录入口（不做标注管理平台） | ⬜ |
 | B4 | 检索前领域/年份闭区间过滤（检索层），问答与报告共用同一口径 | ⬜ |
-| B5 | `POST /api/chat` 接入 `filters`（domain/year_from/year_to/fund_types）并保留 `allowed_doc_ids` | ⬜ |
+| B5 | `POST /api/chat` **独占** `filters`（domain/year_from/year_to/fund_types）接入，保留 `allowed_doc_ids` | ⬜ |
 
 ## C. 专业知识问答（demand §3、§2.2）
 
@@ -234,8 +234,8 @@ src/prompts/
 
 | 编号 | 任务 | 状态 |
 |---|---|---|
-| E1 | `POST /api/reports` 流式入口（domain、year_from、year_to、template_id，可选 fund_types/doc_ids/focus） | ⬜ |
-| E2 | `GET /api/reports/{report_id}` 读取 Markdown、参数、模板版本、引用、生成时间与资料局限 | ⬜ |
+| E1 | `POST /api/reports` 流式入口（domain、year_from、year_to、template_id，可选 fund_types/doc_ids/focus）（报告↔会话绑定待定，见待定设计 #10） | ⬜ |
+| E2 | `GET /api/reports/{report_id}` 读取 Markdown、参数、模板版本、引用、生成时间与资料局限（报告↔会话绑定待定，见待定设计 #10） | ⬜ |
 | E3 | 四个模板：`achievements`/`hotspots`/`future_directions`/`comprehensive` | ⬜ |
 | E4 | 预览、复制、`.md` 下载 | ⬜ |
 | E5 | 引用有效性核对、实际覆盖资料记录、资料局限说明 | ⬜ |
@@ -259,15 +259,15 @@ src/prompts/
 
 | 编号 | 任务 | 状态 |
 |---|---|---|
-| G1 | 建立 `src/prompts/`：`base.md` + task1–4 提示词 + 加载器 | ⬜ |
+| G1 | 建立 `src/prompts/`：`base.md` + task1–4 提示词 + 加载器（推导许可由任务 prompt 覆盖 base 默认，见待定设计 #11） | ⬜ |
 | G2 | 任务注册表与 `GET /api/tasks` | ⬜ |
-| G3 | `POST /api/chat` 接入 `task_id`（task1–3）与 `filters`，移除旧策略字段；task4 不在 chat 生成 | ⬜ |
+| G3 | `POST /api/chat` 接入 `task_id`（task1–3）；**不接 `filters`**（归 B5）；task4 不在 chat 生成（旧策略字段已于 C1 移除） | ⬜ |
 | G4 | `understand`/`answer` 注入任务 prompt 与输出契约 | ⬜ |
 | G5 | 前端 `+` 任务选择器与新建会话绑定 `task_id` | ⬜ |
 | G6 | 会话栏重构：搜索、时间分组、任务徽标、重命名/归档/删除 | ⬜ |
 | G7 | `SessionData` 增加 `task_id` 并随会话恢复 | ⬜ |
 | G8 | 任务输出契约验收（task3 事实/推断分离、task4 范围/来源/局限） | ⬜ |
-| G9 | 前端 task4 报告表单入口与报告记录展示（调用 `POST /api/reports`） | ⬜ |
+| G9 | 前端 task4 报告表单入口与报告记录展示（调用 `POST /api/reports`）（报告↔会话绑定待定，见待定设计 #10） | ⬜ |
 
 ## 首期不做（来自 demand §8.2）
 
@@ -295,6 +295,15 @@ src/prompts/
 | 14 | 报告元数据 | E2 补生成时间与资料局限 |
 
 未采纳：无。现状类声明经实测与仓库一致，A4/A5/A6 证据保留。
+
+## 待定设计（实现前确认）
+
+| # | 问题 | 影响任务 | 需确认 |
+|---|---|---|---|
+| 10 | 报告与会话的绑定与持久化：`POST /api/reports`（E1）无 `session_key`/`run_id`，`GET /api/reports/{id}`（E2）只按 id 取，而 G9 要求报告“作为会话中的报告记录展示” | E1 / E2 / G9 | 由前端把 `report_id` 写入 `SessionData`，还是报告携带会话键、由后端持久化绑定 |
+| 11 | task1/task2 输出契约与全局 `answer_policy` 冲突：现全局允许“有依据的推导”，而本 plan 定义 task1“不推测” | G1 / G4 | 明确推导许可由任务 prompt 覆盖 base 默认：task1/task2 收窄，task3 放开并要求标注事实/推断 |
+
+> 这两项在实现对应任务前定稿；未定稿前不开始 E1/E2/G9 与 G1/G4。
 
 ## 完成情况记录
 

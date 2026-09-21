@@ -1,8 +1,8 @@
 # dox_agent 需求说明：科学基金专业知识问答与专项报告
 
 - 更新日期：2026-09-21
-- 状态：需求草案，待实施。本轮只维护本文，不改动业务代码，不安装或迁移开源系统。
-- 基线：已从原仓库复制到本仓库的源码（`src/`、`frontend/`、`launch.sh`、`.env.example` 等）。本文所有"现状"结论都以这些实际文件为准。
+- 状态：需求基线，分期实施中。阶段 A（工程基线）与阶段 C（专业问答入口收敛）已实施并验证；阶段 B/D/E/F/G 待实施。实现进度见 [`status.md`](status.md) 与 [`plan/plan.md`](plan/plan.md)。
+- 基线：已从原仓库复制到本仓库的源码（`src/`、`frontend/`、`launch.sh`、`.env.example` 等）。本文“现状”以实施状态为准；§2.1 是复制提交时的基线快照，已变化处已标注。
 - 命名：项目对外名称统一为 **dox_agent**。源码与配置中的 `static1` 标识已完成改名（见第 8.3 节），`dev_logs/archive/static1_*` 保留为原项目历史记录。
 
 > 阅读提示：第 1 节定义目标与边界；第 2 节给出"已复制源码的真实现状"与"目标差距"；第 3—6 节是功能需求与目标接口；第 7 节是开源调研；第 8 节是实施顺序、验收和遗留清理。
@@ -23,11 +23,13 @@
 
 ## 2. 现状与目标差距
 
-### 2.1 当前源码现状（已核对）
+### 2.1 基线现状（复制提交快照；部分条目已在阶段 A/C 更新）
 
 现状依据：`src/main.py`、`src/agent/*.py`、`src/knowledge.py`、`src/dense.py`、`src/official_docs.py`、`src/parsers.py`、`src/workspace.py`、`frontend/src/*`、`launch.sh`、`.env.example`。复制前的系统设计见 `dev_logs/archive/static1_design/API_PIPELINE.md`。
 
-注意：仓库根目录的 `README.md` 目前为空，**不能**作为现状依据；`pyproject.toml`、`tests/`、`third_party/`、`reports/` 未随本次复制进入本仓库，`launch.sh` 的依赖安装入口因此暂不可用。
+本节描述 **复制提交（6af9946）时的基线**，用于对照目标差距；阶段 A/C 已改变其中若干结论，标【已更新】者以当前代码与 [`status.md`](status.md) 为准。
+
+注意：复制时仓库缺 `pyproject.toml`、`tests/`、`third_party/`、`reports/`，`README.md` 为空，`launch.sh` 依赖安装入口不可用。【已更新】`pyproject.toml`、`tests/` 已补齐，`README.md` 已成文，`launch.sh` 安装/启动已跑通（阶段 A）。
 
 - **技术栈**：后端 Python/FastAPI + LangGraph/Deep Agents；SQLite 保存原文与版本；BM25Plus 稀疏检索；可选本地 HuggingFace embedding + Chroma，并与 BM25 做 RRF 融合。前端 React 19 + TypeScript + Tailwind 4 + Vite 7。
 - **现有语料与来源**：LangChain、LangGraph、Deep Agents 官方 Python Markdown；本地 txt/md/PDF（LiteParse）；网页快照（Crawl4AI 或 Firecrawl）；手工补充正文。**目前不包含科学基金历史报告语料。**
@@ -39,14 +41,14 @@
   - `POST /api/chat`（SSE）
   - `GET /api/workspace/{sessions|notes}`、`PUT /api/workspace/{sessions|notes}/{key}`
   - 前端静态资源托管
-- **现有对话契约**：`POST /api/chat` 接收 `messages`、`run_id`，以及可选 `execution_mode`（auto/quick/research）、`query_routing`（auto/knowledge_only）、`evidence_level`（low/middle/high）、`allowed_doc_ids`（1–20 份）；SSE 事件为 `status`/`policy`/`step`/`telemetry`/`sources`/`token`/`usage`/`done`/`error`。这里的 `query_routing`、`evidence_level`、`execution_mode` 都是同一个聊天请求内的字段，**不是**独立 HTTP 接口。
-- **现有问答能力**：理解问题 → 直接回答或研究 → 搜索并阅读原文 → 版本核验 → 带引用回答；包含有限补查、预算控制与硬停止。仅设置 `knowledge_only` 仍会执行问题分类逻辑。
+- **现有对话契约**：`POST /api/chat` 接收 `messages`、`run_id`、可选 `allowed_doc_ids`（1–20 份）；SSE 事件为 `status`/`policy`/`step`/`telemetry`/`sources`/`token`/`usage`/`done`/`error`。【已更新】阶段 C 已移除 `execution_mode`、`query_routing`、`evidence_level`；三者当时都是同一聊天请求内的字段，**不是**独立 HTTP 接口。
+- **现有问答能力**：理解问题 → 直接回答或研究 → 搜索并阅读原文 → 版本核验 → 带引用回答；包含有限补查、预算控制与硬停止。【已更新】阶段 C 已移除自动意图分类与 `query_routing` 分支，每轮固定为带引用的专业问答。
 - **现有前端能力**：多会话保存/恢复、重命名/归档、问题编辑分叉、停止/重新生成/复制、耗时与 token、来源展示、资料范围选择、本地导入与网页预览、官方文档更新。PDF 阅读器、目录树、报告界面**尚未实现**。
 - **未挂载组件**：`frontend/src/Notes.tsx` 已存在，但未挂载到 `main.tsx` 主界面。
 
 ### 2.2 目标差距
 
-下表是后续变更要求，不表示当前已完成。
+下表是后续变更要求，不表示当前已完成。其中“问题分类”“回答范围/证据要求”“快速/深入研究选择”三行已由阶段 C 关闭（见 [`status.md`](status.md)），本表保留为需求基线。
 
 | 能力 | 现状 | 目标 |
 |---|---|---|
@@ -220,7 +222,7 @@ Kotaemon、GPT Researcher 与 PDF.js 的仓库页面均标示 Apache-2.0；实�
 - 配置：`launch.sh` 的 `STATIC1_VENV` → `DOX_AGENT_VENV`；`.env`/`.env.example` 的路径注释与 `LANGSMITH_PROJECT` → `dox-agent`。
 - 文档：`dev_logs/archive/static1_design|static1_plan|static1_implement` 保留为原项目历史记录，不随改名改动；本 `demand.md` 及后续新文档统一使用 dox_agent。
 - 影响：数据与索引路径未变（`DOX_AGENT_ROOT` 取值同原 `STATIC1_ROOT`），但 Chroma collection 名与 `localStorage` 键变化会使旧向量集合重建、浏览器会话选择回退为首个可用会话，属预期。
-- 复制缺口（未解决）：本仓库缺少 `pyproject.toml`、`tests/` 等文件，`.venv` 未安装依赖，`launch.sh` 目前无法完成依赖安装或启动；后续开发前需从原仓库补齐或重建。
+- 复制缺口（已解决，阶段 A）：`pyproject.toml`、`tests/` 已补齐，`.venv` 已安装依赖，`launch.sh` 安装/启动已跑通；真实模型问答与知识库就绪已端到端验证。
 
 ## 9. 功能更新（2026-09-21 15:09）
 

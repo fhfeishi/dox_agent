@@ -73,8 +73,7 @@ async def main():
             requests = await page.evaluate("window.requests")
             assert requests[0] == requests[1]
             assert requests[0]["messages"] == [{"role": "user", "content": "第一问"}]
-            assert requests[0]["query_routing"] == "auto"
-            assert requests[0]["evidence_level"] == "middle"
+            assert requests[0]["allowed_doc_ids"] is None
             await article.get_by_text("之前的回答 · 1 个版本", exact=True).click()
             await expect(article.get_by_text("答案版本1", exact=True)).to_be_visible()
             await expect(article.get_by_text("答案版本2", exact=True)).to_be_visible()

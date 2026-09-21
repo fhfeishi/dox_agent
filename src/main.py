@@ -14,7 +14,6 @@ from pydantic import BaseModel, ConfigDict, Field
 from .agent.config import DOX_AGENT_ROOT, get_settings
 from .agent.graph import build_graph
 from .agent.models import tracing
-from .agent.routing import EvidenceLevel, QueryRouting
 from .agent.usage import TurnUsage
 from .knowledge import Knowledge
 from .official_docs import import_official
@@ -34,9 +33,6 @@ class ChatMessage(BaseModel):
 class ChatRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     messages: list[ChatMessage] = Field(min_length=1, max_length=20)
-    execution_mode: Literal["auto", "quick", "research"] = "auto"
-    query_routing: QueryRouting | None = None
-    evidence_level: EvidenceLevel | None = None
     allowed_doc_ids: list[str] | None = Field(default=None, min_length=1, max_length=20)
     run_id: str = Field(default_factory=lambda: uuid4().hex, min_length=8, max_length=80)
 
@@ -110,7 +106,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "docs_count": docs_count,
             "api_key_configured": bool(settings.model_api_key),
             "model_verified": False,
-            "defaults": {"query_routing": settings.query_routing, "evidence_level": settings.evidence_level},
             "web_provider": settings.web_provider,
             "preparation": request.app.state.preparation,
             "index_progress": request.app.state.knowledge.dense.progress if request.app.state.knowledge.dense else None,
@@ -219,9 +214,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                 "blocked": None,
                                 "runtime_usage": usage,
                                 "preparation": app.state.preparation,
-                                "options": {"execution_mode": payload.execution_mode, "query_routing": payload.query_routing or settings.query_routing,
-                                            "evidence_level": payload.evidence_level or settings.evidence_level,
-                                            "allowed_doc_ids": payload.allowed_doc_ids},
+                                "options": {"allowed_doc_ids": payload.allowed_doc_ids},
                             },
                             stream_mode="custom",
                             config={"recursion_limit": 12, "tags": ["dox-agent", "agentic-rag"], "callbacks": [usage]},

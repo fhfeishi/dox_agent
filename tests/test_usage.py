@@ -9,6 +9,7 @@ from langchain_core.outputs import ChatGeneration, LLMResult
 
 from src.agent.graph import build_graph
 from src.agent.usage import ModelBudgetExceeded, TurnUsage
+from src.knowledge import Document, Page
 from tests.test_app import setup
 
 
@@ -54,16 +55,31 @@ def test_usage_explains_missing_calls_and_reserves_final_answer():
     asyncio.run(check())
 
 
-def test_api_counts_classifier_and_answer_and_resets_each_request(tmp_path):
+def test_api_counts_verification_and_answer_and_resets_each_request(tmp_path, monkeypatch):
     usage = {"input_tokens": 10, "output_tokens": 3, "total_tokens": 13}
     model = FakeMessagesListChatModel(responses=[
         AIMessage(content='{"route":"direct","intent":"general"}', usage_metadata=usage),
         AIMessage(content="answer", usage_metadata=usage),
     ])
-    app, _ = setup(tmp_path, lambda store, settings: build_graph(store, settings, model))
+    app, store = setup(tmp_path, lambda store, settings: build_graph(store, settings, model))
+    store.put(Document(title="fact", origin="fact", kind="text", parser="test",
+                       pages=[Page(number=1, text="recursion fact " * 20)]))
+
+    def factory(**kwargs):
+        tools = {t.name: t for t in kwargs["tools"]}
+
+        class Agent:
+            async def ainvoke(self, *args, **kwargs):
+                hits = await tools["search_docs"].ainvoke({"query": "recursion"})
+                if hits and "doc_id" in hits[0]:
+                    await tools["read_doc"].ainvoke({key: hits[0][key] for key in ("doc_id", "version", "page", "start_line")})
+
+        return Agent()
+
+    monkeypatch.setattr("src.agent.graph.create_deep_agent", factory)
     with TestClient(app) as client:
         for _ in range(2):
-            response = client.post("/api/chat", json={"messages": [{"role": "user", "content": "解释递归"}]})
+            response = client.post("/api/chat", json={"messages": [{"role": "user", "content": "what is recursion"}]})
             frames = [json.loads(frame.split("data: ")[1]) for frame in response.text.split("\n\n") if frame.startswith("event: usage")]
             assert frames[-1]["total_tokens"] == 26
             assert frames[-1]["calls"] == frames[-1]["reported_calls"] == 2

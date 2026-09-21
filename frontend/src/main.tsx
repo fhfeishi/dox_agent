@@ -24,8 +24,7 @@ function App() {
   const [editing, setEditing] = useState<EditState>(null);
   const [sessionTitle, setSessionTitle] = useState("");
   const [sessionBusy, setSessionBusy] = useState(false);
-  const [options, setOptions] = useState<Options>({ query_routing: "auto", evidence_level: "middle", allowed_doc_ids: null });
-  const optionsInitialized = useRef(false);
+  const [options, setOptions] = useState<Options>({ allowed_doc_ids: null });
   const [documents, setDocuments] = useState<DocumentInfo[]>([]);
   const [progress, setProgress] = useState<{ stage: string; completed: number; total: number } | null>(null);
   const controller = useRef<AbortController | null>(null);
@@ -38,7 +37,7 @@ function App() {
     latestTurns.current = next;
     return next;
   });
-  const workspace = useWorkspace(turns, options, setTurnsTracked, value => { optionsInitialized.current = true; setOptions(value); });
+  const workspace = useWorkspace(turns, options, setTurnsTracked, setOptions);
   useEffect(() => { setSessionTitle(workspace.sessions.find(s => s.id === workspace.active)?.title ?? ""); }, [workspace.active, workspace.sessions]);
   function refreshDocuments() { void fetch("/api/documents").then(r => r.json()).then(setDocuments).catch(() => {}); }
   function exportChat() {
@@ -54,9 +53,6 @@ function App() {
       .then(data => {
         setReady(Boolean(data.api_key_configured));
         setCorpusReady(data.preparation === "ready");
-        if (!optionsInitialized.current && data.defaults) {
-          setOptions({ ...data.defaults, allowed_doc_ids: null }); optionsInitialized.current = true;
-        }
         setProgress(data.index_progress ?? null);
         setHealth(!data.api_key_configured ? "请在 .env 配置模型密钥后重启" : data.preparation === "running" ? "知识库正在加载，一般交流可发送" : data.preparation === "error" ? "知识库加载失败，一般交流可发送" : "服务已连接 · " + data.model + " · 密钥已配置，模型连通性以实际请求为准");
       })
@@ -181,9 +177,6 @@ function App() {
       </section>
       <form className="sticky bottom-0 bg-stone-50 pb-6 pt-3" onSubmit={e => { e.preventDefault(); void send(); }}>
         <div className="mb-3 flex flex-wrap items-end gap-2 rounded-xl border border-stone-200 bg-white p-3 text-xs shadow-sm">
-          <label className="grid gap-1 text-stone-500">回答范围<select className="h-9 rounded-lg border border-stone-300 bg-stone-50 px-2 text-stone-700" aria-label="回答范围" disabled={busy || !connected} value={options.query_routing} onChange={e => setOptions(o => ({ ...o, query_routing: e.target.value as Options["query_routing"] }))}><option value="auto">自动判断</option><option value="knowledge_only">仅按资料</option></select></label>
-          <label className="grid gap-1 text-stone-500">证据要求<select className="h-9 rounded-lg border border-stone-300 bg-stone-50 px-2 text-stone-700" aria-label="证据要求" disabled={busy || !connected} value={options.evidence_level} onChange={e => setOptions(o => ({ ...o, evidence_level: e.target.value as Options["evidence_level"] }))}><option value="low">自由讨论</option><option value="middle">有据分析</option><option value="high">严格依据</option></select></label>
-          <label className="grid gap-1 text-stone-500">查证方式<select className="h-9 rounded-lg border border-stone-300 bg-stone-50 px-2 text-stone-700" aria-label="查证方式" disabled={busy || !connected} value={options.execution_mode ?? "auto"} onChange={e => setOptions(o => ({ ...o, execution_mode: e.target.value as Options["execution_mode"] }))}><option value="auto">按需查证</option><option value="quick">先快速查证</option><option value="research">深入研究</option></select></label>
           <div className="h-9 rounded-lg border border-stone-200 bg-stone-50 px-3 py-2 text-stone-600">资料范围：{options.allowed_doc_ids ? `${options.allowed_doc_ids.length} 份` : "全部"}</div>
           <span className="pb-2 text-stone-400">仅影响新问题；重新生成沿用原配置</span>
         </div>

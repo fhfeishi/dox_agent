@@ -6,8 +6,6 @@ from pathlib import Path
 from pydantic import AliasChoices, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from .routing import EvidenceLevel, QueryRouting
-
 DOX_AGENT_ROOT = Path(__file__).resolve().parents[2]
 KNOWLEDGE_ROOT = DOX_AGENT_ROOT.parent / "knowledge"
 
@@ -39,8 +37,6 @@ class Settings(BaseSettings):
     max_rounds: int = Field(default=2, ge=1, le=3)
     quick_verification: bool = True
     evidence_routing: bool = True
-    query_routing: QueryRouting = "auto"
-    evidence_level: EvidenceLevel = "middle"
     max_searches: int = Field(default=6, ge=1, le=20)
     max_reads: int = Field(default=8, ge=2, le=20)
     max_model_calls: int = Field(default=12, ge=3, le=40)

@@ -24,7 +24,7 @@ def assessment(question="召回", status="unsupported", ids=None, action="search
 
 
 def run(store, model, **settings):
-    app = graph.build_graph(store, Settings(_env_file=None, query_routing="knowledge_only", **settings), model)
+    app = graph.build_graph(store, Settings(_env_file=None, **settings), model)
     return asyncio.run(app.ainvoke({"messages": [{"role": "user", "content": "比较召回与控制流"}],
                                   "evidence": [], "rounds": 0}))
 
@@ -117,7 +117,7 @@ def test_real_deepagent_propagates_verified_gap_without_another_model_call(tmp_p
     model = ToolModel(responses=[AIMessage(content="", tool_calls=[{
         "id": "gap", "name": "check_corpus_page", "args": {"source_url": url}, "type": "tool_call",
     }]), AIMessage(content="SHOULD NOT BE CALLED")])
-    app = graph.build_graph(corpus(tmp_path), Settings(_env_file=None, query_routing="knowledge_only"), model)
+    app = graph.build_graph(corpus(tmp_path), Settings(_env_file=None), model)
     result = asyncio.run(app.ainvoke({"messages": [{"role": "user", "content": "请解释该页面 " + url}],
                                      "evidence": [], "rounds": 0}))
     assert result["stop_reason"] == "corpus_unavailable"
@@ -156,7 +156,7 @@ def test_hard_stop_guards_queued_tools_and_rejects_invented_url(tmp_path, monkey
         return Agent()
 
     monkeypatch.setattr(graph, "create_deep_agent", factory)
-    app = graph.build_graph(store, Settings(_env_file=None, query_routing="knowledge_only", quick_verification=False), object())
+    app = graph.build_graph(store, Settings(_env_file=None, quick_verification=False), object())
     result = asyncio.run(app.ainvoke({"messages": [{"role": "user", "content": url}], "evidence": [], "rounds": 0}))
     assert result["blocked"]
 

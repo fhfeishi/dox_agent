@@ -15,7 +15,7 @@
 
 | 方法 与路径 | 请求 | 成功响应 | 已实现错误 |
 |---|---|---|---|
-| `GET /api/health` | 无 | `status`、`app_id`（`dox-agent`）、`model`、`docs_count`、`api_key_configured`、`model_verified=false`、`defaults{query_routing,evidence_level}`、`web_provider`、`preparation`、`index_progress` | 不验证模型连通性 |
+| `GET /api/health` | 无 | `status`、`app_id`（`dox-agent`）、`model`、`docs_count`、`api_key_configured`、`model_verified=false`、`web_provider`、`preparation`、`index_progress` | 不验证模型连通性 |
 | `GET /api/documents` | 无 | 文档摘要数组；`pages` 为页数、不含正文 | — |
 | `GET /api/official-docs` | 无 | `official_job` 状态对象 | — |
 | `POST /api/official-docs` | `{sections: ["langchain","langgraph","deepagents"]}` | 202 + 任务状态 | 准备中 409；任务运行中 409 |
@@ -42,9 +42,6 @@
 ```json
 {
   "messages": [{"role": "user", "content": "..."}],
-  "execution_mode": "auto",
-  "query_routing": "auto",
-  "evidence_level": "middle",
   "allowed_doc_ids": null,
   "run_id": "hex"
 }
@@ -53,21 +50,19 @@
 | 字段 | 约束 |
 |---|---|
 | `messages` | 1–20 条；`role` 仅 `user`/`assistant`；每条 1–12000 字符；总计 ≤40000；最后一条必须为 `user` |
-| `execution_mode` | `auto` / `quick` / `research`，默认 `auto` |
-| `query_routing` | `auto` / `knowledge_only`，可空（用服务默认 `QUERY_ROUTING`） |
-| `evidence_level` | `low` / `middle` / `high`，可空（用服务默认 `EVIDENCE_LEVEL`） |
 | `allowed_doc_ids` | 可空；非空时 1–20 个文档 ID；不得为空数组；未知 ID 进入澄清而非放开范围 |
 | `run_id` | 默认 uuid4，长度 8–80 |
 
-禁止额外字段（包括 `sources`/`evidence`/`report`/历史版本）。每个请求独立新建图状态。
+禁止额外字段（包括 `sources`/`evidence`/`report`/历史版本，也不接受已移除的
+`execution_mode`/`query_routing`/`evidence_level`）。每个请求独立新建图状态。
 
 ### 3.2 流式流程
 
 ```text
 验证请求
 → 新建图状态（messages, rounds=0, evidence=[], searches={}, report=None, blocked=None, preparation, options）
-→ understand：解析生效策略、意图与允许文档范围
-→ direct（不发散检索）或 research
+→ understand：固定专业策略，解析允许文档范围与知识库状态
+→ direct（仅知识库未就绪或范围失效时给出提示）或 research
 → research：search_docs → read_doc → finish_research；必要时 check_corpus_page
 → validate：文档存在、版本相同、正文非空、报告证据 ID 有效
 → 有未覆盖子问题且预算允许：research（仅缺口）
@@ -80,7 +75,7 @@
 | 事件 | 数据 | 说明 |
 |---|---|---|
 | `status` | `{message}` | 阶段提示文案 |
-| `policy` | `{execution_mode, query_routing, evidence_level, allowed_doc_ids, route, stop_reason, notice}` | 理解完成发送一次，终态更新 `stop_reason` |
+| `policy` | `{allowed_doc_ids, route, stop_reason, notice}` | 理解完成发送一次，终态更新 `stop_reason` |
 | `step` | `{run_id, id, sequence, phase, status, label, detail}` | 来自实际节点及 search/read 工具边界；`status` 为 running/completed/failed/interrupted |
 | `telemetry` | `{path, stages_ms, searches, reads, tokens}` + `run_id` | 阶段耗时与搜索/阅读计数 |
 | `sources` | 已读证据数组（附 `citation` 编号） | 回答前发送 |
@@ -91,7 +86,7 @@
 
 - 无 `done` 的断流视为未完成。
 - 用户中断或网络断开时由客户端收束为"已中断/结果未确认"，保留最后收到的 `usage`，不承诺服务端最终事件。
-- 分类未完成即取消/失败时可能没有 `policy`，客户端保持未知。
+- 每轮始终为带引用的专业问答（不自动分类；task 系统上线后由 task_id 决定职责）。
 
 ## 4. 内部模块契约
 
@@ -106,7 +101,7 @@
 | `reading.section_window` | 正文 + start_line → 章节窗口 | 章节/代码块窗口与截断标记 |
 | `dense.DenseIndex.search` | query、全文窗口、候选 → dense 排名 | 本地 embedding、Chroma 同步、排名 |
 | `dense.fuse_rankings` | sparse/dense 排名 → RRF 结果 | 等权、常数 60，不直接相加异量纲分数 |
-| `agent.routing.resolve_policy` | 消息、选项、`Knowledge`、preparation → policy | 严格枚举、有限分类、资料范围解析 |
+| `agent.routing.resolve_policy` | 选项、`Knowledge`、preparation → policy | 固定专业策略；仅校验资料范围与知识库状态 |
 | `agent.graph.build_graph` | `Knowledge`、`Settings`、可注入 model → compiled graph | 研究编排，与 HTTP 无关 |
 | `agent.evidence` | 研究报告 → 校验/合并/决策 | ResearchReport / Assessment、路由判定 |
 | `agent.usage.TurnUsage` | 模型回调 → 本轮账本 | 按 run 去重、缺失原因、最终回答预留 |

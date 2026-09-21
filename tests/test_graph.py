@@ -36,7 +36,7 @@ def test_graph_reads_real_tool_evidence(tmp_path, monkeypatch):
             assert "2025年10月22日" in messages[0].content
             yield SimpleNamespace(content="2025年10月22日 [1]")
 
-    app = graph.build_graph(store, Settings(_env_file=None, query_routing="knowledge_only", evidence_routing=False), Model())
+    app = graph.build_graph(store, Settings(_env_file=None, evidence_routing=False), Model())
 
     async def run():
         return [
@@ -61,7 +61,7 @@ def test_empty_research_is_bounded(tmp_path, monkeypatch):
             calls.append(1)
 
     monkeypatch.setattr(graph, "create_deep_agent", lambda **kwargs: Agent())
-    app = graph.build_graph(Knowledge(tmp_path / "db"), Settings(_env_file=None, query_routing="knowledge_only", max_rounds=2, evidence_routing=False), object())
+    app = graph.build_graph(Knowledge(tmp_path / "db"), Settings(_env_file=None, max_rounds=2, evidence_routing=False), object())
     result = asyncio.run(
         app.ainvoke({"messages": [{"role": "user", "content": "?"}], "rounds": 0, "evidence": []})
     )

@@ -70,11 +70,10 @@
 
 ## 3. 路由与策略（`agent/routing.py`）
 
-- `TurnOptions`：`execution_mode`(auto/quick/research)、`query_routing`(auto/knowledge_only)、`evidence_level`(low/middle/high)、`allowed_doc_ids`(1–20 或 null)。
-- `Intent`：`route`(direct/research/clarify)、`intent`(social/general/analysis/document/specific/follow_up/unclear)、`source_reference`、`source_required`、`source_only`。
-- `classify`：问候确定性短路径；否则模型返回 JSON，超时 8s；坏 JSON/超时回退 research，provider 异常回退 clarify，预算异常上抛。
-- `resolve_policy`：`knowledge_only` 且无资料指代时跳过分类；解析资料标题/URL 必须出现在用户消息中且唯一对应；允许 ID 在进入研究前校验；范围冲突澄清；`high` 非社交问题强制 research；preparation 非 ready 时研究路径给出不可用提示。
-- `answer_policy`：严格模式（knowledge_only / 限定资料 / high）只依据本轮已读资料；`low` 可用一般知识但不得编造具体 API/版本/来源。
+- `TurnOptions`：仅 `allowed_doc_ids`(1–20 或 null)。
+- `resolve_policy`：固定专业问答；`allowed_doc_ids` 在进入研究前校验，未知 ID 返回澄清（不放开范围）；preparation 非 ready 时给出不可用提示；其余一律 `route=research`、`stop_reason=professional`。
+- 不做自动意图分类，也不提供 `execution_mode`/`query_routing`/`evidence_level` 选项；快速查证作为内部有界步骤（见 2.3），不暴露开关。
+- `answer_policy`：始终为严格专业模式，只依据本轮已读资料，允许有依据推导并标明前提；不使用一般知识补齐缺失部分。
 
 ## 4. 预算与限制（`agent/config.py` + `.env.example`）
 
@@ -91,7 +90,6 @@
 | `MAX_ROUNDS` | 2 | 1–3 |
 | `QUICK_VERIFICATION` | true | — |
 | `EVIDENCE_ROUTING` | true | false 走旧两工具路由 |
-| `QUERY_ROUTING` / `EVIDENCE_LEVEL` | auto / middle | 服务默认 |
 | `MAX_SEARCHES` / `MAX_READS` | 6 / 8 | 1–20 / 2–20，全 run 共享 |
 | `MAX_MODEL_CALLS` | 12 | 3–40，最终回答预留 |
 | `RESEARCH_TIMEOUT` / `RUN_TIMEOUT` | 120 / 180 秒 | 研究内层 / 整轮 |

@@ -70,16 +70,15 @@ test('regeneration reuses original request, archives attempts and resets timers'
 });
 
 test('effective policy is versioned, exported and reused independently of session changes', () => {
-  const session = { query_routing: 'auto' as const, evidence_level: 'low' as const, allowed_doc_ids: ['a'] };
+  const session = { allowed_doc_ids: ['a'] };
   let turn = newTurn('仅按资料回答', [], session);
   session.allowed_doc_ids.push('b');
   assert.deepEqual(turn.options.allowed_doc_ids, ['a']);
-  turn = receiveEvent(turn, { event: 'policy', data: { query_routing: 'knowledge_only', evidence_level: 'low', allowed_doc_ids: ['a'], route: 'research', stop_reason: 'covered' } }, 50);
+  turn = receiveEvent(turn, { event: 'policy', data: { allowed_doc_ids: ['a'], route: 'research', stop_reason: 'covered' } }, 50);
   turn = receiveEvent(turn, { event: 'token', data: { text: '结论 [1]' } }, 70);
   turn = receiveEvent(turn, { event: 'done', data: { ok: true } }, 100);
   const retry = regenerateTurn(turn, []);
-  assert.equal(retry.options.query_routing, 'knowledge_only');
-  assert.equal(retry.options.evidence_level, 'low');
+  assert.deepEqual(retry.options.allowed_doc_ids, ['a']);
   assert.equal(retry.policy, null);
   const exported = JSON.parse(JSON.stringify(retry));
   assert.equal(exported.previousAttempts[0].policy.stop_reason, 'covered');
@@ -91,13 +90,13 @@ test('effective policy is versioned, exported and reused independently of sessio
 
 test("restoration retains effective config and prior versions while excluding interrupted output", async () => {
   const { restoreTurns, newTurn, regenerateTurn } = await import("./conversation.ts");
-  const first = newTurn("question", [], {query_routing: "knowledge_only", evidence_level: "high", allowed_doc_ids: ["doc"], execution_mode: "research"});
+  const first = newTurn("question", [], {allowed_doc_ids: ["doc"]});
   const running = regenerateTurn({...first, answer: "old", complete: true, outcome: "completed"}, []);
   running.answer = "partial";
   const restored = restoreTurns([running]);
   assert.equal(restored[0].outcome, "interrupted");
   assert.equal(restored[0].answer, "partial");
-  assert.equal(restored[0].options.execution_mode, "research");
+  assert.deepEqual(restored[0].options.allowed_doc_ids, ["doc"]);
   assert.equal(restored[0].previousAttempts[0].answer, "old");
   assert.equal(newTurn("next", restored).requestMessages.length, 1);
 });
@@ -117,11 +116,10 @@ test("editing a historical question creates a clean branch before that turn", as
   const { branchFromTurn, newTurn, receiveEvent } = await import("./conversation.ts");
   const finish = (turn: ReturnType<typeof newTurn>, answer: string) => receiveEvent(receiveEvent(turn, {event: "token", data: {text: answer}}, 10), {event: "done", data: {ok: true}}, 20);
   const first = finish(newTurn("first", []), "one");
-  const second = finish(newTurn("second", [first], {query_routing: "knowledge_only", evidence_level: "high", allowed_doc_ids: ["doc"], execution_mode: "research"}), "two");
+  const second = finish(newTurn("second", [first], {allowed_doc_ids: ["doc"]}), "two");
   const third = finish(newTurn("third", [first, second]), "three");
   const branch = branchFromTurn([first, second, third], 1);
   assert.deepEqual(branch.history.map(turn => turn.question), ["first"]);
-  assert.equal(branch.options.query_routing, "knowledge_only");
   assert.deepEqual(branch.options.allowed_doc_ids, ["doc"]);
   assert.equal([first, second, third][2].answer, "three");
 });

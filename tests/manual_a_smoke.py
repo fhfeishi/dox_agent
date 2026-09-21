@@ -13,17 +13,17 @@ def main():
     docs = client.get("/api/documents").json()
     selected = next(d for d in docs if d["title"] == "LangGraph overview")
     cases = [
-        ("scoped", "根据所选资料，用两句话说明LangGraph主要解决什么问题。", "low", "knowledge_only", [selected["doc_id"]]),
-        ("ambiguous", "根据这份资料，说说它的结论。", "middle", "auto", None),
-        ("specific", "解释这个API页面 https://docs.langchain.com/oss/python/integrations/retrievers/a-batch-nonexistent", "high", "auto", None),
+        ("scoped", "根据所选资料，用两句话说明LangGraph主要解决什么问题。", [selected["doc_id"]]),
+        ("unscoped", "LangGraph 主要解决什么问题？", None),
+        ("specific", "解释这个API页面 https://docs.langchain.com/oss/python/integrations/retrievers/a-batch-nonexistent", None),
     ]
     report = Path("reports/a_live_smoke.json")
     results = json.loads(report.read_text()) if report.exists() else []
-    for name, question, level, routing, scope in cases:
+    for name, question, scope in cases:
         if sys.argv[1:] and name not in sys.argv[1:]:
             continue
         started = time.monotonic()
-        response = client.post("/api/chat", json={"messages": [{"role": "user", "content": question}], "evidence_level": level, "query_routing": routing, "allowed_doc_ids": scope})
+        response = client.post("/api/chat", json={"messages": [{"role": "user", "content": question}], "allowed_doc_ids": scope})
         events = []
         for frame in response.text.split("\n\n"):
             lines = frame.splitlines()

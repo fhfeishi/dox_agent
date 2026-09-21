@@ -19,7 +19,7 @@ def test_graph_emits_real_step_lifecycle(tmp_path):
     async def run():
         graph = build_graph(Knowledge(tmp_path / "docs"), Settings(_env_file=None), DirectModel())
         return [event async for event in graph.astream(
-            {"messages": [{"role": "user", "content": "你好"}], "evidence": [], "rounds": 0},
+            {"messages": [{"role": "user", "content": "你好"}], "evidence": [], "rounds": 0, "preparation": "running"},
             stream_mode="custom",
         )]
 

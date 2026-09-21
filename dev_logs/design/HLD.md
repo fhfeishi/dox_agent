@@ -48,7 +48,7 @@ flowchart LR
 | `src/workspace.py` | 会话 / 笔记记录 → 持久化 | 独立 SQLite、revision 冲突 409、单记录 4MB、笔记来源版本校验 |
 | `src/agent/config.py` | 环境变量 → `Settings` | 统一配置入口，`DOX_AGENT_ROOT` 定位仓库根 |
 | `src/agent/models.py` | `Settings` → 模型 / tracing | OpenAI 兼容模型与可选 LangSmith，唯一替换点 |
-| `src/agent/routing.py` | 消息、选项、文档目录 → 生效策略 | 严格枚举、有限分类、资料范围解析、回答证据约束 |
+| `src/agent/routing.py` | 选项、文档目录、知识库状态 → 生效策略 | 固定专业问答；资料范围解析与回答证据约束（不做自动分类） |
 | `src/agent/graph.py` | 历史消息 → 策略、步骤、证据、答案 | `understand → direct / research → validate → answer → finish`；不负责 HTTP |
 | `src/agent/evidence.py` | 研究报告 → 校验/合并/路由决策 | 交接契约；确定性核验，非语义裁判 |
 | `src/agent/quick.py` | 单轮短问题 → 一次有界查证 | 覆盖不足时升级为完整研究，复用已有预算 |

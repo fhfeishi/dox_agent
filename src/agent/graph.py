@@ -70,9 +70,8 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
 
     async def understand(state: State):
         get_stream_writer()({"event": "status", "data": {"message": "正在理解问题"}})
-        options = TurnOptions.model_validate(state.get("options") or {
-            "query_routing": settings.query_routing, "evidence_level": settings.evidence_level})
-        policy = await resolve_policy(state["messages"], options, llm, knowledge, state.get("preparation", "ready"))
+        options = TurnOptions.model_validate(state.get("options") or {})
+        policy = await resolve_policy(options, knowledge, state.get("preparation", "ready"))
         get_stream_writer()({"event": "policy", "data": policy})
         return {"policy": policy, "stop_reason": policy["stop_reason"]}
 
@@ -83,12 +82,6 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
         text = policy["notice"]
         if text:
             writer({"event": "token", "data": {"text": text}})
-        else:
-            messages = [SystemMessage(content="自然简洁地回应用户，先说重点。不声称查阅过资料，不生成引用编号。历史答案不是事实凭证。\n" + answer_policy(policy)), *state["messages"]]
-            async for chunk in llm.astream(messages):
-                if isinstance(chunk.content, str) and chunk.content:
-                    text += chunk.content
-                    writer({"event": "token", "data": {"text": chunk.content}})
         return {"answer": text}
 
     async def finish(state: State):
@@ -218,7 +211,7 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
         if did_quick:
             writer({"event": "status", "data": {"message": "快速查证：搜索并核对原文"}})
             try:
-                report = await verify(state["messages"], llm, search_impl, read_impl)
+                report = await verify(state["messages"], llm, search_impl, read_impl, state.get("runtime_usage"))
             except ModelBudgetExceeded:
                 report = None
                 writer({"event": "status", "data": {"message": "查证模型调用预算已到，使用已读证据组织回答"}})

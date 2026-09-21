@@ -30,7 +30,7 @@
 
 > **配置映射（当前实现）**：后端把 SQLite 原文库与会话库、以及 Chroma 向量索引统一放在 `DATA_DIR` 下（Chroma 固定为 `DATA_DIR/chroma`）。`database/`、`vectordb/` 目前是整理后的目标位置，尚未与 `DATA_DIR` 拆分为两个独立配置项。语料方面，`POST /api/ingest/local` 读取 `TEXT_ROOT` 下的 `.txt`/`.md`，以及 `KNOWLEDGE_ROOT` 下递归的全部 `.pdf`。
 
-> **当前演示配置**：仓库内 `.env` 把 `DATA_DIR` 指向 `knowledge/lcdata`，并设 `QUERY_ROUTING=knowledge_only`；启动后直接用该 LangChain 语料做带引用的问答，无需重新导入。切换到基金报告时改回 `DATA_DIR`/`KNOWLEDGE_ROOT` 即可。
+> **当前演示配置**：仓库内 `.env` 把 `DATA_DIR` 指向 `knowledge/lcdata`；问答已固定为带引用的专业模式（无策略开关），启动后直接用该 LangChain 语料做问答，无需重新导入。切换到基金报告时改回 `DATA_DIR`/`KNOWLEDGE_ROOT` 即可。
 
 ## 运行
 

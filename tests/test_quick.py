@@ -38,7 +38,7 @@ def test_quick_covered_skips_agent_and_partial_reuses_budget(tmp_path, monkeypat
         async def astream(self, messages):
             yield SimpleNamespace(content="fact [1]")
     model = Model()
-    settings = Settings(_env_file=None, query_routing="knowledge_only", max_searches=1)
+    settings = Settings(_env_file=None, max_searches=1)
     def run():
         return asyncio.run(graph.build_graph(store, settings, model).ainvoke({"messages": [{"role": "user", "content": "fact"}], "evidence": [], "rounds": 0}))
     assert run()["stop_reason"] == "covered"

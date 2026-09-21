@@ -3,7 +3,7 @@ export type Message = { role: "user" | "assistant"; content: string };
 export type Usage = { run_id?: string; input_tokens: number | null; output_tokens: number | null; total_tokens: number | null; reported_tokens: number | null; calls: number; reported_calls: number; complete: boolean; missing_reasons?: Record<string, number>; calls_by_phase?: Record<string, number> };
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string };
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; searches: number; reads: number; tokens: number | null };
-export type Options = { execution_mode?: "auto" | "quick" | "research"; query_routing: "auto" | "knowledge_only"; evidence_level: "low" | "middle" | "high"; allowed_doc_ids: string[] | null };
+export type Options = { allowed_doc_ids: string[] | null };
 export type Policy = Options & { route: "direct" | "research" | "clarify"; stop_reason: string; notice?: string };
 export type Event =
   | { event: "usage"; data: Usage }

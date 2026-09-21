@@ -38,7 +38,7 @@
 - 流程：`understand` → `direct` 或 `research` → `validate` → `answer` → `finish`。
 - 研究工具：`search_docs`、`read_doc`、`check_corpus_page`、`finish_research`；带有限补查、预算（`MAX_SEARCHES`、`MAX_READS`、`MAX_MODEL_CALLS`、超时）与硬停止。
 - 证据：`evidence_id` 绑定 doc_id/page/start_line/version；版本核验；来源卡片带 citation。
-- 对话契约字段：`messages`、`run_id`、可选 `execution_mode`（auto/quick/research）、`query_routing`（auto/knowledge_only）、`evidence_level`（low/middle/high）、`allowed_doc_ids`（1–20 份）。
+- 对话契约字段：`messages`、`run_id`、可选 `allowed_doc_ids`（1–20 份）；已移除 `execution_mode`/`query_routing`/`evidence_level`（阶段 C）。
 - SSE 事件：`status`、`policy`、`step`、`telemetry`、`sources`、`token`、`usage`、`done`、`error`。
 - 检索：BM25Plus；指定资料范围时只走 BM25（不同步子集到共享 Chroma）；可选 dense + RRF；结果按来源分散。
 
@@ -55,7 +55,6 @@
 
 - 科学基金报告语料与元数据（报告年份、领域标签、基金/项目类别、项目编号、解析状态）。
 - 检索前的领域/年份过滤。
-- 问题分类与"材料遵循"选项的移除（仍保留 `query_routing`/`evidence_level`/`execution_mode`）。
 - 右侧本地文档目录树、原始 PDF/Markdown 文件服务、PDF.js 阅读窗口、引用跳页。
 - 统一报告生成入口与四个模板（`achievements`/`hotspots`/`future_directions`/`comprehensive`）。
 - 报告预览/复制/Markdown 下载。
@@ -78,5 +77,9 @@
 | 前端构建（去硬编码后） | `npm run build` 通过；产物无 `南溪`、`LangChain 官方文档` 等语料特定文案，含新文案`在线文档源`与资料建议。 |
 | 演示语料接入（本次） | `knowledge/lcdata` 的 Chroma 集合名由旧 `static1-53eb4e...` 改为当前代码使用的 `dox-agent-53eb4e...`（签名一致）；服务启动后 `preparation=ready`、`docs_count=157`、`index_progress=ready 6717/6717`（复用而非重建）。 |
 | 演示问答（本次，UI 默认） | `POST /api/chat`（不传 query_routing，取默认 `knowledge_only`）→ research 路线，8 条引用来源，流式 `done`。 |
+| 阶段 C 后端（本次） | 移除 `execution_mode`/`query_routing`/`evidence_level`：`GET /api/health` 无 `defaults`；`POST /api/chat` 传旧字段返回 422；不传策略字段 → 固定 research，8 条引用来源、`done`。 |
+| 阶段 C 测试（本次） | `pytest tests -q` → 64 passed；新增 `tests/test_professional_policy.py`，删除旧分类套件 `test_query_routing.py`。 |
+| 阶段 C 旁带修复（本次） | 快速查证（`quick.verify`）的模型调用此前未计入 usage；现显式传入本轮回调，`test_usage` 验证 research+answer 两次调用共 26 tokens。 |
+| 前端（本次） | `npm run build` 通过；移除三个策略下拉，`Options` 仅剩 `allowed_doc_ids`；产物无旧字段文案。 |
 
 > 维护约定：每次开发后更新本文件第 5、6 节；任务拆解与完成记录写入 `plan/plan.md`。

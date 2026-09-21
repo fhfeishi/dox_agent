@@ -47,7 +47,7 @@ test('done is terminal without waiting for socket closure or processing trailing
 
 test('sends requested options and delivers server policy without guessing route', async () => {
   const original = globalThis.fetch;
-  const options = { query_routing: 'auto' as const, evidence_level: 'high' as const, allowed_doc_ids: ['doc'] };
+  const options = { allowed_doc_ids: ['doc'] };
   const policy = { ...options, route: 'research', stop_reason: 'covered' };
   globalThis.fetch = async (_url, init) => {
     assert.deepEqual(JSON.parse(init!.body as string), { messages: [], ...options });

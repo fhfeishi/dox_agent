@@ -43,7 +43,7 @@ function Process({ attempt }: { attempt: Attempt }) {
     <ol className="mt-3 space-y-2 text-xs text-stone-500">
       {attempt.steps.length ? attempt.steps.map(step => <li key={step.id} className="flex gap-3"><span className="w-12 shrink-0">step {step.sequence}</span><span><b className="font-medium text-stone-700">{step.label}</b>{step.detail ? ` · ${step.detail}` : ""} · {{running: "进行中", completed: "完成", failed: "失败", interrupted: "已中断"}[step.status]}</span></li>) : <li>旧回答没有记录详细步骤。</li>}
     </ol>
-    {attempt.policy && <p className="mt-3 border-t border-stone-100 pt-2 text-xs text-stone-400" aria-label="生效策略">{{ direct: "直接交流", research: "资料研究", clarify: "需要澄清" }[attempt.policy.route]} · {{ low: "自由讨论", middle: "有据分析", high: "严格依据" }[attempt.policy.evidence_level]} · {attempt.policy.query_routing === "knowledge_only" ? "仅按资料" : "自动判断"} · {attempt.policy.allowed_doc_ids ? "限定资料" : "全部资料"} · {stopLabels[attempt.policy.stop_reason] ?? "处理已更新"}</p>}
+    {attempt.policy && <p className="mt-3 border-t border-stone-100 pt-2 text-xs text-stone-400" aria-label="生效策略">{{ direct: "需要澄清", research: "资料研究", clarify: "需要澄清" }[attempt.policy.route]} · {attempt.policy.allowed_doc_ids ? "限定资料" : "全部资料"} · {stopLabels[attempt.policy.stop_reason] ?? "处理已更新"}</p>}
   </details>;
 }
 

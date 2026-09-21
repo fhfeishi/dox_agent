@@ -209,9 +209,9 @@ src/prompts/
 
 | 编号 | 任务 | 状态 |
 |---|---|---|
-| C1 | 移除问题分类分支，以及 `query_routing`/`evidence_level`/`execution_mode` 的前端选项与请求字段；清理 `GET /api/health` 的 `defaults{query_routing,evidence_level}` 与前端初始化 | ⬜ |
-| C2 | 不暴露 `execution_mode`，服务端固定有限研究流程与预算 | ⬜ |
-| C3 | 保留 `allowed_doc_ids` 作为检索过滤条件（非"材料遵循等级"） | 🟡 |
+| C1 | 移除问题分类分支，以及 `query_routing`/`evidence_level`/`execution_mode` 的前端选项与请求字段；清理 `GET /api/health` 的 `defaults{query_routing,evidence_level}` 与前端初始化 | ✅ |
+| C2 | 不暴露 `execution_mode`，服务端固定有限研究流程与预算 | ✅ |
+| C3 | 保留 `allowed_doc_ids` 作为检索过滤条件（非"材料遵循等级"） | ✅ |
 | C4 | 多轮追问、带页码引用、无资料/冲突/解析失败明确说明 | 🟡 |
 | C5 | 沿用搜索次数、模型调用与超时限制，不增加多 Agent/工作流编辑器 | ✅（口子已有，语义待切语料） |
 
@@ -306,5 +306,7 @@ src/prompts/
 | 2026-09-21 | A1 补齐 `pyproject.toml`（extras：`web`/`embedding`/`dev`；`package-data` 收录 `src/prompts/*.md`；`liteparse` 放宽为 `>=2.4,<3` 以匹配已装 2.14.6） | `uv pip install -e ".[dev]"` 与 `-e ".[web,embedding]"` 均成功；`launch.sh` 安装+启动路径实际跑通（见 A3） |
 | 2026-09-21 | A2 恢复 `tests/`（20 个文件，`STATIC1_VENV`→`DOX_AGENT_VENV`） | `.venv/bin/python -m pytest tests -q` → 83 passed |
 | 2026-09-21 | A3 端到端：`bash launch.sh` 启动服务、知识库就绪、真实模型问答 | `GET /api/health` → `preparation=ready`、`docs_count=157`；`POST /api/chat`（research 路线）→ 8 条带引用来源、`[1][4][5][6][7]` 正文、`done` |
+| 2026-09-21 | C1/C2/C3：移除自动意图分类与 `query_routing`/`evidence_level`/`execution_mode`，固定专业问答；保留 `allowed_doc_ids` | 后端 `routing.py`/`config.py`/`graph.py`/`quick.py`/`main.py` 与前端 `api.ts`/`main.tsx`/`Answer.tsx`/`conversation.ts` 改动；`GET /api/health` 无 `defaults`；旧字段请求 422；`pytest` 64 passed；`npm run build` 通过；真实模型问答 research + 8 条引用 |
+| 2026-09-21 | C 旁带修复：快速查证的模型调用计量 | `quick.verify` 显式接收本轮回调；`test_usage` 断言 research+answer 两次调用合计 26 tokens |
 
 > 记录约定：完成任务后在本表追加一行，并把对应任务状态改为 ✅ 或 🟡；未运行的检查不得写入证据。

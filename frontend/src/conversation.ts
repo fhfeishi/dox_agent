@@ -22,7 +22,7 @@ export type Turn = Attempt & {
   previousAttempts: Attempt[];
 };
 
-export function newAttempt(options: Options = { query_routing: "auto", evidence_level: "middle", allowed_doc_ids: null }): Attempt {
+export function newAttempt(options: Options = { allowed_doc_ids: null }): Attempt {
   return { runId: crypto.randomUUID(), steps: [], options: { ...options, allowed_doc_ids: options.allowed_doc_ids ? [...options.allowed_doc_ids] : null }, policy: null, answer: "", sources: [], complete: false, outcome: "running", startedAt: new Date().toISOString(), firstTokenMs: null, totalMs: null, elapsedMs: null };
 }
 
@@ -37,15 +37,14 @@ export function newTurn(question: string, history: Turn[], options?: Options): T
 export function regenerateTurn(turn: Turn, history: Turn[]): Turn {
   const { question, requestMessages: _oldRequest, previousAttempts, ...attempt } = turn;
   const effective = turn.policy ?? turn.options;
-  const options: Options = { ...(effective.execution_mode ? { execution_mode: effective.execution_mode } : {}), query_routing: effective.query_routing, evidence_level: effective.evidence_level, allowed_doc_ids: effective.allowed_doc_ids };
+  const options: Options = { allowed_doc_ids: effective.allowed_doc_ids ? [...effective.allowed_doc_ids] : null };
   return { ...newTurn(question, history, options), previousAttempts: [...previousAttempts, attempt] };
 }
 
 export function branchFromTurn(turns: Turn[], index: number) {
   const original = turns[index];
   const effective = original.policy ?? original.options;
-  const options: Options = { execution_mode: effective.execution_mode, query_routing: effective.query_routing,
-    evidence_level: effective.evidence_level, allowed_doc_ids: effective.allowed_doc_ids ? [...effective.allowed_doc_ids] : null };
+  const options: Options = { allowed_doc_ids: effective.allowed_doc_ids ? [...effective.allowed_doc_ids] : null };
   return { history: turns.slice(0, index).filter(turn => turn.complete && turn.outcome === "completed"), options };
 }
 

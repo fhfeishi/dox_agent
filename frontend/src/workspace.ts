@@ -92,8 +92,8 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
       data: { turns: baseTurns, options: effectiveOptions, source_session_id: source, source_turn_index: sourceTurnIndex } };
     await enqueue(record); setOptions(effectiveOptions); return id;
   }
-  async function rename(title: string) {
-    const item = sessionsRef.current.find(session => session.id === activeRef.current);
+  async function rename(title: string, id?: string) {
+    const item = sessionsRef.current.find(session => session.id === (id ?? activeRef.current));
     if (item && title.trim()) await enqueue({ ...item, title: title.trim().slice(0, 200) });
   }
   async function setArchived(id: string, archived: boolean) {

@@ -45,11 +45,12 @@
 ## 4. 已实现的前端能力
 
 - 对话：流式回答、停止、重新生成、复制、步骤过程、耗时与 token 用量、错误提示。
-- 会话：自动保存/恢复、切换、重命名、归档/恢复、编辑历史问题并创建分支。
-- 资料：资料范围多选（≤20 份）、筛选、正文补充、本地导入、网页预览入库、在线文档源导入/更新（来源与分区由服务端决定，前端不写死）。
-- 空状态：建议问题由当前已加载资料标题生成，不含任何语料特定文案，便于切换基金报告语料。
-- 状态：服务/知识库/密钥分离展示，约 3 秒健康轮询。
-- 未挂载：`frontend/src/Notes.tsx` 已存在但未挂载到 `main.tsx`。
+- 会话：自动保存/恢复、切换、重命名、归档/恢复、编辑历史问题并创建分支；会话栏按今天/昨天/更早分组、可搜索、当前高亮、悬停重命名/归档，未保存的新会话显式渲染不消失。
+- 资料：输入区 `ScopeSelector` 资料范围多选（≤20 份）与筛选；入库/采集（本地导入、网页预览、补充正文、在线文档源）收进 `SettingsDrawer`，默认不占左栏。
+- 信息架构：左栏仅会话管理；运维能力与导出/断开在设置抽屉（`role=dialog`、focus trap、Esc 关闭；关闭即卸载并停止轮询）。
+- 空状态：任务导向示例（精准问答/对比/趋势），不含任何语料特定文案。
+- 状态：正常时圆点+tooltip；未就绪/失败时展开文字并保留密钥/知识库阻塞提示；health 轮询就绪后降频（3s → 15s）。断开/保存失败在主界面可见。
+- 未挂载：`frontend/src/Notes.tsx` 已存在但未挂载到 `main.tsx`（文件头已标 experimental）。
 
 ## 5. 尚未实现（对照 `demand.md`）
 
@@ -81,5 +82,8 @@
 | 阶段 C 测试（本次） | `pytest tests -q` → 64 passed；新增 `tests/test_professional_policy.py`，删除旧分类套件 `test_query_routing.py`。 |
 | 阶段 C 旁带修复（本次） | 快速查证（`quick.verify`）的模型调用此前未计入 usage；现显式传入本轮回调，`test_usage` 验证 research+answer 两次调用共 26 tokens。 |
 | 前端（本次） | `npm run build` 通过；移除三个策略下拉，`Options` 仅剩 `allowed_doc_ids`；产物无旧字段文案。 |
+| U0 UI 信息架构（本次） | 新增 `ScopeSelector`/`IngestTools`/`SettingsDrawer`/`SessionList`/`useDocuments`，删除 `SourceManager.tsx`/`KnowledgePanel.tsx`；`npm run build` 通过；`npm test`（node:test）12 passed。 |
+| U0 离线浏览器验收（本次） | `tests/browser_ui_shell.py` PASS：左栏无入库/无旧健康框、健康圆点、会话分组/搜索/未保存会话、抽屉 dialog+Esc+焦点回退+关闭后停止轮询。 |
+| 回答控件回归（本次） | `tests/browser_answer_controls.py` PASS：复制/重生成/停止/失败/导出/移动端无回归；同时修正两处过期断言（`run_id` 逐次变化、取消文案）。 |
 
 > 维护约定：每次开发后更新本文件第 5、6 节；任务拆解与完成记录写入 `plan/plan.md`。

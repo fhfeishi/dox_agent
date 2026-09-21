@@ -4,7 +4,7 @@ export type Usage = { run_id?: string; input_tokens: number | null; output_token
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string };
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; searches: number; reads: number; tokens: number | null };
 export type Options = { allowed_doc_ids: string[] | null };
-export type Policy = Options & { route: "direct" | "research" | "clarify"; stop_reason: string; notice?: string };
+export type Policy = Options & { route: "research" | "clarify"; stop_reason: string; notice?: string };
 export type Event =
   | { event: "usage"; data: Usage }
   | { event: "step"; data: Step }

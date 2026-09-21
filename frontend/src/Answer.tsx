@@ -38,12 +38,13 @@ function Timing({ attempt, startedTick }: { attempt: Attempt; startedTick?: numb
 function Process({ attempt }: { attempt: Attempt }) {
   const current = [...attempt.steps].reverse().find(step => step.status === "running") ?? attempt.steps.at(-1);
   const finalLabel = attempt.outcome === "completed" ? "处理完成" : attempt.outcome === "interrupted" ? "已中断，结果未确认" : attempt.outcome === "failed" ? "处理失败" : current?.label ?? "准备处理";
-  return <details className="mb-4 rounded-xl border border-stone-200 bg-white px-4 py-3" open={attempt.outcome === "running"}>
+  const [open, setOpen] = useState(attempt.outcome === "running");
+  return <details className="mb-4 rounded-xl border border-stone-200 bg-white px-4 py-3" open={open} onToggle={event => setOpen(event.currentTarget.open)}>
     <summary className="cursor-pointer text-sm font-medium text-stone-700">处理过程 · {finalLabel}</summary>
     <ol className="mt-3 space-y-2 text-xs text-stone-500">
       {attempt.steps.length ? attempt.steps.map(step => <li key={step.id} className="flex gap-3"><span className="w-12 shrink-0">step {step.sequence}</span><span><b className="font-medium text-stone-700">{step.label}</b>{step.detail ? ` · ${step.detail}` : ""} · {{running: "进行中", completed: "完成", failed: "失败", interrupted: "已中断"}[step.status]}</span></li>) : <li>旧回答没有记录详细步骤。</li>}
     </ol>
-    {attempt.policy && <p className="mt-3 border-t border-stone-100 pt-2 text-xs text-stone-400" aria-label="生效策略">{{ direct: "需要澄清", research: "资料研究", clarify: "需要澄清" }[attempt.policy.route]} · {attempt.policy.allowed_doc_ids ? "限定资料" : "全部资料"} · {stopLabels[attempt.policy.stop_reason] ?? "处理已更新"}</p>}
+    {attempt.policy && <p className="mt-3 border-t border-stone-100 pt-2 text-xs text-stone-400" aria-label="生效策略">{{ research: "资料研究", clarify: "需要澄清" }[attempt.policy.route]} · {attempt.policy.allowed_doc_ids ? "限定资料" : "全部资料"} · {stopLabels[attempt.policy.stop_reason] ?? "处理已更新"}</p>}
   </details>;
 }
 

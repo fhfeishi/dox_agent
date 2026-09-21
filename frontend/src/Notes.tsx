@@ -1,3 +1,6 @@
+/** Experimental: not mounted in the main app. Kept at this path because its relative imports
+ * (`./api`, `./workspace`) expect the flat `src/` layout; moving it into a subdirectory breaks
+ * `tsc --noEmit`. See plan/ui_optimization.md U0.7. */
 import { useEffect, useState } from "react";
 import type { Source } from "./api";
 import { workspaceRequest, type Saved } from "./workspace";

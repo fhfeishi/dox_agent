@@ -14,7 +14,9 @@ async def main():
         errors = []
         page.on("pageerror", lambda error: errors.append(str(error)))
         await page.goto(os.getenv("TEST_BASE_URL", "http://127.0.0.1:8011"))
-        await page.get_by_text("知识库 · 11 份").wait_for()
+        await page.get_by_role("button", name="设置与运维").click()
+        await page.get_by_role("button", name="导入 / 更新本地文本与 PDF").wait_for()
+        await page.get_by_role("button", name="关闭 ✕").click()
         await page.get_by_role("textbox", name="问题", exact=True).fill("测试流式展示")
         # Browser integration does not spend another model call.
         await page.route(

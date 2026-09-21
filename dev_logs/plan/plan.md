@@ -3,6 +3,7 @@
 - 依据需求：[`../demand.md`](../demand.md)（以该文件最新版为准）
 - 当前状态：[`../status.md`](../status.md)
 - 已实现接口与实现：[`../design/`](../design/README.md)
+- 前端 UI 优化方案（拟议）：[`ui_optimization.md`](ui_optimization.md)
 - 状态标记：✅ 已完成 · 🟡 部分完成 · ⬜ 未开始
 - 更新日期：2026-09-21
 
@@ -17,6 +18,7 @@
 | E 专项报告 | 统一生成入口 + 四模板 | ⬜ |
 | F 验收 | 真实基金报告样本验收 | ⬜ |
 | G 任务系统与会话栏 | task1–4、prompts、ChatGPT 式会话管理 | ⬜ |
+| U UI 优化 | 左栏收敛、会话栏、设置抽屉、文档窗口与报告入口（无后端依赖部分先行） | 🟡 |
 
 实施顺序：A（可运行）→ B（基金报告入库与元数据/过滤，E/F 的前提）→ C/D/G 并行（入口收敛、文档窗口、任务系统）→ E（报告）→ F（真实数据验收）。
 
@@ -131,7 +133,7 @@ src/prompts/
 
 | 接口 | 变更 |
 |---|---|
-| `GET /api/documents` | 扩展返回 `rel_path`、`kind`、`status`、`meta`（前端据此建树） |
+| `GET /api/documents` | 补 `rel_path`、`status`、`meta`（`kind` 已返回，`main.py:117`；前端据此建树） |
 | `GET /api/documents/{doc_id}/file` | 新增：返回原始文件（PDF/Markdown/txt）；`Content-Type` 按 kind；支持 `Range`；可选 `version` 校验 |
 
 - 仅允许读取配置根目录内的资料；用文档 ID 映射文件；拒绝路径穿越与指向根目录外的链接。
@@ -164,7 +166,7 @@ src/prompts/
 |---|---|---|
 | `GET /api/tasks` | 新增 | 任务列表 |
 | `POST /api/chat` | 修改 | 新增 `task_id`（task1–3）与 `filters`，保留 `allowed_doc_ids`，移除旧策略字段；不接受 task4 |
-| `GET /api/documents` | 修改 | 增加 `rel_path`/`kind`/`status`/`meta` |
+| `GET /api/documents` | 修改 | 增加 `rel_path`/`status`/`meta`（`kind` 已返回） |
 | `GET /api/documents/{doc_id}/file` | 新增 | 原始 PDF/Markdown 文件服务 |
 | `GET /api/workspace/sessions` | 修改 | 会话数据含 `task_id`（沿用 JSON） |
 | `POST /api/reports`、`GET /api/reports/{id}` | 新增 | 见阶段 E |
@@ -219,7 +221,7 @@ src/prompts/
 
 | 编号 | 任务 | 状态 |
 |---|---|---|
-| D1 | 扩展 `GET /api/documents`：相对路径、元数据、入库状态 | ⬜ |
+| D1 | 扩展 `GET /api/documents`：相对路径、元数据、入库状态（`kind` 已返回，补 `rel_path`/`status`/`meta`） | ⬜ |
 | D2 | 新增 `GET /api/documents/{doc_id}/file` 原始文件响应（含 Range、可选版本校验） | ⬜ |
 | D3 | 路径安全：仅根目录内、按文档 ID 映射、防路径穿越 | ⬜ |
 | D4 | 右侧滑出容器 `DocumentPanel`，关闭不丢聊天上下文 | ⬜ |
@@ -269,6 +271,28 @@ src/prompts/
 | G8 | 任务输出契约验收（task3 事实/推断分离、task4 范围/来源/局限） | ⬜ |
 | G9 | 前端 task4 报告表单入口与报告记录展示（调用 `POST /api/reports`）（报告↔会话绑定待定，见待定设计 #10） | ⬜ |
 
+## U. UI 优化（依据 [`ui_optimization.md`](ui_optimization.md)）
+
+| 编号 | 任务 | 状态 |
+|---|---|---|
+| U0.1 | 拆分 `SourceManager` → `ScopeSelector`（输入区）+ `IngestTools`（抽屉） | ✅ |
+| U0.2 | `SettingsDrawer` 收纳运维能力；`role=dialog`/focus trap/Esc；关闭即卸载停止轮询 | ✅ |
+| U0.2b | 断开/保存失败在主界面可见 | ✅ |
+| U0.3 | 健康状态圆点+tooltip；未就绪/失败展开文字；保留轮询并就绪后降频 | ✅ |
+| U0.4 | `useDocuments` 收敛三处 fetch | ✅ |
+| U0.5 | `SessionList`：今天/昨天/更早分组、搜索、当前高亮、悬停重命名/归档、未保存会话显式渲染 | ✅ |
+| U0.6 | 阶段 C 清理：`policy.ts` 补 professional/repair/completed 并删旧键；`Policy.route` 收窄；Process 展开态不强制收起 | ✅ |
+| U0.7 | `Notes.tsx` 留原处加 experimental 注释 | ✅ |
+| U0.8 | `package.json` 加 `test: node --test src/` | ✅ |
+| U1 | 任务系统与会话绑定 | ⬜（依赖 G2/G3/G7） |
+| U2 | 右侧文档面板与引用跳转 | ⬜（依赖 D1/D2，页码以 D10 为准） |
+| U3 | 报告入口 | ⬜（依赖 E1/E2；U3.4 依赖待定设计 #10） |
+| U4.1 | 双栏自适应放宽内容宽度 | ✅ |
+| U4.2 | 空状态改为任务导向示例 | ✅ |
+| U4.3 | 流式过程与 Markdown/代码块排版 | 🟡（基础排版已有，后续随 U2/U3 调整） |
+
+依赖说明：U1–U3 由 `ui_optimization.md` §4 特性开关控制，后端就绪前默认关闭且不发送新字段；本轮未创建开关（当前无占位 UI 可控制）。
+
 ## 首期不做（来自 demand §8.2）
 
 多租户/权限后台、多 Agent 协作、知识图谱、工作流画布、独立问题分类服务、材料遵循等级系统、自动全网研究、自动订阅同步、模板管理平台、分布式任务队列。
@@ -317,5 +341,7 @@ src/prompts/
 | 2026-09-21 | A3 端到端：`bash launch.sh` 启动服务、知识库就绪、真实模型问答 | `GET /api/health` → `preparation=ready`、`docs_count=157`；`POST /api/chat`（research 路线）→ 8 条带引用来源、`[1][4][5][6][7]` 正文、`done` |
 | 2026-09-21 | C1/C2/C3：移除自动意图分类与 `query_routing`/`evidence_level`/`execution_mode`，固定专业问答；保留 `allowed_doc_ids` | 后端 `routing.py`/`config.py`/`graph.py`/`quick.py`/`main.py` 与前端 `api.ts`/`main.tsx`/`Answer.tsx`/`conversation.ts` 改动；`GET /api/health` 无 `defaults`；旧字段请求 422；`pytest` 64 passed；`npm run build` 通过；真实模型问答 research + 8 条引用 |
 | 2026-09-21 | C 旁带修复：快速查证的模型调用计量 | `quick.verify` 显式接收本轮回调；`test_usage` 断言 research+answer 两次调用合计 26 tokens |
+| 2026-09-21 | U0.1–U0.8 / U4.1–U4.2：UI 信息架构与基础 | 拆分 `ScopeSelector`/`IngestTools`、新增 `SettingsDrawer`/`SessionList`/`useDocuments`；删除 `SourceManager.tsx`/`KnowledgePanel.tsx`；`policy.ts` 补 professional/repair/completed；`npm run build` 通过；`npm test`（node:test）12 passed |
+| 2026-09-21 | U0 回归与验收（离线浏览器） | `tests/browser_ui_shell.py` PASS：左栏无入库/无旧健康框、健康圆点、会话分组/搜索/未保存会话、抽屉 dialog+Esc+焦点回退+关闭后停止轮询；`tests/browser_answer_controls.py` PASS：复制/重生成/停止/失败/导出/移动端无回归（顺带修正两处过期断言：`run_id` 逐次变化、取消文案） |
 
 > 记录约定：完成任务后在本表追加一行，并把对应任务状态改为 ✅ 或 🟡；未运行的检查不得写入证据。

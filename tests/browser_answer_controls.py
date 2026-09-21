@@ -71,7 +71,7 @@ async def main():
             await article.get_by_role("button", name="重新生成").click()
             await expect(article.get_by_role("button", name="重新生成")).to_be_enabled()
             requests = await page.evaluate("window.requests")
-            assert requests[0] == requests[1]
+            assert {k: v for k, v in requests[0].items() if k != "run_id"} == {k: v for k, v in requests[1].items() if k != "run_id"}
             assert requests[0]["messages"] == [{"role": "user", "content": "第一问"}]
             assert requests[0]["allowed_doc_ids"] is None
             await article.get_by_text("之前的回答 · 1 个版本", exact=True).click()
@@ -88,7 +88,7 @@ async def main():
             await page.get_by_role("button", name="重新生成").click()
             await expect(field).to_have_value("草稿不要清空")
             await page.get_by_role("button", name="停止", exact=True).click()
-            await expect(page.get_by_text("已停止（未完成）", exact=False)).to_be_visible()
+            await expect(page.get_by_text("已中断（结果未确认）", exact=False)).to_be_visible()
             latest = page.locator("article").last
             await expect(latest.get_by_text("首 token / Think 等待：未收到正文", exact=True).first).to_be_visible()
             await page.evaluate("window.mode = 'failure'")
@@ -98,6 +98,7 @@ async def main():
             await page.evaluate("Object.defineProperty(navigator.clipboard, 'writeText', {value: async () => {throw new Error('denied')}})")
             await latest.get_by_role("button", name="复制答案", exact=True).first.click()
             await expect(page.get_by_text("复制失败，请手动选择答案复制。", exact=True)).to_be_visible()
+            await page.get_by_role("button", name="设置与运维").click()
             async with page.expect_download() as download_info:
                 await page.get_by_role("button", name="导出对话与证据版本").click()
             download = await download_info.value

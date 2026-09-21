@@ -290,8 +290,12 @@ src/prompts/
 | U4.1 | 双栏自适应放宽内容宽度 | ✅ |
 | U4.2 | 空状态改为任务导向示例 | ✅ |
 | U4.3 | 流式过程与 Markdown/代码块排版 | 🟡（基础排版已有，后续随 U2/U3 调整） |
+| U5 | 会话内分支：编辑并重问合并进原会话（`SessionData.branches`；含持久化管线/`restoreTurns`/字节配额/旧数据归并/`branches.ts` 单测） | ✅（见 `ui_optimization.md` §8） |
+| U6 | 设置抽屉用电源按钮取代整行“断开连接并退出” | ⬜ |
+| U7 | 知识库源文件预览（复用读接口，Markdown/纯文本 + 元数据） | ⬜ |
+| U8 | 左下角 LLM 模型名 + 红/绿/黄状态灯 | ⬜ |
 
-依赖说明：U1–U3 由 `ui_optimization.md` §4 特性开关控制，后端就绪前默认关闭且不发送新字段；本轮未创建开关（当前无占位 UI 可控制）。
+依赖说明：U1–U3 由 `ui_optimization.md` §4 特性开关控制，后端就绪前默认关闭且不发送新字段；本轮未创建开关（当前无占位 UI 可控制）。U5–U8 无新后端依赖（U7 复用现有读接口）。执行顺序：U5 单独一个提交（先抽 `branches.ts` 纯逻辑 + `node:test`），U7 次之，U6/U8 可并入任一批。
 
 ## 首期不做（来自 demand §8.2）
 
@@ -343,5 +347,6 @@ src/prompts/
 | 2026-09-21 | C 旁带修复：快速查证的模型调用计量 | `quick.verify` 显式接收本轮回调；`test_usage` 断言 research+answer 两次调用合计 26 tokens |
 | 2026-09-21 | U0.1–U0.8 / U4.1–U4.2：UI 信息架构与基础 | 拆分 `ScopeSelector`/`IngestTools`、新增 `SettingsDrawer`/`SessionList`/`useDocuments`；删除 `SourceManager.tsx`/`KnowledgePanel.tsx`；`policy.ts` 补 professional/repair/completed；`npm run build` 通过；`npm test`（node:test）12 passed |
 | 2026-09-21 | U0 回归与验收（离线浏览器） | `tests/browser_ui_shell.py` PASS：左栏无入库/无旧健康框、健康圆点、会话分组/搜索/未保存会话、抽屉 dialog+Esc+焦点回退+关闭后停止轮询；`tests/browser_answer_controls.py` PASS：复制/重生成/停止/失败/导出/移动端无回归（顺带修正两处过期断言：`run_id` 逐次变化、取消文案） |
+| 2026-09-21 | U5 会话内分支（编辑并重问不新建会话） | 新增 `branches.ts`（深拷贝/切片/字节裁剪/索引查询）与 `branches.test.mts`；`workspace.ts` 增加 `branches` 状态与持久化管线、`branchInPlace`/`restoreBranch`，切会话重置分支；`main.tsx` 分支入口/只读查看/设为主时间线；`SessionList` 归并旧 `source_session_id` 会话。`npm run build` 通过；`npm test` → 15 passed；`tests/browser_session_branches.py` PASS（不新增会话、保存后刷新分支仍在、恢复不残留、旧分支归并） |
 
 > 记录约定：完成任务后在本表追加一行，并把对应任务状态改为 ✅ 或 🟡；未运行的检查不得写入证据。

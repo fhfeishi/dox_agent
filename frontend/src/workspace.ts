@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { restoreTurns, type Turn } from "./conversation";
 import type { Options } from "./api";
+import { createBranch as makeBranch, deepCopy, trimBranches, type Branch } from "./branches";
 
 export type Saved<T = Record<string, unknown>> = { id: string; revision: number; title: string; data: T; updated_at?: string; source_status?: string };
-export type SessionData = { turns: Turn[]; options: Options; archived?: boolean; source_session_id?: string; source_turn_index?: number };
+export type SessionData = { turns: Turn[]; options: Options; archived?: boolean; branches?: Branch[]; source_session_id?: string; source_turn_index?: number };
 
 export async function workspaceRequest(path: string, body?: unknown) {
   const response = await fetch(path, body ? { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : undefined);
@@ -17,6 +18,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
   const [active, setActive] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [message, setMessage] = useState("正在恢复会话…");
+  const [branches, setBranches] = useState<Branch[]>([]);
   const revisions = useRef<Record<string, number>>({});
   const chain = useRef<Promise<void>>(Promise.resolve());
   const pending = useRef<Saved<SessionData> | null>(null);
@@ -24,11 +26,13 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
   const sessionsRef = useRef<Saved<SessionData>[]>([]);
   const turnsRef = useRef(turns);
   const optionsRef = useRef(options);
+  const branchesRef = useRef(branches);
   const hydrated = useRef(false);
 
   function updateSessions(value: Saved<SessionData>[]) { sessionsRef.current = value; setSessions(value); }
   useEffect(() => { turnsRef.current = turns; }, [turns]);
   useEffect(() => { optionsRef.current = options; }, [options]);
+  useEffect(() => { branchesRef.current = branches; }, [branches]);
   useEffect(() => {
     void workspaceRequest("/api/workspace/sessions").then((items: Saved<SessionData>[]) => {
       updateSessions(items);
@@ -37,7 +41,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
       const selected = visible.find(item => item.id === localStorage.getItem("dox-agent-session")) ?? visible[0];
       const id = selected?.id ?? crypto.randomUUID();
       activeRef.current = id; setActive(id);
-      if (selected) { setTurns(restoreTurns(selected.data.turns)); setOptions(selected.data.options); }
+      if (selected) { setTurns(restoreTurns(selected.data.turns)); setOptions(selected.data.options); setBranches(selected.data.branches ?? []); }
       hydrated.current = true; setLoaded(true); setMessage(selected ? "会话已恢复" : "可以开始新会话");
     }).catch(e => setMessage("会话恢复失败：" + e.message));
   }, []);
@@ -58,39 +62,53 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     return chain.current;
   }
   function flush() { const snapshot = pending.current; pending.current = null; return snapshot ? enqueue(snapshot) : chain.current; }
-  async function saveNow(snapshot = turnsRef.current, effectiveOptions = optionsRef.current) {
+  async function saveNow(snapshot = turnsRef.current, effectiveOptions = optionsRef.current, branchSnapshot = branchesRef.current) {
     if (!snapshot.length) return;
     pending.current = null;
     const existing = sessionsRef.current.find(item => item.id === activeRef.current);
     await enqueue({ id: activeRef.current, revision: revisions.current[activeRef.current] ?? 0,
       title: existing?.title ?? snapshot[0].question.slice(0, 100),
-      data: { ...existing?.data, turns: snapshot, options: effectiveOptions } });
+      data: { ...existing?.data, turns: snapshot, options: effectiveOptions, branches: branchSnapshot } });
   }
   useEffect(() => {
     if (!loaded || !hydrated.current || !active || !turns.length) return;
     localStorage.setItem("dox-agent-session", active);
     const existing = sessionsRef.current.find(item => item.id === active);
     pending.current = { id: active, revision: revisions.current[active] ?? 0,
-      title: existing?.title ?? turns[0].question.slice(0, 100), data: { ...existing?.data, turns, options } };
+      title: existing?.title ?? turns[0].question.slice(0, 100), data: { ...existing?.data, turns, options, branches } };
     const timer = setTimeout(() => { void flush().catch(() => undefined); }, 500);
     return () => clearTimeout(timer);
-  }, [turns, options, active, loaded]);
+  }, [turns, options, branches, active, loaded]);
   async function select(id?: string) {
     await flush();
     const item = sessionsRef.current.find(session => session.id === id);
     const next = item?.id ?? crypto.randomUUID();
     activeRef.current = next; setActive(next); localStorage.setItem("dox-agent-session", next);
     setTurns(item ? restoreTurns(item.data.turns) : []);
+    setBranches(item?.data.branches ?? []);
     if (item) setOptions(item.data.options);
   }
-  async function createBranch(baseTurns: Turn[], effectiveOptions: Options, sourceTurnIndex: number) {
-    await saveNow();
-    const source = activeRef.current;
-    const id = crypto.randomUUID();
-    activeRef.current = id; setActive(id); localStorage.setItem("dox-agent-session", id);
-    const record: Saved<SessionData> = { id, revision: 0, title: "编辑后的分支",
-      data: { turns: baseTurns, options: effectiveOptions, source_session_id: source, source_turn_index: sourceTurnIndex } };
-    await enqueue(record); setOptions(effectiveOptions); return id;
+  /** U5: snapshot the tail as a branch and hand back the truncated history; no new session. */
+  async function branchInPlace(index: number) {
+    const snapshot = makeBranch(turnsRef.current, index, branchesRef.current, optionsRef.current);
+    const { branches: kept, trimmed } = trimBranches([...branchesRef.current, snapshot]);
+    branchesRef.current = kept; setBranches(kept);
+    return { history: deepCopy(turnsRef.current.slice(0, index)), options: optionsRef.current, branch: snapshot, trimmed };
+  }
+  function viewBranch(id: string) { return branchesRef.current.find(branch => branch.id === id) ?? null; }
+  /** Make a branch the main timeline; save the current main back as a branch unless it is empty. */
+  async function restoreBranch(id: string) {
+    const target = branchesRef.current.find(branch => branch.id === id);
+    if (!target) return null;
+    const currentMain = turnsRef.current;
+    let next = branchesRef.current.filter(branch => branch.id !== id);
+    if (currentMain.length) next = trimBranches([...next, makeBranch(currentMain, target.fromIndex, next, optionsRef.current)]).branches;
+    next = trimBranches(next).branches;
+    branchesRef.current = next; setBranches(next);
+    const restored = restoreTurns(deepCopy(target.turns));
+    setTurns(restored);
+    await saveNow(restored, target.options ?? optionsRef.current, next);
+    return restored;
   }
   async function rename(title: string, id?: string) {
     const item = sessionsRef.current.find(session => session.id === (id ?? activeRef.current));
@@ -102,5 +120,5 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     await enqueue({ ...item, data: { ...item.data, archived } });
     if (archived && id === activeRef.current) await select();
   }
-  return { sessions, active, loaded, message, select, flush, saveNow, createBranch, rename, setArchived };
+  return { sessions, active, loaded, message, branches, select, flush, saveNow, branchInPlace, viewBranch, restoreBranch, rename, setArchived };
 }

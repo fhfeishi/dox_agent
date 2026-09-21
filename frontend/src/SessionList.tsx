@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import type { Saved, SessionData } from "./workspace";
 
 function sessionTime(session: Saved<SessionData>): string | undefined {
@@ -30,7 +30,10 @@ export function SessionList({ sessions, active, activeTitle, loaded, busy, onSel
   const [query, setQuery] = useState("");
   const [editing, setEditing] = useState<{ id: string; title: string } | null>(null);
   const matches = (title: string) => title.toLowerCase().includes(query.trim().toLowerCase());
-  const visible = sessions.filter(session => !session.data.archived && matches(session.title));
+  const sourceIds = new Set(sessions.map(session => session.id));
+  const legacyBranch = (session: Saved<SessionData>) => Boolean(session.data.source_session_id && sourceIds.has(session.data.source_session_id));
+  const childrenOf = (id: string) => sessions.filter(session => !session.data.archived && session.data.source_session_id === id && matches(session.title));
+  const visible = sessions.filter(session => !session.data.archived && !legacyBranch(session) && matches(session.title));
   const archived = sessions.filter(session => session.data.archived);
   const unsaved = !sessions.some(session => session.id === active) && matches(activeTitle || "当前新会话");
 
@@ -49,19 +52,26 @@ export function SessionList({ sessions, active, activeTitle, loaded, busy, onSel
         return <div key={group}>
           <p className="mb-1 text-xs font-medium text-stone-500">{group}</p>
           <ul className="space-y-1">
-            {items.map(session => editing?.id === session.id
-              ? <li key={session.id}><form className="flex gap-1" onSubmit={e => { e.preventDefault(); onRename(session.id, editing.title); setEditing(null); }}>
+            {items.map(session => <Fragment key={session.id}>
+              {editing?.id === session.id
+              ? <li><form className="flex gap-1" onSubmit={e => { e.preventDefault(); onRename(session.id, editing.title); setEditing(null); }}>
                   <input autoFocus aria-label="会话标题" className="min-w-0 flex-1 rounded border px-2 py-1 text-xs" value={editing.title} onChange={e => setEditing({ ...editing, title: e.target.value })}/>
                   <button type="submit" className="rounded border px-2 text-xs">保存</button>
                   <button type="button" className="px-1 text-xs" onClick={() => setEditing(null)}>取消</button>
                 </form></li>
-              : <li key={session.id} className="group flex items-center gap-1">
+              : <li className="group flex items-center gap-1">
                   <button disabled={!loaded || busy} className={`min-w-0 flex-1 truncate rounded-lg px-2 py-1 text-left text-xs disabled:opacity-40 ${session.id === active ? "border border-teal-300 bg-teal-50 text-teal-900" : "hover:bg-stone-200"}`} onClick={() => onSelect(session.id)}>{itemTitle(session.title)}</button>
                   <span className="hidden shrink-0 gap-1 group-hover:flex">
                     <button aria-label="重命名会话" title="重命名" className="px-1 text-xs" onClick={() => setEditing({ id: session.id, title: session.title })}>重命名</button>
                     <button aria-label="归档会话" title="归档" className="px-1 text-xs" onClick={() => onArchive(session.id)}>归档</button>
                   </span>
+                </li>}
+              {!!childrenOf(session.id).length && <ul className="ml-3 mt-1 space-y-1 border-l border-stone-200 pl-2">
+                {childrenOf(session.id).map(child => <li key={child.id}>
+                  <button disabled={!loaded || busy} className="min-w-0 w-full truncate rounded-lg px-2 py-1 text-left text-xs text-stone-500 hover:bg-stone-200 disabled:opacity-40" onClick={() => onSelect(child.id)}>{itemTitle(child.title)} <span className="text-stone-400">· 历史分支</span></button>
                 </li>)}
+              </ul>}
+            </Fragment>)}
           </ul>
         </div>;
       })}

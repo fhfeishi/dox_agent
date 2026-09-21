@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
+import { Fragment, useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { createRoot } from "react-dom/client";
 import { streamChat, type Options } from "./api";
 import { Answer } from "./Answer";
-import { branchFromTurn, newTurn, regenerateTurn, receiveEvent, stopTurn, type Turn } from "./conversation";
+import { newTurn, regenerateTurn, receiveEvent, stopTurn, type Turn } from "./conversation";
+import type { Branch } from "./branches";
 import "./style.css";
 import { IngestTools } from "./IngestTools";
 import { OfficialDocs } from "./OfficialDocs";
@@ -31,6 +32,7 @@ function App() {
   const [corpusReady, setCorpusReady] = useState(false);
   const [connected, setConnected] = useState(true);
   const [editing, setEditing] = useState<EditState>(null);
+  const [viewingBranch, setViewingBranch] = useState<Branch | null>(null);
   const [sessionBusy, setSessionBusy] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [options, setOptions] = useState<Options>({ allowed_doc_ids: null });
@@ -130,13 +132,24 @@ function App() {
   async function confirmEdit() {
     if (!editing?.text.trim()) return;
     setSessionBusy(true);
-    const branch = branchFromTurn(latestTurns.current, editing.index);
     try {
-      await workspace.createBranch(branch.history, branch.options, editing.index);
-      replaceTurns(() => branch.history);
+      const result = await workspace.branchInPlace(editing.index);
+      replaceTurns(() => result.history);
+      if (result.trimmed) setStatus("分支过多，已裁剪最旧分支");
       const question = editing.text.trim(); setEditing(null); setSessionBusy(false);
-      await send(false, { question, history: branch.history, options: branch.options });
+      await send(false, { question, history: result.history, options: result.options });
     } catch (e) { setSessionBusy(false); setError(`建立编辑分支失败：${(e as Error).message}`); }
+  }
+  async function restoreSelectedBranch() {
+    if (!viewingBranch) return;
+    setSessionBusy(true);
+    try {
+      await settleActiveRun();
+      const restored = await workspace.restoreBranch(viewingBranch.id);
+      if (restored) replaceTurns(() => restored);
+      setViewingBranch(null); setStatus("已切换到分支");
+    } catch (e) { setError(`切换分支失败：${(e as Error).message}`); }
+    finally { setSessionBusy(false); }
   }
   async function disconnect() {
     setError("");
@@ -189,7 +202,9 @@ function App() {
           <p className="mt-5 leading-7 text-stone-500">自然交流，需要时查阅资料并给出依据。</p>
           <div className="mt-8"><p className="text-xs text-stone-400">试试这些任务：</p><div className="mt-2 flex flex-wrap gap-2">{EXAMPLES.map(([label, question]) => <button key={label} className="rounded-xl border border-stone-200 bg-white p-3 text-left text-sm hover:bg-stone-100" onClick={() => setInput(question)}>{label} ↗</button>)}</div></div>
         </div>}
-        {turns.map((turn, i) => <article key={`${turn.runId}-${i}`} className="mb-10">
+        {turns.map((turn, i) => <Fragment key={`${turn.runId}-${i}`}>
+          {workspace.branches.filter(b => b.fromIndex === i).map(b => <div key={b.id} className="mb-4 flex justify-center"><button className="rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs text-teal-800 hover:bg-teal-100" onClick={() => setViewingBranch(b)}>{b.label} ↗</button></div>)}
+          <article className="mb-10">
           <div className="mb-6 ml-auto max-w-[85%] rounded-2xl bg-stone-200/70 px-5 py-3"><div className="whitespace-pre-wrap">{turn.question}</div><div className="mt-2 flex justify-end gap-3 text-xs text-stone-500"><button className="hover:underline" onClick={() => void copyQuestion(turn.question)}>复制问题</button><button className="hover:underline" onClick={() => void beginEdit(i)}>编辑并重问</button></div></div>
           {editing?.index === i && <div className="mb-5 ml-auto max-w-[90%] rounded-2xl border border-teal-300 bg-white p-3"><textarea aria-label="编辑历史问题" className="w-full resize-y p-2 text-sm outline-none" rows={4} value={editing.text} onChange={e => setEditing({...editing, text: e.target.value})}/><div className="mt-2 flex justify-end gap-2"><button className="rounded-lg border px-3 py-1 text-xs" onClick={() => setEditing(null)}>取消</button><button className="rounded-lg bg-teal-800 px-3 py-1 text-xs text-white" onClick={() => void confirmEdit()}>确认修改并重新询问</button></div></div>}
           <Answer attempt={turn} startedTick={i === turns.length - 1 ? startedTick.current : undefined} onRegenerate={i === turns.length - 1 && connected && ready ? () => void send(true) : undefined}/>
@@ -197,7 +212,21 @@ function App() {
             <summary className="cursor-pointer text-sm text-stone-500">之前的回答 · {turn.previousAttempts.length} 个版本</summary>
             {turn.previousAttempts.map((attempt, version) => <div key={version} className="mt-4 border-t border-stone-200 pt-4"><p className="mb-3 text-xs text-stone-500">版本 {version + 1}</p><Answer attempt={attempt}/></div>)}
           </details>}
-        </article>)}
+        </article></Fragment>)}
+        {workspace.branches.filter(b => b.fromIndex >= turns.length).map(b => <div key={b.id} className="mb-4 flex justify-center"><button className="rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs text-teal-800 hover:bg-teal-100" onClick={() => setViewingBranch(b)}>{b.label} ↗</button></div>)}
+        {viewingBranch && <section className="mb-8 rounded-2xl border border-teal-300 bg-white p-5" aria-label="分支查看">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <h2 className="font-semibold">{viewingBranch.label} · 从第 {viewingBranch.fromIndex + 1} 轮起</h2>
+            <div className="flex gap-3 text-xs">
+              <button className="rounded-lg bg-teal-800 px-3 py-1 text-white disabled:opacity-40" disabled={sessionBusy} onClick={() => void restoreSelectedBranch()}>设为主时间线</button>
+              <button className="underline" onClick={() => setViewingBranch(null)}>关闭</button>
+            </div>
+          </div>
+          {viewingBranch.turns.map((turn, i) => <div key={`${turn.runId}-${i}`} className="mb-6">
+            <div className="mb-3 ml-auto max-w-[85%] whitespace-pre-wrap rounded-2xl bg-stone-200/70 px-4 py-2">{turn.question}</div>
+            <Answer attempt={turn}/>
+          </div>)}
+        </section>}
         <div role="status" className="text-sm text-teal-700">{status}</div>
         {error && <p role="alert" className="mt-3 text-sm text-red-700">{error}</p>}
         <div ref={bottom}/>

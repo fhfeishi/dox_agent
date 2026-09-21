@@ -3,7 +3,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 const FOCUSABLE = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 /** Right-side modal drawer. Children (and their polling) unmount when closed. */
-export function SettingsDrawer({ open, onClose, children }: { open: boolean; onClose: () => void; children: ReactNode }) {
+export function SettingsDrawer({ open, onClose, headerAction, children }: { open: boolean; onClose: () => void; headerAction?: ReactNode; children: ReactNode }) {
   const panel = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
@@ -28,7 +28,7 @@ export function SettingsDrawer({ open, onClose, children }: { open: boolean; onC
     <div ref={panel} role="dialog" aria-modal="true" aria-label="设置与运维" className="relative flex h-full w-full max-w-md flex-col overflow-y-auto bg-white p-6 shadow-xl">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="font-semibold">设置与运维</h2>
-        <button className="rounded-lg border px-3 py-1 text-xs" onClick={onClose}>关闭 ✕</button>
+        <div className="flex items-center gap-1">{headerAction}<button className="rounded-lg border px-3 py-1 text-xs" onClick={onClose}>关闭 ✕</button></div>
       </div>
       <div className="space-y-6">{children}</div>
     </div>

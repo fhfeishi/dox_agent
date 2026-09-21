@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 export type DocumentInfo = {
   doc_id: string; title: string; origin: string; version: string; captured_at: string;
-  kind?: string; pages?: number;
+  kind: string; parser: string; pages: number;
 };
 
 /** Single owner of the document list. Other views consume it instead of fetching again. */

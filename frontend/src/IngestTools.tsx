@@ -12,8 +12,8 @@ async function api(path: string, body?: object) {
   return data;
 }
 
-export function IngestTools({ documents, refresh, connected = true }: {
-  documents: DocumentInfo[]; refresh: () => void; connected?: boolean;
+export function IngestTools({ documents, refresh, connected = true, onOpenDocument }: {
+  documents: DocumentInfo[]; refresh: () => void; connected?: boolean; onOpenDocument: (docId: string) => void;
 }) {
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
@@ -67,8 +67,8 @@ export function IngestTools({ documents, refresh, connected = true }: {
     </details>
 
     <details>
-      <summary className="cursor-pointer text-xs text-stone-600">已入库文档 · {documents.length}</summary>
-      <ul className="mt-2 max-h-48 space-y-1 overflow-auto text-xs text-stone-500">{documents.map(d => <li key={d.doc_id}>{d.title} · {d.kind ?? "文档"} · {d.pages ?? "?"} 页</li>)}</ul>
+      <summary className="cursor-pointer text-xs text-stone-600">已入库文档 · {documents.length}（点击预览正文）</summary>
+      <ul className="mt-2 max-h-48 space-y-1 overflow-auto text-xs">{documents.map(d => <li key={d.doc_id}><button className="w-full truncate rounded px-1 py-0.5 text-left text-stone-600 hover:bg-stone-100 hover:underline" onClick={() => onOpenDocument(d.doc_id)}>{d.title}<span className="text-stone-400"> · {d.kind} · {d.pages} 页</span></button></li>)}</ul>
     </details>
 
     <p className="text-xs leading-5" role="status">{notice}</p>

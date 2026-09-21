@@ -6,14 +6,19 @@ import { newTurn, regenerateTurn, receiveEvent, stopTurn, type Turn } from "./co
 import type { Branch } from "./branches";
 import "./style.css";
 import { IngestTools } from "./IngestTools";
+import { DocumentPreview } from "./DocumentPreview";
 import { OfficialDocs } from "./OfficialDocs";
 import { ScopeSelector } from "./ScopeSelector";
 import { SessionList } from "./SessionList";
 import { SettingsDrawer } from "./SettingsDrawer";
-import { useDocuments } from "./useDocuments";
+import { useDocuments, type DocumentInfo } from "./useDocuments";
 import { useWorkspace } from "./workspace";
 
 type EditState = { index: number; text: string } | null;
+
+function PowerIcon() {
+  return <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M12 3v9"/><path d="M6.6 6.6a8 8 0 1 0 10.8 0"/></svg>;
+}
 
 const EXAMPLES: [string, string][] = [
   ["精准问答", "请基于资料说明一个关键结论，并逐条给出出处。"],
@@ -30,11 +35,14 @@ function App() {
   const [health, setHealth] = useState("正在连接");
   const [ready, setReady] = useState(false);
   const [corpusReady, setCorpusReady] = useState(false);
+  const [model, setModel] = useState("");
+  const [preparation, setPreparation] = useState("running");
   const [connected, setConnected] = useState(true);
   const [editing, setEditing] = useState<EditState>(null);
   const [viewingBranch, setViewingBranch] = useState<Branch | null>(null);
   const [sessionBusy, setSessionBusy] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [previewDoc, setPreviewDoc] = useState<DocumentInfo | null>(null);
   const [options, setOptions] = useState<Options>({ allowed_doc_ids: null });
   const [progress, setProgress] = useState<{ stage: string; completed: number; total: number } | null>(null);
   const controller = useRef<AbortController | null>(null);
@@ -70,10 +78,12 @@ function App() {
         state.ready = Boolean(data.api_key_configured);
         state.corpus = data.preparation === "ready";
         setReady(state.ready); setCorpusReady(state.corpus); setProgress(data.index_progress ?? null);
+        setModel(typeof data.model === "string" ? data.model : "");
+        setPreparation(typeof data.preparation === "string" ? data.preparation : "running");
         setHealth(!state.ready ? "请在 .env 配置模型密钥后重启" : data.preparation === "running" ? "知识库正在加载" : data.preparation === "error" ? "知识库加载失败" : "服务已连接 · " + data.model);
       } catch {
         state.ready = false; state.corpus = false;
-        setReady(false); setHealth("服务暂时未连接，正在自动重连…");
+        setReady(false); setPreparation("offline"); setHealth("服务暂时未连接，正在自动重连…");
       }
     };
     const schedule = () => { timer = window.setTimeout(async () => { if (stopped) return; await refresh(); if (!stopped) schedule(); }, state.ready && state.corpus ? 15000 : 3000); };
@@ -168,20 +178,35 @@ function App() {
     try { await navigator.clipboard.writeText(question); setStatus("问题已复制"); }
     catch { setError("复制失败，请手动选择问题"); }
   }
+  function openDocument(docId: string) {
+    const doc = documents.find(item => item.doc_id === docId);
+    if (!doc) return;
+    setDrawerOpen(false);
+    setPreviewDoc(doc);
+  }
   const activeTitle = workspace.sessions.find(s => s.id === workspace.active)?.title ?? turns[0]?.question?.slice(0, 100) ?? "";
-  const healthy = ready && connected && corpusReady;
+  const llmStatus = !connected ? { tone: "bg-stone-400", text: "已断开" }
+    : !ready || preparation === "error" ? { tone: "bg-red-500", text: "异常" }
+    : preparation === "ready" ? { tone: "bg-teal-600", text: "正常" }
+    : { tone: "bg-amber-500", text: "知识库准备中" };
   return <div className="min-h-screen bg-stone-50 text-stone-800 md:grid md:grid-cols-[260px_1fr]">
-    <aside className="border-r border-stone-200 bg-stone-100 p-5 md:sticky md:top-0 md:h-screen md:overflow-y-auto">
-      <div className="text-xs font-semibold tracking-[0.2em] text-stone-500">DOX_AGENT / 01</div>
-      <button className="mt-5 w-full rounded-xl border border-stone-300 bg-white p-3 text-left text-sm disabled:opacity-40" disabled={!workspace.loaded || sessionBusy} onClick={() => void switchSession()}>＋ 新的问答</button>
-      <p className="mt-2 text-xs text-stone-500" role="status">{workspace.message}</p>
-      <SessionList sessions={workspace.sessions} active={workspace.active} activeTitle={activeTitle} loaded={workspace.loaded} busy={sessionBusy} onSelect={id => void switchSession(id)} onRename={(id, title) => void workspace.rename(title, id)} onArchive={id => void workspace.setArchived(id, true)} onRestore={id => void workspace.setArchived(id, false)}/>
-      <div className="mt-6 text-xs text-stone-500">
-        {healthy
-          ? <span title={health} className="inline-flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-teal-600"/>服务已连接</span>
-          : <p className="leading-5">{connected ? health : "已主动断开"}<br/>知识库：{corpusReady ? "可用" : "准备中或不可用"}</p>}
+    <aside className="flex h-full flex-col border-r border-stone-200 bg-stone-100 p-5 md:sticky md:top-0 md:h-screen">
+      <div className="min-h-0 flex-1 overflow-y-auto pr-1">
+        <div className="text-xs font-semibold tracking-[0.2em] text-stone-500">DOX_AGENT / 01</div>
+        <button className="mt-5 w-full rounded-xl border border-stone-300 bg-white p-3 text-left text-sm disabled:opacity-40" disabled={!workspace.loaded || sessionBusy} onClick={() => void switchSession()}>＋ 新的问答</button>
+        <p className="mt-2 text-xs text-stone-500" role="status">{workspace.message}</p>
+        <SessionList sessions={workspace.sessions} active={workspace.active} activeTitle={activeTitle} loaded={workspace.loaded} busy={sessionBusy} onSelect={id => void switchSession(id)} onRename={(id, title) => void workspace.rename(title, id)} onArchive={id => void workspace.setArchived(id, true)} onRestore={id => void workspace.setArchived(id, false)}/>
       </div>
-      <button className="mt-3 w-full rounded-lg border border-stone-300 bg-white p-2 text-sm" onClick={() => setDrawerOpen(true)}>设置与运维</button>
+      <div className="mt-4 shrink-0 border-t border-stone-200 pt-3">
+        <div role="status" aria-live="polite" aria-label={`LLM ${model || "未知"}，状态：${llmStatus.text}`}>
+          <button className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-xs hover:bg-stone-200" title={health} onClick={() => setDrawerOpen(true)}>
+            <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${llmStatus.tone}`}/>
+            <span className="truncate text-stone-700">LLM: {model || "未知"}</span>
+            <span className="ml-auto shrink-0 text-stone-500">{llmStatus.text}</span>
+          </button>
+        </div>
+        <button className="mt-2 w-full rounded-lg border border-stone-300 bg-white p-2 text-sm" onClick={() => setDrawerOpen(true)}>设置与运维</button>
+      </div>
     </aside>
     <main className="mx-auto flex min-h-screen min-w-0 w-full max-w-5xl flex-col px-5 md:px-12">
       <header className="border-b border-stone-200 py-6 text-right text-sm text-stone-500">理解问题，按需查证</header>
@@ -242,17 +267,19 @@ function App() {
         </div>
       </form>
     </main>
-    <SettingsDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+    <SettingsDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} headerAction={
+      <button aria-label="断开连接" title={connected ? "断开连接" : "已断开"} disabled={!connected}
+        className="rounded-lg border p-1.5 text-stone-600 disabled:opacity-40"
+        onClick={() => { setDrawerOpen(false); void disconnect(); }}><PowerIcon/></button>
+    }>
       {documentsError && <p role="alert" className="text-xs text-red-700">{documentsError}</p>}
-      <IngestTools documents={documents} refresh={refreshDocuments} connected={connected}/>
+      <IngestTools documents={documents} refresh={refreshDocuments} connected={connected} onOpenDocument={openDocument}/>
       <OfficialDocs connected={connected}/>
-      <div className="space-y-2 border-t border-stone-200 pt-4">
+      <div className="border-t border-stone-200 pt-4">
         <button disabled={busy || !turns.length} className="w-full rounded-lg border bg-white p-2 text-sm disabled:opacity-40" onClick={exportChat}>导出对话与证据版本</button>
-        {connected
-          ? <button className="w-full rounded-lg border bg-white p-2 text-sm" onClick={() => { setDrawerOpen(false); void disconnect(); }}>断开连接并退出</button>
-          : <button className="w-full rounded-lg bg-teal-800 p-2 text-sm text-white" onClick={() => { setDrawerOpen(false); setConnected(true); }}>重新连接</button>}
       </div>
     </SettingsDrawer>
+    <DocumentPreview doc={previewDoc} onClose={() => setPreviewDoc(null)}/>
   </div>;
 }
 createRoot(document.getElementById("root")!).render(<App/>);

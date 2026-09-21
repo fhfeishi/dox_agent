@@ -52,8 +52,10 @@ async def main():
             assert await page.get_by_role("button", name="导入 / 更新本地文本与 PDF").count() == 0, "ingest leaked into the rail"
             assert await page.get_by_text("LLM / 服务状态").count() == 0, "old health box still present"
 
-            # compact health indicator
-            await expect(page.get_by_text("服务已连接")).to_be_visible()
+            # compact bottom-left LLM status (U8)
+            status = page.get_by_role("status").filter(has_text="LLM")
+            await expect(status.get_by_text("offline")).to_be_visible()
+            await expect(status.get_by_text("正常")).to_be_visible()
 
             # session list: grouping, search, archive
             await expect(page.get_by_text("今天的会话")).to_be_visible()

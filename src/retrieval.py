@@ -99,7 +99,7 @@ class SelectedReport:
     doc: ReportDoc
     score: float
     term_cover: float
-    chunks: list[Chunk]
+    chunks: list[Chunk]  # 可引用集 = per_doc_cand（RRF 降序）；评分仅用 top_m
 
 
 @dataclass
@@ -289,16 +289,17 @@ def select_reports(
 
     scored: list[tuple[float, float, ReportDoc, list[str]]] = []
     for doc in recalled:
-        candidates = per_doc.get(doc.doc_id, [])
+        candidates = sorted(per_doc.get(doc.doc_id, []), key=lambda cid: (-fused[cid], cid))
         if not candidates:
             continue
-        top = sorted(candidates, key=lambda cid: fused[cid], reverse=True)[: config.per_doc_top_m]
-        # S6b: 覆盖率基于 per_doc_cand（含 heading/正文），评分仍只用 per_doc_top_m。
+        # 评分只用 per_doc_top_m；可引用集（SelectedReport.chunks）为 per_doc_cand。
+        top = candidates[: config.per_doc_top_m]
+        # S6b: 覆盖率基于 per_doc_cand（含 heading/正文）。
         hit_tokens: set[str] = set()
         for cid in candidates:
             hit_tokens.update(tokens(chunks_by_id[cid].text))
         cover = len(set(terms) & hit_tokens) / len(terms)
-        scored.append((sum(fused[cid] for cid in top), cover, doc, top))
+        scored.append((sum(fused[cid] for cid in top), cover, doc, candidates))
     if not scored:
         return RetrievalResult(reports=[], matched=False, reason="no_reports")
 

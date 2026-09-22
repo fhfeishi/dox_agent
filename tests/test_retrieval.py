@@ -203,6 +203,18 @@ def test_user_coverage_counts_all_candidate_chunks_not_only_top_scored():
     assert result.matched and result.reports[0].term_cover == 1.0
 
 
+def test_user_can_cite_every_candidate_chunk_not_only_scored_top():
+    # Given a report with more matching chunks than the scoring top-m
+    report = ReportDoc("a", "v", "报告")
+    chunks = {"a": [chunk_of("a", f"癫痫网络第{i}段") for i in range(5)]}
+    config = replace(RetrievalConfig(), per_doc_cand=4, per_doc_top_m=1)
+    # When selecting reports
+    result = select_reports(chunks, [report], "癫痫网络", config=config)
+    # Then the citable set is per_doc_cand, independent of the scoring top-m
+    assert result.matched
+    assert len(result.reports[0].chunks) == 4
+
+
 def test_user_keeps_distinct_reports_when_project_number_is_unknown():
     # Given two matching reports without a project number
     first = ReportDoc("a", "v", "报告一")

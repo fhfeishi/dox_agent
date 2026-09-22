@@ -66,8 +66,9 @@
 | K13 加固（B1/B2/B3，本轮） | PATH 注入（`Path(sys.executable).parent` 进子进程 `PATH`）；`pyproject` 加 `mineru>=4.0,<5`；默认 `--format zip`（markdown+middle_json 一次产出）；`_block_text` 递归展平修复嵌套 content 的列表 repr 泄漏 | `pytest` 85 passed；`read_mineru_output` 对 zip 实测：自动解包、页文本干净（无 `[{...}]`） |
 | L2/L3b/L4a 检索核心（本轮） | 新增 `src/retrieval.py`（纯逻辑、未接线）：block 原子分块 + base64→`[图片]`、`chunk_id=sha1(doc_id\|version\|page\|heading\|seq\|text)`、报告级索引（title+heading+文件名元数据）、两级检索（报告召回 → 报告内加权 RRF → 每文档 top-m 累计 → 项目去重 → 主题词覆盖率无匹配）、`metadata_from_filename`；参数集中 `RetrievalConfig`（未校准项标注）。L1/L3/L5/L6 未动，图与存储走既有路径 | `.venv/bin/python -m pytest tests -q` → **95 passed**（新增 `tests/test_retrieval.py` 10 例）；`ruff check src/retrieval.py tests/test_retrieval.py` 通过 |
 | L 立即批次 S2/S3/S6（本轮） | `retrieval.py`：`_BASE64_IMAGE` 改 `data:image/[^;,]{0,80};base64,[A-Za-z0-9+/=]+`（不吞后接英文/标点/多行，S2）；Layer A 查询词取**全部 query 并集**（S3）；`_query_terms` 为空→`reason="direct"`、不做回退（S6a）；覆盖率基数改 `per_doc_cand`、评分仍 `per_doc_top_m`（S6b） | `pytest tests -q` → **102 passed**（`tests/test_retrieval.py` 17 例；新增 7 例覆盖 S2 三边界 / S6a / S3 q1 独有 / S6b / `project_no` 空）；`ruff check` 通过 |
+| L 引用集对齐（本轮） | `SelectedReport.chunks` 改 `per_doc_cand`（RRF 降序、可引用集），评分仍用 `per_doc_top_m`；与 §7.8 / D-L1 对齐 | `pytest tests -q` → **103 passed**（`tests/test_retrieval.py` 18 例）；`ruff check` 通过 |
 
-当前可用基线（本次实测）：后端 `pytest tests -q` → **102 passed**；前端 `node --test` → **18 passed**（未改动）；`npm run build` 通过（未改动）。
+当前可用基线（本次实测）：后端 `pytest tests -q` → **103 passed**；前端 `node --test` → **18 passed**（未改动）；`npm run build` 通过（未改动）。
 
 ## 4. 待定设计
 
@@ -105,7 +106,7 @@
 
 ### 5.1 L 阶段本轮交付与未接线声明
 
-- 已交付：`src/retrieval.py` 的 L2/L3b/L4a 纯核心（block 分块 / base64 剥离 / 报告级索引 / 两级选择 / 项目去重 / 无匹配），`tests/test_retrieval.py` 17 例（**本模块**；全量 `pytest` 102 passed，两者口径不同非矛盾）；`RetrievalConfig` 集中参数（未校准项标注）。
+- 已交付：`src/retrieval.py` 的 L2/L3b/L4a 纯核心（block 分块 / base64 剥离 / 报告级索引 / 两级选择 / 项目去重 / 无匹配），`tests/test_retrieval.py` 18 例（**本模块**；全量 `pytest` 103 passed，两者口径不同非矛盾）；`RetrievalConfig` 集中参数（未校准项标注）。
 - 未接线：不修改 `knowledge.py` 存储、`parsers.py` 导入、`graph.py` 流程、前端；因此现有问答仍走旧检索。接线需 L1（markdown 入库）+ L3（chunks 持久化）+ L5（装配）+ L6（图替换）的决策，见上表。
 - 明确的非目标：dense / rerank / MMR / LLM 多查询（计划默认延后）。
 
@@ -150,7 +151,7 @@
 - **S6b**：覆盖率取 `per_doc_cand` chunk（含 heading/正文），评分仍用 `per_doc_top_m`。
 - **S3**：Layer A BM25 查询词 = 全部 query 词并集。
 - **验收**：后接英文/多行 base64 不吞正文；纯停用词查询→`direct`；`q1` 独有命中报告可被召回；`project_no=""` 时不按 doc_id 误去重。
-- **待代码对齐（未实现）**：`SelectedReport.chunks` 目前仅含 `top_m`（`retrieval.py`）；按 §7.8 应改为 `per_doc_cand`（评分仍 `top_m`），作为可引用集。归入下次 unblocked 批次（纯 `retrieval.py`）。
+- **代码对齐（本轮已实现）**：`SelectedReport.chunks` = `per_doc_cand`（RRF 降序、可引用集），评分仍 `top_m`；回归 `test_user_can_cite_every_candidate_chunk_not_only_scored_top`。
 
 **证据（测量于 `c81383b` 时点，2026-09-22，重建进行中）**：`strip_base64('text data:image/png;base64,AAAA/BBBB== Discussion...')` → `'text [图片]'`（确认 S2）；`source=35, docs=18, parsed markdown=19（含 _pilot）, mineru 运行中`（确认 S1）。此后实测 `parsed 23/35`、`docs=21`、`files=21`，仍在增长——门禁以「重建结束 + `parsed/<rel>` 按 rel 全覆盖」为准，不看单一数字。
 

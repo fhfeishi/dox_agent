@@ -53,7 +53,7 @@ class Knowledge:
         self.dense = None
         if settings is not None and settings.embedding_path.strip():
             from .dense import DenseIndex
-            self.dense = DenseIndex(path.parent / "chroma", settings.embedding_path, settings.embedding_device, settings.embedding_query_prompt)
+            self.dense = DenseIndex(settings.vectordb_dir or path.parent / "chroma", settings.embedding_path, settings.embedding_device, settings.embedding_query_prompt)
         path.parent.mkdir(parents=True, exist_ok=True)
         with self.connect() as db:
             db.execute("""CREATE TABLE IF NOT EXISTS docs (

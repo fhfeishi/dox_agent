@@ -22,6 +22,8 @@ class Settings(BaseSettings):
         default=None, validation_alias=AliasChoices("MODEL_API_KEY", "DEEPSEEK_API_KEY")
     )
     data_dir: Path = DOX_AGENT_ROOT / "data"
+    # 数据库与向量库可分离（.data / .demo_langchain 布局）；缺省为 DATA_DIR/chroma。
+    vectordb_dir: Path | None = None
     embedding_path: str = ""
     embedding_device: str = "cpu"
     embedding_query_prompt: str = ""

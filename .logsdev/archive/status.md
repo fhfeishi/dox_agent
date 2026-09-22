@@ -1,6 +1,6 @@
 # dox_agent 当前开发情况
 
-- 更新日期：2026-09-21
+- 更新日期：2026-09-22
 - 依据：本仓库已复制源码 `src/`、`frontend/`、`launch.sh`、`.env.example`。以下结论由实际阅读源码得出，历史记录不在本文件内（见 `archive/`）。
 - 定位现状：本地单用户 Agentic RAG 文档问答。语料目前是 LangChain/LangGraph/Deep Agents 官方文档与本地文本/PDF，**尚未切换为科学基金历史报告**。
 - 接口与实现设计：见 [`design/`](design/README.md)（[`HLD.md`](design/HLD.md) / [`API.md`](design/API.md) / [`LLD.md`](design/LLD.md)），由实际阅读源码整理。
@@ -10,9 +10,10 @@
 - 后端：Python 3.12、FastAPI、LangGraph、Deep Agents；SQLite 保存原文与版本；BM25Plus 稀疏检索；可选本地 HuggingFace embedding + Chroma，并与 BM25 做 RRF 融合。
 - 前端：React 19 + TypeScript + Tailwind 4 + Vite 7；生产构建由 FastAPI 托管（`frontend/dist`）。
 - 启动：`launch.sh` 复用/创建虚拟环境，依赖签名来自 `pyproject.toml`。
+- 文档与数据布局：开发文档在 `.logsdev/`；本地数据分为 `.knowledge/`（原始语料）、`.data/`（数据库/向量库）、`.demo_langchain/`（演示 LangChain 语料）。向量索引路径由 `VECTORDB_DIR` 指定，缺省为 `DATA_DIR/chroma`。
 - **运行状态**：`pyproject.toml` 与 `tests/` 已补齐，`.venv` 已安装依赖（含 `web`/`embedding` extras），`launch.sh` 可完成安装与启动。后端运行与真实模型问答已完成端到端验证（见第 6 节）。
   - 本机以 CPU 后端安装 `torch==2.14.0+cpu`（`uv --torch-backend cpu`），避免默认 CUDA 栈。
-  - 演示语料来自 `knowledge/lcdata`（157 份 LangChain/LangGraph/Deep Agents 官方文档 + 已构建的 Chroma 索引），`DATA_DIR` 指向该目录；启动即可问答。**尚未切换为科学基金报告**，切换后需重跑验收。
+  - 演示语料已迁至 `.demo_langchain/`（`langchain_datadb`：157 份 LangChain/LangGraph/Deep Agents 官方文档；`langchain_vectordb`：Chroma 索引），`.env` 的 `DATA_DIR`/`VECTORDB_DIR` 指向该目录；启动即可问答。**尚未切换为科学基金报告**，切换后需重跑验收。
   - 问答已固定为带引用的专业模式（阶段 C 移除了意图分类与 `query_routing`/`evidence_level`/`execution_mode`）；未限定资料的问题也走检索并给出引用。
 - 命名：`static1` → `dox-agent` 改名已完成（源码、配置、前端 dist）。
 
@@ -67,7 +68,7 @@
 ## 5. 尚未实现（对照 `demand.md`）
 
 - **知识库管理与选择（H 阶段，拟议未开工）**：`knowledge/` 下已并存多个语料（`lcdata`、`nf/人工智能与医疗`（10 份基金报告）），但后端**无"库"这一实体**、`DATA_DIR` 为单值、`import_defaults` 会跨库 `rglob`；前端只有平铺文档列表。规划见 [`plan/corpus_management.md`](plan/corpus_management.md)（H1–H10），需求见 `demand.md` §10。H1–H3 为后端前置（库注册表 / 修跨库 rglob / `?corpus=`），是 B4/B5 领域年份过滤的前置。
-H5–H7（侧栏选择器、库详情页、按库文档过滤）已完成；H4/H8（chat `corpus_id` 契约与按库问答）、H9（文件名元数据入服务端）、H10 验收未开工。
+H5–H7（侧栏选择器、库详情页、按库文档过滤）已完成；H4/H8（chat `corpus_id` 契约与按库问答）代码已提交（`e7d08e2`/`67d0ff0`），浏览器/真实语料验收未做；H9（文件名元数据入服务端）、H10 验收未开工。
 - 检索前的领域/年份过滤（B4/B5 与 U1.5 过滤 UI）。
 - D10 页码口径校验（`evidence.page` = `Page.number` = 阅读器物理页三方一致性回归）与 D10b OCR/重排再校验；**D6 已降级**：`pdfjs-dist` 因 Windows npm 与 WSL node_modules 符号链接冲突（EISDIR）无法安装，PDF 预览改用浏览器原生渲染（`/file` + `#page=`），缩放依赖阅读器工具栏，换装 PDF.js 时仅需替换 `PdfViewer` 内部实现。U2/D8 的浏览器实测尚未进行。
 - 统一报告生成入口与四个模板（`achievements`/`hotspots`/`future_directions`/`comprehensive`）；task4 报告表单（U3/G9，当前输入区为占位提示）。

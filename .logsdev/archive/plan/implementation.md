@@ -70,6 +70,8 @@
 | 2026-09-22 | **H5** 侧栏知识库选择器（展开态 `CorpusPicker` 列表块 + 收束态 Layers 图标浮层；状态点：就绪/空库/未初始化/导入中/失败；切库清空越界 `allowed_doc_ids` 并提示，对齐 §4.4） | 工作树 | 新增 `useCorpora.ts`/`CorpusPicker.tsx`；`main.tsx` 接线；`tsc --noEmit` 无新错误；`node --test` 18 passed |
 | 2026-09-22 | **H6** 知识库详情页（复用 `LibraryView`：库头部类型/领域/份数/总页数/导入 job 实时进度；「导入/更新本库」调 `POST /api/corpora/{id}/ingest` 并轮询；基金库卡片/列表显示文件名解析的负责人/项目编号/年份区间） | 工作树 | `LibraryView.tsx` 扩展 + `fundMeta.ts`（与后端 `FUND_NAME_PATTERN` 同一约定，展示层专用，H9 后换服务端 meta）+ `fundMeta.test.mts` 3 用例通过 |
 | 2026-09-22 | **H7** 文档可视化接库范围（`useDocuments` 增 `corpus` 参数走 `GET /api/documents?corpus=`；`DocumentExplorer` 头部显示当前库名） | 工作树 | `useDocuments.ts`/`DocumentExplorer.tsx`/`main.tsx` 改动；`tsc --noEmit` 无新错误 |
+| 2026-09-22 | **H4** `POST /api/chat` 接受 `corpus_id`，graph 按库限定检索范围（未知 id 404；非默认库当前 BM25-only；`resolve_policy` 对 empty/uninitialized 库如实上报） | 已提交 `e7d08e2` | `main.py`：`ChatRequest.corpus_id` + 聊天处理器按库取 `Knowledge`/`preparation`；`routing.py` 增 empty/uninitialized 分支；**浏览器/真实语料验收未做** |
+| 2026-09-22 | **H8** 会话绑库：`SessionData.corpus_id` 随 workspace 管线（hydrate/select/saveNow/autosave）保存与恢复，会话头显示库名；`VITE_UI_CORPUS` 开关默认 off | 已提交 `67d0ff0` | `workspace.ts`/`api.ts`（`Options.corpus_id`）/`uiFlags.ts`/`main.tsx`；**浏览器验收未做** |
 
 ### 1.5 文档同步
 
@@ -81,6 +83,7 @@
 | 2026-09-21 | `status.md` §5/§6 同步 | 工作树 | 见 `git diff dev_logs/status.md`（+34/-…） |
 | 2026-09-21 | 本文 `implementation.md` 建立，完成情况记录自 `plan.md` 迁出 | 工作树 | 本文件；`plan.md` 对应段改为指向本文 |
 | 2026-09-21 | 新增知识库管理规划：`demand.md` §10、`plan/corpus_management.md`（H1–H10）、`plan.md` 增 H 阶段与插入位置说明 | 工作树 | **规划类，无实现**；无验证证据，不产生完成项 |
+| 2026-09-22 | **仓库文档/数据布局对齐**：开发文档 `dev_logs/` → `.logsdev/`（保留子结构；`archive` 框架说明与 static1 索引分文件）；演示语料 `knowledge/lcdata/` → `.demo_langchain/{langchain_dox,langchain_vectordb,langchain_datadb}`；新增 `VECTORDB_DIR` 配置 | 工作树 | `git status` 22 条 rename；`py_compile src/knowledge.py src/agent/config.py` 通过；`pytest tests -q` → 64 passed；`get_settings()` 解析 `data_dir=.demo_langchain/langchain_datadb`、`vectordb_dir=.demo_langchain/langchain_vectordb`；三份数据文件存在性检查通过；`git check-ignore` 命中数据目录 |
 
 ---
 
@@ -118,7 +121,7 @@
 
 | 项 | 说明 | 关联 |
 |---|---|---|
-| **31 项改动未提交** | 工作树累积 20 改 + 9 新 + `src/prompts/`，横跨前后端 5 个阶段；任何误操作会一次性丢失 | 见 [`plan-status-check.md`](plan-status-check.md) P1-A |
+| **31 项改动未提交** | 工作树累积 20 改 + 9 新 + `src/prompts/`，横跨前后端 5 个阶段；任何误操作会一次性丢失 | 见 [`plan-status-check.md`](../plan-status-check.md) P1-A |
 | **已完成功能被开关默认关闭** | `uiFlags.ts` 六枚开关默认全 off，`.env` 无任何 `VITE_UI_*`；U1/U2 在默认配置下界面**不可见**（`main.tsx:283/307`），而后端依赖已同批实现，关闭理由已失效 | 同上 P1-B |
 | **D6 降级** | `pdfjs-dist` 因 Windows npm × WSL 符号链接冲突（EISDIR）无法安装，改用浏览器原生 PDF（`/file` + `#page=`）；缩放依赖阅读器工具栏。换装 PDF.js 时只需替换 `PdfViewer` 内部实现 | D6 / F3 |
 | **D10 未做** | 页码三方一致性（`Page.number` = LiteParse `page_num` = PDF.js `getPage(n)`）未校验 | D10 / D10b |

@@ -7,7 +7,7 @@
 - **知识库管理与选择规划（下一步）：[`corpus_management.md`](corpus_management.md)**
 - **完成情况与证据：[`implementation.md`](implementation.md)**（本文件不再维护完成记录表）
 - 状态标记：✅ 已完成 · 🟡 部分完成 · ⬜ 未开始
-- 更新日期：2026-09-21
+- 更新日期：2026-09-22
 
 ## 阶段总览
 
@@ -20,7 +20,7 @@
 | E 专项报告 | 统一生成入口 + 四模板 | ⬜ |
 | F 验收 | 真实基金报告样本验收 | ⬜ |
 | G 任务系统与会话栏 | task1–4、prompts、ChatGPT 式会话管理 | 🟡 |
-| H 知识库管理 | 多库隔离、库选择与详情、按库浏览与问答（demand §10） | 🟡（H1–H3 后端、H5–H7 前端已完成；H4/H8 契约批与 H9/H10 未开工） |
+| H 知识库管理 | 多库隔离、库选择与详情、按库浏览与问答（demand §10） | 🟡（H1–H3 后端、H5–H7 前端已完成；H4/H8 代码已完成待验收；H9/H10 未开工） |
 | U UI 优化 | 左栏收敛、会话栏、设置抽屉、侧栏收束与文献库入口、文档窗口与报告入口（无后端依赖部分先行） | 🟡 |
 
 实施顺序：A（可运行）→ B（基金报告入库与元数据/过滤，E/F 的前提）→ C/D/G 并行（入口收敛、文档窗口、任务系统）→ E（报告）→ F（真实数据验收）。U9.1/U9.2/U9.4-1 无后端依赖，可插入任意批次先行。
@@ -306,15 +306,15 @@ src/prompts/
 | H1 | 后端：库扫描与注册表 + `GET /api/corpora`；每库独立 `Knowledge` 实例 | ✅（`src/agent/corpora.py`；只读扫描 + `CORPORA` 配置覆盖；实测真实树：lcdata 默认库、nf 基金库未初始化） |
 | H2 | 后端：`import_defaults` 限定在库 root 内（**修 `parsers.py:107` 跨库 rglob**）；`POST /api/corpora/{id}/ingest` | ✅（`parsers.py` 增 `root`/`exclude`；`ingest/local` 排除其他库 root；202 + job 状态） |
 | H3 | 后端：`GET /api/documents?corpus=`；`/api/health` 补 `corpus_id` | ✅（未初始化库只读返回空列表，不创建 sqlite） |
-| H4 | 后端：`POST /api/chat` 接受 `corpus_id`，graph 按库限定检索范围 | ⬜ |
+| H4 | 后端：`POST /api/chat` 接受 `corpus_id`，graph 按库限定检索范围 | 🟡（代码已提交 `e7d08e2`：未知 id 404、非默认库当前 BM25-only、`resolve_policy` 对 empty/uninitialized 库如实上报；**浏览器/真实语料验收未做**） |
 | H5 | 前端：侧栏知识库选择器（展开/收束两态，含份数与状态点） | ✅（`CorpusPicker.tsx` + `useCorpora.ts`；收束态 Layers 图标浮层；切库清越界 `allowed_doc_ids` 并提示） |
 | H6 | 前端：知识库详情页（复用 `LibraryView`，字段随库类型自适应） | ✅（库头部：类型/领域/份数/总页数/job 进度；「导入/更新本库」按钮 + 5s 轮询；基金库卡片显示文件名解析的负责人/项目编号/年份区间，待 H9 换服务端 meta） |
 | H7 | 前端：文档可视化接库范围（`DocumentExplorer` 传当前库） | ✅（`useDocuments(corpus)` 按库拉取；Explorer 头部显示库名） |
-| H8 | 前端：按库问答（`corpus_id` 随请求 + 会话头显示库名 + 切库清越界 `allowed_doc_ids`）；`VITE_UI_CORPUS` 默认 off | ⬜ |
+| H8 | 前端：按库问答（`corpus_id` 随请求 + 会话头显示库名 + 切库清越界 `allowed_doc_ids`）；`VITE_UI_CORPUS` 默认 off | 🟡（代码已提交 `67d0ff0`：会话绑库随 workspace 管线保存/恢复；**开关默认 off，浏览器验收未做**） |
 | H9 | 元数据：从基金文件名提取报告年份区间/项目编号/负责人/领域（衔接 B2/B4） | ⬜ |
 | H10 | 验收：以 `nf/人工智能与医疗` 10 份真实报告走通「选库 → 浏览 → 预览 → 按库问答」 | ⬜ |
 
-> H 为 B4/B5 的前置（单库混装会使领域/年份过滤失去意义）。H1–H3 只加不改、无破坏性，建议在 B1 之前执行；H4 与 B5 同批。H8 因 `ChatRequest extra="forbid"`，须待 H4 契约落地后才可发送 `corpus_id`。
+> H 为 B4/B5 的前置（单库混装会使领域/年份过滤失去意义）。H1–H3 只加不改、无破坏性，建议在 B1 之前执行。H4 契约已落地（`e7d08e2`），H8 在 `VITE_UI_CORPUS` 开启时可发送 `corpus_id`；两者均待浏览器/真实语料验收（H10）。
 
 ## U. UI 优化（依据 [`ui_optimization.md`](ui_optimization.md)）
 
@@ -382,7 +382,7 @@ src/prompts/
 
 未采纳：无。现状类声明经实测与仓库一致，A4/A5/A6 证据保留。
 
-### 第二轮审核采纳（2026-09-21，依据 [`review-2026-09-21.md`](review-2026-09-21.md)）
+### 第二轮审核采纳（2026-09-21，依据 [`review-2026-09-21.md`](../review-2026-09-21.md)）
 
 | # | 意见 | 处理 |
 |---|---|---|
@@ -404,7 +404,7 @@ src/prompts/
 
 未采纳：无。经复核 P0 两条成立（提交 `ce3b4e7`/`9a0c899` 与 `src/main.py:108` 均已实测），已按清单修订；正面清单 8 项保持不动。
 
-### 第三轮审核采纳（2026-09-21，依据 [`review-2026-09-21-deep.md`](review-2026-09-21-deep.md)）
+### 第三轮审核采纳（2026-09-21，依据 [`review-2026-09-21-deep.md`](../review-2026-09-21-deep.md)）
 
 源码证据已逐条实测（`graph.py:232/326`、`main.py:45/73/76`、`prepare_docs.py:24/36`、`parsers.py:28`、`knowledge.py:14-16/123`、`DocumentPanel.tsx:16-17`、`main.tsx:211`、`workspace.ts:123`、`git log -- dev_logs/design/`）。
 
@@ -425,7 +425,7 @@ src/prompts/
 
 未采纳：无。深度审核的 6 项源码级正面确认（`citation` 字段确需在 U2.4 增补、`DocumentPanel` 共用外壳、`documentPreview.ts` 终止条件比文档更严谨、`extra="forbid"`、预算边界、`answer_policy` 矛盾）均与现有待决/任务一致，作为基线保留。
 
-### 第四轮审查采纳（2026-09-21 22:35，plan.md × implementation.md 一致性审查，依据 [`plan-status-check.md`](plan-status-check.md) 及其追加节）
+### 第四轮审查采纳（2026-09-21 22:35，plan.md × implementation.md 一致性审查，依据 [`plan-status-check.md`](../plan-status-check.md) 及其追加节）
 
 本轮为文档一致性审查：implementation.md 的证据**独立复跑通过**（`node --test` → 15 passed；`py_compile` 全通过）；plan 状态列未发现虚报，问题集中在**跨文档状态不同步**。
 
@@ -438,7 +438,7 @@ src/prompts/
 | 46 | 「完成 ≠ 可用」：开关默认全 off 但无启用策略（承接 P1-B，补决策而非只提问题） | 依赖说明新增**开关启用策略**：转 on = 后端契约已实现 ∧ 浏览器实测通过；tasks/docPanel 暂维持 off，随本批提交与浏览器验收开启 |
 | 47 | §6 验收仍写「D10 的 page→物理页映射」，与 D10 重写后的「无需映射」口径冲突 | 改为「D10 的页码口径校验」 |
 | 48 | G1 行残留「`src/prompts/` 为空目录」的过期陈述，与 ✅ 矛盾 | 移除该历史陈述，保留 `UnknownTaskError` 行为描述 |
-| 49 | implementation.md 证据可复现性 | 独立复跑：`node --test src/*.test.mts` → **15 passed / 0 fail**；`py_compile src/*.py src/agent/*.py src/prompts/*.py` → 通过。记录于 [`plan-status-check.md`](plan-status-check.md) 追加节 |
+| 49 | implementation.md 证据可复现性 | 独立复跑：`node --test src/*.test.mts` → **15 passed / 0 fail**；`py_compile src/*.py src/agent/*.py src/prompts/*.py` → 通过。记录于 [`plan-status-check.md`](../plan-status-check.md) 追加节 |
 
 ## 待定设计（实现前确认）
 

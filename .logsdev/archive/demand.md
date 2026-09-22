@@ -5,7 +5,7 @@
 - 2026-09-21 追加：§9.5–§9.7（侧栏收束与文献库入口、模型选择、科研头条），并同步 §1、§2.2、§6、§8.2。界面设计拆解见 [`plan/ui_optimization.md`](plan/ui_optimization.md) §9。
 - 2026-09-21 追加：§10（知识库管理与选择），确立"库"为一等实体，为 §4.2 领域/年份过滤提供范围前提。设计见 [`plan/corpus_management.md`](plan/corpus_management.md)。
 - 基线：已从原仓库复制到本仓库的源码（`src/`、`frontend/`、`launch.sh`、`.env.example` 等）。本文“现状”以实施状态为准；§2.1 是复制提交时的基线快照，已变化处已标注。
-- 命名：项目对外名称统一为 **dox_agent**。源码与配置中的 `static1` 标识已完成改名（见第 8.3 节），`dev_logs/archive/static1_*` 保留为原项目历史记录。
+- 命名：项目对外名称统一为 **dox_agent**。源码与配置中的 `static1` 标识已完成改名（见第 8.3 节），`.logsdev/archive/static1_*` 保留为原项目历史记录。
 
 > 阅读提示：第 1 节定义目标与边界；第 2 节给出"已复制源码的真实现状"与"目标差距"；第 3—6 节是功能需求与目标接口；第 7 节是开源调研；第 8 节是实施顺序、验收和遗留清理。
 
@@ -27,7 +27,7 @@
 
 ### 2.1 基线现状（复制提交快照；部分条目已在阶段 A/C 更新）
 
-现状依据：`src/main.py`、`src/agent/*.py`、`src/knowledge.py`、`src/dense.py`、`src/official_docs.py`、`src/parsers.py`、`src/workspace.py`、`frontend/src/*`、`launch.sh`、`.env.example`。复制前的系统设计见 `dev_logs/archive/static1_design/API_PIPELINE.md`。
+现状依据：`src/main.py`、`src/agent/*.py`、`src/knowledge.py`、`src/dense.py`、`src/official_docs.py`、`src/parsers.py`、`src/workspace.py`、`frontend/src/*`、`launch.sh`、`.env.example`。复制前的系统设计见 `.logsdev/archive/static1_design/API_PIPELINE.md`。
 
 本节描述 **复制提交（6af9946）时的基线**，用于对照目标差距；阶段 A/C 已改变其中若干结论，标【已更新】者以当前代码与 [`status.md`](status.md) 为准。
 
@@ -233,7 +233,7 @@ Kotaemon、GPT Researcher 与 PDF.js 的仓库页面均标示 Apache-2.0；实�
 - 后端：`agent/config.py` 的 `STATIC1_ROOT` → `DOX_AGENT_ROOT`；`main.py` 的 `app_id` → `dox-agent`、FastAPI `title` → `dox_agent`、运行 tags → `dox-agent`；`agent/graph.py` 的 graph 名 → `dox_agent_rag`；`dense.py` 的 Chroma collection 前缀 → `dox-agent-`；`launcher.py` 的依赖标记 → `.dox-agent-deps-`，健康检查 `app_id` 同步。
 - 前端：`workspace.ts` 的 `localStorage` 键 → `dox-agent-session`；`main.tsx` 导出文件名 → `dox-agent-comparison.json`、侧栏标识 → `DOX_AGENT / 01`；`index.html` 标题 → `dox_agent`；`package.json` 包名 → `dox-agent-web`。
 - 配置：`launch.sh` 的 `STATIC1_VENV` → `DOX_AGENT_VENV`；`.env`/`.env.example` 的路径注释与 `LANGSMITH_PROJECT` → `dox-agent`。
-- 文档：`dev_logs/archive/static1_design|static1_plan|static1_implement` 保留为原项目历史记录，不随改名改动；本 `demand.md` 及后续新文档统一使用 dox_agent。
+- 文档：`.logsdev/archive/static1_design|static1_plan|static1_implement` 保留为原项目历史记录，不随改名改动；本 `demand.md` 及后续新文档统一使用 dox_agent。
 - 影响：数据与索引路径未变（`DOX_AGENT_ROOT` 取值同原 `STATIC1_ROOT`），但 Chroma collection 名与 `localStorage` 键变化会使旧向量集合重建、浏览器会话选择回退为首个可用会话，属预期。
 - 复制缺口（已解决，阶段 A）：`pyproject.toml`、`tests/` 已补齐，`.venv` 已安装依赖，`launch.sh` 安装/启动已跑通；真实模型问答与知识库就绪已端到端验证。
 

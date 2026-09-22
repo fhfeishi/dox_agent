@@ -18,3 +18,4 @@
 根据当前任务的类型，按需读取并遵循对应规则（严禁在无关任务中加载）：
 - **业务代码开发 / 重构 / 测试**：遵循 [.agents/rules/testing-and-code.md](.agents/rules/testing-and-code.md)
 - **技术文档 / 架构 / 变更日志撰写**：遵循 [.agents/rules/documentation.md](.agents/rules/documentation.md)
+- **信息归属、证据与接续**：[.logsdev/README.md](.logsdev/README.md) 的「项目工作与文档维护约定」；存在多个写入者或实际交接时才使用其中的协作章节。

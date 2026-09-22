@@ -12,6 +12,6 @@
 
 - 改接口同步 `API.md`；改节点/数据/状态同步 `LLD.md`；改系统边界或部署方式同步 `HLD.md`。
 - 区分"已实现"与"规划"：需求在 [`../demand.md`](../demand.md)，任务拆解与状态在 [`../plan/plan.md`](../plan/plan.md)，完成情况与证据在 [`../plan/implementation.md`](../plan/implementation.md)，现状摘要见 [`../status.md`](../status.md)。
-- 原 static1 的设计文档在 [`../archive/static1_design/`](../archive/static1_design/)，仅作历史参考，不再更新。
+- 原 static1 的设计文档在 [`../static1_design/`](../static1_design/)，仅作历史参考，不再更新。
 
 > 源码根：`src/`（后端）、`frontend/src/`（前端）。以下路径均相对仓库根目录。

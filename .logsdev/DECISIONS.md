@@ -100,13 +100,27 @@
 - 采用：搜索空间 = 报告解析后的 markdown/块文本；hybrid（BM25 + dense/RRF）在 chunk 级检索 → 聚合到报告级 → 取相关报告**全文**（token 预算内）→ 结合任务提示词回答。
 - LangGraph：保留图作为编排（understand→retrieve→assemble→answer→validate），但**移除 LLM 驱动的 search/read 工具循环**，改为确定性检索 + 有界补查。markdown 是数据/上下文，图是编排，非二选一。
 - 分块：**以 `middle_json` block 为原子**（带 `page_idx` → 页码），markdown 仅用于渲染/上下文；**分块前剥离 base64 图片**为 `[图片]`。
-- 报告聚合：**累计 RRF**（`Σ 1/(k+rank)`）+ 覆盖项 + 规模惩罚，替代脆弱的 `max+α·count`。
+- 报告召回/聚合：采用**两级「报告级召回（title+heading+project_no/year）top-M + 报告内 chunk 精排 top-m RRF」**，天然消除全局 chunk 池漏召回；取消全局 `CANDIDATE_CAP`（扁平回退时按文档截断）。报告级索引几百条，构建近乎免费。
+- 默认最简：多查询只用规则（LLM 拆解延后）；`β/δ/γ` 三权重、MMR、aspect 贪心 + `COVERAGE_TARGET`、短时缓存、rerank **默认关/延后**，由评测触发。
+- 无匹配口径：主判据为 query 主题词覆盖率 `MIN_TERM_COVER`（默认 0.3，uncalibrated）且要求非停用词/实体匹配；`NO_MATCH_TAU` 仅兜底，启用须写明归一化公式，不作常数。
+- 参数治理与评测：集中 `RetrievalConfig`，未校准项标 `uncalibrated`；只校准 `MIN/MAX_REPORTS`（按 task）、`PER_DOC_TOP_M`/报告 M、无匹配判据、`COVERAGE_TARGET`；复用扩展 `evaluate.py`（10–15 条），记录「参数版本+指标」。分层与参数表见 ITERATION §7.7。
 - 去重与差异：按**项目编号**去重（同项目取最新/最全，跨年合并标注），`min/max_reports` 与是否需全文按 task 区分。
 - 预算：改用 **token**（`RETRIEVE_CONTEXT_TOKENS`/`RETRIEVE_REPORT_TOKENS`/`ANSWER_RESERVE_TOKENS`），全局核算 system+历史+提示词+报告+输出。
 - 与 K10 关系：L2 的 chunk 模型取代 K10 候选缓存；K10 仅保留“BM25 按库缓存 + chunk id 预计算”原则，不建两套索引。
 - dense 子集：限库/限报告改用 Chroma metadata filter（`doc_id ∈ allowed`），不退化为 BM25-only。
 - Word 报告：后续复用 `selected_reports`，模板 `templates/*.docx`（python-docx），不在本轮。
 - 状态：规划（L1–L7），规格见 ITERATION §7。
+
+## L 阶段冲突裁决（2026-09-22，planner）
+
+- **L1 时机**：K13 全量重建期间不改 `Document`/`version`/存储；**门禁 = 重建非运行中 + `parsed/<rel>/markdown.md` 覆盖全部 source（按 rel 与 files 清单一致）+ `docs`/正文/页码核对**（仅 `docs=34` 不足；实测 source=35/parsed=19）。从 `<KB>/parsed/` 重索引（**不重跑 mineru**，缺 parsed 即失败）。迁移前备份 `<KB>/datadb/knowledge.sqlite3` → `.pre-l1`；原地替换，不回滚 schema。
+- **K5 非硬前置**：当前 ~34 报告、BM25-only，L3/L3b 同步建索引；K5 仅用于进度/取消与启用 dense 前。
+- **单索引 + 临时接线**：`Knowledge.search` 委托新引擎并删除旧窗口 BM25；L6 再以确定性 `retrieve→assemble→answer` 替换 LLM 工具循环；不得两套索引并存。
+- **version 迁移**：采用新 `version`；历史 `sources` 允许失效并在 `read`/`/file` 明确提示“文档已更新”，不重写会话历史（`doc_id` 不变，文档仍可打开）。
+- **token 口径（D-L8）**：无 tiktoken；MVP 保守字符估算 + 字符硬上限 + 供应商 `usage` 校准，标 uncalibrated。
+- **CJK 无匹配（D-L9）**：2-gram + 小停用词表 + 覆盖率，MVP uncalibrated，由评测校准。
+- **验证者 S1–S9（2026-09-22，二次修订）**：parsed 完整性门禁（S1，rel 口径、排除 `_pilot`）、base64 正则去贪婪（S2）、Layer A 全查询词并集（S3，并入立即批次）、索引注入 `project_no`（S4）、历史 token 截断（S5，保留末条 user）、无匹配空词→`direct`（S6，**无回退**）与 `per_doc_cand` 覆盖口径、`REPORT_RECALL_M` 扩展行为（S7）、PDF 版本失效**前端 version 比对**（S8，不预探 `/file`）、文档口径澄清（S9）。立即批次 = S2+S3+S6（仅 `retrieval.py`）。详见 [`ITERATION.md`](ITERATION.md) §5.3。
+- 状态：**已裁决**（对策与执行顺序见 [`ITERATION.md`](ITERATION.md) §5.2）。
 
 ## L 检索：引用粒度/校验/预算/停止语义/删除同步（2026-09-22）
 

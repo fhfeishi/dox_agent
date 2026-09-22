@@ -129,5 +129,6 @@ dox_agent 功能需求更新：
 literparse设置中文有报错 --ovr-language chi_sim+eng 报错 failed loading language 'chi_sim_vert'。不管这个了、直接就不用liteparse吧。
 
 
-
+## 2026-0922 1817 
+根据问题检索相关文档的逻辑需要更新， 目标是确定那几篇报告， 搜索空间是报告解析之后得到的markdown， 结合bm25+ vencter-based-dense 进行混合检索，确定一些chunks，然后找到足够数量的报告， 然后将对应报告的markdown全文拼进上下文给llm、然后结合任务提示词，给出回答, 交仅仅需要优化检索部分 我们现在就面临一项问题，就是基于专业知识问答、信息梳理任务，找到相关的报告.markdown是需要的，还是基于LangGraph设计检索pipeline。（后续还涉及生成word报告，当然还需要与之对应的word模板.docx），这需要你仔细展开相关的实现细节，
 

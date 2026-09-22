@@ -62,6 +62,9 @@ class Knowledge:
             db.execute("""CREATE TABLE IF NOT EXISTS files (
                 rel_path TEXT PRIMARY KEY, size INTEGER NOT NULL, mtime_ns INTEGER NOT NULL,
                 sha256 TEXT NOT NULL, doc_id TEXT, status TEXT NOT NULL, updated_at TEXT NOT NULL)""")
+            # K12: per-corpus settings (OCR mode/language and the last applied values).
+            db.execute("""CREATE TABLE IF NOT EXISTS meta (
+                key TEXT PRIMARY KEY, value TEXT NOT NULL)""")
 
     def connect(self):
         return sqlite3.connect(self.path, timeout=30)
@@ -126,6 +129,20 @@ class Knowledge:
             if doc_id:
                 db.execute("DELETE FROM docs WHERE id=?", (doc_id,))
         return doc_id
+
+    def meta_all(self) -> dict[str, str]:
+        """K12: per-corpus key/value settings."""
+        with self.connect() as db:
+            return {row[0]: row[1] for row in db.execute("SELECT key, value FROM meta")}
+
+    def meta_get(self, key: str) -> str | None:
+        with self.connect() as db:
+            row = db.execute("SELECT value FROM meta WHERE key=?", (key,)).fetchone()
+        return row[0] if row else None
+
+    def meta_set(self, key: str, value: str) -> None:
+        with self.connect() as db:
+            db.execute("INSERT OR REPLACE INTO meta VALUES (?, ?)", (key, value))
 
     def search(self, query: str, limit: int = 6, *, allowed_doc_ids: list[str] | None = None) -> list[dict]:
         query_tokens = tokens(query)

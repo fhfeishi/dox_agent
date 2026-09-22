@@ -337,7 +337,7 @@ function App() {
               {!!corpora.length && <div className="mt-3">
                 <p className="mb-1 text-xs font-medium text-stone-500">知识库</p>
                 <CorpusPicker corpora={corpora} current={effectiveCorpusId ?? ""} onSelect={selectCorpus}/>
-                <CorpusAdmin corpora={corpora} current={effectiveCorpusId ?? ""} onSelect={selectCorpus} onChanged={() => void refreshCorpora()}/>
+                <CorpusAdmin corpora={corpora} current={effectiveCorpusId ?? ""} onSelect={selectCorpus} onChanged={() => void refreshCorpora()} onIngested={() => void refreshDocuments()}/>
                 <p className="mt-1 text-xs text-stone-400">新语料目录放入 .knowledge/ 后自动出现</p>
               </div>}
               {corporaError && <p role="alert" className="mt-1 text-xs text-red-700">{corporaError}</p>}

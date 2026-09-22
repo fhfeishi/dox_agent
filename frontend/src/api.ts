@@ -5,13 +5,15 @@ export type Step = { run_id: string; id: string; sequence: number; phase: string
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; searches: number; reads: number; tokens: number | null };
 export type Options = { allowed_doc_ids: string[] | null; task_id?: string; corpus_id?: string };
 export type TaskInfo = { id: string; name: string; description: string; has_template: boolean };
-export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; errors: { source?: string; error: string }[] };
+export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
   docs_count: number; preparation: string; is_default: boolean;
   index_progress: { stage: string; completed: number; total: number } | null;
   job: CorpusJob | null;
+  ocr_stale?: boolean;
 };
+export type CorpusOcr = { mode: string; language: string; modes: string[]; languages: string[]; applied_mode: string | null; applied_language: string | null; stale: boolean; unknown: boolean };
 
 /** GET /api/corpora: corpus registry (H1). Read-only disk scan + config overrides. */
 export async function fetchCorpora(signal?: AbortSignal): Promise<CorpusInfo[]> {
@@ -21,11 +23,24 @@ export async function fetchCorpora(signal?: AbortSignal): Promise<CorpusInfo[]> 
 }
 
 /** POST /api/corpora/{id}/ingest (H2): import/refresh one corpus, bounded to its own root. */
-export async function ingestCorpus(corpusId: string): Promise<CorpusJob> {
-  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/ingest`, { method: "POST" });
+export async function ingestCorpus(corpusId: string, force = false): Promise<CorpusJob> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/ingest${force ? "?force=true" : ""}`, { method: "POST" });
   const payload = await response.json().catch(() => null);
   if (!response.ok) throw new Error(typeof payload?.detail === "string" ? payload.detail : "导入请求失败（" + response.status + "）");
   return payload as CorpusJob;
+}
+
+/** K12: per-corpus OCR config (does not import by itself). */
+export async function fetchCorpusOcr(corpusId: string): Promise<CorpusOcr> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/ocr`);
+  return jsonOrThrow(response, "解析设置不可用") as Promise<CorpusOcr>;
+}
+
+export async function setCorpusOcr(corpusId: string, mode: string, language: string): Promise<CorpusOcr> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/ocr`, {
+    method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mode, language }),
+  });
+  return jsonOrThrow(response, "保存解析设置失败") as Promise<CorpusOcr>;
 }
 
 export type CorpusFile = { rel_path: string; size: number; status: string; doc_id: string | null };

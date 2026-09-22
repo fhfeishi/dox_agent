@@ -3,6 +3,7 @@ import type { CorpusInfo } from "./api";
 function statusDot(corpus: CorpusInfo): { tone: string; label: string } {
   if (corpus.job?.status === "running") return { tone: "bg-amber-500 animate-pulse", label: "正在导入" };
   if (corpus.job?.status === "error") return { tone: "bg-red-500", label: "导入失败" };
+  if (corpus.ocr_stale) return { tone: "bg-amber-500", label: "需重新导入" };
   if (corpus.preparation === "ready") return { tone: "bg-teal-600", label: "就绪" };
   if (corpus.preparation === "empty") return { tone: "bg-amber-500", label: "空库" };
   return { tone: "bg-amber-500", label: "未初始化" };

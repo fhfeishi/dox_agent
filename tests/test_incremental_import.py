@@ -69,3 +69,17 @@ def test_failed_reparse_keeps_previous_version_and_marks_error(tmp_path):
     assert len(report["errors"]) == 1
     assert store.files()["a.txt"]["status"] == "error"
     assert store.all()[0]["pages"][0]["text"] == "测试正文"
+
+
+def test_force_import_reparses_unchanged(tmp_path):
+    from src.parsers import import_defaults
+
+    source = tmp_path / "source"
+    source.mkdir()
+    (source / "a.md").write_text("# A\n正文", encoding="utf-8")
+    store = store_for(tmp_path)
+    settings = Settings(_env_file=None)
+    assert import_defaults(store, settings, root=source)["imported"]
+    assert import_defaults(store, settings, root=source)["skipped"] == 1
+    forced = import_defaults(store, settings, root=source, force=True)
+    assert forced["skipped"] == 0 and forced["imported"]

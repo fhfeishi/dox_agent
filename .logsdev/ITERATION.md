@@ -31,7 +31,7 @@
 
 **H 知识库管理**：H1–H3（注册表/按库导入/`?corpus=`）✅；H5–H7（选择器/详情/按库文档）✅；**H4 ✅代码**（chat `corpus_id`、按库限定检索，提交 `e7d08e2`）、**H8 ✅代码**（会话绑库、`VITE_UI_CORPUS`，提交 `67d0ff0`），两者**浏览器/真实语料验收未做**；H9 文件名元数据入服务端、H10 真实报告验收 ⬜。
 
-**K 知识库管理与导入优化**：K0（应用级会话库）、K0b（多库 read/file 补 `corpus`）、K1（增量导入 + 文件清单 + 删除同步）、K2（OCR 三档）、K3（liteparse 多 worker）、K4（OCR 运行时配置）、K6a（`corpus_id` 单射+限长）、K6（库新建/显示名重命名/删除）、K7（库内文件列表/上传/重命名/删除，md/pdf/txt）、K8（Word/.docx 解析）✅；K5（两阶段导入+进度/取消）、K9（按 kind 预览）、K10（检索缓存）、K11 验收、K12（按库 OCR 语言 + 强制重导入）⬜。
+**K 知识库管理与导入优化**：K0（应用级会话库）、K0b（多库 read/file 补 `corpus`）、K1（增量导入 + 文件清单 + 删除同步）、K2（OCR 三档）、K3（liteparse 多 worker）、K4（OCR 运行时配置）、K6a（`corpus_id` 单射+限长）、K6（库新建/显示名重命名/删除）、K7（库内文件列表/上传/重命名/删除，md/pdf/txt）、K8（Word/.docx 解析）、K12（按库 OCR 语言 + 强制重导入）✅；K5（两阶段导入+进度/取消）、K9（按 kind 预览）、K10（检索缓存）、K11 验收 ⬜。
 
 **U UI 优化**：U0、U4.1a/U4.1b/U4.2、U5（会话内分支）、U6（电源按钮）、U7（知识库预览）、U8（LLM 状态）、U9.1（侧栏收束）、U9.2/U9.2b（文献库）、U9.4-1（只读模型）✅；U9.3 科研头条 🟡（仅占位）；U1（任务 UI）、U2（文档面板/引用跳转）🟡（代码完成、开关默认 off、浏览器验收未做）；U3 报告入口、U9.4-2 模型选择器 ⬜。
 
@@ -55,8 +55,9 @@
 | K2/K3/K4（提交 `4483408`） | OCR 三档（off/force/auto，auto 仅对无文本页 OCR）；liteparse `num_workers`；OCR 模式/语言运行时配置（`GET/PUT /api/ocr-config`，落 `STATE_DIR/ocr.json`） + 设置入口 | `pytest` 80 passed（新增 `tests/test_parsers_ocr.py` 4 例、OCR 配置持久化 1 例）；`npm run build` 通过；默认 `PDF_OCR_MODE=auto`、`PDF_OCR_LANGUAGE=chi_sim+eng` |
 | K6a/K6/K7（提交 `b443623`） | `corpus_id_for` 单射+限长；知识库新建/显示名重命名/删除（默认只删派生，`purge_source` 才删源）；库内文件列表/上传（`python-multipart` 流式、200MB 上限、名称规范化）/重命名/删除；前端 `CorpusAdmin`+`CorpusFiles` | `pytest` 83 passed（新增 K6a/K6/K7 共 4 例）；`npm run build` + `node --test` 18 passed；实机 httpx：创建→上传 `added=1`→列表 `indexed`→重命名→删文件→删库均成功 |
 | K8（提交 `0615ef9`） | Word `.docx` 解析（`python-docx`，段落+表格入正文）；`SOURCE_SUFFIXES` 与上传白名单加入 `.docx` | `pytest` 84 passed（新增 `tests/test_docx.py`）；`npm run build` 通过 |
+| K12（本轮） | 按库 OCR：`Knowledge.meta`（`ocr_mode`/`ocr_language`/`ocr_applied_*`）；`GET/PUT /api/corpora/{id}/ocr`；`ingest?force=`（`stale` 自动强制，job `forced`）；`GET /api/corpora` 增 `ocr_stale`；前端 `CorpusOcrSettings`（侧栏每库可展开） | `pytest` 86 passed（新增 `tests/test_corpus_ocr.py`、force 重解析例）；实机 httpx：PUT `eng`→`stale=true`→ingest `forced=true`→`stale=false`；再 ingest `forced=false, skipped=1` |
 
-当前可用基线（本次实测）：后端 `pytest tests -q` → **84 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
+当前可用基线（本次实测）：后端 `pytest tests -q` → **86 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
 ## 4. 待定设计
 
@@ -76,7 +77,7 @@
 | B2/B4/B5 基金元数据与领域/年份过滤未做 | 报告与过滤缺依据 | 先 H9（文件名元数据入服务端）→ B2/B4/B5 |
 | E 报告入口未做；#10 未决 | task4/U3/G9 无法开工 | 定稿 #10 → 实现 E1/E2 |
 | #12 模型可用性判定缺失 | F11/U9.4-2 不可验收 | 定 health 探测口径或新增轻量探测接口 |
-| 基金库 `.knowledge/自然科学基金/` **已导入 10 份，但以 `eng` OCR 解析、正文乱码**；`files` 清单为空 | 预览/问答不可读，H10 无法验收 | 按 K12 选 `chi_sim+eng` 强制重导入（或临时普通 ingest 全量重解析一次）后做 H10 |
+| 基金库 `.knowledge/自然科学基金/` **已导入 10 份，但以 `eng` OCR 解析、正文乱码**；`files` 清单为空 | 预览/问答不可读，H10 无法验收 | 侧栏该库“解析设置”选 `chi_sim+eng` → “重新导入并应用”（K12 已实现）后做 H10 |
 | H10 真实基金报告端到端验收未做 | 基金场景未验证 | 以真实报告走「选库 → 浏览 → 预览 → 按库问答」 |
 | 按 kind 预览、两阶段导入进度未做 | 文件能力不完整、导入过程不可观测 | K9/K5 |
 
@@ -106,7 +107,7 @@
 
 ### 6.3 任务
 
-> 进度：K0、K0b、K1、K2、K3、K4、K6a、K6、K7、K8 **已完成**（提交：K0/K0b/K1=`9075895`、K2/K3/K4=`4483408`、K6a/K6/K7=`b443623`、K8=`0615ef9`；测试见 §3）；K5、K9–K11、K12 未开始（K12 规格见 §6.5）。
+> 进度：K0、K0b、K1、K2、K3、K4、K6a、K6、K7、K8、K12 **已完成**（提交：K0/K0b/K1=`9075895`、K2/K3/K4=`4483408`、K6a/K6/K7=`b443623`、K8=`0615ef9`、K12 本轮；测试见 §3）；K5、K9–K11 未开始。
 
 | 编号 | 任务 | 验收 |
 |---|---|---|
@@ -140,6 +141,8 @@
 - 与既有任务的关系：K 是 H9/B2/B4/B5（元数据/过滤）与 H10（真实报告验收）的前置；完成后更新 H10 验收与 PROJECT 现状。
 
 ### 6.5 K12 实现规格（按库 OCR 语言 + 强制重导入）
+
+> 状态：**已实现**（提交/证据见 §2/§3）；以下为规格。
 
 **后端**
 - `Knowledge`（`src/knowledge.py`）新增 `meta(key TEXT PRIMARY KEY, value TEXT NOT NULL)`；方法 `meta_all()/meta_get()/meta_set()`。

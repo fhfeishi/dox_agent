@@ -136,7 +136,7 @@ async def parse_web(url: str, settings: Settings) -> Document:
     )
 
 
-def import_defaults(knowledge, settings: Settings, *, root: Path | None = None, exclude: list[Path] = ()) -> dict:
+def import_defaults(knowledge, settings: Settings, *, root: Path | None = None, exclude: list[Path] = (), force: bool = False) -> dict:
     """K1: incremental local import backed by the `files` manifest.
 
     With `root` (a corpus ``source/`` dir) only that corpus is collected; the legacy path
@@ -165,11 +165,11 @@ def import_defaults(knowledge, settings: Settings, *, root: Path | None = None, 
         prev = manifest.get(rel)
         try:
             stat = path.stat()
-            if prev and prev["status"] == "indexed" and prev["size"] == stat.st_size and prev["mtime_ns"] == stat.st_mtime_ns:
+            if not force and prev and prev["status"] == "indexed" and prev["size"] == stat.st_size and prev["mtime_ns"] == stat.st_mtime_ns:
                 skipped += 1
                 continue
             digest = sha256_file(path)
-            if prev and prev["status"] == "indexed" and prev["sha256"] == digest:
+            if not force and prev and prev["status"] == "indexed" and prev["sha256"] == digest:
                 knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, prev["doc_id"], "indexed")
                 skipped += 1
                 continue

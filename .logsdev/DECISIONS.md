@@ -16,18 +16,18 @@
 - 与解析关系：OCR 语言仅作用于 liteparse（本项目固定解析器）。
 - 状态：**已实现（K4）**；测试 `tests/test_corpora_state.py::test_ocr_config_persists_and_only_affects_later_imports`。
 
-## 按库 OCR 语言与“改语言→强制重解析”（待实现 K12，2026-09-22）
+## 按库 OCR 语言与“改语言→强制重解析”（K12，2026-09-22）
 
 - 问题：OCR 配置当前是**全局**（`STATE_DIR/ocr.json`），且增量导入按 `size+mtime_ns` 跳过未变文件，导致（**清单已回填后**）“改语言后重新导入”实际什么都不做；旧基金库以 `eng` 解析的正文仍是乱码，预览无法阅读。**例外窗口**：基金库当前 `files` 清单为空，按规则会全量回填，普通 ingest 这一次会真的重解析——K12 落地前可临时用它修复。
 - 采用：
   - OCR 模式/语言**按库**存储（`<KB>/datadb` 的 `meta` 表）；生效值 = 库配置 ?? 全局默认。
-  - 失效条件纳入**解析配置签名**（`mode` + `language` + parser 版本）：`files` 清单记录每文件的签名，签名与当前不一致即自动失效并标 `ocr_stale`（不依赖人工判断）。
+  - 失效条件：**库级 expected vs applied**（`ocr_applied_mode`/`ocr_applied_language`）；期望值存在且与 applied 不一致即 `ocr_stale`（不依赖人工判断）。**未实现**按文件签名（含 parser 版本）的更细粒度失效，保留为后续增强。
   - `POST /api/corpora/{id}/ingest` 增 `force`：绕过 `size+mtime_ns` 跳过、全部重解析（用于语言/模式变更）；`ocr_stale` 时服务端建议/要求 `force`。
   - 入口（保底方案）：放在**左侧边栏知识库展开项**（`CorpusPicker`/`CorpusAdmin`）——“语言/模式 + 重新导入并应用”；库详情页（`LibraryView`）可复用同一操作。自动语言建议为可选增强，不阻塞。
   - 实现规格见 [`ITERATION.md`](ITERATION.md) §6.5（`meta` 键、`GET/PUT /api/corpora/{id}/ocr`、`ingest?force=` 与 `stale` 自动强制、`api.ts`/`CorpusPicker` 变更、验收）。
   - 库详情提供“解析设置 + 重新导入并应用”，并提示“将重解析全部文件、版本会变化”。
 - 理由与代价：语言决定识别质量，必须能按库调整并真正重解析；代价是新增按库配置存储与一次全量重解析。
-- 状态：待实现（K12）。
+- 状态：**已实现（K12）**。`Knowledge.meta` 存 `ocr_mode`/`ocr_language`/`ocr_applied_*`；`GET/PUT /api/corpora/{id}/ocr`；`ingest?force=`（`stale` 自动强制，job `forced`）；`GET /api/corpora` 增 `ocr_stale`；侧栏 `CorpusAdmin`→`CorpusOcrSettings`。测试 `tests/test_corpus_ocr.py` + 实机 httpx 全流程。
 
 ## 导入性能优化方向（2026-09-22）
 

@@ -19,7 +19,7 @@
 **范围外（首期不做）**：多租户/权限后台、多 Agent 协作、知识图谱、工作流画布、独立问题分类服务、材料遵循等级系统、自动全网研究、自动订阅同步、外部资讯抓取与科研头条、多模型路由与模型管理后台、模板管理平台、分布式任务队列。（`VITE_UI_NEWS`/`VITE_UI_MODELS` 等仅占位，不属首期交付。）
 
 **关键限制**：
-- 当前演示语料为 LangChain 技术文档（`.demo_langchain/`），**不是基金报告**；真实基金语料在 `.knowledge/自然科学基金/`，已接入库注册（侧栏可见）并**已导入 10 份**，但当时以全局 `eng` OCR 解析，正文乱码、预览不可读；`files` 清单为空（普通 ingest 会全量重解析一次）。修复路径：按 K12（按库语言 + 强制重导入）或临时重导入。
+- 当前演示语料为 LangChain 技术文档（`.demo_langchain/`），**不是基金报告**；真实基金语料在 `.knowledge/自然科学基金/`，已接入库注册（侧栏可见）并**已导入 10 份**，但当时以全局 `eng` OCR 解析，正文乱码、预览不可读；`files` 清单为空（普通 ingest 会全量重解析一次）。修复路径：侧栏该库“解析设置”选 `chi_sim+eng` → “重新导入并应用”（K12）。
 - 未配置 `EMBEDDING_PATH` 时仅 BM25，不加载 embedding。
 - HTTP 可用、检索就绪、模型可用是三个独立条件；健康接口不主动调用模型，`model_verified` 恒 `false`（模型可用性判定待定，见 ITERATION）。
 
@@ -56,7 +56,7 @@
 - 库内文件 CRUD：列表、上传（md/pdf/txt（K7）、docx（K8））、删除、重命名/替换；`source/` 为唯一事实来源。
 - 侧栏列出库（名称/份数/就绪状态）并可切换；库详情展示文档清单；基金库显示题目/负责人/项目编号/报告年份区间。
 - 每个会话绑定一个库；输入区资料范围为两层：库（必选）+ 库内文档（可选，`allowed_doc_ids`）；切库清空越界选择并提示。
-- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。OCR 三档 `off/force/auto`（K2，auto 仅对无文本页 OCR）+ liteparse `num_workers`（K3）+ 运行时 OCR 模式/语言配置（K4）。两阶段导入进度仍待 K5；另：**OCR 语言/模式将按库配置并要求强制重导入**（K12）。
+- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。OCR 三档 `off/force/auto`（K2，auto 仅对无文本页 OCR）+ liteparse `num_workers`（K3）+ 全局 OCR 模式/语言运行时配置（K4）+ **按库 OCR 配置与强制重导入**（K12）。两阶段导入进度仍待 K5。
 - 预览支持 pdf（浏览器原生）/markdown（渲染）/word（转 HTML）/txt（纯文本）。
 - 首期不做跨库联合检索、库内分区、多用户权限隔离。
 
@@ -94,12 +94,13 @@
 | `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range）；可选 `corpus`（缺省默认库）；404/422/415/413(>200MB)；仅根目录内本地文件 |
 | `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`has_template` |
 | `GET\|PUT /api/ocr-config` | OCR 模式（`off`/`force`/`auto`）与语言（`eng`/`chi_sim`/`chi_sim+eng`）；写入口落 `STATE_DIR/ocr.json`，仅影响后续导入（K4） |
-| `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job` |
+| `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job`/`ocr_stale` |
 | `POST /api/corpora` | 新建库目录（`source/`+`datadb/`+`vectordb/`）；201；重名 409、名称非法 422（K6） |
 | `PATCH /api/corpora/{id}` | 仅改显示名（落 `STATE_DIR/corpora.json`）；目录与 `corpus_id` 不变（K6） |
 | `DELETE /api/corpora/{id}?purge_source=` | 默认只删 `datadb/`/`vectordb/`；`purge_source=true` 才删 `source/`；默认库 409（K6） |
 | `GET\|POST\|PATCH\|DELETE /api/corpora/{id}/files` | 库内源文件列表/上传/重命名/删除（md/pdf/txt/docx；上传 201、非法类型 415、超限 413）（K7/K8） |
-| `POST /api/corpora/{id}/ingest` | 按库导入（限定库 root 内）；202 + job；404/409 |
+| `POST /api/corpora/{id}/ingest?force=` | 按库导入（限定库 root 内）；`force=true` 绕过增量跳过、全部重解析；`ocr_stale` 时自动强制；202 + job（含 `forced`）；404/409（K12） |
+| `GET\|PUT /api/corpora/{id}/ocr` | 按库 OCR 模式/语言（`ocr_mode`/`ocr_language`）与上次生效值（`ocr_applied_*`）/`stale`/`unknown`；写入口仅落 `meta`、不自动导入（K12） |
 | `POST /api/ingest/local`、`POST /api/ingest/text` | 本地导入（txt/md/pdf/docx）/ 手工补正文；准备中 409 |
 | `GET\|POST /api/official-docs` | 官方 Markdown 发现与批量更新（单进程内存任务） |
 | `POST /api/web/preview`、`/api/web/confirm/{id}` | 网页快照预览与确认入库 |
@@ -109,8 +110,6 @@
 
 通用：JSON + SSE；请求模型 `extra="forbid"`，未声明字段返回 422。
 
-> **计划契约（尚未实现，K12）**：`GET\|PUT /api/corpora/{id}/ocr`（按库 OCR 模式/语言 + `applied_*`/`stale`）；`POST /api/corpora/{id}/ingest?force=`（绕过增量跳过、全部重解析，`stale` 自动强制，job 带 `forced`）；`GET /api/corpora` 增 `ocr_stale`；`knowledge.sqlite3` 增 `meta(key,value)`。规格见 [`ITERATION.md`](ITERATION.md) §6.5。
-
 ### 4.2 `POST /api/chat`
 
 请求：`messages`（1–20 条，每条 ≤12000，总 ≤40000，末条必须 user）、`allowed_doc_ids`（可空，非空 1–20）、`task_id`（默认 `task1`，仅 task1–3；task4/未知 422）、`corpus_id`（可选，缺省默认库；未知 404）、`run_id`（8–80）。禁止额外字段（含已移除的 `execution_mode`/`query_routing`/`evidence_level`）。
@@ -119,7 +118,7 @@ SSE 事件：`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）�
 
 ### 4.3 数据模型
 
-- 知识库 SQLite `docs(id, version, payload)`：`id=sha256(origin)[:20]`，`version=sha256(pages JSON)[:20]`；引用携带 version，版本不符读取报错。另含 `files(rel_path,size,mtime_ns,sha256,doc_id,status,updated_at)`（增量清单）。**（计划，K12）** 将增 `meta(key,value)` 存按库 OCR（`ocr_mode`/`ocr_language`/`ocr_applied_*`）。
+- 知识库 SQLite `docs(id, version, payload)`：`id=sha256(origin)[:20]`，`version=sha256(pages JSON)[:20]`；引用携带 version，版本不符读取报错。另含 `files(rel_path,size,mtime_ns,sha256,doc_id,status,updated_at)`（增量清单）与 `meta(key,value)`（K12：`ocr_mode`/`ocr_language`/`ocr_applied_*`）。
 - 工作区 SQLite `records(id, kind, revision, payload)`：`kind ∈ {sessions, notes}`；会话 `data` 含 `turns`/`options`/`branches`/`task_id`/`corpus_id`；`BEGIN IMMEDIATE` 校验 revision（冲突 409），单记录 >4MB 413；笔记 `body`≤20000、`reviewed`、`sources` 1–6 条且版本可读。
 - 阅读行号是规范化视图行号（超长行按 300 字符切段），非 PDF 原版排版行号；`section` 窗口按标题/代码围栏切块并返回 `heading`/`truncated`/`code_omitted`。
 

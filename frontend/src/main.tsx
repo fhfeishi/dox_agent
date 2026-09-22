@@ -6,6 +6,7 @@ import { newTurn, regenerateTurn, receiveEvent, stopTurn, type Turn } from "./co
 import type { Branch } from "./branches";
 import "./style.css";
 import { CorpusPicker } from "./CorpusPicker";
+import { CorpusAdmin } from "./CorpusAdmin";
 import { IngestTools } from "./IngestTools";
 import { LibraryView } from "./LibraryView";
 import { DocumentExplorer } from "./DocumentExplorer";
@@ -336,6 +337,7 @@ function App() {
               {!!corpora.length && <div className="mt-3">
                 <p className="mb-1 text-xs font-medium text-stone-500">知识库</p>
                 <CorpusPicker corpora={corpora} current={effectiveCorpusId ?? ""} onSelect={selectCorpus}/>
+                <CorpusAdmin corpora={corpora} current={effectiveCorpusId ?? ""} onSelect={selectCorpus} onChanged={() => void refreshCorpora()}/>
                 <p className="mt-1 text-xs text-stone-400">新语料目录放入 .knowledge/ 后自动出现</p>
               </div>}
               {corporaError && <p role="alert" className="mt-1 text-xs text-red-700">{corporaError}</p>}
@@ -429,7 +431,7 @@ function App() {
       </form>
       </>}
       {view === "library" && <LibraryView documents={documents} corpusReady={corpusReady} onOpenDocument={openDocument} onBack={backToChat}
-        corpus={currentCorpus} ingestBusy={ingestBusy}
+        corpus={currentCorpus} ingestBusy={ingestBusy} onDocumentsChanged={() => void refreshDocuments()}
         onIngestCorpus={currentCorpus ? () => void runCorpusIngest(currentCorpus.id) : undefined}/>}
       {view === "news" && <section className="flex-1 py-8" aria-label="科研头条">
         <h1 className="text-2xl font-semibold">科研头条</h1>

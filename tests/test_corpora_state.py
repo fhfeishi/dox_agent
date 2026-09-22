@@ -61,17 +61,18 @@ def test_non_default_corpus_read_and_file_require_corpus_param(tmp_path):
     settings = settings_for(tmp_path)
     app = create_app(settings, Knowledge(settings.data_dir / "knowledge.sqlite3"))
     with TestClient(app) as client:
-        listed = client.get("/api/documents?corpus=自然科学基金").json()
+        corpus_id = next(item["id"] for item in client.get("/api/corpora").json() if not item["is_default"])
+        listed = client.get(f"/api/documents?corpus={corpus_id}").json()
         assert [item["doc_id"] for item in listed] == [doc_id]
         # Default corpus does not own this doc.
         assert client.get(f"/api/documents/{doc_id}").status_code == 404
         assert client.get(f"/api/documents/{doc_id}/file").status_code == 404
-        read = client.get(f"/api/documents/{doc_id}?corpus=自然科学基金")
+        read = client.get(f"/api/documents/{doc_id}?corpus={corpus_id}")
         assert read.status_code == 200 and read.json()["text"] == "正文"
-        file = client.get(f"/api/documents/{doc_id}/file?corpus=自然科学基金")
+        file = client.get(f"/api/documents/{doc_id}/file?corpus={corpus_id}")
         assert file.status_code == 200 and file.text == "报告正文"
         from urllib.parse import quote
-        header = client.get(f"/api/documents/{doc_id}/file?corpus=自然科学基金").headers["content-disposition"]
+        header = client.get(f"/api/documents/{doc_id}/file?corpus={corpus_id}").headers["content-disposition"]
         assert quote(raw.name) in header
         # Unknown corpus is a clear 404, not a silent fallback to the default.
         assert client.get(f"/api/documents/{doc_id}?corpus=missing").status_code == 404
@@ -90,3 +91,68 @@ def test_ocr_config_persists_and_only_affects_later_imports(tmp_path):
     with TestClient(reloaded) as client:
         body = client.get("/api/ocr-config").json()
         assert body["mode"] == "force" and body["language"] == "chi_sim"
+
+
+def test_corpus_id_is_injective_and_length_bounded():
+    from src.agent.corpora import corpus_id_for
+
+    assert corpus_id_for("a b") != corpus_id_for("a-b")
+    assert len(corpus_id_for("长" * 200)) <= 120
+    assert corpus_id_for("自然科学基金") == corpus_id_for("自然科学基金")
+
+
+def test_corpus_create_rename_and_delete(tmp_path):
+    settings = settings_for(tmp_path)
+    app = create_app(settings, Knowledge(settings.data_dir / "knowledge.sqlite3"))
+    with TestClient(app) as client:
+        created = client.post("/api/corpora", json={"name": "新库"})
+        assert created.status_code == 201
+        cid = created.json()["id"]
+        assert (tmp_path / "knowledge" / "新库" / "source").is_dir()
+        # empty created corpus is visible, and duplicate names are rejected
+        assert cid in {item["id"] for item in client.get("/api/corpora").json()}
+        assert client.post("/api/corpora", json={"name": "新库"}).status_code == 409
+        # names that only differ by separator must not collide
+        spaced = client.post("/api/corpora", json={"name": "a b"}).json()
+        dashed = client.post("/api/corpora", json={"name": "a-b"}).json()
+        assert spaced["id"] != dashed["id"]
+        assert client.post("/api/corpora", json={"name": "../escape"}).status_code == 422
+
+        renamed = client.patch(f"/api/corpora/{cid}", json={"name": "改名库"})
+        assert renamed.json()["name"] == "改名库" and renamed.json()["id"] == cid
+        assert (tmp_path / "knowledge" / "新库").is_dir()  # directory unchanged
+
+        assert client.delete(f"/api/corpora/{cid}").status_code == 200
+        assert (tmp_path / "knowledge" / "新库" / "source").is_dir()  # source kept
+        assert not (tmp_path / "knowledge" / "新库" / "datadb").exists()
+
+        default_id = next(item["id"] for item in client.get("/api/corpora").json() if item["is_default"])
+        assert client.delete(f"/api/corpora/{default_id}").status_code == 409
+
+
+def test_corpus_file_upload_list_rename_delete(tmp_path):
+    settings = settings_for(tmp_path)
+    app = create_app(settings, Knowledge(settings.data_dir / "knowledge.sqlite3"))
+    with TestClient(app) as client:
+        cid = client.post("/api/corpora", json={"name": "文件库"}).json()["id"]
+        uploaded = client.post(f"/api/corpora/{cid}/files",
+                               files={"upload": ("报告.md", "# 报告\n正文", "text/markdown")})
+        assert uploaded.status_code == 201 and uploaded.json()["added"] == 1
+
+        listing = client.get(f"/api/corpora/{cid}/files").json()["files"]
+        assert [item["rel_path"] for item in listing] == ["报告.md"]
+        assert listing[0]["status"] == "indexed" and listing[0]["doc_id"]
+        assert [doc["title"] for doc in client.get(f"/api/documents?corpus={cid}").json()] == ["报告"]
+
+        assert client.post(f"/api/corpora/{cid}/files",
+                           files={"upload": ("bad.exe", b"x", "application/octet-stream")}).status_code == 415
+
+        renamed = client.patch(f"/api/corpora/{cid}/files", json={"rel_path": "报告.md", "new_name": "改名.md"})
+        assert renamed.status_code == 200 and renamed.json()["added"] == 1
+        assert [item["rel_path"] for item in client.get(f"/api/corpora/{cid}/files").json()["files"]] == ["改名.md"]
+        assert [doc["title"] for doc in client.get(f"/api/documents?corpus={cid}").json()] == ["改名"]
+
+        assert client.delete(f"/api/corpora/{cid}/files", params={"rel_path": "改名.md"}).status_code == 200
+        assert client.get(f"/api/corpora/{cid}/files").json()["files"] == []
+        assert client.get(f"/api/documents?corpus={cid}").json() == []
+        assert client.delete(f"/api/corpora/{cid}/files", params={"rel_path": "../escape"}).status_code == 404

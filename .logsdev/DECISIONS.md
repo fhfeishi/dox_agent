@@ -40,6 +40,7 @@
 - 采用：知识库新建/重命名/删除；库内文件列表/上传/删除/重命名或替换。
 - 删除语义：`DELETE /api/corpora/{id}` 默认只删派生数据（`datadb/`、`vectordb/`），删除 `source/` 需显式 `purge_source=true`。
 - 理由与代价：`source/` 是唯一事实来源，防误删；代价是删除需两步（清派生、再决定源文件）。
+- 状态：**已实现（K6/K7）**。`POST /api/corpora`、`PATCH /api/corpora/{id}`（仅改显示名，落 `STATE_DIR/corpora.json`）、`DELETE /api/corpora/{id}?purge_source=`；库内文件 `GET/POST/DELETE/PATCH /api/corpora/{id}/files`（md/pdf/txt）。测试：`tests/test_corpora_state.py`。
 
 ## Word 文档支持选型（待定，2026-09-22）
 
@@ -81,6 +82,7 @@
 
 - 采用：`corpus_id_for` 改为**单射且限长**（如 `slug + sha1(rel)[:8]`，总长 ≤120 对齐 `ChatRequest.corpus_id`）；重命名默认库优先走 `CORPORA` 显示名，不改目录；目录搬迁作为独立操作并显式处理引用（K6b）。
 - 理由：当前 `corpus_id_for` 把 `/`、空格都替换为 `-`（`corpora.py:46`），`a b/` 与 `a-b/` 撞同一 id，`find_corpus` 取首个匹配会串库；未限长会使超长库名无法用于 chat。
+- 状态：**已实现（K6a）**。`corpus_id_for = slug(≤111) + "-" + sha1(rel)[:8]`，单射且总长 ≤120；测试断言 `a b` 与 `a-b` 不同、超长名 ≤120。
 
 ## 多库 read/file 必须按 corpus（2026-09-22）
 
@@ -92,6 +94,7 @@
 
 - 采用：上传用 multipart、流式落盘；单文件上限与 `MAX_PREVIEW_BYTES`（200MB）对齐或单列；设置单库配额；文件名规范化与路径穿越防护；并发导入复用 `import_lock`。
 - 理由：上传是新的写入口，需与现有预览/工作区限制协调，避免超限与竞态。
+- 状态：**上传部分已实现（K7）**：multipart 流式落盘、单文件 200MB（`MAX_PREVIEW_BYTES`）、名称规范化与路径穿越防护（`safe_file_name` + `is_relative_to`）、复用 `import_lock`。**单库配额未实现**，待后续（K7 完整）。
 
 ## 存量库首次回填为一次性成本（2026-09-22）
 

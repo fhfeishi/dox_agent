@@ -9,6 +9,8 @@ still describe the active default corpus, which may live outside CORPORA_ROOT (t
 
 from __future__ import annotations
 
+import hashlib
+import json
 import re
 import sqlite3
 from dataclasses import dataclass
@@ -43,9 +45,39 @@ class CorpusInfo:
     is_default: bool = False
 
 
+OVERRIDES_FILENAME = "corpora.json"
+
+
 def corpus_id_for(rel_path: str) -> str:
-    """Stable id derived from the corpus-root-relative path, so index rebuilds keep it."""
-    return rel_path.replace("/", "-").replace(" ", "-")
+    """K6a: injective, length-bounded id derived from the corpus-root-relative path.
+
+    ``sha1(rel_path)[:8]`` keeps ``a b`` and ``a-b`` distinct; the slug is only for
+    readability and is capped so the total stays within ``ChatRequest.corpus_id`` (120).
+    """
+    digest = hashlib.sha1(rel_path.encode("utf-8")).hexdigest()[:8]
+    slug = re.sub(r"[^0-9A-Za-z\u4e00-\u9fff._-]+", "-", rel_path).strip("-.")
+    room = 120 - len(digest) - 1
+    return (slug[:room].rstrip("-") or "corpus") + "-" + digest
+
+
+def load_corpus_overrides(settings) -> dict[str, dict]:
+    """Runtime display-name overrides persisted outside .env (K6)."""
+    try:
+        data = json.loads((settings.state_dir / OVERRIDES_FILENAME).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return {str(key): value for key, value in data.items() if isinstance(value, dict)} if isinstance(data, dict) else {}
+
+
+def save_corpus_overrides(settings, overrides: dict[str, dict]) -> None:
+    settings.state_dir.mkdir(parents=True, exist_ok=True)
+    path = settings.state_dir / OVERRIDES_FILENAME
+    path.write_text(json.dumps(overrides, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def valid_corpus_name(name: str) -> bool:
+    name = name.strip()
+    return bool(name) and len(name) <= 80 and not any(ch in name for ch in "/\\\n\r\t") and not name.startswith(".") and name not in ROLE_DIRNAMES
 
 
 def corpus_root_for(settings) -> Path:
@@ -109,6 +141,7 @@ def scan_corpora(settings) -> list[CorpusInfo]:
         rel = str(entry.get("path", "")).strip("/")
         if rel:
             overrides[rel] = entry
+    overrides.update(load_corpus_overrides(settings))
 
     found: dict[str, CorpusInfo] = {}
     if root.is_dir():
@@ -116,13 +149,16 @@ def scan_corpora(settings) -> list[CorpusInfo]:
             if child.name.startswith(".") or child.name in ROLE_DIRNAMES:
                 continue
             source_dir = child / SOURCE_DIRNAME
-            if not source_dir.is_dir() or not _has_sources(source_dir):
+            if not source_dir.is_dir():
                 continue
             rel = child.relative_to(root).as_posix()
+            override = overrides.get(rel, {})
+            # Empty source is skipped unless the corpus was explicitly created (K6).
+            if not _has_sources(source_dir) and not override.get("created"):
+                continue
             db_dir = child / DB_DIRNAME
             sqlite_path = db_dir / "knowledge.sqlite3"
             count = _docs_count(sqlite_path) if sqlite_path.is_file() else 0
-            override = overrides.get(rel, {})
             kind = override.get("kind") or ("fund" if _has_fund_pdf(source_dir) else "unknown")
             found[rel] = CorpusInfo(
                 id=str(override.get("id") or corpus_id_for(rel)),

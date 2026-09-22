@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import type { CorpusInfo } from "./api";
+import { CorpusFiles } from "./CorpusFiles";
 import { fundMetaFromPath } from "./fundMeta";
 import type { DocumentInfo } from "./useDocuments";
 
@@ -13,7 +14,7 @@ const PREPARATION_LABEL: Record<string, string> = { ready: "就绪", empty: "空
  * fields by kind — fund corpora render filename-derived 负责人/项目编号/年份区间
  * (display-only until H9 lands server-side meta).
  */
-export function LibraryView({ documents, corpusReady, onOpenDocument, onBack, corpus, onIngestCorpus, ingestBusy }: {
+export function LibraryView({ documents, corpusReady, onOpenDocument, onBack, corpus, onIngestCorpus, ingestBusy, onDocumentsChanged }: {
   documents: DocumentInfo[];
   corpusReady: boolean;
   onOpenDocument: (docId: string) => void;
@@ -21,6 +22,7 @@ export function LibraryView({ documents, corpusReady, onOpenDocument, onBack, co
   corpus?: CorpusInfo | null;
   onIngestCorpus?: () => void;
   ingestBusy?: boolean;
+  onDocumentsChanged?: () => void;
 }) {
   const [mode, setMode] = useState<LibraryMode>("card");
   const [query, setQuery] = useState("");
@@ -62,6 +64,8 @@ export function LibraryView({ documents, corpusReady, onOpenDocument, onBack, co
 
     <input aria-label="按名称筛选文档" className="mt-4 w-full rounded-xl border border-stone-300 bg-white px-3 py-2 text-sm"
       placeholder="按文件名筛选" value={query} onChange={e => setQuery(e.target.value)}/>
+
+    {corpus && <CorpusFiles corpusId={corpus.id} onChanged={() => onDocumentsChanged?.()}/>}
 
     {!corpusReady && <p role="status" className="mt-6 rounded-2xl border border-teal-200 bg-teal-50 p-4 text-sm text-teal-800">知识库准备中，文档列表可能不完整。</p>}
     {corpusReady && !documents.length && <p className="mt-6 text-sm text-stone-500">{corpus && corpus.preparation === "uninitialized" ? "本库尚未导入文档；点击右上方「导入/更新本库」开始解析。" : "还没有已入库文档；可在“设置与运维”中导入本地文本与 PDF。"}</p>}

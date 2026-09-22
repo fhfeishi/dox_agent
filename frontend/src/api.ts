@@ -27,6 +27,55 @@ export async function ingestCorpus(corpusId: string): Promise<CorpusJob> {
   if (!response.ok) throw new Error(typeof payload?.detail === "string" ? payload.detail : "导入请求失败（" + response.status + "）");
   return payload as CorpusJob;
 }
+
+export type CorpusFile = { rel_path: string; size: number; status: string; doc_id: string | null };
+
+async function jsonOrThrow(response: Response, fallback: string) {
+  const payload = await response.json().catch(() => null);
+  if (!response.ok) throw new Error(typeof payload?.detail === "string" ? payload.detail : `${fallback}（${response.status}）`);
+  return payload;
+}
+
+/** K6: corpus create / rename (display name) / delete (derived data only unless purging source). */
+export async function createCorpus(name: string): Promise<CorpusInfo> {
+  const response = await fetch("/api/corpora", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name }) });
+  return jsonOrThrow(response, "创建知识库失败") as Promise<CorpusInfo>;
+}
+
+export async function renameCorpus(corpusId: string, name: string): Promise<CorpusInfo> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name }) });
+  return jsonOrThrow(response, "重命名失败") as Promise<CorpusInfo>;
+}
+
+export async function deleteCorpus(corpusId: string, purgeSource = false): Promise<void> {
+  const query = purgeSource ? "?purge_source=true" : "";
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}${query}`, { method: "DELETE" });
+  await jsonOrThrow(response, "删除失败");
+}
+
+/** K7: source-file list / upload / rename / delete. */
+export async function fetchCorpusFiles(corpusId: string): Promise<CorpusFile[]> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`);
+  const payload = await jsonOrThrow(response, "文件列表不可用");
+  return (payload as { files: CorpusFile[] }).files;
+}
+
+export async function uploadCorpusFile(corpusId: string, file: File): Promise<void> {
+  const form = new FormData();
+  form.append("upload", file);
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "POST", body: form });
+  await jsonOrThrow(response, "上传失败");
+}
+
+export async function deleteCorpusFile(corpusId: string, relPath: string): Promise<void> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files?rel_path=${encodeURIComponent(relPath)}`, { method: "DELETE" });
+  await jsonOrThrow(response, "删除文件失败");
+}
+
+export async function renameCorpusFile(corpusId: string, relPath: string, newName: string): Promise<void> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rel_path: relPath, new_name: newName }) });
+  await jsonOrThrow(response, "重命名文件失败");
+}
 export type Policy = Options & { route: "research" | "clarify"; stop_reason: string; notice?: string };
 export type Event =
   | { event: "usage"; data: Usage }

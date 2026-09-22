@@ -9,12 +9,24 @@ from pathlib import Path
 from typing import Literal
 from uuid import uuid4
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
 
 from .agent.config import DOX_AGENT_ROOT, OCR_LANGUAGES, OCR_MODES, get_settings, load_ocr_config, save_ocr_config
-from .agent.corpora import CorpusInfo, default_corpus_id, scan_corpora
+from .agent.corpora import (
+    DB_DIRNAME,
+    SOURCE_DIRNAME,
+    SOURCE_SUFFIXES,
+    VECTOR_DIRNAME,
+    CorpusInfo,
+    corpus_root_for,
+    default_corpus_id,
+    load_corpus_overrides,
+    save_corpus_overrides,
+    scan_corpora,
+    valid_corpus_name,
+)
 from .agent.graph import build_graph
 from .agent.models import tracing
 from .agent.usage import TurnUsage
@@ -83,6 +95,22 @@ class OcrConfigRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     mode: Literal["off", "force", "auto"]
     language: Literal["eng", "chi_sim", "chi_sim+eng"]
+
+
+class CorpusCreate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    name: str = Field(min_length=1, max_length=80)
+
+
+class CorpusRename(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    name: str = Field(min_length=1, max_length=80)
+
+
+class FileRename(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    rel_path: str = Field(min_length=1, max_length=1000)
+    new_name: str = Field(min_length=1, max_length=255)
 
 
 def workspace_path(settings, knowledge) -> Path:
@@ -240,26 +268,94 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         await asyncio.to_thread(save_ocr_config, settings.state_dir, payload.mode, payload.language)
         return ocr_payload()
 
+    def corpus_payload(info: CorpusInfo) -> dict:
+        dense = app.state.knowledge.dense
+        return {
+            "id": info.id,
+            "name": info.name,
+            "kind": info.kind,
+            "domain": info.domain,
+            "rel_path": info.rel_path,
+            "docs_count": info.docs_count,
+            "preparation": info.preparation,
+            "is_default": info.is_default,
+            "index_progress": dense.progress if info.is_default and dense else None,
+            "job": app.state.corpus_jobs.get(info.id),
+        }
+
     @app.get("/api/corpora")
-    async def corpora(request: Request):
-        """H1: corpus registry — disk scan + config overrides, read-only."""
+    async def corpora():
+        """H1: corpus registry — disk scan + config/override names, read-only."""
         items = await asyncio.to_thread(scan_corpora, settings)
-        dense = request.app.state.knowledge.dense
-        return [
-            {
-                "id": info.id,
-                "name": info.name,
-                "kind": info.kind,
-                "domain": info.domain,
-                "rel_path": info.rel_path,
-                "docs_count": info.docs_count,
-                "preparation": info.preparation,
-                "is_default": info.is_default,
-                "index_progress": dense.progress if info.is_default and dense else None,
-                "job": request.app.state.corpus_jobs.get(info.id),
-            }
-            for info in items
-        ]
+        return [corpus_payload(info) for info in items]
+
+    @app.post("/api/corpora", status_code=201)
+    async def create_corpus(payload: CorpusCreate):
+        """K6: create a new self-contained corpus directory (source/datadb/vectordb)."""
+        name = payload.name.strip()
+        root = corpus_root_for(settings)
+        target = (root / name).resolve()
+        if not valid_corpus_name(name) or not target.is_relative_to(root.resolve()):
+            raise HTTPException(422, "知识库名称非法")
+        if target.exists():
+            raise HTTPException(409, "同名知识库已存在")
+        def create_dirs():
+            for role in (SOURCE_DIRNAME, DB_DIRNAME, VECTOR_DIRNAME):
+                (target / role).mkdir(parents=True, exist_ok=True)
+            overrides = load_corpus_overrides(settings)
+            overrides[name] = {**overrides.get(name, {}), "created": True}
+            save_corpus_overrides(settings, overrides)
+
+        await asyncio.to_thread(create_dirs)
+        items = await asyncio.to_thread(scan_corpora, settings)
+        info = next((item for item in items if item.rel_path == name), None)
+        if info is None:
+            raise HTTPException(500, "知识库创建后未能扫描到")
+        return corpus_payload(info)
+
+    @app.patch("/api/corpora/{corpus_id}")
+    async def rename_corpus(payload: CorpusRename, corpus_id: str):
+        """K6: rename is a display-name override; the directory and corpus_id stay put."""
+        name = payload.name.strip()
+        if not valid_corpus_name(name):
+            raise HTTPException(422, "知识库名称非法")
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+
+        def persist():
+            overrides = load_corpus_overrides(settings)
+            overrides[info.rel_path] = {**overrides.get(info.rel_path, {}), "name": name}
+            save_corpus_overrides(settings, overrides)
+
+        await asyncio.to_thread(persist)
+        items = await asyncio.to_thread(scan_corpora, settings)
+        return corpus_payload(next(item for item in items if item.id == corpus_id))
+
+    @app.delete("/api/corpora/{corpus_id}")
+    async def delete_corpus(corpus_id: str, purge_source: bool = False):
+        """K6: delete derived data by default; ``purge_source=true`` also removes source files."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        if info.is_default:
+            raise HTTPException(409, "不能删除当前活动（默认）知识库")
+
+        def remove():
+            shutil.rmtree(info.db_dir, ignore_errors=True)
+            shutil.rmtree(info.vectordb_dir, ignore_errors=True)
+            if purge_source:
+                shutil.rmtree(info.root, ignore_errors=True)
+            elif info.root.exists() and not any(info.root.iterdir()):
+                shutil.rmtree(info.root, ignore_errors=True)
+            overrides = load_corpus_overrides(settings)
+            if info.rel_path in overrides:
+                overrides.pop(info.rel_path)
+                save_corpus_overrides(settings, overrides)
+
+        await asyncio.to_thread(remove)
+        app.state.corpus_knowledge.pop(corpus_id, None)
+        return {"deleted": corpus_id, "purged_source": purge_source}
 
     @app.post("/api/corpora/{corpus_id}/ingest", status_code=202)
     async def corpus_ingest(request: Request, corpus_id: str):
@@ -295,6 +391,113 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
         request.app.state.corpus_tasks[corpus_id] = asyncio.create_task(run())
         return job
+
+    def source_file(info: CorpusInfo, rel_path: str) -> Path:
+        target = (info.source_dir / rel_path).resolve()
+        if not target.is_relative_to(info.source_dir.resolve()) or not target.is_file():
+            raise HTTPException(404, "文件不存在")
+        return target
+
+    def safe_file_name(name: str) -> str:
+        name = Path(name or "").name.strip()
+        if not name or name.startswith(".") or name in {".", ".."}:
+            raise HTTPException(422, "文件名非法")
+        if Path(name).suffix.lower() not in SOURCE_SUFFIXES:
+            raise HTTPException(415, "仅支持 md/markdown/txt/pdf")
+        return name
+
+    async def import_corpus(info: CorpusInfo) -> dict:
+        async with app.state.import_lock:
+            return await asyncio.to_thread(import_defaults, knowledge_for(info), settings, root=info.source_dir)
+
+    @app.get("/api/corpora/{corpus_id}/files")
+    async def corpus_files(corpus_id: str):
+        """K7: source files with manifest status (new/indexed/error/removed)."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        manifest = await asyncio.to_thread(knowledge_for(info).files)
+
+        def listing():
+            on_disk = {path.relative_to(info.source_dir).as_posix(): path
+                       for path in info.source_dir.rglob("*") if path.is_file() and path.suffix.lower() in SOURCE_SUFFIXES}
+            items = []
+            for rel, path in sorted(on_disk.items()):
+                entry = manifest.get(rel)
+                items.append({"rel_path": rel, "size": path.stat().st_size,
+                              "status": entry["status"] if entry else "new", "doc_id": entry["doc_id"] if entry else None})
+            for rel, entry in sorted(manifest.items()):
+                if rel not in on_disk:
+                    items.append({"rel_path": rel, "size": entry["size"], "status": "removed", "doc_id": entry["doc_id"]})
+            return items
+
+        return {"source_dir": str(info.source_dir), "files": await asyncio.to_thread(listing)}
+
+    @app.post("/api/corpora/{corpus_id}/files", status_code=201)
+    async def upload_corpus_file(corpus_id: str, upload: UploadFile = File(...)):
+        """K7: stream an md/pdf/txt into ``source/`` then import incrementally."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        name = safe_file_name(upload.filename or "")
+        target = (info.source_dir / name).resolve()
+        if not target.is_relative_to(info.source_dir.resolve()):
+            raise HTTPException(422, "文件名非法")
+
+        def save() -> None:
+            info.source_dir.mkdir(parents=True, exist_ok=True)
+            written = 0
+            try:
+                with target.open("wb") as handle:
+                    while True:
+                        chunk = upload.file.read(1 << 20)
+                        if not chunk:
+                            break
+                        written += len(chunk)
+                        if written > MAX_PREVIEW_BYTES:
+                            raise ValueError("文件过大，超过预览/上传上限")
+                        handle.write(chunk)
+            except ValueError:
+                target.unlink(missing_ok=True)
+                raise
+
+        try:
+            await asyncio.to_thread(save)
+        except ValueError as exc:
+            raise HTTPException(413, str(exc)) from exc
+        report = await import_corpus(info)
+        return {"rel_path": name, "added": report["added"], "updated": report["updated"],
+                "skipped": report["skipped"], "deleted": report["deleted"], "errors": report["errors"]}
+
+    @app.delete("/api/corpora/{corpus_id}/files")
+    async def delete_corpus_file(corpus_id: str, rel_path: str):
+        """K7: remove a source file and its indexed document."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        target = await asyncio.to_thread(source_file, info, rel_path)
+        await asyncio.to_thread(target.unlink)
+        doc_id = await asyncio.to_thread(knowledge_for(info).drop_file, rel_path)
+        return {"rel_path": rel_path, "doc_id": doc_id}
+
+    @app.patch("/api/corpora/{corpus_id}/files")
+    async def rename_corpus_file(corpus_id: str, payload: FileRename):
+        """K7: rename a source file and re-index under the new path."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        old = await asyncio.to_thread(source_file, info, payload.rel_path)
+        new_name = safe_file_name(payload.new_name)
+        new = (info.source_dir / new_name).resolve()
+        if not new.is_relative_to(info.source_dir.resolve()):
+            raise HTTPException(422, "文件名非法")
+        if new.exists():
+            raise HTTPException(409, "同名文件已存在")
+        await asyncio.to_thread(old.rename, new)
+        await asyncio.to_thread(knowledge_for(info).drop_file, payload.rel_path)
+        report = await import_corpus(info)
+        return {"rel_path": new_name, "added": report["added"], "updated": report["updated"],
+                "skipped": report["skipped"], "deleted": report["deleted"], "errors": report["errors"]}
 
     @app.get("/api/documents")
     async def documents(request: Request, corpus: str | None = None):

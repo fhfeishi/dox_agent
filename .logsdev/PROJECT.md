@@ -95,6 +95,10 @@
 | `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`has_template` |
 | `GET\|PUT /api/ocr-config` | OCR 模式（`off`/`force`/`auto`）与语言（`eng`/`chi_sim`/`chi_sim+eng`）；写入口落 `STATE_DIR/ocr.json`，仅影响后续导入（K4） |
 | `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job` |
+| `POST /api/corpora` | 新建库目录（`source/`+`datadb/`+`vectordb/`）；201；重名 409、名称非法 422（K6） |
+| `PATCH /api/corpora/{id}` | 仅改显示名（落 `STATE_DIR/corpora.json`）；目录与 `corpus_id` 不变（K6） |
+| `DELETE /api/corpora/{id}?purge_source=` | 默认只删 `datadb/`/`vectordb/`；`purge_source=true` 才删 `source/`；默认库 409（K6） |
+| `GET\|POST\|PATCH\|DELETE /api/corpora/{id}/files` | 库内源文件列表/上传/重命名/删除（md/pdf/txt；上传 201、非法类型 415、超限 413）（K7） |
 | `POST /api/corpora/{id}/ingest` | 按库导入（限定库 root 内）；202 + job；404/409 |
 | `POST /api/ingest/local`、`POST /api/ingest/text` | 本地导入 / 手工补正文；准备中 409 |
 | `GET\|POST /api/official-docs` | 官方 Markdown 发现与批量更新（单进程内存任务） |

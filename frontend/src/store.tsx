@@ -322,7 +322,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   async function send(regenerate = false, override?: SendOverride) {
     const history = override?.history ?? turns;
     const scope = override?.options ?? options;
-    // task_id is only sent once the backend accepts the field; task4 never goes through chat.
+    // task_id is sent with chat; task4 goes through intake (parameter collection, no report body).
     // Bind the turn to the corpus the user is browsing, so the answer scope matches the library.
     const effectiveOptions: Options = {
       ...(uiFlags.tasks ? { ...scope, task_id: taskId } : { allowed_doc_ids: scope.allowed_doc_ids ?? null }),

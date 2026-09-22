@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 BASE_FILE = "base.md"
 DEFAULT_TASK_ID = "task1"
-CHAT_TASK_IDS = ("task1", "task2", "task3")
+CHAT_TASK_IDS = ("task1", "task2", "task3", "task4")
 
 TASKS: tuple[dict, ...] = (
     {"id": "task1", "name": "精准问答", "description": "基于本地文档回答具体问题，先给结论再逐条引用，不推测。",
@@ -21,7 +21,8 @@ TASKS: tuple[dict, ...] = (
     {"id": "task3", "name": "趋势推测", "description": "基于本次样本讨论领域走向，事实与推断分段并标注样本范围与局限。",
      "output_hint": "事实/推断分段 + 方向性置信度 + 样本局限", "has_template": False, "file": "task3_trend.md"},
     {"id": "task4", "name": "专项报告", "description": "按模板生成可保存的结构化报告，走统一报告入口，不在聊天中生成正文。",
-     "output_hint": "Markdown 报告 + 来源清单 + 局限", "has_template": True, "file": "task4_report.md"},
+     "output_hint": "Markdown 报告 + 来源清单 + 局限", "has_template": True, "file": "task4_report.md",
+     "intake_file": "task4_intake.md"},
 )
 
 
@@ -51,9 +52,16 @@ def task_prompt(task_id: str) -> str:
     return _read(_entry(task_id)["file"])
 
 
-def task_instruction(task_id: str) -> str:
-    """Baseline plus task prompt; the task part may narrow or open derivation, never the baseline."""
-    return base_prompt() + "\n\n" + task_prompt(task_id)
+def task_instruction(task_id: str, *, phase: str = "chat") -> str:
+    """Baseline plus task prompt; the task part may narrow or open derivation, never the baseline.
+
+    ``phase`` selects the task4 stage: ``chat`` uses the intake prompt (parameter collection, no
+    report body); ``report`` uses the generation baseline. Other tasks ignore ``phase`` (§8.4 V4).
+    """
+    entry = _entry(task_id)
+    if task_id == "task4" and phase == "chat":
+        return base_prompt() + "\n\n" + _read(entry["intake_file"])
+    return base_prompt() + "\n\n" + _read(entry["file"])
 
 
 def list_tasks() -> list[dict]:

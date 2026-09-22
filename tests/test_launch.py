@@ -12,6 +12,8 @@ def test_launch_selects_environment_with_uv(tmp_path, mode):
     project.mkdir()
     shutil.copyfile(Path(__file__).parents[1] / "launch.sh", project / "launch.sh")
     (project / "frontend/dist").mkdir(parents=True)
+    # launch.sh rebuilds only when the built entry point is missing (frontend/dist/index.html).
+    (project / "frontend/dist/index.html").write_text("", encoding="utf-8")
     commands = tmp_path / "commands"
     commands.mkdir()
     log = tmp_path / "calls"

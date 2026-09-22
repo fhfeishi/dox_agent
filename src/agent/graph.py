@@ -8,6 +8,7 @@ answer contract (SSE events, ``[n]`` citations) is unchanged.
 """
 
 import asyncio
+import re
 from time import perf_counter
 from typing import TypedDict
 
@@ -30,9 +31,11 @@ class State(TypedDict, total=False):
     policy: dict
     task_id: str
     preparation: str
+    corpus_domain: str
     retrieval: object
     context: object
     sources: list[dict]
+    report_params: dict
     missing: list[str]
     retry: bool
     invalid_citations: int
@@ -41,6 +44,52 @@ class State(TypedDict, total=False):
     execution_path: str
     telemetry: dict
     runtime_usage: object
+
+
+# G10b intake: deterministic report-parameter extraction (later turns override earlier ones).
+_TEMPLATE_KEYWORDS = (("成果", "achievements"), ("热点", "hotspots"),
+                      ("未来", "future_directions"), ("趋势", "future_directions"),
+                      ("综合", "comprehensive"))
+_FIELD_LABELS = {"domain": "研究领域", "year_from": "起始年份", "template": "报告模板"}
+_YEAR_RANGE = re.compile(r"(\d{4})\s*(?:[-–—~至到]|--)\s*(\d{4})")
+_YEAR_SINGLE = re.compile(r"(?<!\d)(\d{4})(?!\d)")
+
+
+def extract_report_params(messages: list[dict], corpus_domain: str = "") -> dict:
+    """G10b: accumulate report fields across user turns; a later value overrides an earlier one."""
+    params: dict = {"domain": corpus_domain} if corpus_domain else {}
+    for message in messages:
+        if message.get("role") != "user":
+            continue
+        text = message.get("content", "")
+        for keyword, template in _TEMPLATE_KEYWORDS:
+            if keyword in text:
+                params["template"] = template
+        match = _YEAR_RANGE.search(text)
+        if match:
+            start, end = int(match.group(1)), int(match.group(2))
+            if start <= end:
+                params["year_from"], params["year_to"] = start, end
+        elif (single := _YEAR_SINGLE.search(text)):
+            params["year_from"] = params["year_to"] = int(single.group(1))
+    return params
+
+
+def intake_reply(params: dict) -> tuple[str, bool]:
+    """Return ``(reply, ready)``; ready means every required intake field is present."""
+    known = []
+    if params.get("domain"):
+        known.append(f"研究领域：{params['domain']}（默认当前库领域，可修改）")
+    if params.get("year_from") and params.get("year_to"):
+        known.append(f"年份：{params['year_from']}–{params['year_to']}")
+    if params.get("template"):
+        known.append(f"模板：{params['template']}")
+    known_text = "；".join(known)
+    missing = [label for key, label in _FIELD_LABELS.items() if not params.get(key)]
+    if missing:
+        prefix = f"已记录：{known_text}。\n" if known_text else ""
+        return prefix + f"还缺：{'、'.join(missing)}。请补充，或说明要修改的项。", False
+    return f"已记录报告需求：{known_text}。\n报告入口尚未就绪，需求已记录；接口上线后即可生成正文。", True
 
 
 def build_graph(knowledge: Knowledge, settings: Settings, model=None):
@@ -80,6 +129,17 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
         if text:
             writer({"event": "token", "data": {"text": text}})
         return {"answer": text, "execution_path": "direct"}
+
+    async def intake(state: State):
+        """G10b: collect report parameters; no retrieval, no sources, no report body."""
+        writer = get_stream_writer()
+        writer({"event": "status", "data": {"message": "采集报告需求"}})
+        params = extract_report_params(state["messages"], state.get("corpus_domain", ""))
+        text, _ready = intake_reply(params)
+        writer({"event": "token", "data": {"text": text}})
+        return {"answer": text, "report_params": params, "stop_reason": "report_pending",
+                "execution_path": "report",
+                "policy": {**state["policy"], "stop_reason": "report_pending", "report_params": params}}
 
     async def retrieve(state: State):
         writer = get_stream_writer()
@@ -187,9 +247,9 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
     def measured(name, node):
         async def run(state):
             started = perf_counter()
-            labels = {"understand": "理解问题", "direct": "直接回答", "retrieve": "检索报告",
-                      "assemble": "装配上下文", "validate": "核验覆盖", "answer": "组织答案",
-                      "finish": "完成处理"}
+            labels = {"understand": "理解问题", "direct": "直接回答", "intake": "采集报告需求",
+                      "retrieve": "检索报告", "assemble": "装配上下文", "validate": "核验覆盖",
+                      "answer": "组织答案", "finish": "完成处理"}
             node_step = step(name, "running", labels[name])
             usage = state.get("runtime_usage")
             if usage is not None:
@@ -221,14 +281,17 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
         return run
 
     graph = StateGraph(State)
-    for name, node in [("understand", understand), ("direct", direct), ("finish", finish),
-                       ("retrieve", retrieve), ("assemble", assemble), ("validate", validate),
-                       ("answer", answer)]:
+    for name, node in [("understand", understand), ("direct", direct), ("intake", intake),
+                       ("finish", finish), ("retrieve", retrieve), ("assemble", assemble),
+                       ("validate", validate), ("answer", answer)]:
         graph.add_node(name, measured(name, node))
     graph.add_edge(START, "understand")
     graph.add_conditional_edges(
         "understand",
-        lambda state: "retrieve" if state["policy"]["route"] == "research" and not state["policy"]["notice"] else "direct")
+        lambda state: ("intake" if state.get("task_id", DEFAULT_TASK_ID) == "task4"
+                       else "retrieve" if state["policy"]["route"] == "research"
+                       and not state["policy"]["notice"] else "direct"))
+    graph.add_edge("intake", "finish")
     graph.add_edge("direct", "finish")
     graph.add_conditional_edges(
         "retrieve",

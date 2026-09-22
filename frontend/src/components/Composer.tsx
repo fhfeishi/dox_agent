@@ -107,9 +107,8 @@ export function Composer() {
     };
   }, [popOpen, corpusOpen, scopeOpen]);
 
-  const task4 = taskCapable && taskId === "task4";
   const canSend =
-    input.trim().length > 0 && !busy && ready && workspace.loaded && connected && !task4;
+    input.trim().length > 0 && !busy && ready && workspace.loaded && connected;
   const scoped = options.allowed_doc_ids?.length ?? 0;
 
   return (
@@ -178,35 +177,35 @@ export function Composer() {
 
         {/* input */}
         <div className="rounded-[12px] border border-[var(--hairline-strong)] bg-[var(--canvas)] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[border-color,box-shadow] focus-within:border-[var(--primary)] focus-within:shadow-[0_0_0_3px_var(--primary-soft)]">
-          {task4 ? (
-            <div role="status" className="p-[15px] text-[13px] text-[var(--steel)]">
-              当前任务为“专项报告”：结构化报告通过统一报告入口生成，不在聊天中发送正文；报告接口就绪前这里保持占位提示（PROJECT §2）。
-            </div>
-          ) : (
-            <textarea
-              ref={taRef}
-              rows={1}
-              aria-label={editing ? "编辑历史问题" : "问题"}
-              value={editing ? editing.text : input}
-              disabled={!connected}
-              maxLength={12000}
-              onChange={(e) =>
-                editing
-                  ? setEditing((cur) => (cur ? { ...cur, text: e.target.value } : cur))
-                  : setInput(e.target.value)
+          <textarea
+            ref={taRef}
+            rows={1}
+            aria-label={editing ? "编辑历史问题" : "问题"}
+            value={editing ? editing.text : input}
+            disabled={!connected}
+            maxLength={12000}
+            onChange={(e) =>
+              editing
+                ? setEditing((cur) => (cur ? { ...cur, text: e.target.value } : cur))
+                : setInput(e.target.value)
+            }
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                if (editing) void confirmEdit();
+                else if (canSend) void send();
               }
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  if (editing) void confirmEdit();
-                  else if (canSend) void send();
-                }
-                if (e.key === "Escape" && editing) setEditing(null);
-              }}
-              placeholder={editing ? "修改后按 Enter 重新发送…" : "基于当前知识库提问，或点击 + 选择一项任务…"}
-              className="font-app max-h-[180px] w-full resize-none border-0 bg-transparent px-[15px] pt-[13px] pb-[4px] text-[14px] leading-[1.6] text-[var(--ink)] outline-none placeholder:text-[var(--stone)] disabled:bg-white"
-            />
-          )}
+              if (e.key === "Escape" && editing) setEditing(null);
+            }}
+            placeholder={
+              editing
+                ? "修改后按 Enter 重新发送…"
+                : taskCapable && taskId === "task4"
+                  ? "描述报告需求：领域、年份范围、模板（成果/热点/未来/综合）…"
+                  : "基于当前知识库提问，或点击 + 选择一项任务…"
+            }
+            className="font-app max-h-[180px] w-full resize-none border-0 bg-transparent px-[15px] pt-[13px] pb-[4px] text-[14px] leading-[1.6] text-[var(--ink)] outline-none placeholder:text-[var(--stone)] disabled:bg-white"
+          />
 
           <div className="flex items-center gap-[6px] px-[9px] pt-[7px] pb-[9px]">
             <div ref={popRef} className="relative">

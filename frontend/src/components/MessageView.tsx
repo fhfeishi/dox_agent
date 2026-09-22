@@ -244,6 +244,7 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
           {{
             retrieve: "报告级检索",
             chunk_only: "片段作答",
+            report: "报告需求采集",
             direct: "直接交流",
           }[t.path ?? ""] ?? "旧版本未记录路径"}
         </p>

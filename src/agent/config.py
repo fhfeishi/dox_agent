@@ -48,7 +48,8 @@ class Settings(BaseSettings):
     firecrawl_api_key: SecretStr | None = None
     firecrawl_base_url: str = "https://api.firecrawl.dev"
     # K13: mineru CLI (external). Template must contain {pdf} and {out}; run once per PDF.
-    mineru_cmd: str = 'mineru-kit parse "{pdf}" -o "{out}" --tier standard --ocr-mode auto --format middle_json'
+    # `zip` emits markdown.md + middle_json.json (+images) in one parse.
+    mineru_cmd: str = 'mineru-kit parse "{pdf}" -o "{out}/result.zip" --tier standard --ocr-mode auto --format zip'
     mineru_home: Path | None = None
     mineru_timeout: float = Field(default=900, ge=30, le=3600)
     max_research_steps: int = Field(default=24, ge=4, le=100)

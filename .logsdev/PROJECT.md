@@ -56,7 +56,7 @@
 - 库内文件 CRUD：列表、上传（md/pdf/txt（K7）、docx（K8））、删除、重命名/替换；`source/` 为唯一事实来源。
 - 侧栏列出库（名称/份数/就绪状态）并可切换；库详情展示文档清单；基金库显示题目/负责人/项目编号/报告年份区间。
 - 每个会话绑定一个库；输入区资料范围为两层：库（必选）+ 库内文档（可选，`allowed_doc_ids`）；切库清空越界选择并提示。
-- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。**PDF 解析已改用 mineru（K13）**：`MINERU_CMD`（默认 `mineru-kit parse … --tier standard --ocr-mode auto --format middle_json`）；产物缓存 `<KB>/parsed/<rel>/`，正文取自 mineru 输出的按页文本（`page_idx` → 页码），无页码 JSON 时回退 markdown 单页；预览服务源 PDF；txt/md/docx 仍直接解析。两阶段导入进度仍待 K5。
+- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。**PDF 解析已改用 mineru（K13）**：`MINERU_CMD`（默认 `mineru-kit parse … --tier standard --ocr-mode auto --format zip`，一次产 markdown+middle_json）；产物缓存 `<KB>/parsed/<rel>/`，**正文/检索取自 `middle_json` 按页文本（`page_idx` → 页码）**，`markdown.md` 备渲染；预览服务源 PDF；txt/md/docx 仍直接解析。两阶段导入进度仍待 K5。
 - 预览支持 pdf（浏览器原生）/markdown（渲染）/word（转 HTML）/txt（纯文本）。
 - 首期不做跨库联合检索、库内分区、多用户权限隔离。
 

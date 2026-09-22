@@ -105,9 +105,9 @@
 ## 解析器：改用 mineru 4.0.5（取代 liteparse，2026-09-22）
 
 - 采用：PDF 解析改用 **mineru 最新稳定版 4.0.5**；**彻底移除 liteparse**。原因：liteparse 中文 OCR 报错（`--ovr-language chi_sim+eng` → `failed loading language 'chi_sim_vert'`），且抽取质量差。
-- 版本与 CLI（实测 4.0.5）：无状态入口 **`mineru-kit parse <pdf> -o <out> [--tier basic|standard] --ocr-mode auto --format markdown|middle_json`**；`mineru parse` 需先 `mineru server start`。首次运行会拉模型（缓存于 `MINERU_HOME`，实测约 1 分钟；CPU ONNX+llama.cpp）。
+- 版本与 CLI（实测 4.0.5）：无状态入口 **`mineru-kit parse <pdf> -o <out>/result.zip --tier standard --ocr-mode auto --format zip`**（一次产 `markdown.md` + `middle_json.json` + images）；`mineru parse` 需先 `mineru server start`。已装入项目 venv，并在 `parse_pdf_pages` 注入 `PATH`（B1）、加入 `pyproject` 依赖（B2，`mineru>=4.0,<5`）。
 - 产物（v4 实测）：`--format markdown` → 单个 `.md`（**图片内嵌 base64**，自包含）；`--format middle_json` → 单个 `.json`，结构 `pages[]{page_idx, blocks[]{type, content[]{type,content}}}`（**页码来源**）。v4 **不产出** 经典版的 `<uuid>_origin.pdf`/`images/`/`content_list.json`。
-- 入库与预览：**正文取 mineru 的 Markdown**（用户要求）；**预览服务源 PDF**（即 origin，v4 无单独 origin.pdf）；页码从 `middle_json` 的 `page_idx` 取（markdown 无页标记），无 middle_json 时回退单页。
+- 入库与预览：**正文/检索用 zip 的 `middle_json` 逐页块文本（页号准确，B3）**；**`markdown.md` 解包后保留备后续渲染**；**预览服务源 PDF**（即 origin，v4 无单独 origin.pdf）。`_block_text` 已改为递归展平（修复嵌套 content 的列表 repr 泄漏）。
 - 旧版对照：`temp/` 的 10 个目录属**经典 MinerU**（`full.md`+`*_origin.pdf`+`images/`），仅作历史参考；实现以 v4 CLI 为准。
 - 取代：原「解析器：固定使用 liteparse」及 K2/K3/K4/K12 基于 liteparse 的 OCR 三档/语言配置/按库语言（mineru auto 自行识别语言）。
 - 状态：**已实现适配器（K13）**：`parsers.py` 跑 `MINERU_CMD` 到 `<KB>/parsed/<rel>/`，`read_mineru_output` 支持 v4 `middle.json`/经典 `content_list.json`（`page_idx`→页码，回退 markdown 单页）；已移除 liteparse、`/api/ocr-config`、`/api/corpora/{id}/ocr` 与前端 OCR 入口；保留 `ingest?force=true`（侧栏“重导入”）。**未在本机安装 mineru，真实基金库重导入待执行**；已用真实 `temp/` 经典产物验证读取（45 页可读中文）。

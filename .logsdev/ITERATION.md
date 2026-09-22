@@ -59,6 +59,7 @@
 | 预览原文件/引用跳页修复（提交 `02d8c1e`/`6849250`；本轮修复） | `/file` 改 `Content-Disposition: inline`（原为 `attachment`，iframe 不会内联渲染）；**引用 `[n]` 实际未生效**：`Answer` 计算了 `rehypePlugins`/`components` 却未传给 `<Markdown>`，且 `rehypeCitations` 返回的是 transformer 而非 `options => transformer`；现已接通，`[n]` 为可点按钮、超范围数字保持字面、代码块不误匹配 | `npm run build` + `node --test` 18 passed；`tests/browser_fund_preview.py` PASS（基金库 PDF 内联渲染 + `[1]` 跳第 3 页 + chat 携带 `corpus_id`） |
 | mineru 4.0.5 试用（2026-09-22，本地实测） | 独立 venv 安装 `mineru==4.0.5`（无 torch）；`mineru-kit parse <pdf> -o <out> --tier basic --ocr-mode auto` 成功；`--format markdown` → 单 `.md`（图片 base64、无页标记），`--format middle_json` → 单 `.json`（`pages[].page_idx`+blocks）；v4 不产出经典 `<uuid>_origin.pdf`/`images/`；`temp/` 为经典版产物 | 最小基金 PDF 1–2 页约 6s（首次拉模型约 1 分钟）；**未接入 dox_agent 代码**（仅试用） |
 | K13 mineru 适配器（提交 `c2d04b2`） | `parsers.py`：`read_mineru_output` 支持 v4 `middle.json`/经典 `content_list.json`（`page_idx` → 页码，回退 markdown 单页）；`parse_pdf_pages` 跑 `MINERU_CMD`（模板 `{pdf}`/`{out}`，`MINERU_HOME`/超时）；产缓存 `<KB>/parsed/<rel>/`；移除 liteparse 与 `/api/ocr-config`、`/api/corpora/{id}/ocr`、前端 `OcrSettings`/`CorpusOcrSettings`，保留 `ingest?force=true`（侧栏“重导入”） | `pytest` 85 passed（新增 `tests/test_mineru.py` 6 例）；`npm run build` + `node --test` 18 passed；**真实 `temp/` 样例读取验证**：45 页可读中文、页码 1..45 |
+| K13 加固（B1/B2/B3，本轮） | PATH 注入（`Path(sys.executable).parent` 进子进程 `PATH`）；`pyproject` 加 `mineru>=4.0,<5`；默认 `--format zip`（markdown+middle_json 一次产出）；`_block_text` 递归展平修复嵌套 content 的列表 repr 泄漏 | `pytest` 85 passed；`read_mineru_output` 对 zip 实测：自动解包、页文本干净（无 `[{...}]`） |
 
 当前可用基线（本次实测）：后端 `pytest tests -q` → **85 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
@@ -75,6 +76,8 @@
 | 16 | mineru 集成方式：**已定：本地 CLI `MINERU_CMD`**（模板含 `{pdf}`/`{out}`，`MINERU_HOME` 缓存）；云端 API（`MINERU_API_KEY`）未接入 | K13 |
 
 ## 5. 未决问题与下一步
+
+> 当前唯一优先：**K13 基金库重建 → H10**（先 pilot 1–2 份确认中文/页码/耗时，再 `force` 全量 34 份）；其余按 §6.4 顺序。
 
 | 未决 | 影响 | 下一步 |
 |---|---|---|
@@ -180,16 +183,16 @@
 
 ### 6.6 K13 实现规格：mineru 解析（取代 liteparse）
 
-> 状态：**已实现**（适配器 + 配置 + OCR 管道移除；未在本机安装 mineru，真实基金库重导入待执行）。真实 `temp/` 经典产物读取已验证。以下为规格。
+> 状态：**已实现**（适配器 + 配置 + OCR 管道移除）。mineru 4.0.5 已装入项目 venv（`.venv/bin/mineru-kit`），但**未写入 PATH**（已代码修复，见下）且此前未写入 `pyproject`（已补）。真实基金库重导入待执行；`temp/` 经典产物与 v4 zip 产物读取均已验证。以下为规格。
 
 **背景**：liteparse 中文 OCR 失败（`--ovr-language chi_sim+eng` → `failed loading language 'chi_sim_vert'`）。改用 **mineru 最新稳定版 4.0.5**（已实测）。
 
-**CLI 与产物（实测 4.0.5）**
-- 无状态入口：`mineru-kit parse <pdf> -o <out> [--tier basic|standard] --ocr-mode auto --format markdown|middle_json`（`mineru parse` 需先 `mineru server start`，不适合直接 subprocess）。
-- `--format markdown` → 单个 `.md`（**图片内嵌 base64**，自包含）。
-- `--format middle_json` → 单个 `.json`：`pages[]{page_idx, blocks[]{type, content[]{type, content}}}`（**页码来源**）。
-- v4 **不产出** 经典版的 `<uuid>_origin.pdf`/`images/`/`content_list.json`；`temp/` 的经典产物仅作历史参考。
-- 首次运行拉模型到 `MINERU_HOME`（实测约 1 分钟，CPU ONNX+llama.cpp）；模型可复用。
+**CLI 与产物（实测 4.0.5，默认 `--format zip`）**
+- 无状态入口：`mineru-kit parse <pdf> -o <out>/result.zip --tier standard --ocr-mode auto --format zip`（`mineru parse` 需先 `mineru server start`，不用于 subprocess）。
+- `--format zip` **一次产出** `markdown.md` + `middle_json.json`（+`images/`、`model_output.json`、`structured_content.json`），`read_mineru_output` 会自动解包。
+- `middle_json` 结构：`pages[]{page_idx, blocks[]{type, content}}`（**页码来源**）；`content` 可能嵌套（如 `image_footnote`），`_block_text` 已改为递归展平（修复列表 repr 泄漏）。
+- v4 **不产出** 经典版 `<uuid>_origin.pdf`/`content_list.json`；`temp/` 经典产物仅作历史参考。
+- 首次运行拉模型到 `MINERU_HOME`（实测约 1 分钟，CPU ONNX+llama.cpp）；之后可离线复跑（**待实测**）。
 
 **对用户原话的答复**：你 `temp/` 的产物是**经典 MinerU**（`full.md`+`*_origin.pdf`+`images/`+`content_list.json`）；本项目选定 **4.0.5（v4）**，其 `mineru-kit parse` **不产出** `origin.pdf`/`images/`，而是单 markdown（图片 base64 内嵌）+ 单 middle_json。因此：**预览服务源 PDF**（等价于 origin.pdf），**正文用 v4 markdown**；若坚持经典三件套，需改用经典 MinerU（不在选定路径）。
 
@@ -200,22 +203,28 @@
 - 预览：`/file` 返回**源 PDF**（即 origin）；doc `origin` 仍指向源 PDF 路径以保 `doc_id` 稳定。
 - 迁移：现有基金库 liteparse/eng 乱码正文用 `ingest?force=true` 以 mineru 重建。
 
+**已实现修复（本轮）**
+- **B1 PATH**：`parse_pdf_pages` 把 `Path(sys.executable).parent` 注入子进程 `PATH`，`launch.sh` 未 activate 时也能找到 `mineru-kit`。
+- **B2 依赖**：`pyproject.toml` 基础依赖加入 `mineru>=4.0,<5`（新环境 `uv pip install -e ".[web,embedding]"` 即带 mineru）。
+- **B3 正文来源**：默认 `--format zip` 同时产 markdown+middle_json；**检索/引用用 middle_json 逐页块文本（页码准确）**，`markdown.md` 解包后保存备后续渲染（修正 `_block_text` 嵌套展平）。
+
 **前端**
 - 预览 PDF 仍用 `PdfViewer`（原文件 + `#page=`）；移除 OCR 语言设置入口（mineru auto）。
 - 侧栏/库详情保留“重新导入”（切换解析器后重建）。
 
 **验收**
-- 基金库 10 份 PDF → mineru 4.0.5（`--tier standard`）解析 → 正文可读中文、页码可定位；预览显示源 PDF。
+- 基金库 34 份 PDF（source）→ mineru 4.0.5（`--tier standard`）解析 → `docs=34`、`files=34`、`parsed/` 每份一目录；正文可读中文、页码可定位；预览显示源 PDF。
 - 未变文件二次导入跳过（不重跑 mineru）；`MINERU_HOME` 模型缓存可离线复跑。
-- 移除 liteparse 后 `pytest`/`npm run build` 通过；`pyproject.toml` 依赖更新（移除 liteparse，mineru 以可选 extra 或显式依赖引入）。
+- 移除 liteparse 后 `pytest`/`npm run build` 通过（基线 85/18）；`pyproject.toml` 已加 `mineru>=4.0,<5`。
 - 首次运行模型拉取（约 1 分钟）有明确提示；断网复跑（模型已缓存）可成功。
 
 **已定稿**
-- tier=`standard`；入库正文用 **markdown**；页码取 `middle_json` 的 `page_idx`；正文图片**不渲染**（预览服务源 PDF）。见 §4 #13–#15。
+- tier=`standard`；**入库/检索用 mineru 逐页文本（zip 的 middle_json 块文本，页码准确）；markdown.md 保存备后续渲染**；正文图片**不渲染**（预览服务源 PDF）。见 §4 #13–#15。
 
 **待确认**
-- 集成方式：本地 CLI `mineru-kit parse`（规格假设）vs 云端 API（`MINERU_API_KEY`）——见 §4 #16。
 - 命令安全：`MINERU_CMD` 仅接受默认模板或显式配置，避免任意命令注入。
+- 集成方式已定（#16）：**本地 CLI**；`.env` 的 `MINERU_API_KEY` 未使用（应删或注未用）。
+- **B4 试点**：先对 1–2 份 PDF 跑 `--tier standard` 计时并确认中文/页码，再 `force` 全量；单份超时默认 900s。
 
 ### 6.7 K5 实现规格：两阶段导入 + 进度/取消
 

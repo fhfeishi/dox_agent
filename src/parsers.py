@@ -28,14 +28,29 @@ def _first_file(directory: Path, names: list[str]) -> Path | None:
 
 
 def _block_text(block: dict) -> str:
-    if isinstance(block.get("text"), str):
-        return block["text"]
-    content = block.get("content")
-    if isinstance(content, str):
-        return content
-    if isinstance(content, list):
-        return "".join(str(item.get("content", "")) if isinstance(item, dict) else str(item) for item in content)
-    return ""
+    """Flatten mineru block content to plain text (content may nest lists/dicts)."""
+    def flatten(node: object) -> str:
+        if isinstance(node, str):
+            return node
+        if isinstance(node, list):
+            return "".join(flatten(item) for item in node)
+        if isinstance(node, dict):
+            if isinstance(node.get("text"), str):
+                return node["text"]
+            return flatten(node.get("content", ""))
+        return ""
+
+    return flatten(block).strip()
+
+
+def _extract_archives(out_dir: Path) -> None:
+    """K13: ``--format zip`` writes a single archive; unpack it in place before reading."""
+    import zipfile
+
+    for archive in sorted(out_dir.glob("*.zip")):
+        with zipfile.ZipFile(archive) as bundle:
+            bundle.extractall(out_dir)
+        archive.unlink()
 
 
 def read_mineru_output(out_dir: Path) -> tuple[str, list[Page]]:
@@ -45,7 +60,8 @@ def read_mineru_output(out_dir: Path) -> tuple[str, list[Page]]:
     classic emits ``full.md`` plus ``*_content_list.json`` blocks with ``page_idx``.
     Page numbers come from the JSON; without it the markdown is a single page.
     """
-    markdown_path = _first_file(out_dir, ["full.md", "*.md"])
+    _extract_archives(out_dir)
+    markdown_path = _first_file(out_dir, ["markdown.md", "full.md", "*.md"])
     markdown = markdown_path.read_text(encoding="utf-8") if markdown_path else ""
 
     by_page: dict[int, list[str]] = {}
@@ -82,6 +98,12 @@ def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> list[Page]
     out_dir.mkdir(parents=True, exist_ok=True)
     command = settings.mineru_cmd.format(pdf=str(path), out=str(out_dir))
     environment = {**os.environ}
+    # B1: `mineru-kit` lives in the running venv's bin dir; make it resolvable even when
+    # launch.sh runs uvicorn without activating the venv.
+    import sys
+
+    bin_dir = str(Path(sys.executable).parent)
+    environment["PATH"] = bin_dir + os.pathsep + environment.get("PATH", "")
     if settings.mineru_home:
         environment["MINERU_HOME"] = str(settings.mineru_home)
     try:

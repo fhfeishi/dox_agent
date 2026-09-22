@@ -263,29 +263,33 @@ def select_reports(
     recalled = [docs[index] for index in
                 sorted(range(len(docs)), key=lambda i: (-scores[i], i))[: max(1, config.report_recall_m)]]
 
-    # Layer B：仅在候选报告内部做 chunk 级精排，按 chunk_id 汇总多查询加权 RRF。
+    # Layer B：在候选报告池内做一次 chunk 级精排，RRF 的 rank 是**池内全局排名**。
+    # 若改为“每文档各自排名”，每个文档第 1 名都会得到相同 RRF，无法区分强弱命中。
+    pool = [chunk for doc in recalled for chunk in chunks_by_doc.get(doc.doc_id, [])
+            if chunk.version == doc.version]
+    chunks_by_id = {chunk.chunk_id: chunk for chunk in pool}
     fused: dict[str, float] = {}
-    chunks_by_id: dict[str, Chunk] = {}
-    per_doc: dict[str, list[str]] = {}
-    for doc in recalled:
-        chunks = [chunk for chunk in chunks_by_doc.get(doc.doc_id, []) if chunk.version == doc.version]
-        if not chunks:
-            continue
-        bm25 = BM25Plus([tokens(chunk.text) or ["_empty_"] for chunk in chunks])
-        local: dict[int, float] = {}
+    if pool:
+        pool_tokens = [tokens(chunk.text) or ["_empty_"] for chunk in pool]
+        bm25 = BM25Plus(pool_tokens)
         for index, query_terms in enumerate(queries):
             weight = config.question_weight if index == 0 else config.keyword_weight
+            query_set = set(query_terms)
             values = [float(value) for value in bm25.get_scores(query_terms)]
-            ranked = sorted(range(len(chunks)), key=lambda i: (-values[i], i))
-            hits = [i for i in ranked if values[i] > 0][: config.kb_chunk_topk]
+            ranked = sorted(range(len(pool)), key=lambda i: (-values[i], i))
+            # BM25Plus adds a delta, so non-matching chunks still score > 0; require real
+            # token overlap (planner: no arbitrary 2-gram intersection).
+            hits = [i for i in ranked if query_set & set(pool_tokens[i])][: config.kb_chunk_topk]
             for rank, position in enumerate(hits, 1):
-                local[position] = local.get(position, 0.0) + weight / (config.rrf_k + rank)
-        top = sorted(local, key=lambda i: (-local[i], i))[: config.per_doc_cand]
-        for position in top:
-            chunk = chunks[position]
-            chunks_by_id[chunk.chunk_id] = chunk
-            fused[chunk.chunk_id] = local[position]
-        per_doc[doc.doc_id] = [chunks[position].chunk_id for position in top]
+                chunk_id = pool[position].chunk_id
+                fused[chunk_id] = fused.get(chunk_id, 0.0) + weight / (config.rrf_k + rank)
+    per_doc: dict[str, list[str]] = {}
+    for chunk in pool:
+        if chunk.chunk_id in fused:
+            per_doc.setdefault(chunk.doc_id, []).append(chunk.chunk_id)
+    for doc in recalled:
+        per_doc[doc.doc_id] = sorted(per_doc.get(doc.doc_id, []),
+                                     key=lambda cid: (-fused[cid], cid))[: config.per_doc_cand]
 
     scored: list[tuple[float, float, ReportDoc, list[str]]] = []
     for doc in recalled:

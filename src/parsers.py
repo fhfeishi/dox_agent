@@ -14,6 +14,7 @@ import httpx
 
 from .agent.config import Settings
 from .knowledge import Document, Page
+from .retrieval import RawBlock, chunk_blocks
 
 
 def _first_file(directory: Path, names: list[str]) -> Path | None:
@@ -54,6 +55,33 @@ def _extract_archives(out_dir: Path) -> None:
         archive.unlink()
 
 
+def _mineru_markdown(out_dir: Path) -> str:
+    path = _first_file(out_dir, ["markdown.md", "full.md", "*.md"])
+    return path.read_text(encoding="utf-8") if path else ""
+
+
+def _mineru_grouped(out_dir: Path) -> list[tuple[int, list]]:
+    """L2: blocks grouped by ``page_idx`` from the first mineru-like JSON."""
+    for candidate in sorted(out_dir.glob("*.json")):
+        try:
+            data = json.loads(candidate.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        grouped: list[tuple[int, list]] = []
+        if isinstance(data, dict) and isinstance(data.get("pages"), list):
+            grouped = [(page.get("page_idx", index), page.get("blocks", []))
+                       for index, page in enumerate(data["pages"])]
+        elif isinstance(data, list):
+            pages: dict[int, list] = {}
+            for block in data:
+                if isinstance(block, dict):
+                    pages.setdefault(int(block.get("page_idx", 0)), []).append(block)
+            grouped = list(pages.items())
+        if grouped:
+            return grouped
+    return []
+
+
 def read_mineru_output(out_dir: Path) -> tuple[str, list[Page]]:
     """K13: read a mineru output dir into ``(markdown, pages)``.
 
@@ -62,35 +90,30 @@ def read_mineru_output(out_dir: Path) -> tuple[str, list[Page]]:
     Page numbers come from the JSON; without it the markdown is a single page.
     """
     _extract_archives(out_dir)
-    markdown_path = _first_file(out_dir, ["markdown.md", "full.md", "*.md"])
-    markdown = markdown_path.read_text(encoding="utf-8") if markdown_path else ""
-
+    markdown = _mineru_markdown(out_dir)
     by_page: dict[int, list[str]] = {}
-    for candidate in sorted(out_dir.glob("*.json")):
-        try:
-            data = json.loads(candidate.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
-            continue
-        grouped: list[tuple[int, list]] = []
-        if isinstance(data, dict) and isinstance(data.get("pages"), list):
-            grouped = [(page.get("page_idx", index), page.get("blocks", [])) for index, page in enumerate(data["pages"])]
-        elif isinstance(data, list):
-            pages: dict[int, list] = {}
-            for block in data:
-                if isinstance(block, dict):
-                    pages.setdefault(int(block.get("page_idx", 0)), []).append(block)
-            grouped = list(pages.items())
-        for page_idx, page_blocks in grouped:
-            texts = [text for text in (_block_text(block) for block in page_blocks if isinstance(block, dict)) if text.strip()]
-            if texts:
-                by_page.setdefault(int(page_idx), []).extend(texts)
-        if by_page:
-            break
-
+    for page_idx, page_blocks in _mineru_grouped(out_dir):
+        texts = [text for text in (_block_text(block) for block in page_blocks if isinstance(block, dict)) if text.strip()]
+        if texts:
+            by_page.setdefault(int(page_idx), []).extend(texts)
     pages = [Page(number=index + 1, text="\n".join(texts)) for index, texts in sorted(by_page.items())]
     if not pages and markdown.strip():
         pages = [Page(number=1, text=markdown)]
     return markdown, pages
+
+
+def read_mineru_blocks(out_dir: Path) -> list[RawBlock]:
+    """L2: atomic mineru blocks (page + kind) for chunking; tables stay whole."""
+    _extract_archives(out_dir)
+    blocks: list[RawBlock] = []
+    for page_idx, page_blocks in _mineru_grouped(out_dir):
+        for block in page_blocks:
+            if not isinstance(block, dict):
+                continue
+            text = _block_text(block)
+            if text.strip():
+                blocks.append(RawBlock(page=int(page_idx) + 1, text=text, kind=str(block.get("type") or "text")))
+    return blocks
 
 
 def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str, list[Page]]:
@@ -278,7 +301,14 @@ def import_defaults(knowledge, settings: Settings, *, root: Path | None = None, 
                 knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, prev["doc_id"], "indexed")
                 skipped += 1
                 continue
-            result = knowledge.put(parse_file(path, settings, parsed_dir=(parsed_root / rel) if parsed_root else None))
+            document = parse_file(path, settings, parsed_dir=(parsed_root / rel) if parsed_root else None)
+            result = knowledge.put(document)
+            blocks = (read_mineru_blocks(parsed_root / rel)
+                      if parsed_root is not None and path.suffix.lower() == ".pdf" else [])
+            if not blocks:
+                blocks = [RawBlock(page=page.number, text=page.text) for page in document.pages]
+            knowledge.put_chunks(result["doc_id"], result["version"],
+                                 chunk_blocks(result["doc_id"], result["version"], document.title, blocks))
             knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, result["doc_id"], "indexed")
             imported.append(result)
             updated += 1 if prev else 0

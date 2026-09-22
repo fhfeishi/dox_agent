@@ -131,6 +131,19 @@ def test_user_gets_fund_project_metadata_from_filename():
     assert meta == {"year_from": 2021, "year_to": 2025, "project_no": "82030037"}
 
 
+def test_user_project_metadata_agrees_with_fund_name_pattern():
+    from src.agent.corpora import FUND_NAME_PATTERN
+    # Given corpus filenames that match the fund pattern
+    names = ["2021_2025_82030037_赵国光_基于AI的癫痫致痫网络研究.pdf",
+             "2022_2025_U21A20383_林天歆_基于人工智能的泌尿系统肿瘤诊疗平台研发与应用.pdf"]
+    # When metadata is derived and compared with the corpus pattern
+    for name in names:
+        assert FUND_NAME_PATTERN.match(name)
+        meta = metadata_from_filename(name)
+        assert meta["project_no"] == name.split("_")[2]
+        assert (meta["year_from"], meta["year_to"]) == (int(name[:4]), int(name[5:9]))
+
+
 def test_user_sees_partial_when_fewer_reports_than_task_minimum():
     # Given a task2 turn that needs two reports but only one project matches
     report = ReportDoc("a", "v", "癫痫网络研究")

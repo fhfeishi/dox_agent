@@ -52,6 +52,7 @@ class Knowledge:
     def __init__(self, path: Path, *, settings=None):
         self.path = path
         self.dense = None
+        self._chunks: list[dict] | None = None
         if settings is not None and settings.embedding_path.strip():
             from .dense import DenseIndex
             self.dense = DenseIndex(settings.vectordb_dir or path.parent / "chroma", settings.embedding_path, settings.embedding_device, settings.embedding_query_prompt)
@@ -73,6 +74,11 @@ class Knowledge:
                 PRIMARY KEY (doc_id, page))""")
             db.execute("""CREATE TABLE IF NOT EXISTS doc_markdown (
                 doc_id TEXT PRIMARY KEY, markdown TEXT NOT NULL)""")
+            # L2/L3: atomic report chunks (page + heading) for report-level retrieval.
+            db.execute("""CREATE TABLE IF NOT EXISTS chunks (
+                chunk_id TEXT PRIMARY KEY, doc_id TEXT NOT NULL, version TEXT NOT NULL,
+                title TEXT NOT NULL, heading TEXT NOT NULL, page INTEGER NOT NULL, text TEXT NOT NULL)""")
+            db.execute("CREATE INDEX IF NOT EXISTS chunks_doc ON chunks(doc_id)")
 
     def connect(self):
         return sqlite3.connect(self.path, timeout=30)
@@ -156,6 +162,49 @@ class Knowledge:
             return row[0]
         return "\n".join(page["text"] for page in self._pages(doc_id))
 
+    def put_chunks(self, doc_id: str, version: str, chunks: list) -> None:
+        """L3: replace one document's chunks; the BM25 view is rebuilt on next use."""
+        with self.connect() as db:
+            db.execute("DELETE FROM chunks WHERE doc_id=?", (doc_id,))
+            db.executemany("INSERT OR REPLACE INTO chunks VALUES (?,?,?,?,?,?,?)",
+                           [(chunk.chunk_id, chunk.doc_id, chunk.version, chunk.title,
+                             chunk.heading, chunk.page, chunk.text) for chunk in chunks])
+        self._chunks = None
+
+    def chunk_rows(self) -> list[dict]:
+        """L3: cached chunk rows; invalidated by ``put``/``put_chunks``/``drop_file``."""
+        if self._chunks is None:
+            with self.connect() as db:
+                self._chunks = [
+                    {"chunk_id": row[0], "doc_id": row[1], "version": row[2], "title": row[3],
+                     "heading": row[4], "page": row[5], "text": row[6]}
+                    for row in db.execute(
+                        "SELECT chunk_id, doc_id, version, title, heading, page, text FROM chunks")
+                ]
+        return self._chunks
+
+    def retrieve(self, query: str, *, task_id: str = "task1", allowed_doc_ids: list[str] | None = None,
+                 config=None, extra_queries: list[str] | None = None):
+        """L4a: report-level retrieval over persisted chunks; delegates to ``retrieval.py``."""
+        from .retrieval import Chunk, ReportDoc, metadata_from_filename, select_reports
+
+        allowed = set(allowed_doc_ids) if allowed_doc_ids is not None else None
+        docs = [doc for doc in self.all() if allowed is None or doc["doc_id"] in allowed]
+        by_doc: dict[str, list[Chunk]] = {}
+        for row in self.chunk_rows():
+            if allowed is None or row["doc_id"] in allowed:
+                by_doc.setdefault(row["doc_id"], []).append(Chunk(**row))
+        reports = []
+        for doc in docs:
+            chunks = by_doc.get(doc["doc_id"], [])
+            headings = tuple(dict.fromkeys(chunk.heading for chunk in chunks if chunk.heading))
+            meta = metadata_from_filename(doc.get("origin", ""))
+            reports.append(ReportDoc(doc_id=doc["doc_id"], version=doc["version"], title=doc["title"],
+                                     headings=headings, project_no=meta.get("project_no", ""),
+                                     year_from=meta.get("year_from"), year_to=meta.get("year_to")))
+        return select_reports(by_doc, reports, query, config=config, task_id=task_id,
+                              allowed_doc_ids=allowed_doc_ids, extra_queries=extra_queries)
+
     def files(self) -> dict[str, dict]:
         """K1: source-file manifest keyed by corpus-relative path."""
         with self.connect() as db:
@@ -178,6 +227,8 @@ class Knowledge:
             doc_id = row[0] if row else None
             if doc_id:
                 db.execute("DELETE FROM docs WHERE id=?", (doc_id,))
+                db.execute("DELETE FROM chunks WHERE doc_id=?", (doc_id,))
+        self._chunks = None
         return doc_id
 
     def meta_all(self) -> dict[str, str]:

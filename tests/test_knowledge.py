@@ -81,6 +81,40 @@ def test_user_reads_markdown_and_pages_from_separate_storage(tmp_path):
     assert second["changed"] and second["version"] != first["version"]
 
 
+def test_user_retrieves_reports_from_persisted_chunks(tmp_path):
+    from src.retrieval import RawBlock, chunk_blocks
+    # Given two reports stored with their chunks
+    store = Knowledge(tmp_path / "db")
+    for title, text in (("癫痫网络报告", "癫痫致痫网络的特征识别方法"),
+                        ("金融风险报告", "金融风险量化模型")):
+        result = store.put(Document(title=title, origin=title + ".pdf", kind="pdf", parser="mineru",
+                                    pages=[Page(number=1, text=text)]))
+        store.put_chunks(result["doc_id"], result["version"],
+                         chunk_blocks(result["doc_id"], result["version"], title, [RawBlock(1, text)]))
+    # When retrieving for the epilepsy question
+    outcome = store.retrieve("癫痫致痫网络")
+    # Then the report-level index returns only the epilepsy report
+    assert outcome.matched
+    assert [report.doc.title for report in outcome.reports] == ["癫痫网络报告"]
+
+
+def test_user_stops_seeing_chunks_after_source_removal(tmp_path):
+    from src.retrieval import RawBlock, chunk_blocks
+    # Given an indexed report
+    store = Knowledge(tmp_path / "db")
+    result = store.put(Document(title="报告", origin="report.pdf", kind="pdf", parser="mineru",
+                                pages=[Page(number=1, text="癫痫致痫网络")]))
+    store.put_chunks(result["doc_id"], result["version"],
+                     chunk_blocks(result["doc_id"], result["version"], "报告",
+                                  [RawBlock(1, "癫痫致痫网络")]))
+    store.record_file("report.pdf", 1, 1, "sha", result["doc_id"], "indexed")
+    # When the source file is removed
+    store.drop_file("report.pdf")
+    # Then its chunks are gone and it can no longer be retrieved
+    assert store.chunk_rows() == []
+    assert not store.retrieve("癫痫致痫网络").matched
+
+
 def test_pdf_adapter_uses_mineru(tmp_path):
     import sys
 

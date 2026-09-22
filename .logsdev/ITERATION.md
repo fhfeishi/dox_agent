@@ -68,8 +68,9 @@
 | L 立即批次 S2/S3/S6（本轮） | `retrieval.py`：`_BASE64_IMAGE` 改 `data:image/[^;,]{0,80};base64,[A-Za-z0-9+/=]+`（不吞后接英文/标点/多行，S2）；Layer A 查询词取**全部 query 并集**（S3）；`_query_terms` 为空→`reason="direct"`、不做回退（S6a）；覆盖率基数改 `per_doc_cand`、评分仍 `per_doc_top_m`（S6b） | `pytest tests -q` → **102 passed**（`tests/test_retrieval.py` 17 例；新增 7 例覆盖 S2 三边界 / S6a / S3 q1 独有 / S6b / `project_no` 空）；`ruff check` 通过 |
 | L 引用集对齐（本轮） | `SelectedReport.chunks` 改 `per_doc_cand`（RRF 降序、可引用集），评分仍用 `per_doc_top_m`；与 §7.8 / D-L1 对齐 | `pytest tests -q` → **103 passed**（`tests/test_retrieval.py` 18 例）；`ruff check` 通过 |
 | L1 存储分离 + 重索引（本轮） | `Document.markdown`；`version=sha256(markdown+pages)`；`docs` 仅存元数据，正文分入 `doc_pages`/`doc_markdown`；`all()`/`get()` 不再返回正文、改用 `page_count`；新增 `read_markdown`；`parse_file` 优先复用 `parsed/` 缓存（L1 不重跑 mineru）且保留旧 payload 回退；基金库 `force` 重索引 35/35、0 errors；备份 `knowledge.sqlite3.pre-l1` | `pytest tests -q` → **104 passed**（新增 `test_user_reads_markdown_and_pages_from_separate_storage`）；ruff 通过；实机：基金库 `docs=35`/`files=35`/正文可读/`read_markdown` 可用、mineru 未重跑；demo 旧库经 payload 回退仍可搜索/阅读 |
+| L3/L3b/L4a chunks + retrieve（本轮） | `chunks` 表（block 原子、带页/标题），导入时由 `parsed/` 的 `middle_json` 分块（`read_mineru_blocks`）；`Knowledge.put_chunks/chunk_rows/drop_file`（删除同步、缓存失效）；`Knowledge.retrieve` 复用 `select_reports`；`project_no` 由文件名注入（S4）。修复两处检索缺陷：Layer B RRF 改为**候选池内全局排名**（原每文档各自排名使 `Σtop_m` 全等）、命中需**真实 token 交集**（BM25Plus 的 delta 使未命中 chunk 仍 >0） | `pytest tests -q` → **107 passed**；ruff 通过；实机基金库 `chunks=4047`、demo 回填 `5922`；`retrieve("癫痫致痫网络")` top1=赵国光癫痫报告（cover 1.00），"无人车协同感知"/"肝癌超声造影" top1 均正确 |
 
-当前可用基线（本次实测）：后端 `pytest tests -q` → **104 passed**；前端 `node --test` → **18 passed**（未改动）；`npm run build` 通过（未改动）。
+当前可用基线（本次实测）：后端 `pytest tests -q` → **107 passed**；前端 `node --test` → **18 passed**（未改动）；`npm run build` 通过（未改动）。
 
 ## 4. 待定设计
 
@@ -104,6 +105,7 @@
 | **L1 改 `version` 定义使存量引用失效** | 所有历史会话 `sources` 版本校验失败（`read`/`/file` 报「文档已更新」） | planner 定迁移口径：允许失效并提示，或提供重写 |
 | **D-L3 token 预算缺统一 tokenizer** | `RETRIEVE_CONTEXT_TOKENS` 等无法精确核算 ≤ 模型上限 | planner 定口径（tiktoken / 供应商 usage / 保守字符估算） |
 | **D-L6 无匹配的 CJK 停用词口径未定** | 主题词覆盖率可能过松/过严 | MVP 已用 2-gram + 小停用词表并在 `RetrievalConfig` 标 uncalibrated；待评测校准 |
+| **L4a 弱命中报告仍入选**（本轮发现） | `MIN_TERM_COVER` 仅作全局 gate；同一查询会连带 cover≈0.2 的无关报告入选（受 `max_reports` 截断） | 建议 planner 定：是否对**单文档**加 cover 阈值再入选（本次未擅自加，避免拍脑袋改设计） |
 
 ### 5.1 L 阶段本轮交付与未接线声明
 
@@ -125,8 +127,8 @@
 **对策（按序执行；1 可立即做，2–8 以 S1 门禁为准）**：
 1. **立即修 S2/S3/S6**（纯 `retrieval.py`，无依赖）：base64 正则去贪婪 + Layer A 全查询词并集 + 词项空→`direct` + 覆盖口径；补回归用例后提交。**✅ 已完成**（`pytest` 102 passed；commit 见下）。
 2. **L1**：备份 `knowledge.sqlite3` → 加 `markdown`/新 `version`/`doc_pages`/`doc_markdown` → 从 `parsed/` **重索引**（缺 parsed 即失败）→ 验证 `docs=34`、正文可读、页码可定位、`read_markdown` 可用。**✅ 已完成**（基金库 `docs=35`、0 errors、未重跑 mineru、备份 `.pre-l1`；见 §3）。
-3. **L3/L3b**：同步建 `chunks` 表 + 报告级索引 + `BM25Plus` 缓存（键 `(corpus, version 签名)`）；**索引时注入 `project_no`（S4）**；导入/删除置 dirty。
-4. **L4a**：新增 `Knowledge.retrieve`（读取持久化 chunks → `select_reports`）；已交付纯模块逻辑复用。
+3. **L3/L3b**：同步建 `chunks` 表 + 报告级索引 + `BM25Plus` 缓存（键 `(corpus, version 签名)`）；**索引时注入 `project_no`（S4）**；导入/删除置 dirty。**✅ 已完成**（chunks 表 + 删除同步 + 缓存失效；BM25 仍按查询构建，未做持久化缓存；基金库 4047 / demo 5922 chunks）。
+4. **L4a**：新增 `Knowledge.retrieve`（读取持久化 chunks → `select_reports`）；已交付纯模块逻辑复用。**✅ 已完成**（并修复 Layer B 全局排名与 token 交集两处缺陷；见 §3）。
 5. **临时接线**：`Knowledge.search` 委托新引擎、删除旧窗口 BM25；`read`/`sources` 适配 chunk（无 `start_line`）；SSE 形状不变。
 6. **L5**：token 预算装配 + 报告头 + 引用映射（chunk→`[n]`）；**历史按 token 截断（S5）**；**PDF 版本失效 UI 提示（S8）**。
 7. **L6**：确定性 `retrieve→assemble→answer` 替换 `research` 工具循环；同步 `stop_reason`/telemetry/前端标签（§7.14 D-L4 三处）。

@@ -19,7 +19,7 @@
 **范围外（首期不做）**：多租户/权限后台、多 Agent 协作、知识图谱、工作流画布、独立问题分类服务、材料遵循等级系统、自动全网研究、自动订阅同步、外部资讯抓取与科研头条、多模型路由与模型管理后台、模板管理平台、分布式任务队列。（`VITE_UI_NEWS`/`VITE_UI_MODELS` 等仅占位，不属首期交付。）
 
 **关键限制**：
-- 当前演示语料为 LangChain 技术文档（`.demo_langchain/`），**不是基金报告**；真实基金语料在 `.knowledge/自然科学基金/`，已接入库注册（侧栏可见）：source 现有 **34 份** PDF，datadb `docs=10`（liteparse/eng 旧解析，正文乱码）、`files=3`，`parsed/` 空（K13 未重跑）。修复路径：**K13（mineru 适配器）已实现，点侧栏“重导入”（`ingest?force=true`）全量重建**，重建后正文可读、页码可定位。
+- 当前演示语料为 LangChain 技术文档（`.demo_langchain/`），**不是基金报告**；真实基金语料在 `.knowledge/自然科学基金/`，已接入库注册（侧栏可见）：source 现有 **34 份** PDF；此前以 liteparse/eng 旧解析入库（`docs=10`、`files=3`、正文乱码），**K13 `ingest?force=true` 全量 mineru 重建进行中**（basic），完成后应为 `docs=34`/`files=34`、正文可读、页码可定位。进度见 [`ITERATION.md`](ITERATION.md) §5。
 - 未配置 `EMBEDDING_PATH` 时仅 BM25，不加载 embedding。
 - HTTP 可用、检索就绪、模型可用是三个独立条件；健康接口不主动调用模型，`model_verified` 恒 `false`（模型可用性判定待定，见 ITERATION）。
 
@@ -99,7 +99,7 @@
 | `PATCH /api/corpora/{id}` | 仅改显示名（落 `STATE_DIR/corpora.json`）；目录与 `corpus_id` 不变（K6） |
 | `DELETE /api/corpora/{id}?purge_source=` | 默认只删 `datadb/`/`vectordb/`；`purge_source=true` 才删 `source/`；默认库 409（K6） |
 | `GET\|POST\|PATCH\|DELETE /api/corpora/{id}/files` | 库内源文件列表/上传/重命名/删除（md/pdf/txt/docx；上传 201、非法类型 415、超限 413）（K7/K8） |
-| `POST /api/corpora/{id}/ingest?force=` | 按库导入（限定库 root 内）；`force=true` 绕过增量跳过、全部重解析；`ocr_stale` 时自动强制；202 + job（含 `forced`）；404/409（K12） |
+| `POST /api/corpora/{id}/ingest?force=` | 按库导入（限定库 root 内）；`force=true` 绕过增量跳过、全部重解析（用于解析器/参数变更后重建，如 liteparse→mineru）；202 + job（含 `forced`）；404/409 |
 | `GET\|PUT /api/corpora/{id}/ocr` | ~~按库 OCR 模式/语言~~ **已移除（K13：mineru 自动识别语言）**；`ingest?force=true` 保留用于切换解析器后重建 |
 | `POST /api/ingest/local`、`POST /api/ingest/text` | 本地导入（txt/md/pdf/docx）/ 手工补正文；准备中 409 |
 | `GET\|POST /api/official-docs` | 官方 Markdown 发现与批量更新（单进程内存任务） |

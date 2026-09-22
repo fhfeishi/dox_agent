@@ -705,7 +705,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         path = (root / (asset_path or "index.html")).resolve()
         if asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():
             raise HTTPException(404, "页面未构建或资源不存在；请在 frontend 执行 npm run build")
-        return FileResponse(path)
+        # index.html must revalidate: after a rebuild its hashed asset names change, and a cached
+        # page would reference deleted files. Hashed assets are content-addressed, so cache hard.
+        if path.name == "index.html":
+            headers = {"Cache-Control": "no-cache, must-revalidate"}
+        else:
+            headers = {"Cache-Control": "public, max-age=31536000, immutable"}
+        return FileResponse(path, headers=headers)
 
     return app
 

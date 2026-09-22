@@ -1,7 +1,8 @@
 import { createElement } from "react";
+import { flushSync } from "react-dom";
+import { createRoot } from "react-dom/client";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { renderToStaticMarkup } from "react-dom/server";
 import { markdownComponents } from "./markdownComponents";
 
 function escapeHtml(text: string): string {
@@ -20,13 +21,27 @@ export function downloadText(text: string, filename: string) {
 }
 
 /**
+ * Render Markdown to HTML with the same react-markdown + GFM pipeline as the in-app preview.
+ * Uses the already-bundled client renderer (createRoot + flushSync) instead of
+ * `react-dom/server`, so the ~100 kB server renderer never enters the client bundle.
+ */
+function renderMarkdownHtml(text: string): string {
+  const container = document.createElement("div");
+  const root = createRoot(container);
+  flushSync(() => {
+    root.render(createElement(Markdown, { remarkPlugins: [remarkGfm], components: markdownComponents }, text));
+  });
+  const html = container.innerHTML;
+  root.unmount();
+  return html;
+}
+
+/**
  * Open the text in a new tab. Markdown is rendered to HTML (same react-markdown + GFM as the
  * in-app preview) so tables/code/quotes match; plain text stays `pre-wrap`.
  */
 export function openTextInNewTab(text: string, title: string, markdown = false) {
-  const body = markdown
-    ? renderToStaticMarkup(createElement(Markdown, { remarkPlugins: [remarkGfm], components: markdownComponents }, text))
-    : `<pre>${escapeHtml(text)}</pre>`;
+  const body = markdown ? renderMarkdownHtml(text) : `<pre>${escapeHtml(text)}</pre>`;
   const html = `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><title>${escapeHtml(title)}</title>
 <style>
 body{max-width:52rem;margin:0 auto;padding:3rem 1.5rem;font:15px/1.9 -apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#1a1a1a;overflow-x:auto}

@@ -34,7 +34,7 @@ embedding_enabled=$("$python" -c 'from src.agent.config import get_settings; pri
 if [[ "$embedding_enabled" == 1 ]]; then
   "$python" src/launcher.py embedding
 fi
-if [[ ! -d frontend/dist || "${REBUILD_FRONTEND:-0}" == 1 ]]; then
+if [[ ! -f frontend/dist/index.html || "${REBUILD_FRONTEND:-0}" == 1 ]]; then
   (cd frontend && npm ci && npm run build)
 fi
 printf '打开 http://127.0.0.1:%s\n' "${PORT:-8000}"

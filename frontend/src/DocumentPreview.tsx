@@ -2,10 +2,29 @@ import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { DocumentPanel } from "./DocumentPanel";
+import { PdfViewer } from "./PdfViewer";
 import { loadDocumentText } from "./documentPreview";
 import type { DocumentInfo } from "./useDocuments";
 
-export function DocumentPreview({ doc, corpus, onClose }: { doc: DocumentInfo | null; corpus?: string; onClose: () => void }) {
+/**
+ * Preview shell. PDFs show the original file directly (browser-native `/file` + `#page=`),
+ * which is what "预览文件" should mean; other kinds fall back to the normalized-text reader
+ * (Markdown render / raw toggle). `page` lets a citation jump land on the right PDF page.
+ */
+export function DocumentPreview({ doc, page, corpus, onClose }: {
+  doc: DocumentInfo | null; page?: number | null; corpus?: string; onClose: () => void;
+}) {
+  const isPdf = !!doc && doc.kind === "pdf";
+  return <DocumentPanel open={!!doc} onClose={onClose} header={doc?.title ?? ""}
+    meta={doc && <p className="mt-1 break-all text-xs text-stone-500">{doc.origin} · {doc.kind} · {doc.parser} · 版本 {doc.version} · 采集 {doc.captured_at}</p>}>
+    {isPdf && doc
+      ? <PdfViewer docId={doc.doc_id} version={doc.version} page={page ?? null} pages={doc.pages} corpus={corpus}/>
+      : <TextPreview doc={doc} corpus={corpus}/>}
+  </DocumentPanel>;
+}
+
+/** Non-PDF fallback: the normalized text reader shared with the document explorer's TextPane. */
+function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?: string }) {
   const [text, setText] = useState("");
   const [kind, setKind] = useState("");
   const [parser, setParser] = useState("");
@@ -24,8 +43,7 @@ export function DocumentPreview({ doc, corpus, onClose }: { doc: DocumentInfo | 
     return () => { cancelled = true; };
   }, [doc, corpus]);
   const markdown = kind === "official" || parser.includes("markdown");
-  return <DocumentPanel open={!!doc} onClose={onClose} header={doc?.title ?? ""}
-    meta={doc && <p className="mt-1 break-all text-xs text-stone-500">{doc.origin} · {kind || doc.kind} · {parser || doc.parser} · 版本 {doc.version} · 采集 {doc.captured_at}</p>}>
+  return <>
     {loading && <p className="text-sm text-stone-500">正在读取正文…</p>}
     {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
     {!loading && !error && <>
@@ -35,5 +53,5 @@ export function DocumentPreview({ doc, corpus, onClose }: { doc: DocumentInfo | 
         : <pre className="whitespace-pre-wrap break-words text-xs leading-6">{text}</pre>}
       <p className="mt-6 border-t border-stone-200 pt-3 text-xs text-stone-400">这是知识库规范化正文预览，不等于原始 PDF 文件。</p>
     </>}
-  </DocumentPanel>;
+  </>;
 }

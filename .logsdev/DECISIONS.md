@@ -1,5 +1,11 @@
 # DECISIONS — dox_agent 关键决策
 
+## 预览以原始文件为准（2026-09-22）
+
+- 采用：文档预览对 PDF 直接展示原始文件（浏览器原生 `/file` + `#page=`，沿用 D6 降级），不再把抽取文本整篇拼接渲染；Markdown / txt / Word 才走规范化正文预览。
+- 理由与代价：默认（`VITE_UI_DOC_PANEL=off`）路径此前对 PDF 全量拉取规范化正文，既慢又乱，且引用页码被丢弃；直接嵌入原文件最贴近“预览文件”。代价：非 PDF 仍依赖文本抽取质量，且保留两条预览实现（原文件 / 正文）。
+- 影响：`frontend/src/DocumentPreview.tsx`（PDF 分支改用 `PdfViewer`，不再走文本管线）、`frontend/src/main.tsx`（预览状态带 `page`，引用跳页将页码透传到 PDF）。
+
 ## 语料目录自包含「方案 A」（2026-09-22，取代分离布局）
 
 - 采用：每个知识库 = `CORPORA_ROOT`（默认 `.knowledge`）下一个**自包含目录**，固定三部分：`source/`（原始文件，可按领域再分子目录）、`datadb/`（该库 SQLite `knowledge.sqlite3`）、`vectordb/`（该库 Chroma 索引）。`.demo_langchain/` 演示库采用同一约定。

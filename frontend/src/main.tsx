@@ -87,7 +87,7 @@ function App() {
   const [tasks, setTasks] = useState<TaskInfo[]>([]);
   const [tasksError, setTasksError] = useState("");
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [previewDoc, setPreviewDoc] = useState<DocumentInfo | null>(null);
+  const [previewDoc, setPreviewDoc] = useState<{ doc: DocumentInfo; page: number | null } | null>(null);
   const [explorerOpen, setExplorerOpen] = useState(false);
   const [explorerDoc, setExplorerDoc] = useState<{ docId: string; page: number | null } | null>(null);
   const [corpusId, setCorpusId] = useState("");
@@ -261,7 +261,7 @@ function App() {
     // U2: with the doc-panel flag on, citations and library entries open the explorer
     // (tree + raw file viewer); otherwise fall back to the U7 text-only preview.
     if (uiFlags.docPanel) { setExplorerDoc({ docId, page: page ?? null }); setExplorerOpen(true); return; }
-    setPreviewDoc(doc);
+    setPreviewDoc({ doc, page: page ?? null });
   }
   const handleOpenSource = uiFlags.docPanel
     ? (source: Source, n: number) => {
@@ -456,7 +456,7 @@ function App() {
         <button disabled={busy || !turns.length} className="w-full rounded-lg border bg-white p-2 text-sm disabled:opacity-40" onClick={exportChat}>导出对话与证据版本</button>
       </div>
     </SettingsDrawer>
-    <DocumentPreview doc={previewDoc} corpus={effectiveCorpusId} onClose={() => setPreviewDoc(null)}/>
+    <DocumentPreview doc={previewDoc?.doc ?? null} page={previewDoc?.page ?? null} corpus={effectiveCorpusId} onClose={() => setPreviewDoc(null)}/>
     {uiFlags.docPanel && <DocumentExplorer open={explorerOpen} onClose={() => setExplorerOpen(false)}
       documents={documents} corpusReady={corpusReady} corpusName={currentCorpus?.name} corpus={effectiveCorpusId}
       docId={explorerDoc?.docId ?? null} page={explorerDoc?.page ?? null}

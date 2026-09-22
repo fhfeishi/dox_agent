@@ -3,6 +3,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { DocumentPanel } from "./DocumentPanel";
 import { PdfViewer } from "./PdfViewer";
+import { documentMeta, isLegacyParser } from "./documentMeta";
 import { loadDocumentText } from "./documentPreview";
 import type { DocumentInfo } from "./useDocuments";
 
@@ -16,7 +17,8 @@ export function DocumentPreview({ doc, page, corpus, onClose }: {
 }) {
   const isPdf = !!doc && doc.kind === "pdf";
   return <DocumentPanel open={!!doc} onClose={onClose} header={doc?.title ?? ""}
-    meta={doc && <p className="mt-1 break-all text-xs text-stone-500">{doc.origin} · {doc.kind} · {doc.parser} · 版本 {doc.version} · 采集 {doc.captured_at}</p>}>
+    meta={doc && <p className="mt-1 break-all text-xs text-stone-500">{documentMeta(doc)}{
+      isLegacyParser(doc.parser) && <span className="ml-2 rounded bg-amber-100 px-1 text-amber-800">旧解析（liteparse），建议重导入为 mineru</span>}</p>}>
     {isPdf && doc
       ? <PdfViewer docId={doc.doc_id} version={doc.version} page={page ?? null} pages={doc.pages} corpus={corpus}/>
       : <TextPreview doc={doc} corpus={corpus}/>}

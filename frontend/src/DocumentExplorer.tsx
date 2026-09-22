@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import { DocumentPanel } from "./DocumentPanel";
 import { DocumentTree } from "./DocumentTree";
 import { loadDocumentText } from "./documentPreview";
+import { documentMeta, isLegacyParser } from "./documentMeta";
 import { PdfViewer } from "./PdfViewer";
 import type { DocumentInfo } from "./useDocuments";
 
@@ -21,7 +22,8 @@ export function DocumentExplorer({ open, onClose, documents, corpusReady, corpus
   const limited = !!doc && Array.isArray(allowedDocIds) && allowedDocIds.length === 1 && allowedDocIds[0] === doc.doc_id;
   return <DocumentPanel open={open} onClose={onClose} header={doc ? doc.title : "本地文档"}
     meta={doc
-      ? <p className="mt-1 break-all text-xs text-stone-500">{doc.rel_path ?? doc.origin} · {doc.kind} · 版本 {doc.version} · 采集 {doc.captured_at}</p>
+      ? <p className="mt-1 break-all text-xs text-stone-500">{documentMeta(doc)}{
+          isLegacyParser(doc.parser) && <span className="ml-2 rounded bg-amber-100 px-1 text-amber-800">旧解析（liteparse），建议重导入为 mineru</span>}</p>
       : <p className="mt-1 text-xs text-stone-500">{corpusName ? `库：${corpusName} · ` : ""}检索范围：{allowedDocIds ? `${allowedDocIds.length} 份` : "全部"} · 浏览不会改变范围</p>}>
     {!corpusReady && <p className="text-sm text-stone-500" role="status">知识库就绪后即可浏览本地文档。</p>}
     {corpusReady && !doc && <DocumentTree documents={documents} selectedDocId={docId ?? undefined} onOpen={item => onNavigate(item.doc_id, 1)}/>}

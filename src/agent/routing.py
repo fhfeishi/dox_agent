@@ -27,6 +27,7 @@ async def resolve_policy(options: TurnOptions, knowledge, preparation: str = "re
     if preparation != "ready":
         return {**policy, "route": "research", "stop_reason": "corpus_" + preparation,
                 "notice": "知识库正在准备，暂时不能查证；仍可进行一般交流。" if preparation == "running"
+                else "该知识库尚未导入文档，暂时不能查证；仍可进行一般交流。" if preparation in {"empty", "uninitialized"}
                 else "知识库加载失败，暂时不能查证；仍可进行一般交流。"}
     return {**policy, "route": "research", "stop_reason": "professional", "notice": ""}
 

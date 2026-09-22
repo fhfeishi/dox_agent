@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { createCorpus, deleteCorpus, renameCorpus, type CorpusInfo } from "./api";
-import { CorpusOcrSettings } from "./CorpusOcrSettings";
+import { createCorpus, deleteCorpus, ingestCorpus, renameCorpus, type CorpusInfo } from "./api";
 
-/** K6/K12: create corpora, rename (display name) or delete them, and per-corpus OCR settings. */
-export function CorpusAdmin({ corpora, current, onChanged, onIngested, onSelect }: {
-  corpora: CorpusInfo[]; current: string; onChanged: () => void; onIngested: () => void; onSelect: (id: string) => void;
+/** K6/K13: create, rename (display name) or delete corpora, and force a re-import. */
+export function CorpusAdmin({ corpora, current, onChanged, onSelect }: {
+  corpora: CorpusInfo[]; current: string; onChanged: () => void; onSelect: (id: string) => void;
 }) {
   const [name, setName] = useState("");
   const [editing, setEditing] = useState<{ id: string; name: string } | null>(null);
+  const [busy, setBusy] = useState("");
   const [notice, setNotice] = useState("");
   async function run(action: () => Promise<void>) {
     try { await action(); setNotice(""); onChanged(); } catch (e) { setNotice((e as Error).message); }
@@ -29,21 +29,22 @@ export function CorpusAdmin({ corpora, current, onChanged, onIngested, onSelect 
               <button type="button" className="px-1" onClick={() => setEditing(null)}>取消</button>
             </form>
           : <div className="flex items-center gap-1">
-              <span className="min-w-0 flex-1 truncate text-stone-600">
-                {corpus.name}{corpus.is_default ? "（活动）" : ""}
-                {corpus.ocr_stale ? <span className="ml-1 text-amber-700">· 需重导入</span> : null}
-              </span>
+              <span className="min-w-0 flex-1 truncate text-stone-600">{corpus.name}{corpus.is_default ? "（活动）" : ""}</span>
+              <button aria-label={`重新导入 ${corpus.name}`} disabled={busy === corpus.id || corpus.job?.status === "running"}
+                className="shrink-0 disabled:opacity-30"
+                onClick={() => void (async () => {
+                  setBusy(corpus.id);
+                  try { await ingestCorpus(corpus.id, true); setNotice(`已提交「${corpus.name}」的全量重导入（重跑解析，版本会变化）。`); onChanged(); }
+                  catch (e) { setNotice((e as Error).message); }
+                  finally { setBusy(""); }
+                })()}>重导入</button>
               <button aria-label={`重命名 ${corpus.name}`} className="shrink-0" onClick={() => setEditing({ id: corpus.id, name: corpus.name })}>重命名</button>
               <button aria-label={`删除 ${corpus.name}`} disabled={corpus.is_default}
                 className="shrink-0 text-red-600 disabled:opacity-30"
                 onClick={() => { if (window.confirm(`删除知识库「${corpus.name}」的派生数据？源文件保留。`)) void run(async () => { await deleteCorpus(corpus.id); }); }}>删除</button>
             </div>}
-        <details className="ml-1">
-          <summary className="cursor-pointer text-stone-400">解析设置</summary>
-          <div className="mt-1"><CorpusOcrSettings corpusId={corpus.id} onChanged={onChanged} onIngested={onIngested}/></div>
-        </details>
       </div>)}
-      {notice && <p role="alert" className="text-red-700">{notice}</p>}
+      {notice && <p role="status" className="text-stone-600">{notice}</p>}
     </div>
   </details>;
 }

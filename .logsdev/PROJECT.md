@@ -19,7 +19,7 @@
 **范围外（首期不做）**：多租户/权限后台、多 Agent 协作、知识图谱、工作流画布、独立问题分类服务、材料遵循等级系统、自动全网研究、自动订阅同步、外部资讯抓取与科研头条、多模型路由与模型管理后台、模板管理平台、分布式任务队列。（`VITE_UI_NEWS`/`VITE_UI_MODELS` 等仅占位，不属首期交付。）
 
 **关键限制**：
-- 当前演示语料为 LangChain 技术文档（`.demo_langchain/`），**不是基金报告**；真实基金语料在 `.knowledge/自然科学基金/`，已接入库注册（侧栏可见）并**已导入 10 份**，但当时以 liteparse/全局 `eng` OCR 解析，正文乱码、预览不可读；`files` 清单为空。修复路径：**改用 mineru 4.0.5 解析（K13）后以 `ingest?force=true` 重建**。
+- 当前演示语料为 LangChain 技术文档（`.demo_langchain/`），**不是基金报告**；真实基金语料在 `.knowledge/自然科学基金/`，已接入库注册（侧栏可见）并**已导入 10 份**，但当时以 liteparse/全局 `eng` OCR 解析，正文乱码、预览不可读；`files` 清单为空。修复路径：**K13（mineru 适配器）已实现，点侧栏“重导入”全量重建**，重建后正文可读、页码可定位。
 - 未配置 `EMBEDDING_PATH` 时仅 BM25，不加载 embedding。
 - HTTP 可用、检索就绪、模型可用是三个独立条件；健康接口不主动调用模型，`model_verified` 恒 `false`（模型可用性判定待定，见 ITERATION）。
 
@@ -56,7 +56,7 @@
 - 库内文件 CRUD：列表、上传（md/pdf/txt（K7）、docx（K8））、删除、重命名/替换；`source/` 为唯一事实来源。
 - 侧栏列出库（名称/份数/就绪状态）并可切换；库详情展示文档清单；基金库显示题目/负责人/项目编号/报告年份区间。
 - 每个会话绑定一个库；输入区资料范围为两层：库（必选）+ 库内文档（可选，`allowed_doc_ids`）；切库清空越界选择并提示。
-- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。**PDF 解析将改用 mineru 4.0.5（计划 K13；当前仍 liteparse）**：`mineru-kit parse`（`--tier standard --ocr-mode auto`）；正文取 markdown、页码取 `middle_json`、预览服务源 PDF；txt/md/docx 仍直接解析。两阶段导入进度仍待 K5。
+- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。**PDF 解析已改用 mineru（K13）**：`MINERU_CMD`（默认 `mineru-kit parse … --tier standard --ocr-mode auto --format middle_json`）；产物缓存 `<KB>/parsed/<rel>/`，正文取自 mineru 输出的按页文本（`page_idx` → 页码），无页码 JSON 时回退 markdown 单页；预览服务源 PDF；txt/md/docx 仍直接解析。两阶段导入进度仍待 K5。
 - 预览支持 pdf（浏览器原生）/markdown（渲染）/word（转 HTML）/txt（纯文本）。
 - 首期不做跨库联合检索、库内分区、多用户权限隔离。
 
@@ -68,7 +68,7 @@
 |---|---|---|
 | 启动 | 复用/创建 uv 环境、端口检查、启动 uvicorn | `launch.sh`、`src/launcher.py` |
 | 后端 API | 生命周期、输入校验、后台准备、导入锁、SSE、静态资源 | `src/main.py` |
-| 解析/导入 | 现：PDF 走 liteparse + txt/md/docx（python-docx）；**计划（K13）**：PDF 改走 **mineru 4.0.5**（入库 markdown、页码 middle_json、预览源 PDF）；官方 Markdown、网页快照不变 | `src/parsers.py`、`src/official_docs.py`、`src/prepare_docs.py` |
+| 解析/导入 | PDF 走 **mineru**（`MINERU_CMD`；正文按页、页码 `page_idx`、预览源 PDF）；txt/md/docx（python-docx）；官方 Markdown、网页快照不变 | `src/parsers.py`、`src/official_docs.py`、`src/prepare_docs.py` |
 | 知识库 | SQLite 原文/版本、BM25Plus、行窗口、版本校验 | `src/knowledge.py`、`src/reading.py` |
 | 检索融合 | 本地 embedding + Chroma、按签名隔离 collection、RRF | `src/dense.py` |
 | Agent | `understand → research/direct → validate → answer`；证据交接与预算 | `src/agent/` |
@@ -93,14 +93,14 @@
 | `GET /api/documents/{doc_id}` | 按 `page`/`start_line`/`version`/`section` 读取原文证据；可选 `corpus`（缺省默认库）；404/422 |
 | `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range，`Content-Disposition: inline` 供内联预览）；可选 `corpus`（缺省默认库）；404/422/415/413(>200MB)；仅根目录内本地文件 |
 | `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`has_template` |
-| `GET\|PUT /api/ocr-config` | ~~liteparse OCR 模式/语言~~ **待移除（K13：改用 mineru）** |
+| `GET\|PUT /api/ocr-config` | ~~liteparse OCR 模式/语言~~ **已移除（K13：改用 mineru 自动识别）** |
 | `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job`/`ocr_stale` |
 | `POST /api/corpora` | 新建库目录（`source/`+`datadb/`+`vectordb/`）；201；重名 409、名称非法 422（K6） |
 | `PATCH /api/corpora/{id}` | 仅改显示名（落 `STATE_DIR/corpora.json`）；目录与 `corpus_id` 不变（K6） |
 | `DELETE /api/corpora/{id}?purge_source=` | 默认只删 `datadb/`/`vectordb/`；`purge_source=true` 才删 `source/`；默认库 409（K6） |
 | `GET\|POST\|PATCH\|DELETE /api/corpora/{id}/files` | 库内源文件列表/上传/重命名/删除（md/pdf/txt/docx；上传 201、非法类型 415、超限 413）（K7/K8） |
 | `POST /api/corpora/{id}/ingest?force=` | 按库导入（限定库 root 内）；`force=true` 绕过增量跳过、全部重解析；`ocr_stale` 时自动强制；202 + job（含 `forced`）；404/409（K12） |
-| `GET\|PUT /api/corpora/{id}/ocr` | 按库 OCR 模式/语言（`ocr_mode`/`ocr_language`）与生效值/`stale`；写入口仅落 `meta`（K12）；**待移除（K13：mineru 自动识别语言）** |
+| `GET\|PUT /api/corpora/{id}/ocr` | ~~按库 OCR 模式/语言~~ **已移除（K13：mineru 自动识别语言）**；`ingest?force=true` 保留用于切换解析器后重建 |
 | `POST /api/ingest/local`、`POST /api/ingest/text` | 本地导入（txt/md/pdf/docx）/ 手工补正文；准备中 409 |
 | `GET\|POST /api/official-docs` | 官方 Markdown 发现与批量更新（单进程内存任务） |
 | `POST /api/web/preview`、`/api/web/confirm/{id}` | 网页快照预览与确认入库 |
@@ -145,6 +145,6 @@ SQLite 当前文档 → 页/行窗口 → BM25Plus sparse；配置 `EMBEDDING_PA
 ## 6. 运行与验证
 
 - 启动：`bash launch.sh`（复用环境 → 安装依赖 → 构建前端 → uvicorn）；默认 <http://127.0.0.1:8000>。
-- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`STATE_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、当前 `PDF_OCR_MODE`/`PDF_OCR_LANGUAGE`/`PDF_NUM_WORKERS`、`CORPORA*`、预算与超时）。**计划（K13）**：改 `MINERU_CMD`/`MINERU_HOME`。
+- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`STATE_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、`MINERU_CMD`/`MINERU_HOME`、`CORPORA*`、预算与超时）。
 - 测试：`.venv/bin/python -m pytest tests -q`；`cd frontend && npm test`、`npm run build`。
 - 本地数据布局与配置映射见仓库 `README.md`。

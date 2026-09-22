@@ -59,22 +59,22 @@ def test_failed_import_keeps_good_document(tmp_path):
     assert store.all()[0]["pages"][0]["text"] == "测试正文"
 
 
-def test_pdf_adapter_preserves_pages(tmp_path, monkeypatch):
-    from types import SimpleNamespace
+def test_pdf_adapter_uses_mineru(tmp_path):
+    import sys
 
-    import liteparse
-
-    class Parser:
-        def __init__(self, **kwargs):
-            assert kwargs["output_format"] == "json"
-
-        def parse(self, path):
-            return SimpleNamespace(pages=[SimpleNamespace(page_num=2, text="PDF第二页")])
-
-    monkeypatch.setattr(liteparse, "LiteParse", Parser)
-    doc = parse_file(tmp_path / "test.pdf", Settings(_env_file=None))
-    assert doc.pages[0].number == 2
-    assert doc.parser.startswith("liteparse/")
+    script = tmp_path / "fake_mineru.py"
+    script.write_text(
+        "import json, pathlib, sys\n"
+        "out = pathlib.Path(sys.argv[2]); out.mkdir(parents=True, exist_ok=True)\n"
+        "(out / 'full.md').write_text('# md', encoding='utf-8')\n"
+        "(out / 'x_content_list.json').write_text(json.dumps([{'type': 'text', 'text': 'PDF第二页', 'page_idx': 1}]))\n",
+        encoding="utf-8")
+    pdf = tmp_path / "test.pdf"
+    pdf.write_bytes(b"%PDF-1.4 stub")
+    settings = Settings(_env_file=None, mineru_cmd=f"{sys.executable} {script} {{pdf}} {{out}}")
+    doc = parse_file(pdf, settings, parsed_dir=tmp_path / "parsed")
+    assert doc.pages[0].number == 2 and doc.pages[0].text == "PDF第二页"
+    assert doc.parser == "mineru"
 
 
 def test_session_exact_host_only(tmp_path):

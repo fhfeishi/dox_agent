@@ -13,7 +13,7 @@ from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
 
-from .agent.config import DOX_AGENT_ROOT, OCR_LANGUAGES, OCR_MODES, get_settings, load_ocr_config, save_ocr_config
+from .agent.config import DOX_AGENT_ROOT, get_settings
 from .agent.corpora import (
     DB_DIRNAME,
     SOURCE_DIRNAME,
@@ -91,12 +91,6 @@ class OfficialRequest(BaseModel):
     sections: list[Literal["langchain", "langgraph", "deepagents"]] = Field(default=["langchain", "langgraph", "deepagents"], min_length=1, max_length=3)
 
 
-class OcrConfigRequest(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-    mode: Literal["off", "force", "auto"]
-    language: Literal["eng", "chi_sim", "chi_sim+eng"]
-
-
 class CorpusCreate(BaseModel):
     model_config = ConfigDict(extra="forbid")
     name: str = Field(min_length=1, max_length=80)
@@ -137,15 +131,6 @@ def sse(event: str, data: object) -> str:
 
 def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     settings = settings or get_settings()
-    # K4: apply persisted OCR overrides (only affect later imports).
-    persisted = load_ocr_config(settings.state_dir)
-    overrides = {}
-    if persisted.get("mode") in OCR_MODES:
-        overrides["pdf_ocr_mode"] = persisted["mode"]
-    if persisted.get("language") in OCR_LANGUAGES:
-        overrides["pdf_ocr_language"] = persisted["language"]
-    if overrides:
-        settings = settings.model_copy(update=overrides)
 
     @asynccontextmanager
     async def lifespan(app):
@@ -231,31 +216,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(404, "知识库不存在")
         return knowledge_for(info)
 
-    def ocr_state_for(kn: Knowledge) -> dict:
-        """K12: expected vs last-applied OCR config for one corpus."""
-        meta = kn.meta_all()
-        explicit = "ocr_mode" in meta or "ocr_language" in meta
-        mode = meta.get("ocr_mode") or settings.pdf_ocr_mode
-        language = meta.get("ocr_language") or settings.pdf_ocr_language
-        applied_mode = meta.get("ocr_applied_mode")
-        applied_language = meta.get("ocr_applied_language")
-        has_applied = bool(applied_mode or applied_language)
-        stale = (has_applied and (applied_mode != mode or applied_language != language)) or (not has_applied and explicit)
-        unknown = not has_applied and not explicit and kn.count() > 0
-        return {"mode": mode, "language": language, "modes": list(OCR_MODES), "languages": list(OCR_LANGUAGES),
-                "applied_mode": applied_mode, "applied_language": applied_language, "stale": stale, "unknown": unknown}
-
-    def corpus_ocr_state(info: CorpusInfo) -> dict:
-        if info.sqlite is None:
-            return {"mode": settings.pdf_ocr_mode, "language": settings.pdf_ocr_language, "modes": list(OCR_MODES),
-                    "languages": list(OCR_LANGUAGES), "applied_mode": None, "applied_language": None,
-                    "stale": False, "unknown": False}
-        return ocr_state_for(knowledge_for(info))
-
-    def corpus_settings_for(info: CorpusInfo) -> tuple[dict, dict]:
-        state = corpus_ocr_state(info)
-        return settings.model_copy(update={"pdf_ocr_mode": state["mode"], "pdf_ocr_language": state["language"]}), state
-
     @app.get("/api/health")
     async def health(request: Request):
         docs_count = await asyncio.to_thread(request.app.state.knowledge.count)
@@ -276,23 +236,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     async def tasks():
         return list_tasks()
 
-    def ocr_payload():
-        return {"mode": settings.pdf_ocr_mode, "language": settings.pdf_ocr_language,
-                "modes": list(OCR_MODES), "languages": list(OCR_LANGUAGES)}
-
-    @app.get("/api/ocr-config")
-    async def ocr_config():
-        """K4: current OCR mode/language and the values the UI may choose."""
-        return ocr_payload()
-
-    @app.put("/api/ocr-config")
-    async def set_ocr_config(payload: OcrConfigRequest):
-        """K4: persist a runtime OCR setting; it only affects later imports."""
-        nonlocal settings
-        settings = settings.model_copy(update={"pdf_ocr_mode": payload.mode, "pdf_ocr_language": payload.language})
-        await asyncio.to_thread(save_ocr_config, settings.state_dir, payload.mode, payload.language)
-        return ocr_payload()
-
     def corpus_payload(info: CorpusInfo) -> dict:
         dense = app.state.knowledge.dense
         return {
@@ -306,7 +249,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "is_default": info.is_default,
             "index_progress": dense.progress if info.is_default and dense else None,
             "job": app.state.corpus_jobs.get(info.id),
-            "ocr_stale": corpus_ocr_state(info)["stale"],
         }
 
     @app.get("/api/corpora")
@@ -383,51 +325,25 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.corpus_knowledge.pop(corpus_id, None)
         return {"deleted": corpus_id, "purged_source": purge_source}
 
-    @app.get("/api/corpora/{corpus_id}/ocr")
-    async def corpus_ocr(corpus_id: str):
-        """K12: per-corpus OCR mode/language and last-applied values."""
-        info = await asyncio.to_thread(find_corpus, corpus_id)
-        if info is None:
-            raise HTTPException(404, "知识库不存在")
-        return await asyncio.to_thread(corpus_ocr_state, info)
-
-    @app.put("/api/corpora/{corpus_id}/ocr")
-    async def set_corpus_ocr(payload: OcrConfigRequest, corpus_id: str):
-        """K12: persist a corpus OCR config; it does not import by itself."""
-        info = await asyncio.to_thread(find_corpus, corpus_id)
-        if info is None:
-            raise HTTPException(404, "知识库不存在")
-        kn = knowledge_for(info)
-
-        def persist():
-            kn.meta_set("ocr_mode", payload.mode)
-            kn.meta_set("ocr_language", payload.language)
-
-        await asyncio.to_thread(persist)
-        return await asyncio.to_thread(ocr_state_for, kn)
-
     @app.post("/api/corpora/{corpus_id}/ingest", status_code=202)
     async def corpus_ingest(request: Request, corpus_id: str, force: bool = False):
-        """H2/K12: import one corpus; force (or a stale OCR config) re-parses everything."""
+        """H2/K13: import one corpus; ``force`` re-parses everything (e.g. after a parser change)."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
             raise HTTPException(404, "知识库不存在")
         running = request.app.state.corpus_tasks.get(corpus_id)
         if running and not running.done():
             raise HTTPException(409, "该知识库正在导入")
-        corpus_settings, state = corpus_settings_for(info)
-        effective_force = force or state["stale"]
         job = {"status": "running", "total": 0, "completed": 0, "imported": 0, "changed": 0,
-               "added": 0, "updated": 0, "skipped": 0, "deleted": 0, "forced": effective_force, "errors": []}
+               "added": 0, "updated": 0, "skipped": 0, "deleted": 0, "forced": force, "errors": []}
         request.app.state.corpus_jobs[corpus_id] = job
 
         async def run():
             try:
                 async with request.app.state.import_lock:
                     kn = knowledge_for(info)
-                    report = await asyncio.to_thread(import_defaults, kn, corpus_settings, root=info.source_dir, force=effective_force)
-                    await asyncio.to_thread(kn.meta_set, "ocr_applied_mode", state["mode"])
-                    await asyncio.to_thread(kn.meta_set, "ocr_applied_language", state["language"])
+                    report = await asyncio.to_thread(import_defaults, kn, settings, root=info.source_dir,
+                                                     force=force, parsed_root=info.root / "parsed")
                 job["total"] = job["completed"] = report["scanned"]
                 job["imported"] = len(report["imported"])
                 job["changed"] = report["added"] + report["updated"]
@@ -460,13 +376,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         return name
 
     async def import_corpus(info: CorpusInfo, force: bool = False) -> dict:
-        corpus_settings, state = corpus_settings_for(info)
-        kn = knowledge_for(info)
         async with app.state.import_lock:
-            report = await asyncio.to_thread(import_defaults, kn, corpus_settings, root=info.source_dir, force=force)
-        await asyncio.to_thread(kn.meta_set, "ocr_applied_mode", state["mode"])
-        await asyncio.to_thread(kn.meta_set, "ocr_applied_language", state["language"])
-        return report
+            return await asyncio.to_thread(import_defaults, knowledge_for(info), settings, root=info.source_dir,
+                                           force=force, parsed_root=info.root / "parsed")
 
     @app.get("/api/corpora/{corpus_id}/files")
     async def corpus_files(corpus_id: str):
@@ -661,16 +573,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         default = next((info for info in infos if info.is_default), None)
         others = [info.root for info in infos if not info.is_default]
         root = default.source_dir if default and default.source_dir.is_dir() else None
-        if default is not None:
-            corpus_settings, state = corpus_settings_for(default)
-        else:
-            corpus_settings, state = settings, None
+        parsed_root = default.root / "parsed" if default else None
         async with app.state.import_lock:
-            report = await asyncio.to_thread(import_defaults, app.state.knowledge, corpus_settings, root=root, exclude=others)
-        if state is not None:
-            await asyncio.to_thread(app.state.knowledge.meta_set, "ocr_applied_mode", state["mode"])
-            await asyncio.to_thread(app.state.knowledge.meta_set, "ocr_applied_language", state["language"])
-        return report
+            return await asyncio.to_thread(import_defaults, app.state.knowledge, settings, root=root,
+                                           exclude=others, parsed_root=parsed_root)
 
     @app.post("/api/web/preview")
     async def preview(payload: WebRequest):

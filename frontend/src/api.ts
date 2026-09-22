@@ -11,9 +11,7 @@ export type CorpusInfo = {
   docs_count: number; preparation: string; is_default: boolean;
   index_progress: { stage: string; completed: number; total: number } | null;
   job: CorpusJob | null;
-  ocr_stale?: boolean;
 };
-export type CorpusOcr = { mode: string; language: string; modes: string[]; languages: string[]; applied_mode: string | null; applied_language: string | null; stale: boolean; unknown: boolean };
 
 /** GET /api/corpora: corpus registry (H1). Read-only disk scan + config overrides. */
 export async function fetchCorpora(signal?: AbortSignal): Promise<CorpusInfo[]> {
@@ -30,18 +28,6 @@ export async function ingestCorpus(corpusId: string, force = false): Promise<Cor
   return payload as CorpusJob;
 }
 
-/** K12: per-corpus OCR config (does not import by itself). */
-export async function fetchCorpusOcr(corpusId: string): Promise<CorpusOcr> {
-  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/ocr`);
-  return jsonOrThrow(response, "解析设置不可用") as Promise<CorpusOcr>;
-}
-
-export async function setCorpusOcr(corpusId: string, mode: string, language: string): Promise<CorpusOcr> {
-  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/ocr`, {
-    method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mode, language }),
-  });
-  return jsonOrThrow(response, "保存解析设置失败") as Promise<CorpusOcr>;
-}
 
 export type CorpusFile = { rel_path: string; size: number; status: string; doc_id: string | null };
 

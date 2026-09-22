@@ -124,7 +124,9 @@ dox_agent 功能需求更新：
 
 
 
-## 
+## 2026-0922 1631 
+文档解析用mineru吧，使用稳定的解析方式，我记得mineru解析之后会得到一个几乎同名的文件夹，然后还有full.markdown、origin.pdf、image、json等信息，入库的话用对应的这个markdown，前端知识库文件预览展示这个origin.pdf。原始的pdf可以用同名的这个文件名展示，当然你可以后续处理一下文件夹名称、内部文件的名称。你可以查看temp/目录下的结果，这就是我通过mineru解析得到的，是auto模式，希望你查阅相应的官方文档，
+literparse设置中文有报错 --ovr-language chi_sim+eng 报错 failed loading language 'chi_sim_vert'。不管这个了、直接就不用liteparse吧。
 
 
 

@@ -12,7 +12,6 @@ import { LibraryView } from "./LibraryView";
 import { DocumentExplorer } from "./DocumentExplorer";
 import { DocumentPreview } from "./DocumentPreview";
 import { OfficialDocs } from "./OfficialDocs";
-import { OcrSettings } from "./OcrSettings";
 import { ScopeSelector } from "./ScopeSelector";
 import { SessionList } from "./SessionList";
 import { SettingsDrawer } from "./SettingsDrawer";
@@ -337,7 +336,7 @@ function App() {
               {!!corpora.length && <div className="mt-3">
                 <p className="mb-1 text-xs font-medium text-stone-500">知识库</p>
                 <CorpusPicker corpora={corpora} current={effectiveCorpusId ?? ""} onSelect={selectCorpus}/>
-                <CorpusAdmin corpora={corpora} current={effectiveCorpusId ?? ""} onSelect={selectCorpus} onChanged={() => void refreshCorpora()} onIngested={() => void refreshDocuments()}/>
+                <CorpusAdmin corpora={corpora} current={effectiveCorpusId ?? ""} onSelect={selectCorpus} onChanged={() => void refreshCorpora()}/>
                 <p className="mt-1 text-xs text-stone-400">新语料目录放入 .knowledge/ 后自动出现</p>
               </div>}
               {corporaError && <p role="alert" className="mt-1 text-xs text-red-700">{corporaError}</p>}
@@ -445,7 +444,6 @@ function App() {
     }>
       {documentsError && <p role="alert" className="text-xs text-red-700">{documentsError}</p>}
       <IngestTools documents={documents} refresh={refreshDocuments} connected={connected} onOpenDocument={openDocument}/>
-      <OcrSettings connected={connected}/>
       <OfficialDocs connected={connected}/>
       <section className="border-t border-stone-200 pt-4 text-sm" aria-label="模型信息">
         <h3 className="font-semibold">模型</h3>

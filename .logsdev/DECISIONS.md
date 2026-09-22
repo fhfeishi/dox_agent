@@ -100,7 +100,7 @@
 - 入库与预览：**正文取 mineru 的 Markdown**（用户要求）；**预览服务源 PDF**（即 origin，v4 无单独 origin.pdf）；页码从 `middle_json` 的 `page_idx` 取（markdown 无页标记），无 middle_json 时回退单页。
 - 旧版对照：`temp/` 的 10 个目录属**经典 MinerU**（`full.md`+`*_origin.pdf`+`images/`），仅作历史参考；实现以 v4 CLI 为准。
 - 取代：原「解析器：固定使用 liteparse」及 K2/K3/K4/K12 基于 liteparse 的 OCR 三档/语言配置/按库语言（mineru auto 自行识别语言）。
-- 状态：**已采用，未实现**（K13）。
+- 状态：**已实现适配器（K13）**：`parsers.py` 跑 `MINERU_CMD` 到 `<KB>/parsed/<rel>/`，`read_mineru_output` 支持 v4 `middle.json`/经典 `content_list.json`（`page_idx`→页码，回退 markdown 单页）；已移除 liteparse、`/api/ocr-config`、`/api/corpora/{id}/ocr` 与前端 OCR 入口；保留 `ingest?force=true`（侧栏“重导入”）。**未在本机安装 mineru，真实基金库重导入待执行**；已用真实 `temp/` 经典产物验证读取（45 页可读中文）。
 - 试用证据（2026-09-22，本地独立 venv）：安装 `mineru==4.0.5`（无 torch）；最小基金 PDF `--tier basic --ocr-mode auto` 1–2 页约 6s（首次拉模型约 1 分钟）；`--format markdown` 单文件（图片 base64、无页标记）/ `--format middle_json` 单文件（`pages[].page_idx`+blocks）。证据见 [`ITERATION.md`](ITERATION.md) §3。
 - 待审核（影响实现）：① tier 默认 `basic`/`standard`；② 页码取 `middle_json` 还是 markdown 单页；③ 正文图片是否渲染（预览走源 PDF）。见 [`ITERATION.md`](ITERATION.md) §4 #13–#15。
 

@@ -56,7 +56,7 @@
 - 库内文件 CRUD：列表、上传（md/pdf/txt（K7）、docx（K8））、删除、重命名/替换；`source/` 为唯一事实来源。
 - 侧栏列出库（名称/份数/就绪状态）并可切换；库详情展示文档清单；基金库显示题目/负责人/项目编号/报告年份区间。
 - 每个会话绑定一个库；输入区资料范围为两层：库（必选）+ 库内文档（可选，`allowed_doc_ids`）；切库清空越界选择并提示。
-- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。**PDF 解析改用 mineru 4.0.5（K13，取代 liteparse）**：`mineru-kit parse`（`--ocr-mode auto`）；正文取 markdown、页码取 `middle_json` 的 `page_idx`，预览服务源 PDF；txt/md/docx 仍直接解析。两阶段导入进度仍待 K5。
+- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。**PDF 解析将改用 mineru 4.0.5（计划 K13；当前仍 liteparse）**：`mineru-kit parse`（`--tier standard --ocr-mode auto`）；正文取 markdown、页码取 `middle_json`、预览服务源 PDF；txt/md/docx 仍直接解析。两阶段导入进度仍待 K5。
 - 预览支持 pdf（浏览器原生）/markdown（渲染）/word（转 HTML）/txt（纯文本）。
 - 首期不做跨库联合检索、库内分区、多用户权限隔离。
 
@@ -68,7 +68,7 @@
 |---|---|---|
 | 启动 | 复用/创建 uv 环境、端口检查、启动 uvicorn | `launch.sh`、`src/launcher.py` |
 | 后端 API | 生命周期、输入校验、后台准备、导入锁、SSE、静态资源 | `src/main.py` |
-| 解析/导入 | PDF 走 **mineru 4.0.5**（`mineru-kit parse`；入库 markdown、页码 middle_json、预览源 PDF，K13）+ txt/md/docx（python-docx）、官方 Markdown、网页快照 | `src/parsers.py`、`src/official_docs.py`、`src/prepare_docs.py` |
+| 解析/导入 | 现：PDF 走 liteparse + txt/md/docx（python-docx）；**计划（K13）**：PDF 改走 **mineru 4.0.5**（入库 markdown、页码 middle_json、预览源 PDF）；官方 Markdown、网页快照不变 | `src/parsers.py`、`src/official_docs.py`、`src/prepare_docs.py` |
 | 知识库 | SQLite 原文/版本、BM25Plus、行窗口、版本校验 | `src/knowledge.py`、`src/reading.py` |
 | 检索融合 | 本地 embedding + Chroma、按签名隔离 collection、RRF | `src/dense.py` |
 | Agent | `understand → research/direct → validate → answer`；证据交接与预算 | `src/agent/` |
@@ -145,6 +145,6 @@ SQLite 当前文档 → 页/行窗口 → BM25Plus sparse；配置 `EMBEDDING_PA
 ## 6. 运行与验证
 
 - 启动：`bash launch.sh`（复用环境 → 安装依赖 → 构建前端 → uvicorn）；默认 <http://127.0.0.1:8000>。
-- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`STATE_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、**`MINERU_CMD`/`MINERU_HOME`（K13）**、`CORPORA*`、预算与超时）。
+- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`STATE_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、当前 `PDF_OCR_MODE`/`PDF_OCR_LANGUAGE`/`PDF_NUM_WORKERS`、`CORPORA*`、预算与超时）。**计划（K13）**：改 `MINERU_CMD`/`MINERU_HOME`。
 - 测试：`.venv/bin/python -m pytest tests -q`；`cd frontend && npm test`、`npm run build`。
 - 本地数据布局与配置映射见仓库 `README.md`。

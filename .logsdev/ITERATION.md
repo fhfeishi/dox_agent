@@ -69,9 +69,10 @@
 | 10 | 报告↔会话绑定：`POST /api/reports` 无 `session_key`/`run_id`，`GET /api/reports/{id}` 只按 id 取 | E1/E2/G9（E 开工前须定稿） |
 | 11 | task 推导许可与全局 `answer_policy`：已定稿（task1/task2 收窄、task3 放开并标注），随任务提示词落实 | G1/G4（已落实，保留备查） |
 | 12 | 模型可用性判定来源：`/api/health` 的 `model_verified` 恒 `false`，无生产逻辑 | U9.4-2/F11（未定稿前不开工） |
-| 13 | mineru `tier`：默认 `basic`（快）还是 `standard`（质量更高） | K13 解析质量/速度 |
-| 14 | 页码来源：取 `middle_json` 的 `page_idx`（推荐）还是 markdown 单页（丢页码） | K13 引用页码 |
-| 15 | 正文图片：v4 markdown 内嵌 base64；首期是否在正文渲染图片（预览用源 PDF） | K13 是否新增图片服务 |
+| 13 | **已定稿**：mineru `tier=standard` | K13 |
+| 14 | **已定稿**：正文用 **markdown**；页码取 `middle_json` 的 `page_idx` | K13 |
+| 15 | **已定稿**：正文图片首期**不渲染**（预览服务源 PDF；markdown 渲染留待后续） | K13 |
+| 16 | mineru 集成方式：本地 CLI `mineru-kit parse`（规格假设，配 `MINERU_HOME`）vs 云端 API（`MINERU_API_KEY`） | K13；影响 `MINERU_CMD` 语义 |
 
 ## 5. 未决问题与下一步
 
@@ -132,19 +133,20 @@
 | K9 | 预览：`GET /api/documents/{doc_id}/preview`（**带 `corpus` 参数**，与列表接口一致）按 kind 返回 html/text/file；统一 `DocumentPanel`：pdf 原生（D6）、md 渲染、docx 转 HTML、txt 纯文本 | 四类文件可预览并显示元数据 |
 | K10 | 检索性能：**范围含每查询的 `self.all()` + 窗口切分 + `tokens()` + `BM25Plus(corpus)`**（`knowledge.py:104-126`），不止 chunk id；需预计算/缓存候选与 BM25，或明确调低验收口径；**存量库首次回填缓存同 K1 为一次性成本** | 大库查询延迟不随库线性增长（或按调低口径验收） |
 | K11 | 验收：文件/库 CRUD、预览、重命名/删除、按库问答仅本库引用；以一次真实导入抽样计时（不做对比测试） | 功能通过 |
-| K12 | **按库 OCR 语言对齐与重导入（侧栏优先）**（实现规格见 §6.5）：入口放在**左侧边栏知识库展开项**（`CorpusPicker`/`CorpusAdmin`）：每个库可选 OCR 模式/语言 + 「重新导入并应用」；库详情（`LibraryView`）复用同一操作（可选）。OCR 模式/语言按库存储（`<KB>/datadb` 的 `meta`），生效值 = 库配置 ?? 全局；`files` 清单记录 `used language/mode`，不一致标 `ocr_stale`；「重新导入」必须走 `POST /api/corpora/{id}/ingest?force=true`（绕过 size+mtime 跳过、全部重解析），并提示“重解析全部文件、版本会变化”；对中文库建议 `chi_sim+eng`（可选） | 侧栏展开库 → 选 `chi_sim+eng` → 重新导入 → 预览文本可读、`ocr_stale=false`；未改语言时未变文件仍跳过（不会白重解析） || K13 | **改用 mineru 解析（取代 liteparse）**（规格见 §6.6）：PDF 走 mineru auto；入库取 `full.md`，预览展示 `origin.pdf`；移除 liteparse 及其 OCR 配置；`force` 重新导入用于切换解析器后重建 | 基金库 PDF 以 mineru 入库、正文可读、预览 origin.pdf；未变文件二次导入跳过；移除 liteparse 后构建/测试通过 |
+| K12 | **按库 OCR 语言对齐与重导入（侧栏优先）**（实现规格见 §6.5）：入口放在**左侧边栏知识库展开项**（`CorpusPicker`/`CorpusAdmin`）：每个库可选 OCR 模式/语言 + 「重新导入并应用」；库详情（`LibraryView`）复用同一操作（可选）。OCR 模式/语言按库存储（`<KB>/datadb` 的 `meta`），生效值 = 库配置 ?? 全局；`files` 清单记录 `used language/mode`，不一致标 `ocr_stale`；「重新导入」必须走 `POST /api/corpora/{id}/ingest?force=true`（绕过 size+mtime 跳过、全部重解析），并提示“重解析全部文件、版本会变化”；对中文库建议 `chi_sim+eng`（可选） | 侧栏展开库 → 选 `chi_sim+eng` → 重新导入 → 预览文本可读、`ocr_stale=false`；未改语言时未变文件仍跳过（不会白重解析） |
+| K13 | **改用 mineru 4.0.5 解析（取代 liteparse）**（规格见 §6.6）：PDF 走 `mineru-kit parse --tier standard --ocr-mode auto`；入库取 **markdown**、页码取 `middle_json`、预览服务源 PDF；移除 liteparse 及其 OCR 配置；`force` 重新导入重建 | 基金库 PDF 以 mineru 入库、正文可读、页码可定位、预览源 PDF；未变文件二次导入跳过；移除 liteparse 后构建/测试通过 |
 
 ### 6.4 顺序与依赖
 
 - **K0 必须先于 K6（库删除/重命名）**；**K6a（corpus_id 稳定性）先于 K6 的目录搬迁**。
 - **K0b（非默认库 read/file 补 `corpus`）先于 K7/K9 的多库预览**；它是既有 U2/U7 缺口的修复。
-- **K2（OCR 三档）与 K4（语言）先于 K11**。
+- **K2/K3/K4/K12 的 liteparse OCR 部分已作废（被 K13 取代）；仅保留 K12 的 `force` 重导入机制**。
 - **K8（Word）先于 K7 的 docx 支持**；K7 本阶段不含 docx。
 - K1 的删除同步必须同时清 BM25 与 dense（stale）；**K1/K10 对存量库有一次性回填成本**，不计入优化后稳态。
 - K6/K7 的写操作需重扫并重载活动库。
 - **K12（按库 OCR 语言 + 强制重导入）依赖 K1 清单与 K4 配置；修复“改语言后重新导入不生效”**。（已被 K13 取代：mineru auto 自行识别语言，不再选语言；保留 force 重导入）
-- **K13（mineru）先于基金库重导入/ H10**；完成后再将 K2/K3/K4/K12 的 liteparse OCR 部分标记为历史。
-- 建议顺序：**K0 → K0b → K1 → K3 → K13 → K12(force 部分) → K5 → K6a → K6 → K7 → K8 → K9 → K10 → K11**（K6b 随 K6/K6a 定）。
+- **K13（mineru 4.0.5）先于基金库重导入与 H10**。
+- 建议顺序：**K0 → K0b → K1 → K13 → K5 → K6a → K6 → K7 → K8 → K9 → K10 → K11**（K3 的 liteparse 并发随 K13 一并移除；K6b 随 K6/K6a 定）。
 - 与既有任务的关系：K 是 H9/B2/B4/B5（元数据/过滤）与 H10（真实报告验收）的前置；完成后更新 H10 验收与 PROJECT 现状。
 
 ### 6.5 K12 实现规格（按库 OCR 语言 + 强制重导入）
@@ -187,6 +189,8 @@
 - v4 **不产出** 经典版的 `<uuid>_origin.pdf`/`images/`/`content_list.json`；`temp/` 的经典产物仅作历史参考。
 - 首次运行拉模型到 `MINERU_HOME`（实测约 1 分钟，CPU ONNX+llama.cpp）；模型可复用。
 
+**对用户原话的答复**：你 `temp/` 的产物是**经典 MinerU**（`full.md`+`*_origin.pdf`+`images/`+`content_list.json`）；本项目选定 **4.0.5（v4）**，其 `mineru-kit parse` **不产出** `origin.pdf`/`images/`，而是单 markdown（图片 base64 内嵌）+ 单 middle_json。因此：**预览服务源 PDF**（等价于 origin.pdf），**正文用 v4 markdown**；若坚持经典三件套，需改用经典 MinerU（不在选定路径）。
+
 **后端**
 - 移除 liteparse：`_pdf_pages`/`parse_pdf_pages`、`pdf_ocr_mode`/`pdf_ocr_language`/`pdf_num_workers`、`/api/ocr-config` 与 `OcrSettings`、K12 的按库语言选择（保留 `force` 重新导入）。
 - `parse_file` 的 `.pdf` 分支：调用 `MINERU_CMD`（默认 `mineru-kit parse {pdf} -o {out} --tier {tier} --ocr-mode auto --format middle_json`）；正文取 markdown，页码取 middle_json 的 `page_idx` 重组每页（无则单页）。
@@ -199,14 +203,16 @@
 - 侧栏/库详情保留“重新导入”（切换解析器后重建）。
 
 **验收**
-- 基金库 10 份 PDF → mineru 4.0.5 解析 → 正文可读中文、页码可定位；预览显示源 PDF。
-- 未变文件二次导入跳过（不重跑 mineru）。
-- 移除 liteparse 后 `pytest`/`npm run build` 通过。
+- 基金库 10 份 PDF → mineru 4.0.5（`--tier standard`）解析 → 正文可读中文、页码可定位；预览显示源 PDF。
+- 未变文件二次导入跳过（不重跑 mineru）；`MINERU_HOME` 模型缓存可离线复跑。
+- 移除 liteparse 后 `pytest`/`npm run build` 通过；`pyproject.toml` 依赖更新（移除 liteparse，mineru 以可选 extra 或显式依赖引入）。
+- 首次运行模型拉取（约 1 分钟）有明确提示；断网复跑（模型已缓存）可成功。
+
+**已定稿**
+- tier=`standard`；入库正文用 **markdown**；页码取 `middle_json` 的 `page_idx`；正文图片**不渲染**（预览服务源 PDF）。见 §4 #13–#15。
 
 **待确认**
-- tier 默认（`basic` 快 / `standard` 质量高）与 `--pages` 全量策略。
-- 页码：优先 `middle_json`（推荐）；`markdown` 无页标记。
-- 图片：markdown 内嵌 base64，首期不在正文渲染图片（预览用源 PDF）。
+- 集成方式：本地 CLI `mineru-kit parse`（规格假设）vs 云端 API（`MINERU_API_KEY`）——见 §4 #16。
 - 命令安全：`MINERU_CMD` 仅接受默认模板或显式配置，避免任意命令注入。
 
 ## 7. 维护约定

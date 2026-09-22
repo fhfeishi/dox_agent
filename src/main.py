@@ -34,6 +34,7 @@ from .knowledge import Knowledge
 from .official_docs import import_official
 from .parsers import import_defaults, parse_web
 from .prompts import list_tasks
+from .retrieval import fit_history
 from .workspace import Workspace
 from .workspace import router as workspace_router
 
@@ -634,7 +635,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                     with tracing(settings):
                         async for event in graph.astream(
                             {
-                                "messages": [m.model_dump() for m in payload.messages],
+                                "messages": fit_history([m.model_dump() for m in payload.messages], settings.history_tokens),
                                 "rounds": 0,
                                 "evidence": [],
                                 "searches": {},

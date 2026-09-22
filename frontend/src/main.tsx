@@ -266,6 +266,13 @@ function App() {
   // the explorer (flag on) or the PDF-original preview (default) and keeps the page.
   const handleOpenSource = (source: Source, n: number) => {
     if (!source.doc_id) { setError(`引用 [${n}] 缺少文档定位信息，无法跳转`); return; }
+    // S8: compare the citation's version with the current document list. Never pre-probe
+    // `/file` (up to 200MB); a stale citation is reported instead of opening a wrong page.
+    const current = documents.find(item => item.doc_id === source.doc_id);
+    if (current && source.version && current.version !== source.version) {
+      setError(`引用 [${n}] 对应的文档已更新，已停止打开；请重新提问或刷新文献库`);
+      return;
+    }
     openDocument(source.doc_id, source.page ?? undefined);
   };
   function selectCorpus(id: string) {

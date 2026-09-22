@@ -93,6 +93,7 @@ class ReportDoc:
     project_no: str = ""
     year_from: int | None = None
     year_to: int | None = None
+    pi: str = ""
     rel_path: str = ""
 
 
@@ -211,10 +212,13 @@ def chunk_blocks(
 
 
 def metadata_from_filename(name: str) -> dict:
-    """文件名 ``<year_from>_<year_to>_<project_no>_...`` → 项目号与年份区间（H9 前置）。"""
+    """文件名 ``<year_from>_<year_to>_<project_no>_<pi>_...`` → 项目号、年份与负责人。"""
     parts = Path(name).stem.split("_")
     if len(parts) >= 3 and parts[0].isdigit() and parts[1].isdigit():
-        return {"year_from": int(parts[0]), "year_to": int(parts[1]), "project_no": parts[2]}
+        meta: dict = {"year_from": int(parts[0]), "year_to": int(parts[1]), "project_no": parts[2]}
+        if len(parts) >= 4:
+            meta["pi"] = parts[3]
+        return meta
     return {}
 
 
@@ -352,3 +356,93 @@ def select_reports(
                                    chunks=[chunks_by_id[cid] for cid in ids]))
     limit = config.max_reports.get(task_id, config.max_reports.get("task1", 3))
     return RetrievalResult(reports=kept[:limit], matched=True, partial=partial, candidates=len(scored))
+
+
+def estimate_tokens(text: str) -> int:
+    """D-L8 保守估算：CJK 字符 ~1 token，非 CJK ~4 字符/token（uncalibrated）。"""
+    if not text:
+        return 0
+    cjk = len(re.findall(r"[\u3400-\u9fff\uf900-\ufaff]", text))
+    return cjk + max(0, len(text) - cjk + 3) // 4
+
+
+def fit_history(messages: list[dict], budget_tokens: int) -> list[dict]:
+    """S5: drop the oldest complete turn until within budget; always keep the last user message.
+
+    system/task prompts are counted separately; truncation happens once before the graph sees
+    the history, so every node reads the same bounded messages.
+    """
+    kept = [dict(message) for message in messages]
+    while len(kept) > 1 and sum(estimate_tokens(m["content"]) for m in kept) > budget_tokens:
+        drop = 2 if kept[0]["role"] == "user" and len(kept) > 2 else 1
+        del kept[:drop]
+    return kept
+
+
+def report_header(doc: ReportDoc) -> str:
+    """L5 报告头：题目/项目号/负责人/报告年份。"""
+    parts = [f"《{doc.title}》"]
+    if doc.project_no:
+        parts.append(f"项目号 {doc.project_no}")
+    if doc.pi:
+        parts.append(f"负责人 {doc.pi}")
+    if doc.year_from and doc.year_to:
+        parts.append(f"报告年份 {doc.year_from}–{doc.year_to}")
+    return "，".join(parts)
+
+
+def chunk_source(chunk: Chunk, citation: int) -> dict:
+    """D-L1: one matched chunk as a citable source ``[citation]``."""
+    return {"citation": citation, "chunk_id": chunk.chunk_id, "doc_id": chunk.doc_id,
+            "version": chunk.version, "title": chunk.title, "page": chunk.page,
+            "heading": chunk.heading, "snippet": chunk.text[:300],
+            "url": f"/api/documents/{chunk.doc_id}?page={chunk.page}&version={chunk.version}"}
+
+
+def _clip_markdown(text: str, budget_tokens: int) -> str:
+    lines, used = [], 0
+    for line in text.splitlines():
+        cost = estimate_tokens(line) + 1
+        if used + cost > budget_tokens:
+            break
+        lines.append(line)
+        used += cost
+    return "\n".join(lines)
+
+
+@dataclass
+class AssembledContext:
+    reports: list[dict]
+    sources: list[dict]
+    truncated: list[str]
+    tokens: int
+
+
+def assemble_reports(selected: list[SelectedReport], read_markdown, *, total_tokens: int,
+                     report_tokens: int) -> AssembledContext:
+    """L5: pack selected reports' markdown within budget and map chunks to ``[n]``.
+
+    Ordered by report score; per-report allowance is ``report_tokens`` capped by the remaining
+    total. Markdown is clipped by line token budget; clipped/failed reports are recorded in
+    ``truncated``. Full section-aware truncation (hit section + headings) stays uncalibrated.
+    """
+    reports: list[dict] = []
+    sources: list[dict] = []
+    truncated: list[str] = []
+    used = 0
+    for report in sorted(selected, key=lambda item: item.score, reverse=True):
+        text = read_markdown(report.doc.doc_id, report.doc.version) or ""
+        allowance = min(report_tokens, total_tokens - used)
+        if not text.strip() or allowance <= 0:
+            truncated.append(report.doc.title)
+            continue
+        clipped = _clip_markdown(text, allowance)
+        clipped_short = len(clipped) < len(text)
+        if clipped_short:
+            truncated.append(report.doc.title)
+        used += estimate_tokens(clipped)
+        reports.append({"doc": report.doc, "header": report_header(report.doc), "markdown": clipped,
+                        "chunks": report.chunks, "truncated": clipped_short})
+        for chunk in report.chunks:
+            sources.append(chunk_source(chunk, len(sources) + 1))
+    return AssembledContext(reports=reports, sources=sources, truncated=truncated, tokens=used)

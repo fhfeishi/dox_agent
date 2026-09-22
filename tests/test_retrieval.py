@@ -12,7 +12,10 @@ from src.retrieval import (
     RawBlock,
     ReportDoc,
     RetrievalConfig,
+    assemble_reports,
     chunk_blocks,
+    estimate_tokens,
+    fit_history,
     metadata_from_filename,
     select_reports,
     strip_base64,
@@ -128,7 +131,7 @@ def test_user_gets_fund_project_metadata_from_filename():
     # When metadata is derived
     meta = metadata_from_filename(name)
     # Then the project number and reporting years are available for dedup and filtering
-    assert meta == {"year_from": 2021, "year_to": 2025, "project_no": "82030037"}
+    assert meta == {"year_from": 2021, "year_to": 2025, "project_no": "82030037", "pi": "赵国光"}
 
 
 def test_user_gets_generic_terms_filtered_from_coverage():
@@ -159,6 +162,47 @@ def test_user_project_metadata_agrees_with_fund_name_pattern():
         meta = metadata_from_filename(name)
         assert meta["project_no"] == name.split("_")[2]
         assert (meta["year_from"], meta["year_to"]) == (int(name[:4]), int(name[5:9]))
+
+
+def test_user_token_estimate_counts_cjk_and_english():
+    # Given CJK and Latin text
+    # When estimating tokens conservatively
+    # Then CJK is ~1/char and Latin ~4 chars/token
+    assert estimate_tokens("") == 0
+    assert estimate_tokens("人工智能") == 4
+    assert estimate_tokens("abcd") == 1
+    assert estimate_tokens("abcdefgh") == 2
+
+
+def test_user_history_is_truncated_to_budget_keeping_last_user_message():
+    # Given a history over budget with an old complete turn
+    messages = [{"role": "user", "content": "甲" * 100},
+                {"role": "assistant", "content": "乙" * 100},
+                {"role": "user", "content": "丙" * 10}]
+    # When the history is fitted to a small budget
+    kept = fit_history(messages, budget_tokens=50)
+    # Then the oldest turn is dropped and the last user message is kept
+    assert kept[-1] == messages[-1]
+    assert len(kept) < len(messages)
+    assert estimate_tokens(kept[-1]["content"]) <= 50
+
+
+def test_user_assembles_reports_with_header_and_chunk_citations():
+    # Given one selected report with a chunk and a report-level header
+    report = ReportDoc("a", "v", "癫痫报告", project_no="82030037", pi="赵国光",
+                       year_from=2021, year_to=2025)
+    chunks = {"a": [chunk_of("a", "癫痫致痫网络")]}
+    result = select_reports(chunks, [report], "癫痫致痫网络")
+    # When assembling the context under a token budget
+    context = assemble_reports(result.reports, lambda doc_id, version: "正文" * 100,
+                               total_tokens=500, report_tokens=200)
+    # Then the header, markdown budget and chunk-to-[n] mapping are produced
+    assert context.reports[0]["header"].startswith("《癫痫报告》")
+    assert "项目号 82030037" in context.reports[0]["header"]
+    assert "负责人 赵国光" in context.reports[0]["header"]
+    assert context.sources[0]["citation"] == 1
+    assert context.sources[0]["chunk_id"] == chunks["a"][0].chunk_id
+    assert context.tokens <= 500
 
 
 def test_user_sees_partial_when_fewer_reports_than_task_minimum():

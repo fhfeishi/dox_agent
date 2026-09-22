@@ -59,6 +59,13 @@ class Settings(BaseSettings):
     max_searches: int = Field(default=6, ge=1, le=20)
     max_reads: int = Field(default=8, ge=2, le=20)
     max_model_calls: int = Field(default=12, ge=3, le=40)
+    # D-L3/D-L8: conservative token budget (no tiktoken); uncalibrated.
+    model_context_tokens: int = Field(default=65536, ge=4096, le=200000)
+    retrieve_context_tokens: int = Field(default=24000, ge=1024, le=200000)
+    retrieve_report_tokens: int = Field(default=12000, ge=512, le=200000)
+    answer_reserve_tokens: int = Field(default=2048, ge=256, le=32768)
+    history_tokens: int = Field(default=12000, ge=0, le=200000)
+    answer_timeout: float = Field(default=180, ge=10, le=600)
     research_timeout: float = Field(default=120, ge=10, le=540)
     run_timeout: float = Field(default=180, ge=10, le=600)
     langsmith_tracing: bool = False

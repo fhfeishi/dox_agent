@@ -101,6 +101,7 @@ export interface AppValue {
   setOptions: Dispatch<SetStateAction<Options>>;
   send: (regenerate?: boolean, override?: SendOverride) => Promise<void>;
   regenerateAt: (index: number) => Promise<void>;
+  setTurnReport: (index: number, report: { report_id: string; markdown: string }) => void;
   stop: () => void;
   editing: EditState;
   setEditing: Dispatch<SetStateAction<EditState>>;
@@ -317,6 +318,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   async function settleActiveRun() {
     controller.current?.abort();
     await activeRun.current?.catch(() => undefined);
+  }
+
+  function setTurnReport(index: number, report: { report_id: string; markdown: string }) {
+    replaceTurns((current) => {
+      const next = [...current];
+      if (next[index]) next[index] = { ...next[index], report };
+      return next;
+    });
+    void workspace.saveNow(latestTurns.current, options);
   }
 
   async function send(regenerate = false, override?: SendOverride) {
@@ -659,6 +669,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setOptions,
       send,
       regenerateAt,
+      setTurnReport,
       stop,
       editing,
       setEditing,

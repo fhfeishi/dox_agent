@@ -104,6 +104,7 @@ export function ChatView() {
     openExplorer,
     inspectorOpen,
     toggleInspector,
+    setTurnReport,
   } = useApp();
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -218,6 +219,7 @@ export function ChatView() {
                       onRegenerate={
                         connected && ready ? () => void regenerateAt(i) : undefined
                       }
+                      onReport={(report) => setTurnReport(i, report)}
                       onDraft={() => setInput(turn.answer)}
                       onOpenSource={handleOpenSource}
                     />

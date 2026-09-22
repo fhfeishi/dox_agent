@@ -273,8 +273,9 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
   );
 }
 
-function ReportCard({ attempt }: { attempt: Attempt }) {
-  const [report, setReport] = useState<ReportInfo | null>(null);
+function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (report: { report_id: string; markdown: string }) => void }) {
+  const [local, setLocal] = useState<ReportInfo | null>(null);
+  const report = attempt.report ?? local;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const params = attempt.policy?.report_params;
@@ -286,7 +287,9 @@ function ReportCard({ attempt }: { attempt: Attempt }) {
     try {
       // First click is idempotent on the turn's run_id; regenerate uses a fresh id (#10 M3).
       const runId = report ? crypto.randomUUID() : attempt.runId;
-      setReport(await createReport({ ...params, run_id: runId }));
+      const result = await createReport({ ...params, run_id: runId });
+      if (onReport) onReport({ report_id: result.report_id, markdown: result.markdown });
+      else setLocal(result);
     } catch (e) {
       setError(e instanceof Error ? e.message : "生成报告失败");
     } finally {
@@ -345,6 +348,7 @@ export function MessageView({
   startedTick,
   onRegenerate,
   onOpenSource,
+  onReport,
   onDraft,
   defaultOpen = false,
   compact = false,
@@ -353,6 +357,7 @@ export function MessageView({
   startedTick?: number;
   onRegenerate?: () => void;
   onOpenSource?: (source: Source, n: number) => void;
+  onReport?: (report: { report_id: string; markdown: string }) => void;
   onDraft?: () => void;
   defaultOpen?: boolean;
   compact?: boolean;
@@ -441,7 +446,7 @@ export function MessageView({
       )}
 
       {!compact ? <Sources attempt={attempt} onOpenSource={onOpenSource} /> : null}
-      {!compact ? <ReportCard attempt={attempt} /> : null}
+      {!compact ? <ReportCard attempt={attempt} onReport={onReport} /> : null}
       {!compact ? <Telemetry attempt={attempt} /> : null}
       {!compact ? <Metrics attempt={attempt} startedTick={startedTick} /> : null}
 

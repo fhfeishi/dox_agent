@@ -15,6 +15,7 @@ export type Attempt = {
   firstTokenMs: number | null;
   totalMs: number | null;
   elapsedMs: number | null;
+  report?: { report_id: string; markdown: string };
 };
 export type Turn = Attempt & {
   question: string;

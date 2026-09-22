@@ -94,6 +94,7 @@ bash launch.sh
 | `CORPORA_ROOT` | `<repo>/.knowledge` | 语料根：每个直接子目录 = 一个自包含知识库（`source/`+`datadb/`+`vectordb/`） |
 | `DATA_DIR` | `<repo>/data` | 活动（默认）库的 SQLite 目录（`knowledge.sqlite3`） |
 | `VECTORDB_DIR` | `DATA_DIR/chroma` | 活动（默认）库的向量索引目录 |
+| `STATE_DIR` | `<repo>/data` | 应用级状态目录：会话/笔记 `workspace.sqlite3`，独立于活动库（K0；首次启动从旧库目录一次性迁移） |
 | `KNOWLEDGE_ROOT` | `<repo>/.knowledge` | 原始资料根；`ingest/local` 从此递归导入 PDF |
 | `TEXT_ROOT` | `KNOWLEDGE_ROOT` | `ingest/local` 导入 txt/md 的目录 |
 | `EMBEDDING_PATH` | 空 | 本地 embedding 模型目录；空 = 仅 BM25，不加载 embedding |

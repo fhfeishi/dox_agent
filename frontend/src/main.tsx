@@ -452,9 +452,9 @@ function App() {
         <button disabled={busy || !turns.length} className="w-full rounded-lg border bg-white p-2 text-sm disabled:opacity-40" onClick={exportChat}>导出对话与证据版本</button>
       </div>
     </SettingsDrawer>
-    <DocumentPreview doc={previewDoc} onClose={() => setPreviewDoc(null)}/>
+    <DocumentPreview doc={previewDoc} corpus={effectiveCorpusId} onClose={() => setPreviewDoc(null)}/>
     {uiFlags.docPanel && <DocumentExplorer open={explorerOpen} onClose={() => setExplorerOpen(false)}
-      documents={documents} corpusReady={corpusReady} corpusName={currentCorpus?.name}
+      documents={documents} corpusReady={corpusReady} corpusName={currentCorpus?.name} corpus={effectiveCorpusId}
       docId={explorerDoc?.docId ?? null} page={explorerDoc?.page ?? null}
       onNavigate={(docId, page) => setExplorerDoc(docId ? { docId, page } : null)}
       allowedDocIds={options.allowed_doc_ids}

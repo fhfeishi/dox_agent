@@ -4,8 +4,9 @@ type ReadResult = { text: string; next_start_line: number | null; start_line: nu
 
 const MAX_PAGES = 2000;
 
-async function readPage(docId: string, page: number, startLine: number, version: string): Promise<ReadResult> {
+async function readPage(docId: string, page: number, startLine: number, version: string, corpus?: string): Promise<ReadResult> {
   const query = new URLSearchParams({ page: String(page), start_line: String(startLine), version });
+  if (corpus) query.set("corpus", corpus);
   const response = await fetch(`/api/documents/${encodeURIComponent(docId)}?${query}`);
   if (!response.ok) {
     const payload = await response.json().catch(() => null);
@@ -18,7 +19,7 @@ async function readPage(docId: string, page: number, startLine: number, version:
  * Read the whole stored document. `next_start_line === null` only means the current page is
  * exhausted, so advance to the next page; stop after the last page (or a "页码不存在" page).
  */
-export async function loadDocumentText(doc: DocumentInfo): Promise<{ text: string; kind: string; parser: string }> {
+export async function loadDocumentText(doc: DocumentInfo, corpus?: string): Promise<{ text: string; kind: string; parser: string }> {
   const parts: string[] = [];
   let kind = doc.kind ?? "text";
   let parser = doc.parser ?? "";
@@ -28,7 +29,7 @@ export async function loadDocumentText(doc: DocumentInfo): Promise<{ text: strin
     while (true) {
       let result: ReadResult;
       try {
-        result = await readPage(doc.doc_id, page, start, doc.version);
+        result = await readPage(doc.doc_id, page, start, doc.version, corpus);
       } catch (error) {
         const message = (error as Error).message;
         // A missing page or an empty page ends this page; a version change is fatal.

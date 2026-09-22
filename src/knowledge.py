@@ -58,6 +58,10 @@ class Knowledge:
         with self.connect() as db:
             db.execute("""CREATE TABLE IF NOT EXISTS docs (
                 id TEXT PRIMARY KEY, version TEXT NOT NULL, payload TEXT NOT NULL)""")
+            # K1: source-file manifest for incremental import and deletion sync.
+            db.execute("""CREATE TABLE IF NOT EXISTS files (
+                rel_path TEXT PRIMARY KEY, size INTEGER NOT NULL, mtime_ns INTEGER NOT NULL,
+                sha256 TEXT NOT NULL, doc_id TEXT, status TEXT NOT NULL, updated_at TEXT NOT NULL)""")
 
     def connect(self):
         return sqlite3.connect(self.path, timeout=30)
@@ -98,6 +102,30 @@ class Knowledge:
         if not row:
             raise KeyError("文档不存在")
         return {"doc_id": doc_id, "version": row[0], **json.loads(row[1])}
+
+    def files(self) -> dict[str, dict]:
+        """K1: source-file manifest keyed by corpus-relative path."""
+        with self.connect() as db:
+            return {
+                row[0]: {"rel_path": row[0], "size": row[1], "mtime_ns": row[2], "sha256": row[3],
+                         "doc_id": row[4], "status": row[5], "updated_at": row[6]}
+                for row in db.execute("SELECT * FROM files")
+            }
+
+    def record_file(self, rel_path: str, size: int, mtime_ns: int, sha256: str, doc_id: str | None, status: str) -> None:
+        with self.connect() as db:
+            db.execute("INSERT OR REPLACE INTO files VALUES (?,?,?,?,?,?,?)",
+                       (rel_path, size, mtime_ns, sha256, doc_id, status, datetime.now(UTC).isoformat()))
+
+    def drop_file(self, rel_path: str) -> str | None:
+        """K1: a missing source file leaves the manifest and the docs table (BM25 excluded)."""
+        with self.connect() as db:
+            row = db.execute("SELECT doc_id FROM files WHERE rel_path=?", (rel_path,)).fetchone()
+            db.execute("DELETE FROM files WHERE rel_path=?", (rel_path,))
+            doc_id = row[0] if row else None
+            if doc_id:
+                db.execute("DELETE FROM docs WHERE id=?", (doc_id,))
+        return doc_id
 
     def search(self, query: str, limit: int = 6, *, allowed_doc_ids: list[str] | None = None) -> list[dict]:
         query_tokens = tokens(query)

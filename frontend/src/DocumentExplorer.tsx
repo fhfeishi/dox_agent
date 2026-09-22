@@ -11,8 +11,8 @@ import type { DocumentInfo } from "./useDocuments";
  * U2.1/U2.2/U2.3/U2.5 组合：目录树浏览 + 原文件查看 + "限定为检索资料"。
  * 浏览只改变面板内选中项；检索范围仅在显式点击"限定"按钮后才复用 allowed_doc_ids。
  */
-export function DocumentExplorer({ open, onClose, documents, corpusReady, corpusName, docId, page, onNavigate, allowedDocIds, onLimitScope }: {
-  open: boolean; onClose: () => void; documents: DocumentInfo[]; corpusReady: boolean; corpusName?: string;
+export function DocumentExplorer({ open, onClose, documents, corpusReady, corpusName, corpus, docId, page, onNavigate, allowedDocIds, onLimitScope }: {
+  open: boolean; onClose: () => void; documents: DocumentInfo[]; corpusReady: boolean; corpusName?: string; corpus?: string;
   docId: string | null; page: number | null; onNavigate: (docId: string | null, page: number | null) => void;
   allowedDocIds: string[] | null; onLimitScope: (docIds: string[] | null) => void;
 }) {
@@ -28,8 +28,8 @@ export function DocumentExplorer({ open, onClose, documents, corpusReady, corpus
     {corpusReady && doc && <>
       <button type="button" className="mb-3 text-xs text-stone-500 underline" onClick={() => onNavigate(null, null)}>← 返回目录</button>
       {isPdf
-        ? <PdfViewer docId={doc.doc_id} version={doc.version} page={page} pages={doc.pages} onPageChange={next => onNavigate(doc.doc_id, next)}/>
-        : <TextPane doc={doc}/>}
+        ? <PdfViewer docId={doc.doc_id} version={doc.version} page={page} pages={doc.pages} corpus={corpus} onPageChange={next => onNavigate(doc.doc_id, next)}/>
+        : <TextPane doc={doc} corpus={corpus}/>}
       <div className="mt-4 border-t border-stone-200 pt-3 text-xs">
         {limited
           ? <div className="flex items-center justify-between gap-2">
@@ -44,7 +44,7 @@ export function DocumentExplorer({ open, onClose, documents, corpusReady, corpus
 }
 
 /** U2.3：规范化正文预览（Markdown 渲染 + 原文切换），与 U7 的 DocumentPreview 同一读取通道。 */
-function TextPane({ doc }: { doc: DocumentInfo }) {
+function TextPane({ doc, corpus }: { doc: DocumentInfo; corpus?: string }) {
   const [text, setText] = useState("");
   const [kind, setKind] = useState("");
   const [loading, setLoading] = useState(false);
@@ -53,12 +53,12 @@ function TextPane({ doc }: { doc: DocumentInfo }) {
   useEffect(() => {
     let cancelled = false;
     setLoading(true); setError(""); setText(""); setRaw(false);
-    loadDocumentText(doc)
+    loadDocumentText(doc, corpus)
       .then(result => { if (!cancelled) { setText(result.text); setKind(result.kind); } })
       .catch(e => { if (!cancelled) setError((e as Error).message); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
-  }, [doc]);
+  }, [doc, corpus]);
   const markdown = kind === "official" || doc.parser.includes("markdown");
   return <div className="min-h-0 flex-1 overflow-auto">
     {loading && <p className="text-sm text-stone-500">正在读取正文…</p>}

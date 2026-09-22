@@ -5,7 +5,7 @@ export type Step = { run_id: string; id: string; sequence: number; phase: string
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; searches: number; reads: number; tokens: number | null };
 export type Options = { allowed_doc_ids: string[] | null; task_id?: string; corpus_id?: string };
 export type TaskInfo = { id: string; name: string; description: string; has_template: boolean };
-export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; errors: { source?: string; error: string }[] };
+export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
   docs_count: number; preparation: string; is_default: boolean;

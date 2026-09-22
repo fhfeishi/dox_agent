@@ -5,7 +5,7 @@ import { DocumentPanel } from "./DocumentPanel";
 import { loadDocumentText } from "./documentPreview";
 import type { DocumentInfo } from "./useDocuments";
 
-export function DocumentPreview({ doc, onClose }: { doc: DocumentInfo | null; onClose: () => void }) {
+export function DocumentPreview({ doc, corpus, onClose }: { doc: DocumentInfo | null; corpus?: string; onClose: () => void }) {
   const [text, setText] = useState("");
   const [kind, setKind] = useState("");
   const [parser, setParser] = useState("");
@@ -17,12 +17,12 @@ export function DocumentPreview({ doc, onClose }: { doc: DocumentInfo | null; on
     let cancelled = false;
     setLoading(true); setError(""); setText(""); setRaw(false);
     setKind(doc.kind ?? ""); setParser(doc.parser ?? "");
-    loadDocumentText(doc)
+    loadDocumentText(doc, corpus)
       .then(result => { if (!cancelled) { setText(result.text); setKind(result.kind); setParser(result.parser); } })
       .catch(e => { if (!cancelled) setError((e as Error).message); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
-  }, [doc]);
+  }, [doc, corpus]);
   const markdown = kind === "official" || parser.includes("markdown");
   return <DocumentPanel open={!!doc} onClose={onClose} header={doc?.title ?? ""}
     meta={doc && <p className="mt-1 break-all text-xs text-stone-500">{doc.origin} · {kind || doc.kind} · {parser || doc.parser} · 版本 {doc.version} · 采集 {doc.captured_at}</p>}>

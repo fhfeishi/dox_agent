@@ -27,6 +27,8 @@ class Settings(BaseSettings):
     data_dir: Path = DOX_AGENT_ROOT / "data"
     # 活动库的向量库目录（与 DATA_DIR 分离时使用）；缺省为 DATA_DIR/chroma。
     vectordb_dir: Path | None = None
+    # K0: 应用级状态目录（会话/笔记），独立于当前活动语料；切换/删除库不移动历史会话。
+    state_dir: Path = DOX_AGENT_ROOT / "data"
     # 语料根：其下每个直接子目录是一个自包含知识库（source/datadb/vectordb）。
     corpora_root: Path = KNOWLEDGE_ROOT
     embedding_path: str = ""

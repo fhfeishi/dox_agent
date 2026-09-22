@@ -41,7 +41,7 @@ export function IngestTools({ documents, refresh, connected = true, onOpenDocume
       <h3 className="font-semibold">知识库 · {documents.length} 份</h3>
       <button disabled={busy || !connected} className="rounded-lg border bg-white px-3 py-1 text-xs disabled:opacity-40" onClick={() => void run(async () => {
         const result = await api("/api/ingest/local", {});
-        setNotice(`已导入 ${result.imported.length} 份；失败 ${result.errors.length} 份${result.errors.map((e: { source: string }) => " · " + e.source).join("")}`);
+        setNotice(`导入完成：新增 ${result.added ?? result.imported.length} · 更新 ${result.updated ?? 0} · 跳过 ${result.skipped ?? 0} · 删除 ${result.deleted ?? 0}；失败 ${result.errors.length} 份${result.errors.map((e: { source: string }) => " · " + e.source).join("")}`);
         refresh();
       })}>导入 / 更新本地文本与 PDF</button>
     </div>

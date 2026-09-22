@@ -50,13 +50,13 @@
 
 **侧栏与文献库**：侧栏可收束为图标栏/展开为全宽并持久化，收束后核心入口与异常提示仍可达；提供"文献库"一级入口浏览已入库文档并打开预览。
 
-**知识库管理与文件操作（规划中）**
+**知识库管理与文件操作（部分已实现）**
 - 一份独立语料 = `CORPORA_ROOT`（默认 `.knowledge`）下一个自包含目录，内含 `source/`（原始）+ `datadb/`（SQLite）+ `vectordb/`（向量），库之间隔离。
 - 知识库 CRUD：新建、重命名、删除（默认只删派生数据；删源文件需显式确认）。
 - 库内文件 CRUD：列表、上传（md/pdf/txt；docx 见 Word 支持）、删除、重命名/替换；`source/` 为唯一事实来源。
 - 侧栏列出库（名称/份数/就绪状态）并可切换；库详情展示文档清单；基金库显示题目/负责人/项目编号/报告年份区间。
 - 每个会话绑定一个库；输入区资料范围为两层：库（必选）+ 库内文档（可选，`allowed_doc_ids`）；切库清空越界选择并提示。
-- 导入需增量（未变文件跳过）、可并发、OCR 按需求触发，并给出解析/索引两阶段进度；详见 [`ITERATION.md`](ITERATION.md) K 阶段。
+- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。并发解析、OCR 按需触发、解析/索引两阶段进度仍待 K2/K3/K5。
 - 预览支持 pdf（浏览器原生）/markdown（渲染）/word（转 HTML）/txt（纯文本）。
 - 首期不做跨库联合检索、库内分区、多用户权限隔离。
 
@@ -74,7 +74,7 @@
 | Agent | `understand → research/direct → validate → answer`；证据交接与预算 | `src/agent/` |
 | 任务提示词 | base + task1–4 + 加载器 | `src/prompts/` |
 | 库注册 | 磁盘扫描 + `CORPORA` 覆盖；每库独立 `Knowledge` | `src/agent/corpora.py` |
-| 工作区 | 会话/笔记持久化、revision、分支 | `src/workspace.py`、`frontend/src/workspace.ts` |
+| 工作区 | 会话/笔记持久化、revision、分支；工作区库固定在应用级 `STATE_DIR`，独立于活动语料（K0） | `src/workspace.py`、`frontend/src/workspace.ts` |
 | 前端 | 会话/任务/资料/文档窗口/文献库/设置与状态 | `frontend/src/` |
 | 本地数据 | 自包含库 `.knowledge/<库>/{source,datadb,vectordb}/`；演示 `.demo_langchain/` 同构 | 仓库 `README.md`、[`DECISIONS.md`](DECISIONS.md) |
 
@@ -90,8 +90,8 @@
 |---|---|
 | `GET /api/health` | `status`/`app_id`/`model`/`docs_count`/`api_key_configured`/`model_verified(false)`/`web_provider`/`preparation`/`corpus_id`/`index_progress` |
 | `GET /api/documents?corpus=` | 摘要数组（`pages` 为页数、不含正文）+ `rel_path`/`status`/`meta`（`meta` 占位 `{}`）；未初始化库返回空数组；未知库 404 |
-| `GET /api/documents/{doc_id}` | 按 `page`/`start_line`/`version`/`section` 读取原文证据；404/422。**当前仅默认库**，多库待 K0b 补 `corpus` |
-| `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range）；404/422/415/413(>200MB)；仅根目录内本地文件。**当前仅默认库**，多库待 K0b 补 `corpus` |
+| `GET /api/documents/{doc_id}` | 按 `page`/`start_line`/`version`/`section` 读取原文证据；可选 `corpus`（缺省默认库）；404/422 |
+| `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range）；可选 `corpus`（缺省默认库）；404/422/415/413(>200MB)；仅根目录内本地文件 |
 | `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`has_template` |
 | `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job` |
 | `POST /api/corpora/{id}/ingest` | 按库导入（限定库 root 内）；202 + job；404/409 |
@@ -139,6 +139,6 @@ SQLite 当前文档 → 页/行窗口 → BM25Plus sparse；配置 `EMBEDDING_PA
 ## 6. 运行与验证
 
 - 启动：`bash launch.sh`（复用环境 → 安装依赖 → 构建前端 → uvicorn）；默认 <http://127.0.0.1:8000>。
-- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、`CORPORA*`、预算与超时）。
+- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`STATE_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、`CORPORA*`、预算与超时）。
 - 测试：`.venv/bin/python -m pytest tests -q`；`cd frontend && npm test`、`npm run build`。
 - 本地数据布局与配置映射见仓库 `README.md`。

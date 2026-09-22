@@ -1,6 +1,7 @@
 """Replaceable ingestion functions: local LiteParse, Crawl4AI or Firecrawl."""
 
 import asyncio
+import hashlib
 import json
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -101,26 +102,91 @@ async def parse_web(url: str, settings: Settings) -> Document:
 
 
 def import_defaults(knowledge, settings: Settings, *, root: Path | None = None, exclude: list[Path] = ()) -> dict:
-    # H2: with `root` given, only that corpus' own files are collected (PDF/txt/md);
-    # the legacy path keeps its old behaviour but may exclude other corpora, so
-    # knowledge_root.rglob("*.pdf") can never mix one corpus into another.
-    if root is not None:
-        base = Path(root)
-        paths = sorted({p for p in base.rglob("*") if p.suffix.lower() in {".pdf", ".txt", ".md"}})
-    else:
-        paths = sorted(
-            set(settings.text_root.rglob("*.txt"))
-            | set(settings.text_root.rglob("*.md"))
-            | {p for p in settings.knowledge_root.rglob("*") if p.suffix.lower() == ".pdf"}
-        )
+    """K1: incremental local import backed by the `files` manifest.
+
+    With `root` (a corpus ``source/`` dir) only that corpus is collected; the legacy path
+    keeps the old dual-root collection. Unchanged files are skipped; changed/new files are
+    re-parsed; source files that disappeared are removed from the manifest and from `docs`
+    (so BM25 stops returning them; dense drops stale ids on its next sync). An empty manifest
+    is the first backfill and re-parses everything once.
+    """
     excluded = [item.resolve() for item in exclude]
-    imported, errors = [], []
-    for path in paths:
+    manifest = knowledge.files()
+    current: dict[str, Path] = {}
+    for path in collect_sources(root, settings):
         resolved = path.resolve()
         if any(resolved == item or item in resolved.parents for item in excluded):
             continue
+        base = Path(root) if root is not None else source_base(path, settings)
         try:
-            imported.append(knowledge.put(parse_file(path, settings)))
+            rel = resolved.relative_to(base.resolve()).as_posix()
+        except ValueError:
+            rel = path.name
+        current[rel] = path
+
+    added = updated = skipped = 0
+    imported, errors = [], []
+    for rel, path in current.items():
+        prev = manifest.get(rel)
+        try:
+            stat = path.stat()
+            if prev and prev["status"] == "indexed" and prev["size"] == stat.st_size and prev["mtime_ns"] == stat.st_mtime_ns:
+                skipped += 1
+                continue
+            digest = sha256_file(path)
+            if prev and prev["status"] == "indexed" and prev["sha256"] == digest:
+                knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, prev["doc_id"], "indexed")
+                skipped += 1
+                continue
+            result = knowledge.put(parse_file(path, settings))
+            knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, result["doc_id"], "indexed")
+            imported.append(result)
+            updated += 1 if prev else 0
+            added += 0 if prev else 1
         except Exception as exc:  # noqa: BLE001 - retain other sources on parser failure
             errors.append({"source": path.name, "error": type(exc).__name__})
-    return {"imported": imported, "errors": errors}
+            try:
+                stat = path.stat()
+                knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, (prev or {}).get("sha256", ""),
+                                      (prev or {}).get("doc_id"), "error")
+            except OSError:
+                pass
+
+    deleted = 0
+    for rel in list(manifest):
+        if rel in current or manifest[rel]["status"] == "removed":
+            continue
+        knowledge.drop_file(rel)
+        deleted += 1
+    return {"imported": imported, "errors": errors, "added": added, "updated": updated,
+            "skipped": skipped, "deleted": deleted, "scanned": len(current)}
+
+
+def source_base(path: Path, settings: Settings) -> Path:
+    """Legacy collection spans knowledge_root/text_root; pick the root that contains the file."""
+    for candidate in (settings.knowledge_root, settings.text_root):
+        try:
+            path.resolve().relative_to(candidate.resolve())
+            return candidate
+        except ValueError:
+            continue
+    return path.parent
+
+
+def collect_sources(root: Path | None, settings: Settings) -> list[Path]:
+    if root is not None:
+        base = Path(root)
+        return sorted(p for p in base.rglob("*") if p.is_file() and p.suffix.lower() in {'.pdf', '.txt', '.md'})
+    return sorted(
+        set(settings.text_root.rglob("*.txt"))
+        | set(settings.text_root.rglob("*.md"))
+        | {p for p in settings.knowledge_root.rglob("*") if p.is_file() and p.suffix.lower() == ".pdf"}
+    )
+
+
+def sha256_file(path: Path, chunk: int = 1 << 20) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(chunk), b""):
+            digest.update(block)
+    return digest.hexdigest()

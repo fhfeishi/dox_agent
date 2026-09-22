@@ -27,6 +27,7 @@
 
 - 采用：`<KB>/datadb` 维护 `files(rel_path,size,mtime_ns,sha256,doc_id,status)`；以 size+mtime 作为廉价签名跳过未变文件，必要时用 sha256 兜底；源文件删除即标记文档移除。
 - 理由与代价：避免未变文件重复 OCR/解析；代价是新增清单表与删除同步逻辑。
+- 状态：**已实现（K1）**。`Knowledge` 增 `files` 表与 `files()`/`record_file()`/`drop_file()`；`import_defaults(knowledge, settings, root=<corpus>/source)` 按 `size+mtime_ns` 廉价跳过、必要时 `sha256` 兜底，源文件删除即 `drop_file`（删 manifest 行与 `docs` 行），返回 `added/updated/skipped/deleted/scanned`。清单为空视作存量库首次回填，全量重解析一次。测试见 `tests/test_incremental_import.py`；实机默认演示库二次导入 `added=0, skipped=1`，删除探针文件后 `deleted=1` 且不再出现在 `/api/documents`。
 
 ## 两阶段导入（先文本后向量）（2026-09-22）
 
@@ -55,6 +56,7 @@
 - 采用：`workspace.sqlite3` 迁出活动库的 `<KB>/datadb/`，放固定应用级目录；`app.state.workspace` 不再随活动库变化。
 - 理由与代价：当前会话库位于活动库目录内（`main.py:91`），删除/重命名默认库会连带丢失会话与笔记；代价是新增一个应用级路径配置。
 - 前置：K0；未完成前不开放库删除/重命名。
+- 状态：**已实现（K0）**。新增 `Settings.state_dir`（默认 `DOX_AGENT_ROOT/data`）；`main.workspace_path` 把 `workspace.sqlite3` 放在该目录，并在应用级文件不存在时从活动库 `<KB>/datadb/workspace.sqlite3` 一次性复制迁移。测试见 `tests/test_corpora_state.py`。
 
 ## 解析器：固定使用 liteparse（2026-09-22）
 
@@ -72,6 +74,7 @@
 
 - 采用：删除文档/文件时，除删 `docs` 行外，必须同时从 BM25（查询期重建）与 dense（Chroma）排除，避免已删文档仍可被检索/引用。
 - 影响：K1 删除同步、K7 文件删除。
+- 状态：K1 已实现 BM25 侧（`drop_file` 删 `docs` 行）；dense 侧由 `DenseIndex._search` 的 missing/stale diff 在下次未限定资料的检索时清理，不做即时删除。
 
 ## corpus_id 稳定性（2026-09-22）
 
@@ -82,6 +85,7 @@
 
 - 采用：`GET /api/documents/{doc_id}` 与 `/file` 增加可选 `corpus`（或按 doc_id 跨库定位），与列表接口一致。
 - 理由：当前两者只用默认库（`main.py:312`、`main.py:266`），切到非默认库后引用跳页/原文预览 404；这是已实现的 U2/U7 缺口，K7/K9 多库预览的前置（K0b）。
+- 状态：**已实现（K0b）**。两个接口接受可选 `corpus`；未知库返回 404，不再静默回退默认库；前端 `documentPreview.ts`/`PdfViewer` 传递当前库 id。测试见 `tests/test_corpora_state.py`。
 
 ## 上传安全与配额（2026-09-22）
 

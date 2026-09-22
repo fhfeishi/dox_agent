@@ -43,7 +43,7 @@ export function LibraryView({ documents, corpusReady, onOpenDocument, onBack, co
             : `已入库文档 ${documents.length} 份`} · 浏览与预览不改变检索范围
         </p>
         {job && <p role="status" className={`mt-1 text-xs ${job.status === "error" ? "text-red-700" : job.status === "running" ? "text-amber-700" : "text-teal-700"}`}>
-          {{ running: `正在导入…（${job.completed}/${job.total || "?"}）`, done: `导入完成：${job.imported} 份，更新 ${job.changed} 份`, partial: `导入部分完成：成功 ${job.imported} 份，失败 ${job.errors.length} 份`, error: "导入失败", idle: "" }[job.status] ?? job.status}
+          {{ running: `正在导入…（${job.completed}/${job.total || "?"}）`, done: `导入完成：新增 ${job.added ?? job.imported} · 更新 ${job.updated ?? job.changed} · 跳过 ${job.skipped ?? 0} · 删除 ${job.deleted ?? 0}`, partial: `导入部分完成：成功 ${job.imported} 份，失败 ${job.errors.length} 份`, error: "导入失败", idle: "" }[job.status] ?? job.status}
           {!!job.errors.length && job.status !== "running" && <span className="text-stone-400">（{job.errors.map(e => e.source ?? e.error).slice(0, 3).join("、")}{job.errors.length > 3 ? " 等" : ""}）</span>}
         </p>}
       </div>

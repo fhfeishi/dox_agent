@@ -141,7 +141,7 @@ def test_user_partial_block_keeps_evidence_and_stops_tools(tmp_path, monkeypatch
 
 def test_user_removed_strategy_fields_are_rejected_and_health_is_clean(tmp_path):
     store = Knowledge(tmp_path / "db")
-    app = create_app(Settings(_env_file=None), store, lambda store, settings: graph.build_graph(store, settings, Model()))
+    app = create_app(Settings(_env_file=None, state_dir=tmp_path), store, lambda store, settings: graph.build_graph(store, settings, Model()))
     with TestClient(app) as client:
         for option in ({"evidence_level": "invalid"}, {"query_routing": "invalid"},
                        {"execution_mode": "research"}, {"allowed_doc_ids": []}):
@@ -156,7 +156,7 @@ def test_user_run_timeout_reports_budget_instead_of_a_fake_answer(tmp_path):
             await asyncio.Event().wait()
             yield {}  # pragma: no cover
 
-    settings = Settings(_env_file=None).model_copy(update={"run_timeout": 0.05})
+    settings = Settings(_env_file=None, state_dir=tmp_path).model_copy(update={"run_timeout": 0.05})
     app = create_app(settings, Knowledge(tmp_path / "db"), lambda store, settings: HangingGraph())
     with TestClient(app) as client:
         response = client.post("/api/chat", json={"messages": messages()})

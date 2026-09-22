@@ -5,13 +5,16 @@ import { useEffect, useState } from "react";
  * `/api/documents/{id}/file`（FileResponse 自带 Range）加 `#page=` 片段定位页码。
  * 缩放依赖阅读器自带工具栏；D10 页码一致性校验完成前按"文档+页"best effort。
  */
-export function PdfViewer({ docId, version, page, pages, onPageChange }: {
-  docId: string; version?: string; page: number | null; pages: number; onPageChange?: (page: number) => void;
+export function PdfViewer({ docId, version, page, pages, corpus, onPageChange }: {
+  docId: string; version?: string; page: number | null; pages: number; corpus?: string; onPageChange?: (page: number) => void;
 }) {
   const [current, setCurrent] = useState(Math.max(1, page ?? 1));
   // Citation jumps or document switches arrive as prop changes; keep the viewer in sync.
   useEffect(() => { setCurrent(Math.max(1, page ?? 1)); }, [docId, page]);
-  const query = version ? `?version=${encodeURIComponent(version)}` : "";
+  const params = new URLSearchParams();
+  if (version) params.set("version", version);
+  if (corpus) params.set("corpus", corpus);
+  const query = params.toString() ? `?${params}` : "";
   const fileUrl = `/api/documents/${encodeURIComponent(docId)}/file${query}`;
   function jump(next: number) {
     const clamped = Math.min(Math.max(1, next), Math.max(1, pages));

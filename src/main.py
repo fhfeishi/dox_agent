@@ -3,6 +3,7 @@
 import asyncio
 import json
 import logging
+import shutil
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Literal
@@ -18,9 +19,9 @@ from .agent.graph import build_graph
 from .agent.models import tracing
 from .agent.usage import TurnUsage
 from .knowledge import Knowledge
-from .prompts import list_tasks
 from .official_docs import import_official
 from .parsers import import_defaults, parse_web
+from .prompts import list_tasks
 from .workspace import Workspace
 from .workspace import router as workspace_router
 
@@ -78,6 +79,24 @@ class OfficialRequest(BaseModel):
     sections: list[Literal["langchain", "langgraph", "deepagents"]] = Field(default=["langchain", "langgraph", "deepagents"], min_length=1, max_length=3)
 
 
+def workspace_path(settings, knowledge) -> Path:
+    """K0: keep sessions/notes in the app-level ``state_dir``, independent of the active corpus.
+
+    One-time migration copies a legacy ``<corpus>/datadb/workspace.sqlite3`` if the app-level
+    file does not exist yet, so history survives the move.
+    """
+    target = settings.state_dir / "workspace.sqlite3"
+    legacy = knowledge.path.parent / "workspace.sqlite3"
+    if not target.exists() and legacy.exists():
+        try:
+            if legacy.resolve() != target.resolve():
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(legacy, target)
+        except OSError:
+            pass
+    return target
+
+
 def sse(event: str, data: object) -> str:
     return f"event: {event}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n"
 
@@ -88,7 +107,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     @asynccontextmanager
     async def lifespan(app):
         app.state.knowledge = knowledge or Knowledge(settings.data_dir / "knowledge.sqlite3", settings=settings)
-        app.state.workspace = Workspace(app.state.knowledge.path.parent / "workspace.sqlite3")
+        app.state.workspace = Workspace(workspace_path(settings, app.state.knowledge))
         app.state.knowledge.workspace = app.state.workspace
         app.state.import_lock = asyncio.Lock()
         app.state.preview = None
@@ -160,6 +179,15 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             app.state.corpus_knowledge[info.id] = cached
         return cached
 
+    async def knowledge_for_request(corpus: str | None) -> Knowledge:
+        """Resolve the corpus for read/file; absent = the default corpus (K0b)."""
+        if corpus is None:
+            return app.state.knowledge
+        info = await asyncio.to_thread(find_corpus, corpus)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        return knowledge_for(info)
+
     @app.get("/api/health")
     async def health(request: Request):
         docs_count = await asyncio.to_thread(request.app.state.knowledge.count)
@@ -210,17 +238,22 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         running = request.app.state.corpus_tasks.get(corpus_id)
         if running and not running.done():
             raise HTTPException(409, "该知识库正在导入")
-        job = {"status": "running", "total": 0, "completed": 0, "imported": 0, "changed": 0, "errors": []}
+        job = {"status": "running", "total": 0, "completed": 0, "imported": 0, "changed": 0,
+               "added": 0, "updated": 0, "skipped": 0, "deleted": 0, "errors": []}
         request.app.state.corpus_jobs[corpus_id] = job
 
         async def run():
             try:
                 async with request.app.state.import_lock:
                     kn = knowledge_for(info)
-                    report = await asyncio.to_thread(import_defaults, kn, settings, root=info.root)
-                job["total"] = job["completed"] = len(report["imported"]) + len(report["errors"])
+                    report = await asyncio.to_thread(import_defaults, kn, settings, root=info.source_dir)
+                job["total"] = job["completed"] = report["scanned"]
                 job["imported"] = len(report["imported"])
-                job["changed"] = sum(1 for item in report["imported"] if item.get("changed"))
+                job["changed"] = report["added"] + report["updated"]
+                job["added"] = report["added"]
+                job["updated"] = report["updated"]
+                job["skipped"] = report["skipped"]
+                job["deleted"] = report["deleted"]
                 job["errors"] = report["errors"]
                 job["status"] = "partial" if job["errors"] else "done"
             except Exception as exc:
@@ -264,10 +297,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         return enriched
 
     @app.get("/api/documents/{doc_id}/file")
-    async def document_file(request: Request, doc_id: str, version: str | None = None):
+    async def document_file(request: Request, doc_id: str, version: str | None = None, corpus: str | None = None):
         """D2: raw PDF/Markdown/txt for the browser reader; Range is handled by FileResponse."""
+        kn = await knowledge_for_request(corpus)
         try:
-            doc = await asyncio.to_thread(request.app.state.knowledge.get, doc_id)
+            doc = await asyncio.to_thread(kn.get, doc_id)
         except KeyError as exc:
             raise HTTPException(404, "文档不存在") from exc
         if version and version != doc["version"]:
@@ -311,11 +345,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     @app.get("/api/documents/{doc_id}")
     async def read_document(
-        request: Request, doc_id: str, page: int = 1, start_line: int = 1, version: str | None = None, section: bool = False
+        request: Request, doc_id: str, page: int = 1, start_line: int = 1, version: str | None = None,
+        section: bool = False, corpus: str | None = None,
     ):
+        kn = await knowledge_for_request(corpus)
         try:
             return await asyncio.to_thread(
-                (request.app.state.knowledge.read_section if section else request.app.state.knowledge.read), doc_id, page, start_line, 60, version
+                (kn.read_section if section else kn.read), doc_id, page, start_line, 60, version
             )
         except KeyError as exc:
             raise HTTPException(404, "文档不存在") from exc
@@ -327,9 +363,12 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         if app.state.preparation == "running":
             raise HTTPException(409, "知识库正在初始化，请稍后导入")
         # H2: never let the legacy whole-root rglob pull sibling corpora into this one.
-        others = [info.root for info in await asyncio.to_thread(scan_corpora, settings) if not info.is_default]
+        infos = await asyncio.to_thread(scan_corpora, settings)
+        default = next((info for info in infos if info.is_default), None)
+        others = [info.root for info in infos if not info.is_default]
+        root = default.source_dir if default and default.source_dir.is_dir() else None
         async with app.state.import_lock:
-            return await asyncio.to_thread(import_defaults, app.state.knowledge, settings, exclude=others)
+            return await asyncio.to_thread(import_defaults, app.state.knowledge, settings, root=root, exclude=others)
 
     @app.post("/api/web/preview")
     async def preview(payload: WebRequest):

@@ -8,7 +8,7 @@ from uuid import uuid4
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
-from .knowledge import Document, Page, tokens
+from .knowledge import Document, Page
 
 router = APIRouter(prefix="/api")
 
@@ -58,19 +58,6 @@ def note_status(note, knowledge):
         except KeyError:
             return "missing"
     return status
-
-
-def note_locators(workspace, knowledge, query, allowed):
-    matches = []
-    for note in workspace.list("notes"):
-        if not note["data"].get("reviewed") or note_status(note, knowledge) != "current":
-            continue
-        if not set(tokens(query)).intersection(tokens(note["title"] + " " + note["data"].get("body", ""))):
-            continue
-        for ref in note["data"]["sources"]:
-            if allowed is None or ref["doc_id"] in allowed:
-                matches.append(ref)
-    return matches[:2]
 
 
 @router.get("/workspace/{kind}")

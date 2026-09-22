@@ -20,16 +20,9 @@ async def verify(messages, llm, search, read, usage=None):
     # Query rewriting is left to research if the literal question misses.
     hits = await search(question)
     evidence = []
-    overview = bool(re.search(r"定位|是什么|概述|what is|overview", question, re.IGNORECASE))
-    single_document = hits and len({hit.get("doc_id") for hit in hits}) == 1 and "doc_id" in hits[0]
-    for index, hit in enumerate(hits[:2]):
-        if "doc_id" in hit:
-            start = hit["start_line"]
-            if overview and single_document:
-                start = 1 if index == 0 else evidence[-1].get("next_start_line") if evidence else start
-                if start is None:
-                    break
-            item = await read(hit["doc_id"], hit["version"], hit["page"], start)
+    for hit in hits[:2]:
+        if "chunk_id" in hit:
+            item = await read(hit["doc_id"], hit["version"], hit["chunk_id"])
             if "evidence_id" in item and item not in evidence:
                 evidence.append(item)
     if not evidence:

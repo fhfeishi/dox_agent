@@ -26,7 +26,7 @@ def test_persistence_version_and_chinese_retrieval(tmp_path):
     first = store.put(document())
     assert store.put(document())["changed"] is False
     restored = Knowledge(tmp_path / "db")
-    hit = restored.search("南溪地基基础完成")[0]
+    hit = restored.search("南溪地基基础施工")[0]
     assert hit["doc_id"] == first["doc_id"]
     assert "2025年10月22日" in restored.read(hit["doc_id"])["text"]
     assert restored.search("unrelatedxyz") == []
@@ -162,4 +162,4 @@ def test_long_single_line_can_be_searched_and_read(tmp_path):
     store = Knowledge(tmp_path / "db")
     store.put(document("filler " * 6000 + " uniquetarget tail"))
     hit = store.search("uniquetarget")[0]
-    assert "uniquetarget" in store.read(hit["doc_id"], start_line=hit["start_line"])["text"]
+    assert "uniquetarget" in store.read_chunk(hit["chunk_id"], hit["version"])["text"]

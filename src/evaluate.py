@@ -13,7 +13,7 @@ def evaluate(store: Knowledge, cases: list[dict], limit: int = 6) -> dict:
     for case in cases:
         hits = store.search(case["query"], limit=limit)
         reads = [
-            store.read(hit["doc_id"], hit["page"], hit["start_line"], 60, hit["version"])
+            store.read_chunk(hit["chunk_id"], hit["version"])
             for hit in hits
         ]
         relevant = [

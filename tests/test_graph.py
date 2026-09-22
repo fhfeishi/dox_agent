@@ -25,7 +25,7 @@ def test_graph_reads_real_tool_evidence(tmp_path, monkeypatch):
             async def ainvoke(self, *args, **kwargs):
                 hits = await search.ainvoke({"query": "南溪施工"})
                 hit = hits[0]
-                await read.ainvoke({k: hit[k] for k in ("doc_id", "version", "page", "start_line")})
+                await read.ainvoke({k: hit[k] for k in ("doc_id", "version", "chunk_id")})
 
         return Agent()
 

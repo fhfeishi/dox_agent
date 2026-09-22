@@ -8,7 +8,6 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from pydantic import BaseModel, Field
-from rank_bm25 import BM25Plus
 
 
 class Page(BaseModel):
@@ -103,6 +102,11 @@ class Knowledge:
             db.executemany("INSERT INTO doc_pages VALUES (?, ?, ?)",
                            [(doc_id, p.number, p.text) for p in doc.pages])
             db.execute("INSERT OR REPLACE INTO doc_markdown VALUES (?, ?)", (doc_id, doc.markdown))
+        # Fallback index: page-level chunks keep every document searchable; report imports
+        # replace them with block-accurate chunks via ``put_chunks``.
+        from .retrieval import RawBlock, chunk_blocks
+        self.put_chunks(doc_id, version, chunk_blocks(
+            doc_id, version, doc.title, [RawBlock(page=page.number, text=page.text) for page in doc.pages]))
         return {
             "doc_id": doc_id,
             "version": version,
@@ -246,58 +250,42 @@ class Knowledge:
             db.execute("INSERT OR REPLACE INTO meta VALUES (?, ?)", (key, value))
 
     def search(self, query: str, limit: int = 6, *, allowed_doc_ids: list[str] | None = None) -> list[dict]:
-        query_tokens = tokens(query)
-        if not query_tokens:
-            return []
-        candidates, corpus, texts = [], [], []
-        for doc in self.all():
-            if allowed_doc_ids is not None and doc["doc_id"] not in allowed_doc_ids:
-                continue
-            for page in self._pages(doc["doc_id"]):
-                lines = lines_for(page["text"])
-                for start in range(0, len(lines), 16):
-                    snippet = "\n".join(lines[start : start + 24])
-                    if not re.search(r"[A-Za-z\u4e00-\u9fff]", snippet):
-                        continue
-                    corpus.append(tokens(doc["title"] + " " + snippet) or ["_empty_"])
-                    texts.append(doc["title"] + "\n" + snippet)
-                    candidates.append(
-                        {
-                            "doc_id": doc["doc_id"],
-                            "version": doc["version"],
-                            "title": doc["title"],
-                            "page": page["number"],
-                            "start_line": start + 1,
-                            "snippet": snippet[:500],
-                        }
-                    )
-        if not candidates:
-            return []
-        scores = BM25Plus(corpus).get_scores(query_tokens)
-        ranked = sorted(range(len(corpus)), key=lambda i: float(scores[i]), reverse=True)
+        """L5b: single index — delegate to the report-level engine and return chunk locators."""
         limit = max(1, min(limit, 10))
-        sparse = [position for position in ranked if set(query_tokens).intersection(corpus[position])]
-        # Scoped BM25 never synchronizes a subset into the shared dense index.
-        if self.dense is not None and allowed_doc_ids is None:
-            from .dense import fuse_rankings
-            dense = self.dense.search(query, texts, candidates, max(20, limit * 3))
-            sparse = fuse_rankings(sparse[:max(20, limit * 3)], dense, limit)
-        # Keep one source from monopolising the first page while retaining score order.
-        diverse, deferred, per_doc = [], [], {}
-        for position in sparse:
-            candidate = candidates[position]
-            count = per_doc.get(candidate["doc_id"], 0)
-            (diverse if count < 2 else deferred).append(candidate)
-            per_doc[candidate["doc_id"]] = count + 1
-        results = (diverse + deferred)[:limit]
-        if hasattr(self, "workspace"):
-            from .workspace import note_locators
-            for ref in reversed(note_locators(self.workspace, self, query, allowed_doc_ids)):
-                doc = self.get(ref["doc_id"])
-                results.insert(0, {"doc_id": doc["doc_id"], "version": doc["version"], "title": doc["title"],
-                                   "page": ref.get("page", 1), "start_line": ref.get("start_line", 1),
-                                   "snippet": "已确认笔记指向的原文位置；必须重新阅读原文"})
-        return results[:limit]
+        result = self.retrieve(query, allowed_doc_ids=allowed_doc_ids)
+        hits: list[dict] = []
+        deferred: list[dict] = []
+        per_doc: dict[str, int] = {}
+        for report in result.reports:
+            for chunk in report.chunks:
+                item = {"doc_id": chunk.doc_id, "version": chunk.version, "title": chunk.title,
+                        "page": chunk.page, "heading": chunk.heading, "chunk_id": chunk.chunk_id,
+                        "snippet": chunk.text[:500]}
+                # Keep one source from monopolising the first page while retaining score order.
+                count = per_doc.get(chunk.doc_id, 0)
+                (hits if count < 2 else deferred).append(item)
+                per_doc[chunk.doc_id] = count + 1
+        return (hits + deferred)[:limit]
+
+    def read_chunk(self, chunk_id: str, version: str | None = None) -> dict:
+        """L5b: read one searched chunk as evidence (chunk-native, no line window)."""
+        with self.connect() as db:
+            row = db.execute(
+                "SELECT chunk_id, doc_id, version, title, heading, page, text FROM chunks WHERE chunk_id=?",
+                (chunk_id,),
+            ).fetchone()
+            if not row:
+                raise KeyError("片段不存在")
+            doc = db.execute("SELECT payload FROM docs WHERE id=?", (row[1],)).fetchone()
+        if not doc:
+            raise KeyError("文档不存在")
+        if version and version != row[2]:
+            raise ValueError("文档已更新，请重新搜索")
+        metadata = {key: value for key, value in json.loads(doc[0]).items() if key not in ("pages", "markdown")}
+        return {"chunk_id": row[0], "doc_id": row[1], "version": row[2], "title": row[3],
+                "heading": row[4], "page": row[5], "text": row[6], "snippet": row[6][:300],
+                "origin": metadata.get("origin"), "kind": metadata.get("kind"), "parser": metadata.get("parser"),
+                "url": f"/api/documents/{row[1]}?page={row[5]}&version={row[2]}"}
 
     def read_section(self, doc_id: str, page: int = 1, start_line: int = 1, line_count: int = 60, version: str | None = None) -> dict:
         from .reading import section_window

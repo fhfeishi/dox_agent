@@ -84,9 +84,11 @@ def test_user_scope_is_enforced_before_ranking_and_at_read(tmp_path, monkeypatch
             async def ainvoke(self, *args, **kwargs):
                 hits = await tools["search_docs"].ainvoke({"query": "shared"})
                 assert {h["doc_id"] for h in hits} == {a["doc_id"]}
-                refused = await tools["read_doc"].ainvoke({"doc_id": b["doc_id"], "version": b["version"]})
+                refused = await tools["read_doc"].ainvoke({"doc_id": b["doc_id"], "version": b["version"],
+                                                         "chunk_id": hits[0]["chunk_id"]})
                 assert "范围" in refused["error"]
-                await tools["read_doc"].ainvoke({"doc_id": a["doc_id"], "version": a["version"]})
+                await tools["read_doc"].ainvoke({"doc_id": a["doc_id"], "version": a["version"],
+                                                "chunk_id": hits[0]["chunk_id"]})
 
         return Agent()
 
@@ -109,8 +111,9 @@ def test_user_partial_block_keeps_evidence_and_stops_tools(tmp_path, monkeypatch
         class Agent:
             async def ainvoke(self, *args, **kwargs):
                 rounds.append(1)
-                await tools["search_docs"].ainvoke({"query": "shared"})
-                source = await tools["read_doc"].ainvoke({"doc_id": a["doc_id"], "version": a["version"]})
+                hits = await tools["search_docs"].ainvoke({"query": "shared"})
+                source = await tools["read_doc"].ainvoke({"doc_id": a["doc_id"], "version": a["version"],
+                                                         "chunk_id": hits[0]["chunk_id"]})
                 if len(rounds) == 1:
                     await tools["finish_research"].ainvoke({"result": {"assessments": [
                         {"question": "已有部分", "status": "supported", "evidence_ids": [source["evidence_id"]],
@@ -123,7 +126,8 @@ def test_user_partial_block_keeps_evidence_and_stops_tools(tmp_path, monkeypatch
                 with pytest.raises(CorpusBlocked):
                     await tools["search_docs"].ainvoke({"query": "again"})
                 with pytest.raises(CorpusBlocked):
-                    await tools["read_doc"].ainvoke({"doc_id": a["doc_id"], "version": a["version"]})
+                    await tools["read_doc"].ainvoke({"doc_id": a["doc_id"], "version": a["version"],
+                                                    "chunk_id": hits[0]["chunk_id"]})
 
         return Agent()
 

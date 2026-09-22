@@ -63,7 +63,7 @@ def test_api_counts_verification_and_answer_and_resets_each_request(tmp_path, mo
     ])
     app, store = setup(tmp_path, lambda store, settings: build_graph(store, settings, model))
     store.put(Document(title="fact", origin="fact", kind="text", parser="test",
-                       pages=[Page(number=1, text="recursion fact " * 20)]))
+                       pages=[Page(number=1, text="what is recursion " * 20)]))
 
     def factory(**kwargs):
         tools = {t.name: t for t in kwargs["tools"]}
@@ -72,7 +72,7 @@ def test_api_counts_verification_and_answer_and_resets_each_request(tmp_path, mo
             async def ainvoke(self, *args, **kwargs):
                 hits = await tools["search_docs"].ainvoke({"query": "recursion"})
                 if hits and "doc_id" in hits[0]:
-                    await tools["read_doc"].ainvoke({key: hits[0][key] for key in ("doc_id", "version", "page", "start_line")})
+                    await tools["read_doc"].ainvoke({key: hits[0][key] for key in ("doc_id", "version", "chunk_id")})
 
         return Agent()
 

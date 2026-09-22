@@ -131,6 +131,23 @@ def test_user_gets_fund_project_metadata_from_filename():
     assert meta == {"year_from": 2021, "year_to": 2025, "project_no": "82030037"}
 
 
+def test_user_gets_generic_terms_filtered_from_coverage():
+    # Given one report with the specific topic and two reports that only share generic terms
+    epilepsy = ReportDoc("a", "v", "癫痫的应用")
+    generic_one = ReportDoc("b", "v", "应用的应用")
+    generic_two = ReportDoc("c", "v", "应用研究")
+    chunks = {
+        "a": [chunk_of("a", "癫痫的应用")],
+        "b": [chunk_of("b", "应用的应用")],
+        "c": [chunk_of("c", "应用研究")],
+    }
+    # When selecting reports for a query whose high-DF term is generic
+    result = select_reports(chunks, [epilepsy, generic_one, generic_two], "癫痫的应用")
+    # Then only the report covering the specific term is selected
+    assert result.matched
+    assert [report.doc.doc_id for report in result.reports] == ["a"]
+
+
 def test_user_project_metadata_agrees_with_fund_name_pattern():
     from src.agent.corpora import FUND_NAME_PATTERN
     # Given corpus filenames that match the fund pattern
@@ -197,7 +214,7 @@ def test_user_recalls_report_matching_only_the_extra_query():
         "a": [chunk_of("a", "癫痫网络特征")],
         "b": [chunk_of("b", "癫痫网络 genomics 特征")],
     }
-    config = replace(RetrievalConfig(), report_recall_m=1)
+    config = replace(RetrievalConfig(), report_recall_m=1, generic_df_ratio=1.1)
     # When the extra query contributes the only report-index hit
     result = select_reports(chunks, [chinese, genomics], "癫痫网络特征",
                             config=config, extra_queries=["genomics"])

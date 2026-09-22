@@ -51,17 +51,18 @@ def test_quick_covered_skips_agent_and_partial_reuses_budget(tmp_path, monkeypat
     assert result["telemetry"]["reads"] == 1
 
 
-def test_overview_reads_opening_and_continuation_instead_of_footer():
+def test_overview_reads_searched_chunks():
     from src.agent.quick import verify
-    positions = []
+    reads = []
     async def search(query):
-        return [{"doc_id": "one", "version": "v1", "page": 1, "start_line": 90}] * 2
-    async def read(doc_id, version, page, start_line):
-        positions.append(start_line)
-        return {"evidence_id": str(start_line), "next_start_line": 5 if start_line == 1 else None}
+        return [{"doc_id": "one", "version": "v1", "chunk_id": "c1"},
+                {"doc_id": "one", "version": "v1", "chunk_id": "c2"}]
+    async def read(doc_id, version, chunk_id):
+        reads.append(chunk_id)
+        return {"evidence_id": chunk_id}
     class Model:
         async def ainvoke(self, messages):
-            return SimpleNamespace(content='{"assessments":[{"question":"定位","status":"supported","evidence_ids":["5"],"gap":"none","next_action":"answer"}]}')
+            return SimpleNamespace(content='{"assessments":[{"question":"定位","status":"supported","evidence_ids":["c1"],"gap":"none","next_action":"answer"}]}')
     result = asyncio.run(verify([{"role": "user", "content": "定位是什么"}], Model(), search, read))
-    assert positions == [1, 5]
+    assert reads == ["c1", "c2"]
     assert result["assessments"][0]["status"] == "supported"

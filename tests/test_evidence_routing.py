@@ -50,7 +50,7 @@ def test_nonempty_partial_research_repairs_only_gap(tmp_path, monkeypatch):
                     assert '"status": "supported"' in data["messages"][-1]["content"]
                 hits = await tools["search_docs"].ainvoke({"query": "hybrid"})
                 source = await tools["read_doc"].ainvoke({"doc_id": hits[0]["doc_id"], "version": hits[0]["version"],
-                                                        "start_line": 1 if len(calls) == 1 else 61})
+                                                        "chunk_id": hits[0]["chunk_id"]})
                 items = [assessment(status="supported", ids=[source["evidence_id"]], action="answer", gap="none")]
                 items.append(assessment(question="控制流", status="unsupported" if len(calls) == 1 else "supported",
                                         ids=[] if len(calls) == 1 else [source["evidence_id"]], action="read",
@@ -62,9 +62,9 @@ def test_nonempty_partial_research_repairs_only_gap(tmp_path, monkeypatch):
     monkeypatch.setattr(graph, "create_deep_agent", factory)
     result = run(store, AnswerModel())
     assert len(calls) == 2 and result["stop_reason"] == "covered"
-    # Section expansion already covers line 61; the second read reuses that evidence.
+    # Reading the same chunk again reuses that evidence instead of adding a second item.
     assert len(result["evidence"]) == 1
-    assert result["evidence"][0]["end_line"] >= 61
+    assert result["evidence"][0]["chunk_id"]
     assert result["report"]["assessments"][1]["status"] == "supported"
 
 
@@ -152,7 +152,7 @@ def test_hard_stop_guards_queued_tools_and_rejects_invented_url(tmp_path, monkey
                 with pytest.raises(CorpusBlocked):
                     await tools["search_docs"].ainvoke({"query": "hybrid"})
                 with pytest.raises(CorpusBlocked):
-                    await tools["read_doc"].ainvoke({"doc_id": "x", "version": "y"})
+                    await tools["read_doc"].ainvoke({"doc_id": "x", "version": "y", "chunk_id": "x"})
         return Agent()
 
     monkeypatch.setattr(graph, "create_deep_agent", factory)

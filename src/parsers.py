@@ -303,12 +303,13 @@ def import_defaults(knowledge, settings: Settings, *, root: Path | None = None, 
                 continue
             document = parse_file(path, settings, parsed_dir=(parsed_root / rel) if parsed_root else None)
             result = knowledge.put(document)
-            blocks = (read_mineru_blocks(parsed_root / rel)
-                      if parsed_root is not None and path.suffix.lower() == ".pdf" else [])
-            if not blocks:
-                blocks = [RawBlock(page=page.number, text=page.text) for page in document.pages]
-            knowledge.put_chunks(result["doc_id"], result["version"],
-                                 chunk_blocks(result["doc_id"], result["version"], document.title, blocks))
+            # PDF reports get block-accurate chunks (tables stay whole); other kinds rely on
+            # the page-level fallback that ``put`` already indexed.
+            if parsed_root is not None and path.suffix.lower() == ".pdf":
+                blocks = read_mineru_blocks(parsed_root / rel)
+                if blocks:
+                    knowledge.put_chunks(result["doc_id"], result["version"],
+                                         chunk_blocks(result["doc_id"], result["version"], document.title, blocks))
             knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, result["doc_id"], "indexed")
             imported.append(result)
             updated += 1 if prev else 0

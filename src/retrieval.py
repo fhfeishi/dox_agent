@@ -51,7 +51,9 @@ class RetrievalConfig:
     rrf_k: int = 60
     question_weight: float = 1.0  # q0 权重
     keyword_weight: float = 0.8  # 规则补查询权重
-    min_term_cover: float = 0.3  # ~ 无匹配主判据
+    min_term_cover: float = 0.3  # ~ 全局无匹配 + 逐文档绝对下限
+    rel_cover: float = 0.5  # 固定默认，仅观察（D-L10 逐文档相对阈值）
+    generic_df_ratio: float = 0.35  # 固定默认，仅观察（chunk 语料 DF 泛词判定）
     min_reports: dict[str, int] = field(
         default_factory=lambda: {"task1": 1, "task2": 2, "task3": 3, "task4": 3}
     )
@@ -269,9 +271,10 @@ def select_reports(
             if chunk.version == doc.version]
     chunks_by_id = {chunk.chunk_id: chunk for chunk in pool}
     fused: dict[str, float] = {}
+    pool_tokens: dict[str, list[str]] = {}
     if pool:
-        pool_tokens = [tokens(chunk.text) or ["_empty_"] for chunk in pool]
-        bm25 = BM25Plus(pool_tokens)
+        pool_tokens = {chunk.chunk_id: (tokens(chunk.text) or ["_empty_"]) for chunk in pool}
+        bm25 = BM25Plus([pool_tokens[chunk.chunk_id] for chunk in pool])
         for index, query_terms in enumerate(queries):
             weight = config.question_weight if index == 0 else config.keyword_weight
             query_set = set(query_terms)
@@ -279,7 +282,7 @@ def select_reports(
             ranked = sorted(range(len(pool)), key=lambda i: (-values[i], i))
             # BM25Plus adds a delta, so non-matching chunks still score > 0; require real
             # token overlap (planner: no arbitrary 2-gram intersection).
-            hits = [i for i in ranked if query_set & set(pool_tokens[i])][: config.kb_chunk_topk]
+            hits = [i for i in ranked if query_set & set(pool_tokens[pool[i].chunk_id])][: config.kb_chunk_topk]
             for rank, position in enumerate(hits, 1):
                 chunk_id = pool[position].chunk_id
                 fused[chunk_id] = fused.get(chunk_id, 0.0) + weight / (config.rrf_k + rank)
@@ -291,35 +294,61 @@ def select_reports(
         per_doc[doc.doc_id] = sorted(per_doc.get(doc.doc_id, []),
                                      key=lambda cid: (-fused[cid], cid))[: config.per_doc_cand]
 
+    # D-L10：泛词按「文档级 chunk-DF」判定（词出现在某报告任一 chunk 即计入该报告），
+    # N = 候选报告数；实测 应用1.00/人工0.91/医疗0.34 → 仅 >=GENERIC_DF_RATIO 时净化。
+    doc_tokens: dict[str, set[str]] = {}
+    for chunk in pool:
+        doc_tokens.setdefault(chunk.doc_id, set()).update(pool_tokens[chunk.chunk_id])
+    total = len(doc_tokens) or 1
+    document_frequency: dict[str, int] = {}
+    for tokens_in_doc in doc_tokens.values():
+        for token in tokens_in_doc:
+            document_frequency[token] = document_frequency.get(token, 0) + 1
+    generic = {token for token, count in document_frequency.items()
+               if count / total >= config.generic_df_ratio}
+    specific = [token for token in terms if token not in generic]
+    broad = not specific  # 宽泛领域查询：跳过逐文档阈值，取 top MAX_REPORTS 并标 coverage_partial
+
     scored: list[tuple[float, float, ReportDoc, list[str]]] = []
     for doc in recalled:
         candidates = sorted(per_doc.get(doc.doc_id, []), key=lambda cid: (-fused[cid], cid))
         if not candidates:
             continue
-        # 评分只用 per_doc_top_m；可引用集（SelectedReport.chunks）为 per_doc_cand。
-        top = candidates[: config.per_doc_top_m]
-        # S6b: 覆盖率基于 per_doc_cand（含 heading/正文）。
+        top = candidates[: config.per_doc_top_m]  # 评分只用 per_doc_top_m
+        # S6b: 覆盖率基于 per_doc_cand（含 heading/正文），按 specific 词项计算。
         hit_tokens: set[str] = set()
         for cid in candidates:
-            hit_tokens.update(tokens(chunks_by_id[cid].text))
-        cover = len(set(terms) & hit_tokens) / len(terms)
+            hit_tokens.update(pool_tokens[cid])
+        cover = len(set(specific) & hit_tokens) / len(specific) if specific else 1.0
         scored.append((sum(fused[cid] for cid in top), cover, doc, candidates))
     if not scored:
         return RetrievalResult(reports=[], matched=False, reason="no_reports")
-
-    if max(cover for _, cover, _, _ in scored) < config.min_term_cover:
+    top1 = max(cover for _, cover, _, _ in scored)
+    if not broad and top1 < config.min_term_cover:
         return RetrievalResult(reports=[], matched=False, reason="no_reports", candidates=len(scored))
 
+    ranked = sorted(scored, key=lambda row: (-row[0], row[2].doc_id))
+    floor = 0.0 if broad else max(config.min_term_cover, config.rel_cover * top1)
     kept: list[SelectedReport] = []
     seen_projects: set[str] = set()
-    for score, cover, doc, ids in sorted(scored, key=lambda row: (-row[0], row[2].doc_id)):
+    for score, cover, doc, ids in ranked:
         project = doc.project_no or doc.doc_id  # 同项目去重：保留分最高一篇
+        if project in seen_projects or cover < floor:
+            continue
+        seen_projects.add(project)
+        kept.append(SelectedReport(doc=doc, score=score, term_cover=cover,
+                                   chunks=[chunks_by_id[cid] for cid in ids]))
+    minimum = config.min_reports.get(task_id, config.min_reports.get("task1", 1))
+    partial = broad or len(kept) < minimum
+    # D-L10 保底：不足 MIN_REPORTS 时按报告分补足并标 coverage_partial。
+    for score, cover, doc, ids in ranked:
+        if len(kept) >= minimum:
+            break
+        project = doc.project_no or doc.doc_id
         if project in seen_projects:
             continue
         seen_projects.add(project)
         kept.append(SelectedReport(doc=doc, score=score, term_cover=cover,
                                    chunks=[chunks_by_id[cid] for cid in ids]))
     limit = config.max_reports.get(task_id, config.max_reports.get("task1", 3))
-    kept = kept[:limit]
-    partial = len(kept) < config.min_reports.get(task_id, config.min_reports.get("task1", 1))
-    return RetrievalResult(reports=kept, matched=True, partial=partial, candidates=len(scored))
+    return RetrievalResult(reports=kept[:limit], matched=True, partial=partial, candidates=len(scored))

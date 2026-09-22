@@ -263,12 +263,12 @@ function App() {
     if (uiFlags.docPanel) { setExplorerDoc({ docId, page: page ?? null }); setExplorerOpen(true); return; }
     setPreviewDoc({ doc, page: page ?? null });
   }
-  const handleOpenSource = uiFlags.docPanel
-    ? (source: Source, n: number) => {
-        if (!source.doc_id) { setError(`引用 [${n}] 缺少文档定位信息，无法跳转`); return; }
-        openDocument(source.doc_id, source.page ?? undefined);
-      }
-    : undefined;
+  // Citations open the document preview in every configuration: `openDocument` routes to
+  // the explorer (flag on) or the PDF-original preview (default) and keeps the page.
+  const handleOpenSource = (source: Source, n: number) => {
+    if (!source.doc_id) { setError(`引用 [${n}] 缺少文档定位信息，无法跳转`); return; }
+    openDocument(source.doc_id, source.page ?? undefined);
+  };
   function selectCorpus(id: string) {
     setCorpusFlyover(false);
     if (id === effectiveCorpusId) return;

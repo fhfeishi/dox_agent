@@ -13,7 +13,7 @@
 
 ## 2. 计划与任务状态
 
-**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8 已实现；K5/K9–K11、K12 待做）。
+**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8、K12 已实现；K5/K9–K11 待做）。
 
 **A 工程基线**：A1–A6 ✅（pyproject/extras、tests、端到端、改名、dev_logs 整理、design 落盘）；A7 契约同步 🟡（E 阶段待补）。
 
@@ -56,6 +56,7 @@
 | K6a/K6/K7（提交 `b443623`） | `corpus_id_for` 单射+限长；知识库新建/显示名重命名/删除（默认只删派生，`purge_source` 才删源）；库内文件列表/上传（`python-multipart` 流式、200MB 上限、名称规范化）/重命名/删除；前端 `CorpusAdmin`+`CorpusFiles` | `pytest` 83 passed（新增 K6a/K6/K7 共 4 例）；`npm run build` + `node --test` 18 passed；实机 httpx：创建→上传 `added=1`→列表 `indexed`→重命名→删文件→删库均成功 |
 | K8（提交 `0615ef9`） | Word `.docx` 解析（`python-docx`，段落+表格入正文）；`SOURCE_SUFFIXES` 与上传白名单加入 `.docx` | `pytest` 84 passed（新增 `tests/test_docx.py`）；`npm run build` 通过 |
 | K12（本轮） | 按库 OCR：`Knowledge.meta`（`ocr_mode`/`ocr_language`/`ocr_applied_*`）；`GET/PUT /api/corpora/{id}/ocr`；`ingest?force=`（`stale` 自动强制，job `forced`）；`GET /api/corpora` 增 `ocr_stale`；前端 `CorpusOcrSettings`（侧栏每库可展开） | `pytest` 86 passed（新增 `tests/test_corpus_ocr.py`、force 重解析例）；实机 httpx：PUT `eng`→`stale=true`→ingest `forced=true`→`stale=false`；再 ingest `forced=false, skipped=1` |
+| 预览 PDF 原文件 + 引用跳页（提交 `02d8c1e`；本轮修默认路径） | PDF 走 `/file`+`#page=`；引用 `[n]` 与“已读证据”chip 在默认配置（`VITE_UI_DOC_PANEL=off`）下也可点（`handleOpenSource` 不再依赖开关） | `npm run build` + `node --test` 18 passed；**浏览器实测待做**（基金库 10 份本地 PDF） |
 
 当前可用基线（本次实测）：后端 `pytest tests -q` → **86 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
@@ -78,6 +79,7 @@
 | E 报告入口未做；#10 未决 | task4/U3/G9 无法开工 | 定稿 #10 → 实现 E1/E2 |
 | #12 模型可用性判定缺失 | F11/U9.4-2 不可验收 | 定 health 探测口径或新增轻量探测接口 |
 | 基金库 `.knowledge/自然科学基金/` **已导入 10 份，但以 `eng` OCR 解析、正文乱码**；`files` 清单为空 | 预览/问答不可读，H10 无法验收 | 侧栏该库“解析设置”选 `chi_sim+eng` → “重新导入并应用”（K12 已实现）后做 H10 |
+| 预览引用跳页未做浏览器实测（基金库 10 份本地 PDF 可用） | 默认路径可点性刚修，未在真实浏览器确认 | 切到基金库，点文献库/引用，确认 PDF 原文件渲染 + `#page=` 定位；结果写回 §3 |
 | H10 真实基金报告端到端验收未做 | 基金场景未验证 | 以真实报告走「选库 → 浏览 → 预览 → 按库问答」 |
 | 按 kind 预览、两阶段导入进度未做 | 文件能力不完整、导入过程不可观测 | K9/K5 |
 

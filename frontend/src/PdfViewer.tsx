@@ -30,7 +30,7 @@ export function PdfViewer({ docId, version, page, pages, corpus, onPageChange }:
         disabled={pages > 0 && current >= pages} onClick={() => jump(current + 1)}>下一页</button>
       <a className="ml-auto underline" href={fileUrl} target="_blank" rel="noreferrer">新窗口打开</a>
     </div>
-    {/* key 确保翻页时 iframe 重新加载，使 #page= 片段生效 */}
+    {/* key 确保翻页时 iframe 重新加载，使 #page= 片段生效；已知代价：每次翻页重载整份 PDF（大扫描件成本高），D6 升级 PDF.js 后改 JS 控制页码 */}
     <iframe key={current} title="PDF 预览" src={`${fileUrl}#page=${current}`}
       className="min-h-0 w-full flex-1 rounded-lg border border-stone-200 bg-white"/>
     <p className="pt-2 text-xs text-stone-400">浏览器内置 PDF 渲染（缩放请用阅读器工具栏）。页码与引用的一致性校验（D10）完成前为 best effort。</p>

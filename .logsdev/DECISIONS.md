@@ -5,6 +5,9 @@
 - 采用：文档预览对 PDF 直接展示原始文件（浏览器原生 `/file` + `#page=`，沿用 D6 降级），不再把抽取文本整篇拼接渲染；Markdown / txt / Word 才走规范化正文预览。
 - 理由与代价：默认（`VITE_UI_DOC_PANEL=off`）路径此前对 PDF 全量拉取规范化正文，既慢又乱，且引用页码被丢弃；直接嵌入原文件最贴近“预览文件”。代价：非 PDF 仍依赖文本抽取质量，且保留两条预览实现（原文件 / 正文）。
 - 影响：`frontend/src/DocumentPreview.tsx`（PDF 分支改用 `PdfViewer`，不再走文本管线）、`frontend/src/main.tsx`（预览状态带 `page`，引用跳页将页码透传到 PDF）。
+- 已知代价：`PdfViewer` 用 `key` 让 iframe 每次翻页重载整份 PDF（大文件成本高）；D6 升级 PDF.js 后改 JS 控制页码。
+- 现状：Word（`.docx`）`parse_file` 的 `kind="text"`，预览走规范化纯文本 `<pre>`；“Word 转 HTML” 是 K9 目标，尚未实现。
+- 修复：引用 `[n]` 与“已读证据”chip 在**默认配置**下也可点（`handleOpenSource` 不再依赖 `VITE_UI_DOC_PANEL`）；默认走 PDF 原文件预览，flag 开时走 Explorer。
 
 ## 语料目录自包含「方案 A」（2026-09-22，取代分离布局）
 

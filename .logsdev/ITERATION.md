@@ -33,7 +33,7 @@
 
 **K 知识库管理与导入优化**：K0（应用级会话库）、K0b（多库 read/file 补 `corpus`）、K1（增量导入 + 文件清单 + 删除同步）、K6a（`corpus_id` 单射+限长）、K6（库新建/显示名重命名/删除）、K7（库内文件列表/上传/重命名/删除）、K8（Word/.docx）、**K13（mineru 解析 + 外部 `MINERU_CMD` + `parsed/` 缓存，取代 liteparse 及其 OCR 配置；保留 K12 的 `force` 重导入）✅**；K5（两阶段导入+进度/取消，规格 §6.7）、K9（按 kind 预览，§6.8）、K10（检索缓存，§6.9）、K11 验收 ⬜。K2/K3/K4/K12 的 OCR 模式/语言部分已作废。
 
-**U UI 优化**：U0、U4.1a/U4.1b/U4.2、U5（会话内分支）、U6（电源按钮）、U7（知识库预览）、U8（LLM 状态）、U9.1（侧栏收束）、U9.2/U9.2b（文献库）、U9.4-1（只读模型）✅；U9.3 科研头条 🟡（仅占位）；U1（任务 UI）、U2（文档面板/引用跳转）🟡（代码完成、开关默认 off、浏览器验收未做）；U3 报告入口、U9.4-2 模型选择器 ⬜。**U10 界面重构（对齐参考模板）✅代码**：设计令牌 + `store.tsx`/`App.tsx` + `components/`，见 [`ui-migration.md`](ui-migration.md)；浏览器视觉/交互验收待补。
+**U UI 优化**：U0、U4.1a/U4.1b/U4.2、U5（会话内分支）、U6（电源按钮）、U7（知识库预览）、U8（LLM 状态）、U9.1（侧栏收束）、U9.2/U9.2b（文献库）、U9.4-1（只读模型）✅；U9.3 科研头条 🟡（仅占位）；U1（任务 UI）、U2（文档面板/引用跳转）🟡（代码完成、开关默认 off、浏览器验收未做）；U3 报告入口、U9.4-2 模型选择器 ⬜。**U10 界面重构（对齐参考模板）✅代码**：设计令牌 + `store.tsx`/`App.tsx` + `components/`，见 [`DECISIONS.md`](DECISIONS.md)；浏览器视觉/交互验收待补。
 
 **功能开关**：`VITE_UI_TASKS/FILTERS/DOC_PANEL/REPORTS/NEWS/MODELS` 均已建立、默认 off。启用策略：后端契约已实现 ∧ 浏览器实测通过。`VITE_UI_CORPUS` 已移除：`corpus_id` 后端已实现并验收，选中语料始终随 chat 发送。
 
@@ -71,9 +71,9 @@
 | L3/L3b/L4a chunks + retrieve（本轮） | `chunks` 表（block 原子、带页/标题），导入时由 `parsed/` 的 `middle_json` 分块（`read_mineru_blocks`）；`Knowledge.put_chunks/chunk_rows/drop_file`（删除同步、缓存失效）；`Knowledge.retrieve` 复用 `select_reports`；`project_no` 由文件名注入（S4）。修复两处检索缺陷：Layer B RRF 改为**候选池内全局排名**（原每文档各自排名使 `Σtop_m` 全等）、命中需**真实 token 交集**（BM25Plus 的 delta 使未命中 chunk 仍 >0） | `pytest tests -q` → **107 passed**；ruff 通过；实机基金库 `chunks=4047`、demo 回填 `5922`；`retrieve("癫痫致痫网络")` top1=赵国光癫痫报告（cover 1.00），"无人车协同感知"/"肝癌超声造影" top1 均正确 |
 | L5b 临时接线 + D-L10（本轮） | `Knowledge.search` 委托 `retrieve`（删旧窗口 BM25）；返回 chunk 定位（`chunk_id`/page/heading，无 `start_line`）；新增 `read_chunk`；`graph`/`quick`/`evaluate` 改按 chunk 阅读；`put` 增加页面级 chunk 回退。**D-L10**：泛词按**文档级 chunk-DF**（N=候选报告数）以 `GENERIC_DF_RATIO=0.35` 净化，`specific=_query_terms−generic`；逐文档接受 `cover≥max(MIN_TERM_COVER, REL_COVER×top1)`（`REL_COVER=0.5`），不足 `MIN_REPORTS` 保底并标 `partial`；`specific` 空则宽泛查询取 top `MAX_REPORTS` | `pytest tests -q` → **108 passed**；ruff 通过；实测基金库：`癫痫致痫网络` 仅赵国光（cover 1.00、噪声 0）；`人工智能在医疗领域的应用` 仅医学报告（cover 1.00/0.67），证券市场报告 cover=0 已不入选 |
 | L5 token 装配 + S5/S8（本轮） | `Settings` 增 `MODEL_CONTEXT_TOKENS/RETRIEVE_CONTEXT_TOKENS/RETRIEVE_REPORT_TOKENS/ANSWER_RESERVE_TOKENS/HISTORY_TOKENS/ANSWER_TIMEOUT`；`estimate_tokens`（CJK 1/字、非 CJK ~4 字/token，uncalibrated）；`fit_history` 按 token 截断最旧完整轮并保留末条 user（已接入 `/api/chat`）；`assemble_reports` 按报告分装配 markdown 预算 + 报告头（题目/项目号/负责人/年份）+ chunk→`[n]` 映射并记 `truncated`（**L6 待接线**的纯函数）；S8：引用 `version` 与 `useDocuments` 当前版本不一致时前端提示「文档已更新」，不预探 `/file` | `pytest tests -q` → **111 passed**；`npm run build` 通过、`node --test` → 18 passed；ruff 改动文件通过 |
-| **UI 迁移（对齐参考模板）** | 引入模板设计令牌（暖中性 + `#5645d4`）；新增 `store.tsx`（`AppProvider`/`useApp`，承接原 `main.tsx` 全部 state/effects/handlers）、`App.tsx`（仅布局）与 `components/`（24 个展示组件）；删除遗留 `Answer`/`SessionList`/`TaskPicker`/`Notes`/`appContext`；`documentPreview.ts`→`documentText.ts`。接入真实 `corpus_id`/`allowed_doc_ids`/SSE/引用校验/分支。逻辑修正：重新生成重新合并库/任务范围、task4 禁发、任务开关关闭空态、侧栏导入用 `effectiveCorpusId`；文档预览面板改为 `clamp(36rem,66vw,76rem)` 自适应且内容区 flex-col 使 PDF 填满。详见 [`ui-migration.md`](ui-migration.md) | `npm run build`（tsc+vite）通过；`npm test` 18 passed；**浏览器验收 PASS**：`browser_ui_shell`/`browser_status_power`/`browser_answer_controls`/`browser_document_preview`/`browser_session_branches`（Playwright + dist）；Vite SSR 全树与 `MessageView` 渲染通过。`browser_ui_shell` 的会话标题断言改为限定侧栏（新顶栏也显示标题）；fund/smoke 在线用例需后端，未运行 |
-| **审查意见处理（P1/P2 + task 接线，2026-09-22）** | 默认开启任务（`VITE_UI_TASKS` 默认 on，可 `=0` 关）；`/api/tasks` 增 `output_hint`；侧栏任务搜索；任意回答可重新生成（`regenerateAt`，修复替换语义）；每步耗时（后端 `graph.step()` 发 `duration_ms` + 前端展示）；非 PDF 预览下载/新窗口；Composer 弹层统一外部点击/Esc；Inspector 标签改「概览」；删除无引用图标与 `filters/reports/news/models` flag；**后端接线**：`Knowledge.search`/`graph.search_impl` 传 `task_id`（任务差异化检索预算不再失效）；`base.md`/task1–3 提示词补引用纪律与输出细节。详见 [`ui-migration.md`](ui-migration.md) §7 | `.venv/bin/python -m pytest tests -q` → **115 passed**（新增 `tests/test_prompts.py` 3 例、`test_knowledge` 1 例、强化 `test_steps` 时长断言）；`npm run build` + `npm test` 18 passed；浏览器 6 用例 PASS（含新增 `tests/browser_tasks.py`）。未做：P1-4 复制/导出改 Markdown（与既有断言冲突）、E 阶段报告模板 |
-| **知识库 IA 重构（对齐模板 3 层，2026-09-22）** | 文献库主区改为 `CorpusGrid` 知识库卡片网格（数据源 `corpora`）；新增 `CorpusDetail` 抽屉（文档/源文件/导入，含重命名/删除/按库导入/用于当前对话）；抽出 `Drawer` 壳；删 `LibraryView`/`CorpusAdmin`/`SettingsDrawer`；`OpsDrawer` 精简为模型/在线文档源/导出；`openPreview` 带 `corpusId` 修复非活动库文档 `/file` 取错库；文档预览面板自适应；设置按钮文案改「设置」。浏览（`openCorpus`）与切库（`selectCorpus`）分离。冲突/取舍见 [`ui-migration.md`](ui-migration.md) §8 | `npm run build` + `npm test` 18 passed；浏览器 **7 用例 PASS**（新增 `tests/browser_library.py`：网格/详情/跨库浏览不改活动库/按库 `/file`/设置抽屉无 KB CRUD/chat `corpus_id`）。`browser_fund_preview` 在线未运行 |
+| **UI 迁移（对齐参考模板）** | 引入模板设计令牌（暖中性 + `#5645d4`）；新增 `store.tsx`（`AppProvider`/`useApp`，承接原 `main.tsx` 全部 state/effects/handlers）、`App.tsx`（仅布局）与 `components/`（24 个展示组件）；删除遗留 `Answer`/`SessionList`/`TaskPicker`/`Notes`/`appContext`；`documentPreview.ts`→`documentText.ts`。接入真实 `corpus_id`/`allowed_doc_ids`/SSE/引用校验/分支。逻辑修正：重新生成重新合并库/任务范围、task4 禁发、任务开关关闭空态、侧栏导入用 `effectiveCorpusId`；文档预览面板改为 `clamp(36rem,66vw,76rem)` 自适应且内容区 flex-col 使 PDF 填满。详见 [`DECISIONS.md`](DECISIONS.md) | `npm run build`（tsc+vite）通过；`npm test` 18 passed；**浏览器验收 PASS**：`browser_ui_shell`/`browser_status_power`/`browser_answer_controls`/`browser_document_preview`/`browser_session_branches`（Playwright + dist）；Vite SSR 全树与 `MessageView` 渲染通过。`browser_ui_shell` 的会话标题断言改为限定侧栏（新顶栏也显示标题）；fund/smoke 在线用例需后端，未运行 |
+| **审查意见处理（P1/P2 + task 接线，2026-09-22）** | 默认开启任务（`VITE_UI_TASKS` 默认 on，可 `=0` 关）；`/api/tasks` 增 `output_hint`；侧栏任务搜索；任意回答可重新生成（`regenerateAt`，修复替换语义）；每步耗时（后端 `graph.step()` 发 `duration_ms` + 前端展示）；非 PDF 预览下载/新窗口；Composer 弹层统一外部点击/Esc；Inspector 标签改「概览」；删除无引用图标与 `filters/reports/news/models` flag；**后端接线**：`Knowledge.search`/`graph.search_impl` 传 `task_id`（任务差异化检索预算不再失效）；`base.md`/task1–3 提示词补引用纪律与输出细节。详见 [`DECISIONS.md`](DECISIONS.md) §7 | `.venv/bin/python -m pytest tests -q` → **115 passed**（新增 `tests/test_prompts.py` 3 例、`test_knowledge` 1 例、强化 `test_steps` 时长断言）；`npm run build` + `npm test` 18 passed；浏览器 6 用例 PASS（含新增 `tests/browser_tasks.py`）。未做：P1-4 复制/导出改 Markdown（与既有断言冲突）、E 阶段报告模板 |
+| **知识库 IA 重构（对齐模板 3 层，2026-09-22）** | 文献库主区改为 `CorpusGrid` 知识库卡片网格（数据源 `corpora`）；新增 `CorpusDetail` 抽屉（文档/源文件/导入，含重命名/删除/按库导入/用于当前对话）；抽出 `Drawer` 壳；删 `LibraryView`/`CorpusAdmin`/`SettingsDrawer`；`OpsDrawer` 精简为模型/在线文档源/导出；`openPreview` 带 `corpusId` 修复非活动库文档 `/file` 取错库；文档预览面板自适应；设置按钮文案改「设置」。浏览（`openCorpus`）与切库（`selectCorpus`）分离。冲突/取舍见 [`DECISIONS.md`](DECISIONS.md) §8 | `npm run build` + `npm test` 18 passed；浏览器 **7 用例 PASS**（新增 `tests/browser_library.py`：网格/详情/跨库浏览不改活动库/按库 `/file`/设置抽屉无 KB CRUD/chat `corpus_id`）。`browser_fund_preview` 在线未运行 |
 
 当前可用基线（本次实测）：后端 `pytest tests -q` → **115 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
@@ -91,7 +91,7 @@
 
 ## 5. 未决问题与下一步
 
-> 当前唯一优先：**K13 重建 + L1 重索引已完成 → H10 真实报告验收**；其余按 §6.4 顺序。**L 阶段 6 项冲突已于 §5.2 裁决。**
+> 当前优先：**L6（确定性图替换 research 工具循环）**；UI 迁移（U10）代码完成、待收尾提交（§5.5）。**L 阶段冲突/裁决见 §5.2/§5.3。**
 
 | 未决 | 影响 | 下一步 |
 |---|---|---|
@@ -136,7 +136,7 @@
 4. **L4a**：新增 `Knowledge.retrieve`（读取持久化 chunks → `select_reports`）；已交付纯模块逻辑复用。**✅ 已完成**（并修复 Layer B 全局排名与 token 交集两处缺陷；见 §3）。
 5. **临时接线（下一步）**：`Knowledge.search` 委托新引擎、删除旧窗口 BM25；`read`/`sources` 适配 chunk（无 `start_line`）；SSE 形状不变；**同时落实 D-L10 逐文档阈值（否则宽泛查询仍带噪声）**。**✅ 已完成**（单索引 + chunk 级 read + D-L10；见 §3）。
 6. **L5**：token 预算装配 + 报告头 + 引用映射（chunk→`[n]`）；**历史按 token 截断（S5）**；**PDF 版本失效 UI 提示（S8）**。**✅ 已完成**（token 配置/估算 + S5 历史截断已接入 chat + `assemble_reports` 纯函数 + S8 前端提示；`assemble_reports` 接入图属 L6；见 §3）。
-7. **L6**：确定性 `retrieve→assemble→answer` 替换 `research` 工具循环；同步 `stop_reason`/telemetry/前端标签（§7.14 D-L4 三处）。
+7. **L6（下一步）**：确定性 `understand→retrieve→assemble→answer→validate→finish` 替换 `research` 工具循环；`assemble_reports` 接入图；移除 `quick`/`note_locators` 旧路径；同步 `stop_reason`/`telemetry.path`/前端标签（§7.14 D-L4 三处）。验收：`/api/chat` 不再跑 LLM 工具循环、无 120s 检索阶段；宽泛查询「人工智能医疗领域」返回医学报告并带 `[n]`；SSE 形状不变；`pytest`+浏览器用例通过。
 8. **L7**：扩展 `evaluate.py`（10–15 条），校准 4 个参数并记录「参数版本+指标」。
 
 ### 5.3 验证者意见处理（S1–S9，2026-09-22）
@@ -171,6 +171,17 @@
   2. **覆盖度量失真**：覆盖率用原始重叠 2-gram；**chunk 语料 DF** 显示高频泛词/伪词：`应用` 1.00、`人工` 0.91、`的应` 0.83、`域的` 0.71、`能在` 0.46（报告索引 DF 会低估这些，故必用 chunk-DF）。
   - **对策**：**D-L10**（`GENERIC_DF_RATIO=0.35` 按 **chunk-DF** 净化 + 逐文档相对阈值 `REL_COVER×top1` + 保底）；**下一步 = 步骤 5 接线**。
 - 证据（实测，基金库）：净化后 `specific('人工智能在医疗领域的应用')={在医,医疗,疗领}` → 证券市场报告 cover=0、医学报告 top；`specific('癫痫致痫网络')={癫痫,痫致,致痫,痫网}` → 赵国光报告 cover=1.00、噪声=0。
+
+### 5.5 UI 迁移（U10）审查与收尾（2026-09-22）
+
+**已核验**：`pytest tests -q` → **115 passed**；UI 重构为 `store.tsx`（AppProvider/useApp 承接全部 state/effects）+ `App.tsx`（仅布局）+ `components/`（24 个展示组件）+ 设计令牌；删除 `Answer`/`SessionList`/`TaskPicker`/`Notes`/`appContext`；`documentPreview.ts`→`documentText.ts`。浏览器离线验收 **7 用例**已过；在线 `browser_fund_preview`/`browser_smoke` 未跑。逻辑修正见 §3 与迁移记录。
+
+**需收尾的 3 处冲突（文档/仓库卫生，非功能）**：
+1. **`dev_logs/` 与约定冲突**：`.gitignore` 新增忽略 `dev_logs/`，但仓库长期文档约定是 `.logsdev/`（其 `README.md`：历史与过程材料交给 git）。`dev_logs/ui-migration.md` 因此**不受版本控制**，且 `ITERATION.md` 链接 `../dev_logs/...` 对克隆者失效。**裁决**：长期决策折入 `.logsdev/DECISIONS.md`，当前状态留 `ITERATION.md`，详细组件映射/过程由提交历史保存；删除 `dev_logs/`；保留 `.gitignore` 的 `dev_logs/` 作为防误建护栏；更新 `ITERATION` 链接不再指向 `dev_logs/`。
+2. **归档模板体积**：`.logsdev/archive/DoxAgentWeb/` 为 **104M（node_modules 103M）**，不可提交。**动作**：`.gitignore` 增 `archive/**/node_modules/`、`archive/**/dist/`、`*.Zone.Identifier`。
+3. **文档漂移**：`ui-migration.md` §5 组件映射仍列已删除的 `LibraryView`/`SettingsDrawer`（§8 已取代）。**动作**：随 1 一并与 `.logsdev` 收敛，勿两处维护。
+
+**收尾顺序**：先按 1–3 收敛文档 → 分逻辑提交 UI 迁移与后端 prompt/graph 改动（含新浏览器测试）→ 再进 L6。
 - **状态（本轮）**：D-L10 已实现（步骤 5）。实测 `GENERIC_DF_RATIO=0.35` 下泛词判据与 §5.4 一致（`应用`1.00/`人工`0.91/`医疗`0.34）；`癫痫致痫网络` 仅 1 篇（噪声 0），`人工智能在医疗领域的应用` 仅医学报告，证券市场报告不再入选。细节与证据见 §3 / D-L10（§7.7）。
 
 ## 6. K 阶段规划：知识库管理、解析优化与预览（2026-09-22，规划中）

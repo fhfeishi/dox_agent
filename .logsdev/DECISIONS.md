@@ -133,6 +133,20 @@
 - **删除/失效**：删文件/库同步清 `parsed/` 与 Chroma chunk；`parser_signature` 入库 meta，变更即 `force`。
 - 状态：L 开工前定稿（与 ITERATION §7.14 一致）。
 
+## UI 架构重构（U10，2026-09-22）
+
+- 采用：`store.tsx` 的 `AppProvider` 拥有全部业务状态（SSE/会话/分支/多库/预览/导入），`App.tsx` 仅布局；组件经 `useApp()` 读取、零业务逻辑；设计令牌集中在 `styles/globals.css`；IA 为 `IconRail → SidePanel → Main → Inspector`，文献库为「卡片网格 → 库详情抽屉 → 文档/源文件/导入」三层。
+- 理由与代价：与 `.logsdev/archive/DoxAgentWeb` 模板对齐、消除 `main.tsx` 单文件耦合；代价是 `store.tsx` 较大（`useMemo` 依赖长），后续可拆子 hook。
+- 保留：SSE 流式、会话/分支持久化、按库文档、引用跳页/版本校验（S8）、PDF 原生预览（D6）。
+- 状态：**已实现（代码）**；浏览器离线验收 **7 用例**通过；在线 `browser_fund_preview`/`browser_smoke` 待跑。
+
+## 文档位置：dev_logs 并入 .logsdev（2026-09-22）
+
+- 采用：长期文档只维护 `.logsdev/{PROJECT,ITERATION,DECISIONS}` 与 `README`；过程/历史材料交给 git。`dev_logs/` 不复活；其 `ui-migration.md` 的长期结论折入 `.logsdev`，细节由提交历史保存。
+- 理由：`.gitignore` 忽略 `dev_logs/` 会让其内容不受版本控制，与「历史交给 git」及既有迁移（dev_logs→.logsdev）冲突。
+- 动作：删除 `dev_logs/`；保留 `.gitignore` 的 `dev_logs/` 护栏；`.logsdev/archive/**/node_modules`、`dist`、`*.Zone.Identifier` 不入库。
+- 状态：**待执行**（当前 `dev_logs/` 与 104M 归档模板仍在工作区）。
+
 ## 应用级会话库独立于语料库（2026-09-22）
 
 - 采用：`workspace.sqlite3` 迁出活动库的 `<KB>/datadb/`，放固定应用级目录；`app.state.workspace` 不再随活动库变化。

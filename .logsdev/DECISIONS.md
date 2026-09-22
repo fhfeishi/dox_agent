@@ -142,6 +142,14 @@
 - 会话侧：assistant turn 存**可选** `reportId`（缺失默认，遵守「持久化数据向后兼容」）；会话可列/打开其报告。
 - 不做：删除、权限、跨用户。
 - 状态：**已定稿**；G10d 前端卡片按此接线；后端需补 `run_id` 幂等与列表接口（当前最小实现缺）。
+- **实现细则（M1–M7，编码前定）**：
+  - **M1 schema 迁移**：`ReportStore.__init__` 在 `CREATE TABLE IF NOT EXISTS` 后 `PRAGMA table_info(reports)`，对缺失的 `session_key`/`run_id`/`corpus_id` 逐个 `ALTER TABLE reports ADD COLUMN ... TEXT NOT NULL DEFAULT ''`（幂等，不会漏列）。
+  - **M2 幂等与 NULL**：`session_key`/`run_id` **落库用 `''` 而非 NULL**（SQLite UNIQUE 视 NULL 互不相等）；建**部分唯一索引** `CREATE UNIQUE INDEX IF NOT EXISTS reports_run ON reports(session_key, run_id) WHERE run_id != ''`（旧行 `run_id=''` 被排除，无冲突）。
+  - **M3 run_id 生命周期**：来源 = chat turn 的 `runId`（已存在，随会话持久化）；**重试同 `run_id` → 返回既有（200，`idempotent=true`）**；**重新生成 → 新 `runId` → 新报告（201）**；同 `(session_key, run_id)` 但参数不同 → **幂等优先，返回既有（200）**，不 409。
+  - **M4 列表**：`GET /api/reports?session_key=&run_id=&limit=`；`created_at DESC`；`limit` 默认 20 / 上限 100；**仅元数据**（`report_id/created_at/session_key/run_id/corpus_id/template_id/domain/year_from/year_to`，不含 markdown）；未命中 `200 []`。
+  - **M5 清理陈旧文档**：`reports.py:5` docstring「#10 is still open」与 `main.py:81` 注释一并更新。
+  - **M6 已知限制**：报告无删除；`reports.sqlite3` 与应用级 `workspace.sqlite3` 同在 `STATE_DIR`；单用户可接受，列表 `limit` 缓解，后续可加清理。
+  - **M7 校验口径**：`session_key` 服务端**不强制**；“chat 入口必发”是**前端流程约定**，不得加服务端必填校验。
 - 附带修正：`main.py:81` 注释「task4 is deliberately absent」已过期，应改为“task4 允许输入、走 intake，不生成正文”。
 
 ## 任务 = 输出契约，不是输入闸门（2026-09-22，规划）

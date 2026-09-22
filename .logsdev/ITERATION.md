@@ -87,7 +87,7 @@
 
 | # | 问题 | 影响 |
 |---|---|---|
-| 10 | 报告↔会话绑定 | **已定稿（2026-09-22）**：报告为应用级不可变产物，按 `report_id` 定位；`reports` 表列 `(id, created_at, session_key, run_id, corpus_id, params, markdown)`；`GET /api/reports/{id}` 全局取 + **新增按会话列表** `GET /api/reports?session_key=`；`run_id` 幂等；turn 存可选 `reportId`。见 [`DECISIONS.md`](DECISIONS.md)「报告↔会话绑定」。**后端待补**：`run_id` 幂等与列表接口（当前最小实现缺） |
+| 10 | 报告↔会话绑定 | **已定稿（2026-09-22）**：报告为应用级不可变产物，按 `report_id` 定位；`reports` 表列 `(id, created_at, session_key, run_id, corpus_id, params, markdown)`；`GET /api/reports/{id}` 全局取 + **新增按会话列表** `GET /api/reports?session_key=`；`run_id` 幂等；turn 存可选 `reportId`。见 [`DECISIONS.md`](DECISIONS.md)「报告↔会话绑定」（**含 M1–M7 实现细则**：schema 迁移/部分唯一索引/run_id 生命周期/列表口径）。**后端待补**：`run_id` 幂等与列表接口（当前最小实现缺） |
 | 11 | task 推导许可与全局 `answer_policy`：已定稿（task1/task2 收窄、task3 放开并标注），随任务提示词落实 | G1/G4（已落实，保留备查） |
 | 12 | 模型可用性判定来源：`/api/health` 的 `model_verified` 恒 `false`，无生产逻辑 | U9.4-2/F11（未定稿前不开工） |
 | 13 | **已定稿**：mineru `tier=standard` | K13 |

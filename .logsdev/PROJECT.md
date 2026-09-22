@@ -43,20 +43,20 @@
 - 时间口径按报告年份闭区间；同年份缺失资料不混入严格筛选；热点结论限定样本、按项目去重；事实、已实现应用、潜在应用、未来推断分开表达。
 
 **本地文档窗口**
-- 右上方"本地文档"入口 → 右侧滑出窗口：真实相对目录树（展开/折叠/筛选/入库状态）+ 预览（PDF 阅读器 / Markdown 渲染 / txt 纯文本）。
+- 右上方“本地文档”入口 → 右侧滑出窗口：真实相对目录树（展开/折叠/筛选/入库状态）+ 预览（PDF 阅读器 / Markdown 渲染 / Word 转 HTML / txt 纯文本）。
 - 引用 `[n]` 可点击并定位物理页码；失效或版本变化明确提示。
 - 浏览与限定检索范围是两个操作；浏览不改变范围，限定资料时显示已选文件。
 - 文件接口仅允许配置根目录内的资料，按文档 ID 映射，防路径穿越。
 
 **侧栏与文献库**：侧栏可收束为图标栏/展开为全宽并持久化，收束后核心入口与异常提示仍可达；提供"文献库"一级入口浏览已入库文档并打开预览。
 
-**知识库管理与文件操作（部分已实现）**
+**知识库管理与文件操作（CRUD 已实现；两阶段导入/预览/检索缓存待 K5/K9/K10）**
 - 一份独立语料 = `CORPORA_ROOT`（默认 `.knowledge`）下一个自包含目录，内含 `source/`（原始）+ `datadb/`（SQLite）+ `vectordb/`（向量），库之间隔离。
 - 知识库 CRUD：新建、重命名、删除（默认只删派生数据；删源文件需显式确认）。（K6 已实现）
 - 库内文件 CRUD：列表、上传（md/pdf/txt（K7）、docx（K8））、删除、重命名/替换；`source/` 为唯一事实来源。
 - 侧栏列出库（名称/份数/就绪状态）并可切换；库详情展示文档清单；基金库显示题目/负责人/项目编号/报告年份区间。
 - 每个会话绑定一个库；输入区资料范围为两层：库（必选）+ 库内文档（可选，`allowed_doc_ids`）；切库清空越界选择并提示。
-- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。OCR 三档 `off/force/auto`（K2，auto 仅对无文本页 OCR）+ liteparse `num_workers`（K3）+ 运行时 OCR 模式/语言配置（K4）。并发解析与两阶段导入进度仍待 K5。
+- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。OCR 三档 `off/force/auto`（K2，auto 仅对无文本页 OCR）+ liteparse `num_workers`（K3）+ 运行时 OCR 模式/语言配置（K4）。两阶段导入进度仍待 K5；另：**OCR 语言/模式将按库配置并要求强制重导入**（K12）。
 - 预览支持 pdf（浏览器原生）/markdown（渲染）/word（转 HTML）/txt（纯文本）。
 - 首期不做跨库联合检索、库内分区、多用户权限隔离。
 
@@ -68,7 +68,7 @@
 |---|---|---|
 | 启动 | 复用/创建 uv 环境、端口检查、启动 uvicorn | `launch.sh`、`src/launcher.py` |
 | 后端 API | 生命周期、输入校验、后台准备、导入锁、SSE、静态资源 | `src/main.py` |
-| 解析/导入 | 本地 txt/md/PDF（LiteParse）、官方 Markdown、网页快照 | `src/parsers.py`、`src/official_docs.py`、`src/prepare_docs.py` |
+| 解析/导入 | 本地 txt/md/pdf（LiteParse）+ docx（python-docx）、官方 Markdown、网页快照 | `src/parsers.py`、`src/official_docs.py`、`src/prepare_docs.py` |
 | 知识库 | SQLite 原文/版本、BM25Plus、行窗口、版本校验 | `src/knowledge.py`、`src/reading.py` |
 | 检索融合 | 本地 embedding + Chroma、按签名隔离 collection、RRF | `src/dense.py` |
 | Agent | `understand → research/direct → validate → answer`；证据交接与预算 | `src/agent/` |
@@ -98,9 +98,10 @@
 | `POST /api/corpora` | 新建库目录（`source/`+`datadb/`+`vectordb/`）；201；重名 409、名称非法 422（K6） |
 | `PATCH /api/corpora/{id}` | 仅改显示名（落 `STATE_DIR/corpora.json`）；目录与 `corpus_id` 不变（K6） |
 | `DELETE /api/corpora/{id}?purge_source=` | 默认只删 `datadb/`/`vectordb/`；`purge_source=true` 才删 `source/`；默认库 409（K6） |
-| `GET\|POST\|PATCH\|DELETE /api/corpora/{id}/files` | 库内源文件列表/上传/重命名/删除（md/pdf/txt；上传 201、非法类型 415、超限 413）（K7） |
-| `POST /api/corpora/{id}/ingest` | 按库导入（限定库 root 内）；202 + job；404/409 |
-| `POST /api/ingest/local`、`POST /api/ingest/text` | 本地导入 / 手工补正文；准备中 409 |
+| `GET\|POST\|PATCH\|DELETE /api/corpora/{id}/files` | 库内源文件列表/上传/重命名/删除（md/pdf/txt/docx；上传 201、非法类型 415、超限 413）（K7/K8） |
+| `GET\|PUT /api/corpora/{id}/ocr`（待实现 K12） | 按库 OCR 模式/语言与 `ocr_stale` 状态 |
+| `POST /api/corpora/{id}/ingest` | 按库导入（限定库 root 内）；202 + job；404/409；`force=true` 绕过 size+mtime 跳过、全部重解析（K12） |
+| `POST /api/ingest/local`、`POST /api/ingest/text` | 本地导入（txt/md/pdf/docx）/ 手工补正文；准备中 409 |
 | `GET\|POST /api/official-docs` | 官方 Markdown 发现与批量更新（单进程内存任务） |
 | `POST /api/web/preview`、`/api/web/confirm/{id}` | 网页快照预览与确认入库 |
 | `POST /api/chat` | SSE 流式问答（见 4.2） |

@@ -99,16 +99,25 @@ bash launch.sh
 | `TEXT_ROOT` | `KNOWLEDGE_ROOT` | `ingest/local` 导入 txt/md 的目录 |
 | `EMBEDDING_PATH` | 空 | 本地 embedding 模型目录；空 = 仅 BM25，不加载 embedding |
 | `EMBEDDING_DEVICE` | `cpu` | embedding 设备 |
+| `PDF_OCR_MODE` / `PDF_OCR_LANGUAGE` / `PDF_NUM_WORKERS` | `auto` / `chi_sim+eng` / `0` | 扫描件 OCR：三档模式（`off`/`force`/`auto`）、Tesseract 语言、liteparse 并发 worker 数（0=库默认） |
 | `WEB_PROVIDER` | `crawl4ai` | 网页抓取器（`crawl4ai` / `firecrawl`） |
 | `MAX_SEARCHES` / `MAX_READS` / `MAX_MODEL_CALLS` / `RUN_TIMEOUT` | `6` / `8` / `12` / `180` | 有界研究流程的预算 |
 
+> 仅列常用变量；完整配置见 [.logsdev/PROJECT.md](.logsdev/PROJECT.md) §6。
+
 ## 主要接口
+
+> 仅列常用接口；完整契约（字段、错误语义、SSE）见 [.logsdev/PROJECT.md](.logsdev/PROJECT.md) §4。
 
 | 接口 | 说明 |
 |---|---|
-| `GET /api/health` | 服务状态、模型、文档数、初始化进度 |
-| `GET /api/documents`、`GET /api/documents/{doc_id}` | 文档摘要；按 `page`/`start_line`/`version` 读取原文（`section=true` 走章节窗口） |
-| `POST /api/ingest/local`、`POST /api/ingest/text` | 导入本地 txt/md/PDF；手工补充正文 |
+| `GET /api/health` | 服务状态、模型、文档数、初始化进度、当前库 |
+| `GET /api/documents?corpus=`、`GET /api/documents/{doc_id}?corpus=` | 文档摘要（可选按库）；按 `page`/`start_line`/`version` 读取原文（`section=true` 走章节窗口） |
+| `GET /api/documents/{doc_id}/file?corpus=` | 原始 PDF/Markdown/txt 文件流（浏览器阅读器） |
+| `GET /api/tasks` | 任务列表 task1–4 |
+| `GET\|POST\|PATCH\|DELETE /api/corpora...` | 知识库列表/新建/重命名/删除；`/{id}/files` 文件列表/上传/重命名/删除；`/{id}/ingest` 按库导入 |
+| `GET\|PUT /api/ocr-config` | 扫描件 OCR 模式/语言（全局默认，仅影响后续导入） |
+| `POST /api/ingest/local`、`POST /api/ingest/text` | 导入本地 txt/md/pdf/docx；手工补充正文 |
 | `GET\|POST /api/official-docs` | 官方 Markdown 分区发现与批量更新 |
 | `POST /api/web/preview`、`POST /api/web/confirm/{preview_id}` | 网页抓取预览与确认入库 |
 | `POST /api/chat` | SSE 流式问答 |

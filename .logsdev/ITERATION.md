@@ -13,7 +13,7 @@
 
 ## 2. 计划与任务状态
 
-**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0/K0b/K1 已实现）。
+**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8 已实现；K5/K9–K11 待做）。
 
 **A 工程基线**：A1–A6 ✅（pyproject/extras、tests、端到端、改名、dev_logs 整理、design 落盘）；A7 契约同步 🟡（E 阶段待补）。
 
@@ -50,11 +50,11 @@
 | U1/U2/U9/D11/H5–H7 | 任务选择器、文档面板与引用跳转、侧栏收束/文献库、挤压式侧栏、库选择/详情/按库文档 | `e400279`；18 passed；tsc 无新错误 |
 | H4/H8 | 按库问答契约与会话绑库 | `e7d08e2`/`67d0ff0`；**浏览器验收未做** |
 | 布局对齐 | 开发文档 `.logsdev/`；演示语料 `.demo_langchain/`；`VECTORDB_DIR` | `703d286`/`02cbcd9`；`pytest` 64 passed、路径解析验证 |
-| 方案 A 自包含库（本轮，工作树） | `.knowledge/<库>/{source,datadb,vectordb}`；演示库同构；`corpora.py` 按 role 目录扫描并把库内 `datadb/`/`vectordb/` 作为派生路径 | `pytest` 68 passed（新增 `tests/test_corpora.py` 4 例）；端到端导入派生落 `<库>/datadb/knowledge.sqlite3` |
-| K0/K0b/K1（本轮） | 应用级会话库（`state_dir` + 一次性迁移）；read/file 按 `corpus`；增量导入 + 文件清单 + 删除同步；前端传递 `corpus` | `pytest` 75 passed；`tests/test_corpora_state.py`、`tests/test_incremental_import.py`；`npm run build` + `node --test` 18 passed；实机默认演示库二次导入 `added=0/skipped=1`、删探针 `deleted=1` 且不再出现在 `/api/documents` |
-| K2/K3/K4（本轮） | OCR 三档（off/force/auto，auto 仅对无文本页 OCR）；liteparse `num_workers`；OCR 模式/语言运行时配置（`GET/PUT /api/ocr-config`，落 `STATE_DIR/ocr.json`） + 设置入口 | `pytest` 80 passed（新增 `tests/test_parsers_ocr.py` 4 例、OCR 配置持久化 1 例）；`npm run build` 通过；默认 `PDF_OCR_MODE=auto`、`PDF_OCR_LANGUAGE=chi_sim+eng` |
-| K6a/K6/K7（本轮） | `corpus_id_for` 单射+限长；知识库新建/显示名重命名/删除（默认只删派生，`purge_source` 才删源）；库内文件列表/上传（`python-multipart` 流式、200MB 上限、名称规范化）/重命名/删除；前端 `CorpusAdmin`+`CorpusFiles` | `pytest` 83 passed（新增 K6a/K6/K7 共 4 例）；`npm run build` + `node --test` 18 passed；实机 httpx：创建→上传 `added=1`→列表 `indexed`→重命名→删文件→删库均成功 |
-| K8（本轮） | Word `.docx` 解析（`python-docx`，段落+表格入正文）；`SOURCE_SUFFIXES` 与上传白名单加入 `.docx` | `pytest` 84 passed（新增 `tests/test_docx.py`）；`npm run build` 通过 |
+| 方案 A 自包含库 | `.knowledge/<库>/{source,datadb,vectordb}`；演示库同构；`corpora.py` 按 role 目录扫描并把库内 `datadb/`/`vectordb/` 作为派生路径 | `c8ecef8`；当时基线 `pytest` 68 passed（新增 `tests/test_corpora.py` 4 例）；端到端导入派生落 `<库>/datadb/knowledge.sqlite3` |
+| K0/K0b/K1（提交 `9075895`） | 应用级会话库（`state_dir` + 一次性迁移）；read/file 按 `corpus`；增量导入 + 文件清单 + 删除同步；前端传递 `corpus` | 当时基线 `pytest` 75 passed；`tests/test_corpora_state.py`、`tests/test_incremental_import.py`；`npm run build` + `node --test` 18 passed；实机默认演示库二次导入 `added=0/skipped=1`、删探针 `deleted=1` 且不再出现在 `/api/documents` |
+| K2/K3/K4（提交 `4483408`） | OCR 三档（off/force/auto，auto 仅对无文本页 OCR）；liteparse `num_workers`；OCR 模式/语言运行时配置（`GET/PUT /api/ocr-config`，落 `STATE_DIR/ocr.json`） + 设置入口 | `pytest` 80 passed（新增 `tests/test_parsers_ocr.py` 4 例、OCR 配置持久化 1 例）；`npm run build` 通过；默认 `PDF_OCR_MODE=auto`、`PDF_OCR_LANGUAGE=chi_sim+eng` |
+| K6a/K6/K7（提交 `b443623`） | `corpus_id_for` 单射+限长；知识库新建/显示名重命名/删除（默认只删派生，`purge_source` 才删源）；库内文件列表/上传（`python-multipart` 流式、200MB 上限、名称规范化）/重命名/删除；前端 `CorpusAdmin`+`CorpusFiles` | `pytest` 83 passed（新增 K6a/K6/K7 共 4 例）；`npm run build` + `node --test` 18 passed；实机 httpx：创建→上传 `added=1`→列表 `indexed`→重命名→删文件→删库均成功 |
+| K8（提交 `0615ef9`） | Word `.docx` 解析（`python-docx`，段落+表格入正文）；`SOURCE_SUFFIXES` 与上传白名单加入 `.docx` | `pytest` 84 passed（新增 `tests/test_docx.py`）；`npm run build` 通过 |
 
 当前可用基线（本次实测）：后端 `pytest tests -q` → **84 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
@@ -82,17 +82,17 @@
 
 ## 6. K 阶段规划：知识库管理、解析优化与预览（2026-09-22，规划中）
 
-### 6.1 根因分析（代码核对，非实测）
+### 6.1 根因分析（优化前历史，K2/K3/K4 已解决）
 
-> 本节为代码核对结论，**非实测**；以功能验收为准，不做额外基准测试。
+> 以下为**优化前**的代码核对结论；相关项已由 K2/K3/K4 解决，保留用于解释设计动因，**不得当作现状依据**。
 
-- **慢点不在 SQLite**：`Knowledge.put` 单条 `INSERT OR REPLACE`（`knowledge.py:65-86`）。
-- **OCR 常开**：`parse_file` 固定传 `ocr_enabled=settings.pdf_ocr`（`parsers.py:24`），`.env` 默认 `PDF_OCR=true`、`PDF_OCR_LANGUAGE=eng`。
-- **全量重解析**：`import_defaults` 对目录 `rglob` 后逐个 `parse_file`，无跳过（`parsers.py:103-126`）。
-- **解析串行**：单次 `asyncio.to_thread(import_defaults)`，文件之间无并发。
-- **向量延后阻塞查询**：`DenseIndex._search` 首次才加载模型并批量 `add_texts`（`dense.py:31-72`）。
-- **查询期重复计算**：`Knowledge.search` 每查询重建全库窗口与 `BM25Plus`（`knowledge.py:104-126`），且与 dense 无关。
-- **非默认库并非“仅 BM25”**：`knowledge_for` 为每库设 `vectordb_dir`（`main.py:154-159`），`EMBEDDING_PATH` 非空时同样建 dense；`main.py:373` 的旧注释与此矛盾，规划不得据此。
+- **慢点不在 SQLite**：`Knowledge.put` 单条 `INSERT OR REPLACE`。（仍然成立）
+- ~~OCR 常开~~：旧 `parse_file` 固定 `ocr_enabled=settings.pdf_ocr`；**已由 K2 改为三档 `off/force/auto`（`parse_pdf_pages`），K4 改为运行时配置。**
+- ~~全量重解析~~：旧 `import_defaults` 逐个解析、无跳过；**已由 K1 增量清单解决。**
+- ~~解析串行~~：旧单次 `to_thread`；**已由 K3 `num_workers` 并发。**
+- ~~向量延后阻塞查询~~：`DenseIndex._search` 首次才建；**待 K5 两阶段导入解决（未做）。**
+- ~~查询期重复计算~~：`Knowledge.search` 每查询重建窗口与 BM25；**待 K10 缓存解决（未做）。**
+- 非默认库并非“仅 BM25”：`knowledge_for` 设 `vectordb_dir`，`EMBEDDING_PATH` 非空时同样建 dense。
 
 ### 6.2 目标布局（方案 A，扫描已实施）
 
@@ -106,7 +106,7 @@
 
 ### 6.3 任务
 
-> 进度：K0、K0b、K1、K2、K3、K4、K6a、K6、K7、K8 **已完成**（提交与测试见 §2/§3）；K5、K9–K11 未开始。
+> 进度：K0、K0b、K1、K2、K3、K4、K6a、K6、K7、K8 **已完成**（提交：K0/K0b/K1=`9075895`、K2/K3/K4=`4483408`、K6a/K6/K7=`b443623`、K8=`0615ef9`；测试见 §3）；K5、K9–K11 未开始。
 
 | 编号 | 任务 | 验收 |
 |---|---|---|
@@ -125,6 +125,7 @@
 | K9 | 预览：`GET /api/documents/{doc_id}/preview`（**带 `corpus` 参数**，与列表接口一致）按 kind 返回 html/text/file；统一 `DocumentPanel`：pdf 原生（D6）、md 渲染、docx 转 HTML、txt 纯文本 | 四类文件可预览并显示元数据 |
 | K10 | 检索性能：**范围含每查询的 `self.all()` + 窗口切分 + `tokens()` + `BM25Plus(corpus)`**（`knowledge.py:104-126`），不止 chunk id；需预计算/缓存候选与 BM25，或明确调低验收口径；**存量库首次回填缓存同 K1 为一次性成本** | 大库查询延迟不随库线性增长（或按调低口径验收） |
 | K11 | 验收：文件/库 CRUD、预览、重命名/删除、按库问答仅本库引用；以一次真实导入抽样计时（不做对比测试） | 功能通过 |
+| K12 | **按库 OCR 语言对齐与重导入**：OCR 模式/语言按库存储（`<KB>/datadb` 的 `meta`），生效值 = 库配置 ?? 全局；`files` 清单记录 `used language/mode`；配置与实际不一致时标 `ocr_stale`；`POST /api/corpora/{id}/ingest` 增 `force`（绕过 size+mtime 跳过、全部重解析）；库详情提供“解析设置 + 重新导入并应用”，提示“重解析全部文件、版本会变化”；对中文库建议 `chi_sim+eng` | 选 `chi_sim+eng` → 重导入 → 预览文本可读、`ocr_stale=false`；未改语言时未变文件仍跳过 |
 
 ### 6.4 顺序与依赖
 
@@ -134,7 +135,8 @@
 - **K8（Word）先于 K7 的 docx 支持**；K7 本阶段不含 docx。
 - K1 的删除同步必须同时清 BM25 与 dense（stale）；**K1/K10 对存量库有一次性回填成本**，不计入优化后稳态。
 - K6/K7 的写操作需重扫并重载活动库。
-- 建议顺序：**K0 → K0b → K1 → K2 → K3 → K4 → K5 → K6a → K6 → K7 → K8 → K9 → K10 → K11**（K6b 随 K6/K6a 定）。
+- **K12（按库 OCR 语言 + 强制重导入）依赖 K1 清单与 K4 配置；修复“改语言后重新导入不生效”**。
+- 建议顺序：**K0 → K0b → K1 → K2 → K3 → K4 → K12 → K5 → K6a → K6 → K7 → K8 → K9 → K10 → K11**（K6b 随 K6/K6a 定）。
 - 与既有任务的关系：K 是 H9/B2/B4/B5（元数据/过滤）与 H10（真实报告验收）的前置；完成后更新 H10 验收与 PROJECT 现状。
 
 ## 7. 维护约定

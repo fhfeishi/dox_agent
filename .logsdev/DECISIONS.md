@@ -6,17 +6,26 @@
 - 理由与代价：派生数据重建成本高（中文扫描件 OCR + 向量索引），按库自包含便于整库备份/迁移/删除，并与演示库约定统一、消除两棵树漂移；代价是库目录可写、扫描需跳过 `source`/`datadb`/`vectordb` 保留名。
 - 影响：`src/agent/config.py`（`CORPORA_ROOT` 默认 `.knowledge`，移除镜像用 `DATA_ROOT`）、`src/agent/corpora.py`（`CorpusInfo` 增 `source_dir`/`db_dir`/`vectordb_dir`）、`README.md`、`.env`/`.env.example`。
 - 替代关系：取代下方"文档与本地数据布局"中 `.knowledge/`（原始）与 `.data/`（派生）分离、以及 `.demo_langchain` 旧子目录名（`langchain_dox`/`langchain_datadb`/`langchain_vectordb`）的约定。
-- 遗留：应用级会话库 `workspace.sqlite3` 仍随默认库的 `datadb/`，尚未迁到固定应用级目录。
+- 遗留：应用级会话库原随默认库 `datadb/`；**已由 K0 解决**（迁到 `STATE_DIR`，见下方「应用级会话库独立于语料库」）。
 
-## OCR 语言由前端可调（2026-09-22）
+## OCR 模式/语言可运行时配置（2026-09-22，已实现）
 
-- 采用：`PDF_OCR` / `PDF_OCR_LANGUAGE` 应可在前端设置中调整（如 `eng` / `chi_sim` / `chi_sim+eng`），而不是只靠 `.env` 改后重启；后端提供读取/更新该配置的最小接口，前端在设置抽屉暴露语言选择。
-- 理由与代价：基金报告多为中文扫描件，当前默认 `eng` 识别质量差；入库质量直接取决于 OCR 语言，需要能即时调整而不用改文件重启。代价：新增运行时配置读写接口，并需明确“仅影响后续导入”的语义（已入库文档不自动重解析，需重新导入）。
-- 影响（待实现）：`src/agent/config.py`、`src/main.py`（配置接口）、`frontend/src/SettingsDrawer.tsx`；单用户本地部署下允许写入。
-- 默认值：中文语料库默认 `chi_sim+eng`（而非 `eng`）；`PDF_OCR` 与语言均可在设置中调整。
-- 与解析关系：OCR 语言仅作用于 liteparse 的 OCR 路径（本项目的固定解析器）。
-- 状态：**已采用且已实现**。配置文件 `STATE_DIR/ocr.json`；后端 `GET/PUT /api/ocr-config`（`OcrConfigRequest` 仅允许 `off/force/auto` 与 `eng/chi_sim/chi_sim+eng`），启动时覆盖 `Settings`；前端 `OcrSettings` 在设置抽屉。语义“仅影响后续导入”。测试：`tests/test_corpora_state.py::test_ocr_config_persists_and_only_affects_later_imports`。
-- 默认值：`PDF_OCR_MODE=auto`、`PDF_OCR_LANGUAGE=chi_sim+eng`（`.env`/`.env.example`）。
+- 采用：OCR 模式（`off`/`force`/`auto`）与语言（`eng`/`chi_sim`/`chi_sim+eng`）可在前端调整，不必改 `.env` 重启；默认 `PDF_OCR_MODE=auto`、`PDF_OCR_LANGUAGE=chi_sim+eng`。
+- 理由与代价：基金报告多为中文扫描件，旧的固定 `eng` 质量差；代价是新增运行时配置接口，并需明确“仅影响后续导入”（已入库文档需重新导入才生效）。
+- 落点：`src/agent/config.py`（`pdf_ocr_mode`/`pdf_ocr_language`/`pdf_num_workers`、`OCR_MODES`/`OCR_LANGUAGES`、`load_ocr_config`/`save_ocr_config`）、`src/main.py`（`GET/PUT /api/ocr-config`，启动时覆盖 `Settings`）、`frontend/src/OcrSettings.tsx`（设置抽屉）；配置落地 `STATE_DIR/ocr.json`。
+- 与解析关系：OCR 语言仅作用于 liteparse（本项目固定解析器）。
+- 状态：**已实现（K4）**；测试 `tests/test_corpora_state.py::test_ocr_config_persists_and_only_affects_later_imports`。
+
+## 按库 OCR 语言与“改语言→强制重解析”（待实现 K12，2026-09-22）
+
+- 问题：OCR 配置当前是**全局**（`STATE_DIR/ocr.json`），且增量导入按 `size+mtime_ns` 跳过未变文件，导致“改语言后重新导入”实际什么都不做；旧基金库以 `eng` 解析的正文仍是乱码，预览无法阅读。
+- 采用：
+  - OCR 模式/语言**按库**存储（`<KB>/datadb` 的 `meta` 表）；生效值 = 库配置 ?? 全局默认。
+  - `files` 清单记录每文件解析时用的 `language`/`mode`；库配置与实际不一致时标 `ocr_stale`。
+  - `POST /api/corpora/{id}/ingest` 增 `force`：绕过 `size+mtime_ns` 跳过、全部重解析（用于语言/模式变更）；`ocr_stale` 时服务端建议/要求 `force`。
+  - 库详情提供“解析设置 + 重新导入并应用”，并提示“将重解析全部文件、版本会变化”。
+- 理由与代价：语言决定识别质量，必须能按库调整并真正重解析；代价是新增按库配置存储与一次全量重解析。
+- 状态：待实现（K12）。
 
 ## 导入性能优化方向（2026-09-22）
 

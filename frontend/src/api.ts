@@ -1,10 +1,10 @@
 export type Source = { title: string; url: string; snippet: string; page?: number; doc_id?: string; version?: string; origin?: string; kind?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean; citation?: number };
 export type Message = { role: "user" | "assistant"; content: string };
 export type Usage = { run_id?: string; input_tokens: number | null; output_tokens: number | null; total_tokens: number | null; reported_tokens: number | null; calls: number; reported_calls: number; complete: boolean; missing_reasons?: Record<string, number>; calls_by_phase?: Record<string, number> };
-export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string };
+export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string; duration_ms?: number };
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; searches: number; reads: number; tokens: number | null };
 export type Options = { allowed_doc_ids: string[] | null; task_id?: string; corpus_id?: string };
-export type TaskInfo = { id: string; name: string; description: string; has_template: boolean };
+export type TaskInfo = { id: string; name: string; description: string; output_hint?: string; has_template: boolean };
 export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;

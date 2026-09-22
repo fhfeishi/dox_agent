@@ -15,13 +15,13 @@ CHAT_TASK_IDS = ("task1", "task2", "task3")
 
 TASKS: tuple[dict, ...] = (
     {"id": "task1", "name": "精准问答", "description": "基于本地文档回答具体问题，先给结论再逐条引用，不推测。",
-     "has_template": False, "file": "task1_qa.md"},
+     "output_hint": "结论 + 逐条 [n] 引用 + 资料范围与局限", "has_template": False, "file": "task1_qa.md"},
     {"id": "task2", "name": "对比分析", "description": "跨文档、项目或时间做对比，给出对比维度、差异结论与可比性前提。",
-     "has_template": False, "file": "task2_compare.md"},
+     "output_hint": "对比维度表 + 差异结论 + 可比性前提", "has_template": False, "file": "task2_compare.md"},
     {"id": "task3", "name": "趋势推测", "description": "基于本次样本讨论领域走向，事实与推断分段并标注样本范围与局限。",
-     "has_template": False, "file": "task3_trend.md"},
+     "output_hint": "事实/推断分段 + 方向性置信度 + 样本局限", "has_template": False, "file": "task3_trend.md"},
     {"id": "task4", "name": "专项报告", "description": "按模板生成可保存的结构化报告，走统一报告入口，不在聊天中生成正文。",
-     "has_template": True, "file": "task4_report.md"},
+     "output_hint": "Markdown 报告 + 来源清单 + 局限", "has_template": True, "file": "task4_report.md"},
 )
 
 
@@ -57,4 +57,5 @@ def task_instruction(task_id: str) -> str:
 
 
 def list_tasks() -> list[dict]:
-    return [{"id": t["id"], "name": t["name"], "description": t["description"], "has_template": t["has_template"]} for t in TASKS]
+    return [{"id": t["id"], "name": t["name"], "description": t["description"],
+             "output_hint": t.get("output_hint", ""), "has_template": t["has_template"]} for t in TASKS]

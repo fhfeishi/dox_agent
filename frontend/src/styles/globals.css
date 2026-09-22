@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens — aligned with the DoxAgentWeb reference template.
+   Single values only (colors / numbers / keywords).
+   ------------------------------------------------------------------ */
+:root {
+  --canvas: #ffffff;
+  --surface: #f6f5f4;
+  --surface-soft: #fafaf9;
+  --surface-sink: #f0eeec;
+
+  --hairline: #e5e3df;
+  --hairline-soft: #ede9e4;
+  --hairline-strong: #d8d3cc;
+
+  --ink-deep: #000000;
+  --ink: #1a1a1a;
+  --charcoal: #37352f;
+  --slate: #5d5b54;
+  --steel: #787671;
+  --stone: #a4a097;
+  --muted: #bbb8b1;
+
+  --primary: #5645d4;
+  --primary-pressed: #4534b3;
+  --primary-soft: #eeebfb;
+  --primary-soft-2: #f5f3fd;
+
+  --navy: #0a1530;
+  --link: #0075de;
+
+  --green: #1aae39;
+  --orange: #dd5b00;
+  --purple: #7b3ff2;
+  --pink: #ff64c8;
+  --red: #e03131;
+
+  --tint-peach: #ffe8d4;
+  --tint-rose: #fde0ec;
+  --tint-mint: #d9f3e1;
+  --tint-lavender: #e6e0f5;
+  --tint-sky: #dcecfa;
+  --tint-yellow: #fef7d6;
+  --tint-cream: #f8f5e8;
+  --tint-gray: #f0eeec;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
+      sans-serif;
+  }
+
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: default;
+  }
+
+  .font-app {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
+      sans-serif;
+  }
+
+  .font-code {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+      monospace;
+  }
+}
+
+/* Thin, unobtrusive scrollbars — plain rules, kept out of the utility layer. */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #dcd9d4;
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 8px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #c6c2bb;
+  background-clip: content-box;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes doxagent-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.animate-caret {
+  animation: doxagent-blink 1s steps(2) infinite;
+}
+
+/* ------------------------------------------------------------------
+   Rendered answer / document markdown (react-markdown output)
+   ------------------------------------------------------------------ */
+.markdown {
+  line-height: 1.78;
+  overflow-wrap: anywhere;
+  color: var(--charcoal);
+  font-size: 14.2px;
+}
+.markdown p,
+.markdown ul,
+.markdown ol,
+.markdown pre,
+.markdown table,
+.markdown blockquote {
+  margin: 0.85em 0;
+}
+.markdown ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+.markdown ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  font-weight: 600;
+  color: var(--ink);
+  margin: 1.25em 0 0.55em;
+}
+.markdown h1 {
+  font-size: 1.35em;
+}
+.markdown h2 {
+  font-size: 1.2em;
+}
+.markdown h3,
+.markdown h4 {
+  font-size: 1.05em;
+}
+.markdown pre {
+  overflow-x: auto;
+  background: var(--surface-sink);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 12.6px;
+}
+.markdown code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.92em;
+}
+.markdown :not(pre) > code {
+  background: var(--surface-sink);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+.markdown a {
+  color: var(--link);
+  text-decoration: underline;
+}
+.markdown blockquote {
+  border-left: 3px solid var(--hairline-strong);
+  padding-left: 12px;
+  color: var(--slate);
+}
+.markdown table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+.markdown td,
+.markdown th {
+  border: 1px solid var(--hairline-strong);
+  padding: 0.45rem 0.7rem;
+  text-align: left;
+}
+.markdown th {
+  background: var(--surface-soft);
+  font-weight: 600;
+}

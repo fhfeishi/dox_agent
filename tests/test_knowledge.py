@@ -12,6 +12,14 @@ def test_search_first_page_keeps_multiple_sources(tmp_path):
                                 pages=[Page(number=1, text="shared retrieval term from another source")]))
     hits = store.search("shared retrieval term", limit=4)
     assert second["doc_id"] in {hit["doc_id"] for hit in hits[:3]}
+
+
+def test_search_accepts_task_id_for_task_specific_budget(tmp_path):
+    store = Knowledge(tmp_path / "db")
+    store.put(Document(title="南溪", origin="fixture.txt", kind="text", parser="test",
+                       pages=[Page(number=1, text="南溪地基基础施工于2025年10月22日完成")]))
+    # The task id selects the retrieval budget (min/max reports); search must forward it.
+    assert store.search("南溪地基基础施工", task_id="task2")
 from src.parsers import import_defaults, parse_file, session_for
 
 

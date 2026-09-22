@@ -31,6 +31,10 @@ def test_graph_emits_real_step_lifecycle(tmp_path):
         ("finish", "running"), ("finish", "completed"),
     ]
     assert [step["sequence"] for step in steps] == [1, 1, 2, 2, 3, 3]
+    # Observable per-step latency: completed steps carry a non-negative duration, running ones do not.
+    assert all("duration_ms" not in step for step in steps if step["status"] == "running")
+    completed = [step for step in steps if step["status"] == "completed"]
+    assert completed and all(isinstance(step.get("duration_ms"), int) and step["duration_ms"] >= 0 for step in completed)
 
 
 def test_api_attaches_client_run_id_to_steps(tmp_path):

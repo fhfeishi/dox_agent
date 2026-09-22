@@ -250,10 +250,15 @@ class Knowledge:
         with self.connect() as db:
             db.execute("INSERT OR REPLACE INTO meta VALUES (?, ?)", (key, value))
 
-    def search(self, query: str, limit: int = 6, *, allowed_doc_ids: list[str] | None = None) -> list[dict]:
-        """L5b: single index — delegate to the report-level engine and return chunk locators."""
+    def search(self, query: str, limit: int = 6, *, allowed_doc_ids: list[str] | None = None,
+               task_id: str = "task1") -> list[dict]:
+        """L5b: single index — delegate to the report-level engine and return chunk locators.
+
+        ``task_id`` selects the task-specific retrieval budget (min/max reports); callers that
+        hold a session task must pass it so the task contract is not silently ignored.
+        """
         limit = max(1, min(limit, 10))
-        result = self.retrieve(query, allowed_doc_ids=allowed_doc_ids)
+        result = self.retrieve(query, task_id=task_id, allowed_doc_ids=allowed_doc_ids)
         hits: list[dict] = []
         deferred: list[dict] = []
         per_doc: dict[str, int] = {}

@@ -55,6 +55,7 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
     llm = model if model is not None else model_for(settings)
     step_sequence = 0
     step_numbers = {}
+    step_started: dict[str, float] = {}
 
     def step(phase: str, status: str, label: str, *, detail: str = "", step_id: str | None = None,
              output=None):
@@ -64,10 +65,14 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
             step_sequence += 1
             step_id = f"step-{step_sequence}"
             step_numbers[step_id] = step_sequence
-        (output or get_stream_writer())({"event": "step", "data": {
-            "id": step_id, "sequence": step_numbers[step_id], "phase": phase,
-            "status": status, "label": label, "detail": detail,
-        }})
+        data = {"id": step_id, "sequence": step_numbers[step_id], "phase": phase,
+                "status": status, "label": label, "detail": detail}
+        # Observable per-step latency: record when a step starts, report elapsed on completion.
+        if status == "running":
+            step_started[step_id] = perf_counter()
+        elif step_id in step_started:
+            data["duration_ms"] = int((perf_counter() - step_started.pop(step_id)) * 1000)
+        (output or get_stream_writer())({"event": "step", "data": data})
         return step_id
 
     async def understand(state: State):
@@ -118,7 +123,10 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
                 if settings.evidence_routing and len(searches) >= settings.max_searches:
                     step("search", "completed", "搜索资料", detail="搜索预算已用完", step_id=search_step, output=writer)
                     return [{"error": "搜索预算已用完，请提交研究报告"}]
-                searches[normalized] = await asyncio.to_thread(knowledge.search, query, allowed_doc_ids=allowed)
+                searches[normalized] = await asyncio.to_thread(
+                    knowledge.search, query, allowed_doc_ids=allowed,
+                    task_id=state.get("task_id", DEFAULT_TASK_ID),
+                )
             detail = f"{'复用缓存，' if cached else ''}找到 {len(searches[normalized])} 个候选"
             step("search", "completed", "搜索资料", detail=detail, step_id=search_step, output=writer)
             return searches[normalized]

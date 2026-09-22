@@ -41,7 +41,7 @@ async def main():
             await expect(status.get_by_text("正常")).to_be_visible()
 
             # power button disconnects and closes the drawer
-            await page.get_by_role("button", name="设置与运维").click()
+            await page.get_by_role("button", name="设置", exact=True).click()
             power = page.get_by_role("button", name="断开连接")
             await expect(power).to_be_enabled()
             await power.click()
@@ -51,7 +51,7 @@ async def main():
             await expect(status.get_by_text("已断开")).to_be_visible()
 
             # power button is disabled while disconnected
-            await page.get_by_role("button", name="设置与运维").click()
+            await page.get_by_role("button", name="设置", exact=True).click()
             await expect(page.get_by_role("button", name="断开连接")).to_be_disabled()
             await page.keyboard.press("Escape")
 

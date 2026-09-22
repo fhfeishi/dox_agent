@@ -46,6 +46,9 @@ async def main():
             await page.route("**/api/official-docs", official_status)
 
             await page.goto(origin)
+            # Session-list assertions are scoped to the sidebar: the chat header now also shows
+            # the active session title (top bar), so an unscoped text locator would match twice.
+            sidebar = page.locator("aside").first
 
             # rail convergence: ingest tools exist only inside the drawer
             await page.get_by_role("button", name="＋ 新的问答").wait_for()
@@ -58,28 +61,31 @@ async def main():
             await expect(status.get_by_text("正常")).to_be_visible()
 
             # session list: grouping, search, archive
-            await expect(page.get_by_text("今天的会话")).to_be_visible()
-            await expect(page.get_by_text("昨天的会话")).to_be_visible()
-            await expect(page.get_by_text("已归档会话 · 1")).to_be_visible()
+            await expect(sidebar.get_by_text("今天的会话")).to_be_visible()
+            await expect(sidebar.get_by_text("昨天的会话")).to_be_visible()
+            await expect(sidebar.get_by_text("已归档会话 · 1")).to_be_visible()
             await page.get_by_role("textbox", name="搜索会话").fill("昨天")
-            await expect(page.get_by_text("今天的会话")).to_have_count(0)
-            await expect(page.get_by_text("昨天的会话")).to_be_visible()
+            await expect(sidebar.get_by_text("今天的会话")).to_have_count(0)
+            await expect(sidebar.get_by_text("昨天的会话")).to_be_visible()
             await page.get_by_role("textbox", name="搜索会话").fill("")
 
             # a newly created (unpersisted) session stays visible in the list
             await page.get_by_role("button", name="＋ 新的问答").click()
-            await expect(page.get_by_text("当前新会话")).to_be_visible()
+            await expect(sidebar.get_by_text("当前新会话")).to_be_visible()
 
             # drawer: a11y dialog, Esc closes, focus returns, polling unmounts
-            trigger = page.get_by_role("button", name="设置与运维")
+            trigger = page.get_by_role("button", name="设置", exact=True)
             await trigger.click()
             dialog = page.get_by_role("dialog", name="设置与运维")
             await expect(dialog).to_be_visible()
-            await expect(page.get_by_role("button", name="导入 / 更新本地文本与 PDF")).to_be_visible()
+            await expect(dialog.get_by_role("button", name="导出对话与证据版本")).to_be_visible()
+            # knowledge-base CRUD / import no longer lives in the settings drawer
+            assert await dialog.get_by_text("知识库管理").count() == 0
+            assert await dialog.get_by_role("button", name="新建知识库").count() == 0
             await page.wait_for_timeout(2500)
             await page.keyboard.press("Escape")
             await expect(dialog).to_have_count(0)
-            assert await page.evaluate("document.activeElement && document.activeElement.textContent") == "设置与运维"
+            assert await page.evaluate("document.activeElement && document.activeElement.textContent") == "设置"
             await page.wait_for_timeout(500)
             before = official["count"]
             await page.wait_for_timeout(3000)

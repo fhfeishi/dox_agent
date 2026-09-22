@@ -1,28 +1,31 @@
 /**
  * Feature switches for capabilities that still depend on backend contracts.
  *
- * All switches default to off: `ChatRequest` is `extra="forbid"`, so sending a field the
- * backend does not know yet answers 422. Read at module load; `node --test` sees no env
- * and therefore the same defaults.
+ * Defaults reflect the verified backend state: `GET /api/tasks` and `ChatRequest.task_id`
+ * exist, so task selection is on by default (opt out with `VITE_UI_TASKS=0`). The document
+ * explorer (`/file` + `rel_path`) stays opt-in until its browser acceptance passes. Read at
+ * module load; `node --test` sees no env and therefore the same defaults.
  */
 
-function enabled(name: string): boolean {
+function envValue(name: string): string | undefined {
   const env = (import.meta as unknown as { env?: Record<string, string | undefined> }).env ?? {};
-  const value = env[name];
+  return env[name];
+}
+
+function enabled(name: string): boolean {
+  const value = envValue(name);
   return value === "1" || value === "true" || value === "on";
 }
 
+/** Default-on switch: only an explicit falsy env value disables it. */
+function defaultOn(name: string): boolean {
+  const value = envValue(name);
+  return !(value === "0" || value === "false" || value === "off");
+}
+
 export const uiFlags = {
-  /** Task picker, session `task_id` and task badges (U1; needs `GET /api/tasks` + chat `task_id`). */
-  tasks: enabled("VITE_UI_TASKS"),
-  /** Retrieval filter UI: domain / year range / fund types (needs chat `filters`, stage B). */
-  filters: enabled("VITE_UI_FILTERS"),
+  /** Task picker, session `task_id`, task badges and the task views (backend contract ready). */
+  tasks: defaultOn("VITE_UI_TASKS"),
   /** Directory tree, raw PDF viewer and citation jumps (U2; needs D1 `rel_path` and D2 `/file`). */
   docPanel: enabled("VITE_UI_DOC_PANEL"),
-  /** task4 report form and report cards (U3; needs `POST /api/reports`). */
-  reports: enabled("VITE_UI_REPORTS"),
-  /** Research headline placeholder (U9.3; backend undetermined, rendering only). */
-  news: enabled("VITE_UI_NEWS"),
-  /** Model selector (U9.4 second step; needs `GET /api/models` and request-level `model`). */
-  models: enabled("VITE_UI_MODELS"),
 } as const;

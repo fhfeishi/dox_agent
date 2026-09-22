@@ -47,9 +47,12 @@ async def main():
         # the document list must re-scope before we browse it
         await expect(page.get_by_role("button", name=re.compile(f"文献库 · {len(client.get('/api/documents', params={'corpus': fund['id']}).json())} 份"))).to_be_visible()
 
-        # open the library and a PDF document (cards render an h2 whose title may be reformatted)
+        # open the library, the fund corpus detail, then a PDF document
         await page.get_by_role("button", name=re.compile("文献库")).first.click()
-        await page.locator('section[aria-label="文献库"] h2').first.click()
+        await page.get_by_role("button", name=re.compile(re.escape(fund["name"]))).first.click()
+        detail = page.get_by_role("dialog", name=re.compile(re.escape(fund["name"])))
+        await expect(detail).to_be_visible()
+        await detail.get_by_role("button", name=re.compile(re.escape(pdf["title"]))).first.click()
         dialog = page.get_by_role("dialog", name=re.compile("文档预览"))
         await expect(dialog).to_be_visible()
         frame = dialog.locator("iframe")

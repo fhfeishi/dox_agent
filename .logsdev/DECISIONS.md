@@ -120,7 +120,7 @@
 - **token 口径（D-L8）**：无 tiktoken；MVP 保守字符估算 + 字符硬上限 + 供应商 `usage` 校准，标 uncalibrated。
 - **CJK 无匹配（D-L9）**：2-gram + 小停用词表 + 覆盖率，MVP uncalibrated，由评测校准；`_query_terms` 为空 → `reason="direct"`，**无回退**（`telemetry.path=direct`）。
 - **验证者 S1–S9（2026-09-22，二次修订）**：parsed 完整性门禁（S1，rel 口径、排除 `_pilot`）、base64 正则去贪婪（S2）、Layer A 全查询词并集（S3，并入立即批次）、索引注入 `project_no`（S4）、历史 token 截断（S5，保留末条 user）、无匹配空词与覆盖口径（S6，见上 D-L9）、`REPORT_RECALL_M` 扩展行为（S7）、PDF 版本失效**前端 version 比对**（S8，不预探 `/file`）、文档口径澄清（S9）。立即批次 = S2+S3+S6（仅 `retrieval.py`）。详见 [`ITERATION.md`](ITERATION.md) §5.3。
-- **D-L10 覆盖度量与逐文档入选（2026-09-22）**：覆盖率改用净化后的 `specific` 词（剔跨边界伪 2-gram + `GENERIC_DF_RATIO` 泛词）；逐文档入选 = `cover ≥ MIN_TERM_COVER` 且 `≥ REL_COVER×top1`，保底 `MIN_REPORTS`；宽泛领域查询（`specific` 空）跳过阈值取 top `MAX_REPORTS` 标 `coverage_partial`。参数 uncalibrated。详见 [`ITERATION.md`](ITERATION.md) §7.7 / §5.4。
+- **D-L10 覆盖度量与逐文档入选（2026-09-22，P1–P4 修订）**：`generic` 按 **chunk 语料 DF** 判定（`GENERIC_DF_RATIO=0.35`，保留 `医疗`0.34、剔 `能在`0.46），`specific=_query_terms−generic`；逐文档接受 = `cover ≥ max(MIN_TERM_COVER, REL_COVER×top1)`，保底 `MIN_REPORTS`（不足补给并标 `coverage_partial`）；宽泛查询（`specific` 空）跳过阈值取 top `MAX_REPORTS`。必须校准收敛为 `MIN/MAX_REPORTS`+`MIN_TERM_COVER`(+`PER_DOC_TOP_M`)；`REL_COVER`/`GENERIC_DF_RATIO` 固定默认仅观察。详见 [`ITERATION.md`](ITERATION.md) §7.7 / §5.4。
 - 状态：**已裁决**（对策与执行顺序见 [`ITERATION.md`](ITERATION.md) §5.2）。
 
 ## L 检索：引用粒度/校验/预算/停止语义/删除同步（2026-09-22）

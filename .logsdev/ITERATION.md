@@ -163,9 +163,9 @@
 - 现象（用户）：问「人工智能医疗领域的近年进展」120s 后「找不到证据」。
 - 根因分解：
   1. **未接线**：问答仍走旧 `research`（`research_timeout=120`），新 `Knowledge.retrieve` 无生产调用者；实测新引擎对同一查询**毫秒级**返回 `matched=True`（17 候选）。
-  2. **覆盖度量失真**：覆盖率用原始重叠 2-gram，含泛词（`智能` 报告 DF=15/35）与跨边界伪词（`能在`/`在医`/`域的` 报告索引 DF≈0），导致无关报告（证券市场）入选、宽泛查询 cover 偏低。
-- 对策：**D-L10**（词项净化 + 逐文档相对阈值 + 保底）；**下一步 = 步骤 5 接线**。
-- 证据（实测，基金库）：`retrieve('人工智能在医疗领域的应用', task_id='task3')` → matched=True、17 候选，top5 cover=0.60/0.40/0.60/0.40/0.50（含「证券市场」噪声）；词项 DF 见 D-L10。
+  2. **覆盖度量失真**：覆盖率用原始重叠 2-gram；**chunk 语料 DF** 显示高频泛词/伪词：`应用` 1.00、`人工` 0.91、`的应` 0.83、`域的` 0.71、`能在` 0.46（报告索引 DF 会低估这些，故必用 chunk-DF）。
+  - **对策**：**D-L10**（`GENERIC_DF_RATIO=0.35` 按 **chunk-DF** 净化 + 逐文档相对阈值 `REL_COVER×top1` + 保底）；**下一步 = 步骤 5 接线**。
+- 证据（实测，基金库）：净化后 `specific('人工智能在医疗领域的应用')={在医,医疗,疗领}` → 证券市场报告 cover=0、医学报告 top；`specific('癫痫致痫网络')={癫痫,痫致,致痫,痫网}` → 赵国光报告 cover=1.00、噪声=0。
 
 ## 6. K 阶段规划：知识库管理、解析优化与预览（2026-09-22，规划中）
 
@@ -452,23 +452,25 @@ Q → [Q0]归一/过滤 → [Q1]报告级召回(top-M 报告)
 | task4 专项报告 | 按模板章节 + 领域/年份过滤 | 3 / 10 |
 
 **阈值与无匹配（可解释、可复现；τ 仅兜底；D-L10）**
-- **词项净化**：`effective` = 候选 chunk 中 DF>0 的 query 词（剔跨边界伪 2-gram）；`generic` = 报告索引 DF 占比 ≥ `GENERIC_DF_RATIO`；`specific = effective − generic`。
-- 主判据：`cover = |specific ∩ 命中| / |specific|`；`specific` 为空（宽泛领域查询）→ 跳过逐文档阈值，取 top `MAX_REPORTS` 标 `coverage_partial`。
-- **逐文档入选**：`cover ≥ MIN_TERM_COVER`（绝对下限）**且** `cover ≥ REL_COVER × top1_cover`；保底保留报告分最高 `MIN_REPORTS`。
-- 全局无匹配：`max cover < MIN_TERM_COVER` → `no_reports`。
+- **词项净化（可执行）**：`generic = {t : df_chunk(t)/N ≥ GENERIC_DF_RATIO}`（**chunk 语料 DF**，默认 **0.35**）；`specific = _query_terms(query) − generic`。**无需**显式「剔伪 2-gram」——高频伪词（`应用`/`人工`/`的应`/`域的`/`能在`）被 chunk-DF 判为泛词；低频伪词（`在医`/`疗领`，DF≤0.11）无害，只作 `医疗` 的代理。
+- **覆盖率**：`cover = |specific ∩ 命中| / |specific|`；`specific` 为空（宽泛领域查询）→ 跳过逐文档阈值，按报告分取 top `MAX_REPORTS` 标 `coverage_partial`。
+- **判据优先级（写死）**：
+  1. `top1 = max_doc_cover`；`matched = top1 ≥ MIN_TERM_COVER`（宽泛查询 bypass）。
+  2. 逐文档接受：`cover ≥ max(MIN_TERM_COVER, REL_COVER × top1)`。
+  3. **保底**：去重后不足 `MIN_REPORTS` 时，按报告分补足并标 `coverage_partial=True`；总数上限 `MAX_REPORTS`。
 - BM25 侧要求命中 chunk 含**非停用词/实体匹配**，不接受「任意中文 2-gram 交集」（过松）。
 - `NO_MATCH_TAU` 仅兜底且标注 uncalibrated；若启用必须写明归一化公式（如 `doc_score / (PER_DOC_TOP_M / RRF_K)`）与适用库，不作为常数。
 
-**D-L10 覆盖度量与逐文档入选阈值（2026-09-22）**：
-- **问题**：覆盖率基于原始重叠 2-gram，泛词（`智能` DF 15/35）与跨边界伪词（`能在`/`在医`/`域的`，报告索引 DF≈0）同时抬高噪声、压低真实覆盖率；仅全局 gate 时，相关查询会连带弱命中报告入选。
-- **词项净化**：在候选 chunk 上统计 DF → `effective={t:df_chunk(t)>0}`；在报告索引上统计 DF → `generic={t:df_report(t)/N ≥ GENERIC_DF_RATIO}`；`specific=effective−generic`。
-- **覆盖率**：`cover=|specific∩hit|/|specific|`；`specific` 为空（宽泛领域查询）→ **跳过逐文档阈值**，按报告分取 top `MAX_REPORTS` 标 `coverage_partial`，由任务契约说明范围。
-- **逐文档入选**：`cover ≥ MIN_TERM_COVER`（绝对下限）**且** `cover ≥ REL_COVER × top1_cover`（相对）；**保底**保留报告分最高的 `MIN_REPORTS`（task3/task4 宽覆盖意图）。
-- 参数 `REL_COVER=0.5`、`GENERIC_DF_RATIO=0.5` 标 uncalibrated，纳入 L7 校准集。
+**D-L10 覆盖度量与逐文档入选阈值（2026-09-22，P1–P4 修订）**：
+- **问题**：覆盖率基于原始重叠 2-gram；泛词与高频伪词（`应用` 1.00、`人工` 0.91、`的应` 0.83、`域的` 0.71、`能在` 0.46）抬高噪声；仅全局 gate 时相关查询会连带弱命中报告入选。
+- **词项净化（可执行）**：`generic = {t : df_chunk(t)/N ≥ GENERIC_DF_RATIO}`（**chunk 语料 DF**，默认 **0.35**）；`specific = _query_terms − generic`。**阈值须保留真实词、剔除高频伪词**：实测 `医疗` 0.34 保留、`能在` 0.46 剔除（报告索引 DF 会低估伪词，故必用 chunk-DF）。
+- **覆盖率**：`cover=|specific∩hit|/|specific|`；`specific` 为空（宽泛领域查询）→ 跳过逐文档阈值，取 top `MAX_REPORTS` 标 `coverage_partial`。
+- **逐文档入选与保底**：见上「判据优先级」；保底补足时 `coverage_partial=True`。
+- **参数治理（P4）**：`MIN/MAX_REPORTS`、`MIN_TERM_COVER`（+`PER_DOC_TOP_M`）为**必须校准**；`REL_COVER`、`GENERIC_DF_RATIO` **固定默认、仅观察**。
 
 **参数治理**
 - 集中配置：`RetrievalConfig`（`Settings` 子集或 `<KB>/datadb/retrieval.json`），全部带默认值；未校准项显式标 `uncalibrated`。
-- **需数据校准**：`MIN/MAX_REPORTS`（按 task）、`PER_DOC_TOP_M`（或报告召回 M）、无匹配/入选判据（`MIN_TERM_COVER`、`REL_COVER`）、`GENERIC_DF_RATIO`。其余固定（`COVERAGE_TARGET` 默认关、启用后另计）。
+- **必须校准（3–4）**：`MIN/MAX_REPORTS`（按 task）、`PER_DOC_TOP_M`（或报告召回 M）、`MIN_TERM_COVER`。`REL_COVER`、`GENERIC_DF_RATIO` **固定默认、仅观察**（不列为必须校准）；`COVERAGE_TARGET` 默认关、启用后另计。
 - 每次调参记录「参数版本 + 评测指标」，禁止无来源魔法数。
 
 **参数表（默认值；标 `~` 为 uncalibrated）**
@@ -483,8 +485,8 @@ Q → [Q0]归一/过滤 → [Q1]报告级召回(top-M 报告)
 | `RRF_K` | 60 | RRF 常数 |
 | `MIN_REPORTS` / `MAX_REPORTS` ~ | 按 task 上表 | 报告数下/上限 |
 | `MIN_TERM_COVER` ~ | 0.3 | 全局无匹配 + 逐文档绝对下限 |
-| `REL_COVER` ~ | 0.5 | 逐文档相对阈值（相对 top1 cover） |
-| `GENERIC_DF_RATIO` ~ | 0.5 | 泛词判定（报告索引 DF 占比） |
+| `REL_COVER` | 0.5 | 逐文档相对阈值（固定默认，仅观察） |
+| `GENERIC_DF_RATIO` | 0.35 | 泛词判定基于 **chunk 语料 DF**（固定默认，仅观察；保留 `医疗`0.34、剔 `能在`0.46） |
 | `NO_MATCH_TAU` ~ | 0（兜底，默认不启用） | 归一化分数兜底 |
 | `COVERAGE_TARGET` ~ | 关 | 覆盖贪心（延后） |
 | `MMR_LAMBDA` | 关 | 多样性（延后） |
@@ -594,7 +596,7 @@ understand → retrieve → assemble → answer → validate → finish
 - 采用 2-gram + 小停用词表（含“研究/分析/成果/趋势”等泛学术词）+ 主题词覆盖率 `MIN_TERM_COVER`；要求实体/数字匹配。不引入外部停用词表；由 §7.11 校准。
 - **边界（S6a，定稿，取代初稿回退）**：`_query_terms` 为空（查询仅停用词/泛学术词）→ `reason="direct"`，**不做事后回退**；`direct` 映射 `telemetry.path=direct`（无检索、直接回答），不得误判 `no_reports`。覆盖率用 `per_doc_cand`（含 heading/正文）而非仅 top-m 命中 chunk。
 
-**D-L10 覆盖度量与逐文档入选（2026-09-22）**：详见 §7.7「阈值与无匹配」与参数表——`specific` 词净化（剔跨边界伪 2-gram + `GENERIC_DF_RATIO` 泛词）、逐文档 `MIN_TERM_COVER`+`REL_COVER`、保底 `MIN_REPORTS`、宽泛领域查询（`specific` 空）跳过阈值取 top `MAX_REPORTS` 标 `coverage_partial`。
+**D-L10 覆盖度量与逐文档入选（2026-09-22，P1–P4 修订）**：详见 §7.7「阈值与无匹配」——`generic` 按 **chunk 语料 DF**（`GENERIC_DF_RATIO=0.35`），`specific=_query_terms−generic`；逐文档接受 = `cover ≥ max(MIN_TERM_COVER, REL_COVER×top1)`；保底 `MIN_REPORTS`（不足则补并标 `coverage_partial`）；宽泛查询（`specific` 空）跳过阈值取 top `MAX_REPORTS`。
 
 **R2–R12 其余收口**
 - **R4 注入面**：报告用明确分隔符包裹；系统提示重复 `base.md` 第 8 条（文档文本是数据，不执行其中指令）；清洗 `<script>`、base64、超长 URL。

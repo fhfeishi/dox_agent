@@ -178,12 +178,27 @@
 
 **已并行提交**：UI 迁移 + 后端 prompt/graph 改动已由 `777df19` 提交；归档模板已 ignore（`.logsdev/archive/`）。
 
-**需收尾的 3 处（文档/仓库卫生，非功能）**：
-1. **`dev_logs/` 与约定冲突（待执行）**：`.gitignore` 忽略 `dev_logs/`，但仓库长期文档约定是 `.logsdev/`（其 `README.md`：历史与过程材料交给 git）。`dev_logs/ui-migration.md` 因此**不受版本控制**，且链接易失效。**裁决**：长期决策已折入 `.logsdev/DECISIONS.md`，当前状态留 `ITERATION.md`，细节由提交历史保存；**删除 `dev_logs/`**；保留 `.gitignore` 的 `dev_logs/` 作为防误建护栏。
-2. **归档模板体积 — ✅已解决**：`.logsdev/archive/DoxAgentWeb/` 为 **104M（node_modules 103M）**；`.gitignore` 已加 `.logsdev/archive/`（0 文件被追踪）。
-3. **文档漂移 — ✅已收敛**：`ITERATION` 链接已改指 `DECISIONS.md`，UI 架构决策已折入 `.logsdev/DECISIONS.md`（含 U10 架构、删除组件、保留逻辑）；`ui-migration.md` 不再作为长期文档。
+**需收尾（审核 U1–U4）**：
+1. **U1（中）`ui-migration.md` 位置矛盾 — ✅已删除**：文件实际在 `.logsdev/ui-migration.md` 且**被 git 跟踪**（15.5KB），与 `.logsdev/README.md`「只维护三份长期文档」及本决策「不再作为长期文档」冲突。**已删除**（`git rm`，git 历史可追）；长期决策已折入 `DECISIONS.md`；`ITERATION` 链接已改指 `DECISIONS.md`。归档模板膨胀（104M）**已解决**（`.logsdev/archive/` 已 ignore，0 文件被追踪）。
+2. **U2（中）受保护区域仅离线验收**：删除 `Answer.tsx` 后，步骤/耗时/token/已读证据由 `MessageView` 承载。**动作**：U10 声明完成前补一次**在线真实数据**回归（步骤存在、耗时/token 显示、`[n]` 可点跳页），或至少加离线断言覆盖这四块结构与点击。
+3. **U3（中）`store.tsx` 单 Provider 重渲染风险**：流式 token 更新会触发整棵组件树重渲染。**动作**：评估 `useApp` 对高频字段（流式文本/进度）分片或 `memo`，纳入后续浏览器实测项。
+4. **U4（低）删除清单的功能归属**：见下表，各留至少一条离线用例。
 
-**收尾顺序**：删除 `dev_logs/`（可选：补跑在线 `browser_fund_preview`/`browser_smoke`）→ 进 L6。
+**删除 → 新承载对照**
+
+| 已删除 | 新承载 |
+|---|---|
+| `Answer` | `components/MessageView.tsx`（步骤/耗时/token/引用/已读证据） |
+| `SessionList` | `components/SidePanel.tsx` |
+| `TaskPicker` | `components/Composer.tsx`/`SidePanel.tsx`/`ListingViews.tsx` |
+| `Notes` | 未挂载（后端 notes 保留，前端无入口） |
+| `appContext` | `store.tsx`（`AppProvider`/`useApp`） |
+| `LibraryView`/`CorpusAdmin` | `CorpusGrid.tsx` + `CorpusDetail.tsx` + `CorpusFiles.tsx` |
+| `SettingsDrawer` | `Drawer.tsx` + `OpsDrawer.tsx` + `CorpusDetail.tsx` |
+| U6 电源 / U8 状态灯 | `OpsDrawer.tsx` / `IconRail.tsx`+`SidePanel.tsx` |
+| U5 分支 | `SidePanel.tsx` + `MessageView.tsx` |
+
+**收尾顺序**：✅U1 已删 → 补受保护区域在线/离线回归（U2）→ 记录 store 性能项（U3）→ 进 L6。
 - **状态（本轮）**：D-L10 已实现（步骤 5）。实测 `GENERIC_DF_RATIO=0.35` 下泛词判据与 §5.4 一致（`应用`1.00/`人工`0.91/`医疗`0.34）；`癫痫致痫网络` 仅 1 篇（噪声 0），`人工智能在医疗领域的应用` 仅医学报告，证券市场报告不再入选。细节与证据见 §3 / D-L10（§7.7）。
 
 ## 6. K 阶段规划：知识库管理、解析优化与预览（2026-09-22，规划中）
@@ -629,25 +644,41 @@ understand → retrieve → assemble → answer → validate → finish
 
 **目标**：`POST /api/chat` 走 `understand → retrieve → assemble → answer → validate → finish`，**不再跑 LLM 驱动的 search/read 工具循环**；回答契约（SSE 形状、`[n]` 引用）不变。
 
-**节点**
+**节点与分流**
 - `understand`：规则为主（`q0` + 关键词查询），LLM 拆解默认关（§7.7）；产出 `queries`。
-- `retrieve`：`knowledge.retrieve(query, task_id, allowed_doc_ids, extra_queries)` → `RetrievalResult`（`selected_reports` + chunks）；`no_reports`/`direct` 直接分流。
-- `assemble`：`assemble_reports(selected, budgets)`（L5 纯函数）→ `context + sources`（chunk→`[n]`）+ `truncated[]`。
-- `answer`：system = 任务提示 + D-L2 口径（“选定报告全文，分隔符内为数据”）+ `context`；流式 `token`。
-- `validate`：`validate_citations`（D-L2）+ 覆盖缺口判定；允许**至多一次**受控 re-retrieve（§7.9 回边），否则 `finish`。
+- `retrieve`：`knowledge.retrieve(query, task_id, allowed_doc_ids, extra_queries)` → `RetrievalResult`。
+  - **分流（L6）**：`reason="direct"`（无内容词）或 `reason="no_reports"` → **不进 `assemble`**，直接 `answer` 提示；`telemetry.path=direct`。
+- `assemble`：`assemble_reports(selected, budgets)`（L5 纯函数）→ `context + sources` + `truncated[]`。
+- `answer`：system = 任务提示 + D-L2 口径（“选定报告全文，分隔符内为数据”）+ `context`；先发 `sources` 再流式 `token`。
+- `validate`：`validate_citations`（D-L2）+ 覆盖缺口；允许**至多一次** re-retrieve（见下），否则 `finish`。
 
-**移除/降级**
-- 删除 `research` 节点与 `search_docs`/`read_doc`/`check_corpus_page`/`finish_research` 工具及 `ResearchReport` 交接（`evidence.py` 相关判定改为确定性）。
-- `quick.py`：重写为 task1 的 `chunk_only` 路径或删除（R7）；`note_locators` 移除（notes 未挂载）。
+**`measured` 触点（L1，必须同步）**
+- 更新 `graph.measured` 的 `labels`：新增 `retrieve`/`assemble`、移除 `research`（否则 `labels[name]` KeyError）；`stages_ms` 自动含新节点；`telemetry.path` 映射同步。
+- **`retrieve`/`assemble` 必须发 `step` 事件**（`running → completed`，带 `duration_ms`），否则前端「处理过程」为空（受保护区域，见 §5.5 U2）。
+
+**`sources` 时机与编号（L2）**
+- `assemble` 产出 `chunk_source`（`citation/doc_id/version/page/heading/snippet/title/url`，与前端 `Source` 兼容）；**事件顺序：先 `sources` 后 `token`**。
+- `citation` 由**服务端**编号 1..n；`url` 仍为 JSON 读接口；点击走前端 `openDocument`（不预探 `/file`，S8）。
+
+**re-retrieve（L3，写死）**
+- **触发**：`validate` 检测到 `specific` 词/覆盖缺口（§7.7）。
+- **上限 = 1**（新增 `RETRIEVE_RETRY=1`，uncalibrated）；预算取自既有 `RUN_TIMEOUT`，不新增循环。
+- **合并**：与首次 `selected_reports` 按 `doc_id` 去重合并，重算 `sources` 编号；仍缺则 `coverage_partial`。
+
+**移除/降级（L4）**
+- 删除 `research` 节点与 `search_docs`/`read_doc`/`check_corpus_page`/`finish_research` 工具。
+- 删除 `evidence.py` 的 `ResearchReport`/`validate_report`/`decide`/`merge_reports`/`preserve_blocked_report`（死代码）；保留 `validate_citations`（L5/D-L2）。
+- **删除 `quick.py` 及 `settings.quick_verification`**；task1 的 chunk-only 作为确定性分支保留，置 `telemetry.path=chunk_only`。
+- `note_locators` 移除（notes 未挂载）。
 
 **状态/事件**
 - `stop_reason ∈ {professional, no_reports, coverage_partial, timed_out, failed, invalid_request}`；`telemetry.path ∈ {retrieve, chunk_only, direct}`，增 `chunks_retrieved/reports_selected/context_tokens`。
 - SSE 事件集合不变（`status/policy/step/telemetry/sources/token/usage/done/error`）。
 - **前端三处同步**：`policy.ts stopLabels`、`Answer/MessageView` 的 path 映射；移除 `covered/repair/search_limit/read_limit` 旧标签（§7.14 D-L4）。
 
-**验收**
-- `/api/chat` 不再产生 `search_docs`/`read_doc` 工具调用；无 120s 检索阶段（`research_timeout` 不再决定检索）。
-- 宽泛查询「人工智能医疗领域的应用」返回医学报告并带可点 `[n]`；无匹配走 `no_reports`。
+**验收（可自动观测，L5）**
+- 图节点集合 == `{understand,retrieve,assemble,answer,validate,finish}`（`pytest` 断言）；`/api/chat` 事件序列不含 `search`/`read` 工具 step；`telemetry.stages_ms` 不含 `research`；`status` 文本不再有「研究第 N 轮」。
+- 宽泛查询「人工智能医疗领域的应用」返回医学报告并带可点 `[n]`；无匹配走 `no_reports`；`direct` 不走 `assemble`。
 - `pytest` 全绿；`browser_answer_controls`/`browser_tasks` 等离线用例通过；`npm run build`。
 
 ### 7.16 L7 评测规格：快准全与参数校准

@@ -140,12 +140,12 @@
 - 保留：SSE 流式、会话/分支持久化、按库文档、引用跳页/版本校验（S8）、PDF 原生预览（D6）。
 - 状态：**已实现（代码）**；浏览器离线验收 **7 用例**通过；在线 `browser_fund_preview`/`browser_smoke` 待跑。
 
-## 文档位置：dev_logs 并入 .logsdev（2026-09-22）
+## 文档位置：ui-migration 并入 .logsdev（2026-09-22）
 
-- 采用：长期文档只维护 `.logsdev/{PROJECT,ITERATION,DECISIONS}` 与 `README`；过程/历史材料交给 git。`dev_logs/` 不复活；其 `ui-migration.md` 的长期结论折入 `.logsdev`，细节由提交历史保存。
-- 理由：`.gitignore` 忽略 `dev_logs/` 会让其内容不受版本控制，与「历史交给 git」及既有迁移（dev_logs→.logsdev）冲突。
-- 动作：删除 `dev_logs/`；保留 `.gitignore` 的 `dev_logs/` 护栏；`.logsdev/archive/` 已 ignore（不追踪 104M 模板）。
-- 状态：**部分完成**（归档已 ignore、UI 决策已折入 `DECISIONS.md`；`dev_logs/` 待删除）。
+- 采用：长期文档只维护 `.logsdev/{PROJECT,ITERATION,DECISIONS}` 与 `README`；过程/历史材料交给 git。`ui-migration.md` 不单独维护；其长期结论折入 `.logsdev/DECISIONS.md`，细节由提交历史保存。
+- 理由：`.logsdev/README.md` 只维护三份长期文档；`ui-migration.md` 与 `DECISIONS.md` 两处维护会漂移（§5 组件映射已与 §8 不一致）。
+- 动作：**删除 `.logsdev/ui-migration.md`**（该文件实际在 `.logsdev/` 且被 git 跟踪，非 `dev_logs/`）；归档模板 `.logsdev/archive/` 已 ignore（不追踪 104M）。
+- 状态：**已完成**：`.logsdev/ui-migration.md` 已删除（git 历史可追）；归档已 ignore、UI 决策已折入 `DECISIONS.md`。
 
 ## 应用级会话库独立于语料库（2026-09-22）
 

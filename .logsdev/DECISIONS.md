@@ -13,6 +13,8 @@
 - 采用：`PDF_OCR` / `PDF_OCR_LANGUAGE` 应可在前端设置中调整（如 `eng` / `chi_sim` / `chi_sim+eng`），而不是只靠 `.env` 改后重启；后端提供读取/更新该配置的最小接口，前端在设置抽屉暴露语言选择。
 - 理由与代价：基金报告多为中文扫描件，当前默认 `eng` 识别质量差；入库质量直接取决于 OCR 语言，需要能即时调整而不用改文件重启。代价：新增运行时配置读写接口，并需明确“仅影响后续导入”的语义（已入库文档不自动重解析，需重新导入）。
 - 影响（待实现）：`src/agent/config.py`、`src/main.py`（配置接口）、`frontend/src/SettingsDrawer.tsx`；单用户本地部署下允许写入。
+- 默认值：中文语料库默认 `chi_sim+eng`（而非 `eng`）；`PDF_OCR` 与语言均可在设置中调整。
+- 与解析选型关系：若采用 mineru，可由解析器负责语言/公式识别；OCR 语言配置仅作用于 liteparse 路径。
 - 状态：已采用，未实现；实现前不新增前端入口。
 
 ## 导入性能优化方向（2026-09-22）
@@ -48,7 +50,33 @@
 - 采用：chunk id 在导入时计算并缓存，查询期只对新增窗口做 diff，避免每次查询重建全库 id。
 - 理由与代价：当前 `Knowledge.search` 每查询 O(库大小)，库越大越慢；代价是需在导入阶段维护 chunk 元数据。
 
-## 文档与本地数据布局（2026-09-22）
+## 应用级会话库独立于语料库（2026-09-22）
+
+- 采用：`workspace.sqlite3` 迁出活动库的 `<KB>/datadb/`，放固定应用级目录；`app.state.workspace` 不再随活动库变化。
+- 理由与代价：当前会话库位于活动库目录内（`main.py:91`），删除/重命名默认库会连带丢失会话与笔记；代价是新增一个应用级路径配置。
+- 前置：K0；未完成前不开放库删除/重命名。
+
+## 解析器选型：liteparse vs mineru（待评估，2026-09-22）
+
+- 背景：liteparse 2.14.6 无“仅无文本页触发 OCR”开关，仅 `ocr_enabled` 全局开关；中文扫描件用 `eng` 质量差。若 liteparse 不满足质量/速度，尝试 **mineru**（离线版面/公式/OCR）。
+- 采用（拟）：K2 用真实中文 PDF 对 liteparse 与 mineru 做耗时/质量对比后定稿；可混合（有文本层走 liteparse，无文本/扫描页走 mineru/OCR）。
+- 约束：离线、可批量、资源占用可控；选定前不锁定实现。
+- 状态：未定稿。
+
+## 知识库重命名语义（2026-09-22）
+
+- 采用：重命名分两层——（a）显示名更新（`CORPORA` override 的 `name`，不动目录）为默认；（b）目录搬迁为独立操作。
+- 理由：`corpus_id` 由相对路径派生（`corpora.py:46`），`doc_id=sha256(origin)`（`parsers.py:32`），搬目录会级联改变两者，使会话 `corpus_id`、`allowed_doc_ids`、历史 `sources.doc_id` 失效。
+- 目录搬迁若要支持，须做 id/doc_id 迁移或明确标记失效（K6b）。
+
+## 删除同步必须清除检索索引（2026-09-22）
+
+- 采用：删除文档/文件时，除删 `docs` 行外，必须同时从 BM25（查询期重建）与 dense（Chroma）排除，避免已删文档仍可被检索/引用。
+- 影响：K1 删除同步、K7 文件删除。
+
+## 文档与本地数据布局（2026-09-22）※已被「语料目录自包含方案 A」取代
+
+> 保留备查；当前布局以「语料目录自包含方案 A」为准。
 
 - 采用：长期开发文档只维护三份——[`PROJECT.md`](PROJECT.md)、[`ITERATION.md`](ITERATION.md)、[`DECISIONS.md`](DECISIONS.md)；需求、契约、计划与完成证据已并入这三份，历史与过程材料不再单独维护。
 - 本地数据按用途分开：`.knowledge/`（原始语料）、`.data/`（数据库/向量库）、`.demo_langchain/`（演示语料：`langchain_dox`/`langchain_vectordb`/`langchain_datadb`）。
@@ -56,9 +84,10 @@
 - 影响：仓库 `README.md`、`.env.example`、`.gitignore` 同步；`.knowledge/`、`.data/`、`.demo_langchain/` 数据默认不入库。
 - 替代关系：取代此前 `dev_logs/` 多文档结构与 `knowledge/` 单目录同时存放原始语料与派生数据的约定。
 
-## 数据库与向量库分离（2026-09-22）
+## 数据库与向量库分离（2026-09-22）※方案 A 下由库内目录承担
 
-- 采用：新增 `VECTORDB_DIR`，Chroma 索引路径与 `DATA_DIR`（SQLite）分离；缺省仍为 `DATA_DIR/chroma`，保持旧行为。
+- 采用：新增 `VECTORDB_DIR`，Chroma 索引路径与 `DATA_DIR`（SQLite）分离；缺省仍为 `DATA_DIR/chroma`。
+- 现状：方案 A 下每个库的派生数据固定在 `<KB>/datadb`、`<KB>/vectordb`；`DATA_DIR`/`VECTORDB_DIR` 仅描述活动（默认/演示）库。
 - 理由与代价：支撑 `.data/`/`.demo_langchain` 的数据库与向量库分目录布局；代价是多一个配置项。
 - 影响：`src/agent/config.py`、`src/knowledge.py`、`.env`/`.env.example`、仓库 `README.md`。
 

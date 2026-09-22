@@ -76,18 +76,20 @@
 | H10 真实基金报告端到端验收未做 | 基金场景未验证 | 以真实报告走「选库 → 浏览 → 预览 → 按库问答」 |
 | 知识库/文件 CRUD、上传、Word 支持、预览、导入优化未做 | 库管理能力缺失、导入体验差 | 按 §6 K 阶段推进（K1/K2 优先） |
 
-## 6. K 阶段规划：知识库管理、导入优化与预览（2026-09-22，规划中）
+## 6. K 阶段规划：知识库管理、解析优化与预览（2026-09-22，规划中）
 
-### 6.1 导入慢的根因（实测证据）
+### 6.1 根因分析（代码核对，非实测）
 
-- **不是 SQLite**：`Knowledge.put` 仅按 `id` 单条 `INSERT OR REPLACE`；文档量级下写入可忽略。
-- **PDF OCR 常开**：`parse_file` 以 `ocr_enabled=settings.pdf_ocr`（`.env` 默认 `PDF_OCR=true`）、`PDF_OCR_LANGUAGE=eng` 解析；中文扫描件逐页 OCR，且英文语言包识别差——时间主要耗在此。
-- **每次全量重解析**：`import_defaults` 对目录 `rglob` 所有 pdf/txt/md 全部 `parse_file`，`Knowledge.put` 只在解析后才判版本；未变文件也付出完整解析成本。
+> 本节为代码核对结论；导入耗时的具体数字待 K2 探针**实测**。“演示库 6717 chunk 约小时级”为估计值，不得作为验收依据。
+
+- **慢点不在 SQLite**：`Knowledge.put` 单条 `INSERT OR REPLACE`（`knowledge.py:65-86`）。
+- **OCR 常开**：`parse_file` 固定传 `ocr_enabled=settings.pdf_ocr`（`parsers.py:24`），`.env` 默认 `PDF_OCR=true`、`PDF_OCR_LANGUAGE=eng`。
+- **全量重解析**：`import_defaults` 对目录 `rglob` 后逐个 `parse_file`，无跳过（`parsers.py:103-126`）。
 - **解析串行**：单次 `asyncio.to_thread(import_defaults)`，文件之间无并发。
-- **向量索引延后且阻塞查询**：dense 在首次 `search` 才加载模型并批量 `add_texts`（batch 32，CPU）；演示库 6717 chunk 约小时级，表现为“导入完成但首次提问卡死”。
-- **查询期重复计算**：`Knowledge.search` 每次对全库重建 chunk id 并 diff，库越大每查询开销越大。
+- **向量延后阻塞查询**：`DenseIndex._search` 首次才加载模型并批量 `add_texts`（`dense.py:31-72`）。
+- **查询期重复计算**：`Knowledge.search` 每查询重建全库窗口与 `BM25Plus`（`knowledge.py:104-126`），且与 dense 无关。
 
-### 6.2 目标布局（方案 A，已实施扫描）
+### 6.2 目标布局（方案 A，扫描已实施）
 
 ```
 .knowledge/<KB>/
@@ -101,23 +103,28 @@
 
 | 编号 | 任务 | 验收 |
 |---|---|---|
-| K1 | **增量导入**：`<KB>/datadb` 增 `files(rel_path,size,mtime_ns,sha256,doc_id,status,updated_at)` 清单；未变文件跳过解析；新增/变更重解析；源文件删除→标记移除 | 二次导入未变库近零解析；删源文件后文档消失；报告含 added/updated/skipped/deleted/errors |
-| K2 | **解析性能**：OCR 按需（仅无文本页触发）、语言按决策可配、并发解析（线程/进程池，上限≈CPU）、大文件分段 | 有文本层 PDF 不触发 OCR；中文扫描件耗时显著下降 |
-| K3 | **两阶段导入**：先解析入库（BM25 立即可检索）→ 后台构建向量；任务进度分 parse/index | 导入结束即可问答；向量进度独立显示 |
-| K4 | **知识库 CRUD**：`POST /api/corpora`（新建 `source/datadb/vectordb`）、`PATCH`（重命名目录）、`DELETE`（默认只删派生，`?purge_source=true` 才删源） | 新建/重命名/删除后侧栏与磁盘一致；重名拒绝 |
-| K5 | **文件 CRUD**：`GET/POST(上传)/DELETE/PATCH /api/corpora/{id}/files`；支持 md/pdf/docx/txt；路径穿越防护与大小限制 | 上传/删除/改名/替换后清单与检索一致 |
-| K6 | **Word 支持**：`.docx` 解析（离线库，候选 `python-docx`/`markitdown`）入 datadb | `.docx` 可入库、可检索、可预览 |
-| K7 | **预览**：`GET /api/documents/{doc_id}/preview` 按 kind 返回 html/text/file；统一 `DocumentPanel`：pdf 原生（D6）、md 渲染、docx 转 HTML、txt 纯文本 | 四类文件可在网页预览并显示元数据 |
-| K8 | **检索性能**：chunk id 随导入预计算并缓存，避免每查询全量重算 | 大库查询延迟不随库线性增长 |
-| K9 | **进度与取消**：每库任务含 phase/stage/计数/错误；`GET /api/corpora/{id}/job` 可轮询与取消 | 导入过程可见、可取消 |
-| K10 | **验收**：以 `.knowledge/自然科学基金`（10 份中文 PDF，约 213MB）做导入耗时基线（优化前后对比）、文件 CRUD、预览、重命名/删除、按库问答仅本库引用 | 全部通过 |
+| **K0（前置）** | 应用级会话库：把 `workspace.sqlite3` 从活动库 `<KB>/datadb/`（`main.py:91`）迁到固定应用级目录，`app.state.workspace` 独立于语料；未完成前**不开放库删除/重命名** | 删除/切换默认库不影响会话与笔记；旧库目录不再存 `workspace.sqlite3` |
+| K1 | 增量导入与删除同步：`<KB>/datadb` 增 `files(rel_path,size,mtime_ns,sha256,doc_id,status,updated_at)` 清单；未变跳过；新增/变更重解析；源文件删除→标记移除，且**同时从 BM25 与 dense 排除** | 二次导入近零解析；删除后文档不出现在检索与引用；报告含 added/updated/skipped/deleted/errors |
+| K2 | 解析器评估与耗时基线：liteparse 2.14.6 探针（可用参数仅 `ocr_enabled`/`ocr_language`/`num_workers`/`pool_size`/`target_pages`/`parse_timeout`，**无“仅无文本页触发 OCR”开关**）+ **mineru 候选**；用真实中文 PDF 记录耗时与质量 | 产出对比结论与默认解析器；K3/K4/K11 据此定稿 |
+| K3 | 解析性能：OCR 策略（两遍探测或混合：先提文本、仅对无文本页 OCR/走 mineru）、并发（`num_workers`/`pool_size` 或线程池）、大文件分段 | 有文本层 PDF 不触发 OCR；中文扫描件耗时相对 K2 基线显著下降 |
+| K4 | OCR/语言运行时配置：后端读取/更新接口 + 前端设置入口（`eng`/`chi_sim`/`chi_sim+eng`）；语义“仅影响后续导入”，需重导入才生效 | 不改 `.env` 重启即可调整；中文默认 `chi_sim+eng` |
+| K5 | 两阶段导入 + 进度/取消：先解析入库（BM25 可检索）→ 后台建向量；任务含 phase/stage/计数/错误，可轮询与取消 | 导入结束即可问答；向量进度独立；可取消 |
+| K6 | 知识库 CRUD：新建；**重命名拆分为**（a）显示名（`CORPORA` override 的 `name`，不动目录）与（b）目录搬迁（单列 K6b）；删除默认只删 `datadb/`/`vectordb/`，`?purge_source=true` 才删 `source/`；PATCH/DELETE 后**重扫并重载活动库** `knowledge`/`dense` | 显示名与目录名分离；删除/重载后侧栏与检索一致；重名拒绝 |
+| K6b | 目录搬迁与 id/doc_id 迁移（**待定，随 K6 评估**）：`corpus_id`（`corpora.py:46`）与 `doc_id=sha256(origin)`（`parsers.py:32`/`knowledge.py:69`）随路径变化失效；需给出迁移或失效处理（含 H8 会话 `corpus_id`、`allowed_doc_ids`、历史 `sources.doc_id`） | 搬迁后既有会话不指向不存在的库/文档；否则 UI 明确提示失效 |
+| K7 | 文件 CRUD：`GET/POST(上传)/DELETE/PATCH /api/corpora/{id}/files`；**本阶段含 md/pdf/txt，docx 由 K8 加入**；路径穿越防护与大小限制 | 上传/删除/改名/替换后清单与检索一致 |
+| K8 | Word 支持：`.docx` 解析（库选型待定稿）入 `datadb`；`SOURCE_SUFFIXES`（`corpora.py:20`）同步加入 `.docx` | `.docx` 可入库、可检索、可预览 |
+| K9 | 预览：`GET /api/documents/{doc_id}/preview`（**带 `corpus` 参数**，与列表接口一致）按 kind 返回 html/text/file；统一 `DocumentPanel`：pdf 原生（D6）、md 渲染、docx 转 HTML、txt 纯文本 | 四类文件可预览并显示元数据 |
+| K10 | 检索性能：**范围含每查询的 `self.all()` + 窗口切分 + `tokens()` + `BM25Plus(corpus)`**（`knowledge.py:104-126`），不止 chunk id；需预计算/缓存候选与 BM25，或明确调低验收口径 | 大库查询延迟不随库线性增长（或按调低口径验收） |
+| K11 | 验收：以 `.knowledge/自然科学基金`（10 份中文 PDF，约 213MB）做**优化前后真实耗时对比**（依赖 K2 基线 + K4 语言）、文件/库 CRUD、预览、重命名/删除、按库问答仅本库引用 | 全部通过 |
 
 ### 6.4 顺序与依赖
 
-K1（增量）→ K2（解析性能）→ K9（进度）→ K4/K5（库与文件 CRUD）→ K6（Word）→ K7（预览）→ K3（两阶段）→ K8（检索性能）→ K10（验收）。
-
-- K1/K2 直接决定导入耗时，优先；K4/K5/K6/K7 依赖方案 A 布局（已实施扫描）。
-- K6 选型须定稿后才实现（见 [`DECISIONS.md`](DECISIONS.md)）。
+- **K0 必须先于 K6（库删除/重命名）**，否则删默认库即丢会话/笔记。
+- **K2（评估/基线）先于 K3/K4/K11**；K3/K4 先于 K11。
+- **K8（Word）先于 K7 的 docx 支持**；K7 本阶段不含 docx。
+- K1 的删除同步必须同时清 BM25 与 dense（stale）。
+- K6/K7 的写操作需重扫并重载活动库。
+- 建议顺序：**K0 → K1 → K2 → K3 → K4 → K5 → K6 → K7 → K8 → K9 → K10 → K11**（K6b 随 K6 评估后定）。
 - 与既有任务的关系：K 是 H9/B2/B4/B5（元数据/过滤）与 H10（真实报告验收）的前置；完成后更新 H10 验收与 PROJECT 现状。
 
 ## 7. 维护约定

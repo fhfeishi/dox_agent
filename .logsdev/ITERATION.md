@@ -281,61 +281,95 @@
 
 ### 7.1 目标与搜索空间
 - 输入：用户问题 + 任务（task1–4）+ 资料范围（库/文档）。
-- **搜索空间 = 报告解析后的 markdown**（mineru `markdown.md` / 逐页文本）。
-- 目标：先用 hybrid 检索定位**相关报告**，再把这几篇报告的**全文 markdown** 作为上下文交 LLM，结合任务提示词回答；每条结论可引用到“报告 + 页码”。
-- **仅优化检索**，不改任务提示词与回答契约（`[n]` 引用、证据事件）。
+- **搜索空间 = 报告解析后的 markdown / 块文本**（mineru 产物）。
+- 目标：先定位相关报告，再把这几篇报告**全文**（预算内）交 LLM，结合任务提示词回答；结论引用到报告+页。
+- 仅优化检索，不改任务提示词与回答契约。
 
-### 7.2 结论：markdown 与 LangGraph 都要，职责不同
-- **需要报告 markdown**：信息梳理/趋势/专项报告任务必须拿到整篇报告（chunk 片段会丢上下文、漏成果与数字）；单点问答可用片段。
-- **需要检索 pipeline（LangGraph）**：把“理解→混合检索→报告聚合→上下文装配→回答→引用校验”编排成有界流程；但**不再用 LLM 驱动 search/read 工具循环**（现 `research` 节点），改为确定性检索。
+### 7.2 结论：markdown 与 LangGraph 非二选一（已确认）
+- markdown 是**数据/上下文**；LangGraph 是**编排**。保留图与事件/预算/超时/追踪；换掉 `research` 里 LLM 驱动的 search/read 工具循环，改为**确定性检索 + 有界补查**。
 
-### 7.3 数据与索引
-- 存储：`Document` 增 `markdown`（mineru zip 的 `markdown.md`）；`Knowledge.put` 持久化；新增 `read_markdown(doc_id, version)`。现有库回填：重导入（`force`）时写入。
-- 分块：按 markdown 标题切 section，过长再按 ~800 字/150 重叠切；chunk 记 `doc_id/version/title/heading/text/page?`。
-- 页码：markdown 无页标记；用 `middle_json` 的 `page_idx` 做**尽力映射**（块文本→页）；无法映射时 page=1，引用标注 best-effort。
-- 稀疏：BM25Plus over chunk tokens（**按库缓存**，复用 K10）。
-- 密集：Chroma over chunk embeddings（按库，复用 `dense.py`；模型签名隔离）。
-- 融合：RRF（等权，常数 60）。
+### 7.3 关键缺陷与收口（L 开工前必须解决）
+- **base64 图片污染**：v4 markdown 内嵌 `data:image/...;base64,...`；分块前**剥离为 `[图片]` 占位**，只对文本做 BM25/dense。
+- **页码不可靠**：不以"文本匹配"映射页，改为**以 `middle_json` 的 block 为原子**（block 自带 `page_idx`）；chunk 天然带页号，markdown 仅用于渲染/上下文。
+- **报告分数太脆**：改为**按报告累计 RRF**：`doc_score = Σ_chunks 1/(k+rank)` + β·distinct_headings + γ·log(hit_count)，替代 `max+α·count`。
+- **同项目去重 + 任务差异**：按**项目编号**分组去重（同项目取最新/最全一份，跨年合并标注区间）；`min/max_reports` 与是否需全文按 task 区分（§7.7）。
+- **预算用 token 而非字符**：`RETRIEVE_CONTEXT_TOKENS`/`RETRIEVE_REPORT_TOKENS`/`ANSWER_RESERVE_TOKENS`，全局核算 system+历史+提示词+报告+输出 ≤ 模型上限。
+- **与 K10 去重**：L2 的 chunk 模型直接取代 K10 的候选缓存；K10 只保留"BM25 按库缓存 + chunk id 预计算"两条原则（并入 L1–L3），不建两套索引。
+- **dense 子集行为**：限库/限报告时改用 **Chroma metadata filter（doc_id ∈ allowed）**，不再退化成 BM25-only（现 `knowledge.py:185-190`）。
 
-### 7.4 检索与报告选择
-- chunk 级：hybrid top-k（如 40–80 chunks）。
-- 报告级聚合：`score(doc)=max(chunk_score)+α·topk_count`；按分数选报告，直到满足 `min_reports..max_reports` 且 markdown 总量 ≤ 上下文预算。
-- 输出：`selected_reports[]` + 每篇命中 chunks（用于引用与局部高亮）。
+### 7.4 数据与版本（L1）
+- `Document` 增 `markdown`；`version = sha256(markdown + pages JSON)`；`read_markdown(doc_id, version)` 版本校验。
+- **存储分离**：`docs` 只存元数据+版本；正文另置 `doc_pages(doc_id,page,text)` 与 `doc_markdown(doc_id, markdown)`；`all()`/检索不加载 markdown，装配时按选中的少数报告读取。
+- 复用 K13 的 `parsed/<rel>/`（`markdown.md`+`middle_json`）一次性落库，**不二次跑 mineru**。
 
-### 7.5 上下文装配（关键）
-- 预算：总 markdown 字符 ≤ `RETRIEVE_CONTEXT_CHARS`（如 80k）；单篇 ≤ `RETRIEVE_REPORT_CHARS`（如 30k）。
-- 超预算：按分数保留最多报告；单篇超限时保留命中 chunk 所在页/段落 + 首尾摘要（可迭 map-reduce）。
-- 注入：报告头（题目/项目号/负责人/年份）+ markdown（或截断）+ 任务提示词。
-- 引用：`[n]` 绑定 report+page；保留现有 `sources` 事件字段。
+### 7.5 分块与页码（L2）
+- 原子 = `middle_json` block（带 `page_idx`）；按 `title/heading` 切 section，section 内按 512–1024 字 / 100–150 重叠再切；表格/代码/公式整块不拆。
+- `chunk = {chunk_id, doc_id, version, title, heading, page, text, tokens}`；`chunk_id = sha1(doc_id|version|page|heading|序号|text)`（版本变自动失效）。
+- 分块前剥离 base64。
 
-### 7.6 LangGraph 流程（替代现有 agentic research 循环）
+### 7.6 索引与缓存（L3）
+- `<KB>/datadb` 持久化 `chunks` 表（含 tokens）+ 每库一个 `BM25Plus`（内存缓存，导入/删除置 dirty 或增量）；查询 O(命中)。
+- Chroma 用同一 `chunk_id` 作主键，metadata `doc_id/version/page/heading`；dense 只嵌入 query，不再每查询重算全库 id（现 `dense.py:51-61`）。
+- `EMBEDDING_PATH` 空 → BM25-only 并如实显示；34 报告 ≈ 数千 chunk，CPU 嵌入需后台（K5）+ 进度，不阻塞首问。
+
+### 7.7 检索与报告选择（L4）
+- chunk 级：BM25 top-N 与 dense top-N（各 60–100），RRF 融合；`allowed_doc_ids`/`corpus_id` 用 metadata filter。
+- 报告级：§7.3 的累计 RRF + 覆盖 + 规模惩罚；满足 `min_reports ≤ R ≤ max_reports` 且 token 预算。
+- 项目去重：同 项目编号 取最新/最全；跨年合并标注区间。
+- 兜底：多查询（§7.9）+ 每个高相关项目保底 1 篇。
+- 输出 `selected_reports[]`（命中 chunks、页集合、是否截断）。
+
+**任务差异**：
+
+| task | 检索策略 |
+|---|---|
+| task1 精准问答 | chunk-only 可答；min=1, max=3；不必全文 |
+| task2 对比分析 | 强制跨项目/跨报告；min=2, max=6；需全文 |
+| task3 趋势 | 覆盖多报告/多年份；min=4, max=10；标注样本范围 |
+| task4 专项报告 | 按模板章节 + 领域/年份过滤（B4/B5）取报告集；全文+局限 |
+
+### 7.8 上下文装配（L5）
+- 预算：`RETRIEVE_CONTEXT_TOKENS`（总）与 `RETRIEVE_REPORT_TOKENS`（单篇）；按总分降序装入，放不下按 section 截断（保留命中 section + 标题 + 首/结论段），记 `truncated[]`。
+- 报告头：题目/项目号/负责人/报告年份（H9/B2 前置）。
+- "lost in the middle"：最相关放首/尾，中间放次相关；附极简目录（标题+页码范围）。
+- 引用：`[n]` → report(n)+page；保留 `sources` 字段与不可点字面回退。
+
+### 7.9 LangGraph 流程（L6，替代 agentic research）
+```text
+understand → retrieve → assemble → answer → validate → finish
+  ↑__ validate 发现缺口且预算允许：仅一次受控 retrieve（改写/放宽 min） __|
 ```
-understand(任务/范围) → retrieve(hybrid→聚合报告) → assemble(装入markdown,预算)
-  → answer(任务提示词) → validate(引用/页码) → finish
-  ↑______________ 缺口且预算允许：retrieve(改写query) ______________|
-```
-- 确定性检索为主；缺口补查有界（次数/预算）。
-- 保留 `policy/step/telemetry/usage/sources` 事件；不再用 LLM 决定 search/read 工具调用。
+- `understand` 的 LLM 只做有界查询改写/子问题拆分（task2→2 子查询；task3→按主题 2–3 并集），输出结构化列表；检索确定。
+- 事件/预算/停止语义不变；`telemetry` 增 `chunks_retrieved/reports_selected/context_tokens`。
+- `quick_verification` 保留或降级为 task1 的 chunk-only 路径。
 
-### 7.7 Word 报告（后续，复用检索）
-- 模板 `templates/*.docx`（占位符/表格），`python-docx` 填充；与 task4 四模板对齐。
-- 生成器复用本次 `selected_reports` + 证据；范围/来源/局限随文。**不在本轮范围**。
+### 7.10 Word 报告（后续，接口先定）
+- E 阶段消费 `selected_reports + coverage + evidence` 生成 `.docx`；`templates/*.docx` + python-docx 占位符/表格。
+- 占位符约定：`{{domain}}`/`{{year_range}}`/`{{sections}}`/`{{sources}}` 等，先定避免检索输出反复改。
+- 检索侧保证报告集与证据**可序列化、可追溯**；不把 chunk 直接交给 Word。**不在本轮**。
 
-### 7.8 任务
-| 编号 | 任务 | 验收 |
-|---|---|---|
-| L1 | 存储 markdown：`Document.markdown` + `Knowledge.read_markdown`；重导入回填 | 基金库重导入后可取全文 markdown |
-| L2 | 分块与页码映射（markdown→chunks；`middle_json` page_idx 尽力映射） | chunk 有 heading/page；抽样页号正确 |
-| L3 | 混合索引（BM25+Chroma）与 RRF；按库缓存 | 检索结果稳定；大库不随库线性变慢 |
-| L4 | 报告级聚合与选择（min/max + 预算） | 选出足够数量报告，不超预算 |
-| L5 | 上下文装配（预算/截断/报告头/引用） | 回答可追溯到报告+页 |
-| L6 | LangGraph 新流程替换 `research` 工具循环 | 事件/预算/停止语义不变 |
-| L7 | 验收：基金库问题→命中正确报告→正文来自报告 markdown→引用页码；与旧流程抽样对比 | 通过 |
+### 7.11 验收与评测（L7，"快准全"可度量）
+- 建离线评测集（20–50 条基金问题 + 期望报告/项目号，`tests/` fixtures）。
+- 指标：准（Recall@5reports、MRR、引用页码抽样正确率）；全（期望项目覆盖率、同项目去重正确）；快（P50/P95 检索延迟、上下文 token、模型调用次数，对比旧 research 循环）。
+- 边界：超预算/无匹配如实说明覆盖与缺口。
 
-### 7.9 验收与边界
-- 给定“人工智能在医疗的应用”类问题：命中基金库相关报告；回答依据来自这些报告全文；页码 best-effort。
-- 超预算时如实说明覆盖范围（用了哪些报告、截断）。
-- 无匹配报告时如实说明。
+### 7.12 任务
+
+| 编号 | 任务 |
+|---|---|
+| L1 | 存 markdown + 存储分离（`doc_pages`/`doc_markdown`）+ `read_markdown` |
+| L2 | block 原子分块 + 页码 + base64 剥离 + `chunk_id` |
+| L3 | `chunks` 表 + BM25 缓存 + Chroma（metadata filter / 主键） |
+| L4 | RRF 聚合 + 项目去重 + 任务差异 + 预算选择 |
+| L5 | token 预算装配 + 报告头 + 目录 + 引用 |
+| L6 | LangGraph 新流程替换 research 循环 |
+| L7 | 评测集与快准全指标 |
+
+### 7.13 依赖与排期
+- L1 依赖 K13 基金库重建（同一次 `force` 重导入落 markdown）。
+- L3 依赖 K5（后台进度/取消）；L4 依赖 H9（文件名元数据：项目号/年份）。
+- 最小切片：**L1 → L4 → L5** 先打通"找到报告→全文入上下文→带引用回答"（BM25-only 即可验收准/全），再补 L3 缓存与 L6 图替换，dense 作为增强。
+
 
 ## 8. 维护约定
 

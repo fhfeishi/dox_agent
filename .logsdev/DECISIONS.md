@@ -97,10 +97,14 @@
 
 ## 检索重构：报告级混合检索（L 阶段，2026-09-22）
 
-- 采用：搜索空间 = 报告解析后的 markdown；hybrid（BM25 + dense/RRF）在 chunk 级检索 → 聚合到报告级 → 取相关报告的**全文 markdown**（预算内）→ 结合任务提示词回答。
-- LangGraph：保留图作为编排（understand→retrieve→assemble→answer→validate），但**移除 LLM 驱动的 search/read 工具循环**，改为确定性检索 + 有界补查。
-- markdown 与 LangGraph 非二选一：markdown 是检索/上下文数据，图是编排；信息梳理/趋势/报告任务需要全文报告，单点问答可只给片段。
-- 预算：`RETRIEVE_CONTEXT_CHARS`/`RETRIEVE_REPORT_CHARS`；超限保留命中页/段 + 首尾摘要。
+- 采用：搜索空间 = 报告解析后的 markdown/块文本；hybrid（BM25 + dense/RRF）在 chunk 级检索 → 聚合到报告级 → 取相关报告**全文**（token 预算内）→ 结合任务提示词回答。
+- LangGraph：保留图作为编排（understand→retrieve→assemble→answer→validate），但**移除 LLM 驱动的 search/read 工具循环**，改为确定性检索 + 有界补查。markdown 是数据/上下文，图是编排，非二选一。
+- 分块：**以 `middle_json` block 为原子**（带 `page_idx` → 页码），markdown 仅用于渲染/上下文；**分块前剥离 base64 图片**为 `[图片]`。
+- 报告聚合：**累计 RRF**（`Σ 1/(k+rank)`）+ 覆盖项 + 规模惩罚，替代脆弱的 `max+α·count`。
+- 去重与差异：按**项目编号**去重（同项目取最新/最全，跨年合并标注），`min/max_reports` 与是否需全文按 task 区分。
+- 预算：改用 **token**（`RETRIEVE_CONTEXT_TOKENS`/`RETRIEVE_REPORT_TOKENS`/`ANSWER_RESERVE_TOKENS`），全局核算 system+历史+提示词+报告+输出。
+- 与 K10 关系：L2 的 chunk 模型取代 K10 候选缓存；K10 仅保留“BM25 按库缓存 + chunk id 预计算”原则，不建两套索引。
+- dense 子集：限库/限报告改用 Chroma metadata filter（`doc_id ∈ allowed`），不退化为 BM25-only。
 - Word 报告：后续复用 `selected_reports`，模板 `templates/*.docx`（python-docx），不在本轮。
 - 状态：规划（L1–L7），规格见 ITERATION §7。
 

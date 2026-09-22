@@ -99,7 +99,7 @@ bash launch.sh
 | `TEXT_ROOT` | `KNOWLEDGE_ROOT` | `ingest/local` 导入 txt/md 的目录 |
 | `EMBEDDING_PATH` | 空 | 本地 embedding 模型目录；空 = 仅 BM25，不加载 embedding |
 | `EMBEDDING_DEVICE` | `cpu` | embedding 设备 |
-| `PDF_OCR_MODE` / `PDF_OCR_LANGUAGE` / `PDF_NUM_WORKERS` | `auto` / `chi_sim+eng` / `0` | 扫描件 OCR：三档模式（`off`/`force`/`auto`）、Tesseract 语言、liteparse 并发 worker 数（0=库默认） |
+| `MINERU_CMD` / `MINERU_HOME` | `mineru-kit parse … --tier standard --format middle_json` / 模型缓存目录 | PDF 解析（mineru 4.0.5，K13）；`MINERU_CMD` 支持 `{pdf}`/`{out}` 模板 |
 | `WEB_PROVIDER` | `crawl4ai` | 网页抓取器（`crawl4ai` / `firecrawl`） |
 | `MAX_SEARCHES` / `MAX_READS` / `MAX_MODEL_CALLS` / `RUN_TIMEOUT` | `6` / `8` / `12` / `180` | 有界研究流程的预算 |
 
@@ -116,7 +116,6 @@ bash launch.sh
 | `GET /api/documents/{doc_id}/file?corpus=` | 原始 PDF/Markdown/txt 文件流（浏览器阅读器） |
 | `GET /api/tasks` | 任务列表 task1–4 |
 | `GET\|POST\|PATCH\|DELETE /api/corpora...` | 知识库列表/新建/重命名/删除；`/{id}/files` 文件列表/上传/重命名/删除；`/{id}/ingest` 按库导入 |
-| `GET\|PUT /api/ocr-config` | 扫描件 OCR 模式/语言（全局默认，仅影响后续导入） |
 | `POST /api/ingest/local`、`POST /api/ingest/text` | 导入本地 txt/md/pdf/docx；手工补充正文 |
 | `GET\|POST /api/official-docs` | 官方 Markdown 分区发现与批量更新 |
 | `POST /api/web/preview`、`POST /api/web/confirm/{preview_id}` | 网页抓取预览与确认入库 |

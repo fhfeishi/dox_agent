@@ -57,11 +57,10 @@
 | K8（提交 `0615ef9`） | Word `.docx` 解析（`python-docx`，段落+表格入正文）；`SOURCE_SUFFIXES` 与上传白名单加入 `.docx` | `pytest` 84 passed（新增 `tests/test_docx.py`）；`npm run build` 通过 |
 | K12（本轮） | 按库 OCR：`Knowledge.meta`（`ocr_mode`/`ocr_language`/`ocr_applied_*`）；`GET/PUT /api/corpora/{id}/ocr`；`ingest?force=`（`stale` 自动强制，job `forced`）；`GET /api/corpora` 增 `ocr_stale`；前端 `CorpusOcrSettings`（侧栏每库可展开） | `pytest` 86 passed（新增 `tests/test_corpus_ocr.py`、force 重解析例）；实机 httpx：PUT `eng`→`stale=true`→ingest `forced=true`→`stale=false`；再 ingest `forced=false, skipped=1` |
 | 预览原文件/引用跳页修复（提交 `02d8c1e`/`6849250`；本轮修复） | `/file` 改 `Content-Disposition: inline`（原为 `attachment`，iframe 不会内联渲染）；**引用 `[n]` 实际未生效**：`Answer` 计算了 `rehypePlugins`/`components` 却未传给 `<Markdown>`，且 `rehypeCitations` 返回的是 transformer 而非 `options => transformer`；现已接通，`[n]` 为可点按钮、超范围数字保持字面、代码块不误匹配 | `npm run build` + `node --test` 18 passed；`tests/browser_fund_preview.py` PASS（基金库 PDF 内联渲染 + `[1]` 跳第 3 页 + chat 携带 `corpus_id`） |
-
-当前可用基线（本次实测）：后端 `pytest tests -q` → **86 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
-
 | mineru 4.0.5 试用（2026-09-22，本地实测） | 独立 venv 安装 `mineru==4.0.5`（无 torch）；`mineru-kit parse <pdf> -o <out> --tier basic --ocr-mode auto` 成功；`--format markdown` → 单 `.md`（图片 base64、无页标记），`--format middle_json` → 单 `.json`（`pages[].page_idx`+blocks）；v4 不产出经典 `<uuid>_origin.pdf`/`images/`；`temp/` 为经典版产物 | 最小基金 PDF 1–2 页约 6s（首次拉模型约 1 分钟）；**未接入 dox_agent 代码**（仅试用） |
-| K13 mineru 适配器（本轮） | `parsers.py`：`read_mineru_output` 支持 v4 `middle.json`/经典 `content_list.json`（`page_idx` → 页码，回退 markdown 单页）；`parse_pdf_pages` 跑 `MINERU_CMD`（模板 `{pdf}`/`{out}`，`MINERU_HOME`/超时）；产缓存 `<KB>/parsed/<rel>/`；移除 liteparse 与 `/api/ocr-config`、`/api/corpora/{id}/ocr`、前端 `OcrSettings`/`CorpusOcrSettings`，保留 `ingest?force=true`（侧栏“重导入”） | `pytest` 85 passed（新增 `tests/test_mineru.py` 6 例）；`npm run build` + `node --test` 18 passed；**真实 `temp/` 样例读取验证**：45 页可读中文、页码 1..45 |
+| K13 mineru 适配器（提交 `c2d04b2`） | `parsers.py`：`read_mineru_output` 支持 v4 `middle.json`/经典 `content_list.json`（`page_idx` → 页码，回退 markdown 单页）；`parse_pdf_pages` 跑 `MINERU_CMD`（模板 `{pdf}`/`{out}`，`MINERU_HOME`/超时）；产缓存 `<KB>/parsed/<rel>/`；移除 liteparse 与 `/api/ocr-config`、`/api/corpora/{id}/ocr`、前端 `OcrSettings`/`CorpusOcrSettings`，保留 `ingest?force=true`（侧栏“重导入”） | `pytest` 85 passed（新增 `tests/test_mineru.py` 6 例）；`npm run build` + `node --test` 18 passed；**真实 `temp/` 样例读取验证**：45 页可读中文、页码 1..45 |
+
+当前可用基线（本次实测）：后端 `pytest tests -q` → **85 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
 ## 4. 待定设计
 
@@ -85,7 +84,7 @@
 | B2/B4/B5 基金元数据与领域/年份过滤未做 | 报告与过滤缺依据 | 先 H9（文件名元数据入服务端）→ B2/B4/B5 |
 | E 报告入口未做；#10 未决 | task4/U3/G9 无法开工 | 定稿 #10 → 实现 E1/E2 |
 | #12 模型可用性判定缺失 | F11/U9.4-2 不可验收 | 定 health 探测口径或新增轻量探测接口 |
-| 基金库 `.knowledge/自然科学基金/` **已导入 10 份，但以 `eng` OCR 解析、正文乱码**；`files` 清单为空 | 预览/问答不可读，H10 无法验收 | 侧栏该库「重导入」（K13：mineru 全量重建）后做 H10 |
+| 基金库 `.knowledge/自然科学基金/`：source/**34 份** PDF，datadb `docs=10`（liteparse/eng 旧解析，正文乱码）、`files=3`；`parsed/` 空（K13 未重跑） | 预览/问答不可读，H10 无法验收 | 侧栏该库「重导入」（K13：mineru 全量重建，`force=true`）后做 H10 |
 | H10 真实基金报告端到端验收未做 | 基金场景未验证 | 以真实报告走「选库 → 浏览 → 预览 → 按库问答」 |
 | 按 kind 预览、两阶段导入进度未做 | 文件能力不完整、导入过程不可观测 | K9/K5 |
 

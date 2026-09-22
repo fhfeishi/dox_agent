@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Literal
 from uuid import uuid4
 
-from fastapi import FastAPI, File, HTTPException, Request, UploadFile
+from fastapi import FastAPI, File, HTTPException, Request, Response, UploadFile
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -34,6 +34,7 @@ from .knowledge import Knowledge
 from .official_docs import import_official
 from .parsers import import_defaults, parse_web
 from .prompts import list_tasks
+from .reports import ReportStore, generate_markdown
 from .retrieval import fit_history
 from .workspace import Workspace
 from .workspace import router as workspace_router
@@ -82,6 +83,19 @@ class ChatRequest(BaseModel):
     # H4: optional corpus binding; absent = the default corpus (backward compatible).
     corpus_id: str | None = Field(default=None, min_length=1, max_length=120)
     run_id: str = Field(default_factory=lambda: uuid4().hex, min_length=8, max_length=80)
+
+
+class ReportRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    domain: str = Field(min_length=1, max_length=120)
+    year_from: int = Field(ge=1900, le=2100)
+    year_to: int = Field(ge=1900, le=2100)
+    template_id: Literal["achievements", "hotspots", "future_directions", "comprehensive"]
+    fund_type: str = Field(default="", max_length=120)
+    focus: str = Field(default="", max_length=2000)
+    doc_ids: list[str] | None = Field(default=None, min_length=1, max_length=20)
+    corpus_id: str | None = Field(default=None, min_length=1, max_length=120)
+    session_key: str | None = Field(default=None, min_length=1, max_length=120)
 
 
 class WebRequest(BaseModel):
@@ -138,6 +152,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.knowledge = knowledge or Knowledge(settings.data_dir / "knowledge.sqlite3", settings=settings)
         app.state.workspace = Workspace(workspace_path(settings, app.state.knowledge))
         app.state.knowledge.workspace = app.state.workspace
+        app.state.reports = ReportStore(settings.state_dir / "reports.sqlite3")
         app.state.import_lock = asyncio.Lock()
         app.state.preview = None
         app.state.official_job = {"status": "idle", "total": 0, "completed": 0, "imported": 0, "changed": 0, "errors": []}
@@ -704,6 +719,37 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             media_type="text/event-stream",
             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
         )
+
+    @app.post("/api/reports", status_code=201)
+    async def create_report(payload: ReportRequest):
+        if payload.year_from > payload.year_to:
+            raise HTTPException(422, "起始年份不能晚于结束年份")
+        kn = await knowledge_for_request(payload.corpus_id)
+        try:
+            markdown = await generate_markdown(kn, settings, payload.model_dump())
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        report_id = uuid4().hex
+        await asyncio.to_thread(app.state.reports.save, report_id, payload.model_dump(), markdown)
+        return {"report_id": report_id, "params": payload.model_dump(), "markdown": markdown}
+
+    @app.get("/api/reports/{report_id}")
+    async def get_report(report_id: str):
+        try:
+            return await asyncio.to_thread(app.state.reports.get, report_id)
+        except KeyError as exc:
+            raise HTTPException(404, "报告不存在") from exc
+
+    @app.get("/api/reports/{report_id}/export")
+    async def export_report(report_id: str, format: str = "md"):
+        if format != "md":
+            raise HTTPException(422, "首期仅支持 md 导出")
+        try:
+            report = await asyncio.to_thread(app.state.reports.get, report_id)
+        except KeyError as exc:
+            raise HTTPException(404, "报告不存在") from exc
+        return Response(report["markdown"], media_type="text/markdown; charset=utf-8",
+                        headers={"Content-Disposition": f'attachment; filename="report-{report_id}.md"'})
 
     @app.get("/{asset_path:path}")
     async def frontend(asset_path: str):

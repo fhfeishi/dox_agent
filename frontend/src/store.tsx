@@ -487,6 +487,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   async function startTask(nextTaskId: string) {
     setTaskId(nextTaskId);
     await switchSession(undefined, nextTaskId);
+    setStatus("已切换到新任务并新建会话；原会话保留在会话列表");
   }
 
   async function copyQuestion(question: string) {

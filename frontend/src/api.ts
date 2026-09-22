@@ -4,7 +4,7 @@ export type Usage = { run_id?: string; input_tokens: number | null; output_token
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string; duration_ms?: number };
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; chunks_retrieved: number; reports_selected: number; context_tokens: number; invalid_citations?: number };
 export type Options = { allowed_doc_ids: string[] | null; task_id?: string; corpus_id?: string };
-export type TaskInfo = { id: string; name: string; description: string; output_hint?: string; has_template: boolean };
+export type TaskInfo = { id: string; name: string; description: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] } };
 export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;

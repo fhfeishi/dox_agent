@@ -53,7 +53,7 @@
 **知识库管理与文件操作（规划中）**
 - 一份独立语料 = `CORPORA_ROOT`（默认 `.knowledge`）下一个自包含目录，内含 `source/`（原始）+ `datadb/`（SQLite）+ `vectordb/`（向量），库之间隔离。
 - 知识库 CRUD：新建、重命名、删除（默认只删派生数据；删源文件需显式确认）。
-- 库内文件 CRUD：列表、上传（md/pdf/docx）、删除、重命名/替换；`source/` 为唯一事实来源。
+- 库内文件 CRUD：列表、上传（md/pdf/txt；docx 见 Word 支持）、删除、重命名/替换；`source/` 为唯一事实来源。
 - 侧栏列出库（名称/份数/就绪状态）并可切换；库详情展示文档清单；基金库显示题目/负责人/项目编号/报告年份区间。
 - 每个会话绑定一个库；输入区资料范围为两层：库（必选）+ 库内文档（可选，`allowed_doc_ids`）；切库清空越界选择并提示。
 - 导入需增量（未变文件跳过）、可并发、OCR 按需求触发，并给出解析/索引两阶段进度；详见 [`ITERATION.md`](ITERATION.md) K 阶段。
@@ -90,8 +90,8 @@
 |---|---|
 | `GET /api/health` | `status`/`app_id`/`model`/`docs_count`/`api_key_configured`/`model_verified(false)`/`web_provider`/`preparation`/`corpus_id`/`index_progress` |
 | `GET /api/documents?corpus=` | 摘要数组（`pages` 为页数、不含正文）+ `rel_path`/`status`/`meta`（`meta` 占位 `{}`）；未初始化库返回空数组；未知库 404 |
-| `GET /api/documents/{doc_id}` | 按 `page`/`start_line`/`version`/`section` 读取原文证据；404/422 |
-| `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range）；404/422/415/413(>200MB)；仅根目录内本地文件 |
+| `GET /api/documents/{doc_id}` | 按 `page`/`start_line`/`version`/`section` 读取原文证据；404/422。**当前仅默认库**，多库待 K0b 补 `corpus` |
+| `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range）；404/422/415/413(>200MB)；仅根目录内本地文件。**当前仅默认库**，多库待 K0b 补 `corpus` |
 | `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`has_template` |
 | `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job` |
 | `POST /api/corpora/{id}/ingest` | 按库导入（限定库 root 内）；202 + job；404/409 |

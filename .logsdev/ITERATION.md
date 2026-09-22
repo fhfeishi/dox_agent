@@ -171,42 +171,38 @@
 - 非法 mode/language 422；未知库 404。
 - `applied` 为空的存量库显示“解析语言未知”，不阻塞。
 
-### 6.6 K13 实现规格：mineru 解析（取代 liteparse）
+### 6.6 K13 实现规格：mineru 4.0.5 解析（取代 liteparse）
 
-**背景**：liteparse 中文 OCR 失败（`--ovr-language chi_sim+eng` → `failed loading language 'chi_sim_vert'`）。改用 mineru auto。
+**背景**：liteparse 中文 OCR 失败（`--ovr-language chi_sim+eng` → `failed loading language 'chi_sim_vert'`）。改用 **mineru 最新稳定版 4.0.5**（已实测）。
 
-**产物约定（auto，实测 `temp/`）**
-```
-<out>/<pdfname>.pdf-<uuid>/
-├── full.md                    # 正文（入库）
-├── <uuid>_origin.pdf          # 原始 PDF（预览）
-├── images/                    # 图片
-├── <uuid>_content_list.json   # 分块 + page_idx（页码来源）
-├── <uuid>_content_list_v2.json
-├── <uuid>_model.json
-└── layout.json
-```
+**CLI 与产物（实测 4.0.5）**
+- 无状态入口：`mineru-kit parse <pdf> -o <out> [--tier basic|standard] --ocr-mode auto --format markdown|middle_json`（`mineru parse` 需先 `mineru server start`，不适合直接 subprocess）。
+- `--format markdown` → 单个 `.md`（**图片内嵌 base64**，自包含）。
+- `--format middle_json` → 单个 `.json`：`pages[]{page_idx, blocks[]{type, content[]{type, content}}}`（**页码来源**）。
+- v4 **不产出** 经典版的 `<uuid>_origin.pdf`/`images/`/`content_list.json`；`temp/` 的经典产物仅作历史参考。
+- 首次运行拉模型到 `MINERU_HOME`（实测约 1 分钟，CPU ONNX+llama.cpp）；模型可复用。
 
 **后端**
 - 移除 liteparse：`_pdf_pages`/`parse_pdf_pages`、`pdf_ocr_mode`/`pdf_ocr_language`/`pdf_num_workers`、`/api/ocr-config` 与 `OcrSettings`、K12 的按库语言选择（保留 `force` 重新导入）。
-- `parse_file` 的 `.pdf` 分支：定位/生成 mineru 输出目录 → 读 `full.md`；pages 由 `content_list.json` 按 `page_idx` 重建（无则单页）。
-- 运行 mineru：用可配置命令 `MINERU_CMD`（经典 `-p <pdf> -o <out> -m auto` 或 v4 `mineru parse`）；产物已存在且源 PDF 未变时跳过（增量签名含 `parser=mineru`）。
-- 预览：`/file` 返回**源 PDF / `origin.pdf`**（用源 PDF 同名）；doc `origin` 仍指向源 PDF 路径以保 `doc_id` 稳定。
-- 迁移：现有基金库以 liteparse/eng 解析的乱码正文，用 `ingest?force=true` 以 mineru 重建。
+- `parse_file` 的 `.pdf` 分支：调用 `MINERU_CMD`（默认 `mineru-kit parse {pdf} -o {out} --tier {tier} --ocr-mode auto --format middle_json`）；正文取 markdown，页码取 middle_json 的 `page_idx` 重组每页（无则单页）。
+- 产物缓存于 `<KB>/parsed/<rel>/`；源 PDF `size+mtime` 未变则跳过（增量签名含 `parser=mineru@4`）。
+- 预览：`/file` 返回**源 PDF**（即 origin）；doc `origin` 仍指向源 PDF 路径以保 `doc_id` 稳定。
+- 迁移：现有基金库 liteparse/eng 乱码正文用 `ingest?force=true` 以 mineru 重建。
 
 **前端**
 - 预览 PDF 仍用 `PdfViewer`（原文件 + `#page=`）；移除 OCR 语言设置入口（mineru auto）。
 - 侧栏/库详情保留“重新导入”（切换解析器后重建）。
 
 **验收**
-- 基金库 10 份 PDF → mineru 解析 → 入库正文为可读中文；预览显示 `origin.pdf`；引用可定位页码。
+- 基金库 10 份 PDF → mineru 4.0.5 解析 → 正文可读中文、页码可定位；预览显示源 PDF。
 - 未变文件二次导入跳过（不重跑 mineru）。
 - 移除 liteparse 后 `pytest`/`npm run build` 通过。
 
 **待确认**
-- mineru CLI 形态（经典 `mineru -p` vs v4 `mineru parse`）与输出目录参数；建议 `MINERU_CMD` 配置 + 已解析目录 drop-in。
-- 页码方案：按 content_list `page_idx` 重建每页（推荐）vs `full.md` 单页。
-- `full.md` 内 `images/...` 相对链接：首期不渲染正文图片（预览用 `origin.pdf`），若要渲染需新增按 rel_path 的图片服务。
+- tier 默认（`basic` 快 / `standard` 质量高）与 `--pages` 全量策略。
+- 页码：优先 `middle_json`（推荐）；`markdown` 无页标记。
+- 图片：markdown 内嵌 base64，首期不在正文渲染图片（预览用源 PDF）。
+- 命令安全：`MINERU_CMD` 仅接受默认模板或显式配置，避免任意命令注入。
 
 ## 7. 维护约定
 

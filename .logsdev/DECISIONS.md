@@ -92,14 +92,14 @@
 - 前置：K0；未完成前不开放库删除/重命名。
 - 状态：**已实现（K0）**。新增 `Settings.state_dir`（默认 `DOX_AGENT_ROOT/data`）；`main.workspace_path` 把 `workspace.sqlite3` 放在该目录，并在应用级文件不存在时从活动库 `<KB>/datadb/workspace.sqlite3` 一次性复制迁移。测试见 `tests/test_corpora_state.py`。
 
-## 解析器：改用 mineru（取代 liteparse，2026-09-22）
+## 解析器：改用 mineru 4.0.5（取代 liteparse，2026-09-22）
 
-- 采用：PDF 解析改用 **mineru**（auto 模式）；**彻底移除 liteparse**。原因：liteparse 中文 OCR 报错（`--ovr-language chi_sim+eng` → `failed loading language 'chi_sim_vert'`），且抽取质量差。
-- mineru 产物（auto，实测 `temp/`）：`<name>.pdf-<uuid>/` 内含 `full.md`（正文 Markdown）、`<uuid>_origin.pdf`（原始 PDF）、`images/`、`*_content_list.json` / `*_content_list_v2.json` / `*_model.json` / `layout.json`。
-- 入库与预览：**正文取 mineru 的 Markdown**；**前端预览展示 `origin.pdf`**（原始 PDF，非抽取文本）。文件夹/文件名规范化：目录去 `<uuid>` 后缀，`origin.pdf` 用源 PDF 同名。
-- 页码：`full.md` 无页标记，页号在 `content_list.json` 的 `page_idx`；为满足引用页码，按 `page_idx` 从 content_list 重建每页文本（`Page(number=page_idx+1)`），无 content_list 时回退 `full.md` 单页。**（待确认）**
+- 采用：PDF 解析改用 **mineru 最新稳定版 4.0.5**；**彻底移除 liteparse**。原因：liteparse 中文 OCR 报错（`--ovr-language chi_sim+eng` → `failed loading language 'chi_sim_vert'`），且抽取质量差。
+- 版本与 CLI（实测 4.0.5）：无状态入口 **`mineru-kit parse <pdf> -o <out> [--tier basic|standard] --ocr-mode auto --format markdown|middle_json`**；`mineru parse` 需先 `mineru server start`。首次运行会拉模型（缓存于 `MINERU_HOME`，实测约 1 分钟；CPU ONNX+llama.cpp）。
+- 产物（v4 实测）：`--format markdown` → 单个 `.md`（**图片内嵌 base64**，自包含）；`--format middle_json` → 单个 `.json`，结构 `pages[]{page_idx, blocks[]{type, content[]{type,content}}}`（**页码来源**）。v4 **不产出** 经典版的 `<uuid>_origin.pdf`/`images/`/`content_list.json`。
+- 入库与预览：**正文取 mineru 的 Markdown**（用户要求）；**预览服务源 PDF**（即 origin，v4 无单独 origin.pdf）；页码从 `middle_json` 的 `page_idx` 取（markdown 无页标记），无 middle_json 时回退单页。
+- 旧版对照：`temp/` 的 10 个目录属**经典 MinerU**（`full.md`+`*_origin.pdf`+`images/`），仅作历史参考；实现以 v4 CLI 为准。
 - 取代：原「解析器：固定使用 liteparse」及 K2/K3/K4/K12 基于 liteparse 的 OCR 三档/语言配置/按库语言（mineru auto 自行识别语言）。
-- 版本待确认：`temp/` 产物属**经典 MinerU**（`full.md`+`*_origin.pdf`），而最新官方 README 为 **v4**（`mineru parse`）；实现前需确认 CLI 与输出目录参数，或直接用已解析目录 drop-in。
 - 状态：**已采用，未实现**（K13）。
 
 ## 知识库重命名语义（2026-09-22）

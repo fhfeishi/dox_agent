@@ -133,6 +133,14 @@
 - **删除/失效**：删文件/库同步清 `parsed/` 与 Chroma chunk；`parser_signature` 入库 meta，变更即 `force`。
 - 状态：L 开工前定稿（与 ITERATION §7.14 一致）。
 
+## 持久化数据向后兼容：渲染对新增字段做默认（2026-09-22）
+
+- 问题：L6 改变 `telemetry` 形状（新增 `context_tokens`/`chunks_retrieved`/`reports_selected`），但 `workspace` 持久化的旧会话缺这些键；恢复会话时 `MessageView` 的 `t.context_tokens.toLocaleString()` 抛错，整棵 React 树崩溃 → **整页白屏**。
+- 采用：前端渲染对**持久化/历史数据的新增字段**一律给默认（`context_tokens ?? 0`、`stages_ms ?? {}` 等）；并加顶层 `ErrorBoundary`（`components/ErrorBoundary.tsx`）兜底，单个组件异常时显示错误与「重新加载」而非白屏。
+- 理由：契约演进不可避免，持久化历史不能假定与当前 TS 类型一致（类型不覆盖既有数据）。
+- 影响：`components/MessageView.tsx`、`components/ErrorBoundary.tsx`、`main.tsx`。
+- 状态：**已修复并验证**（Playwright：旧会话恢复后 `#root` 正常渲染、无 `pageerror`；`npm test` 18 passed）。
+
 ## UI 架构重构（U10，2026-09-22）
 
 - 采用：`store.tsx` 的 `AppProvider` 拥有全部业务状态（SSE/会话/分支/多库/预览/导入），`App.tsx` 仅布局；组件经 `useApp()` 读取、零业务逻辑；设计令牌集中在 `styles/globals.css`；IA 为 `IconRail → SidePanel → Main → Inspector`，文献库为「卡片网格 → 库详情抽屉 → 文档/源文件/导入」三层。

@@ -213,6 +213,7 @@
 - `validate` 顺序：实作 `retrieve→assemble→validate→answer`（避免流式二次回答），**planner 确认接受**（§7.15 备注 / §7.9 图已同步）。
 
 **遗留（低）**：
+- **已修复（2026-09-22）**：L6 的 `telemetry` 形状变更导致**恢复旧会话白屏**（`context_tokens` 未定义 → `toLocaleString` 抛错）。已对 `MessageView` 的持久化字段加默认，并加顶层 `ErrorBoundary`（见 `DECISIONS.md`「持久化数据向后兼容」）。Playwright 验证旧会话正常渲染、无 `pageerror`；`npm test` 18 passed。
 - **测试覆盖缺口**：`routing.resolve_policy` 仍在并被图调用，但 `scope_missing`→clarify、`preparation` 路由、run timeout 的 Python 用例随 `test_professional_policy.py` 删除而**无替代**（`test_app` 仅测 health 字段）。建议补 `tests/test_routing.py`（scope_missing→clarify、preparation→notice、timeout→`timed_out`）。
 - 检索延迟 ≈0.6s 源于每查询重建 BM25；K10 chunk 缓存未做（性能项）。
 - 评测集偏易，需扩样后再校准 `MIN_TERM_COVER`/`PER_DOC_TOP_M`/`MIN·MAX_REPORTS`。

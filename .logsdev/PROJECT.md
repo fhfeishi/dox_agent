@@ -94,7 +94,7 @@
 | `GET /api/documents?corpus=` | 摘要数组（`pages` 为页数、不含正文）+ `rel_path`/`status`/`meta`（`meta` 占位 `{}`）；未初始化库返回空数组；未知库 404 |
 | `GET /api/documents/{doc_id}` | 按 `page`/`start_line`/`version`/`section` 读取原文证据；可选 `corpus`（缺省默认库）；404/422 |
 | `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range，`Content-Disposition: inline` 供内联预览）；可选 `corpus`（缺省默认库）；404/422/415/413(>200MB)；仅根目录内本地文件 |
-| `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`has_template` |
+| `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`output_hint`/`has_template`（兼容保留）/`templates`（新增）/`artifacts`（默认+允许集） |
 | `GET\|PUT /api/ocr-config` | ~~liteparse OCR 模式/语言~~ **已移除（K13：改用 mineru 自动识别）** |
 | `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job` |
 | `POST /api/corpora` | 新建库目录（`source/`+`datadb/`+`vectordb/`）；201；重名 409、名称非法 422（K6） |

@@ -27,7 +27,7 @@
 
 **F 验收**：F1–F6、F8–F13 ⬜；F7 🟡（会话与流式基础已具备）。
 
-**G 任务系统**：G1–G4、G7 ✅；G5 🟡（选择器/绑定/task4 阻断已实现，报告表单待 E）；G6 🟡；G8 任务输出验收、G9 报告入口 ⬜。
+**G 任务系统**：G1–G4、G7 ✅；G5 🟡（选择器/绑定已实现；**task4 阻断的“报告表单”口径已被 §8 取代为自由文本 intake**，intake 待 G10b、报告生成待 E）；G6 🟡；G8 任务输出验收、G9 报告入口 ⬜。
 
 **H 知识库管理**：H1–H3（注册表/按库导入/`?corpus=`）✅；H5–H7（选择器/详情/按库文档）✅；**H4 ✅代码**（chat `corpus_id`、按库限定检索，提交 `e7d08e2`）、**H8 ✅默认启用并浏览器验收**（会话绑库；已移除 `VITE_UI_CORPUS`，选中语料随 chat 发送以保证浏览与回答同库），真实语料验收见 §3；H9 文件名元数据入服务端、H10 真实报告验收 ⬜。
 
@@ -737,6 +737,7 @@ understand → retrieve → assemble → validate → answer → finish
   - `PROJECT §2`：「task4 不在 chat 生成正文，走报告入口」→ 补“但允许自由文本输入用于采集”。
   - `PROJECT §4.2`：`task_id` 「仅 task1–3；task4/未知 422」→ 改为 task1–4（task4 走 intake，未知 422）。
   - `DECISIONS`「任务系统取代自动意图分类」：同步。
+  - `ITERATION §2 G5` / 旧 `U3.1`「选取 task4 后输入区切换为领域/年份/模板**表单**」→ 作废，改为**自由文本 intake**（服务端采集）。
 
 ### 8.3 任务契约（产出物为输出参数，见 §9）
 
@@ -759,6 +760,8 @@ understand → retrieve → assemble → validate → answer → finish
   - 年份：解析 `2020-2024`/`2020至2024`/`2020—2024`/单年 `2023`（=2023–2023）；校验 `start ≤ end`。
   - 状态：跨轮累加，支持覆盖（“年份改 2023”）；参数存会话 turn（与 #10 口径一致）。
   - 参数齐 → 回显 + `stop_reason="report_pending"`（“报告入口未就绪，需求已记录”），**不生成正文**。
+- **ReportParams（持久化契约，V2）**：`{domain?, year_from?, year_to?, template?, fund_type?, doc_ids?, focus?}` **全部可选**；存**会话级 `report_params`**（`workspace` session `data`），跨轮累加；turn 可携带快照用于回显。前端 `conversation.ts` 的 Turn/Attempt 增**可选**字段，`restoreTurns`/渲染对缺失字段给默认（遵守 `DECISIONS`「持久化数据向后兼容」）。
+- **加载器接口（V4）**：`task_instruction(task_id, *, phase="chat")`，`phase ∈ {"chat","report"}`；task4 `phase="chat"`→`task4_intake.md`，`phase="report"`→`task4_report.md`；其余任务忽略 phase（或等价拆 `intake_instruction()`）。在 `src/prompts/__init__.py` 写清。
 - **E 就绪后**：同一输入 → `POST /api/reports` → 生成报告（预览/复制/下载），会话内以卡片引用报告 id。
 
 ### 8.5 图分支（与 §7.15 对齐）
@@ -810,7 +813,8 @@ understand → retrieve → assemble → validate → answer → finish
 
 ### 9.3 模板权威与加载器（避免两套模板源）
 - 现状：仓库**无 `src/templates/`**；模板占位符在 `src/prompts/task4_report.md`；由 `task_instruction`/`GET /api/tasks` 的 `has_template` 驱动。
-- **决定：单一权威 = `src/templates/<template_id>.md`（章节结构）**；把章节从 `task4_report.md` **移出**，该文件只保留“生成指令”；新增 `prompts.report_template(template_id)` 加载；`has_template` 语义改为返回 `templates` 列表。
+- **决定：单一权威 = `src/templates/<template_id>.md`（章节结构）**；把章节从 `task4_report.md` **移出**，该文件只保留“生成指令”；新增 `prompts.report_template(template_id)` 加载。
+- **契约兼容（V1）**：**保留 `has_template` 不改语义**（=`templates` 非空），**新增 `templates` 列表**（附加，不破坏）。前端 `api.ts TaskInfo` 增可选 `templates?`；`ListingViews` 「含模板」Pill 逻辑不变。**`PROJECT §4.1`、`api.ts`、`ListingViews` 三处在 R1 同批更新**。
 - 模板↔任务映射：task4→4 报告模板；task6→`outcomes_compilation`；task7→`domain_review`；task8→`visual_brief`；task5→`project_profile`（扩展期）。
 - 无模板管理平台。
 
@@ -827,7 +831,8 @@ understand → retrieve → assemble → validate → answer → finish
 - 接口（E）：`POST /api/reports` 产 `report_id`；`GET /api/reports/{id}`；`GET /api/reports/{id}/export?format=md`。
 
 ### 9.6 后端契约变更
-- 任务注册表增 `artifacts`（默认 + 允许集）与 `templates`；`GET /api/tasks` 返回。
+- 任务注册表增 `artifacts`（默认 + 允许集）与 `templates`（**新增字段，保留 `has_template` 兼容**）；`GET /api/tasks` 返回。
+- `POST /api/reports` 请求含 `ReportParams`（见 §8.4），全部可选。
 - chat 只跑 `text`/`table` 意图；`document` 意图走报告入口（与 §8/G10 一致）。
 - `POST /api/reports` 请求：`{task_id|template_id, domain, year_from, year_to, fund_type, focus, output_formats[]}`。
 - chat `stop_reason` 只加 `report_pending`；`telemetry.path` 加 `report`。
@@ -839,7 +844,8 @@ understand → retrieve → assemble → validate → answer → finish
 | R2 | docx（手写 python-docx） | R1 |
 | R3 | 可视化 + task8（需 `reporting` extra + 中文字体 + 图片端点 + 数字确定性抽取） | R2、B4/B5 |
 | R4 | task5/6/7 任务与模板 | **H9**、B4/B5、G10 |
-- **不承诺**：H9/B4/B5 未就绪前，task5–8 不做、不进首期验收。
+- **H9 判定口径（V5）**：`metadata_from_filename` 已从文件名派生 `project_no`/`year_from`/`year_to`（L3b 已注入 `ReportDoc`），但**未派生 `pi`（负责人）与基金类别，也未服务端持久化**。故 H9 视为**部分满足**：R4 的 task5 项目画像（需负责人）**仍依赖 H9 补齐 `pi`/持久化**；task6/7 若仅用项目号/年份则不被 H9 阻塞。
+- **不承诺**：H9（`pi`/持久化）与 B4/B5 未就绪前，依赖它们的 task5–8 不做、不进首期验收。
 
 ### 9.8 非目标
 - 无模板管理平台；无知识图谱；图表仅来自语料；不联网补数据；不引入 ECharts/Vega/pandoc/htmldocx。

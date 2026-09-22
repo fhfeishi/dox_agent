@@ -42,9 +42,9 @@ def local_path_in_roots(origin: str, settings) -> tuple[Path, str] | None:
         path = Path(origin).resolve()
     except OSError:
         return None
-    # H1: the effective corpus root (DATA_DIR's parent) is also a legitimate origin root,
-    # so files of sibling corpora under it (e.g. fund PDFs) can be served by /file.
-    for root in (settings.knowledge_root, settings.text_root, settings.corpora_root or settings.data_dir.parent):
+    # H1: raw corpora live under CORPORA_ROOT (default .knowledge), so fund PDFs there
+    # must be servable by /file; DATA_DIR's parent stays a root for legacy layouts.
+    for root in (settings.knowledge_root, settings.text_root, settings.corpora_root, settings.data_dir.parent):
         root = root.resolve()
         try:
             return path, path.relative_to(root).as_posix()
@@ -151,7 +151,12 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             return app.state.knowledge
         cached = app.state.corpus_knowledge.get(info.id)
         if cached is None:
-            cached = Knowledge(info.sqlite or info.root / "knowledge.sqlite3")
+            # 方案 A: derived data stays inside the corpus dir (datadb/ + vectordb/), never
+            # in source/; a non-default corpus gets its own vector directory.
+            corpus_settings = settings
+            if not info.is_default:
+                corpus_settings = settings.model_copy(update={"vectordb_dir": info.vectordb_dir})
+            cached = Knowledge(info.sqlite or info.db_dir / "knowledge.sqlite3", settings=corpus_settings)
             app.state.corpus_knowledge[info.id] = cached
         return cached
 

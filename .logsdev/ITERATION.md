@@ -48,8 +48,9 @@
 | U1/U2/U9/D11/H5–H7 | 任务选择器、文档面板与引用跳转、侧栏收束/文献库、挤压式侧栏、库选择/详情/按库文档 | `e400279`；18 passed；tsc 无新错误 |
 | H4/H8 | 按库问答契约与会话绑库 | `e7d08e2`/`67d0ff0`；**浏览器验收未做** |
 | 布局对齐 | 开发文档 `.logsdev/`；演示语料 `.demo_langchain/`；`VECTORDB_DIR` | `703d286`/`02cbcd9`；`pytest` 64 passed、路径解析验证 |
+| 方案 A 自包含库（本轮，工作树） | `.knowledge/<库>/{source,datadb,vectordb}`；演示库同构；`corpora.py` 按 role 目录扫描并把库内 `datadb/`/`vectordb/` 作为派生路径 | `pytest` 68 passed（新增 `tests/test_corpora.py` 4 例）；端到端导入派生落 `<库>/datadb/knowledge.sqlite3` |
 
-当前可用基线（本次实测）：后端 `pytest tests -q` → **64 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
+当前可用基线（本次实测）：后端 `pytest tests -q` → **68 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
 ## 4. 待定设计
 
@@ -69,7 +70,9 @@
 | B2/B4/B5 基金元数据与领域/年份过滤未做 | 报告与过滤缺依据 | 先 H9（文件名元数据入服务端）→ B2/B4/B5 |
 | E 报告入口未做；#10 未决 | task4/U3/G9 无法开工 | 定稿 #10 → 实现 E1/E2 |
 | #12 模型可用性判定缺失 | F11/U9.4-2 不可验收 | 定 health 探测口径或新增轻量探测接口 |
-| 旧 `knowledge/`（`nf`/`database`/`vectordb`）未按新布局迁移；`.knowledge/`/`.data/` 未接入配置 | 数据位置与配置不一致 | 按 `.knowledge/`/`.data/` 约定迁移并接入 `DATA_DIR`/`VECTORDB_DIR`/`KNOWLEDGE_ROOT` |
+| 应用级会话库 `workspace.sqlite3` 仍随默认库的 `datadb/` | 换默认库会移动/错位历史会话 | 迁到独立于语料的固定应用级目录 |
+| 基金库 `.knowledge/自然科学基金/` 已注册但未导入 | 尚不能按库问答/验收 | 执行按库导入（约 213MB，注意 OCR 语言）后再做 H10 |
+| OCR 语言仅能改 `.env` 重启（默认 `eng` 对中文扫描件质量差） | 基金入库质量 | 按 DECISIONS「OCR 语言由前端可调」实现配置接口 + 设置入口 |
 | H10 真实基金报告端到端验收未做 | 基金场景未验证 | 以真实报告走「选库 → 浏览 → 预览 → 按库问答」 |
 
 ## 6. 维护约定

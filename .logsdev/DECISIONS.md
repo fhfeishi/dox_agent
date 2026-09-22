@@ -1,5 +1,20 @@
 # DECISIONS — dox_agent 关键决策
 
+## 语料目录自包含「方案 A」（2026-09-22，取代分离布局）
+
+- 采用：每个知识库 = `CORPORA_ROOT`（默认 `.knowledge`）下一个**自包含目录**，固定三部分：`source/`（原始文件，可按领域再分子目录）、`datadb/`（该库 SQLite `knowledge.sqlite3`）、`vectordb/`（该库 Chroma 索引）。`.demo_langchain/` 演示库采用同一约定。
+- 理由与代价：派生数据重建成本高（中文扫描件 OCR + 向量索引），按库自包含便于整库备份/迁移/删除，并与演示库约定统一、消除两棵树漂移；代价是库目录可写、扫描需跳过 `source`/`datadb`/`vectordb` 保留名。
+- 影响：`src/agent/config.py`（`CORPORA_ROOT` 默认 `.knowledge`，移除镜像用 `DATA_ROOT`）、`src/agent/corpora.py`（`CorpusInfo` 增 `source_dir`/`db_dir`/`vectordb_dir`）、`README.md`、`.env`/`.env.example`。
+- 替代关系：取代下方"文档与本地数据布局"中 `.knowledge/`（原始）与 `.data/`（派生）分离、以及 `.demo_langchain` 旧子目录名（`langchain_dox`/`langchain_datadb`/`langchain_vectordb`）的约定。
+- 遗留：应用级会话库 `workspace.sqlite3` 仍随默认库的 `datadb/`，尚未迁到固定应用级目录。
+
+## OCR 语言由前端可调（2026-09-22）
+
+- 采用：`PDF_OCR` / `PDF_OCR_LANGUAGE` 应可在前端设置中调整（如 `eng` / `chi_sim` / `chi_sim+eng`），而不是只靠 `.env` 改后重启；后端提供读取/更新该配置的最小接口，前端在设置抽屉暴露语言选择。
+- 理由与代价：基金报告多为中文扫描件，当前默认 `eng` 识别质量差；入库质量直接取决于 OCR 语言，需要能即时调整而不用改文件重启。代价：新增运行时配置读写接口，并需明确“仅影响后续导入”的语义（已入库文档不自动重解析，需重新导入）。
+- 影响（待实现）：`src/agent/config.py`、`src/main.py`（配置接口）、`frontend/src/SettingsDrawer.tsx`；单用户本地部署下允许写入。
+- 状态：已采用，未实现；实现前不新增前端入口。
+
 ## 文档与本地数据布局（2026-09-22）
 
 - 采用：长期开发文档只维护三份——[`PROJECT.md`](PROJECT.md)、[`ITERATION.md`](ITERATION.md)、[`DECISIONS.md`](DECISIONS.md)；需求、契约、计划与完成证据已并入这三份，历史与过程材料不再单独维护。

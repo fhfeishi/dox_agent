@@ -1,13 +1,14 @@
-"""H1: corpus registry — disk scan under the corpus root plus CORPORA config overrides.
+"""H1: corpus registry — each corpus is a self-contained directory under CORPORA_ROOT.
 
-Read-only by contract: scanning never creates files (sqlite is opened with ``mode=ro``)
-and never changes the existing single-corpus behaviour; ``DATA_DIR`` simply degrades to
-"the default corpus". Per-corpus ``Knowledge`` instances are created lazily by main.py.
+Layout (方案 A, 2026-09-22): ``CORPORA_ROOT/<corpus>/`` holds ``source/`` (raw files,
+possibly nested by domain), ``datadb/`` (sqlite) and ``vectordb/`` (vector store), so one
+corpus can be moved, backed up or deleted as a single directory. Scanning is read-only:
+counting opens sqlite with ``mode=ro`` and never creates files. ``DATA_DIR``/``VECTORDB_DIR``
+still describe the active default corpus, which may live outside CORPORA_ROOT (the demo).
 """
 
 from __future__ import annotations
 
-import os
 import re
 import sqlite3
 from dataclasses import dataclass
@@ -15,6 +16,14 @@ from pathlib import Path
 
 # Fund report files: <year_from>_<year_to>_<project_no>_<pi>_<title>.pdf (corpus_management §3.3).
 FUND_NAME_PATTERN = re.compile(r"^\d{4}_\d{4}_[A-Za-z0-9]+_[^_]+_.+\.pdf$", re.IGNORECASE)
+# Source files that make a corpus (raw material lives under ``<corpus>/source``).
+SOURCE_SUFFIXES = {".pdf", ".md", ".markdown", ".txt"}
+
+# Fixed role subdirectories inside every corpus directory (方案 A).
+SOURCE_DIRNAME = "source"
+DB_DIRNAME = "datadb"
+VECTOR_DIRNAME = "vectordb"
+ROLE_DIRNAMES = frozenset({SOURCE_DIRNAME, DB_DIRNAME, VECTOR_DIRNAME})
 
 
 @dataclass(frozen=True)
@@ -24,7 +33,10 @@ class CorpusInfo:
     kind: str  # "fund" | config-provided | "unknown"
     domain: str
     rel_path: str  # posix path relative to the corpus root
-    root: Path
+    root: Path  # corpus directory
+    source_dir: Path  # root/source — raw files
+    db_dir: Path  # root/datadb — sqlite
+    vectordb_dir: Path  # root/vectordb — vector store
     sqlite: Path | None
     docs_count: int
     preparation: str  # ready | empty | uninitialized
@@ -37,19 +49,19 @@ def corpus_id_for(rel_path: str) -> str:
 
 
 def corpus_root_for(settings) -> Path:
-    """The directory scanned for corpora: explicit CORPORA_ROOT, else DATA_DIR's parent."""
+    """The corpus root scanned for corpora (``CORPORA_ROOT``, default ``.knowledge``)."""
     return (settings.corpora_root or settings.data_dir.parent).resolve()
 
 
+def _default_rel(settings) -> str:
+    """Relative label of the active default corpus (its umbrella dir, e.g. ``.demo_langchain``)."""
+    umbrella = settings.data_dir.resolve().parent
+    return umbrella.name.lstrip(".") or umbrella.name
+
+
 def default_corpus_id(settings) -> str:
-    """Id of the corpus holding DATA_DIR/knowledge.sqlite3, without walking the disk."""
-    root = corpus_root_for(settings)
-    target = (settings.data_dir / "knowledge.sqlite3").resolve().parent
-    try:
-        rel = target.relative_to(root).as_posix()
-    except ValueError:
-        rel = target.name
-    return corpus_id_for(rel)
+    """Id of the corpus holding ``DATA_DIR/knowledge.sqlite3``, without walking the disk."""
+    return corpus_id_for(_default_rel(settings))
 
 
 def _docs_count(sqlite_path: Path) -> int:
@@ -71,11 +83,24 @@ def _docs_count(sqlite_path: Path) -> int:
         return 0
 
 
-def scan_corpora(settings) -> list[CorpusInfo]:
-    """List corpora: directories under the corpus root holding knowledge.sqlite3 or *.pdf.
+def _has_sources(directory: Path) -> bool:
+    return any(path.is_file() and path.suffix.lower() in SOURCE_SUFFIXES for path in directory.rglob("*"))
 
-    Empty directories (database/, vectordb/) are skipped; config entries from
-    ``settings.corpora`` override id/name/kind/domain for a matched relative path.
+
+def _has_fund_pdf(directory: Path) -> bool:
+    return any(FUND_NAME_PATTERN.match(path.name) for path in directory.rglob("*.pdf"))
+
+
+def _preparation(count: int, sqlite_exists: bool) -> str:
+    return "ready" if count > 0 else ("empty" if sqlite_exists else "uninitialized")
+
+
+def scan_corpora(settings) -> list[CorpusInfo]:
+    """List corpora: each direct child of CORPORA_ROOT with a non-empty ``source/`` is one corpus.
+
+    Raw files live (recursively) under ``<corpus>/source``; sqlite and vector store live in
+    ``<corpus>/datadb`` and ``<corpus>/vectordb``. Empty children are skipped; ``settings.corpora``
+    overrides id/name/kind/domain per relative path.
     """
     root = corpus_root_for(settings)
     default_sqlite = (settings.data_dir / "knowledge.sqlite3").resolve()
@@ -87,46 +112,53 @@ def scan_corpora(settings) -> list[CorpusInfo]:
 
     found: dict[str, CorpusInfo] = {}
     if root.is_dir():
-        for dirpath, dirnames, filenames in os.walk(root):
-            dirnames[:] = [d for d in dirnames if not d.startswith(".") and d != "chroma"]
-            current = Path(dirpath)
-            sqlite_path = current / "knowledge.sqlite3"
-            pdfs = [name for name in filenames if name.lower().endswith(".pdf")]
-            if not sqlite_path.is_file() and not pdfs:
+        for child in sorted(path for path in root.iterdir() if path.is_dir()):
+            if child.name.startswith(".") or child.name in ROLE_DIRNAMES:
                 continue
-            rel = current.relative_to(root).as_posix()
+            source_dir = child / SOURCE_DIRNAME
+            if not source_dir.is_dir() or not _has_sources(source_dir):
+                continue
+            rel = child.relative_to(root).as_posix()
+            db_dir = child / DB_DIRNAME
+            sqlite_path = db_dir / "knowledge.sqlite3"
             count = _docs_count(sqlite_path) if sqlite_path.is_file() else 0
             override = overrides.get(rel, {})
-            kind = override.get("kind") or ("fund" if any(FUND_NAME_PATTERN.match(name) for name in pdfs) else "unknown")
+            kind = override.get("kind") or ("fund" if _has_fund_pdf(source_dir) else "unknown")
             found[rel] = CorpusInfo(
                 id=str(override.get("id") or corpus_id_for(rel)),
-                name=str(override.get("name") or current.name),
+                name=str(override.get("name") or child.name),
                 kind=str(kind),
-                domain=str(override.get("domain") or current.name),
+                domain=str(override.get("domain") or child.name),
                 rel_path=rel,
-                root=current,
+                root=child,
+                source_dir=source_dir,
+                db_dir=db_dir,
+                vectordb_dir=child / VECTOR_DIRNAME,
                 sqlite=sqlite_path if sqlite_path.is_file() else None,
                 docs_count=count,
-                preparation="ready" if count > 0 else ("empty" if sqlite_path.is_file() else "uninitialized"),
-                is_default=current.resolve() == default_sqlite.parent,
+                preparation=_preparation(count, sqlite_path.is_file()),
             )
 
-    if default_sqlite.parent not in {info.root.resolve() for info in found.values()}:
+    if default_sqlite.parent not in {info.db_dir.resolve() for info in found.values()}:
         # The active corpus lives outside the scan root: still surface it so /api/corpora
         # always includes the corpus the service is actually running on.
-        rel = default_sqlite.parent.name
+        rel = _default_rel(settings)
         override = overrides.get(rel, {})
         count = _docs_count(default_sqlite) if default_sqlite.is_file() else 0
+        umbrella = default_sqlite.parent.parent
         found[rel] = CorpusInfo(
             id=str(override.get("id") or corpus_id_for(rel)),
-            name=str(override.get("name") or default_sqlite.parent.name),
+            name=str(override.get("name") or rel),
             kind=str(override.get("kind") or "unknown"),
-            domain=str(override.get("domain") or default_sqlite.parent.name),
+            domain=str(override.get("domain") or rel),
             rel_path=rel,
-            root=default_sqlite.parent,
+            root=umbrella,
+            source_dir=umbrella / SOURCE_DIRNAME,
+            db_dir=default_sqlite.parent,
+            vectordb_dir=settings.vectordb_dir or (umbrella / VECTOR_DIRNAME),
             sqlite=default_sqlite if default_sqlite.is_file() else None,
             docs_count=count,
-            preparation="ready" if count > 0 else ("empty" if default_sqlite.is_file() else "uninitialized"),
+            preparation=_preparation(count, default_sqlite.is_file()),
             is_default=True,
         )
 

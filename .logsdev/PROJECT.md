@@ -19,7 +19,7 @@
 **范围外（首期不做）**：多租户/权限后台、多 Agent 协作、知识图谱、工作流画布、独立问题分类服务、材料遵循等级系统、自动全网研究、自动订阅同步、外部资讯抓取与科研头条、多模型路由与模型管理后台、模板管理平台、分布式任务队列。
 
 **关键限制**：
-- 当前演示语料为 LangChain 技术文档（`.demo_langchain/`），**不是基金报告**；真实基金语料在 `.knowledge/` 但尚未接入后端配置。
+- 当前演示语料为 LangChain 技术文档（`.demo_langchain/`），**不是基金报告**；真实基金语料在 `.knowledge/自然科学基金/`，已按方案 A 接入库注册（侧栏可见），但尚未导入/验收。
 - 未配置 `EMBEDDING_PATH` 时仅 BM25，不加载 embedding。
 - HTTP 可用、检索就绪、模型可用是三个独立条件；健康接口不主动调用模型，`model_verified` 恒 `false`（模型可用性判定待定，见 ITERATION）。
 
@@ -51,7 +51,7 @@
 **侧栏与文献库**：侧栏可收束为图标栏/展开为全宽并持久化，收束后核心入口与异常提示仍可达；提供"文献库"一级入口浏览已入库文档并打开预览。
 
 **知识库管理与选择**
-- 一份独立语料 = 一个目录 + 独立 SQLite + 独立向量索引，库之间隔离。
+- 一份独立语料 = `CORPORA_ROOT`（默认 `.knowledge`）下一个自包含目录，内含 `source/`（原始）+ `datadb/`（SQLite）+ `vectordb/`（向量），库之间隔离。
 - 侧栏列出库（名称/份数/就绪状态）并可切换；库详情展示文档清单；基金库显示题目/负责人/项目编号/报告年份区间。
 - 每个会话绑定一个库；输入区资料范围为两层：库（必选）+ 库内文档（可选，`allowed_doc_ids`）；切库清空越界选择并提示。
 - 首期不做跨库联合检索、库内分区、多用户权限隔离。
@@ -72,7 +72,7 @@
 | 库注册 | 磁盘扫描 + `CORPORA` 覆盖；每库独立 `Knowledge` | `src/agent/corpora.py` |
 | 工作区 | 会话/笔记持久化、revision、分支 | `src/workspace.py`、`frontend/src/workspace.ts` |
 | 前端 | 会话/任务/资料/文档窗口/文献库/设置与状态 | `frontend/src/` |
-| 本地数据 | 原始语料 `.knowledge/`、派生 `.data/`、演示 `.demo_langchain/` | 仓库 `README.md` |
+| 本地数据 | 自包含库 `.knowledge/<库>/{source,datadb,vectordb}/`；演示 `.demo_langchain/` 同构 | 仓库 `README.md`、[`DECISIONS.md`](DECISIONS.md) |
 
 **主流程**：浏览器 → `POST /api/chat`（SSE）→ 服务端按 `task_id`+`corpus_id`+资料范围检索、阅读、版本核验 → 事件流 → 前端渲染带 `[n]` 引用回答。
 

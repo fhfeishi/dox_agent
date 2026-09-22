@@ -335,7 +335,7 @@ function App() {
               {!!corpora.length && <div className="mt-3">
                 <p className="mb-1 text-xs font-medium text-stone-500">知识库</p>
                 <CorpusPicker corpora={corpora} current={effectiveCorpusId ?? ""} onSelect={selectCorpus}/>
-                <p className="mt-1 text-xs text-stone-400">新语料目录放入 knowledge/ 后自动出现</p>
+                <p className="mt-1 text-xs text-stone-400">新语料目录放入 .knowledge/ 后自动出现</p>
               </div>}
               {corporaError && <p role="alert" className="mt-1 text-xs text-red-700">{corporaError}</p>}
               <button className="mt-2 w-full rounded-xl border border-stone-300 bg-white p-2 text-left text-sm hover:bg-stone-200" onClick={() => showView("library")}>文献库 · {documents.length} 份</button>

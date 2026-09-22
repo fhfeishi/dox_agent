@@ -27,6 +27,8 @@
 
 ## OCR 模式/语言可运行时配置（2026-09-22，已实现）
 
+> **已被 mineru 取代（2026-09-22）**：改用 mineru 后不再需要 liteparse 的 OCR 三档/语言配置，本节保留备查。
+
 - 采用：OCR 模式（`off`/`force`/`auto`）与语言（`eng`/`chi_sim`/`chi_sim+eng`）可在前端调整，不必改 `.env` 重启；默认 `PDF_OCR_MODE=auto`、`PDF_OCR_LANGUAGE=chi_sim+eng`。
 - 理由与代价：基金报告多为中文扫描件，旧的固定 `eng` 质量差；代价是新增运行时配置接口，并需明确“仅影响后续导入”（已入库文档需重新导入才生效）。
 - 落点：`src/agent/config.py`（`pdf_ocr_mode`/`pdf_ocr_language`/`pdf_num_workers`、`OCR_MODES`/`OCR_LANGUAGES`、`load_ocr_config`/`save_ocr_config`）、`src/main.py`（`GET/PUT /api/ocr-config`，启动时覆盖 `Settings`）、`frontend/src/OcrSettings.tsx`（设置抽屉）；配置落地 `STATE_DIR/ocr.json`。
@@ -34,6 +36,8 @@
 - 状态：**已实现（K4）**；测试 `tests/test_corpora_state.py::test_ocr_config_persists_and_only_affects_later_imports`。
 
 ## 按库 OCR 语言与“改语言→强制重解析”（K12，2026-09-22）
+
+> **已被 mineru 取代（2026-09-22）**：mineru auto 自行识别语言，不再需要按库选语言；保留“重新导入/force”用于切换解析器后重建。
 
 - 问题：OCR 配置当前是**全局**（`STATE_DIR/ocr.json`），且增量导入按 `size+mtime_ns` 跳过未变文件，导致（**清单已回填后**）“改语言后重新导入”实际什么都不做；旧基金库以 `eng` 解析的正文仍是乱码，预览无法阅读。**例外窗口**：基金库当前 `files` 清单为空，按规则会全量回填，普通 ingest 这一次会真的重解析——K12 落地前可临时用它修复。
 - 采用：
@@ -88,11 +92,15 @@
 - 前置：K0；未完成前不开放库删除/重命名。
 - 状态：**已实现（K0）**。新增 `Settings.state_dir`（默认 `DOX_AGENT_ROOT/data`）；`main.workspace_path` 把 `workspace.sqlite3` 放在该目录，并在应用级文件不存在时从活动库 `<KB>/datadb/workspace.sqlite3` 一次性复制迁移。测试见 `tests/test_corpora_state.py`。
 
-## 解析器：固定使用 liteparse（2026-09-22）
+## 解析器：改用 mineru（取代 liteparse，2026-09-22）
 
-- 采用：解析固定使用 liteparse（当前 2.14.6）；**不引入 mineru，不做解析器对比测试**。
-- 说明：liteparse 无“仅无文本页触发 OCR”开关，故 OCR 策略由本项目的三档开关（`off`/`force`/`auto`）控制，而不是换解析器。
-- 备选：仅当 liteparse 在真实语料上出现无法解决的解析失败/质量问题且用户确认时，再单独立项，不在本轮规划内。
+- 采用：PDF 解析改用 **mineru**（auto 模式）；**彻底移除 liteparse**。原因：liteparse 中文 OCR 报错（`--ovr-language chi_sim+eng` → `failed loading language 'chi_sim_vert'`），且抽取质量差。
+- mineru 产物（auto，实测 `temp/`）：`<name>.pdf-<uuid>/` 内含 `full.md`（正文 Markdown）、`<uuid>_origin.pdf`（原始 PDF）、`images/`、`*_content_list.json` / `*_content_list_v2.json` / `*_model.json` / `layout.json`。
+- 入库与预览：**正文取 mineru 的 Markdown**；**前端预览展示 `origin.pdf`**（原始 PDF，非抽取文本）。文件夹/文件名规范化：目录去 `<uuid>` 后缀，`origin.pdf` 用源 PDF 同名。
+- 页码：`full.md` 无页标记，页号在 `content_list.json` 的 `page_idx`；为满足引用页码，按 `page_idx` 从 content_list 重建每页文本（`Page(number=page_idx+1)`），无 content_list 时回退 `full.md` 单页。**（待确认）**
+- 取代：原「解析器：固定使用 liteparse」及 K2/K3/K4/K12 基于 liteparse 的 OCR 三档/语言配置/按库语言（mineru auto 自行识别语言）。
+- 版本待确认：`temp/` 产物属**经典 MinerU**（`full.md`+`*_origin.pdf`），而最新官方 README 为 **v4**（`mineru parse`）；实现前需确认 CLI 与输出目录参数，或直接用已解析目录 drop-in。
+- 状态：**已采用，未实现**（K13）。
 
 ## 知识库重命名语义（2026-09-22）
 

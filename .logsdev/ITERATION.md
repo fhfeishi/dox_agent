@@ -13,7 +13,7 @@
 
 ## 2. 计划与任务状态
 
-**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8、K12 已实现；K5/K9–K11 待做）。
+**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8、K12 已实现；K5/K9–K11、K13 待做）。
 
 **A 工程基线**：A1–A6 ✅（pyproject/extras、tests、端到端、改名、dev_logs 整理、design 落盘）；A7 契约同步 🟡（E 阶段待补）。
 
@@ -31,7 +31,7 @@
 
 **H 知识库管理**：H1–H3（注册表/按库导入/`?corpus=`）✅；H5–H7（选择器/详情/按库文档）✅；**H4 ✅代码**（chat `corpus_id`、按库限定检索，提交 `e7d08e2`）、**H8 ✅默认启用并浏览器验收**（会话绑库；已移除 `VITE_UI_CORPUS`，选中语料随 chat 发送以保证浏览与回答同库），真实语料验收见 §3；H9 文件名元数据入服务端、H10 真实报告验收 ⬜。
 
-**K 知识库管理与导入优化**：K0（应用级会话库）、K0b（多库 read/file 补 `corpus`）、K1（增量导入 + 文件清单 + 删除同步）、K2（OCR 三档）、K3（liteparse 多 worker）、K4（OCR 运行时配置）、K6a（`corpus_id` 单射+限长）、K6（库新建/显示名重命名/删除）、K7（库内文件列表/上传/重命名/删除，md/pdf/txt）、K8（Word/.docx 解析）、K12（按库 OCR 语言 + 强制重导入）✅；K5（两阶段导入+进度/取消）、K9（按 kind 预览）、K10（检索缓存）、K11 验收 ⬜。
+**K 知识库管理与导入优化**：K0（应用级会话库）、K0b（多库 read/file 补 `corpus`）、K1（增量导入 + 文件清单 + 删除同步）、K2（OCR 三档）、K3（liteparse 多 worker）、K4（OCR 运行时配置）、K6a（`corpus_id` 单射+限长）、K6（库新建/显示名重命名/删除）、K7（库内文件列表/上传/重命名/删除，md/pdf/txt）、K8（Word/.docx 解析）、K12（按库 OCR 语言 + 强制重导入）✅；K5（两阶段导入+进度/取消）、K9（按 kind 预览）、K10（检索缓存）、K11 验收 ⬜。另：**K13（改用 mineru 解析）⬜，取代 K2/K3/K4/K12 的 liteparse OCR 部分**。
 
 **U UI 优化**：U0、U4.1a/U4.1b/U4.2、U5（会话内分支）、U6（电源按钮）、U7（知识库预览）、U8（LLM 状态）、U9.1（侧栏收束）、U9.2/U9.2b（文献库）、U9.4-1（只读模型）✅；U9.3 科研头条 🟡（仅占位）；U1（任务 UI）、U2（文档面板/引用跳转）🟡（代码完成、开关默认 off、浏览器验收未做）；U3 报告入口、U9.4-2 模型选择器 ⬜。
 
@@ -108,7 +108,7 @@
 
 ### 6.3 任务
 
-> 进度：K0、K0b、K1、K2、K3、K4、K6a、K6、K7、K8、K12 **已完成**（提交：K0/K0b/K1=`9075895`、K2/K3/K4=`4483408`、K6a/K6/K7=`b443623`、K8=`0615ef9`、K12 本轮；测试见 §3）；K5、K9–K11 未开始。
+> 进度：K0、K0b、K1、K2、K3、K4、K6a、K6、K7、K8、K12 **已完成**（提交：K0/K0b/K1=`9075895`、K2/K3/K4=`4483408`、K6a/K6/K7=`b443623`、K8=`0615ef9`、K12 本轮；测试见 §3）；K5、K9–K11 未开始。**K13（mineru 解析）待实现，取代 liteparse（K2/K3/K4/K12 的 OCR 部分转为历史）**。
 
 | 编号 | 任务 | 验收 |
 |---|---|---|
@@ -127,7 +127,7 @@
 | K9 | 预览：`GET /api/documents/{doc_id}/preview`（**带 `corpus` 参数**，与列表接口一致）按 kind 返回 html/text/file；统一 `DocumentPanel`：pdf 原生（D6）、md 渲染、docx 转 HTML、txt 纯文本 | 四类文件可预览并显示元数据 |
 | K10 | 检索性能：**范围含每查询的 `self.all()` + 窗口切分 + `tokens()` + `BM25Plus(corpus)`**（`knowledge.py:104-126`），不止 chunk id；需预计算/缓存候选与 BM25，或明确调低验收口径；**存量库首次回填缓存同 K1 为一次性成本** | 大库查询延迟不随库线性增长（或按调低口径验收） |
 | K11 | 验收：文件/库 CRUD、预览、重命名/删除、按库问答仅本库引用；以一次真实导入抽样计时（不做对比测试） | 功能通过 |
-| K12 | **按库 OCR 语言对齐与重导入（侧栏优先）**（实现规格见 §6.5）：入口放在**左侧边栏知识库展开项**（`CorpusPicker`/`CorpusAdmin`）：每个库可选 OCR 模式/语言 + 「重新导入并应用」；库详情（`LibraryView`）复用同一操作（可选）。OCR 模式/语言按库存储（`<KB>/datadb` 的 `meta`），生效值 = 库配置 ?? 全局；`files` 清单记录 `used language/mode`，不一致标 `ocr_stale`；「重新导入」必须走 `POST /api/corpora/{id}/ingest?force=true`（绕过 size+mtime 跳过、全部重解析），并提示“重解析全部文件、版本会变化”；对中文库建议 `chi_sim+eng`（可选） | 侧栏展开库 → 选 `chi_sim+eng` → 重新导入 → 预览文本可读、`ocr_stale=false`；未改语言时未变文件仍跳过（不会白重解析） |
+| K12 | **按库 OCR 语言对齐与重导入（侧栏优先）**（实现规格见 §6.5）：入口放在**左侧边栏知识库展开项**（`CorpusPicker`/`CorpusAdmin`）：每个库可选 OCR 模式/语言 + 「重新导入并应用」；库详情（`LibraryView`）复用同一操作（可选）。OCR 模式/语言按库存储（`<KB>/datadb` 的 `meta`），生效值 = 库配置 ?? 全局；`files` 清单记录 `used language/mode`，不一致标 `ocr_stale`；「重新导入」必须走 `POST /api/corpora/{id}/ingest?force=true`（绕过 size+mtime 跳过、全部重解析），并提示“重解析全部文件、版本会变化”；对中文库建议 `chi_sim+eng`（可选） | 侧栏展开库 → 选 `chi_sim+eng` → 重新导入 → 预览文本可读、`ocr_stale=false`；未改语言时未变文件仍跳过（不会白重解析） || K13 | **改用 mineru 解析（取代 liteparse）**（规格见 §6.6）：PDF 走 mineru auto；入库取 `full.md`，预览展示 `origin.pdf`；移除 liteparse 及其 OCR 配置；`force` 重新导入用于切换解析器后重建 | 基金库 PDF 以 mineru 入库、正文可读、预览 origin.pdf；未变文件二次导入跳过；移除 liteparse 后构建/测试通过 |
 
 ### 6.4 顺序与依赖
 
@@ -137,13 +137,14 @@
 - **K8（Word）先于 K7 的 docx 支持**；K7 本阶段不含 docx。
 - K1 的删除同步必须同时清 BM25 与 dense（stale）；**K1/K10 对存量库有一次性回填成本**，不计入优化后稳态。
 - K6/K7 的写操作需重扫并重载活动库。
-- **K12（按库 OCR 语言 + 强制重导入）依赖 K1 清单与 K4 配置；修复“改语言后重新导入不生效”**。
-- 建议顺序：**K0 → K0b → K1 → K2 → K3 → K4 → K12 → K5 → K6a → K6 → K7 → K8 → K9 → K10 → K11**（K6b 随 K6/K6a 定）。
+- **K12（按库 OCR 语言 + 强制重导入）依赖 K1 清单与 K4 配置；修复“改语言后重新导入不生效”**。（已被 K13 取代：mineru auto 自行识别语言，不再选语言；保留 force 重导入）
+- **K13（mineru）先于基金库重导入/ H10**；完成后再将 K2/K3/K4/K12 的 liteparse OCR 部分标记为历史。
+- 建议顺序：**K0 → K0b → K1 → K3 → K13 → K12(force 部分) → K5 → K6a → K6 → K7 → K8 → K9 → K10 → K11**（K6b 随 K6/K6a 定）。
 - 与既有任务的关系：K 是 H9/B2/B4/B5（元数据/过滤）与 H10（真实报告验收）的前置；完成后更新 H10 验收与 PROJECT 现状。
 
 ### 6.5 K12 实现规格（按库 OCR 语言 + 强制重导入）
 
-> 状态：**已实现**（提交/证据见 §2/§3）；以下为规格。
+> 状态：**已实现**（提交/证据见 §2/§3）；**但 OCR 语言部分已被 K13（mineru）取代**，仅保留“`force` 重新导入”机制。以下为规格备查。
 
 **后端**
 - `Knowledge`（`src/knowledge.py`）新增 `meta(key TEXT PRIMARY KEY, value TEXT NOT NULL)`；方法 `meta_all()/meta_get()/meta_set()`。
@@ -169,6 +170,43 @@
 - 未改语言重导入：`skipped>0`（不白重解析）。
 - 非法 mode/language 422；未知库 404。
 - `applied` 为空的存量库显示“解析语言未知”，不阻塞。
+
+### 6.6 K13 实现规格：mineru 解析（取代 liteparse）
+
+**背景**：liteparse 中文 OCR 失败（`--ovr-language chi_sim+eng` → `failed loading language 'chi_sim_vert'`）。改用 mineru auto。
+
+**产物约定（auto，实测 `temp/`）**
+```
+<out>/<pdfname>.pdf-<uuid>/
+├── full.md                    # 正文（入库）
+├── <uuid>_origin.pdf          # 原始 PDF（预览）
+├── images/                    # 图片
+├── <uuid>_content_list.json   # 分块 + page_idx（页码来源）
+├── <uuid>_content_list_v2.json
+├── <uuid>_model.json
+└── layout.json
+```
+
+**后端**
+- 移除 liteparse：`_pdf_pages`/`parse_pdf_pages`、`pdf_ocr_mode`/`pdf_ocr_language`/`pdf_num_workers`、`/api/ocr-config` 与 `OcrSettings`、K12 的按库语言选择（保留 `force` 重新导入）。
+- `parse_file` 的 `.pdf` 分支：定位/生成 mineru 输出目录 → 读 `full.md`；pages 由 `content_list.json` 按 `page_idx` 重建（无则单页）。
+- 运行 mineru：用可配置命令 `MINERU_CMD`（经典 `-p <pdf> -o <out> -m auto` 或 v4 `mineru parse`）；产物已存在且源 PDF 未变时跳过（增量签名含 `parser=mineru`）。
+- 预览：`/file` 返回**源 PDF / `origin.pdf`**（用源 PDF 同名）；doc `origin` 仍指向源 PDF 路径以保 `doc_id` 稳定。
+- 迁移：现有基金库以 liteparse/eng 解析的乱码正文，用 `ingest?force=true` 以 mineru 重建。
+
+**前端**
+- 预览 PDF 仍用 `PdfViewer`（原文件 + `#page=`）；移除 OCR 语言设置入口（mineru auto）。
+- 侧栏/库详情保留“重新导入”（切换解析器后重建）。
+
+**验收**
+- 基金库 10 份 PDF → mineru 解析 → 入库正文为可读中文；预览显示 `origin.pdf`；引用可定位页码。
+- 未变文件二次导入跳过（不重跑 mineru）。
+- 移除 liteparse 后 `pytest`/`npm run build` 通过。
+
+**待确认**
+- mineru CLI 形态（经典 `mineru -p` vs v4 `mineru parse`）与输出目录参数；建议 `MINERU_CMD` 配置 + 已解析目录 drop-in。
+- 页码方案：按 content_list `page_idx` 重建每页（推荐）vs `full.md` 单页。
+- `full.md` 内 `images/...` 相对链接：首期不渲染正文图片（预览用 `origin.pdf`），若要渲染需新增按 rel_path 的图片服务。
 
 ## 7. 维护约定
 

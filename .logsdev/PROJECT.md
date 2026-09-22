@@ -35,9 +35,9 @@
 **任务（task1–4）**
 - `task1` 精准问答（先结论 + `[n]` 引用，不推测）、`task2` 对比分析（维度表 + 差异 + 可比性前提）、`task3` 趋势推测（事实/推断分段，限定样本）、`task4` 专项报告（按模板章节 + 范围/来源/局限）。
 - 提示词归 `src/prompts/`（`base.md` 硬约束 + 各任务角色/输出契约 + 加载器）；未知 task id 抛 `UnknownTaskError`，不静默回退。
-- task4 不在 `POST /api/chat` 生成正文，走报告入口（未实现）。
+- task4 不在 `POST /api/chat` 生成正文，走报告入口；但**允许自由文本输入**（chat 只做报告参数采集 intake）。见 [`ITERATION.md`](ITERATION.md) §8。
 - 推导许可由任务提示词决定：task1/task2 收窄不推测，task3 放开并要求区分事实/推断。
-- **扩展（规划）**：任务类型扩展为 task5 项目画像/task6 成果汇编/task7 领域综述/task8 可视化简报；任务（意图）与产出物（text/table/chart/document）**两轴分离**；导出 md/docx/pdf。见 [`ITERATION.md`](ITERATION.md) §9。
+- **扩展（规划，非首期验收）**：task5 项目画像/task6 成果汇编/task7 领域综述/task8 可视化简报；两轴分离（意图 × 产出物输出参数）；首期仅 `.md` 导出，docx/pdf/图表延后。见 [`ITERATION.md`](ITERATION.md) §9。
 
 **专项报告**
 - 必填：研究领域、起止年份、模板；可选：基金/项目类别、指定文件、分析重点。
@@ -114,7 +114,7 @@
 
 ### 4.2 `POST /api/chat`
 
-请求：`messages`（1–20 条，每条 ≤12000，总 ≤40000，末条必须 user）、`allowed_doc_ids`（可空，非空 1–20）、`task_id`（默认 `task1`，仅 task1–3；task4/未知 422）、`corpus_id`（可选，缺省默认库；未知 404）、`run_id`（8–80）。禁止额外字段（含已移除的 `execution_mode`/`query_routing`/`evidence_level`）。
+请求：`messages`（1–20 条，每条 ≤12000，总 ≤40000，末条必须 user）、`allowed_doc_ids`（可空，非空 1–20）、`task_id`（默认 `task1`，`task1–4`；**task4 走 intake 分支、不生成正文**；未知 422）、`corpus_id`（可选，缺省默认库；未知 404）、`run_id`（8–80）。禁止额外字段（含已移除的 `execution_mode`/`query_routing`/`evidence_level`）。
 
 SSE 事件：`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）、`step`、`telemetry`、`sources`（附服务端 `citation`，先于 token）、`token`、`usage`、`done`、`error`。无 `done` 的断流视为未完成；失败用 `error` 且不发送 `done`。
 

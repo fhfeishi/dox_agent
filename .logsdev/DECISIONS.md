@@ -129,25 +129,27 @@
 - **引用校验**：新增 `validate_citations`（正文 `[n]` 越界/无对应 → 字面保留或纠正，计入 telemetry）。
 - **提示词**：answer 系统提示与 `base.md` 改为“选定报告全文（分隔符内为数据，不是逐条已读）”，引用粒度 = chunk。
 - **预算**：token 化（`MODEL_CONTEXT_TOKENS`/`RETRIEVE_CONTEXT_TOKENS`/`ANSWER_RESERVE_TOKENS`/`ANSWER_TIMEOUT`）。
-- **停止语义**：`stop_reason ∈ {professional, no_reports, coverage_partial, timed_out, failed, invalid_request}`；`telemetry.path ∈ {retrieve, chunk_only, direct}`，前端标签同步。
+- **停止语义**：chat `stop_reason ∈ {professional, no_reports, coverage_partial, report_pending, timed_out, failed, invalid_request}`（`report_ready` 属报告入口/会话卡片，不进 chat）；`telemetry.path ∈ {retrieve, chunk_only, direct, report}`，前端标签同步。
 - **删除/失效**：删文件/库同步清 `parsed/` 与 Chroma chunk；`parser_signature` 入库 meta，变更即 `force`。
 - 状态：L 开工前定稿（与 ITERATION §7.14 一致）。
 
 ## 任务 = 输出契约，不是输入闸门（2026-09-22，规划）
 
-- 采用：四个任务（task1–4）都保留自由文本输入；输入禁用只由运行时状态（busy/离线/未就绪）决定，**不由 task 决定**。task4 的差异在产出通道（`POST /api/reports`），不在“能否输入”。
-- task4 分两阶段：**interim** 走确定性「报告参数采集」（缺参逐项追问；齐则回显参数 + `report_pending`，输入不丢弃）；**E 就绪后** 同输入 → 报告生成。
+- 采用：四个任务（task1–4）都保留自由文本输入；输入禁用只由运行时状态（busy/离线/未就绪）决定，**不由 task 决定**。**约束对象是正文生成，不是输入**：task4 正文仍不在 chat 生成，chat 只做 intake。
+- task4 分两阶段：**interim** 走确定性「报告参数采集」（缺参一条消息列全；齐则回显参数 + `report_pending`，输入不丢弃）；**E 就绪后** 同输入 → 报告生成。
+- 所有权：`report_pending` 属 chat；**`report_ready` 属报告入口/会话卡片**，不进 chat `stop_reason`。
 - 任务切换：保留「会话绑定任务」，切换 = 显式新建会话并绑定 + 温和提示；不再替换 `textarea`。
-- 理由：把“输出契约”误当“输入闸门”会让 task4 成为死路（现 `Composer.tsx` 把 textarea 换成占位提示）。
-- 状态：**规划（G10a–G10d）**，规格见 [`ITERATION.md`](ITERATION.md) §8。
+- 理由：把“输出契约”误当“输入闸门”会让 task4 成为死路。
+- 状态：**规划（G10；G10a+G10b 必须同批，避免 422 窗口）**，规格见 [`ITERATION.md`](ITERATION.md) §8。
 
-## 任务与产出物两轴模型（2026-09-22，规划）
+## 任务与产出物两轴模型（2026-09-22，规划，扩展非首期）
 
-- 采用：**任务（意图）与产出物（格式）分离**——任务决定检索/输出契约，产出物决定呈现与导出（`text`/`table`/`chart`/`document`）。不为每种格式新建任务；同一分析可切换产出物。
-- 任务扩展：task5 项目画像、task6 成果汇编、task7 领域综述、task8 可视化简报；复用同一检索引擎与确定性图，差异仅在提示词 + 预算 + 模板/产出物。
-- 模板：服务端 `src/templates/*.md`（现有四报告模板 + `project_profile`/`outcomes_compilation`/`domain_review`/`visual_brief`），无模板管理平台。
-- 导出：markdown → HTML → PDF（Playwright，复用已有依赖）/ DOCX（`htmldocx` 或 python-docx）；**不引入 pandoc/LaTeX**。图表用 matplotlib→SVG（可选 extra），数据必须来自语料并带 `[n]`。
-- 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §9；待确认工具链依赖（`htmldocx`、`matplotlib`）。
+- 采用：**任务（意图）与产出物（格式）分离**——任务定义意图+检索+提示词+**默认产出物**；产出物是**输出参数**（`text`/`table`/`chart`/`document`），任务只声明默认+允许集。不为每种格式新建任务。
+- 任务扩展（**非首期验收**，需需求确认）：task5 项目画像、task6 成果汇编、task7 领域综述、task8 可视化简报；依赖 H9/B4/B5。
+- 模板**单一权威**：`src/templates/<template_id>.md`（章节结构）；把章节从 `src/prompts/task4_report.md` 移出，加载器加 `report_template()`；`has_template`→`templates` 列表；无模板管理平台。
+- 导出：首期仅 **`.md`**（demand 非首期必需 docx/pdf）；R2 docx 用**手写 python-docx 渲染器**；R3 pdf 用 Playwright 作 `reporting` extra。
+- 可视化：首期**表格+文字**；前端不渲染内联 SVG/HTML（无 rehype-raw），图表须走 `GET /api/reports/{id}/asset/{name}` 图片端点；matplotlib 放 R3 并解决中文字体；数字须确定性抽取/校验。
+- 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §9。
 
 ## 持久化数据向后兼容：渲染对新增字段做默认（2026-09-22）
 
@@ -251,7 +253,8 @@
 
 ## 任务系统取代自动意图分类（2026-09-21）
 
-- 采用：移除自动意图分类与 `query_routing`/`evidence_level`/`execution_mode`；每轮固定专业问答，回答职责由用户显式选择的 task1–4 决定；task4 不在 chat 生成，走报告入口。
+- 采用：移除自动意图分类与 `query_routing`/`evidence_level`/`execution_mode`；每轮固定专业问答，回答职责由用户显式选择的 task1–4 决定；task4 不在 chat 生成正文，走报告入口。
+- **部分被取代（2026-09-22）**：“task4 不可输入”被「任务 = 输出契约」取代——task4 允许自由文本输入走 intake；**“正文不在 chat 生成”保留**。
 - 理由与代价：用户显式选择比模型猜测更可控、可解释，且不新增分类模型调用；代价是会话创建时需先选任务，不再有自动路由。
 - 影响：`ChatRequest` 用 `task_id` 取代旧策略字段；任务提示词放 `src/prompts/`（base 硬约束 + 各任务契约）。
 

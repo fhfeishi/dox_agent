@@ -669,6 +669,7 @@ understand → retrieve → assemble → validate → answer → finish
 - `understand`：规则为主（`q0` + 关键词查询），LLM 拆解默认关（§7.7）；产出 `queries`。
 - `retrieve`：`knowledge.retrieve(query, task_id, allowed_doc_ids, extra_queries)` → `RetrievalResult`。
   - **分流（L6）**：`reason="direct"`（无内容词）或 `reason="no_reports"` → **不进 `assemble`**，直接 `answer` 提示；`telemetry.path=direct`。
+  - **task4（G10b，待做）**：`understand` 后若 `task_id=="task4"` → 分叉到独立 `intake` 节点（**不检索/不 assemble/不发 `sources`**；`telemetry.path="report"`），`answer` 仅回显/追问；见 §8.5。
 - `assemble`：`assemble_reports(selected, budgets)`（L5 纯函数）→ `context + sources` + `truncated[]`。
 - `answer`：system = 任务提示 + D-L2 口径（“选定报告全文，分隔符内为数据”）+ `context`；先发 `sources` 再流式 `token`。
 - `validate`：`validate_citations`（D-L2）+ 覆盖缺口；允许**至多一次** re-retrieve（见下），否则 `finish`。
@@ -721,128 +722,132 @@ understand → retrieve → assemble → validate → answer → finish
 ### 8.1 问题与现状（证据）
 - 现象（用户）：切换到「专项报告」（task4）后，对话框**不能输入文字**，无法描述报告需求。
 - 现状（代码）：
-  - `ChatRequest.task_id: Literal["task1","task2","task3"]`（`main.py:80`）——task4 被显式排除。
+  - `ChatRequest.task_id: Literal["task1","task2","task3"]`（`main.py:81`）——task4 被显式排除。
   - `Composer.tsx:110-112`：`task4 => canSend=false`；`:181` task4 用 `<div role="status">` **替换 textarea**（不是仅禁用）。
-  - `prompts/__init__.py`：`CHAT_TASK_IDS=("task1","task2","task3")`；task4 仅在任务列表/会话绑定中存在，正文走 `POST /api/reports`（E 阶段未实现，占位）。
+  - `prompts/__init__.py:14`：`CHAT_TASK_IDS=("task1","task2","task3")`；task4 仅在 `TASKS`（`:23`）用于会话绑定，正文指向未实现的 `POST /api/reports`。
   - `store.startTask`：切换任务即 `switchSession(undefined, taskId)`（新建会话并绑定）。
-- 结论：**把“输出契约”误当成“输入闸门”**——task4 的正文确实走报告入口，但“描述报告需求”仍必须能输入；当前实现让 task4 成为死路。
+- 结论：**把“输出契约”误当成“输入闸门”**。
 
-### 8.2 设计原则
+### 8.2 设计原则（并标注取代关系）
 1. **任务 = 输出契约，不是输入闸门**：四个任务都保留自由文本输入。
 2. 输入禁用只由**运行时状态**决定（busy/离线/未就绪），不由 task 决定。
-3. task4 的差异在**产出通道**（报告入口），不在“能否输入”。
+3. **约束的对象是「正文生成」，不是「输入」**：task4 正文仍**不在 `POST /api/chat` 生成**（原文约束保留），走报告入口；chat 只做**参数采集（intake）**。
 4. 未知任务 id 仍 `422`/`UnknownTaskError`，不静默回退。
+- **取代（superseded）**：本条取代以下旧契约中“task4 不可输入 / chat 排除 task4”的部分（**正文不在 chat 生成**的部分保留）：
+  - `PROJECT §2`：「task4 不在 chat 生成正文，走报告入口」→ 补“但允许自由文本输入用于采集”。
+  - `PROJECT §4.2`：`task_id` 「仅 task1–3；task4/未知 422」→ 改为 task1–4（task4 走 intake，未知 422）。
+  - `DECISIONS`「任务系统取代自动意图分类」：同步。
 
-### 8.3 每个任务的完整契约（梳理）
+### 8.3 任务契约（产出物为输出参数，见 §9）
 
 | 维度 | task1 精准问答 | task2 对比分析 | task3 趋势推测 | task4 专项报告 |
 |---|---|---|---|---|
-| 输入 | 自由文本 | 自由文本 | 自由文本 | **自由文本（报告需求：领域/起止年份/模板/重点）** |
-| 检索 | chunk_only；MIN/MAX=1/3 | 跨项目；2/5 | 多年份；3/8 | 按模板章节 + 领域/年份过滤（依赖 B4/B5） |
-| 输出 | 结论 + `[n]` | 维度表 + 差异 + 可比性前提 | 事实/推断分段 + 置信度 + 样本局限 | Markdown 报告（范围/正文/来源/局限） |
-| 产出通道 | chat | chat | chat | **`POST /api/reports`**（E） |
-| stop_reason | professional / no_reports / coverage_partial | 同 | 同 | **report_ready / report_pending** / no_reports |
-| 持久化 | 会话 turn | 会话 turn | 会话 turn | 会话存报告 id + 引用；报告独立存储 |
+| 输入 | 自由文本 | 自由文本 | 自由文本 | **自由文本（报告需求）** |
+| 检索 | chunk_only；1/3 | 跨项目；2/5 | 多年份；3/8 | **intake 不检索**；生成时按模板+领域/年份 |
+| 默认产出 | text | text+table | text | document |
+| 通道 | chat | chat | chat | **chat(intake) → `POST /api/reports`(正文)** |
+| chat stop_reason | professional / no_reports / coverage_partial | 同 | 同 | **report_pending**（**不含 report_ready**，见 8.5） |
+| 持久化 | 会话 turn | 会话 turn | 会话 turn | 采集参数存会话；报告独立存储 |
 
-### 8.4 task4 逻辑（分两阶段）
-- **interim（E 未就绪，立即可做）**：允许输入；发送后走确定性「报告参数采集」：
-  - 规则抽取（年份正则 / 模板关键词 / 领域取当前库 `domain`），缺必填（领域/起止年份/模板）时**逐项追问**（clarify），不静默；
-  - 参数齐全则回显参数 + `stop_reason="report_pending"`（“报告入口未就绪，需求已记录”），**输入不被丢弃**。
+### 8.4 task4：两文件 + intake 确定性规则
+- **提示词拆两文件**：`task4_intake.md`（chat 采集：字段、缺参追问、不产正文）与 `task4_report.md`（生成基线）；`task_instruction("task4")` 按阶段选。
+- **intake 确定性规则**（G10b 验收依据）：
+  - 字段：必填 领域/起止年份/模板；可选 基金类别/指定文件/分析重点。
+  - 缺参：**一条消息列出全部缺失项**并回显已知项（用户可逐项补/改），不静默。
+  - 领域：默认取当前库 `domain`，但**回显并要求确认**（可换），不静默默认。
+  - 模板关键词映射：成果→`achievements`、热点→`hotspots`、未来/趋势→`future_directions`、综合→`comprehensive`；歧义/无匹配→追问。
+  - 年份：解析 `2020-2024`/`2020至2024`/`2020—2024`/单年 `2023`（=2023–2023）；校验 `start ≤ end`。
+  - 状态：跨轮累加，支持覆盖（“年份改 2023”）；参数存会话 turn（与 #10 口径一致）。
+  - 参数齐 → 回显 + `stop_reason="report_pending"`（“报告入口未就绪，需求已记录”），**不生成正文**。
 - **E 就绪后**：同一输入 → `POST /api/reports` → 生成报告（预览/复制/下载），会话内以卡片引用报告 id。
-- 参数口径沿用 PROJECT §2「专项报告」（必填：领域/起止年份/模板；可选：基金类别/指定文件/分析重点）。
 
-### 8.5 任务切换语义
-- 保留「会话绑定任务」（PROJECT §2）为默认：切换任务 = **显式新建会话并绑定**，但：
-  - **输入框始终可用**；切换时温和提示「已切换为 X；本会话以 X 的输出契约作答」。
-  - 不再有任何 task 触发的 textarea 替换。
-- 可选增强（待确认）：允许在**当前会话内为下一轮重绑任务**（`workspace` 已存 `task_id`），保留历史；与「会话绑定」冲突，需产品确认，默认不做。
+### 8.5 图分支（与 §7.15 对齐）
+- L6 图 `understand → retrieve…` 已实现且**无 task4 分支**。task4 在 `understand` 后**分叉到独立 `intake` 节点**：
+  - 不检索、不 `assemble`、**不发 `sources`**；`telemetry.path="report"`；`answer` 只输出参数回显/追问。
+- **`report_ready` 不属于 chat**：它是 `POST /api/reports` 的结果，归报告入口/会话卡片，不进 `policy.stop_reason`。
 
 ### 8.6 后端优化点
-- `ChatRequest.task_id` 放开 task4（`Literal["task1","task2","task3","task4"]`），由 graph 路由：task4 → 报告参数采集/报告分支（**不生成 chat 正文**）。
-  - 或保留 chat 排除 task4、前端 task4 直接调 `POST /api/reports`；但为统一入口与 SSE 状态，**建议 task4 进 chat 契约走独立分支**。
-- `telemetry.path` 增 `report`（或 `report_pending`）；`stop_reason` 增 `report_pending`/`report_ready`；前端 `policy.ts` 同步。
-- task4 提示词：`task4_report.md` 已是报告基线；补「参数采集」契约（字段、缺参追问、不生成正文）。
-- 依赖：#10（报告↔会话绑定）定稿、E1/E2、B4/B5（领域/年份过滤）。
+- `ChatRequest.task_id` 放开 task4（`Literal["task1","task2","task3","task4"]`），graph 在 `understand` 后分叉 `intake`。
+- chat `stop_reason` **只加 `report_pending`**；`telemetry.path` 加 `report`；前端 `policy.ts` 同步。
+- `store.tsx:325` 注释「task4 never goes through chat」随 G10b 更正为“task4 不生成正文，但走 intake”。
+- 同步更新 `PROJECT §2`/`§4.2` 与 `DECISIONS` 的 `stop_reason` 集合与 task4 句。
+- 依赖：#10（报告↔会话绑定）定稿、E1/E2、B4/B5。
 
-### 8.7 分阶段任务（G10）
+### 8.7 分阶段任务（G10；**G10a+G10b 同批**）
 | 编号 | 任务 | 验收 |
 |---|---|---|
-| G10a | 前端：任务切换不再禁输入 / 不替换 textarea；task4 保留输入 + 发送 | 切到 task4 能输入、能发送、有明确回应 |
-| G10b | 后端 interim：task4 进 chat → 参数采集/`report_pending`；缺参追问 | task4 输入得到参数回显/追问，不死路 |
-| G10c | 任务切换语义落地（默认新建会话 + 提示） | 切换有提示、历史不静默丢失；输入可用 |
-| G10d | E 接线：`POST /api/reports` + 四模板 + 预览/下载；task4 调用 | 生成 Markdown 报告；会话引用报告 id |
-- 依赖：G10d 依赖 #10 + E；G10b 依赖 G10a；其余独立。
+| **G10a+G10b（同批）** | 前端放开 task4 输入/发送 **且** 后端同批放开 `Literal` 并加 `intake` 分支 | 切到 task4 能输入、能发送、得到参数回显/追问；**无 422 窗口** |
+| G10c | 任务切换语义（默认新建会话 + 提示） | 切换有提示、历史不静默丢失；输入可用 |
+| G10d | E 接线：`POST /api/reports` + 四模板 + md 预览/下载；task4 调用 | 生成 Markdown 报告；会话引用 id |
+- 依赖：G10d 依赖 #10 + E；**G10a+G10b 必须同批**（否则 task4 发送触发 `extra="forbid"`+Literal → 422，回到死路）。
 
 ### 8.8 非目标
 - 不做自动意图分类（任务仍显式选择）；不新增模板管理平台；不为 task4 建第二套检索。
 
-## 9. 任务类型与产出物扩展（规划，2026-09-22）
+## 9. 任务类型与产出物扩展（规划，2026-09-22；**扩展，非首期验收**）
 
-### 9.1 结论：两轴模型（意图 × 产出物）
-不要为每种「格式」新建一个任务。拆成两条轴：
-- **意图任务（Task）**：决定检索范围/预算与输出契约（回答什么）。
-- **产出物（Artifact）**：决定呈现与导出（`text` / `table` / `chart` / `document`）。
-- 同一分析结果可切换产出物（例：趋势分析 → 聊天文本 或 导出 docx）。
+### 9.1 两轴模型（产出物是输出参数，不是任务固定属性）
+- **意图任务（Task）**：意图 + 检索/预算 + 提示词 + **默认产出物**。
+- **产出物（Artifact）**：输出参数 `text`/`table`/`chart`/`document`（document 再选 md/docx/pdf）。
+  - chat 默认 `text`；报告入口默认 `document`；导出参数决定 md/docx/pdf；`chart` 可选。
+- 修正：任务**只声明默认 + 允许集**，不把产出物写死；同一分析可切换产出物（否则“切换产出物”无处落地）。
 
-### 9.2 任务类型扩展（建议 task1–task8）
+### 9.2 任务扩展（**扩展，非首期**；需需求确认）
+- **首期（demand §4.1）**：task1–4。
+- **扩展（需确认）**：task5 项目画像 / task6 成果汇编 / task7 领域综述 / task8 可视化简报。
+- task5–8 **依赖 H9（项目号/负责人）、B4/B5（领域/年份）**；未就绪前**不承诺、不进首期验收**。
 
-| id | 名称 | 输入 | 检索 | 产出物 | 状态 |
+| id | 意图 | 检索 | 默认产出 | 允许产出 | 状态 |
 |---|---|---|---|---|---|
-| task1 | 精准问答 | 自由文本 | chunk_only；1/3 | text | 现有 |
-| task2 | 对比分析 | 自由文本 | 跨项目；2/5 | text + table | 现有 |
-| task3 | 趋势推测 | 自由文本 | 多年份；3/8 | text | 现有 |
-| task4 | 专项报告 | 自由文本（领域/年份/模板/重点） | 模板章节 + 领域/年份 | **document**（md/docx/pdf） | E（现有规划） |
-| task5 | 项目画像 | 项目号/负责人/标题 | 单项目聚合 | text + table | 扩展 |
-| task6 | 成果汇编 | 领域/年份/项目 | 分组聚合 + 去重 | table + document | 扩展 |
-| task7 | 领域综述 | 领域 + 年份区间 | 报告集全文 | document | 扩展 |
-| task8 | 可视化简报 | 领域/年份 + 指标 | 结构化抽取 | **chart + document** | 扩展 |
+| task1 | 精准问答 | chunk_only；1/3 | text | text | 首期 |
+| task2 | 对比分析 | 跨项目；2/5 | text | text,table | 首期 |
+| task3 | 趋势推测 | 多年份；3/8 | text | text | 首期 |
+| task4 | 专项报告 | 模板+领域/年份 | document | md（首期）；docx/pdf（R2+） | 首期 |
+| task5 | 项目画像 | 单项目聚合 | text | text,table | 扩展 |
+| task6 | 成果汇编 | 分组+去重 | table | table,document | 扩展 |
+| task7 | 领域综述 | 报告集全文 | document | document | 扩展 |
+| task8 | 可视化简报 | 结构化抽取 | table | table,chart,document | 扩展 |
 
-- 全部**复用同一检索引擎与确定性图**，差异只在「提示词 + 检索预算 + 模板/产出物」。
-- MVP 先落 task4（E），task5–8 按需求排期。
+### 9.3 模板权威与加载器（避免两套模板源）
+- 现状：仓库**无 `src/templates/`**；模板占位符在 `src/prompts/task4_report.md`；由 `task_instruction`/`GET /api/tasks` 的 `has_template` 驱动。
+- **决定：单一权威 = `src/templates/<template_id>.md`（章节结构）**；把章节从 `task4_report.md` **移出**，该文件只保留“生成指令”；新增 `prompts.report_template(template_id)` 加载；`has_template` 语义改为返回 `templates` 列表。
+- 模板↔任务映射：task4→4 报告模板；task6→`outcomes_compilation`；task7→`domain_review`；task8→`visual_brief`；task5→`project_profile`（扩展期）。
+- 无模板管理平台。
 
-### 9.3 模板目录（服务端文件，无模板管理平台）
-- 报告模板（E 现有）：`achievements` / `hotspots` / `future_directions` / `comprehensive`。
-- 新增：`project_profile`（项目画像）/ `outcomes_compilation`（成果汇编）/ `domain_review`（领域综述）/ `visual_brief`（可视化简报）。
-- 模板 = `src/templates/*.md`：章节结构 + `{{domain}}`/`{{year_range}}`/`{{sections}}`/`{{sources}}` 等占位符；与 prompts 同属服务端文本配置。
-- 参数口径沿用 PROJECT §2：必填领域/起止年份/模板；可选基金类别/指定文件/分析重点。
+### 9.4 可视化（首期不做；R3 再上）
+- **前端不渲染内联 SVG/HTML**（`MessageView.tsx:361`/`DocumentPreview.tsx:122` 仅 `remark-gfm`，无 `rehype-raw`）→ 图表必须走**图片端点** `GET /api/reports/{id}/asset/{name}` + `<img>`；**不加 `rehype-raw`**（语料是外部文本，XSS）。
+- 首期**只做「表格 + 文字结论」**（无 matplotlib、无中文字体）；`matplotlib` 放 R3 作为 `reporting` extra，并同时解决中文字体与图片端点。
+- 数字必须**确定性抽取/校验**（须出现在上下文或结构化字段），不得由 LLM 编造；否则降级表格+文字。
 
-### 9.4 可视化（简化路径）
-- **数据必须来自语料抽取并带 `[n]` 来源；不得编造数字**（与现有引用纪律一致）。
-- 表示：**markdown 表格始终保留**（可读/可转 docx）+ **图表图片**（SVG 优先）。
-- 图表生成：服务端 **matplotlib → SVG**（可选 extra `reporting`）或自绘 SVG；首期仅 `bar`/`line`/`pie`。
-  - 现状：`matplotlib` 未装；降级为「表格 + 文字结论」，不阻塞。
-- 预览：前端直接渲染 SVG；导出：随 HTML 内联。
-- 不引入 ECharts/Vega 等重前端图表库（首期）。
-
-### 9.5 导出管道（md → docx/pdf）
-- 单一中间层：**markdown → HTML**（服务端渲染，图表内联）→ 再分发。
-- **PDF**：Playwright `page.pdf()`（**复用现有依赖**，离线，CJK 用系统字体）。无需 LaTeX。
-- **DOCX**：markdown → HTML → `htmldocx`（python-docx 之上，小依赖）；回退纯 python-docx。
-  - 现状：`pandoc` 未装，**不引入 pandoc/LaTeX**。
-- 接口：`POST /api/reports` 产 `report_id`；`GET /api/reports/{id}/export?format=md|docx|pdf`。
-- **待确认（工具链决策）**：加 `htmldocx`（docx）与可选 `matplotlib`（图表）两个小依赖。
+### 9.5 导出管道（首期仅 `.md`）
+- 现状：**无 md→HTML 库**；`playwright` 未在 `pyproject` 声明且未装浏览器；`htmldocx`/`matplotlib`/`pandoc` 未装；`python-docx` 可用。
+- **决定**：首期只导出 **`.md`**（+ 预览）——符合 demand（PDF/Word 非首期必需）。
+- **R2 docx**：**手写基于 python-docx 的最小渲染器**（标题/段落/列表/表格/图片），不引 `htmldocx`/`pandoc`。
+- **R3 pdf**：Playwright `page.pdf()` 作为 **`reporting` extra**（运行时依赖 + Chromium + `launch.sh` 安装）；若成本高则继续不做 PDF。
+- 接口（E）：`POST /api/reports` 产 `report_id`；`GET /api/reports/{id}`；`GET /api/reports/{id}/export?format=md`。
 
 ### 9.6 后端契约变更
-- 任务注册表增 `outputs: ["text"|"table"|"chart"|"document"]` 与可选 `template_id`；`GET /api/tasks` 一并返回。
-- chat 契约：`text`/`table` 任务走 chat；`chart`/`document` 任务走报告入口（与 §8/G10 一致）。
+- 任务注册表增 `artifacts`（默认 + 允许集）与 `templates`；`GET /api/tasks` 返回。
+- chat 只跑 `text`/`table` 意图；`document` 意图走报告入口（与 §8/G10 一致）。
 - `POST /api/reports` 请求：`{task_id|template_id, domain, year_from, year_to, fund_type, focus, output_formats[]}`。
-- `stop_reason` 增 `report_ready`/`report_pending`；`telemetry.path` 增 `report`。
+- chat `stop_reason` 只加 `report_pending`；`telemetry.path` 加 `report`。
 
-### 9.7 分阶段
+### 9.7 分阶段与依赖
 | 阶段 | 内容 | 依赖 |
 |---|---|---|
-| R1（=E MVP） | task4 + 四模板 + md 预览/下载 | #10 定稿 |
-| R2 | docx/pdf 导出（htmldocx + Playwright） | R1 |
-| R3 | 可视化（matplotlib SVG）+ task8 可视化简报 | R2 |
-| R4 | task5/6/7 任务与模板 | B4/B5、G10 |
+| R1（=E MVP） | task4 + 四模板 + **md 预览/下载** | **#10 定稿** |
+| R2 | docx（手写 python-docx） | R1 |
+| R3 | 可视化 + task8（需 `reporting` extra + 中文字体 + 图片端点 + 数字确定性抽取） | R2、B4/B5 |
+| R4 | task5/6/7 任务与模板 | **H9**、B4/B5、G10 |
+- **不承诺**：H9/B4/B5 未就绪前，task5–8 不做、不进首期验收。
 
 ### 9.8 非目标
-- 无模板管理平台；无知识图谱；图表仅来自语料；不联网补数据；不引入 ECharts/Vega/pandoc/LaTeX。
+- 无模板管理平台；无知识图谱；图表仅来自语料；不联网补数据；不引入 ECharts/Vega/pandoc/htmldocx。
 
-### 9.9 验收
-- 每个任务声明 `outputs`；未知 task id `422`。
-- 图表带来源 `[n]`、无编造数字；无数据时降级为表格/文字并如实说明。
-- md/docx/pdf 均中文正常、标题/表格/图片保留；导出与预览内容一致。
+### 9.9 验收（首期）
+- 每个任务声明 `artifacts`（默认+允许）；未知 task id `422`。
+- `.md` 导出与预览内容一致、中文正常、标题/表格保留。
+- 扩展项（task5–8、docx/pdf、图表）**不在首期验收**。
 
 ## 10. 维护约定
 

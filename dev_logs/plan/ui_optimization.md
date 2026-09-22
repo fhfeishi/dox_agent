@@ -1,6 +1,7 @@
 # dox_agent 前端 UI 优化方案（拟议）
 
-- 状态：**U0（U0.1–U0.8）、U4.1–U4.2 与 U5–U8 已实施并离线验收；U1–U3 待后端依赖**。进度与证据见 [`plan.md`](plan.md) 的 U 节与“完成情况记录”。
+- 状态：**U0（U0.1–U0.8）、U4.1–U4.2、U5–U8 已实施并离线验收；U1.0–U1.4、U2、U9.1/U9.2/U9.2b/U9.3/U9.4-1 已在工作树实施（未提交）；U1.5、U3、U9.4-2 待后端依赖**。进度与证据见 [`implementation.md`](implementation.md)（完成情况记录）、任务状态见 [`plan.md`](plan.md) 的 U 节。
+- 2026-09-21 新增 **§9（U9.1–U9.4）**：参考 SciencePRO 侧栏信息架构提出的四项修订（侧栏收束/展开、文献库一等入口、科研头条占位、模型选择器），均为拟议状态。
 - 背景：科学基金历史报告样本暂未到位，语料切换（B 阶段）无法推进；先用这段时间整理前端 UI 与信息架构。
 - 依据：[`../demand.md`](../demand.md)（§2.2、§5、§9）、[`plan.md`](plan.md)（设计指南 §2–§4、任务 D/G/E）、[`../status.md`](../status.md)。
 - 现状结论均来自实际阅读 `frontend/src/*`（2026-09-21，phase C 提交 `0ff1480`）。标记约定：拟议 / 已实现 / 已验证。
@@ -12,7 +13,7 @@
 - 当前可运行语料是 `knowledge/lcdata`（157 份技术文档），**不是科学基金报告**；UI 不得依赖任何语料特定文案。
 - 后端已有：`POST /api/chat`（`messages`/`run_id`/`allowed_doc_ids`）、`GET /api/documents`（doc_id/title/origin/version 等摘要）、`GET|PUT /api/workspace/sessions`、`/api/health`。
 - 后端未实现：`GET /api/tasks`、chat 的 `task_id`/`filters`、`/api/documents/{id}/file`、`/api/reports`（见 §3）。
-- 前端测试已有可用兜底：测试用 `node:test`，实测 `node --test src/` → **12 passed**（Node v26.8.1），覆盖 usage/首 token/取消/步骤关闭/策略版本等；`package.json` 已加 `"test": "node --test src/"`（U0.8）。统一锁定 `node:test`，**不引入 vitest**。
+- 前端测试已有可用兜底：测试用 `node:test`，U0 基线为 **12 passed**（Node v26.8.1），U5 新增 `branches.test.mts` 后为 **15 passed**（当前基线）；`package.json` 已加 `"test": "node --test src/"`（U0.8）。统一锁定 `node:test`，**不引入 vitest**。
 
 ### 1.2 目标
 
@@ -36,7 +37,7 @@
 
 ## 2. 现状与问题（已核对）
 
-状态：✅ 已解决（U0，提交 `72fde7a`）· ⬜ 待处理 · 🔒 受保护。
+状态：✅ 已解决 · ⬜ 待处理 · 🔒 受保护。U0 已落地于提交 `72fde7a`；U5 于 `9a0c899`；U6/U7/U8 于 `ce3b4e7`；U1.0–U1.4/U2/U9 系列为工作树改动（未提交）。实施证据见 [`implementation.md`](implementation.md)。
 
 | 问题 | 证据（文件:行） | 影响 | 状态 |
 |---|---|---|---|
@@ -52,11 +53,11 @@
 | 无前端测试脚本 | `package.json` scripts | 新增逻辑无处回归 | ✅ U0.8（`node --test`） |
 | 新建会话直接落空会话 | `main.tsx:145` | 无法先选 task1–4（demand §9.3） | ⬜ U1（依赖 G2/G3） |
 | `SessionData` 无 `task_id` | `workspace.ts:6` | 会话无法绑定任务 | ⬜ U1.2 |
-| 引用 chip 指向 JSON 读文接口 | `Answer.tsx:77` → `knowledge.py:165` | 无法定位物理页 | ⬜ U2.4 |
-| 编辑并重问新增独立会话 | `workspace.ts:86` `createBranch` | 左栏出现两条历史 | ⬜ U5 |
-| "断开连接并退出"占整行 | `SettingsDrawer`/`main.tsx` | 不够紧凑 | ⬜ U6 |
-| 无法预览知识库正文 | `IngestTools.tsx:70` 列表仅标题 | 看不到源文件内容 | ⬜ U7 |
-| LLM/状态不在左下角 | `main.tsx:161` 侧栏 `md:overflow-y-auto` | 状态可见性差 | ⬜ U8 |
+| 引用 chip 指向 JSON 读文接口 | `Answer.tsx:77` → `knowledge.py:165` | 无法定位物理页 | ✅ U2.4（`citation` 映射 + `/file` 跳转；D10 页码校验未做） |
+| 编辑并重问新增独立会话 | `workspace.ts:86` `createBranch` | 左栏出现两条历史 | ✅ U5（`9a0c899`） |
+| "断开连接并退出"占整行 | `SettingsDrawer`/`main.tsx` | 不够紧凑 | ✅ U6（`ce3b4e7`） |
+| 无法预览知识库正文 | `IngestTools.tsx:70` 列表仅标题 | 看不到源文件内容 | ✅ U7（`ce3b4e7`） |
+| LLM/状态不在左下角 | `main.tsx:161` 侧栏 `md:overflow-y-auto` | 状态可见性差 | ✅ U8（`ce3b4e7`） |
 
 ## 3. 后端依赖矩阵
 
@@ -68,17 +69,21 @@
 | 设置抽屉电源按钮 | 无 | — | ✅ U6 |
 | 知识库正文预览 | 现有 `GET /api/documents/{doc_id}`（`read`） | ✅ 已具备（`next_start_line` 分页；`read` 无 `captured_at`） | ✅ U7 |
 | 左下角 LLM 状态 | `/api/health` 的 `model` | ✅ 已具备 | ✅ U8 |
-| 任务选择器 / task_id 绑定 | `GET /api/tasks`（G2）、chat `task_id`（G3） | ⬜ 未实现，`ChatRequest` `extra="forbid"` → 发送即 422 | ⚠️ 可先做视觉，任务值不发送 |
-| 检索过滤 UI（domain/year/fund） | B5 chat `filters` | ⬜ 未实现 → 422 | ⚠️ 入口可先占位 |
-| 右侧目录树 | `GET /api/documents` 补 `rel_path/status/meta`（D1；`kind` 已返回，`main.py:117`） | ⬜ 未实现 | ❌ 需 D1 |
-| PDF/Markdown 原文件预览 | `/api/documents/{id}/file`（D2） | ⬜ 未实现 | ❌ 需 D2 |
-| 报告表单 / 报告卡片 | `POST /api/reports`（E1）、`GET /api/reports/{id}`（E2） | ⬜ 未实现 | ❌ 需 E1/E2 |
+| 侧栏收束/展开（U9.1） | 无 | — | ✅ 已完成（`localStorage` 持久化 + 图标栏） |
+| 文献库浏览页（U9.2） | 现有 `GET /api/documents`（`useDocuments`） | ✅ 已具备 | ✅ 已完成（`LibraryView`；PDF 原文件预览走 D2） |
+| 科研头条/资讯板块（U9.3） | `GET /api/news`（拟议，板块配置/数据源未定） | ⬜ 未实现 | ✅ 开关占位完成（默认 off，不实现抓取） |
+| 模型选择器（U9.4） | `GET /api/models` + chat 可选 `model` 字段（拟议） | ⬜ 未实现 | 🟡 只读展示已完成（U9.4-1）；切换需后端 |
+| 任务选择器 / task_id 绑定 | `GET /api/tasks`（G2）、chat `task_id`（G3） | ✅ 已实现 | ✅ 已完成（U1.1–U1.4；`VITE_UI_TASKS` 门控，默认 off） |
+| 检索过滤 UI（domain/year/fund） | B5 chat `filters` | ⬜ 未实现 → 422 | ⚠️ 入口可先占位（U1.5 未实现） |
+| 右侧目录树 | `GET /api/documents` 补 `rel_path/status/meta`（D1；`kind` 已返回，`main.py:117`） | ✅ 已实现（D1） | ✅ 已完成（U2.2，`VITE_UI_DOC_PANEL` 门控） |
+| PDF/Markdown 原文件预览 | `/api/documents/{id}/file`（D2） | ✅ 已实现（D2） | 🟡 已完成（U2.3 **D6 降级**：浏览器原生 PDF，未用 PDF.js） |
+| 报告表单 / 报告卡片 | `POST /api/reports`（E1）、`GET /api/reports/{id}`（E2） | ⬜ 未实现 | ❌ 需 E1/E2（task4 报告占位已有） |
 
-**结论**：U0/U4.1–U4.2 已完成；U5–U8 无后端依赖，可在 U1 之前执行（U7 复用现有读接口）；U1–U3 必须等对应后端契约，避免前端调用不存在接口或触发 422。
+**结论**：U0/U4.1–U4.2 已完成；U5–U8 无后端依赖，可在 U1 之前执行（U7 复用现有读接口）；U9.1/U9.2 同样无后端依赖（U9.2 复用 `GET /api/documents`），可与 U1 并行；U9.3/U9.4 第二步必须等新后端契约；U1–U3 必须等对应后端契约，避免前端调用不存在接口或触发 422。
 
 ## 4. 分期计划
 
-> 状态：U0.1–U0.8 与 U4.1–U4.2 **已实施并离线验收**（提交 `72fde7a`）；下表保留设计与验收标准，进度以 [`plan.md`](plan.md) 的 U 节为准。U5–U8（U0 实机反馈修订）见 §8。
+> 状态：U0.1–U0.8 与 U4.1–U4.2 **已实施并离线验收**（提交 `72fde7a`）；下表保留设计与验收标准，进度以 [`plan.md`](plan.md) 的 U 节为准，完成证据见 [`implementation.md`](implementation.md)。U5–U8（U0 实机反馈修订）见 §8。
 
 ### 特性开关（U1–U3 占位，默认关闭）
 
@@ -90,8 +95,14 @@ U1–U3 的前端占位 UI 由显式开关控制，默认关闭且不发送任�
 | `VITE_UI_FILTERS` | 检索过滤 UI（U1.5） | off |
 | `VITE_UI_DOC_PANEL` | **仅 U2** 的目录树/PDF/引用跳转；不含 U7 正文预览 | off |
 | `VITE_UI_REPORTS` | task4 报告表单/卡片（U3） | off |
+| `VITE_UI_NEWS` | 科研头条占位（U9.3） | off |
+| `VITE_UI_MODELS` | 模型选择器第二步（U9.4，需后端 `GET /api/models`） | off |
 
-实现：`import.meta.env.VITE_*` 读取；关闭时相关组件不渲染、请求不携带对应字段（否则 `ChatRequest extra="forbid"` 会 422）。
+实现：`import.meta.env.VITE_*` 读取；关闭时相关组件不渲染、请求不携带对应字段（否则 `ChatRequest extra="forbid"` 会 422，已核验于 `src/main.py:34`）。
+
+**状态（2026-09-21 更新）：六枚开关已随 U1.0 建立**——`frontend/src/vite-env.d.ts`（`vite/client` 引用）与 `frontend/src/uiFlags.ts`（统一读取 `1/true/on`）；默认全部关闭，关闭时不渲染组件、不发送新字段。U1.1–U1.4（tasks）、U2（doc_panel）、U9.3（news）已在各自开关内实施；`VITE_UI_FILTERS`（U1.5，依赖 B5）、`VITE_UI_REPORTS`（U3，依赖 E1/E2）、`VITE_UI_MODELS`（U9.4-2，依赖 `GET /api/models`）保持 off 等待后端。
+
+> **开关启用策略（2026-09-21 第四轮审查新增，与 plan U 节同源）**：任一开关转 on 须同时满足——① 对应后端契约已实现；② 通过浏览器实测验收。当前判定：`VITE_UI_TASKS`、`VITE_UI_DOC_PANEL` 后端均已同批实现，但本批**尚未提交**且浏览器验收（含 D10）未做，**暂维持 off**；其余四枚后端未实现/待定，维持 off。开启时改 `uiFlags.ts` 默认值或配 `.env`，两处口径不得分叉。
 
 **前置（否则 `npm run build` 第一步就失败）**：新增 `frontend/src/vite-env.d.ts`（`/// <reference types="vite/client" />`）或给 `tsconfig` 加 `"types": ["vite/client"]`；当前两者都缺，`import.meta.env` 报 `TS2339: Property 'env' does not exist on type 'ImportMeta'`（已实测）。列为 U1 第一步。
 
@@ -106,12 +117,12 @@ U1–U3 的前端占位 UI 由显式开关控制，默认关闭且不发送任�
 | U0.2b | 断开/重连移入抽屉后，断连、保存失败等异常状态仍须在主界面可见（不藏进抽屉） | `main.tsx` | 断开时主界面可见提示，符合 demand F7 |
 | U0.3 | 健康状态：正常=圆点+tooltip；未就绪/失败=展开文字，保留密钥/知识库阻塞提示。**health 轮询保留**（就绪/阻塞态所需），连接正常且 ready 时可降频 | `main.tsx` | 未配置密钥、知识库失败时用户可见原因；health 仍反映就绪状态 |
 | U0.4 | `useDocuments` hook 收敛三处 fetch，统一失效与错误 | `useDocuments.ts`、`main.tsx`、`IngestTools.tsx` | 只有一处 fetch；列表刷新后各视图一致 |
-| U0.5 | 会话栏列表化：今天/昨天/更早分组、搜索框、当前高亮、悬停菜单（重命名/归档，**不含复制**：`useWorkspace` 无会话级 `duplicate()`）；**必须显式渲染尚未持久化的当前会话**（对齐 `main.tsx:147` 兜底）。分组时间源：`updated_at ?? turns[0].startedAt`，未保存会话归"今天" | `SessionList.tsx`（新）、`main.tsx`、`workspace.ts`（如需） | 下拉换成列表；新建的空会话在列表中可见、可切换、不消失；时间分组对未保存会话不报错 |
+| U0.5 | 会话栏列表化：今天/昨天/更早分组、搜索框、当前高亮、悬停菜单（重命名/归档；**复制与删除均未纳入首期**——`useWorkspace` 无会话级 `duplicate()`，删除亦超出 demand §9.1，两者实施前均需确认）；**必须显式渲染尚未持久化的当前会话**（对齐 `main.tsx:147` 兜底）。分组时间源：`updated_at ?? turns[0].startedAt`，未保存会话归"今天" | `SessionList.tsx`（新）、`main.tsx`、`workspace.ts`（如需） | 下拉换成列表；新建的空会话在列表中可见、可切换、不消失；时间分组对未保存会话不报错 |
 | U0.6 | 阶段 C 清理（仅动标签与展开态）：① **优先修 B1**：`policy.ts` 补 `professional`（`routing.py:31`，正常路径）、`repair`（`graph.py:298`）、`completed`（`graph.py:88` 默认），删 `social/classified/knowledge_only/routing_*`；② `Answer.tsx:46` 删除死键 `direct`，`api.ts:7` `Policy.route` 收窄为 `research | clarify`；③ `Answer.tsx:41` 受控 `open` 改为"运行中自动展开、完成后不强制收起"；`<summary>` 已含 `finalLabel`（`Answer.tsx:40,42`），不新增进度行 | `Answer.tsx`、`policy.ts`、`api.ts` | 正常回答显示"资料研究 · …"而非"处理已更新"；完成后可手动展开并保持；Process step 列表、Timing、Token、已读证据不变 |
 | U0.7 | `Notes.tsx` **留在原处**，文件头加 experimental 注释；**不移动目录**（其相对 import `./api`/`./workspace` 移入子目录会断，`tsc --noEmit` 失败）。若坚持归档须同步改 import | `Notes.tsx` | `npm run build`（tsc）通过；主界面无未挂载功能暗示 |
 | U0.8 | 锁定 `node:test`：`package.json` 加 `"test": "node --test src/"`，不引入 vitest | `package.json` | `npm test` 运行现有 `*.test.mts` 且 12 passed |
 
-> 会话「复制」：demand §9.1 未要求，且 `useWorkspace` 无 `duplicate()`（`createBranch` 是问题级分支，`workspace.ts:86`）；如需，单列任务新增 `duplicate()`，不塞进 U0.5。
+> 会话「复制」与「删除」：demand §9.1 未要求。复制需先新增会话级 `duplicate()`（现有 `createBranch` 是问题级分支，`workspace.ts:86`）；删除同样超出冻结范围。两者均单列任务，**不塞进 U0.5、U1 或 G6**；口径以本节为准，plan 的 §4 与 G6 已同步。
 
 ### U1 任务系统与会话绑定（依赖 G2/G3/G7；过滤依赖 B5）
 
@@ -153,7 +164,8 @@ U1–U3 的前端占位 UI 由显式开关控制，默认关闭且不发送任�
 
 | 编号 | 任务 | 验收 |
 |---|---|---|
-| U4.1 | 双栏自适应：有侧栏时放宽 `max-w-4xl`；窄屏文档面板降级全屏抽屉 | ≥1024px 双栏；窄屏抽屉 |
+| U4.1a | **已实施**（`72fde7a`）：内容区静态放宽 `max-w-4xl` → `max-w-5xl`（`main.tsx:211`） | 构建通过、内容区变宽 |
+| U4.1b | **未实施**（N4）：双栏条件自适应——随侧栏收束/展开动态调整内容宽度，文档面板在宽屏降级为挤压式侧栏。依赖关系详见 plan D11 与本节 U9.1 | 宽屏下侧栏收放即时反映到内容宽度，且面板不遮挡聊天 |
 | U4.2 | 空状态建议改为任务导向示例（精准问答/对比/趋势） | 文案不含语料专有内容 |
 | U4.3 | 流式过程与 Markdown/代码块排版优化 | 长会话噪声可控 |
 
@@ -212,9 +224,9 @@ U1–U3 的前端占位 UI 由显式开关控制，默认关闭且不发送任�
 | U7 | §5 | 文档预览（U2/D 的前置外壳 `DocumentPanel`） |
 | U8 | §3、§8.2 | 状态与可辨认性（F7） |
 
-## 8. U0 实机反馈修订（拟议，2026-09-21 17:26）
+## 8. U0 实机反馈修订（**已实施并离线验收**，2026-09-21 17:26）
 
-U0 实机测试（`launch.sh` + 前端）后提出的四项修订；均不依赖新后端契约（U7 复用现有读接口），可在 U1 之前执行。
+U0 实机测试（`launch.sh` + 前端）后提出的四项修订；均不依赖新后端契约（U7 复用现有读接口）。U5 落地于 `9a0c899`，U6/U7/U8 落地于 `ce3b4e7`；各节保留设计方案与验收标准，**实施状态与证据以 [`plan.md`](plan.md) 为准**。
 
 ### U5 会话内分支：编辑并重问不再新建会话
 
@@ -292,6 +304,7 @@ type SessionData = {
 目标：点击任一已入库文档，在网页内预览其**知识库存储正文**。
 
 - **共享右滑面板外壳是 U7 的产物**：新增 `DocumentPanel`（props：`open`/`onClose`/`header`/`meta`/`children`）。U2 再在同一外壳内扩展 PDF.js；避免 U7 与 U2 各写一套。
+- **形态现状（N3）**：该外壳落地为**遮罩式全屏抽屉**（`fixed inset-0 z-40`、`bg-black/30`、固定 `max-w-2xl`，`DocumentPanel.tsx:16-17`），不是"挤压式侧栏"。U7 阶段据此保留（符合 demand §5「滑出窗口」的最低要求）；"宽屏侧栏化、不遮挡聊天"顺延到 U2 阶段，由 plan **D11** 承载，**不在 U7 验收内**。
 - 入口：`IngestTools.tsx:70` 的“已入库文档”`<li>` 改为可点击按钮，向上传 `openDocument(doc_id)`；抽屉层级为 `z-30`（`SettingsDrawer.tsx:26`），预览面板 z-index 需更高，或先关闭抽屉再打开。
 - 内容源：复用 `GET /api/documents/{doc_id}`，**每次请求都带 `version`**（防跨页混版）。
 - **分页边界（关键）**：`next_start_line === null` 只表示**当前页**读完，不是全文读完（`knowledge.py:200`）。必须 `page += 1, start_line = 1` 续读，直到 `page > 文档最后一页`。单次 HTTP 读取由 `main.py:148` 固定 `line_count=60`，即每次 **≤60 行 / ≤10000 字符**（不是 100 行）。
@@ -315,6 +328,7 @@ type SessionData = {
 - 侧栏底部固定区：`LLM: <model>` + 指示灯 + **文字状态**（如“正常/知识库准备中/异常”），颜色不是唯一信号。
 - **数据源要补齐**：`main.tsx` 需新增 `model` state，并保留可判定的 `preparation`/`lastHealthError`；现有 catch 只 `setHealth` 文案（`main.tsx:71-75`），无法据此判红灯。
 - 颜色：绿=connected 且 ready 且 corpusReady；黄=connected 且 ready 但知识库未就绪（`preparation=running`）；红=断连或未配置密钥或 health 失败 / `preparation=error`。
+- **已知缺口（超出 U8 已实施范围）**：上述红灯条件无法表达“模型本身不可用”（模型名失效、provider 不可达、鉴权失败）。`/api/health` 的 `model_verified` 恒为 `False`（`src/main.py:108`）且无生产逻辑消费（`tests/test_professional_policy.py:150` 仅断言其为 `False`），当前前端拿不到可判定的模型可用性信号。该缺口由 [`plan.md`](plan.md) 待定设计 #12 承接；落地前 UI 不得暗示模型已验证可用。
 - **固定位置**：侧栏当前是 `md:overflow-y-auto`（`main.tsx:161`），长会话列表会把底部顶走。改为 flex 列布局，状态区 `sticky bottom-0` 或独立 footer。
 - 点击打开设置抽屉；tooltip 显示 health 文案；`role="status"`/`aria-label` 可读屏。与 `main.tsx:171` 的“设置与运维”按钮语义一致即可，允许重复入口。
 - U0.3 的圆点/文字迁至此底部区，中段不再重复。
@@ -328,4 +342,102 @@ type SessionData = {
 - 依赖：U5/U6/U8 无后端依赖；U7 无新接口（依赖 `/api/documents` 的 `pages`/`captured_at`，均已具备）。
 - 顺序：**U5 单独一个提交**（改动核心保存管线与会话切换），并先把分支纯逻辑抽到 `branches.ts` + `node:test`；**U7 次之**；**U6/U8 可并入任一批**。
 
-> 维护约定：本文件为拟议方案；进入实施后，任务状态与完成证据记录到 [`plan.md`](plan.md) 的“实施计划/完成情况记录”，本文件只保留方案与依赖关系。
+> 维护约定：本文件只保留**设计方案与依赖关系**（含 §9 的 U9 方案）。任务状态记入 [`plan.md`](plan.md)；完成情况与验证证据记入 [`implementation.md`](implementation.md)。本文件不再记录完成证据。
+
+## 9. SciencePRO 参考修订（拟议，2026-09-21）
+
+依据用户提供的 SciencePRO 界面截图（侧栏导航、文献库、科研头条、模型页）提炼；结合本项目现状（`frontend/src`，2026-09-21）适当裁剪。四项互相独立，可单独实施；其中 U9.1/U9.2 无后端依赖，U9.3/U9.4 需新后端契约（默认关闭的占位开关）。
+
+| 编号 | 参考 SciencePRO | 对应本项目的现有规划 |
+|---|---|---|
+| U9.1 | 侧栏可收束/展开（图标栏 ↔ 全宽） | 新增；与 U8 左下角状态区、U0.2b 异常可见性联动 |
+| U9.2 | “文献库”一级导航 + 文档卡片/列表页 + 文档详情 | 对应 `knowledge/` 本地语料的“本地文档可视化”：U2.1 `DocumentPanel` 外壳、U2.2 目录树（D1）、U7 正文预览 |
+| U9.3 | “科研头条”资讯板块（推荐/订阅、分板块卡片流） | 无现有规划；新增占位任务，后端另立 |
+| U9.4 | “模型”页（可选模型卡片、Agent 模型） | 对应 U8 的模型名只读展示；切换能力需后端支持 |
+
+### U9.1 侧栏收束/展开（无后端依赖，优先做）
+
+现状：侧栏为固定 `md:grid-cols-[260px_1fr]`（`main.tsx:192`），aside 恒为 260px（`main.tsx:193`），无收束能力。
+
+**同批约束（N7）**：U9.1 与 U9.2 都改 `main.tsx:192-211` 这段结构，**同批实施**，顺序为「先改 grid → 再接文献库视图」，避免两次改动互相覆盖。收束态的宽度切换同时是 U4.1b（条件自适应）的实现前提。
+
+**z-index 层级表（新定，供 U9.2 引用）**：
+
+| 层级 | 元素 | 说明 |
+|---|---|---|
+| `z-30` | `SettingsDrawer`（`SettingsDrawer.tsx:26`） | 设置抽屉 |
+| `z-40` | `DocumentPanel` / `DocumentPreview`（`DocumentPanel.tsx:16`） | 文档预览，须高于抽屉 |
+| 无（静态） | U9.2 文献库视图 | **不得另设更高层级**；预览打开时允许覆盖文献库视图，与 U7 现有行为一致 |
+
+设计：
+
+- aside 头部（`DOX_AGENT / 01` 一行右侧）加**收束/展开按钮**：内联 SVG 面板图标（参考 SciencePRO 右上角样式），`aria-expanded` + `aria-label="收起侧栏/展开侧栏"`。
+- 收束态：grid 改 `md:grid-cols-[56px_1fr]`，aside 内容切换为图标列：＋新对话、文献库（U9.2）、会话搜索、设置与运维；图标带 `title`/`aria-label` tooltip。
+- 状态持久化到 `localStorage`（如 `dox.sidebar.collapsed`），刷新后保留；仅 ≥md 生效，窄屏行为不变（侧栏本就随 grid 折叠为单列，无需处理）。
+- **联动约束（N5 修订）**：收束态下 U8 左下角状态区可只保留状态灯；但“知识库未就绪/正在初始化”这类**阻塞性原因**必须在**主界面**以可见文字呈现（不得仅靠 tooltip 或颜色），侧栏收束后亦然。参照现有实现：`main.tsx:217-222` 在 `!ready || !corpusReady` 时渲染主区提示区块，U9.1 收束不得抑制它；plan F13 为对应验收。断连横幅与保存失败（U0.2b）同理。
+- 会话列表（`SessionList`）在收束态整体隐藏；当前会话高亮信息经新对话按钮的 tooltip 或主界面标题兜底。
+
+验收：
+- `user 收束侧栏`：Given 侧栏展开；When 点击收束按钮；Then 侧栏变为图标栏，主内容区变宽，刷新后仍为收束态。
+- `user 收束态下核心功能可达`：Given 侧栏已收束；When 使用图标；Then 新对话/文献库/设置均可经图标触达，键盘可操作（每个图标可 Tab 到、有可读名称）。
+- `user 异常状态不受收束影响`：Given 断连或知识库未就绪；When 侧栏收束；Then 主界面横幅/提示仍可见。
+
+### U9.2 文献库一等入口：本地文档可视化（无新后端，复用现有接口）
+
+现状：已入库文档只出现在设置抽屉的 `IngestTools`“已入库文档”列表（`IngestTools.tsx:70`，纯标题 `<li>`），入口深、无可视化；U7 已提供 `DocumentPreview` 正文预览（经 `openDocument`，`main.tsx:181`）。SciencePRO 的“文献库”是一级导航 + 卡片网格 + 文档详情页，值得对齐。
+
+设计（裁剪自 SciencePRO，不引入 Excel 分类与示例横幅）：
+
+- 左栏新增**“文献库”一级入口**（收束态为图标，见 U9.1）；点击切换到文献库视图（主内容区整体替换，保留返回对话入口；对话状态与流式请求不中断）。
+- **切换不中断的机制约束（N7）**：只允许卸载主区 `<section>` 展示层；`turns`、流式 `controller`、请求回调均挂在 `App` 上，因此卸载 section 不影响流式的继续与落库。丢失的只有滚动位置——须在离开对话时记录、返回时恢复，否则验收不成立。
+- 文献库视图数据源复用 `useDocuments`（`GET /api/documents`），**无新后端**：
+  - 卡片网格（默认）/列表两种视图切换（参考 SciencePRO 的网格/列表切换按钮）；
+  - 卡片字段：**必需**为 demand §9.5 要求的标题、页数（`pages`）、采集时间（`captured_at`）；「文件份数」「大小」为**可选**，仅在现有 `DocumentInfo` 已含对应字段时展示，不作为验收硬要求；
+  - 顶部按文件名筛选（前端过滤即可）。
+- 点击卡片 → 打开文档详情 = 复用 U7 的 `DocumentPreview` 正文预览（元数据栏已有）；**PDF 原文件预览仍归 U2.3/D2**，不在本任务实现。
+- 与 U2 的关系：U9.2 是**浏览层**，不依赖 D1 的 `rel_path`（目录树仍由 U2.2 提供）；`VITE_UI_DOC_PANEL` 只门控 U2，不门控 U9.2。
+- 与检索范围分离：浏览/预览不改 `allowed_doc_ids`（沿用 U7 约束）。
+
+验收：
+- `user 从左栏进入文献库`：Given 知识库就绪；When 点击“文献库”；Then 主区展示文档卡片（标题/页数/采集时间），可切换列表视图、按名称筛选。
+- `user 从文献库预览文档`：When 点击任一卡片；Then 打开 U7 正文预览面板，内容与元数据一致。
+- `user 浏览不影响对话与范围`：Given 正在流式回答或已限定资料范围；When 进入文献库并预览；Then 对话不中断，`allowed_doc_ids` 不变。
+- `user 未就绪时入口降级`：Given 知识库未就绪；When 点击文献库；Then 显示“知识库准备中”等明确提示而非空白。
+
+### U9.3 科研头条/资讯板块（占位，依赖新后端，默认关闭）
+
+SciencePRO 的“科研头条”是分板块资讯流（推荐/订阅、领域标签、卡片流）。本项目定位是**本地知识库问答**，无外部资讯抓取能力，故本期只做占位，不实现任何抓取逻辑。
+
+设计：
+
+- 前端开关 `VITE_UI_NEWS`（默认 **off**，加入 §4 特性开关表）：关闭时组件不渲染、**不发出任何请求**；左栏不出现“头条”入口。
+- 开启后的视觉占位（需后端就绪才实际启用）：主界面顶部或左栏“头条”入口 + 板块标签（可配置）+ 资讯卡片（标题/来源/日期/摘要）。
+- 后端依赖（**另立后端任务，不在本文件范围**）：`GET /api/news?section=...`；数据源、板块配置、抓取频率与合规性均未定，列入待决。外部抓取涉及网络与内容合规，需求未定稿前**禁止**实现抓取。
+
+验收：
+- `user 关闭开关时零痕迹`：Given `VITE_UI_NEWS` 未开启；When 加载任意页面并观察网络面板；Then 无 news 相关组件与请求。
+- `user 开启且后端就绪时可用`：Given 开关开启且 `GET /api/news` 可用；When 打开头条；Then 按板块展示资讯卡片，卡片信息完整（标题/来源/日期）。
+
+### U9.4 模型选择器（分两步：只读先行，切换待后端）
+
+现状：模型名来自 `/api/health` 的 `model` 字段，仅在 U8 左下角只读展示；当前只有 `deepseek-v4.1-flash`。`POST /api/chat` 的 `ChatRequest` 为 `extra="forbid"`，携带任何 `model` 字段即 422。
+
+设计（分两步）：
+
+- **第一步（无后端依赖，可并入 U9.1/U9.2 批次）**：设置抽屉内展示当前模型信息（名称、来源 `/api/health`）；左下角 U8 状态区保持现状。明确呈现“当前仅支持 deepseek-v4.1-flash”。
+- **第二步（依赖新后端契约，默认关闭）**：
+  - 后端另立任务：`GET /api/models`（可用模型列表）+ chat 请求可选 `model` 字段（`ChatRequest` 同步放宽）；
+  - 前端开关 `VITE_UI_MODELS`（默认 **off**，加入 §4 特性开关表）：关闭时不渲染选择器、请求不带 `model`；
+  - 开启后：左下角模型名变为可点击下拉（或输入区旁选择器），列出 `/api/models` 返回项，默认 `deepseek-v4.1-flash`；选择随 `Options` 进入请求；模型不可用时回退默认并提示。
+- **前置依赖（不可跳过）**：第二步还依赖 [`plan.md`](plan.md) 待定设计 #12——后端需先提供可判定的模型可用性信号（现 `/api/health` 的 `model_verified` 恒为 `False` 且无人消费）。该问题不定稿，前端即使有选择器也无法实现 demand §8.2 要求的“模型不可用时明确提示”。
+
+验收：
+- `user 查看当前模型`：Given 服务正常；When 打开设置抽屉；Then 可见当前模型名称。
+- `user 关闭开关时不发 model 字段`：Given `VITE_UI_MODELS` 未开启；When 发送问题；Then 请求体不含 `model`（不触发 422）。
+- `user 切换模型`：Given 第二步后端就绪且开关开启；When 选择另一模型并发送；Then 请求携带所选 `model`，回答正常；后端不可用时回退默认并提示。
+
+### U9 执行顺序与依赖
+
+- U9.1 → U9.2 → U9.4 第一步：均无后端依赖，可在 U1 之前/并行执行；建议 U9.1 先行（改动最小，且为 U9.2 入口提供收束态图标位）。
+- U9.3、U9.4 第二步：仅做开关占位与方案，待后端任务定稿后再实施。
+- 特性开关汇总（新增两枚，默认 off）：`VITE_UI_NEWS`（U9.3）、`VITE_UI_MODELS`（U9.4 第二步）。

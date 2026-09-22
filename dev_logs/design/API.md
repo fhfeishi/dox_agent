@@ -15,8 +15,12 @@
 
 | 方法 与路径 | 请求 | 成功响应 | 已实现错误 |
 |---|---|---|---|
-| `GET /api/health` | 无 | `status`、`app_id`（`dox-agent`）、`model`、`docs_count`、`api_key_configured`、`model_verified=false`、`web_provider`、`preparation`、`index_progress` | 不验证模型连通性 |
-| `GET /api/documents` | 无 | 文档摘要数组；`pages` 为页数、不含正文 | — |
+| `GET /api/health` | 无 | `status`、`app_id`（`dox-agent`）、`model`、`docs_count`、`api_key_configured`、`model_verified=false`、`web_provider`、`preparation`、`corpus_id`、`index_progress` | 不验证模型连通性 |
+| `GET /api/documents` | 可选 `corpus`（H3，缺省=默认库） | 文档摘要数组；`pages` 为页数、不含正文；增 `rel_path`（相对根目录 POSIX 路径）、`status`（当前恒 `indexed`）、`meta`（占位 `{}`，B2 元数据落地前为空）；指定库未初始化时返回空数组 | 未知库 404 |
+| `GET /api/documents/{doc_id}/file` | 可选 `version` | 原始 PDF/Markdown/txt 文件流（`FileResponse` 自带 Range）；`Content-Disposition` 带文件名 | 404 不存在或非本地文件/已移动；422 版本过期；415 类型不支持；413 超 200MB |
+| `GET /api/tasks` | 无 | 固定任务集 `task1–task4`（`id`/`name`/`description`/`has_template`） | — |
+| `GET /api/corpora` | 无 | 库列表（H1）：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`（仅默认库）/`job` | — |
+| `POST /api/corpora/{corpus_id}/ingest` | 无 | 202 + 任务状态对象（H2）；导入限定该库 root 内 rglob，不跨库 | 404 库不存在；409 导入中 |
 | `GET /api/official-docs` | 无 | `official_job` 状态对象 | — |
 | `POST /api/official-docs` | `{sections: ["langchain","langgraph","deepagents"]}` | 202 + 任务状态 | 准备中 409；任务运行中 409 |
 | `GET /api/documents/{doc_id}` | `page=1`、`start_line=1`、可选 `version`、`section=false` | 阅读证据对象 | 404 不存在；422 页/行错误或版本过期 |
@@ -33,7 +37,9 @@
 - 网页预览只保留最近一次，重启失效；确认时使用服务端保存的正文，不接受前端替换正文。
 - 导入操作共享进程内 `asyncio.Lock`；当前按单进程单用户运行，不宣称多 worker 一致性。
 - 笔记写入时逐条校验来源版本：原文已更新或引用无效返回 422。笔记仅用于导航，不注入为事实来源。
-- `GET /api/documents` 目前不返回相对目录、基金元数据或入库状态（需求待实现）。
+- `GET /api/documents/{doc_id}/file` 的路径仅允许 `knowledge_root`/`text_root` 内的本地文件（D3 路径安全，`local_path_in_roots` 校验）；`file://`、网页与手工正文来源返回 404。自动导入官方文档现由 `AUTO_IMPORT_OFFICIAL` 配置驱动（默认开），且仅在库内无 `kind=official` 文档时触发。
+- `GET /api/tasks` 为静态注册表（`src/prompts/__init__.py`）；task4（专项报告）不在 chat 生成，走 `POST /api/reports`（E1 未实现）。
+- H1–H3 库管理：库 = `corpora_root`（默认 `DATA_DIR` 父目录）下含 `knowledge.sqlite3` 或 `*.pdf` 的目录；`CORPORA`（JSON 列表）可按相对路径覆盖 id/name/kind/domain；扫描只读，未初始化库不创建 sqlite。每库独立 `Knowledge` 实例（懒创建缓存），默认库复用 lifespan 实例；`POST /api/ingest/local` 现排除其他库 root。
 
 ## 3. `POST /api/chat` 契约
 
@@ -43,6 +49,7 @@
 {
   "messages": [{"role": "user", "content": "..."}],
   "allowed_doc_ids": null,
+  "task_id": "task1",
   "run_id": "hex"
 }
 ```
@@ -51,6 +58,7 @@
 |---|---|
 | `messages` | 1–20 条；`role` 仅 `user`/`assistant`；每条 1–12000 字符；总计 ≤40000；最后一条必须为 `user` |
 | `allowed_doc_ids` | 可空；非空时 1–20 个文档 ID；不得为空数组；未知 ID 进入澄清而非放开范围 |
+| `task_id` | 可选，默认 `task1`；仅接受 `task1`/`task2`/`task3`（`Literal`，task4 或未知值 422——task4 走报告接口，不在 chat 生成） |
 | `run_id` | 默认 uuid4，长度 8–80 |
 
 禁止额外字段（包括 `sources`/`evidence`/`report`/历史版本，也不接受已移除的
@@ -86,7 +94,7 @@
 
 - 无 `done` 的断流视为未完成。
 - 用户中断或网络断开时由客户端收束为"已中断/结果未确认"，保留最后收到的 `usage`，不承诺服务端最终事件。
-- 每轮始终为带引用的专业问答（不自动分类；task 系统上线后由 task_id 决定职责）。
+- `task_id` 随图状态传入 `understand`/`answer`，注入 `src/prompts/` 对应任务提示词（base 硬约束 + 任务角色/输出结构）；推导许可由任务提示词覆盖全局 `answer_policy`（待定设计 #11 已定稿）。未传时默认 `task1`。
 
 ## 4. 内部模块契约
 
@@ -102,6 +110,8 @@
 | `dense.DenseIndex.search` | query、全文窗口、候选 → dense 排名 | 本地 embedding、Chroma 同步、排名 |
 | `dense.fuse_rankings` | sparse/dense 排名 → RRF 结果 | 等权、常数 60，不直接相加异量纲分数 |
 | `agent.routing.resolve_policy` | 选项、`Knowledge`、preparation → policy | 固定专业策略；仅校验资料范围与知识库状态 |
+| `prompts.task_instruction` / `list_tasks` | task_id → system 提示词；→ 任务注册表 | `src/prompts/`：base 硬约束 + task1–4 角色/输出契约；未知 id 抛 `UnknownTaskError`，不回退 |
+| `agent.corpora.scan_corpora` / `default_corpus_id` | `Settings` → `CorpusInfo[]` / 默认库 id | 库注册表：磁盘扫描 + 配置覆盖，只读不建文件；kind 由基金文件名模式推断可被配置覆盖 |
 | `agent.graph.build_graph` | `Knowledge`、`Settings`、可注入 model → compiled graph | 研究编排，与 HTTP 无关 |
 | `agent.evidence` | 研究报告 → 校验/合并/决策 | ResearchReport / Assessment、路由判定 |
 | `agent.usage.TurnUsage` | 模型回调 → 本轮账本 | 按 run 去重、缺失原因、最终回答预留 |

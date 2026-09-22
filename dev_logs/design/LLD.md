@@ -21,6 +21,7 @@
 表 `records(id TEXT PRIMARY KEY, kind TEXT, revision INTEGER, payload TEXT)`：
 
 - `kind ∈ {sessions, notes}`；`payload` 含 `title`、`data`、`revision`、`updated_at`（UTC）。
+- 会话 `data`（`SessionData`）：`turns`、`options`、`branches`（U5：`fromIndex`/`label`/`turns` 的分支记录，含 `source_session_id`/`source_turn_index` 归并字段）、`task_id`（U1.2，默认 `task1`，随会话恢复/切换）。
 - 保存时 `BEGIN IMMEDIATE` 校验 revision：旧记录 revision/kind 不匹配或新增记录 revision≠0 → 409，不覆盖。
 - 单记录序列化后 >4MB → 413。
 - 笔记 `data` 约束：`body` 字符串 ≤20000、`reviewed` 布尔、`sources` 1–6 条且逐条版本可读，否则 422。
@@ -34,15 +35,15 @@
 
 ### 2.1 LangGraph State 字段
 
-`messages`、`evidence`、`rounds`、`answer`、`searches`、`report`、`blocked`、`stop_reason`、`new_evidence`、`options`、`policy`、`execution_path`、`telemetry`、`preparation`、`runtime_usage`。
+`messages`、`evidence`、`rounds`、`answer`、`searches`、`report`、`blocked`、`stop_reason`、`new_evidence`、`options`、`policy`、`execution_path`、`telemetry`、`preparation`、`runtime_usage`、`task_id`（G3/G4：由 `ChatRequest` 注入，缺省 `task1`）。
 
 ### 2.2 节点
 
-- `understand`：`resolve_policy` 生成 policy，发送 `policy` 事件。
+- `understand`：`resolve_policy` 生成 policy，发送 `policy` 事件；system 提示词注入 `task_instruction(state.task_id)`（base 硬约束 + 任务契约，G4）。
 - `direct`：不检索；有 notice 直接回显，否则模型自然回答，不生成引用。
 - `research`：见 §2.3；可选快速查证。
 - `validate`：确定性溯源核验 + `validate_report` / `preserve_blocked_report` / `decide`。
-- `answer`：组织带引用回答；无证据或 blocked 无证据走固定提示。
+- `answer`：组织带引用回答；无证据或 blocked 无证据走固定提示；`sources` 事件附服务端 `citation` 编号（`{**e, "citation": i+1}`）且先于 `token` 发送；system 提示词注入任务契约（G4）。
 - `finish`：发送最终 `policy`。
 
 边：`START → understand`；`understand → research|direct`；`research → validate`；`validate → research|answer`；`answer/direct → finish → END`。recursion_limit 12。
@@ -73,7 +74,7 @@
 - `TurnOptions`：仅 `allowed_doc_ids`(1–20 或 null)。
 - `resolve_policy`：固定专业问答；`allowed_doc_ids` 在进入研究前校验，未知 ID 返回澄清（不放开范围）；preparation 非 ready 时给出不可用提示；其余一律 `route=research`、`stop_reason=professional`。
 - 不做自动意图分类，也不提供 `execution_mode`/`query_routing`/`evidence_level` 选项；快速查证作为内部有界步骤（见 2.3），不暴露开关。
-- `answer_policy`：始终为严格专业模式，只依据本轮已读资料，允许有依据推导并标明前提；不使用一般知识补齐缺失部分。
+- `answer_policy`：始终为严格专业模式，只依据本轮已读资料，允许有依据推导并标明前提；不使用一般知识补齐缺失部分。**是否允许推导、如何标注由本轮任务提示词契约决定**（待定设计 #11 定稿：task1/task2 收窄不推测，task3 放开并要求区分事实/推断），policy 文案保持基线描述。
 
 ## 4. 预算与限制（`agent/config.py` + `.env.example`）
 
@@ -85,6 +86,8 @@
 | `EMBEDDING_DEVICE` / `EMBEDDING_QUERY_PROMPT` | cpu / 空 | — |
 | `KNOWLEDGE_ROOT` / `TEXT_ROOT` | `<repo 上级>/knowledge` / 其下 `project_progress/texts/v4` | — |
 | `WEB_PROVIDER` / `WEB_SESSIONS_FILE` / `FIRECRAWL_*` | crawl4ai / 空 | crawl4ai 或 firecrawl |
+| `AUTO_IMPORT_OFFICIAL` / `WARMUP_QUERY` | true / 空 | B6：是否启动时自动导入官方技术文档（仅库内无 `kind=official` 时触发）；预热查询由配置驱动，空则跳过 |
+| `CORPORA_ROOT` / `CORPORA` | 空 / 空 | H1：库扫描根（默认 `DATA_DIR` 父目录）；JSON 列表按相对路径覆盖库 id/name/kind/domain |
 | `PDF_OCR` / `PDF_OCR_LANGUAGE` | true / eng | LiteParse |
 | `MAX_RESEARCH_STEPS` | 24 | 4–100，内层 Agent recursion_limit |
 | `MAX_ROUNDS` | 2 | 1–3 |
@@ -108,13 +111,19 @@
 
 ## 6. 前端实现
 
-- `api.ts`：`streamChat` 支持 `(messages, signal, receive, options)` 与带 `runId` 的重载；按 `\n\n` 分帧，`done` 为终止事件并立即释放 reader；`error` 事件抛错。
+- `api.ts`：`streamChat` 支持 `(messages, signal, receive, options)` 与带 `runId` 的重载；按 `\n\n` 分帧，`done` 为终止事件并立即释放 reader；`error` 事件抛错；`fetchTasks()` 读取 `GET /api/tasks`；`Options.task_id`/`Source.citation` 为可选增量（后端就绪前不发送）。
 - `conversation.ts`：`Attempt`（runId、steps、telemetry、usage、options、policy、answer、sources、complete、outcome、耗时）与 `Turn`（question、requestMessages、previousAttempts）；`receiveEvent` 纯转换；终态不可被后续事件修改；`regenerateTurn` 从 policy 提取生效选项；`branchFromTurn` 生成编辑分支历史。
-- `workspace.ts`：`useWorkspace` 恢复/保存会话，串行保存链，`localStorage["dox-agent-session"]` 记录当前会话，500ms 防抖保存，revision 冲突提示；分支记录 `source_session_id`/`source_turn_index`。
-- `main.tsx`：健康轮询（3s，单请求 5s 超时）、发送门禁、设置（回答范围/证据要求/查证方式/资料范围）、会话管理、导出 `dox-agent-comparison.json`、侧栏标识 `DOX_AGENT / 01`。
-- `Answer.tsx`：Markdown、复制、重新生成、步骤过程、耗时（首 token/总时间）、token 用量与阶段耗时。
+- `workspace.ts`：`useWorkspace` 恢复/保存会话，串行保存链，`localStorage["dox-agent-session"]` 记录当前会话，500ms 防抖保存，revision 冲突提示；分支记录 `source_session_id`/`source_turn_index`；`SessionData.task_id` 随 hydrate/select 恢复并进入自动保存快照。
+- `uiFlags.ts`：`VITE_UI_TASKS/FILTERS/DOC_PANEL/REPORTS/NEWS/MODELS` 特性开关统一读取（仅 `1/true/on` 为开）；关闭时不渲染对应组件、不发送新字段，避免 `ChatRequest extra="forbid"` 422。
+- `main.tsx`：健康轮询（3s，单请求 5s 超时）、发送门禁（`task_id` 仅在 `VITE_UI_TASKS` 开启时携带）、侧栏收束/展开（`localStorage` 持久化 + 图标栏）、`MainView` 视图切换（chat/library/news；**只卸载主区 `<section>`，`turns` 与流式 controller 留在 App 层**，返回时恢复滚动位置）、会话管理、导出 `dox-agent-comparison.json`、侧栏标识 `DOX_AGENT / 01`；主区宽度随侧栏收束自适应（U4.1b）。
+- `TaskPicker.tsx` / `LibraryView.tsx`：任务单选器（`GET /api/tasks`，选择即新建该任务会话）与文献库浏览页（卡片/列表、名称筛选；点击复用 `openDocument`）。
+- `useCorpora.ts` / `CorpusPicker.tsx`（H5）：`GET /api/corpora` 列表的唯一拉取处与选择器组件（状态点 + 份数；展开态列表块 / 收束态浮层共用）；切库清空越界 `allowed_doc_ids`。
+- `fundMeta.ts`（H6 过渡）：基金文件名 `起止年_项目编号_负责人_题目.pdf` 的展示层解析，与后端 `FUND_NAME_PATTERN` 同约定；H9 服务端 meta 落地后退役。
+- `DocumentPanel.tsx`：共享右滑外壳；D11 后 ≥1024px 为挤压式无遮罩侧栏（根节点 `lg:pointer-events-none`、遮罩 `lg:hidden`），窄屏保留遮罩抽屉。
+- `DocumentTree.tsx` / `PdfViewer.tsx` / `DocumentExplorer.tsx`（U2，`VITE_UI_DOC_PANEL` 门控）：`rel_path` 目录树（展开/折叠/筛选/状态标记）、PDF 原文件查看与 Markdown/原文切换、目录+查看器组合与"限定为检索资料"显式按钮（复用 `allowed_doc_ids`）。**D6 降级**：因环境无法安装 `pdfjs-dist`（Windows npm × WSL 符号链接），PDF 渲染用浏览器原生能力（`/file` + `#page=` 片段 + 页码步进），缩放依赖阅读器工具栏；换装 PDF.js 时仅需替换 `PdfViewer` 内部实现。
+- `citation.ts` / `Answer.tsx`：U2.4 以 rehype 插件在**渲染层**把正文 `[n]` 改写为可点击锚点（不改 Markdown 源文本；`code`/`pre`/`a` 内跳过；`n` 超出 sources 时保持原样），映射用服务端 `citation`、下标兜底；"已读证据"卡片保留并同步 citation 编号。
 - `Notes.tsx`：领域笔记草稿/确认/来源版本状态与导航；**当前未挂载到 `main.tsx`**。
-- `KnowledgePanel.tsx` / `OfficialDocs.tsx` / `SourceManager.tsx`：导入、网页预览入库、官方更新、资料范围与正文补充。
+- `OfficialDocs.tsx` / `IngestTools.tsx` / `SettingsDrawer.tsx` / `ScopeSelector.tsx`：导入、网页预览入库、官方更新、资料范围与正文补充。
 
 ## 7. 构建与测试
 
@@ -122,4 +131,4 @@
 - 后端 `src/cli.py`：`ingest` / `search` / `preview` / `ask` 本地验证入口。
 - `src/evaluate.py`：针对版本化 fixtures 的检索评估（来源召回、证据召回、MRR），只评估检索与版本化阅读，不代表答案质量。
 - `src/prepare_docs.py`：启动前预下载官方文档并落盘报告 `data/official-preparation.json`。
-- **运行与测试状态**：`pyproject.toml` 与后端 `tests/` 已补齐（A1/A2），`.venv` 已装依赖，后端可运行、可跑测（A3 端到端已验证）；剩余 A7 契约同步见 [`../plan/plan.md`](../plan/plan.md)。
+- **运行与测试状态**：`pyproject.toml` 与后端 `tests/` 已补齐（A1/A2），`.venv` 已装依赖，后端可运行、可跑测（A3 端到端已验证）；A7 契约同步已随 B6/G1–G4/U1/U2/D1–D3/D11 补齐（2026-09-21），E 阶段与 U3 的 `/api/reports` 契约待实现后再补。

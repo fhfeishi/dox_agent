@@ -524,6 +524,19 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         # Inline so the raw reader (iframe/PDF viewer) renders instead of downloading.
         return FileResponse(path, media_type=media_type, filename=path.name, content_disposition_type="inline")
 
+    @app.get("/api/documents/{doc_id}/markdown")
+    async def document_markdown(request: Request, doc_id: str, version: str | None = None, corpus: str | None = None):
+        """L1: parsed markdown body for rendering previews — no 300-char line splits or line windows."""
+        kn = await knowledge_for_request(corpus)
+        try:
+            doc = await asyncio.to_thread(kn.get, doc_id)
+        except KeyError as exc:
+            raise HTTPException(404, "文档不存在") from exc
+        if version and version != doc["version"]:
+            raise HTTPException(422, "文档已更新，请重新搜索")
+        text = await asyncio.to_thread(kn.read_markdown, doc_id)
+        return {"text": text, "version": doc["version"]}
+
     @app.get("/api/official-docs")
     async def official_status():
         return app.state.official_job

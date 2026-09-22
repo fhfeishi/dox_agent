@@ -163,10 +163,11 @@ def _kill_process_group(process) -> None:
 def parse_file(path: Path, settings: Settings, *, parsed_dir: Path | None = None) -> Document:
     suffix = path.suffix.lower()
     markdown = ""
-    if suffix in {".txt", ".md"}:
+    if suffix in {".txt", ".md", ".markdown"}:
         markdown = path.read_text(encoding="utf-8-sig")
         pages = [Page(number=1, text=markdown)]
-        parser = "utf8"
+        # Markdown keeps its own parser label so previews render it instead of a raw <pre>.
+        parser = "markdown" if suffix in {".md", ".markdown"} else "utf8"
     elif suffix == ".pdf":
         out_dir = parsed_dir or path.parent / ".mineru" / path.stem
         # L1: reuse the mineru cache; only run the CLI when no cached parse exists.

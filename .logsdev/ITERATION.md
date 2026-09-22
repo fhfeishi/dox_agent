@@ -125,7 +125,7 @@
 | K9 | 预览：`GET /api/documents/{doc_id}/preview`（**带 `corpus` 参数**，与列表接口一致）按 kind 返回 html/text/file；统一 `DocumentPanel`：pdf 原生（D6）、md 渲染、docx 转 HTML、txt 纯文本 | 四类文件可预览并显示元数据 |
 | K10 | 检索性能：**范围含每查询的 `self.all()` + 窗口切分 + `tokens()` + `BM25Plus(corpus)`**（`knowledge.py:104-126`），不止 chunk id；需预计算/缓存候选与 BM25，或明确调低验收口径；**存量库首次回填缓存同 K1 为一次性成本** | 大库查询延迟不随库线性增长（或按调低口径验收） |
 | K11 | 验收：文件/库 CRUD、预览、重命名/删除、按库问答仅本库引用；以一次真实导入抽样计时（不做对比测试） | 功能通过 |
-| K12 | **按库 OCR 语言对齐与重导入（侧栏优先）**：入口放在**左侧边栏知识库展开项**（`CorpusPicker`/`CorpusAdmin`）：每个库可选 OCR 模式/语言 + 「重新导入并应用」；库详情（`LibraryView`）复用同一操作（可选）。OCR 模式/语言按库存储（`<KB>/datadb` 的 `meta`），生效值 = 库配置 ?? 全局；`files` 清单记录 `used language/mode`，不一致标 `ocr_stale`；「重新导入」必须走 `POST /api/corpora/{id}/ingest?force=true`（绕过 size+mtime 跳过、全部重解析），并提示“重解析全部文件、版本会变化”；对中文库建议 `chi_sim+eng`（可选） | 侧栏展开库 → 选 `chi_sim+eng` → 重新导入 → 预览文本可读、`ocr_stale=false`；未改语言时未变文件仍跳过（不会白重解析） |
+| K12 | **按库 OCR 语言对齐与重导入（侧栏优先）**（实现规格见 §6.5）：入口放在**左侧边栏知识库展开项**（`CorpusPicker`/`CorpusAdmin`）：每个库可选 OCR 模式/语言 + 「重新导入并应用」；库详情（`LibraryView`）复用同一操作（可选）。OCR 模式/语言按库存储（`<KB>/datadb` 的 `meta`），生效值 = 库配置 ?? 全局；`files` 清单记录 `used language/mode`，不一致标 `ocr_stale`；「重新导入」必须走 `POST /api/corpora/{id}/ingest?force=true`（绕过 size+mtime 跳过、全部重解析），并提示“重解析全部文件、版本会变化”；对中文库建议 `chi_sim+eng`（可选） | 侧栏展开库 → 选 `chi_sim+eng` → 重新导入 → 预览文本可读、`ocr_stale=false`；未改语言时未变文件仍跳过（不会白重解析） |
 
 ### 6.4 顺序与依赖
 
@@ -138,6 +138,33 @@
 - **K12（按库 OCR 语言 + 强制重导入）依赖 K1 清单与 K4 配置；修复“改语言后重新导入不生效”**。
 - 建议顺序：**K0 → K0b → K1 → K2 → K3 → K4 → K12 → K5 → K6a → K6 → K7 → K8 → K9 → K10 → K11**（K6b 随 K6/K6a 定）。
 - 与既有任务的关系：K 是 H9/B2/B4/B5（元数据/过滤）与 H10（真实报告验收）的前置；完成后更新 H10 验收与 PROJECT 现状。
+
+### 6.5 K12 实现规格（按库 OCR 语言 + 强制重导入）
+
+**后端**
+- `Knowledge`（`src/knowledge.py`）新增 `meta(key TEXT PRIMARY KEY, value TEXT NOT NULL)`；方法 `meta_all()/meta_get()/meta_set()`。
+- 库级键：`ocr_mode`、`ocr_language`（期望值），`ocr_applied_mode`、`ocr_applied_language`（上次成功导入实际使用）；`ocr_stale = 期望存在且 ≠ applied`；`applied` 为空且有文档时给 `ocr_unknown=true` 提示（不阻塞）。
+- `import_defaults(knowledge, settings, *, root, exclude, force=False)`（`parsers.py`）：`force=True` 时忽略 `size+mtime/sha256` 跳过，全部重解析（仍更新清单元数据）。
+- 导入生效配置：`settings.model_copy(update={"pdf_ocr_mode": 期望mode, "pdf_ocr_language": 期望language})`。
+- 接口：
+  - `GET /api/corpora/{id}/ocr` → `{mode, language, modes, languages, applied_mode, applied_language, stale, unknown}`（期望值缺省回落全局 `Settings`）；未知库 404。
+  - `PUT /api/corpora/{id}/ocr` body `{mode, language}` → 校验 `OCR_MODES`/`OCR_LANGUAGES` 后写库 `meta`；**不自动导入**；返回同上；非法 422。
+  - `POST /api/corpora/{id}/ingest?force=true` → 传 `force`；**若 `stale` 则服务端自动按 `force` 处理**（避免“点了没反应”），job 增 `forced: bool`；成功后写 `ocr_applied_*`。
+  - `GET /api/corpora` 的 `corpus_payload` 增 `ocr_stale`（列表徽标用）。
+
+**前端**
+- `api.ts`：`CorpusInfo` 增 `ocr_stale?`；新增 `fetchCorpusOcr(id)`、`setCorpusOcr(id, mode, language)`；`ingestCorpus(id, force?)`。
+- 侧栏展开项（`CorpusPicker`/`CorpusAdmin`）：每个库一个可展开“解析设置”：
+  - 语言下拉（`eng`/`chi_sim`/`chi_sim+eng`）、模式下拉（`off`/`force`/`auto`）；
+  - 状态：`ocr_stale ? "语言已改，需重新导入" : applied ? "已用 {applied_language} 解析" : "解析语言未知"`；
+  - 按钮「重新导入并应用」→ `setCorpusOcr` 后 `ingestCorpus(id, true)`；导入中禁用并显示 job 进度（复用 H6 的 5s 轮询）。
+- 全局 `OcrSettings` 保留为“新建库默认”。
+
+**验收**
+- 侧栏选基金库 → 设 `chi_sim+eng` → 出现“需重新导入” → 点重导入 → job `forced=true`、完成 `ocr_stale=false`；预览文本可读。
+- 未改语言重导入：`skipped>0`（不白重解析）。
+- 非法 mode/language 422；未知库 404。
+- `applied` 为空的存量库显示“解析语言未知”，不阻塞。
 
 ## 7. 维护约定
 

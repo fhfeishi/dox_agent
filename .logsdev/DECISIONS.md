@@ -24,6 +24,7 @@
   - `files` 清单记录每文件解析时用的 `language`/`mode`；库配置与实际不一致时标 `ocr_stale`。
   - `POST /api/corpora/{id}/ingest` 增 `force`：绕过 `size+mtime_ns` 跳过、全部重解析（用于语言/模式变更）；`ocr_stale` 时服务端建议/要求 `force`。
   - 入口（保底方案）：放在**左侧边栏知识库展开项**（`CorpusPicker`/`CorpusAdmin`）——“语言/模式 + 重新导入并应用”；库详情页（`LibraryView`）可复用同一操作。自动语言建议为可选增强，不阻塞。
+  - 实现规格见 [`ITERATION.md`](ITERATION.md) §6.5（`meta` 键、`GET/PUT /api/corpora/{id}/ocr`、`ingest?force=` 与 `stale` 自动强制、`api.ts`/`CorpusPicker` 变更、验收）。
   - 库详情提供“解析设置 + 重新导入并应用”，并提示“将重解析全部文件、版本会变化”。
 - 理由与代价：语言决定识别质量，必须能按库调整并真正重解析；代价是新增按库配置存储与一次全量重解析。
 - 状态：待实现（K12）。

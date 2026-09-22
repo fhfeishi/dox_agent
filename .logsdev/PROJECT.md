@@ -94,13 +94,13 @@
 | `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range）；可选 `corpus`（缺省默认库）；404/422/415/413(>200MB)；仅根目录内本地文件 |
 | `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`has_template` |
 | `GET\|PUT /api/ocr-config` | OCR 模式（`off`/`force`/`auto`）与语言（`eng`/`chi_sim`/`chi_sim+eng`）；写入口落 `STATE_DIR/ocr.json`，仅影响后续导入（K4） |
-| `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job` |
+| `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job`/`ocr_stale` |
 | `POST /api/corpora` | 新建库目录（`source/`+`datadb/`+`vectordb/`）；201；重名 409、名称非法 422（K6） |
 | `PATCH /api/corpora/{id}` | 仅改显示名（落 `STATE_DIR/corpora.json`）；目录与 `corpus_id` 不变（K6） |
 | `DELETE /api/corpora/{id}?purge_source=` | 默认只删 `datadb/`/`vectordb/`；`purge_source=true` 才删 `source/`；默认库 409（K6） |
 | `GET\|POST\|PATCH\|DELETE /api/corpora/{id}/files` | 库内源文件列表/上传/重命名/删除（md/pdf/txt/docx；上传 201、非法类型 415、超限 413）（K7/K8） |
-| `GET\|PUT /api/corpora/{id}/ocr`（待实现 K12） | 按库 OCR 模式/语言与 `ocr_stale` 状态 |
-| `POST /api/corpora/{id}/ingest` | 按库导入（限定库 root 内）；202 + job；404/409；`force=true` 绕过 size+mtime 跳过、全部重解析（K12） |
+| `GET\|PUT /api/corpora/{id}/ocr`（待实现 K12） | 按库 OCR 模式/语言；返回 `applied_mode`/`applied_language`/`stale`/`unknown`；写库 `meta`，不自动导入；未知库 404、非法值 422 |
+| `POST /api/corpora/{id}/ingest?force=`（K12 增 force） | 按库导入（限定库 root 内）；202 + job；404/409；`force=true` 绕过 size+mtime 跳过、全部重解析；**`ocr_stale` 时服务端自动按 force 处理**，job 带回 `forced`；成功后写 `ocr_applied_*` |
 | `POST /api/ingest/local`、`POST /api/ingest/text` | 本地导入（txt/md/pdf/docx）/ 手工补正文；准备中 409 |
 | `GET\|POST /api/official-docs` | 官方 Markdown 发现与批量更新（单进程内存任务） |
 | `POST /api/web/preview`、`/api/web/confirm/{id}` | 网页快照预览与确认入库 |
@@ -118,7 +118,7 @@ SSE 事件：`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）�
 
 ### 4.3 数据模型
 
-- 知识库 SQLite `docs(id, version, payload)`：`id=sha256(origin)[:20]`，`version=sha256(pages JSON)[:20]`；引用携带 version，版本不符读取报错。
+- 知识库 SQLite `docs(id, version, payload)`：`id=sha256(origin)[:20]`，`version=sha256(pages JSON)[:20]`；引用携带 version，版本不符读取报错。另含 `files(rel_path,size,mtime_ns,sha256,doc_id,status,updated_at)`（增量清单）与 `meta(key,value)`（K12 按库 OCR：`ocr_mode`/`ocr_language`/`ocr_applied_*`）。
 - 工作区 SQLite `records(id, kind, revision, payload)`：`kind ∈ {sessions, notes}`；会话 `data` 含 `turns`/`options`/`branches`/`task_id`/`corpus_id`；`BEGIN IMMEDIATE` 校验 revision（冲突 409），单记录 >4MB 413；笔记 `body`≤20000、`reviewed`、`sources` 1–6 条且版本可读。
 - 阅读行号是规范化视图行号（超长行按 300 字符切段），非 PDF 原版排版行号；`section` 窗口按标题/代码围栏切块并返回 `heading`/`truncated`/`code_omitted`。
 

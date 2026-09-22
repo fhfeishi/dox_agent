@@ -95,6 +95,15 @@
 - 理由与代价：`Knowledge.search`（`knowledge.py:104-126`）每查询重建全库窗口与 BM25 才导致延迟随库增长；dense 层已自行做 missing/stale diff（`dense.py:51-61`），不是瓶颈。代价是需在导入/删除时维护缓存一致性。
 - 状态：待实现（K10）；导入时构建 `chunks[]`+`BM25Plus` 并按库缓存。规格见 ITERATION §6.9。
 
+## 检索重构：报告级混合检索（L 阶段，2026-09-22）
+
+- 采用：搜索空间 = 报告解析后的 markdown；hybrid（BM25 + dense/RRF）在 chunk 级检索 → 聚合到报告级 → 取相关报告的**全文 markdown**（预算内）→ 结合任务提示词回答。
+- LangGraph：保留图作为编排（understand→retrieve→assemble→answer→validate），但**移除 LLM 驱动的 search/read 工具循环**，改为确定性检索 + 有界补查。
+- markdown 与 LangGraph 非二选一：markdown 是检索/上下文数据，图是编排；信息梳理/趋势/报告任务需要全文报告，单点问答可只给片段。
+- 预算：`RETRIEVE_CONTEXT_CHARS`/`RETRIEVE_REPORT_CHARS`；超限保留命中页/段 + 首尾摘要。
+- Word 报告：后续复用 `selected_reports`，模板 `templates/*.docx`（python-docx），不在本轮。
+- 状态：规划（L1–L7），规格见 ITERATION §7。
+
 ## 应用级会话库独立于语料库（2026-09-22）
 
 - 采用：`workspace.sqlite3` 迁出活动库的 `<KB>/datadb/`，放固定应用级目录；`app.state.workspace` 不再随活动库变化。

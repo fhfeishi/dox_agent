@@ -13,7 +13,7 @@
 
 ## 2. 计划与任务状态
 
-**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8、K12、K13 已实现；K5/K9–K11 待做；K2–K4/K12 的 liteparse OCR 部分被 K13 取代）。
+**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8、K12、K13 已实现；K5/K9–K11 待做；K2–K4/K12 的 liteparse OCR 部分被 K13 取代）· L ⬜（检索重构，规划）。
 
 **A 工程基线**：A1–A6 ✅（pyproject/extras、tests、端到端、改名、dev_logs 整理、design 落盘）；A7 契约同步 🟡（E 阶段待补）。
 
@@ -36,6 +36,8 @@
 **U UI 优化**：U0、U4.1a/U4.1b/U4.2、U5（会话内分支）、U6（电源按钮）、U7（知识库预览）、U8（LLM 状态）、U9.1（侧栏收束）、U9.2/U9.2b（文献库）、U9.4-1（只读模型）✅；U9.3 科研头条 🟡（仅占位）；U1（任务 UI）、U2（文档面板/引用跳转）🟡（代码完成、开关默认 off、浏览器验收未做）；U3 报告入口、U9.4-2 模型选择器 ⬜。
 
 **功能开关**：`VITE_UI_TASKS/FILTERS/DOC_PANEL/REPORTS/NEWS/MODELS` 均已建立、默认 off。启用策略：后端契约已实现 ∧ 浏览器实测通过。`VITE_UI_CORPUS` 已移除：`corpus_id` 后端已实现并验收，选中语料始终随 chat 发送。
+
+**L 检索重构（规划）**：报告级混合检索——搜索空间为报告 markdown；chunk 级 BM25+dense(RRF) → 聚合到报告 → 取相关报告**全文 markdown**（预算内）入上下文；LangGraph 仅做编排，移除 LLM 驱动 search/read 工具循环。规格见 §7。
 
 ## 3. 已完成与证据
 
@@ -275,7 +277,67 @@
 
 **验收**：首次构建后查询延迟基本不随库大小线性增长；与旧实现 top-k 在 fixtures 上一致；首次构建为一次性成本（同 K1）。
 
-## 7. 维护约定
+## 7. L 阶段：报告级混合检索（RAG 重构，2026-09-22，规划）
+
+### 7.1 目标与搜索空间
+- 输入：用户问题 + 任务（task1–4）+ 资料范围（库/文档）。
+- **搜索空间 = 报告解析后的 markdown**（mineru `markdown.md` / 逐页文本）。
+- 目标：先用 hybrid 检索定位**相关报告**，再把这几篇报告的**全文 markdown** 作为上下文交 LLM，结合任务提示词回答；每条结论可引用到“报告 + 页码”。
+- **仅优化检索**，不改任务提示词与回答契约（`[n]` 引用、证据事件）。
+
+### 7.2 结论：markdown 与 LangGraph 都要，职责不同
+- **需要报告 markdown**：信息梳理/趋势/专项报告任务必须拿到整篇报告（chunk 片段会丢上下文、漏成果与数字）；单点问答可用片段。
+- **需要检索 pipeline（LangGraph）**：把“理解→混合检索→报告聚合→上下文装配→回答→引用校验”编排成有界流程；但**不再用 LLM 驱动 search/read 工具循环**（现 `research` 节点），改为确定性检索。
+
+### 7.3 数据与索引
+- 存储：`Document` 增 `markdown`（mineru zip 的 `markdown.md`）；`Knowledge.put` 持久化；新增 `read_markdown(doc_id, version)`。现有库回填：重导入（`force`）时写入。
+- 分块：按 markdown 标题切 section，过长再按 ~800 字/150 重叠切；chunk 记 `doc_id/version/title/heading/text/page?`。
+- 页码：markdown 无页标记；用 `middle_json` 的 `page_idx` 做**尽力映射**（块文本→页）；无法映射时 page=1，引用标注 best-effort。
+- 稀疏：BM25Plus over chunk tokens（**按库缓存**，复用 K10）。
+- 密集：Chroma over chunk embeddings（按库，复用 `dense.py`；模型签名隔离）。
+- 融合：RRF（等权，常数 60）。
+
+### 7.4 检索与报告选择
+- chunk 级：hybrid top-k（如 40–80 chunks）。
+- 报告级聚合：`score(doc)=max(chunk_score)+α·topk_count`；按分数选报告，直到满足 `min_reports..max_reports` 且 markdown 总量 ≤ 上下文预算。
+- 输出：`selected_reports[]` + 每篇命中 chunks（用于引用与局部高亮）。
+
+### 7.5 上下文装配（关键）
+- 预算：总 markdown 字符 ≤ `RETRIEVE_CONTEXT_CHARS`（如 80k）；单篇 ≤ `RETRIEVE_REPORT_CHARS`（如 30k）。
+- 超预算：按分数保留最多报告；单篇超限时保留命中 chunk 所在页/段落 + 首尾摘要（可迭 map-reduce）。
+- 注入：报告头（题目/项目号/负责人/年份）+ markdown（或截断）+ 任务提示词。
+- 引用：`[n]` 绑定 report+page；保留现有 `sources` 事件字段。
+
+### 7.6 LangGraph 流程（替代现有 agentic research 循环）
+```
+understand(任务/范围) → retrieve(hybrid→聚合报告) → assemble(装入markdown,预算)
+  → answer(任务提示词) → validate(引用/页码) → finish
+  ↑______________ 缺口且预算允许：retrieve(改写query) ______________|
+```
+- 确定性检索为主；缺口补查有界（次数/预算）。
+- 保留 `policy/step/telemetry/usage/sources` 事件；不再用 LLM 决定 search/read 工具调用。
+
+### 7.7 Word 报告（后续，复用检索）
+- 模板 `templates/*.docx`（占位符/表格），`python-docx` 填充；与 task4 四模板对齐。
+- 生成器复用本次 `selected_reports` + 证据；范围/来源/局限随文。**不在本轮范围**。
+
+### 7.8 任务
+| 编号 | 任务 | 验收 |
+|---|---|---|
+| L1 | 存储 markdown：`Document.markdown` + `Knowledge.read_markdown`；重导入回填 | 基金库重导入后可取全文 markdown |
+| L2 | 分块与页码映射（markdown→chunks；`middle_json` page_idx 尽力映射） | chunk 有 heading/page；抽样页号正确 |
+| L3 | 混合索引（BM25+Chroma）与 RRF；按库缓存 | 检索结果稳定；大库不随库线性变慢 |
+| L4 | 报告级聚合与选择（min/max + 预算） | 选出足够数量报告，不超预算 |
+| L5 | 上下文装配（预算/截断/报告头/引用） | 回答可追溯到报告+页 |
+| L6 | LangGraph 新流程替换 `research` 工具循环 | 事件/预算/停止语义不变 |
+| L7 | 验收：基金库问题→命中正确报告→正文来自报告 markdown→引用页码；与旧流程抽样对比 | 通过 |
+
+### 7.9 验收与边界
+- 给定“人工智能在医疗的应用”类问题：命中基金库相关报告；回答依据来自这些报告全文；页码 best-effort。
+- 超预算时如实说明覆盖范围（用了哪些报告、截断）。
+- 无匹配报告时如实说明。
+
+## 8. 维护约定
 
 - 完成任务后更新本文 §2/§3 与 [`PROJECT.md`](PROJECT.md) 的现状/限制；长期取舍写入 [`DECISIONS.md`](DECISIONS.md)。
 - 证据须可复现（命令/产出路径）；未运行的检查不得写入；受限项显式标注。

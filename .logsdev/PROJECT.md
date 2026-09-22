@@ -27,6 +27,7 @@
 
 **专业知识问答**
 - 固定流程：解析专业问题 → 限定范围检索 → 阅读原文 → 必要时有限补查 → 带引用回答。
+- 检索（计划 L）：搜索空间为报告 markdown；hybrid chunk 检索 → 选相关报告 → 全文 markdown（预算内）入上下文；事实引用绑定报告+页。
 - 每条关键事实标注来源文件与页码，可直接打开原文；无资料/冲突/解析失败明确说明，不把"未检索到"说成"领域不存在"。
 - 展示真实执行阶段，不展示或虚构内部推理；沿用搜索/模型调用/超时预算，不增加多 Agent 或工作流编辑器。
 - 回答职责由用户显式选择的任务（task1–4）决定；本期不做自动意图分类。
@@ -125,6 +126,8 @@ SSE 事件：`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）�
 ### 4.4 检索
 
 SQLite 当前文档 → 页/行窗口 → BM25Plus sparse；配置 `EMBEDDING_PATH` 且未限定资料时并行 dense（Chroma 同步、按模型签名隔离 collection）→ 两路各取 `max(20, limit*3)` 候选 → RRF（等权，常数 60）→ 最终 limit 1–10 → 按来源分散。指定 `allowed_doc_ids` 时仅 BM25，不同步子集到共享 Chroma。
+
+**计划（L 阶段，见 [`ITERATION.md`](ITERATION.md) §7）**：改为**报告级混合检索**——搜索空间为报告解析后的 markdown；chunk 级 BM25+dense(RRF) → 聚合到报告 → 取相关报告**全文 markdown**（预算内）+ 任务提示词回答；LangGraph 仅做编排（understand→retrieve→assemble→answer→validate），移除 LLM 驱动 search/read 工具循环。
 
 ### 4.5 错误语义
 

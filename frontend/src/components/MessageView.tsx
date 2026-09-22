@@ -2,8 +2,9 @@ import { useEffect, useMemo, useState, type ComponentProps } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import type { Source, Step } from "../api";
+import { createReport, type ReportInfo, type Source, type Step } from "../api";
 import { rehypeCitations } from "../citation";
+import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
 import { formatDuration, type Attempt } from "../conversation";
 import { stopLabels } from "../policy";
@@ -272,6 +273,73 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
   );
 }
 
+function ReportCard({ attempt }: { attempt: Attempt }) {
+  const [report, setReport] = useState<ReportInfo | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const params = attempt.policy?.report_params;
+  const ready = Boolean(params?.domain && params?.year_from && params?.year_to && params?.template_id);
+  if (attempt.policy?.stop_reason !== "report_pending" || !ready) return null;
+  async function generate() {
+    setBusy(true);
+    setError("");
+    try {
+      // First click is idempotent on the turn's run_id; regenerate uses a fresh id (#10 M3).
+      const runId = report ? crypto.randomUUID() : attempt.runId;
+      setReport(await createReport({ ...params, run_id: runId }));
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "生成报告失败");
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function copyReport() {
+    if (report) await navigator.clipboard.writeText(report.markdown);
+  }
+  return (
+    <div className="mt-[12px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px]">
+      <div className="flex flex-wrap items-center gap-[8px]">
+        <span className="text-[12.5px] font-medium text-[var(--slate)]">专项报告</span>
+        <span className="text-[11.5px] text-[var(--stone)]">
+          参数已齐：{params?.domain} · {params?.year_from}–{params?.year_to} · {params?.template_id}
+        </span>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => void generate()}
+          className="ml-auto rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-[12px] text-white disabled:opacity-50"
+        >
+          {busy ? "生成中…" : report ? "重新生成" : "生成报告"}
+        </button>
+      </div>
+      {error ? (
+        <p role="alert" className="mt-[6px] text-[11.5px] text-[var(--red)]">
+          {error}
+        </p>
+      ) : null}
+      {report ? (
+        <div className="mt-[8px]">
+          <div className="markdown max-h-[360px] overflow-auto rounded-[8px] border border-[var(--hairline-soft)] bg-[var(--canvas)] p-[10px]">
+            <Markdown remarkPlugins={[remarkGfm]}>{report.markdown}</Markdown>
+          </div>
+          <div className="mt-[6px] flex gap-[10px] text-[12px]">
+            <button type="button" onClick={() => void copyReport()} className="text-[var(--primary)] hover:underline">
+              复制
+            </button>
+            <button
+              type="button"
+              onClick={() => downloadText(report.markdown, `report-${report.report_id.slice(0, 8)}.md`)}
+              className="text-[var(--primary)] hover:underline"
+            >
+              下载 .md
+            </button>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export function MessageView({
   attempt,
   startedTick,
@@ -373,6 +441,7 @@ export function MessageView({
       )}
 
       {!compact ? <Sources attempt={attempt} onOpenSource={onOpenSource} /> : null}
+      {!compact ? <ReportCard attempt={attempt} /> : null}
       {!compact ? <Telemetry attempt={attempt} /> : null}
       {!compact ? <Metrics attempt={attempt} startedTick={startedTick} /> : null}
 

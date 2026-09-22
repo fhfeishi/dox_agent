@@ -77,7 +77,20 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rel_path: relPath, new_name: newName }) });
   await jsonOrThrow(response, "重命名文件失败");
 }
-export type Policy = Options & { route: "research" | "clarify"; stop_reason: string; notice?: string };
+export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; fund_type?: string; focus?: string; doc_ids?: string[]; session_key?: string; run_id?: string; corpus_id?: string };
+export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean };
+export type Policy = Options & { route: "research" | "clarify"; stop_reason: string; notice?: string; report_params?: ReportParams };
+
+/** POST /api/reports (#10): generate an immutable markdown report; idempotent per run_id. */
+export async function createReport(params: ReportParams): Promise<ReportInfo> {
+  const response = await fetch("/api/reports", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(params),
+  });
+  await jsonOrThrow(response, "生成报告失败");
+  return response.json();
+}
 export type Event =
   | { event: "usage"; data: Usage }
   | { event: "step"; data: Step }

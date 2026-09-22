@@ -1,9 +1,32 @@
-export type Source = { title: string; url: string; snippet: string; page?: number; doc_id?: string; version?: string; origin?: string; kind?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean };
+export type Source = { title: string; url: string; snippet: string; page?: number; doc_id?: string; version?: string; origin?: string; kind?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean; citation?: number };
 export type Message = { role: "user" | "assistant"; content: string };
 export type Usage = { run_id?: string; input_tokens: number | null; output_tokens: number | null; total_tokens: number | null; reported_tokens: number | null; calls: number; reported_calls: number; complete: boolean; missing_reasons?: Record<string, number>; calls_by_phase?: Record<string, number> };
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string };
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; searches: number; reads: number; tokens: number | null };
-export type Options = { allowed_doc_ids: string[] | null };
+export type Options = { allowed_doc_ids: string[] | null; task_id?: string };
+export type TaskInfo = { id: string; name: string; description: string; has_template: boolean };
+export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; errors: { source?: string; error: string }[] };
+export type CorpusInfo = {
+  id: string; name: string; kind: string; domain: string; rel_path: string;
+  docs_count: number; preparation: string; is_default: boolean;
+  index_progress: { stage: string; completed: number; total: number } | null;
+  job: CorpusJob | null;
+};
+
+/** GET /api/corpora: corpus registry (H1). Read-only disk scan + config overrides. */
+export async function fetchCorpora(signal?: AbortSignal): Promise<CorpusInfo[]> {
+  const response = await fetch("/api/corpora", signal ? { signal } : undefined);
+  if (!response.ok) throw new Error("知识库列表不可用（" + response.status + "）");
+  return response.json();
+}
+
+/** POST /api/corpora/{id}/ingest (H2): import/refresh one corpus, bounded to its own root. */
+export async function ingestCorpus(corpusId: string): Promise<CorpusJob> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/ingest`, { method: "POST" });
+  const payload = await response.json().catch(() => null);
+  if (!response.ok) throw new Error(typeof payload?.detail === "string" ? payload.detail : "导入请求失败（" + response.status + "）");
+  return payload as CorpusJob;
+}
 export type Policy = Options & { route: "research" | "clarify"; stop_reason: string; notice?: string };
 export type Event =
   | { event: "usage"; data: Usage }
@@ -15,6 +38,13 @@ export type Event =
   | { event: "token"; data: { text: string } }
   | { event: "done"; data: { ok: boolean } }
   | { event: "error"; data: { message: string } };
+
+/** GET /api/tasks: the fixed first-release task set. Only sent when the backend exposes it. */
+export async function fetchTasks(signal?: AbortSignal): Promise<TaskInfo[]> {
+  const response = await fetch("/api/tasks", signal ? { signal } : undefined);
+  if (!response.ok) throw new Error("任务列表不可用（" + response.status + "）");
+  return response.json();
+}
 
 export function streamChat(messages: Message[], signal: AbortSignal, receive: (event: Event) => void, options?: Options): Promise<void>;
 export function streamChat(messages: Message[], runId: string, signal: AbortSignal, receive: (event: Event) => void, options?: Options): Promise<void>;

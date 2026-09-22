@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState, type ComponentProps } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import type { PluggableList } from "unified";
+import { rehypeCitations } from "./citation";
 import { formatDuration, type Attempt } from "./conversation";
+import type { Source } from "./api";
 import { stopLabels } from "./policy";
 
 function Timing({ attempt, startedTick }: { attempt: Attempt; startedTick?: number }) {
@@ -48,7 +51,9 @@ function Process({ attempt }: { attempt: Attempt }) {
   </details>;
 }
 
-export function Answer({ attempt, startedTick, onRegenerate }: { attempt: Attempt; startedTick?: number; onRegenerate?: () => void }) {
+export function Answer({ attempt, startedTick, onRegenerate, onOpenSource }: {
+  attempt: Attempt; startedTick?: number; onRegenerate?: () => void; onOpenSource?: (source: Source, n: number) => void;
+}) {
   const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
   useEffect(() => { setCopyState("idle"); }, [attempt.answer]);
   useEffect(() => {
@@ -64,6 +69,30 @@ export function Answer({ attempt, startedTick, onRegenerate }: { attempt: Attemp
       setCopyState("failed");
     }
   }
+  // U2.4: server-provided citation numbers with an index fallback; sources precede tokens so
+  // citations are clickable during streaming. Never rewrites the Markdown source text.
+  const sourceByNumber = useMemo(() => {
+    const map = new Map<number, Source>();
+    attempt.sources.forEach((source, index) => {
+      const n = source.citation ?? index + 1;
+      if (!map.has(n)) map.set(n, source);
+    });
+    return map;
+  }, [attempt.sources]);
+  const rehypePlugins: PluggableList | undefined = useMemo(() => onOpenSource
+    ? [rehypeCitations({ sources: attempt.sources, onCite: (source, n) => onOpenSource(source, n) })]
+    : undefined, [attempt.sources, onOpenSource]);
+  const components = useMemo(() => onOpenSource ? {
+    a: (props: ComponentProps<"a">) => {
+      const match = typeof props.href === "string" ? /^#cite-(\d+)$/.exec(props.href) : null;
+      const source = match ? sourceByNumber.get(Number(match[1])) : undefined;
+      if (!match || !source) return <a {...props}/>;
+      const n = Number(match[1]);
+      return <button type="button" title={source.title}
+        className="rounded px-0.5 font-medium text-teal-700 hover:bg-teal-100"
+        onClick={() => onOpenSource(source, n)}>[{n}]</button>;
+    },
+  } : undefined, [onOpenSource, sourceByNumber]);
   return <>
     <Process attempt={attempt}/>
     <div className="markdown"><Markdown remarkPlugins={[remarkGfm]}>{attempt.answer || (attempt.outcome === "running" ? "正在回应…" : "未生成回答")}</Markdown></div>
@@ -75,6 +104,6 @@ export function Answer({ attempt, startedTick, onRegenerate }: { attempt: Attemp
       {copyState === "failed" && <span role="alert" className="text-red-700">复制失败，请手动选择答案复制。</span>}
       <span className="sr-only" role="status">{copyState === "copied" ? "答案已复制" : ""}</span>
     </div>
-    {!!attempt.sources.length && <details className="mt-5 rounded-xl border border-stone-200 bg-white p-4"><summary className="cursor-pointer text-sm">已读证据 · {attempt.sources.length}</summary><div className="mt-3 flex flex-wrap gap-2">{attempt.sources.map((s, j) => <a key={j} className="rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs text-teal-800" href={s.url.startsWith('/api/documents/') ? s.url : undefined} target="_blank" rel="noreferrer">[{j + 1}] {s.title}</a>)}</div><div className="mt-4 grid gap-3">{attempt.sources.map((s, j) => <div key={j} className="border-t border-stone-100 pt-3"><p className="text-xs font-medium">[{j + 1}] {s.title} · 第{s.page ?? 1}页</p><p className="mt-1 text-xs text-stone-500">{s.snippet}</p><p className="text-xs text-stone-400">版本 {s.version} · 采集 {s.captured_at ?? "未记录"}{s.truncated ? " · 仅部分原文" : ""}</p></div>)}</div></details>}
+    {!!attempt.sources.length && <details className="mt-5 rounded-xl border border-stone-200 bg-white p-4"><summary className="cursor-pointer text-sm">已读证据 · {attempt.sources.length}</summary><div className="mt-3 flex flex-wrap gap-2">{attempt.sources.map((s, j) => { const n = s.citation ?? j + 1; return <a key={j} className="rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs text-teal-800" href={s.url.startsWith('/api/documents/') ? s.url : undefined} target="_blank" rel="noreferrer">[{n}] {s.title}</a>; })}</div><div className="mt-4 grid gap-3">{attempt.sources.map((s, j) => { const n = s.citation ?? j + 1; return <div key={j} className="border-t border-stone-100 pt-3"><p className="text-xs font-medium">[{n}] {s.title} · 第{s.page ?? 1}页</p><p className="mt-1 text-xs text-stone-500">{s.snippet}</p><p className="text-xs text-stone-400">版本 {s.version} · 采集 {s.captured_at ?? "未记录"}{s.truncated ? " · 仅部分原文" : ""}</p></div>; })}</div></details>}
   </>;
 }

@@ -16,12 +16,16 @@ function groupOf(iso: string | undefined): "今天" | "昨天" | "更早" {
   return "更早";
 }
 
-export function SessionList({ sessions, active, activeTitle, loaded, busy, onSelect, onRename, onArchive, onRestore }: {
+export function SessionList({ sessions, active, activeTitle, loaded, busy, activeTask, tasks = {}, onSelect, onRename, onArchive, onRestore }: {
   sessions: Saved<SessionData>[];
   active: string;
   activeTitle: string;
   loaded: boolean;
   busy: boolean;
+  /** U1.4: name of the task bound to the current (possibly unsaved) session. */
+  activeTask?: string;
+  /** U1.4: task id -> name, used for the badge on each session entry. */
+  tasks?: Record<string, string>;
   onSelect: (id: string) => void;
   onRename: (id: string, title: string) => void;
   onArchive: (id: string) => void;
@@ -38,6 +42,11 @@ export function SessionList({ sessions, active, activeTitle, loaded, busy, onSel
   const unsaved = !sessions.some(session => session.id === active) && matches(activeTitle || "当前新会话");
 
   function itemTitle(title: string) { return title.length > 34 ? title.slice(0, 34) + "…" : title; }
+  function badge(taskId?: string) {
+    const name = taskId ? tasks[taskId] : undefined;
+    if (!name) return null;
+    return <span className="shrink-0 rounded bg-stone-200 px-1 py-0.5 text-[10px] text-stone-600" title={taskId ?? ""}>{name}</span>;
+  }
 
   return <div className="mt-4 text-sm">
     <input aria-label="搜索会话" className="w-full rounded-lg border border-stone-300 bg-white px-2 py-1 text-xs" placeholder="搜索会话" value={query} onChange={e => setQuery(e.target.value)}/>
@@ -45,6 +54,7 @@ export function SessionList({ sessions, active, activeTitle, loaded, busy, onSel
       {unsaved && <div>
         <p className="mb-1 text-xs font-medium text-stone-500">今天</p>
         <button className="w-full truncate rounded-lg border border-teal-300 bg-teal-50 px-2 py-1 text-left text-xs text-teal-900" onClick={() => onSelect(active)}>{itemTitle(activeTitle || "当前新会话")}</button>
+        {activeTask && <p className="mt-1 px-1 text-[10px] text-stone-500">任务：{activeTask}</p>}
       </div>}
       {(["今天", "昨天", "更早"] as const).map(group => {
         const items = visible.filter(session => groupOf(sessionTime(session)) === group);
@@ -60,6 +70,7 @@ export function SessionList({ sessions, active, activeTitle, loaded, busy, onSel
                   <button type="button" className="px-1 text-xs" onClick={() => setEditing(null)}>取消</button>
                 </form></li>
               : <li className="group flex items-center gap-1">
+                  {badge(session.data.task_id)}
                   <button disabled={!loaded || busy} className={`min-w-0 flex-1 truncate rounded-lg px-2 py-1 text-left text-xs disabled:opacity-40 ${session.id === active ? "border border-teal-300 bg-teal-50 text-teal-900" : "hover:bg-stone-200"}`} onClick={() => onSelect(session.id)}>{itemTitle(session.title)}</button>
                   <span className="hidden shrink-0 gap-1 group-hover:flex">
                     <button aria-label="重命名会话" title="重命名" className="px-1 text-xs" onClick={() => setEditing({ id: session.id, title: session.title })}>重命名</button>

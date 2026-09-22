@@ -133,6 +133,14 @@
 - **删除/失效**：删文件/库同步清 `parsed/` 与 Chroma chunk；`parser_signature` 入库 meta，变更即 `force`。
 - 状态：L 开工前定稿（与 ITERATION §7.14 一致）。
 
+## 任务 = 输出契约，不是输入闸门（2026-09-22，规划）
+
+- 采用：四个任务（task1–4）都保留自由文本输入；输入禁用只由运行时状态（busy/离线/未就绪）决定，**不由 task 决定**。task4 的差异在产出通道（`POST /api/reports`），不在“能否输入”。
+- task4 分两阶段：**interim** 走确定性「报告参数采集」（缺参逐项追问；齐则回显参数 + `report_pending`，输入不丢弃）；**E 就绪后** 同输入 → 报告生成。
+- 任务切换：保留「会话绑定任务」，切换 = 显式新建会话并绑定 + 温和提示；不再替换 `textarea`。
+- 理由：把“输出契约”误当“输入闸门”会让 task4 成为死路（现 `Composer.tsx` 把 textarea 换成占位提示）。
+- 状态：**规划（G10a–G10d）**，规格见 [`ITERATION.md`](ITERATION.md) §8。
+
 ## 持久化数据向后兼容：渲染对新增字段做默认（2026-09-22）
 
 - 问题：L6 改变 `telemetry` 形状（新增 `context_tokens`/`chunks_retrieved`/`reports_selected`），但 `workspace` 持久化的旧会话缺这些键；恢复会话时 `MessageView` 的 `t.context_tokens.toLocaleString()` 抛错，整棵 React 树崩溃 → **整页白屏**。

@@ -77,6 +77,7 @@
 | **审查意见处理（P1/P2 + task 接线，2026-09-22）** | 默认开启任务（`VITE_UI_TASKS` 默认 on，可 `=0` 关）；`/api/tasks` 增 `output_hint`；侧栏任务搜索；任意回答可重新生成（`regenerateAt`，修复替换语义）；每步耗时（后端 `graph.step()` 发 `duration_ms` + 前端展示）；非 PDF 预览下载/新窗口；Composer 弹层统一外部点击/Esc；Inspector 标签改「概览」；删除无引用图标与 `filters/reports/news/models` flag；**后端接线**：`Knowledge.search`/`graph.search_impl` 传 `task_id`（任务差异化检索预算不再失效）；`base.md`/task1–3 提示词补引用纪律与输出细节。详见 [`DECISIONS.md`](DECISIONS.md) §7 | `.venv/bin/python -m pytest tests -q` → **115 passed**（新增 `tests/test_prompts.py` 3 例、`test_knowledge` 1 例、强化 `test_steps` 时长断言）；`npm run build` + `npm test` 18 passed；浏览器 6 用例 PASS（含新增 `tests/browser_tasks.py`）。未做：P1-4 复制/导出改 Markdown（与既有断言冲突）、E 阶段报告模板 |
 | **知识库 IA 重构（对齐模板 3 层，2026-09-22）** | 文献库主区改为 `CorpusGrid` 知识库卡片网格（数据源 `corpora`）；新增 `CorpusDetail` 抽屉（文档/源文件/导入，含重命名/删除/按库导入/用于当前对话）；抽出 `Drawer` 壳；删 `LibraryView`/`CorpusAdmin`/`SettingsDrawer`；`OpsDrawer` 精简为模型/在线文档源/导出；`openPreview` 带 `corpusId` 修复非活动库文档 `/file` 取错库；文档预览面板自适应；设置按钮文案改「设置」。浏览（`openCorpus`）与切库（`selectCorpus`）分离。冲突/取舍见 [`DECISIONS.md`](DECISIONS.md) §8 | `npm run build` + `npm test` 18 passed；浏览器 **7 用例 PASS**（新增 `tests/browser_library.py`：网格/详情/跨库浏览不改活动库/按库 `/file`/设置抽屉无 KB CRUD/chat `corpus_id`）。`browser_fund_preview` 在线未运行 |
 | **Markdown 预览渲染修复（2026-09-22）** | 预览改走 `GET /api/documents/{id}/markdown`（`Knowledge.read_markdown`，不过 300 字符硬切/行窗）；`parse_file` 对 `.md/.markdown` 设 `parser="markdown"`；前端扩展名兜底 + 窗口拼接修正（页内 `\n`/跨页 `\n\n`）；`openTextInNewTab` 用 `renderToStaticMarkup(<Markdown+GFM>)` 渲染新窗口；表格改 wrapper 横向滚动。详见 [`../dev_logs/ui-migration.md`](../dev_logs/ui-migration.md) §7 | `pytest tests -q` → 本改动相关用例 **48 passed**（`test_app`/`test_markdown_parser`/`test_knowledge`/`test_steps`/`test_retrieval`）；全量当时 118 passed，**随后并行 L6 `graph.py` 重构**使 `test_graph`/`test_usage` 3 例失败（`create_deep_agent` 已移除，测试未同步，非本轮改动）；`npm run build` + `npm test` 18 passed；真实 demo 语料 `read_markdown("470e…")` → 3 个表格、最长行 485；浏览器 **8 用例 PASS**（新增 `tests/browser_markdown_preview.py`：`.md` 识别/3 `<table>`/新窗口渲染） |
+| **“前端打不开”排查（2026-09-22）** | 复现矩阵全部正常（构建版/真实后端/dev server/全 API 失败/localStorage），定位为**构建产物被清理或浏览器缓存的旧 `index.html` 指向已删除的 hash 资源**。修复：`launch.sh` 改为在 `frontend/dist/index.html` 缺失时也重建；`GET /{asset_path}` 对 `index.html` 发 `Cache-Control: no-cache, must-revalidate`，hash 资源发 `public, max-age=31536000, immutable`。前端代码无需改动 | `bash -n launch.sh` 通过；`curl -D` 确认 index no-cache / asset immutable；`pytest tests/test_app.py` 9 passed；dist 引用的 hash 资源均存在 |
 
 当前可用基线（本轮实测）：后端 `pytest tests -q` → **95 passed**（L6 删除已废弃的 research 循环测试约 20 例）；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
@@ -715,7 +716,67 @@ understand → retrieve → assemble → validate → answer → finish
 - 参数扫描（task1，15 条）：`MIN_TERM_COVER ∈ {0.2,0.3,0.4,0.5}` 与 `PER_DOC_TOP_M ∈ {1,3,5}` 均 `recall=1.00`；提高 `MIN_TERM_COVER` 0.3→0.5 使 `avg_ctx` 56340→46220（更省预算）；`max_reports(task1)=1` 使 `avg_ctx`→31536。样本 recall 饱和，**保留默认值（无依据调参）**；待真实反馈扩充样本后再校准。
 - 延迟 P50≈0.6s 来自每查询重建 BM25（chunk 缓存/预计算属 L3/K10 未做），已记为性能项。
 
-## 8. 维护约定
+## 8. 任务系统与专项报告入口优化（规划，2026-09-22）
+
+### 8.1 问题与现状（证据）
+- 现象（用户）：切换到「专项报告」（task4）后，对话框**不能输入文字**，无法描述报告需求。
+- 现状（代码）：
+  - `ChatRequest.task_id: Literal["task1","task2","task3"]`（`main.py:80`）——task4 被显式排除。
+  - `Composer.tsx:110-112`：`task4 => canSend=false`；`:181` task4 用 `<div role="status">` **替换 textarea**（不是仅禁用）。
+  - `prompts/__init__.py`：`CHAT_TASK_IDS=("task1","task2","task3")`；task4 仅在任务列表/会话绑定中存在，正文走 `POST /api/reports`（E 阶段未实现，占位）。
+  - `store.startTask`：切换任务即 `switchSession(undefined, taskId)`（新建会话并绑定）。
+- 结论：**把“输出契约”误当成“输入闸门”**——task4 的正文确实走报告入口，但“描述报告需求”仍必须能输入；当前实现让 task4 成为死路。
+
+### 8.2 设计原则
+1. **任务 = 输出契约，不是输入闸门**：四个任务都保留自由文本输入。
+2. 输入禁用只由**运行时状态**决定（busy/离线/未就绪），不由 task 决定。
+3. task4 的差异在**产出通道**（报告入口），不在“能否输入”。
+4. 未知任务 id 仍 `422`/`UnknownTaskError`，不静默回退。
+
+### 8.3 每个任务的完整契约（梳理）
+
+| 维度 | task1 精准问答 | task2 对比分析 | task3 趋势推测 | task4 专项报告 |
+|---|---|---|---|---|
+| 输入 | 自由文本 | 自由文本 | 自由文本 | **自由文本（报告需求：领域/起止年份/模板/重点）** |
+| 检索 | chunk_only；MIN/MAX=1/3 | 跨项目；2/5 | 多年份；3/8 | 按模板章节 + 领域/年份过滤（依赖 B4/B5） |
+| 输出 | 结论 + `[n]` | 维度表 + 差异 + 可比性前提 | 事实/推断分段 + 置信度 + 样本局限 | Markdown 报告（范围/正文/来源/局限） |
+| 产出通道 | chat | chat | chat | **`POST /api/reports`**（E） |
+| stop_reason | professional / no_reports / coverage_partial | 同 | 同 | **report_ready / report_pending** / no_reports |
+| 持久化 | 会话 turn | 会话 turn | 会话 turn | 会话存报告 id + 引用；报告独立存储 |
+
+### 8.4 task4 逻辑（分两阶段）
+- **interim（E 未就绪，立即可做）**：允许输入；发送后走确定性「报告参数采集」：
+  - 规则抽取（年份正则 / 模板关键词 / 领域取当前库 `domain`），缺必填（领域/起止年份/模板）时**逐项追问**（clarify），不静默；
+  - 参数齐全则回显参数 + `stop_reason="report_pending"`（“报告入口未就绪，需求已记录”），**输入不被丢弃**。
+- **E 就绪后**：同一输入 → `POST /api/reports` → 生成报告（预览/复制/下载），会话内以卡片引用报告 id。
+- 参数口径沿用 PROJECT §2「专项报告」（必填：领域/起止年份/模板；可选：基金类别/指定文件/分析重点）。
+
+### 8.5 任务切换语义
+- 保留「会话绑定任务」（PROJECT §2）为默认：切换任务 = **显式新建会话并绑定**，但：
+  - **输入框始终可用**；切换时温和提示「已切换为 X；本会话以 X 的输出契约作答」。
+  - 不再有任何 task 触发的 textarea 替换。
+- 可选增强（待确认）：允许在**当前会话内为下一轮重绑任务**（`workspace` 已存 `task_id`），保留历史；与「会话绑定」冲突，需产品确认，默认不做。
+
+### 8.6 后端优化点
+- `ChatRequest.task_id` 放开 task4（`Literal["task1","task2","task3","task4"]`），由 graph 路由：task4 → 报告参数采集/报告分支（**不生成 chat 正文**）。
+  - 或保留 chat 排除 task4、前端 task4 直接调 `POST /api/reports`；但为统一入口与 SSE 状态，**建议 task4 进 chat 契约走独立分支**。
+- `telemetry.path` 增 `report`（或 `report_pending`）；`stop_reason` 增 `report_pending`/`report_ready`；前端 `policy.ts` 同步。
+- task4 提示词：`task4_report.md` 已是报告基线；补「参数采集」契约（字段、缺参追问、不生成正文）。
+- 依赖：#10（报告↔会话绑定）定稿、E1/E2、B4/B5（领域/年份过滤）。
+
+### 8.7 分阶段任务（G10）
+| 编号 | 任务 | 验收 |
+|---|---|---|
+| G10a | 前端：任务切换不再禁输入 / 不替换 textarea；task4 保留输入 + 发送 | 切到 task4 能输入、能发送、有明确回应 |
+| G10b | 后端 interim：task4 进 chat → 参数采集/`report_pending`；缺参追问 | task4 输入得到参数回显/追问，不死路 |
+| G10c | 任务切换语义落地（默认新建会话 + 提示） | 切换有提示、历史不静默丢失；输入可用 |
+| G10d | E 接线：`POST /api/reports` + 四模板 + 预览/下载；task4 调用 | 生成 Markdown 报告；会话引用报告 id |
+- 依赖：G10d 依赖 #10 + E；G10b 依赖 G10a；其余独立。
+
+### 8.8 非目标
+- 不做自动意图分类（任务仍显式选择）；不新增模板管理平台；不为 task4 建第二套检索。
+
+## 9. 维护约定
 
 - 完成任务后更新本文 §2/§3 与 [`PROJECT.md`](PROJECT.md) 的现状/限制；长期取舍写入 [`DECISIONS.md`](DECISIONS.md)。
 - 证据须可复现（命令/产出路径）；未运行的检查不得写入；受限项显式标注。

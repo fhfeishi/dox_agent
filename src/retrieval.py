@@ -95,6 +95,7 @@ class ReportDoc:
     year_to: int | None = None
     pi: str = ""
     rel_path: str = ""
+    origin: str = ""
 
 
 @dataclass

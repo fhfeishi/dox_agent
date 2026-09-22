@@ -1,53 +1,107 @@
-"""Reproducible retrieval evaluation against the versioned project fixtures."""
+"""Reproducible report-level retrieval evaluation (L7).
+
+Reuses the retrieval engine — no separate framework. Metrics: ``report_recall@k``,
+``MRR``, retrieval latency (P50/P95), average context tokens, no-match rate and
+project-dedup accuracy. Only the four calibrated parameters are exposed via CLI
+(``MIN_TERM_COVER``, ``PER_DOC_TOP_M``, ``MIN/MAX_REPORTS``); ``REL_COVER`` and
+``GENERIC_DF_RATIO`` stay at their fixed defaults.
+"""
 
 import argparse
 import json
+import statistics
+import time
+from dataclasses import replace
 from pathlib import Path
 
 from .agent.config import get_settings
 from .knowledge import Knowledge
+from .retrieval import RetrievalConfig, assemble_reports
+
+DATASET = Path(__file__).resolve().parents[1] / "tests/data/fund_retrieval.jsonl"
 
 
-def evaluate(store: Knowledge, cases: list[dict], limit: int = 6) -> dict:
-    rows = []
+def _p95(values: list[float]) -> float:
+    if not values:
+        return 0.0
+    if len(values) == 1:
+        return round(values[0], 1)
+    return round(statistics.quantiles(values, n=20)[18], 1)
+
+
+def evaluate(store: Knowledge, cases: list[dict], *, task_id: str = "task1",
+             config: RetrievalConfig | None = None) -> dict:
+    config = config or RetrievalConfig()
+    rows: list[dict] = []
+    latencies: list[float] = []
+    context_tokens: list[int] = []
+    matched = dedup_ok = 0
     for case in cases:
-        hits = store.search(case["query"], limit=limit)
-        reads = [
-            store.read_chunk(hit["chunk_id"], hit["version"])
-            for hit in hits
-        ]
-        relevant = [
-            (rank, item) for rank, item in enumerate(reads, 1)
-            if Path(item["origin"]).name == case["expected_source"]
-        ]
-        source_text = "\n".join(item["text"] for _, item in relevant)
-        missing = [term for term in case["expected_terms"] if term not in source_text]
-        rows.append({
-            "id": case["id"], "query": case["query"],
-            "source_rank": relevant[0][0] if relevant else None,
-            "missing_terms": missing,
-            "evidence_hit": bool(relevant) and not missing,
-            "retrieved_titles": [item["title"] for item in reads],
-        })
-    count = len(rows)
+        started = time.perf_counter()
+        result = store.retrieve(case["query"], task_id=task_id, config=config)
+        latencies.append((time.perf_counter() - started) * 1000)
+        expected = case.get("expected_source", "")
+        rank = next((index for index, report in enumerate(result.reports, 1)
+                     if Path(report.doc.origin).name == expected), None)
+        projects = [report.doc.project_no or report.doc.doc_id for report in result.reports]
+        dedup = len(projects) == len(set(projects))
+        if result.matched:
+            matched += 1
+            dedup_ok += dedup
+            context = assemble_reports(result.reports, store.read_markdown,
+                                       total_tokens=10 ** 9, report_tokens=10 ** 9)
+            context_tokens.append(context.tokens)
+        rows.append({"id": case.get("id", ""), "query": case["query"], "matched": result.matched,
+                     "reason": result.reason, "report_rank": rank, "project_dedup": dedup,
+                     "reports": [report.doc.title for report in result.reports]})
+    count = len(rows) or 1
     return {
-        "scope": "retrieval plus version-checked read; not answer accuracy",
-        "cases": count, "limit": limit,
-        "source_recall": sum(row["source_rank"] is not None for row in rows) / count if count else 0,
-        "evidence_recall": sum(row["evidence_hit"] for row in rows) / count if count else 0,
-        "mrr": sum(1 / row["source_rank"] for row in rows if row["source_rank"]) / count if count else 0,
+        "scope": "report-level retrieval (BM25-only); not answer accuracy",
+        "task_id": task_id,
+        "config": {"min_term_cover": config.min_term_cover, "per_doc_top_m": config.per_doc_top_m,
+                   "min_reports": config.min_reports, "max_reports": config.max_reports,
+                   "rel_cover": config.rel_cover, "generic_df_ratio": config.generic_df_ratio},
+        "cases": len(rows),
+        "report_recall": sum(row["report_rank"] is not None for row in rows) / count,
+        "mrr": sum(1 / row["report_rank"] for row in rows if row["report_rank"]) / count,
+        "no_match_rate": 1 - matched / count,
+        "project_dedup_accuracy": dedup_ok / matched if matched else 0.0,
+        "avg_context_tokens": round(statistics.mean(context_tokens)) if context_tokens else 0,
+        "latency_ms_p50": round(statistics.median(latencies), 1),
+        "latency_ms_p95": _p95(latencies),
         "results": rows,
     }
+
+
+def load_cases(path: Path) -> list[dict]:
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
 def main():
     settings = get_settings()
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset", type=Path, default=settings.knowledge_root / "project_progress/evals/retrieval_v4.jsonl")
+    parser.add_argument("--dataset", type=Path, default=DATASET)
+    parser.add_argument("--db", type=Path, default=settings.data_dir / "knowledge.sqlite3")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--task", default="task1")
+    parser.add_argument("--min-term-cover", type=float, default=None)
+    parser.add_argument("--per-doc-top-m", type=int, default=None)
+    parser.add_argument("--max-reports", type=int, default=None)
     args = parser.parse_args()
-    cases = [json.loads(line) for line in args.dataset.read_text(encoding="utf-8").splitlines() if line.strip()]
-    result = evaluate(Knowledge(settings.data_dir / "knowledge.sqlite3", settings=settings), cases)
+
+    config = RetrievalConfig()
+    updates: dict = {}
+    if args.min_term_cover is not None:
+        updates["min_term_cover"] = args.min_term_cover
+    if args.per_doc_top_m is not None:
+        updates["per_doc_top_m"] = args.per_doc_top_m
+    if args.max_reports is not None:
+        updates["max_reports"] = {**config.max_reports, args.task: args.max_reports}
+    if updates:
+        config = replace(config, **updates)
+
+    result = evaluate(Knowledge(args.db, settings=settings), load_cases(args.dataset),
+                      task_id=args.task, config=config)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({key: value for key, value in result.items() if key != "results"}, ensure_ascii=False))

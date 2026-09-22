@@ -206,7 +206,7 @@ class Knowledge:
             reports.append(ReportDoc(doc_id=doc["doc_id"], version=doc["version"], title=doc["title"],
                                      headings=headings, project_no=meta.get("project_no", ""),
                                      year_from=meta.get("year_from"), year_to=meta.get("year_to"),
-                                     pi=meta.get("pi", "")))
+                                     pi=meta.get("pi", ""), origin=doc.get("origin", "")))
         return select_reports(by_doc, reports, query, config=config, task_id=task_id,
                               allowed_doc_ids=allowed_doc_ids, extra_queries=extra_queries)
 

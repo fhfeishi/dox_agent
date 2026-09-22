@@ -56,7 +56,7 @@
 - 库内文件 CRUD：列表、上传（md/pdf/txt；docx 见 Word 支持）、删除、重命名/替换；`source/` 为唯一事实来源。
 - 侧栏列出库（名称/份数/就绪状态）并可切换；库详情展示文档清单；基金库显示题目/负责人/项目编号/报告年份区间。
 - 每个会话绑定一个库；输入区资料范围为两层：库（必选）+ 库内文档（可选，`allowed_doc_ids`）；切库清空越界选择并提示。
-- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。并发解析、OCR 按需触发、解析/索引两阶段进度仍待 K2/K3/K5。
+- 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。OCR 三档 `off/force/auto`（K2，auto 仅对无文本页 OCR）+ liteparse `num_workers`（K3）+ 运行时 OCR 模式/语言配置（K4）。并发解析与两阶段导入进度仍待 K5。
 - 预览支持 pdf（浏览器原生）/markdown（渲染）/word（转 HTML）/txt（纯文本）。
 - 首期不做跨库联合检索、库内分区、多用户权限隔离。
 
@@ -93,6 +93,7 @@
 | `GET /api/documents/{doc_id}` | 按 `page`/`start_line`/`version`/`section` 读取原文证据；可选 `corpus`（缺省默认库）；404/422 |
 | `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range）；可选 `corpus`（缺省默认库）；404/422/415/413(>200MB)；仅根目录内本地文件 |
 | `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`has_template` |
+| `GET\|PUT /api/ocr-config` | OCR 模式（`off`/`force`/`auto`）与语言（`eng`/`chi_sim`/`chi_sim+eng`）；写入口落 `STATE_DIR/ocr.json`，仅影响后续导入（K4） |
 | `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job` |
 | `POST /api/corpora/{id}/ingest` | 按库导入（限定库 root 内）；202 + job；404/409 |
 | `POST /api/ingest/local`、`POST /api/ingest/text` | 本地导入 / 手工补正文；准备中 409 |
@@ -139,6 +140,6 @@ SQLite 当前文档 → 页/行窗口 → BM25Plus sparse；配置 `EMBEDDING_PA
 ## 6. 运行与验证
 
 - 启动：`bash launch.sh`（复用环境 → 安装依赖 → 构建前端 → uvicorn）；默认 <http://127.0.0.1:8000>。
-- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`STATE_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、`CORPORA*`、预算与超时）。
+- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`STATE_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、`PDF_OCR_MODE`/`PDF_OCR_LANGUAGE`/`PDF_NUM_WORKERS`、`CORPORA*`、预算与超时）。
 - 测试：`.venv/bin/python -m pytest tests -q`；`cd frontend && npm test`、`npm run build`。
 - 本地数据布局与配置映射见仓库 `README.md`。

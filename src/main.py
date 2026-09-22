@@ -13,7 +13,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
 
-from .agent.config import DOX_AGENT_ROOT, get_settings
+from .agent.config import DOX_AGENT_ROOT, OCR_LANGUAGES, OCR_MODES, get_settings, load_ocr_config, save_ocr_config
 from .agent.corpora import CorpusInfo, default_corpus_id, scan_corpora
 from .agent.graph import build_graph
 from .agent.models import tracing
@@ -79,6 +79,12 @@ class OfficialRequest(BaseModel):
     sections: list[Literal["langchain", "langgraph", "deepagents"]] = Field(default=["langchain", "langgraph", "deepagents"], min_length=1, max_length=3)
 
 
+class OcrConfigRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    mode: Literal["off", "force", "auto"]
+    language: Literal["eng", "chi_sim", "chi_sim+eng"]
+
+
 def workspace_path(settings, knowledge) -> Path:
     """K0: keep sessions/notes in the app-level ``state_dir``, independent of the active corpus.
 
@@ -103,6 +109,15 @@ def sse(event: str, data: object) -> str:
 
 def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     settings = settings or get_settings()
+    # K4: apply persisted OCR overrides (only affect later imports).
+    persisted = load_ocr_config(settings.state_dir)
+    overrides = {}
+    if persisted.get("mode") in OCR_MODES:
+        overrides["pdf_ocr_mode"] = persisted["mode"]
+    if persisted.get("language") in OCR_LANGUAGES:
+        overrides["pdf_ocr_language"] = persisted["language"]
+    if overrides:
+        settings = settings.model_copy(update=overrides)
 
     @asynccontextmanager
     async def lifespan(app):
@@ -207,6 +222,23 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     @app.get("/api/tasks")
     async def tasks():
         return list_tasks()
+
+    def ocr_payload():
+        return {"mode": settings.pdf_ocr_mode, "language": settings.pdf_ocr_language,
+                "modes": list(OCR_MODES), "languages": list(OCR_LANGUAGES)}
+
+    @app.get("/api/ocr-config")
+    async def ocr_config():
+        """K4: current OCR mode/language and the values the UI may choose."""
+        return ocr_payload()
+
+    @app.put("/api/ocr-config")
+    async def set_ocr_config(payload: OcrConfigRequest):
+        """K4: persist a runtime OCR setting; it only affects later imports."""
+        nonlocal settings
+        settings = settings.model_copy(update={"pdf_ocr_mode": payload.mode, "pdf_ocr_language": payload.language})
+        await asyncio.to_thread(save_ocr_config, settings.state_dir, payload.mode, payload.language)
+        return ocr_payload()
 
     @app.get("/api/corpora")
     async def corpora(request: Request):

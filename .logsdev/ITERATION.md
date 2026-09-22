@@ -31,7 +31,7 @@
 
 **H 知识库管理**：H1–H3（注册表/按库导入/`?corpus=`）✅；H5–H7（选择器/详情/按库文档）✅；**H4 ✅代码**（chat `corpus_id`、按库限定检索，提交 `e7d08e2`）、**H8 ✅代码**（会话绑库、`VITE_UI_CORPUS`，提交 `67d0ff0`），两者**浏览器/真实语料验收未做**；H9 文件名元数据入服务端、H10 真实报告验收 ⬜。
 
-**K 知识库管理与导入优化**：K0（应用级会话库）、K0b（多库 read/file 补 `corpus`）、K1（增量导入 + 文件清单 + 删除同步）✅；K2–K11 ⬜（见 §6.3）：OCR 三档/语言配置、解析并发、两阶段导入与进度、库/文件 CRUD 与上传、Word、预览、检索候选/BM25 缓存。
+**K 知识库管理与导入优化**：K0（应用级会话库）、K0b（多库 read/file 补 `corpus`）、K1（增量导入 + 文件清单 + 删除同步）、K2（OCR 三档 off/force/auto）、K3（liteparse 多 worker）、K4（OCR 模式/语言运行时配置）✅；K6a/K6/K7–K11 ⬜（见 §6.3）：库/文件 CRUD 与上传、Word、预览、检索候选/BM25 缓存。
 
 **U UI 优化**：U0、U4.1a/U4.1b/U4.2、U5（会话内分支）、U6（电源按钮）、U7（知识库预览）、U8（LLM 状态）、U9.1（侧栏收束）、U9.2/U9.2b（文献库）、U9.4-1（只读模型）✅；U9.3 科研头条 🟡（仅占位）；U1（任务 UI）、U2（文档面板/引用跳转）🟡（代码完成、开关默认 off、浏览器验收未做）；U3 报告入口、U9.4-2 模型选择器 ⬜。
 
@@ -52,8 +52,9 @@
 | 布局对齐 | 开发文档 `.logsdev/`；演示语料 `.demo_langchain/`；`VECTORDB_DIR` | `703d286`/`02cbcd9`；`pytest` 64 passed、路径解析验证 |
 | 方案 A 自包含库（本轮，工作树） | `.knowledge/<库>/{source,datadb,vectordb}`；演示库同构；`corpora.py` 按 role 目录扫描并把库内 `datadb/`/`vectordb/` 作为派生路径 | `pytest` 68 passed（新增 `tests/test_corpora.py` 4 例）；端到端导入派生落 `<库>/datadb/knowledge.sqlite3` |
 | K0/K0b/K1（本轮） | 应用级会话库（`state_dir` + 一次性迁移）；read/file 按 `corpus`；增量导入 + 文件清单 + 删除同步；前端传递 `corpus` | `pytest` 75 passed；`tests/test_corpora_state.py`、`tests/test_incremental_import.py`；`npm run build` + `node --test` 18 passed；实机默认演示库二次导入 `added=0/skipped=1`、删探针 `deleted=1` 且不再出现在 `/api/documents` |
+| K2/K3/K4（本轮） | OCR 三档（off/force/auto，auto 仅对无文本页 OCR）；liteparse `num_workers`；OCR 模式/语言运行时配置（`GET/PUT /api/ocr-config`，落 `STATE_DIR/ocr.json`） + 设置入口 | `pytest` 80 passed（新增 `tests/test_parsers_ocr.py` 4 例、OCR 配置持久化 1 例）；`npm run build` 通过；默认 `PDF_OCR_MODE=auto`、`PDF_OCR_LANGUAGE=chi_sim+eng` |
 
-当前可用基线（本次实测）：后端 `pytest tests -q` → **75 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
+当前可用基线（本次实测）：后端 `pytest tests -q` → **80 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
 ## 4. 待定设计
 
@@ -74,9 +75,8 @@
 | E 报告入口未做；#10 未决 | task4/U3/G9 无法开工 | 定稿 #10 → 实现 E1/E2 |
 | #12 模型可用性判定缺失 | F11/U9.4-2 不可验收 | 定 health 探测口径或新增轻量探测接口 |
 | 基金库 `.knowledge/自然科学基金/` 已注册但未导入 | 尚不能按库问答/验收 | 执行按库导入（约 213MB，注意 OCR 语言）后再做 H10 |
-| OCR 语言仅能改 `.env` 重启（默认 `eng` 对中文扫描件质量差） | 基金入库质量 | 按 DECISIONS「OCR 语言由前端可调」实现配置接口 + 设置入口 |
 | H10 真实基金报告端到端验收未做 | 基金场景未验证 | 以真实报告走「选库 → 浏览 → 预览 → 按库问答」 |
-| 知识库/文件 CRUD、上传、Word 支持、预览未做 | 库管理能力缺失 | 按 §6 K 阶段推进（导入优化 K1 已完成；K2–K9 待做） |
+| 知识库/文件 CRUD、上传、Word 支持、预览未做 | 库管理能力缺失 | 按 §6 K 阶段推进（K0–K4 已完成；K6a/K6/K7–K10 待做） |
 
 ## 6. K 阶段规划：知识库管理、解析优化与预览（2026-09-22，规划中）
 

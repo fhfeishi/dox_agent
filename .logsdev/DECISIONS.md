@@ -15,7 +15,8 @@
 - 影响（待实现）：`src/agent/config.py`、`src/main.py`（配置接口）、`frontend/src/SettingsDrawer.tsx`；单用户本地部署下允许写入。
 - 默认值：中文语料库默认 `chi_sim+eng`（而非 `eng`）；`PDF_OCR` 与语言均可在设置中调整。
 - 与解析关系：OCR 语言仅作用于 liteparse 的 OCR 路径（本项目的固定解析器）。
-- 状态：已采用，未实现；实现前不新增前端入口。
+- 状态：**已采用且已实现**。配置文件 `STATE_DIR/ocr.json`；后端 `GET/PUT /api/ocr-config`（`OcrConfigRequest` 仅允许 `off/force/auto` 与 `eng/chi_sim/chi_sim+eng`），启动时覆盖 `Settings`；前端 `OcrSettings` 在设置抽屉。语义“仅影响后续导入”。测试：`tests/test_corpora_state.py::test_ocr_config_persists_and_only_affects_later_imports`。
+- 默认值：`PDF_OCR_MODE=auto`、`PDF_OCR_LANGUAGE=chi_sim+eng`（`.env`/`.env.example`）。
 
 ## 导入性能优化方向（2026-09-22）
 

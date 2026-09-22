@@ -12,28 +12,50 @@ from .agent.config import Settings
 from .knowledge import Document, Page
 
 
+def _pdf_pages(path: Path, settings: Settings, *, ocr_enabled: bool, target_pages: list[int] | None = None) -> list[Page]:
+    from liteparse import LiteParse
+
+    options = dict(ocr_enabled=ocr_enabled, ocr_language=settings.pdf_ocr_language, output_format="json", quiet=True)
+    if target_pages:
+        options["target_pages"] = ",".join(str(number) for number in target_pages)
+    if settings.pdf_num_workers:
+        options["num_workers"] = settings.pdf_num_workers
+    result = LiteParse(**options).parse(str(path))
+    return [Page(number=p.page_num, text=p.text) for p in result.pages]
+
+
+def parse_pdf_pages(path: Path, settings: Settings) -> list[Page]:
+    """K2/K3: OCR tiers — off (text layer), force (always), auto (only text-less pages)."""
+    if settings.pdf_ocr_mode == "force":
+        return _pdf_pages(path, settings, ocr_enabled=True)
+    pages = _pdf_pages(path, settings, ocr_enabled=False)
+    if settings.pdf_ocr_mode == "auto":
+        empty = [page.number for page in pages if not page.text.strip()]
+        if empty:
+            try:
+                rescued = {page.number: page.text for page in _pdf_pages(path, settings, ocr_enabled=True, target_pages=empty)}
+            except Exception:  # noqa: BLE001 - keep the text layer when OCR is unavailable
+                rescued = {}
+            pages = [Page(number=page.number, text=rescued.get(page.number) or page.text) for page in pages]
+    return pages
+
+
 def parse_file(path: Path, settings: Settings) -> Document:
-    if path.suffix.lower() in {".txt", ".md"}:
+    suffix = path.suffix.lower()
+    if suffix in {".txt", ".md"}:
         pages = [Page(number=1, text=path.read_text(encoding="utf-8-sig"))]
         parser = "utf8"
-    elif path.suffix.lower() == ".pdf":
+    elif suffix == ".pdf":
         import liteparse
-        from liteparse import LiteParse
 
-        result = LiteParse(
-            ocr_enabled=settings.pdf_ocr,
-            ocr_language=settings.pdf_ocr_language,
-            output_format="json",
-            quiet=True,
-        ).parse(str(path))
-        pages = [Page(number=p.page_num, text=p.text) for p in result.pages]
+        pages = parse_pdf_pages(path, settings)
         parser = "liteparse/" + liteparse.__version__
     else:
         raise ValueError("仅支持 txt、md、pdf")
     return Document(
         title=path.stem,
         origin=str(path.resolve()),
-        kind="pdf" if path.suffix.lower() == ".pdf" else "text",
+        kind="pdf" if suffix == ".pdf" else "text",
         parser=parser,
         pages=pages,
     )

@@ -76,3 +76,17 @@ def test_non_default_corpus_read_and_file_require_corpus_param(tmp_path):
         # Unknown corpus is a clear 404, not a silent fallback to the default.
         assert client.get(f"/api/documents/{doc_id}?corpus=missing").status_code == 404
         assert client.get(f"/api/documents/{doc_id}/file?corpus=missing").status_code == 404
+
+
+def test_ocr_config_persists_and_only_affects_later_imports(tmp_path):
+    app = create_app(Settings(_env_file=None, state_dir=tmp_path), Knowledge(tmp_path / "db"))
+    with TestClient(app) as client:
+        assert client.get("/api/ocr-config").json()["mode"] == "auto"
+        saved = client.put("/api/ocr-config", json={"mode": "force", "language": "chi_sim"}).json()
+        assert saved["mode"] == "force" and saved["language"] == "chi_sim"
+        assert client.put("/api/ocr-config", json={"mode": "bogus", "language": "eng"}).status_code == 422
+
+    reloaded = create_app(Settings(_env_file=None, state_dir=tmp_path), Knowledge(tmp_path / "db2"))
+    with TestClient(reloaded) as client:
+        body = client.get("/api/ocr-config").json()
+        assert body["mode"] == "force" and body["language"] == "chi_sim"

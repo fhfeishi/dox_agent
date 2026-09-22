@@ -1,7 +1,9 @@
 """Configuration shared by local parsing, API models and the agent."""
 
+import json
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 from pydantic import AliasChoices, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -10,6 +12,25 @@ DOX_AGENT_ROOT = Path(__file__).resolve().parents[2]
 # 方案 A（每个直接子目录 = 一个自包含知识库）：
 # .knowledge/<corpus>/ 内含 source/（原始文件）、datadb/（sqlite）、vectordb/（向量库）。
 KNOWLEDGE_ROOT = DOX_AGENT_ROOT / ".knowledge"
+
+# K4: OCR mode/language are runtime-configurable and persisted outside .env.
+OCR_MODES = ("off", "force", "auto")
+OCR_LANGUAGES = ("eng", "chi_sim", "chi_sim+eng")
+OCR_CONFIG_FILENAME = "ocr.json"
+
+
+def load_ocr_config(state_dir: Path) -> dict:
+    try:
+        data = json.loads((state_dir / OCR_CONFIG_FILENAME).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def save_ocr_config(state_dir: Path, mode: str, language: str) -> None:
+    state_dir.mkdir(parents=True, exist_ok=True)
+    (state_dir / OCR_CONFIG_FILENAME).write_text(
+        json.dumps({"mode": mode, "language": language}, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 class Settings(BaseSettings):
@@ -47,8 +68,11 @@ class Settings(BaseSettings):
     web_sessions_file: Path | None = None
     firecrawl_api_key: SecretStr | None = None
     firecrawl_base_url: str = "https://api.firecrawl.dev"
-    pdf_ocr: bool = True
-    pdf_ocr_language: str = "eng"
+    # K2: OCR tiers. off = text layer only; force = always OCR; auto = OCR only text-less pages.
+    pdf_ocr_mode: Literal["off", "force", "auto"] = "auto"
+    pdf_ocr_language: str = "chi_sim+eng"
+    # K3: liteparse internal workers (0 = library default).
+    pdf_num_workers: int = 0
     max_research_steps: int = Field(default=24, ge=4, le=100)
     max_rounds: int = Field(default=2, ge=1, le=3)
     quick_verification: bool = True

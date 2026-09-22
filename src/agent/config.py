@@ -27,6 +27,13 @@ class Settings(BaseSettings):
     embedding_query_prompt: str = ""
     knowledge_root: Path = KNOWLEDGE_ROOT
     text_root: Path = KNOWLEDGE_ROOT / "project_progress/texts/v4"
+    # B6: the corpus is configurable, so nothing may hard-code one corpus' names or queries.
+    auto_import_official: bool = True
+    warmup_query: str = ""
+    # H1: corpus registry. CORPORA_ROOT defaults to DATA_DIR's parent; CORPORA is a JSON
+    # list overriding id/name/kind/domain per corpus-root-relative path.
+    corpora_root: Path | None = None
+    corpora: list[dict] = Field(default_factory=list)
     web_provider: str = "crawl4ai"
     web_sessions_file: Path | None = None
     firecrawl_api_key: SecretStr | None = None

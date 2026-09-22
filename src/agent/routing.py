@@ -32,4 +32,6 @@ async def resolve_policy(options: TurnOptions, knowledge, preparation: str = "re
 
 
 def answer_policy(policy: dict) -> str:
-    return "事实结论仅依据本轮有效已读资料；允许有依据的推导，标明前提。缺失部分明确保留，不使用一般知识补齐。"
+    # Derivation permission is decided by the task contract (plan 待定设计 #11), not by this baseline:
+    # task1/task2 narrow it to read evidence only, task3 opens it with mandatory labelling.
+    return "事实结论仅依据本轮有效已读资料；是否允许推导由本轮任务契约决定，允许时必须标明前提。缺失部分明确保留，不使用一般知识补齐。"

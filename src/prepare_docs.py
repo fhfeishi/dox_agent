@@ -20,8 +20,8 @@ async def main():
             print("官方文档已在本地，跳过下载。", flush=True)
             if previous.get("errors"):
                 print("部分链接上次未成功，可从前端更新重试；现有文档可正常问答。", flush=True)
-            if store.dense:
-                await asyncio.to_thread(store.search, "LangChain")
+            if store.dense and settings.warmup_query.strip():
+                await asyncio.to_thread(store.search, settings.warmup_query.strip())
             return
     progress = {"total": 0, "completed": 0, "imported": 0, "changed": 0, "errors": []}
     print("正在提前下载官方文档并落盘，请稍候。", flush=True)
@@ -31,9 +31,9 @@ async def main():
     progress["documents"] = {doc["doc_id"]: doc["version"] for doc in store.all() if doc["kind"] == "official"}
     report.write_text(json.dumps(progress, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"官方文档：成功 {progress['imported']}/{progress['total']}，失败 {len(progress['errors'])}。", flush=True)
-    if store.dense:
+    if store.dense and settings.warmup_query.strip():
         print("正在提前同步本地向量索引。", flush=True)
-        await asyncio.to_thread(store.search, "LangChain")
+        await asyncio.to_thread(store.search, settings.warmup_query.strip())
     if not progress["documents"]:
         raise RuntimeError("没有可用官方文档，请检查网络后重试。")
     if progress["errors"]:

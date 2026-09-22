@@ -100,14 +100,25 @@ async def parse_web(url: str, settings: Settings) -> Document:
     )
 
 
-def import_defaults(knowledge, settings: Settings) -> dict:
-    paths = sorted(
-        set(settings.text_root.rglob("*.txt"))
-        | set(settings.text_root.rglob("*.md"))
-        | {p for p in settings.knowledge_root.rglob("*") if p.suffix.lower() == ".pdf"}
-    )
+def import_defaults(knowledge, settings: Settings, *, root: Path | None = None, exclude: list[Path] = ()) -> dict:
+    # H2: with `root` given, only that corpus' own files are collected (PDF/txt/md);
+    # the legacy path keeps its old behaviour but may exclude other corpora, so
+    # knowledge_root.rglob("*.pdf") can never mix one corpus into another.
+    if root is not None:
+        base = Path(root)
+        paths = sorted({p for p in base.rglob("*") if p.suffix.lower() in {".pdf", ".txt", ".md"}})
+    else:
+        paths = sorted(
+            set(settings.text_root.rglob("*.txt"))
+            | set(settings.text_root.rglob("*.md"))
+            | {p for p in settings.knowledge_root.rglob("*") if p.suffix.lower() == ".pdf"}
+        )
+    excluded = [item.resolve() for item in exclude]
     imported, errors = [], []
     for path in paths:
+        resolved = path.resolve()
+        if any(resolved == item or item in resolved.parents for item in excluded):
+            continue
         try:
             imported.append(knowledge.put(parse_file(path, settings)))
         except Exception as exc:  # noqa: BLE001 - retain other sources on parser failure

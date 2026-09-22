@@ -1,1 +1,1 @@
-"""Personal LangChain docs assistant package."""
+"""dox_agent: local corpus question answering and report generation."""

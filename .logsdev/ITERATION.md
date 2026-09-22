@@ -150,6 +150,7 @@
 - **S6b**：覆盖率取 `per_doc_cand` chunk（含 heading/正文），评分仍用 `per_doc_top_m`。
 - **S3**：Layer A BM25 查询词 = 全部 query 词并集。
 - **验收**：后接英文/多行 base64 不吞正文；纯停用词查询→`direct`；`q1` 独有命中报告可被召回；`project_no=""` 时不按 doc_id 误去重。
+- **待代码对齐（未实现）**：`SelectedReport.chunks` 目前仅含 `top_m`（`retrieval.py`）；按 §7.8 应改为 `per_doc_cand`（评分仍 `top_m`），作为可引用集。归入下次 unblocked 批次（纯 `retrieval.py`）。
 
 **证据（测量于 `c81383b` 时点，2026-09-22，重建进行中）**：`strip_base64('text data:image/png;base64,AAAA/BBBB== Discussion...')` → `'text [图片]'`（确认 S2）；`source=35, docs=18, parsed markdown=19（含 _pilot）, mineru 运行中`（确认 S1）。此后实测 `parsed 23/35`、`docs=21`、`files=21`，仍在增长——门禁以「重建结束 + `parsed/<rel>` 按 rel 全覆盖」为准，不看单一数字。
 

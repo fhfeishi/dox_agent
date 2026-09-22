@@ -87,7 +87,7 @@
 
 | # | 问题 | 影响 |
 |---|---|---|
-| 10 | 报告↔会话绑定：`POST /api/reports` 无 `session_key`/`run_id`，`GET /api/reports/{id}` 只按 id 取 | E1/E2/G9（E 开工前须定稿） |
+| 10 | 报告↔会话绑定 | **已定稿（2026-09-22）**：报告为应用级不可变产物，按 `report_id` 定位；`reports` 表列 `(id, created_at, session_key, run_id, corpus_id, params, markdown)`；`GET /api/reports/{id}` 全局取 + **新增按会话列表** `GET /api/reports?session_key=`；`run_id` 幂等；turn 存可选 `reportId`。见 [`DECISIONS.md`](DECISIONS.md)「报告↔会话绑定」。**后端待补**：`run_id` 幂等与列表接口（当前最小实现缺） |
 | 11 | task 推导许可与全局 `answer_policy`：已定稿（task1/task2 收窄、task3 放开并标注），随任务提示词落实 | G1/G4（已落实，保留备查） |
 | 12 | 模型可用性判定来源：`/api/health` 的 `model_verified` 恒 `false`，无生产逻辑 | U9.4-2/F11（未定稿前不开工） |
 | 13 | **已定稿**：mineru `tier=standard` | K13 |
@@ -783,7 +783,7 @@ understand → retrieve → assemble → validate → answer → finish
 |---|---|---|
 | **G10a+G10b（同批）** | 前端放开 task4 输入/发送 **且** 后端同批放开 `Literal` 并加 `intake` 分支 | 切到 task4 能输入、能发送、得到参数回显/追问；**无 422 窗口** |
 | G10c | 任务切换语义（默认新建会话 + 提示） | 切换有提示、历史不静默丢失；输入可用 |
-| G10d | E 接线：`POST /api/reports` + 四模板 + md 预览/下载；task4 调用 | 生成 Markdown 报告；会话引用 id |
+| G10d | E 接线：前端报告卡片（生成/预览/下载/会话引用 id）；调 `POST /api/reports` 带 `session_key`+`run_id` | 生成 Markdown 报告；会话可列/打开其报告；幂等 |
 
 **本轮状态（2026-09-22）**：G10a+G10b ✅、G10c ✅；G10d **后端已实现**（四模板 + md 导出 + 生成），**前端报告卡片未接**：`#10（报告↔会话绑定）仍未定稿**，E 前端接线待其定稿后进行；`POST /api/reports` 当前采用最小绑定（app 级 `reports.sqlite3`、可选 `session_key` 仅记录），不预设 #10 结论。
 - 依赖：G10d 依赖 #10 + E；**G10a+G10b 必须同批**（否则 task4 发送触发 `extra="forbid"`+Literal → 422，回到死路）。

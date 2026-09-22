@@ -133,6 +133,17 @@
 - **删除/失效**：删文件/库同步清 `parsed/` 与 Chroma chunk；`parser_signature` 入库 meta，变更即 `force`。
 - 状态：L 开工前定稿（与 ITERATION §7.14 一致）。
 
+## 报告↔会话绑定（#10 定稿，2026-09-22）
+
+- 定位：报告是**应用级不可变产物**，`report_id` 全局唯一定位；单用户本地，不做多用户权限。
+- 字段：`POST /api/reports` 增可选 `run_id`；`session_key`（chat 入口必填、独立报告可空）、`corpus_id` 记录来源。`reports` 表列改为 `(id, created_at, session_key, run_id, corpus_id, params, markdown)`（前三者可查询，`params` 留全量）。
+- 幂等：同一 `(session_key, run_id)` 重复请求返回既有报告，不重复生成。
+- 接口：`GET /api/reports/{id}` 按 id 全局取；**新增 `GET /api/reports?session_key=&run_id=&limit=`**（列表，仅元数据）；`/export?format=md` 不变。
+- 会话侧：assistant turn 存**可选** `reportId`（缺失默认，遵守「持久化数据向后兼容」）；会话可列/打开其报告。
+- 不做：删除、权限、跨用户。
+- 状态：**已定稿**；G10d 前端卡片按此接线；后端需补 `run_id` 幂等与列表接口（当前最小实现缺）。
+- 附带修正：`main.py:81` 注释「task4 is deliberately absent」已过期，应改为“task4 允许输入、走 intake，不生成正文”。
+
 ## 任务 = 输出契约，不是输入闸门（2026-09-22，规划）
 
 - 采用：四个任务（task1–4）都保留自由文本输入；输入禁用只由运行时状态（busy/离线/未就绪）决定，**不由 task 决定**。**约束对象是正文生成，不是输入**：task4 正文仍不在 chat 生成，chat 只做 intake。

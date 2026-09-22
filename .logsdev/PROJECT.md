@@ -145,6 +145,6 @@ SQLite 当前文档 → 页/行窗口 → BM25Plus sparse；配置 `EMBEDDING_PA
 ## 6. 运行与验证
 
 - 启动：`bash launch.sh`（复用环境 → 安装依赖 → 构建前端 → uvicorn）；默认 <http://127.0.0.1:8000>。
-- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`STATE_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、`MINERU_CMD`/`MINERU_HOME`、`CORPORA*`、预算与超时）。
+- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`STATE_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、`MINERU_CMD`/`MINERU_HOME`/`MINERU_TIMEOUT`、`CORPORA*`、预算与超时）。
 - 测试：`.venv/bin/python -m pytest tests -q`；`cd frontend && npm test`、`npm run build`。
 - 本地数据布局与配置映射见仓库 `README.md`。

@@ -110,7 +110,9 @@
 - 入库与预览：**正文/检索用 zip 的 `middle_json` 逐页块文本（页号准确，B3）**；**`markdown.md` 解包后保留备后续渲染**；**预览服务源 PDF**（即 origin，v4 无单独 origin.pdf）。`_block_text` 已改为递归展平（修复嵌套 content 的列表 repr 泄漏）。
 - 旧版对照：`temp/` 的 10 个目录属**经典 MinerU**（`full.md`+`*_origin.pdf`+`images/`），仅作历史参考；实现以 v4 CLI 为准。
 - 取代：原「解析器：固定使用 liteparse」及 K2/K3/K4/K12 基于 liteparse 的 OCR 三档/语言配置/按库语言（mineru auto 自行识别语言）。
-- 状态：**已实现适配器（K13）**：`parsers.py` 跑 `MINERU_CMD` 到 `<KB>/parsed/<rel>/`，`read_mineru_output` 支持 v4 `middle.json`/经典 `content_list.json`（`page_idx`→页码，回退 markdown 单页）；已移除 liteparse、`/api/ocr-config`、`/api/corpora/{id}/ocr` 与前端 OCR 入口；保留 `ingest?force=true`（侧栏“重导入”）。**未在本机安装 mineru，真实基金库重导入待执行**；已用真实 `temp/` 经典产物验证读取（45 页可读中文）。
+- 状态：**已实现适配器（K13）**：`parsers.py` 跑 `MINERU_CMD` 到 `<KB>/parsed/<rel>/`，`read_mineru_output` 支持 v4 `middle.json`/经典 `content_list.json`（`page_idx`→页码，回退 markdown 单页）；已移除 liteparse、`/api/ocr-config`、`/api/corpora/{id}/ocr` 与前端 OCR 入口；保留 `ingest?force=true`（侧栏“重导入”）。
+- 实现补充（2026-09-22，本地实测）：`MINERU_TIMEOUT` 默认 **3600s**；超时用 `start_new_session=True` + `killpg` 杀**整个进程组**（`shell=True` 否则超时只杀 shell，遗留 mineru 孙进程）。
+- tier 实测：最小基金 PDF（6 页）`--tier standard` **>900s 未完成（超时）**，`--tier basic` **96.7s** 且中文可读、页码正确。故**代码默认仍为 standard（#13），本机重建用 basic**（`.env` 覆盖，已有注释）；标准档待后续质量增强或更强算力再跑。
 - 试用证据（2026-09-22，本地独立 venv）：安装 `mineru==4.0.5`（无 torch）；最小基金 PDF `--tier basic --ocr-mode auto` 1–2 页约 6s（首次拉模型约 1 分钟）；`--format markdown` 单文件（图片 base64、无页标记）/ `--format middle_json` 单文件（`pages[].page_idx`+blocks）。证据见 [`ITERATION.md`](ITERATION.md) §3。
 - 待审核（影响实现）：① tier 默认 `basic`/`standard`；② 页码取 `middle_json` 还是 markdown 单页；③ 正文图片是否渲染（预览走源 PDF）。见 [`ITERATION.md`](ITERATION.md) §4 #13–#15。
 

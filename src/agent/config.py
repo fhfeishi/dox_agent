@@ -51,7 +51,7 @@ class Settings(BaseSettings):
     # `zip` emits markdown.md + middle_json.json (+images) in one parse.
     mineru_cmd: str = 'mineru-kit parse "{pdf}" -o "{out}/result.zip" --tier standard --ocr-mode auto --format zip'
     mineru_home: Path | None = None
-    mineru_timeout: float = Field(default=900, ge=30, le=3600)
+    mineru_timeout: float = Field(default=3600, ge=30, le=7200)
     max_research_steps: int = Field(default=24, ge=4, le=100)
     max_rounds: int = Field(default=2, ge=1, le=3)
     quick_verification: bool = True

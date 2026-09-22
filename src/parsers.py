@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 import shutil
+import signal
 import subprocess
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -103,21 +104,38 @@ def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> list[Page]
     import sys
 
     bin_dir = str(Path(sys.executable).parent)
-    environment["PATH"] = bin_dir + os.pathsep + environment.get("PATH", "")
+    environment["PATH"] = str(Path(sys.executable).parent) + os.pathsep + environment.get("PATH", "")
     if settings.mineru_home:
         environment["MINERU_HOME"] = str(settings.mineru_home)
     try:
-        subprocess.run(command, shell=True, check=True, env=environment,
-                       timeout=settings.mineru_timeout, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    except subprocess.TimeoutExpired as exc:
-        raise ValueError("mineru 解析超时（MINERU_TIMEOUT）") from exc
-    except subprocess.CalledProcessError as exc:
-        tail = (exc.output or b"")[-500:].decode("utf-8", "ignore")
-        raise ValueError("mineru 解析失败：" + tail) from exc
+        process = subprocess.Popen(command, shell=True, env=environment, stdout=subprocess.PIPE,
+                                   stderr=subprocess.STDOUT, start_new_session=True)
+    except OSError as exc:
+        raise ValueError("无法启动 mineru：" + str(exc)) from exc
+    try:
+        output, _ = process.communicate(timeout=settings.mineru_timeout)
+    except subprocess.TimeoutExpired:
+        _kill_process_group(process)
+        raise ValueError(f"mineru 解析超时（>{int(settings.mineru_timeout)}s；可用 MINERU_TIMEOUT 调大）")
+    if process.returncode != 0:
+        tail = (output or b"")[-500:].decode("utf-8", "ignore")
+        raise ValueError("mineru 解析失败：" + tail)
     _, pages = read_mineru_output(out_dir)
     if not pages:
         raise ValueError("mineru 输出为空，未入库")
     return pages
+
+
+def _kill_process_group(process) -> None:
+    """Kill the whole mineru process tree (``shell=True`` otherwise orphans grandchildren)."""
+    try:
+        os.killpg(os.getpgid(process.pid), signal.SIGKILL)
+    except (ProcessLookupError, PermissionError, OSError):
+        process.kill()
+    try:
+        process.wait(timeout=10)
+    except subprocess.TimeoutExpired:
+        pass
 
 
 def parse_file(path: Path, settings: Settings, *, parsed_dir: Path | None = None) -> Document:

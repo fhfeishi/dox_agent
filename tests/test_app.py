@@ -33,6 +33,21 @@ def test_api_and_validation(tmp_path):
         assert client.post("/api/web/confirm/unknown").status_code == 409
 
 
+def test_document_markdown_endpoint_returns_full_body(tmp_path):
+    app, store = setup(tmp_path)
+    body = "# 标题\n\n| A | B |\n| --- | --- |\n| 1 | 2 |\n"
+    key = store.put(
+        Document(title="README", origin="README.md", kind="text", parser="markdown",
+                 pages=[Page(number=1, text=body)], markdown=body)
+    )["doc_id"]
+    with TestClient(app) as client:
+        payload = client.get(f"/api/documents/{key}/markdown").json()
+        assert payload["text"] == body
+        assert payload["version"] == store.get(key)["version"]
+        assert client.get(f"/api/documents/{key}/markdown?version=stale").status_code == 422
+        assert client.get("/api/documents/missing/markdown").status_code == 404
+
+
 def test_chat_rejects_client_research_state_and_starts_fresh(tmp_path):
     states = []
 

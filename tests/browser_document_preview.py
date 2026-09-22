@@ -32,6 +32,11 @@ async def main():
 
             async def read_document(route):
                 url = route.request.url
+                # This corpus predates the markdown channel: 404 makes the preview fall back to
+                # the windowed reader (the multi-page path under test here).
+                if "/markdown" in url:
+                    await route.fulfill(status=404, json={"detail": "markdown 不可用"})
+                    return
                 reads.append(url)
                 params = {key: value for key, value in (part.split("=", 1) for part in url.split("?", 1)[1].split("&"))}
                 page_no, start = int(params["page"]), int(params["start_line"])

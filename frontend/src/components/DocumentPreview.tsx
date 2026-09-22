@@ -4,8 +4,9 @@ import remarkGfm from "remark-gfm";
 import { DocumentPanel } from "./DocumentPanel";
 import { PdfViewer } from "./PdfViewer";
 import { documentMeta, isLegacyParser } from "../documentMeta";
-import { loadDocumentText } from "../documentText";
+import { loadPreviewText } from "../documentText";
 import { downloadText, openTextInNewTab } from "../exportText";
+import { markdownComponents } from "../markdownComponents";
 import { Pill } from "./ui";
 import type { DocumentInfo } from "../useDocuments";
 
@@ -56,8 +57,7 @@ export function DocumentPreview({
 /** Non-PDF fallback: the normalized text reader shared with the document explorer's TextPane. */
 function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?: string }) {
   const [text, setText] = useState("");
-  const [kind, setKind] = useState("");
-  const [parser, setParser] = useState("");
+  const [markdown, setMarkdown] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [raw, setRaw] = useState(false);
@@ -68,14 +68,12 @@ function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?: strin
     setError("");
     setText("");
     setRaw(false);
-    setKind(doc.kind ?? "");
-    setParser(doc.parser ?? "");
-    loadDocumentText(doc, corpus)
+    setMarkdown(false);
+    loadPreviewText(doc, corpus)
       .then((result) => {
         if (!cancelled) {
           setText(result.text);
-          setKind(result.kind);
-          setParser(result.parser);
+          setMarkdown(result.markdown);
         }
       })
       .catch((e) => {
@@ -88,7 +86,6 @@ function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?: strin
       cancelled = true;
     };
   }, [doc, corpus]);
-  const markdown = kind === "official" || parser.includes("markdown");
   return (
     <>
       {loading ? <p className="text-[13px] text-[var(--steel)]">正在读取正文…</p> : null}
@@ -115,14 +112,16 @@ function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?: strin
             <button
               type="button"
               className="text-[var(--link)] hover:underline"
-              onClick={() => openTextInNewTab(text, doc?.title || "文档预览")}
+              onClick={() => openTextInNewTab(text, doc?.title || "文档预览", markdown)}
             >
               新窗口打开
             </button>
           </div>
           {markdown && !raw ? (
             <div className="markdown">
-              <Markdown remarkPlugins={[remarkGfm]}>{text}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                {text}
+              </Markdown>
             </div>
           ) : (
             <pre className="font-code whitespace-pre-wrap break-words text-[12px] leading-[1.9] text-[var(--charcoal)]">

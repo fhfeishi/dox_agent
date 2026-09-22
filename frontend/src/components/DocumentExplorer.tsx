@@ -3,9 +3,10 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { DocumentPanel } from "./DocumentPanel";
 import { DocumentTree } from "./DocumentTree";
-import { loadDocumentText } from "../documentText";
+import { loadPreviewText } from "../documentText";
 import { documentMeta, isLegacyParser } from "../documentMeta";
 import { downloadText, openTextInNewTab } from "../exportText";
+import { markdownComponents } from "../markdownComponents";
 import { PdfViewer } from "./PdfViewer";
 import { Button, Pill } from "./ui";
 import { useDocuments } from "../useDocuments";
@@ -123,7 +124,7 @@ export function DocumentExplorer({
 /** U2.3：规范化正文预览（Markdown 渲染 + 原文切换），与 U7 的 DocumentPreview 同一读取通道。 */
 function TextPane({ doc, corpus }: { doc: DocumentInfo; corpus?: string }) {
   const [text, setText] = useState("");
-  const [kind, setKind] = useState("");
+  const [markdown, setMarkdown] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [raw, setRaw] = useState(false);
@@ -133,11 +134,12 @@ function TextPane({ doc, corpus }: { doc: DocumentInfo; corpus?: string }) {
     setError("");
     setText("");
     setRaw(false);
-    loadDocumentText(doc, corpus)
+    setMarkdown(false);
+    loadPreviewText(doc, corpus)
       .then((result) => {
         if (!cancelled) {
           setText(result.text);
-          setKind(result.kind);
+          setMarkdown(result.markdown);
         }
       })
       .catch((e) => {
@@ -150,7 +152,6 @@ function TextPane({ doc, corpus }: { doc: DocumentInfo; corpus?: string }) {
       cancelled = true;
     };
   }, [doc, corpus]);
-  const markdown = kind === "official" || doc.parser.includes("markdown");
   return (
     <div className="min-h-0 flex-1 overflow-auto">
       {loading ? <p className="text-[13px] text-[var(--steel)]">正在读取正文…</p> : null}
@@ -174,13 +175,15 @@ function TextPane({ doc, corpus }: { doc: DocumentInfo; corpus?: string }) {
             >
               下载{markdown ? " .md" : " .txt"}
             </button>
-            <button type="button" className="text-[var(--link)] hover:underline" onClick={() => openTextInNewTab(text, doc.title)}>
+            <button type="button" className="text-[var(--link)] hover:underline" onClick={() => openTextInNewTab(text, doc.title, markdown)}>
               新窗口打开
             </button>
           </div>
           {markdown && !raw ? (
             <div className="markdown">
-              <Markdown remarkPlugins={[remarkGfm]}>{text}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                {text}
+              </Markdown>
             </div>
           ) : (
             <pre className="font-code whitespace-pre-wrap break-words text-[12px] leading-[1.9] text-[var(--charcoal)]">

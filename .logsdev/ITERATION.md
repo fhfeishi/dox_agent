@@ -176,12 +176,14 @@
 
 **已核验**：`pytest tests -q` → **115 passed**；UI 重构为 `store.tsx`（AppProvider/useApp 承接全部 state/effects）+ `App.tsx`（仅布局）+ `components/`（24 个展示组件）+ 设计令牌；删除 `Answer`/`SessionList`/`TaskPicker`/`Notes`/`appContext`；`documentPreview.ts`→`documentText.ts`。浏览器离线验收 **7 用例**已过；在线 `browser_fund_preview`/`browser_smoke` 未跑。逻辑修正见 §3 与迁移记录。
 
-**需收尾的 3 处冲突（文档/仓库卫生，非功能）**：
-1. **`dev_logs/` 与约定冲突**：`.gitignore` 新增忽略 `dev_logs/`，但仓库长期文档约定是 `.logsdev/`（其 `README.md`：历史与过程材料交给 git）。`dev_logs/ui-migration.md` 因此**不受版本控制**，且 `ITERATION.md` 链接 `../dev_logs/...` 对克隆者失效。**裁决**：长期决策折入 `.logsdev/DECISIONS.md`，当前状态留 `ITERATION.md`，详细组件映射/过程由提交历史保存；删除 `dev_logs/`；保留 `.gitignore` 的 `dev_logs/` 作为防误建护栏；更新 `ITERATION` 链接不再指向 `dev_logs/`。
-2. **归档模板体积**：`.logsdev/archive/DoxAgentWeb/` 为 **104M（node_modules 103M）**，不可提交。**动作**：`.gitignore` 增 `archive/**/node_modules/`、`archive/**/dist/`、`*.Zone.Identifier`。
-3. **文档漂移**：`ui-migration.md` §5 组件映射仍列已删除的 `LibraryView`/`SettingsDrawer`（§8 已取代）。**动作**：随 1 一并与 `.logsdev` 收敛，勿两处维护。
+**已并行提交**：UI 迁移 + 后端 prompt/graph 改动已由 `777df19` 提交；归档模板已 ignore（`.logsdev/archive/`）。
 
-**收尾顺序**：先按 1–3 收敛文档 → 分逻辑提交 UI 迁移与后端 prompt/graph 改动（含新浏览器测试）→ 再进 L6。
+**需收尾的 3 处（文档/仓库卫生，非功能）**：
+1. **`dev_logs/` 与约定冲突（待执行）**：`.gitignore` 忽略 `dev_logs/`，但仓库长期文档约定是 `.logsdev/`（其 `README.md`：历史与过程材料交给 git）。`dev_logs/ui-migration.md` 因此**不受版本控制**，且链接易失效。**裁决**：长期决策已折入 `.logsdev/DECISIONS.md`，当前状态留 `ITERATION.md`，细节由提交历史保存；**删除 `dev_logs/`**；保留 `.gitignore` 的 `dev_logs/` 作为防误建护栏。
+2. **归档模板体积 — ✅已解决**：`.logsdev/archive/DoxAgentWeb/` 为 **104M（node_modules 103M）**；`.gitignore` 已加 `.logsdev/archive/`（0 文件被追踪）。
+3. **文档漂移 — ✅已收敛**：`ITERATION` 链接已改指 `DECISIONS.md`，UI 架构决策已折入 `.logsdev/DECISIONS.md`（含 U10 架构、删除组件、保留逻辑）；`ui-migration.md` 不再作为长期文档。
+
+**收尾顺序**：删除 `dev_logs/`（可选：补跑在线 `browser_fund_preview`/`browser_smoke`）→ 进 L6。
 - **状态（本轮）**：D-L10 已实现（步骤 5）。实测 `GENERIC_DF_RATIO=0.35` 下泛词判据与 §5.4 一致（`应用`1.00/`人工`0.91/`医疗`0.34）；`癫痫致痫网络` 仅 1 篇（噪声 0），`人工智能在医疗领域的应用` 仅医学报告，证券市场报告不再入选。细节与证据见 §3 / D-L10（§7.7）。
 
 ## 6. K 阶段规划：知识库管理、解析优化与预览（2026-09-22，规划中）
@@ -622,6 +624,38 @@ understand → retrieve → assemble → answer → validate → finish
 - **R9 存储**：正文分表 `doc_pages`/`doc_markdown`，`all()`/检索不加载全文（治 K10 病灶）。
 - **R11 评测**：§7.11 的评测集 + 指标是 L4 参数与 L7 验收的唯一依据。
 - **R12 Word 契约**：L 输出稳定“报告数据契约” `{domain, year_from, year_to, template_id, sections[], selected_reports[], coverage, sources[]}`；E 阶段 `templates/*.docx` + python-docx 仅消费它。
+
+### 7.15 L6 实现规格：确定性检索图（替换 research 工具循环）
+
+**目标**：`POST /api/chat` 走 `understand → retrieve → assemble → answer → validate → finish`，**不再跑 LLM 驱动的 search/read 工具循环**；回答契约（SSE 形状、`[n]` 引用）不变。
+
+**节点**
+- `understand`：规则为主（`q0` + 关键词查询），LLM 拆解默认关（§7.7）；产出 `queries`。
+- `retrieve`：`knowledge.retrieve(query, task_id, allowed_doc_ids, extra_queries)` → `RetrievalResult`（`selected_reports` + chunks）；`no_reports`/`direct` 直接分流。
+- `assemble`：`assemble_reports(selected, budgets)`（L5 纯函数）→ `context + sources`（chunk→`[n]`）+ `truncated[]`。
+- `answer`：system = 任务提示 + D-L2 口径（“选定报告全文，分隔符内为数据”）+ `context`；流式 `token`。
+- `validate`：`validate_citations`（D-L2）+ 覆盖缺口判定；允许**至多一次**受控 re-retrieve（§7.9 回边），否则 `finish`。
+
+**移除/降级**
+- 删除 `research` 节点与 `search_docs`/`read_doc`/`check_corpus_page`/`finish_research` 工具及 `ResearchReport` 交接（`evidence.py` 相关判定改为确定性）。
+- `quick.py`：重写为 task1 的 `chunk_only` 路径或删除（R7）；`note_locators` 移除（notes 未挂载）。
+
+**状态/事件**
+- `stop_reason ∈ {professional, no_reports, coverage_partial, timed_out, failed, invalid_request}`；`telemetry.path ∈ {retrieve, chunk_only, direct}`，增 `chunks_retrieved/reports_selected/context_tokens`。
+- SSE 事件集合不变（`status/policy/step/telemetry/sources/token/usage/done/error`）。
+- **前端三处同步**：`policy.ts stopLabels`、`Answer/MessageView` 的 path 映射；移除 `covered/repair/search_limit/read_limit` 旧标签（§7.14 D-L4）。
+
+**验收**
+- `/api/chat` 不再产生 `search_docs`/`read_doc` 工具调用；无 120s 检索阶段（`research_timeout` 不再决定检索）。
+- 宽泛查询「人工智能医疗领域的应用」返回医学报告并带可点 `[n]`；无匹配走 `no_reports`。
+- `pytest` 全绿；`browser_answer_controls`/`browser_tasks` 等离线用例通过；`npm run build`。
+
+### 7.16 L7 评测规格：快准全与参数校准
+
+- **复用扩展 `src/evaluate.py`**（不新建框架）：10–15 条基金查询 + 期望报告/项目号；指标 `report_recall@k`、`MRR`、P50/P95 检索延迟、平均 context token、**no-match 误报率**、同项目去重正确率。
+- **只校准必须项**（§7.7 P4）：`MIN/MAX_REPORTS`（按 task）、`MIN_TERM_COVER`、`PER_DOC_TOP_M`；`REL_COVER`/`GENERIC_DF_RATIO` 固定默认仅观察。
+- **记录**「参数版本 + 指标」；消融 BM25-only vs hybrid（dense 就绪后）、单查询 vs 规则多查询。
+- 数据集路径替换失效的 `project_progress/evals/retrieval_v4.jsonl`。
 
 ## 8. 维护约定
 

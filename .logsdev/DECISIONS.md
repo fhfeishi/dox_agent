@@ -144,8 +144,8 @@
 
 - 采用：长期文档只维护 `.logsdev/{PROJECT,ITERATION,DECISIONS}` 与 `README`；过程/历史材料交给 git。`dev_logs/` 不复活；其 `ui-migration.md` 的长期结论折入 `.logsdev`，细节由提交历史保存。
 - 理由：`.gitignore` 忽略 `dev_logs/` 会让其内容不受版本控制，与「历史交给 git」及既有迁移（dev_logs→.logsdev）冲突。
-- 动作：删除 `dev_logs/`；保留 `.gitignore` 的 `dev_logs/` 护栏；`.logsdev/archive/**/node_modules`、`dist`、`*.Zone.Identifier` 不入库。
-- 状态：**待执行**（当前 `dev_logs/` 与 104M 归档模板仍在工作区）。
+- 动作：删除 `dev_logs/`；保留 `.gitignore` 的 `dev_logs/` 护栏；`.logsdev/archive/` 已 ignore（不追踪 104M 模板）。
+- 状态：**部分完成**（归档已 ignore、UI 决策已折入 `DECISIONS.md`；`dev_logs/` 待删除）。
 
 ## 应用级会话库独立于语料库（2026-09-22）
 

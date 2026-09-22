@@ -174,10 +174,10 @@ function App() {
     const history = override?.history ?? turns;
     const scope = override?.options ?? options;
     // U1.3: task_id is only sent once the backend accepts the field; task4 never goes through chat.
-    // H8: corpus_id likewise rides behind its own flag (ChatRequest extra="forbid").
+    // H8: bind the turn to the corpus the user is browsing, so the answer scope matches the library.
     const effectiveOptions: Options = {
       ...(uiFlags.tasks ? { ...scope, task_id: taskId } : { allowed_doc_ids: scope.allowed_doc_ids ?? null }),
-      ...(uiFlags.corpus && effectiveCorpusId ? { corpus_id: effectiveCorpusId } : {}),
+      ...(effectiveCorpusId ? { corpus_id: effectiveCorpusId } : {}),
     };
     const question = override?.question ?? (regenerate ? history.at(-1)?.question : input.trim());
     if (!question || controller.current || !ready || !workspace.loaded || sessionBusy) return;
@@ -377,9 +377,9 @@ function App() {
         {progress && progress.total > 0 && <div className="mt-3"><progress className="w-full" value={progress.completed} max={progress.total}/><p className="text-xs">向量索引：{progress.completed} / {progress.total} 个片段</p></div>}
       </section>}
       {view === "chat" && <>
-      {(activeTask || (uiFlags.corpus && currentCorpus)) && <p className="mt-4 rounded-xl border border-stone-200 bg-white px-4 py-2 text-xs text-stone-600">
+      {(activeTask || currentCorpus) && <p className="mt-4 rounded-xl border border-stone-200 bg-white px-4 py-2 text-xs text-stone-600">
         {activeTask && <>任务：{activeTask.name} · {activeTask.description}</>}
-        {uiFlags.corpus && currentCorpus && <>{activeTask ? "　｜　" : ""}库：{currentCorpus.name}{currentCorpus.preparation !== "ready" ? `（${currentCorpus.preparation === "uninitialized" ? "未初始化" : currentCorpus.preparation === "empty" ? "空库" : currentCorpus.preparation}）` : ""}</>}
+        {currentCorpus && <>{activeTask ? "　｜　" : ""}库：{currentCorpus.name}{currentCorpus.preparation !== "ready" ? `（${currentCorpus.preparation === "uninitialized" ? "未初始化" : currentCorpus.preparation === "empty" ? "空库" : currentCorpus.preparation}）` : ""}</>}
       </p>}
       <section className="flex-1 py-8" aria-label="对话">
         {!turns.length && <div className="py-16">

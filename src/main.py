@@ -608,7 +608,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(415, "该文件类型不支持网页预览")
         if path.stat().st_size > MAX_PREVIEW_BYTES:
             raise HTTPException(413, "文件过大，无法在网页内预览")
-        return FileResponse(path, media_type=media_type, filename=path.name)
+        # Inline so the raw reader (iframe/PDF viewer) renders instead of downloading.
+        return FileResponse(path, media_type=media_type, filename=path.name, content_disposition_type="inline")
 
     @app.get("/api/official-docs")
     async def official_status():

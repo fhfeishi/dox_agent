@@ -29,13 +29,13 @@
 
 **G 任务系统**：G1–G4、G7 ✅；G5 🟡（选择器/绑定/task4 阻断已实现，报告表单待 E）；G6 🟡；G8 任务输出验收、G9 报告入口 ⬜。
 
-**H 知识库管理**：H1–H3（注册表/按库导入/`?corpus=`）✅；H5–H7（选择器/详情/按库文档）✅；**H4 ✅代码**（chat `corpus_id`、按库限定检索，提交 `e7d08e2`）、**H8 ✅代码**（会话绑库、`VITE_UI_CORPUS`，提交 `67d0ff0`），两者**浏览器/真实语料验收未做**；H9 文件名元数据入服务端、H10 真实报告验收 ⬜。
+**H 知识库管理**：H1–H3（注册表/按库导入/`?corpus=`）✅；H5–H7（选择器/详情/按库文档）✅；**H4 ✅代码**（chat `corpus_id`、按库限定检索，提交 `e7d08e2`）、**H8 ✅默认启用并浏览器验收**（会话绑库；已移除 `VITE_UI_CORPUS`，选中语料随 chat 发送以保证浏览与回答同库），真实语料验收见 §3；H9 文件名元数据入服务端、H10 真实报告验收 ⬜。
 
 **K 知识库管理与导入优化**：K0（应用级会话库）、K0b（多库 read/file 补 `corpus`）、K1（增量导入 + 文件清单 + 删除同步）、K2（OCR 三档）、K3（liteparse 多 worker）、K4（OCR 运行时配置）、K6a（`corpus_id` 单射+限长）、K6（库新建/显示名重命名/删除）、K7（库内文件列表/上传/重命名/删除，md/pdf/txt）、K8（Word/.docx 解析）、K12（按库 OCR 语言 + 强制重导入）✅；K5（两阶段导入+进度/取消）、K9（按 kind 预览）、K10（检索缓存）、K11 验收 ⬜。
 
 **U UI 优化**：U0、U4.1a/U4.1b/U4.2、U5（会话内分支）、U6（电源按钮）、U7（知识库预览）、U8（LLM 状态）、U9.1（侧栏收束）、U9.2/U9.2b（文献库）、U9.4-1（只读模型）✅；U9.3 科研头条 🟡（仅占位）；U1（任务 UI）、U2（文档面板/引用跳转）🟡（代码完成、开关默认 off、浏览器验收未做）；U3 报告入口、U9.4-2 模型选择器 ⬜。
 
-**功能开关**：`VITE_UI_TASKS/FILTERS/DOC_PANEL/REPORTS/NEWS/MODELS/CORPUS` 均已建立、默认 off。启用策略：后端契约已实现 ∧ 浏览器实测通过。
+**功能开关**：`VITE_UI_TASKS/FILTERS/DOC_PANEL/REPORTS/NEWS/MODELS` 均已建立、默认 off。启用策略：后端契约已实现 ∧ 浏览器实测通过。`VITE_UI_CORPUS` 已移除：`corpus_id` 后端已实现并验收，选中语料始终随 chat 发送。
 
 ## 3. 已完成与证据
 
@@ -48,7 +48,7 @@
 | U5 | 会话内分支（`branches.ts` + 测试），编辑并重问不新增会话 | `9a0c899`；15 passed；`browser_session_branches.py` PASS |
 | U6/U7/U8 | 电源按钮、知识库正文预览（跨页续读）、LLM 状态灯 | `ce3b4e7`；浏览器脚本 PASS |
 | U1/U2/U9/D11/H5–H7 | 任务选择器、文档面板与引用跳转、侧栏收束/文献库、挤压式侧栏、库选择/详情/按库文档 | `e400279`；18 passed；tsc 无新错误 |
-| H4/H8 | 按库问答契约与会话绑库 | `e7d08e2`/`67d0ff0`；**浏览器验收未做** |
+| H4/H8 | 按库问答契约与会话绑库 | `e7d08e2`/`67d0ff0`；**浏览器验收**：`tests/browser_fund_preview.py` PASS（选基金库→文档列表重定域→chat 请求携带 `corpus_id`） |
 | 布局对齐 | 开发文档 `.logsdev/`；演示语料 `.demo_langchain/`；`VECTORDB_DIR` | `703d286`/`02cbcd9`；`pytest` 64 passed、路径解析验证 |
 | 方案 A 自包含库 | `.knowledge/<库>/{source,datadb,vectordb}`；演示库同构；`corpora.py` 按 role 目录扫描并把库内 `datadb/`/`vectordb/` 作为派生路径 | `c8ecef8`；当时基线 `pytest` 68 passed（新增 `tests/test_corpora.py` 4 例）；端到端导入派生落 `<库>/datadb/knowledge.sqlite3` |
 | K0/K0b/K1（提交 `9075895`） | 应用级会话库（`state_dir` + 一次性迁移）；read/file 按 `corpus`；增量导入 + 文件清单 + 删除同步；前端传递 `corpus` | 当时基线 `pytest` 75 passed；`tests/test_corpora_state.py`、`tests/test_incremental_import.py`；`npm run build` + `node --test` 18 passed；实机默认演示库二次导入 `added=0/skipped=1`、删探针 `deleted=1` 且不再出现在 `/api/documents` |
@@ -56,7 +56,7 @@
 | K6a/K6/K7（提交 `b443623`） | `corpus_id_for` 单射+限长；知识库新建/显示名重命名/删除（默认只删派生，`purge_source` 才删源）；库内文件列表/上传（`python-multipart` 流式、200MB 上限、名称规范化）/重命名/删除；前端 `CorpusAdmin`+`CorpusFiles` | `pytest` 83 passed（新增 K6a/K6/K7 共 4 例）；`npm run build` + `node --test` 18 passed；实机 httpx：创建→上传 `added=1`→列表 `indexed`→重命名→删文件→删库均成功 |
 | K8（提交 `0615ef9`） | Word `.docx` 解析（`python-docx`，段落+表格入正文）；`SOURCE_SUFFIXES` 与上传白名单加入 `.docx` | `pytest` 84 passed（新增 `tests/test_docx.py`）；`npm run build` 通过 |
 | K12（本轮） | 按库 OCR：`Knowledge.meta`（`ocr_mode`/`ocr_language`/`ocr_applied_*`）；`GET/PUT /api/corpora/{id}/ocr`；`ingest?force=`（`stale` 自动强制，job `forced`）；`GET /api/corpora` 增 `ocr_stale`；前端 `CorpusOcrSettings`（侧栏每库可展开） | `pytest` 86 passed（新增 `tests/test_corpus_ocr.py`、force 重解析例）；实机 httpx：PUT `eng`→`stale=true`→ingest `forced=true`→`stale=false`；再 ingest `forced=false, skipped=1` |
-| 预览 PDF 原文件 + 引用跳页（提交 `02d8c1e`；本轮修默认路径） | PDF 走 `/file`+`#page=`；引用 `[n]` 与“已读证据”chip 在默认配置（`VITE_UI_DOC_PANEL=off`）下也可点（`handleOpenSource` 不再依赖开关） | `npm run build` + `node --test` 18 passed；**浏览器实测待做**（基金库 10 份本地 PDF） |
+| 预览原文件/引用跳页修复（提交 `02d8c1e`/`6849250`；本轮修复） | `/file` 改 `Content-Disposition: inline`（原为 `attachment`，iframe 不会内联渲染）；**引用 `[n]` 实际未生效**：`Answer` 计算了 `rehypePlugins`/`components` 却未传给 `<Markdown>`，且 `rehypeCitations` 返回的是 transformer 而非 `options => transformer`；现已接通，`[n]` 为可点按钮、超范围数字保持字面、代码块不误匹配 | `npm run build` + `node --test` 18 passed；`tests/browser_fund_preview.py` PASS（基金库 PDF 内联渲染 + `[1]` 跳第 3 页 + chat 携带 `corpus_id`） |
 
 当前可用基线（本次实测）：后端 `pytest tests -q` → **86 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
@@ -72,14 +72,13 @@
 
 | 未决 | 影响 | 下一步 |
 |---|---|---|
-| 开关默认 off，U1/U2/H8 界面默认不可见 | "完成 ≠ 可用" | 逐枚：后端契约已实现 ∧ 浏览器实测通过后转 on |
+| U2 文档面板（`VITE_UI_DOC_PANEL`）浏览器验收未做 | U2 未转 on | 浏览器验收通过后转 on；当前默认路径已可直接预览 PDF/渲染正文（本轮已验收） |
 | D10 页码三方一致性未校验；U2 浏览器验收未做 | 引用跳页可信度 | 补 D10 回归 + U2 浏览器验收 |
 | D6 `pdfjs-dist` 未装（Windows×WSL 符号链接冲突） | PDF 缩放受限 | 换装后仅替换 `PdfViewer` 内部实现 |
 | B2/B4/B5 基金元数据与领域/年份过滤未做 | 报告与过滤缺依据 | 先 H9（文件名元数据入服务端）→ B2/B4/B5 |
 | E 报告入口未做；#10 未决 | task4/U3/G9 无法开工 | 定稿 #10 → 实现 E1/E2 |
 | #12 模型可用性判定缺失 | F11/U9.4-2 不可验收 | 定 health 探测口径或新增轻量探测接口 |
 | 基金库 `.knowledge/自然科学基金/` **已导入 10 份，但以 `eng` OCR 解析、正文乱码**；`files` 清单为空 | 预览/问答不可读，H10 无法验收 | 侧栏该库“解析设置”选 `chi_sim+eng` → “重新导入并应用”（K12 已实现）后做 H10 |
-| 预览引用跳页未做浏览器实测（基金库 10 份本地 PDF 可用） | 默认路径可点性刚修，未在真实浏览器确认 | 切到基金库，点文献库/引用，确认 PDF 原文件渲染 + `#page=` 定位；结果写回 §3 |
 | H10 真实基金报告端到端验收未做 | 基金场景未验证 | 以真实报告走「选库 → 浏览 → 预览 → 按库问答」 |
 | 按 kind 预览、两阶段导入进度未做 | 文件能力不完整、导入过程不可观测 | K9/K5 |
 

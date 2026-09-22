@@ -22,7 +22,7 @@ export function rehypeCitations({ sources, onCite }: { sources: Source[]; onCite
     const n = source.citation ?? index + 1;
     if (!byNumber.has(n)) byNumber.set(n, source);
   });
-  return (tree: HastNode) => {
+  return () => (tree: HastNode) => {
     rewrite(tree);
   };
 

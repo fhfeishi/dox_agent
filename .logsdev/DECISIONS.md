@@ -8,6 +8,14 @@
 - 已知代价：`PdfViewer` 用 `key` 让 iframe 每次翻页重载整份 PDF（大文件成本高）；D6 升级 PDF.js 后改 JS 控制页码。
 - 现状：Word（`.docx`）`parse_file` 的 `kind="text"`，预览走规范化纯文本 `<pre>`；“Word 转 HTML” 是 K9 目标，尚未实现。
 - 修复：引用 `[n]` 与“已读证据”chip 在**默认配置**下也可点（`handleOpenSource` 不再依赖 `VITE_UI_DOC_PANEL`）；默认走 PDF 原文件预览，flag 开时走 Explorer。
+- 修复（本轮）：`/file` 改 `Content-Disposition: inline`——此前为 `attachment`，iframe 不会内联渲染。
+- 修复（本轮）：`[n]` 实际一直未生效——`Answer` 计算了 `rehypePlugins`/`components` 却未传给 `<Markdown>`，且 `rehypeCitations` 返回 transformer 而非 `options => transformer`；现已接通（超范围数字保持字面、代码/链接不误匹配）。验收：`tests/browser_fund_preview.py`。
+
+## 语料选择与回答同库（H8 默认启用，2026-09-22）
+
+- 采用：选中语料始终随 `POST /api/chat` 发送 `corpus_id`（移除 `VITE_UI_CORPUS` 开关），会话头部始终显示当前库。
+- 理由：侧栏库选择会重定文档/文献库范围，但此前 `corpus_id` 只在开关开启时发送，导致“看着基金库、回答 demo 库”的范围不一致；H4 后端已实现并有单测，浏览器验收（`browser_fund_preview.py`：选库→重定域→chat 携带 `corpus_id`）已过。
+- 影响：`frontend/src/main.tsx`（发送 `corpus_id`、显示库）、`frontend/src/uiFlags.ts`（删除 `corpus` 开关）。
 
 ## 语料目录自包含「方案 A」（2026-09-22，取代分离布局）
 

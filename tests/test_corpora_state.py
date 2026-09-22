@@ -72,8 +72,8 @@ def test_non_default_corpus_read_and_file_require_corpus_param(tmp_path):
         file = client.get(f"/api/documents/{doc_id}/file?corpus={corpus_id}")
         assert file.status_code == 200 and file.text == "报告正文"
         from urllib.parse import quote
-        header = client.get(f"/api/documents/{doc_id}/file?corpus={corpus_id}").headers["content-disposition"]
-        assert quote(raw.name) in header
+        header = file.headers["content-disposition"]
+        assert header.startswith("inline") and quote(raw.name) in header
         # Unknown corpus is a clear 404, not a silent fallback to the default.
         assert client.get(f"/api/documents/{doc_id}?corpus=missing").status_code == 404
         assert client.get(f"/api/documents/{doc_id}/file?corpus=missing").status_code == 404

@@ -95,7 +95,7 @@ export function Answer({ attempt, startedTick, onRegenerate, onOpenSource }: {
   } : undefined, [onOpenSource, sourceByNumber]);
   return <>
     <Process attempt={attempt}/>
-    <div className="markdown"><Markdown remarkPlugins={[remarkGfm]}>{attempt.answer || (attempt.outcome === "running" ? "正在回应…" : "未生成回答")}</Markdown></div>
+    <div className="markdown"><Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehypePlugins} components={components}>{attempt.answer || (attempt.outcome === "running" ? "正在回应…" : "未生成回答")}</Markdown></div>
     {attempt.telemetry && <details className="mt-3 text-xs text-stone-500"><summary>运行记录</summary><p>{{quick: "快速查证", quick_then_research: "快速查证后深入研究", research: "深入研究", direct: "直接交流"}[attempt.telemetry.path ?? ""] ?? "旧版本未记录路径"}</p><p>搜索 {attempt.telemetry.searches} 次 · 已读 {attempt.telemetry.reads} 段 · 用量已报告 {attempt.usage?.reported_calls ?? "未知"} / {attempt.usage?.calls ?? "未知"} 次模型调用</p>{attempt.usage?.calls_by_phase && <p>调用阶段：{Object.entries(attempt.usage.calls_by_phase).map(([phase, count]) => `${{understand: "理解", research: "研究", answer: "回答", direct: "直接回答"}[phase] ?? phase} ${count}`).join(" · ")}</p>}{Object.entries(attempt.telemetry.stages_ms).map(([stage, ms]) => <p key={stage}>{{understand: "理解问题", research: "查证", validate: "核验", answer: "组织回答", direct: "直接交流", finish: "完成"}[stage] ?? stage}：{formatDuration(ms)}</p>)}</details>}
     <Timing attempt={attempt} startedTick={startedTick}/>
     <div className="mt-3 flex flex-wrap items-center gap-3 text-xs">

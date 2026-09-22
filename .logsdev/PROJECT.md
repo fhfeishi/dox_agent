@@ -91,7 +91,7 @@
 | `GET /api/health` | `status`/`app_id`/`model`/`docs_count`/`api_key_configured`/`model_verified(false)`/`web_provider`/`preparation`/`corpus_id`/`index_progress` |
 | `GET /api/documents?corpus=` | 摘要数组（`pages` 为页数、不含正文）+ `rel_path`/`status`/`meta`（`meta` 占位 `{}`）；未初始化库返回空数组；未知库 404 |
 | `GET /api/documents/{doc_id}` | 按 `page`/`start_line`/`version`/`section` 读取原文证据；可选 `corpus`（缺省默认库）；404/422 |
-| `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range）；可选 `corpus`（缺省默认库）；404/422/415/413(>200MB)；仅根目录内本地文件 |
+| `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range，`Content-Disposition: inline` 供内联预览）；可选 `corpus`（缺省默认库）；404/422/415/413(>200MB)；仅根目录内本地文件 |
 | `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`has_template` |
 | `GET\|PUT /api/ocr-config` | OCR 模式（`off`/`force`/`auto`）与语言（`eng`/`chi_sim`/`chi_sim+eng`）；写入口落 `STATE_DIR/ocr.json`，仅影响后续导入（K4） |
 | `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job`/`ocr_stale` |
@@ -104,7 +104,7 @@
 | `POST /api/ingest/local`、`POST /api/ingest/text` | 本地导入（txt/md/pdf/docx）/ 手工补正文；准备中 409 |
 | `GET\|POST /api/official-docs` | 官方 Markdown 发现与批量更新（单进程内存任务） |
 | `POST /api/web/preview`、`/api/web/confirm/{id}` | 网页快照预览与确认入库 |
-| `POST /api/chat` | SSE 流式问答（见 4.2） |
+| `POST /api/chat` | SSE 流式问答（见 4.2）；前端始终发送当前选中库的 `corpus_id`，保证浏览与回答同库 |
 | `GET\|PUT /api/workspace/{sessions\|notes}(/{key})` | 会话与笔记读写；409 revision 冲突、413 超 4MB、422 笔记来源非法 |
 | `GET /{asset_path}` | 托管 `frontend/dist`；`api/` 前缀与越界 404 |
 

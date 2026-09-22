@@ -54,7 +54,7 @@ class Settings(BaseSettings):
     mineru_timeout: float = Field(default=3600, ge=30, le=7200)
     max_research_steps: int = Field(default=24, ge=4, le=100)
     max_rounds: int = Field(default=2, ge=1, le=3)
-    quick_verification: bool = True
+    retrieve_retry: int = Field(default=1, ge=0, le=1)  # L6: at most one bounded re-retrieve
     evidence_routing: bool = True
     max_searches: int = Field(default=6, ge=1, le=20)
     max_reads: int = Field(default=8, ge=2, le=20)

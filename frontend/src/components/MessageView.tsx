@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
 import type { Source, Step } from "../api";
 import { rehypeCitations } from "../citation";
+import { markdownComponents } from "../markdownComponents";
 import { formatDuration, type Attempt } from "../conversation";
 import { stopLabels } from "../policy";
 import { Icon } from "./Icons";
@@ -241,22 +242,23 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
       <div className="mt-[6px] space-y-[2px]">
         <p>
           {{
-            quick: "快速查证",
-            quick_then_research: "快速查证后深入研究",
-            research: "深入研究",
+            retrieve: "报告级检索",
+            chunk_only: "片段作答",
             direct: "直接交流",
           }[t.path ?? ""] ?? "旧版本未记录路径"}
         </p>
         <p>
-          搜索 {t.searches} 次 · 已读 {t.reads} 段 · 已报告 {attempt.usage?.reported_calls ?? "?"} /{" "}
-          {attempt.usage?.calls ?? "?"} 次模型调用
+          检索 {t.chunks_retrieved} 片段 · 选中 {t.reports_selected} 篇 · 上下文约 {t.context_tokens.toLocaleString()} tokens · 已报告 {
+            attempt.usage?.reported_calls ?? "?"
+          } / {attempt.usage?.calls ?? "?"} 次模型调用
         </p>
         {Object.entries(t.stages_ms).map(([stage, ms]) => (
           <p key={stage}>
             {{
               understand: "理解问题",
-              research: "查证",
-              validate: "核验",
+              retrieve: "检索报告",
+              assemble: "装配上下文",
+              validate: "核验覆盖",
               answer: "组织回答",
               direct: "直接交流",
               finish: "完成",
@@ -326,6 +328,7 @@ export function MessageView({
     () =>
       onOpenSource
         ? {
+            table: markdownComponents.table,
             a: (props: ComponentProps<"a">) => {
               const match = typeof props.href === "string" ? /^#cite-(\d+)$/.exec(props.href) : null;
               const source = match ? sourceByNumber.get(Number(match[1])) : undefined;
@@ -344,7 +347,7 @@ export function MessageView({
               );
             },
           }
-        : undefined,
+        : { table: markdownComponents.table },
     [onOpenSource, sourceByNumber],
   );
 

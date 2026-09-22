@@ -55,32 +55,20 @@ def test_usage_explains_missing_calls_and_reserves_final_answer():
     asyncio.run(check())
 
 
-def test_api_counts_verification_and_answer_and_resets_each_request(tmp_path, monkeypatch):
+def test_api_counts_answer_and_resets_each_request(tmp_path):
     usage = {"input_tokens": 10, "output_tokens": 3, "total_tokens": 13}
     model = FakeMessagesListChatModel(responses=[
-        AIMessage(content='{"route":"direct","intent":"general"}', usage_metadata=usage),
+        AIMessage(content="answer", usage_metadata=usage),
         AIMessage(content="answer", usage_metadata=usage),
     ])
     app, store = setup(tmp_path, lambda store, settings: build_graph(store, settings, model))
     store.put(Document(title="fact", origin="fact", kind="text", parser="test",
                        pages=[Page(number=1, text="what is recursion " * 20)]))
-
-    def factory(**kwargs):
-        tools = {t.name: t for t in kwargs["tools"]}
-
-        class Agent:
-            async def ainvoke(self, *args, **kwargs):
-                hits = await tools["search_docs"].ainvoke({"query": "recursion"})
-                if hits and "doc_id" in hits[0]:
-                    await tools["read_doc"].ainvoke({key: hits[0][key] for key in ("doc_id", "version", "chunk_id")})
-
-        return Agent()
-
-    monkeypatch.setattr("src.agent.graph.create_deep_agent", factory)
     with TestClient(app) as client:
         for _ in range(2):
             response = client.post("/api/chat", json={"messages": [{"role": "user", "content": "what is recursion"}]})
             frames = [json.loads(frame.split("data: ")[1]) for frame in response.text.split("\n\n") if frame.startswith("event: usage")]
-            assert frames[-1]["total_tokens"] == 26
-            assert frames[-1]["calls"] == frames[-1]["reported_calls"] == 2
+            # L6: deterministic retrieval answers with exactly one model call per request.
+            assert frames[-1]["total_tokens"] == 13
+            assert frames[-1]["calls"] == frames[-1]["reported_calls"] == 1
             assert response.text.index("event: usage") < response.text.index("event: done")

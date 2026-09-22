@@ -1,3 +1,5 @@
+"""L6: deterministic retrieval graph — no LLM search/read tool loop."""
+
 import asyncio
 from types import SimpleNamespace
 
@@ -6,64 +8,42 @@ from src.agent.config import Settings
 from src.knowledge import Document, Knowledge, Page
 
 
-def test_graph_reads_real_tool_evidence(tmp_path, monkeypatch):
+class RecordingModel:
+    def __init__(self, answer="2025年10月22日 [1]"):
+        self.answer = answer
+        self.seen = ""
+
+    async def astream(self, messages):
+        self.seen = messages[0].content
+        yield SimpleNamespace(content=self.answer)
+
+
+def test_graph_retrieves_selected_reports_and_answers(tmp_path):
     store = Knowledge(tmp_path / "db")
-    store.put(
-        Document(
-            title="南溪",
-            origin="test",
-            parser="text",
-            kind="text",
-            pages=[Page(number=1, text="南溪施工完成日期2025年10月22日")],
-        )
-    )
-
-    def fake_agent(**kwargs):
-        search, read = kwargs["tools"]
-
-        class Agent:
-            async def ainvoke(self, *args, **kwargs):
-                hits = await search.ainvoke({"query": "南溪施工"})
-                hit = hits[0]
-                await read.ainvoke({k: hit[k] for k in ("doc_id", "version", "chunk_id")})
-
-        return Agent()
-
-    monkeypatch.setattr(graph, "create_deep_agent", fake_agent)
-
-    class Model:
-        async def astream(self, messages):
-            assert "2025年10月22日" in messages[0].content
-            yield SimpleNamespace(content="2025年10月22日 [1]")
-
-    app = graph.build_graph(store, Settings(_env_file=None, evidence_routing=False), Model())
+    store.put(Document(title="南溪", origin="test", parser="text", kind="text",
+                       pages=[Page(number=1, text="南溪施工完成日期2025年10月22日")]))
+    model = RecordingModel()
 
     async def run():
-        return [
-            e
-            async for e in app.astream(
-                {"messages": [{"role": "user", "content": "南溪?"}], "rounds": 0, "evidence": []},
-                stream_mode="custom",
-            )
-        ]
+        app = graph.build_graph(store, Settings(_env_file=None), model)
+        return [event async for event in app.astream(
+            {"messages": [{"role": "user", "content": "南溪施工"}], "task_id": "task2"}, stream_mode="custom")]
 
     events = asyncio.run(run())
-    sources = next(e["data"] for e in events if e["event"] == "sources")
-    assert len(sources) == 1
+    sources = next(event["data"] for event in events if event["event"] == "sources")
+    telemetry = [event["data"] for event in events if event["event"] == "telemetry"][-1]
+    assert sources and sources[0]["chunk_id"]
     assert sources[0]["version"] == store.all()[0]["version"]
+    assert "2025年10月22日" in model.seen  # full report markdown reachable by the answer model
+    assert telemetry["reports_selected"] == 1 and telemetry["chunks_retrieved"] >= 1
+    assert telemetry["path"] == "retrieve"
 
 
-def test_empty_research_is_bounded(tmp_path, monkeypatch):
-    calls = []
+def test_graph_reports_no_match_for_empty_corpus(tmp_path):
+    async def run():
+        app = graph.build_graph(Knowledge(tmp_path / "db"), Settings(_env_file=None), object())
+        return await app.ainvoke({"messages": [{"role": "user", "content": "南溪"}]})
 
-    class Agent:
-        async def ainvoke(self, *args, **kwargs):
-            calls.append(1)
-
-    monkeypatch.setattr(graph, "create_deep_agent", lambda **kwargs: Agent())
-    app = graph.build_graph(Knowledge(tmp_path / "db"), Settings(_env_file=None, max_rounds=2, evidence_routing=False), object())
-    result = asyncio.run(
-        app.ainvoke({"messages": [{"role": "user", "content": "?"}], "rounds": 0, "evidence": []})
-    )
-    assert len(calls) == 2
-    assert "没有读到" in result["answer"]
+    result = asyncio.run(run())
+    assert result["stop_reason"] == "no_reports"
+    assert "没有匹配的报告" in result["answer"]

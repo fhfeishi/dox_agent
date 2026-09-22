@@ -112,6 +112,7 @@ class RetrievalResult:
     reason: str = ""  # "" | "no_reports" | "direct"
     partial: bool = False  # 命中但不足该任务的 MIN_REPORTS（D-L4 coverage_partial 场景）
     candidates: int = 0
+    specific: tuple[str, ...] = ()  # D-L10 净化后的实词，供 L6 覆盖缺口判定
 
 
 def strip_base64(text: str) -> str:
@@ -326,10 +327,11 @@ def select_reports(
         cover = len(set(specific) & hit_tokens) / len(specific) if specific else 1.0
         scored.append((sum(fused[cid] for cid in top), cover, doc, candidates))
     if not scored:
-        return RetrievalResult(reports=[], matched=False, reason="no_reports")
+        return RetrievalResult(reports=[], matched=False, reason="no_reports", specific=tuple(specific))
     top1 = max(cover for _, cover, _, _ in scored)
     if not broad and top1 < config.min_term_cover:
-        return RetrievalResult(reports=[], matched=False, reason="no_reports", candidates=len(scored))
+        return RetrievalResult(reports=[], matched=False, reason="no_reports", candidates=len(scored),
+                               specific=tuple(specific))
 
     ranked = sorted(scored, key=lambda row: (-row[0], row[2].doc_id))
     floor = 0.0 if broad else max(config.min_term_cover, config.rel_cover * top1)
@@ -355,7 +357,8 @@ def select_reports(
         kept.append(SelectedReport(doc=doc, score=score, term_cover=cover,
                                    chunks=[chunks_by_id[cid] for cid in ids]))
     limit = config.max_reports.get(task_id, config.max_reports.get("task1", 3))
-    return RetrievalResult(reports=kept[:limit], matched=True, partial=partial, candidates=len(scored))
+    return RetrievalResult(reports=kept[:limit], matched=True, partial=partial, candidates=len(scored),
+                           specific=tuple(specific))
 
 
 def estimate_tokens(text: str) -> int:

@@ -491,9 +491,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         for doc in docs:
             local = local_path_in_roots(doc["origin"], settings)
             enriched.append(
-                {k: v for k, v in doc.items() if k != "pages"}
+                {k: v for k, v in doc.items() if k not in ("pages", "page_count")}
                 | {
-                    "pages": len(doc["pages"]),
+                    "pages": doc["page_count"],
                     "rel_path": local[1] if local else "",
                     "status": "indexed",
                     "meta": {},

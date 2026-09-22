@@ -57,7 +57,7 @@ async def import_official(knowledge, sections: list[str], progress: dict, client
                     text = response.text
                     if not text.strip() or len(text) > 1_000_000 or "<html" in text[:500].lower():
                         raise ValueError("正文为空、超限或返回HTML")
-                    document = Document(title=title, origin=url.removesuffix(".md"), kind="official", parser="official-markdown", pages=[Page(number=1, text=text)])
+                    document = Document(title=title, origin=url.removesuffix(".md"), kind="official", parser="official-markdown", pages=[Page(number=1, text=text)], markdown=text)
                     result = await asyncio.to_thread(knowledge.put, document)
                     progress["imported"] += 1
                     progress["changed"] += int(result["changed"])

@@ -93,8 +93,8 @@ def read_mineru_output(out_dir: Path) -> tuple[str, list[Page]]:
     return markdown, pages
 
 
-def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> list[Page]:
-    """K13: run mineru into ``out_dir`` and return per-page text (page_idx + 1)."""
+def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str, list[Page]]:
+    """K13: run mineru into ``out_dir`` and return ``(markdown, per-page text)``."""
     shutil.rmtree(out_dir, ignore_errors=True)
     out_dir.mkdir(parents=True, exist_ok=True)
     command = settings.mineru_cmd.format(pdf=str(path), out=str(out_dir))
@@ -103,7 +103,6 @@ def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> list[Page]
     # launch.sh runs uvicorn without activating the venv.
     import sys
 
-    bin_dir = str(Path(sys.executable).parent)
     environment["PATH"] = str(Path(sys.executable).parent) + os.pathsep + environment.get("PATH", "")
     if settings.mineru_home:
         environment["MINERU_HOME"] = str(settings.mineru_home)
@@ -120,10 +119,10 @@ def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> list[Page]
     if process.returncode != 0:
         tail = (output or b"")[-500:].decode("utf-8", "ignore")
         raise ValueError("mineru 解析失败：" + tail)
-    _, pages = read_mineru_output(out_dir)
+    markdown, pages = read_mineru_output(out_dir)
     if not pages:
         raise ValueError("mineru 输出为空，未入库")
-    return pages
+    return markdown, pages
 
 
 def _kill_process_group(process) -> None:
@@ -140,12 +139,17 @@ def _kill_process_group(process) -> None:
 
 def parse_file(path: Path, settings: Settings, *, parsed_dir: Path | None = None) -> Document:
     suffix = path.suffix.lower()
+    markdown = ""
     if suffix in {".txt", ".md"}:
-        pages = [Page(number=1, text=path.read_text(encoding="utf-8-sig"))]
+        markdown = path.read_text(encoding="utf-8-sig")
+        pages = [Page(number=1, text=markdown)]
         parser = "utf8"
     elif suffix == ".pdf":
         out_dir = parsed_dir or path.parent / ".mineru" / path.stem
-        pages = parse_pdf_pages(path, settings, out_dir)
+        # L1: reuse the mineru cache; only run the CLI when no cached parse exists.
+        markdown, pages = read_mineru_output(out_dir)
+        if not pages:
+            markdown, pages = parse_pdf_pages(path, settings, out_dir)
         parser = "mineru"
     elif suffix == ".docx":
         # K8: offline Word parsing (paragraphs + tables as text).
@@ -158,7 +162,8 @@ def parse_file(path: Path, settings: Settings, *, parsed_dir: Path | None = None
                 cells = [cell.text.strip() for cell in row.cells]
                 if any(cells):
                     parts.append(" | ".join(cells))
-        pages = [Page(number=1, text="\n".join(parts))]
+        markdown = "\n".join(parts)
+        pages = [Page(number=1, text=markdown)]
         parser = "python-docx/" + getattr(docx, "__version__", "1")
     else:
         raise ValueError("仅支持 txt、md、pdf、docx")
@@ -168,6 +173,7 @@ def parse_file(path: Path, settings: Settings, *, parsed_dir: Path | None = None
         kind="pdf" if suffix == ".pdf" else "text",
         parser=parser,
         pages=pages,
+        markdown=markdown,
     )
 
 
@@ -229,7 +235,8 @@ async def parse_web(url: str, settings: Settings) -> Document:
     if len(text) > 1_000_000:
         raise ValueError("页面超过 100 万字符，请缩小抓取范围")
     return Document(
-        title=title, origin=url, kind="web", parser=settings.web_provider, pages=[Page(number=1, text=text)]
+        title=title, origin=url, kind="web", parser=settings.web_provider,
+        pages=[Page(number=1, text=text)], markdown=text,
     )
 
 

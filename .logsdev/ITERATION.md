@@ -67,8 +67,9 @@
 | L2/L3b/L4a 检索核心（本轮） | 新增 `src/retrieval.py`（纯逻辑、未接线）：block 原子分块 + base64→`[图片]`、`chunk_id=sha1(doc_id\|version\|page\|heading\|seq\|text)`、报告级索引（title+heading+文件名元数据）、两级检索（报告召回 → 报告内加权 RRF → 每文档 top-m 累计 → 项目去重 → 主题词覆盖率无匹配）、`metadata_from_filename`；参数集中 `RetrievalConfig`（未校准项标注）。L1/L3/L5/L6 未动，图与存储走既有路径 | `.venv/bin/python -m pytest tests -q` → **95 passed**（新增 `tests/test_retrieval.py` 10 例）；`ruff check src/retrieval.py tests/test_retrieval.py` 通过 |
 | L 立即批次 S2/S3/S6（本轮） | `retrieval.py`：`_BASE64_IMAGE` 改 `data:image/[^;,]{0,80};base64,[A-Za-z0-9+/=]+`（不吞后接英文/标点/多行，S2）；Layer A 查询词取**全部 query 并集**（S3）；`_query_terms` 为空→`reason="direct"`、不做回退（S6a）；覆盖率基数改 `per_doc_cand`、评分仍 `per_doc_top_m`（S6b） | `pytest tests -q` → **102 passed**（`tests/test_retrieval.py` 17 例；新增 7 例覆盖 S2 三边界 / S6a / S3 q1 独有 / S6b / `project_no` 空）；`ruff check` 通过 |
 | L 引用集对齐（本轮） | `SelectedReport.chunks` 改 `per_doc_cand`（RRF 降序、可引用集），评分仍用 `per_doc_top_m`；与 §7.8 / D-L1 对齐 | `pytest tests -q` → **103 passed**（`tests/test_retrieval.py` 18 例）；`ruff check` 通过 |
+| L1 存储分离 + 重索引（本轮） | `Document.markdown`；`version=sha256(markdown+pages)`；`docs` 仅存元数据，正文分入 `doc_pages`/`doc_markdown`；`all()`/`get()` 不再返回正文、改用 `page_count`；新增 `read_markdown`；`parse_file` 优先复用 `parsed/` 缓存（L1 不重跑 mineru）且保留旧 payload 回退；基金库 `force` 重索引 35/35、0 errors；备份 `knowledge.sqlite3.pre-l1` | `pytest tests -q` → **104 passed**（新增 `test_user_reads_markdown_and_pages_from_separate_storage`）；ruff 通过；实机：基金库 `docs=35`/`files=35`/正文可读/`read_markdown` 可用、mineru 未重跑；demo 旧库经 payload 回退仍可搜索/阅读 |
 
-当前可用基线（本次实测）：后端 `pytest tests -q` → **103 passed**；前端 `node --test` → **18 passed**（未改动）；`npm run build` 通过（未改动）。
+当前可用基线（本次实测）：后端 `pytest tests -q` → **104 passed**；前端 `node --test` → **18 passed**（未改动）；`npm run build` 通过（未改动）。
 
 ## 4. 待定设计
 
@@ -84,7 +85,7 @@
 
 ## 5. 未决问题与下一步
 
-> 当前唯一优先：**K13 基金库重建 → H10**（先 pilot 1–2 份确认中文/页码/耗时，再 `force` 全量 34 份）；其余按 §6.4 顺序。**L 阶段 6 项冲突已于 §5.2 裁决。**
+> 当前唯一优先：**K13 重建 + L1 重索引已完成 → H10 真实报告验收**；其余按 §6.4 顺序。**L 阶段 6 项冲突已于 §5.2 裁决。**
 
 | 未决 | 影响 | 下一步 |
 |---|---|---|
@@ -94,7 +95,7 @@
 | B2/B4/B5 基金元数据与领域/年份过滤未做 | 报告与过滤缺依据 | 先 H9（文件名元数据入服务端）→ B2/B4/B5 |
 | E 报告入口未做；#10 未决 | task4/U3/G9 无法开工 | 定稿 #10 → 实现 E1/E2 |
 | #12 模型可用性判定缺失 | F11/U9.4-2 不可验收 | 定 health 探测口径或新增轻量探测接口 |
-| 基金库 `.knowledge/自然科学基金/`：source/**34 份** PDF；旧解析（liteparse）仍在库（`docs=18`，抽样 `parser=liteparse/2.14.6`）；**K13 `force` 全量重建运行中（basic，PID 1529379）**，`files indexed=13` | 预览/问答可读性 | 重建完成后校对 docs 份数/正文/页码 → 做 H10 |
+| 基金库 `.knowledge/自然科学基金/`：source/**35 份** PDF；**K13 重建完成**（`docs=35`、`files indexed=35`、`parser=mineru`、`parsed` 覆盖 35/35、mineru 已停）；**L1 已重索引**（正文独立存储、版本含 markdown、备份 `knowledge.sqlite3.pre-l1`） | 预览/问答可读性 | 重建/重索引已完成 → H10 真实报告验收 |
 | H10 真实基金报告端到端验收未做 | 基金场景未验证 | 以真实报告走「选库 → 浏览 → 预览 → 按库问答」 |
 | 按 kind 预览、两阶段导入进度、检索缓存未做 | 文件能力不完整、导入不可观测、大库变慢 | K5（§6.7）/K9（§6.8）/K10（§6.9） |
 | **L1 被 K13 全量重建阻塞**（本轮发现） | 重建在跑时改 `Document`（加 markdown）、`version=sha256(markdown+pages)`、拆 `doc_pages`/`doc_markdown`，会让重建写入旧格式、新代码读到旧行/版本不一致 | **等重建完成并核对 `docs=34`/正文/页码后再开 L1**；planner 定「旧 docs 是否保留以供回退」 |
@@ -107,7 +108,7 @@
 ### 5.1 L 阶段本轮交付与未接线声明
 
 - 已交付：`src/retrieval.py` 的 L2/L3b/L4a 纯核心（block 分块 / base64 剥离 / 报告级索引 / 两级选择 / 项目去重 / 无匹配），`tests/test_retrieval.py` 18 例（**本模块**；全量 `pytest` 103 passed，两者口径不同非矛盾）；`RetrievalConfig` 集中参数（未校准项标注）。
-- 未接线：不修改 `knowledge.py` 存储、`parsers.py` 导入、`graph.py` 流程、前端；因此现有问答仍走旧检索。接线需 L1（markdown 入库）+ L3（chunks 持久化）+ L5（装配）+ L6（图替换）的决策，见上表。
+- 未接线：`graph.py` 流程与前端未改；`Knowledge.search` 仍走旧窗口 BM25，新检索引擎尚未接线（L3/L4a/L5/L6）。`docs` 旧 payload 回退保留至重索引完成（demo 库未重索引，仍可读）。
 - 明确的非目标：dense / rerank / MMR / LLM 多查询（计划默认延后）。
 
 ### 5.2 L 阶段冲突裁决与对策（2026-09-22，planner）
@@ -123,7 +124,7 @@
 
 **对策（按序执行；1 可立即做，2–8 以 S1 门禁为准）**：
 1. **立即修 S2/S3/S6**（纯 `retrieval.py`，无依赖）：base64 正则去贪婪 + Layer A 全查询词并集 + 词项空→`direct` + 覆盖口径；补回归用例后提交。**✅ 已完成**（`pytest` 102 passed；commit 见下）。
-2. **L1**：备份 `knowledge.sqlite3` → 加 `markdown`/新 `version`/`doc_pages`/`doc_markdown` → 从 `parsed/` **重索引**（缺 parsed 即失败）→ 验证 `docs=34`、正文可读、页码可定位、`read_markdown` 可用。
+2. **L1**：备份 `knowledge.sqlite3` → 加 `markdown`/新 `version`/`doc_pages`/`doc_markdown` → 从 `parsed/` **重索引**（缺 parsed 即失败）→ 验证 `docs=34`、正文可读、页码可定位、`read_markdown` 可用。**✅ 已完成**（基金库 `docs=35`、0 errors、未重跑 mineru、备份 `.pre-l1`；见 §3）。
 3. **L3/L3b**：同步建 `chunks` 表 + 报告级索引 + `BM25Plus` 缓存（键 `(corpus, version 签名)`）；**索引时注入 `project_no`（S4）**；导入/删除置 dirty。
 4. **L4a**：新增 `Knowledge.retrieve`（读取持久化 chunks → `select_reports`）；已交付纯模块逻辑复用。
 5. **临时接线**：`Knowledge.search` 委托新引擎、删除旧窗口 BM25；`read`/`sources` 适配 chunk（无 `start_line`）；SSE 形状不变。

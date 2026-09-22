@@ -68,7 +68,7 @@ def test_failed_reparse_keeps_previous_version_and_marks_error(tmp_path):
     report = import_defaults(store, settings, root=source)
     assert len(report["errors"]) == 1
     assert store.files()["a.txt"]["status"] == "error"
-    assert store.all()[0]["pages"][0]["text"] == "测试正文"
+    assert store.read(store.all()[0]["doc_id"])["text"] == "测试正文"
 
 
 def test_force_import_reparses_unchanged(tmp_path):

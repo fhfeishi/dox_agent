@@ -22,6 +22,7 @@ class Document(BaseModel):
     kind: str
     parser: str
     pages: list[Page]
+    markdown: str = ""
     captured_at: str = Field(default_factory=lambda: datetime.now(UTC).isoformat())
 
 
@@ -65,6 +66,13 @@ class Knowledge:
             # K12: per-corpus settings (OCR mode/language and the last applied values).
             db.execute("""CREATE TABLE IF NOT EXISTS meta (
                 key TEXT PRIMARY KEY, value TEXT NOT NULL)""")
+            # L1: separate page text and markdown from the metadata payload so listing and
+            # retrieval never load full report text (R9).
+            db.execute("""CREATE TABLE IF NOT EXISTS doc_pages (
+                doc_id TEXT NOT NULL, page INTEGER NOT NULL, text TEXT NOT NULL,
+                PRIMARY KEY (doc_id, page))""")
+            db.execute("""CREATE TABLE IF NOT EXISTS doc_markdown (
+                doc_id TEXT PRIMARY KEY, markdown TEXT NOT NULL)""")
 
     def connect(self):
         return sqlite3.connect(self.path, timeout=30)
@@ -73,14 +81,22 @@ class Knowledge:
         if not any(p.text.strip() for p in doc.pages):
             raise ValueError("解析结果为空，未入库")
         doc_id = hashlib.sha256(doc.origin.encode()).hexdigest()[:20]
+        # L1: version covers both the page text and the markdown body.
         version = hashlib.sha256(
-            json.dumps([p.model_dump() for p in doc.pages], ensure_ascii=False).encode()
+            json.dumps(
+                {"pages": [p.model_dump() for p in doc.pages], "markdown": doc.markdown},
+                ensure_ascii=False,
+            ).encode()
         ).hexdigest()[:20]
+        metadata = doc.model_dump(exclude={"pages", "markdown"})
         with self.connect() as db:
             old = db.execute("SELECT version FROM docs WHERE id=?", (doc_id,)).fetchone()
-            db.execute(
-                "INSERT OR REPLACE INTO docs VALUES (?, ?, ?)", (doc_id, version, doc.model_dump_json())
-            )
+            db.execute("INSERT OR REPLACE INTO docs VALUES (?, ?, ?)",
+                       (doc_id, version, json.dumps(metadata, ensure_ascii=False)))
+            db.execute("DELETE FROM doc_pages WHERE doc_id=?", (doc_id,))
+            db.executemany("INSERT INTO doc_pages VALUES (?, ?, ?)",
+                           [(doc_id, p.number, p.text) for p in doc.pages])
+            db.execute("INSERT OR REPLACE INTO doc_markdown VALUES (?, ?)", (doc_id, doc.markdown))
         return {
             "doc_id": doc_id,
             "version": version,
@@ -93,18 +109,52 @@ class Knowledge:
             return db.execute("SELECT COUNT(*) FROM docs").fetchone()[0]
 
     def all(self) -> list[dict]:
+        """Metadata rows only: page text and markdown are loaded on demand (L1/R9)."""
         with self.connect() as db:
-            return [
-                {"doc_id": key, "version": version, **json.loads(payload)}
-                for key, version, payload in db.execute("SELECT * FROM docs ORDER BY id")
-            ]
+            rows = db.execute("SELECT id, version, payload FROM docs ORDER BY id").fetchall()
+            counts = dict(db.execute("SELECT doc_id, COUNT(*) FROM doc_pages GROUP BY doc_id"))
+        docs = []
+        for doc_id, version, payload in rows:
+            data = json.loads(payload)
+            count = counts.get(doc_id) or len(data.get("pages") or [])
+            metadata = {key: value for key, value in data.items() if key not in ("pages", "markdown")}
+            docs.append({"doc_id": doc_id, "version": version, "page_count": count, **metadata})
+        return docs
 
     def get(self, doc_id: str) -> dict:
         with self.connect() as db:
             row = db.execute("SELECT version, payload FROM docs WHERE id=?", (doc_id,)).fetchone()
+            if not row:
+                raise KeyError("文档不存在")
+            count = db.execute("SELECT COUNT(*) FROM doc_pages WHERE doc_id=?", (doc_id,)).fetchone()[0]
+        data = json.loads(row[1])
+        count = count or len(data.get("pages") or [])
+        metadata = {key: value for key, value in data.items() if key not in ("pages", "markdown")}
+        return {"doc_id": doc_id, "version": row[0], "page_count": count, **metadata}
+
+    def _pages(self, doc_id: str) -> list[dict]:
+        """Page text for reading/search; falls back to pre-L1 payloads until re-indexed."""
+        with self.connect() as db:
+            rows = [{"number": number, "text": text}
+                    for number, text in db.execute(
+                        "SELECT page, text FROM doc_pages WHERE doc_id=? ORDER BY page", (doc_id,))]
+            if rows:
+                return rows
+            row = db.execute("SELECT payload FROM docs WHERE id=?", (doc_id,)).fetchone()
         if not row:
             raise KeyError("文档不存在")
-        return {"doc_id": doc_id, "version": row[0], **json.loads(row[1])}
+        return json.loads(row[0]).get("pages", [])
+
+    def read_markdown(self, doc_id: str, version: str | None = None) -> str:
+        """L1: version-checked markdown body (context rendering), never loaded by ``all()``."""
+        doc = self.get(doc_id)
+        if version and version != doc["version"]:
+            raise ValueError("文档已更新，请重新搜索")
+        with self.connect() as db:
+            row = db.execute("SELECT markdown FROM doc_markdown WHERE doc_id=?", (doc_id,)).fetchone()
+        if row is not None and row[0]:
+            return row[0]
+        return "\n".join(page["text"] for page in self._pages(doc_id))
 
     def files(self) -> dict[str, dict]:
         """K1: source-file manifest keyed by corpus-relative path."""
@@ -152,7 +202,7 @@ class Knowledge:
         for doc in self.all():
             if allowed_doc_ids is not None and doc["doc_id"] not in allowed_doc_ids:
                 continue
-            for page in doc["pages"]:
+            for page in self._pages(doc["doc_id"]):
                 lines = lines_for(page["text"])
                 for start in range(0, len(lines), 16):
                     snippet = "\n".join(lines[start : start + 24])
@@ -204,7 +254,7 @@ class Knowledge:
         doc = self.get(doc_id)
         if doc["version"] != result["version"]:
             raise ValueError("文档已更新，请重新搜索")
-        text = next(p["text"] for p in doc["pages"] if p["number"] == page)
+        text = next(p["text"] for p in self._pages(doc_id) if p["number"] == page)
         result.update(section_window(text, start_line))
         result.update(captured_at=doc["captured_at"], snippet=result["text"][:300])
         result["url"] = f"/api/documents/{doc_id}?page={page}&start_line={result['start_line']}&version={result['version']}&section=true"
@@ -221,7 +271,7 @@ class Knowledge:
         doc = self.get(doc_id)
         if version and version != doc["version"]:
             raise ValueError("文档已更新，请重新搜索")
-        item = next((p for p in doc["pages"] if p["number"] == page), None)
+        item = next((p for p in self._pages(doc_id) if p["number"] == page), None)
         if item is None:
             raise ValueError("页码不存在")
         lines = lines_for(item["text"])

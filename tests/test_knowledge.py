@@ -56,7 +56,29 @@ def test_failed_import_keeps_good_document(tmp_path):
     assert len(report["imported"]) == 1
     source.write_bytes(b"\xff\xfe")
     assert len(import_defaults(store, settings)["errors"]) == 1
-    assert store.all()[0]["pages"][0]["text"] == "测试正文"
+    assert store.read(store.all()[0]["doc_id"])["text"] == "测试正文"
+
+
+def test_user_reads_markdown_and_pages_from_separate_storage(tmp_path):
+    # Given a report parsed with both page text and a markdown body
+    store = Knowledge(tmp_path / "db")
+    first = store.put(Document(title="报告", origin="report.pdf", kind="pdf", parser="mineru",
+                               pages=[Page(number=1, text="第一页正文"), Page(number=2, text="第二页正文")],
+                               markdown="# 报告\n\n完整 markdown 正文"))
+    # When listing documents
+    listed = store.all()[0]
+    # Then listing has metadata and page count, but not the full text
+    assert listed["page_count"] == 2 and "pages" not in listed and "markdown" not in listed
+    # And markdown/pages are readable on demand, with a version check
+    assert store.read_markdown(first["doc_id"], first["version"]) == "# 报告\n\n完整 markdown 正文"
+    assert store.read(first["doc_id"], page=2)["text"] == "第二页正文"
+    with pytest.raises(ValueError, match="更新"):
+        store.read_markdown(first["doc_id"], "stale-version")
+    # And a markdown-only change produces a new version
+    second = store.put(Document(title="报告", origin="report.pdf", kind="pdf", parser="mineru",
+                                pages=[Page(number=1, text="第一页正文"), Page(number=2, text="第二页正文")],
+                                markdown="# 报告\n\n修订后的 markdown"))
+    assert second["changed"] and second["version"] != first["version"]
 
 
 def test_pdf_adapter_uses_mineru(tmp_path):

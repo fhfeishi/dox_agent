@@ -60,6 +60,8 @@
 
 当前可用基线（本次实测）：后端 `pytest tests -q` → **86 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
 
+| mineru 4.0.5 试用（2026-09-22，本地实测） | 独立 venv 安装 `mineru==4.0.5`（无 torch）；`mineru-kit parse <pdf> -o <out> --tier basic --ocr-mode auto` 成功；`--format markdown` → 单 `.md`（图片 base64、无页标记），`--format middle_json` → 单 `.json`（`pages[].page_idx`+blocks）；v4 不产出经典 `<uuid>_origin.pdf`/`images/`；`temp/` 为经典版产物 | 最小基金 PDF 1–2 页约 6s（首次拉模型约 1 分钟）；**未接入 dox_agent 代码**（仅试用） |
+
 ## 4. 待定设计
 
 | # | 问题 | 影响 |
@@ -67,6 +69,9 @@
 | 10 | 报告↔会话绑定：`POST /api/reports` 无 `session_key`/`run_id`，`GET /api/reports/{id}` 只按 id 取 | E1/E2/G9（E 开工前须定稿） |
 | 11 | task 推导许可与全局 `answer_policy`：已定稿（task1/task2 收窄、task3 放开并标注），随任务提示词落实 | G1/G4（已落实，保留备查） |
 | 12 | 模型可用性判定来源：`/api/health` 的 `model_verified` 恒 `false`，无生产逻辑 | U9.4-2/F11（未定稿前不开工） |
+| 13 | mineru `tier`：默认 `basic`（快）还是 `standard`（质量更高） | K13 解析质量/速度 |
+| 14 | 页码来源：取 `middle_json` 的 `page_idx`（推荐）还是 markdown 单页（丢页码） | K13 引用页码 |
+| 15 | 正文图片：v4 markdown 内嵌 base64；首期是否在正文渲染图片（预览用源 PDF） | K13 是否新增图片服务 |
 
 ## 5. 未决问题与下一步
 

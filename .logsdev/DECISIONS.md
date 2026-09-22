@@ -92,6 +92,12 @@
 
 - 采用：K1 的文件清单与 K10 的检索缓存在存量库首次引入时会全量回填（清单为空视为全新、缓存为空则重建）；这是一次性成本，不计入优化后的稳态，验收需剔除。
 
+## 非默认库同样建 dense 索引（注释订正，2026-09-22）
+
+- 事实：`knowledge_for` 为非默认库设 `vectordb_dir`（`main.py:154-159`），`Knowledge.__init__` 在 `EMBEDDING_PATH` 非空时即建 `DenseIndex`（`knowledge.py:54-56`），与默认/非默认库无关。
+- 订正：`src/main.py:370-371` 旧注释 “Non-default corpora currently search BM25-only…” 与实际不符（方案 A 之前的旧情形）且引用已删除的 plan H；改为“每个库用各自 `vectordb_dir`，非默认库在 `EMBEDDING_PATH` 非空时同样建 dense”。
+- 性质：仅注释订正，无行为变更，不影响测试。
+
 ## 文档与本地数据布局（2026-09-22）※已被「语料目录自包含方案 A」取代
 
 > 保留备查；当前布局以「语料目录自包含方案 A」为准。

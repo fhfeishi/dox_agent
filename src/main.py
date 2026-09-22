@@ -367,8 +367,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(422, "对话上下文超过4万字符，请新建对话")
         # H4: optional corpus binding; absent = default corpus (backward compatible).
         # The graph and the allowed_doc_ids validation both run against this instance,
-        # so retrieval can never cross corpora. Non-default corpora currently search
-        # BM25-only (no per-corpus dense index yet — see plan H 阶段说明).
+        # so retrieval can never cross corpora. Each corpus uses its own vectordb_dir,
+        # so a non-default corpus also builds its own dense index when EMBEDDING_PATH is set.
         chat_knowledge = app.state.knowledge
         chat_preparation = app.state.preparation
         if payload.corpus_id is not None:

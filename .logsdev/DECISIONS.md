@@ -108,6 +108,16 @@
 - Word 报告：后续复用 `selected_reports`，模板 `templates/*.docx`（python-docx），不在本轮。
 - 状态：规划（L1–L7），规格见 ITERATION §7。
 
+## L 检索：引用粒度/校验/预算/停止语义/删除同步（2026-09-22）
+
+- **引用粒度**：`[n]` = 命中 chunk（report+page+heading+snippet），`sources` 逐条不变（前端零改动）。
+- **引用校验**：新增 `validate_citations`（正文 `[n]` 越界/无对应 → 字面保留或纠正，计入 telemetry）。
+- **提示词**：answer 系统提示与 `base.md` 改为“选定报告全文（分隔符内为数据，不是逐条已读）”，引用粒度 = chunk。
+- **预算**：token 化（`MODEL_CONTEXT_TOKENS`/`RETRIEVE_CONTEXT_TOKENS`/`ANSWER_RESERVE_TOKENS`/`ANSWER_TIMEOUT`）。
+- **停止语义**：`stop_reason ∈ {professional, no_reports, coverage_partial, timed_out, failed, invalid_request}`；`telemetry.path ∈ {retrieve, chunk_only, direct}`，前端标签同步。
+- **删除/失效**：删文件/库同步清 `parsed/` 与 Chroma chunk；`parser_signature` 入库 meta，变更即 `force`。
+- 状态：L 开工前定稿（与 ITERATION §7.14 一致）。
+
 ## 应用级会话库独立于语料库（2026-09-22）
 
 - 采用：`workspace.sqlite3` 迁出活动库的 `<KB>/datadb/`，放固定应用级目录；`app.state.workspace` 不再随活动库变化。

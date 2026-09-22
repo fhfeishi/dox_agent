@@ -127,7 +127,7 @@ SSE 事件：`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）�
 
 SQLite 当前文档 → 页/行窗口 → BM25Plus sparse；配置 `EMBEDDING_PATH` 且未限定资料时并行 dense（Chroma 同步、按模型签名隔离 collection）→ 两路各取 `max(20, limit*3)` 候选 → RRF（等权，常数 60）→ 最终 limit 1–10 → 按来源分散。指定 `allowed_doc_ids` 时仅 BM25，不同步子集到共享 Chroma。
 
-**计划（L 阶段，见 [`ITERATION.md`](ITERATION.md) §7）**：改为**报告级混合检索**——搜索空间为报告解析后的 markdown/块文本；以 `middle_json` block 为原子分块（带页号、剥离 base64）；chunk 级 BM25+dense(RRF) → **累计 RRF 聚合到报告 + 项目去重** → 取相关报告**全文**（token 预算内）+ 任务提示词回答；LangGraph 仅做编排，移除 LLM 驱动 search/read 工具循环。
+**计划（L 阶段，见 [`ITERATION.md`](ITERATION.md) §7）**：改为**报告级混合检索**——搜索空间为报告解析后的 markdown/块文本；以 `middle_json` block 为原子分块（带页号、剥离 base64）；chunk 级 BM25+dense(RRF) → **累计 RRF 聚合到报告 + 项目去重** → 取相关报告**全文**（token 预算内）+ 任务提示词回答；LangGraph 仅做编排，移除 LLM 驱动 search/read 工具循环。同时定稿：**引用 `[n]` = 命中 chunk**、新增**引用校验 `validate_citations`**、answer/base 提示改“选定报告全文（数据）”、token 预算与模型上限、新 `stop_reason`/`telemetry.path` 集合、删除同步与 `parser_signature` 失效（见 §7.14）。
 
 ### 4.5 错误语义
 

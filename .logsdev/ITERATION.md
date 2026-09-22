@@ -13,7 +13,7 @@
 
 ## 2. 计划与任务状态
 
-**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8、K12、K13 已实现；K5/K9–K11 待做；K2–K4/K12 的 liteparse OCR 部分被 K13 取代）· L 🟡（L2/L3b/L4a 检索核心已实现，未接线；L1 受 K13 重建阻塞，见 §5）。
+**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8、K12、K13 已实现；K5/K9–K11 待做；K2–K4/K12 的 liteparse OCR 部分被 K13 取代）· L 🟢（L1–L7 已实现：报告级检索 + 确定性图 + 评测；增强项 L4b/L4d/dense 延后，见 §5.6）。
 
 **A 工程基线**：A1–A6 ✅（pyproject/extras、tests、端到端、改名、dev_logs 整理、design 落盘）；A7 契约同步 🟡（E 阶段待补）。
 
@@ -37,7 +37,7 @@
 
 **功能开关**：`VITE_UI_TASKS/FILTERS/DOC_PANEL/REPORTS/NEWS/MODELS` 均已建立、默认 off。启用策略：后端契约已实现 ∧ 浏览器实测通过。`VITE_UI_CORPUS` 已移除：`corpus_id` 后端已实现并验收，选中语料始终随 chat 发送。
 
-**L 检索重构（进行中）**：报告级混合检索——搜索空间为报告 markdown；chunk 级 BM25+dense(RRF) → 聚合到报告 → 取相关报告**全文 markdown**（预算内）入上下文；LangGraph 仅做编排，移除 LLM 驱动 search/read 工具循环。**L2/L3b/L4a 核心已实现**于 `src/retrieval.py`（纯逻辑、未接线）：block 原子分块 + base64 剥离、报告级索引、两级「报告召回 → 报告内 RRF 精排 → 每文档 top-m 累计 → 项目去重 → 主题词覆盖率无匹配」。L1/L3/L5/L6 未落地，接线待 §5 决策。规格见 §7。
+**L 检索重构（已实现）**：报告级两级混合检索（Layer A 报告召回 → Layer B 报告内 chunk RRF 精排 → 每文档 top-m 累计 → 项目去重 → chunk-DF 泛词净化覆盖率无匹配），命中报告全文按 token 预算装配；图改为确定性 `understand→retrieve→assemble→validate→answer→finish`，移除 LLM search/read 工具循环；`Knowledge.search` 委托 `retrieve`（单索引）。评测 `evaluate.py` + 15 条基金用例（recall/MRR=1.00，样本饱和）。增强项（dense/MMR/过滤下推）延后。规格见 §7；核实见 §5.6。
 
 ## 3. 已完成与证据
 
@@ -202,6 +202,20 @@
 | U5 分支 | `SidePanel.tsx` + `MessageView.tsx` |
 
 **收尾顺序**：✅U1 已删 → 补受保护区域在线/离线回归（U2）→ 记录 store 性能项（U3）→ 进 L6。
+
+### 5.6 L6/L7 核实与遗留（2026-09-22，planner）
+
+**核实结论（复核 coder 交付 88e7be7/2c89350/c28e00a）**：
+- L7 指标**复现一致**（基金库 BM25-only）：task1 recall=1.00/MRR=1.00/no_match=0.00/dedup=1.00/ctx≈56340；task2 ctx≈68695；P50≈0.60s。15 条为“标题即答案”强区分查询，**recall 饱和，不做无依据调参**。
+- `measured.labels` 已含 `retrieve`/`assemble`、移除 `research`（L1 满足）；节点集合 `{understand,direct,finish,retrieve,assemble,validate,answer}`。
+- 测试 115→96 属**预期**：L6 删除 `test_quick.py`/`test_evidence_routing.py`/`test_professional_policy.py`（对应已删的 `quick.py`/研究循环）。
+- ruff 4 处：3 处既有（`main.py` SIM114/B008、`prompts/__init__.py` UP033，父提交已存在），1 处 `tests/browser_library.py` F401 由早前 UI 提交引入；均非 L6/L7 引入。
+- `validate` 顺序：实作 `retrieve→assemble→validate→answer`（避免流式二次回答），**planner 确认接受**（§7.15 备注 / §7.9 图已同步）。
+
+**遗留（低）**：
+- **测试覆盖缺口**：`routing.resolve_policy` 仍在并被图调用，但 `scope_missing`→clarify、`preparation` 路由、run timeout 的 Python 用例随 `test_professional_policy.py` 删除而**无替代**（`test_app` 仅测 health 字段）。建议补 `tests/test_routing.py`（scope_missing→clarify、preparation→notice、timeout→`timed_out`）。
+- 检索延迟 ≈0.6s 源于每查询重建 BM25；K10 chunk 缓存未做（性能项）。
+- 评测集偏易，需扩样后再校准 `MIN_TERM_COVER`/`PER_DOC_TOP_M`/`MIN·MAX_REPORTS`。
 - **状态（本轮）**：D-L10 已实现（步骤 5）。实测 `GENERIC_DF_RATIO=0.35` 下泛词判据与 §5.4 一致（`应用`1.00/`人工`0.91/`医疗`0.34）；`癫痫致痫网络` 仅 1 篇（噪声 0），`人工智能在医疗领域的应用` 仅医学报告，证券市场报告不再入选。细节与证据见 §3 / D-L10（§7.7）。
 
 ## 6. K 阶段规划：知识库管理、解析优化与预览（2026-09-22，规划中）
@@ -542,14 +556,16 @@ Q → [Q0]归一/过滤 → [Q1]报告级召回(top-M 报告)
 - 引用：`[n]` = **命中 chunk**（doc_id+version+page+heading+snippet），`sources` 逐条不变（§7.14 D-L1）；保留 `sources` 字段与不可点字面回退。
 - **引用集合口径**：`SelectedReport.chunks` = `per_doc_cand`（按 RRF 降序，含 heading/正文）作为可引用集；**评分只用 `per_doc_top_m`**。L5 装配/引用按 `per_doc_cand`，避免覆盖集（`per_doc_cand`）与可引用集（原仅 `top_m`）不一致。
 
-### 7.9 LangGraph 流程（L6，替代 agentic research）
+### 7.9 LangGraph 流程（L6，已实现）
 ```text
-understand → retrieve → assemble → answer → validate → finish
-  ↑__ validate 发现缺口且预算允许：仅一次受控 retrieve（改写/放宽 min） __|
+understand → retrieve → assemble → validate → answer → finish
+  ↑__ validate 发现覆盖缺口且预算允许：至多一次 re-retrieve（sources 不变） __|
 ```
-- `understand` 的 LLM 只做有界查询改写/子问题拆分（task2→2 子查询；task3→按主题 2–3 并集），输出结构化列表；检索确定。**该 LLM 拆解默认关**（先用规则多查询，见 §7.7）。
-- 事件/预算/停止语义不变；`telemetry` 增 `chunks_retrieved/reports_selected/context_tokens`。
-- `quick_verification` 保留或降级为 task1 的 chunk-only 路径。
+- `understand`：`resolve_policy` 固定专业策略；LLM 拆解默认关（规则多查询，§7.7）。
+- **`validate` 在 `answer` 前**（避免流式二次回答）；`validate_citations` 在 `answer` 内联；「至多一次 re-retrieve」由 `validate` 回边实现。
+- 事件/预算/停止语义不变；`telemetry` 增 `chunks_retrieved/reports_selected/context_tokens/invalid_citations`。
+- `quick.py` 已删除；task1 走确定性 `chunk_only` 分支（`telemetry.path=chunk_only`）。
+- 节点集合含 `direct`（无检索/澄清分支）。实作备注见 §7.15。
 
 ### 7.10 Word 报告（后续，接口先定）
 - E 阶段消费 `selected_reports + coverage + evidence` 生成 `.docx`；`templates/*.docx` + python-docx 占位符/表格。
@@ -683,7 +699,7 @@ understand → retrieve → assemble → answer → validate → finish
 - 图节点集合 == `{understand,retrieve,assemble,answer,validate,finish}`（`pytest` 断言）；`/api/chat` 事件序列不含 `search`/`read` 工具 step；`telemetry.stages_ms` 不含 `research`；`status` 文本不再有「研究第 N 轮」。
 - 宽泛查询「人工智能医疗领域的应用」返回医学报告并带可点 `[n]`；无匹配走 `no_reports`；`direct` 不走 `assemble`。
 - `pytest` 全绿；`browser_answer_controls`/`browser_tasks` 等离线用例通过；`npm run build`。
-- **实现备注（2026-09-22）**：`validate` 实作在 `answer` **之前**（`retrieve→assemble→validate→answer`）：覆盖率缺口与 ≤1 次 re-retrieve 在流式回答前完成，避免「answer→validate→re-retrieve」产生二次流式回答；`validate_citations`（需答案文本）在 `answer` 内联执行并计入 `telemetry.invalid_citations`。节点集合与验收不变，仅执行顺序与 §7.9 示意图不同，待 planner 确认。
+- **实现备注（2026-09-22）**：`validate` 实作在 `answer` **之前**（`retrieve→assemble→validate→answer`）：覆盖率缺口与 ≤1 次 re-retrieve 在流式回答前完成，避免「answer→validate→re-retrieve」产生二次流式回答；`validate_citations`（需答案文本）在 `answer` 内联执行并计入 `telemetry.invalid_citations`。**planner 已确认（2026-09-22）**：接受该顺序；§7.9 图已同步。节点集合含 `direct`（无检索/澄清分支）。
 
 ### 7.16 L7 评测规格：快准全与参数校准
 

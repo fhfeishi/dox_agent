@@ -123,11 +123,15 @@ SSE 事件：`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）�
 - 工作区 SQLite `records(id, kind, revision, payload)`：`kind ∈ {sessions, notes}`；会话 `data` 含 `turns`/`options`/`branches`/`task_id`/`corpus_id`；`BEGIN IMMEDIATE` 校验 revision（冲突 409），单记录 >4MB 413；笔记 `body`≤20000、`reviewed`、`sources` 1–6 条且版本可读。
 - 阅读行号是规范化视图行号（超长行按 300 字符切段），非 PDF 原版排版行号；`section` 窗口按标题/代码围栏切块并返回 `heading`/`truncated`/`code_omitted`。
 
-### 4.4 检索
+### 4.4 检索（L 阶段已实现）
 
-SQLite 当前文档 → 页/行窗口 → BM25Plus sparse；配置 `EMBEDDING_PATH` 且未限定资料时并行 dense（Chroma 同步、按模型签名隔离 collection）→ 两路各取 `max(20, limit*3)` 候选 → RRF（等权，常数 60）→ 最终 limit 1–10 → 按来源分散。指定 `allowed_doc_ids` 时仅 BM25，不同步子集到共享 Chroma。
+报告级两级混合检索：搜索空间为报告解析后的 `middle_json` block 文本（带 `page_idx` 页号、分块前剥离 base64）。**Layer A 报告级召回**（`title`+heading+`project_no`/年份，BM25；报告数 ≤ `REPORT_RECALL_M` 全量）→ **Layer B 报告内 chunk 精排**（候选池内全局 RRF；每报告取 `PER_DOC_CAND` 候选，评分取 `PER_DOC_TOP_M`）。报告评分 = 每文档自身 top-m RRF 累计；按项目号去重；无匹配按 **chunk 语料 DF 泛词净化**（`GENERIC_DF_RATIO=0.35`）后的 `specific` 词覆盖率判定（`MIN_TERM_COVER` 全局 + `REL_COVER×top1` 逐文档，保底 `MIN_REPORTS`）。命中报告**全文**按 token 预算（`RETRIEVE_CONTEXT_TOKENS`/`REPORT_TOKENS`）装配入上下文，`[n]` 引用指向命中 chunk。
 
-**计划（L 阶段，见 [`ITERATION.md`](ITERATION.md) §7）**：改为**报告级两级混合检索**——搜索空间为报告解析后的 markdown/块文本；以 `middle_json` block 为原子分块（带页号、剥离 base64）；**Layer A 报告级召回（title+heading+项目号/年份，top-M）→ Layer B 报告内 chunk 精排（top-m RRF）**；取相关报告**全文**（token 预算内）+ 任务提示词回答。MVP 过滤仅 `corpus_id`/`allowed_doc_ids`；无匹配按 query 主题词覆盖率判定；MMR/覆盖贪心/字段权重/LLM 多查询/rerank/过滤下推默认关、由评测触发。LangGraph 仅做编排，移除 LLM 驱动 search/read 工具循环。同时定稿：**引用 `[n]` = 命中 chunk**、新增**引用校验 `validate_citations`**、answer/base 提示改“选定报告全文（数据）”、token 预算与模型上限、新 `stop_reason`/`telemetry.path` 集合、删除同步与 `parser_signature` 失效（见 §7.14）。
+- 图：`understand → retrieve → assemble → validate → (retrieve|answer) → finish`（确定性，无 LLM search/read 工具循环；`validate` 在 `answer` 前，`validate_citations` 内联）。
+- 检索为 **BM25-only**（`EMBEDDING_PATH` 空）；dense 留作增强。
+- **参数**：`MIN/MAX_REPORTS`、`MIN_TERM_COVER`、`PER_DOC_TOP_M` 待评测校准；`REL_COVER`/`GENERIC_DF_RATIO` 固定默认。评测：`src/evaluate.py` + `tests/data/fund_retrieval.jsonl`（15 条，BM25-only：recall/MRR=1.00、no_match=0、ctx≈56k/69k、P50≈0.6s；样本饱和，待扩样）。
+- 默认关/延后：MMR/覆盖贪心/字段权重/LLM 多查询/rerank/过滤下推（year/domain/project，依赖 H9/B2/B4/B5）。
+- `Knowledge.search` 已委托 `retrieve`（单索引，旧窗口 BM25 删除）。
 
 ### 4.5 错误语义
 

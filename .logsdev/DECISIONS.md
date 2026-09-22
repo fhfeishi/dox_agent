@@ -118,8 +118,8 @@
 - **单索引 + 临时接线**：`Knowledge.search` 委托新引擎并删除旧窗口 BM25；L6 再以确定性 `retrieve→assemble→answer` 替换 LLM 工具循环；不得两套索引并存。
 - **version 迁移**：采用新 `version`；历史 `sources` 允许失效并在 `read`/`/file` 明确提示“文档已更新”，不重写会话历史（`doc_id` 不变，文档仍可打开）。
 - **token 口径（D-L8）**：无 tiktoken；MVP 保守字符估算 + 字符硬上限 + 供应商 `usage` 校准，标 uncalibrated。
-- **CJK 无匹配（D-L9）**：2-gram + 小停用词表 + 覆盖率，MVP uncalibrated，由评测校准。
-- **验证者 S1–S9（2026-09-22，二次修订）**：parsed 完整性门禁（S1，rel 口径、排除 `_pilot`）、base64 正则去贪婪（S2）、Layer A 全查询词并集（S3，并入立即批次）、索引注入 `project_no`（S4）、历史 token 截断（S5，保留末条 user）、无匹配空词→`direct`（S6，**无回退**）与 `per_doc_cand` 覆盖口径、`REPORT_RECALL_M` 扩展行为（S7）、PDF 版本失效**前端 version 比对**（S8，不预探 `/file`）、文档口径澄清（S9）。立即批次 = S2+S3+S6（仅 `retrieval.py`）。详见 [`ITERATION.md`](ITERATION.md) §5.3。
+- **CJK 无匹配（D-L9）**：2-gram + 小停用词表 + 覆盖率，MVP uncalibrated，由评测校准；`_query_terms` 为空 → `reason="direct"`，**无回退**（`telemetry.path=direct`）。
+- **验证者 S1–S9（2026-09-22，二次修订）**：parsed 完整性门禁（S1，rel 口径、排除 `_pilot`）、base64 正则去贪婪（S2）、Layer A 全查询词并集（S3，并入立即批次）、索引注入 `project_no`（S4）、历史 token 截断（S5，保留末条 user）、无匹配空词与覆盖口径（S6，见上 D-L9）、`REPORT_RECALL_M` 扩展行为（S7）、PDF 版本失效**前端 version 比对**（S8，不预探 `/file`）、文档口径澄清（S9）。立即批次 = S2+S3+S6（仅 `retrieval.py`）。详见 [`ITERATION.md`](ITERATION.md) §5.3。
 - 状态：**已裁决**（对策与执行顺序见 [`ITERATION.md`](ITERATION.md) §5.2）。
 
 ## L 检索：引用粒度/校验/预算/停止语义/删除同步（2026-09-22）

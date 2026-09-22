@@ -68,6 +68,13 @@
 
 - 采用：导入先完成解析入库（BM25 立即可检索），向量索引在后台构建并在任务中独立显示进度；`EMBEDDING_PATH` 为空时跳过向量阶段。
 - 理由与代价：避免“导入完成但首次提问卡死”；代价是两种检索能力就绪时间不同，界面需如实显示。
+- 取消：协作式（文件边界检查 flag），线程不可强制中断；取消后 `job=cancelled`，已入库文件保留。规格见 ITERATION §6.7。
+
+## 预览按 kind 选择渲染（K9，2026-09-22）
+
+- 采用：新增 `GET /api/documents/{doc_id}/preview?corpus=`，按 kind 返回 pdf(url)/markdown(text)/html(docx)/text；pdf 继续用 `/file` + `PdfViewer`。
+- docx→HTML 候选：`mammoth`（离线、小）优先，回退 python-docx 手写。
+- 状态：待实现（K9）；当前只有 `/file` 与文本读接口。规格见 ITERATION §6.8。
 
 ## 知识库与文件 CRUD 及删除语义（2026-09-22）
 
@@ -86,6 +93,7 @@
 
 - 采用：把每查询 O(库) 的候选窗口切分、`tokens()`、`BM25Plus(corpus)` 预计算并缓存（随导入维护）；chunk id 仅是其一部分。
 - 理由与代价：`Knowledge.search`（`knowledge.py:104-126`）每查询重建全库窗口与 BM25 才导致延迟随库增长；dense 层已自行做 missing/stale diff（`dense.py:51-61`），不是瓶颈。代价是需在导入/删除时维护缓存一致性。
+- 状态：待实现（K10）；导入时构建 `chunks[]`+`BM25Plus` 并按库缓存。规格见 ITERATION §6.9。
 
 ## 应用级会话库独立于语料库（2026-09-22）
 

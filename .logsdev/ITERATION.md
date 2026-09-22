@@ -31,7 +31,7 @@
 
 **H 知识库管理**：H1–H3（注册表/按库导入/`?corpus=`）✅；H5–H7（选择器/详情/按库文档）✅；**H4 ✅代码**（chat `corpus_id`、按库限定检索，提交 `e7d08e2`）、**H8 ✅默认启用并浏览器验收**（会话绑库；已移除 `VITE_UI_CORPUS`，选中语料随 chat 发送以保证浏览与回答同库），真实语料验收见 §3；H9 文件名元数据入服务端、H10 真实报告验收 ⬜。
 
-**K 知识库管理与导入优化**：K0（应用级会话库）、K0b（多库 read/file 补 `corpus`）、K1（增量导入 + 文件清单 + 删除同步）、K6a（`corpus_id` 单射+限长）、K6（库新建/显示名重命名/删除）、K7（库内文件列表/上传/重命名/删除）、K8（Word/.docx）、**K13（mineru 解析 + 外部 `MINERU_CMD` + `parsed/` 缓存，取代 liteparse 及其 OCR 配置；保留 K12 的 `force` 重导入）✅**；K5（两阶段导入+进度/取消）、K9（按 kind 预览）、K10（检索缓存）、K11 验收 ⬜。K2/K3/K4/K12 的 OCR 模式/语言部分已作废。
+**K 知识库管理与导入优化**：K0（应用级会话库）、K0b（多库 read/file 补 `corpus`）、K1（增量导入 + 文件清单 + 删除同步）、K6a（`corpus_id` 单射+限长）、K6（库新建/显示名重命名/删除）、K7（库内文件列表/上传/重命名/删除）、K8（Word/.docx）、**K13（mineru 解析 + 外部 `MINERU_CMD` + `parsed/` 缓存，取代 liteparse 及其 OCR 配置；保留 K12 的 `force` 重导入）✅**；K5（两阶段导入+进度/取消，规格 §6.7）、K9（按 kind 预览，§6.8）、K10（检索缓存，§6.9）、K11 验收 ⬜。K2/K3/K4/K12 的 OCR 模式/语言部分已作废。
 
 **U UI 优化**：U0、U4.1a/U4.1b/U4.2、U5（会话内分支）、U6（电源按钮）、U7（知识库预览）、U8（LLM 状态）、U9.1（侧栏收束）、U9.2/U9.2b（文献库）、U9.4-1（只读模型）✅；U9.3 科研头条 🟡（仅占位）；U1（任务 UI）、U2（文档面板/引用跳转）🟡（代码完成、开关默认 off、浏览器验收未做）；U3 报告入口、U9.4-2 模型选择器 ⬜。
 
@@ -86,7 +86,7 @@
 | #12 模型可用性判定缺失 | F11/U9.4-2 不可验收 | 定 health 探测口径或新增轻量探测接口 |
 | 基金库 `.knowledge/自然科学基金/`：source/**34 份** PDF，datadb `docs=10`（liteparse/eng 旧解析，正文乱码）、`files=3`；`parsed/` 空（K13 未重跑） | 预览/问答不可读，H10 无法验收 | 侧栏该库「重导入」（K13：mineru 全量重建，`force=true`）后做 H10 |
 | H10 真实基金报告端到端验收未做 | 基金场景未验证 | 以真实报告走「选库 → 浏览 → 预览 → 按库问答」 |
-| 按 kind 预览、两阶段导入进度未做 | 文件能力不完整、导入过程不可观测 | K9/K5 |
+| 按 kind 预览、两阶段导入进度、检索缓存未做 | 文件能力不完整、导入不可观测、大库变慢 | K5（§6.7）/K9（§6.8）/K10（§6.9） |
 
 ## 6. K 阶段规划：知识库管理、解析优化与预览（2026-09-22，规划中）
 
@@ -216,6 +216,53 @@
 **待确认**
 - 集成方式：本地 CLI `mineru-kit parse`（规格假设）vs 云端 API（`MINERU_API_KEY`）——见 §4 #16。
 - 命令安全：`MINERU_CMD` 仅接受默认模板或显式配置，避免任意命令注入。
+
+### 6.7 K5 实现规格：两阶段导入 + 进度/取消
+
+**现状**：`POST /api/corpora/{id}/ingest?force=` 单阶段；`job` 仅结束后一次性填 counts；`import_defaults` 无进度回调；dense 索引懒建（首次 `search` 时）。
+
+**目标**
+- 阶段：`job.phase ∈ {parse, index, done}`。
+  - parse：`import_defaults(..., on_progress=cb)` 逐文件回调 → 实时 `completed/total`。
+  - index：parse 结束后，若 `EMBEDDING_PATH` 非空且有 `dense`，后台 `dense.sync(...)`；进度用已有 `DenseIndex.progress`（`{stage, completed, total}`），写入 `job.index_*`。
+- 取消：`POST /api/corpora/{id}/ingest/cancel`；**协作式取消**（文件边界检查 flag）；线程不可强制中断，正在处理的文件收尾后停止。
+- 轮询：`GET /api/corpora/{id}/job` 返回 job（或继续用 `/api/corpora` 的 `job` 字段）。
+
+**验收**
+- 解析阶段计数递增；phase 从 parse→index→done。
+- parse 完成即可 BM25 问答（不等 index）。
+- 取消在文件边界生效，`job.status=cancelled`；已入库文件保留。
+- `EMBEDDING_PATH` 空 → 跳过 index 阶段（phase=done）。
+
+**影响**：`main.py`（job/取消路由）、`parsers.py`（进度回调）、`dense.py`（显式 sync）、前端（阶段/进度/取消 UI）。
+
+### 6.8 K9 实现规格：按 kind 预览
+
+**现状**：`/file` 返回 PDF/Markdown/txt 原始文件；`DocumentPreview` 对 pdf 用 `PdfViewer`，其余读文本渲染；docx 的 `kind="text"` → 纯文本。
+
+**目标**
+- 新增 `GET /api/documents/{doc_id}/preview?corpus=`，按 kind 返回：
+  - pdf → `{kind:"pdf", url:"/api/documents/{id}/file?…"}`（前端 iframe + `#page=`）
+  - md/txt → `{kind:"markdown"|"text", text, parser}`
+  - docx → `{kind:"html", html}`（docx→HTML）
+- docx→HTML：默认 `mammoth`（离线、小包）；不可用时回退 python-docx 手写 `<p>/<table>`。
+- 前端 `DocumentPreview` 按 kind 选：PdfViewer / Markdown / HTML / 纯文本。
+
+**验收**：pdf/md/docx/txt 四类各自正确渲染；docx 显示为 HTML（非纯文本）；带 `corpus` 参数。
+
+**待确认**：docx→HTML 库（`mammoth` vs python-docx 手写）。
+
+### 6.9 K10 实现规格：检索候选/BM25 缓存
+
+**现状**：`Knowledge.search` 每查询 `self.all()` 反序列化全库 + 逐页切窗口 + `tokens()` + `BM25Plus`（`knowledge.py:104-126`）。
+
+**目标**
+- 导入时构建并缓存搜索块：`chunks[]{doc_id,version,title,page,start_line,snippet,tokens}` + 一个 `BM25Plus` 实例，按库维护。
+- 查询：tokenize → 缓存 BM25 打分 → `allowed_doc_ids` 过滤 → top-k；不再每查询重建全库。
+- 失效：`put`/`drop_file`/删文件后置 dirty 或增量更新；可选持久化 `<KB>/datadb`（`chunks` 表）以避免重启重建。
+- dense：保持现有 lazy sync，与 chunk 缓存解耦。
+
+**验收**：首次构建后查询延迟基本不随库大小线性增长；与旧实现 top-k 在 fixtures 上一致；首次构建为一次性成本（同 K1）。
 
 ## 7. 维护约定
 

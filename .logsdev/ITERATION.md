@@ -776,7 +776,75 @@ understand → retrieve → assemble → validate → answer → finish
 ### 8.8 非目标
 - 不做自动意图分类（任务仍显式选择）；不新增模板管理平台；不为 task4 建第二套检索。
 
-## 9. 维护约定
+## 9. 任务类型与产出物扩展（规划，2026-09-22）
+
+### 9.1 结论：两轴模型（意图 × 产出物）
+不要为每种「格式」新建一个任务。拆成两条轴：
+- **意图任务（Task）**：决定检索范围/预算与输出契约（回答什么）。
+- **产出物（Artifact）**：决定呈现与导出（`text` / `table` / `chart` / `document`）。
+- 同一分析结果可切换产出物（例：趋势分析 → 聊天文本 或 导出 docx）。
+
+### 9.2 任务类型扩展（建议 task1–task8）
+
+| id | 名称 | 输入 | 检索 | 产出物 | 状态 |
+|---|---|---|---|---|---|
+| task1 | 精准问答 | 自由文本 | chunk_only；1/3 | text | 现有 |
+| task2 | 对比分析 | 自由文本 | 跨项目；2/5 | text + table | 现有 |
+| task3 | 趋势推测 | 自由文本 | 多年份；3/8 | text | 现有 |
+| task4 | 专项报告 | 自由文本（领域/年份/模板/重点） | 模板章节 + 领域/年份 | **document**（md/docx/pdf） | E（现有规划） |
+| task5 | 项目画像 | 项目号/负责人/标题 | 单项目聚合 | text + table | 扩展 |
+| task6 | 成果汇编 | 领域/年份/项目 | 分组聚合 + 去重 | table + document | 扩展 |
+| task7 | 领域综述 | 领域 + 年份区间 | 报告集全文 | document | 扩展 |
+| task8 | 可视化简报 | 领域/年份 + 指标 | 结构化抽取 | **chart + document** | 扩展 |
+
+- 全部**复用同一检索引擎与确定性图**，差异只在「提示词 + 检索预算 + 模板/产出物」。
+- MVP 先落 task4（E），task5–8 按需求排期。
+
+### 9.3 模板目录（服务端文件，无模板管理平台）
+- 报告模板（E 现有）：`achievements` / `hotspots` / `future_directions` / `comprehensive`。
+- 新增：`project_profile`（项目画像）/ `outcomes_compilation`（成果汇编）/ `domain_review`（领域综述）/ `visual_brief`（可视化简报）。
+- 模板 = `src/templates/*.md`：章节结构 + `{{domain}}`/`{{year_range}}`/`{{sections}}`/`{{sources}}` 等占位符；与 prompts 同属服务端文本配置。
+- 参数口径沿用 PROJECT §2：必填领域/起止年份/模板；可选基金类别/指定文件/分析重点。
+
+### 9.4 可视化（简化路径）
+- **数据必须来自语料抽取并带 `[n]` 来源；不得编造数字**（与现有引用纪律一致）。
+- 表示：**markdown 表格始终保留**（可读/可转 docx）+ **图表图片**（SVG 优先）。
+- 图表生成：服务端 **matplotlib → SVG**（可选 extra `reporting`）或自绘 SVG；首期仅 `bar`/`line`/`pie`。
+  - 现状：`matplotlib` 未装；降级为「表格 + 文字结论」，不阻塞。
+- 预览：前端直接渲染 SVG；导出：随 HTML 内联。
+- 不引入 ECharts/Vega 等重前端图表库（首期）。
+
+### 9.5 导出管道（md → docx/pdf）
+- 单一中间层：**markdown → HTML**（服务端渲染，图表内联）→ 再分发。
+- **PDF**：Playwright `page.pdf()`（**复用现有依赖**，离线，CJK 用系统字体）。无需 LaTeX。
+- **DOCX**：markdown → HTML → `htmldocx`（python-docx 之上，小依赖）；回退纯 python-docx。
+  - 现状：`pandoc` 未装，**不引入 pandoc/LaTeX**。
+- 接口：`POST /api/reports` 产 `report_id`；`GET /api/reports/{id}/export?format=md|docx|pdf`。
+- **待确认（工具链决策）**：加 `htmldocx`（docx）与可选 `matplotlib`（图表）两个小依赖。
+
+### 9.6 后端契约变更
+- 任务注册表增 `outputs: ["text"|"table"|"chart"|"document"]` 与可选 `template_id`；`GET /api/tasks` 一并返回。
+- chat 契约：`text`/`table` 任务走 chat；`chart`/`document` 任务走报告入口（与 §8/G10 一致）。
+- `POST /api/reports` 请求：`{task_id|template_id, domain, year_from, year_to, fund_type, focus, output_formats[]}`。
+- `stop_reason` 增 `report_ready`/`report_pending`；`telemetry.path` 增 `report`。
+
+### 9.7 分阶段
+| 阶段 | 内容 | 依赖 |
+|---|---|---|
+| R1（=E MVP） | task4 + 四模板 + md 预览/下载 | #10 定稿 |
+| R2 | docx/pdf 导出（htmldocx + Playwright） | R1 |
+| R3 | 可视化（matplotlib SVG）+ task8 可视化简报 | R2 |
+| R4 | task5/6/7 任务与模板 | B4/B5、G10 |
+
+### 9.8 非目标
+- 无模板管理平台；无知识图谱；图表仅来自语料；不联网补数据；不引入 ECharts/Vega/pandoc/LaTeX。
+
+### 9.9 验收
+- 每个任务声明 `outputs`；未知 task id `422`。
+- 图表带来源 `[n]`、无编造数字；无数据时降级为表格/文字并如实说明。
+- md/docx/pdf 均中文正常、标题/表格/图片保留；导出与预览内容一致。
+
+## 10. 维护约定
 
 - 完成任务后更新本文 §2/§3 与 [`PROJECT.md`](PROJECT.md) 的现状/限制；长期取舍写入 [`DECISIONS.md`](DECISIONS.md)。
 - 证据须可复现（命令/产出路径）；未运行的检查不得写入；受限项显式标注。

@@ -37,6 +37,7 @@
 - 提示词归 `src/prompts/`（`base.md` 硬约束 + 各任务角色/输出契约 + 加载器）；未知 task id 抛 `UnknownTaskError`，不静默回退。
 - task4 不在 `POST /api/chat` 生成正文，走报告入口（未实现）。
 - 推导许可由任务提示词决定：task1/task2 收窄不推测，task3 放开并要求区分事实/推断。
+- **扩展（规划）**：任务类型扩展为 task5 项目画像/task6 成果汇编/task7 领域综述/task8 可视化简报；任务（意图）与产出物（text/table/chart/document）**两轴分离**；导出 md/docx/pdf。见 [`ITERATION.md`](ITERATION.md) §9。
 
 **专项报告**
 - 必填：研究领域、起止年份、模板；可选：基金/项目类别、指定文件、分析重点。

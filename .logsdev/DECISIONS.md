@@ -141,6 +141,14 @@
 - 理由：把“输出契约”误当“输入闸门”会让 task4 成为死路（现 `Composer.tsx` 把 textarea 换成占位提示）。
 - 状态：**规划（G10a–G10d）**，规格见 [`ITERATION.md`](ITERATION.md) §8。
 
+## 任务与产出物两轴模型（2026-09-22，规划）
+
+- 采用：**任务（意图）与产出物（格式）分离**——任务决定检索/输出契约，产出物决定呈现与导出（`text`/`table`/`chart`/`document`）。不为每种格式新建任务；同一分析可切换产出物。
+- 任务扩展：task5 项目画像、task6 成果汇编、task7 领域综述、task8 可视化简报；复用同一检索引擎与确定性图，差异仅在提示词 + 预算 + 模板/产出物。
+- 模板：服务端 `src/templates/*.md`（现有四报告模板 + `project_profile`/`outcomes_compilation`/`domain_review`/`visual_brief`），无模板管理平台。
+- 导出：markdown → HTML → PDF（Playwright，复用已有依赖）/ DOCX（`htmldocx` 或 python-docx）；**不引入 pandoc/LaTeX**。图表用 matplotlib→SVG（可选 extra），数据必须来自语料并带 `[n]`。
+- 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §9；待确认工具链依赖（`htmldocx`、`matplotlib`）。
+
 ## 持久化数据向后兼容：渲染对新增字段做默认（2026-09-22）
 
 - 问题：L6 改变 `telemetry` 形状（新增 `context_tokens`/`chunks_retrieved`/`reports_selected`），但 `workspace` 持久化的旧会话缺这些键；恢复会话时 `MessageView` 的 `t.context_tokens.toLocaleString()` 抛错，整棵 React 树崩溃 → **整页白屏**。

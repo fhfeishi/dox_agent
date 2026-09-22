@@ -248,11 +248,11 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
           }[t.path ?? ""] ?? "旧版本未记录路径"}
         </p>
         <p>
-          检索 {t.chunks_retrieved} 片段 · 选中 {t.reports_selected} 篇 · 上下文约 {t.context_tokens.toLocaleString()} tokens · 已报告 {
+          检索 {t.chunks_retrieved ?? 0} 片段 · 选中 {t.reports_selected ?? 0} 篇 · 上下文约 {(t.context_tokens ?? 0).toLocaleString()} tokens · 已报告 {
             attempt.usage?.reported_calls ?? "?"
           } / {attempt.usage?.calls ?? "?"} 次模型调用
         </p>
-        {Object.entries(t.stages_ms).map(([stage, ms]) => (
+        {Object.entries(t.stages_ms ?? {}).map(([stage, ms]) => (
           <p key={stage}>
             {{
               understand: "理解问题",

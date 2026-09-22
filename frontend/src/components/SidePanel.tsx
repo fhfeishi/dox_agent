@@ -1,5 +1,9 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { useApp } from "../store";
+import { fetchReport, fetchReports, type ReportInfo, type ReportSummary } from "../api";
+import { downloadText } from "../exportText";
 import { BrandMark, Icon } from "./Icons";
 import { Button, GroupLabel, PanelRow, SearchField } from "./ui";
 import type { Saved, SessionData } from "../workspace";
@@ -58,6 +62,29 @@ export function SidePanel() {
   } = useApp();
 
   const [query, setQuery] = useState("");
+  const [reports, setReports] = useState<ReportSummary[]>([]);
+  const [openReport, setOpenReport] = useState<ReportInfo | null>(null);
+
+  useEffect(() => {
+    if (nav !== "reports" || !workspace.active) {
+      setReports([]);
+      setOpenReport(null);
+      return;
+    }
+    let stopped = false;
+    void fetchReports(workspace.active)
+      .then((items) => { if (!stopped) setReports(items); })
+      .catch(() => { if (!stopped) setReports([]); });
+    return () => { stopped = true; };
+  }, [nav, workspace.active]);
+
+  async function viewReport(reportId: string) {
+    try {
+      setOpenReport(await fetchReport(reportId));
+    } catch {
+      setOpenReport(null);
+    }
+  }
 
   // U9.1: the IconRail keeps the primary entries reachable while the panel is hidden.
   if (sidebarCollapsed) return null;
@@ -328,10 +355,51 @@ export function SidePanel() {
 
         {nav === "reports" && (
           <>
-            <GroupLabel className="pt-[2px]">全部报告</GroupLabel>
-            <div className="px-[10px] py-3 text-[12.5px] leading-[1.6] text-[var(--steel)]">
-              专项报告由统一报告入口生成（`POST /api/reports`），后端接口就绪前此处不展示列表。
-            </div>
+            <GroupLabel className="pt-[2px]">本会话报告</GroupLabel>
+            {reports.length ? (
+              reports.map((report) => (
+                <button
+                  key={report.report_id}
+                  type="button"
+                  onClick={() => void viewReport(report.report_id)}
+                  className="mx-[8px] flex flex-col gap-[2px] rounded-[8px] px-[10px] py-[8px] text-left hover:bg-[#f1efec]"
+                >
+                  <span className="truncate text-[12.5px] text-[var(--slate)]">
+                    {report.domain} · {report.year_from}–{report.year_to}
+                  </span>
+                  <span className="text-[11px] text-[var(--stone)]">
+                    {report.template_id} · {report.created_at?.slice(0, 10) ?? ""}
+                  </span>
+                </button>
+              ))
+            ) : (
+              <div className="px-[10px] py-3 text-[12.5px] leading-[1.6] text-[var(--steel)]">
+                本会话还没有生成报告。切换到「专项报告」补充需求后即可生成。
+              </div>
+            )}
+            {openReport ? (
+              <div className="mx-[8px] mt-[6px]">
+                <div className="markdown max-h-[320px] overflow-auto rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px]">
+                  <Markdown remarkPlugins={[remarkGfm]}>{openReport.markdown}</Markdown>
+                </div>
+                <div className="mt-[6px] flex gap-[10px] text-[12px]">
+                  <button
+                    type="button"
+                    className="text-[var(--primary)] hover:underline"
+                    onClick={() => void navigator.clipboard.writeText(openReport.markdown)}
+                  >
+                    复制
+                  </button>
+                  <button
+                    type="button"
+                    className="text-[var(--primary)] hover:underline"
+                    onClick={() => downloadText(openReport.markdown, `report-${openReport.report_id.slice(0, 8)}.md`)}
+                  >
+                    下载 .md
+                  </button>
+                </div>
+              </div>
+            ) : null}
             <div className="px-[8px] pt-[4px]">
               <Button
                 variant="quiet"

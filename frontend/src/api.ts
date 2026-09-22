@@ -78,6 +78,7 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
   await jsonOrThrow(response, "重命名文件失败");
 }
 export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; fund_type?: string; focus?: string; doc_ids?: string[]; session_key?: string; run_id?: string; corpus_id?: string };
+export type ReportSummary = { report_id: string; created_at?: string; session_key?: string; run_id?: string; corpus_id?: string; template_id?: string; domain?: string; year_from?: number; year_to?: number };
 export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean };
 export type Policy = Options & { route: "research" | "clarify"; stop_reason: string; notice?: string; report_params?: ReportParams };
 
@@ -89,6 +90,20 @@ export async function createReport(params: ReportParams): Promise<ReportInfo> {
     body: JSON.stringify(params),
   });
   await jsonOrThrow(response, "生成报告失败");
+  return response.json();
+}
+
+/** GET /api/reports?session_key=: report metadata for one session (no markdown). */
+export async function fetchReports(sessionKey: string, signal?: AbortSignal): Promise<ReportSummary[]> {
+  const response = await fetch(`/api/reports?session_key=${encodeURIComponent(sessionKey)}`, signal ? { signal } : undefined);
+  if (!response.ok) throw new Error("报告列表不可用（" + response.status + "）");
+  return response.json();
+}
+
+/** GET /api/reports/{id}: one report with its markdown body. */
+export async function fetchReport(reportId: string): Promise<ReportInfo> {
+  const response = await fetch(`/api/reports/${encodeURIComponent(reportId)}`);
+  await jsonOrThrow(response, "报告不可用");
   return response.json();
 }
 export type Event =

@@ -104,7 +104,7 @@ function App() {
     latestTurns.current = next;
     return next;
   });
-  const workspace = useWorkspace(turns, options, setTurnsTracked, setOptions, taskId, setTaskId);
+  const workspace = useWorkspace(turns, options, setTurnsTracked, setOptions, taskId, setTaskId, corpusId, setCorpusId);
   const { corpora, error: corporaError, refresh: refreshCorpora } = useCorpora(connected);
   // H5: the selected corpus scopes the document list; unset falls back to the default corpus.
   const currentCorpus: CorpusInfo | null = corpora.find(c => c.id === corpusId) ?? corpora.find(c => c.is_default) ?? null;
@@ -172,9 +172,11 @@ function App() {
     const history = override?.history ?? turns;
     const scope = override?.options ?? options;
     // U1.3: task_id is only sent once the backend accepts the field; task4 never goes through chat.
-    const effectiveOptions: Options = uiFlags.tasks
-      ? { ...scope, task_id: taskId }
-      : { allowed_doc_ids: scope.allowed_doc_ids ?? null };
+    // H8: corpus_id likewise rides behind its own flag (ChatRequest extra="forbid").
+    const effectiveOptions: Options = {
+      ...(uiFlags.tasks ? { ...scope, task_id: taskId } : { allowed_doc_ids: scope.allowed_doc_ids ?? null }),
+      ...(uiFlags.corpus && effectiveCorpusId ? { corpus_id: effectiveCorpusId } : {}),
+    };
     const question = override?.question ?? (regenerate ? history.at(-1)?.question : input.trim());
     if (!question || controller.current || !ready || !workspace.loaded || sessionBusy) return;
     const turn = regenerate ? regenerateTurn(history[history.length - 1], history.slice(0, -1)) : newTurn(question, history, effectiveOptions);
@@ -372,7 +374,10 @@ function App() {
         {progress && progress.total > 0 && <div className="mt-3"><progress className="w-full" value={progress.completed} max={progress.total}/><p className="text-xs">向量索引：{progress.completed} / {progress.total} 个片段</p></div>}
       </section>}
       {view === "chat" && <>
-      {activeTask && <p className="mt-4 rounded-xl border border-stone-200 bg-white px-4 py-2 text-xs text-stone-600">任务：{activeTask.name} · {activeTask.description}</p>}
+      {(activeTask || (uiFlags.corpus && currentCorpus)) && <p className="mt-4 rounded-xl border border-stone-200 bg-white px-4 py-2 text-xs text-stone-600">
+        {activeTask && <>任务：{activeTask.name} · {activeTask.description}</>}
+        {uiFlags.corpus && currentCorpus && <>{activeTask ? "　｜　" : ""}库：{currentCorpus.name}{currentCorpus.preparation !== "ready" ? `（${currentCorpus.preparation === "uninitialized" ? "未初始化" : currentCorpus.preparation === "empty" ? "空库" : currentCorpus.preparation}）` : ""}</>}
+      </p>}
       <section className="flex-1 py-8" aria-label="对话">
         {!turns.length && <div className="py-16">
           <p className="text-sm text-teal-700">你的知识，有据可循。</p>

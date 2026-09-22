@@ -25,4 +25,6 @@ export const uiFlags = {
   news: enabled("VITE_UI_NEWS"),
   /** Model selector (U9.4 second step; needs `GET /api/models` and request-level `model`). */
   models: enabled("VITE_UI_MODELS"),
+  /** Session-bound corpus in chat requests and the session header (H8; needs chat `corpus_id`, H4). */
+  corpus: enabled("VITE_UI_CORPUS"),
 } as const;

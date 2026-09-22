@@ -80,7 +80,7 @@
 
 ### 6.1 根因分析（代码核对，非实测）
 
-> 本节为代码核对结论；导入耗时的具体数字待 K2 探针**实测**。“演示库 6717 chunk 约小时级”为估计值，不得作为验收依据。
+> 本节为代码核对结论，**非实测**；以功能验收为准，不做额外基准测试。
 
 - **慢点不在 SQLite**：`Knowledge.put` 单条 `INSERT OR REPLACE`（`knowledge.py:65-86`）。
 - **OCR 常开**：`parse_file` 固定传 `ocr_enabled=settings.pdf_ocr`（`parsers.py:24`），`.env` 默认 `PDF_OCR=true`、`PDF_OCR_LANGUAGE=eng`。
@@ -105,8 +105,8 @@
 |---|---|---|
 | **K0（前置）** | 应用级会话库：把 `workspace.sqlite3` 从活动库 `<KB>/datadb/`（`main.py:91`）迁到固定应用级目录，`app.state.workspace` 独立于语料；未完成前**不开放库删除/重命名** | 删除/切换默认库不影响会话与笔记；旧库目录不再存 `workspace.sqlite3` |
 | K1 | 增量导入与删除同步：`<KB>/datadb` 增 `files(rel_path,size,mtime_ns,sha256,doc_id,status,updated_at)` 清单；未变跳过；新增/变更重解析；源文件删除→标记移除，且**同时从 BM25 与 dense 排除** | 二次导入近零解析；删除后文档不出现在检索与引用；报告含 added/updated/skipped/deleted/errors |
-| K2 | 解析器评估与耗时基线：liteparse 2.14.6 探针（可用参数仅 `ocr_enabled`/`ocr_language`/`num_workers`/`pool_size`/`target_pages`/`parse_timeout`，**无“仅无文本页触发 OCR”开关**）+ **mineru 候选**；用真实中文 PDF 记录耗时与质量 | 产出对比结论与默认解析器；K3/K4/K11 据此定稿 |
-| K3 | 解析性能：OCR 策略（两遍探测或混合：先提文本、仅对无文本页 OCR/走 mineru）、并发（`num_workers`/`pool_size` 或线程池）、大文件分段 | 有文本层 PDF 不触发 OCR；中文扫描件耗时相对 K2 基线显著下降 |
+| K2 | 解析管线确认：**固定使用 liteparse**（不引入 mineru）；OCR 提供三档开关：`off`（仅文本层）/ `force`（强制 OCR）/ `auto`（先提文本，仅无文本页再 OCR），由库设置选择 | 三档可用；有文本层 PDF 选 `off`/`auto` 不再全量 OCR |
+| K3 | 解析性能：并发解析（liteparse `num_workers`/`pool_size` 或线程池）、大文件分段；未变文件跳过由 K1 负责 | 多文件并行解析；有文本层 PDF 不触发 OCR |
 | K4 | OCR/语言运行时配置：后端读取/更新接口 + 前端设置入口（`eng`/`chi_sim`/`chi_sim+eng`）；语义“仅影响后续导入”，需重导入才生效 | 不改 `.env` 重启即可调整；中文默认 `chi_sim+eng` |
 | K5 | 两阶段导入 + 进度/取消：先解析入库（BM25 可检索）→ 后台建向量；任务含 phase/stage/计数/错误，可轮询与取消 | 导入结束即可问答；向量进度独立；可取消 |
 | K6 | 知识库 CRUD：新建；**重命名拆分为**（a）显示名（`CORPORA` override 的 `name`，不动目录）与（b）目录搬迁（单列 K6b）；删除默认只删 `datadb/`/`vectordb/`，`?purge_source=true` 才删 `source/`；PATCH/DELETE 后**重扫并重载活动库** `knowledge`/`dense` | 显示名与目录名分离；删除/重载后侧栏与检索一致；重名拒绝 |
@@ -115,12 +115,12 @@
 | K8 | Word 支持：`.docx` 解析（库选型待定稿）入 `datadb`；`SOURCE_SUFFIXES`（`corpora.py:20`）同步加入 `.docx` | `.docx` 可入库、可检索、可预览 |
 | K9 | 预览：`GET /api/documents/{doc_id}/preview`（**带 `corpus` 参数**，与列表接口一致）按 kind 返回 html/text/file；统一 `DocumentPanel`：pdf 原生（D6）、md 渲染、docx 转 HTML、txt 纯文本 | 四类文件可预览并显示元数据 |
 | K10 | 检索性能：**范围含每查询的 `self.all()` + 窗口切分 + `tokens()` + `BM25Plus(corpus)`**（`knowledge.py:104-126`），不止 chunk id；需预计算/缓存候选与 BM25，或明确调低验收口径 | 大库查询延迟不随库线性增长（或按调低口径验收） |
-| K11 | 验收：以 `.knowledge/自然科学基金`（10 份中文 PDF，约 213MB）做**优化前后真实耗时对比**（依赖 K2 基线 + K4 语言）、文件/库 CRUD、预览、重命名/删除、按库问答仅本库引用 | 全部通过 |
+| K11 | 验收：文件/库 CRUD、预览、重命名/删除、按库问答仅本库引用；以一次真实导入抽样计时（不做对比测试） | 功能通过 |
 
 ### 6.4 顺序与依赖
 
 - **K0 必须先于 K6（库删除/重命名）**，否则删默认库即丢会话/笔记。
-- **K2（评估/基线）先于 K3/K4/K11**；K3/K4 先于 K11。
+- **K2（OCR 三档）与 K4（语言）先于 K11**。
 - **K8（Word）先于 K7 的 docx 支持**；K7 本阶段不含 docx。
 - K1 的删除同步必须同时清 BM25 与 dense（stale）。
 - K6/K7 的写操作需重扫并重载活动库。

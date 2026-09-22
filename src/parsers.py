@@ -50,8 +50,21 @@ def parse_file(path: Path, settings: Settings) -> Document:
 
         pages = parse_pdf_pages(path, settings)
         parser = "liteparse/" + liteparse.__version__
+    elif suffix == ".docx":
+        # K8: offline Word parsing (paragraphs + tables as text).
+        import docx
+
+        document = docx.Document(str(path))
+        parts = [paragraph.text for paragraph in document.paragraphs if paragraph.text.strip()]
+        for table in document.tables:
+            for row in table.rows:
+                cells = [cell.text.strip() for cell in row.cells]
+                if any(cells):
+                    parts.append(" | ".join(cells))
+        pages = [Page(number=1, text="\n".join(parts))]
+        parser = "python-docx/" + getattr(docx, "__version__", "1")
     else:
-        raise ValueError("仅支持 txt、md、pdf")
+        raise ValueError("仅支持 txt、md、pdf、docx")
     return Document(
         title=path.stem,
         origin=str(path.resolve()),

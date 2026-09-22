@@ -22,9 +22,9 @@ export function CorpusFiles({ corpusId, onChanged, connected = true }: {
   return <details className="mt-5 rounded-2xl border border-stone-200 bg-white p-4 text-sm">
     <summary className="cursor-pointer font-medium text-stone-700">源文件管理 · {files.length}</summary>
     <div className="mt-3 space-y-3">
-      <input type="file" aria-label="上传源文件" accept=".md,.markdown,.txt,.pdf" disabled={busy || !connected}
+      <input type="file" aria-label="上传源文件" accept=".md,.markdown,.txt,.pdf,.docx" disabled={busy || !connected}
         onChange={e => { const file = e.target.files?.[0]; if (!file) return; e.target.value = ""; void run(async () => { await uploadCorpusFile(corpusId, file); }); }}/>
-      <p className="text-xs text-stone-400">支持 md / markdown / txt / pdf；上传后自动增量导入（未变文件跳过）。</p>
+      <p className="text-xs text-stone-400">支持 md / markdown / txt / pdf / docx；上传后自动增量导入（未变文件跳过）。</p>
       <ul className="space-y-1">
         {files.map(file => <li key={file.rel_path} className="flex items-center gap-2 text-xs">
           {editing?.rel === file.rel_path

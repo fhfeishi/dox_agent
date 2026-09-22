@@ -19,7 +19,7 @@ from pathlib import Path
 # Fund report files: <year_from>_<year_to>_<project_no>_<pi>_<title>.pdf (corpus_management §3.3).
 FUND_NAME_PATTERN = re.compile(r"^\d{4}_\d{4}_[A-Za-z0-9]+_[^_]+_.+\.pdf$", re.IGNORECASE)
 # Source files that make a corpus (raw material lives under ``<corpus>/source``).
-SOURCE_SUFFIXES = {".pdf", ".md", ".markdown", ".txt"}
+SOURCE_SUFFIXES = {".pdf", ".md", ".markdown", ".txt", ".docx"}
 
 # Fixed role subdirectories inside every corpus directory (方案 A).
 SOURCE_DIRNAME = "source"

@@ -403,7 +403,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         if not name or name.startswith(".") or name in {".", ".."}:
             raise HTTPException(422, "文件名非法")
         if Path(name).suffix.lower() not in SOURCE_SUFFIXES:
-            raise HTTPException(415, "仅支持 md/markdown/txt/pdf")
+            raise HTTPException(415, "仅支持 md/markdown/txt/pdf/docx")
         return name
 
     async def import_corpus(info: CorpusInfo) -> dict:

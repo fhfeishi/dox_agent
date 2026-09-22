@@ -18,10 +18,10 @@
 
 ## 按库 OCR 语言与“改语言→强制重解析”（待实现 K12，2026-09-22）
 
-- 问题：OCR 配置当前是**全局**（`STATE_DIR/ocr.json`），且增量导入按 `size+mtime_ns` 跳过未变文件，导致“改语言后重新导入”实际什么都不做；旧基金库以 `eng` 解析的正文仍是乱码，预览无法阅读。
+- 问题：OCR 配置当前是**全局**（`STATE_DIR/ocr.json`），且增量导入按 `size+mtime_ns` 跳过未变文件，导致（**清单已回填后**）“改语言后重新导入”实际什么都不做；旧基金库以 `eng` 解析的正文仍是乱码，预览无法阅读。**例外窗口**：基金库当前 `files` 清单为空，按规则会全量回填，普通 ingest 这一次会真的重解析——K12 落地前可临时用它修复。
 - 采用：
   - OCR 模式/语言**按库**存储（`<KB>/datadb` 的 `meta` 表）；生效值 = 库配置 ?? 全局默认。
-  - `files` 清单记录每文件解析时用的 `language`/`mode`；库配置与实际不一致时标 `ocr_stale`。
+  - 失效条件纳入**解析配置签名**（`mode` + `language` + parser 版本）：`files` 清单记录每文件的签名，签名与当前不一致即自动失效并标 `ocr_stale`（不依赖人工判断）。
   - `POST /api/corpora/{id}/ingest` 增 `force`：绕过 `size+mtime_ns` 跳过、全部重解析（用于语言/模式变更）；`ocr_stale` 时服务端建议/要求 `force`。
   - 入口（保底方案）：放在**左侧边栏知识库展开项**（`CorpusPicker`/`CorpusAdmin`）——“语言/模式 + 重新导入并应用”；库详情页（`LibraryView`）可复用同一操作。自动语言建议为可选增强，不阻塞。
   - 实现规格见 [`ITERATION.md`](ITERATION.md) §6.5（`meta` 键、`GET/PUT /api/corpora/{id}/ocr`、`ingest?force=` 与 `stale` 自动强制、`api.ts`/`CorpusPicker` 变更、验收）。

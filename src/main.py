@@ -340,7 +340,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 raise
             overrides = load_corpus_overrides(settings)
             entry = overrides.get(corpus_id, {})
-            overrides[corpus_id] = {**entry, "id": corpus_id, "rel": name}
+            # Renaming syncs the display name to the directory name, so the old alias is cleared.
+            overrides[corpus_id] = {**entry, "id": corpus_id, "rel": name, "alias": ""}
             save_corpus_overrides(settings, overrides)
 
         async with request.app.state.import_lock:

@@ -156,11 +156,15 @@ def load_corpus_overrides(settings) -> dict[str, dict]:
     for key, value in data.items():
         if not isinstance(value, dict):
             continue
+        # Prefer alias; fall back to the legacy K6 display `name`. Drop `name` so clearing
+        # `alias` on rename actually takes effect (no shadowing).
+        alias = str(value.get("alias") or value.get("name") or "")
+        entry = {field: item for field, item in value.items() if field != "name"}
         if value.get("rel") or value.get("id"):
-            overrides[str(key)] = {**value, "id": str(value.get("id") or key)}
+            overrides[str(key)] = {**entry, "id": str(value.get("id") or key), "alias": alias}
         else:
             corpus_id = corpus_id_for(str(key))
-            overrides[corpus_id] = {**value, "rel": str(key), "id": corpus_id}
+            overrides[corpus_id] = {**entry, "rel": str(key), "id": corpus_id, "alias": alias}
     return overrides
 
 
@@ -281,7 +285,7 @@ def scan_corpora(settings) -> list[CorpusInfo]:
             if not _has_sources(source_dir) and not created:
                 continue
             corpus_id = str(persisted_entry.get("id") or config_entry.get("id") or corpus_id_for(rel))
-            alias = str(persisted_entry.get("alias") or config_entry.get("name") or "")
+            alias = str(persisted_entry.get("alias") or persisted_entry.get("name") or config_entry.get("name") or "")
             db_dir = child / DB_DIRNAME
             sqlite_path = db_dir / "knowledge.sqlite3"
             count = _docs_count(sqlite_path) if sqlite_path.is_file() else 0

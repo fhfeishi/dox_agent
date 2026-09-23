@@ -1,5 +1,6 @@
 """Corpus registry (方案 A / §10): each corpus dir holds source/ + datadb/ + vectordb/."""
 
+import json
 import sqlite3
 
 from src.agent.config import Settings
@@ -91,6 +92,18 @@ def test_no_ready_corpus_has_no_default(tmp_path):
     infos = scan_corpora(settings)
     assert infos and not any(item.is_default for item in infos)
     assert resolve_default(infos, settings) is None
+
+
+def test_legacy_display_names_migrate_to_alias(tmp_path):
+    # Given a legacy K6 rel-keyed display name in corpora.json
+    settings = make_settings(tmp_path, default_corpus="自然科学基金")
+    seed_ready(tmp_path, "自然科学基金")
+    state = tmp_path / "knowledge" / ".state"
+    state.mkdir(parents=True, exist_ok=True)
+    (state / "corpora.json").write_text(json.dumps({"自然科学基金": {"name": "友好名"}}), encoding="utf-8")
+    # When scanning, the friendly name survives as an alias (A regression fix)
+    info = next(item for item in scan_corpora(settings) if item.rel_path == "自然科学基金")
+    assert info.alias == "友好名" and info.name == "友好名"
 
 
 def test_migrate_layout_moves_demo_state_and_rewrites_origins(tmp_path, monkeypatch):

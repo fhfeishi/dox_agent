@@ -73,23 +73,23 @@ async def main():
             await page.get_by_role("button", name="＋ 新的问答").click()
             await expect(sidebar.get_by_text("当前新会话")).to_be_visible()
 
-            # drawer: a11y dialog, Esc closes, focus returns, polling unmounts
+            # drawer: a11y dialog, Esc closes, focus returns; it only holds connection + model
             trigger = page.get_by_role("button", name="设置", exact=True)
+            before_official = official["count"]
             await trigger.click()
             dialog = page.get_by_role("dialog", name="设置与运维")
             await expect(dialog).to_be_visible()
-            await expect(dialog.get_by_role("button", name="导出对话与证据版本")).to_be_visible()
-            # knowledge-base CRUD / import no longer lives in the settings drawer
+            await expect(dialog.get_by_role("heading", name="模型")).to_be_visible()
+            # KB CRUD, import and session/online-doc sources no longer live in the settings drawer
             assert await dialog.get_by_text("知识库管理").count() == 0
             assert await dialog.get_by_role("button", name="新建知识库").count() == 0
-            await page.wait_for_timeout(2500)
+            assert await dialog.get_by_text("在线文档源").count() == 0
+            assert await dialog.get_by_role("button", name="导出诊断 JSON").count() == 0
+            await page.wait_for_timeout(1500)
+            assert official["count"] == before_official, "online document sources must not poll inside the settings drawer"
             await page.keyboard.press("Escape")
             await expect(dialog).to_have_count(0)
             assert await page.evaluate("document.activeElement && document.activeElement.textContent") == "设置"
-            await page.wait_for_timeout(500)
-            before = official["count"]
-            await page.wait_for_timeout(3000)
-            assert official["count"] == before, f"official-docs polling continued after close: {before} -> {official['count']}"
 
             assert not errors, errors
             print("PASS: rail convergence, compact health, session grouping/search/unsaved, drawer a11y+unmount")

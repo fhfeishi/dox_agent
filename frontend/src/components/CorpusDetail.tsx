@@ -7,6 +7,7 @@ import { CorpusFiles } from "./CorpusFiles";
 import { Drawer } from "./Drawer";
 import { Icon } from "./Icons";
 import { IngestTools } from "./IngestTools";
+import { OfficialDocs } from "./OfficialDocs";
 import { Button, Pill } from "./ui";
 
 type Tab = "docs" | "files" | "import";
@@ -257,16 +258,20 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
 
           {corpus.is_default ? (
             <div className="rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px]">
-              <p className="text-[12.8px] font-medium text-[var(--ink)]">补充材料（仅默认库）</p>
+              <p className="text-[12.8px] font-medium text-[var(--ink)]">补充材料与在线文档源（仅默认库）</p>
               <p className="mt-[3px] mb-[10px] text-[11.5px] leading-[1.6] text-[var(--steel)]">
-                <code className="font-code">/api/ingest/local</code>、<code className="font-code">/api/ingest/text</code> 与
-                <code className="font-code">/api/web/*</code> 只写入默认库，因此仅在默认库详情出现。
+                <code className="font-code">/api/ingest/local</code>、<code className="font-code">/api/ingest/text</code>、
+                <code className="font-code">/api/web/*</code> 与在线文档源（<code className="font-code">/api/official-docs</code>）
+                只写入默认库，因此仅在默认库详情出现。
               </p>
               <IngestTools refresh={() => refresh()} connected={connected} />
+              <div className="mt-[14px] border-t border-[var(--hairline)] pt-[14px]">
+                <OfficialDocs connected={connected} />
+              </div>
             </div>
           ) : (
             <p className="text-[11.5px] leading-[1.6] text-[var(--stone)]">
-              本地目录扫描 / 网页快照 / 补充正文只支持默认库；本库请用「按库导入」或「源文件」上传。
+              本地目录扫描 / 网页快照 / 补充正文 / 在线文档源只支持默认库；本库请用「按库导入」或「源文件」上传。
             </p>
           )}
         </div>

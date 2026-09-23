@@ -1,9 +1,11 @@
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useApp } from "../store";
 import { Composer } from "./Composer";
 import { BranchNote, EmptyState, MessageView } from "./MessageView";
 import { BrandMark, Icon } from "./Icons";
 import { Button, ToolButton } from "./ui";
+import { downloadSessionMarkdown } from "../sessionExport";
+import { downloadTurn } from "../turnExport";
 
 function UserRow({
   index,
@@ -105,9 +107,29 @@ export function ChatView() {
     inspectorOpen,
     toggleInspector,
     setTurnReport,
+    exportChat,
+    showToast,
   } = useApp();
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const exportRef = useRef<HTMLDivElement>(null);
+  const [exportOpen, setExportOpen] = useState(false);
+
+  useEffect(() => {
+    if (!exportOpen) return;
+    const onDown = (e: MouseEvent) => {
+      if (!exportRef.current?.contains(e.target as Node)) setExportOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setExportOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [exportOpen]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -143,6 +165,46 @@ export function ChatView() {
         {uiDocPanel ? (
           <ToolButton icon="book" label="本地文档" onClick={openExplorer} title="浏览本地文档原文" />
         ) : null}
+        <div ref={exportRef} className="relative">
+          <ToolButton
+            icon="download"
+            label="导出"
+            active={exportOpen}
+            onClick={() => setExportOpen((v) => !v)}
+            title="导出当前会话"
+          />
+          {exportOpen ? (
+            <div className="absolute top-[calc(100%+6px)] right-0 z-[60] w-[230px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[6px] shadow-[0_16px_48px_-8px_rgba(15,15,15,0.16)]">
+              <button
+                type="button"
+                aria-label="导出会话为 Markdown"
+                disabled={!turns.some((turn) => turn.outcome === "completed" && turn.answer)}
+                onClick={() => {
+                  setExportOpen(false);
+                  downloadSessionMarkdown(
+                    { title: activeTitle, corpusName: currentCorpus?.name, taskName: taskCapable ? activeTask?.name : undefined },
+                    turns,
+                  );
+                  showToast("已导出会话 Markdown");
+                }}
+                className="font-app block w-full rounded-[6px] px-[9px] py-[8px] text-left text-[12.5px] text-[var(--charcoal)] hover:bg-[var(--surface)] disabled:opacity-40"
+              >
+                导出会话为 Markdown
+              </button>
+              <button
+                type="button"
+                aria-label="导出诊断 JSON"
+                onClick={() => {
+                  setExportOpen(false);
+                  exportChat();
+                }}
+                className="font-app block w-full rounded-[6px] px-[9px] py-[8px] text-left text-[12.5px] text-[var(--charcoal)] hover:bg-[var(--surface)]"
+              >
+                导出诊断 JSON
+              </button>
+            </div>
+          ) : null}
+        </div>
         <ToolButton
           icon="panel"
           label="产出"
@@ -221,6 +283,17 @@ export function ChatView() {
                       }
                       onReport={(report) => setTurnReport(i, report)}
                       onDraft={() => setInput(turn.answer)}
+                      onExport={(format) =>
+                        void downloadTurn(
+                          {
+                            question: turn.question,
+                            corpusName: currentCorpus?.name,
+                            taskName: taskCapable ? activeTask?.name : undefined,
+                          },
+                          turn,
+                          format,
+                        )
+                      }
                       onOpenSource={handleOpenSource}
                     />
                     {!!turn.previousAttempts.length ? (

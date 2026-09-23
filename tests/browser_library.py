@@ -86,6 +86,11 @@ async def main():
             await detail.get_by_role("button", name="用于当前对话").click()
             await expect(detail.get_by_text("当前对话使用中")).to_be_visible()
 
+            # 2b) non-default corpus: online document sources are not shown (default library only)
+            await detail.get_by_role("button", name="导入").click()
+            assert await detail.get_by_role("heading", name="在线文档源").count() == 0
+            await detail.get_by_role("button", name=re.compile("文档")).first.click()
+
             # 3) opening a document from that corpus previews the right corpus
             await detail.get_by_role("button", name=re.compile("对比报告")).first.click()
             dialog = page.get_by_role("dialog", name=re.compile("文档预览"))
@@ -99,14 +104,19 @@ async def main():
             other = page.get_by_role("dialog", name=re.compile("默认库"))
             await expect(other).to_be_visible()
             await expect(other.get_by_role("button", name="用于当前对话")).to_be_visible()
+            # default corpus: online document sources live in the import tab
+            await other.get_by_role("button", name="导入").click()
+            await expect(other.get_by_role("heading", name="在线文档源")).to_be_visible()
             await other.get_by_role("button", name="关闭 ✕").click()
 
-            # 5) settings drawer no longer owns knowledge-base CRUD
+            # 5) settings drawer no longer owns knowledge-base CRUD or sources/export
             await page.get_by_role("button", name="设置", exact=True).click()
             settings = page.get_by_role("dialog", name="设置与运维")
             await expect(settings).to_be_visible()
             assert await settings.get_by_role("button", name="新建知识库").count() == 0
             assert await settings.get_by_text("知识库管理").count() == 0
+            assert await settings.get_by_text("在线文档源").count() == 0
+            assert await settings.get_by_role("button", name="导出诊断 JSON").count() == 0
             await settings.get_by_role("button", name="关闭 ✕").click()
 
             # 6) chat still carries the explicitly activated corpus

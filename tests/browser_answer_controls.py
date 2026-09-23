@@ -98,9 +98,9 @@ async def main():
             await page.evaluate("Object.defineProperty(navigator.clipboard, 'writeText', {value: async () => {throw new Error('denied')}})")
             await latest.get_by_role("button", name="复制答案", exact=True).first.click()
             await expect(page.get_by_text("复制失败，请手动选择答案复制。", exact=True)).to_be_visible()
-            await page.get_by_role("button", name="设置", exact=True).click()
+            await page.get_by_role("button", name="导出", exact=True).click()
             async with page.expect_download() as download_info:
-                await page.get_by_role("button", name="导出对话与证据版本").click()
+                await page.get_by_role("button", name="导出诊断 JSON").click()
             download = await download_info.value
             exported = json.loads(Path(await download.path()).read_text())
             failed = exported["turns"][-1]

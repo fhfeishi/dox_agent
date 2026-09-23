@@ -16,6 +16,7 @@ export type IconName =
   | "checklist"
   | "competitors"
   | "upload"
+  | "download"
   | "dots"
   | "close"
   | "send"
@@ -97,6 +98,7 @@ const PATHS: Record<IconName, ReactNode> = {
     </>
   ),
   upload: <path d="M12 16V5m0 0L7.5 9.5M12 5l4.5 4.5M5 18.5h14" />,
+  download: <path d="M12 4.5v11m0 0L7.5 11M12 15.5l4.5-4.5M5 19.5h14" />,
   dots: (
     <>
       <circle cx="6" cy="12" r="1.6" fill="currentColor" stroke="none" />

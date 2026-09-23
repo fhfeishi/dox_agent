@@ -350,6 +350,7 @@ export function MessageView({
   onOpenSource,
   onReport,
   onDraft,
+  onExport,
   defaultOpen = false,
   compact = false,
 }: {
@@ -359,6 +360,7 @@ export function MessageView({
   onOpenSource?: (source: Source, n: number) => void;
   onReport?: (report: { report_id: string; markdown: string }) => void;
   onDraft?: () => void;
+  onExport?: (format: "md" | "word") => void;
   defaultOpen?: boolean;
   compact?: boolean;
 }) {
@@ -461,6 +463,30 @@ export function MessageView({
             <Icon name="copy" size={13} strokeWidth={1.9} />
             {copyState === "copied" ? "已复制" : "复制答案"}
           </button>
+          {onExport ? (
+            <>
+              <button
+                type="button"
+                aria-label="导出此回答为 Markdown"
+                disabled={!attempt.answer || running}
+                onClick={() => onExport("md")}
+                className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-[12px] text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
+              >
+                <Icon name="download" size={13} strokeWidth={1.9} />
+                导出 MD
+              </button>
+              <button
+                type="button"
+                aria-label="导出此回答为 Word"
+                disabled={!attempt.answer || running}
+                onClick={() => onExport("word")}
+                className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-[12px] text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
+              >
+                <Icon name="download" size={13} strokeWidth={1.9} />
+                导出 Word
+              </button>
+            </>
+          ) : null}
           {onRegenerate ? (
             <button
               type="button"

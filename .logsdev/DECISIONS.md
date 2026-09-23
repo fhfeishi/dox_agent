@@ -188,6 +188,13 @@
   - **M7 校验口径**：`session_key` 服务端**不强制**；“chat 入口必发”是**前端流程约定**，不得加服务端必填校验。
 - 附带修正：`main.py:81` 注释「task4 is deliberately absent」已过期，应改为“task4 允许输入、走 intake，不生成正文”。
 
+## 重命名同步目录（KB-5，取代 K6「仅改显示名」，2026-09-23）
+
+- 采用：`.knowledge/<dir>` 为规范名；`PATCH /api/corpora/{id}` 执行**目录改名 + 文件型 origin 前缀重写（保留 doc_id）+ 稳定 corpus_id 保留**；可选 `alias` 按 id 持久化；`.state/corpora.json` 按 **id** 持久化（旧 rel-keyed 读时转换 + 扫描回填）。
+- 理由与代价：库名与磁盘一致、便于运维/迁移；代价是重命名需 `import_lock` + 失败回滚，且文档 `doc_id` 与路径解耦依赖 `Knowledge.put(doc_id=)` + `import_defaults` 复用清单 id（T1）。
+- 边界（T5）：校验保留名（CON/PRN/AUX/NUL/COM1-9/LPT1-9）、尾随点/空格、分隔符；仅大小写改名走两步临时名。
+- 关联：`resolve_default` 按 id→rel（T7，旧 `.env` 写 rel 仍可解析）；T3（缺失库提示）与 T6（名称/目录对齐迁移）待后续。
+
 ## 任务 = 输出契约，不是输入闸门（2026-09-22，规划）
 
 - 采用：四个任务（task1–4）都保留自由文本输入；输入禁用只由运行时状态（busy/离线/未就绪）决定，**不由 task 决定**。**约束对象是正文生成，不是输入**：task4 正文仍不在 chat 生成，chat 只做 intake。

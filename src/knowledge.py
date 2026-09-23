@@ -84,10 +84,12 @@ class Knowledge:
     def connect(self):
         return sqlite3.connect(self.path, timeout=30)
 
-    def put(self, doc: Document) -> dict:
+    def put(self, doc: Document, *, doc_id: str | None = None) -> dict:
         if not any(p.text.strip() for p in doc.pages):
             raise ValueError("解析结果为空，未入库")
-        doc_id = hashlib.sha256(doc.origin.encode()).hexdigest()[:20]
+        # KB-5/T1: callers may pass a stable id (manifest) so a rename/reimport updates in place
+        # instead of inserting a second row under the new origin.
+        doc_id = doc_id or hashlib.sha256(doc.origin.encode()).hexdigest()[:20]
         # L1: version covers both the page text and the markdown body.
         version = hashlib.sha256(
             json.dumps(

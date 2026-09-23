@@ -3,8 +3,10 @@
 from fastapi.testclient import TestClient
 
 from src.agent.config import Settings
+from src.agent.corpora import rewrite_origins
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app, workspace_path
+from src.parsers import import_defaults
 
 
 def settings_for(tmp_path):
@@ -106,12 +108,16 @@ def test_corpus_create_rename_and_delete(tmp_path):
         assert client.post("/api/corpora", json={"name": "../escape"}).status_code == 422
 
         renamed = client.patch(f"/api/corpora/{cid}", json={"name": "改名库"})
+        assert renamed.status_code == 200
         assert renamed.json()["name"] == "改名库" and renamed.json()["id"] == cid
-        assert (tmp_path / "knowledge" / "新库").is_dir()  # directory unchanged
+        # KB-5b: the directory itself is renamed (name and dir stay in sync).
+        assert (tmp_path / "knowledge" / "改名库").is_dir()
+        assert not (tmp_path / "knowledge" / "新库").exists()
+        assert client.post("/api/corpora", json={"name": "CON"}).status_code == 422
 
         assert client.delete(f"/api/corpora/{cid}").status_code == 200
-        assert (tmp_path / "knowledge" / "新库" / "source").is_dir()  # source kept
-        assert not (tmp_path / "knowledge" / "新库" / "datadb").exists()
+        assert (tmp_path / "knowledge" / "改名库" / "source").is_dir()  # source kept
+        assert not (tmp_path / "knowledge" / "改名库" / "datadb").exists()
 
         default_id = next(item["id"] for item in client.get("/api/corpora").json() if item["is_default"])
         assert client.delete(f"/api/corpora/{default_id}").status_code == 409
@@ -144,3 +150,36 @@ def test_corpus_file_upload_list_rename_delete(tmp_path):
         assert client.get(f"/api/corpora/{cid}/files").json()["files"] == []
         assert client.get(f"/api/documents?corpus={cid}").json() == []
         assert client.delete(f"/api/corpora/{cid}/files", params={"rel_path": "../escape"}).status_code == 404
+
+
+def test_rename_syncs_directory_and_keeps_doc_identity(tmp_path):
+    doc_id, _ = seed_corpus(tmp_path, "旧名")
+    seed_corpus(tmp_path, "demo")
+    settings = settings_for(tmp_path)
+    app = create_app(settings, Knowledge(demo_db(tmp_path)))
+    with TestClient(app) as client:
+        cid = next(item["id"] for item in client.get("/api/corpora").json() if item["rel_path"] == "旧名")
+        renamed = client.patch(f"/api/corpora/{cid}", json={"name": "新名"})
+        assert renamed.status_code == 200 and renamed.json()["id"] == cid
+        assert (tmp_path / "knowledge" / "新名" / "source" / "报告.md").is_file()
+        # origin rewritten, doc id stable, read + /file serve the moved file
+        assert client.get(f"/api/documents/{doc_id}?corpus={cid}").json()["text"] == "正文"
+        assert client.get(f"/api/documents/{doc_id}/file?corpus={cid}").status_code == 200
+
+
+def test_reimport_after_corpus_rename_keeps_doc_id(tmp_path):
+    corpus = tmp_path / "knowledge" / "旧"
+    source = corpus / "source"
+    source.mkdir(parents=True)
+    (source / "a.txt").write_text("正文", encoding="utf-8")
+    settings = Settings(_env_file=None, corpora_root=tmp_path / "knowledge")
+    store = Knowledge(corpus / "datadb" / "knowledge.sqlite3")
+    doc_id = import_defaults(store, settings, root=source)["imported"][0]["doc_id"]
+    # KB-5b rename: move the dir + rewrite file origins (id kept), then force a re-import.
+    new = tmp_path / "knowledge" / "新"
+    corpus.rename(new)
+    rewrite_origins(new / "datadb" / "knowledge.sqlite3", corpus, new, [])
+    store = Knowledge(new / "datadb" / "knowledge.sqlite3")  # reopen at the moved path
+    import_defaults(store, settings, root=new / "source", parsed_root=new / "parsed", force=True)
+    assert len(store.all()) == 1  # T1: no duplicate row
+    assert store.all()[0]["doc_id"] == doc_id

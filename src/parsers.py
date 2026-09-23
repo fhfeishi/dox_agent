@@ -294,7 +294,8 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
                 skipped += 1
                 continue
             document = parse_file(path, settings, parsed_dir=(parsed_root / rel) if parsed_root else None)
-            result = knowledge.put(document)
+            # KB-5/T1: reuse the manifest doc_id so a rename/reimport updates in place.
+            result = knowledge.put(document, doc_id=(prev or {}).get("doc_id"))
             # PDF reports get block-accurate chunks (tables stay whole); other kinds rely on
             # the page-level fallback that ``put`` already indexed.
             if parsed_root is not None and path.suffix.lower() == ".pdf":

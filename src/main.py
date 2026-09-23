@@ -3,6 +3,7 @@
 import asyncio
 import json
 import logging
+import os
 import shutil
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -20,10 +21,12 @@ from .agent.corpora import (
     SOURCE_SUFFIXES,
     VECTOR_DIRNAME,
     CorpusInfo,
+    corpus_id_for,
     corpus_root_for,
     default_corpus_info,
     load_corpus_overrides,
     migrate_layout,
+    rewrite_origins,
     save_corpus_overrides,
     scan_corpora,
     valid_corpus_name,
@@ -266,6 +269,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "docs_count": info.docs_count,
             "preparation": info.preparation,
             "is_default": info.is_default,
+            "alias": info.alias,
+            "dir_name": info.dir_name or info.root.name,
             "index_progress": dense.progress if info.is_default and dense else None,
             "job": app.state.corpus_jobs.get(info.id),
         }
@@ -289,8 +294,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         def create_dirs():
             for role in (SOURCE_DIRNAME, DB_DIRNAME, VECTOR_DIRNAME):
                 (target / role).mkdir(parents=True, exist_ok=True)
+            corpus_id = corpus_id_for(name)
             overrides = load_corpus_overrides(settings)
-            overrides[name] = {**overrides.get(name, {}), "created": True}
+            overrides[corpus_id] = {"id": corpus_id, "rel": name, "alias": "", "created": True}
             save_corpus_overrides(settings, overrides)
 
         await asyncio.to_thread(create_dirs)
@@ -301,21 +307,45 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         return corpus_payload(info)
 
     @app.patch("/api/corpora/{corpus_id}")
-    async def rename_corpus(payload: CorpusRename, corpus_id: str):
-        """K6: rename is a display-name override; the directory and corpus_id stay put."""
+    async def rename_corpus(request: Request, payload: CorpusRename, corpus_id: str):
+        """KB-5b: rename syncs ``.knowledge/<dir>``; stable corpus_id and doc ids are kept."""
         name = payload.name.strip()
         if not valid_corpus_name(name):
             raise HTTPException(422, "知识库名称非法")
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
             raise HTTPException(404, "知识库不存在")
+        root = corpus_root_for(settings)
+        target = (root / name).resolve()
+        if not target.is_relative_to(root) or target.exists():
+            raise HTTPException(409, "同名知识库已存在")
+        running = request.app.state.corpus_tasks.get(corpus_id)
+        if running and not running.done():
+            raise HTTPException(409, "该知识库正在导入")
+        old = info.root
 
-        def persist():
+        def do_rename():
+            if old.name.lower() == name.lower():
+                # Case-only rename: two-step so a case-insensitive FS does not see a conflict (T5).
+                temp = root / (".rename-" + uuid4().hex)
+                os.rename(old, temp)
+                os.rename(temp, target)
+            else:
+                os.rename(old, target)
+            try:
+                # T1/T2: rewrite file-type origins but keep doc ids; DB write is transactional.
+                rewrite_origins(target / DB_DIRNAME / "knowledge.sqlite3", old, target, [])
+            except Exception:
+                os.rename(target, old)  # roll back the directory
+                raise
             overrides = load_corpus_overrides(settings)
-            overrides[info.rel_path] = {**overrides.get(info.rel_path, {}), "name": name}
+            entry = overrides.get(corpus_id, {})
+            overrides[corpus_id] = {**entry, "id": corpus_id, "rel": name}
             save_corpus_overrides(settings, overrides)
 
-        await asyncio.to_thread(persist)
+        async with request.app.state.import_lock:
+            await asyncio.to_thread(do_rename)
+        app.state.corpus_knowledge.pop(corpus_id, None)
         items = await asyncio.to_thread(scan_corpora, settings)
         return corpus_payload(next(item for item in items if item.id == corpus_id))
 
@@ -336,8 +366,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             elif info.root.exists() and not any(info.root.iterdir()):
                 shutil.rmtree(info.root, ignore_errors=True)
             overrides = load_corpus_overrides(settings)
-            if info.rel_path in overrides:
-                overrides.pop(info.rel_path)
+            if corpus_id in overrides:
+                overrides.pop(corpus_id)
                 save_corpus_overrides(settings, overrides)
 
         await asyncio.to_thread(remove)

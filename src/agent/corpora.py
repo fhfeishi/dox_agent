@@ -47,6 +47,8 @@ class CorpusInfo:
     docs_count: int
     preparation: str  # ready | empty | uninitialized
     is_default: bool = False
+    alias: str = ""  # optional friendly name persisted by id (KB-5); canonical name = dir_name
+    dir_name: str = ""
 
 
 OVERRIDES_FILENAME = "corpora.json"
@@ -54,7 +56,7 @@ STATE_FILES = ("workspace.sqlite3", "reports.sqlite3", "corpora.json", "official
 DEMO_DIRNAME = "demo_langchain"
 
 
-def _rewrite_origins(db_path: Path, old_root: Path, new_root: Path, log: list[str]) -> None:
+def rewrite_origins(db_path: Path, old_root: Path, new_root: Path, log: list[str]) -> None:
     """M1: rewrite file-type origins after a corpus move; doc ids stay stable."""
     if not db_path.is_file():
         return
@@ -92,7 +94,7 @@ def migrate_layout(settings) -> list[str]:
     if old_demo.is_dir() and not new_demo.exists():
         shutil.copytree(old_demo, new_demo)
         if new_demo.is_dir():
-            _rewrite_origins(new_demo / DB_DIRNAME / "knowledge.sqlite3", old_demo, new_demo, log)
+            rewrite_origins(new_demo / DB_DIRNAME / "knowledge.sqlite3", old_demo, new_demo, log)
             shutil.rmtree(old_demo, ignore_errors=True)
             log.append(f"moved {old_demo} -> {new_demo}")
 
@@ -140,12 +142,26 @@ def corpus_id_for(rel_path: str) -> str:
 
 
 def load_corpus_overrides(settings) -> dict[str, dict]:
-    """Runtime display-name overrides persisted outside .env (K6)."""
+    """§11/KB-5a: id-keyed overrides ``{id: {id, rel, alias?, created?, kind?, domain?}}``.
+
+    Legacy rel-keyed entries (K6) are converted on read; the scan writes the stable id back.
+    """
     try:
         data = json.loads((settings.state_dir / OVERRIDES_FILENAME).read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return {}
-    return {str(key): value for key, value in data.items() if isinstance(value, dict)} if isinstance(data, dict) else {}
+    if not isinstance(data, dict):
+        return {}
+    overrides: dict[str, dict] = {}
+    for key, value in data.items():
+        if not isinstance(value, dict):
+            continue
+        if value.get("rel") or value.get("id"):
+            overrides[str(key)] = {**value, "id": str(value.get("id") or key)}
+        else:
+            corpus_id = corpus_id_for(str(key))
+            overrides[corpus_id] = {**value, "rel": str(key), "id": corpus_id}
+    return overrides
 
 
 def save_corpus_overrides(settings, overrides: dict[str, dict]) -> None:
@@ -154,9 +170,18 @@ def save_corpus_overrides(settings, overrides: dict[str, dict]) -> None:
     path.write_text(json.dumps(overrides, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+_RESERVED_NAMES = {"CON", "PRN", "AUX", "NUL",
+                   *(f"COM{i}" for i in range(1, 10)), *(f"LPT{i}" for i in range(1, 10))}
+
+
 def valid_corpus_name(name: str) -> bool:
-    name = name.strip()
-    return bool(name) and len(name) <= 80 and not any(ch in name for ch in "/\\\n\r\t") and not name.startswith(".") and name not in ROLE_DIRNAMES
+    """Filesystem-safe corpus directory name (T5: separators, reserved names, trailing dot/space)."""
+    name = name.strip() if isinstance(name, str) else ""
+    if not name or len(name) > 80 or name.startswith(".") or name in ROLE_DIRNAMES:
+        return False
+    if any(ch in name for ch in '/\\\n\r\t') or name != name.rstrip(". "):
+        return False
+    return name.split(".")[0].upper() not in _RESERVED_NAMES
 
 
 def corpus_root_for(settings) -> Path:
@@ -165,11 +190,11 @@ def corpus_root_for(settings) -> Path:
 
 
 def resolve_default(infos: list[CorpusInfo], settings) -> CorpusInfo | None:
-    """M4: ``DEFAULT_CORPUS`` by rel_path, else the first ready corpus, else None."""
+    """T7: ``DEFAULT_CORPUS`` by stable id, then rel_path; else first ready; else None."""
     if not infos:
         return None
     for info in infos:
-        if info.rel_path == settings.default_corpus:
+        if info.id == settings.default_corpus or info.rel_path == settings.default_corpus:
             return info
     for info in sorted(infos, key=lambda item: item.rel_path):
         if info.preparation == "ready":
@@ -227,14 +252,20 @@ def scan_corpora(settings) -> list[CorpusInfo]:
     overrides id/name/kind/domain per relative path.
     """
     root = corpus_root_for(settings)
-    overrides: dict[str, dict] = {}
+    persisted = load_corpus_overrides(settings)  # id-keyed (KB-5a)
+    config: dict[str, dict] = {}
     for entry in settings.corpora or []:
         rel = str(entry.get("path", "")).strip("/")
         if rel:
-            overrides[rel] = entry
-    overrides.update(load_corpus_overrides(settings))
+            config[rel] = entry
+    by_rel: dict[str, dict] = {}
+    for corpus_id, entry in persisted.items():
+        rel = str(entry.get("rel", "")).strip("/")
+        if rel:
+            by_rel[rel] = {"id": corpus_id, **entry}
 
     found: dict[str, CorpusInfo] = {}
+    dirty = False
     if root.is_dir():
         for child in sorted(path for path in root.iterdir() if path.is_dir()):
             if child.name.startswith(".") or child.name in ROLE_DIRNAMES:
@@ -243,28 +274,35 @@ def scan_corpora(settings) -> list[CorpusInfo]:
             if not source_dir.is_dir():
                 continue
             rel = child.relative_to(root).as_posix()
-            override = overrides.get(rel, {})
-            # Empty source is skipped unless the corpus was explicitly created (K6).
-            if not _has_sources(source_dir) and not override.get("created"):
+            persisted_entry = by_rel.get(rel, {})
+            config_entry = config.get(rel, {})
+            created = bool(persisted_entry.get("created") or config_entry.get("created"))
+            # Empty source is skipped unless the corpus was explicitly created.
+            if not _has_sources(source_dir) and not created:
                 continue
+            corpus_id = str(persisted_entry.get("id") or config_entry.get("id") or corpus_id_for(rel))
+            alias = str(persisted_entry.get("alias") or config_entry.get("name") or "")
             db_dir = child / DB_DIRNAME
             sqlite_path = db_dir / "knowledge.sqlite3"
             count = _docs_count(sqlite_path) if sqlite_path.is_file() else 0
-            kind = override.get("kind") or ("fund" if _has_fund_pdf(source_dir) else "unknown")
+            kind = persisted_entry.get("kind") or config_entry.get("kind") or ("fund" if _has_fund_pdf(source_dir) else "unknown")
+            domain = str(persisted_entry.get("domain") or config_entry.get("domain") or child.name)
             found[rel] = CorpusInfo(
-                id=str(override.get("id") or corpus_id_for(rel)),
-                name=str(override.get("name") or child.name),
-                kind=str(kind),
-                domain=str(override.get("domain") or child.name),
-                rel_path=rel,
-                root=child,
-                source_dir=source_dir,
-                db_dir=db_dir,
-                vectordb_dir=child / VECTOR_DIRNAME,
+                id=corpus_id, name=alias or child.name, alias=alias, dir_name=child.name,
+                kind=str(kind), domain=domain, rel_path=rel, root=child, source_dir=source_dir,
+                db_dir=db_dir, vectordb_dir=child / VECTOR_DIRNAME,
                 sqlite=sqlite_path if sqlite_path.is_file() else None,
-                docs_count=count,
-                preparation=_preparation(count, sqlite_path.is_file()),
+                docs_count=count, preparation=_preparation(count, sqlite_path.is_file()),
             )
+            # KB-5a: backfill the stable id/rel/alias once (id-keyed).
+            current = persisted.get(corpus_id)
+            if (current is None or current.get("rel") != rel or current.get("alias", "") != alias
+                    or bool(current.get("created")) != created):
+                persisted[corpus_id] = {**(current or {}), "id": corpus_id, "rel": rel, "alias": alias,
+                                        "created": created}
+                dirty = True
+    if dirty:
+        save_corpus_overrides(settings, persisted)
 
     infos = list(found.values())
     default = resolve_default(infos, settings)

@@ -968,17 +968,19 @@ understand → retrieve → assemble → validate → answer → finish
 - **KB-4 多库 ≤6 为范围级新增**：**已确认纳入首期**（用户需求），**取代** `PROJECT §1「首期不做跨库联合检索」`；契约（`corpus_ids` 1–6 二选一）已同步 `PROJECT §1/§4.2`。
   - 动机：`.knowledge/` 已有多库（基金按领域拆分），跨领域问题需要多库联合。
 
-### 11.3 KB-1 默认库确认（小，前端）
-- 现状：静默默认库（`find(id) ?? find(is_default)`）。
-- 目标：**首次发送前**若用户未显式选库 → Composer 顶部一次性提醒「请确认本次会话使用的知识库」，确认后写 `corpusId`；不改后端。
-- 边界：无可用库 → 明确状态，不静默。
+### 11.3 KB-1 默认库确认（小，前端；D）
+- **按会话**确认（存 `SessionData`，缺失默认，遵守持久化向后兼容）；**不全局一次**。
+- **首次发送前**若未显式选库 → Composer 顶部一次性提醒，**显示候选库名**，确认后写 `corpusId`；不改后端。
+- `resolve_default` 的“首个 ready”**只作候选人选，不得静默用于问答**。
+- 无可用库 → 明确空态（禁用发送 + 提示）。
 
 ### 11.4 KB-2 切换/新增入口（小，前端）
 - Composer 库 popover 加「**+ 新建知识库**」（复用 `createCorpus` + `selectCorpus`）。
 - 顶栏：可选加切换按钮；默认保持“输入区切换”，避免两处入口。
 
-### 11.5 KB-3 拖拽多文件上传（中，前端）
-- `CorpusFiles` 的 `<input>` 换/加 **dropzone**（`onDragOver/onDrop`），**多文件顺序**调 `uploadCorpusFile`；视觉反馈 + 逐条失败提示。
+### 11.5 KB-3 拖拽多文件上传（中，前端；E）
+- **复用现有 K7 端点** `POST /api/corpora/{id}/files`（multipart、200MB、名称规范化、路径穿越防护），**不另写一套**。
+- `CorpusFiles` 的 `<input>` 换/加 **dropzone**（`onDragOver/onDrop`），**多文件顺序**调 `uploadCorpusFile`；目标 = **当前基础库** `source/`；视觉反馈 + 逐条失败提示。
 - **后端不改**（已流式落 `<corpus>/source/` + 增量导入）。
 - 可选组合：`CorpusGrid`「新建库」后直接引导拖入。
 
@@ -1023,34 +1025,55 @@ understand → retrieve → assemble → validate → answer → finish
 - **命名同步规则**：`PATCH /api/corpora/{id}` 改名时同时**清空 `alias`**，使显示名=新目录名（满足“名称与目录名同步”）；未改名时 alias 作为友好名展示。
 
 ### 11.7 KB-4 多知识库会话（≤6，全栈，范围变更）
-- **契约**：`ChatRequest` 增 `corpus_ids: string[] | None`（1–6），与 `corpus_id` **二选一**（同送 422）；缺省 = 默认库。
-- **检索**：为每个库建 `Knowledge`；**各库 retrieve → 跨库报告级合并/去重**；`allowed_doc_ids` 跨库校验；`[n]` 跨库编号，`sources` 带 `corpus_id`（前端 `/file?corpus=` 已支持）。
-- **持久化**：`SessionData.corpus_ids?: string[]`（**可选**，缺失回退 `corpus_id`，遵守持久化向后兼容）。
-- **前端**：多选 chip ≤6；`ScopeSelector` 跨选中库；删除/越界清理。
-- **预算**：合并后仍受 token/报告数预算约束。
-- **影响文件**：`main.py`/`graph.py`/`retrieval.py`/`store.tsx`/`workspace.ts`/`Composer`/`ScopeSelector`。
-- 分阶段：**KB-4a** 后端契约与合并检索 → **KB-4b** 前端多选与持久化 → **KB-4c** 验收。
+
+**C 两个概念分开（基础库 vs 检索集合）**
+- **基础库（base corpus，单选）**：文献库浏览 / 侧栏当前库 / 新建库归属；持久化 `SessionData.corpus_id`。
+- **检索集合（retrieval set，≤6）**：本会话实际检索的库；`SessionData.corpus_ids`；**默认 = {基础库}**，基础库**必含**于集合（`base ⊂ set`）。
+- **切换基础库 → 重置检索集合 = {新基础库}**（并提示），避免“看着 A、检索 A+B”歧义。
+- UI：Composer 顶栏显示基础库 chip + “检索库 N（≤6）”；文献库浏览用基础库。
+
+**契约**
+- `ChatRequest.corpus_ids: string[] | None`（1–6），与 `corpus_id` **二选一**（同送 422）；缺省 = 默认库。
+- `SessionData.corpus_ids?`（可选，缺失回退 `corpus_id`）。
+
+**KB-4a 跨库检索规格（BM25-only + 排名融合；B）**
+- **接口**：`retrieve_multi(knowledges: list[Knowledge], query, *, task_id, allowed_doc_ids, extra_queries) -> RetrievalResult`；对每库调 `select_reports`，再在 `assemble` 前合并。图侧引入 `KnowledgeGroup`（单库时=1 个），`retrieve` 节点调 `retrieve_multi`。
+- **不比较跨库原始 BM25 分**（各库 DF/长度不同）：按**报告排名 RRF**——`fused(d)=Σ_corpus w_c·1/(RRF_K+rank_corpus(d))`，报告身份键 `(corpus_id, doc_id)`；`w_c` 等权。
+- **去重**：跨库同 `project_no`/同 `origin` 保留融合分最高；跨年合并标注（沿用 §7.7）。
+- **全局预算**：`MIN/MAX_REPORTS`、`CONTEXT_TOKENS`/`REPORT_TOKENS` 为**跨库全局**（非每库），合并后统一截断；`REPORT_RECALL_M` 每库召回、全局选择。
+- **`allowed_doc_ids` 归属校验**：构建 `doc_id→corpus_id`（仅选中库）映射；不在任何选中库 → 拒绝（422）；属于未选中库 → 拒绝。
+- **sources**：每条带 `corpus_id`（+ page/heading），`[n]` 全局编号（前端 `/file?corpus=` 已支持）。
+- **no-match/direct**：任一库 matched 即 matched；全无 → `no_reports`；`specific` 空 → `direct`（沿用 D-L10）。
+- **dense 延后**：各库 Chroma 分不可比 → KB-4 首版 **BM25-only**，不做跨库 dense。
+- **报告入口**：`POST /api/reports` 首版仍单 `corpus_id`；**多库报告明确 422 拒绝**（待 KB-4c 评估）。
+
+**影响文件**：`main.py`/`graph.py`/`retrieval.py`/`store.tsx`/`workspace.ts`/`Composer`/`ScopeSelector`。
+
+**分阶段**：**KB-4a** 契约 + `retrieve_multi` + 全局预算/去重 → **KB-4b** 前端多选（基础库 vs 集合）+ 持久化 → **KB-4c** 验收。
 
 ### 11.8 分阶段任务
-| 编号 | 内容 | 验收 |
-|---|---|---|
-| KB-1 | 首次发送前确认默认库 | 未选库首次发送出现确认；确认后不再提示；无库明确状态 |
-| KB-2 | Composer 内新建并切库 | 可从 Composer 新建并切库 |
-| KB-3 | 拖拽多文件上传 | 拖入多文件入 `<corpus>/source/` 并增量导入；非法类型/超限逐条报错 |
-| KB-5a | 稳定 id 持久化 + 回填迁移 + alias-by-id 模型 | 现有会话 `corpus_id` 不变 | ✅ 本轮（缺陷：`name→alias` 迁移待补） |
-| KB-5b | 重命名 = 目录改名 + origin 重写 + id 保留 + 锁/回滚 + `put(doc_id=)` | 目录名=名称、id 不变、旧会话可用、`/file` 正常、**再导入不重复** | ✅ 本轮 |
-| ~~KB-5c~~ | ~~名称/目录名对齐迁移~~ → **取消**（alias-by-id 已满足） | — | — |
-| KB-5d | T3 缺失库标记与提示 | 外部删/改名后提示而非 404 | ⬜ |
-| KB-4a | 多库契约 + 合并检索（后端） | `corpus_ids` 1–6；与 `corpus_id` 同送 422；跨库引用带 `corpus_id` |
-| KB-4b | 前端多选 chip + 持久化 | `corpus_ids` 存/恢复；>6 拒绝 |
-| KB-4c | 多库验收 | 选 2 库问答，引用来自两库且 `[n]` 可跳转 |
-- 建议排期：**KB-1/2/3（纯前端）→ KB-5a/5b ✅ → KB-5d → KB-4a/b/c**。KB-5c 取消；KB-4 契约已定（`corpus_ids` 1–6 二选一）。
+| 编号 | 内容 | 验收 | 状态 |
+|---|---|---|---|
+| **A** | 修 `name→alias` 迁移（旧 `{rel:{name}}` → `{id:{alias}}` + 扫描回退 `alias or name`） | 4 个友好库名恢复 | ⚠️ 优先 |
+| KB-1 | 首次发送前确认默认库（按会话，显示候选库名） | 未选库首次发送出现确认；无库明确空态 | ⬜ |
+| KB-2 | Composer 内新建并切库 | 可从 Composer 新建并切库 | ⬜ |
+| KB-3 | 拖拽多文件上传（复用 K7 端点） | 拖入多文件入 `<corpus>/source/` 并增量导入；非法类型/超限逐条报错 | ⬜ |
+| KB-5a | 稳定 id 持久化 + 回填迁移 + alias-by-id 模型 | 现有会话 `corpus_id` 不变 | ✅（A 待补） |
+| KB-5b | 重命名 = 目录改名 + origin 重写 + id 保留 + 锁/回滚 + `put(doc_id=)` | 目录名=名称、id 不变、旧会话可用、`/file` 正常、再导入不重复 | ✅ |
+| ~~KB-5c~~ | ~~名称/目录名对齐迁移~~ → 取消（alias-by-id 已满足） | — | 取消 |
+| KB-5d | T3 缺失库标记与提示（409 `{missing}` / 未知 404） | 外部删/改名后提示而非静默 | ⬜ |
+| KB-4a | 多库契约 + `retrieve_multi`（RRF）+ 全局预算/去重 + `allowed_doc_ids` 归属 | `corpus_ids` 1–6；同送 422；跨库引用带 `corpus_id` | ⬜ |
+| KB-4b | 前端多选（基础库 vs 检索集合）+ 持久化 | `corpus_ids` 存/恢复；>6 拒绝；切基础库重置集合 | ⬜ |
+| KB-4c | 多库验收 | 选 2 库问答，引用来自两库且 `[n]` 可跳转 | ⬜ |
+- 建议排期：**修 A（`name→alias`，小且阻塞）→ KB-1/2/3（纯前端）→ KB-5d → KB-4a/b/c**。KB-5a/5b ✅；KB-5c 取消；KB-4 契约已定（`corpus_ids` 1–6 二选一）。
 
 ### 11.9 非目标
 - 不做跨库权限/多租户；不合并库；不做自动选库（仍显式选择）。
 
 ### 11.10 验收
-- KB-4：`corpus_ids` 跨库检索且库隔离不泄；`sources` 带 `corpus_id`；`allowed_doc_ids` 越库拒绝。
+- **A**：4 个友好库名恢复（`自然科学基金项目-AI与医疗` 等），且扫描回退 `alias or name`。
+- KB-4：`corpus_ids` 跨库检索且库隔离不泄；**排名融合（不比较跨库原始分）**；**全局 `MAX_REPORTS`/`CONTEXT_TOKENS`**；跨库同项目去重；`sources` 带 `corpus_id`；`allowed_doc_ids` 越库拒绝；多库报告 422。
+- KB-4b：基础库与检索集合分离；切基础库重置集合；≤6 前端拒绝。
 
 ## 12. 维护约定
 

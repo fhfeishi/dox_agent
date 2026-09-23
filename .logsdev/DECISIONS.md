@@ -149,11 +149,14 @@
 
 ## 多知识库会话（≤6，已纳入首期）（2026-09-23）
 
-- 采用：`ChatRequest` 增 `corpus_ids: string[]`（1–6），与 `corpus_id` **二选一**（同送 422）；缺省 = 默认库。各库 retrieve → **跨库报告级合并/去重**；`[n]` 跨库编号且 `sources` 带 `corpus_id`；`SessionData.corpus_ids?` 可选（缺失回退 `corpus_id`）。
+- 采用：`ChatRequest` 增 `corpus_ids: string[]`（1–6），与 `corpus_id` **二选一**（同送 422）；缺省 = 默认库。`SessionData.corpus_ids?` 可选（缺失回退 `corpus_id`）。
+- **C 两个概念**：**基础库**（单选，文档库浏览/当前库，= `corpus_id`）vs **检索集合**（≤6，`corpus_ids`，默认 = {基础库}，基础库必含）；**切基础库 → 重置检索集合**。
+- **B 融合算法（KB-4a，BM25-only）**：`retrieve_multi(knowledges, ...)` → 每库 `select_reports` → **按报告排名 RRF**（不比较跨库原始 BM25 分）；报告键 `(corpus_id, doc_id)`；跨库同项目/同 origin 去重；`MIN/MAX_REPORTS` 与 `CONTEXT/REPORT_TOKENS` 为**跨库全局**；`allowed_doc_ids` 按 `doc_id→corpus_id` 归属校验（越库拒绝）；`sources` 带 `corpus_id`；任一库 matched 即 matched。
+- **dense 延后**（各库 Chroma 分不可比）；**报告入口**首版仍单 `corpus_id`，多库报告 **422 拒绝**。
 - 理由：用户需求（`.knowledge/` 已有多库、基金按领域拆分）；旧 `corpus_id` 保留兼容。
 - 取代：**取代** `PROJECT §1「首期不做跨库联合检索」`；已同步 `PROJECT §1/§4.2`。
-- 顺带（小改进，不改后端）：KB-1 默认库会话确认、KB-2 Composer 内新建/切库、KB-3 拖拽多文件上传。
-- 状态：**已确认纳入首期**（用户需求）；规格见 [`ITERATION.md`](ITERATION.md) §11（KB-4a–c）。
+- 顺带（小改进，不改后端）：KB-1 默认库会话确认、KB-2 Composer 内新建/切库、KB-3 拖拽多文件（**复用 K7 端点 `POST /api/corpora/{id}/files`**）。
+- 状态：**已确认纳入首期**（用户需求）；规格见 [`ITERATION.md`](ITERATION.md) §11.7（KB-4a–c）。
 
 ## 本地持久化统一到 .knowledge/（2026-09-22，规划）
 

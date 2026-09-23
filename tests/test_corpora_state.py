@@ -183,3 +183,22 @@ def test_reimport_after_corpus_rename_keeps_doc_id(tmp_path):
     import_defaults(store, settings, root=new / "source", parsed_root=new / "parsed", force=True)
     assert len(store.all()) == 1  # T1: no duplicate row
     assert store.all()[0]["doc_id"] == doc_id
+
+
+def test_missing_corpus_marked_and_chat_409(tmp_path):
+    import shutil
+    seed_corpus(tmp_path, "demo")
+    seed_corpus(tmp_path, "gone")
+    settings = settings_for(tmp_path)
+    app = create_app(settings, Knowledge(demo_db(tmp_path)))
+    with TestClient(app) as client:
+        cid = next(item["id"] for item in client.get("/api/corpora").json() if item["rel_path"] == "gone")
+    shutil.rmtree(tmp_path / "knowledge" / "gone")  # external removal
+    app2 = create_app(settings, Knowledge(demo_db(tmp_path)))
+    with TestClient(app2) as client:
+        listed = {item["rel_path"]: item for item in client.get("/api/corpora").json()}
+        assert listed["gone"]["missing"] is True
+        missing = client.post("/api/chat", json={"messages": [{"role": "user", "content": "x"}], "corpus_id": cid})
+        assert missing.status_code == 409 and missing.json()["detail"]["missing"] is True
+        unknown = client.post("/api/chat", json={"messages": [{"role": "user", "content": "x"}], "corpus_id": "nope"})
+        assert unknown.status_code == 404

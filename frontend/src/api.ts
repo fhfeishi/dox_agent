@@ -8,7 +8,7 @@ export type TaskInfo = { id: string; name: string; description: string; output_h
 export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
-  docs_count: number; preparation: string; is_default: boolean;
+  docs_count: number; preparation: string; is_default: boolean; missing?: boolean;
   index_progress: { stage: string; completed: number; total: number } | null;
   job: CorpusJob | null;
 };

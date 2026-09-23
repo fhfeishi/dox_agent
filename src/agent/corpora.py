@@ -49,6 +49,7 @@ class CorpusInfo:
     is_default: bool = False
     alias: str = ""  # optional friendly name persisted by id (KB-5); canonical name = dir_name
     dir_name: str = ""
+    missing: bool = False  # KB-5d: stable id present in corpora.json but its directory is gone
 
 
 OVERRIDES_FILENAME = "corpora.json"
@@ -198,10 +199,10 @@ def resolve_default(infos: list[CorpusInfo], settings) -> CorpusInfo | None:
     if not infos:
         return None
     for info in infos:
-        if info.id == settings.default_corpus or info.rel_path == settings.default_corpus:
+        if (info.id == settings.default_corpus or info.rel_path == settings.default_corpus) and not info.missing:
             return info
     for info in sorted(infos, key=lambda item: item.rel_path):
-        if info.preparation == "ready":
+        if info.preparation == "ready" and not info.missing:
             return info
     return None
 
@@ -307,6 +308,20 @@ def scan_corpora(settings) -> list[CorpusInfo]:
                 dirty = True
     if dirty:
         save_corpus_overrides(settings, persisted)
+
+    # KB-5d: stable ids whose directory disappeared are surfaced as ``missing`` (not silently 404).
+    for corpus_id, entry in persisted.items():
+        rel = str(entry.get("rel", "")).strip("/")
+        if not rel or rel in found or (root / rel).exists():
+            continue
+        alias = str(entry.get("alias") or entry.get("name") or "")
+        root_dir = root / rel
+        found[rel] = CorpusInfo(
+            id=corpus_id, name=alias or rel, alias=alias, dir_name=rel, kind="unknown", domain=rel,
+            rel_path=rel, root=root_dir, source_dir=root_dir / SOURCE_DIRNAME, db_dir=root_dir / DB_DIRNAME,
+            vectordb_dir=root_dir / VECTOR_DIRNAME, sqlite=None, docs_count=0,
+            preparation="missing", missing=True,
+        )
 
     infos = list(found.values())
     default = resolve_default(infos, settings)

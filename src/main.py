@@ -273,6 +273,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "is_default": info.is_default,
             "alias": info.alias,
             "dir_name": info.dir_name or info.root.name,
+            "missing": info.missing,
             "index_progress": dense.progress if info.is_default and dense else None,
             "job": app.state.corpus_jobs.get(info.id),
         }
@@ -691,6 +692,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 info = await asyncio.to_thread(find_corpus, cid)
                 if info is None:
                     raise HTTPException(404, "知识库不存在")
+                if info.missing:
+                    raise HTTPException(409, {"missing": True, "corpus_id": cid,
+                                              "message": "该知识库目录已缺失，请重新关联或解绑"})
                 selected.append((cid, info))
             chat_knowledge = (knowledge_for(selected[0][1]) if len(selected) == 1
                               else KnowledgeGroup([(cid, knowledge_for(info)) for cid, info in selected]))
@@ -699,6 +703,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             info = await asyncio.to_thread(find_corpus, payload.corpus_id)
             if info is None:
                 raise HTTPException(404, "知识库不存在")
+            if info.missing:
+                raise HTTPException(409, {"missing": True, "corpus_id": payload.corpus_id,
+                                          "message": "该知识库目录已缺失，请重新关联或解绑"})
             chat_knowledge = knowledge_for(info)
             chat_preparation = app.state.preparation if info.is_default else info.preparation
             chat_domain = info.domain

@@ -1,7 +1,7 @@
 # ITERATION — dox_agent 当前工作
 
 - 更新时间：2026-09-23。
-- **当前执行入口：§16.14「W3-A 最小运行快照」**。W0 报告入口与旧会话兼容、KM-S5 隔离真实格式 API 链路、W1 检查器与输出模板/执行摘要、W2 知识库说明/资料搜索、W3-A 最小 RunSnapshot 与收口修订 A1–A6、门禁项 B2–B4 已实施；后端 149 项 / 前端 31 项测试、构建与 12 个离线浏览器脚本通过。**唯一剩余门禁为 B1 提交封口：W3-A（含新增源码/测试）必须先按主题提交，未提交不得启动 W3-B**（见 §16.14 B1、§16.11.8）；提交等待用户明确授权。A7 保留为不阻塞的运维项；`tools/` 两脚本已定为用户个人脚本（见 `tools/README.md` 与 DECISIONS）。
+- **当前执行入口：§16.14「W3-A 最小运行快照」**。W0 报告入口与旧会话兼容、KM-S5 隔离真实格式 API 链路、W1 检查器与输出模板/执行摘要、W2 知识库说明/资料搜索、W3-A 最小 RunSnapshot 与收口修订 A1–A6、门禁项 B2–B4 已实施；后端 149 项 / 前端 31 项测试、构建与 12 个离线浏览器脚本通过。**B1 提交封口已完成（`665c3ff`），W3-B 已解锁**（§16.14 B1、§16.11.8）；W3-B 首个切片按“reports 兼容读取 + RunSnapshot 回读”推进。A7 保留为不阻塞的运维项；`tools/` 两脚本已定为用户个人脚本（见 `tools/README.md` 与 DECISIONS）。
 - 长期说明见 [`PROJECT.md`](PROJECT.md)；关键取舍见 [`DECISIONS.md`](DECISIONS.md)。
 
 ## 1. 当前目标与必要约束
@@ -1872,7 +1872,7 @@ W6-B 才增加搜索提供方、域名白名单、时间过滤、结果勾选和
 
 **W3-A 剩余项与进入 W3-B 的门禁（verifier B1–B4，2026-09-23）**：
 
-- **B1（高，唯一持续阻塞）提交封口**：工作树仍有 60+ 非 archive 变更；`src/runs.py`、`tests/test_runs.py`、`tests/browser_refresh.py`、`tests/browser_legacy_scope.py` 未跟踪，不入库则 149/12 脚本证据不可复现。动作：W3-A（含新增源码/测试）先按主题提交；`.vscode/` 加 ignore；`requirements-cpu.txt` 若为 CPU torch pin 则入库，否则并入个人文件说明。**未提交不得启动 W3-B**（见 §16.11.8）。**状态：未执行，等待用户明确授权提交。**
+- **B1（高，唯一持续阻塞）提交封口**：**已完成（`665c3ff`）**。工作树按用户确认以“一次提交整个可运行工作树”方式提交：64 文件（含 `src/runs.py`、`tests/test_runs.py`、`tests/browser_refresh.py`、`tests/browser_legacy_scope.py`、`.vscode/settings.json`、`requirements-cpu.txt`），并在提交信息中说明同时携带未单独提交的 W0–W2/L6/KM 改动（共享文件、无法拆成可导入的 W3-A-only 提交）。提交后 `git status` 干净；门禁解除，W3-B 可开始。
 - **B2（低）`fetchRun` 未使用**：**已实施**——检查器执行摘要打开时回读 `GET /api/runs/{id}`，快照存在则用其权威字段，404 显示“运行信息未记录（历史运行或快照写入失败）”；`browser_tasks` 断言快照模型 `offline-snapshot` 覆盖 run 事件值。
 - **B3（低）中断路径无自动化用例**：**已实施**——`test_cancelled_run_backfills_interrupted_status` 覆盖取消分支回填 `interrupted`（TestClient 不稳定投递断连，故用同分支的 `CancelledError` 触发）。
 - **B4（低）重试语义需 UI 对齐**：**已确认无需额外代码**——run 冲突 409 的字符串 detail 由 `store.send` 原样显示；恢复依赖新一次发送，`regenerateTurn` 总是生成新 `run_id`；已在 `store.tsx` 注明该语义。

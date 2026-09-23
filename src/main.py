@@ -34,7 +34,7 @@ from .agent.corpora import (
 from .agent.graph import build_graph
 from .agent.models import tracing
 from .agent.usage import TurnUsage
-from .knowledge import Knowledge
+from .knowledge import Knowledge, KnowledgeGroup
 from .official_docs import import_official
 from .parsers import import_defaults, parse_web
 from .prompts import list_tasks
@@ -83,6 +83,8 @@ class ChatRequest(BaseModel):
     task_id: Literal["task1", "task2", "task3", "task4"] = "task1"
     # H4: optional corpus binding; absent = the default corpus (backward compatible).
     corpus_id: str | None = Field(default=None, min_length=1, max_length=120)
+    # KB-4a: retrieval set (1–6); mutually exclusive with corpus_id, absent = default corpus.
+    corpus_ids: list[str] | None = Field(default=None, min_length=1, max_length=6)
     run_id: str = Field(default_factory=lambda: uuid4().hex, min_length=8, max_length=80)
 
 
@@ -680,7 +682,20 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         chat_knowledge = app.state.knowledge
         chat_preparation = app.state.preparation
         chat_domain = ""
-        if payload.corpus_id is not None:
+        if payload.corpus_id is not None and payload.corpus_ids is not None:
+            raise HTTPException(422, "corpus_id 与 corpus_ids 不能同时提供")
+        if payload.corpus_ids is not None:
+            # KB-4a: build a retrieval set; cross-corpus merge is rank-based (see retrieve_multi).
+            selected = []
+            for cid in payload.corpus_ids:
+                info = await asyncio.to_thread(find_corpus, cid)
+                if info is None:
+                    raise HTTPException(404, "知识库不存在")
+                selected.append((cid, info))
+            chat_knowledge = (knowledge_for(selected[0][1]) if len(selected) == 1
+                              else KnowledgeGroup([(cid, knowledge_for(info)) for cid, info in selected]))
+            chat_domain = selected[0][1].domain
+        elif payload.corpus_id is not None:
             info = await asyncio.to_thread(find_corpus, payload.corpus_id)
             if info is None:
                 raise HTTPException(404, "知识库不存在")

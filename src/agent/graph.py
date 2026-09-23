@@ -207,8 +207,9 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
             scope, path = "本轮选定报告的全文", "retrieve"
         elif retrieval is not None and retrieval.matched:
             # task1 精准问答：chunk-only，不必装入全文。
-            pairs = [(chunk_source(chunk, index + 1), chunk)
-                     for index, chunk in enumerate(c for report in retrieval.reports for c in report.chunks)]
+            pairs = [(chunk_source(chunk, index + 1, report.corpus_id), chunk)
+                     for index, (report, chunk) in enumerate(
+                         (report, chunk) for report in retrieval.reports for chunk in report.chunks)]
             sources = [source for source, _ in pairs]
             markdown = "\n\n".join(f"[{source['citation']}] {chunk.text}" for source, chunk in pairs)
             scope, path = "本轮命中的报告片段", "chunk_only"

@@ -349,3 +349,28 @@ class Knowledge:
             "url": f"/api/documents/{doc_id}?page={page}&start_line={start_line}&version={doc['version']}",
             "snippet": text[:300],
         }
+
+
+class KnowledgeGroup:
+    """KB-4a: a retrieval set of corpora; delegates retrieval/reading across members.
+
+    Used only when a session selects more than one corpus; single-corpus behavior is unchanged.
+    """
+
+    def __init__(self, members: list[tuple[str, Knowledge]]):
+        self.members = list(members)
+
+    def retrieve(self, query: str, **kwargs):
+        from .retrieval import retrieve_multi
+        return retrieve_multi(self.members, query, **kwargs)
+
+    def read_markdown(self, doc_id: str, version: str | None = None) -> str:
+        for _, knowledge in self.members:
+            try:
+                return knowledge.read_markdown(doc_id, version)
+            except KeyError:
+                continue
+        raise KeyError("文档不存在")
+
+    def all(self) -> list[dict]:
+        return [doc for _, knowledge in self.members for doc in knowledge.all()]

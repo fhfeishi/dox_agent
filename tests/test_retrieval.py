@@ -12,11 +12,14 @@ from src.retrieval import (
     RawBlock,
     ReportDoc,
     RetrievalConfig,
+    RetrievalResult,
+    SelectedReport,
     assemble_reports,
     chunk_blocks,
     estimate_tokens,
     fit_history,
     metadata_from_filename,
+    retrieve_multi,
     select_reports,
     strip_base64,
 )
@@ -290,7 +293,6 @@ def test_user_can_cite_every_candidate_chunk_not_only_scored_top():
 
 
 def test_user_keeps_distinct_reports_when_project_number_is_unknown():
-    # Given two matching reports without a project number
     first = ReportDoc("a", "v", "报告一")
     second = ReportDoc("b", "v", "报告二")
     chunks = {"a": [chunk_of("a", "癫痫网络方法")], "b": [chunk_of("b", "癫痫网络方法二")]}
@@ -298,3 +300,26 @@ def test_user_keeps_distinct_reports_when_project_number_is_unknown():
     result = select_reports(chunks, [first, second], "癫痫网络")
     # Then neither report is dropped by treating the (empty) project as shared
     assert {report.doc.doc_id for report in result.reports} == {"a", "b"}
+
+
+class _FakeKnowledge:
+    def __init__(self, result):
+        self._result = result
+
+    def retrieve(self, query, **kwargs):
+        return self._result
+
+
+def test_user_multi_corpus_merges_by_rank_and_tags_corpus():
+    # Given one matching report in each of two corpora
+    first = SelectedReport(doc=ReportDoc("a", "v", "报告A", project_no="P1"), score=1.0,
+                           term_cover=1.0, chunks=[chunk_of("a", "癫痫")])
+    second = SelectedReport(doc=ReportDoc("b", "v", "报告B", project_no="P2"), score=1.0,
+                            term_cover=1.0, chunks=[chunk_of("b", "金融")])
+    sources = [("corpus-a", _FakeKnowledge(RetrievalResult(reports=[first], matched=True, specific=("癫痫",)))),
+               ("corpus-b", _FakeKnowledge(RetrievalResult(reports=[second], matched=True, specific=("金融",))))]
+    # When retrieving across both corpora
+    result = retrieve_multi(sources, "癫痫 金融")
+    # Then both reports are kept, tagged with their corpus, with unioned specific terms
+    assert {report.corpus_id for report in result.reports} == {"corpus-a", "corpus-b"}
+    assert set(result.specific) == {"癫痫", "金融"}

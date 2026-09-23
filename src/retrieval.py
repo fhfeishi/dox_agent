@@ -104,6 +104,7 @@ class SelectedReport:
     score: float
     term_cover: float
     chunks: list[Chunk]  # 可引用集 = per_doc_cand（RRF 降序）；评分仅用 top_m
+    corpus_id: str = ""  # KB-4a: owning corpus for cross-corpus citations
 
 
 @dataclass
@@ -395,10 +396,10 @@ def report_header(doc: ReportDoc) -> str:
     return "，".join(parts)
 
 
-def chunk_source(chunk: Chunk, citation: int) -> dict:
-    """D-L1: one matched chunk as a citable source ``[citation]``."""
+def chunk_source(chunk: Chunk, citation: int, corpus_id: str = "") -> dict:
+    """D-L1: one matched chunk as a citable source ``[citation]`` (with its corpus for /file)."""
     return {"citation": citation, "chunk_id": chunk.chunk_id, "doc_id": chunk.doc_id,
-            "version": chunk.version, "title": chunk.title, "page": chunk.page,
+            "corpus_id": corpus_id, "version": chunk.version, "title": chunk.title, "page": chunk.page,
             "heading": chunk.heading, "snippet": chunk.text[:300],
             "url": f"/api/documents/{chunk.doc_id}?page={chunk.page}&version={chunk.version}"}
 
@@ -448,5 +449,48 @@ def assemble_reports(selected: list[SelectedReport], read_markdown, *, total_tok
         reports.append({"doc": report.doc, "header": report_header(report.doc), "markdown": clipped,
                         "chunks": report.chunks, "truncated": clipped_short})
         for chunk in report.chunks:
-            sources.append(chunk_source(chunk, len(sources) + 1))
+            sources.append(chunk_source(chunk, len(sources) + 1, report.corpus_id))
     return AssembledContext(reports=reports, sources=sources, truncated=truncated, tokens=used)
+
+
+def retrieve_multi(sources, query: str, *, task_id: str = "task1", allowed_doc_ids=None,
+                   config=None, extra_queries=None) -> RetrievalResult:
+    """KB-4a: per-corpus retrieval, fused by **report rank** (not raw BM25) → merged reports.
+
+    ``sources`` is ``[(corpus_id, knowledge)]``. Cross-corpus scores are never compared; RRF
+    over ``(corpus_id, doc_id)`` ranks, then project/origin dedup. Budgets stay global.
+    """
+    config = config or RetrievalConfig()
+    results = [(corpus_id, knowledge.retrieve(query, task_id=task_id, allowed_doc_ids=allowed_doc_ids,
+                                              config=config, extra_queries=extra_queries))
+               for corpus_id, knowledge in sources]
+    for corpus_id, result in results:
+        for report in result.reports:
+            report.corpus_id = corpus_id
+    if not any(result.matched for _, result in results):
+        reason = "direct" if all(result.reason == "direct" for _, result in results) else "no_reports"
+        return RetrievalResult(reports=[], matched=False, reason=reason)
+    if len(results) == 1:
+        return results[0][1]
+    fused: dict[tuple, float] = {}
+    for corpus_id, result in results:
+        for rank, report in enumerate(result.reports, 1):
+            key = (corpus_id, report.doc.doc_id)
+            report.corpus_id = corpus_id
+            fused[key] = fused.get(key, 0.0) + 1.0 / (config.rrf_k + rank)
+    tagged = [(corpus_id, report) for corpus_id, result in results for report in result.reports]
+    ordered = sorted(tagged, key=lambda item: (-fused[(item[0], item[1].doc.doc_id)], item[1].doc.title))
+    seen: set[str] = set()
+    kept: list[SelectedReport] = []
+    for _, report in ordered:
+        dedup = report.doc.project_no or report.doc.origin or report.doc.doc_id
+        if dedup in seen:
+            continue
+        seen.add(dedup)
+        kept.append(report)
+    specific = tuple(dict.fromkeys(term for _, result in results for term in result.specific))
+    minimum = config.min_reports.get(task_id, config.min_reports.get("task1", 1))
+    limit = config.max_reports.get(task_id, config.max_reports.get("task1", 3))
+    partial = len(kept) < minimum or any(result.partial for _, result in results)
+    return RetrievalResult(reports=kept[:limit], matched=True, partial=partial,
+                           candidates=sum(result.candidates for _, result in results), specific=specific)

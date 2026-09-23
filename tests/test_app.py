@@ -180,3 +180,14 @@ def test_background_preparation(tmp_path, monkeypatch, outcome):
             time.sleep(0.01)
         assert health["preparation"] == ("ready" if outcome == "success" else "error")
         assert "private details" not in str(health)
+
+
+def test_chat_rejects_both_corpus_id_and_corpus_ids(tmp_path):
+    # KB-4a: corpus_id and corpus_ids are mutually exclusive and the set is 1-6.
+    app, _ = setup(tmp_path)
+    with TestClient(app) as client:
+        both = client.post("/api/chat", json={"messages": [{"role": "user", "content": "x"}],
+                                              "corpus_id": "a", "corpus_ids": ["a"]})
+        assert both.status_code == 422
+        empty = client.post("/api/chat", json={"messages": [{"role": "user", "content": "x"}], "corpus_ids": []})
+        assert empty.status_code == 422

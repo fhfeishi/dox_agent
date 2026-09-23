@@ -549,10 +549,25 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setError(`引用 [${n}] 缺少文档定位信息，无法跳转`);
       return;
     }
+    const corpusId = source.corpus_id ?? effectiveCorpusId ?? "";
     // S8: compare the citation version with the current list; never pre-probe `/file`.
     const current = documents.find((item) => item.doc_id === source.doc_id);
     if (current && source.version && current.version !== source.version) {
       setError(`引用 [${n}] 对应的文档已更新，已停止打开；请重新提问或刷新文献库`);
+      return;
+    }
+    if (current) {
+      openPreview(current, source.page ?? null, corpusId);
+      return;
+    }
+    // KB-4a: a citation from another corpus in the retrieval set; synthesize metadata so the
+    // preview loads through `/api/...?corpus=` (PDF/txt served per corpus).
+    if (source.corpus_id && source.corpus_id !== effectiveCorpusId) {
+      openPreview({
+        doc_id: source.doc_id, title: source.title, origin: source.origin ?? "",
+        version: source.version ?? "", captured_at: source.captured_at ?? "",
+        kind: source.kind ?? "pdf", parser: "", pages: 0,
+      }, source.page ?? null, source.corpus_id);
       return;
     }
     openDocument(source.doc_id, source.page ?? undefined);

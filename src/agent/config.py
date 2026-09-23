@@ -9,7 +9,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 DOX_AGENT_ROOT = Path(__file__).resolve().parents[2]
 # 方案 A（每个直接子目录 = 一个自包含知识库）：
 # .knowledge/<corpus>/ 内含 source/（原始文件）、datadb/（sqlite）、vectordb/（向量库）。
-KNOWLEDGE_ROOT = DOX_AGENT_ROOT / ".knowledge"
+CORPORA_ROOT_DEFAULT = DOX_AGENT_ROOT / ".knowledge"
 
 
 class Settings(BaseSettings):
@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     )
     # §10: all local persistence lives under CORPORA_ROOT (default .knowledge); no data/ dir.
     # 语料根：其下每个直接子目录是一个自包含知识库（source/datadb/vectordb）。
-    corpora_root: Path = KNOWLEDGE_ROOT
+    corpora_root: Path = CORPORA_ROOT_DEFAULT
     # 应用级状态目录（会话/报告/覆盖）；缺省从 corpora_root 派生为 <corpora_root>/.state。
     state_dir: Path | None = None
     # 默认库相对名（M4）；缺失时回退首个 ready 库，全无 ready 不抛异常。

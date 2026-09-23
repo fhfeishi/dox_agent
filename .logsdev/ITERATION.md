@@ -985,27 +985,35 @@ understand → retrieve → assemble → validate → answer → finish
 
 **目标**：库名与 `.knowledge/<dir>` **同步**；重命名 = 目录改名 + 名称更新，且不破坏会话/引用。
 
-**核心设计：稳定 `corpus_id`（与路径解耦）**
-- `.state/corpora.json` 为每个库持久化**稳定 `id`**（首次见/创建时分配；现有库回填 `id=corpus_id_for(rel)` 以兼容当前会话）。
-- `corpus_id` 不再随目录名变化 → 会话 `corpus_id`、报告 `corpus_id`、`DEFAULT_CORPUS` 引用稳定。
-- **单一名称 = 目录名**：移除独立显示名层（`corpora.json` 只留 `id`/`created`）；`info.name = dir name`。
+**核心设计（T1/T4/T8：id 与路径解耦）**
+- **稳定 `corpus_id`**：`.state/corpora.json` 按 **id** 持久化 `{id, alias?, created, rel}`（不再以 rel 为键）；现有库回填 `id=corpus_id_for(rel)`。`corpus_id` 不随目录名变化。
+- **doc_id 与路径解耦（T1/T8，二选一）**：**选“保留 `doc_id=sha256(origin)` 定义、只修 reimport 逻辑”**——
+  - `Knowledge.put(doc, *, doc_id=None)` 支持显式 id；`import_defaults` 对已在清单的文件传 `files.doc_id`，**原地更新**（不再按新 origin 插入新行）。
+  - 重命名时**重写 origin 前缀并保留 doc_id**；之后重导入（含 force）复用清单 id，**不产生重复行/孤儿 chunks**。
+  - 新增文件仍用 `sha256(origin)`；**不做存量 doc_id 批量迁移**（`allowed_doc_ids`/历史 `sources.doc_id` 不变）。
+- **名称模型（T4）**：规范名 = 目录名；**可选 `alias` 按 id 持久化**（保留 K6 的友好命名）；UI 优先显示 alias；改名**不丢 alias**（keyed by id）。
 
-**重命名步骤（`PATCH /api/corpora/{id}`，body `{name}`）**
-1. 校验：`valid_corpus_name` + 文件系统安全 + 目标目录不存在（否则 409）。
-2. `os.rename(.knowledge/<old_rel>, .knowledge/<new_rel>)`。
-3. **重写文件型 origin**：`docs.payload.origin` 前缀 `<old_abs>`→`<new_abs>`，**保留 `doc_id`**（复用 DIR-M1 helper）。
-4. 更新 `.state/corpora.json`：键 `old_rel`→`new_rel`，**保留同一 `id`**。
-5. `files.rel_path`（相对 `<corpus>/source`）与 `chunks` 不受影响；`parsed/` 随目录移动。
+**重命名步骤（`PATCH /api/corpora/{id}`，body `{name}`；T2/T5）**
+1. 校验：`valid_corpus_name` + 文件系统安全（**T5**：Windows 保留名 `CON/PRN/AUX/NUL/COM1-9/LPT1-9`、尾随点/空格、目标符号链接）+ 目标不存在（409）。
+2. **在 `import_lock` 内串行执行**（**T2**）；导入运行中 → 409。
+3. 仅大小写改名（大小写不敏感 FS）用**两步临时名**（T5）。
+4. `os.rename(<old>, <new>)`（同根，无跨设备）。
+5. **重写文件型 origin** 前缀 `<old_abs>`→`<new_abs>`，**保留 `doc_id`**；DB 写在**事务**内。
+6. 更新 `.state/corpora.json`（按 id）：更新 `rel`/`name`，**保留同一 `id` 与 alias**。
+7. **失败回滚**（T2）：DB 失败 → 目录改回；目录已改而 DB 未改 → 回滚目录。
+- `files.rel_path`（相对 `<corpus>/source`）与 `chunks` 不受影响；`parsed/` 随目录移动。
 
-**DEFAULT_CORPUS**：按**稳定 id** 解析（回退 rel 兼容）。
+**T3 孤儿/缺失库**：`/api/corpora` 对稳定 id 找不到目录的标 `missing`；默认解析跳过 missing；会话 `corpus_id` 指向 missing → 提示「库已移动/缺失，重新关联或解绑」，**不静默 404**。
 
-**一次性迁移**：回填现有库稳定 id；处理现有显示名≠目录名（`AI与医疗` vs `自然科学基金项目-AI与医疗` 等）——二选一：**(a) 目录改名为现有显示名**（保留用户看到的名称）或 **(b) 名称回退为目录名**；选定后删除 `name` 字段。
+**DEFAULT_CORPUS（T7）**：按 **id** 解析，**保留 rel 回退**（旧 `.env` 写 rel 仍可解析）；新持久化写 id。
 
-**supersede**：取代 K6「重命名仅改显示名」与 deferred K6b「目录搬迁」；`corpus_id` 由「路径派生」改为「持久化 id（回退 slug+sha1）」。
+**KB-5c 对齐迁移（T6，显式/可回滚）**：(a) 目录改名为现有显示名 或 (b) 名称回退目录名；**先预览**（将改路径 + 受影响文档数），备份 `corpora.json` 与目录，失败可回滚，用户确认。
 
-**影响**：`corpora.py`（id 持久化/`resolve_default`）、`main.py`（PATCH 改名目录）、`knowledge.py`（origin 重写 helper 复用）。
+**supersede**：取代 K6「重命名仅改显示名」与 deferred K6b；`corpus_id` 由「路径派生」改为「持久化 id（回退 slug+sha1）」。
 
-**验收**：重命名后目录名=显示名；`corpus_id` 不变；旧会话仍指向该库；该库 `/file`/预览正常（origin 已重写）；目标冲突 409；非法名 422。
+**影响**：`corpora.py`（id/alias 持久化、`resolve_default`）、`main.py`（PATCH 改名目录 + 锁/回滚 + missing）、`knowledge.py`（`put(doc_id=)`、origin 重写 helper）、`parsers.py`（`import_defaults` 传稳定 id）、前端（alias 显示、missing 提示）。
+
+**验收**：重命名后目录名/名称同步；`corpus_id` 不变；旧会话仍指向该库；`/file` 正常；**重命名后再导入不产生重复行**（T1）；导入中改名 409（T2）；缺失库提示而非 404（T3）；大小写改名/非法名/保留名边界（T5）。
 
 ### 11.7 KB-4 多知识库会话（≤6，全栈，范围变更）
 - **契约**：`ChatRequest` 增 `corpus_ids: string[] | None`（1–6），与 `corpus_id` **二选一**（同送 422）；缺省 = 默认库。
@@ -1022,13 +1030,14 @@ understand → retrieve → assemble → validate → answer → finish
 | KB-1 | 首次发送前确认默认库 | 未选库首次发送出现确认；确认后不再提示；无库明确状态 |
 | KB-2 | Composer 内新建并切库 | 可从 Composer 新建并切库 |
 | KB-3 | 拖拽多文件上传 | 拖入多文件入 `<corpus>/source/` 并增量导入；非法类型/超限逐条报错 |
-| KB-5a | 稳定 id 持久化 + 回填迁移 + 单一名称模型 | 现有会话 `corpus_id` 不变 |
-| KB-5b | 重命名 = 目录改名 + origin 重写 + id 保留 | 重命名后目录名=名称、`corpus_id` 不变、旧会话可用、`/file` 正常 |
-| KB-5c | 显示名/目录名一次性对齐 | 无名称漂移 |
+| KB-5a | 稳定 id 持久化 + 回填迁移 + alias-by-id 模型 | 现有会话 `corpus_id` 不变 |
+| KB-5b | 重命名 = 目录改名 + origin 重写 + id 保留 + 锁/回滚 + `put(doc_id=)` | 重命名后目录名=名称、id 不变、旧会话可用、`/file` 正常、**再导入不重复** |
+| KB-5c | 名称/目录名对齐（T6：预览+备份+可回滚） | 无名称漂移；失败可回滚 |
+| KB-5d | T3 缺失库标记与提示 | 外部删/改名后提示而非 404 |
 | KB-4a | 多库契约 + 合并检索（后端） | `corpus_ids` 1–6；与 `corpus_id` 同送 422；跨库引用带 `corpus_id` |
 | KB-4b | 前端多选 chip + 持久化 | `corpus_ids` 存/恢复；>6 拒绝 |
 | KB-4c | 多库验收 | 选 2 库问答，引用来自两库且 `[n]` 可跳转 |
-- 建议排期：**KB-1/2/3 → KB-4**（KB-4 先定契约再实施）。
+- 建议排期：**KB-1/2/3（纯前端）→ KB-5a（稳定 id 先行，供 KB-4 复用）→ KB-5b/c/d → [定 KB-4 契约] → KB-4a/b/c**。KB-5b 需 T1/T2 定稿后实施；KB-5c 对齐迁移单独一步且可回滚。
 
 ### 11.9 非目标
 - 不做跨库权限/多租户；不合并库；不做自动选库（仍显式选择）。

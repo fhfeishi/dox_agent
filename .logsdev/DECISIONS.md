@@ -135,10 +135,17 @@
 
 ## 知识库重命名与目录名同步（KB-5，2026-09-23，规划）
 
-- 采用：**单一名称 = 目录名**；`corpus_id` 改为**持久化稳定 id**（首次见/创建时分配；现有库回填 `id=corpus_id_for(rel)`）；重命名 = 目录改名 + origin 前缀重写（保留 `doc_id`）+ 保留 id。`DEFAULT_CORPUS` 按 id 解析（回退 rel）。
-- 理由：`corpus_id` 原本由 rel 派生、`doc_id=sha256(origin)`，直接改目录会级联失效会话/引用；稳定 id + origin 重写消除级联。
+- 采用：**规范名 = 目录名 + 可选 alias（按稳定 id 持久化）**；`corpus_id` 改为**持久化稳定 id**（回填 `id=corpus_id_for(rel)`）；重命名 = 目录改名 + origin 前缀重写（保留 `doc_id`）+ 保留 id。
+- **T1/T8 doc_id 解耦**：保留 `doc_id=sha256(origin)` 定义，但 `Knowledge.put(doc, doc_id=)` 支持显式 id、`import_defaults` 对清单内文件传 `files.doc_id` **原地更新**；重命名重写 origin 保留 id → **再导入（含 force）不产重复行/孤儿 chunks**；不做存量 doc_id 批量迁移。
+- **T2 原子/锁**：改名在 `import_lock` 内串行；导入中 → 409；DB 事务 + 失败回滚目录。
+- **T3 孤儿**：`/api/corpora` 标 `missing`；默认解析跳过；会话 `corpus_id` 悬空 → 提示“重新关联/解绑”，不静默 404。
+- **T4 alias**：不删显示名，按 id 存 alias（UI 优先显示），避免 rel-keyed 漂移。
+- **T5 文件系统边界**：Windows 保留名/尾随点空格/符号链接拒绝；大小写改名两步临时名；与扫描/导入串行。
+- **T6 对齐迁移**：预览 + 备份 + 可回滚 + 用户确认。
+- **T7 DEFAULT_CORPUS**：按 id 解析，保留 rel 回退（旧 `.env` 写 rel 仍可）。
+- 理由：`corpus_id` 原本由 rel 派生、`doc_id=sha256(origin)`，直接改目录会级联失效会话/引用；稳定 id + origin 重写 + put(doc_id) 消除级联。
 - 取代：取代「知识库重命名语义（2026-09-22）」中“仅改显示名/目录搬迁暂缓”的部分。
-- 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §11.6（KB-5a–c）。
+- 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §11.6（KB-5a–d）。
 
 ## 多知识库会话（≤6，新需求）（2026-09-23，规划）
 

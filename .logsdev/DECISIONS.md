@@ -139,6 +139,13 @@
 - 删除：`DATA_DIR`/`VECTORDB_DIR`（活动库在根外的特例）与 `KNOWLEDGE_ROOT`/`TEXT_ROOT`（并入 `CORPORA_ROOT`）；新增 `DEFAULT_CORPUS`（相对名）。
 - 取代：取代「语料目录自包含方案 A」中“活动库可位于 CORPORA_ROOT 之外”的部分。
 - 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §10（DIR-1–DIR-4）。
+- **迁移要点（M1–M7）**：
+  - **M1（高风险）**：移动语料后必须重写 DB 中**文件型 origin** 前缀（保留 `docs.id`），否则 `/file`/rel_path/预览 404；实测 demo 158 docs 中 **1 个文件型、157 URL 型**。移动后的语料**勿 `force` 重导入**（避免 id 重算成孤儿）。
+  - **M2/M3**：state 迁移来源优先级 `.state/` → `data/` → `<活动库>/datadb/workspace.sqlite3`；先复制/校验再删旧目录，失败保留并记日志。
+  - **M4**：默认库解析确定性：`DEFAULT_CORPUS` 存在且为库；缺失取首个 `ready`（按 rel_path）；全无 ready → health 明确状态。
+  - **M5**：`ingest/local`/`ingest/text` 语义变更为“导入默认库 `source/`”；脚本 `--db`/默认库 db 同步。
+  - **M6**：`.gitignore` 移除 `.demo_langchain/`；`.knowledge/*` 覆盖 `.state/`；`data/` 护栏保留（截图改投 `temp/`）。
+  - **M7**：`DATA_DIR`/`VECTORDB_DIR`/`KNOWLEDGE_ROOT`/`TEXT_ROOT` 标废弃（`extra="ignore"`，可选启动 warning）。
 
 ## 报告↔会话绑定（#10 定稿，2026-09-22）
 

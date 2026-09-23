@@ -81,8 +81,9 @@
 | **知识库 IA 重构（对齐模板 3 层，2026-09-22）** | 文献库主区改为 `CorpusGrid` 知识库卡片网格（数据源 `corpora`）；新增 `CorpusDetail` 抽屉（文档/源文件/导入，含重命名/删除/按库导入/用于当前对话）；抽出 `Drawer` 壳；删 `LibraryView`/`CorpusAdmin`/`SettingsDrawer`；`OpsDrawer` 精简为模型/在线文档源/导出；`openPreview` 带 `corpusId` 修复非活动库文档 `/file` 取错库；文档预览面板自适应；设置按钮文案改「设置」。浏览（`openCorpus`）与切库（`selectCorpus`）分离。冲突/取舍见 [`DECISIONS.md`](DECISIONS.md) §8 | `npm run build` + `npm test` 18 passed；浏览器 **7 用例 PASS**（新增 `tests/browser_library.py`：网格/详情/跨库浏览不改活动库/按库 `/file`/设置抽屉无 KB CRUD/chat `corpus_id`）。`browser_fund_preview` 在线未运行 |
 | **Markdown 预览渲染修复（2026-09-22）** | 预览改走 `GET /api/documents/{id}/markdown`（`Knowledge.read_markdown`，不过 300 字符硬切/行窗）；`parse_file` 对 `.md/.markdown` 设 `parser="markdown"`；前端扩展名兜底 + 窗口拼接修正（页内 `\n`/跨页 `\n\n`）；`openTextInNewTab` 用 `renderToStaticMarkup(<Markdown+GFM>)` 渲染新窗口；表格改 wrapper 横向滚动。详见 [`../dev_logs/ui-migration.md`](../dev_logs/ui-migration.md) §7 | `pytest tests -q` → 本改动相关用例 **48 passed**（`test_app`/`test_markdown_parser`/`test_knowledge`/`test_steps`/`test_retrieval`）；全量当时 118 passed，**随后并行 L6 `graph.py` 重构**使 `test_graph`/`test_usage` 3 例失败（`create_deep_agent` 已移除，测试未同步，非本轮改动）；`npm run build` + `npm test` 18 passed；真实 demo 语料 `read_markdown("470e…")` → 3 个表格、最长行 485；浏览器 **8 用例 PASS**（新增 `tests/browser_markdown_preview.py`：`.md` 识别/3 `<table>`/新窗口渲染） |
 | **“前端打不开”排查（2026-09-22）** | 复现矩阵全部正常（构建版/真实后端/dev server/全 API 失败/localStorage），定位为**构建产物被清理或浏览器缓存的旧 `index.html` 指向已删除的 hash 资源**。修复：`launch.sh` 改为在 `frontend/dist/index.html` 缺失时也重建；`GET /{asset_path}` 对 `index.html` 发 `Cache-Control: no-cache, must-revalidate`，hash 资源发 `public, max-age=31536000, immutable`。前端代码无需改动 | `bash -n launch.sh` 通过；`curl -D` 确认 index no-cache / asset immutable；`pytest tests/test_app.py` 9 passed；dist 引用的 hash 资源均存在 |
+| **导出/在线文档源归位（2026-09-22）** | A. `OfficialDocs` 从 `OpsDrawer` 移入默认库 `CorpusDetail`「导入」tab（非默认库不显示）；B. 会话导出从 `OpsDrawer` 移到 `ChatView` 顶栏「导出」菜单（导出会话为 Markdown / 导出诊断 JSON），新增 `sessionExport.ts`；C. 每条回答操作条新增「导出 MD / 导出 Word」（`turnExport.ts`；Word 为 Word 兼容 HTML `.doc`，非 OOXML）。**取舍**：按本轮要求移除上一轮 Markdown 修复引入的 `react-dom/server`，改用 `createRoot + flushSync`（`markdownToHtml`）——主 chunk 由 722KB 回落到 **525KB**。纯序列化拆到 `exportFormat.ts`（Node 可测），`exportText.ts` 仅保留 DOM 渲染；不加依赖、不改后端/`ChatRequest` | `npm run build` + `npm test` → **23 passed**（新增 `turnExport.test.mts` 3 例、`sessionExport.test.mts` 2 例）；浏览器 **9 用例 PASS**（新增 `tests/browser_export.py`：会话 MD、单轮 MD、单轮 Word 含 `<table>`、设置抽屉无源/导出） |
 
-当前可用基线（本轮实测）：后端 `pytest tests -q` → **104 passed**；前端 `node --test` → **18 passed**；`npm run build` 通过。
+当前可用基线（本轮实测）：后端 `pytest tests -q` → **104 passed**；前端 `node --test` → **23 passed**；`npm run build` 通过；浏览器（Playwright + dist）**9 用例 PASS**。
 
 ## 4. 待定设计
 
@@ -917,28 +918,38 @@ understand → retrieve → assemble → validate → answer → finish
 - `prepare_docs.py`/`cli.py`/`evaluate.py`：`data_dir` 引用改为默认语料 db 路径或显式 `--db`。
 - `.env`/`.env.example`/README：删 4 变量、更新布局。
 
-### 10.5 一次性迁移（幂等）
-- `.demo_langchain/` → `.knowledge/demo_langchain/`（目标不存在时）。
-- `data/{workspace.sqlite3,corpora.json,reports.sqlite3,official-preparation.json}` → `.knowledge/.state/`（逐文件，目标不存在时）。
-- 删除残留 `data/`（含测试 `*.png`）。
+### 10.5 一次性迁移（幂等；含 M1–M3）
+- **M2 来源优先级**（逐文件）：`.knowledge/.state/<file>` 已存在 → 跳过；否则 `data/<file>`；workspace 专用回退 `<活动库>/datadb/workspace.sqlite3`（K0 旧路径）。每次仅搬**首个存在**的来源。
+- **M3 安全次序**：`复制/移动 → 校验目标齐全（workspace/reports/corpora/official-preparation）→ 再删旧目录`；任一步失败保留旧目录并记日志（不静默丢数据）。测试 `*.png` 单独清理，不参与校验。
+- **移动内容**：`.demo_langchain/` → `.knowledge/demo_langchain/`（目标不存在时）；`data/*` → `.knowledge/.state/`。
+- **M1 demo origin 重写（高风险，必须做）**：移动后 DB 中**文件型 origin**（如 `…/.demo_langchain/source/README.md`）仍指旧路径 → `local_path_in_roots` 解析失败 → `/file` 404、rel_path 空。
+  - 规则：对 `docs.payload.origin` 以旧根绝对路径开头的行，**前缀替换旧根→新根**，**保留 `docs.id` 不变**（`files.doc_id`/`chunks.doc_id`/workspace `sources.doc_id` 引用稳定）。
+  - 实测：demo 158 docs 中 **157 为 URL origin（不受移动影响）**、**1 为文件型** `README.md`（`id=sha256(origin)`）。
+  - 代价：被移动的文件型文档 `id ≠ sha256(new_origin)`；**不要对移动后的语料 `force` 重导入**（会按新 origin 生成新 id、旧行成孤儿）；正常 ingest 由 `files` 的 size/mtime 跳过，不受影响。
+  - 备选（不推荐）：重算 id 需级联 `files`/`chunks`（`chunk_id` 含 doc_id，需重建 5922 chunks）并可能失效 workspace 引用。
 - 启动时执行并记日志；旧路径不存在即跳过。
 
 ### 10.6 分阶段任务
 | 编号 | 内容 | 验收 |
 |---|---|---|
-| DIR-1 | `state_dir=.knowledge/.state` + 迁移 + 扫描跳过 | 状态写入 `.state/`；旧 `data/` 状态迁移后会话保留 |
-| DIR-2 | demo 归位 `.knowledge/demo_langchain/`；删 `DATA_DIR`/`VECTORDB_DIR` 与 outside-root 分支；`DEFAULT_CORPUS` | 两库均被扫描；默认库解析正确；无根外特例 |
-| DIR-3 | 合并 `KNOWLEDGE_ROOT`/`TEXT_ROOT` → `CORPORA_ROOT`；简化 parsers/允许根 | grep 无 4 变量引用；导入/文件服务正常 |
-| DIR-4 | 清理 `data/`、`.env`、README/PROJECT；验收 | 全新启动**只创建** `.knowledge/`；`pytest`+浏览器 smoke 通过 |
+| DIR-1 | `state_dir=.knowledge/.state` + 迁移（M2 优先级/M3 先校验后删）+ 扫描跳过 | 状态写入 `.state/`；旧 `data/` 状态迁移后会话保留 |
+| DIR-2 | demo 归位 `.knowledge/demo_langchain/` + **M1 origin 重写**；删 `DATA_DIR`/`VECTORDB_DIR` 与 outside-root 分支；`DEFAULT_CORPUS` | 两库均被扫描；**demo `README.md` 的 `/file`/rel_path/预览正常**；默认库解析正确；无根外特例 |
+| DIR-3 | 合并 `KNOWLEDGE_ROOT`/`TEXT_ROOT` → `CORPORA_ROOT`；简化 parsers/允许根；**M5 端点/脚本适配** | `grep` 无 4 变量引用；`ingest/local` 语义=导入默认库 `source/`；`evaluate.py --db`/`prepare_docs`/`cli` 默认=默认库 db |
+| DIR-4 | 清理 `data/`、`.env`、`.gitignore`、README/PROJECT；验收 | 全新启动**只创建** `.knowledge/`；`pytest`+浏览器 smoke 通过（见 10.8） |
+- **M5 端点语义变更**：统一后 `POST /api/ingest/local`/`ingest/text` = “导入**默认库** `source/`”（原 legacy 双根 + exclude=others 删除）；需在文档与验收中明写。
+- **M6 `.gitignore` 同步**：移除 `.demo_langchain/`；确认 `.knowledge/*` 覆盖 `.state/`（含 sqlite）；`data/` 护栏**保留**（浏览器截图改投 `temp/`，避免误提交）。
+- **M7 `.env` 废弃变量**：`DATA_DIR`/`VECTORDB_DIR`/`KNOWLEDGE_ROOT`/`TEXT_ROOT` 已废弃；`Settings` 仍 `extra="ignore"`，应**在 `.env.example` 与迁移说明注明废弃**（可选：启动时若检测到旧变量记 warning）。
 
 ### 10.7 非目标
 - 不改语料内部结构（`source/datadb/vectordb`）；不合并多库；不改 `corpus_id` 语义；不动 `.logsdev/archive/`。
 
 ### 10.8 验收
 - 全新启动后 repo 内**不出现** `data/`；`.knowledge/.state/` 承载会话/报告/覆盖。
-- `scan_corpora` 返回 `demo_langchain` + `自然科学基金`；默认库可解析。
+- `scan_corpora` 返回 `demo_langchain` + `自然科学基金`；**默认库解析正确**（M4：`DEFAULT_CORPUS` 须存在且为库名；缺失按 `rel_path` 取首个 `preparation=ready`；全无 ready → health/prepare 明确状态，**不抛未捕获异常**）。
+- **M1 回归**：迁移后 demo 文件型文档（`README.md`）的 `/file`/rel_path/预览正常。
 - 会话历史迁移后可见；按库问答/文件预览/报告生成正常。
-- `grep -rn "DATA_DIR\|VECTORDB_DIR\|KNOWLEDGE_ROOT\|TEXT_ROOT" src/` 为空。
+- `grep -rn "DATA_DIR\|VECTORDB_DIR\|KNOWLEDGE_ROOT\|TEXT_ROOT" src/` 为空；运行期 `local_path_in_roots` **只允许 `corpora_root`（单根）**。
+- **M6**：`.gitignore` 无 `.demo_langchain/`、`.knowledge/*` 覆盖 `.state/`、`data/` 护栏保留。
 
 ## 11. 维护约定
 

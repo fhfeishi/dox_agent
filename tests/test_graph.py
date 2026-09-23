@@ -60,21 +60,27 @@ def test_task4_intake_collects_params_without_sources(tmp_path):
     events = asyncio.run(run([{"role": "user", "content": "帮我做一个成果报告"}]))
     assert not any(event["event"] == "sources" for event in events)
     tokens = "".join(event["data"]["text"] for event in events if event["event"] == "token")
-    assert "还缺：起始年份" in tokens  # required years still missing
+    assert "还缺：填表日期年份（报告提交时间）" in tokens  # required years still missing
     assert [event["data"] for event in events if event["event"] == "telemetry"][-1]["path"] == "report"
     assert [event["data"] for event in events if event["event"] == "policy"][-1]["stop_reason"] == "report_pending"
 
     events = asyncio.run(run([{"role": "user", "content": "综合报告，2020 至 2024"}]))
     tokens = "".join(event["data"]["text"] for event in events if event["event"] == "token")
-    assert "报告入口尚未就绪" in tokens  # all required fields present
+    assert "已记录报告需求" in tokens  # all required fields present
 
 
 def test_report_param_extraction_maps_templates_and_years():
     assert extract_report_params([{"role": "user", "content": "热点分析 2021-2025"}], "医疗") == {
-        "domain": "医疗", "template": "hotspots", "year_from": 2021, "year_to": 2025}
+        "domain": "医疗", "template_id": "hotspots", "year_from": 2021, "year_to": 2025}
     params = extract_report_params([
         {"role": "user", "content": "未来趋势 2020-2024"},
         {"role": "user", "content": "年份改 2023"},
     ], "医疗")
     assert params["year_from"] == params["year_to"] == 2023  # later turn overrides
-    assert params["template"] == "future_directions"
+    assert params["template_id"] == "future_directions"
+
+
+def test_user_multi_corpus_report_intake_requires_an_explicit_domain():
+    params = extract_report_params([{"role": "user", "content": "综合报告 2025，研究领域：人工智能，重点项目"}])
+    assert params == {"domain": "人工智能", "template_id": "comprehensive",
+                      "fund_type": "重点项目", "year_from": 2025, "year_to": 2025}

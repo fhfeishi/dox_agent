@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type ComponentProps } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import { createReport, type ReportInfo, type Source, type Step } from "../api";
+import { createReport, fetchReportMetadata, type ReportInfo, type ReportMetadataCoverage, type Source, type Step } from "../api";
 import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
@@ -10,6 +10,7 @@ import { formatDuration, type Attempt } from "../conversation";
 import { stopLabels } from "../policy";
 import { Icon } from "./Icons";
 import { Button } from "./ui";
+import { useApp } from "../store";
 
 const STEP_STATUS: Record<Step["status"], { label: string; cls: string }> = {
   running: { label: "进行中", cls: "bg-[var(--primary-soft)] text-[var(--primary)] ring-[#d5cdf7]" },
@@ -274,20 +275,43 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
 }
 
 function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (report: { report_id: string; markdown: string }) => void }) {
+  const { corpora, workspace } = useApp();
   const [local, setLocal] = useState<ReportInfo | null>(null);
   const report = attempt.report ?? local;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [coverage, setCoverage] = useState<ReportMetadataCoverage | null>(null);
+  const [coverageBusy, setCoverageBusy] = useState(false);
+  const [coverageError, setCoverageError] = useState("");
+  const [showCoverage, setShowCoverage] = useState(false);
+  const scopeIds = attempt.options.corpus_ids ?? (attempt.options.corpus_id ? [attempt.options.corpus_id] : []);
+  const [corpusId, setCorpusId] = useState("");
   const params = attempt.policy?.report_params;
   const ready = Boolean(params?.domain && params?.year_from && params?.year_to && params?.template_id);
+  useEffect(() => {
+    setCoverage(null);
+    setCoverageError("");
+    setShowCoverage(false);
+  }, [corpusId]);
   if (attempt.policy?.stop_reason !== "report_pending" || !ready) return null;
   async function generate() {
     setBusy(true);
     setError("");
     try {
-      // First click is idempotent on the turn's run_id; regenerate uses a fresh id (#10 M3).
-      const runId = report ? crypto.randomUUID() : attempt.runId;
-      const result = await createReport({ ...params, run_id: runId });
+      if (!scopeIds.includes(corpusId)) throw new Error("请确认本次报告使用的单一知识库");
+      let docIds: string[] | undefined;
+      if (attempt.options.allowed_doc_ids?.length) {
+        const response = await fetch(`/api/documents?corpus=${encodeURIComponent(corpusId)}`);
+        if (!response.ok) throw new Error("无法读取所选知识库的文档范围");
+        const docs = await response.json() as { doc_id: string }[];
+        const corpusDocIds = new Set(docs.map((doc) => doc.doc_id));
+        docIds = attempt.options.allowed_doc_ids.filter((id) => corpusDocIds.has(id));
+        if (!docIds.length) throw new Error("所选知识库中没有本轮限定的资料，请调整资料范围后重新发起报告");
+      }
+      // W3-A/A5: keep the derived report run id within the 80-char contract even if the intake id is long.
+      const reportRunId = report ? crypto.randomUUID() : `${attempt.runId.slice(0, 72)}-report`;
+      const result = await createReport({ ...params, corpus_id: corpusId, doc_ids: docIds,
+        session_key: workspace.active, run_id: reportRunId, parent_run_id: attempt.runId });
       if (onReport) onReport({ report_id: result.report_id, markdown: result.markdown });
       else setLocal(result);
     } catch (e) {
@@ -299,22 +323,71 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   async function copyReport() {
     if (report) await navigator.clipboard.writeText(report.markdown);
   }
+  async function inspectCoverage() {
+    setShowCoverage((shown) => !shown);
+    if (coverage || coverageBusy || !scopeIds.includes(corpusId)) return;
+    setCoverageBusy(true);
+    setCoverageError("");
+    try {
+      setCoverage(await fetchReportMetadata(corpusId));
+    } catch (e) {
+      setCoverageError(e instanceof Error ? e.message : "元数据覆盖读取失败");
+    } finally {
+      setCoverageBusy(false);
+    }
+  }
   return (
     <div className="mt-[12px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px]">
       <div className="flex flex-wrap items-center gap-[8px]">
         <span className="text-[12.5px] font-medium text-[var(--slate)]">专项报告</span>
         <span className="text-[11.5px] text-[var(--stone)]">
-          参数已齐：{params?.domain} · {params?.year_from}–{params?.year_to} · {params?.template_id}
+          参数已齐：{params?.domain} · 填表日期 {params?.year_from}–{params?.year_to} · {params?.fund_type ?? "类别不限"} · {params?.template_id}
         </span>
+        <label className="text-[11.5px] text-[var(--slate)]">
+          报告知识库
+          <select aria-label="报告知识库" value={corpusId} disabled={busy}
+            onChange={(event) => setCorpusId(event.target.value)}
+            className="ml-[5px] rounded border border-[var(--hairline)] bg-[var(--canvas)] px-[5px] py-[3px]">
+            <option value="">请选择单一知识库</option>
+            {scopeIds.map((id) => <option key={id} value={id}>{corpora.find((item) => item.id === id)?.name ?? id}</option>)}
+          </select>
+        </label>
         <button
           type="button"
-          disabled={busy}
+          disabled={busy || !scopeIds.includes(corpusId)}
           onClick={() => void generate()}
           className="ml-auto rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-[12px] text-white disabled:opacity-50"
         >
           {busy ? "生成中…" : report ? "重新生成" : "生成报告"}
         </button>
       </div>
+      {scopeIds.includes(corpusId) ? (
+        <button type="button" onClick={() => void inspectCoverage()}
+          className="mt-[6px] text-[11.5px] text-[var(--primary)] hover:underline">
+          {showCoverage ? "收起元数据覆盖" : "查看元数据覆盖与未命中资料"}
+        </button>
+      ) : null}
+      {showCoverage ? (
+        <div className="mt-[5px] text-[11.5px] leading-[1.6] text-[var(--steel)]">
+          {coverageBusy ? <p>正在读取字段覆盖…</p> : null}
+          {coverageError ? <p role="alert" className="text-[var(--red)]">{coverageError}</p> : null}
+          {coverage ? (
+            <>
+              <p>{corpora.find((item) => item.id === coverage.corpus_id)?.name ?? coverage.corpus_id}：
+                共 {coverage.total} 份；填表日期命中 {coverage.date.hits}、缺失/歧义 {coverage.date.missing}；
+                资助类别命中 {coverage.category.hits}、缺失 {coverage.category.missing}。</p>
+              {coverage.unmatched.length ? (
+                <ul className="mt-[3px] max-h-[120px] list-disc overflow-auto pl-[18px]">
+                  {coverage.unmatched.map((doc) => (
+                    <li key={doc.doc_id}>{doc.title} · 日期 {doc.date} · 类别 {doc.category}</li>
+                  ))}
+                </ul>
+              ) : <p>所有资料均识别到日期和类别标签。</p>}
+              <p className="mt-[3px]">此统计仅反映解析文本字段覆盖，不代表 PDF/OCR 识别正确率。</p>
+            </>
+          ) : null}
+        </div>
+      ) : null}
       {error ? (
         <p role="alert" className="mt-[6px] text-[11.5px] text-[var(--red)]">
           {error}

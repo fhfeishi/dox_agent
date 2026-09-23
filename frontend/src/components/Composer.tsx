@@ -54,9 +54,13 @@ export function Composer() {
     confirmEdit,
     options,
     setOptions,
-    documents,
+    scopeDocuments,
+    scopeDocumentsError,
     corpora,
     effectiveCorpusId,
+    corporaError,
+    corporaLoaded,
+    refreshCorpora,
     selectCorpus,
     tasks,
     tasksError,
@@ -64,6 +68,12 @@ export function Composer() {
     startTask,
     taskCapable,
     currentCorpus,
+    corpusIds,
+    setSearchCorpusIds,
+    setNewCorpusOpen,
+    openCorpus,
+    runCorpusIngest,
+    ingestBusy,
     showToast,
     status,
   } = useApp();
@@ -107,13 +117,44 @@ export function Composer() {
     };
   }, [popOpen, corpusOpen, scopeOpen]);
 
-  const canSend =
-    input.trim().length > 0 && !busy && ready && workspace.loaded && connected;
+  const scopeReady = !corporaError && corpusIds.length > 0 && corpusIds.length <= 6 &&
+    corpusIds.every((id) => corpora.some((item) => item.id === id && !item.missing));
+  const emptyScopeCorpus = corpora.find((item) => corpusIds.includes(item.id) && item.preparation !== "ready");
+  const repairScope = !corpusIds.length || corpusIds.length > 6 ||
+    corpusIds.some((id) => !corpora.some((item) => item.id === id && !item.missing));
+  const canSend = input.trim().length > 0 && !busy && ready && workspace.loaded && connected && scopeReady;
   const scoped = options.allowed_doc_ids?.length ?? 0;
 
   return (
     <div className="shrink-0 bg-gradient-to-t from-[var(--canvas)] via-[var(--canvas)] to-transparent px-[32px] pb-[20px]">
       <div className="mx-auto w-full max-w-[820px]">
+        {!scopeReady ? (
+          <div role="status" className="mb-[8px] flex items-center gap-[10px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-[12px] text-[var(--slate)]">
+            <span className="min-w-0 flex-1">
+              {corporaError
+                ? `知识库列表读取失败：${corporaError}`
+                : !corporaLoaded
+                  ? "正在读取知识库列表…"
+                  : !corpora.length
+                  ? "尚无知识库，可新建知识库或刷新列表。"
+                  : !corpusIds.length
+                    ? "请选择当前对话使用的 1 至 6 个知识库。"
+                    : corpusIds.length > 6
+                      ? `此会话原范围包含 ${corpusIds.length} 个知识库，超过 6 个上限，请修复范围后再发送。`
+                      : corpusIds.some((id) => !corpora.some((item) => item.id === id))
+                        ? "此会话原范围含未知知识库，请修复范围后再发送。"
+                        : corpusIds.some((id) => corpora.find((item) => item.id === id)?.missing)
+                          ? "此会话原范围含目录缺失的知识库，请移除或重新关联。"
+                          : "当前对话使用的范围不可用。"}
+            </span>
+            {corporaError ? <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-[11.5px]" onClick={() => refreshCorpora()}>重试刷新</button> : null}
+            {!corporaError && corporaLoaded && repairScope ? (
+              <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-[11.5px]" onClick={() => corpora.length ? setCorpusOpen(true) : setNewCorpusOpen(true)}>
+                {corpora.length ? "选择知识库" : "新建知识库"}
+              </button>
+            ) : null}
+          </div>
+        ) : null}
         {editing ? (
           <div className="mb-[8px] flex items-center gap-[8px] rounded-[8px] border border-[#d5cdf7] bg-[var(--primary-soft)] px-[10px] py-[7px] text-[12px] text-[var(--primary-pressed)]">
             <Icon name="edit" size={13} strokeWidth={1.9} />
@@ -135,7 +176,7 @@ export function Composer() {
           {currentCorpus ? (
             <span className="inline-flex max-w-[280px] items-center gap-[6px] rounded-full border border-[#d5cdf7] bg-[var(--primary-soft)] px-[9px] py-[4px] text-[12px] font-medium text-[var(--primary-pressed)]">
               <Icon name="library" size={12} strokeWidth={2} />
-              <span className="truncate">{currentCorpus.name}</span>
+              <span className="truncate">上传目标：{currentCorpus.name}</span>
               <span className="text-[var(--primary)]">{currentCorpus.docs_count}</span>
             </span>
           ) : (
@@ -143,12 +184,29 @@ export function Composer() {
           )}
           <button
             type="button"
+            disabled={busy}
             onClick={() => setCorpusOpen((v) => !v)}
-            className="font-app inline-flex items-center gap-[6px] rounded-full border border-[var(--hairline)] bg-[var(--canvas)] px-[9px] py-[4px] text-[12px] text-[var(--slate)] hover:border-[var(--hairline-strong)]"
+            className="font-app inline-flex items-center gap-[6px] rounded-full border border-[var(--hairline)] bg-[var(--canvas)] px-[9px] py-[4px] text-[12px] text-[var(--slate)] hover:border-[var(--hairline-strong)] disabled:opacity-50"
           >
             <Icon name="plus" size={12} strokeWidth={2.2} />
-            切换知识库
+            管理知识库
           </button>
+          <span className="max-w-[340px] truncate text-[11px] text-[var(--stone)]" title={corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")}>
+            当前对话：{corpusIds.length
+              ? corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")
+              : "未选择"}（{corpusIds.length}/6）
+          </span>
+          {emptyScopeCorpus ? (
+            <span className="flex items-center gap-[6px] text-[11px] text-[#9a6500]">
+              「{emptyScopeCorpus.name}」暂无已入库文档
+              <button type="button" className="text-[var(--link)] hover:underline" onClick={() => openCorpus(emptyScopeCorpus.id)}>
+                添加文档
+              </button>
+              <button type="button" className="text-[var(--link)] hover:underline disabled:opacity-50" disabled={ingestBusy} onClick={() => void runCorpusIngest(emptyScopeCorpus.id)}>
+                刷新本库
+              </button>
+            </span>
+          ) : null}
         </div>
 
         {corpusOpen ? (
@@ -156,9 +214,12 @@ export function Composer() {
             <CorpusPicker
               corpora={corpora}
               current={effectiveCorpusId ?? ""}
+              selectedIds={corpusIds}
+              disabled={busy}
+              onToggle={(id, selected) => setSearchCorpusIds(selected ? [...corpusIds, id] : corpusIds.filter((entry) => entry !== id))}
+              onUseOnly={(id) => setSearchCorpusIds([id])}
               onSelect={(id) => {
                 selectCorpus(id);
-                setCorpusOpen(false);
               }}
             />
           </div>
@@ -167,11 +228,12 @@ export function Composer() {
         {scopeOpen ? (
           <div ref={scopeRef} className="mb-[8px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px] shadow-[0_8px_24px_-12px_rgba(15,15,15,0.2)]">
             <ScopeSelector
-              documents={documents}
+              documents={scopeDocuments}
               selected={options.allowed_doc_ids}
               change={(ids) => setOptions((o) => ({ ...o, allowed_doc_ids: ids }))}
-              disabled={busy || !connected}
+              disabled={busy || !connected || Boolean(scopeDocumentsError)}
             />
+            {scopeDocumentsError ? <p role="alert" className="mt-[6px] text-[11px] text-[var(--red)]">{scopeDocumentsError}</p> : null}
           </div>
         ) : null}
 
@@ -233,7 +295,7 @@ export function Composer() {
                       <PopItem
                         key={task.id}
                         title={task.name}
-                        description={task.output_hint || task.description}
+                        description={`${task.description} 示例：${task.example ?? task.output_hint ?? ""}`}
                         onClick={() => {
                           setPopOpen(false);
                           void startTask(task.id);

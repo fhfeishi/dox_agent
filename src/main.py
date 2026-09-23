@@ -5,14 +5,16 @@ import json
 import logging
 import os
 import shutil
+import tempfile
 from contextlib import asynccontextmanager
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Literal
 from uuid import uuid4
 
 from fastapi import FastAPI, File, HTTPException, Request, Response, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from .agent.config import DOX_AGENT_ROOT, get_settings
 from .agent.corpora import (
@@ -36,10 +38,11 @@ from .agent.models import tracing
 from .agent.usage import TurnUsage
 from .knowledge import Knowledge, KnowledgeGroup
 from .official_docs import import_official
-from .parsers import import_defaults, parse_web
-from .prompts import list_tasks
-from .reports import ReportStore, generate_markdown
+from .parsers import collect_sources, import_defaults, parse_web
+from .prompts import list_tasks, list_templates, report_template
+from .reports import ReportStore, generate_markdown, summarize_report_metadata
 from .retrieval import fit_history
+from .runs import RunConflict, RunStore, request_fingerprint
 from .workspace import Workspace
 from .workspace import router as workspace_router
 
@@ -75,6 +78,15 @@ class ChatMessage(BaseModel):
     content: str = Field(min_length=1, max_length=12000)
 
 
+class RunContext(BaseModel):
+    """W3-A: versioned, user-visible run parameters carried by the client (not authoritative scope)."""
+    model_config = ConfigDict(extra="forbid")
+    visible_params: dict[str, object] = Field(default_factory=dict)
+    param_sources: dict[str, str] = Field(default_factory=dict)
+    resource_policy: Literal["local_only"] = "local_only"
+    output_intent: str = Field(default="", max_length=200)
+
+
 class ChatRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     messages: list[ChatMessage] = Field(min_length=1, max_length=20)
@@ -86,6 +98,23 @@ class ChatRequest(BaseModel):
     # KB-4a: retrieval set (1–6); mutually exclusive with corpus_id, absent = default corpus.
     corpus_ids: list[str] | None = Field(default=None, min_length=1, max_length=6)
     run_id: str = Field(default_factory=lambda: uuid4().hex, min_length=8, max_length=80)
+    # W3-A: optional snapshot context; absent stays backward compatible (local_only / 未记录).
+    session_key: str | None = Field(default=None, max_length=120)
+    run_context: RunContext | None = None
+
+    @field_validator("corpus_ids")
+    @classmethod
+    def corpus_ids_are_unique(cls, value: list[str] | None):
+        if value is not None and len(value) != len(set(value)):
+            raise ValueError("corpus_ids 不能包含重复知识库")
+        return value
+
+    @field_validator("allowed_doc_ids")
+    @classmethod
+    def allowed_doc_ids_are_unique(cls, value: list[str] | None):
+        if value is not None and len(value) != len(set(value)):
+            raise ValueError("allowed_doc_ids 不能包含重复文档")
+        return value
 
 
 class ReportRequest(BaseModel):
@@ -100,6 +129,15 @@ class ReportRequest(BaseModel):
     corpus_id: str | None = Field(default=None, min_length=1, max_length=120)
     session_key: str | None = Field(default=None, max_length=120)
     run_id: str | None = Field(default=None, max_length=80)
+    # W3-A: a report run is an independent child of the task4 intake chat run.
+    parent_run_id: str | None = Field(default=None, max_length=80)
+
+    @field_validator("doc_ids")
+    @classmethod
+    def report_doc_ids_are_unique(cls, value: list[str] | None):
+        if value is not None and len(value) != len(set(value)):
+            raise ValueError("doc_ids 不能包含重复文档")
+        return value
 
 
 class WebRequest(BaseModel):
@@ -118,6 +156,16 @@ class CorpusCreate(BaseModel):
 class CorpusRename(BaseModel):
     model_config = ConfigDict(extra="forbid")
     name: str = Field(min_length=1, max_length=80)
+
+
+class CorpusDescription(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    description: str = Field(default="", max_length=1000)
+
+
+class CorpusReassociate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    directory: str = Field(min_length=1, max_length=80)
 
 
 class FileRename(BaseModel):
@@ -162,6 +210,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.workspace = Workspace(workspace_path(settings, app.state.knowledge))
         app.state.knowledge.workspace = app.state.workspace
         app.state.reports = ReportStore(settings.state_dir / "reports.sqlite3")
+        # W3-A: run snapshots live with the other application-level state.
+        app.state.runs = RunStore(settings.state_dir / "runs.sqlite3")
         app.state.import_lock = asyncio.Lock()
         app.state.preview = None
         app.state.official_job = {"status": "idle", "total": 0, "completed": 0, "imported": 0, "changed": 0, "errors": []}
@@ -175,6 +225,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
         async def prepare():
             if knowledge is not None:
+                return
+            if info is None:
+                app.state.preparation = "empty"
                 return
             try:
                 if settings.auto_import_official and not any(doc["kind"] == "official" for doc in await asyncio.to_thread(app.state.knowledge.all)):
@@ -219,30 +272,40 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     def knowledge_for(info: CorpusInfo) -> Knowledge:
         """Lazy per-corpus Knowledge; the default corpus reuses the lifespan instance."""
-        if info.is_default:
+        db_path = (info.sqlite or info.db_dir / "knowledge.sqlite3").resolve()
+        if info.is_default and db_path == app.state.knowledge.path.resolve():
             return app.state.knowledge
         cached = app.state.corpus_knowledge.get(info.id)
         if cached is None:
             # 方案 A: derived data stays inside the corpus dir (datadb/ + vectordb/), never
             # in source/; a non-default corpus gets its own vector directory.
-            cached = Knowledge(info.sqlite or info.db_dir / "knowledge.sqlite3", settings=settings,
+            cached = Knowledge(db_path, settings=settings,
                                vectordb_dir=info.vectordb_dir)
             app.state.corpus_knowledge[info.id] = cached
         return cached
 
     async def knowledge_for_request(corpus: str | None) -> Knowledge:
-        """Resolve the corpus for read/file; absent = the default corpus (K0b)."""
+        """Resolve the corpus for read/file; absent = the current first corpus (K0b)."""
         if corpus is None:
-            return app.state.knowledge
+            info = await asyncio.to_thread(default_corpus_info, settings)
+            if info is None:
+                raise HTTPException(409, "尚无知识库，请先新建知识库")
+            if info.missing:
+                raise HTTPException(409, "首个知识库目录缺失，请先处理该目录")
+            return knowledge_for(info)
         info = await asyncio.to_thread(find_corpus, corpus)
         if info is None:
             raise HTTPException(404, "知识库不存在")
+        if info.missing:
+            raise HTTPException(409, {"missing": True, "corpus_id": corpus,
+                                      "message": "该知识库目录已缺失，请重新关联或解绑"})
         return knowledge_for(info)
 
     @app.get("/api/health")
     async def health(request: Request):
-        docs_count = await asyncio.to_thread(request.app.state.knowledge.count)
         default_info = await asyncio.to_thread(default_corpus_info, settings)
+        active_knowledge = knowledge_for(default_info) if default_info and not default_info.missing else None
+        docs_count = await asyncio.to_thread(active_knowledge.count) if active_knowledge else 0
         return {
             "status": "ok",
             "app_id": "dox-agent",
@@ -251,17 +314,60 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "api_key_configured": bool(settings.model_api_key),
             "model_verified": False,
             "web_provider": settings.web_provider,
-            "preparation": request.app.state.preparation,
+            "preparation": (request.app.state.preparation if default_info is None or active_knowledge is request.app.state.knowledge
+                            else default_info.preparation),
             "corpus_id": default_info.id if default_info else "",
-            "index_progress": request.app.state.knowledge.dense.progress if request.app.state.knowledge.dense else None,
+            "index_progress": active_knowledge.dense.progress if active_knowledge and active_knowledge.dense else None,
         }
 
     @app.get("/api/tasks")
     async def tasks():
         return list_tasks()
 
+    @app.get("/api/templates")
+    async def templates():
+        """W1: read-only output-template catalogue (built-in Markdown section structures)."""
+        return list_templates()
+
+    @app.get("/api/templates/{template_id}")
+    async def template_detail(template_id: str):
+        """W1: one template's section structure, for the shared inspector preview."""
+        entry = next((item for item in list_templates() if item["id"] == template_id), None)
+        if entry is None:
+            raise HTTPException(404, "报告模板不存在")
+        return {**entry, "content": report_template(template_id)}
+
+    def corpus_counts(info: CorpusInfo) -> dict:
+        """KM-S2: lightweight file counts for the overview card (read-only, never parses).
+
+        ``indexed_count`` is the searchable document count; ``source_count`` is what currently
+        sits in ``source/``. A source file is pending when the manifest has not indexed it (new or
+        removed); a manifest parse error is counted separately so the card can distinguish the two.
+        """
+        if info.missing or not info.source_dir.is_dir():
+            on_disk: dict[str, Path] = {}
+        else:
+            on_disk = {path.relative_to(info.source_dir).as_posix(): path
+                       for path in collect_sources(info.source_dir)}
+        manifest = knowledge_for(info).files() if info.sqlite is not None else {}
+        failed = sum(1 for rel in on_disk if manifest.get(rel, {}).get("status") == "error")
+        on_disk_indexed = sum(1 for rel in on_disk if manifest.get(rel, {}).get("status") == "indexed")
+        removed = sum(1 for rel in manifest if rel not in on_disk)
+        return {
+            "source_count": len(on_disk),
+            "indexed_count": info.docs_count,
+            "pending_count": len(on_disk) - on_disk_indexed - failed + removed,
+            "failed_count": failed,
+        }
+
     def corpus_payload(info: CorpusInfo) -> dict:
-        dense = app.state.knowledge.dense
+        dense = None
+        if info.sqlite and info.sqlite.resolve() == app.state.knowledge.path.resolve():
+            dense = app.state.knowledge.dense
+        else:
+            cached_knowledge = app.state.corpus_knowledge.get(info.id)
+            if cached_knowledge:
+                dense = cached_knowledge.dense
         return {
             "id": info.id,
             "name": info.name,
@@ -273,16 +379,19 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "is_default": info.is_default,
             "alias": info.alias,
             "dir_name": info.dir_name or info.root.name,
+            "description": info.description,
             "missing": info.missing,
-            "index_progress": dense.progress if info.is_default and dense else None,
+            "index_progress": dense.progress if dense else None,
             "job": app.state.corpus_jobs.get(info.id),
+            **corpus_counts(info),
         }
 
     @app.get("/api/corpora")
     async def corpora():
         """H1: corpus registry — disk scan + config/override names, read-only."""
         items = await asyncio.to_thread(scan_corpora, settings)
-        return [corpus_payload(info) for info in items]
+        # KM-S2: file counts read the source dir + manifest, so keep them off the event loop.
+        return await asyncio.to_thread(lambda: [corpus_payload(info) for info in items])
 
     @app.post("/api/corpora", status_code=201)
     async def create_corpus(payload: CorpusCreate):
@@ -318,38 +427,84 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
             raise HTTPException(404, "知识库不存在")
+        if info.missing:
+            raise HTTPException(409, "目录缺失的知识库不能重命名")
+        if info.root.name == name:
+            return corpus_payload(info)
         root = corpus_root_for(settings)
         target = (root / name).resolve()
-        if not target.is_relative_to(root) or target.exists():
+        same_case_directory = info.root.name.lower() == name.lower()
+        if not target.is_relative_to(root) or (target.exists() and not same_case_directory):
             raise HTTPException(409, "同名知识库已存在")
         running = request.app.state.corpus_tasks.get(corpus_id)
-        if running and not running.done():
-            raise HTTPException(409, "该知识库正在导入")
+        if (running and not running.done()) or request.app.state.import_lock.locked():
+            raise HTTPException(409, "知识库正在上传或导入，暂不能重命名")
         old = info.root
 
         def do_rename():
             if old.name.lower() == name.lower():
                 # Case-only rename: two-step so a case-insensitive FS does not see a conflict (T5).
                 temp = root / (".rename-" + uuid4().hex)
-                os.rename(old, temp)
-                os.rename(temp, target)
+                try:
+                    os.rename(old, temp)
+                    os.rename(temp, target)
+                except Exception:
+                    if temp.exists() and not old.exists():
+                        os.rename(temp, old)
+                    raise
             else:
                 os.rename(old, target)
+            origins_updated = False
             try:
                 # T1/T2: rewrite file-type origins but keep doc ids; DB write is transactional.
                 rewrite_origins(target / DB_DIRNAME / "knowledge.sqlite3", old, target, [])
+                origins_updated = True
+                overrides = load_corpus_overrides(settings)
+                entry = overrides.get(corpus_id, {})
+                overrides[corpus_id] = {**entry, "id": corpus_id, "rel": name}
+                save_corpus_overrides(settings, overrides)
             except Exception:
-                os.rename(target, old)  # roll back the directory
+                # The directory move and origin rewrite form one visible operation. Restore
+                # both before returning an error if registry persistence fails.
+                if origins_updated:
+                    rewrite_origins(target / DB_DIRNAME / "knowledge.sqlite3", target, old, [])
+                os.rename(target, old)
                 raise
+
+        if request.app.state.import_lock.locked():
+            raise HTTPException(409, "知识库正在上传或导入，暂不能重命名")
+        await request.app.state.import_lock.acquire()
+        try:
+            await asyncio.to_thread(do_rename)
+        finally:
+            request.app.state.import_lock.release()
+        app.state.corpus_knowledge.pop(corpus_id, None)
+        items = await asyncio.to_thread(scan_corpora, settings)
+        return corpus_payload(next(item for item in items if item.id == corpus_id))
+
+    @app.put("/api/corpora/{corpus_id}/description")
+    async def set_corpus_description(request: Request, corpus_id: str, payload: CorpusDescription):
+        """W2: user-editable short note, separate from the directory name (which stays canonical)."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        if info.missing:
+            raise HTTPException(409, "目录缺失的知识库不能编辑说明")
+        if request.app.state.import_lock.locked():
+            raise HTTPException(409, "知识库正在上传或导入，暂不能修改说明")
+
+        def save():
             overrides = load_corpus_overrides(settings)
-            entry = overrides.get(corpus_id, {})
-            # Renaming syncs the display name to the directory name, so the old alias is cleared.
-            overrides[corpus_id] = {**entry, "id": corpus_id, "rel": name, "alias": ""}
+            entry = {**overrides.get(corpus_id, {}), "id": corpus_id, "rel": info.rel_path}
+            description = payload.description.strip()
+            if description:
+                entry["description"] = description
+            else:
+                entry.pop("description", None)
+            overrides[corpus_id] = entry
             save_corpus_overrides(settings, overrides)
 
-        async with request.app.state.import_lock:
-            await asyncio.to_thread(do_rename)
-        app.state.corpus_knowledge.pop(corpus_id, None)
+        await asyncio.to_thread(save)
         items = await asyncio.to_thread(scan_corpora, settings)
         return corpus_payload(next(item for item in items if item.id == corpus_id))
 
@@ -359,24 +514,99 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
             raise HTTPException(404, "知识库不存在")
-        if info.is_default:
-            raise HTTPException(409, "不能删除当前活动（默认）知识库")
-
+        running = app.state.corpus_tasks.get(corpus_id)
+        if (running and not running.done()) or app.state.import_lock.locked():
+            raise HTTPException(409, "知识库正在上传或导入，暂不能删除")
         def remove():
-            shutil.rmtree(info.db_dir, ignore_errors=True)
-            shutil.rmtree(info.vectordb_dir, ignore_errors=True)
-            if purge_source:
-                shutil.rmtree(info.root, ignore_errors=True)
-            elif info.root.exists() and not any(info.root.iterdir()):
-                shutil.rmtree(info.root, ignore_errors=True)
+            if not info.missing:
+                if purge_source:
+                    shutil.rmtree(info.root, ignore_errors=True)
+                else:
+                    shutil.rmtree(info.db_dir, ignore_errors=True)
+                    shutil.rmtree(info.vectordb_dir, ignore_errors=True)
+                    if info.root.exists() and not any(info.root.iterdir()):
+                        shutil.rmtree(info.root, ignore_errors=True)
             overrides = load_corpus_overrides(settings)
-            if corpus_id in overrides:
+            if corpus_id in overrides and (info.missing or purge_source):
                 overrides.pop(corpus_id)
                 save_corpus_overrides(settings, overrides)
 
-        await asyncio.to_thread(remove)
+        if app.state.import_lock.locked():
+            raise HTTPException(409, "知识库正在上传或导入，暂不能删除")
+        await app.state.import_lock.acquire()
+        try:
+            await asyncio.to_thread(remove)
+        finally:
+            app.state.import_lock.release()
         app.state.corpus_knowledge.pop(corpus_id, None)
         return {"deleted": corpus_id, "purged_source": purge_source}
+
+    @app.post("/api/corpora/{corpus_id}/reassociate")
+    async def reassociate_corpus(request: Request, corpus_id: str, payload: CorpusReassociate):
+        """Explicitly reconnect a missing stable corpus id to an unclaimed directory."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        if not info.missing:
+            raise HTTPException(409, "该知识库目录仍存在，无需重新关联")
+        directory = payload.directory.strip()
+        if not valid_corpus_name(directory):
+            raise HTTPException(422, "目标目录名称非法")
+        root = corpus_root_for(settings)
+        target_path = root / directory
+        if target_path.is_symlink():
+            raise HTTPException(422, "不能关联符号链接目录")
+        target = target_path.resolve()
+        if not target.is_relative_to(root) or not target.is_dir():
+            raise HTTPException(404, "所选目录不存在或不在知识库根目录")
+        candidates = await asyncio.to_thread(scan_corpora, settings)
+        target_info = next((item for item in candidates if item.rel_path == directory and not item.missing), None)
+        if target_info is None:
+            raise HTTPException(404, "刷新后未找到所选目录")
+        overrides = await asyncio.to_thread(load_corpus_overrides, settings)
+        owner = next(((owner_id, entry) for owner_id, entry in overrides.items()
+                      if owner_id != corpus_id and entry.get("rel") == directory), None)
+        generated_owner = bool(owner and owner[0] == corpus_id_for(directory)
+                               and owner[1].get("generated") and not owner[1].get("created"))
+        configured = any(str(entry.get("path", "")).strip("/") == directory for entry in settings.corpora or [])
+        if (owner and not generated_owner) or configured:
+            raise HTTPException(409, "所选目录已归属于另一个知识库，请选择未关联的目录")
+        running = request.app.state.corpus_tasks.get(corpus_id)
+        target_running = request.app.state.corpus_tasks.get(target_info.id)
+        if ((running and not running.done()) or (target_running and not target_running.done())
+                or request.app.state.import_lock.locked()):
+            raise HTTPException(409, "知识库正在上传或导入，暂不能重新关联")
+
+        def save_reassociation():
+            previous = overrides.get(corpus_id, {})
+            new_overrides = dict(overrides)
+            if generated_owner and owner:
+                new_overrides.pop(owner[0], None)
+            new_overrides[corpus_id] = {**previous, "id": corpus_id, "rel": directory}
+            db_path = target / DB_DIRNAME / "knowledge.sqlite3"
+            origins_updated = False
+            if db_path.is_file():
+                rewrite_origins(db_path, info.root, target, [])
+                origins_updated = True
+            try:
+                save_corpus_overrides(settings, new_overrides)
+            except Exception:
+                if origins_updated:
+                    rewrite_origins(db_path, target, info.root, [])
+                raise
+
+        if request.app.state.import_lock.locked():
+            raise HTTPException(409, "知识库正在上传或导入，暂不能重新关联")
+        await request.app.state.import_lock.acquire()
+        try:
+            await asyncio.to_thread(save_reassociation)
+        finally:
+            request.app.state.import_lock.release()
+        if target_info.id != corpus_id:
+            app.state.corpus_knowledge.pop(target_info.id, None)
+        app.state.corpus_knowledge.pop(corpus_id, None)
+        refreshed = await asyncio.to_thread(scan_corpora, settings)
+        return corpus_payload(next(item for item in refreshed if item.id == corpus_id))
 
     @app.post("/api/corpora/{corpus_id}/ingest", status_code=202)
     async def corpus_ingest(request: Request, corpus_id: str, force: bool = False):
@@ -384,9 +614,16 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
             raise HTTPException(404, "知识库不存在")
+        if info.missing:
+            raise HTTPException(409, "知识库目录已缺失，刷新和入库前请先重新关联或移除失效记录")
         running = request.app.state.corpus_tasks.get(corpus_id)
         if running and not running.done():
             raise HTTPException(409, "该知识库正在导入")
+        # An explicit refresh may initialize source/; ordinary GET requests never do.
+        try:
+            await asyncio.to_thread(info.source_dir.mkdir, parents=True, exist_ok=True)
+        except OSError as exc:
+            raise HTTPException(409, "资料目录不可访问，未修改现有索引") from exc
         job = {"status": "running", "total": 0, "completed": 0, "imported": 0, "changed": 0,
                "added": 0, "updated": 0, "skipped": 0, "deleted": 0, "forced": force, "errors": []}
         request.app.state.corpus_jobs[corpus_id] = job
@@ -435,15 +672,17 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     @app.get("/api/corpora/{corpus_id}/files")
     async def corpus_files(corpus_id: str):
-        """K7: source files with manifest status (new/indexed/error/removed)."""
+        """Read source file status without creating an index database."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
             raise HTTPException(404, "知识库不存在")
-        manifest = await asyncio.to_thread(knowledge_for(info).files)
+        if info.missing:
+            raise HTTPException(409, "知识库目录已缺失")
+        manifest = await asyncio.to_thread(knowledge_for(info).files) if info.sqlite is not None else {}
 
         def listing():
             on_disk = {path.relative_to(info.source_dir).as_posix(): path
-                       for path in info.source_dir.rglob("*") if path.is_file() and path.suffix.lower() in SOURCE_SUFFIXES}
+                       for path in collect_sources(info.source_dir)} if info.source_dir.is_dir() else {}
             items = []
             for rel, path in sorted(on_disk.items()):
                 entry = manifest.get(rel)
@@ -452,9 +691,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             for rel, entry in sorted(manifest.items()):
                 if rel not in on_disk:
                     items.append({"rel_path": rel, "size": entry["size"], "status": "removed", "doc_id": entry["doc_id"]})
-            return items
+            misplaced = sorted(path.name for path in info.root.iterdir()
+                               if path.is_file() and not path.is_symlink()
+                               and path.suffix.lower() in SOURCE_SUFFIXES)
+            return items, misplaced
 
-        return {"source_dir": str(info.source_dir), "files": await asyncio.to_thread(listing)}
+        files, misplaced = await asyncio.to_thread(listing)
+        return {"source_dir": str(info.source_dir), "files": files, "misplaced_files": misplaced}
 
     @app.post("/api/corpora/{corpus_id}/files", status_code=201)
     async def upload_corpus_file(corpus_id: str, upload: UploadFile = File(...)):
@@ -470,8 +713,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         def save() -> None:
             info.source_dir.mkdir(parents=True, exist_ok=True)
             written = 0
+            temporary: Path | None = None
             try:
-                with target.open("wb") as handle:
+                fd, temp_name = tempfile.mkstemp(prefix=".upload-", dir=info.source_dir)
+                temporary = Path(temp_name)
+                with os.fdopen(fd, "wb") as handle:
                     while True:
                         chunk = upload.file.read(1 << 20)
                         if not chunk:
@@ -480,15 +726,28 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                         if written > MAX_PREVIEW_BYTES:
                             raise ValueError("文件过大，超过预览/上传上限")
                         handle.write(chunk)
-            except ValueError:
-                target.unlink(missing_ok=True)
-                raise
+                    handle.flush()
+                    os.fsync(handle.fileno())
+                # Hard-link publication is atomic and fails if another upload created
+                # the destination; unlike replace(), it can never truncate an old file.
+                os.link(temporary, target)
+            except FileExistsError as exc:
+                raise FileExistsError("同名文件已存在，请改名后上传") from exc
+            finally:
+                if temporary is not None:
+                    temporary.unlink(missing_ok=True)
 
-        try:
-            await asyncio.to_thread(save)
-        except ValueError as exc:
-            raise HTTPException(413, str(exc)) from exc
-        report = await import_corpus(info)
+        # Keep conflict check/publication and import serialized with other source
+        # mutations; use the existing lock rather than introducing another queue.
+        async with app.state.import_lock:
+            try:
+                await asyncio.to_thread(save)
+            except FileExistsError as exc:
+                raise HTTPException(409, str(exc)) from exc
+            except ValueError as exc:
+                raise HTTPException(413, str(exc)) from exc
+            report = await asyncio.to_thread(import_defaults, knowledge_for(info), settings,
+                                              root=info.source_dir, parsed_root=info.root / "parsed")
         return {"rel_path": name, "added": report["added"], "updated": report["updated"],
                 "skipped": report["skipped"], "deleted": report["deleted"], "errors": report["errors"]}
 
@@ -524,18 +783,18 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     @app.get("/api/documents")
     async def documents(request: Request, corpus: str | None = None):
-        # H3: optional corpus filter; absent = default corpus (backward compatible).
-        kn = request.app.state.knowledge
-        if corpus is not None:
+        # No query parameter is a legacy alias for the same current first corpus.
+        if corpus is None:
+            kn = await knowledge_for_request(None)
+        else:
             info = await asyncio.to_thread(find_corpus, corpus)
             if info is None:
                 raise HTTPException(404, "知识库不存在")
-            if info.is_default:
-                kn = request.app.state.knowledge
-            elif info.sqlite is None:
-                return []  # uninitialized corpus: read-only listing, never creates the sqlite
-            else:
-                kn = knowledge_for(info)
+            if info.missing:
+                raise HTTPException(409, "该知识库目录已缺失")
+            kn = knowledge_for(info) if info.sqlite is not None else None
+            if kn is None:
+                return []  # Read-only listing never creates a database for an empty corpus.
         docs = await asyncio.to_thread(kn.all)
         # D1: additive fields only. `status` is always "indexed" because this list is the corpus;
         # `meta` stays empty until stage B adds report metadata (B2/B3), so the frontend tree
@@ -554,9 +813,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             )
         return enriched
 
-    @app.get("/api/documents/{doc_id}/file")
-    async def document_file(request: Request, doc_id: str, version: str | None = None, corpus: str | None = None):
-        """D2: raw PDF/Markdown/txt for the browser reader; Range is handled by FileResponse."""
+    async def resolve_document_file(request: Request, doc_id: str, version: str | None, corpus: str | None):
         kn = await knowledge_for_request(corpus)
         try:
             doc = await asyncio.to_thread(kn.get, doc_id)
@@ -573,7 +830,19 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(415, "该文件类型不支持网页预览")
         if path.stat().st_size > MAX_PREVIEW_BYTES:
             raise HTTPException(413, "文件过大，无法在网页内预览")
+        return path, media_type
+
+    @app.head("/api/documents/{doc_id}/file")
+    async def document_file_head(request: Request, doc_id: str, version: str | None = None, corpus: str | None = None):
+        """Check preview availability without transferring the source file."""
+        path, media_type = await resolve_document_file(request, doc_id, version, corpus)
+        return Response(status_code=200, headers={"Content-Type": media_type, "Content-Length": str(path.stat().st_size)})
+
+    @app.get("/api/documents/{doc_id}/file")
+    async def document_file(request: Request, doc_id: str, version: str | None = None, corpus: str | None = None):
+        """D2: raw PDF/Markdown/txt for the browser reader; Range is handled by FileResponse."""
         # Inline so the raw reader (iframe/PDF viewer) renders instead of downloading.
+        path, media_type = await resolve_document_file(request, doc_id, version, corpus)
         return FileResponse(path, media_type=media_type, filename=path.name, content_disposition_type="inline")
 
     @app.get("/api/documents/{doc_id}/markdown")
@@ -597,6 +866,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     async def official_import(payload: OfficialRequest):
         if app.state.preparation == "running":
             raise HTTPException(409, "知识库正在初始化，请等待初始化结束后更新")
+        info = await asyncio.to_thread(default_corpus_info, settings)
+        if info is None:
+            raise HTTPException(409, "尚无知识库，请先新建知识库")
         if app.state.official_task and not app.state.official_task.done():
             raise HTTPException(409, "官方文档正在更新")
         progress = {"status": "running", "total": 0, "completed": 0, "imported": 0, "changed": 0, "errors": []}
@@ -605,7 +877,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         async def run():
             try:
                 async with app.state.import_lock:
-                    await import_official(app.state.knowledge, payload.sections, progress)
+                    await import_official(knowledge_for(info), payload.sections, progress)
                 progress["status"] = "partial" if progress["errors"] else "done"
             except Exception as exc:
                 logger.exception("Official documentation import failed")
@@ -637,9 +909,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         # §10/M5: import the default corpus ``source/`` (single root, no sibling exclusion).
         info = await asyncio.to_thread(default_corpus_info, settings)
         if info is None:
-            raise HTTPException(409, "没有可导入的默认知识库")
+            raise HTTPException(409, "尚无知识库，请先新建知识库")
+        await asyncio.to_thread(info.source_dir.mkdir, parents=True, exist_ok=True)
         async with app.state.import_lock:
-            return await asyncio.to_thread(import_defaults, app.state.knowledge, settings,
+            return await asyncio.to_thread(import_defaults, knowledge_for(info), settings,
                                            root=info.source_dir, parsed_root=info.root / "parsed")
 
     @app.post("/api/web/preview")
@@ -649,9 +922,14 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             import uuid
 
             preview_id = uuid.uuid4().hex
+            info = await asyncio.to_thread(default_corpus_info, settings)
+            if info is None:
+                raise HTTPException(409, "尚无知识库，请先新建知识库")
             # Single-user app: only latest preview retained, not arbitrary browser-supplied content.
-            app.state.preview = (preview_id, doc)
+            app.state.preview = (preview_id, doc, info.id)
             return {"preview_id": preview_id, **doc.model_dump()}
+        except HTTPException:
+            raise
         except (ValueError, TimeoutError) as exc:
             raise HTTPException(422, str(exc) or "网页抓取超时") from exc
         except Exception as exc:
@@ -660,13 +938,14 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     @app.post("/api/web/confirm/{preview_id}")
     async def confirm(preview_id: str):
-        if app.state.preparation == "running":
-            raise HTTPException(409, "知识库正在初始化，请稍后确认")
         async with app.state.import_lock:
             current = app.state.preview
             if current is None or current[0] != preview_id:
                 raise HTTPException(409, "预览已失效，请重新抓取")
-            result = await asyncio.to_thread(app.state.knowledge.put, current[1])
+            info = await asyncio.to_thread(find_corpus, current[2])
+            if info is None or info.missing:
+                raise HTTPException(409, "预览目标知识库已不可用，请重新抓取")
+            result = await asyncio.to_thread(knowledge_for(info).put, current[1])
             app.state.preview = None
             return result
 
@@ -683,6 +962,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         chat_knowledge = app.state.knowledge
         chat_preparation = app.state.preparation
         chat_domain = ""
+        selected_infos: list[tuple[str, CorpusInfo]] = []
         if payload.corpus_id is not None and payload.corpus_ids is not None:
             raise HTTPException(422, "corpus_id 与 corpus_ids 不能同时提供")
         if payload.corpus_ids is not None:
@@ -696,9 +976,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                     raise HTTPException(409, {"missing": True, "corpus_id": cid,
                                               "message": "该知识库目录已缺失，请重新关联或解绑"})
                 selected.append((cid, info))
+            selected_infos = selected
             chat_knowledge = (knowledge_for(selected[0][1]) if len(selected) == 1
                               else KnowledgeGroup([(cid, knowledge_for(info)) for cid, info in selected]))
-            chat_domain = selected[0][1].domain
+            chat_preparation = "ready" if all(info.preparation == "ready" for _, info in selected) else "empty"
+            # A multi-corpus report intake must ask the user to name its domain;
+            # the first selected corpus is only the browsing base, not an authority.
+            chat_domain = selected[0][1].domain if len(selected) == 1 else ""
         elif payload.corpus_id is not None:
             info = await asyncio.to_thread(find_corpus, payload.corpus_id)
             if info is None:
@@ -706,16 +990,82 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             if info.missing:
                 raise HTTPException(409, {"missing": True, "corpus_id": payload.corpus_id,
                                           "message": "该知识库目录已缺失，请重新关联或解绑"})
+            selected_infos = [(info.id, info)]
             chat_knowledge = knowledge_for(info)
-            chat_preparation = app.state.preparation if info.is_default else info.preparation
+            chat_preparation = info.preparation
             chat_domain = info.domain
         else:
             default_info = await asyncio.to_thread(default_corpus_info, settings)
             chat_domain = default_info.domain if default_info else ""
+            if default_info:
+                selected_infos = [(default_info.id, default_info)]
+                chat_knowledge = knowledge_for(default_info)
+                chat_preparation = default_info.preparation
+
+        if not selected_infos:
+            raise HTTPException(409, "尚无可用知识库，请先新建知识库并添加文档")
+        if chat_preparation != "ready":
+            raise HTTPException(409, "所选首个知识库尚无已入库文档，请先添加文档或刷新；系统不会自动切换到其他知识库")
+
+        if payload.allowed_doc_ids:
+            selected_memberships = {doc_id: [] for doc_id in payload.allowed_doc_ids}
+            for corpus_id, info in selected_infos:
+                store = knowledge_for(info)
+                doc_ids = {doc["doc_id"] for doc in await asyncio.to_thread(store.all)}
+                for doc_id in selected_memberships:
+                    if doc_id in doc_ids:
+                        selected_memberships[doc_id].append(corpus_id)
+            if any(not owners for owners in selected_memberships.values()):
+                raise HTTPException(422, "限定文档必须属于本次选择的知识库")
+            if any(len(owners) != 1 for owners in selected_memberships.values()):
+                raise HTTPException(422, "限定文档在所选知识库中的归属不唯一")
+
+        # W3-A: persist the server-effective run context before streaming. A run_id reused with a
+        # different request fingerprint is rejected (409), so one snapshot never stands in for two runs.
+        requested_corpus_ids = (payload.corpus_ids if payload.corpus_ids is not None
+                                else ([payload.corpus_id] if payload.corpus_id is not None else []))
+        run_context = payload.run_context
+        fingerprint = request_fingerprint({
+            "type": "chat", "task_id": payload.task_id,
+            "corpus_ids": requested_corpus_ids, "allowed_doc_ids": payload.allowed_doc_ids or [],
+            "messages": [m.model_dump() for m in payload.messages],
+            "run_context": run_context.model_dump() if run_context else None,
+        })
+        try:
+            _, created = await asyncio.to_thread(
+                app.state.runs.create, payload.run_id, fingerprint,
+                session_key=payload.session_key or "", run_type="chat", task_id=payload.task_id,
+                model=settings.model_name,
+                resource_policy=run_context.resource_policy if run_context else "local_only",
+                requested_corpus_ids=requested_corpus_ids,
+                effective_corpus_ids=[cid for cid, _ in selected_infos],
+                allowed_doc_ids=payload.allowed_doc_ids,
+                params=run_context.visible_params if run_context else {},
+                param_sources=run_context.param_sources if run_context else {},
+                output_intent=run_context.output_intent if run_context else "")
+        except RunConflict as exc:
+            raise HTTPException(409, str(exc)) from exc
+        except Exception:  # noqa: BLE001 - snapshot bookkeeping must never block the answer
+            logger.warning("run snapshot create failed: %s", payload.run_id)
+            created = True
+        if not created:
+            # A1: an existing run_id is never silently re-run (running or terminal). Replaying a
+            # finished answer belongs to W3-B Artifact, not to overwriting this snapshot.
+            raise HTTPException(409, "该 run_id 已存在；请使用新的 run_id 重新发起")
 
         async def stream():
             policy = None
             usage = TurnUsage(settings.max_model_calls)
+            sources: list[dict] = []
+            telemetry: dict = {}
+            outcome = "interrupted"
+            # A2: declare the server-effective run context before any content, so the UI can show
+            # the authoritative scope instead of only echoing the client request.
+            yield sse("run", {"run_id": payload.run_id, "session_key": payload.session_key or "",
+                              "model": settings.model_name,
+                              "resource_policy": run_context.resource_policy if run_context else "local_only",
+                              "effective_corpus_ids": [cid for cid, _ in selected_infos],
+                              "allowed_doc_ids": payload.allowed_doc_ids})
             try:
                 async with asyncio.timeout(settings.run_timeout):
                     graph = graph_factory(chat_knowledge, settings)
@@ -741,6 +1091,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                 return
                             if event["event"] == "policy":
                                 policy = event["data"]
+                            if event["event"] == "sources":
+                                sources = event["data"]
+                            if event["event"] == "telemetry":
+                                telemetry = event["data"]
                             data = event["data"]
                             if event["event"] in {"step", "telemetry"}:
                                 data = {**data, "run_id": payload.run_id}
@@ -749,24 +1103,40 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                 yield sse("usage", {**usage.snapshot(), "run_id": payload.run_id})
                     yield sse("usage", {**usage.snapshot(), "run_id": payload.run_id})
                     yield sse("done", {"ok": True})
+                    outcome = "completed"
             except asyncio.CancelledError:
+                outcome = "interrupted"
                 raise
             except ValueError as exc:
+                outcome = "failed"
                 yield sse("usage", {**usage.snapshot(), "run_id": payload.run_id})
                 if policy:
                     yield sse("policy", {**policy, "stop_reason": "invalid_request"})
                 yield sse("error", {"message": str(exc)})
             except TimeoutError:
+                outcome = "timed_out"
                 yield sse("usage", {**usage.snapshot(), "run_id": payload.run_id})
                 if policy:
                     yield sse("policy", {**policy, "stop_reason": "timed_out"})
                 yield sse("error", {"message": "运行达到时间预算，请缩小问题范围"})
             except Exception as exc:  # noqa: BLE001 - API boundary hides provider secrets
+                outcome = "failed"
                 yield sse("usage", {**usage.snapshot(), "run_id": payload.run_id})
                 logger.warning("chat failed: %s", type(exc).__name__)
                 if policy:
                     yield sse("policy", {**policy, "stop_reason": "failed"})
                 yield sse("error", {"message": "问答未完成，请检查模型配置或稍后重试"})
+            finally:
+                try:
+                    await asyncio.to_thread(
+                        app.state.runs.update, payload.run_id, status=outcome,
+                        ended_at=datetime.now(UTC).isoformat(),
+                        metrics={"usage": usage.snapshot(), "telemetry": telemetry},
+                        citations=[{"doc_id": s.get("doc_id", ""), "corpus_id": s.get("corpus_id", ""),
+                                    "version": s.get("version", ""), "title": s.get("title", ""),
+                                    "page": s.get("page")} for s in sources])
+                except Exception:  # noqa: BLE001 - snapshot bookkeeping must not break the stream
+                    logger.warning("run snapshot update failed: %s", payload.run_id)
 
         return StreamingResponse(
             stream(),
@@ -780,26 +1150,88 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         return await asyncio.to_thread(app.state.reports.list,
                                        session_key=session_key, run_id=run_id, limit=limit)
 
+    @app.get("/api/corpora/{corpus_id}/report-metadata")
+    async def report_metadata_coverage(corpus_id: str):
+        """AC-12: per-corpus field coverage and content-free unmatched-document list."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        if info.missing:
+            raise HTTPException(409, {"missing": True, "corpus_id": corpus_id,
+                                      "message": "该知识库目录已缺失，请重新关联或解绑"})
+        if info.sqlite is None:
+            return {"corpus_id": corpus_id, "total": 0,
+                    "date": {"hits": 0, "missing": 0}, "category": {"hits": 0, "missing": 0},
+                    "unmatched": []}
+        knowledge = await knowledge_for_request(corpus_id)
+        return await asyncio.to_thread(summarize_report_metadata, knowledge, corpus_id)
+
     @app.post("/api/reports")
     async def create_report(payload: ReportRequest):
         if payload.year_from > payload.year_to:
             raise HTTPException(422, "起始年份不能晚于结束年份")
         kn = await knowledge_for_request(payload.corpus_id)
+        if payload.doc_ids:
+            available_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.all)}
+            if not set(payload.doc_ids) <= available_ids:
+                raise HTTPException(422, "报告限定文档必须属于指定知识库")
         session_key = payload.session_key or ""
-        if payload.run_id:  # M3: idempotent per (session_key, run_id)
+        # W3-A: a report is an independent run whose parent is the task4 intake chat run.
+        # The fingerprint check runs first: reusing a run_id with different parameters is a
+        # conflict (409) rather than silently returning a differently-scoped report.
+        run_id = payload.run_id or uuid4().hex
+        fingerprint = request_fingerprint({
+            "type": "report", "template_id": payload.template_id, "domain": payload.domain,
+            "year_from": payload.year_from, "year_to": payload.year_to, "fund_type": payload.fund_type,
+            "focus": payload.focus, "doc_ids": payload.doc_ids or [], "corpus_id": payload.corpus_id or "",
+        })
+        try:
+            snapshot, created = await asyncio.to_thread(
+                app.state.runs.create, run_id, fingerprint,
+                session_key=session_key, parent_run_id=payload.parent_run_id or "",
+                run_type="report", task_id="task4", model=settings.model_name,
+                resource_policy="local_only",
+                requested_corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
+                effective_corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
+                allowed_doc_ids=payload.doc_ids,
+                params={"domain": payload.domain, "year_from": payload.year_from, "year_to": payload.year_to,
+                        "template_id": payload.template_id, "fund_type": payload.fund_type,
+                        "focus": payload.focus},
+                param_sources={}, output_intent="document")
+        except RunConflict as exc:
+            raise HTTPException(409, str(exc)) from exc
+        except Exception:  # noqa: BLE001 - snapshot bookkeeping must never block report generation
+            logger.warning("run snapshot create failed: %s", run_id)
+            snapshot, created = {}, True
+        if payload.run_id:  # M3: idempotent per (session_key, run_id), same fingerprint only
             existing = await asyncio.to_thread(app.state.reports.find, session_key, payload.run_id)
             if existing is not None:
                 return JSONResponse({**existing, "idempotent": True}, status_code=200)
+        if not created and snapshot.get("status") == "running":
+            # A1: a second request while this report run is still generating must not race it.
+            raise HTTPException(409, "该报告正在生成中")
+        # A failed (or otherwise terminal, unsaved) run falls through and can be safely retried.
         try:
             markdown = await generate_markdown(kn, settings, payload.model_dump())
         except ValueError as exc:
+            try:
+                await asyncio.to_thread(app.state.runs.update, run_id, status="failed",
+                                        ended_at=datetime.now(UTC).isoformat())
+            except Exception:  # noqa: BLE001 - snapshot bookkeeping must not mask the report error
+                logger.warning("run snapshot update failed: %s", run_id)
             raise HTTPException(422, str(exc)) from exc
         report_id = uuid4().hex
         await asyncio.to_thread(app.state.reports.save, report_id, payload.model_dump(), markdown,
-                                session_key=session_key, run_id=payload.run_id or "",
+                                session_key=session_key, run_id=run_id,
                                 corpus_id=payload.corpus_id or "")
+        try:
+            await asyncio.to_thread(app.state.runs.update, run_id, status="completed",
+                                    ended_at=datetime.now(UTC).isoformat(),
+                                    metrics={"report_id": report_id})
+        except Exception:  # noqa: BLE001 - the report is already saved; snapshot is best-effort here
+            logger.warning("run snapshot update failed: %s", run_id)
         return JSONResponse({"report_id": report_id, "params": payload.model_dump(), "markdown": markdown,
-                             "idempotent": False}, status_code=201)
+                             "run_id": run_id, "idempotent": False}, status_code=201)
 
     @app.get("/api/reports/{report_id}")
     async def get_report(report_id: str):
@@ -807,6 +1239,14 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             return await asyncio.to_thread(app.state.reports.get, report_id)
         except KeyError as exc:
             raise HTTPException(404, "报告不存在") from exc
+
+    @app.get("/api/runs/{run_id}")
+    async def get_run(run_id: str):
+        """W3-A: read back the persisted run snapshot; legacy runs without one return 404."""
+        try:
+            return await asyncio.to_thread(app.state.runs.get, run_id)
+        except KeyError as exc:
+            raise HTTPException(404, "运行记录未记录") from exc
 
     @app.get("/api/reports/{report_id}/export")
     async def export_report(report_id: str, format: str = "md"):

@@ -275,6 +275,8 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
     """
     manifest = knowledge.files()
     base = Path(root).resolve()
+    if not base.is_dir():
+        raise FileNotFoundError(f"资料目录不可读取：{base}")
     current: dict[str, Path] = {}
     for path in collect_sources(root):
         current[path.resolve().relative_to(base).as_posix()] = path
@@ -327,10 +329,23 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
 
 
 def collect_sources(root: Path) -> list[Path]:
-    """Recursively collect importable source files under one corpus ``source/`` dir."""
+    """Recursively collect regular source files without following links or hiding scan errors."""
     base = Path(root)
-    return sorted(path for path in base.rglob("*")
-                  if path.is_file() and path.suffix.lower() in SOURCE_SUFFIXES)
+    if not base.is_dir():
+        raise FileNotFoundError(f"资料目录不可读取：{base}")
+    paths: list[Path] = []
+
+    def fail(error: OSError) -> None:
+        raise error
+
+    for current, dirs, files in os.walk(base, topdown=True, followlinks=False, onerror=fail):
+        parent = Path(current)
+        dirs[:] = sorted(name for name in dirs if not (parent / name).is_symlink())
+        for name in sorted(files):
+            path = parent / name
+            if not path.is_symlink() and path.suffix.lower() in SOURCE_SUFFIXES and path.is_file():
+                paths.append(path)
+    return paths
 
 
 def sha256_file(path: Path, chunk: int = 1 << 20) -> str:

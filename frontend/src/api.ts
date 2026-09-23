@@ -3,12 +3,24 @@ export type Message = { role: "user" | "assistant"; content: string };
 export type Usage = { run_id?: string; input_tokens: number | null; output_tokens: number | null; total_tokens: number | null; reported_tokens: number | null; calls: number; reported_calls: number; complete: boolean; missing_reasons?: Record<string, number>; calls_by_phase?: Record<string, number> };
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string; duration_ms?: number };
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; chunks_retrieved: number; reports_selected: number; context_tokens: number; invalid_citations?: number };
-export type Options = { allowed_doc_ids: string[] | null; task_id?: string; corpus_id?: string };
-export type TaskInfo = { id: string; name: string; description: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] } };
+export type Options = { allowed_doc_ids: string[] | null; task_id?: string; corpus_id?: string; corpus_ids?: string[] };
+/** W3-A: client-visible run parameters recorded with the server-side snapshot. */
+export type RunContext = { visible_params?: Record<string, unknown>; param_sources?: Record<string, string>; resource_policy?: "local_only"; output_intent?: string };
+export type ChatRequestOptions = Options & { session_key?: string; run_context?: RunContext };
+export class ApiError extends Error {
+  readonly detail?: unknown;
+  constructor(message: string, detail?: unknown) {
+    super(message);
+    this.detail = detail;
+  }
+}
+export type TaskInfo = { id: string; name: string; description: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] } };
 export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
   docs_count: number; preparation: string; is_default: boolean; missing?: boolean;
+  source_count?: number; indexed_count?: number; pending_count?: number; failed_count?: number;
+  description?: string;
   index_progress: { stage: string; completed: number; total: number } | null;
   job: CorpusJob | null;
 };
@@ -30,6 +42,7 @@ export async function ingestCorpus(corpusId: string, force = false): Promise<Cor
 
 
 export type CorpusFile = { rel_path: string; size: number; status: string; doc_id: string | null };
+export type CorpusFileListing = { source_dir: string; files: CorpusFile[]; misplaced_files: string[] };
 
 async function jsonOrThrow(response: Response, fallback: string) {
   const payload = await response.json().catch(() => null);
@@ -48,6 +61,20 @@ export async function renameCorpus(corpusId: string, name: string): Promise<Corp
   return jsonOrThrow(response, "重命名失败") as Promise<CorpusInfo>;
 }
 
+export async function reassociateCorpus(corpusId: string, directory: string): Promise<CorpusInfo> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/reassociate`, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ directory }),
+  });
+  return jsonOrThrow(response, "重新关联失败") as Promise<CorpusInfo>;
+}
+
+export async function setCorpusDescription(corpusId: string, description: string): Promise<CorpusInfo> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/description`, {
+    method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ description }),
+  });
+  return jsonOrThrow(response, "保存知识库说明失败") as Promise<CorpusInfo>;
+}
+
 export async function deleteCorpus(corpusId: string, purgeSource = false): Promise<void> {
   const query = purgeSource ? "?purge_source=true" : "";
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}${query}`, { method: "DELETE" });
@@ -55,17 +82,18 @@ export async function deleteCorpus(corpusId: string, purgeSource = false): Promi
 }
 
 /** K7: source-file list / upload / rename / delete. */
-export async function fetchCorpusFiles(corpusId: string): Promise<CorpusFile[]> {
+export async function fetchCorpusFiles(corpusId: string): Promise<CorpusFileListing> {
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`);
   const payload = await jsonOrThrow(response, "文件列表不可用");
-  return (payload as { files: CorpusFile[] }).files;
+  return payload as CorpusFileListing;
 }
 
-export async function uploadCorpusFile(corpusId: string, file: File): Promise<void> {
+export async function uploadCorpusFile(corpusId: string, file: File): Promise<{ errors: { source?: string; error: string }[] }> {
   const form = new FormData();
   form.append("upload", file);
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "POST", body: form });
-  await jsonOrThrow(response, "上传失败");
+  const result = await jsonOrThrow(response, "上传失败") as { errors?: { source?: string; error: string }[] };
+  return { errors: result.errors ?? [] };
 }
 
 export async function deleteCorpusFile(corpusId: string, relPath: string): Promise<void> {
@@ -77,9 +105,15 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rel_path: relPath, new_name: newName }) });
   await jsonOrThrow(response, "重命名文件失败");
 }
-export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; fund_type?: string; focus?: string; doc_ids?: string[]; session_key?: string; run_id?: string; corpus_id?: string };
+export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; fund_type?: string; focus?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; corpus_id?: string };
 export type ReportSummary = { report_id: string; created_at?: string; session_key?: string; run_id?: string; corpus_id?: string; template_id?: string; domain?: string; year_from?: number; year_to?: number };
 export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean };
+export type ReportMetadataCoverage = {
+  corpus_id: string; total: number;
+  date: { hits: number; missing: number };
+  category: { hits: number; missing: number };
+  unmatched: { doc_id: string; title: string; corpus_id: string; date: string; category: string }[];
+};
 export type Policy = Options & { route: "research" | "clarify"; stop_reason: string; notice?: string; report_params?: ReportParams };
 
 /** POST /api/reports (#10): generate an immutable markdown report; idempotent per run_id. */
@@ -89,8 +123,7 @@ export async function createReport(params: ReportParams): Promise<ReportInfo> {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(params),
   });
-  await jsonOrThrow(response, "生成报告失败");
-  return response.json();
+  return jsonOrThrow(response, "生成报告失败") as Promise<ReportInfo>;
 }
 
 /** GET /api/reports?session_key=: report metadata for one session (no markdown). */
@@ -103,10 +136,32 @@ export async function fetchReports(sessionKey: string, signal?: AbortSignal): Pr
 /** GET /api/reports/{id}: one report with its markdown body. */
 export async function fetchReport(reportId: string): Promise<ReportInfo> {
   const response = await fetch(`/api/reports/${encodeURIComponent(reportId)}`);
-  await jsonOrThrow(response, "报告不可用");
-  return response.json();
+  return jsonOrThrow(response, "报告不可用") as Promise<ReportInfo>;
 }
+
+export type RunSnapshot = {
+  contract_version: number; run_id: string; created_at: string; updated_at: string;
+  session_key: string; parent_run_id: string; run_type: string; status: string;
+  task_id: string; model: string; resource_policy: string;
+  requested_corpus_ids: string[]; effective_corpus_ids: string[]; allowed_doc_ids: string[] | null;
+  params: Record<string, unknown>; param_sources: Record<string, string>; output_intent: string;
+  ended_at: string; metrics: Record<string, unknown>; citations: { doc_id: string; version: string; page?: number | null }[];
+};
+
+/** W3-A: read a persisted run snapshot; legacy runs without one return 404. */
+export async function fetchRun(runId: string): Promise<RunSnapshot> {
+  const response = await fetch(`/api/runs/${encodeURIComponent(runId)}`);
+  return jsonOrThrow(response, "运行信息不可用") as Promise<RunSnapshot>;
+}
+
+/** GET /api/corpora/{id}/report-metadata: field coverage without document contents. */
+export async function fetchReportMetadata(corpusId: string): Promise<ReportMetadataCoverage> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/report-metadata`);
+  return jsonOrThrow(response, "元数据覆盖不可用") as Promise<ReportMetadataCoverage>;
+}
+export type RunInfo = { run_id: string; session_key?: string; model?: string; resource_policy?: string; effective_corpus_ids?: string[]; allowed_doc_ids?: string[] | null };
 export type Event =
+  | { event: "run"; data: RunInfo }
   | { event: "usage"; data: Usage }
   | { event: "step"; data: Step }
   | { event: "telemetry"; data: Telemetry }
@@ -124,23 +179,44 @@ export async function fetchTasks(signal?: AbortSignal): Promise<TaskInfo[]> {
   return response.json();
 }
 
-export function streamChat(messages: Message[], signal: AbortSignal, receive: (event: Event) => void, options?: Options): Promise<void>;
-export function streamChat(messages: Message[], runId: string, signal: AbortSignal, receive: (event: Event) => void, options?: Options): Promise<void>;
+export type TemplateSummary = { id: string; name: string };
+export type TemplateInfo = TemplateSummary & { content: string };
+
+/** W1: read-only built-in output templates for the shared inspector preview. */
+export async function fetchTemplates(signal?: AbortSignal): Promise<TemplateSummary[]> {
+  const response = await fetch("/api/templates", signal ? { signal } : undefined);
+  if (!response.ok) throw new Error("输出模板列表不可用（" + response.status + "）");
+  return response.json();
+}
+
+export async function fetchTemplate(templateId: string, signal?: AbortSignal): Promise<TemplateInfo> {
+  const response = await fetch(`/api/templates/${encodeURIComponent(templateId)}`, signal ? { signal } : undefined);
+  return jsonOrThrow(response, "输出模板不可用") as Promise<TemplateInfo>;
+}
+
+export function streamChat(messages: Message[], signal: AbortSignal, receive: (event: Event) => void, options?: ChatRequestOptions): Promise<void>;
+export function streamChat(messages: Message[], runId: string, signal: AbortSignal, receive: (event: Event) => void, options?: ChatRequestOptions): Promise<void>;
 export async function streamChat(messages: Message[], runIdOrSignal: string | AbortSignal,
-  signalOrReceive: AbortSignal | ((event: Event) => void), receiveOrOptions?: ((event: Event) => void) | Options,
-  explicitOptions?: Options) {
+  signalOrReceive: AbortSignal | ((event: Event) => void), receiveOrOptions?: ((event: Event) => void) | ChatRequestOptions,
+  explicitOptions?: ChatRequestOptions) {
   const hasRunId = typeof runIdOrSignal === "string";
   const runId = hasRunId ? runIdOrSignal : undefined;
   const signal = (hasRunId ? signalOrReceive : runIdOrSignal) as AbortSignal;
   const receive = (hasRunId ? receiveOrOptions : signalOrReceive) as (event: Event) => void;
-  const options = (hasRunId ? explicitOptions : receiveOrOptions) as Options | undefined;
+  const options = (hasRunId ? explicitOptions : receiveOrOptions) as ChatRequestOptions | undefined;
   const response = await fetch("/api/chat", {
     method: "POST", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ messages, ...(runId ? { run_id: runId } : {}), ...options }), signal,
   });
   if (!response.ok) {
     const payload = await response.json().catch(() => null);
-    throw new Error(typeof payload?.detail === "string" ? payload.detail : "请求失败（" + response.status + "）");
+    const detail = payload?.detail;
+    const message = typeof detail === "string"
+      ? detail
+      : detail?.missing === true
+        ? "此会话绑定的知识库目录已缺失，请重新选择后重试"
+        : "请求失败（" + response.status + "）";
+    throw new ApiError(message, detail);
   }
   if (!response.body) throw new Error("浏览器未收到响应流");
   const reader = response.body.getReader();
@@ -164,7 +240,7 @@ export async function streamChat(messages: Message[], runIdOrSignal: string | Ab
           if (!payload.ok) throw new Error("回答未完成");
           finished = true;
         }
-        if (["status", "sources", "token", "done", "policy", "telemetry", "usage", "step"].includes(event)) {
+        if (["status", "sources", "token", "done", "policy", "telemetry", "usage", "step", "run"].includes(event)) {
           receive({ event, data: payload } as Event);
         }
         if (finished) return;

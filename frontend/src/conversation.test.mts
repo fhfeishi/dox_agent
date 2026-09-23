@@ -1,6 +1,44 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { newTurn, receiveEvent, regenerateTurn, stopTurn } from './conversation.ts';
+import { corpusRequestOptions, newTurn, receiveEvent, regenerateTurn, restoreCorpusSelection, restoreTurns, stopTurn } from './conversation.ts';
+
+test('corpus scope survives regeneration and legacy turn restoration', () => {
+  const multi = newTurn('问题', [], { allowed_doc_ids: null, corpus_ids: ['a', 'b'] });
+  assert.deepEqual(regenerateTurn(multi, []).options.corpus_ids, ['a', 'b']);
+  const legacy = newTurn('旧问题', [], { allowed_doc_ids: null, corpus_id: 'a' });
+  assert.deepEqual(restoreTurns([legacy])[0].options.corpus_ids, ['a']);
+});
+
+test('run event records the server effective scope and ignores stale run ids', () => {
+  const turn = newTurn('问题', []);
+  const withRun = receiveEvent(turn, {
+    event: 'run',
+    data: { run_id: turn.runId, model: 'm', resource_policy: 'local_only', effective_corpus_ids: ['c1'] },
+  }, 10);
+  assert.deepEqual(withRun.runInfo?.effective_corpus_ids, ['c1']);
+  const stale = receiveEvent(withRun, {
+    event: 'run', data: { run_id: 'other-run', effective_corpus_ids: ['c9'] },
+  }, 20);
+  assert.deepEqual(stale.runInfo?.effective_corpus_ids, ['c1']);
+});
+
+test('user chat corpus requests always send the explicit set and enforce the six-corpus bound', () => {
+  assert.deepEqual(corpusRequestOptions('a', ['a', 'b']), { corpus_ids: ['a', 'b'] });
+  assert.deepEqual(corpusRequestOptions('a', ['a']), { corpus_ids: ['a'] });
+  assert.deepEqual(corpusRequestOptions('a', ['b']), { corpus_ids: ['b'] });
+  assert.equal(corpusRequestOptions('a', []), null);
+  assert.equal(corpusRequestOptions('a', ['a', 'b', 'c', 'd', 'e', 'f', 'g']), null);
+});
+
+test('user session restore supports legacy bindings and preserves over-limit ranges for repair', () => {
+  assert.deepEqual(restoreCorpusSelection('a', undefined, undefined),
+    { corpusId: 'a', corpusIds: ['a'], confirmed: true });
+  assert.deepEqual(restoreCorpusSelection('a', ['b'], true),
+    { corpusId: 'a', corpusIds: ['b'], confirmed: true });
+  assert.deepEqual(restoreCorpusSelection('a', ['a', 'a'], true),
+    { corpusId: 'a', corpusIds: ['a', 'a'], confirmed: true });
+  assert.equal(restoreCorpusSelection('a', Array.from({ length: 7 }, (_, index) => String(index)), true).corpusIds.length, 7);
+});
 
 test('usage belongs to one attempt, survives export and resets on regeneration', () => {
   const usage = { input_tokens: 20, output_tokens: 6, total_tokens: 26, reported_tokens: 26, calls: 2, reported_calls: 2, complete: true };

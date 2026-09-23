@@ -15,18 +15,28 @@ DEFAULT_TASK_ID = "task1"
 CHAT_TASK_IDS = ("task1", "task2", "task3", "task4")
 # Single authority for report section structure (§9.3); task4_report.md keeps only instructions.
 REPORT_TEMPLATES = ("achievements", "hotspots", "future_directions", "comprehensive")
+TEMPLATE_NAMES = {
+    "achievements": "成果报告",
+    "hotspots": "热点报告",
+    "future_directions": "未来方向报告",
+    "comprehensive": "综合报告",
+}
 
 TASKS: tuple[dict, ...] = (
     {"id": "task1", "name": "精准问答", "description": "基于本地文档回答具体问题，先给结论再逐条引用，不推测。",
+     "example": "这批项目采用了哪些关键方法？",
      "output_hint": "结论 + 逐条 [n] 引用 + 资料范围与局限", "has_template": False, "file": "task1_qa.md",
      "artifacts": {"default": "text", "allowed": ["text"]}, "templates": []},
     {"id": "task2", "name": "对比分析", "description": "跨文档、项目或时间做对比，给出对比维度、差异结论与可比性前提。",
+     "example": "比较这些项目的研究对象、方法和应用。",
      "output_hint": "对比维度表 + 差异结论 + 可比性前提", "has_template": False, "file": "task2_compare.md",
      "artifacts": {"default": "text", "allowed": ["text", "table"]}, "templates": []},
     {"id": "task3", "name": "趋势推测", "description": "基于本次样本讨论领域走向，事实与推断分段并标注样本范围与局限。",
+     "example": "这些项目的研究重点如何变化，后续可能关注什么？",
      "output_hint": "事实/推断分段 + 方向性置信度 + 样本局限", "has_template": False, "file": "task3_trend.md",
      "artifacts": {"default": "text", "allowed": ["text"]}, "templates": []},
     {"id": "task4", "name": "专项报告", "description": "按模板生成可保存的结构化报告，走统一报告入口，不在聊天中生成正文。",
+     "example": "生成一份面上项目成果报告。",
      "output_hint": "Markdown 报告 + 来源清单 + 局限", "has_template": True, "file": "task4_report.md",
      "intake_file": "task4_intake.md",
      "artifacts": {"default": "document", "allowed": ["document"]}, "templates": list(REPORT_TEMPLATES)},
@@ -80,5 +90,12 @@ def task_instruction(task_id: str, *, phase: str = "chat") -> str:
 
 def list_tasks() -> list[dict]:
     return [{"id": t["id"], "name": t["name"], "description": t["description"],
+             "example": t["example"],
              "output_hint": t.get("output_hint", ""), "has_template": t["has_template"],
              "artifacts": t["artifacts"], "templates": t["templates"]} for t in TASKS]
+
+
+def list_templates() -> list[dict]:
+    """W1: read-only catalogue of the built-in output templates (ids + display names)."""
+    return [{"id": template_id, "name": TEMPLATE_NAMES.get(template_id, template_id)}
+            for template_id in REPORT_TEMPLATES]

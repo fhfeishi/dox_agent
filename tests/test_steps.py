@@ -6,7 +6,7 @@ from fastapi.testclient import TestClient
 
 from src.agent.config import Settings
 from src.agent.graph import build_graph
-from src.knowledge import Knowledge
+from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
 
 
@@ -43,7 +43,17 @@ def test_api_attaches_client_run_id_to_steps(tmp_path):
             yield {"event": "step", "data": {"id": "one", "sequence": 1, "phase": "understand",
                                                    "status": "completed", "label": "理解问题"}}
 
-    app = create_app(Settings(_env_file=None, corpora_root=tmp_path / ".knowledge", state_dir=tmp_path), Knowledge(tmp_path / "docs"), lambda *_: Graph())
+    # The new chat contract resolves scope before streaming and requires a ready corpus, so the
+    # fixture provides a minimal first corpus holding one indexed document.
+    root = tmp_path / ".knowledge"
+    corpus = root / "fixture"
+    corpus.mkdir(parents=True)
+    settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
+    store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
+    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+                       pages=[Page(number=1, text="hi")]))
+
+    app = create_app(settings, store, lambda *_: Graph())
     with TestClient(app) as client:
         response = client.post("/api/chat", json={"run_id": "client-run", "messages": [{"role": "user", "content": "hi"}]})
     frames = [json.loads(frame.split("data: ")[1]) for frame in response.text.split("\n\n") if frame.startswith("event: step")]

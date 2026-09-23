@@ -1,13 +1,21 @@
 import pytest
 
-from src.prompts import REPORT_TEMPLATES, UnknownTaskError, list_tasks, report_template, task_prompt
+from src.prompts import (
+    REPORT_TEMPLATES,
+    UnknownTaskError,
+    list_tasks,
+    list_templates,
+    report_template,
+    task_prompt,
+)
 
 
-def test_list_tasks_exposes_output_hint_for_every_task():
+def test_user_task_menu_exposes_purpose_and_short_example_for_every_task():
     tasks = list_tasks()
     assert [task["id"] for task in tasks] == ["task1", "task2", "task3", "task4"]
-    # The task card / composer rely on output_hint to describe the output contract.
+    # The task menu makes each mode understandable before selection.
     assert all(task["output_hint"] for task in tasks)
+    assert all(task["description"] and task["example"] for task in tasks)
 
 
 def test_task_prompt_includes_output_contract_and_known_ids():
@@ -39,3 +47,9 @@ def test_tasks_declare_artifacts_and_templates():
     assert tasks["task4"]["templates"] == list(REPORT_TEMPLATES)
     assert tasks["task4"]["has_template"] is True
     assert tasks["task1"]["templates"] == [] and tasks["task1"]["has_template"] is False
+
+
+def test_template_catalogue_lists_every_builtin_with_a_display_name():
+    catalogue = list_templates()
+    assert [item["id"] for item in catalogue] == list(REPORT_TEMPLATES)
+    assert all(item["name"] and item["name"] != item["id"] for item in catalogue)

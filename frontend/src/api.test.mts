@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { streamChat } from './api.ts';
+import { ApiError, createReport, streamChat } from './api.ts';
 
 test('reassembles split UTF-8 and SSE frames', async () => {
   const original = globalThis.fetch;
@@ -58,4 +58,36 @@ test('sends requested options and delivers server policy without guessing route'
     await streamChat([], new AbortController().signal, event => events.push(event), options);
     assert.deepEqual(events[0], { event: 'policy', data: policy });
   } finally { globalThis.fetch = original; }
+});
+
+test('user multi-corpus chat request preserves the explicit retrieval set', async () => {
+  const original = globalThis.fetch;
+  const options = { allowed_doc_ids: ['from-b'], corpus_ids: ['a', 'b'], task_id: 'task1' };
+  globalThis.fetch = async (_url, init) => {
+    assert.deepEqual(JSON.parse(init!.body as string), { messages: [], ...options });
+    return new Response('event: done\ndata: {"ok":true}\n\n');
+  };
+  try { await streamChat([], new AbortController().signal, () => {}, options); }
+  finally { globalThis.fetch = original; }
+});
+
+test('user missing-corpus response retains the recovery detail', async () => {
+  const original = globalThis.fetch;
+  globalThis.fetch = async () => Response.json({ detail: { missing: true, corpus_id: 'a' } }, { status: 409 });
+  try {
+    await assert.rejects(streamChat([], new AbortController().signal, () => {}), (error: unknown) =>
+      error instanceof ApiError && error.detail !== undefined && /目录已缺失/.test(error.message));
+  } finally { globalThis.fetch = original; }
+});
+
+test('user report request carries its independently confirmed single-corpus scope', async () => {
+  const original = globalThis.fetch;
+  const params = { domain: '医疗', year_from: 2025, year_to: 2025, template_id: 'comprehensive',
+    corpus_id: 'b', doc_ids: ['b-doc'], session_key: 'session' };
+  globalThis.fetch = async (_url, init) => {
+    assert.deepEqual(JSON.parse(init!.body as string), params);
+    return Response.json({ report_id: 'report', markdown: '# 报告' });
+  };
+  try { assert.equal((await createReport(params)).report_id, 'report'); }
+  finally { globalThis.fetch = original; }
 });

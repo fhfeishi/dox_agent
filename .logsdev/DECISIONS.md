@@ -184,7 +184,7 @@
 - **实现细则（M1–M7，编码前定）**：
   - **M1 schema 迁移**：`ReportStore.__init__` 在 `CREATE TABLE IF NOT EXISTS` 后 `PRAGMA table_info(reports)`，对缺失的 `session_key`/`run_id`/`corpus_id` 逐个 `ALTER TABLE reports ADD COLUMN ... TEXT NOT NULL DEFAULT ''`（幂等，不会漏列）。
   - **M2 幂等与 NULL**：`session_key`/`run_id` **落库用 `''` 而非 NULL**（SQLite UNIQUE 视 NULL 互不相等）；建**部分唯一索引** `CREATE UNIQUE INDEX IF NOT EXISTS reports_run ON reports(session_key, run_id) WHERE run_id != ''`（旧行 `run_id=''` 被排除，无冲突）。
-  - **M3 run_id 生命周期**：来源 = chat turn 的 `runId`（已存在，随会话持久化）；**重试同 `run_id` → 返回既有（200，`idempotent=true`）**；**重新生成 → 新 `runId` → 新报告（201）**；同 `(session_key, run_id)` 但参数不同 → **幂等优先，返回既有（200）**，不 409。
+  - **M3 run_id 生命周期**：来源 = chat turn 的 `runId`（已存在，随会话持久化）；**重试同 `run_id` → 返回既有（200，`idempotent=true`）**；**重新生成 → 新 `runId` → 新报告（201）**；同 `(session_key, run_id)` 但参数不同 → **幂等优先，返回既有（200）**，不 409。（**2026-09-23 被 W3-A 取代**：参数不同改为请求指纹冲突返回 409；同参数重试仍返回既有报告。见「W3-A 最小运行快照」。）
   - **M4 列表**：`GET /api/reports?session_key=&run_id=&limit=`；`created_at DESC`；`limit` 默认 20 / 上限 100；**仅元数据**（`report_id/created_at/session_key/run_id/corpus_id/template_id/domain/year_from/year_to`，不含 markdown）；未命中 `200 []`。
   - **M5 清理陈旧文档**：`reports.py:5` docstring「#10 is still open」与 `main.py:81` 注释一并更新。
   - **M6 已知限制**：报告无删除；`reports.sqlite3` 与应用级 `workspace.sqlite3` 同在 `STATE_DIR`；单用户可接受，列表 `limit` 缓解，后续可加清理。
@@ -448,3 +448,17 @@
 - 说明集中写在 `tools/README.md`（用途、dry-run、破坏性警示、依赖与数据布局来源）。
 - 理由：两脚本用于取数与一次性数据布局，复现语料来源需要；但不应进入业务范围，故不并入 `src/`/`tests/`。
 - 影响：W0「工作树归属」不再把两脚本当作待决项；`split_knowledge_corpora.py` 是当前四领域库布局、`corpora.json` 与 `parsed/` 复用的产生者，其版本应结合 git 历史理解。
+
+## W3-A 最小运行快照（2026-09-23）
+
+- 采用：`RunStore`（`STATE_DIR/runs.sqlite3`）按 `run_id` 持久化最小快照：契约版本、`session_key`、`parent_run_id`、运行类型（chat/report）、状态、`task_id`、模型、资源策略（首版 `local_only`）、请求/服务端有效 `corpus_ids`、`allowed_doc_ids`、用户可见参数与来源、输出意图，以及完成后的 `ended_at`、usage/telemetry 指标和引用版本（`doc_id`/`corpus_id`/`version`/`title`/`page`）。服务端解析后的有效范围是权威值。
+- 请求契约向后兼容：`ChatRequest` 增可选 `session_key`、`run_context`；`ReportRequest` 增 `parent_run_id`。旧客户端省略时按 `local_only`/“未记录”处理，不伪造。
+- 幂等与冲突：每个 `run_id` 绑定一个请求指纹；不同指纹复用同一 `run_id` 返回 409，避免一个快照代表两次不同执行。**chat 同指纹不再静默重跑覆盖**：`created=False` 时运行中或已终态均 409，要求换新 `run_id`；重放已完成回答属 W3-B Artifact。**取代** #10 M3 中“同 `(session_key, run_id)` 参数不同 → 幂等优先返回 200”的报告语义：报告先做指纹校验，再按“已保存→200 `idempotent` / 生成中→409 / 失败→安全重试”分支。
+- 报告父子关系：报告是独立 child run，`parent_run_id` 指向 task4 intake 的 chat run；首次生成与安全重试复用稳定的 report run id，用户主动“重新生成报告”才换新 id。前端用 `${intakeRunId}-report` 作首次/重试 id，重新生成用新 UUID。
+- 创建快照失败不得生成“可追溯成果”；旧会话/旧报告无快照时 `GET /api/runs/{id}` 返回 404，界面显示“运行信息未记录”，不补造。
+- 快照写入不阻断回答：只有 `RunConflict`（同 `run_id` 不同指纹）返回 409；其它快照写入异常只记日志，回答/报告仍继续，读取回退为“未记录”（对应 §16.10 W3 退出条件）。
+- 理由：成果（W3-B/W4/W5）必须能回到当时实际采用的任务、范围、模型和指标；先把可追溯的最小结构落地，再建 Artifact，避免后期回填关系。
+- 有效范围回传（A2）：SSE 流开始处新增确定性 `run` 事件，携带 `effective_corpus_ids`/`model`/`resource_policy`/`session_key`；前端记录到该轮 `runInfo`，检查器执行摘要显示“服务端实际范围”。请求声明仍非权威。
+- 派生 report run id（A5）：首次/安全重试用 `${intakeRunId.slice(0, 72)}-report`，保证不超过 `run_id` 上限 80。
+- 执行摘要回读（B2）：检查器打开执行摘要时调用 `GET /api/runs/{id}`，快照存在则优先展示其权威字段，404 显示“运行信息未记录（历史运行或快照写入失败）”。
+- 影响：`src/runs.py`（新增）、`src/main.py`（chat/report 接线、`GET /api/runs/{run_id}`、`run` 事件）、`frontend/src/api.ts`/`conversation.ts`/`store.tsx`/`MessageView.tsx`/`Inspector.tsx`。测试 `tests/test_runs.py`；浏览器断言 chat `session_key`、报告 `parent_run_id`/独立 report run 与“服务端实际范围”。W3-B（Artifact、跨会话报告/全局成果、DOCX）仍待做。

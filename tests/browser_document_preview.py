@@ -54,22 +54,25 @@ async def main():
                                           "kind": "official", "parser": "official-markdown"})
 
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
+            await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(json={"source_dir": "/tmp/c1/source", "files": [], "misplaced_files": []}))
             await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=[corpus]))
             await page.route("**/api/documents/d1*", read_document)
             await page.route(re.compile(r".*/api/documents(\?.*)?$"), lambda r: r.fulfill(json=[document]))
-            await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=[]))
+            await page.route(re.compile(r".*/api/workspace/sessions.*$"), lambda r: r.fulfill(json=[] if r.request.method == "GET" else {**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
+            await page.route("**/api/tasks", lambda r: r.fulfill(json=[]))
             await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
 
             await page.goto(origin)
             # library grid -> corpus detail -> document preview
-            await page.get_by_role("button", name=re.compile("文献库")).first.click()
+            await page.get_by_role("button", name="知识库", exact=True).click()
             await page.get_by_role("button", name=re.compile("示例库")).first.click()
+            await page.get_by_role("button", name="打开详情").click()
             detail = page.get_by_role("dialog", name=re.compile("示例库"))
             await expect(detail).to_be_visible()
-            await detail.get_by_role("button", name=re.compile("示例文档")).first.click()
+            await detail.get_by_role("button", name="预览", exact=True).first.click()
 
-            dialog = page.get_by_role("dialog", name=re.compile("文档预览"))
-            await expect(dialog).to_be_visible()
+            dialog = page.locator("aside[aria-hidden='false']")
+            await expect(dialog.get_by_text("资料预览", exact=True)).to_be_visible()
             await expect(page.get_by_role("dialog", name=re.compile("示例库"))).to_have_count(0)  # detail closed, not occluding
             await expect(dialog.get_by_text("正文一")).to_be_visible()
             await expect(dialog.get_by_text("续读第一页")).to_be_visible()
@@ -81,9 +84,16 @@ async def main():
             await dialog.get_by_role("button", name="查看原文").click()
             await expect(dialog.get_by_text("# 第一页", exact=False)).to_be_visible()
 
+            # Enlarging the text reader returns to the same inspector preview.
+            await dialog.get_by_role("button", name="放大阅读").click()
+            enlarged = page.get_by_role("dialog", name=re.compile("文档预览"))
+            await expect(enlarged).to_be_visible()
+            await enlarged.get_by_role("button", name="关闭 ✕").click()
+            await expect(dialog.get_by_text("资料预览", exact=True)).to_be_visible()
+
             # closing the preview leaves the retrieval scope unchanged
-            await dialog.get_by_role("button", name="关闭 ✕").click()
-            await expect(page.get_by_role("dialog", name=re.compile("文档预览"))).to_have_count(0)
+            await dialog.get_by_role("button", name="关闭检查器").click()
+            await expect(page.locator("aside[aria-hidden='false']")).to_have_count(0)
             await page.get_by_role("button", name="返回对话").click()
             await expect(page.get_by_text("资料范围：全部")).to_be_visible()
 

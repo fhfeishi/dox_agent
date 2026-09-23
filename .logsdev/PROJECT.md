@@ -103,7 +103,8 @@
 | `GET /api/documents/{doc_id}/file?version=` | 原始 PDF/Markdown/txt（FileResponse/Range，`Content-Disposition: inline` 供内联预览）；可选 `corpus`（缺省按首库兼容解析）；404/422/415/413(>200MB)；仅根目录内本地文件 |
 | `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`output_hint`/`has_template`（兼容保留）/`templates`（新增）/`artifacts`（默认+允许集） |
 | `GET /api/templates`、`GET /api/templates/{id}` | 内置输出模板只读目录与章节内容（`id`/`name`/`content`）；未知模板 404；章节仍以 `src/templates/*.md` 为唯一权威 |
-| `POST /api/reports`、`GET /api/reports/{id}`、`GET /api/reports?session_key=`、`GET /api/reports/{id}/export?format=md` | 报告生成（retrieve→assemble→模板→LLM）/按 id 取/按会话列表/导出（首期仅 md）；参数 `session_key`/`run_id`（幂等）/`corpus_id`；无匹配 422 |
+| `POST /api/reports`、`GET /api/reports/{id}`、`GET /api/reports?session_key=`、`GET /api/reports/{id}/export?format=md` | 报告生成（retrieve→assemble→模板→LLM）/按 id 取/按会话列表/导出（首期仅 md）；参数 `session_key`/`run_id`（幂等）/`parent_run_id`/`corpus_id`；`run_id` 复用需同指纹，冲突 409；无匹配 422 |
+| `GET /api/runs/{run_id}` | W3-A 最小运行快照：服务端有效的任务/库范围/文档白名单/资源策略/模型/状态与完成指标；无记录 404（历史“运行信息未记录”） |
 | `GET\|PUT /api/ocr-config` | ~~liteparse OCR 模式/语言~~ **已移除（K13：改用 mineru 自动识别）** |
 | `GET /api/corpora` | 库列表：目录名派生 `name`、稳定 `id`、`kind`/`domain`/`description`/`rel_path`、missing/准备状态、源文件/已入库/待处理/失败计数和 job；读取不触发解析 |
 | `POST /api/corpora` | 新建库目录（`source/`+`datadb/`+`vectordb/`）；201；重名 409、名称非法 422（K6） |
@@ -126,9 +127,9 @@
 
 多库边界（已实施）：会话只维护 1–6 个检索库集合，取消 `base ∈ retrieval set` 前端约束。应用统一显式发送 `corpus_ids`；旧 `corpus_id` 接口兼容，二者仍不可同送。服务端直接 API 从未包含浏览基础库概念。旧缺省默认库逻辑已改为目录顺序首库，配置 `DEFAULT_CORPUS` 不再支配该选择。
 
-请求：`messages`（1–20 条，每条 ≤12000，总 ≤40000，末条必须 user）、`allowed_doc_ids`（可空，非空 1–20）、`task_id`（默认 `task1`，`task1–4`；**task4 走 intake 分支、不生成正文**；未知 422）、`corpus_id`（可选，缺省默认库；未知 404）、`corpus_ids`（可选，1–6，**与 `corpus_id` 二选一**，同送 422；缺省默认库；KB-4）、`run_id`（8–80）。禁止额外字段（含已移除的 `execution_mode`/`query_routing`/`evidence_level`）。
+请求：`messages`（1–20 条，每条 ≤12000，总 ≤40000，末条必须 user）、`allowed_doc_ids`（可空，非空 1–20）、`task_id`（默认 `task1`，`task1–4`；**task4 走 intake 分支、不生成正文**；未知 422）、`corpus_id`（可选，缺省默认库；未知 404）、`corpus_ids`（可选，1–6，**与 `corpus_id` 二选一**，同送 422；缺省默认库；KB-4）、`run_id`（8–80）、`session_key`（W3-A 可选）、`run_context`（W3-A 可选：`visible_params`/`param_sources`/`resource_policy`/`output_intent`）。禁止额外字段（含已移除的 `execution_mode`/`query_routing`/`evidence_level`）。
 
-SSE 事件：`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）、`step`、`telemetry`、`sources`（附服务端 `citation`，先于 token）、`token`、`usage`、`done`、`error`。无 `done` 的断流视为未完成；失败用 `error` 且不发送 `done`。
+SSE 事件：`run`（W3-A 服务端有效范围/模型/资源策略）、`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）、`step`、`telemetry`、`sources`（附服务端 `citation`，先于 token）、`token`、`usage`、`done`、`error`。无 `done` 的断流视为未完成；失败用 `error` 且不发送 `done`。
 
 ### 4.3 数据模型
 

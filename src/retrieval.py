@@ -385,14 +385,14 @@ def fit_history(messages: list[dict], budget_tokens: int) -> list[dict]:
 
 
 def report_header(doc: ReportDoc) -> str:
-    """L5 报告头：题目/项目号/负责人/报告年份。"""
+    """L5 report context: title/project metadata, with filename years labeled as project years."""
     parts = [f"《{doc.title}》"]
     if doc.project_no:
         parts.append(f"项目号 {doc.project_no}")
     if doc.pi:
         parts.append(f"负责人 {doc.pi}")
     if doc.year_from and doc.year_to:
-        parts.append(f"报告年份 {doc.year_from}–{doc.year_to}")
+        parts.append(f"项目起止年份（按文件名推断） {doc.year_from}–{doc.year_to}")
     return "，".join(parts)
 
 

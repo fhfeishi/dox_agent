@@ -1,7 +1,7 @@
 # ITERATION — dox_agent 当前工作
 
 - 更新时间：2026-09-23。
-- **当前执行入口：§16.13「W1/W2 续接实施」**。W0 报告入口与旧会话兼容、KM-S5 隔离真实格式 API 链路、W1 检查器主对象、W2 卡片快捷操作已由本轮和上轮实施；本轮补齐 W1 输出模板/执行摘要预览与 W2 知识库说明/资料搜索，并通过全量/构建/12 个离线浏览器脚本。W3（RunSnapshot/Artifact）未开始；`tools/` 两脚本已定为用户个人脚本（见 `tools/README.md` 与 DECISIONS「tools/ 个人脚本归属」），W0 工作树提交封口仍未执行。
+- **当前执行入口：§16.14「W3-A 最小运行快照」**。W0 报告入口与旧会话兼容、KM-S5 隔离真实格式 API 链路、W1 检查器与输出模板/执行摘要、W2 知识库说明/资料搜索、W3-A 最小 RunSnapshot 与收口修订 A1–A6、门禁项 B2–B4 已实施；后端 149 项 / 前端 31 项测试、构建与 12 个离线浏览器脚本通过。**唯一剩余门禁为 B1 提交封口：W3-A（含新增源码/测试）必须先按主题提交，未提交不得启动 W3-B**（见 §16.14 B1、§16.11.8）；提交等待用户明确授权。A7 保留为不阻塞的运维项；`tools/` 两脚本已定为用户个人脚本（见 `tools/README.md` 与 DECISIONS）。
 - 长期说明见 [`PROJECT.md`](PROJECT.md)；关键取舍见 [`DECISIONS.md`](DECISIONS.md)。
 
 ## 1. 当前目标与必要约束
@@ -1811,6 +1811,7 @@ W6-B 才增加搜索提供方、域名白名单、时间过滤、结果勾选和
 5. **本地安全**：名称与目录对齐，上传单库明确，同名不覆盖，刷新失败不清索引，删除分层确认，旧会话与历史报告向后兼容。
 6. **证据优先**：研究结论必须引用本地版本或网络快照；执行过程只展示可观察事件，不冒充私有推理；无材料时明确说明资料不足。
 7. **阶段停止**：每阶段的浏览器主链、持久化兼容和受影响自动检查通过后即停止；不顺手实现后续阶段占位或扩大为管理平台。
+8. **可复现提交**：新增源码/测试文件必须入库；阶段检查通过后按主题分批提交，**未提交不得进入下一阶段**，避免工作树膨胀导致证据不可复现（已连续两轮因此受影响）。
 
 ### 16.12 W0–W2 实施进展（2026-09-23，未完成整阶段）
 
@@ -1840,3 +1841,40 @@ W6-B 才增加搜索提供方、域名白名单、时间过滤、结果勾选和
 - `git diff --check` 通过。本批新增/修改文件无新增 `ruff` 告警；仓库其余既有告警（`main.py` B008/PLC0206、`prompts` UP033、`corpora.py` TRY004、`test_corpora_state.py` PLR0402 等）非本批引入。
 
 **未完成（保持待验，不声明通过）**：W0 的工作树归属整理与提交封口；W2 其余验收链路（外部新增→刷新发现、目录改名/失效提示）虽在 §15 已有实现与定向测试，但未在 W2 阶段重新走查；W3 运行快照与成果、W4 任务/输出模板编辑、W5 对话工作台、W6 网络资料、W7 Prompt/Skill 均未开始；真实模型报告与 PDF/OCR 可信度仍为独立待验项。
+
+### 16.14 W3-A 最小运行快照（2026-09-23）
+
+依据 §16.6「成果的前置条件」先落地服务端最小 `RunSnapshot`，为后续 Artifact/任务版本/网络快照提供可追溯运行。**工作树仍未提交、未推送**；W3-B（Artifact、跨会话报告与全局成果、回答保存为成果、版本与 DOCX）未开始。
+
+- **存储与对象**：新增 `src/runs.py` 的 `RunStore`（`STATE_DIR/runs.sqlite3`），按 `run_id` 记录：契约版本、`session_key`、`parent_run_id`、`run_type`（chat/report）、`status`、`task_id`、`model`、`resource_policy`、请求/服务端有效 `corpus_ids`、`allowed_doc_ids`、用户可见 `params`/`param_sources`/`output_intent`，以及完成后的 `ended_at`、`metrics`（usage+telemetry）与 `citations`（`doc_id`/`corpus_id`/`version`/`title`/`page`）。服务端解析后的有效范围是权威值。
+- **请求契约（向后兼容）**：`ChatRequest` 增可选 `session_key` 与 `run_context`；`ReportRequest` 增 `parent_run_id`。旧客户端省略时按 `local_only`/“未记录”处理，不伪造用户确认。
+- **幂等与冲突（A1）**：`run_id` 绑定请求指纹；不同指纹复用同一 `run_id` 返回 409。chat 的相同指纹请求**不重跑覆盖**：`created=False` 时运行中或已终态均返回 409，要求换新 `run_id`（重放已完成回答属 W3-B Artifact）。报告端点先做指纹校验，再按“已保存→200 `idempotent` / 生成中→409 / 失败→安全重试”分支。此点**取代** #10 M3 的“参数不同也幂等返回 200”，见 DECISIONS「W3-A 最小运行快照」。
+- **报告父子关系**：报告为独立 child run，`parent_run_id` 指向 task4 intake 的 chat run；前端首次/安全重试用 `${intakeRunId}-report`，主动“重新生成报告”用新 UUID，父 run 始终为 intake run。
+- **接线**：chat 在流式开始前创建快照（scope 校验之后），流结束/失败/超时/中断在 `finally` 回填状态与指标；报告在生成前创建快照，失败标 `failed`、成功标 `completed`。新增 `GET /api/runs/{run_id}`（无记录 404，供历史“运行信息未记录”回退）。前端 chat 发送 `session_key` 与最小 `run_context`，报告发送 `parent_run_id`。
+
+**本轮实际运行证据**（Linux，当前工作树）：
+
+- `.venv/bin/python -m pytest tests -q` → **149 passed**（1 Starlette 弃用警告）；`tests/test_runs.py` 10 例覆盖 chat 有效范围快照、终态不重跑 409、运行中并发 409、失败/超时/取消回填、快照写入失败不阻断回答、`requested ≠ effective`、citations 含 `corpus_id`/`title`、指纹冲突 409、报告父子 run、未知 run 404。
+- `npm --prefix frontend test`（`node --test src/`）→ **31 passed**；`npm --prefix frontend run build`（tsc + vite）通过，保留既有分包警告。
+- 12 个离线 Playwright 脚本全部退出 0；`browser_tasks` 覆盖 chat `session_key`、报告 `parent_run_id`/独立 report run 与执行摘要中的“服务端实际范围”，`browser_session_branches` 覆盖 chat `session_key`。
+- `git diff --check` 通过；新增 `src/runs.py`、`tests/test_runs.py` 无 `ruff` 告警，其余为既有告警。
+
+**未完成 / 下一步**：W3-B 建 `Artifact`、兼容读取现有 `reports`、开放跨会话报告查询与全局成果列表、回答保存为成果、Markdown 版本与真实 DOCX 导出；报告引用的版本回填仍以 `metrics.report_id` 为最小记录，未按引用逐条落库。W0 提交封口、W4–W7、真实模型/OCR 仍待验。
+
+**W3-A 收口修订计划（verifier A1–A7，2026-09-23）**。A1/A2/A3/A5/A6 已实施并复验（见下）；A7 保留为不阻塞的运维项。
+
+- **A1（高，先做）重试/并发语义**：`main.py` 调用 `runs.create` 时丢弃 `created` 标志，同 `run_id`+同指纹重试会重跑并在 `finally` 覆盖首轮 `status/metrics/citations`；首轮运行中重复请求会并发写同一快照。目标语义：`created=True` 才执行；`created=False` 且 `status=="running"` → 409；已终态 → 409 并要求换新 `run_id`，不静默重跑（已完成回答的重放属 W3-B Artifact）。报告端点：`created=False` 且生成中 → 409，已保存报告仍幂等 200，失败可安全重试。**已实施**：chat `created=False` 一律 409；报告先做指纹校验，再按“已保存→200 / 生成中→409 / 失败→安全重试”分支；非指纹冲突的快照写入失败只记日志、不阻断回答/报告生成（读取回退为“未记录”）；`tests/test_runs.py` 中“同指纹重试 → 200”的旧断言已改为终态 409。
+- **A2（中）有效范围回传**：流开始处新增确定性 `run` 事件，携带 `effective_corpus_ids`/`model`/`resource_policy`/`session_key`；前端 `receiveEvent` 记录 `runInfo`，检查器执行摘要显示“服务端实际范围”。**已实施**。
+- **A3（中）citations 补 `corpus_id`**（含 `title`）：chat `finally` 回填的 citations 现含 `doc_id`/`corpus_id`/`version`/`title`/`page`。**已实施**并纳入测试。
+- **A5（低）前端 `${intakeRunId}-report` 边界**：派生 report run id 截断到 `${intakeRunId.slice(0, 72)}-report`，避免接近 80 上限 422。**已实施**。
+- **A6（低）补测**：失败/超时/取消 status 回填、`requested ≠ effective`、同指纹终态行为、citations 含 `corpus_id` 均已覆盖（`tests/test_runs.py`）；取消用例触发与断连相同的 `CancelledError` 回填分支。
+- **A7（低，不阻塞）**：`runs.sqlite3` 保留/归档策略，留待 W3-B 或运维。
+
+**W3-A 剩余项与进入 W3-B 的门禁（verifier B1–B4，2026-09-23）**：
+
+- **B1（高，唯一持续阻塞）提交封口**：工作树仍有 60+ 非 archive 变更；`src/runs.py`、`tests/test_runs.py`、`tests/browser_refresh.py`、`tests/browser_legacy_scope.py` 未跟踪，不入库则 149/12 脚本证据不可复现。动作：W3-A（含新增源码/测试）先按主题提交；`.vscode/` 加 ignore；`requirements-cpu.txt` 若为 CPU torch pin 则入库，否则并入个人文件说明。**未提交不得启动 W3-B**（见 §16.11.8）。**状态：未执行，等待用户明确授权提交。**
+- **B2（低）`fetchRun` 未使用**：**已实施**——检查器执行摘要打开时回读 `GET /api/runs/{id}`，快照存在则用其权威字段，404 显示“运行信息未记录（历史运行或快照写入失败）”；`browser_tasks` 断言快照模型 `offline-snapshot` 覆盖 run 事件值。
+- **B3（低）中断路径无自动化用例**：**已实施**——`test_cancelled_run_backfills_interrupted_status` 覆盖取消分支回填 `interrupted`（TestClient 不稳定投递断连，故用同分支的 `CancelledError` 触发）。
+- **B4（低）重试语义需 UI 对齐**：**已确认无需额外代码**——run 冲突 409 的字符串 detail 由 `store.send` 原样显示；恢复依赖新一次发送，`regenerateTurn` 总是生成新 `run_id`；已在 `store.tsx` 注明该语义。
+
+**W3-B 缩范围（建议）**：先用"reports 兼容读取 + RunSnapshot 回读"打通"来源运行→成果"；Artifact 首版仅含 `type(answer_snapshot/report)`、`run_id` 关联、version、export；"逐条引用落库"列为可选项、非前置；并顺带收口 B2/B3/B4；A7（`runs` 保留/归档）作为 W3-B 运维项。

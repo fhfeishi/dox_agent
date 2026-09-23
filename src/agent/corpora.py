@@ -12,16 +12,20 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import shutil
 import sqlite3
+import tempfile
 from dataclasses import dataclass, replace
 from pathlib import Path
 
 from .config import DOX_AGENT_ROOT
 
 # Fund report files: <year_from>_<year_to>_<project_no>_<pi>_<title>.pdf (corpus_management §3.3).
-FUND_NAME_PATTERN = re.compile(r"^\d{4}_\d{4}_[A-Za-z0-9]+_[^_]+_.+\.pdf$", re.IGNORECASE)
+# Project-metadata archives reuse the same naming convention as Markdown, so both kinds
+# mark a corpus as ``fund`` and feed the filename-derived metadata.
+FUND_NAME_PATTERN = re.compile(r"^\d{4}_\d{4}_[A-Za-z0-9]+_[^_]+_.+\.(?:pdf|md|markdown)$", re.IGNORECASE)
 # Source files that make a corpus (raw material lives under ``<corpus>/source``).
 SOURCE_SUFFIXES = {".pdf", ".md", ".markdown", ".txt", ".docx"}
 
@@ -49,6 +53,7 @@ class CorpusInfo:
     is_default: bool = False
     alias: str = ""  # optional friendly name persisted by id (KB-5); canonical name = dir_name
     dir_name: str = ""
+    description: str = ""  # W2: user-editable short note, kept separate from the directory name
     missing: bool = False  # KB-5d: stable id present in corpora.json but its directory is gone
 
 
@@ -142,21 +147,29 @@ def corpus_id_for(rel_path: str) -> str:
     return (slug[:room].rstrip("-") or "corpus") + "-" + digest
 
 
+def _read_corpus_override_data(settings) -> dict:
+    path = settings.state_dir / OVERRIDES_FILENAME
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return {}
+    except (OSError, ValueError) as exc:
+        raise ValueError(f"知识库记录文件无法读取或已损坏：{path}") from exc
+    if not isinstance(value, dict):
+        raise ValueError(f"知识库记录文件格式无效：{path}")
+    if any(not isinstance(entry, dict) for entry in value.values()):
+        raise ValueError(f"知识库记录文件包含无效条目：{path}")
+    return value
+
+
 def load_corpus_overrides(settings) -> dict[str, dict]:
     """§11/KB-5a: id-keyed overrides ``{id: {id, rel, alias?, created?, kind?, domain?}}``.
 
     Legacy rel-keyed entries (K6) are converted on read; the scan writes the stable id back.
     """
-    try:
-        data = json.loads((settings.state_dir / OVERRIDES_FILENAME).read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return {}
-    if not isinstance(data, dict):
-        return {}
+    data = _read_corpus_override_data(settings)
     overrides: dict[str, dict] = {}
     for key, value in data.items():
-        if not isinstance(value, dict):
-            continue
         # Prefer alias; fall back to the legacy K6 display `name`. Drop `name` so clearing
         # `alias` on rename actually takes effect (no shadowing).
         alias = str(value.get("alias") or value.get("name") or "")
@@ -172,7 +185,16 @@ def load_corpus_overrides(settings) -> dict[str, dict]:
 def save_corpus_overrides(settings, overrides: dict[str, dict]) -> None:
     settings.state_dir.mkdir(parents=True, exist_ok=True)
     path = settings.state_dir / OVERRIDES_FILENAME
-    path.write_text(json.dumps(overrides, ensure_ascii=False, indent=2), encoding="utf-8")
+    content = json.dumps(overrides, ensure_ascii=False, indent=2)
+    fd, temp_name = tempfile.mkstemp(prefix=".corpora-", dir=settings.state_dir)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_name, path)
+    finally:
+        Path(temp_name).unlink(missing_ok=True)
 
 
 _RESERVED_NAMES = {"CON", "PRN", "AUX", "NUL",
@@ -194,17 +216,13 @@ def corpus_root_for(settings) -> Path:
     return Path(settings.corpora_root).resolve()
 
 
-def resolve_default(infos: list[CorpusInfo], settings) -> CorpusInfo | None:
-    """T7: ``DEFAULT_CORPUS`` by stable id, then rel_path; else first ready; else None."""
-    if not infos:
-        return None
-    for info in infos:
-        if (info.id == settings.default_corpus or info.rel_path == settings.default_corpus) and not info.missing:
-            return info
-    for info in sorted(infos, key=lambda item: item.rel_path):
-        if info.preparation == "ready" and not info.missing:
-            return info
-    return None
+def resolve_default(infos: list[CorpusInfo], settings=None) -> CorpusInfo | None:
+    """Return the first present corpus in the server's directory-name order.
+
+    ``settings`` remains optional for callers from older code; DEFAULT_CORPUS no longer
+    affects conversation scope or API ordering.
+    """
+    return next((info for info in sorted(infos, key=lambda item: item.rel_path) if not info.missing), None)
 
 
 def default_corpus_info(settings) -> CorpusInfo | None:
@@ -241,8 +259,8 @@ def _has_sources(directory: Path) -> bool:
     return any(path.is_file() and path.suffix.lower() in SOURCE_SUFFIXES for path in directory.rglob("*"))
 
 
-def _has_fund_pdf(directory: Path) -> bool:
-    return any(FUND_NAME_PATTERN.match(path.name) for path in directory.rglob("*.pdf"))
+def _has_fund_file(directory: Path) -> bool:
+    return any(path.is_file() and FUND_NAME_PATTERN.match(path.name) for path in directory.rglob("*"))
 
 
 def _preparation(count: int, sqlite_exists: bool) -> str:
@@ -250,13 +268,14 @@ def _preparation(count: int, sqlite_exists: bool) -> str:
 
 
 def scan_corpora(settings) -> list[CorpusInfo]:
-    """List corpora: each direct child of CORPORA_ROOT with a non-empty ``source/`` is one corpus.
+    """List legal direct child directories in stable name order, including empty corpora.
 
     Raw files live (recursively) under ``<corpus>/source``; sqlite and vector store live in
-    ``<corpus>/datadb`` and ``<corpus>/vectordb``. Empty children are skipped; ``settings.corpora``
-    overrides id/name/kind/domain per relative path.
+    ``<corpus>/datadb`` and ``<corpus>/vectordb``. Legacy aliases are retained as metadata but
+    the directory name is the displayed name.
     """
     root = corpus_root_for(settings)
+    raw_persisted = _read_corpus_override_data(settings)
     persisted = load_corpus_overrides(settings)  # id-keyed (KB-5a)
     config: dict[str, dict] = {}
     for entry in settings.corpora or []:
@@ -270,41 +289,41 @@ def scan_corpora(settings) -> list[CorpusInfo]:
             by_rel[rel] = {"id": corpus_id, **entry}
 
     found: dict[str, CorpusInfo] = {}
-    dirty = False
+    # A normalized read must still rewrite legacy rel-keyed/name records.
+    dirty = raw_persisted != persisted
     if root.is_dir():
-        for child in sorted(path for path in root.iterdir() if path.is_dir()):
+        for child in sorted(path for path in root.iterdir() if path.is_dir() and not path.is_symlink()):
             if child.name.startswith(".") or child.name in ROLE_DIRNAMES:
-                continue
-            source_dir = child / SOURCE_DIRNAME
-            if not source_dir.is_dir():
                 continue
             rel = child.relative_to(root).as_posix()
             persisted_entry = by_rel.get(rel, {})
             config_entry = config.get(rel, {})
             created = bool(persisted_entry.get("created") or config_entry.get("created"))
-            # Empty source is skipped unless the corpus was explicitly created.
-            if not _has_sources(source_dir) and not created:
-                continue
+            source_dir = child / SOURCE_DIRNAME
             corpus_id = str(persisted_entry.get("id") or config_entry.get("id") or corpus_id_for(rel))
             alias = str(persisted_entry.get("alias") or persisted_entry.get("name") or config_entry.get("name") or "")
             db_dir = child / DB_DIRNAME
             sqlite_path = db_dir / "knowledge.sqlite3"
             count = _docs_count(sqlite_path) if sqlite_path.is_file() else 0
-            kind = persisted_entry.get("kind") or config_entry.get("kind") or ("fund" if _has_fund_pdf(source_dir) else "unknown")
+            kind = persisted_entry.get("kind") or config_entry.get("kind") or ("fund" if _has_fund_file(source_dir) else "unknown")
             domain = str(persisted_entry.get("domain") or config_entry.get("domain") or child.name)
+            description = str(persisted_entry.get("description") or config_entry.get("description") or "")
             found[rel] = CorpusInfo(
-                id=corpus_id, name=alias or child.name, alias=alias, dir_name=child.name,
+                id=corpus_id, name=child.name, alias=alias, dir_name=child.name,
                 kind=str(kind), domain=domain, rel_path=rel, root=child, source_dir=source_dir,
                 db_dir=db_dir, vectordb_dir=child / VECTOR_DIRNAME,
                 sqlite=sqlite_path if sqlite_path.is_file() else None,
                 docs_count=count, preparation=_preparation(count, sqlite_path.is_file()),
+                description=description,
             )
-            # KB-5a: backfill the stable id/rel/alias once (id-keyed).
+            # Keep path-derived ids identifiable after an external move, while marking them
+            # as generated so explicit reassociation can distinguish them from owned ids.
             current = persisted.get(corpus_id)
+            generated = bool(current.get("generated")) if current is not None else not bool(config_entry or created)
             if (current is None or current.get("rel") != rel or current.get("alias", "") != alias
-                    or bool(current.get("created")) != created):
+                    or bool(current.get("created")) != created or bool(current.get("generated")) != generated):
                 persisted[corpus_id] = {**(current or {}), "id": corpus_id, "rel": rel, "alias": alias,
-                                        "created": created}
+                                        "created": created, "generated": generated}
                 dirty = True
     if dirty:
         save_corpus_overrides(settings, persisted)
@@ -317,9 +336,10 @@ def scan_corpora(settings) -> list[CorpusInfo]:
         alias = str(entry.get("alias") or entry.get("name") or "")
         root_dir = root / rel
         found[rel] = CorpusInfo(
-            id=corpus_id, name=alias or rel, alias=alias, dir_name=rel, kind="unknown", domain=rel,
+            id=corpus_id, name=Path(rel).name, alias=alias, dir_name=Path(rel).name, kind="unknown", domain=rel,
             rel_path=rel, root=root_dir, source_dir=root_dir / SOURCE_DIRNAME, db_dir=root_dir / DB_DIRNAME,
             vectordb_dir=root_dir / VECTOR_DIRNAME, sqlite=None, docs_count=0,
+            description=str(entry.get("description") or ""),
             preparation="missing", missing=True,
         )
 

@@ -22,6 +22,8 @@ export function PdfViewer({
   onPageChange?: (page: number) => void;
 }) {
   const [current, setCurrent] = useState(Math.max(1, page ?? 1));
+  const [availability, setAvailability] = useState<"checking" | "available" | "error">("checking");
+  const [fileError, setFileError] = useState("");
   useEffect(() => {
     setCurrent(Math.max(1, page ?? 1));
   }, [docId, page]);
@@ -30,6 +32,30 @@ export function PdfViewer({
   if (corpus) params.set("corpus", corpus);
   const query = params.toString() ? `?${params}` : "";
   const fileUrl = `/api/documents/${encodeURIComponent(docId)}/file${query}`;
+  useEffect(() => {
+    const controller = new AbortController();
+    setAvailability("checking");
+    setFileError("");
+    fetch(fileUrl, { method: "HEAD", signal: controller.signal })
+      .then((response) => {
+        if (response.ok) {
+          setAvailability("available");
+          return;
+        }
+        setFileError(response.status === 404
+          ? "原文件已缺失或已移动，请刷新文献库后重试"
+          : response.status === 422
+            ? "文档已更新，请刷新文献库后重试"
+            : `无法预览原文件（HTTP ${response.status}）`);
+        setAvailability("error");
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return;
+        setFileError((error as Error).message || "无法检查原文件，请稍后重试");
+        setAvailability("error");
+      });
+    return () => controller.abort();
+  }, [fileUrl]);
   function jump(next: number) {
     const clamped = Math.min(Math.max(1, next), Math.max(1, pages));
     setCurrent(clamped);
@@ -68,12 +94,16 @@ export function PdfViewer({
         </a>
       </div>
       {/* key 确保翻页时 iframe 重新加载，使 #page= 片段生效；已知代价：每次翻页重载整份 PDF（大扫描件成本高），D6 升级 PDF.js 后改 JS 控制页码 */}
-      <iframe
-        key={current}
-        title="PDF 预览"
-        src={`${fileUrl}#page=${current}`}
-        className="min-h-0 w-full flex-1 rounded-[10px] border border-[var(--hairline)] bg-white"
-      />
+      {availability === "checking" ? <p role="status" className="py-[16px] text-[13px] text-[var(--steel)]">正在检查原文件…</p> : null}
+      {availability === "error" ? <p role="alert" className="py-[16px] text-[13px] text-[var(--red)]">{fileError}</p> : null}
+      {availability === "available" ? (
+        <iframe
+          key={current}
+          title="PDF 预览"
+          src={`${fileUrl}#page=${current}`}
+          className="min-h-0 w-full flex-1 rounded-[10px] border border-[var(--hairline)] bg-white"
+        />
+      ) : null}
       <p className="pt-[10px] text-[11px] text-[var(--stone)]">
         浏览器内置 PDF 渲染（缩放请用阅读器工具栏）。页码与引用的一致性校验（D10）完成前为 best effort。
       </p>

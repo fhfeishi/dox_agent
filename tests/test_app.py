@@ -1,3 +1,5 @@
+from io import BytesIO
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -7,12 +9,106 @@ from src.main import create_app
 
 
 def setup(tmp_path, graph_factory=None):
-    settings = Settings(_env_file=None, corpora_root=tmp_path / ".knowledge", state_dir=tmp_path)
-    store = Knowledge(tmp_path / "db")
+    root = tmp_path / ".knowledge"
+    corpus = root / "fixture"
+    (corpus / "source").mkdir(parents=True, exist_ok=True)
+    settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
+    store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
     args = {"settings": settings, "knowledge": store}
     if graph_factory:
         args["graph_factory"] = graph_factory
     return create_app(**args), store
+
+
+def test_user_upload_with_existing_name_preserves_the_source_file(tmp_path):
+    app, _ = setup(tmp_path)
+    with TestClient(app) as client:
+        corpus = client.post("/api/corpora", json={"name": "upload-test"}).json()
+        source = tmp_path / ".knowledge" / "upload-test" / "source" / "same.md"
+        source.write_bytes(b"original")
+        before = client.get(f"/api/corpora/{corpus['id']}/files").json()["files"]
+
+        response = client.post(
+            f"/api/corpora/{corpus['id']}/files",
+            files={"upload": ("same.md", BytesIO(b"replacement"), "text/markdown")},
+        )
+        after = client.get(f"/api/corpora/{corpus['id']}/files").json()["files"]
+
+    assert response.status_code == 409
+    assert response.json()["detail"] == "同名文件已存在，请改名后上传"
+    assert source.read_bytes() == b"original"
+    assert sorted(path.name for path in source.parent.iterdir()) == ["same.md"]
+    assert after == before
+
+
+def test_user_upload_new_markdown_is_published_and_imported(tmp_path):
+    app, _ = setup(tmp_path)
+    with TestClient(app) as client:
+        corpus = client.post("/api/corpora", json={"name": "upload-success"}).json()
+        response = client.post(
+            f"/api/corpora/{corpus['id']}/files",
+            files={"upload": ("new.md", BytesIO(b"# New\n\nBody"), "text/markdown")},
+        )
+        listing = client.get(f"/api/corpora/{corpus['id']}/files").json()["files"]
+
+    assert response.status_code == 201
+    assert response.json()["errors"] == []
+    assert response.json()["added"] == 1
+    assert any(item["rel_path"] == "new.md" and item["status"] == "indexed" for item in listing), listing
+
+
+def test_user_upload_over_limit_does_not_publish_partial_source(tmp_path, monkeypatch):
+    from src import main
+
+    monkeypatch.setattr(main, "MAX_PREVIEW_BYTES", 4)
+    app, _ = setup(tmp_path)
+    with TestClient(app) as client:
+        corpus = client.post("/api/corpora", json={"name": "upload-limit"}).json()
+        before = client.get(f"/api/documents?corpus={corpus['id']}").json()
+        response = client.post(
+            f"/api/corpora/{corpus['id']}/files",
+            files={"upload": ("large.md", BytesIO(b"12345"), "text/markdown")},
+        )
+        after = client.get(f"/api/documents?corpus={corpus['id']}").json()
+        source_dir = tmp_path / ".knowledge" / "upload-limit" / "source"
+
+    assert response.status_code == 413
+    assert after == before
+    assert list(source_dir.iterdir()) == []
+
+
+def test_user_upload_parse_failure_stays_saved_and_can_be_retried(tmp_path):
+    app, _ = setup(tmp_path)
+    with TestClient(app) as client:
+        corpus = client.post("/api/corpora", json={"name": "upload-parse-error"}).json()
+        response = client.post(
+            f"/api/corpora/{corpus['id']}/files",
+            files={"upload": ("broken.txt", BytesIO(b"\xff\xfe\x00broken"), "text/plain")},
+        )
+        files = client.get(f"/api/corpora/{corpus['id']}/files").json()["files"]
+
+    assert response.status_code == 201
+    assert len(response.json()["errors"]) == 1
+    assert files == [{"rel_path": "broken.txt", "size": 9, "status": "error", "doc_id": None}]
+
+
+def test_user_corpus_overview_reports_source_and_index_status_counts(tmp_path):
+    app, _ = setup(tmp_path)
+    with TestClient(app) as client:
+        corpus = client.post("/api/corpora", json={"name": "counts"}).json()
+        for name, content, media in (("a.md", b"# A", "text/markdown"),
+                                     ("b.md", b"# B", "text/markdown"),
+                                     ("broken.txt", b"\xff\xfe\x00broken", "text/plain")):
+            client.post(f"/api/corpora/{corpus['id']}/files",
+                        files={"upload": (name, BytesIO(content), media)})
+        # An external drop is discovered by the next read-only list, but is not imported yet.
+        (tmp_path / ".knowledge" / "counts" / "source" / "c.md").write_text("# C", encoding="utf-8")
+        info = next(item for item in client.get("/api/corpora").json() if item["id"] == corpus["id"])
+
+    assert info["source_count"] == 4
+    assert info["indexed_count"] == 2
+    assert info["failed_count"] == 1
+    assert info["pending_count"] == 1
 
 
 def test_api_and_validation(tmp_path):
@@ -48,6 +144,25 @@ def test_document_markdown_endpoint_returns_full_body(tmp_path):
         assert client.get("/api/documents/missing/markdown").status_code == 404
 
 
+def test_user_pdf_preview_preflight_distinguishes_stale_version_and_missing_source(tmp_path):
+    app, store = setup(tmp_path)
+    source = tmp_path / ".knowledge" / "preview-test" / "source" / "report.pdf"
+    source.parent.mkdir(parents=True)
+    source.write_bytes(b"%PDF-1.4\n%%EOF")
+    doc = store.put(Document(title="report.pdf", origin=str(source), kind="pdf", parser="test",
+                             pages=[Page(number=1, text="page")]))
+    doc_id, version = doc["doc_id"], doc["version"]
+
+    with TestClient(app) as client:
+        url = f"/api/documents/{doc_id}/file"
+        assert client.head(url, params={"version": version}).status_code == 200
+        assert client.head(url, params={"version": "old-version"}).status_code == 422
+        source.unlink()
+        missing = client.head(url, params={"version": version})
+
+    assert missing.status_code == 404
+
+
 def test_chat_rejects_client_research_state_and_starts_fresh(tmp_path):
     states = []
 
@@ -59,7 +174,9 @@ def test_chat_rejects_client_research_state_and_starts_fresh(tmp_path):
             state["evidence"].append({"old": "server-only"})
             yield {"event": "token", "data": {"text": "answer"}}
 
-    app, _ = setup(tmp_path, lambda *args: Graph())
+    app, store = setup(tmp_path, lambda *args: Graph())
+    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+                       pages=[Page(number=1, text="seed")]))
     message = {"role": "user", "content": "问题"}
     with TestClient(app) as client:
         for field in ("evidence", "searches", "report", "previousAttempts", "sources"):
@@ -98,7 +215,9 @@ def test_sse_success_and_failure(tmp_path):
             yield {"event": "sources", "data": []}
             yield {"event": "token", "data": {"text": "answer"}}
 
-    app, _ = setup(tmp_path, lambda *args: Graph())
+    app, store = setup(tmp_path, lambda *args: Graph())
+    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+                       pages=[Page(number=1, text="seed")]))
     payload = {"messages": [{"role": "user", "content": "question"}]}
     with TestClient(app) as client:
         response = client.post("/api/chat", json=payload)
@@ -110,7 +229,9 @@ def test_sse_success_and_failure(tmp_path):
             raise RuntimeError("private key details")
             yield {}
 
-    app, _ = setup(tmp_path, lambda *args: Failed())
+    app, store = setup(tmp_path, lambda *args: Failed())
+    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+                       pages=[Page(number=1, text="seed")]))
     with TestClient(app) as client:
         response = client.post("/api/chat", json=payload)
         assert "event: error" in response.text
@@ -136,13 +257,13 @@ def test_preparation_guards_and_lightweight_health(tmp_path, monkeypatch):
         assert health["docs_count"] == 0
         payload = {"messages": [{"role": "user", "content": "question"}]}
         response = client.post("/api/chat", json=payload)
-        assert response.status_code == 200
-        assert "event: done" in response.text
+        assert response.status_code == 409
+        assert "尚无已入库文档" in response.text
         assert client.post("/api/official-docs", json={}).status_code == 409
         assert client.post("/api/ingest/local").status_code == 409
         assert client.post("/api/web/confirm/unknown").status_code == 409
         app.state.preparation = "error"
-        assert "event: done" in client.post("/api/chat", json=payload).text
+        assert client.post("/api/chat", json=payload).status_code == 409
 
 
 @pytest.mark.parametrize("outcome", ["success", "empty", "failure"])
@@ -166,7 +287,9 @@ def test_background_preparation(tmp_path, monkeypatch, outcome):
 
     monkeypatch.setattr(main, "Knowledge", lambda *args, **kwargs: store)
     monkeypatch.setattr(main, "import_official", importer)
-    app = create_app(settings=Settings(_env_file=None, corpora_root=tmp_path / ".knowledge", state_dir=tmp_path))
+    root = tmp_path / ".knowledge"
+    (root / "fixture" / "source").mkdir(parents=True)
+    app = create_app(settings=Settings(_env_file=None, corpora_root=root, state_dir=tmp_path))
     with TestClient(app) as client:
         try:
             assert client.get("/api/health").json()["preparation"] == "running"

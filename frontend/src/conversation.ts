@@ -1,10 +1,11 @@
-import type { Event, Message, Source, Options, Policy } from "./api.ts";
+import type { Event, Message, Source, Options, Policy, RunInfo } from "./api.ts";
 
 export type Attempt = {
   runId: string;
   steps: import("./api").Step[];
   telemetry?: import("./api").Telemetry;
   usage?: import("./api").Usage;
+  runInfo?: RunInfo;
   options: Options;
   policy: Policy | null;
   answer: string;
@@ -23,8 +24,34 @@ export type Turn = Attempt & {
   previousAttempts: Attempt[];
 };
 
+function copyOptions(options: Options): Options {
+  const normalized = { ...options, allowed_doc_ids: options.allowed_doc_ids ? [...options.allowed_doc_ids] : null };
+  if (options.corpus_ids) normalized.corpus_ids = [...options.corpus_ids];
+  else if (options.corpus_id) normalized.corpus_ids = [options.corpus_id];
+  return normalized;
+}
+
+/** Build the explicit retrieval set used by every new chat request. */
+export function corpusRequestOptions(_baseId: string, corpusIds: string[]): Pick<Options, "corpus_id" | "corpus_ids"> | null {
+  const ids = [...new Set(corpusIds)];
+  if (ids.length === 0 || ids.length > 6) return null;
+  return { corpus_ids: ids };
+}
+
+/** Restore legacy and malformed persisted bindings conservatively before a session can send. */
+export function restoreCorpusSelection(baseValue: unknown, idsValue: unknown, _confirmedValue: unknown) {
+  const baseId = typeof baseValue === "string" ? baseValue : "";
+  const rawIds = idsValue === undefined ? (baseId ? [baseId] : []) : idsValue;
+  const isStringList = Array.isArray(rawIds) && rawIds.every((id) => typeof id === "string" && id.length > 0);
+  // Keep over-limit and unknown ids visible so the user can repair the original range.
+  // A malformed non-string payload remains unbound and cannot silently select a different set.
+  const ids = isStringList ? [...rawIds as string[]] : baseId ? [baseId] : [];
+  return { corpusId: baseId || ids[0] || "", corpusIds: ids,
+    confirmed: true };
+}
+
 export function newAttempt(options: Options = { allowed_doc_ids: null }): Attempt {
-  return { runId: crypto.randomUUID(), steps: [], options: { ...options, allowed_doc_ids: options.allowed_doc_ids ? [...options.allowed_doc_ids] : null }, policy: null, answer: "", sources: [], complete: false, outcome: "running", startedAt: new Date().toISOString(), firstTokenMs: null, totalMs: null, elapsedMs: null };
+  return { runId: crypto.randomUUID(), steps: [], options: copyOptions(options), policy: null, answer: "", sources: [], complete: false, outcome: "running", startedAt: new Date().toISOString(), firstTokenMs: null, totalMs: null, elapsedMs: null };
 }
 
 export function newTurn(question: string, history: Turn[], options?: Options): Turn {
@@ -38,14 +65,14 @@ export function newTurn(question: string, history: Turn[], options?: Options): T
 export function regenerateTurn(turn: Turn, history: Turn[]): Turn {
   const { question, requestMessages: _oldRequest, previousAttempts, ...attempt } = turn;
   const effective = turn.policy ?? turn.options;
-  const options: Options = { allowed_doc_ids: effective.allowed_doc_ids ? [...effective.allowed_doc_ids] : null };
+  const options = copyOptions(effective);
   return { ...newTurn(question, history, options), previousAttempts: [...previousAttempts, attempt] };
 }
 
 export function branchFromTurn(turns: Turn[], index: number) {
   const original = turns[index];
   const effective = original.policy ?? original.options;
-  const options: Options = { allowed_doc_ids: effective.allowed_doc_ids ? [...effective.allowed_doc_ids] : null };
+  const options = copyOptions(effective);
   return { history: turns.slice(0, index).filter(turn => turn.complete && turn.outcome === "completed"), options };
 }
 
@@ -56,6 +83,10 @@ export function receiveEvent(turn: Turn, event: Event, elapsedMs: number): Turn 
     const index = turn.steps.findIndex(step => step.id === event.data.id);
     const steps = index < 0 ? [...turn.steps, event.data] : turn.steps.map((step, i) => i === index ? event.data : step);
     return { ...turn, steps };
+  }
+  if (event.event === "run") {
+    if (event.data.run_id && event.data.run_id !== turn.runId) return turn;
+    return { ...turn, runInfo: event.data };
   }
   if (event.event === "telemetry") return { ...turn, telemetry: event.data };
   if (event.event === "usage") {
@@ -86,9 +117,13 @@ export function formatDuration(ms: number): string {
 
 export function restoreTurns(turns: Turn[]): Turn[] {
   return turns.map((stored, index) => {
-    const turn = { ...stored, runId: stored.runId ?? `legacy-${index}-${stored.startedAt ?? "unknown"}`, steps: stored.steps ?? [],
+    const turn = { ...stored, options: copyOptions(stored.options ?? { allowed_doc_ids: null }),
+      policy: stored.policy ? copyOptions(stored.policy) as Policy : null,
+      runId: stored.runId ?? `legacy-${index}-${stored.startedAt ?? "unknown"}`, steps: stored.steps ?? [],
       outcome: (stored.outcome as string) === "cancelled" ? "interrupted" as const : stored.outcome,
       previousAttempts: (stored.previousAttempts ?? []).map((attempt, version) => ({ ...attempt,
+        options: copyOptions(attempt.options ?? { allowed_doc_ids: null }),
+        policy: attempt.policy ? copyOptions(attempt.policy) as Policy : null,
         runId: attempt.runId ?? `legacy-${index}-${version}`, steps: attempt.steps ?? [],
         outcome: (attempt.outcome as string) === "cancelled" ? "interrupted" as const : attempt.outcome })) };
     const settled = stopTurn(turn, true, turn.elapsedMs ?? 0);

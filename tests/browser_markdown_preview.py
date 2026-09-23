@@ -49,22 +49,24 @@ async def main():
                 await r.fulfill(json={"text": MARKDOWN, "version": "v1"})
 
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
+            await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(json={"source_dir": "/tmp/c1/source", "files": [], "misplaced_files": []}))
             await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=[CORPUS]))
             await page.route("**/api/documents/d1/markdown*", markdown_doc)
             await page.route(re.compile(r".*/api/documents(\?.*)?$"), lambda r: r.fulfill(json=[DOCUMENT]))
             await page.route("**/api/tasks", lambda r: r.fulfill(json=[{"id": "task1", "name": "精准问答", "description": "x", "output_hint": "结论", "has_template": False}]))
-            await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=[]))
+            await page.route(re.compile(r".*/api/workspace/sessions.*$"), lambda r: r.fulfill(json=[] if r.request.method == "GET" else {**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
             await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
 
             await page.goto(origin)
-            await page.get_by_role("button", name=re.compile("文献库")).first.click()
+            await page.get_by_role("button", name="知识库", exact=True).click()
             await page.get_by_role("button", name=re.compile("默认库")).first.click()
+            await page.get_by_role("button", name="打开详情").click()
             detail = page.get_by_role("dialog", name=re.compile("默认库"))
             await expect(detail).to_be_visible()
-            await detail.get_by_role("button", name=re.compile("README")).first.click()
+            await detail.get_by_role("button", name="预览", exact=True).first.click()
 
-            dialog = page.get_by_role("dialog", name=re.compile("文档预览"))
-            await expect(dialog).to_be_visible()
+            dialog = page.locator("aside[aria-hidden='false']")
+            await expect(dialog.get_by_text("资料预览", exact=True)).to_be_visible()
             assert markdown_reads >= 1, "preview did not use the markdown channel"
             await expect(dialog.locator("table")).to_have_count(3)
             assert await dialog.locator("pre").count() == 0, "markdown rendered as raw pre"

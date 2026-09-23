@@ -20,6 +20,7 @@ async def main():
     Thread(target=server.serve_forever, daemon=True).start()
     origin = f"http://127.0.0.1:{server.server_port}"
     store: dict[str, dict] = {}
+    chat_bodies: list[dict] = []
     try:
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
@@ -29,6 +30,7 @@ async def main():
 
             async def chat(route):
                 payload = route.request.post_data_json
+                chat_bodies.append(payload)
                 question = payload["messages"][-1]["content"]
                 answer = json.dumps({"text": "回答:" + question})
                 body = f'event: sources\ndata: []\n\nevent: token\ndata: {answer}\n\nevent: done\ndata: {{"ok":true}}\n\n'
@@ -45,7 +47,12 @@ async def main():
                     await route.fulfill(json=list(store.values()))
 
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
-            await page.route("**/api/documents", lambda r: r.fulfill(json=[]))
+            await page.route(re.compile(r".*/api/documents(?:\?.*)?$"), lambda r: r.fulfill(json=[]))
+            await page.route("**/api/corpora", lambda r: r.fulfill(json=[{"id": "c1", "name": "演示库", "kind": "demo", "domain": "x",
+                "rel_path": "c1", "docs_count": 1, "preparation": "ready", "is_default": True,
+                "index_progress": None, "job": None}]))
+            await page.route("**/api/tasks", lambda r: r.fulfill(json=[]))
+            await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
             await page.route("**/api/workspace/sessions", sessions)
             await page.route("**/api/workspace/sessions/*", sessions)
             await page.route("**/api/chat", chat)
@@ -56,11 +63,29 @@ async def main():
                 await expect(page.get_by_text("回答:" + question, exact=False)).to_be_visible()
 
             await page.goto(origin)
+            # New sessions auto-select the first corpus directory; no confirmation gate.
+            await expect(page.get_by_text(re.compile("当前对话：演示库（1/6）"))).to_be_visible()
             await ask("第一问")
             await ask("第二问")
             assert len(store) == 1, f"expected one session, got {len(store)}"
             only = next(iter(store.values()))
             title = only["title"]
+            # Every send uses the explicit retrieval set; a single corpus is a one-element list.
+            assert chat_bodies and all(body.get("corpus_ids") == ["c1"] and "corpus_id" not in body for body in chat_bodies), chat_bodies
+            # W3-A: each chat run carries its session key for the persisted snapshot.
+            assert all(body.get("session_key") for body in chat_bodies), chat_bodies
+
+            # regenerate the last turn: same session scope, new run id
+            first_run = chat_bodies[-1]["run_id"]
+            before = len(chat_bodies)
+            await page.locator("article").last.get_by_role("button", name="重新生成").click()
+            for _ in range(50):
+                if len(chat_bodies) > before:
+                    break
+                await page.wait_for_timeout(50)
+            assert len(chat_bodies) > before, "regenerate did not issue a request"
+            assert chat_bodies[-1]["run_id"] != first_run, "regenerate must use a new run id"
+            assert chat_bodies[-1].get("corpus_ids") == ["c1"], chat_bodies[-1]
 
             # edit the first turn and re-ask: same session, divergence marker appears
             await page.locator("article").first.get_by_role("button", name="编辑并重问").click()

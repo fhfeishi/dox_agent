@@ -15,6 +15,13 @@ describe("fundMetaFromPath", () => {
     assert.equal(meta?.projectNo, "U21A20383");
     assert.equal(meta?.pi, "林天歆");
   });
+  it("accepts the same convention for markdown project metadata", () => {
+    const meta = fundMetaFromPath("2022_2025_72172132_陈亚盛_人工智能会计决策系统.md");
+    assert.deepEqual(meta, {
+      yearFrom: 2022, yearTo: 2025, projectNo: "72172132", pi: "陈亚盛",
+      title: "人工智能会计决策系统",
+    });
+  });
   it("returns null for non-fund names", () => {
     assert.equal(fundMetaFromPath("docs/guide.pdf"), null);
     assert.equal(fundMetaFromPath("2021_报告.pdf"), null);

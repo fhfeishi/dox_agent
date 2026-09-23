@@ -2,12 +2,17 @@
 
 import asyncio
 import json
+import re
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from threading import Thread
 
 from playwright.async_api import async_playwright, expect
+
+CORPUS = {"id": "c1", "name": "演示库", "kind": "demo", "domain": "x", "rel_path": "c1",
+          "docs_count": 1, "source_count": 1, "indexed_count": 1, "pending_count": 0, "failed_count": 0,
+          "preparation": "ready", "is_default": True, "index_progress": None, "job": None}
 
 
 async def main():
@@ -24,7 +29,9 @@ async def main():
             errors = []
             page.on("pageerror", lambda error: errors.append(str(error)))
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline-test"}))
-            await page.route("**/api/documents", lambda r: r.fulfill(json=[]))
+            await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(json={"source_dir": "/tmp/c1/source", "files": [], "misplaced_files": []}))
+            await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=[CORPUS]))
+            await page.route(re.compile(r".*/api/documents(\?.*)?$"), lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/*", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions/*", lambda r: r.fulfill(json={
                 **r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1],

@@ -203,6 +203,8 @@ def test_user_assembles_reports_with_header_and_chunk_citations():
     assert context.reports[0]["header"].startswith("《癫痫报告》")
     assert "项目号 82030037" in context.reports[0]["header"]
     assert "负责人 赵国光" in context.reports[0]["header"]
+    assert "项目起止年份（按文件名推断） 2021–2025" in context.reports[0]["header"]
+    assert "报告年份" not in context.reports[0]["header"]
     assert context.sources[0]["citation"] == 1
     assert context.sources[0]["chunk_id"] == chunks["a"][0].chunk_id
     assert context.tokens <= 500

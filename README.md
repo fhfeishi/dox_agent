@@ -57,9 +57,9 @@
 
 > `.knowledge/` 数据默认不入库（见 `.gitignore`），只保留 `README.md`。
 
-> **配置映射（§10）**：所有本地持久化只在 `CORPORA_ROOT`（默认 `.knowledge`）下；每个直接子目录 = 一个自包含库。默认库由 `DEFAULT_CORPUS`（相对名）指定，缺失回退首个 ready 库；`DATA_DIR`/`VECTORDB_DIR`/`KNOWLEDGE_ROOT`/`TEXT_ROOT` 已废弃（启动时忽略）。
+> **配置映射（§10）**：所有本地持久化只在 `CORPORA_ROOT`（默认 `.knowledge`）下；每个直接子目录 = 一个自包含库。新对话与省略范围的旧 API 按实际一级子目录名字典序选首库；`DEFAULT_CORPUS` 仅为旧配置兼容读取，不影响选择。`DATA_DIR`/`VECTORDB_DIR`/`KNOWLEDGE_ROOT`/`TEXT_ROOT` 已废弃（启动时忽略）。
 
-> **当前演示配置**：默认库 `demo_langchain`（启动时自动从旧 `.demo_langchain/` 迁移并重写文件型 origin）；真实基金库在 `.knowledge/` 下（多个库），导入后即可按库使用。
+> **当前演示语料**：`demo_langchain`（启动时自动从旧 `.demo_langchain/` 迁移并重写文件型 origin）。系统不设持久默认库；新对话使用按实际目录名排序的首个知识库，`DEFAULT_CORPUS` 不改变顺序。
 
 ## 运行
 
@@ -94,7 +94,7 @@ bash launch.sh
 | `MODEL_NAME` / `MODEL_BASE_URL` / `MODEL_API_KEY` | `deepseek-chat` / `https://api.deepseek.com` / 空 | 问答模型（OpenAI 兼容） |
 | `CORPORA_ROOT` | `<repo>/.knowledge` | 语料根：每个直接子目录 = 一个自包含知识库（`source/`+`datadb/`+`vectordb/`） |
 | `STATE_DIR` | `<CORPORA_ROOT>/.state` | 应用级状态目录（会话/报告/显示名覆盖）；默认随 `CORPORA_ROOT` 派生 |
-| `DEFAULT_CORPUS` | `demo_langchain` | 默认库相对名；缺失回退首个 ready 库 |
+| `DEFAULT_CORPUS` | `demo_langchain` | 已弃用；兼容读取但不影响首库顺序 |
 | `EMBEDDING_PATH` | 空 | 本地 embedding 模型目录；空 = 仅 BM25，不加载 embedding |
 | `EMBEDDING_DEVICE` | `cpu` | embedding 设备 |
 | `MINERU_CMD` / `MINERU_HOME` | `mineru-kit parse … --tier standard --format middle_json` / 模型缓存目录 | PDF 解析（mineru 4.0.5，K13）；`MINERU_CMD` 支持 `{pdf}`/`{out}` 模板 |

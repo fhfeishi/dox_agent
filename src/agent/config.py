@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     corpora_root: Path = CORPORA_ROOT_DEFAULT
     # 应用级状态目录（会话/报告/覆盖）；缺省从 corpora_root 派生为 <corpora_root>/.state。
     state_dir: Path | None = None
-    # 默认库相对名（M4）；缺失时回退首个 ready 库，全无 ready 不抛异常。
+    # 旧环境变量兼容读取；首库顺序由实际子目录名决定，此项不参与选择。
     default_corpus: str = "demo_langchain"
     embedding_path: str = ""
     embedding_device: str = "cpu"

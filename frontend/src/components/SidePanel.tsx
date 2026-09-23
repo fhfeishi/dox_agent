@@ -1,9 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { useApp } from "../store";
-import { fetchReport, fetchReports, type ReportInfo, type ReportSummary } from "../api";
-import { downloadText } from "../exportText";
+import { fetchReports, type ReportSummary } from "../api";
 import { BrandMark, Icon } from "./Icons";
 import { Button, GroupLabel, PanelRow, SearchField } from "./ui";
 import type { Saved, SessionData } from "../workspace";
@@ -24,7 +21,8 @@ function groupOf(iso: string | undefined): "今天" | "昨天" | "更早" {
   return "更早";
 }
 
-function corpusDot(preparation: string, jobStatus?: string): string {
+function corpusDot(preparation: string, jobStatus?: string, missing = false): string {
+  if (missing) return "var(--red)";
   if (jobStatus === "running") return "#e0a000";
   if (jobStatus === "error" || preparation === "error") return "var(--red)";
   if (preparation === "ready") return "var(--green)";
@@ -44,7 +42,7 @@ export function SidePanel() {
     tasksError,
     taskId,
     taskCapable,
-    startTask,
+    showInspector,
     corpora,
     corporaError,
     effectiveCorpusId,
@@ -63,12 +61,10 @@ export function SidePanel() {
 
   const [query, setQuery] = useState("");
   const [reports, setReports] = useState<ReportSummary[]>([]);
-  const [openReport, setOpenReport] = useState<ReportInfo | null>(null);
 
   useEffect(() => {
     if (nav !== "reports" || !workspace.active) {
       setReports([]);
-      setOpenReport(null);
       return;
     }
     let stopped = false;
@@ -77,14 +73,6 @@ export function SidePanel() {
       .catch(() => { if (!stopped) setReports([]); });
     return () => { stopped = true; };
   }, [nav, workspace.active]);
-
-  async function viewReport(reportId: string) {
-    try {
-      setOpenReport(await fetchReport(reportId));
-    } catch {
-      setOpenReport(null);
-    }
-  }
 
   // U9.1: the IconRail keeps the primary entries reachable while the panel is hidden.
   if (sidebarCollapsed) return null;
@@ -155,27 +143,27 @@ export function SidePanel() {
           className="font-app flex w-full items-center justify-center gap-[7px] rounded-[8px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[14px] py-[8px] text-[12.5px] text-[var(--slate)] transition-colors hover:bg-[var(--surface)]"
         >
           <Icon name="library" size={14} strokeWidth={1.9} />
-          文献库 · {documents.length} 份
+          知识库 · {documents.length} 份
         </button>
       </div>
 
-      <SearchField
+      {nav !== "prompts" ? <SearchField
         value={query}
         onChange={setQuery}
         ariaLabel="搜索会话"
         placeholder={nav === "library" ? "搜索知识库" : nav === "tasks" ? "搜索任务" : "搜索会话"}
-      />
+      /> : null}
 
       {/* scrollable list */}
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[8px] pb-[12px]">
         {/* Corpus selection stays reachable from the chat view; the library view owns the full list. */}
-        {nav !== "library" && visibleKbs.length ? (
+        {nav !== "library" && nav !== "prompts" && visibleKbs.length ? (
           <>
             <GroupLabel className="pt-[2px]">知识库</GroupLabel>
             {visibleKbs.map((corpus) => (
               <PanelRow
                 key={corpus.id}
-                dot={corpusDot(corpus.preparation, corpus.job?.status)}
+                dot={corpusDot(corpus.preparation, corpus.job?.status, corpus.missing)}
                 title={corpus.name}
                 meta={`${corpus.docs_count}`}
                 active={corpus.id === effectiveCorpusId}
@@ -289,7 +277,7 @@ export function SidePanel() {
                     title={task.name}
                     meta={task.id === taskId ? "当前" : undefined}
                     active={task.id === taskId}
-                    onClick={() => void startTask(task.id)}
+                    onClick={() => showInspector({ kind: "task", taskId: task.id })}
                   />
                 ))
               : null}
@@ -324,11 +312,11 @@ export function SidePanel() {
             {visibleKbs.map((corpus) => (
               <PanelRow
                 key={corpus.id}
-                dot={corpusDot(corpus.preparation, corpus.job?.status)}
+                dot={corpusDot(corpus.preparation, corpus.job?.status, corpus.missing)}
                 title={corpus.name}
                 meta={`${corpus.docs_count}`}
                 active={corpus.id === effectiveCorpusId}
-                onClick={() => openCorpus(corpus.id)}
+                onClick={() => showInspector({ kind: "corpus", corpusId: corpus.id })}
               />
             ))}
             {!visibleKbs.length && (
@@ -361,14 +349,18 @@ export function SidePanel() {
                 <button
                   key={report.report_id}
                   type="button"
-                  onClick={() => void viewReport(report.report_id)}
+                  onClick={() => showInspector({ kind: "report", reportId: report.report_id, sessionKey: workspace.active })}
                   className="mx-[8px] flex flex-col gap-[2px] rounded-[8px] px-[10px] py-[8px] text-left hover:bg-[#f1efec]"
                 >
                   <span className="truncate text-[12.5px] text-[var(--slate)]">
-                    {report.domain} · {report.year_from}–{report.year_to}
+                    {report.domain || "未命名报告"} · {report.corpus_id
+                      ? (corpora.find((corpus) => corpus.id === report.corpus_id)?.name ?? report.corpus_id)
+                      : "来源库未记录"} · {report.year_from != null && report.year_to != null
+                      ? `填表日期 ${report.year_from}–${report.year_to}`
+                      : "填表日期年份未记录"}
                   </span>
                   <span className="text-[11px] text-[var(--stone)]">
-                    {report.template_id} · {report.created_at?.slice(0, 10) ?? ""}
+                    {report.template_id || "模板未记录"} · {report.created_at?.slice(0, 10) ?? ""}
                   </span>
                 </button>
               ))
@@ -377,29 +369,6 @@ export function SidePanel() {
                 本会话还没有生成报告。切换到「专项报告」补充需求后即可生成。
               </div>
             )}
-            {openReport ? (
-              <div className="mx-[8px] mt-[6px]">
-                <div className="markdown max-h-[320px] overflow-auto rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px]">
-                  <Markdown remarkPlugins={[remarkGfm]}>{openReport.markdown}</Markdown>
-                </div>
-                <div className="mt-[6px] flex gap-[10px] text-[12px]">
-                  <button
-                    type="button"
-                    className="text-[var(--primary)] hover:underline"
-                    onClick={() => void navigator.clipboard.writeText(openReport.markdown)}
-                  >
-                    复制
-                  </button>
-                  <button
-                    type="button"
-                    className="text-[var(--primary)] hover:underline"
-                    onClick={() => downloadText(openReport.markdown, `report-${openReport.report_id.slice(0, 8)}.md`)}
-                  >
-                    下载 .md
-                  </button>
-                </div>
-              </div>
-            ) : null}
             <div className="px-[8px] pt-[4px]">
               <Button
                 variant="quiet"
@@ -413,6 +382,11 @@ export function SidePanel() {
             </div>
           </>
         )}
+        {nav === "prompts" ? (
+          <div className="px-[10px] pt-[8px] text-[12px] leading-[1.6] text-[var(--steel)]">
+            内置指令随任务发布；自定义 Prompt 与 Skill 管理将在后续阶段提供。
+          </div>
+        ) : null}
       </div>
 
       {/* footer */}

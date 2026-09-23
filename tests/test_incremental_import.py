@@ -83,3 +83,40 @@ def test_force_import_reparses_unchanged(tmp_path):
     assert import_defaults(store, settings, root=source)["skipped"] == 1
     forced = import_defaults(store, settings, root=source, force=True)
     assert forced["skipped"] == 0 and forced["imported"]
+
+
+def test_missing_or_unreadable_source_tree_never_prunes_existing_index(tmp_path, monkeypatch):
+    import pytest
+    import src.parsers as parsers
+
+    source = tmp_path / "source"
+    source.mkdir()
+    (source / "a.md").write_text("# A\n正文", encoding="utf-8")
+    store = store_for(tmp_path)
+    settings = Settings(_env_file=None)
+    import_defaults(store, settings, root=source)
+    original = store.all()
+
+    with pytest.raises(FileNotFoundError):
+        import_defaults(store, settings, root=tmp_path / "missing")
+    assert store.all() == original
+
+    monkeypatch.setattr(parsers.os, "walk", lambda *args, **kwargs: (_ for _ in ()).throw(PermissionError("denied")))
+    with pytest.raises(PermissionError):
+        import_defaults(store, settings, root=source)
+    assert store.all() == original
+
+
+def test_source_collection_does_not_follow_symlinks_outside_root(tmp_path):
+    from src.parsers import collect_sources
+
+    source = tmp_path / "source"
+    outside = tmp_path / "outside"
+    source.mkdir()
+    outside.mkdir()
+    (outside / "secret.md").write_text("# outside", encoding="utf-8")
+    (source / "linked.md").symlink_to(outside / "secret.md")
+    (source / "linked-dir").symlink_to(outside, target_is_directory=True)
+    (source / "inside.md").write_text("# inside", encoding="utf-8")
+
+    assert [path.name for path in collect_sources(source)] == ["inside.md"]

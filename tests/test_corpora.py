@@ -50,6 +50,17 @@ def test_scan_reads_roles_inside_corpus(tmp_path):
     assert info.sqlite == corpus / "datadb" / "knowledge.sqlite3"
 
 
+def test_fund_kind_accepts_markdown_metadata_naming(tmp_path):
+    settings = make_settings(tmp_path)
+    seed_ready(tmp_path, "demo_langchain")
+    source = tmp_path / "knowledge" / "自然科学基金-AI与信息智能" / "source"
+    source.mkdir(parents=True)
+    (source / "2022_2025_72172132_陈亚盛_人工智能会计决策系统.md").write_text("x", encoding="utf-8")
+
+    info = next(item for item in scan_corpora(settings) if item.rel_path == "自然科学基金-AI与信息智能")
+    assert info.kind == "fund"
+
+
 def test_uninitialized_corpus_reports_no_sqlite(tmp_path):
     settings = make_settings(tmp_path)
     seed_ready(tmp_path, "demo_langchain")
@@ -63,35 +74,35 @@ def test_uninitialized_corpus_reports_no_sqlite(tmp_path):
     assert info.db_dir == tmp_path / "knowledge" / "自然科学基金" / "datadb"
 
 
-def test_corpus_without_source_is_skipped(tmp_path):
+def test_empty_directory_is_a_visible_corpus_without_creating_source(tmp_path):
     settings = make_settings(tmp_path)
     seed_ready(tmp_path, "demo_langchain")
-    (tmp_path / "knowledge" / "empty" / "datadb").mkdir(parents=True)
-    assert "empty" not in {item.rel_path for item in scan_corpora(settings)}
+    empty = tmp_path / "knowledge" / "empty"
+    empty.mkdir()
+    item = next(item for item in scan_corpora(settings) if item.rel_path == "empty")
+    assert item.name == "empty" and item.preparation == "uninitialized"
+    assert not item.source_dir.exists()
 
 
-def test_default_corpus_resolves_by_name_then_first_ready(tmp_path):
-    settings = make_settings(tmp_path)
+def test_first_corpus_is_directory_sorted_and_ignores_default_and_readiness(tmp_path):
+    settings = make_settings(tmp_path, "自然科学基金")
+    (tmp_path / "knowledge" / "a-empty").mkdir(parents=True)
     seed_ready(tmp_path, "demo_langchain", 2)
     seed_ready(tmp_path, "自然科学基金", 3)
     infos = scan_corpora(settings)
-    default = next(item for item in infos if item.is_default)
-    assert default.rel_path == "demo_langchain" and default.docs_count == 2
-    assert resolve_default(infos, settings).id == default.id
-
-    # DEFAULT_CORPUS missing -> first ready corpus by rel_path (never raises).
-    fallback = next(item for item in scan_corpora(make_settings(tmp_path, "missing")) if item.is_default)
-    assert fallback.preparation == "ready"
+    assert [item.rel_path for item in infos] == ["a-empty", "demo_langchain", "自然科学基金"]
+    assert next(item for item in infos if item.is_default).rel_path == "a-empty"
+    assert resolve_default(infos, settings).rel_path == "a-empty"
 
 
-def test_no_ready_corpus_has_no_default(tmp_path):
+def test_unready_corpus_is_still_the_default_candidate(tmp_path):
     settings = make_settings(tmp_path)
     source = tmp_path / "knowledge" / "only" / "source"
     source.mkdir(parents=True)
     (source / "a.md").write_text("x", encoding="utf-8")
     infos = scan_corpora(settings)
-    assert infos and not any(item.is_default for item in infos)
-    assert resolve_default(infos, settings) is None
+    assert infos and next(item for item in infos if item.is_default).rel_path == "only"
+    assert resolve_default(infos, settings).rel_path == "only"
 
 
 def test_legacy_display_names_migrate_to_alias(tmp_path):
@@ -101,9 +112,29 @@ def test_legacy_display_names_migrate_to_alias(tmp_path):
     state = tmp_path / "knowledge" / ".state"
     state.mkdir(parents=True, exist_ok=True)
     (state / "corpora.json").write_text(json.dumps({"自然科学基金": {"name": "友好名"}}), encoding="utf-8")
-    # When scanning, the friendly name survives as an alias (A regression fix)
+    # Aliases remain stored for migration history but never replace directory names.
     info = next(item for item in scan_corpora(settings) if item.rel_path == "自然科学基金")
-    assert info.alias == "友好名" and info.name == "友好名"
+    assert info.alias == "友好名" and info.name == "自然科学基金"
+    first_disk_state = (state / "corpora.json").read_text(encoding="utf-8")
+    migrated = json.loads(first_disk_state)
+    assert list(migrated) == [info.id]
+    assert migrated[info.id]["alias"] == "友好名" and "name" not in migrated[info.id]
+    scan_corpora(settings)
+    assert (state / "corpora.json").read_text(encoding="utf-8") == first_disk_state
+
+
+def test_user_scan_with_corrupt_corpus_registry_preserves_file_and_fails_clearly(tmp_path):
+    settings = make_settings(tmp_path)
+    seed_ready(tmp_path, "自然科学基金")
+    state = tmp_path / "knowledge" / ".state"
+    state.mkdir(parents=True)
+    registry = state / "corpora.json"
+    registry.write_text("{invalid", encoding="utf-8")
+
+    import pytest
+    with pytest.raises(ValueError, match="无法读取或已损坏"):
+        scan_corpora(settings)
+    assert registry.read_text(encoding="utf-8") == "{invalid"
 
 
 def test_migrate_layout_moves_demo_state_and_rewrites_origins(tmp_path, monkeypatch):

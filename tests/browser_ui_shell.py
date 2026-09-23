@@ -60,6 +60,14 @@ async def main():
             await expect(status.get_by_text("offline")).to_be_visible()
             await expect(status.get_by_text("正常")).to_be_visible()
 
+            await page.get_by_role("textbox", name="问题", exact=True).fill("未发送草稿")
+            await page.get_by_role("button", name="Prompt / Skill").click()
+            await page.get_by_role("button", name="对话", exact=True).click()
+            await expect(page.get_by_role("textbox", name="问题", exact=True)).to_have_value("未发送草稿")
+            await page.get_by_role("button", name="收起侧栏").click()
+            await expect(page.get_by_role("button", name="对话", exact=True)).to_be_visible()
+            await page.get_by_role("button", name="展开侧栏").click()
+
             # session list: grouping, search, archive
             await expect(sidebar.get_by_text("今天的会话")).to_be_visible()
             await expect(sidebar.get_by_text("昨天的会话")).to_be_visible()
@@ -68,6 +76,22 @@ async def main():
             await expect(sidebar.get_by_text("今天的会话")).to_have_count(0)
             await expect(sidebar.get_by_text("昨天的会话")).to_be_visible()
             await page.get_by_role("textbox", name="搜索会话").fill("")
+
+            # Given the shared inspector, Esc closes it; opening settings leaves only
+            # the top right-side surface visible.
+            await page.get_by_role("button", name="检查器").click()
+            await expect(page.get_by_text("检查器", exact=True)).to_be_visible()
+            slider = page.get_by_role("slider", name="检查器宽度")
+            await slider.focus()
+            await slider.press("End")
+            await expect(slider).to_have_value("520")
+            await page.keyboard.press("Escape")
+            await expect(page.locator("aside[aria-hidden]")).to_have_attribute("aria-hidden", "true")
+            await page.get_by_role("button", name="检查器").click()
+            await page.get_by_role("button", name="设置", exact=True).click()
+            await expect(page.get_by_role("dialog", name="设置与运维")).to_be_visible()
+            await expect(page.locator("aside[aria-hidden]")).to_have_attribute("aria-hidden", "true")
+            await page.keyboard.press("Escape")
 
             # a newly created (unpersisted) session stays visible in the list
             await page.get_by_role("button", name="＋ 新的问答").click()
@@ -90,6 +114,13 @@ async def main():
             await page.keyboard.press("Escape")
             await expect(dialog).to_have_count(0)
             assert await page.evaluate("document.activeElement && document.activeElement.textContent") == "设置"
+
+            await page.reload()
+            await page.get_by_role("button", name="检查器").click()
+            await expect(page.get_by_role("slider", name="检查器宽度")).to_have_value("520")
+            await page.set_viewport_size({"width": 375, "height": 740})
+            bounds = await page.locator("aside[aria-hidden='false']").bounding_box()
+            assert bounds and bounds["width"] >= 370, bounds
 
             assert not errors, errors
             print("PASS: rail convergence, compact health, session grouping/search/unsaved, drawer a11y+unmount")

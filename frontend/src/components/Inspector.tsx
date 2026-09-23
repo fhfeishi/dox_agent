@@ -1,10 +1,20 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
+import { fetchReport, fetchRun, fetchTemplate, fetchTemplates, type ReportInfo, type RunSnapshot, type TemplateInfo, type TemplateSummary } from "../api";
+import { downloadText } from "../exportText";
+import { formatDuration } from "../conversation";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { TextPreview } from "./DocumentPreview";
 
 type InspTab = "out" | "cite" | "src";
+
+const OUTCOME_LABEL: Record<string, string> = {
+  running: "进行中", completed: "已完成", interrupted: "已中断", failed: "未完成", timed_out: "已超时",
+};
 
 function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactNode }) {
   return (
@@ -26,37 +36,174 @@ export function Inspector() {
     turns,
     currentCorpus,
     activeTask,
+    tasks,
     taskCapable,
     documents,
     openDocument,
     corpusReady,
     workspace,
     options,
-    showToast,
+    setNav,
+    drawerOpen,
+    openCorpusId,
+    previewDoc,
+    explorerOpen,
+    inspectorTarget,
+    inspectorCanGoBack,
+    inspectorPinned,
+    backInspector,
+    toggleInspectorPinned,
+    inspectorWidth,
+    setInspectorWidth,
+    corpora,
+    openCorpus,
+    startTask,
+    openFullPreview,
+    showInspector,
   } = useApp();
   const [tab, setTab] = useState<InspTab>("out");
+  const [report, setReport] = useState<ReportInfo | null>(null);
+  const [reportError, setReportError] = useState("");
+  const [template, setTemplate] = useState<TemplateInfo | null>(null);
+  const [templateError, setTemplateError] = useState("");
+  const [templateList, setTemplateList] = useState<TemplateSummary[]>([]);
+  const [runSnapshot, setRunSnapshot] = useState<RunSnapshot | null>(null);
+  const [runSnapshotMissing, setRunSnapshotMissing] = useState(false);
+
+  useEffect(() => {
+    if (inspectorTarget.kind !== "report") {
+      setReport(null);
+      setReportError("");
+      return;
+    }
+    let active = true;
+    setReport(null);
+    setReportError("");
+    void fetchReport(inspectorTarget.reportId).then(
+      (item) => { if (active) setReport(item); },
+      (error) => { if (active) setReportError(error instanceof Error ? error.message : "报告读取失败"); },
+    );
+    return () => { active = false; };
+  }, [inspectorTarget.kind, inspectorTarget.kind === "report" ? inspectorTarget.reportId : ""]);
+
+  useEffect(() => {
+    if (inspectorTarget.kind !== "template") {
+      setTemplate(null);
+      setTemplateError("");
+      return;
+    }
+    let active = true;
+    setTemplate(null);
+    setTemplateError("");
+    void fetchTemplate(inspectorTarget.templateId).then(
+      (item) => { if (active) setTemplate(item); },
+      (error) => { if (active) setTemplateError(error instanceof Error ? error.message : "输出模板读取失败"); },
+    );
+    return () => { active = false; };
+  }, [inspectorTarget.kind, inspectorTarget.kind === "template" ? inspectorTarget.templateId : ""]);
+
+  useEffect(() => {
+    let active = true;
+    void fetchTemplates().then(
+      (items) => { if (active) setTemplateList(items); },
+      () => { if (active) setTemplateList([]); },
+    );
+    return () => { active = false; };
+  }, []);
+
+  // B2: read the persisted run snapshot back for the execution summary; a legacy run without one
+  // is shown as "运行信息未记录" instead of failing silently.
+  const executionRunId = turns[turns.length - 1]?.runId ?? "";
+  useEffect(() => {
+    if (inspectorTarget.kind !== "execution" || !executionRunId) {
+      setRunSnapshot(null);
+      setRunSnapshotMissing(false);
+      return;
+    }
+    let active = true;
+    setRunSnapshot(null);
+    setRunSnapshotMissing(false);
+    void fetchRun(executionRunId).then(
+      (item) => { if (active) setRunSnapshot(item); },
+      () => { if (active) setRunSnapshotMissing(true); },
+    );
+    return () => { active = false; };
+  }, [inspectorTarget.kind, executionRunId]);
+
+  useEffect(() => {
+    if (!inspectorOpen || drawerOpen || openCorpusId || previewDoc || explorerOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        toggleInspector();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [inspectorOpen, drawerOpen, openCorpusId, previewDoc, explorerOpen, toggleInspector]);
 
   const latest = turns[turns.length - 1];
   const answered = turns.filter((t) => t.outcome === "completed").length;
   const citations = latest?.sources ?? [];
+  const selectedTask = inspectorTarget.kind === "task"
+    ? tasks.find((item) => item.id === inspectorTarget.taskId) : null;
+  const selectedTemplate = inspectorTarget.kind === "template"
+    ? (template?.id === inspectorTarget.templateId ? template : templateList.find((item) => item.id === inspectorTarget.templateId) ?? null)
+    : null;
+  const corpus = inspectorTarget.kind === "corpus" ? corpora.find((item) => item.id === inspectorTarget.corpusId) : null;
+  // A2/B2: prefer the persisted snapshot's authoritative scope; fall back to the live run event.
+  const effectiveCorpusIds = runSnapshot?.effective_corpus_ids?.length
+    ? runSnapshot.effective_corpus_ids
+    : latest?.runInfo?.effective_corpus_ids ?? [];
+  const effectiveScopeLabel = effectiveCorpusIds.length
+    ? effectiveCorpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")
+    : "";
+  const runModel = runSnapshot?.model || latest?.runInfo?.model || "";
+  const runPolicy = runSnapshot?.resource_policy || latest?.runInfo?.resource_policy || "";
+  const runStatus = runSnapshot?.status || latest?.outcome || "";
 
   return (
     <aside
       aria-hidden={!inspectorOpen}
-      className={`fixed top-[10px] right-[10px] bottom-[10px] z-[70] flex w-[404px] max-w-[94vw] flex-col overflow-hidden rounded-[14px] border border-[var(--hairline)] bg-[var(--surface-soft)] shadow-[-24px_8px_60px_-24px_rgba(15,15,15,0.28)] transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+      aria-label="检查器"
+      className={`fixed inset-y-0 right-0 z-[70] flex w-full flex-col overflow-hidden border border-[var(--hairline)] bg-[var(--surface-soft)] shadow-[-24px_8px_60px_-24px_rgba(15,15,15,0.28)] transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] sm:top-[10px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--inspector-width)] sm:rounded-[14px] ${
         inspectorOpen ? "translate-x-0" : "pointer-events-none translate-x-[calc(100%+20px)]"
       }`}
     >
       <div className="flex items-center gap-[8px] px-[18px] pt-[14px] pb-[12px]">
+        {inspectorCanGoBack ? (
+          <button type="button" aria-label="返回上一预览" onClick={backInspector}
+            className="grid size-[26px] shrink-0 place-items-center rounded-[6px] text-[var(--steel)] hover:bg-[var(--surface)]">
+            <Icon name="chevronLeft" size={14} />
+          </button>
+        ) : null}
         <span className="text-[13.5px] font-semibold tracking-[-0.1px] text-[var(--ink)]">
-          产出面板
+          {inspectorTarget.kind === "task" ? "任务预览"
+            : inspectorTarget.kind === "template" ? "输出模板预览"
+            : inspectorTarget.kind === "corpus" ? "知识库预览"
+            : inspectorTarget.kind === "document" ? "资料预览"
+            : inspectorTarget.kind === "report" ? "报告预览"
+            : inspectorTarget.kind === "execution" ? "执行摘要" : "检查器"}
         </span>
         <span className="min-w-0 flex-1 truncate text-[11.5px] text-[var(--stone)]">
-          {activeTask && taskCapable ? `· ${activeTask.name}` : "· 专业问答"}
+          {selectedTask?.name ?? selectedTemplate?.name ?? corpus?.name
+            ?? (inspectorTarget.kind === "document" ? inspectorTarget.doc.title
+            : inspectorTarget.kind === "report" ? "本会话报告"
+            : inspectorTarget.kind === "execution" ? "最近一轮回答"
+            : activeTask && taskCapable ? `· ${activeTask.name}` : "· 专业问答")}
         </span>
+        <button type="button" aria-label={inspectorPinned ? "取消固定检查器" : "固定检查器"}
+          title={inspectorPinned ? "取消固定" : "固定预览"} onClick={toggleInspectorPinned}
+          className={`grid size-[26px] shrink-0 place-items-center rounded-[6px] text-[12px] ${inspectorPinned ? "bg-[var(--primary-soft)] text-[var(--primary)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>
+          {inspectorPinned ? "●" : "○"}
+        </button>
+        <input type="range" aria-label="检查器宽度" title="调整检查器宽度" min={400} max={520} step={20}
+          value={inspectorWidth} onChange={(event) => setInspectorWidth(Number(event.target.value))}
+          className="hidden w-[52px] accent-[var(--primary)] sm:block" />
         <button
           type="button"
-          title="收起面板"
+          aria-label="关闭检查器"
+          title="关闭检查器"
           onClick={toggleInspector}
           className="grid size-[26px] shrink-0 place-items-center rounded-[6px] text-[var(--steel)] hover:bg-[var(--surface)]"
         >
@@ -64,7 +211,7 @@ export function Inspector() {
         </button>
       </div>
 
-      <div className="flex gap-[4px] border-b border-[var(--hairline)] px-[14px]">
+      {inspectorTarget.kind === "overview" ? <div className="flex gap-[4px] border-b border-[var(--hairline)] px-[14px]">
         {(
           [
             ["out", "概览"],
@@ -85,10 +232,158 @@ export function Inspector() {
             {label}
           </button>
         ))}
-      </div>
+      </div> : null}
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[18px] pt-[18px] pb-[20px]">
-        {tab === "out" ? (
+        {inspectorTarget.kind === "task" ? (
+          <>
+            <SectionTitle>任务模板</SectionTitle>
+            {selectedTask ? (
+              <Card>
+                <h2 className="text-[15px] font-semibold text-[var(--ink)]">{selectedTask.name}</h2>
+                <p className="mt-[8px] text-[12.5px] leading-[1.6] text-[var(--steel)]">{selectedTask.description}</p>
+                {selectedTask.example ? <p className="mt-[10px] text-[12px] text-[var(--slate)]">示例：{selectedTask.example}</p> : null}
+                {selectedTask.output_hint ? <p className="mt-[8px] text-[12px] text-[var(--slate)]">输出：{selectedTask.output_hint}</p> : null}
+                {selectedTask.templates?.length ? (
+                  <div className="mt-[12px]">
+                    <div className="text-[11px] font-semibold tracking-[0.5px] text-[var(--stone)] uppercase">输出模板</div>
+                    <div className="mt-[6px] flex flex-wrap gap-[6px]">
+                      {selectedTask.templates.map((id) => (
+                        <button
+                          key={id}
+                          type="button"
+                          onClick={() => showInspector({ kind: "template", templateId: id })}
+                          className="rounded-[6px] border border-[var(--hairline)] px-[8px] py-[5px] text-[11.5px] text-[var(--link)] hover:bg-[var(--primary-soft)]"
+                        >
+                          {templateList.find((item) => item.id === id)?.name ?? id}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+                <Button className="mt-[14px]" onClick={() => void startTask(selectedTask.id)}>使用此任务</Button>
+              </Card>
+            ) : <Card>任务已不可用，请刷新任务列表。</Card>}
+          </>
+        ) : null}
+
+        {inspectorTarget.kind === "corpus" ? (
+          <>
+            <SectionTitle>知识库</SectionTitle>
+            {corpus ? (
+              <Card>
+                <h2 className="text-[15px] font-semibold text-[var(--ink)]">{corpus.name}</h2>
+                <p className="mt-[8px] text-[12px] text-[var(--steel)]">
+                  已入库 {corpus.indexed_count ?? corpus.docs_count} / 源文件 {corpus.source_count ?? "未记录"}
+                  {corpus.failed_count ? ` · 失败 ${corpus.failed_count}` : ""}
+                </p>
+                <p className="mt-[5px] text-[12px] text-[var(--steel)]">{corpus.missing ? "目录缺失，请重新关联" : corpus.preparation === "ready" ? "可用于检索" : "待处理"}</p>
+                {corpus.description ? <p className="mt-[8px] text-[12px] leading-[1.6] text-[var(--slate)]">{corpus.description}</p> : null}
+                <Button className="mt-[14px]" onClick={() => openCorpus(corpus.id)}>打开详情</Button>
+              </Card>
+            ) : <Card>知识库已不可用，请刷新列表。</Card>}
+          </>
+        ) : null}
+
+        {inspectorTarget.kind === "report" ? (
+          <>
+            <SectionTitle>报告</SectionTitle>
+            {reportError ? <p role="alert" className="text-[12px] text-[var(--red)]">{reportError}</p> : null}
+            {!report && !reportError ? <p className="text-[12px] text-[var(--steel)]">正在读取报告…</p> : null}
+            {report?.report_id === inspectorTarget.reportId ? (
+              <Card>
+                <div className="mb-[12px] flex gap-[8px]">
+                  <Button size="sm" onClick={() => void navigator.clipboard.writeText(report.markdown)}>复制</Button>
+                  <Button size="sm" variant="ghost" onClick={() => downloadText(report.markdown, `report-${report.report_id.slice(0, 8)}.md`)}>下载 .md</Button>
+                </div>
+                <div className="markdown"><Markdown remarkPlugins={[remarkGfm]}>{report.markdown}</Markdown></div>
+              </Card>
+            ) : null}
+          </>
+        ) : null}
+
+        {inspectorTarget.kind === "template" ? (
+          <>
+            <SectionTitle>输出模板</SectionTitle>
+            {templateError ? <p role="alert" className="text-[12px] text-[var(--red)]">{templateError}</p> : null}
+            {!template && !templateError ? <p className="text-[12px] text-[var(--steel)]">正在读取输出模板…</p> : null}
+            {template?.id === inspectorTarget.templateId ? (
+              <Card>
+                <h2 className="text-[15px] font-semibold text-[var(--ink)]">{template.name}</h2>
+                <p className="mt-[4px] text-[11.5px] text-[var(--stone)]">内置只读模板 · 报告按此章节结构生成</p>
+                <div className="markdown mt-[12px]"><Markdown remarkPlugins={[remarkGfm]}>{template.content}</Markdown></div>
+              </Card>
+            ) : null}
+          </>
+        ) : null}
+
+        {inspectorTarget.kind === "execution" ? (
+          <>
+            <SectionTitle aside={<span className="text-[11px] text-[var(--stone)]">{latest ? OUTCOME_LABEL[latest.outcome] ?? latest.outcome : "无"}</span>}>
+              运行概览
+            </SectionTitle>
+            {!latest ? (
+              <Card>
+                <p className="text-[12.5px] text-[var(--steel)]">当前会话还没有可展示的执行记录。</p>
+              </Card>
+            ) : (
+              <>
+                <Card className="mb-[10px]">
+                  <div className="text-[12.8px] font-medium text-[var(--ink)]">运行信息</div>
+                  {runSnapshotMissing ? (
+                    <p className="mt-[6px] text-[12px] text-[var(--steel)]">运行信息未记录（历史运行或快照写入失败）。</p>
+                  ) : null}
+                  <dl className="mt-[8px] grid grid-cols-[auto_1fr] gap-x-[10px] gap-y-[4px] text-[12px]">
+                    <dt className="text-[var(--stone)]">运行 ID</dt><dd className="truncate font-code text-[var(--charcoal)]">{latest.runId}</dd>
+                    <dt className="text-[var(--stone)]">状态</dt><dd className="text-[var(--charcoal)]">{OUTCOME_LABEL[runStatus] ?? runStatus}</dd>
+                    <dt className="text-[var(--stone)]">总耗时</dt><dd className="text-[var(--charcoal)]">{latest.totalMs != null ? formatDuration(latest.totalMs) : "未提供"}</dd>
+                    <dt className="text-[var(--stone)]">首 token</dt><dd className="text-[var(--charcoal)]">{latest.firstTokenMs != null ? formatDuration(latest.firstTokenMs) : "未收到正文"}</dd>
+                    <dt className="text-[var(--stone)]">模型</dt><dd className="truncate text-[var(--charcoal)]">{runModel || "未记录"}</dd>
+                    <dt className="text-[var(--stone)]">资源策略</dt><dd className="text-[var(--charcoal)]">{runPolicy || "未记录"}</dd>
+                    <dt className="text-[var(--stone)]">服务端实际范围</dt><dd className="text-[var(--charcoal)]">{effectiveScopeLabel || "未记录"}</dd>
+                  </dl>
+                </Card>
+
+                <Card className="mb-[10px]">
+                  <div className="text-[12.8px] font-medium text-[var(--ink)]">执行阶段</div>
+                  {latest.steps?.length ? (
+                    <ol className="mt-[8px] space-y-[6px]">
+                      {latest.steps.map((step) => (
+                        <li key={`${step.id}-${step.sequence}-${step.status}`} className="flex items-center gap-[8px] text-[12px]">
+                          <span className="min-w-0 flex-1 truncate text-[var(--charcoal)]">{step.label}</span>
+                          <span className="shrink-0 text-[var(--stone)]">
+                            {step.status === "running" ? "进行中" : step.duration_ms != null ? formatDuration(step.duration_ms) : "已完成"}
+                          </span>
+                        </li>
+                      ))}
+                    </ol>
+                  ) : <p className="mt-[6px] text-[12px] text-[var(--steel)]">没有阶段记录。</p>}
+                </Card>
+
+                <Card>
+                  <div className="text-[12.8px] font-medium text-[var(--ink)]">检索与用量</div>
+                  <p className="mt-[6px] text-[12px] leading-[1.6] text-[var(--steel)]">
+                    路径 {latest.telemetry?.path ?? "未记录"} · 命中片段 {latest.telemetry?.chunks_retrieved ?? "未记录"} · 选中报告 {latest.telemetry?.reports_selected ?? "未记录"} · 上下文 {latest.telemetry?.context_tokens ?? "未记录"} tokens
+                  </p>
+                  <p className="mt-[5px] text-[12px] leading-[1.6] text-[var(--steel)]">
+                    输入 {latest.usage?.input_tokens ?? "未提供"} · 输出 {latest.usage?.output_tokens ?? "未提供"} · 总 {latest.usage?.total_tokens ?? "未提供"} · 调用 {latest.usage?.calls ?? 0} 次
+                  </p>
+                </Card>
+              </>
+            )}
+          </>
+        ) : null}
+
+        {inspectorTarget.kind === "document" ? (
+          <>
+            <SectionTitle>资料原文</SectionTitle>
+            <p className="mb-[12px] break-all text-[11px] text-[var(--stone)]">{documentMeta(inspectorTarget.doc)}</p>
+            <Button size="sm" className="mb-[14px]" onClick={() => openFullPreview(inspectorTarget.doc, inspectorTarget.page, inspectorTarget.corpusId, true)}>放大阅读</Button>
+            <TextPreview doc={inspectorTarget.doc} corpus={inspectorTarget.corpusId} />
+          </>
+        ) : null}
+
+        {inspectorTarget.kind === "overview" && tab === "out" ? (
           <>
             <SectionTitle
               aside={
@@ -117,18 +412,10 @@ export function Inspector() {
             <Card className="mb-[10px]">
               <div className="text-[12.8px] font-medium text-[var(--ink)]">结构化报告</div>
               <p className="mt-[6px] text-[12px] leading-[1.6] text-[var(--steel)]">
-                专项报告（task4）通过统一报告入口生成，后端 <code className="font-code">POST /api/reports</code>{" "}
-                就绪后在此展示与下载。
+                使用“专项报告”任务确认需求后，在对话中的报告卡生成；本会话报告可集中预览和下载。
               </p>
               <div className="mt-[10px] flex gap-[8px]">
-                {taskCapable ? (
-                  <Button size="sm" disabled title="报告接口未实现">
-                    生成报告
-                  </Button>
-                ) : null}
-                <Button size="sm" variant="ghost" onClick={() => showToast("报告接口未实现（E 阶段）")}>
-                  说明
-                </Button>
+                <Button size="sm" variant="ghost" onClick={() => setNav("reports")}>查看本会话报告</Button>
               </div>
             </Card>
 
@@ -138,11 +425,14 @@ export function Inspector() {
               <div className="mt-[6px] text-[11.5px] text-[var(--stone)]">
                 共 {workspace.sessions.length} 个会话 · {workspace.branches.length} 个分支
               </div>
+              <div className="mt-[10px] flex gap-[8px]">
+                <Button size="sm" variant="ghost" onClick={() => showInspector({ kind: "execution" })}>查看执行摘要</Button>
+              </div>
             </Card>
           </>
         ) : null}
 
-        {tab === "cite" ? (
+        {inspectorTarget.kind === "overview" && tab === "cite" ? (
           <SectionTitle
             aside={<span className="text-[11px] text-[var(--stone)]">{citations.length} 处引用</span>}
           >
@@ -150,7 +440,7 @@ export function Inspector() {
           </SectionTitle>
         ) : null}
 
-        {tab === "cite" && !citations.length ? (
+        {inspectorTarget.kind === "overview" && tab === "cite" && !citations.length ? (
           <Card>
             <p className="text-[12.5px] leading-[1.6] text-[var(--steel)]">
               本轮回答还没有引用。提问后，命中资料的来源会在这里逐条列出。
@@ -158,7 +448,7 @@ export function Inspector() {
           </Card>
         ) : null}
 
-        {tab === "cite" ? (
+        {inspectorTarget.kind === "overview" && tab === "cite" ? (
           <div className="flex flex-col gap-[10px]">
             {citations.map((s, i) => {
               const n = s.citation ?? i + 1;
@@ -199,7 +489,7 @@ export function Inspector() {
           </div>
         ) : null}
 
-        {tab === "src" ? (
+        {inspectorTarget.kind === "overview" && tab === "src" ? (
           <>
             <SectionTitle
               aside={

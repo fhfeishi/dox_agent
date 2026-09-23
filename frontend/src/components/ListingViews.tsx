@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { fetchReports, type ReportSummary } from "../api";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
@@ -45,7 +46,7 @@ function ViewShell({
 }
 
 export function TasksView() {
-  const { tasks, tasksError, taskId, startTask, taskCapable } = useApp();
+  const { tasks, tasksError, taskId, showInspector, taskCapable } = useApp();
 
   return (
     <ViewShell
@@ -76,7 +77,7 @@ export function TasksView() {
               <button
                 key={task.id}
                 type="button"
-                onClick={() => void startTask(task.id)}
+                onClick={() => showInspector({ kind: "task", taskId: task.id })}
                 className="font-app flex flex-col gap-[10px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[16px] text-left transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-[0_4px_12px_rgba(15,15,15,0.08)]"
               >
                 <span
@@ -100,7 +101,7 @@ export function TasksView() {
                 ) : null}
                 <span className="mt-auto flex items-center gap-[6px] text-[11.5px] text-[var(--stone)]">
                   <Icon name="chevronRight" size={12} strokeWidth={2.2} />
-                  {task.id === "task4" ? "报告入口未实现，暂在对话中提示" : "以此任务新建会话"}
+                  查看任务详情
                 </span>
               </button>
             );
@@ -111,19 +112,63 @@ export function TasksView() {
 }
 
 export function ReportsView() {
-  const { showToast } = useApp();
+  const { workspace, startTask, corpora, showInspector } = useApp();
+  const [reportList, setReportList] = useState<{ sessionKey: string; items: ReportSummary[] } | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    setReportList(null);
+    setError("");
+    setLoading(true);
+    // W0 deliberately stays within the active session. The global Artifact list belongs to W3.
+    if (!workspace.active) {
+      setLoading(false);
+      return;
+    }
+    void fetchReports(workspace.active).then(
+      (items) => { if (active) setReportList({ sessionKey: workspace.active, items }); },
+      (cause) => { if (active) setError(cause instanceof Error ? cause.message : "报告列表读取失败"); },
+    ).finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, [workspace.active]);
+
+  const reports = reportList?.sessionKey === workspace.active ? reportList.items : [];
 
   return (
     <ViewShell
-      title="报告"
-      description="专项报告按模板生成 Markdown，支持预览、复制与下载。该能力依赖后端 POST /api/reports（E 阶段），当前仅占位。"
-      actions={<Button onClick={() => showToast("报告接口未实现（E 阶段）")}>生成报告</Button>}
+      title="本会话报告"
+      description="查看当前会话生成的专项报告。选择“专项报告”任务、确认资料范围后，可在对话中生成新报告。"
+      actions={<Button onClick={() => void startTask("task4")}>新建专项报告</Button>}
     >
-      <div className="col-span-full rounded-[12px] border border-dashed border-[var(--hairline-strong)] bg-[var(--surface-soft)] p-[28px] text-center">
-        <p className="text-[13.5px] font-medium text-[var(--ink)]">报告入口尚未实现</p>
-        <p className="mx-auto mt-[8px] max-w-[520px] text-[12.5px] leading-[1.6] text-[var(--steel)]">
-          计划中的四类模板（成果 / 热点 / 未来方向 / 综合）依赖后端报告接口；接口就绪前不展示列表，也不提供导出。
-        </p>
+      {error ? <p role="alert" className="col-span-full text-[13px] text-[var(--red)]">{error}</p> : null}
+      {loading ? <p className="col-span-full text-[13px] text-[var(--steel)]">正在读取报告…</p> : null}
+      {!loading && !error && !reports.length ? (
+        <p className="col-span-full text-[13px] text-[var(--steel)]">本会话还没有报告。</p>
+      ) : null}
+      {reports.map((report) => (
+        <button key={report.report_id} type="button" onClick={() => showInspector({ kind: "report", reportId: report.report_id, sessionKey: workspace.active })}
+          className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-left hover:border-[var(--primary)]">
+          <span className="block text-[14px] font-semibold text-[var(--ink)]">{report.domain || "未命名报告"}</span>
+          <span className="mt-[5px] block text-[12px] text-[var(--steel)]">
+            {report.template_id || "模板未记录"} · {report.corpus_id
+              ? (corpora.find((corpus) => corpus.id === report.corpus_id)?.name ?? report.corpus_id)
+              : "来源库未记录"} · {report.created_at?.slice(0, 10) || "时间未记录"}
+          </span>
+        </button>
+      ))}
+    </ViewShell>
+  );
+}
+
+export function PromptSkillView() {
+  const { setNav } = useApp();
+  return (
+    <ViewShell title="Prompt / Skill" description="这里将管理可复用指令和受控能力。当前版本的指令随内置任务发布，尚不支持在界面中查看、编辑或启用自定义 Skill。">
+      <div className="col-span-full rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[20px]">
+        <p className="text-[13px] text-[var(--steel)]">现有四个任务可以使用内置指令。选择任务后可查看用途与输出要求。</p>
+        <Button className="mt-[12px]" onClick={() => setNav("tasks")}>查看任务</Button>
       </div>
     </ViewShell>
   );

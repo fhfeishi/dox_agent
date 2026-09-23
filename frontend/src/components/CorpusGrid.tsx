@@ -8,14 +8,17 @@ const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演
 const PREPARATION: Record<string, { label: string; tone: "mint" | "yellow" | "rose" | "gray" }> = {
   ready: { label: "就绪", tone: "mint" },
   empty: { label: "空库", tone: "yellow" },
-  uninitialized: { label: "未初始化", tone: "yellow" },
+  uninitialized: { label: "空库", tone: "yellow" },
   running: { label: "准备中", tone: "yellow" },
   error: { label: "加载失败", tone: "rose" },
 };
 
 function statusOf(corpus: CorpusInfo): { label: string; tone: "mint" | "yellow" | "rose" | "gray" } {
+  if (corpus.missing) return { label: "目录缺失", tone: "rose" };
   if (corpus.job?.status === "running") return { label: "导入中", tone: "yellow" };
+  if (corpus.failed_count) return { label: "部分失败", tone: "rose" };
   if (corpus.job?.status === "error" || corpus.preparation === "error") return { label: "导入失败", tone: "rose" };
+  if (corpus.pending_count) return { label: "待入库", tone: "yellow" };
   return PREPARATION[corpus.preparation] ?? { label: corpus.preparation, tone: "gray" };
 }
 
@@ -24,9 +27,15 @@ export function CorpusGrid() {
   const {
     corpora,
     corporaError,
-    effectiveCorpusId,
+    corpusIds,
     openCorpus,
+    showInspector,
     refreshCorpora,
+    refreshAllCorpora,
+    runCorpusIngest,
+    startCorpusChat,
+    ingestBusy,
+    status,
     newCorpusOpen,
     setNewCorpusOpen,
     setNav,
@@ -48,6 +57,7 @@ export function CorpusGrid() {
 
   const totalDocs = corpora.reduce((sum, c) => sum + c.docs_count, 0);
   const readyCount = corpora.filter((c) => c.preparation === "ready").length;
+  const missingCount = corpora.filter((c) => c.missing).length;
 
   async function run(action: () => Promise<void>) {
     setBusy(true);
@@ -63,11 +73,11 @@ export function CorpusGrid() {
   }
 
   return (
-    <section aria-label="文献库" className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
+    <section aria-label="知识库" className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
       <header className="flex h-[52px] shrink-0 items-center gap-[10px] border-b border-[var(--hairline)] pr-[14px] pl-[18px]">
-        <span className="text-[14px] font-semibold text-[var(--ink)]">文献库</span>
+        <span className="text-[14px] font-semibold text-[var(--ink)]">知识库</span>
         <span className="min-w-0 flex-1 truncate text-[11.5px] text-[var(--stone)]">
-          · 共 {corpora.length} 个库 · {totalDocs} 份文档 · {readyCount} 就绪
+          · 共 {corpora.length} 个库 · {totalDocs} 份文档 · {readyCount} 就绪{missingCount ? ` · 需要处理 ${missingCount}` : ""}
         </span>
         <Button variant="ghost" size="md" icon="chat" onClick={() => setNav("chat")}>
           返回对话
@@ -78,12 +88,15 @@ export function CorpusGrid() {
         <div className="mx-auto w-full max-w-[1180px] px-[34px] pt-[26px]">
           <h1 className="mb-[6px] text-[26px] font-semibold tracking-[-0.6px] text-[var(--ink)]">知识库</h1>
           <p className="max-w-[680px] text-[13.5px] leading-[1.6] text-[var(--steel)]">
-            每个知识库是一组已解析的本地报告。浏览不会改变当前对话的检索范围；在库详情里点「用于当前对话」才会切换。
+            知识库名称与本地目录一致。浏览不会改变当前对话范围；可在详情中加入或移除知识库。
           </p>
 
           <div className="mt-[18px] flex flex-wrap items-center gap-[9px]">
             <Button variant="primary" icon="plus" iconSize={13} onClick={() => setNewCorpusOpen(!newCorpusOpen)}>
               新建知识库
+            </Button>
+            <Button variant="ghost" icon="reload" iconSize={13} disabled={ingestBusy} onClick={() => void refreshAllCorpora()}>
+              {ingestBusy ? "正在刷新…" : "刷新并入库"}
             </Button>
             <label className="mx-[0] flex min-w-[220px] flex-1 items-center gap-[8px] rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-[var(--stone)] focus-within:border-[var(--primary)]">
               <Icon name="search" size={14} />
@@ -107,7 +120,8 @@ export function CorpusGrid() {
                   const info = await createCorpus(name.trim());
                   setName("");
                   setNewCorpusOpen(false);
-                  showToast(`已创建「${info.name}」，可在详情里导入文档`);
+                  showToast(`已创建「${info.name}」`);
+                  openCorpus(info.id);
                 });
               }}
             >
@@ -126,7 +140,7 @@ export function CorpusGrid() {
                 取消
               </Button>
               <p className="w-full text-[11.5px] text-[var(--stone)]">
-                新建后为空库；在库详情「导入」或「源文件」里加入 md / pdf / txt / docx。
+                新建后为空库；创建后可直接在该库详情里拖放或选择 md / pdf / txt / docx。
               </p>
             </form>
           ) : null}
@@ -141,12 +155,13 @@ export function CorpusGrid() {
               {notice}
             </p>
           ) : null}
+          {status ? <p role="status" className="mt-[10px] text-[11.5px] text-[var(--steel)]">{status}</p> : null}
         </div>
 
         <div className="mx-auto grid w-full max-w-[1180px] grid-cols-[repeat(auto-fill,minmax(268px,1fr))] gap-[14px] px-[34px] pt-[20px] pb-[40px]">
           {visible.map((corpus) => {
             const status = statusOf(corpus);
-            const isActive = corpus.id === effectiveCorpusId;
+            const isActive = corpusIds.includes(corpus.id);
             return (
               <article
                 key={corpus.id}
@@ -155,7 +170,7 @@ export function CorpusGrid() {
                 <div className="flex items-start gap-[11px]">
                   <button
                     type="button"
-                    onClick={() => openCorpus(corpus.id)}
+                    onClick={() => showInspector({ kind: "corpus", corpusId: corpus.id })}
                     className="flex min-w-0 flex-1 items-start gap-[11px] text-left"
                   >
                     <span className="grid size-[36px] shrink-0 place-items-center rounded-[8px] bg-[var(--tint-sky)] text-[var(--link)]">
@@ -169,6 +184,11 @@ export function CorpusGrid() {
                         {KIND_LABEL[corpus.kind] ?? corpus.kind}
                         {corpus.domain && corpus.domain !== "unknown" ? ` · ${corpus.domain}` : ""}
                       </span>
+                      {corpus.description ? (
+                        <span className="mt-[4px] line-clamp-2 block text-[11.5px] leading-[1.45] text-[var(--slate)]">
+                          {corpus.description}
+                        </span>
+                      ) : null}
                     </span>
                   </button>
                   <div className="relative">
@@ -195,18 +215,17 @@ export function CorpusGrid() {
                         </button>
                         <button
                           type="button"
-                          disabled={corpus.is_default}
-                          className="block w-full rounded-[6px] px-[9px] py-[7px] text-left text-[12.5px] text-[var(--red)] hover:bg-[var(--surface)] disabled:opacity-40"
+                          className="block w-full rounded-[6px] px-[9px] py-[7px] text-left text-[12.5px] text-[var(--red)] hover:bg-[var(--surface)]"
                           onClick={() => {
                             setMenuId(null);
-                            if (window.confirm(`删除知识库「${corpus.name}」的派生数据？源文件保留。`)) {
+                            if (window.confirm(`清理知识库「${corpus.name}」的索引？源文件保留。`)) {
                               void run(async () => {
                                 await deleteCorpus(corpus.id);
                               });
                             }
                           }}
                         >
-                          删除派生数据
+                          清理索引（保留文件）
                         </button>
                       </div>
                     ) : null}
@@ -243,12 +262,18 @@ export function CorpusGrid() {
 
                 <div className="flex flex-wrap items-center gap-[5px]">
                   <Pill tone={status.tone}>{status.label}</Pill>
-                  {corpus.is_default ? <Pill tone="gray">默认</Pill> : null}
                   {isActive ? <Pill tone="lav">当前对话</Pill> : null}
                 </div>
 
                 <footer className="mt-auto flex items-center gap-[10px] border-t border-[var(--hairline-soft)] pt-[11px] text-[11.5px] text-[var(--stone)]">
-                  <b className="font-semibold text-[var(--slate)]">{corpus.docs_count}</b> 份文档
+                  <span>
+                    已入库 <b className="font-semibold text-[var(--slate)]">{corpus.indexed_count ?? corpus.docs_count}</b> / 源文件 <b className="font-semibold text-[var(--slate)]">{corpus.source_count ?? 0}</b>
+                  </span>
+                  {corpus.pending_count || corpus.failed_count ? (
+                    <span className="text-[#9a6500]">
+                      待处理 {corpus.pending_count ?? 0} / 失败 {corpus.failed_count ?? 0}
+                    </span>
+                  ) : null}
                   <button
                     type="button"
                     className="ml-auto inline-flex items-center gap-[4px] text-[var(--link)] hover:underline"
@@ -258,6 +283,14 @@ export function CorpusGrid() {
                     <Icon name="chevronRight" size={11} strokeWidth={2.4} />
                   </button>
                 </footer>
+                <div className="flex flex-wrap gap-[7px] text-[11.5px]">
+                  <button type="button" disabled={Boolean(corpus.missing)} onClick={() => void startCorpusChat(corpus.id)}
+                    className="rounded-[6px] bg-[var(--primary-soft)] px-[8px] py-[5px] text-[var(--primary-pressed)] hover:bg-[var(--primary-soft-2)] disabled:opacity-50">与此库对话</button>
+                  <button type="button" disabled={Boolean(corpus.missing)} onClick={() => openCorpus(corpus.id)}
+                    className="rounded-[6px] px-[8px] py-[5px] text-[var(--steel)] hover:bg-[var(--surface)] disabled:opacity-50">添加资料</button>
+                  <button type="button" disabled={Boolean(corpus.missing) || ingestBusy} onClick={() => void runCorpusIngest(corpus.id)}
+                    className="rounded-[6px] px-[8px] py-[5px] text-[var(--steel)] hover:bg-[var(--surface)] disabled:opacity-50">刷新</button>
+                </div>
               </article>
             );
           })}
@@ -275,7 +308,7 @@ export function CorpusGrid() {
 
         {!corpora.length && !corporaError ? (
           <p className="mx-auto -mt-[120px] w-full max-w-[1180px] px-[34px] text-center text-[13px] text-[var(--steel)]">
-            还没有知识库。新建后用「导入」或「源文件」加入资料。
+            还没有知识库。新建后在该库详情里拖放或选择文档即可添加资料。
           </p>
         ) : null}
       </div>

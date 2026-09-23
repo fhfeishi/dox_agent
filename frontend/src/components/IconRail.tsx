@@ -4,9 +4,10 @@ import { BrandMark, Icon, type IconName } from "./Icons";
 
 const NAV_ITEMS: { key: NavKey; icon: IconName; label: string }[] = [
   { key: "chat", icon: "chat", label: "对话" },
-  { key: "tasks", icon: "tasks", label: "任务模板" },
-  { key: "library", icon: "library", label: "文献库" },
-  { key: "reports", icon: "reports", label: "报告" },
+  { key: "library", icon: "library", label: "知识库" },
+  { key: "tasks", icon: "tasks", label: "任务" },
+  { key: "reports", icon: "reports", label: "成果" },
+  { key: "prompts", icon: "checklist", label: "Prompt / Skill" },
 ];
 
 function RailButton({
@@ -87,7 +88,7 @@ export function IconRail() {
 
       <RailButton
         icon="panel"
-        label="产出面板"
+        label="检查器"
         active={inspectorOpen}
         onClick={toggleInspector}
       />

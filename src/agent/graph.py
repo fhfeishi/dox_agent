@@ -50,9 +50,11 @@ class State(TypedDict, total=False):
 _TEMPLATE_KEYWORDS = (("成果", "achievements"), ("热点", "hotspots"),
                       ("未来", "future_directions"), ("趋势", "future_directions"),
                       ("综合", "comprehensive"))
-_FIELD_LABELS = {"domain": "研究领域", "year_from": "起始年份", "template": "报告模板"}
+_FIELD_LABELS = {"domain": "研究领域", "year_from": "填表日期年份（报告提交时间）", "template_id": "报告模板"}
 _YEAR_RANGE = re.compile(r"(\d{4})\s*(?:[-–—~至到]|--)\s*(\d{4})")
 _YEAR_SINGLE = re.compile(r"(?<!\d)(\d{4})(?!\d)")
+_DOMAIN = re.compile(r"(?:研究领域|领域)\s*[:：]\s*([^\n；;，,。]+)")
+_FUND_TYPES = ("面上项目", "重点项目", "联合基金项目", "重大研究计划")
 
 
 def extract_report_params(messages: list[dict], corpus_domain: str = "") -> dict:
@@ -62,9 +64,13 @@ def extract_report_params(messages: list[dict], corpus_domain: str = "") -> dict
         if message.get("role") != "user":
             continue
         text = message.get("content", "")
+        if domain := _DOMAIN.search(text):
+            params["domain"] = domain.group(1).strip()
+        if any(label in text for label in _FUND_TYPES):
+            params["fund_type"] = next(label for label in _FUND_TYPES if label in text)
         for keyword, template in _TEMPLATE_KEYWORDS:
             if keyword in text:
-                params["template"] = template
+                params["template_id"] = template
         match = _YEAR_RANGE.search(text)
         if match:
             start, end = int(match.group(1)), int(match.group(2))
@@ -81,15 +87,19 @@ def intake_reply(params: dict) -> tuple[str, bool]:
     if params.get("domain"):
         known.append(f"研究领域：{params['domain']}（默认当前库领域，可修改）")
     if params.get("year_from") and params.get("year_to"):
-        known.append(f"年份：{params['year_from']}–{params['year_to']}")
-    if params.get("template"):
-        known.append(f"模板：{params['template']}")
+        known.append(f"填表日期年份（报告提交时间）：{params['year_from']}–{params['year_to']}")
+    if params.get("fund_type"):
+        known.append(f"基金类别：{params['fund_type']}")
+    else:
+        known.append("基金类别：不限")
+    if params.get("template_id"):
+        known.append(f"模板：{params['template_id']}")
     known_text = "；".join(known)
     missing = [label for key, label in _FIELD_LABELS.items() if not params.get(key)]
     if missing:
         prefix = f"已记录：{known_text}。\n" if known_text else ""
         return prefix + f"还缺：{'、'.join(missing)}。请补充，或说明要修改的项。", False
-    return f"已记录报告需求：{known_text}。\n报告入口尚未就绪，需求已记录；接口上线后即可生成正文。", True
+    return f"已记录报告需求：{known_text}。", True
 
 
 def build_graph(knowledge: Knowledge, settings: Settings, model=None):

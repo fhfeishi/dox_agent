@@ -54,16 +54,16 @@ def test_read_preserves_page_and_line(tmp_path):
 
 
 def test_failed_import_keeps_good_document(tmp_path):
-    text_root = tmp_path / "texts"
-    text_root.mkdir()
-    source = text_root / "a.txt"
+    source_root = tmp_path / "source"
+    source_root.mkdir()
+    source = source_root / "a.txt"
     source.write_text("测试正文", encoding="utf-8")
-    settings = Settings(_env_file=None, text_root=text_root, knowledge_root=tmp_path)
+    settings = Settings(_env_file=None, corpora_root=tmp_path / "knowledge")
     store = Knowledge(tmp_path / "db")
-    report = import_defaults(store, settings)
+    report = import_defaults(store, settings, root=source_root)
     assert len(report["imported"]) == 1
     source.write_bytes(b"\xff\xfe")
-    assert len(import_defaults(store, settings)["errors"]) == 1
+    assert len(import_defaults(store, settings, root=source_root)["errors"]) == 1
     assert store.read(store.all()[0]["doc_id"])["text"] == "测试正文"
 
 

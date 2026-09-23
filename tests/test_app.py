@@ -7,7 +7,7 @@ from src.main import create_app
 
 
 def setup(tmp_path, graph_factory=None):
-    settings = Settings(_env_file=None, data_dir=tmp_path, state_dir=tmp_path)
+    settings = Settings(_env_file=None, corpora_root=tmp_path / ".knowledge", state_dir=tmp_path)
     store = Knowledge(tmp_path / "db")
     args = {"settings": settings, "knowledge": store}
     if graph_factory:
@@ -166,7 +166,7 @@ def test_background_preparation(tmp_path, monkeypatch, outcome):
 
     monkeypatch.setattr(main, "Knowledge", lambda *args, **kwargs: store)
     monkeypatch.setattr(main, "import_official", importer)
-    app = create_app(settings=Settings(_env_file=None, data_dir=tmp_path, state_dir=tmp_path))
+    app = create_app(settings=Settings(_env_file=None, corpora_root=tmp_path / ".knowledge", state_dir=tmp_path))
     with TestClient(app) as client:
         try:
             assert client.get("/api/health").json()["preparation"] == "running"

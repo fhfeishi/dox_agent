@@ -1,4 +1,4 @@
-"""K0 (app-level session DB) and K0b (corpus-scoped read/file)."""
+"""K0 (app-level session DB) and K0b (corpus-scoped read/file); §10 layout."""
 
 from fastapi.testclient import TestClient
 
@@ -8,18 +8,14 @@ from src.main import create_app, workspace_path
 
 
 def settings_for(tmp_path):
-    return Settings(
-        _env_file=None,
-        corpora_root=tmp_path / "knowledge",
-        data_dir=tmp_path / "demo" / "datadb",
-        state_dir=tmp_path / "state",
-    )
+    return Settings(_env_file=None, corpora_root=tmp_path / "knowledge",
+                    default_corpus="demo", state_dir=tmp_path / "state")
 
 
-def seed_corpus(tmp_path, name="自然科学基金"):
+def seed_corpus(tmp_path, name):
     corpus = tmp_path / "knowledge" / name
     source = corpus / "source"
-    source.mkdir(parents=True)
+    source.mkdir(parents=True, exist_ok=True)
     raw = source / "报告.md"
     raw.write_text("报告正文", encoding="utf-8")
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3")
@@ -28,12 +24,16 @@ def seed_corpus(tmp_path, name="自然科学基金"):
     return doc_id, raw
 
 
+def demo_db(tmp_path):
+    return tmp_path / "knowledge" / "demo" / "datadb" / "knowledge.sqlite3"
+
+
 def test_workspace_moves_to_app_level_state_and_migrates_once(tmp_path):
     settings = settings_for(tmp_path)
-    corpus = settings.data_dir
-    corpus.mkdir(parents=True)
-    knowledge = Knowledge(corpus / "knowledge.sqlite3")
-    legacy = corpus / "workspace.sqlite3"
+    db_dir = tmp_path / "knowledge" / "demo" / "datadb"
+    db_dir.mkdir(parents=True)
+    knowledge = Knowledge(db_dir / "knowledge.sqlite3")
+    legacy = db_dir / "workspace.sqlite3"
     legacy.write_text("legacy", encoding="utf-8")
 
     target = workspace_path(settings, knowledge)
@@ -47,19 +47,19 @@ def test_workspace_moves_to_app_level_state_and_migrates_once(tmp_path):
 
 def test_sessions_live_outside_the_active_corpus(tmp_path):
     settings = settings_for(tmp_path)
-    store = Knowledge(settings.data_dir / "knowledge.sqlite3")
-    app = create_app(settings, store)
+    app = create_app(settings, Knowledge(demo_db(tmp_path)))
     with TestClient(app) as client:
         assert client.put("/api/workspace/sessions/s1",
                           json={"title": "会话", "data": {"turns": [], "options": {}}, "revision": 0}).status_code == 200
     assert (tmp_path / "state" / "workspace.sqlite3").is_file()
-    assert not (settings.data_dir / "workspace.sqlite3").exists()
+    assert not (tmp_path / "knowledge" / "demo" / "datadb" / "workspace.sqlite3").exists()
 
 
 def test_non_default_corpus_read_and_file_require_corpus_param(tmp_path):
-    doc_id, raw = seed_corpus(tmp_path)
+    doc_id, raw = seed_corpus(tmp_path, "自然科学基金")
+    seed_corpus(tmp_path, "demo")  # a default corpus exists
     settings = settings_for(tmp_path)
-    app = create_app(settings, Knowledge(settings.data_dir / "knowledge.sqlite3"))
+    app = create_app(settings, Knowledge(demo_db(tmp_path)))
     with TestClient(app) as client:
         corpus_id = next(item["id"] for item in client.get("/api/corpora").json() if not item["is_default"])
         listed = client.get(f"/api/documents?corpus={corpus_id}").json()
@@ -88,8 +88,9 @@ def test_corpus_id_is_injective_and_length_bounded():
 
 
 def test_corpus_create_rename_and_delete(tmp_path):
+    seed_corpus(tmp_path, "demo")
     settings = settings_for(tmp_path)
-    app = create_app(settings, Knowledge(settings.data_dir / "knowledge.sqlite3"))
+    app = create_app(settings, Knowledge(demo_db(tmp_path)))
     with TestClient(app) as client:
         created = client.post("/api/corpora", json={"name": "新库"})
         assert created.status_code == 201
@@ -117,8 +118,9 @@ def test_corpus_create_rename_and_delete(tmp_path):
 
 
 def test_corpus_file_upload_list_rename_delete(tmp_path):
+    seed_corpus(tmp_path, "demo")
     settings = settings_for(tmp_path)
-    app = create_app(settings, Knowledge(settings.data_dir / "knowledge.sqlite3"))
+    app = create_app(settings, Knowledge(demo_db(tmp_path)))
     with TestClient(app) as client:
         cid = client.post("/api/corpora", json={"name": "文件库"}).json()["id"]
         uploaded = client.post(f"/api/corpora/{cid}/files",

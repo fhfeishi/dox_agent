@@ -19,7 +19,7 @@
 **范围外（首期不做）**：多租户/权限后台、多 Agent 协作、知识图谱、工作流画布、独立问题分类服务、材料遵循等级系统、自动全网研究、自动订阅同步、外部资讯抓取与科研头条、多模型路由与模型管理后台、模板管理平台、分布式任务队列。（`VITE_UI_NEWS`/`VITE_UI_MODELS` 等仅占位，不属首期交付。）
 
 **关键限制**：
-- 当前演示语料为 LangChain 技术文档（`.demo_langchain/`），**不是基金报告**；真实基金语料在 `.knowledge/自然科学基金/`，已接入库注册（侧栏可见）：source **35 份** PDF；**K13 mineru 重建完成**（`docs=35`、`files=35`、`parser=mineru`、`parsed` 按 rel 全覆盖、mineru 已停），**L1 已重索引**（正文独立存储、版本含 markdown、备份 `knowledge.sqlite3.pre-l1`），正文可读、页码可定位。进度见 [`ITERATION.md`](ITERATION.md) §5。
+- 当前演示语料为 LangChain 技术文档（`.knowledge/demo_langchain/`），**不是基金报告**；真实基金语料在 `.knowledge/` 下多个库（如 `.knowledge/自然科学基金/`），已接入库注册（侧栏可见）：source **35 份** PDF；**K13 mineru 重建完成**（`docs=35`、`files=35`、`parser=mineru`、`parsed` 按 rel 全覆盖、mineru 已停），**L1 已重索引**（正文独立存储、版本含 markdown、备份 `knowledge.sqlite3.pre-l1`），正文可读、页码可定位。进度见 [`ITERATION.md`](ITERATION.md) §5。
 - 未配置 `EMBEDDING_PATH` 时仅 BM25，不加载 embedding。
 - HTTP 可用、检索就绪、模型可用是三个独立条件；健康接口不主动调用模型，`model_verified` 恒 `false`（模型可用性判定待定，见 ITERATION）。
 
@@ -78,7 +78,7 @@
 | 库注册 | 磁盘扫描 + `CORPORA` 覆盖；每库独立 `Knowledge` | `src/agent/corpora.py` |
 | 工作区 | 会话/笔记持久化、revision、分支；工作区库固定在应用级 `STATE_DIR`，独立于活动语料（K0） | `src/workspace.py`、`frontend/src/workspace.ts` |
 | 前端 | 会话/任务/资料/文档窗口/文献库/设置与状态 | `frontend/src/` |
-| 本地数据 | 自包含库 `.knowledge/<库>/{source,datadb,vectordb}/`；**规划**：应用状态与演示库统一到 `.knowledge/`（`.state/`、`demo_langchain/`），移除 `data/`/`DATA_DIR`/`VECTORDB_DIR`（见 [`ITERATION.md`](ITERATION.md) §10） | 仓库 `README.md`、[`DECISIONS.md`](DECISIONS.md) |
+| 本地数据 | 自包含库 `.knowledge/<库>/{source,datadb,vectordb}/`；**§10 已实现**：应用状态与演示库均归入 `.knowledge/`（`.state/`、`demo_langchain/`），`data/` 与 `DATA_DIR`/`VECTORDB_DIR`/`KNOWLEDGE_ROOT`/`TEXT_ROOT` 已移除 | 仓库 `README.md`、[`DECISIONS.md`](DECISIONS.md) |
 
 **主流程**：浏览器 → `POST /api/chat`（SSE）→ 服务端按 `task_id`+`corpus_id`+资料范围检索、阅读、版本核验 → 事件流 → 前端渲染带 `[n]` 引用回答。
 
@@ -154,6 +154,6 @@ SSE 事件：`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）�
 ## 6. 运行与验证
 
 - 启动：`bash launch.sh`（复用环境 → 安装依赖 → 构建前端 → uvicorn）；默认 <http://127.0.0.1:8000>。
-- 配置：`.env`（`MODEL_*`、`DATA_DIR`、`VECTORDB_DIR`、`STATE_DIR`、`KNOWLEDGE_ROOT`/`TEXT_ROOT`、`EMBEDDING_PATH`、`MINERU_CMD`/`MINERU_HOME`/`MINERU_TIMEOUT`、`CORPORA*`、预算与超时）。
+- 配置：`.env`（`MODEL_*`、`CORPORA_ROOT`、`DEFAULT_CORPUS`、`STATE_DIR`、`EMBEDDING_PATH`、`MINERU_CMD`/`MINERU_HOME`/`MINERU_TIMEOUT`、预算与超时）。
 - 测试：`.venv/bin/python -m pytest tests -q`；`cd frontend && npm test`、`npm run build`。
 - 本地数据布局与配置映射见仓库 `README.md`。

@@ -38,7 +38,7 @@
 | `frontend/` | 前端：React 19 + TypeScript + Tailwind 4 + Vite，生产构建输出 `frontend/dist/` |
 | `tests/` | 后端回归测试（pytest） |
 | `.logsdev/` | 开发文档（PROJECT / ITERATION / DECISIONS） |
-| `.knowledge/` `.demo_langchain/` | 本地语料（方案 A 自包含库），见「本地数据布局」 |
+| `.knowledge/` | 本地语料与状态（方案 A 自包含库 + `.state/`），见「本地数据布局」 |
 | `launch.sh` | 启动脚本：准备环境、安装依赖、构建前端、启动服务 |
 | `pyproject.toml` | Python 依赖与 extras（`web` / `embedding` / `dev`） |
 
@@ -52,13 +52,14 @@
 | `.knowledge/<库>/source/` | 该库原始文件（PDF / Markdown，可按领域再分子目录） |
 | `.knowledge/<库>/datadb/` | 该库 SQLite：`knowledge.sqlite3`（原文/版本） |
 | `.knowledge/<库>/vectordb/` | 该库向量索引（Chroma） |
-| `.demo_langchain/` | 演示库，采用同一 `source/` + `datadb/` + `vectordb/` 约定 |
+| `.knowledge/demo_langchain/` | 演示库（原 `.demo_langchain/`），同一 `source/` + `datadb/` + `vectordb/` 约定 |
+| `.knowledge/.state/` | 应用级状态：`workspace.sqlite3`（会话/笔记）、`reports.sqlite3`（报告）、`corpora.json`（显示名覆盖） |
 
-> `.knowledge/`、`.demo_langchain/` 数据默认不入库（见 `.gitignore`），只保留各自 `README.md`。
+> `.knowledge/` 数据默认不入库（见 `.gitignore`），只保留 `README.md`。
 
-> **配置映射（当前实现）**：`CORPORA_ROOT` 指向语料根（默认 `.knowledge`），其每个直接子目录是一个库；库内 `datadb/knowledge.sqlite3` 存原文/版本，`vectordb/` 存向量。活动（默认）库由 `DATA_DIR`/`VECTORDB_DIR` 指定，可位于语料根之外（如演示库）。
+> **配置映射（§10）**：所有本地持久化只在 `CORPORA_ROOT`（默认 `.knowledge`）下；每个直接子目录 = 一个自包含库。默认库由 `DEFAULT_CORPUS`（相对名）指定，缺失回退首个 ready 库；`DATA_DIR`/`VECTORDB_DIR`/`KNOWLEDGE_ROOT`/`TEXT_ROOT` 已废弃（启动时忽略）。
 
-> **当前演示配置**：`.env` 把 `DATA_DIR` 指向 `.demo_langchain/datadb`、`VECTORDB_DIR` 指向 `.demo_langchain/vectordb`；启动后直接用该 LangChain 语料问答，无需重新导入。真实基金库（`.knowledge/自然科学基金/`）在侧栏可见，导入后即可按库使用。
+> **当前演示配置**：默认库 `demo_langchain`（启动时自动从旧 `.demo_langchain/` 迁移并重写文件型 origin）；真实基金库在 `.knowledge/` 下（多个库），导入后即可按库使用。
 
 ## 运行
 
@@ -92,11 +93,8 @@ bash launch.sh
 |---|---|---|
 | `MODEL_NAME` / `MODEL_BASE_URL` / `MODEL_API_KEY` | `deepseek-chat` / `https://api.deepseek.com` / 空 | 问答模型（OpenAI 兼容） |
 | `CORPORA_ROOT` | `<repo>/.knowledge` | 语料根：每个直接子目录 = 一个自包含知识库（`source/`+`datadb/`+`vectordb/`） |
-| `DATA_DIR` | `<repo>/data` | 活动（默认）库的 SQLite 目录（`knowledge.sqlite3`） |
-| `VECTORDB_DIR` | `DATA_DIR/chroma` | 活动（默认）库的向量索引目录 |
-| `STATE_DIR` | `<repo>/data` | 应用级状态目录：会话/笔记 `workspace.sqlite3`，独立于活动库（K0；首次启动从旧库目录一次性迁移） |
-| `KNOWLEDGE_ROOT` | `<repo>/.knowledge` | 原始资料根；`ingest/local` 从此递归导入 PDF |
-| `TEXT_ROOT` | `KNOWLEDGE_ROOT` | `ingest/local` 导入 txt/md 的目录 |
+| `STATE_DIR` | `<CORPORA_ROOT>/.state` | 应用级状态目录（会话/报告/显示名覆盖）；默认随 `CORPORA_ROOT` 派生 |
+| `DEFAULT_CORPUS` | `demo_langchain` | 默认库相对名；缺失回退首个 ready 库 |
 | `EMBEDDING_PATH` | 空 | 本地 embedding 模型目录；空 = 仅 BM25，不加载 embedding |
 | `EMBEDDING_DEVICE` | `cpu` | embedding 设备 |
 | `MINERU_CMD` / `MINERU_HOME` | `mineru-kit parse … --tier standard --format middle_json` / 模型缓存目录 | PDF 解析（mineru 4.0.5，K13）；`MINERU_CMD` 支持 `{pdf}`/`{out}` 模板 |

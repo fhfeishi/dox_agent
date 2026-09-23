@@ -5,14 +5,15 @@ import json
 from datetime import UTC, datetime
 
 from .agent.config import get_settings
+from .agent.corpora import default_db_path
 from .knowledge import Knowledge
 from .official_docs import SECTIONS, import_official
 
 
 async def main():
     settings = get_settings()
-    store = Knowledge(settings.data_dir / "knowledge.sqlite3", settings=settings)
-    report = settings.data_dir / "official-preparation.json"
+    store = Knowledge(default_db_path(settings), settings=settings)
+    report = settings.state_dir / "official-preparation.json"
     if report.exists():
         previous = json.loads(report.read_text(encoding="utf-8"))
         current = {doc["doc_id"]: doc["version"] for doc in store.all()}

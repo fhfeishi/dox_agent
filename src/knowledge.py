@@ -48,13 +48,15 @@ def lines_for(text: str) -> list[str]:
 
 
 class Knowledge:
-    def __init__(self, path: Path, *, settings=None):
+    def __init__(self, path: Path, *, settings=None, vectordb_dir: Path | None = None):
         self.path = path
         self.dense = None
         self._chunks: list[dict] | None = None
         if settings is not None and settings.embedding_path.strip():
             from .dense import DenseIndex
-            self.dense = DenseIndex(settings.vectordb_dir or path.parent / "chroma", settings.embedding_path, settings.embedding_device, settings.embedding_query_prompt)
+            # 方案 A: vector store is the corpus ``vectordb/`` sibling of ``datadb/`` (§10).
+            directory = vectordb_dir or path.parent.parent / "vectordb"
+            self.dense = DenseIndex(directory, settings.embedding_path, settings.embedding_device, settings.embedding_query_prompt)
         path.parent.mkdir(parents=True, exist_ok=True)
         with self.connect() as db:
             db.execute("""CREATE TABLE IF NOT EXISTS docs (

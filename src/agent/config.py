@@ -3,7 +3,7 @@
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import AliasChoices, Field, SecretStr
+from pydantic import AliasChoices, Field, SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 DOX_AGENT_ROOT = Path(__file__).resolve().parents[2]
@@ -23,20 +23,16 @@ class Settings(BaseSettings):
     model_api_key: SecretStr | None = Field(
         default=None, validation_alias=AliasChoices("MODEL_API_KEY", "DEEPSEEK_API_KEY")
     )
-    # 当前活动库（默认库）的 sqlite 目录；缺省落在仓库内 data/。
-    data_dir: Path = DOX_AGENT_ROOT / "data"
-    # 活动库的向量库目录（与 DATA_DIR 分离时使用）；缺省为 DATA_DIR/chroma。
-    vectordb_dir: Path | None = None
-    # K0: 应用级状态目录（会话/笔记），独立于当前活动语料；切换/删除库不移动历史会话。
-    state_dir: Path = DOX_AGENT_ROOT / "data"
+    # §10: all local persistence lives under CORPORA_ROOT (default .knowledge); no data/ dir.
     # 语料根：其下每个直接子目录是一个自包含知识库（source/datadb/vectordb）。
     corpora_root: Path = KNOWLEDGE_ROOT
+    # 应用级状态目录（会话/报告/覆盖）；缺省从 corpora_root 派生为 <corpora_root>/.state。
+    state_dir: Path | None = None
+    # 默认库相对名（M4）；缺失时回退首个 ready 库，全无 ready 不抛异常。
+    default_corpus: str = "demo_langchain"
     embedding_path: str = ""
     embedding_device: str = "cpu"
     embedding_query_prompt: str = ""
-    knowledge_root: Path = KNOWLEDGE_ROOT
-    # 新布局下 txt/md 与 PDF 同在 .knowledge 各库内，故默认与 KNOWLEDGE_ROOT 一致。
-    text_root: Path = KNOWLEDGE_ROOT
     # B6: the corpus is configurable, so nothing may hard-code one corpus' names or queries.
     auto_import_official: bool = True
     warmup_query: str = ""
@@ -77,6 +73,12 @@ class Settings(BaseSettings):
         extra="ignore",
         populate_by_name=True,
     )
+
+    @model_validator(mode="after")
+    def _derive_state_dir(self):
+        if self.state_dir is None:
+            object.__setattr__(self, "state_dir", Path(self.corpora_root) / ".state")
+        return self
 
 
 @lru_cache

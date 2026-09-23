@@ -3,8 +3,9 @@
 Layout (方案 A, 2026-09-22): ``CORPORA_ROOT/<corpus>/`` holds ``source/`` (raw files,
 possibly nested by domain), ``datadb/`` (sqlite) and ``vectordb/`` (vector store), so one
 corpus can be moved, backed up or deleted as a single directory. Scanning is read-only:
-counting opens sqlite with ``mode=ro`` and never creates files. ``DATA_DIR``/``VECTORDB_DIR``
-still describe the active default corpus, which may live outside CORPORA_ROOT (the demo).
+counting opens sqlite with ``mode=ro`` and never creates files. §10: all persistence lives
+under CORPORA_ROOT; the default corpus is ``DEFAULT_CORPUS`` (else the first ready corpus), and
+``.state/`` (a dot dir, skipped by scanning) holds workspace/reports/overrides.
 """
 
 from __future__ import annotations
@@ -12,9 +13,12 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import shutil
 import sqlite3
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
+
+from .config import DOX_AGENT_ROOT
 
 # Fund report files: <year_from>_<year_to>_<project_no>_<pi>_<title>.pdf (corpus_management §3.3).
 FUND_NAME_PATTERN = re.compile(r"^\d{4}_\d{4}_[A-Za-z0-9]+_[^_]+_.+\.pdf$", re.IGNORECASE)
@@ -46,6 +50,81 @@ class CorpusInfo:
 
 
 OVERRIDES_FILENAME = "corpora.json"
+STATE_FILES = ("workspace.sqlite3", "reports.sqlite3", "corpora.json", "official-preparation.json")
+DEMO_DIRNAME = "demo_langchain"
+
+
+def _rewrite_origins(db_path: Path, old_root: Path, new_root: Path, log: list[str]) -> None:
+    """M1: rewrite file-type origins after a corpus move; doc ids stay stable."""
+    if not db_path.is_file():
+        return
+    old_prefix, new_prefix = str(old_root.resolve()), str(new_root.resolve())
+    with sqlite3.connect(db_path) as db:
+        rows = db.execute("SELECT id, payload FROM docs").fetchall()
+        changed = 0
+        for doc_id, payload in rows:
+            data = json.loads(payload)
+            origin = data.get("origin", "")
+            if origin.startswith(old_prefix):
+                data["origin"] = new_prefix + origin[len(old_prefix):]
+                db.execute("UPDATE docs SET payload=? WHERE id=?",
+                           (json.dumps(data, ensure_ascii=False), doc_id))
+                changed += 1
+    if changed:
+        log.append(f"rewrote {changed} origin(s) in {db_path}")
+
+
+def migrate_layout(settings) -> list[str]:
+    """§10 one-time, idempotent migration: move legacy state/demo under ``CORPORA_ROOT``.
+
+    Order (M3): copy/move -> verify -> delete the old directory. Any failure keeps the old
+    directory (no silent data loss). Test ``*.png`` are not part of verification.
+    """
+    root = corpus_root_for(settings)
+    state = Path(settings.state_dir)
+    if root != (DOX_AGENT_ROOT / ".knowledge").resolve():
+        return []  # custom corpus root: no repo-layout migration
+    root.mkdir(parents=True, exist_ok=True)
+    log: list[str] = []
+
+    old_demo = DOX_AGENT_ROOT / ".demo_langchain"
+    new_demo = root / DEMO_DIRNAME
+    if old_demo.is_dir() and not new_demo.exists():
+        shutil.copytree(old_demo, new_demo)
+        if new_demo.is_dir():
+            _rewrite_origins(new_demo / DB_DIRNAME / "knowledge.sqlite3", old_demo, new_demo, log)
+            shutil.rmtree(old_demo, ignore_errors=True)
+            log.append(f"moved {old_demo} -> {new_demo}")
+
+    legacy = DOX_AGENT_ROOT / "data"
+    for name in STATE_FILES:
+        target, source = state / name, legacy / name
+        if target.exists() or not source.is_file():
+            continue
+        state.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
+        if target.is_file():
+            log.append(f"copied {source} -> {target}")
+
+    if not (state / "workspace.sqlite3").exists() and root.is_dir():
+        legacy_ws = next((child / DB_DIRNAME / "workspace.sqlite3" for child in sorted(root.iterdir())
+                          if (child / DB_DIRNAME / "workspace.sqlite3").is_file()), None)
+        if legacy_ws is not None:
+            state.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(legacy_ws, state / "workspace.sqlite3")
+            log.append(f"copied {legacy_ws} -> {state / 'workspace.sqlite3'}")
+
+    if legacy.is_dir():
+        unknown = [p.name for p in legacy.iterdir()
+                   if p.is_file() and p.name not in STATE_FILES and not p.name.endswith(".png")]
+        missing = [name for name in STATE_FILES
+                   if (legacy / name).is_file() and not (state / name).is_file()]
+        if not unknown and not missing:
+            shutil.rmtree(legacy, ignore_errors=True)
+            log.append(f"removed {legacy}")
+        else:
+            log.append(f"kept {legacy} (unknown={unknown}, unmigrated={missing})")
+    return log
 
 
 def corpus_id_for(rel_path: str) -> str:
@@ -82,18 +161,31 @@ def valid_corpus_name(name: str) -> bool:
 
 def corpus_root_for(settings) -> Path:
     """The corpus root scanned for corpora (``CORPORA_ROOT``, default ``.knowledge``)."""
-    return (settings.corpora_root or settings.data_dir.parent).resolve()
+    return Path(settings.corpora_root).resolve()
 
 
-def _default_rel(settings) -> str:
-    """Relative label of the active default corpus (its umbrella dir, e.g. ``.demo_langchain``)."""
-    umbrella = settings.data_dir.resolve().parent
-    return umbrella.name.lstrip(".") or umbrella.name
+def resolve_default(infos: list[CorpusInfo], settings) -> CorpusInfo | None:
+    """M4: ``DEFAULT_CORPUS`` by rel_path, else the first ready corpus, else None."""
+    if not infos:
+        return None
+    for info in infos:
+        if info.rel_path == settings.default_corpus:
+            return info
+    for info in sorted(infos, key=lambda item: item.rel_path):
+        if info.preparation == "ready":
+            return info
+    return None
 
 
-def default_corpus_id(settings) -> str:
-    """Id of the corpus holding ``DATA_DIR/knowledge.sqlite3``, without walking the disk."""
-    return corpus_id_for(_default_rel(settings))
+def default_corpus_info(settings) -> CorpusInfo | None:
+    """The active default corpus, resolved without raising when nothing is ready."""
+    return resolve_default(scan_corpora(settings), settings)
+
+
+def default_db_path(settings) -> Path:
+    """Default corpus SQLite, or the app-level fallback under ``STATE_DIR``."""
+    info = default_corpus_info(settings)
+    return info.db_dir / "knowledge.sqlite3" if info is not None else Path(settings.state_dir) / "knowledge.sqlite3"
 
 
 def _docs_count(sqlite_path: Path) -> int:
@@ -135,7 +227,6 @@ def scan_corpora(settings) -> list[CorpusInfo]:
     overrides id/name/kind/domain per relative path.
     """
     root = corpus_root_for(settings)
-    default_sqlite = (settings.data_dir / "knowledge.sqlite3").resolve()
     overrides: dict[str, dict] = {}
     for entry in settings.corpora or []:
         rel = str(entry.get("path", "")).strip("/")
@@ -175,27 +266,8 @@ def scan_corpora(settings) -> list[CorpusInfo]:
                 preparation=_preparation(count, sqlite_path.is_file()),
             )
 
-    if default_sqlite.parent not in {info.db_dir.resolve() for info in found.values()}:
-        # The active corpus lives outside the scan root: still surface it so /api/corpora
-        # always includes the corpus the service is actually running on.
-        rel = _default_rel(settings)
-        override = overrides.get(rel, {})
-        count = _docs_count(default_sqlite) if default_sqlite.is_file() else 0
-        umbrella = default_sqlite.parent.parent
-        found[rel] = CorpusInfo(
-            id=str(override.get("id") or corpus_id_for(rel)),
-            name=str(override.get("name") or rel),
-            kind=str(override.get("kind") or "unknown"),
-            domain=str(override.get("domain") or rel),
-            rel_path=rel,
-            root=umbrella,
-            source_dir=umbrella / SOURCE_DIRNAME,
-            db_dir=default_sqlite.parent,
-            vectordb_dir=settings.vectordb_dir or (umbrella / VECTOR_DIRNAME),
-            sqlite=default_sqlite if default_sqlite.is_file() else None,
-            docs_count=count,
-            preparation=_preparation(count, default_sqlite.is_file()),
-            is_default=True,
-        )
-
-    return sorted(found.values(), key=lambda info: (not info.is_default, info.rel_path))
+    infos = list(found.values())
+    default = resolve_default(infos, settings)
+    if default is not None:
+        infos = [replace(info, is_default=(info.id == default.id)) for info in infos]
+    return sorted(infos, key=lambda info: (not info.is_default, info.rel_path))

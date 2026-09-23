@@ -21,8 +21,9 @@ from .agent.corpora import (
     VECTOR_DIRNAME,
     CorpusInfo,
     corpus_root_for,
-    default_corpus_id,
+    default_corpus_info,
     load_corpus_overrides,
+    migrate_layout,
     save_corpus_overrides,
     scan_corpora,
     valid_corpus_name,
@@ -57,15 +58,12 @@ def local_path_in_roots(origin: str, settings) -> tuple[Path, str] | None:
         path = Path(origin).resolve()
     except OSError:
         return None
-    # H1: raw corpora live under CORPORA_ROOT (default .knowledge), so fund PDFs there
-    # must be servable by /file; DATA_DIR's parent stays a root for legacy layouts.
-    for root in (settings.knowledge_root, settings.text_root, settings.corpora_root, settings.data_dir.parent):
-        root = root.resolve()
-        try:
-            return path, path.relative_to(root).as_posix()
-        except ValueError:
-            continue
-    return None
+    # H1/§10: raw corpora live under CORPORA_ROOT (default .knowledge); single allowed root.
+    root = Path(settings.corpora_root).resolve()
+    try:
+        return path, path.relative_to(root).as_posix()
+    except ValueError:
+        return None
 
 
 class ChatMessage(BaseModel):
@@ -150,7 +148,12 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     @asynccontextmanager
     async def lifespan(app):
-        app.state.knowledge = knowledge or Knowledge(settings.data_dir / "knowledge.sqlite3", settings=settings)
+        for line in await asyncio.to_thread(migrate_layout, settings):
+            logger.info("layout migration: %s", line)
+        info = await asyncio.to_thread(default_corpus_info, settings)
+        db_path = info.db_dir / "knowledge.sqlite3" if info else Path(settings.state_dir) / "knowledge.sqlite3"
+        app.state.knowledge = knowledge or Knowledge(
+            db_path, settings=settings, vectordb_dir=info.vectordb_dir if info else None)
         app.state.workspace = Workspace(workspace_path(settings, app.state.knowledge))
         app.state.knowledge.workspace = app.state.workspace
         app.state.reports = ReportStore(settings.state_dir / "reports.sqlite3")
@@ -217,10 +220,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         if cached is None:
             # 方案 A: derived data stays inside the corpus dir (datadb/ + vectordb/), never
             # in source/; a non-default corpus gets its own vector directory.
-            corpus_settings = settings
-            if not info.is_default:
-                corpus_settings = settings.model_copy(update={"vectordb_dir": info.vectordb_dir})
-            cached = Knowledge(info.sqlite or info.db_dir / "knowledge.sqlite3", settings=corpus_settings)
+            cached = Knowledge(info.sqlite or info.db_dir / "knowledge.sqlite3", settings=settings,
+                               vectordb_dir=info.vectordb_dir)
             app.state.corpus_knowledge[info.id] = cached
         return cached
 
@@ -236,6 +237,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     @app.get("/api/health")
     async def health(request: Request):
         docs_count = await asyncio.to_thread(request.app.state.knowledge.count)
+        default_info = await asyncio.to_thread(default_corpus_info, settings)
         return {
             "status": "ok",
             "app_id": "dox-agent",
@@ -245,7 +247,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "model_verified": False,
             "web_provider": settings.web_provider,
             "preparation": request.app.state.preparation,
-            "corpus_id": default_corpus_id(settings),
+            "corpus_id": default_info.id if default_info else "",
             "index_progress": request.app.state.knowledge.dense.progress if request.app.state.knowledge.dense else None,
         }
 
@@ -598,15 +600,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     async def ingest(request: Request):
         if app.state.preparation == "running":
             raise HTTPException(409, "知识库正在初始化，请稍后导入")
-        # H2: never let the legacy whole-root rglob pull sibling corpora into this one.
-        infos = await asyncio.to_thread(scan_corpora, settings)
-        default = next((info for info in infos if info.is_default), None)
-        others = [info.root for info in infos if not info.is_default]
-        root = default.source_dir if default and default.source_dir.is_dir() else None
-        parsed_root = default.root / "parsed" if default else None
+        # §10/M5: import the default corpus ``source/`` (single root, no sibling exclusion).
+        info = await asyncio.to_thread(default_corpus_info, settings)
+        if info is None:
+            raise HTTPException(409, "没有可导入的默认知识库")
         async with app.state.import_lock:
-            return await asyncio.to_thread(import_defaults, app.state.knowledge, settings, root=root,
-                                           exclude=others, parsed_root=parsed_root)
+            return await asyncio.to_thread(import_defaults, app.state.knowledge, settings,
+                                           root=info.source_dir, parsed_root=info.root / "parsed")
 
     @app.post("/api/web/preview")
     async def preview(payload: WebRequest):
@@ -657,7 +657,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             chat_preparation = app.state.preparation if info.is_default else info.preparation
             chat_domain = info.domain
         else:
-            default_info = await asyncio.to_thread(find_corpus, default_corpus_id(settings))
+            default_info = await asyncio.to_thread(default_corpus_info, settings)
             chat_domain = default_info.domain if default_info else ""
 
         async def stream():

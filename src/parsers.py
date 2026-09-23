@@ -13,6 +13,7 @@ from urllib.parse import urlsplit
 import httpx
 
 from .agent.config import Settings
+from .agent.corpora import SOURCE_SUFFIXES
 from .knowledge import Document, Page
 from .retrieval import RawBlock, chunk_blocks
 
@@ -264,29 +265,19 @@ async def parse_web(url: str, settings: Settings) -> Document:
     )
 
 
-def import_defaults(knowledge, settings: Settings, *, root: Path | None = None, exclude: list[Path] = (), force: bool = False, parsed_root: Path | None = None) -> dict:
+def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = False, parsed_root: Path | None = None) -> dict:
     """K1: incremental local import backed by the `files` manifest.
 
-    With `root` (a corpus ``source/`` dir) only that corpus is collected; the legacy path
-    keeps the old dual-root collection. Unchanged files are skipped; changed/new files are
-    re-parsed; source files that disappeared are removed from the manifest and from `docs`
-    (so BM25 stops returning them; dense drops stale ids on its next sync). An empty manifest
-    is the first backfill and re-parses everything once. ``parsed_root`` caches mineru output
-    per file (K13).
+    Collects one corpus ``source/`` recursively (§10: no legacy dual root). Unchanged files are
+    skipped; changed/new files are re-parsed; source files that disappeared are removed from the
+    manifest and from `docs`. An empty manifest is the first backfill and re-parses everything
+    once. ``parsed_root`` caches mineru output per file (K13).
     """
-    excluded = [item.resolve() for item in exclude]
     manifest = knowledge.files()
+    base = Path(root).resolve()
     current: dict[str, Path] = {}
-    for path in collect_sources(root, settings):
-        resolved = path.resolve()
-        if any(resolved == item or item in resolved.parents for item in excluded):
-            continue
-        base = Path(root) if root is not None else source_base(path, settings)
-        try:
-            rel = resolved.relative_to(base.resolve()).as_posix()
-        except ValueError:
-            rel = path.name
-        current[rel] = path
+    for path in collect_sources(root):
+        current[path.resolve().relative_to(base).as_posix()] = path
 
     added = updated = skipped = 0
     imported, errors = [], []
@@ -334,26 +325,11 @@ def import_defaults(knowledge, settings: Settings, *, root: Path | None = None, 
             "skipped": skipped, "deleted": deleted, "scanned": len(current)}
 
 
-def source_base(path: Path, settings: Settings) -> Path:
-    """Legacy collection spans knowledge_root/text_root; pick the root that contains the file."""
-    for candidate in (settings.knowledge_root, settings.text_root):
-        try:
-            path.resolve().relative_to(candidate.resolve())
-            return candidate
-        except ValueError:
-            continue
-    return path.parent
-
-
-def collect_sources(root: Path | None, settings: Settings) -> list[Path]:
-    if root is not None:
-        base = Path(root)
-        return sorted(p for p in base.rglob("*") if p.is_file() and p.suffix.lower() in {'.pdf', '.txt', '.md'})
-    return sorted(
-        set(settings.text_root.rglob("*.txt"))
-        | set(settings.text_root.rglob("*.md"))
-        | {p for p in settings.knowledge_root.rglob("*") if p.is_file() and p.suffix.lower() == ".pdf"}
-    )
+def collect_sources(root: Path) -> list[Path]:
+    """Recursively collect importable source files under one corpus ``source/`` dir."""
+    base = Path(root)
+    return sorted(path for path in base.rglob("*")
+                  if path.is_file() and path.suffix.lower() in SOURCE_SUFFIXES)
 
 
 def sha256_file(path: Path, chunk: int = 1 << 20) -> str:

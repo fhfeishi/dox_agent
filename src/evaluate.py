@@ -15,6 +15,7 @@ from dataclasses import replace
 from pathlib import Path
 
 from .agent.config import get_settings
+from .agent.corpora import default_db_path
 from .knowledge import Knowledge
 from .retrieval import RetrievalConfig, assemble_reports
 
@@ -81,7 +82,7 @@ def main():
     settings = get_settings()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", type=Path, default=DATASET)
-    parser.add_argument("--db", type=Path, default=settings.data_dir / "knowledge.sqlite3")
+    parser.add_argument("--db", type=Path, default=default_db_path(settings))
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--task", default="task1")
     parser.add_argument("--min-term-cover", type=float, default=None)

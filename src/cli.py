@@ -5,6 +5,7 @@ import asyncio
 import json
 
 from .agent.config import get_settings
+from .agent.corpora import default_corpus_info, default_db_path
 from .knowledge import Knowledge
 from .parsers import import_defaults, parse_web
 
@@ -15,9 +16,13 @@ def main():
     parser.add_argument("query", nargs="?", default="")
     args = parser.parse_args()
     settings = get_settings()
-    store = Knowledge(settings.data_dir / "knowledge.sqlite3", settings=settings)
+    store = Knowledge(default_db_path(settings), settings=settings)
     if args.action == "ingest":
-        result = import_defaults(store, settings)
+        info = default_corpus_info(settings)
+        if info is None:
+            result = {"error": "没有可导入的默认知识库"}
+        else:
+            result = import_defaults(store, settings, root=info.source_dir, parsed_root=info.root / "parsed")
     elif args.action == "search":
         result = store.search(args.query)
     elif args.action == "preview":

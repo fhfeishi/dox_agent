@@ -43,7 +43,7 @@ def test_api_attaches_client_run_id_to_steps(tmp_path):
             yield {"event": "step", "data": {"id": "one", "sequence": 1, "phase": "understand",
                                                    "status": "completed", "label": "理解问题"}}
 
-    app = create_app(Settings(_env_file=None, data_dir=tmp_path, state_dir=tmp_path), Knowledge(tmp_path / "docs"), lambda *_: Graph())
+    app = create_app(Settings(_env_file=None, corpora_root=tmp_path / ".knowledge", state_dir=tmp_path), Knowledge(tmp_path / "docs"), lambda *_: Graph())
     with TestClient(app) as client:
         response = client.post("/api/chat", json={"run_id": "client-run", "messages": [{"role": "user", "content": "hi"}]})
     frames = [json.loads(frame.split("data: ")[1]) for frame in response.text.split("\n\n") if frame.startswith("event: step")]

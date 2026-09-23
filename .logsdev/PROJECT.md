@@ -78,7 +78,7 @@
 | 库注册 | 磁盘扫描 + `CORPORA` 覆盖；每库独立 `Knowledge` | `src/agent/corpora.py` |
 | 工作区 | 会话/笔记持久化、revision、分支；工作区库固定在应用级 `STATE_DIR`，独立于活动语料（K0） | `src/workspace.py`、`frontend/src/workspace.ts` |
 | 前端 | 会话/任务/资料/文档窗口/文献库/设置与状态 | `frontend/src/` |
-| 本地数据 | 自包含库 `.knowledge/<库>/{source,datadb,vectordb}/`；演示 `.demo_langchain/` 同构 | 仓库 `README.md`、[`DECISIONS.md`](DECISIONS.md) |
+| 本地数据 | 自包含库 `.knowledge/<库>/{source,datadb,vectordb}/`；**规划**：应用状态与演示库统一到 `.knowledge/`（`.state/`、`demo_langchain/`），移除 `data/`/`DATA_DIR`/`VECTORDB_DIR`（见 [`ITERATION.md`](ITERATION.md) §10） | 仓库 `README.md`、[`DECISIONS.md`](DECISIONS.md) |
 
 **主流程**：浏览器 → `POST /api/chat`（SSE）→ 服务端按 `task_id`+`corpus_id`+资料范围检索、阅读、版本核验 → 事件流 → 前端渲染带 `[n]` 引用回答。
 

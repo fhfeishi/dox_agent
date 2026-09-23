@@ -873,7 +873,74 @@ understand → retrieve → assemble → validate → answer → finish
 - `.md` 导出与预览内容一致、中文正常、标题/表格保留。
 - 扩展项（task5–8、docx/pdf、图表）**不在首期验收**。
 
-## 10. 维护约定
+## 10. 目录统一：本地持久化收敛到 `.knowledge/`（规划，2026-09-22）
+
+### 10.1 现状与目标
+- 现状（事实）：
+  - `.knowledge/`（`CORPORA_ROOT`）：每个直接子目录 = 自包含语料（`source/`+`datadb/`+`vectordb/`）。
+  - `.demo_langchain/`：演示语料，经 `DATA_DIR`/`VECTORDB_DIR` 指定，**位于语料根之外**（特例）。
+  - `data/`（`STATE_DIR`，兼 legacy `DATA_DIR`）：`workspace.sqlite3`、`corpora.json`、`reports.sqlite3`、`official-preparation.json`、测试产物 `*.png`。
+  - 路径设置 6 个：`CORPORA_ROOT`/`DATA_DIR`/`VECTORDB_DIR`/`STATE_DIR`/`KNOWLEDGE_ROOT`/`TEXT_ROOT`。
+- 目标：**所有本地持久化只在 `.knowledge/` 下**；删除 `data/`；去掉“活动语料可在根外”的特例；能合并的设置合并。
+
+### 10.2 目标布局
+```text
+.knowledge/
+├── README.md
+├── .state/                    # 应用级状态；扫描器已跳过 dot 目录
+│   ├── workspace.sqlite3      # 会话/笔记
+│   ├── reports.sqlite3        # 报告
+│   ├── corpora.json           # 显示名覆盖 + 默认库
+│   └── official-preparation.json
+├── demo_langchain/            # 演示库（原 .demo_langchain/）
+│   └── source/ datadb/ vectordb/
+└── 自然科学基金/
+    └── source/ datadb/ vectordb/
+```
+
+### 10.3 设置精简（before → after）
+| 现状 | 目标 |
+|---|---|
+| `CORPORA_ROOT=.knowledge` | `CORPORA_ROOT=.knowledge`（保留） |
+| `DATA_DIR`（活动库 sqlite；可在根外） | **删除**；默认库 = `DEFAULT_CORPUS` 相对名解析 |
+| `VECTORDB_DIR`（活动库向量；可在根外） | **删除**；用 `CorpusInfo.vectordb_dir` |
+| `STATE_DIR=<repo>/data` | `STATE_DIR=.knowledge/.state`（默认随 `CORPORA_ROOT` 派生） |
+| `KNOWLEDGE_ROOT`/`TEXT_ROOT` | **删除**，合并进 `CORPORA_ROOT` |
+| — | 新增 `DEFAULT_CORPUS`（相对名，默认 `demo_langchain`；缺失回退首个 ready 库） |
+
+### 10.4 代码合并点
+- `config.py`：删 4 字段；`state_dir` 从 `corpora_root` 派生；加 `default_corpus`。
+- `corpora.py`：`corpus_root_for` 直用 `corpora_root`；删 `_default_rel`/`default_corpus_id` 特例、删 `scan_corpora` 的 “default outside root” 分支；`.state` 由现有 dot-skip 覆盖。
+- `main.py`：`/file` 允许根从 4 个简化为 `{corpora_root}`；默认 `app.state.knowledge` 按 `DEFAULT_CORPUS` 解析到 `<corpus>/datadb/knowledge.sqlite3` + `<corpus>/vectordb`。
+- `parsers.py`：删 `source_base` 与 legacy 双根 `collect_sources`，统一 `collect_sources(root)`；`ingest/local`/`ingest/text` 目标 = 默认语料 `source/`。
+- `knowledge.py`：`dense` 目录直接用 `CorpusInfo.vectordb_dir`（去掉 `vectordb_dir or path.parent/chroma` 兼容分支）。
+- `prepare_docs.py`/`cli.py`/`evaluate.py`：`data_dir` 引用改为默认语料 db 路径或显式 `--db`。
+- `.env`/`.env.example`/README：删 4 变量、更新布局。
+
+### 10.5 一次性迁移（幂等）
+- `.demo_langchain/` → `.knowledge/demo_langchain/`（目标不存在时）。
+- `data/{workspace.sqlite3,corpora.json,reports.sqlite3,official-preparation.json}` → `.knowledge/.state/`（逐文件，目标不存在时）。
+- 删除残留 `data/`（含测试 `*.png`）。
+- 启动时执行并记日志；旧路径不存在即跳过。
+
+### 10.6 分阶段任务
+| 编号 | 内容 | 验收 |
+|---|---|---|
+| DIR-1 | `state_dir=.knowledge/.state` + 迁移 + 扫描跳过 | 状态写入 `.state/`；旧 `data/` 状态迁移后会话保留 |
+| DIR-2 | demo 归位 `.knowledge/demo_langchain/`；删 `DATA_DIR`/`VECTORDB_DIR` 与 outside-root 分支；`DEFAULT_CORPUS` | 两库均被扫描；默认库解析正确；无根外特例 |
+| DIR-3 | 合并 `KNOWLEDGE_ROOT`/`TEXT_ROOT` → `CORPORA_ROOT`；简化 parsers/允许根 | grep 无 4 变量引用；导入/文件服务正常 |
+| DIR-4 | 清理 `data/`、`.env`、README/PROJECT；验收 | 全新启动**只创建** `.knowledge/`；`pytest`+浏览器 smoke 通过 |
+
+### 10.7 非目标
+- 不改语料内部结构（`source/datadb/vectordb`）；不合并多库；不改 `corpus_id` 语义；不动 `.logsdev/archive/`。
+
+### 10.8 验收
+- 全新启动后 repo 内**不出现** `data/`；`.knowledge/.state/` 承载会话/报告/覆盖。
+- `scan_corpora` 返回 `demo_langchain` + `自然科学基金`；默认库可解析。
+- 会话历史迁移后可见；按库问答/文件预览/报告生成正常。
+- `grep -rn "DATA_DIR\|VECTORDB_DIR\|KNOWLEDGE_ROOT\|TEXT_ROOT" src/` 为空。
+
+## 11. 维护约定
 
 - 完成任务后更新本文 §2/§3 与 [`PROJECT.md`](PROJECT.md) 的现状/限制；长期取舍写入 [`DECISIONS.md`](DECISIONS.md)。
 - 证据须可复现（命令/产出路径）；未运行的检查不得写入；受限项显式标注。

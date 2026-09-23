@@ -133,6 +133,13 @@
 - **删除/失效**：删文件/库同步清 `parsed/` 与 Chroma chunk；`parser_signature` 入库 meta，变更即 `force`。
 - 状态：L 开工前定稿（与 ITERATION §7.14 一致）。
 
+## 本地持久化统一到 .knowledge/（2026-09-22，规划）
+
+- 采用：所有本地持久化只在 `.knowledge/` 下——语料 `.knowledge/<corpus>/{source,datadb,vectordb}`；应用状态 `.knowledge/.state/{workspace,reports}.sqlite3` + `corpora.json`；演示库移到 `.knowledge/demo_langchain/`（扫描器已跳过 dot 目录，`.state` 不会被当语料）。
+- 删除：`DATA_DIR`/`VECTORDB_DIR`（活动库在根外的特例）与 `KNOWLEDGE_ROOT`/`TEXT_ROOT`（并入 `CORPORA_ROOT`）；新增 `DEFAULT_CORPUS`（相对名）。
+- 取代：取代「语料目录自包含方案 A」中“活动库可位于 CORPORA_ROOT 之外”的部分。
+- 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §10（DIR-1–DIR-4）。
+
 ## 报告↔会话绑定（#10 定稿，2026-09-22）
 
 - 定位：报告是**应用级不可变产物**，`report_id` 全局唯一定位；单用户本地，不做多用户权限。

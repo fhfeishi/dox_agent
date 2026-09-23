@@ -13,7 +13,7 @@
 
 ## 2. 计划与任务状态
 
-**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E ⬜ · F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8、K12、K13 已实现；K5/K9–K11 待做；K2–K4/K12 的 liteparse OCR 部分被 K13 取代）· L 🟢（L1–L7 已实现：报告级检索 + 确定性图 + 评测；增强项 L4b/L4d/dense 延后，见 §5.6）。
+**阶段总览**：A 🟡 · B ⬜ · C 🟡 · D 🟡 · E 🟡（E1–E4/E6 已实现，E5/E7 部分；真实模型 E2E 未做）· F ⬜ · G 🟡 · H 🟡 · U 🟡 · K 🟡（K0–K4、K6a、K6–K8、K12、K13 已实现；K5/K9–K11 待做；K2–K4/K12 的 liteparse OCR 部分被 K13 取代）· L 🟢（L1–L7 已实现：报告级检索 + 确定性图 + 评测；增强项 L4b/L4d/dense 延后，见 §5.6）· DIR ⬜（本地持久化统一到 `.knowledge/`，规划 §10）。
 
 **A 工程基线**：A1–A6 ✅（pyproject/extras、tests、端到端、改名、dev_logs 整理、design 落盘）；A7 契约同步 🟡（E 阶段待补）。
 

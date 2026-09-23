@@ -133,6 +133,13 @@
 - **删除/失效**：删文件/库同步清 `parsed/` 与 Chroma chunk；`parser_signature` 入库 meta，变更即 `force`。
 - 状态：L 开工前定稿（与 ITERATION §7.14 一致）。
 
+## 知识库重命名与目录名同步（KB-5，2026-09-23，规划）
+
+- 采用：**单一名称 = 目录名**；`corpus_id` 改为**持久化稳定 id**（首次见/创建时分配；现有库回填 `id=corpus_id_for(rel)`）；重命名 = 目录改名 + origin 前缀重写（保留 `doc_id`）+ 保留 id。`DEFAULT_CORPUS` 按 id 解析（回退 rel）。
+- 理由：`corpus_id` 原本由 rel 派生、`doc_id=sha256(origin)`，直接改目录会级联失效会话/引用；稳定 id + origin 重写消除级联。
+- 取代：取代「知识库重命名语义（2026-09-22）」中“仅改显示名/目录搬迁暂缓”的部分。
+- 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §11.6（KB-5a–c）。
+
 ## 多知识库会话（≤6，新需求）（2026-09-23，规划）
 
 - 采用：`ChatRequest` 增 `corpus_ids: string[]`（1–6），与 `corpus_id` 二选一（同送 422）；各库 retrieve → 跨库报告级合并/去重；`[n]` 跨库编号且 `sources` 带 `corpus_id`；`SessionData.corpus_ids?` 可选。
@@ -235,7 +242,9 @@
 - 试用证据（2026-09-22，本地独立 venv）：安装 `mineru==4.0.5`（无 torch）；最小基金 PDF `--tier basic --ocr-mode auto` 1–2 页约 6s（首次拉模型约 1 分钟）；`--format markdown` 单文件（图片 base64、无页标记）/ `--format middle_json` 单文件（`pages[].page_idx`+blocks）。证据见 [`ITERATION.md`](ITERATION.md) §3。
 - 待审核（影响实现）：① tier 默认 `basic`/`standard`；② 页码取 `middle_json` 还是 markdown 单页；③ 正文图片是否渲染（预览走源 PDF）。见 [`ITERATION.md`](ITERATION.md) §4 #13–#15。
 
-## 知识库重命名语义（2026-09-22）
+## 知识库重命名语义（2026-09-22）※部分被 KB-5 取代
+
+> **2026-09-23 取代（KB-5）**：「重命名仅改显示名、不动目录」被取代——新需求要求**名称与 `.knowledge/<dir>` 同步**；演变为：稳定 `corpus_id`（持久化、与路径解耦）+ 目录改名 + origin 重写保留 `doc_id`。本节的“目录搬迁作为独立操作”作废。见 [`ITERATION.md`](ITERATION.md) §11.6。
 
 - 采用：重命名分两层——（a）显示名更新（`CORPORA` override 的 `name`，不动目录）为默认；（b）目录搬迁为独立操作。
 - 理由：`corpus_id` 由相对路径派生（`corpora.py:46`），`doc_id=sha256(origin)`（`parsers.py:32`），搬目录会级联改变两者，使会话 `corpus_id`、`allowed_doc_ids`、历史 `sources.doc_id` 失效。

@@ -100,7 +100,7 @@
 | `GET\|PUT /api/ocr-config` | ~~liteparse OCR 模式/语言~~ **已移除（K13：改用 mineru 自动识别）** |
 | `GET /api/corpora` | 库列表：`id`/`name`/`kind`/`domain`/`rel_path`/`docs_count`/`preparation`/`is_default`/`index_progress`/`job` |
 | `POST /api/corpora` | 新建库目录（`source/`+`datadb/`+`vectordb/`）；201；重名 409、名称非法 422（K6） |
-| `PATCH /api/corpora/{id}` | 仅改显示名（落 `STATE_DIR/corpora.json`）；目录与 `corpus_id` 不变（K6） |
+| `PATCH /api/corpora/{id}` | 重命名（**KB-5 规划**：目录改名 + 名称同步 + 保留稳定 `id`；现实现仅改显示名，落 `STATE_DIR/corpora.json`） |
 | `DELETE /api/corpora/{id}?purge_source=` | 默认只删 `datadb/`/`vectordb/`；`purge_source=true` 才删 `source/`；默认库 409（K6） |
 | `GET\|POST\|PATCH\|DELETE /api/corpora/{id}/files` | 库内源文件列表/上传/重命名/删除（md/pdf/txt/docx；上传 201、非法类型 415、超限 413）（K7/K8） |
 | `POST /api/corpora/{id}/ingest?force=` | 按库导入（限定库 root 内）；`force=true` 绕过增量跳过、全部重解析（用于解析器/参数变更后重建，如 liteparse→mineru）；202 + job（含 `forced`）；404/409 |

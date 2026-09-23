@@ -963,6 +963,7 @@ understand → retrieve → assemble → validate → answer → finish
 
 ### 11.2 范围裁决
 - **KB-1/2/3 为首期内改进**：不改后端契约、不越界。
+- **KB-5 重命名同步目录为中改**：**取代** K6「重命名仅改显示名」；需稳定 `corpus_id` + origin 重写；实施前更新 `DECISIONS`。
 - **KB-4 多库 ≤6 为范围级新增**：**取代** `PROJECT §1「首期不做跨库联合检索」`（:63）；实施前先定契约并更新 PROJECT/DECISIONS。
   - 动机：`.knowledge/` 已有多库（基金按领域拆分），跨领域问题需要多库联合。
 
@@ -980,7 +981,33 @@ understand → retrieve → assemble → validate → answer → finish
 - **后端不改**（已流式落 `<corpus>/source/` + 增量导入）。
 - 可选组合：`CorpusGrid`「新建库」后直接引导拖入。
 
-### 11.6 KB-4 多知识库会话（≤6，全栈，范围变更）
+### 11.6 KB-5 重命名与目录名同步（取代 K6「仅改显示名」）
+
+**目标**：库名与 `.knowledge/<dir>` **同步**；重命名 = 目录改名 + 名称更新，且不破坏会话/引用。
+
+**核心设计：稳定 `corpus_id`（与路径解耦）**
+- `.state/corpora.json` 为每个库持久化**稳定 `id`**（首次见/创建时分配；现有库回填 `id=corpus_id_for(rel)` 以兼容当前会话）。
+- `corpus_id` 不再随目录名变化 → 会话 `corpus_id`、报告 `corpus_id`、`DEFAULT_CORPUS` 引用稳定。
+- **单一名称 = 目录名**：移除独立显示名层（`corpora.json` 只留 `id`/`created`）；`info.name = dir name`。
+
+**重命名步骤（`PATCH /api/corpora/{id}`，body `{name}`）**
+1. 校验：`valid_corpus_name` + 文件系统安全 + 目标目录不存在（否则 409）。
+2. `os.rename(.knowledge/<old_rel>, .knowledge/<new_rel>)`。
+3. **重写文件型 origin**：`docs.payload.origin` 前缀 `<old_abs>`→`<new_abs>`，**保留 `doc_id`**（复用 DIR-M1 helper）。
+4. 更新 `.state/corpora.json`：键 `old_rel`→`new_rel`，**保留同一 `id`**。
+5. `files.rel_path`（相对 `<corpus>/source`）与 `chunks` 不受影响；`parsed/` 随目录移动。
+
+**DEFAULT_CORPUS**：按**稳定 id** 解析（回退 rel 兼容）。
+
+**一次性迁移**：回填现有库稳定 id；处理现有显示名≠目录名（`AI与医疗` vs `自然科学基金项目-AI与医疗` 等）——二选一：**(a) 目录改名为现有显示名**（保留用户看到的名称）或 **(b) 名称回退为目录名**；选定后删除 `name` 字段。
+
+**supersede**：取代 K6「重命名仅改显示名」与 deferred K6b「目录搬迁」；`corpus_id` 由「路径派生」改为「持久化 id（回退 slug+sha1）」。
+
+**影响**：`corpora.py`（id 持久化/`resolve_default`）、`main.py`（PATCH 改名目录）、`knowledge.py`（origin 重写 helper 复用）。
+
+**验收**：重命名后目录名=显示名；`corpus_id` 不变；旧会话仍指向该库；该库 `/file`/预览正常（origin 已重写）；目标冲突 409；非法名 422。
+
+### 11.7 KB-4 多知识库会话（≤6，全栈，范围变更）
 - **契约**：`ChatRequest` 增 `corpus_ids: string[] | None`（1–6），与 `corpus_id` **二选一**（同送 422）；缺省 = 默认库。
 - **检索**：为每个库建 `Knowledge`；**各库 retrieve → 跨库报告级合并/去重**；`allowed_doc_ids` 跨库校验；`[n]` 跨库编号，`sources` 带 `corpus_id`（前端 `/file?corpus=` 已支持）。
 - **持久化**：`SessionData.corpus_ids?: string[]`（**可选**，缺失回退 `corpus_id`，遵守持久化向后兼容）。
@@ -989,21 +1016,24 @@ understand → retrieve → assemble → validate → answer → finish
 - **影响文件**：`main.py`/`graph.py`/`retrieval.py`/`store.tsx`/`workspace.ts`/`Composer`/`ScopeSelector`。
 - 分阶段：**KB-4a** 后端契约与合并检索 → **KB-4b** 前端多选与持久化 → **KB-4c** 验收。
 
-### 11.7 分阶段任务
+### 11.8 分阶段任务
 | 编号 | 内容 | 验收 |
 |---|---|---|
 | KB-1 | 首次发送前确认默认库 | 未选库首次发送出现确认；确认后不再提示；无库明确状态 |
 | KB-2 | Composer 内新建并切库 | 可从 Composer 新建并切库 |
 | KB-3 | 拖拽多文件上传 | 拖入多文件入 `<corpus>/source/` 并增量导入；非法类型/超限逐条报错 |
+| KB-5a | 稳定 id 持久化 + 回填迁移 + 单一名称模型 | 现有会话 `corpus_id` 不变 |
+| KB-5b | 重命名 = 目录改名 + origin 重写 + id 保留 | 重命名后目录名=名称、`corpus_id` 不变、旧会话可用、`/file` 正常 |
+| KB-5c | 显示名/目录名一次性对齐 | 无名称漂移 |
 | KB-4a | 多库契约 + 合并检索（后端） | `corpus_ids` 1–6；与 `corpus_id` 同送 422；跨库引用带 `corpus_id` |
 | KB-4b | 前端多选 chip + 持久化 | `corpus_ids` 存/恢复；>6 拒绝 |
 | KB-4c | 多库验收 | 选 2 库问答，引用来自两库且 `[n]` 可跳转 |
 - 建议排期：**KB-1/2/3 → KB-4**（KB-4 先定契约再实施）。
 
-### 11.8 非目标
+### 11.9 非目标
 - 不做跨库权限/多租户；不合并库；不做自动选库（仍显式选择）。
 
-### 11.9 验收
+### 11.10 验收
 - KB-4：`corpus_ids` 跨库检索且库隔离不泄；`sources` 带 `corpus_id`；`allowed_doc_ids` 越库拒绝。
 
 ## 12. 维护约定

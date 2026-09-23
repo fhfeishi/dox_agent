@@ -951,7 +951,62 @@ understand → retrieve → assemble → validate → answer → finish
 - `grep -rn "DATA_DIR\|VECTORDB_DIR\|KNOWLEDGE_ROOT\|TEXT_ROOT" src/` 为空；运行期 `local_path_in_roots` **只允许 `corpora_root`（单根）**。
 - **M6**：`.gitignore` 无 `.demo_langchain/`、`.knowledge/*` 覆盖 `.state/`、`data/` 护栏保留。
 
-## 11. 维护约定
+## 11. 知识库交互与多库会话（规划，2026-09-23）
+
+### 11.1 需求与现状（核实）
+| 需求 | 状态 | 证据 |
+|---|---|---|
+| 默认知识库（不设默认/用第一个/会话提醒） | 🟡 部分 | 后端 `default_corpus` + `resolve_default`（`corpora.py:167`）；前端 `currentCorpus = find(id) ?? find(is_default)`（`store.tsx:232`）——**静默默认**，无会话确认 |
+| 会话上方切换/增加知识库 | 🟡 部分 | 仅 Composer 内单选「切换知识库」（`CorpusPicker`）；无「新建知识库」入口；顶栏只显示库名、不可切换 |
+| 基于多知识库（≤6）会话/任务 | ❌ 未实现 | `ChatRequest.corpus_id` 单值（`main.py:82`）；`chat_knowledge` 单实例、注释「never cross corpora」（`main.py:645`）；`SessionData.corpus_id?` 单值（`workspace.ts:8`） |
+| 拖拽本地文件上传到 `.knowledge` 子库 | 🟡 部分 | 后端已具备（`POST /api/corpora/{id}/files` 落 `<corpus>/source/` + 增量导入）；前端 `CorpusFiles.tsx` 仅**单选** `<input type="file">`，无拖拽/多选 |
+
+### 11.2 范围裁决
+- **KB-1/2/3 为首期内改进**：不改后端契约、不越界。
+- **KB-4 多库 ≤6 为范围级新增**：**取代** `PROJECT §1「首期不做跨库联合检索」`（:63）；实施前先定契约并更新 PROJECT/DECISIONS。
+  - 动机：`.knowledge/` 已有多库（基金按领域拆分），跨领域问题需要多库联合。
+
+### 11.3 KB-1 默认库确认（小，前端）
+- 现状：静默默认库（`find(id) ?? find(is_default)`）。
+- 目标：**首次发送前**若用户未显式选库 → Composer 顶部一次性提醒「请确认本次会话使用的知识库」，确认后写 `corpusId`；不改后端。
+- 边界：无可用库 → 明确状态，不静默。
+
+### 11.4 KB-2 切换/新增入口（小，前端）
+- Composer 库 popover 加「**+ 新建知识库**」（复用 `createCorpus` + `selectCorpus`）。
+- 顶栏：可选加切换按钮；默认保持“输入区切换”，避免两处入口。
+
+### 11.5 KB-3 拖拽多文件上传（中，前端）
+- `CorpusFiles` 的 `<input>` 换/加 **dropzone**（`onDragOver/onDrop`），**多文件顺序**调 `uploadCorpusFile`；视觉反馈 + 逐条失败提示。
+- **后端不改**（已流式落 `<corpus>/source/` + 增量导入）。
+- 可选组合：`CorpusGrid`「新建库」后直接引导拖入。
+
+### 11.6 KB-4 多知识库会话（≤6，全栈，范围变更）
+- **契约**：`ChatRequest` 增 `corpus_ids: string[] | None`（1–6），与 `corpus_id` **二选一**（同送 422）；缺省 = 默认库。
+- **检索**：为每个库建 `Knowledge`；**各库 retrieve → 跨库报告级合并/去重**；`allowed_doc_ids` 跨库校验；`[n]` 跨库编号，`sources` 带 `corpus_id`（前端 `/file?corpus=` 已支持）。
+- **持久化**：`SessionData.corpus_ids?: string[]`（**可选**，缺失回退 `corpus_id`，遵守持久化向后兼容）。
+- **前端**：多选 chip ≤6；`ScopeSelector` 跨选中库；删除/越界清理。
+- **预算**：合并后仍受 token/报告数预算约束。
+- **影响文件**：`main.py`/`graph.py`/`retrieval.py`/`store.tsx`/`workspace.ts`/`Composer`/`ScopeSelector`。
+- 分阶段：**KB-4a** 后端契约与合并检索 → **KB-4b** 前端多选与持久化 → **KB-4c** 验收。
+
+### 11.7 分阶段任务
+| 编号 | 内容 | 验收 |
+|---|---|---|
+| KB-1 | 首次发送前确认默认库 | 未选库首次发送出现确认；确认后不再提示；无库明确状态 |
+| KB-2 | Composer 内新建并切库 | 可从 Composer 新建并切库 |
+| KB-3 | 拖拽多文件上传 | 拖入多文件入 `<corpus>/source/` 并增量导入；非法类型/超限逐条报错 |
+| KB-4a | 多库契约 + 合并检索（后端） | `corpus_ids` 1–6；与 `corpus_id` 同送 422；跨库引用带 `corpus_id` |
+| KB-4b | 前端多选 chip + 持久化 | `corpus_ids` 存/恢复；>6 拒绝 |
+| KB-4c | 多库验收 | 选 2 库问答，引用来自两库且 `[n]` 可跳转 |
+- 建议排期：**KB-1/2/3 → KB-4**（KB-4 先定契约再实施）。
+
+### 11.8 非目标
+- 不做跨库权限/多租户；不合并库；不做自动选库（仍显式选择）。
+
+### 11.9 验收
+- KB-4：`corpus_ids` 跨库检索且库隔离不泄；`sources` 带 `corpus_id`；`allowed_doc_ids` 越库拒绝。
+
+## 12. 维护约定
 
 - 完成任务后更新本文 §2/§3 与 [`PROJECT.md`](PROJECT.md) 的现状/限制；长期取舍写入 [`DECISIONS.md`](DECISIONS.md)。
 - 证据须可复现（命令/产出路径）；未运行的检查不得写入；受限项显式标注。

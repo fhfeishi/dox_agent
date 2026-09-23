@@ -133,6 +133,14 @@
 - **删除/失效**：删文件/库同步清 `parsed/` 与 Chroma chunk；`parser_signature` 入库 meta，变更即 `force`。
 - 状态：L 开工前定稿（与 ITERATION §7.14 一致）。
 
+## 多知识库会话（≤6，新需求）（2026-09-23，规划）
+
+- 采用：`ChatRequest` 增 `corpus_ids: string[]`（1–6），与 `corpus_id` 二选一（同送 422）；各库 retrieve → 跨库报告级合并/去重；`[n]` 跨库编号且 `sources` 带 `corpus_id`；`SessionData.corpus_ids?` 可选。
+- 理由：`.knowledge/` 已有多库（基金按领域拆分），跨领域问题需多库联合；旧 `corpus_id` 保留兼容。
+- 取代：**取代** `PROJECT §1「首期不做跨库联合检索」`；实施前更新 PROJECT/DECISIONS。
+- 顺带（小改进，不改后端）：KB-1 默认库会话确认、KB-2 Composer 内新建/切库、KB-3 拖拽多文件上传。
+- 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §11（KB-1–KB-4）。
+
 ## 本地持久化统一到 .knowledge/（2026-09-22，规划）
 
 - 采用：所有本地持久化只在 `.knowledge/` 下——语料 `.knowledge/<corpus>/{source,datadb,vectordb}`；应用状态 `.knowledge/.state/{workspace,reports}.sqlite3` + `corpora.json`；演示库移到 `.knowledge/demo_langchain/`（扫描器已跳过 dot 目录，`.state` 不会被当语料）。

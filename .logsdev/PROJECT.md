@@ -61,6 +61,7 @@
 - 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。**PDF 解析已改用 mineru（K13）**：`MINERU_CMD`（默认 `mineru-kit parse … --tier standard --ocr-mode auto --format zip`，一次产 markdown+middle_json）；产物缓存 `<KB>/parsed/<rel>/`，**正文/检索取自 `middle_json` 按页文本（`page_idx` → 页码）**，`markdown.md` 备渲染；预览服务源 PDF；txt/md/docx 仍直接解析。两阶段导入进度仍待 K5。
 - 预览支持 pdf（浏览器原生）/markdown（渲染）/word（转 HTML）/txt（纯文本）。
 - 首期不做跨库联合检索、库内分区、多用户权限隔离。
+  - **规划变更（2026-09-23）**：「多知识库（≤6）会话/任务」为新需求，**取代“首期不做跨库联合检索”**；契约（`corpus_ids` 1–6、跨库引用）见 [`ITERATION.md`](ITERATION.md) §11.6，实施前先更新本节与 `DECISIONS`。
 
 **模型展示**：首期服务端固定单一模型并如实展示；多模型切换列为后续，需后端模型列表与请求级模型字段，未落地前前端不发送。
 

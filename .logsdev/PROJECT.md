@@ -14,6 +14,7 @@
 - 本地文档目录树、网页预览、引用跳页；
 - 按模板生成专项报告（Markdown 预览/复制/下载）；
 - 多知识库隔离、选择与按库问答，含知识库与库内文件的增删改查、上传导入与预览；
+- 多知识库（≤6）会话/任务与跨库联合检索（KB-4，首期新增，取代原“不做跨库”）；
 - 单用户本地部署（默认只监听 `127.0.0.1`）。
 
 **范围外（首期不做）**：多租户/权限后台、多 Agent 协作、知识图谱、工作流画布、独立问题分类服务、材料遵循等级系统、自动全网研究、自动订阅同步、外部资讯抓取与科研头条、多模型路由与模型管理后台、模板管理平台、分布式任务队列。（`VITE_UI_NEWS`/`VITE_UI_MODELS` 等仅占位，不属首期交付。）
@@ -60,8 +61,8 @@
 - 每个会话绑定一个库；输入区资料范围为两层：库（必选）+ 库内文档（可选，`allowed_doc_ids`）；切库清空越界选择并提示。
 - 导入已增量（K1）：未变文件按 `size+mtime_ns` 跳过，必要时 `sha256` 兜底；源文件删除同步移除清单与 `docs`；清单为空为存量库首次回填（一次性）。**PDF 解析已改用 mineru（K13）**：`MINERU_CMD`（默认 `mineru-kit parse … --tier standard --ocr-mode auto --format zip`，一次产 markdown+middle_json）；产物缓存 `<KB>/parsed/<rel>/`，**正文/检索取自 `middle_json` 按页文本（`page_idx` → 页码）**，`markdown.md` 备渲染；预览服务源 PDF；txt/md/docx 仍直接解析。两阶段导入进度仍待 K5。
 - 预览支持 pdf（浏览器原生）/markdown（渲染）/word（转 HTML）/txt（纯文本）。
-- 首期不做跨库联合检索、库内分区、多用户权限隔离。
-  - **规划变更（2026-09-23）**：「多知识库（≤6）会话/任务」为新需求，**取代“首期不做跨库联合检索”**；契约（`corpus_ids` 1–6、跨库引用）见 [`ITERATION.md`](ITERATION.md) §11.6，实施前先更新本节与 `DECISIONS`。
+- 首期不做**库内分区**、多用户权限隔离；跨库联合检索已作为 KB-4 **纳入首期**（见 §11.6）。
+  - **2026-09-23 变更**：「多知识库（≤6）会话/任务」为用户需求，已纳入首期，**取代“首期不做跨库联合检索”**；契约（`corpus_ids` 1–6、跨库引用）见 [`ITERATION.md`](ITERATION.md) §11.6 与 §4.2。
 
 **模型展示**：首期服务端固定单一模型并如实展示；多模型切换列为后续，需后端模型列表与请求级模型字段，未落地前前端不发送。
 
@@ -116,7 +117,7 @@
 
 ### 4.2 `POST /api/chat`
 
-请求：`messages`（1–20 条，每条 ≤12000，总 ≤40000，末条必须 user）、`allowed_doc_ids`（可空，非空 1–20）、`task_id`（默认 `task1`，`task1–4`；**task4 走 intake 分支、不生成正文**；未知 422）、`corpus_id`（可选，缺省默认库；未知 404）、`run_id`（8–80）。禁止额外字段（含已移除的 `execution_mode`/`query_routing`/`evidence_level`）。
+请求：`messages`（1–20 条，每条 ≤12000，总 ≤40000，末条必须 user）、`allowed_doc_ids`（可空，非空 1–20）、`task_id`（默认 `task1`，`task1–4`；**task4 走 intake 分支、不生成正文**；未知 422）、`corpus_id`（可选，缺省默认库；未知 404）、`corpus_ids`（可选，1–6，**与 `corpus_id` 二选一**，同送 422；缺省默认库；KB-4）、`run_id`（8–80）。禁止额外字段（含已移除的 `execution_mode`/`query_routing`/`evidence_level`）。
 
 SSE 事件：`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）、`step`、`telemetry`、`sources`（附服务端 `citation`，先于 token）、`token`、`usage`、`done`、`error`。无 `done` 的断流视为未完成；失败用 `error` 且不发送 `done`。
 

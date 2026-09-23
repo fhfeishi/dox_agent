@@ -133,27 +133,27 @@
 - **删除/失效**：删文件/库同步清 `parsed/` 与 Chroma chunk；`parser_signature` 入库 meta，变更即 `force`。
 - 状态：L 开工前定稿（与 ITERATION §7.14 一致）。
 
-## 知识库重命名与目录名同步（KB-5，2026-09-23，规划）
+## 知识库重命名与目录名同步（KB-5，2026-09-23）
 
-- 采用：**规范名 = 目录名 + 可选 alias（按稳定 id 持久化）**；`corpus_id` 改为**持久化稳定 id**（回填 `id=corpus_id_for(rel)`）；重命名 = 目录改名 + origin 前缀重写（保留 `doc_id`）+ 保留 id。
+- 采用：**规范名 = 目录名；重命名 = 目录改名 + 名称同步（`alias` 清空，UI 显示目录名）**；可选 `alias` 按稳定 id 持久化（未重命名时可显示友好名）。`corpus_id` = 持久化稳定 id（回填 `id=corpus_id_for(rel)`）；重命名 = 目录改名 + 文件型 origin 前缀重写（保留 `doc_id`）+ 保留 id。
 - **T1/T8 doc_id 解耦**：保留 `doc_id=sha256(origin)` 定义，但 `Knowledge.put(doc, doc_id=)` 支持显式 id、`import_defaults` 对清单内文件传 `files.doc_id` **原地更新**；重命名重写 origin 保留 id → **再导入（含 force）不产重复行/孤儿 chunks**；不做存量 doc_id 批量迁移。
 - **T2 原子/锁**：改名在 `import_lock` 内串行；导入中 → 409；DB 事务 + 失败回滚目录。
-- **T3 孤儿**：`/api/corpora` 标 `missing`；默认解析跳过；会话 `corpus_id` 悬空 → 提示“重新关联/解绑”，不静默 404。
-- **T4 alias**：不删显示名，按 id 存 alias（UI 优先显示），避免 rel-keyed 漂移。
-- **T5 文件系统边界**：Windows 保留名/尾随点空格/符号链接拒绝；大小写改名两步临时名；与扫描/导入串行。
-- **T6 对齐迁移**：预览 + 备份 + 可回滚 + 用户确认。
+- **T3 孤儿（KB-5d）**：`/api/corpora` 标 `missing`；默认解析跳过；会话 `corpus_id` 悬空 → 提示“重新关联/解绑”，不静默 404。
+- **T4 alias**：不删显示名，按 id 存 alias（UI 优先显示）；**旧 rel-keyed 的 `name` 必须迁移为 alias**。
+- **T5 边界**：Windows 保留名/尾随点空格/符号链接拒绝；大小写改名两步临时名；与扫描/导入串行。
 - **T7 DEFAULT_CORPUS**：按 id 解析，保留 rel 回退（旧 `.env` 写 rel 仍可）。
-- 理由：`corpus_id` 原本由 rel 派生、`doc_id=sha256(origin)`，直接改目录会级联失效会话/引用；稳定 id + origin 重写 + put(doc_id) 消除级联。
-- 取代：取代「知识库重命名语义（2026-09-22）」中“仅改显示名/目录搬迁暂缓”的部分。
-- 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §11.6（KB-5a–d）。
+- **KB-5c 取消**：alias-by-id 已满足 T4；**不做**“名称/目录批量对齐迁移”（原 T6）；若需对齐，走显式 alias 编辑。
+- 理由：`corpus_id` 原由 rel 派生、`doc_id=sha256(origin)`，直接改目录会级联失效；稳定 id + origin 重写 + `put(doc_id)` 消除级联。
+- 取代：「知识库重命名语义（2026-09-22）」中“仅改显示名/目录搬迁暂缓”的部分。
+- 状态：**KB-5a/5b 已实现**（`8d6ff0a`，108 passed）；**缺陷待修**：旧 `{rel:{name}}` 未迁移为 `{id:{alias:name}}` → 4 个友好库名丢失（应补 `name→alias` 迁移 + 扫描回退 `alias or name`）。**KB-5d 待做**。规格见 [`ITERATION.md`](ITERATION.md) §11.6。
 
-## 多知识库会话（≤6，新需求）（2026-09-23，规划）
+## 多知识库会话（≤6，已纳入首期）（2026-09-23）
 
-- 采用：`ChatRequest` 增 `corpus_ids: string[]`（1–6），与 `corpus_id` 二选一（同送 422）；各库 retrieve → 跨库报告级合并/去重；`[n]` 跨库编号且 `sources` 带 `corpus_id`；`SessionData.corpus_ids?` 可选。
-- 理由：`.knowledge/` 已有多库（基金按领域拆分），跨领域问题需多库联合；旧 `corpus_id` 保留兼容。
-- 取代：**取代** `PROJECT §1「首期不做跨库联合检索」`；实施前更新 PROJECT/DECISIONS。
+- 采用：`ChatRequest` 增 `corpus_ids: string[]`（1–6），与 `corpus_id` **二选一**（同送 422）；缺省 = 默认库。各库 retrieve → **跨库报告级合并/去重**；`[n]` 跨库编号且 `sources` 带 `corpus_id`；`SessionData.corpus_ids?` 可选（缺失回退 `corpus_id`）。
+- 理由：用户需求（`.knowledge/` 已有多库、基金按领域拆分）；旧 `corpus_id` 保留兼容。
+- 取代：**取代** `PROJECT §1「首期不做跨库联合检索」`；已同步 `PROJECT §1/§4.2`。
 - 顺带（小改进，不改后端）：KB-1 默认库会话确认、KB-2 Composer 内新建/切库、KB-3 拖拽多文件上传。
-- 状态：**规划**，规格见 [`ITERATION.md`](ITERATION.md) §11（KB-1–KB-4）。
+- 状态：**已确认纳入首期**（用户需求）；规格见 [`ITERATION.md`](ITERATION.md) §11（KB-4a–c）。
 
 ## 本地持久化统一到 .knowledge/（2026-09-22，规划）
 
@@ -187,13 +187,6 @@
   - **M6 已知限制**：报告无删除；`reports.sqlite3` 与应用级 `workspace.sqlite3` 同在 `STATE_DIR`；单用户可接受，列表 `limit` 缓解，后续可加清理。
   - **M7 校验口径**：`session_key` 服务端**不强制**；“chat 入口必发”是**前端流程约定**，不得加服务端必填校验。
 - 附带修正：`main.py:81` 注释「task4 is deliberately absent」已过期，应改为“task4 允许输入、走 intake，不生成正文”。
-
-## 重命名同步目录（KB-5，取代 K6「仅改显示名」，2026-09-23）
-
-- 采用：`.knowledge/<dir>` 为规范名；`PATCH /api/corpora/{id}` 执行**目录改名 + 文件型 origin 前缀重写（保留 doc_id）+ 稳定 corpus_id 保留**；可选 `alias` 按 id 持久化；`.state/corpora.json` 按 **id** 持久化（旧 rel-keyed 读时转换 + 扫描回填）。
-- 理由与代价：库名与磁盘一致、便于运维/迁移；代价是重命名需 `import_lock` + 失败回滚，且文档 `doc_id` 与路径解耦依赖 `Knowledge.put(doc_id=)` + `import_defaults` 复用清单 id（T1）。
-- 边界（T5）：校验保留名（CON/PRN/AUX/NUL/COM1-9/LPT1-9）、尾随点/空格、分隔符；仅大小写改名走两步临时名。
-- 关联：`resolve_default` 按 id→rel（T7，旧 `.env` 写 rel 仍可解析）；T3（缺失库提示）与 T6（名称/目录对齐迁移）待后续。
 
 ## 任务 = 输出契约，不是输入闸门（2026-09-22，规划）
 

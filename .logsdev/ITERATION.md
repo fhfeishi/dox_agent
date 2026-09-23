@@ -964,8 +964,8 @@ understand → retrieve → assemble → validate → answer → finish
 
 ### 11.2 范围裁决
 - **KB-1/2/3 为首期内改进**：不改后端契约、不越界。
-- **KB-5 重命名同步目录为中改**：**取代** K6「重命名仅改显示名」；需稳定 `corpus_id` + origin 重写；实施前更新 `DECISIONS`。
-- **KB-4 多库 ≤6 为范围级新增**：**取代** `PROJECT §1「首期不做跨库联合检索」`（:63）；实施前先定契约并更新 PROJECT/DECISIONS。
+- **KB-5 重命名同步目录**：**KB-5a/5b 已实现**（`8d6ff0a`）；**KB-5c 取消**；**KB-5d 待做**；缺陷（alias 迁移）待修（见 §11.6）。
+- **KB-4 多库 ≤6 为范围级新增**：**已确认纳入首期**（用户需求），**取代** `PROJECT §1「首期不做跨库联合检索」`；契约（`corpus_ids` 1–6 二选一）已同步 `PROJECT §1/§4.2`。
   - 动机：`.knowledge/` 已有多库（基金按领域拆分），跨领域问题需要多库联合。
 
 ### 11.3 KB-1 默认库确认（小，前端）
@@ -1004,7 +1004,7 @@ understand → retrieve → assemble → validate → answer → finish
 7. **失败回滚**（T2）：DB 失败 → 目录改回；目录已改而 DB 未改 → 回滚目录。
 - `files.rel_path`（相对 `<corpus>/source`）与 `chunks` 不受影响；`parsed/` 随目录移动。
 
-**T3 孤儿/缺失库**：`/api/corpora` 对稳定 id 找不到目录的标 `missing`；默认解析跳过 missing；会话 `corpus_id` 指向 missing → 提示「库已移动/缺失，重新关联或解绑」，**不静默 404**。
+**T3 孤儿/缺失库**：`/api/corpora` 对稳定 id 找不到目录的标 `missing`；默认解析跳过 missing；会话 `corpus_id` 指向 missing → **409 `{missing:true}` + 可操作提示**（重新关联/解绑）；**未知 id → 404**。前端给横幅 + 「重新关联（选库）/解绑（用默认）」动作。
 
 **DEFAULT_CORPUS（T7）**：按 **id** 解析，**保留 rel 回退**（旧 `.env` 写 rel 仍可解析）；新持久化写 id。
 
@@ -1015,6 +1015,12 @@ understand → retrieve → assemble → validate → answer → finish
 **影响**：`corpora.py`（id/alias 持久化、`resolve_default`）、`main.py`（PATCH 改名目录 + 锁/回滚 + missing）、`knowledge.py`（`put(doc_id=)`、origin 重写 helper）、`parsers.py`（`import_defaults` 传稳定 id）、前端（alias 显示、missing 提示）。
 
 **验收**：重命名后目录名/名称同步；`corpus_id` 不变；旧会话仍指向该库；`/file` 正常；**重命名后再导入不产生重复行**（T1）；导入中改名 409（T2）；缺失库提示而非 404（T3）；大小写改名/非法名/保留名边界（T5）。
+
+**实现状态与缺陷（2026-09-23）**：
+- **KB-5a/5b 已实现**（`8d6ff0a`，108 passed）：id-keyed `.state/corpora.json`、rename 同步目录 + origin 重写 + 锁/回滚、`put(doc_id=)`。
+- **KB-5c 取消**（alias-by-id 已满足 T4，不做批量对齐迁移）；**KB-5d 待做**。
+- **缺陷待修（阻塞“KB-5a 完成”声明）**：旧 `{rel:{name}}` 未迁移为 `{id:{alias:name}}` → `AI与医疗`/`NF-AI与*` 4 个友好名丢失（现均显示目录名）。修：迁移 `name→alias` + 扫描回退 `alias or name`。
+- **命名同步规则**：`PATCH /api/corpora/{id}` 改名时同时**清空 `alias`**，使显示名=新目录名（满足“名称与目录名同步”）；未改名时 alias 作为友好名展示。
 
 ### 11.7 KB-4 多知识库会话（≤6，全栈，范围变更）
 - **契约**：`ChatRequest` 增 `corpus_ids: string[] | None`（1–6），与 `corpus_id` **二选一**（同送 422）；缺省 = 默认库。
@@ -1031,14 +1037,14 @@ understand → retrieve → assemble → validate → answer → finish
 | KB-1 | 首次发送前确认默认库 | 未选库首次发送出现确认；确认后不再提示；无库明确状态 |
 | KB-2 | Composer 内新建并切库 | 可从 Composer 新建并切库 |
 | KB-3 | 拖拽多文件上传 | 拖入多文件入 `<corpus>/source/` 并增量导入；非法类型/超限逐条报错 |
-| KB-5a | 稳定 id 持久化 + 回填迁移 + alias-by-id 模型 | 现有会话 `corpus_id` 不变 | ✅ 本轮 |
-| KB-5b | 重命名 = 目录改名 + origin 重写 + id 保留 + 锁/回滚 + `put(doc_id=)` | 重命名后目录名=名称、id 不变、旧会话可用、`/file` 正常、**再导入不重复** | ✅ 本轮 |
-| KB-5c | 名称/目录名对齐（T6：预览+备份+可回滚） | 无名称漂移；失败可回滚 |
-| KB-5d | T3 缺失库标记与提示 | 外部删/改名后提示而非 404 |
+| KB-5a | 稳定 id 持久化 + 回填迁移 + alias-by-id 模型 | 现有会话 `corpus_id` 不变 | ✅ 本轮（缺陷：`name→alias` 迁移待补） |
+| KB-5b | 重命名 = 目录改名 + origin 重写 + id 保留 + 锁/回滚 + `put(doc_id=)` | 目录名=名称、id 不变、旧会话可用、`/file` 正常、**再导入不重复** | ✅ 本轮 |
+| ~~KB-5c~~ | ~~名称/目录名对齐迁移~~ → **取消**（alias-by-id 已满足） | — | — |
+| KB-5d | T3 缺失库标记与提示 | 外部删/改名后提示而非 404 | ⬜ |
 | KB-4a | 多库契约 + 合并检索（后端） | `corpus_ids` 1–6；与 `corpus_id` 同送 422；跨库引用带 `corpus_id` |
 | KB-4b | 前端多选 chip + 持久化 | `corpus_ids` 存/恢复；>6 拒绝 |
 | KB-4c | 多库验收 | 选 2 库问答，引用来自两库且 `[n]` 可跳转 |
-- 建议排期：**KB-1/2/3（纯前端）→ KB-5a（稳定 id 先行，供 KB-4 复用）→ KB-5b/c/d → [定 KB-4 契约] → KB-4a/b/c**。KB-5b 需 T1/T2 定稿后实施；KB-5c 对齐迁移单独一步且可回滚。
+- 建议排期：**KB-1/2/3（纯前端）→ KB-5a/5b ✅ → KB-5d → KB-4a/b/c**。KB-5c 取消；KB-4 契约已定（`corpus_ids` 1–6 二选一）。
 
 ### 11.9 非目标
 - 不做跨库权限/多租户；不合并库；不做自动选库（仍显式选择）。

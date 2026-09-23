@@ -223,6 +223,19 @@
 - 评测集偏易，需扩样后再校准 `MIN_TERM_COVER`/`PER_DOC_TOP_M`/`MIN·MAX_REPORTS`。
 - **状态（本轮）**：D-L10 已实现（步骤 5）。实测 `GENERIC_DF_RATIO=0.35` 下泛词判据与 §5.4 一致（`应用`1.00/`人工`0.91/`医疗`0.34）；`癫痫致痫网络` 仅 1 篇（噪声 0），`人工智能在医疗领域的应用` 仅医学报告，证券市场报告不再入选。细节与证据见 §3 / D-L10（§7.7）。
 
+### 5.7 G10/E 核实与遗留（2026-09-22，planner）
+
+**核实结论（复核 `b90e809`/`acdae7c`/`409ad2d`/`463c41b`/`9c3c82e`）**：
+- `pytest tests -q` → **104 passed**；`test_reports` 覆盖 schema 迁移/幂等/列表。
+- **M1–M7 均已实现**：`PRAGMA table_info`+幂等 `ALTER`（M1）；`''`+部分唯一索引 `WHERE run_id != ''`（M2）；`find` 幂等 → `POST` 既有 200 `idempotent=true` / 新建 201（M3）；`GET /api/reports?session_key=&run_id=&limit=` 仅元数据、`created_at DESC`、默认 20/上限 100、未命中 `[]`（M4）；`reports.py`/`main.py` 注释与 docstring 更新（M5）；docstring 记已知限制（M6）；`session_key` 服务端不强制（M7）。
+- 前端：`api.createReport/fetchReports/fetchReport`、`MessageView` 报告卡片（生成/重新生成/复制/下载 `.md`）、`SidePanel` 会话报告列表、`Attempt.report` 可选持久化 `reportId`；`ReportCard` 首次用 `attempt.runId`（重试安全）、重新生成用 `crypto.randomUUID()`（新报告）——符合 M3。
+- `main.py` task4 注释已更正。
+
+**遗留**：
+- **在线端到端未做**：报告生成依赖真实模型调用；报告卡片/会话列表仅经单测+构建验证，**未做真实模型浏览器 E2E**（coder 已如实声明）。列为待验收项。
+- ruff 实为 **4 处既有**（`main.py` SIM114/B008、`prompts` UP033、`tests/browser_library.py` F401），非 3 处；均非本轮引入。
+- §9 扩展（task5–8、docx/pdf、图表）仍非首期、未实施。
+
 ## 6. K 阶段规划：知识库管理、解析优化与预览（2026-09-22，规划中）
 
 ### 6.1 根因分析（优化前历史，K2/K3/K4 已解决）

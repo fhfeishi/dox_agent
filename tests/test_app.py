@@ -226,6 +226,74 @@ def test_user_web_previews_are_isolated_and_confirmed_to_an_explicit_destination
         assert client.get(f"/api/web/snapshots/{snapshot_id}").json()["url"] == "https://example.com/two"
 
 
+def test_user_searches_allowed_domains_then_confirms_only_selected_results(tmp_path, monkeypatch):
+    from pydantic import SecretStr
+
+    from src import main
+
+    # Given explicit search settings and a provider result outside the chosen domain
+    calls = []
+
+    async def fake_search(query, domains, time_filter, limit, settings):
+        calls.append((query, domains, time_filter, limit))
+        return [{"url": "https://papers.example.org/one", "title": "研究一", "description": "摘要"},
+                {"url": "https://outside.example/two", "title": "域外", "description": "不可用"}]
+
+    async def fake_page(url, settings):
+        return Document(title="研究一", origin=url, kind="web", parser="fake",
+                        pages=[Page(number=1, text="确认后的正文")], markdown="确认后的正文")
+
+    monkeypatch.setattr(main, "search_web", fake_search)
+    monkeypatch.setattr(main, "parse_web", fake_page)
+    root = tmp_path / ".knowledge"
+    (root / "fixture" / "source").mkdir(parents=True)
+    settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path,
+                        firecrawl_api_key=SecretStr("offline"))
+    class SearchGraph:
+        async def astream(self, state, **kwargs):
+            source = state["web_snapshots"][0]
+            yield {"event": "sources", "data": [{"kind": "web", "snapshot_id": source["web_snapshot_id"],
+                "url": source["url"], "fetched_at": source["fetched_at"], "version": source["version"],
+                "title": source["title"]}]}
+            yield {"event": "token", "data": {"text": "确认后的正文 [1]"}}
+            yield {"event": "done", "data": {"ok": True}}
+
+    app = create_app(settings, Knowledge(root / "fixture" / "datadb" / "knowledge.sqlite3", settings=settings),
+                     lambda *_: SearchGraph())
+    with TestClient(app) as client:
+        assert client.post("/api/web/search", json={"query": "研究", "domains": [], "limit": 5}).status_code == 422
+        search = client.post("/api/web/search", json={"query": "研究", "domains": ["example.org"],
+                                                   "time_filter": "year", "limit": 5}).json()
+        assert calls == [("研究", ["example.org"], "year", 5)]
+        assert len(search["results"]) == 1
+        result_id = search["results"][0]["result_id"]
+        assert client.post(f"/api/web/search/{search['search_id']}/preview/unknown").status_code == 404
+        preview = client.post(f"/api/web/search/{search['search_id']}/preview/{result_id}").json()
+        assert preview["origin"] == "https://papers.example.org/one"
+        snapshot_id = client.post(f"/api/web/confirm/{preview['preview_id']}",
+                                  json={"save_for_run": True}).json()["web_snapshot_id"]
+        snapshot = client.get(f"/api/web/snapshots/{snapshot_id}").json()
+        assert snapshot["search_query"] == "研究"
+        assert snapshot["search_domains"] == ["example.org"]
+        assert snapshot["search_time_filter"] == "year"
+        assert snapshot["markdown"] == "确认后的正文"
+        assert client.post(f"/api/web/search/{search['search_id']}/preview/{result_id}").status_code == 409
+        corpus_id = client.get("/api/corpora").json()[0]["id"]
+        answer = client.post("/api/chat", json={"messages": [{"role": "user", "content": "研究结论"}],
+                            "corpus_ids": [corpus_id], "web_snapshot_ids": [snapshot_id],
+                            "run_id": "search-run-0001"})
+        run = client.get("/api/runs/search-run-0001").json()
+        assert answer.status_code == 200
+        assert run["params"]["web_snapshot_versions"][0]["search_query"] == "研究"
+        async def failing_search(*args):
+            raise ValueError("搜索服务暂时不可用")
+
+        monkeypatch.setattr(main, "search_web", failing_search)
+        failed = client.post("/api/web/search", json={"query": "另一项研究", "domains": ["example.org"]})
+        assert failed.status_code == 502
+        assert client.get(f"/api/documents?corpus={corpus_id}").json() == []
+
+
 def test_user_confirmed_web_snapshot_is_bound_to_the_actual_chat_run(tmp_path, monkeypatch):
     # Given a confirmed web snapshot kept outside the knowledge base
     from src import main

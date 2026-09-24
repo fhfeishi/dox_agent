@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useApp } from "../store";
-import { confirmWeb, previewWeb, type WebPreview } from "../api";
+import { confirmWeb, previewSearchResult, previewWeb, searchWeb, webSearchCapability, type WebPreview, type WebSearch } from "../api";
 import { Icon } from "./Icons";
 import { CorpusPicker } from "./CorpusPicker";
 import { ScopeSelector } from "./ScopeSelector";
@@ -88,11 +88,19 @@ export function Composer() {
   const [corpusOpen, setCorpusOpen] = useState(false);
   const [scopeOpen, setScopeOpen] = useState(false);
   const [webOpen, setWebOpen] = useState(false);
+  const [webMode, setWebMode] = useState<"url" | "search">("url");
   const [webUrl, setWebUrl] = useState("");
   const [webPreviews, setWebPreviews] = useState<WebPreview[]>([]);
   const [webTarget, setWebTarget] = useState("");
   const [webBusy, setWebBusy] = useState(false);
   const [webError, setWebError] = useState("");
+  const [searchAvailable, setSearchAvailable] = useState<boolean | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchDomains, setSearchDomains] = useState("");
+  const [searchTime, setSearchTime] = useState<"any" | "month" | "year">("any");
+  const [searchResult, setSearchResult] = useState<WebSearch | null>(null);
+  const [searchSelected, setSearchSelected] = useState<string[]>([]);
+  const [searchPreviewed, setSearchPreviewed] = useState<string[]>([]);
   const taRef = useRef<HTMLTextAreaElement>(null);
   const popRef = useRef<HTMLDivElement>(null);
   const corpusRef = useRef<HTMLDivElement>(null);
@@ -104,6 +112,11 @@ export function Composer() {
     el.style.height = "auto";
     el.style.height = `${Math.min(el.scrollHeight, 180)}px`;
   }, [input]);
+
+  useEffect(() => {
+    if (!webOpen || webMode !== "search") return;
+    void webSearchCapability().then((value) => setSearchAvailable(value.available), () => setSearchAvailable(false));
+  }, [webOpen, webMode]);
 
   // One dismiss handler for every composer popover: click outside closes that popover,
   // Escape closes all of them.
@@ -193,6 +206,33 @@ export function Composer() {
     } catch (error) {
       setWebError(error instanceof Error ? error.message : "网页确认失败");
     } finally { setWebBusy(false); }
+  }
+  async function runSearch() {
+    setWebBusy(true); setWebError(""); setSearchResult(null); setSearchSelected([]); setSearchPreviewed([]);
+    try {
+      const domains = searchDomains.split(/[，,\s]+/).map((item) => item.trim()).filter(Boolean);
+      const result = await searchWeb(searchQuery.trim(), domains, searchTime);
+      setSearchResult(result);
+    } catch (error) {
+      setWebError(error instanceof Error ? error.message : "网络搜索失败");
+    } finally { setWebBusy(false); }
+  }
+  async function previewSelected() {
+    if (!searchResult || !searchSelected.length) return;
+    setWebBusy(true); setWebError("");
+    const failed: string[] = [];
+    for (const resultId of searchSelected) {
+      try {
+        const preview = await previewSearchResult(searchResult.search_id, resultId);
+        setWebPreviews((items) => [...items, preview]);
+        setSearchPreviewed((items) => [...items, resultId]);
+      } catch (error) {
+        failed.push(error instanceof Error ? error.message : "预览失败");
+      }
+    }
+    setSearchSelected([]);
+    if (failed.length) setWebError(failed.join("；"));
+    setWebBusy(false);
   }
 
   return (
@@ -303,11 +343,38 @@ export function Composer() {
         </div> : null}
 
         {webOpen ? <div className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-[12px]">
-          <div className="flex gap-[6px]">
+          <div className="mb-[7px] flex gap-[5px]">
+            <button type="button" onClick={() => setWebMode("url")} className={webMode === "url" ? "font-semibold text-[var(--primary)]" : "text-[var(--stone)]"}>指定网址</button>
+            <span>·</span>
+            <button type="button" onClick={() => setWebMode("search")} className={webMode === "search" ? "font-semibold text-[var(--primary)]" : "text-[var(--stone)]"}>受控搜索</button>
+          </div>
+          {webMode === "url" ? <div className="flex gap-[6px]">
             <input aria-label="指定网址" type="url" value={webUrl} onChange={(event) => setWebUrl(event.target.value)} placeholder="https://example.com/article"
               className="min-w-0 flex-1 rounded border border-[var(--hairline)] px-[7px] py-[5px]" />
             <button type="button" disabled={webBusy || !webUrl.trim()} onClick={() => void addWebPreview()} className="rounded bg-[var(--primary)] px-[9px] text-white disabled:opacity-50">预览网页</button>
-          </div>
+          </div> : <div className="space-y-[6px]">
+            <p className="text-[var(--stone)]">先搜索指定域名，再勾选最多 3 条结果抓取；搜索不会自动进入回答。</p>
+            {searchAvailable === false ? <p role="status" className="text-[var(--red)]">网络搜索未配置 FIRECRAWL_API_KEY</p> : null}
+            <div className="flex gap-[6px]">
+              <input aria-label="搜索问题" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} placeholder="要查找的主题" className="min-w-0 flex-1 rounded border px-[7px] py-[5px]" />
+              <input aria-label="允许的域名" value={searchDomains} onChange={(event) => setSearchDomains(event.target.value)} placeholder="example.org，最多 3 个" className="min-w-0 flex-1 rounded border px-[7px] py-[5px]" />
+            </div>
+            <div className="flex items-center gap-[7px]">
+              <select aria-label="搜索时间范围" value={searchTime} onChange={(event) => setSearchTime(event.target.value as "any" | "month" | "year")} className="rounded border px-[5px] py-[4px]">
+                <option value="any">不限时间</option><option value="month">近一月</option><option value="year">近一年</option>
+              </select>
+              <span className="text-[var(--stone)]">最多返回 5 条 · 每次最多预览 3 条</span>
+              <button type="button" disabled={webBusy || searchAvailable === false || !searchQuery.trim() || !searchDomains.trim()} onClick={() => void runSearch()} className="ml-auto rounded bg-[var(--primary)] px-[9px] py-[4px] text-white disabled:opacity-50">搜索</button>
+            </div>
+            {searchResult ? <div aria-label="搜索结果" className="space-y-[4px]">
+              <p className="text-[var(--stone)]">{searchResult.results.length} 条域内结果 · 有效至 {searchResult.expires_at}</p>
+              {searchResult.results.map((item) => <label key={item.result_id} className="flex items-start gap-[6px] rounded border p-[5px]">
+                <input type="checkbox" aria-label={`选择 ${item.title}`} checked={searchSelected.includes(item.result_id)} disabled={webBusy || searchPreviewed.includes(item.result_id) || (!searchSelected.includes(item.result_id) && searchSelected.length + searchPreviewed.length >= 3)} onChange={(event) => setSearchSelected((current) => event.target.checked ? [...current, item.result_id] : current.filter((id) => id !== item.result_id))} />
+                <span><strong>{item.title}</strong><span className="block break-all text-[var(--stone)]">{item.url}</span>{item.snippet}</span>
+              </label>)}
+              {searchSelected.length ? <button type="button" disabled={webBusy} onClick={() => void previewSelected()} className="rounded border px-[7px] py-[4px]">预览所选 {searchSelected.length} 条</button> : null}
+            </div> : null}
+          </div>}
           {webError ? <p role="alert" className="mt-[5px] text-[var(--red)]">{webError}</p> : null}
           {webPreviews.map((item) => <div key={item.preview_id} className="mt-[8px] rounded border border-[var(--hairline)] p-[7px]">
             <p className="font-medium">{item.title} · {item.origin}</p>
@@ -477,7 +544,10 @@ export function Composer() {
                     }}
                   />
                   <PopItem title="指定网址" description="先预览，再选择本次运行或一个知识库" onClick={() => {
-                    setPopOpen(false); setWebOpen(true);
+                    setPopOpen(false); setWebMode("url"); setWebOpen(true);
+                  }} />
+                  <PopItem title="受控搜索" description="限定域名与时间，勾选结果后再抓取" onClick={() => {
+                    setPopOpen(false); setWebMode("search"); setWebOpen(true);
                   }} />
                 </div>
               ) : null}

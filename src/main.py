@@ -64,6 +64,7 @@ from .runs import RunConflict, RunStore, request_fingerprint
 from .workspace import Workspace
 from .workspace import router as workspace_router
 from .web_snapshots import WebSnapshotStore
+from .web_search import allowed_result, normalize_domain, search_web
 
 logger = logging.getLogger(__name__)
 
@@ -187,6 +188,29 @@ class WebConfirmRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     target_corpus_id: str | None = Field(default=None, min_length=1, max_length=120)
     save_for_run: bool = False
+
+
+class WebSearchRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    query: str = Field(min_length=2, max_length=200)
+    domains: list[str] = Field(min_length=1, max_length=3)
+    time_filter: Literal["any", "month", "year"] = "any"
+    limit: int = Field(default=5, ge=1, le=5)
+
+    @field_validator("query")
+    @classmethod
+    def nonempty_query(cls, value: str):
+        if len(value.strip()) < 2:
+            raise ValueError("搜索问题至少需要两个非空字符")
+        return value.strip()
+
+    @field_validator("domains")
+    @classmethod
+    def valid_domains(cls, value: list[str]):
+        normalized = [normalize_domain(item) for item in value]
+        if len(set(normalized)) != len(normalized):
+            raise ValueError("搜索域名不能重复")
+        return normalized
 
 
 class OfficialRequest(BaseModel):
@@ -314,9 +338,9 @@ def sse(event: str, data: object) -> str:
     return f"event: {event}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n"
 
 
-def prune_web_previews(previews: dict, now: datetime, *, limit: int = 20) -> dict:
-    """W6-A: drop expired previews and keep at most ``limit`` newest ones (single-user app)."""
-    fresh = {key: value for key, value in previews.items() if value["expires_at"] > now}
+def prune_web_entries(entries: dict, now: datetime, *, limit: int = 20) -> dict:
+    """Bound short-lived URL previews and search result sets for the single-user app."""
+    fresh = {key: value for key, value in entries.items() if value["expires_at"] > now}
     if len(fresh) <= limit:
         return fresh
     newest = sorted(fresh.items(), key=lambda item: item[1]["expires_at"], reverse=True)
@@ -346,6 +370,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.web_snapshots = WebSnapshotStore(settings.state_dir / "web_snapshots.sqlite3")
         app.state.import_lock = asyncio.Lock()
         app.state.previews = {}
+        app.state.searches = {}
         app.state.official_job = {"status": "idle", "total": 0, "completed": 0, "imported": 0, "changed": 0, "errors": []}
         app.state.official_task = None
         # H1/H2: per-corpus Knowledge cache (default corpus reuses app.state.knowledge),
@@ -1180,6 +1205,84 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             return await asyncio.to_thread(import_defaults, knowledge_for(info), settings,
                                            root=info.source_dir, parsed_root=info.root / "parsed")
 
+    @app.get("/api/web/search/capability")
+    async def web_search_capability():
+        return {"provider": "firecrawl", "available": bool(settings.firecrawl_api_key),
+                "max_domains": 3, "max_results": 5, "max_selected": 3}
+
+    @app.post("/api/web/search")
+    async def web_search(payload: WebSearchRequest):
+        if not settings.firecrawl_api_key:
+            raise HTTPException(409, "网络搜索需要配置 FIRECRAWL_API_KEY")
+        try:
+            found = await search_web(payload.query, payload.domains,
+                                     payload.time_filter, payload.limit, settings)
+        except ValueError as exc:
+            raise HTTPException(502, str(exc)) from exc
+        except (TimeoutError, OSError) as exc:
+            raise HTTPException(502, "搜索服务暂时不可用；本地知识库未受影响") from exc
+        results = []
+        seen = set()
+        for item in found:
+            if not isinstance(item, dict):
+                continue
+            url = item.get("url", "")
+            if not isinstance(url, str) or url in seen or not allowed_result(url, payload.domains):
+                continue
+            seen.add(url)
+            results.append({"result_id": uuid4().hex, "url": url,
+                            "title": str(item.get("title") or url)[:300],
+                            "snippet": str(item.get("description") or "")[:800]})
+            if len(results) >= payload.limit:
+                break
+        now = datetime.now(UTC)
+        search_id = uuid4().hex
+        expires_at = now + timedelta(minutes=15)
+        async with app.state.import_lock:
+            app.state.searches = prune_web_entries(app.state.searches, now)
+            app.state.searches[search_id] = {
+                "query": payload.query, "domains": payload.domains,
+                "time_filter": payload.time_filter, "results": {item["result_id"]: item for item in results},
+                "selected": set(), "expires_at": expires_at,
+            }
+        return {"search_id": search_id, "expires_at": expires_at.isoformat(),
+                "query": payload.query, "domains": payload.domains,
+                "time_filter": payload.time_filter, "provider": "firecrawl", "results": results}
+
+    @app.post("/api/web/search/{search_id}/preview/{result_id}")
+    async def preview_search_result(search_id: str, result_id: str):
+        now = datetime.now(UTC)
+        async with app.state.import_lock:
+            app.state.searches = prune_web_entries(app.state.searches, now)
+            search = app.state.searches.get(search_id)
+            if search is None:
+                raise HTTPException(409, "搜索结果已过期，请重新搜索")
+            result = search["results"].get(result_id)
+            if result is None:
+                raise HTTPException(404, "搜索结果不存在")
+            if result_id in search["selected"]:
+                raise HTTPException(409, "该结果已预览")
+            if len(search["selected"]) >= 3:
+                raise HTTPException(409, "每次搜索最多预览 3 个结果")
+            search["selected"].add(result_id)
+        try:
+            doc = await parse_web(result["url"], settings)
+        except Exception as exc:
+            async with app.state.import_lock:
+                search["selected"].discard(result_id)
+            logger.warning("search result preview failed: %s", type(exc).__name__)
+            raise HTTPException(502, "所选网页抓取失败；可以重试或保留本地知识库范围") from exc
+        fetched_at = datetime.now(UTC)
+        preview_id = uuid4().hex
+        expires_at = fetched_at + timedelta(minutes=15)
+        search_meta = {"search_query": search["query"], "search_domains": search["domains"],
+                       "search_time_filter": search["time_filter"], "search_provider": "firecrawl"}
+        async with app.state.import_lock:
+            app.state.previews = prune_web_entries(app.state.previews, fetched_at)
+            app.state.previews[preview_id] = {"doc": doc, "fetched_at": fetched_at.isoformat(),
+                                              "expires_at": expires_at, "search": search_meta}
+        return {"preview_id": preview_id, "expires_at": expires_at.isoformat(), **doc.model_dump()}
+
     @app.post("/api/web/preview")
     async def preview(payload: WebRequest):
         try:
@@ -1188,7 +1291,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             preview_id = uuid4().hex
             expires_at = now + timedelta(minutes=15)
             async with app.state.import_lock:
-                app.state.previews = prune_web_previews(app.state.previews, now)
+                app.state.previews = prune_web_entries(app.state.previews, now)
                 app.state.previews[preview_id] = {"doc": doc, "fetched_at": now.isoformat(),
                                                   "expires_at": expires_at}
             return {"preview_id": preview_id, "expires_at": expires_at.isoformat(), **doc.model_dump()}
@@ -1205,7 +1308,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         if bool(payload.target_corpus_id) == payload.save_for_run:
             raise HTTPException(422, "请选择一个目标知识库或仅用于本次运行")
         async with app.state.import_lock:
-            app.state.previews = prune_web_previews(app.state.previews, datetime.now(UTC))
+            app.state.previews = prune_web_entries(app.state.previews, datetime.now(UTC))
             current = app.state.previews.get(preview_id)
             if current is None or current["expires_at"] <= datetime.now(UTC):
                 raise HTTPException(409, "预览已失效，请重新抓取")
@@ -1216,7 +1319,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                     raise HTTPException(409, "目标知识库已不可用，请重新选择")
                 result = await asyncio.to_thread(knowledge_for(info).put, current["doc"])
             snapshot = await asyncio.to_thread(app.state.web_snapshots.save, current["doc"],
-                                               fetched_at=current["fetched_at"])
+                                               fetched_at=current["fetched_at"],
+                                               search=current.get("search"))
             del app.state.previews[preview_id]
             return {**result, "web_snapshot_id": snapshot["web_snapshot_id"]}
 
@@ -1321,7 +1425,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             except KeyError as exc:
                 raise HTTPException(422, "网页快照不存在或尚未确认") from exc
         resource_policy = "local_plus_urls" if web_snapshots else "local_only"
-        web_versions = [{"snapshot_id": item["web_snapshot_id"], "version": item["version"]}
+        web_versions = [{"snapshot_id": item["web_snapshot_id"], "version": item["version"],
+                         **({"search_query": item["search_query"],
+                             "search_domains": item["search_domains"],
+                             "search_time_filter": item["search_time_filter"]}
+                            if item.get("search_query") else {})}
                         for item in web_snapshots]
 
         if not selected_infos and not web_snapshots:

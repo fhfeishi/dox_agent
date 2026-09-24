@@ -778,6 +778,7 @@ export function Inspector() {
             {webError ? <p role="alert" className="text-[12px] text-[var(--red)]">{webError}</p> : null}
             {webSnapshot ? <>
               <p className="break-all text-[11px] text-[var(--stone)]">{webSnapshot.url} · 抓取 {webSnapshot.fetched_at} · 版本 {webSnapshot.version}</p>
+              {webSnapshot.search_query ? <p className="mt-[5px] text-[11px] text-[var(--steel)]">搜索词：{webSnapshot.search_query} · 域名：{webSnapshot.search_domains?.join("、") || "未记录"} · 时间：{webSnapshot.search_time_filter === "month" ? "近一月" : webSnapshot.search_time_filter === "year" ? "近一年" : "不限"}</p> : null}
               <div className="markdown mt-[12px] max-h-[70vh] overflow-auto rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px] text-[12px]">
                 <Markdown remarkPlugins={[remarkGfm]}>{webSnapshot.markdown}</Markdown>
               </div>

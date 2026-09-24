@@ -16,7 +16,7 @@ class WebSnapshotStore:
         with sqlite3.connect(path) as db:
             db.execute("CREATE TABLE IF NOT EXISTS web_snapshots (id TEXT PRIMARY KEY, payload TEXT NOT NULL)")
 
-    def save(self, doc, *, fetched_at: str | None = None) -> dict:
+    def save(self, doc, *, fetched_at: str | None = None, search: dict | None = None) -> dict:
         parsed = urlsplit(doc.origin)
         url = urlunsplit((parsed.scheme.lower(), parsed.netloc.lower(), parsed.path or "/", parsed.query, ""))
         content = doc.markdown or "\n\n".join(page.text for page in doc.pages)
@@ -24,7 +24,7 @@ class WebSnapshotStore:
         snapshot = {"web_snapshot_id": uuid4().hex, "url": url, "title": doc.title,
                     "fetched_at": fetched_at or datetime.now(UTC).isoformat(),
                     "content_hash": digest, "version": digest, "parse_status": "ready",
-                    "parser": doc.parser, "markdown": content}
+                    "parser": doc.parser, "markdown": content, **(search or {})}
         with sqlite3.connect(self.path) as db:
             db.execute("INSERT INTO web_snapshots (id, payload) VALUES (?, ?)",
                        (snapshot["web_snapshot_id"], json.dumps(snapshot, ensure_ascii=False)))

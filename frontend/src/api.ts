@@ -109,7 +109,25 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
 export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; purpose?: string; audience?: string; length?: string; sources?: Record<string, string>; scope_fingerprint?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
 export type ReportPreflight = { total: number; corpus_total: number; excluded: { date: number; year: number; category: number }; date_hits: number; category_hits: number; eligible_count: number; eligible: { doc_id: string; version: string; title: string; corpus_id: string }[]; fingerprint: string };
 export type WebPreview = { preview_id: string; expires_at: string; title: string; origin: string; pages: { number: number; text: string }[]; markdown?: string };
-export type WebSnapshot = { web_snapshot_id: string; url: string; title: string; fetched_at: string; version: string; content_hash: string; parse_status: string; markdown: string };
+export type WebSnapshot = { web_snapshot_id: string; url: string; title: string; fetched_at: string; version: string; content_hash: string; parse_status: string; markdown: string; search_query?: string; search_domains?: string[]; search_time_filter?: string; search_provider?: string };
+export type WebSearchResult = { result_id: string; url: string; title: string; snippet: string };
+export type WebSearch = { search_id: string; expires_at: string; query: string; domains: string[]; time_filter: string; provider: string; results: WebSearchResult[] };
+
+export async function webSearchCapability(): Promise<{ available: boolean; provider: string; max_selected: number }> {
+  const response = await fetch("/api/web/search/capability");
+  return await jsonOrThrow(response, "搜索配置读取失败") as { available: boolean; provider: string; max_selected: number };
+}
+
+export async function searchWeb(query: string, domains: string[], timeFilter: "any" | "month" | "year", limit = 5): Promise<WebSearch> {
+  const response = await fetch("/api/web/search", { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query, domains, time_filter: timeFilter, limit }) });
+  return await jsonOrThrow(response, "网络搜索失败") as WebSearch;
+}
+
+export async function previewSearchResult(searchId: string, resultId: string): Promise<WebPreview> {
+  const response = await fetch(`/api/web/search/${encodeURIComponent(searchId)}/preview/${encodeURIComponent(resultId)}`, { method: "POST" });
+  return await jsonOrThrow(response, "所选结果预览失败") as WebPreview;
+}
 
 export async function previewWeb(url: string): Promise<WebPreview> {
   const response = await fetch("/api/web/preview", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url }) });

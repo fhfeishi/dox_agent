@@ -9,6 +9,7 @@ from threading import Thread
 
 import uvicorn
 from playwright.async_api import async_playwright, expect
+from pydantic import SecretStr
 
 import src.main as main_module
 from src.agent.config import Settings
@@ -45,7 +46,7 @@ async def main():
         for name in ("alpha", "beta"):
             (root / ".knowledge" / name).mkdir(parents=True)
         settings = Settings(_env_file=None, corpora_root=root / ".knowledge", state_dir=root / "state",
-                            auto_import_official=False)
+                            firecrawl_api_key=SecretStr("offline"), auto_import_official=False)
         store = Knowledge(root / ".knowledge" / "alpha" / "datadb" / "knowledge.sqlite3", settings=settings)
         store.put(Document(title="本地资料", origin="local", kind="text", parser="text",
                            pages=[Page(number=1, text="本地资料")]))
@@ -57,6 +58,11 @@ async def main():
                             pages=[Page(number=1, text="网页正文 " + name)], markdown="网页正文 " + name)
 
         main_module.parse_web = fake_page
+        async def fake_search(query, domains, time_filter, limit, settings):
+            return [{"url": "https://example.com/search", "title": "搜索证据", "description": "域内结果"},
+                    {"url": "https://outside.test/skip", "title": "域外结果"}]
+
+        main_module.search_web = fake_search
         app = create_app(settings, store, lambda *_: WebGraph())
         origin, server, thread, listener = start_server(app)
         try:
@@ -97,9 +103,28 @@ async def main():
                 await page.get_by_role("button", name="清除本次网页范围").click()
                 await page.locator("article").last.get_by_role("button", name="重新生成").click()
                 await expect(page.get_by_role("button", name="1 two")).to_be_visible()
+
+                # Given an explicit domain and time range, only checked results enter the snapshot flow.
+                await page.get_by_title("任务 / 附件").click()
+                await page.get_by_role("button", name=re.compile("受控搜索")).last.click()
+                await page.get_by_role("textbox", name="搜索问题").fill("研究证据")
+                await page.get_by_role("textbox", name="允许的域名").fill("example.com")
+                await page.get_by_role("combobox", name="搜索时间范围").select_option("year")
+                await page.get_by_role("button", name="搜索", exact=True).click()
+                await expect(page.get_by_role("checkbox", name="选择 搜索证据")).to_be_visible()
+                await expect(page.get_by_text("域外结果")).to_have_count(0)
+                await page.get_by_role("checkbox", name="选择 搜索证据").check()
+                await page.get_by_role("button", name="预览所选 1 条").click()
+                await expect(page.get_by_text("search · https://example.com/search")).to_be_visible()
+                await page.get_by_text("search · https://example.com/search").locator("..").get_by_role("button", name="仅用于本次运行").click()
+                await page.get_by_role("textbox", name="问题", exact=True).fill("新证据是什么？")
+                await page.get_by_role("button", name="发送 ↑").click()
+                await expect(page.get_by_role("button", name="1 search")).to_be_visible()
+                await page.get_by_role("button", name="1 search").click()
+                await expect(page.get_by_text("搜索词：研究证据", exact=False)).to_be_visible()
                 assert not errors, errors
                 await browser.close()
-            print("PASS: two URL previews, non-first corpus import, run-bound snapshot and source preview")
+            print("PASS: URL previews, explicit corpus/run binding, domain-limited search selection and cited snapshot")
         finally:
             server.should_exit = True
             thread.join(timeout=5)

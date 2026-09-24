@@ -32,7 +32,8 @@ def ready_app(tmp_path):
     settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
     store.put(Document(title="seed", origin="seed", kind="text", parser="text",
-                       pages=[Page(number=1, text="正文")]))
+                       pages=[Page(number=1, text="正文")],
+                       markdown="填表日期：2025年\n正文"))
     cid = corpus_id_for("fixture")
     return create_app(settings, store, lambda *_: FakeGraph(cid)), cid
 
@@ -366,6 +367,48 @@ def test_docx_export_is_real_ooxml_with_headings_and_tables(tmp_path):
     assert exported.status_code == 200 and exported.content[:2] == b"PK"
     assert "wordprocessingml" in exported.headers["content-type"]
     assert markdown_export.text == markdown
+
+
+def test_user_word_export_keeps_chinese_lists_links_and_a_selected_version(tmp_path):
+    # Given a completed Chinese report with a source appendix, list, and link
+    first = "# 研究报告\n\n## 主要发现\n- 已完成成果 [1]\n- 尚待核查\n\n## 来源附录\n[1] [原文](https://example.org/source)"
+    second = "# 用户修订稿\n\n## 主要发现\n1. 更正结论 [1]\n\n## 来源附录\n[1] [原文](https://example.org/source)"
+    app, _ = ready_app(tmp_path)
+    with TestClient(app) as client:
+        app.state.artifacts.create("art-word-versions", type="report", title="研究报告", markdown=first)
+        app.state.artifacts.add_version("art-word-versions", markdown=second, citations=[], status="completed")
+
+        # When each immutable version is exported to Word
+        old = client.get("/api/artifacts/art-word-versions/export?format=docx&version=1")
+        new = client.get("/api/artifacts/art-word-versions/export?format=docx&version=2")
+
+    # Then content, list structure, and source link match the chosen version
+    old_doc = DocxDocument(io.BytesIO(old.content))
+    new_doc = DocxDocument(io.BytesIO(new.content))
+    assert old.status_code == new.status_code == 200
+    assert "研究报告" in [item.text for item in old_doc.paragraphs]
+    assert "用户修订稿" in [item.text for item in new_doc.paragraphs]
+    assert "用户修订稿" not in [item.text for item in old_doc.paragraphs]
+    assert any(item.style.name == "List Bullet" and "已完成成果 [1]" in item.text for item in old_doc.paragraphs)
+    assert any(item.style.name == "List Number" and "更正结论 [1]" in item.text for item in new_doc.paragraphs)
+    assert "https://example.org/source" in old_doc.part.rels[next(key for key, value in old_doc.part.rels.items()
+                                                                      if value.target_ref == "https://example.org/source")].target_ref
+
+
+def test_user_unsupported_formula_preserves_markdown_and_explains_word_limit(tmp_path):
+    # Given a report version with display math beyond the current Word renderer
+    app, _ = ready_app(tmp_path)
+    markdown = "# 数据分析\n\n$$E=mc^2$$"
+    with TestClient(app) as client:
+        app.state.artifacts.create("art-formula", type="report", title="数据分析", markdown=markdown)
+
+        # When Word export is requested
+        word = client.get("/api/artifacts/art-formula/export?format=docx")
+        source = client.get("/api/artifacts/art-formula/export?format=md")
+
+    # Then the unsupported formula is explicit and the original remains available
+    assert word.status_code == 422 and "公式" in word.json()["detail"]
+    assert source.status_code == 200 and source.text == markdown
 
 
 def test_saving_an_artifact_for_an_unknown_run_is_rejected(tmp_path):

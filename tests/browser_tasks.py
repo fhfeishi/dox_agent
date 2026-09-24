@@ -124,6 +124,14 @@ async def main():
                                       "year_from": 2025, "year_to": 2025, "template_id": "comprehensive"})
                     await r.fulfill(json=items)
 
+            async def report_preflight(r):
+                no_candidate = r.request.post_data_json.get("year_from") == 2030
+                await r.fulfill(json={"total": 2, "corpus_total": 2,
+                    "excluded": {"date": 1, "year": 1 if no_candidate else 0, "category": 0},
+                    "date_hits": 1, "category_hits": 1, "eligible_count": 0 if no_candidate else 1,
+                    "eligible": [] if no_candidate else [{"doc_id": "d1", "title": "示例报告", "version": "v1", "corpus_id": "c1"}],
+                    "fingerprint": ("b" if no_candidate else "a") * 64})
+
             def legacy_artifact(session_key):
                 return {"artifact_id": "report:legacy-report", "type": "report", "status": "completed",
                         "title": "旧报告", "current_version": 1, "created_at": "2026-09-21", "updated_at": "2026-09-21",
@@ -238,6 +246,7 @@ async def main():
             await page.route(re.compile(r".*/api/artifacts/.+$"), artifacts)
             await page.route("**/api/corpora/c1/report-metadata", report_metadata)
             await page.route("**/api/reports**", reports)
+            await page.route("**/api/reports/preflight", report_preflight)
 
             await page.goto(origin)
             # New sessions auto-select the first corpus directory; there is no confirmation gate.
@@ -315,7 +324,7 @@ async def main():
             await expect(page.get_by_role("button", name="生成报告")).to_be_visible()
             assert chat_bodies[-1].get("task_id") == "task4", chat_bodies[-1]
             assert chat_bodies[-1].get("corpus_ids") == ["c1"], chat_bodies[-1]
-            await page.get_by_role("combobox", name="报告知识库").select_option("c1")
+            assert await page.get_by_role("combobox", name="报告知识库").input_value() == "c1"
             await page.get_by_role("button", name="生成报告").click()
             await expect(page.get_by_text("测试报告")).to_be_visible()
             # W3-A: the report request is an independent child run of the task4 intake run.
@@ -324,6 +333,7 @@ async def main():
             assert str(report_bodies[-1].get("run_id", "")).endswith("-report"), report_bodies[-1]
             assert report_bodies[-1].get("session_key"), report_bodies[-1]
             assert report_bodies[-1].get("template_id") == "comprehensive"
+            assert report_bodies[-1].get("scope_fingerprint") == "a" * 64
             assert report_bodies[-1].get("template_version") is None, report_bodies[-1]
             await page.context.grant_permissions(["clipboard-read", "clipboard-write"])
             report_card = page.locator("article").filter(has_text="测试报告").first
@@ -333,6 +343,15 @@ async def main():
                 await report_card.get_by_role("button", name="下载 .md").click()
             download = await download_info.value
             assert download.suggested_filename.endswith(".md")
+            # Given a year range with no matching report, the same card explains the gap
+            # and never sends another generation request.
+            await report_card.get_by_role("button", name="调整").click()
+            await report_card.get_by_role("spinbutton", name="起始年份").fill("2030")
+            await report_card.get_by_role("spinbutton", name="结束年份").fill("2030")
+            before = len(report_bodies)
+            await report_card.get_by_role("button", name="重新生成").first.click()
+            await expect(report_card.get_by_text(re.compile("当前范围没有符合条件的资料"))).to_be_visible()
+            assert len(report_bodies) == before
             await page.wait_for_timeout(900)
             await page.reload()
             await expect(page.get_by_text("测试报告")).to_be_visible()

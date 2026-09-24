@@ -58,7 +58,7 @@ from .knowledge import Knowledge, KnowledgeGroup
 from .official_docs import import_official
 from .parsers import collect_sources, import_defaults, parse_web
 from .prompts import REPORT_TEMPLATES, list_tasks, list_templates, report_template
-from .reports import ReportStore, generate_markdown, summarize_report_metadata
+from .reports import ReportStore, generate_markdown, preflight_report, summarize_report_metadata
 from .retrieval import fit_history
 from .runs import RunConflict, RunStore, request_fingerprint
 from .workspace import Workspace
@@ -147,6 +147,9 @@ class ReportRequest(BaseModel):
     template_version: int | None = Field(default=None, ge=0, le=100000)
     fund_type: str = Field(default="", max_length=120)
     focus: str = Field(default="", max_length=2000)
+    purpose: str = Field(default="研究进展梳理", max_length=200)
+    audience: str = Field(default="专业研究人员", max_length=200)
+    length: str = Field(default="标准篇幅", max_length=80)
     doc_ids: list[str] | None = Field(default=None, min_length=1, max_length=20)
     corpus_id: str | None = Field(default=None, min_length=1, max_length=120)
     session_key: str | None = Field(default=None, max_length=120)
@@ -157,6 +160,7 @@ class ReportRequest(BaseModel):
     task_id: str | None = Field(default=None, max_length=80)
     task_version: int | None = Field(default=None, ge=1, le=100000)
     task_params: dict[str, object] = Field(default_factory=dict, max_length=20)
+    scope_fingerprint: str | None = Field(default=None, min_length=64, max_length=64)
 
     @field_validator("doc_ids")
     @classmethod
@@ -1340,7 +1344,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 await asyncio.to_thread(
                     app.state.runs.update, payload.run_id, status=outcome,
                     ended_at=datetime.now(UTC).isoformat(),
-                    metrics={"usage": usage.snapshot(), "telemetry": telemetry},
+                    metrics={"usage": usage.snapshot(), "telemetry": telemetry,
+                             "report_brief": policy.get("report_params") if policy and
+                             policy.get("stop_reason") == "report_pending" else None},
                     # Exact UTF-8 token concatenation is the answer shown by the client.
                     # A digest avoids treating client-submitted artifact text as authoritative.
                     answer_sha256=(hashlib.sha256("".join(answer_parts).encode("utf-8")).hexdigest()
@@ -1502,6 +1508,17 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         knowledge = await knowledge_for_request(corpus_id)
         return await asyncio.to_thread(summarize_report_metadata, knowledge, corpus_id)
 
+    @app.post("/api/reports/preflight")
+    async def report_preflight(payload: ReportRequest):
+        if payload.year_from > payload.year_to:
+            raise HTTPException(422, "起始年份不能晚于结束年份")
+        kn = await knowledge_for_request(payload.corpus_id)
+        if payload.doc_ids:
+            available_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.all)}
+            if not set(payload.doc_ids) <= available_ids:
+                raise HTTPException(422, "报告限定文档必须属于指定知识库")
+        return await asyncio.to_thread(preflight_report, kn, payload.model_dump())
+
     @app.post("/api/reports")
     async def create_report(payload: ReportRequest):
         if payload.year_from > payload.year_to:
@@ -1511,6 +1528,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             available_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.all)}
             if not set(payload.doc_ids) <= available_ids:
                 raise HTTPException(422, "报告限定文档必须属于指定知识库")
+        scope = await asyncio.to_thread(preflight_report, kn, payload.model_dump())
+        if payload.scope_fingerprint and payload.scope_fingerprint != scope["fingerprint"]:
+            raise HTTPException(409, "资料范围已变化，请重新预检后再生成")
+        if not scope["eligible_count"]:
+            raise HTTPException(422, "所选范围内没有符合填表日期年份与基金类别的资料；请调整范围或查看缺失元数据")
         session_key = payload.session_key or ""
         template_content: str | None = None
         template_version = 0
@@ -1582,6 +1604,30 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "task_params": task_values,
             "task_param_sources": task_sources,
         }
+        report_params["scope_fingerprint"] = scope["fingerprint"]
+        report_params["candidate_count"] = scope["eligible_count"]
+        report_params["candidate_docs"] = scope["eligible"]
+        report_sources = {key: "user_confirmed" for key in (
+            "domain", "year_from", "year_to", "fund_type", "focus", "purpose", "audience", "length")}
+        report_sources["template_id"] = "published_task" if task_definition else "user_confirmed"
+        if payload.parent_run_id:
+            try:
+                parent = await asyncio.to_thread(app.state.runs.get, payload.parent_run_id)
+                proposal = parent.get("metrics", {}).get("report_brief") or {}
+                proposed_sources = proposal.get("sources") or {}
+                if (parent.get("run_type") == "chat" and parent.get("status") == "completed"
+                        and parent.get("session_key") == session_key
+                        and parent.get("engine_task_id") == "task4"
+                        and payload.corpus_id in (parent.get("effective_corpus_ids") or [])):
+                    for key in report_sources:
+                        if key == "template_id" and task_definition:
+                            continue
+                        if key in proposal:
+                            report_sources[key] = (proposed_sources.get(key, "user_confirmed")
+                                                   if proposal[key] == report_params[key] else "user_edit")
+            except KeyError:
+                pass  # Historical report runs may not have an intake snapshot.
+        report_params["brief_sources"] = report_sources
         fingerprint = request_fingerprint({"type": "report", **report_params,
                                            "doc_ids": payload.doc_ids or [],
                                            "corpus_id": payload.corpus_id or ""})
@@ -1596,7 +1642,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 effective_corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
                 allowed_doc_ids=payload.doc_ids,
                 params=report_params,
-                param_sources=task_sources, output_intent="document")
+                # Task input names may equal brief fields (for example "domain"); namespace
+                # their origins so neither provenance record silently replaces the other.
+                param_sources={**report_sources, **{f"task_params.{key}": value
+                                                    for key, value in task_sources.items()}},
+                output_intent="document")
         except RunConflict as exc:
             raise HTTPException(409, str(exc)) from exc
         except Exception:  # noqa: BLE001 - snapshot bookkeeping must never block report generation
@@ -1783,7 +1833,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             return Response(item["markdown"], media_type="text/markdown; charset=utf-8",
                             headers={"Content-Disposition": f'attachment; filename="{filename}.md"'})
         if format == "docx":
-            data = await asyncio.to_thread(markdown_to_docx, item["markdown"])
+            try:
+                data = await asyncio.to_thread(markdown_to_docx, item["markdown"])
+            except ValueError as exc:
+                raise HTTPException(422, str(exc)) from exc
             return Response(data, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                             headers={"Content-Disposition": f'attachment; filename="{filename}.docx"'})
         raise HTTPException(422, "首期仅支持 md / docx 导出")

@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState, type ComponentProps } from "react";
+import { useEffect, useMemo, useRef, useState, type ComponentProps } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import { createReport, fetchReportMetadata, fetchTemplates, type ReportInfo, type ReportMetadataCoverage, type Source, type Step, type TemplateSummary } from "../api";
+import { createReport, fetchReportMetadata, fetchTemplates, preflightReport, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TemplateSummary } from "../api";
 import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
@@ -281,14 +281,38 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [coverage, setCoverage] = useState<ReportMetadataCoverage | null>(null);
+  const [preflight, setPreflight] = useState<ReportPreflight | null>(null);
+  const lastRequest = useRef<{ key: string; runId: string } | null>(null);
   const [coverageBusy, setCoverageBusy] = useState(false);
   const [coverageError, setCoverageError] = useState("");
   const [showCoverage, setShowCoverage] = useState(false);
   const scopeIds = attempt.options.corpus_ids ?? (attempt.options.corpus_id ? [attempt.options.corpus_id] : []);
-  const [corpusId, setCorpusId] = useState("");
+  const [corpusId, setCorpusId] = useState(scopeIds.length === 1 ? scopeIds[0] : "");
   const params = attempt.policy?.report_params;
+  const [domain, setDomain] = useState(params?.domain ?? "");
+  const domainEdited = useRef(false);
+  const [yearFrom, setYearFrom] = useState(params?.year_from ?? new Date().getFullYear() - 5);
+  const [yearTo, setYearTo] = useState(params?.year_to ?? new Date().getFullYear() - 1);
+  const [fundType, setFundType] = useState(params?.fund_type ?? "");
+  const [focus, setFocus] = useState(params?.focus ?? "");
+  const [purpose, setPurpose] = useState(params?.purpose ?? "研究进展梳理");
+  const [audience, setAudience] = useState(params?.audience ?? "专业研究人员");
+  const [length, setLength] = useState(params?.length ?? "标准篇幅");
+  const [adjust, setAdjust] = useState(false);
+  useEffect(() => {
+    if (!params) return;
+    domainEdited.current = false;
+    setDomain(params.domain ?? "");
+    setYearFrom(params.year_from ?? new Date().getFullYear() - 5);
+    setYearTo(params.year_to ?? new Date().getFullYear() - 1);
+    setFundType(params.fund_type ?? "");
+    setFocus(params.focus ?? "");
+    setPurpose(params.purpose ?? "研究进展梳理");
+    setAudience(params.audience ?? "专业研究人员");
+    setLength(params.length ?? "标准篇幅");
+  }, [params]);
   const boundReportTask = activeTask?.kind === "custom" && activeTask.engine_task_id === "task4" && Boolean(activeTask.report_template_id);
-  const [templateId, setTemplateId] = useState(boundReportTask ? activeTask?.report_template_id ?? "" : params?.template_id ?? "");
+  const [templateId, setTemplateId] = useState(boundReportTask ? activeTask?.report_template_id ?? "" : params?.template_id ?? "comprehensive");
   const [templateOptions, setTemplateOptions] = useState<TemplateSummary[]>([]);
   useEffect(() => {
     let active = true;
@@ -307,13 +331,14 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
     ? [{ id: activeTask?.report_template_id ?? "", name: boundTemplate?.name ?? activeTask?.report_template_id ?? "固定模板",
         kind: boundTemplate?.kind ?? "custom", status: "published", version: activeTask?.report_template_version ?? 0 }]
     : templateOptions;
-  const ready = Boolean(params?.domain && params?.year_from && params?.year_to && templateId && (boundReportTask || params?.template_id));
+  const ready = Boolean(domain.trim() && yearFrom >= 1900 && yearTo <= 2100 && yearFrom <= yearTo && templateId && scopeIds.includes(corpusId));
+  useEffect(() => { setPreflight(null); }, [corpusId, domain, yearFrom, yearTo, fundType, templateId]);
   useEffect(() => {
     setCoverage(null);
     setCoverageError("");
     setShowCoverage(false);
   }, [corpusId]);
-  if (attempt.policy?.stop_reason !== "report_pending" || !ready) return null;
+  if (attempt.policy?.stop_reason !== "report_pending") return null;
   async function generate() {
     setBusy(true);
     setError("");
@@ -328,12 +353,13 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
         docIds = attempt.options.allowed_doc_ids.filter((id) => corpusDocIds.has(id));
         if (!docIds.length) throw new Error("所选知识库中没有本轮限定的资料，请调整资料范围后重新发起报告");
       }
-      // W3-A/A5: keep the derived report run id within the 80-char contract even if the intake id is long.
-      const reportRunId = report ? crypto.randomUUID() : `${attempt.runId.slice(0, 72)}-report`;
       const selectedTemplate = templateOptions.find((item) => item.id === templateId);
       const customReportTask = activeTask?.kind === "custom" && activeTask?.engine_task_id === "task4";
       const boundTemplateIsCustom = availableTemplates.find((item) => item.id === templateId)?.kind === "custom";
-      const result = await createReport({ ...params, template_id: templateId,
+      if (!ready) throw new Error("请确认报告知识库、主题和年份范围");
+      const request = { domain: domain.trim(), year_from: yearFrom, year_to: yearTo,
+        fund_type: fundType.trim(), focus: focus.trim(), purpose: purpose.trim(),
+        audience: audience.trim(), length: length.trim(), template_id: templateId,
         template_version: boundReportTask
           ? activeTask?.report_template_version
           : boundTemplateIsCustom ? selectedTemplate?.version : undefined,
@@ -341,7 +367,16 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
         task_version: customReportTask ? attempt.options.task_version ?? workspace.taskVersion : undefined,
         task_params: attempt.options.task_params ?? {},
         corpus_id: corpusId, doc_ids: docIds,
-        session_key: workspace.active, run_id: reportRunId, parent_run_id: attempt.runId });
+        session_key: workspace.active, parent_run_id: attempt.runId };
+      const scope = await preflightReport(request);
+      setPreflight(scope);
+      if (!scope.eligible_count) throw new Error("当前范围没有符合条件的资料。请调整年份、类别或资料范围，并查看缺失元数据。");
+      const key = JSON.stringify({ request, fingerprint: scope.fingerprint });
+      // A changed scope starts a new child run; an unchanged failed request reuses its run id.
+      const reportRunId = report || (lastRequest.current && lastRequest.current.key !== key)
+        ? crypto.randomUUID() : lastRequest.current?.runId ?? `${attempt.runId.slice(0, 72)}-report`;
+      lastRequest.current = { key, runId: reportRunId };
+      const result = await createReport({ ...request, scope_fingerprint: scope.fingerprint, run_id: reportRunId });
       if (onReport) onReport({ report_id: result.report_id, markdown: result.markdown });
       else setLocal(result);
     } catch (e) {
@@ -371,12 +406,17 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       <div className="flex flex-wrap items-center gap-[8px]">
         <span className="text-[12.5px] font-medium text-[var(--slate)]">专项报告</span>
         <span className="text-[11.5px] text-[var(--stone)]">
-          参数已齐：{params?.domain} · 填表日期 {params?.year_from}–{params?.year_to} · {params?.fund_type ?? "类别不限"} · {availableTemplates.find((item) => item.id === templateId)?.name ?? templateId}
+          {domain || "待指定主题"} · 填表日期 {yearFrom}–{yearTo} · {fundType || "类别不限"} · {availableTemplates.find((item) => item.id === templateId)?.name ?? templateId}
         </span>
         <label className="text-[11.5px] text-[var(--slate)]">
           报告知识库
           <select aria-label="报告知识库" value={corpusId} disabled={busy}
-            onChange={(event) => setCorpusId(event.target.value)}
+            onChange={(event) => {
+              setCorpusId(event.target.value);
+              if (!domainEdited.current && (!domain || params?.sources?.domain === "corpus")) {
+                setDomain(corpora.find((item) => item.id === event.target.value)?.domain ?? "");
+              }
+            }}
             className="ml-[5px] rounded border border-[var(--hairline)] bg-[var(--canvas)] px-[5px] py-[3px]">
             <option value="">请选择单一知识库</option>
             {scopeIds.map((id) => <option key={id} value={id}>{corpora.find((item) => item.id === id)?.name ?? id}</option>)}
@@ -394,13 +434,35 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
         </label>
         <button
           type="button"
-          disabled={busy || !scopeIds.includes(corpusId)}
+          disabled={busy || !ready}
           onClick={() => void generate()}
           className="ml-auto rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-[12px] text-white disabled:opacity-50"
         >
           {busy ? "生成中…" : report ? "重新生成" : "生成报告"}
         </button>
       </div>
+      {preflight ? <div className="mt-[7px] text-[11.5px] leading-[1.6] text-[var(--steel)]">
+        <p>按当前条件预检：{preflight.eligible_count} 份符合筛选候选（所选范围共 {preflight.total} 份）；日期缺失/歧义 {preflight.excluded.date}，年份不符 {preflight.excluded.year}，类别不符 {preflight.excluded.category}。候选数不等于模型实际读取或引用数。</p>
+        <details><summary className="cursor-pointer text-[var(--primary)]">查看候选资料与版本</summary>
+          <ul className="max-h-[120px] overflow-auto pl-[16px]">{preflight.eligible.map((doc) => <li key={doc.doc_id}>{doc.title} · {doc.version}</li>)}</ul>
+        </details>
+      </div> : null}
+      <div className="mt-[7px] text-[11.5px] text-[var(--stone)]">
+        {params?.sources?.domain === "corpus" ? "主题来自所选库建议" : params?.sources?.domain === "user" ? "主题来自本次输入" : "主题需要指定"}；年份默认取最近五个完整自然年，可调整。符合筛选的资料以生成时预检为准。
+        <button type="button" onClick={() => setAdjust((value) => !value)} className="ml-[7px] text-[var(--primary)] hover:underline">{adjust ? "收起调整" : "调整"}</button>
+      </div>
+      {adjust ? <div className="mt-[8px] grid grid-cols-2 gap-[7px] text-[11.5px] text-[var(--slate)]">
+        <label>研究主题<input aria-label="研究主题" value={domain} onChange={(event) => { domainEdited.current = true; setDomain(event.target.value); }} className="ml-[5px] rounded border px-[5px] py-[3px]" /></label>
+        <label>基金类别<input aria-label="基金类别" value={fundType} onChange={(event) => setFundType(event.target.value)} placeholder="不限" className="ml-[5px] rounded border px-[5px] py-[3px]" /></label>
+        <label>起始年份<input aria-label="起始年份" type="number" value={yearFrom} onChange={(event) => setYearFrom(Number(event.target.value))} className="ml-[5px] w-[85px] rounded border px-[5px] py-[3px]" /></label>
+        <label>结束年份<input aria-label="结束年份" type="number" value={yearTo} onChange={(event) => setYearTo(Number(event.target.value))} className="ml-[5px] w-[85px] rounded border px-[5px] py-[3px]" /></label>
+        <label>写作目的<input aria-label="写作目的" value={purpose} onChange={(event) => setPurpose(event.target.value)} className="ml-[5px] rounded border px-[5px] py-[3px]" /></label>
+        <label>目标读者<input aria-label="目标读者" value={audience} onChange={(event) => setAudience(event.target.value)} className="ml-[5px] rounded border px-[5px] py-[3px]" /></label>
+        <label>分析重点<input aria-label="分析重点" value={focus} onChange={(event) => setFocus(event.target.value)} className="ml-[5px] rounded border px-[5px] py-[3px]" /></label>
+        <label>篇幅<input aria-label="篇幅" value={length} onChange={(event) => setLength(event.target.value)} className="ml-[5px] rounded border px-[5px] py-[3px]" /></label>
+      </div> : null}
+      {!domain.trim() ? <p className="mt-[6px] text-[11.5px] text-[var(--red)]">请在“调整”中填写研究主题。</p> : null}
+      {yearFrom > yearTo ? <p className="mt-[6px] text-[11.5px] text-[var(--red)]">起始年份不能晚于结束年份。</p> : null}
       {scopeIds.includes(corpusId) ? (
         <button type="button" onClick={() => void inspectCoverage()}
           className="mt-[6px] text-[11.5px] text-[var(--primary)] hover:underline">

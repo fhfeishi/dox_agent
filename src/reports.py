@@ -7,6 +7,7 @@ is idempotent (partial unique index). Known limits: no delete; ``reports.sqlite3
 """
 
 import asyncio
+import hashlib
 import json
 import re
 import sqlite3
@@ -15,6 +16,7 @@ from pathlib import Path
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
+from .agent.evidence import validate_citations
 from .agent.models import model_for
 from .prompts import report_template, task_instruction
 from .retrieval import assemble_reports
@@ -111,6 +113,37 @@ def summarize_report_metadata(knowledge, corpus_id: str) -> dict:
             "unmatched": unmatched}
 
 
+def preflight_report(knowledge, params: dict) -> dict:
+    """Select report candidates once with mutually exclusive exclusion reasons."""
+    docs = knowledge.all()
+    selected = set(params["doc_ids"]) if params.get("doc_ids") else None
+    scoped = [doc for doc in docs if selected is None or doc["doc_id"] in selected]
+    excluded = {"date": 0, "year": 0, "category": 0}
+    date_hits = category_hits = 0
+    eligible = []
+    for doc in scoped:
+        year, category, date_status, category_status = report_metadata(knowledge.read_markdown(doc["doc_id"]))
+        date_hits += date_status == "matched"
+        category_hits += category_status == "matched"
+        if year is None:
+            excluded["date"] += 1
+        elif not params["year_from"] <= year <= params["year_to"]:
+            excluded["year"] += 1
+        elif params.get("fund_type") and category != params["fund_type"]:
+            excluded["category"] += 1
+        else:
+            eligible.append({"doc_id": doc["doc_id"], "version": doc["version"],
+                             "title": doc["title"], "corpus_id": params.get("corpus_id") or ""})
+    scope = {"corpus_id": params.get("corpus_id") or "", "doc_ids": sorted(selected) if selected else None,
+             "year_from": params["year_from"], "year_to": params["year_to"],
+             "fund_type": params.get("fund_type") or "",
+             "eligible": sorted((doc["corpus_id"], doc["doc_id"], doc["version"]) for doc in eligible)}
+    fingerprint = hashlib.sha256(json.dumps(scope, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+    return {"total": len(scoped), "corpus_total": len(docs), "excluded": excluded,
+            "date_hits": date_hits, "category_hits": category_hits,
+            "eligible_count": len(eligible), "eligible": eligible, "fingerprint": fingerprint}
+
+
 class ReportStore:
     def __init__(self, path: Path):
         self.path = path
@@ -199,31 +232,12 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     structure; variables already substituted by the caller.
     """
     template_id = params["template_id"]
-    query = " ".join(part for part in (params.get("domain", ""), params.get("focus", "")) if part)
-    selected_ids = set(params["doc_ids"]) if params.get("doc_ids") else None
-    eligible_ids = []
-    unknown_year = 0
-    unknown_category = 0
-    date_hits = category_hits = total = 0
-    for doc in await asyncio.to_thread(knowledge.all):
-        if selected_ids is not None and doc["doc_id"] not in selected_ids:
-            continue
-        total += 1
-        year, category, date_status, category_status = report_metadata(
-            await asyncio.to_thread(knowledge.read_markdown, doc["doc_id"]))
-        date_hits += date_status == "matched"
-        category_hits += category_status == "matched"
-        if year is None:
-            unknown_year += 1
-        if category is None:
-            unknown_category += 1
-        if year is None:
-            continue
-        if not params["year_from"] <= year <= params["year_to"]:
-            continue
-        if params.get("fund_type") and (category is None or category != params["fund_type"]):
-            continue
-        eligible_ids.append(doc["doc_id"])
+    # Focus guides writing but must not silently narrow the already confirmed document scope.
+    query = params.get("domain", "")
+    preflight = await asyncio.to_thread(preflight_report, knowledge, params)
+    if params.get("scope_fingerprint") and params["scope_fingerprint"] != preflight["fingerprint"]:
+        raise ValueError("资料范围已变化，请重新预检后再生成")
+    eligible_ids = [doc["doc_id"] for doc in preflight["eligible"]]
     if not eligible_ids:
         raise ValueError("所选范围内没有符合填表日期年份与基金类别的资料；缺少填表日期的资料不会纳入")
     result = await asyncio.to_thread(knowledge.retrieve, query, task_id="task4", allowed_doc_ids=eligible_ids)
@@ -235,12 +249,16 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     model = llm or model_for(settings)
     header = (f"领域：{params['domain']}\n填表日期年份（报告提交时间）：{params['year_from']}–{params['year_to']}\n"
               "填表日期来源：文档解析文本，未逐份对照原 PDF\n"
-              f"所选资料元数据覆盖：{total} 份；填表日期命中 {date_hits}、缺失/歧义 {total - date_hits}；"
-              f"资助类别命中 {category_hits}、缺失/歧义 {total - category_hits}\n"
-              f"填表日期缺失资料（未纳入，所选范围内）：{unknown_year}\n"
-              f"资助类别缺失资料（所选范围内）：{unknown_category}\n"
+              f"所选资料元数据覆盖：{preflight['total']} 份；填表日期命中 {preflight['date_hits']}、缺失/歧义 {preflight['total'] - preflight['date_hits']}；"
+              f"资助类别命中 {preflight['category_hits']}、缺失/歧义 {preflight['total'] - preflight['category_hits']}\n"
+              f"填表日期缺失资料（未纳入，所选范围内）：{preflight['excluded']['date']}\n"
+              f"资助类别缺失资料（所选范围内）：{preflight['total'] - preflight['category_hits']}\n"
               f"模板：{template_id}\n基金类别：{params.get('fund_type') or '不限'}\n"
               f"分析重点：{params.get('focus') or '无'}")
+    brief = (f"写作目的：{params.get('purpose') or '研究进展梳理'}\n"
+             f"目标读者：{params.get('audience') or '专业研究人员'}\n"
+             f"预期篇幅：{params.get('length') or '标准篇幅'}\n"
+             f"已核定候选资料：{preflight['eligible_count']} 份；实际引用须来自下方编号原文。")
     reports_text = "\n\n".join(
         f"{report['header']}\n<report>\n{report['markdown']}\n</report>" for report in context.reports)
     custom_instruction = ""
@@ -260,10 +278,38 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
                 f"{labels.get(key, key)}（{key}）：{value}" for key, value in task_values.items())
     messages = [
         SystemMessage(content=task_instruction("task4", phase="report") + custom_instruction
+                      + "\n\n直接完成最终 Markdown，由你在内部组织章节与执行摘要，无需用户审批大纲。"
+                        "先写有来源的核心发现，说明筛选边界、相互冲突的证据和局限。"
+                        "每个关键事实用下方存在的 [n] 编号引用；不能编造来源、数据或应用成效。"
+                        "没有足够资料的结论写明资料不足，推断明确标注。提交前核对引用编号。"
                       + "\n\n模板章节：\n" + (template_content if template_content is not None
                                               else report_template(template_id))),
-        HumanMessage(content=header + "\n\n可引用原文证据：\n" + reports_text),
+        HumanMessage(content=brief + "\n\n已核定范围：\n" + header + "\n\n可引用原文证据：\n" + reports_text),
     ]
-    response = await model.ainvoke(messages)
-    content = response.content
-    return content if isinstance(content, str) else str(content)
+    def valid(markdown: str) -> bool:
+        return bool(re.search(r"(?m)^# .+\n", markdown) and re.search(r"(?m)^## .+", markdown)
+                    and re.search(r"\[\d{1,3}\]", markdown)
+                    and not validate_citations(markdown, context.sources))
+
+    def with_sources(markdown: str) -> str:
+        lines = []
+        for source in context.sources:
+            page = f"，第{source['page']}页" if source.get("page") else ""
+            lines.append(f"[{source['citation']}] {source['title']}"
+                         f"（文档 {source['doc_id']}，版本 {source['version']}{page}）")
+        appendix = "\n\n## 来源附录（系统记录）\n" + "\n".join(lines)
+        return markdown.rstrip() + appendix + "\n"
+
+    async with asyncio.timeout(settings.run_timeout):
+        response = await model.ainvoke(messages)
+        content = response.content if isinstance(response.content, str) else str(response.content)
+        if valid(content):
+            return with_sources(content)
+        repair = HumanMessage(content="上一个报告存在标题、章节或来源编号问题。请依据同一批证据重写完整最终报告；"
+                                      "标题使用 #、章节使用 ##，关键事实引用有效的 [n] 编号。"
+                                      "上一稿仅作待修复草稿：\n" + content)
+        response = await model.ainvoke([*messages, repair])
+        content = response.content if isinstance(response.content, str) else str(response.content)
+    if not valid(content):
+        raise ValueError("报告引用或结构校验失败，请检查来源与模型输出后重试")
+    return with_sources(content)

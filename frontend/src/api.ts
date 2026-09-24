@@ -106,7 +106,8 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rel_path: relPath, new_name: newName }) });
   await jsonOrThrow(response, "重命名文件失败");
 }
-export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
+export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; purpose?: string; audience?: string; length?: string; sources?: Record<string, string>; scope_fingerprint?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
+export type ReportPreflight = { total: number; corpus_total: number; excluded: { date: number; year: number; category: number }; date_hits: number; category_hits: number; eligible_count: number; eligible: { doc_id: string; version: string; title: string; corpus_id: string }[]; fingerprint: string };
 export type ReportSummary = { report_id: string; created_at?: string; session_key?: string; run_id?: string; corpus_id?: string; template_id?: string; domain?: string; year_from?: number; year_to?: number };
 export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean };
 export type ReportMetadataCoverage = {
@@ -116,6 +117,13 @@ export type ReportMetadataCoverage = {
   unmatched: { doc_id: string; title: string; corpus_id: string; date: string; category: string }[];
 };
 export type Policy = Options & { route: "research" | "clarify"; stop_reason: string; notice?: string; report_params?: ReportParams };
+
+export async function preflightReport(params: ReportParams): Promise<ReportPreflight> {
+  const response = await fetch("/api/reports/preflight", {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(params),
+  });
+  return await jsonOrThrow(response, "报告资料预检失败") as ReportPreflight;
+}
 
 /** POST /api/reports (#10): generate an immutable markdown report; idempotent per run_id. */
 export async function createReport(params: ReportParams): Promise<ReportInfo> {

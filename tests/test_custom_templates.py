@@ -20,7 +20,7 @@ def ready_app(tmp_path):
     settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
     store.put(Document(title="seed", origin="seed", kind="text", parser="text",
-                       pages=[Page(number=1, text="正文")]))
+                       pages=[Page(number=1, text="正文")], markdown="填表日期：2025年\n正文"))
     return create_app(settings, store, lambda *_: QuietGraph()), corpus_id_for("fixture")
 
 

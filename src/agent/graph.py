@@ -9,6 +9,7 @@ answer contract (SSE events, ``[n]`` citations) is unchanged.
 
 import asyncio
 import re
+from datetime import UTC, date, datetime
 from time import perf_counter
 from typing import TypedDict
 
@@ -51,10 +52,10 @@ class State(TypedDict, total=False):
 _TEMPLATE_KEYWORDS = (("成果", "achievements"), ("热点", "hotspots"),
                       ("未来", "future_directions"), ("趋势", "future_directions"),
                       ("综合", "comprehensive"))
-_FIELD_LABELS = {"domain": "研究领域", "year_from": "填表日期年份（报告提交时间）", "template_id": "报告模板"}
 _YEAR_RANGE = re.compile(r"(\d{4})\s*(?:[-–—~至到]|--)\s*(\d{4})")
 _YEAR_SINGLE = re.compile(r"(?<!\d)(\d{4})(?!\d)")
 _DOMAIN = re.compile(r"(?:研究领域|领域)\s*[:：]\s*([^\n；;，,。]+)")
+_TOPIC = re.compile(r"关于\s*(.{2,80}?)\s*的?\s*(?:成果|研究|分析|综合|专题)?报告")
 _FUND_TYPES = ("面上项目", "重点项目", "联合基金项目", "重大研究计划")
 
 
@@ -82,11 +83,48 @@ def extract_report_params(messages: list[dict], corpus_domain: str = "") -> dict
     return params
 
 
+def build_report_brief(messages: list[dict], corpus_domain: str = "", *, today: date | None = None) -> dict:
+    """Prepare visible report defaults; never infer a topic from an unrelated corpus."""
+    current_year = (today or datetime.now(UTC).date()).year
+    brief = {"domain": corpus_domain, "year_from": current_year - 5,
+             "year_to": current_year - 1, "fund_type": "", "template_id": "comprehensive",
+             "focus": "", "purpose": "研究进展梳理", "audience": "专业研究人员",
+             "length": "标准篇幅"}
+    sources = {key: "safe_default" for key in brief}
+    if corpus_domain:
+        sources["domain"] = "corpus"
+    for message in messages:
+        if message.get("role") != "user":
+            continue
+        content = message.get("content", "")
+        if match := _DOMAIN.search(content) or _TOPIC.search(content):
+            brief["domain"] = match.group(1).strip()
+            sources["domain"] = "user"
+        if match := _YEAR_RANGE.search(content):
+            start, end = int(match.group(1)), int(match.group(2))
+            if start <= end:
+                brief["year_from"], brief["year_to"] = start, end
+                sources["year_from"] = sources["year_to"] = "user"
+        elif match := _YEAR_SINGLE.search(content):
+            brief["year_from"] = brief["year_to"] = int(match.group(1))
+            sources["year_from"] = sources["year_to"] = "user"
+        if label := next((item for item in _FUND_TYPES if item in content), None):
+            brief["fund_type"] = label
+            sources["fund_type"] = "user"
+        for keyword, template in _TEMPLATE_KEYWORDS:
+            if keyword in content and (keyword != "成果" or "成果模板" in content):
+                brief["template_id"] = template
+                sources["template_id"] = "user"
+    brief["sources"] = sources
+    return brief
+
+
 def intake_reply(params: dict) -> tuple[str, bool]:
-    """Return ``(reply, ready)``; ready means every required intake field is present."""
+    """Return a short scope summary and the one missing topic question, if needed."""
     known = []
     if params.get("domain"):
-        known.append(f"研究领域：{params['domain']}（默认当前库领域，可修改）")
+        origin = "当前库建议" if params.get("sources", {}).get("domain") == "corpus" else "用户指定"
+        known.append(f"研究主题：{params['domain']}（{origin}，可修改）")
     if params.get("year_from") and params.get("year_to"):
         known.append(f"填表日期年份（报告提交时间）：{params['year_from']}–{params['year_to']}")
     if params.get("fund_type"):
@@ -96,11 +134,10 @@ def intake_reply(params: dict) -> tuple[str, bool]:
     if params.get("template_id"):
         known.append(f"模板：{params['template_id']}")
     known_text = "；".join(known)
-    missing = [label for key, label in _FIELD_LABELS.items() if not params.get(key)]
-    if missing:
+    if not params.get("domain"):
         prefix = f"已记录：{known_text}。\n" if known_text else ""
-        return prefix + f"还缺：{'、'.join(missing)}。请补充，或说明要修改的项。", False
-    return f"已记录报告需求：{known_text}。", True
+        return prefix + "请指定这份报告的研究主题，或先选择有领域说明的单个知识库。", False
+    return f"已整理报告需求：{known_text}。可在下方调整范围，然后直接生成报告。", True
 
 
 def build_graph(knowledge: Knowledge, settings: Settings, model=None):
@@ -145,7 +182,7 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
         """G10b: collect report parameters; no retrieval, no sources, no report body."""
         writer = get_stream_writer()
         writer({"event": "status", "data": {"message": "采集报告需求"}})
-        params = extract_report_params(state["messages"], state.get("corpus_domain", ""))
+        params = build_report_brief(state["messages"], state.get("corpus_domain", ""))
         text, _ready = intake_reply(params)
         writer({"event": "token", "data": {"text": text}})
         return {"answer": text, "report_params": params, "stop_reason": "report_pending",

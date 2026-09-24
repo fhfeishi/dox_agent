@@ -69,7 +69,8 @@ async def main():
                             model_api_key=SecretStr("offline-test"), auto_import_official=False)
         knowledge = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
         doc = knowledge.put(Document(title="样本", origin="sample", kind="text", parser="text",
-                                     pages=[Page(number=1, text="基金项目方法证据")]))
+                                     pages=[Page(number=1, text="基金项目方法证据")],
+                                     markdown="填表日期：2025年\n资助类别：重点项目\n基金项目方法证据"))
         corpus_id = corpus_id_for("fixture")
         main_module.generate_markdown = offline_report
         app = create_app(settings, knowledge, lambda *_: CustomTaskOfflineGraph(corpus_id, doc["doc_id"]))

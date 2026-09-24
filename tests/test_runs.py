@@ -33,7 +33,7 @@ def ready_app(tmp_path, factory=None):
     settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
     store.put(Document(title="seed", origin="seed", kind="text", parser="text",
-                       pages=[Page(number=1, text="正文")]))
+                       pages=[Page(number=1, text="正文")], markdown="填表日期：2025年\n正文"))
     cid = corpus_id_for("fixture")
     maker = factory or (lambda corpus_id: FakeGraph(corpus_id))
     return create_app(settings, store, lambda *_: maker(cid)), cid
@@ -207,6 +207,43 @@ def test_user_report_run_is_a_child_of_the_intake_run(tmp_path, monkeypatch):
     assert snapshot["parent_run_id"] == "intake-run-0001"
     assert snapshot["effective_corpus_ids"] == [cid]
     assert conflict.status_code == 409
+
+
+def test_user_report_run_records_server_verified_brief_origins(tmp_path, monkeypatch):
+    # Given a report intake with a corpus suggestion and safe year defaults
+    class BriefGraph:
+        async def astream(self, state, **kwargs):
+            yield {"event": "policy", "data": {"route": "clarify", "stop_reason": "report_pending",
+                "report_params": {"domain": "医疗", "year_from": 2024, "year_to": 2025,
+                                  "template_id": "comprehensive",
+                                  "sources": {"domain": "corpus", "year_from": "safe_default",
+                                              "year_to": "safe_default", "template_id": "safe_default"}}}}
+            yield {"event": "token", "data": {"text": "可以生成"}}
+            yield {"event": "done", "data": {"ok": True}}
+
+    async def fake_generate(knowledge, settings, params, *, llm=None):
+        return "# 报告"
+
+    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    app, cid = ready_app(tmp_path, factory=lambda _: BriefGraph())
+    with TestClient(app) as client:
+        intake = {**chat_body(cid, "intake-brief-0001"), "task_id": "task4"}
+        assert client.post("/api/chat", json=intake).status_code == 200
+
+        # When the user confirms the proposal but edits the start year before generation
+        response = client.post("/api/reports", json={
+            "domain": "医疗", "year_from": 2025, "year_to": 2025,
+            "template_id": "comprehensive", "corpus_id": cid,
+            "session_key": "sess-1", "parent_run_id": "intake-brief-0001",
+            "run_id": "report-brief-0001"})
+
+        # Then the snapshot retains actual values and accurate origins, without trusting client labels
+        snapshot = client.get("/api/runs/report-brief-0001").json()
+    assert response.status_code == 201
+    assert snapshot["params"]["year_from"] == 2025
+    assert snapshot["param_sources"]["domain"] == "corpus"
+    assert snapshot["param_sources"]["year_from"] == "user_edit"
+    assert snapshot["param_sources"]["year_to"] == "safe_default"
 
 
 def test_unknown_run_id_is_reported_as_not_recorded(tmp_path):

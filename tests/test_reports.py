@@ -36,6 +36,7 @@ def test_report_generation_uses_template_and_selected_reports(tmp_path):
     assert markdown.startswith("# 报告")
     assert "模板章节" in model.seen and "总体成果概述" in model.seen  # section structure injected
     assert "癫痫致痫网络" in model.seen  # selected report markdown injected
+    assert "来源附录（系统记录）" in markdown and "[1]" in markdown
 
 
 def test_user_published_report_inputs_reach_the_generation_prompt(tmp_path):
@@ -51,6 +52,46 @@ def test_user_published_report_inputs_reach_the_generation_prompt(tmp_path):
     # Then the actual prompt contains the fixed task inputs as well as the original evidence
     assert "项目评审专家" in model.seen and "include_limits" in model.seen
     assert "评估研究方法" in model.seen and "癫痫致痫网络" in model.seen
+
+
+def test_user_report_brief_reaches_writing_with_its_confirmed_scope(tmp_path):
+    # Given a confirmed reader, purpose, focus and length for a local report
+    model = FakeModel()
+    params = {"domain": "癫痫", "year_from": 2021, "year_to": 2025,
+              "template_id": "comprehensive", "purpose": "给评审会决策",
+              "audience": "临床研究者", "focus": "比较证据冲突", "length": "简短"}
+
+    # When the report is generated
+    asyncio.run(generate_markdown(_store(tmp_path), Settings(_env_file=None), params, llm=model))
+
+    # Then the model receives the actual brief and its selected evidence boundary
+    assert "给评审会决策" in model.seen and "临床研究者" in model.seen
+    assert "比较证据冲突" in model.seen and "简短" in model.seen
+    assert "填表日期年份（报告提交时间）：2021–2025" in model.seen
+
+
+def test_user_invalid_report_citations_are_repaired_once_or_fail(tmp_path):
+    # Given a model that first cites a nonexistent source
+    class RepairModel:
+        def __init__(self, repaired):
+            self.repaired = repaired
+            self.outputs = iter(["# 报告\n\n## 发现\n无来源 [99]", repaired])
+
+        async def ainvoke(self, messages):
+            return SimpleNamespace(content=next(self.outputs))
+
+    params = {"domain": "癫痫", "year_from": 2021, "year_to": 2025,
+              "template_id": "comprehensive"}
+
+    # When the model fixes the reference, the report can be saved; otherwise it fails visibly
+    fixed = asyncio.run(generate_markdown(_store(tmp_path / "ok"), Settings(_env_file=None), params,
+                                          llm=RepairModel("# 报告\n\n## 发现\n真实来源 [1]")))
+    with pytest.raises(ValueError, match="引用或结构校验失败"):
+        asyncio.run(generate_markdown(_store(tmp_path / "bad"), Settings(_env_file=None), params,
+                                      llm=RepairModel("# 报告\n\n## 发现\n依然错误 [99]")))
+
+    # Then only the valid, cited body is treated as complete
+    assert "真实来源 [1]" in fixed
 
 
 def test_user_report_generation_filters_by_form_date_and_fund_type(tmp_path):
@@ -117,6 +158,52 @@ def test_user_report_generation_stops_when_selected_reports_have_no_form_date(tm
 
     # Then unknown-year material never reaches generation
     assert model.seen == ""
+
+
+def test_user_report_preflight_and_generation_share_the_same_eligible_scope(tmp_path):
+    # Given four local reports with a missing date, an old date, a different category, and a match
+    app, store = setup(tmp_path)
+    add_report_doc(store)
+    for title, header in (("无日期", "资助类别:面上项目"),
+                          ("旧年份", "填表日期:2020年\n资助类别:面上项目"),
+                          ("其他类别", "填表日期:2025年\n资助类别:重点项目")):
+        store.put(Document(title=title, origin=title, kind="text", parser="text",
+                           pages=[Page(number=1, text=title)], markdown=header + "\n" + title))
+    with TestClient(app) as client:
+        corpus_id = client.get("/api/corpora").json()[0]["id"]
+        body = {"corpus_id": corpus_id, "domain": "癫痫", "year_from": 2025, "year_to": 2025,
+                "fund_type": "面上项目", "template_id": "comprehensive"}
+
+        # When the user inspects the exact current report scope
+        response = client.post("/api/reports/preflight", json=body)
+
+        # Then exclusions are mutually exclusive and only the matching file is a candidate
+        assert response.status_code == 200, response.text
+        result = response.json()
+        assert result["total"] == 4 and result["eligible_count"] == 1
+        assert result["excluded"] == {"date": 1, "year": 1, "category": 1}
+        assert result["eligible"][0]["title"] == "报告"
+        assert result["fingerprint"]
+
+
+def test_user_changed_report_scope_requires_a_new_preflight(tmp_path):
+    # Given a user-preflighted report scope
+    app, store = setup(tmp_path)
+    add_report_doc(store)
+    with TestClient(app) as client:
+        corpus_id = client.get("/api/corpora").json()[0]["id"]
+        body = {"corpus_id": corpus_id, "domain": "癫痫", "year_from": 2025, "year_to": 2025,
+                "template_id": "comprehensive"}
+        old = client.post("/api/reports/preflight", json=body).json()["fingerprint"]
+        store.put(Document(title="新增报告", origin="new", kind="text", parser="text",
+                           pages=[Page(number=1, text="新证据")], markdown="填表日期:2025年\n新证据"))
+
+        # When generation uses the old preflight fingerprint
+        response = client.post("/api/reports", json={**body, "scope_fingerprint": old})
+
+        # Then the server asks for a fresh click before any model generation starts
+        assert response.status_code == 409
+        assert "资料范围已变化" in str(response.json()["detail"])
 
 
 def test_user_report_metadata_reads_markdown_tables_bold_labels_and_aliases():

@@ -34,7 +34,7 @@ class OfflineGraph:
         yield {"event": "done", "data": {"ok": True}}
 
 
-async def offline_report(knowledge, settings, params, *, llm=None):
+async def offline_report(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None):
     return "# 实测报告\n\n| 结论 | 来源 |\n| --- | --- |\n| 已验证 | [1] 样本 |\n"
 
 
@@ -83,11 +83,40 @@ async def main():
                 await expect(page.get_by_text(re.compile("已保存为成果"))).to_be_visible()
 
                 session_key = await page.evaluate("localStorage.getItem('dox-agent-session')")
+                template = await (await page.request.post(
+                    f"{origin}/api/templates/custom",
+                    data={"source_template_id": "comprehensive"})).json()
+                template_draft = await (await page.request.put(
+                    f"{origin}/api/templates/custom/{template['id']}/draft",
+                    data={"revision": template["revision"], "name": "实测模板",
+                          "content": "# 实测模板\n\n## 章节\n"})).json()
+                template_publish = await page.request.post(
+                    f"{origin}/api/templates/custom/{template['id']}/publish",
+                    data={"revision": template_draft["revision"]})
+                assert template_publish.status == 200
+                task = await (await page.request.post(
+                    f"{origin}/api/tasks/custom", data={"source_task_id": "task4"})).json()
+                task_draft = await (await page.request.put(
+                    f"{origin}/api/tasks/custom/{task['id']}/draft",
+                    data={"revision": task["revision"], "name": "实测报告任务", "goal": "生成实测报告",
+                          "background": "只依据样本", "report_template_id": template["id"],
+                          "report_template_version": 1})).json()
+                task_publish = await page.request.post(
+                    f"{origin}/api/tasks/custom/{task['id']}/publish",
+                    data={"revision": task_draft["revision"]})
+                assert task_publish.status == 200
+                custom_chat = await page.request.post(f"{origin}/api/chat", data={
+                    "task_id": task["id"], "task_version": 1, "run_id": "live-custom-task-run-1",
+                    "session_key": session_key, "corpus_ids": [corpus_id],
+                    "messages": [{"role": "user", "content": "查询样本"}]})
+                assert custom_chat.status == 200
                 report = await page.request.post(f"{origin}/api/reports", data={
                     "domain": "实测领域", "year_from": 2024, "year_to": 2025,
-                    "template_id": "comprehensive", "corpus_id": corpus_id,
-                    "session_key": session_key, "run_id": "live-report-run-1"})
+                    "template_id": template["id"], "template_version": 1,
+                    "corpus_id": corpus_id, "session_key": session_key,
+                    "run_id": "live-report-run-1", "task_id": task["id"], "task_version": 1})
                 assert report.status == 201, await report.text()
+
 
                 await page.get_by_role("button", name="成果", exact=True).click()
                 await expect(page.get_by_role("button", name=re.compile("离线回答.*回答快照"))).to_be_visible()
@@ -114,8 +143,10 @@ async def main():
         # A7: restore the state databases as one set and prove the artifact/run links survive.
         backup = root / "backup"
         backup.mkdir()
-        assert {"runs.sqlite3", "artifacts.sqlite3", "reports.sqlite3", "workspace.sqlite3"} <= {
+        assert {"workspace.sqlite3", "reports.sqlite3", "runs.sqlite3", "artifacts.sqlite3",
+                "custom_tasks.sqlite3", "custom_templates.sqlite3"} <= {
             path.name for path in state_dir.glob("*.sqlite3")}
+
         for source in state_dir.glob("*.sqlite3"):
             shutil.copy2(source, backup / source.name)
             source.unlink()
@@ -141,6 +172,20 @@ async def main():
                 run = await (await page.request.get(f"{origin}/api/runs/{answer['run_id']}")).json()
                 assert old["source_verification"] == "verified" and latest["version"] == 2
                 assert run["status"] == "completed" and run["answer_sha256"]
+                custom_task_version = await (await page.request.get(
+                    f"{origin}/api/tasks/custom/{task['id']}/versions/1")).json()
+                custom_template_version = await (await page.request.get(
+                    f"{origin}/api/templates/custom/{template['id']}/versions/1")).json()
+                custom_run = await (await page.request.get(
+                    f"{origin}/api/runs/live-custom-task-run-1")).json()
+                custom_report_artifact = await (await page.request.get(
+                    f"{origin}/api/artifacts?session_key={session_key}&type=report")).json()
+                assert custom_task_version["goal"] == "生成实测报告"
+                assert custom_template_version["version"] == 1
+                assert custom_run["task_version"] == 1 and custom_run["status"] == "completed"
+                assert any(item["task_id"] == task["id"] and item["template_version"] == 1
+                           for item in custom_report_artifact)
+
                 await browser.close()
         finally:
             server.should_exit = True

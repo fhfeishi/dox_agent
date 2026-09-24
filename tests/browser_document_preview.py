@@ -59,7 +59,7 @@ async def main():
             await page.route("**/api/documents/d1*", read_document)
             await page.route(re.compile(r".*/api/documents(\?.*)?$"), lambda r: r.fulfill(json=[document]))
             await page.route(re.compile(r".*/api/workspace/sessions.*$"), lambda r: r.fulfill(json=[] if r.request.method == "GET" else {**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
-            await page.route("**/api/tasks", lambda r: r.fulfill(json=[]))
+            await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
             await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
 
             await page.goto(origin)

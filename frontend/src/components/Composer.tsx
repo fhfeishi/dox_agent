@@ -66,6 +66,9 @@ export function Composer() {
     tasksError,
     taskId,
     activeTask,
+    taskVersionState,
+    taskVersionError,
+    upgradeTaskVersion,
     startTask,
     taskCapable,
     currentCorpus,
@@ -138,7 +141,12 @@ export function Composer() {
     }
     return typeof value === "string" && value.length <= 500;
   });
-  const taskReady = tasks.find((task) => task.id === taskId)?.kind !== "custom" || Boolean(activeTask);
+  const listedTask = tasks.find((task) => task.id === taskId);
+  const customTask = listedTask?.kind === "custom";
+  const missingCustomTask = tasks.length > 0 && !listedTask && taskId.startsWith("custom-");
+  const taskReady = !customTask && !missingCustomTask || (taskVersionState === "ready" && Boolean(activeTask));
+  const latestVersion = listedTask?.version;
+  const versionUpdateAvailable = customTask && Boolean(workspace.taskVersion && latestVersion && workspace.taskVersion < latestVersion);
   const canSend = input.trim().length > 0 && !busy && ready && workspace.loaded && connected && scopeReady && taskInputsValid && taskReady;
   function setTaskParam(key: string, value: unknown) {
     setOptions((current) => {
@@ -195,7 +203,18 @@ export function Composer() {
             </button>
           </div>
         ) : null}
-        {!taskReady ? <p role="status" className="mb-[8px] text-[12px] text-[var(--steel)]">正在读取此会话绑定的任务版本…</p> : null}
+        {(customTask || missingCustomTask) && !taskReady ? (
+          <div role="status" className="mb-[8px] rounded-[8px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[10px] py-[7px] text-[12px] text-[var(--steel)]">
+            {taskVersionState === "missing" ? "此旧会话未记录任务版本，已阻止发送。" : taskVersionState === "failed" ? `${taskVersionError} 可从成组状态备份恢复，或新建最新版会话。` : "正在读取此会话固定的任务版本…"}
+            {latestVersion ? <div className="mt-[5px] flex flex-wrap items-center gap-[7px]">
+              {workspace.taskVersion ? <span>当前 v{workspace.taskVersion} / 最新 v{latestVersion}</span> : <span>最新 v{latestVersion}</span>}
+              {workspace.taskVersion ? <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-[11.5px]" onClick={() => {
+                if (window.confirm(`将此会话从任务 v${workspace.taskVersion} 升级到 v${latestVersion}？`)) void upgradeTaskVersion();
+              }}>升级到最新版</button> : null}
+              <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-[11.5px]" onClick={() => void startTask(taskId)}>新建最新版会话</button>
+            </div> : null}
+          </div>
+        ) : null}
 
         {/* corpus + scope chips */}
         <div className="mb-[8px] flex flex-wrap items-center gap-[6px]">
@@ -265,7 +284,12 @@ export function Composer() {
 
         {activeTask?.kind === "custom" ? (
           <div className="mb-[8px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-[12px] text-[var(--slate)]">
-            <div>任务 v{workspace.taskVersion ?? activeTask.version} · {corpusIds.length} 个知识库 · {scoped ? `${scoped} 份指定资料` : "全部资料"} · 网络关闭 · {activeTask.output_hint || "文本回答"}</div>
+            <div className="flex flex-wrap items-center gap-[7px]">
+              <span>{versionUpdateAvailable ? `当前 v${workspace.taskVersion} / 最新 v${latestVersion}` : `任务 v${workspace.taskVersion ?? activeTask.version}`} · {corpusIds.length} 个知识库 · {scoped ? `${scoped} 份指定资料` : "全部资料"} · 网络关闭 · {activeTask.output_hint || "文本回答"}</span>
+              {versionUpdateAvailable ? <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[2px] text-[11px]" onClick={() => {
+                if (window.confirm(`将此会话从任务 v${workspace.taskVersion} 升级到 v${latestVersion}？`)) void upgradeTaskVersion();
+              }}>升级到最新版</button> : null}
+            </div>
             {Object.entries(activeTask.parameter_defaults ?? {}).length ? <div className="mt-[3px]">文本默认：{Object.entries(activeTask.parameter_defaults ?? {}).map(([key, value]) => `${key}=${value}`).join("；")}</div> : null}
             {taskFields.length ? <div className="mt-[8px] flex flex-wrap gap-[8px]">{taskFields.map((field) => {
               const value = taskParams[field.key] ?? field.default;
@@ -351,7 +375,7 @@ export function Composer() {
                     </p>
                   ) : null}
                   {taskCapable && tasks.length ? (
-                    tasks.filter((task) => task.kind !== "custom" || Boolean(task.version)).map((task) => (
+                    tasks.filter((task) => !task.archived && (task.kind !== "custom" || Boolean(task.version))).map((task) => (
                       <PopItem
                         key={task.id}
                         title={task.name}

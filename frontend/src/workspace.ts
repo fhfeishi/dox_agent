@@ -25,7 +25,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
   const [loaded, setLoaded] = useState(false);
   const [message, setMessage] = useState("正在恢复会话…");
   const [branches, setBranches] = useState<Branch[]>([]);
-  const [taskVersion, setTaskVersion] = useState<number | undefined>();
+  const [taskVersion, setBoundTaskVersion] = useState<number | undefined>();
   const revisions = useRef<Record<string, number>>({});
   const chain = useRef<Promise<void>>(Promise.resolve());
   const pending = useRef<Saved<SessionData> | null>(null);
@@ -60,7 +60,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
       if (selected) {
         const task = selected.data.task_id ?? DEFAULT_TASK_ID;
         taskIdRef.current = task; setTaskId?.(task);
-        taskVersionRef.current = selected.data.task_version; setTaskVersion(selected.data.task_version);
+        taskVersionRef.current = selected.data.task_version; setBoundTaskVersion(selected.data.task_version);
         const binding = restoreCorpusSelection(selected.data.corpus_id, selected.data.corpus_ids,
           selected.data.corpus_confirmed);
         corpusIdRef.current = binding.corpusId; setCorpusId?.(binding.corpusId);
@@ -130,7 +130,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     const next = item?.id ?? crypto.randomUUID();
     const nextTask = task ?? item?.data.task_id ?? DEFAULT_TASK_ID;
     taskIdRef.current = nextTask; setTaskId?.(nextTask);
-    taskVersionRef.current = version ?? item?.data.task_version; setTaskVersion(taskVersionRef.current);
+    taskVersionRef.current = version ?? item?.data.task_version; setBoundTaskVersion(taskVersionRef.current);
     // Existing sessions restore their binding; a new session gets an unconfirmed candidate.
     const binding = item
       ? restoreCorpusSelection(item.data.corpus_id, item.data.corpus_ids, item.data.corpus_confirmed)
@@ -179,5 +179,14 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     await enqueue({ ...item, data: { ...item.data, archived } });
     if (archived && id === activeRef.current) await select();
   }
-  return { sessions, active, loaded, message, branches, taskVersion, select, flush, saveNow, saveCorpusSelection, branchInPlace, viewBranch, restoreBranch, rename, setArchived };
+  async function setTaskVersion(version: number, nextOptions?: Options) {
+    taskVersionRef.current = version;
+    setBoundTaskVersion(version);
+    if (nextOptions) {
+      optionsRef.current = nextOptions;
+      setOptions(nextOptions);
+    }
+    await saveNow(turnsRef.current, optionsRef.current, branchesRef.current, taskIdRef.current, corpusIdRef.current, true);
+  }
+  return { sessions, active, loaded, message, branches, taskVersion, setTaskVersion, select, flush, saveNow, saveCorpusSelection, branchInPlace, viewBranch, restoreBranch, rename, setArchived };
 }

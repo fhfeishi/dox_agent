@@ -226,8 +226,8 @@ async def main():
             await page.route("**/api/health", health)
             await page.route(re.compile(r".*/api/documents(?:\?.*)?$"), documents)
             await page.route(re.compile(r".*/api/corpora(?:\?.*)?$"), corpora)
-            await page.route("**/api/tasks", tasks)
-            await page.route("**/api/templates", templates)
+            await page.route("**/api/tasks**", tasks)
+            await page.route("**/api/templates**", templates)
             await page.route("**/api/templates/*", template_detail)
             await page.route("**/api/workspace/sessions", sessions)
             await page.route("**/api/workspace/sessions/*", sessions)
@@ -323,6 +323,8 @@ async def main():
             assert report_bodies[-1].get("parent_run_id") == chat_bodies[-1].get("run_id"), report_bodies[-1]
             assert str(report_bodies[-1].get("run_id", "")).endswith("-report"), report_bodies[-1]
             assert report_bodies[-1].get("session_key"), report_bodies[-1]
+            assert report_bodies[-1].get("template_id") == "comprehensive"
+            assert report_bodies[-1].get("template_version") is None, report_bodies[-1]
             await page.context.grant_permissions(["clipboard-read", "clipboard-write"])
             report_card = page.locator("article").filter(has_text="测试报告").first
             await report_card.get_by_role("button", name="复制", exact=True).click()

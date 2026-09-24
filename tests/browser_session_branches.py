@@ -51,7 +51,7 @@ async def main():
             await page.route("**/api/corpora", lambda r: r.fulfill(json=[{"id": "c1", "name": "演示库", "kind": "demo", "domain": "x",
                 "rel_path": "c1", "docs_count": 1, "preparation": "ready", "is_default": True,
                 "index_progress": None, "job": None}]))
-            await page.route("**/api/tasks", lambda r: r.fulfill(json=[]))
+            await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
             await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
             await page.route("**/api/workspace/sessions", sessions)
             await page.route("**/api/workspace/sessions/*", sessions)

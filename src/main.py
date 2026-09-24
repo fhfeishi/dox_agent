@@ -48,7 +48,6 @@ from .custom_tasks import (
     resolve_task_params,
 )
 from .custom_templates import (
-    OutputTemplate,
     TemplateConflict,
     TemplateMissing,
     TemplateStore,
@@ -145,7 +144,7 @@ class ReportRequest(BaseModel):
     year_to: int = Field(ge=1900, le=2100)
     template_id: str = Field(min_length=1, max_length=80)
     # W4-B: custom templates are resolved to a fixed published version; built-ins ignore it.
-    template_version: int | None = Field(default=None, ge=1, le=100000)
+    template_version: int | None = Field(default=None, ge=0, le=100000)
     fund_type: str = Field(default="", max_length=120)
     focus: str = Field(default="", max_length=2000)
     doc_ids: list[str] | None = Field(default=None, min_length=1, max_length=20)
@@ -157,6 +156,7 @@ class ReportRequest(BaseModel):
     # W4-B: optional report-type custom task (engine task4) whose fixed version is recorded.
     task_id: str | None = Field(default=None, max_length=80)
     task_version: int | None = Field(default=None, ge=1, le=100000)
+    task_params: dict[str, object] = Field(default_factory=dict, max_length=20)
 
     @field_validator("doc_ids")
     @classmethod
@@ -203,6 +203,10 @@ class TaskDraft(BaseModel):
     background: str | None = Field(default=None, max_length=4000)
     goal: str | None = Field(default=None, min_length=1, max_length=4000)
     requirements: str | None = Field(default=None, max_length=4000)
+    category: str | None = Field(default=None, max_length=120)
+    boundaries: str | None = Field(default=None, max_length=4000)
+    clarification_conditions: str | None = Field(default=None, max_length=4000)
+    output_instructions: str | None = Field(default=None, max_length=4000)
     parameter_defaults: dict[str, str] | None = None
     parameters: list[TaskParameter] | None = Field(default=None, max_length=20)
     report_template_id: str | None = Field(default=None, max_length=80)
@@ -420,8 +424,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         }
 
     @app.get("/api/tasks")
-    async def tasks():
-        return [{**task, "kind": "builtin", "status": "published"} for task in list_tasks()] + await asyncio.to_thread(app.state.custom_tasks.list)
+    async def tasks(include_archived: bool = False):
+        return [{**task, "kind": "builtin", "status": "published", "version": 0}
+                for task in list_tasks()] + await asyncio.to_thread(app.state.custom_tasks.list,
+                                                                       include_archived=include_archived)
 
     @app.post("/api/tasks/custom", status_code=201)
     async def copy_task(payload: TaskCopy):
@@ -429,6 +435,20 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             return await asyncio.to_thread(app.state.custom_tasks.copy_builtin, payload.source_task_id)
         except TaskMissing as exc:
             raise HTTPException(422, str(exc)) from exc
+
+    @app.post("/api/tasks/custom/{task_id}/archive")
+    async def archive_task(task_id: str):
+        try:
+            return await asyncio.to_thread(app.state.custom_tasks.archive, task_id)
+        except TaskMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+    @app.post("/api/tasks/custom/{task_id}/restore")
+    async def restore_task(task_id: str):
+        try:
+            return await asyncio.to_thread(app.state.custom_tasks.restore, task_id)
+        except TaskMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
 
     @app.get("/api/tasks/custom/{task_id}")
     async def custom_task(task_id: str):
@@ -470,19 +490,36 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(404, str(exc)) from exc
         except TaskConflict as exc:
             raise HTTPException(409, str(exc)) from exc
+        except TaskInvalid as exc:
+            raise HTTPException(422, str(exc)) from exc
 
     @app.get("/api/templates")
-    async def templates():
+    async def templates(include_archived: bool = False):
         """W1/W4-B: built-in catalogue plus custom template drafts/published versions."""
         builtins = [{**item, "kind": "builtin", "status": "published", "version": 0}
                     for item in list_templates()]
-        custom = await asyncio.to_thread(app.state.custom_templates.list)
+        custom = await asyncio.to_thread(app.state.custom_templates.list,
+                                         include_archived=include_archived)
         return builtins + custom
 
     @app.post("/api/templates/custom", status_code=201)
     async def copy_template(payload: TemplateCopy):
         try:
             return await asyncio.to_thread(app.state.custom_templates.copy_builtin, payload.source_template_id)
+        except TemplateMissing as exc:
+            raise HTTPException(422, str(exc)) from exc
+
+    @app.post("/api/templates/custom/{template_id}/archive")
+    async def archive_template(template_id: str):
+        try:
+            return await asyncio.to_thread(app.state.custom_templates.archive, template_id)
+        except TemplateMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+    @app.post("/api/templates/custom/{template_id}/restore")
+    async def restore_template(template_id: str):
+        try:
+            return await asyncio.to_thread(app.state.custom_templates.restore, template_id)
         except TemplateMissing as exc:
             raise HTTPException(404, str(exc)) from exc
 
@@ -1161,6 +1198,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             task_definition = None
             engine_task_id = payload.task_id
         else:
+            if payload.task_version is None:
+                raise HTTPException(422, "自定义任务必须显式指定 task_version")
             try:
                 task_definition = await asyncio.to_thread(
                     app.state.custom_tasks.version, payload.task_id, payload.task_version)
@@ -1334,9 +1373,17 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                 "preparation": chat_preparation,
                                 "corpus_domain": chat_domain,
                                 "task_id": engine_task_id,
-                                "custom_task": ({**{key: task_definition[key] for key in ("background", "goal", "requirements")},
-                                                 "parameters": task_values}
-                                                if task_definition else None),
+                                "custom_task": ({**{key: task_definition[key] for key in (
+                                    "background", "category", "goal", "requirements")},
+                                    "requirements": "\n".join(
+                                        f"{label}：{task_definition.get(key, '')}"
+                                        for label, key in (("类别", "category"),
+                                                           ("边界", "boundaries"),
+                                                           ("澄清条件", "clarification_conditions"),
+                                                           ("输出要求", "output_instructions"))
+                                        if task_definition.get(key)),
+                                    "parameters": task_values}
+                                    if task_definition else None),
                                 "options": {"allowed_doc_ids": payload.allowed_doc_ids},
                             },
                             stream_mode="custom",
@@ -1418,15 +1465,18 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except Exception:  # noqa: BLE001 - the saved report remains readable through compatibility
             logger.warning("artifact link unavailable for report run: %s", run_id)
 
-    async def record_report_failure(run_id: str, payload: ReportRequest, reason: str) -> None:
+    async def record_report_failure(run_id: str, params: dict, reason: str) -> None:
         try:
             await asyncio.to_thread(app.state.runs.update, run_id, status="failed",
                                     ended_at=datetime.now(UTC).isoformat())
             await asyncio.to_thread(app.state.artifacts.record_failed_report,
-                                    run_id=run_id, title=payload.domain,
-                                    session_key=payload.session_key or "",
-                                    corpus_id=payload.corpus_id or "",
-                                    template_id=payload.template_id, reason=reason)
+                                    run_id=run_id, title=params.get("domain", ""),
+                                    session_key=params.get("session_key", ""),
+                                    corpus_id=params.get("corpus_id", ""),
+                                    task_id=params.get("task_id", "task4"),
+                                    template_id=params.get("template_id", ""),
+                                    task_version=params.get("task_version"),
+                                    template_version=params.get("template_version"), reason=reason)
         except Exception:  # noqa: BLE001 - bookkeeping cannot mask the generation error
             logger.warning("failed report status unavailable for run: %s", run_id)
 
@@ -1462,12 +1512,54 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             if not set(payload.doc_ids) <= available_ids:
                 raise HTTPException(422, "报告限定文档必须属于指定知识库")
         session_key = payload.session_key or ""
-        # W4-B: resolve a custom template to its fixed published version before the run is created;
-        # built-in templates keep their read-only structure.
         template_content: str | None = None
         template_version = 0
-        if payload.template_id not in REPORT_TEMPLATES:
+        task_id = "task4"
+        task_version = None
+        task_definition = None
+        task_values, task_sources = {}, {}
+        if payload.task_id is not None:
+            if payload.task_id in {task["id"] for task in list_tasks()}:
+                if payload.task_id != "task4":
+                    raise HTTPException(422, "报告只能由 task4 或报告型自定义任务生成")
+                if payload.task_version is not None or payload.task_params:
+                    raise HTTPException(422, "内置 task4 不接受自定义任务参数")
+            else:
+                if payload.task_version is None:
+                    raise HTTPException(422, "报告型自定义任务必须显式指定 task_version")
+                try:
+                    task_definition = await asyncio.to_thread(
+                        app.state.custom_tasks.version, payload.task_id, payload.task_version)
+                except TaskMissing as exc:
+                    raise HTTPException(422, "报告型自定义任务不存在或尚未发布") from exc
+                if task_definition.get("engine_task_id") != "task4":
+                    raise HTTPException(422, "该自定义任务不是报告型任务")
+                task_id = payload.task_id
+                task_version = int(task_definition["version"])
+                bound_template_id = task_definition.get("report_template_id")
+                bound_template_version = task_definition.get("report_template_version")
+                requested_template_version = payload.template_version if payload.template_id not in REPORT_TEMPLATES else 0
+                if payload.template_id != bound_template_id or requested_template_version != bound_template_version:
+                    raise HTTPException(422, "请求报告模板与发布任务绑定不一致")
+                try:
+                    task_values, task_sources = resolve_task_params(task_definition, payload.task_params)
+                except ValueError as exc:
+                    raise HTTPException(422, str(exc)) from exc
+        else:
+            if payload.task_version is not None or payload.task_params:
+                raise HTTPException(422, "task_version 和 task_params 仅适用于自定义报告任务")
+            task_values, task_sources = {}, {}
+
+        if payload.template_id in REPORT_TEMPLATES:
+            if payload.template_version not in (None, 0):
+                raise HTTPException(422, "内置报告模板版本只能为 0")
+        else:
+            if payload.template_version == 0:
+                raise HTTPException(422, "自定义报告模板必须使用已发布版本")
             try:
+                current_template = await asyncio.to_thread(app.state.custom_templates.get, payload.template_id)
+                if task_definition is None and current_template.get("archived"):
+                    raise HTTPException(422, "已归档模板不能用于新的报告运行")
                 definition = await asyncio.to_thread(app.state.custom_templates.version,
                                                       payload.template_id, payload.template_version)
             except TemplateMissing as exc:
@@ -1478,34 +1570,21 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 "year_from": payload.year_from, "year_to": payload.year_to,
                 "fund_type": payload.fund_type or "不限", "focus": payload.focus or "无",
             })
-        # W4-B: optional report-type custom task; its fixed version is recorded with the run.
-        task_id = "task4"
-        task_version = None
-        if payload.task_id is not None:
-            if payload.task_id in {task["id"] for task in list_tasks()}:
-                if payload.task_id != "task4":
-                    raise HTTPException(422, "报告只能由 task4 或报告型自定义任务生成")
-            else:
-                try:
-                    task_definition = await asyncio.to_thread(
-                        app.state.custom_tasks.version, payload.task_id, payload.task_version)
-                except TaskMissing as exc:
-                    raise HTTPException(422, "报告型自定义任务不存在或尚未发布") from exc
-                if task_definition.get("engine_task_id") != "task4":
-                    raise HTTPException(422, "该自定义任务不是报告型任务") from None
-                task_id = payload.task_id
-                task_version = task_definition["version"]
         # W3-A: a report is an independent run whose parent is the task4 intake chat run.
         # The fingerprint check runs first: reusing a run_id with different parameters is a
         # conflict (409) rather than silently returning a differently-scoped report.
         run_id = payload.run_id or uuid4().hex
-        fingerprint = request_fingerprint({
-            "type": "report", "template_id": payload.template_id, "template_version": template_version,
-            "task_id": task_id, "task_version": task_version or 0,
-            "domain": payload.domain,
-            "year_from": payload.year_from, "year_to": payload.year_to, "fund_type": payload.fund_type,
-            "focus": payload.focus, "doc_ids": payload.doc_ids or [], "corpus_id": payload.corpus_id or "",
-        })
+        report_params = {
+            **payload.model_dump(exclude={"run_id", "parent_run_id"}),
+            "template_version": template_version,
+            "task_id": task_id,
+            "task_version": task_version,
+            "task_params": task_values,
+            "task_param_sources": task_sources,
+        }
+        fingerprint = request_fingerprint({"type": "report", **report_params,
+                                           "doc_ids": payload.doc_ids or [],
+                                           "corpus_id": payload.corpus_id or ""})
         try:
             snapshot, created = await asyncio.to_thread(
                 app.state.runs.create, run_id, fingerprint,
@@ -1516,12 +1595,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 requested_corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
                 effective_corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
                 allowed_doc_ids=payload.doc_ids,
-                params={"domain": payload.domain, "year_from": payload.year_from, "year_to": payload.year_to,
-                        "template_id": payload.template_id, "template_version": template_version,
-                        "task_id": task_id, "task_version": task_version or 0,
-                        "fund_type": payload.fund_type,
-                        "focus": payload.focus},
-                param_sources={}, output_intent="document")
+                params=report_params,
+                param_sources=task_sources, output_intent="document")
         except RunConflict as exc:
             raise HTTPException(409, str(exc)) from exc
         except Exception:  # noqa: BLE001 - snapshot bookkeeping must never block report generation
@@ -1537,18 +1612,19 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(409, "该报告正在生成中")
         # A failed (or otherwise terminal, unsaved) run falls through and can be safely retried.
         try:
-            markdown = await generate_markdown(kn, settings, payload.model_dump(),
-                                               **({"template_content": template_content}
-                                                  if template_content is not None else {}))
+            markdown = await generate_markdown(
+                kn, settings, report_params,
+                **({"template_content": template_content} if template_content is not None else {}),
+                **({"task_definition": task_definition} if task_definition is not None else {}))
         except ValueError as exc:
-            await record_report_failure(run_id, payload, str(exc))
+            await record_report_failure(run_id, report_params, str(exc))
             raise HTTPException(422, str(exc)) from exc
-        except Exception as exc:  # noqa: BLE001 - provider details stay out of the API response
-            await record_report_failure(run_id, payload, "报告生成失败")
+        except Exception as exc:
+            await record_report_failure(run_id, report_params, "报告生成失败")
             logger.warning("report generation failed: %s", type(exc).__name__)
             raise HTTPException(500, "报告生成失败，请检查模型配置或稍后重试") from exc
         report_id = uuid4().hex
-        await asyncio.to_thread(app.state.reports.save, report_id, payload.model_dump(), markdown,
+        await asyncio.to_thread(app.state.reports.save, report_id, report_params, markdown,
                                 session_key=session_key, run_id=run_id,
                                 corpus_id=payload.corpus_id or "")
         try:
@@ -1561,7 +1637,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             await ensure_report_artifact(await asyncio.to_thread(app.state.reports.get, report_id))
         except KeyError:  # pragma: no cover - report was just saved in this request
             logger.warning("saved report could not be read for artifact linking: %s", report_id)
-        return JSONResponse({"report_id": report_id, "params": payload.model_dump(), "markdown": markdown,
+        return JSONResponse({"report_id": report_id, "params": report_params, "markdown": markdown,
                              "run_id": run_id, "idempotent": False}, status_code=201)
 
     @app.get("/api/reports/{report_id}")
@@ -1581,12 +1657,16 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     def artifact_from_report(report: dict) -> dict:
         """§16.15: legacy reports read back as ``type=report`` artifacts without rewriting them."""
+        params = report.get("params", {})
+        report = {**report, **params}
         return {"artifact_id": "report:" + report["report_id"], "type": "report", "status": "completed",
                 "title": report.get("domain") or "未命名报告", "current_version": 1,
                 "created_at": report.get("created_at", ""), "updated_at": report.get("created_at", ""),
                 "session_key": report.get("session_key", ""), "run_id": report.get("run_id", ""),
                 "corpus_ids": [report["corpus_id"]] if report.get("corpus_id") else [],
-                "task_id": "task4", "template_id": report.get("template_id", ""),
+                "task_id": report.get("task_id", "task4"), "template_id": report.get("template_id", ""),
+                "template_version": report.get("template_version"),
+                "task_version": report.get("task_version"),
                 "export_format": "md", "export_status": "", "fail_reason": "", "legacy": True}
 
     async def resolve_artifact(artifact_id: str, version: int | None = None) -> dict:
@@ -1663,7 +1743,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             app.state.artifacts.create, uuid4().hex, type="answer_snapshot", title=title,
             markdown=payload.markdown, session_key=snapshot.get("session_key", ""),
             run_id=payload.run_id, corpus_ids=snapshot.get("effective_corpus_ids", []),
-            task_id=snapshot.get("task_id", ""), citations=snapshot.get("citations", []),
+            task_id=snapshot.get("task_id", ""), task_version=snapshot.get("task_version"),
+            citations=snapshot.get("citations", []),
             source_verification="verified")
         return created
 

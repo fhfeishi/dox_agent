@@ -58,7 +58,9 @@ class CorpusInfo:
 
 
 OVERRIDES_FILENAME = "corpora.json"
-STATE_FILES = ("workspace.sqlite3", "reports.sqlite3", "corpora.json", "official-preparation.json")
+STATE_FILES = ("workspace.sqlite3", "reports.sqlite3", "runs.sqlite3", "artifacts.sqlite3",
+               "custom_tasks.sqlite3", "custom_templates.sqlite3", "corpora.json",
+               "official-preparation.json")
 DEMO_DIRNAME = "demo_langchain"
 
 

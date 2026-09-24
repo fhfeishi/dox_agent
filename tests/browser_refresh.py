@@ -63,7 +63,7 @@ async def main():
             await page.route(re.compile(r".*/api/documents(\?.*)?$"), lambda r: r.fulfill(json=[]))
             await page.route(re.compile(r".*/api/corpora/[^/]+/ingest(?:\?.*)?$"), ingest)
             await page.route(re.compile(r".*/api/corpora(\?.*)?$"), list_corpora)
-            await page.route("**/api/tasks", lambda r: r.fulfill(json=[]))
+            await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions/*", lambda r: r.fulfill(json={**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
 

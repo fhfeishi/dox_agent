@@ -25,7 +25,7 @@ def test_user_copies_edits_publishes_and_runs_a_versioned_task(tmp_path):
         assert changed.status_code == 200
         published = client.post(f"/api/tasks/custom/{task_id}/publish", json={"revision": changed.json()["revision"]})
         assert published.status_code == 200 and published.json()["version"] == 1
-        assert client.post("/api/chat", json=body | {"run_id": "custom-task-run1"}).status_code == 200
+        assert client.post("/api/chat", json=body | {"run_id": "custom-task-run1", "task_version": 1}).status_code == 200
         snapshot = client.get("/api/runs/custom-task-run1").json()
 
         # Then the run and its citations retain the server-resolved version and default source
@@ -131,3 +131,36 @@ def test_user_cannot_publish_invalid_task_parameter_definitions(tmp_path):
 
         # Then the unchanged draft can still be published
         assert client.post(f"/api/tasks/custom/{task['id']}/publish", json={"revision": first.json()["revision"]}).status_code == 200
+
+
+def test_user_copies_custom_task_with_new_identity_and_archives_fixed_versions(tmp_path):
+    app, _ = ready_app(tmp_path)
+    with TestClient(app) as client:
+        source = client.post("/api/tasks/custom", json={"source_task_id": "task1"}).json()
+        saved = client.put(f"/api/tasks/custom/{source['id']}/draft", json={
+            "revision": source["revision"], "category": "方法学", "boundaries": "不得外推",
+            "clarification_conditions": "信息不足先澄清", "output_instructions": "列出证据",
+            "goal": "回答问题"})
+        assert saved.status_code == 200
+        published = client.post(f"/api/tasks/custom/{source['id']}/publish", json={
+            "revision": saved.json()["revision"]})
+        assert published.status_code == 200
+
+        copy_response = client.post("/api/tasks/custom", json={"source_task_id": source["id"]})
+        copy = copy_response.json()
+        archived = client.post(f"/api/tasks/custom/{source['id']}/archive")
+        assert archived.status_code == 200 and archived.json()["archived"] is True
+        assert archived.json()["status"] == "published"
+        assert client.get(f"/api/tasks/custom/{source['id']}/versions/1").status_code == 200
+        assert client.put(f"/api/tasks/custom/{source['id']}/draft", json={
+            "revision": published.json()["revision"], "goal": "禁止编辑"}).status_code == 409
+        assert client.post(f"/api/tasks/custom/{source['id']}/publish", json={
+            "revision": published.json()["revision"]}).status_code == 409
+        assert source["id"] not in {item["id"] for item in client.get("/api/tasks").json()}
+        assert source["id"] in {item["id"] for item in client.get("/api/tasks?include_archived=true").json()}
+
+        assert copy_response.status_code == 201
+        assert copy["id"] != source["id"] and copy["version"] == 0 and copy["revision"] == 1
+        assert copy["status"] == "draft" and copy["archived"] is False
+        restored = client.post(f"/api/tasks/custom/{source['id']}/restore")
+        assert restored.status_code == 200 and restored.json()["status"] == "published"

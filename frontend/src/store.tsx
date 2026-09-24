@@ -113,6 +113,9 @@ export interface AppValue {
   taskId: string;
   activeTask: TaskInfo | undefined;
   taskNames: Record<string, string>;
+  taskVersionState: "ready" | "loading" | "missing" | "failed";
+  taskVersionError: string;
+  upgradeTaskVersion: () => Promise<void>;
   startTask: (taskId: string) => Promise<void>;
   refreshTasks: () => Promise<void>;
 
@@ -246,6 +249,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [taskId, setTaskId] = useState("task1");
   const [tasks, setTasks] = useState<TaskInfo[]>([]);
   const [publishedTask, setPublishedTask] = useState<{ id: string; version: number; task: TaskInfo } | null>(null);
+  const [taskVersionState, setTaskVersionState] = useState<AppValue["taskVersionState"]>("ready");
+  const [taskVersionError, setTaskVersionError] = useState("");
   const [tasksError, setTasksError] = useState("");
   const [previewDoc, setPreviewDoc] = useState<PreviewTarget>(null);
   const [fullPreviewReturnsToInspector, setFullPreviewReturnsToInspector] = useState(false);
@@ -306,11 +311,38 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const selected = tasks.find((task) => task.id === taskId);
     const version = workspace.taskVersion;
-    if (selected?.kind !== "custom" || !version) { setPublishedTask(null); return; }
+    if (selected?.kind !== "custom") {
+      setPublishedTask(null);
+      if (taskId.startsWith("custom-")) {
+        setTaskVersionState("failed");
+        setTaskVersionError("此会话绑定的自定义任务已不可用。");
+      } else {
+        setTaskVersionState("ready");
+        setTaskVersionError("");
+      }
+      return;
+    }
+    if (!version) {
+      setPublishedTask(null);
+      setTaskVersionState("missing");
+      setTaskVersionError("此旧会话未记录任务版本，已阻止发送。");
+      return;
+    }
     let active = true;
+    setPublishedTask(null);
+    setTaskVersionState("loading");
+    setTaskVersionError("");
     void fetchTaskVersion(taskId, version)
-      .then((task) => { if (active) setPublishedTask({ id: taskId, version, task }); })
-      .catch((e) => { if (active) setError(`此会话绑定的任务版本不可用：${(e as Error).message}`); });
+      .then((task) => {
+        if (!active) return;
+        setPublishedTask({ id: taskId, version, task });
+        setTaskVersionState("ready");
+      })
+      .catch((e) => {
+        if (!active) return;
+        setTaskVersionState("failed");
+        setTaskVersionError(`此会话绑定的任务 v${version} 加载失败：${(e as Error).message}`);
+      });
     return () => { active = false; };
   }, [taskId, workspace.taskVersion, tasks]);
   function updateOptions(value: SetStateAction<Options>) {
@@ -349,7 +381,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   async function refreshTasks() {
-    try { setTasks(await fetchTasks()); setTasksError(""); }
+    try { setTasks(await fetchTasks(undefined, true)); setTasksError(""); }
     catch (e) { setTasksError(e instanceof Error ? e.message : "任务列表不可用"); }
   }
 
@@ -477,8 +509,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
     const history = override?.history ?? turns;
     const scope = override?.options ?? options;
-    if (tasks.find((task) => task.id === taskId)?.kind === "custom" && !activeTask) {
-      setError("任务发布版本尚未加载，请稍后重试");
+    const listed = tasks.find((task) => task.id === taskId);
+    if (!listed && taskId.startsWith("custom-")) {
+      setError("此会话绑定的自定义任务已不可用。请从成组状态备份恢复，或新建最新版会话。");
+      return;
+    }
+    if (listed?.kind === "custom" && !workspace.taskVersion) {
+      setError("此旧会话未记录任务版本，已阻止发送。请确认升级到最新版，或从成组状态备份恢复 / 新建最新版会话。");
+      return;
+    }
+    if (listed?.kind === "custom" && !activeTask) {
+      setError(taskVersionState === "failed"
+        ? `${taskVersionError} 请从成组状态备份恢复，或新建最新版会话。`
+        : "正在读取此会话固定的任务版本，完成前不能发送。");
       return;
     }
     if (scope.allowed_doc_ids && scopeDocumentsError) {
@@ -492,7 +535,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     // task_id is sent with chat; task4 goes through intake (parameter collection, no report body).
     // Bind the turn to the corpus the user is browsing, so the answer scope matches the library.
     const effectiveOptions: Options = {
-      ...(uiFlags.tasks ? { ...scope, task_id: taskId } : { allowed_doc_ids: scope.allowed_doc_ids ?? null }),
+      ...(uiFlags.tasks ? { ...scope, task_id: taskId, task_version: workspace.taskVersion } : { allowed_doc_ids: scope.allowed_doc_ids ?? null }),
       ...corpusOptions,
     };
     const question = override?.question ?? (regenerate ? history.at(-1)?.question : input.trim());
@@ -672,14 +715,57 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   async function startTask(nextTaskId: string) {
-    setTaskId(nextTaskId);
     const selected = tasks.find((item) => item.id === nextTaskId);
+    if (selected?.status === "archived" || selected?.archived) {
+      setError("已归档任务不能用于新会话，请先恢复。");
+      return;
+    }
     if (selected?.kind === "custom" && !selected.version) {
       setError("请先发布任务，再创建会话");
       return;
     }
+    setTaskId(nextTaskId);
     await switchSession(undefined, nextTaskId, undefined, selected?.kind === "custom" ? selected.version : undefined);
     setStatus("已切换到新任务并新建会话；原会话保留在会话列表");
+  }
+
+  async function upgradeTaskVersion() {
+    const latest = tasks.find((item) => item.id === taskId)?.version;
+    if (!latest) {
+      setError("此任务尚无已发布版本，无法升级。");
+      return;
+    }
+    try {
+      const definition = await fetchTaskVersion(taskId, latest);
+      const definitions = new Map((definition.parameters ?? []).map((field) => [field.key, field]));
+      const legacy = new Set(Object.keys(definition.parameter_defaults ?? {}));
+      const nextParams: Record<string, unknown> = {};
+      for (const [key, value] of Object.entries(options.task_params ?? {})) {
+        if (legacy.has(key) && typeof value === "string" && value.length <= 500) {
+          nextParams[key] = value;
+          continue;
+        }
+        const field = definitions.get(key);
+        if (!field) continue;
+        const valid = field.type === "text" && typeof value === "string" && value.length <= 500
+          || field.type === "integer" && Number.isInteger(value) && Math.abs(Number(value)) <= 1_000_000
+          || field.type === "enum" && typeof value === "string" && Boolean(field.options?.includes(value))
+          || field.type === "boolean" && typeof value === "boolean"
+          || field.type === "year_range" && typeof value === "object" && value !== null
+            && Object.keys(value).length === 2
+            && Number.isInteger((value as { from?: unknown }).from) && Number.isInteger((value as { to?: unknown }).to)
+            && Number((value as { from: number }).from) >= 1900 && Number((value as { from: number }).from) <= 2100
+            && Number((value as { to: number }).to) >= 1900 && Number((value as { to: number }).to) <= 2100
+            && Number((value as { from: number; to: number }).from) <= Number((value as { from: number; to: number }).to);
+        if (valid) nextParams[key] = value;
+      }
+      const nextOptions = { ...options, task_params: nextParams };
+      await workspace.setTaskVersion(latest, nextOptions);
+      setError("");
+      setStatus(`此会话已升级到任务 v${latest}；不兼容的旧参数已清除`);
+    } catch (e) {
+      setError(`升级任务版本失败：${(e as Error).message}`);
+    }
   }
 
   async function startCorpusChat(id: string) {
@@ -1007,6 +1093,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       taskId,
       activeTask,
       taskNames,
+      taskVersionState,
+      taskVersionError,
+      upgradeTaskVersion,
       startTask,
       refreshTasks,
       workspace,
@@ -1103,6 +1192,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       tasks,
       tasksError,
       taskId,
+      taskVersionState,
+      taskVersionError,
       activeTitle,
       sessionBusy,
       turns,

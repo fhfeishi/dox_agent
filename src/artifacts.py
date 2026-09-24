@@ -88,13 +88,15 @@ class ArtifactStore:
                     db.execute("INSERT INTO artifact_versions (artifact_id, version, created_at, "
                                "markdown, citations, status, source_verification, fail_reason) VALUES (?,?,?,?,?,?,?,?)",
                                (artifact_id, version, timestamp, report["markdown"], "[]", "completed", "verified", ""))
+                    params = report.get("params", {})
                     meta = {**json.loads(row[3]), "source_verification": "verified",
                             "source_report_id": report["report_id"],
-                            "template_version": report.get("params", {}).get("template_version", 0),
-                            "task_version": report.get("params", {}).get("task_version", 0)}
+                            "template_version": params.get("template_version"),
+                            "task_version": params.get("task_version")}
                     db.execute("UPDATE artifacts SET current_version=?, status='completed', updated_at=?, "
-                               "fail_reason='', payload=? WHERE id=?",
-                               (version, timestamp, json.dumps(meta), artifact_id))
+                               "task_id=?, template_id=?, fail_reason='', payload=? WHERE id=?",
+                               (version, timestamp, params.get("task_id", "task4"),
+                                params.get("template_id", ""), json.dumps(meta), artifact_id))
             else:
                 artifact_id = uuid4().hex
                 timestamp = _now()
@@ -109,21 +111,26 @@ class ArtifactStore:
                      json.dumps([report["corpus_id"]] if report.get("corpus_id") else []),
                      params.get("task_id") or "task4", params.get("template_id", ""), "md", "", "",
                      json.dumps({"source_verification": "verified", "source_report_id": report["report_id"],
-                                 "template_version": params.get("template_version", 0),
-                                 "task_version": params.get("task_version", 0)})))
+                                 "template_version": params.get("template_version"),
+                                 "task_version": params.get("task_version")})))
                 db.execute("INSERT INTO artifact_versions (artifact_id, version, created_at, "
                            "markdown, citations, status, source_verification, fail_reason) VALUES (?,?,?,?,?,?,?,?)",
                            (artifact_id, 1, timestamp, report["markdown"], "[]", "completed", "verified", ""))
         return self.get(artifact_id)
 
     def record_failed_report(self, *, run_id: str, title: str, session_key: str,
-                             corpus_id: str, template_id: str, reason: str) -> dict:
+                             corpus_id: str, task_id: str, template_id: str,
+                             task_version: int | None, template_version: int | None, reason: str) -> dict:
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
-            row = db.execute("SELECT id FROM artifacts WHERE type='report' AND run_id=? "
+            row = db.execute("SELECT id, payload FROM artifacts WHERE type='report' AND run_id=? "
                              "ORDER BY created_at LIMIT 1", (run_id,)).fetchone()
             if row:
                 artifact_id = row[0]
+                meta = {**json.loads(row[1]), "source_verification": "unverified",
+                        "task_version": task_version, "template_version": template_version}
+                db.execute("UPDATE artifacts SET task_id=?, template_id=?, fail_reason=?, payload=? WHERE id=?",
+                           (task_id, template_id, reason, json.dumps(meta), artifact_id))
             else:
                 artifact_id = uuid4().hex
                 timestamp = _now()
@@ -132,8 +139,10 @@ class ArtifactStore:
                            "export_format, export_status, fail_reason, payload) "
                            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                            (artifact_id, timestamp, timestamp, "report", "failed", title, 1, session_key,
-                            run_id, json.dumps([corpus_id] if corpus_id else []), "task4", template_id,
-                            "md", "", reason, json.dumps({"source_verification": "unverified"})))
+                            run_id, json.dumps([corpus_id] if corpus_id else []), task_id, template_id,
+                            "md", "", reason, json.dumps({"source_verification": "unverified",
+                                                          "task_version": task_version,
+                                                          "template_version": template_version})))
                 db.execute("INSERT INTO artifact_versions (artifact_id, version, created_at, "
                            "markdown, citations, status, source_verification, fail_reason) VALUES (?,?,?,?,?,?,?,?)",
                            (artifact_id, 1, timestamp, "", "[]", "failed", "unverified", reason))
@@ -141,9 +150,9 @@ class ArtifactStore:
 
     def create(self, artifact_id: str, *, type: str, title: str, markdown: str,
                session_key: str = "", run_id: str = "", corpus_ids: list[str] | None = None,
-               task_id: str = "", template_id: str = "", citations: list[dict] | None = None,
-               status: str = "completed", export_format: str = "md",
-               source_verification: str = "unverified") -> dict:
+               task_id: str = "", template_id: str = "", task_version: int | None = None,
+               citations: list[dict] | None = None, status: str = "completed",
+               export_format: str = "md", source_verification: str = "unverified") -> dict:
         """Create an artifact with version 1. Caller owns id generation and run validation."""
         timestamp = _now()
         with self.connect() as db:
@@ -154,7 +163,9 @@ class ArtifactStore:
                 "fail_reason, payload) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (artifact_id, timestamp, timestamp, type, status, title, 1, session_key, run_id,
                  json.dumps(list(corpus_ids or []), ensure_ascii=False), task_id, template_id,
-                 export_format, "", "", json.dumps({"source_verification": source_verification})))
+                 export_format, "", "", json.dumps({"source_verification": source_verification,
+                                                    "task_version": task_version,
+                                                    "template_version": None})))
             db.execute("INSERT INTO artifact_versions (artifact_id, version, created_at, markdown, citations, "
                        "status, source_verification, fail_reason) VALUES (?,?,?,?,?,?,?,?)",
                        (artifact_id, 1, timestamp, markdown,
@@ -200,8 +211,8 @@ class ArtifactStore:
             # Rows from the first W3-B slice had an empty payload. They cannot claim an
             # exact source match retroactively, even when their linked run is available.
             "source_verification": json.loads(row[15]).get("source_verification", "unverified"),
-            "template_version": json.loads(row[15]).get("template_version", 0),
-            "task_version": json.loads(row[15]).get("task_version", 0),
+            "template_version": json.loads(row[15]).get("template_version"),
+            "task_version": json.loads(row[15]).get("task_version"),
         }
         return item
 

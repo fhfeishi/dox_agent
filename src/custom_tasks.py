@@ -7,7 +7,8 @@ from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from .prompts import list_tasks
+from .custom_templates import TemplateMissing, TemplateStore
+from .prompts import REPORT_TEMPLATES, list_tasks
 
 
 class TaskConflict(ValueError):
@@ -95,6 +96,24 @@ def resolve_task_params(definition: dict, supplied: dict[str, object]) -> tuple[
     return values, sources
 
 
+def normalize_task(task: dict) -> dict:
+    value = dict(task)
+    value.setdefault("background", "")
+    value.setdefault("category", "")
+    value.setdefault("requirements", "")
+    value.setdefault("boundaries", "")
+    value.setdefault("clarification_conditions", "")
+    value.setdefault("output_instructions", "")
+    value.setdefault("parameter_defaults", {})
+    value.setdefault("parameters", [])
+    value.setdefault("revision", 1)
+    value.setdefault("version", 0)
+    value["archived"] = bool(value.get("archived", False))
+    if value.get("status") not in {"draft", "published"}:
+        value["status"] = "published" if value.get("version", 0) > 0 else "draft"
+    return value
+
+
 class CustomTaskStore:
     def __init__(self, path: Path):
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -109,17 +128,19 @@ class CustomTaskStore:
 
     def copy_builtin(self, source_task_id: str) -> dict:
         source = next((item for item in list_tasks() if item["id"] == source_task_id), None)
-        if source is None or source_task_id not in {"task1", "task2", "task4"}:
-            raise TaskMissing("首版只能复制问答、对比或报告任务")
-        task = {**source, "id": f"custom-{uuid4().hex}", "engine_task_id": source_task_id,
-                "kind": "custom", "status": "draft", "revision": 1, "version": 0,
-                "background": "", "goal": source["description"], "requirements": "",
-                "parameter_defaults": {}}
-        task["parameters"] = []
-        if source_task_id == "task4":
-            # W4-B: a report-type custom task may bind a published output template version.
-            task["report_template_id"] = ""
-            task["report_template_version"] = 0
+        if source is not None and source_task_id in {"task1", "task2", "task4"}:
+            task = {**source, "id": f"custom-{uuid4().hex}", "engine_task_id": source_task_id,
+                    "kind": "custom", "status": "draft", "revision": 1, "version": 0,
+                    "background": "", "goal": source["description"], "requirements": "",
+                    "parameter_defaults": {}, "parameters": []}
+            if source_task_id == "task4":
+                task["report_template_id"] = ""
+                task["report_template_version"] = 0
+        else:
+            source = normalize_task(self.get(source_task_id))
+            task = {**source, "id": f"custom-{uuid4().hex}", "kind": "custom", "status": "draft",
+                    "revision": 1, "version": 0, "archived": False}
+        task = normalize_task(task)
         with self.connect() as db:
             db.execute("INSERT INTO tasks (id, draft) VALUES (?,?)", (task["id"], json.dumps(task, ensure_ascii=False)))
         return task
@@ -129,12 +150,13 @@ class CustomTaskStore:
             row = db.execute("SELECT draft FROM tasks WHERE id=?", (task_id,)).fetchone()
         if row is None:
             raise TaskMissing("任务不存在")
-        return json.loads(row[0])
+        return normalize_task(json.loads(row[0]))
 
-    def list(self) -> list[dict]:
+    def list(self, *, include_archived: bool = False) -> list[dict]:
         with self.connect() as db:
             rows = db.execute("SELECT draft FROM tasks ORDER BY rowid DESC").fetchall()
-        return [json.loads(row[0]) for row in rows]
+        items = [normalize_task(json.loads(row[0])) for row in rows]
+        return items if include_archived else [item for item in items if not item["archived"]]
 
     def save_draft(self, task_id: str, revision: int, changes: dict) -> dict:
         with self.connect() as db:
@@ -142,7 +164,9 @@ class CustomTaskStore:
             row = db.execute("SELECT draft FROM tasks WHERE id=?", (task_id,)).fetchone()
             if row is None:
                 raise TaskMissing("任务不存在")
-            task = json.loads(row[0])
+            task = normalize_task(json.loads(row[0]))
+            if task["archived"]:
+                raise TaskConflict("已归档任务不能编辑")
             if task["revision"] != revision:
                 raise TaskConflict("草稿已由其他编辑更新，请刷新后重试")
             task.update(changes)
@@ -154,20 +178,59 @@ class CustomTaskStore:
             db.execute("UPDATE tasks SET draft=? WHERE id=?", (json.dumps(task, ensure_ascii=False), task_id))
         return task
 
+    def _validate_report_binding(self, task: dict) -> None:
+        if task.get("engine_task_id") != "task4":
+            return
+        template_id = task.get("report_template_id")
+        version = task.get("report_template_version")
+        if not isinstance(template_id, str) or not template_id.strip() or type(version) is not int:
+            raise TaskInvalid("报告型任务必须绑定显式报告模板 id 和 version")
+        if template_id in REPORT_TEMPLATES:
+            if version != 0:
+                raise TaskInvalid("内置报告模板的 version 必须为 0")
+            return
+        store = TemplateStore(self.path.parent / "custom_templates.sqlite3")
+        try:
+            if store.get(template_id)["archived"]:
+                raise TaskInvalid("已归档模板不能绑定到新任务")
+            store.version(template_id, version)
+        except TemplateMissing as exc:
+            raise TaskInvalid("报告模板尚未发布指定 version") from exc
+
     def publish(self, task_id: str, revision: int) -> dict:
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
             row = db.execute("SELECT draft FROM tasks WHERE id=?", (task_id,)).fetchone()
             if row is None:
                 raise TaskMissing("任务不存在")
-            task = json.loads(row[0])
+            task = normalize_task(json.loads(row[0]))
+            if task["archived"]:
+                raise TaskConflict("已归档任务不能发布")
             if task["revision"] != revision:
                 raise TaskConflict("草稿已由其他编辑更新，请刷新后重试")
             if not task["name"].strip() or not task["goal"].strip():
-                raise TaskConflict("任务名称和目标不能为空")
+                raise TaskInvalid("任务名称和目标不能为空")
+            self._validate_report_binding(task)
             task["version"] += 1
             task["status"] = "published"
             db.execute("INSERT INTO versions VALUES (?,?,?)", (task_id, task["version"], json.dumps(task, ensure_ascii=False)))
+            db.execute("UPDATE tasks SET draft=? WHERE id=?", (json.dumps(task, ensure_ascii=False), task_id))
+        return task
+
+    def archive(self, task_id: str) -> dict:
+        return self._set_archived(task_id, True)
+
+    def restore(self, task_id: str) -> dict:
+        return self._set_archived(task_id, False)
+
+    def _set_archived(self, task_id: str, archived: bool) -> dict:
+        with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            row = db.execute("SELECT draft FROM tasks WHERE id=?", (task_id,)).fetchone()
+            if row is None:
+                raise TaskMissing("任务不存在")
+            task = normalize_task(json.loads(row[0]))
+            task["archived"] = archived
             db.execute("UPDATE tasks SET draft=? WHERE id=?", (json.dumps(task, ensure_ascii=False), task_id))
         return task
 
@@ -179,4 +242,4 @@ class CustomTaskStore:
                 row = db.execute("SELECT definition FROM versions WHERE task_id=? AND version=?", (task_id, version)).fetchone()
         if row is None:
             raise TaskMissing("任务尚未发布或版本不存在")
-        return json.loads(row[0])
+        return normalize_task(json.loads(row[0]))

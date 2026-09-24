@@ -3,7 +3,7 @@ export type Message = { role: "user" | "assistant"; content: string };
 export type Usage = { run_id?: string; input_tokens: number | null; output_tokens: number | null; total_tokens: number | null; reported_tokens: number | null; calls: number; reported_calls: number; complete: boolean; missing_reasons?: Record<string, number>; calls_by_phase?: Record<string, number> };
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string; duration_ms?: number };
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; chunks_retrieved: number; reports_selected: number; context_tokens: number; invalid_citations?: number };
-export type Options = { allowed_doc_ids: string[] | null; task_id?: string; task_params?: Record<string, unknown>; corpus_id?: string; corpus_ids?: string[] };
+export type Options = { allowed_doc_ids: string[] | null; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string; corpus_ids?: string[] };
 /** W3-A: client-visible run parameters recorded with the server-side snapshot. */
 export type RunContext = { visible_params?: Record<string, unknown>; param_sources?: Record<string, string>; resource_policy?: "local_only"; output_intent?: string };
 export type ChatRequestOptions = Options & { task_version?: number; session_key?: string; run_context?: RunContext };
@@ -15,7 +15,7 @@ export class ApiError extends Error {
   }
 }
 export type TaskParameter = { key: string; label: string; type: "text" | "integer" | "enum" | "boolean" | "year_range"; help?: string; required?: boolean; options?: string[]; default?: unknown };
-export type TaskInfo = { id: string; name: string; description: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; parameter_defaults?: Record<string, string>; parameters?: TaskParameter[]; report_template_id?: string; report_template_version?: number };
+export type TaskInfo = { id: string; name: string; description: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; archived?: boolean; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; category?: string; boundaries?: string; clarification_conditions?: string; output_instructions?: string; parameter_defaults?: Record<string, string>; parameters?: TaskParameter[]; report_template_id?: string; report_template_version?: number };
 export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
@@ -106,7 +106,7 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rel_path: relPath, new_name: newName }) });
   await jsonOrThrow(response, "重命名文件失败");
 }
-export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; corpus_id?: string };
+export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
 export type ReportSummary = { report_id: string; created_at?: string; session_key?: string; run_id?: string; corpus_id?: string; template_id?: string; domain?: string; year_from?: number; year_to?: number };
 export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean };
 export type ReportMetadataCoverage = {
@@ -143,7 +143,7 @@ export async function fetchReport(reportId: string): Promise<ReportInfo> {
 export type ArtifactSummary = {
   artifact_id: string; type: string; status: string; title: string; current_version: number;
   created_at: string; updated_at: string; session_key: string; run_id: string; corpus_ids: string[];
-  task_id: string; template_id: string; export_format: string; export_status: string;
+  task_id: string; task_version?: number | null; template_id: string; template_version?: number | null; export_format: string; export_status: string;
   fail_reason: string; legacy?: boolean;
   source_verification?: "verified" | "unverified" | "user_modified";
   run_available?: boolean;
@@ -227,8 +227,9 @@ export type Event =
   | { event: "error"; data: { message: string } };
 
 /** Built-in tasks and user-owned draft/published definitions. */
-export async function fetchTasks(signal?: AbortSignal): Promise<TaskInfo[]> {
-  const response = await fetch("/api/tasks", signal ? { signal } : undefined);
+export async function fetchTasks(signal?: AbortSignal, includeArchived = false): Promise<TaskInfo[]> {
+  const query = includeArchived ? "?include_archived=true" : "";
+  const response = await fetch(`/api/tasks${query}`, signal ? { signal } : undefined);
   if (!response.ok) throw new Error("任务列表不可用（" + response.status + "）");
   return response.json();
 }
@@ -239,10 +240,14 @@ export async function copyTask(source_task_id: string): Promise<TaskInfo> {
 }
 
 export async function saveTaskDraft(task: TaskInfo): Promise<TaskInfo> {
-  const { revision, name, description, background, goal, requirements, parameter_defaults } = task;
+  const { revision, name, description, background, goal, requirements, category, boundaries,
+    clarification_conditions, output_instructions, parameter_defaults, report_template_id,
+    report_template_version } = task;
   const response = await fetch(`/api/tasks/custom/${encodeURIComponent(task.id)}/draft`, {
     method: "PUT", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ revision, name, description, background, goal, requirements, parameter_defaults, parameters: task.parameters }),
+    body: JSON.stringify({ revision, name, description, background, goal, requirements, category, boundaries,
+      clarification_conditions, output_instructions, parameter_defaults, parameters: task.parameters,
+      report_template_id, report_template_version }),
   });
   return jsonOrThrow(response, "保存草稿失败") as Promise<TaskInfo>;
 }
@@ -259,12 +264,23 @@ export async function publishTask(task: TaskInfo): Promise<TaskInfo> {
   return jsonOrThrow(response, "发布任务失败") as Promise<TaskInfo>;
 }
 
-export type TemplateSummary = { id: string; name: string; kind?: string; status?: string; version?: number };
+export async function archiveTask(taskId: string): Promise<TaskInfo> {
+  const response = await fetch(`/api/tasks/custom/${encodeURIComponent(taskId)}/archive`, { method: "POST" });
+  return jsonOrThrow(response, "归档任务失败") as Promise<TaskInfo>;
+}
+
+export async function restoreTask(taskId: string): Promise<TaskInfo> {
+  const response = await fetch(`/api/tasks/custom/${encodeURIComponent(taskId)}/restore`, { method: "POST" });
+  return jsonOrThrow(response, "恢复任务失败") as Promise<TaskInfo>;
+}
+
+export type TemplateSummary = { id: string; name: string; kind?: string; status?: string; archived?: boolean; version?: number };
 export type TemplateInfo = TemplateSummary & { content: string; variables?: string[]; purpose?: string; revision?: number; source_template_id?: string };
 
 /** W1: read-only built-in output templates for the shared inspector preview. */
-export async function fetchTemplates(signal?: AbortSignal): Promise<TemplateSummary[]> {
-  const response = await fetch("/api/templates", signal ? { signal } : undefined);
+export async function fetchTemplates(signal?: AbortSignal, includeArchived = false): Promise<TemplateSummary[]> {
+  const query = includeArchived ? "?include_archived=true" : "";
+  const response = await fetch(`/api/templates${query}`, signal ? { signal } : undefined);
   if (!response.ok) throw new Error("输出模板列表不可用（" + response.status + "）");
   return response.json();
 }
@@ -275,7 +291,7 @@ export async function fetchTemplate(templateId: string, version?: number): Promi
   return jsonOrThrow(response, "输出模板不可用") as Promise<TemplateInfo>;
 }
 
-export type CustomTemplate = { id: string; kind: string; status: string; revision: number; version: number;
+export type CustomTemplate = { id: string; kind: string; status: string; archived?: boolean; revision: number; version: number;
   name: string; purpose: string; content: string; variables: string[]; source_template_id?: string };
 
 /** W4-B: custom output templates (copy a built-in, edit a draft, publish immutable versions). */
@@ -305,6 +321,16 @@ export async function publishTemplate(templateId: string, revision: number): Pro
     method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision }),
   });
   return jsonOrThrow(response, "发布模板失败") as Promise<CustomTemplate>;
+}
+
+export async function archiveCustomTemplate(templateId: string): Promise<CustomTemplate> {
+  const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}/archive`, { method: "POST" });
+  return jsonOrThrow(response, "归档模板失败") as Promise<CustomTemplate>;
+}
+
+export async function restoreCustomTemplate(templateId: string): Promise<CustomTemplate> {
+  const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}/restore`, { method: "POST" });
+  return jsonOrThrow(response, "恢复模板失败") as Promise<CustomTemplate>;
 }
 
 export function streamChat(messages: Message[], signal: AbortSignal, receive: (event: Event) => void, options?: ChatRequestOptions): Promise<void>;

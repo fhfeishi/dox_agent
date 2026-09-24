@@ -287,23 +287,27 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   const scopeIds = attempt.options.corpus_ids ?? (attempt.options.corpus_id ? [attempt.options.corpus_id] : []);
   const [corpusId, setCorpusId] = useState("");
   const params = attempt.policy?.report_params;
-  // W4-B: an explicit template selector; text intake only seeds the initial value.
-  const [templateId, setTemplateId] = useState(params?.template_id ?? "");
+  const boundReportTask = activeTask?.kind === "custom" && activeTask.engine_task_id === "task4" && Boolean(activeTask.report_template_id);
+  const [templateId, setTemplateId] = useState(boundReportTask ? activeTask?.report_template_id ?? "" : params?.template_id ?? "");
   const [templateOptions, setTemplateOptions] = useState<TemplateSummary[]>([]);
   useEffect(() => {
     let active = true;
     void fetchTemplates().then(
-      (items) => { if (active) setTemplateOptions(items.filter((item) => item.kind !== "custom" || item.status === "published")); },
+      (items) => { if (active) setTemplateOptions(items.filter((item) => item.kind !== "custom" || (!item.archived && (item.version ?? 0) > 0))); },
       () => { if (active) setTemplateOptions([]); },
     );
     return () => { active = false; };
   }, []);
-  useEffect(() => { if (!templateId && params?.template_id) setTemplateId(params.template_id); }, [params?.template_id, templateId]);
-  // W4-B: a report-type custom task preselects the template it binds.
   useEffect(() => {
-    if (!templateId && activeTask?.report_template_id) setTemplateId(activeTask.report_template_id);
-  }, [activeTask?.report_template_id, templateId]);
-  const ready = Boolean(params?.domain && params?.year_from && params?.year_to && params?.template_id);
+    if (boundReportTask) setTemplateId(activeTask?.report_template_id ?? "");
+    else if (!templateId && params?.template_id) setTemplateId(params.template_id);
+  }, [activeTask?.report_template_id, boundReportTask, params?.template_id, templateId]);
+  const boundTemplate = templateOptions.find((item) => item.id === activeTask?.report_template_id);
+  const availableTemplates = boundReportTask
+    ? [{ id: activeTask?.report_template_id ?? "", name: boundTemplate?.name ?? activeTask?.report_template_id ?? "固定模板",
+        kind: boundTemplate?.kind ?? "custom", status: "published", version: activeTask?.report_template_version ?? 0 }]
+    : templateOptions;
+  const ready = Boolean(params?.domain && params?.year_from && params?.year_to && templateId && (boundReportTask || params?.template_id));
   useEffect(() => {
     setCoverage(null);
     setCoverageError("");
@@ -328,10 +332,14 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       const reportRunId = report ? crypto.randomUUID() : `${attempt.runId.slice(0, 72)}-report`;
       const selectedTemplate = templateOptions.find((item) => item.id === templateId);
       const customReportTask = activeTask?.kind === "custom" && activeTask?.engine_task_id === "task4";
-      const result = await createReport({ ...params, template_id: templateId || params?.template_id,
-        template_version: selectedTemplate?.kind === "custom" ? selectedTemplate.version : undefined,
+      const boundTemplateIsCustom = availableTemplates.find((item) => item.id === templateId)?.kind === "custom";
+      const result = await createReport({ ...params, template_id: templateId,
+        template_version: boundReportTask
+          ? activeTask?.report_template_version
+          : boundTemplateIsCustom ? selectedTemplate?.version : undefined,
         task_id: customReportTask ? activeTask?.id : undefined,
-        task_version: customReportTask ? workspace.taskVersion : undefined,
+        task_version: customReportTask ? attempt.options.task_version ?? workspace.taskVersion : undefined,
+        task_params: attempt.options.task_params ?? {},
         corpus_id: corpusId, doc_ids: docIds,
         session_key: workspace.active, run_id: reportRunId, parent_run_id: attempt.runId });
       if (onReport) onReport({ report_id: result.report_id, markdown: result.markdown });
@@ -363,7 +371,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       <div className="flex flex-wrap items-center gap-[8px]">
         <span className="text-[12.5px] font-medium text-[var(--slate)]">专项报告</span>
         <span className="text-[11.5px] text-[var(--stone)]">
-          参数已齐：{params?.domain} · 填表日期 {params?.year_from}–{params?.year_to} · {params?.fund_type ?? "类别不限"} · {params?.template_id}
+          参数已齐：{params?.domain} · 填表日期 {params?.year_from}–{params?.year_to} · {params?.fund_type ?? "类别不限"} · {availableTemplates.find((item) => item.id === templateId)?.name ?? templateId}
         </span>
         <label className="text-[11.5px] text-[var(--slate)]">
           报告知识库
@@ -376,11 +384,11 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
         </label>
         <label className="text-[11.5px] text-[var(--slate)]">
           报告模板
-          <select aria-label="报告模板" value={templateId} disabled={busy}
+          <select aria-label="报告模板" value={templateId} disabled={busy || boundReportTask}
             onChange={(event) => setTemplateId(event.target.value)}
             className="ml-[5px] rounded border border-[var(--hairline)] bg-[var(--canvas)] px-[5px] py-[3px]">
-            {templateOptions.map((item) => (
-              <option key={item.id} value={item.id}>{item.name}{item.kind === "custom" ? `（自定义 v${item.version}）` : ""}</option>
+            {availableTemplates.map((item) => (
+              <option key={item.id} value={item.id}>{item.name}{item.kind === "custom" ? `（已发布 v${item.version}${item.status === "draft" ? "，另有草稿" : ""}）` : "（内置 v0）"}</option>
             ))}
           </select>
         </label>

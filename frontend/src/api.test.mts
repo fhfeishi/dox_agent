@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { ApiError, createReport, streamChat } from './api.ts';
+import { ApiError, archiveCustomTemplate, archiveTask, copyTask, copyTemplate, createReport, fetchTasks, fetchTemplates, restoreCustomTemplate, restoreTask, saveTaskDraft, streamChat } from './api.ts';
 
 test('reassembles split UTF-8 and SSE frames', async () => {
   const original = globalThis.fetch;
@@ -90,4 +90,70 @@ test('user report request carries its independently confirmed single-corpus scop
   };
   try { assert.equal((await createReport(params)).report_id, 'report'); }
   finally { globalThis.fetch = original; }
+});
+
+test('user custom task and template lifecycle requests follow the versioned archive contract', async (t) => {
+  await t.test('Given archived objects are explicitly requested', async () => {
+    const original = globalThis.fetch;
+    const calls: string[] = [];
+    globalThis.fetch = async (url) => {
+      calls.push(String(url));
+      return Response.json([]);
+    };
+    try {
+      await fetchTasks(undefined, true);
+      await fetchTemplates(undefined, true);
+      assert.deepEqual(calls, ['/api/tasks?include_archived=true', '/api/templates?include_archived=true']);
+    } finally { globalThis.fetch = original; }
+  });
+
+  await t.test('When custom sources are copied and archived or restored', async () => {
+    const original = globalThis.fetch;
+    const calls: { url: string; init?: RequestInit }[] = [];
+    globalThis.fetch = async (url, init) => {
+      calls.push({ url: String(url), init });
+      return Response.json({ id: 'custom-task', name: '副本', description: '', has_template: false, revision: 0, version: 1, kind: 'custom', status: 'published' });
+    };
+    try {
+      await copyTask('custom-source');
+      await copyTemplate('custom-template');
+      await archiveTask('custom-task');
+      await restoreTask('custom-task');
+      await archiveCustomTemplate('custom-template');
+      await restoreCustomTemplate('custom-template');
+      assert.deepEqual(calls.map(({ url, init }) => [url, init?.method ?? 'GET', init?.body ? JSON.parse(String(init.body)) : undefined]), [
+        ['/api/tasks/custom', 'POST', { source_task_id: 'custom-source' }],
+        ['/api/templates/custom', 'POST', { source_template_id: 'custom-template' }],
+        ['/api/tasks/custom/custom-task/archive', 'POST', undefined],
+        ['/api/tasks/custom/custom-task/restore', 'POST', undefined],
+        ['/api/templates/custom/custom-template/archive', 'POST', undefined],
+        ['/api/templates/custom/custom-template/restore', 'POST', undefined],
+      ]);
+    } finally { globalThis.fetch = original; }
+  });
+});
+
+test('user task draft sends every editor field and fixed report binding', async (t) => {
+  await t.test('Given a report task with structured instructions', async () => {
+    const original = globalThis.fetch;
+    let body: Record<string, unknown> | undefined;
+    globalThis.fetch = async (_url, init) => {
+      body = JSON.parse(String(init?.body));
+      return Response.json({});
+    };
+    const task = {
+      id: 'custom-report', name: '报告', description: '用途', background: '背景', goal: '目标',
+      requirements: '要求', category: 'research', boundaries: '边界', clarification_conditions: '澄清条件',
+      output_instructions: '输出要求', report_template_id: 'custom-template', report_template_version: 3,
+      has_template: true, kind: 'custom' as const, status: 'draft' as const, revision: 2, version: 1,
+    };
+    try {
+      await saveTaskDraft(task);
+      assert.deepEqual(body, {
+        revision: 2, name: '报告', description: '用途', background: '背景', goal: '目标', requirements: '要求',
+        category: 'research', boundaries: '边界', clarification_conditions: '澄清条件', output_instructions: '输出要求',
+        report_template_id: 'custom-template', report_template_version: 3,
+      });
+    } finally { globalThis.fetch = original; }
+  });
 });

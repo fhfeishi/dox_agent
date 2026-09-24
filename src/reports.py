@@ -181,13 +181,18 @@ class ReportStore:
             items.append({"report_id": row[0], "created_at": row[1], "session_key": row[2],
                           "run_id": row[3], "corpus_id": row[4],
                           "template_id": params.get("template_id", ""),
+                          "template_version": params.get("template_version"),
+                          "task_id": params.get("task_id", "task4"),
+                          "task_version": params.get("task_version"),
                           "domain": params.get("domain", ""),
                           "year_from": params.get("year_from"), "year_to": params.get("year_to")})
+
         return items
 
 
 async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
-                            template_content: str | None = None) -> str:
+                            template_content: str | None = None,
+                            task_definition: dict | None = None) -> str:
     """Generate report Markdown from the selected reports and the template instruction.
 
     ``template_content`` lets a published custom template's Markdown replace the built-in
@@ -238,8 +243,23 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
               f"分析重点：{params.get('focus') or '无'}")
     reports_text = "\n\n".join(
         f"{report['header']}\n<report>\n{report['markdown']}\n</report>" for report in context.reports)
+    custom_instruction = ""
+    if task_definition:
+        fields = (("背景", "background"), ("目标", "goal"), ("具体要求", "requirements"),
+                  ("边界", "boundaries"), ("澄清条件", "clarification_conditions"),
+                  ("输出要求", "output_instructions"))
+        custom_instruction = "\n\n发布任务约束：\n" + "\n".join(
+            f"{label}：{task_definition.get(key, '')}" for label, key in fields
+            if task_definition.get(key))
+        task_values = params.get("task_params") or {}
+        if task_values:
+            # The API has already resolved these against the immutable task version. They guide
+            # writing, while the server's corpus/date/category filter remains authoritative.
+            labels = {item["key"]: item["label"] for item in task_definition.get("parameters", [])}
+            custom_instruction += "\n本次任务输入（仅影响写作，不放宽资料范围）：\n" + "\n".join(
+                f"{labels.get(key, key)}（{key}）：{value}" for key, value in task_values.items())
     messages = [
-        SystemMessage(content=task_instruction("task4", phase="report")
+        SystemMessage(content=task_instruction("task4", phase="report") + custom_instruction
                       + "\n\n模板章节：\n" + (template_content if template_content is not None
                                               else report_template(template_id))),
         HumanMessage(content=header + "\n\n可引用原文证据：\n" + reports_text),

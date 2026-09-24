@@ -92,6 +92,53 @@ def test_user_cannot_save_an_incomplete_or_unverified_run_as_an_original_answer(
             response = client.post("/api/artifacts", json={
                 "type": "answer_snapshot", "run_id": run_id, "markdown": "回答"})
             assert response.status_code == 422
+
+
+def test_user_artifact_uses_null_for_unrecorded_versions_and_retries_preserve_provenance(tmp_path, monkeypatch):
+    attempts = 0
+
+    async def generate_once_failed(knowledge, settings, params, *, llm=None, template_content=None,
+                                   task_definition=None):
+        nonlocal attempts
+        attempts += 1
+        if attempts == 1:
+            raise ValueError("临时失败")
+        return "# 重试报告"
+
+    monkeypatch.setattr("src.main.generate_markdown", generate_once_failed)
+    app, cid = ready_app(tmp_path)
+    with TestClient(app) as client:
+        old = app.state.artifacts.create("old-versioned", type="answer_snapshot",
+                                         title="旧成果", markdown="旧正文")
+        assert old["task_version"] is None and old["template_version"] is None
+        template = client.post("/api/templates/custom", json={"source_template_id": "comprehensive"}).json()
+        client.put(f"/api/templates/custom/{template['id']}/draft", json={
+            "revision": template["revision"], "content": "# 报告\n\n## 章节\n"})
+        client.post(f"/api/templates/custom/{template['id']}/publish", json={"revision": 2})
+        task = client.post("/api/tasks/custom", json={"source_task_id": "task4"}).json()
+        client.put(f"/api/tasks/custom/{task['id']}/draft", json={
+            "revision": task["revision"], "goal": "生成报告",
+            "report_template_id": template["id"], "report_template_version": 1})
+        client.post(f"/api/tasks/custom/{task['id']}/publish", json={"revision": 2})
+        request = {"domain": "医疗", "year_from": 2024, "year_to": 2025,
+                   "template_id": template["id"], "template_version": 1, "corpus_id": cid,
+                   "session_key": "s2", "run_id": "report-provenance-1",
+                   "task_id": task["id"], "task_version": 1}
+        failed = client.post("/api/reports", json=request)
+        assert failed.status_code == 422
+        retried = client.post("/api/reports", json=request)
+        assert retried.status_code == 201
+        run = client.get("/api/runs/report-provenance-1").json()
+        assert run["params"]["template_id"] == template["id"]
+        assert run["params"]["template_version"] == 1
+        assert run["task_id"] == task["id"] and run["task_version"] == 1
+        artifacts = client.get("/api/artifacts?session_key=s2").json()
+        assert len(artifacts) == 1
+        artifact = artifacts[0]
+        assert artifact["current_version"] == 2 and artifact["status"] == "completed"
+        assert artifact["template_id"] == template["id"]
+        assert artifact["template_version"] == 1
+        assert artifact["task_id"] == task["id"] and artifact["task_version"] == 1
         app.state.artifacts.create("old-artifact", type="answer_snapshot", title="旧成果",
                                    markdown="旧正文", run_id="chat-run-old")
         old = client.get("/api/artifacts/old-artifact").json()

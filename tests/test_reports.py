@@ -38,6 +38,21 @@ def test_report_generation_uses_template_and_selected_reports(tmp_path):
     assert "癫痫致痫网络" in model.seen  # selected report markdown injected
 
 
+def test_user_published_report_inputs_reach_the_generation_prompt(tmp_path):
+    # Given a report task with server-resolved inputs and a local evidence document
+    model = FakeModel()
+    params = {"domain": "癫痫", "year_from": 2021, "year_to": 2025,
+              "template_id": "comprehensive", "task_params": {"audience": "项目评审专家", "include_limits": True}}
+
+    # When the report is generated
+    asyncio.run(generate_markdown(_store(tmp_path), Settings(_env_file=None), params,
+                                  llm=model, task_definition={"goal": "评估研究方法"}))
+
+    # Then the actual prompt contains the fixed task inputs as well as the original evidence
+    assert "项目评审专家" in model.seen and "include_limits" in model.seen
+    assert "评估研究方法" in model.seen and "癫痫致痫网络" in model.seen
+
+
 def test_user_report_generation_filters_by_form_date_and_fund_type(tmp_path):
     # Given reports inside/outside the explicit form-date and fund-type criteria
     store = Knowledge(tmp_path / "db")

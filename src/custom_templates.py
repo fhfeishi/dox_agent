@@ -67,6 +67,18 @@ def render_template(content: str, values: dict) -> str:
     return re.sub(r"\{\{\s*([a-z_]+)\s*\}\}", replace, content)
 
 
+def normalize_template(template: dict) -> dict:
+    value = dict(template)
+    value.setdefault("purpose", "")
+    value.setdefault("variables", [])
+    value.setdefault("revision", 1)
+    value.setdefault("version", 0)
+    value["archived"] = bool(value.get("archived", False))
+    if value.get("status") not in {"draft", "published"}:
+        value["status"] = "published" if value.get("version", 0) > 0 else "draft"
+    return value
+
+
 class TemplateStore:
     def __init__(self, path: Path):
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -81,12 +93,16 @@ class TemplateStore:
 
     def copy_builtin(self, source_template_id: str) -> dict:
         source = next((item for item in list_templates() if item["id"] == source_template_id), None)
-        if source is None:
-            raise TemplateMissing("只能复制内置报告模板")
-        template = {"id": f"custom-{uuid4().hex}", "kind": "custom", "status": "draft", "revision": 1,
-                    "version": 0, "source_template_id": source_template_id,
-                    "name": f"{source['name']}（副本）", "purpose": "", "variables": [],
-                    "content": report_template(source_template_id)}
+        if source is not None:
+            template = {"id": f"custom-{uuid4().hex}", "kind": "custom", "status": "draft", "revision": 1,
+                        "version": 0, "source_template_id": source_template_id,
+                        "name": f"{source['name']}（副本）", "purpose": "", "variables": [],
+                        "content": report_template(source_template_id)}
+        else:
+            source = normalize_template(self.get(source_template_id))
+            template = {**source, "id": f"custom-{uuid4().hex}", "kind": "custom", "status": "draft",
+                        "revision": 1, "version": 0, "archived": False}
+        template = normalize_template(template)
         with self.connect() as db:
             db.execute("INSERT INTO templates (id, draft) VALUES (?,?)",
                        (template["id"], json.dumps(template, ensure_ascii=False)))
@@ -97,12 +113,13 @@ class TemplateStore:
             row = db.execute("SELECT draft FROM templates WHERE id=?", (template_id,)).fetchone()
         if row is None:
             raise TemplateMissing("模板不存在")
-        return json.loads(row[0])
+        return normalize_template(json.loads(row[0]))
 
-    def list(self) -> list[dict]:
+    def list(self, *, include_archived: bool = False) -> list[dict]:
         with self.connect() as db:
             rows = db.execute("SELECT draft FROM templates ORDER BY rowid DESC").fetchall()
-        return [json.loads(row[0]) for row in rows]
+        items = [normalize_template(json.loads(row[0])) for row in rows]
+        return items if include_archived else [item for item in items if not item["archived"]]
 
     def save_draft(self, template_id: str, revision: int, changes: dict) -> dict:
         with self.connect() as db:
@@ -110,7 +127,9 @@ class TemplateStore:
             row = db.execute("SELECT draft FROM templates WHERE id=?", (template_id,)).fetchone()
             if row is None:
                 raise TemplateMissing("模板不存在")
-            template = json.loads(row[0])
+            template = normalize_template(json.loads(row[0]))
+            if template["archived"]:
+                raise TemplateConflict("已归档模板不能编辑")
             if template["revision"] != revision:
                 raise TemplateConflict("草稿已由其他编辑更新，请刷新后重试")
             template.update(changes)
@@ -127,7 +146,9 @@ class TemplateStore:
             row = db.execute("SELECT draft FROM templates WHERE id=?", (template_id,)).fetchone()
             if row is None:
                 raise TemplateMissing("模板不存在")
-            template = json.loads(row[0])
+            template = normalize_template(json.loads(row[0]))
+            if template["archived"]:
+                raise TemplateConflict("已归档模板不能发布")
             if template["revision"] != revision:
                 raise TemplateConflict("草稿已由其他编辑更新，请刷新后重试")
             OutputTemplate.model_validate({k: template[k] for k in ("name", "purpose", "content", "variables")})
@@ -135,6 +156,24 @@ class TemplateStore:
             template["status"] = "published"
             db.execute("INSERT INTO versions VALUES (?,?,?)",
                        (template_id, template["version"], json.dumps(template, ensure_ascii=False)))
+            db.execute("UPDATE templates SET draft=? WHERE id=?",
+                       (json.dumps(template, ensure_ascii=False), template_id))
+        return template
+
+    def archive(self, template_id: str) -> dict:
+        return self._set_archived(template_id, True)
+
+    def restore(self, template_id: str) -> dict:
+        return self._set_archived(template_id, False)
+
+    def _set_archived(self, template_id: str, archived: bool) -> dict:
+        with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            row = db.execute("SELECT draft FROM templates WHERE id=?", (template_id,)).fetchone()
+            if row is None:
+                raise TemplateMissing("模板不存在")
+            template = normalize_template(json.loads(row[0]))
+            template["archived"] = archived
             db.execute("UPDATE templates SET draft=? WHERE id=?",
                        (json.dumps(template, ensure_ascii=False), template_id))
         return template
@@ -149,4 +188,4 @@ class TemplateStore:
                                  (template_id, version)).fetchone()
         if row is None:
             raise TemplateMissing("模板尚未发布或版本不存在")
-        return json.loads(row[0])
+        return normalize_template(json.loads(row[0]))

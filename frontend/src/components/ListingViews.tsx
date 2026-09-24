@@ -61,7 +61,7 @@ export function TasksView() {
     <ViewShell
       title="任务模板"
       description="任务决定 system prompt 与输出契约。选中任务后会新建一个绑定该任务的会话；task4 专项报告走统一报告入口，不在聊天中生成正文。"
-      actions={<div className="flex gap-[6px]"><Button onClick={() => void makeCopy("task1")}>复制问答任务</Button><Button onClick={() => void makeCopy("task2")}>复制对比任务</Button></div>}
+      actions={<div className="flex gap-[6px]"><Button onClick={() => void makeCopy("task1")}>复制问答任务</Button><Button onClick={() => void makeCopy("task2")}>复制对比任务</Button><Button onClick={() => void makeCopy("task4")}>复制专项报告任务</Button></div>}
     >
       {!taskCapable ? (
         <div className="col-span-full rounded-[12px] border border-dashed border-[var(--hairline-strong)] bg-[var(--surface-soft)] p-[24px] text-center">
@@ -101,7 +101,7 @@ export function TasksView() {
                   {task.name}
                   {active ? <Pill tone="lav">当前</Pill> : null}
                   {task.has_template ? <Pill tone="sky">含模板</Pill> : null}
-                  {task.kind === "custom" ? <Pill tone="lav">{task.status === "published" ? `我的任务 · v${task.version}` : task.version ? `草稿 · 已发布 v${task.version}` : "草稿"}</Pill> : <Pill tone="sky">内置</Pill>}
+                  {task.kind === "custom" ? <Pill tone={task.status === "archived" || task.archived ? "yellow" : "lav"}>{task.status === "archived" || task.archived ? "已归档" : task.status === "published" ? `我的任务 · v${task.version}` : task.version ? `草稿 · 已发布 v${task.version}` : "草稿"}</Pill> : <Pill tone="sky">内置</Pill>}
                 </span>
                 <span className="flex-1 text-[12.3px] leading-[1.55] text-[var(--steel)]">
                   {task.description}
@@ -187,6 +187,9 @@ export function ReportsView() {
           <span className="mt-[4px] block text-[11.5px] text-[var(--stone)]">
             会话：{workspace.sessions.find((session) => session.id === item.session_key)?.title || item.session_key || "未记录"} · {item.run_available === true ? "来源运行可回读" : "来源运行未记录"}
             {item.type === "answer_snapshot" ? ` · ${item.source_verification === "verified" ? "原始回答已核验" : item.source_verification === "user_modified" ? "用户修订版本" : "原始输出未核验"}` : ""}
+          </span>
+          <span className="mt-[2px] block break-all text-[11px] text-[var(--stone)]">
+            任务：{item.task_id || "未记录"} / {item.task_version ? `v${item.task_version}` : "未记录"} · 模板：{item.template_id || "未记录"} / {item.template_version != null ? `v${item.template_version}` : "未记录"}
           </span>
         </button>
       ))}

@@ -3,6 +3,7 @@
 import io
 import sqlite3
 
+import pytest
 from docx import Document as DocxDocument
 from fastapi.testclient import TestClient
 
@@ -393,6 +394,10 @@ def test_user_word_export_keeps_chinese_lists_links_and_a_selected_version(tmp_p
     assert any(item.style.name == "List Number" and "更正结论 [1]" in item.text for item in new_doc.paragraphs)
     assert "https://example.org/source" in old_doc.part.rels[next(key for key, value in old_doc.part.rels.items()
                                                                       if value.target_ref == "https://example.org/source")].target_ref
+    assert "PAGE" in old_doc.sections[0].footer._element.xml
+    assert old_doc.sections[0].header.paragraphs[0].text == "研究报告"
+    assert new_doc.sections[0].header.paragraphs[0].text == "用户修订稿"
+    assert "宋体" in old_doc.styles["Normal"]._element.xml
 
 
 def test_user_unsupported_formula_preserves_markdown_and_explains_word_limit(tmp_path):
@@ -409,6 +414,7 @@ def test_user_unsupported_formula_preserves_markdown_and_explains_word_limit(tmp
     # Then the unsupported formula is explicit and the original remains available
     assert word.status_code == 422 and "公式" in word.json()["detail"]
     assert source.status_code == 200 and source.text == markdown
+    assert "公式" in pytest.raises(ValueError, markdown_to_docx, "# 数据分析\n\n内联 $E=mc^2$ 仍需可编辑").value.args[0]
 
 
 def test_saving_an_artifact_for_an_unknown_run_is_rejected(tmp_path):

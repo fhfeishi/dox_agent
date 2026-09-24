@@ -18,6 +18,7 @@ _HEADING = re.compile(r"^(#{1,6})\s+(.*)$")
 _TABLE_SEPARATOR = re.compile(r"^\s*\|?[\s:|-]+\|?\s*$")
 _LIST = re.compile(r"^\s*(?:([-+*])|(\d+)[.)])\s+(.+)$")
 _LINK = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)")
+_INLINE_MATH = re.compile(r"(?<!\\)\$(?!\$)(?=\S)[^\n$]*?\S\$(?!\$)")
 
 
 def _split_row(line: str) -> list[str]:
@@ -57,15 +58,26 @@ def _styles(document) -> None:
         style.font.name = font_name
         style.font.size = Pt(size)
         style._element.get_or_add_rPr().rFonts.set(qn("w:eastAsia"), font_name)
+    footer = section.footer.paragraphs[0]
+    footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    footer.add_run("第 ")
+    page = OxmlElement("w:fldSimple")
+    page.set(qn("w:instr"), "PAGE")
+    footer._p.append(page)
+    footer.add_run(" 页")
 
 
 def markdown_to_docx(markdown: str) -> bytes:
     """Render Markdown headings, tables and paragraphs into a real ``.docx`` byte string."""
-    if re.search(r"(?m)^\s*\$\$|\\\[|\\\(", markdown):
+    if re.search(r"(?m)^\s*\$\$|\\\[|\\\(", markdown) or _INLINE_MATH.search(markdown):
         raise ValueError("当前 Word 导出尚不支持公式排版，请先下载 Markdown 原文")
     document = Document()
     _styles(document)
     lines = markdown.splitlines()
+    title = next((_plain(match.group(2)) for line in lines if (match := _HEADING.match(line))
+                  and len(match.group(1)) == 1), "")
+    if title:
+        document.sections[0].header.paragraphs[0].text = title
     index = 0
     while index < len(lines):
         line = lines[index]

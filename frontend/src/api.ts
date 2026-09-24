@@ -240,7 +240,7 @@ export async function fetchReportMetadata(corpusId: string): Promise<ReportMetad
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/report-metadata`);
   return jsonOrThrow(response, "元数据覆盖不可用") as Promise<ReportMetadataCoverage>;
 }
-export type RunInfo = { run_id: string; session_key?: string; model?: string; resource_policy?: string; effective_corpus_ids?: string[]; allowed_doc_ids?: string[] | null };
+export type RunInfo = { run_id: string; session_key?: string; task_id?: string; task_version?: number | null; model?: string; resource_policy?: string; effective_corpus_ids?: string[]; allowed_doc_ids?: string[] | null; web_snapshot_ids?: string[] };
 export type Event =
   | { event: "run"; data: RunInfo }
   | { event: "usage"; data: Usage }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
-import { restoreCorpusSelection, restoreTurns, type Turn } from "./conversation";
+import { branchFromTurn, restoreCorpusSelection, restoreTurns, type Turn } from "./conversation";
 import type { Options } from "./api";
 import { createBranch as makeBranch, deepCopy, trimBranches, type Branch } from "./branches";
 
@@ -152,7 +152,8 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     const snapshot = makeBranch(turnsRef.current, index, branchesRef.current, optionsRef.current);
     const { branches: kept, trimmed } = trimBranches([...branchesRef.current, snapshot]);
     branchesRef.current = kept; setBranches(kept);
-    return { history: deepCopy(turnsRef.current.slice(0, index)), options: optionsRef.current, branch: snapshot, trimmed };
+    const origin = branchFromTurn(turnsRef.current, index);
+    return { history: deepCopy(origin.history), options: origin.options, branch: snapshot, trimmed };
   }
   function viewBranch(id: string) { return branchesRef.current.find(branch => branch.id === id) ?? null; }
   /** Make a branch the main timeline; save the current main back as a branch unless it is empty. */
@@ -166,7 +167,9 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     branchesRef.current = next; setBranches(next);
     const restored = restoreTurns(deepCopy(target.turns));
     setTurns(restored);
-    await saveNow(restored, target.options ?? optionsRef.current, next);
+    const restoredOptions = deepCopy(target.options ?? optionsRef.current);
+    optionsRef.current = restoredOptions; setOptions(restoredOptions);
+    await saveNow(restored, restoredOptions, next);
     return restored;
   }
   async function rename(title: string, id?: string) {

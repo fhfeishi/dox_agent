@@ -31,6 +31,7 @@ import {
   regenerateTurn,
   receiveEvent,
   stopTurn,
+  turnScope,
   type Turn,
 } from "./conversation";
 import { uiFlags } from "./uiFlags";
@@ -489,7 +490,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setError(`知识库列表读取失败：${corporaError}。请刷新后再发送。`);
       return;
     }
-    const requestCorpusIds = [...new Set(corpusIds)];
+    const history = override?.history ?? turns;
+    const scope = override?.options ?? options;
+    const requestTaskId = scope.task_id ?? taskId;
+    const requestTaskVersion = scope.task_version ?? workspace.taskVersion;
+    const requestCorpusIds = [...new Set(scope.corpus_ids ?? corpusIds)];
     const corpusOptions = corpusRequestOptions(effectiveCorpusId ?? "", requestCorpusIds);
     if (!corpusOptions) {
       setError("请先选择 1 至 6 个知识库");
@@ -497,30 +502,23 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
     const unavailable = requestCorpusIds.find((id) => {
       const item = corpora.find((candidate) => candidate.id === id);
-      return !item || item.missing || item.preparation !== "ready";
+      // A confirmed URL can answer while a selected local corpus is empty; its readiness stays unchanged.
+      return !item || item.missing || (item.preparation !== "ready" && !scope.web_snapshot_ids?.length);
     });
     if (unavailable) {
       setError("会话中的知识库不可用或尚无已入库资料，请重新选择知识库");
       return;
     }
-    const empty = requestCorpusIds.find((id) => corpora.find((item) => item.id === id)?.preparation !== "ready");
-    if (empty) {
-      const name = corpora.find((item) => item.id === empty)?.name ?? empty;
-      setError(`「${name}」尚无已入库文档。请先添加文档或刷新知识库，再发送。`);
-      return;
-    }
-    const history = override?.history ?? turns;
-    const scope = override?.options ?? options;
-    const listed = tasks.find((task) => task.id === taskId);
-    if (!listed && taskId.startsWith("custom-")) {
+    const listed = tasks.find((task) => task.id === requestTaskId);
+    if (!listed && requestTaskId.startsWith("custom-")) {
       setError("此会话绑定的自定义任务已不可用。请从成组状态备份恢复，或新建最新版会话。");
       return;
     }
-    if (listed?.kind === "custom" && !workspace.taskVersion) {
+    if (listed?.kind === "custom" && !requestTaskVersion) {
       setError("此旧会话未记录任务版本，已阻止发送。请确认升级到最新版，或从成组状态备份恢复 / 新建最新版会话。");
       return;
     }
-    if (listed?.kind === "custom" && !activeTask) {
+    if (listed?.kind === "custom" && !activeTask && requestTaskVersion === workspace.taskVersion) {
       setError(taskVersionState === "failed"
         ? `${taskVersionError} 请从成组状态备份恢复，或新建最新版会话。`
         : "正在读取此会话固定的任务版本，完成前不能发送。");
@@ -537,7 +535,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     // task_id is sent with chat; task4 goes through intake (parameter collection, no report body).
     // Bind the turn to the corpus the user is browsing, so the answer scope matches the library.
     const effectiveOptions: Options = {
-      ...(uiFlags.tasks ? { ...scope, task_id: taskId, task_version: workspace.taskVersion } : { allowed_doc_ids: scope.allowed_doc_ids ?? null }),
+      ...(uiFlags.tasks ? { ...scope, task_id: requestTaskId, task_version: requestTaskVersion } : { allowed_doc_ids: scope.allowed_doc_ids ?? null }),
       web_snapshot_ids: scope.web_snapshot_ids ?? [],
       ...corpusOptions,
     };
@@ -546,12 +544,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const turn = regenerate
       ? regenerateTurn(history[history.length - 1], history.slice(0, -1))
       : newTurn(question, history, effectiveOptions);
-    // `regenerateTurn` keeps only `allowed_doc_ids`; re-merge the session's task/corpus so a
-    // regenerated answer is scoped to the same library and task as the original.
+    // A replay carries its original turn scope; ordinary sends use the current session scope.
     const requestOptions: ChatRequestOptions = {
       ...turn.options,
-      ...(uiFlags.tasks ? { task_id: taskId } : {}),
-      ...(uiFlags.tasks && workspace.taskVersion ? { task_version: workspace.taskVersion } : {}),
+      ...(uiFlags.tasks ? { task_id: requestTaskId } : {}),
+      ...(uiFlags.tasks && requestTaskVersion ? { task_version: requestTaskVersion } : {}),
       task_params: scope.task_params ?? {},
       corpus_id: corpusOptions.corpus_id,
       corpus_ids: corpusOptions.corpus_ids,
@@ -562,7 +559,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       run_context: {
         resource_policy: scope.web_snapshot_ids?.length ? "local_plus_urls" : "local_only",
         output_intent: activeTask?.artifacts?.default ?? "text",
-        visible_params: { task_id: taskId, corpus_ids: requestCorpusIds, allowed_doc_ids: scope.allowed_doc_ids ?? null, web_snapshot_ids: scope.web_snapshot_ids ?? [] },
+        visible_params: { task_id: requestTaskId, corpus_ids: requestCorpusIds, allowed_doc_ids: scope.allowed_doc_ids ?? null, web_snapshot_ids: scope.web_snapshot_ids ?? [] },
         param_sources: { task_id: "user", corpus_ids: "session", allowed_doc_ids: "user", web_snapshot_ids: "user" },
       },
     };
@@ -624,7 +621,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setBusy(false);
       }
       try {
-        await workspace.saveNow(latestTurns.current, scope);
+        await workspace.saveNow(latestTurns.current, options);
       } catch (saveError) {
         setError(`回答已收束，但保存失败：${(saveError as Error).message}`);
       }
@@ -643,11 +640,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const current = latestTurns.current;
     const target = current[index];
     if (!target) return;
-    const effective = target.policy ?? target.options;
     await send(true, {
       question: target.question,
       history: current.slice(0, index + 1),
-      options: { allowed_doc_ids: effective.allowed_doc_ids ? [...effective.allowed_doc_ids] : null },
+      options: turnScope(target),
     });
   }
 

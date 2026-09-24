@@ -89,10 +89,14 @@ async def main():
                 # Then the answer cites the persisted snapshot and opens its saved body.
                 await page.get_by_role("textbox", name="问题", exact=True).fill("网页说了什么？")
                 await page.get_by_role("button", name="发送 ↑").click()
-                await expect(page.get_by_text("网页结论", exact=True)).to_be_visible()
-                await page.get_by_role("button", name=re.compile("two")).last.click()
-                await expect(page.get_by_text("已确认网页快照")).to_be_visible()
+                await expect(page.get_by_role("button", name="1 two")).to_be_visible()
+                await page.get_by_role("button", name="1 two").click()
+                await expect(page.get_by_text("已确认网页快照", exact=True)).to_be_visible()
                 await expect(page.get_by_text("网页正文 two")).to_be_visible()
+                # When the new-send scope is cleared, regenerating the old answer keeps its confirmed URL.
+                await page.get_by_role("button", name="清除本次网页范围").click()
+                await page.locator("article").last.get_by_role("button", name="重新生成").click()
+                await expect(page.get_by_role("button", name="1 two")).to_be_visible()
                 assert not errors, errors
                 await browser.close()
             print("PASS: two URL previews, non-first corpus import, run-bound snapshot and source preview")

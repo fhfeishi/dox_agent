@@ -100,6 +100,7 @@ export function ChatView() {
     activeTitle,
     activeTask,
     currentCorpus,
+    corpora,
     taskCapable,
     setInput,
     uiDocPanel,
@@ -239,6 +240,9 @@ export function ChatView() {
 
           {turns.map((turn, i) => {
             const branchesBefore = visibleBranches.filter((b) => b.fromIndex === i);
+            const turnCorpusIds = turn.runInfo?.effective_corpus_ids ?? turn.options.corpus_ids ??
+              (turn.options.corpus_id ? [turn.options.corpus_id] : []);
+            const turnCorpusName = turnCorpusIds.map((id) => corpora.find((corpus) => corpus.id === id)?.name ?? id).join("、");
             return (
               <Fragment key={`${turn.runId}-${i}`}>
                 {branchesBefore.map((b) => (
@@ -272,7 +276,7 @@ export function ChatView() {
                     <div className="mb-[6px] text-[12.5px] font-semibold text-[var(--ink)]">
                       DoxAgent
                       <span className="ml-[8px] text-[11.5px] font-normal text-[var(--stone)]">
-                        · {currentCorpus ? `检索「${currentCorpus.name}」` : "未选择知识库"}
+                        · {turnCorpusName ? `检索「${turnCorpusName}」` : "检索范围未记录"}
                       </span>
                     </div>
                     <MessageView
@@ -289,7 +293,7 @@ export function ChatView() {
                         void downloadTurn(
                           {
                             question: turn.question,
-                            corpusName: currentCorpus?.name,
+                            corpusName: turnCorpusName || undefined,
                             taskName: taskCapable ? activeTask?.name : undefined,
                           },
                           turn,

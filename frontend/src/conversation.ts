@@ -28,7 +28,20 @@ function copyOptions(options: Options): Options {
   const normalized = { ...options, allowed_doc_ids: options.allowed_doc_ids ? [...options.allowed_doc_ids] : null };
   if (options.corpus_ids) normalized.corpus_ids = [...options.corpus_ids];
   else if (options.corpus_id) normalized.corpus_ids = [options.corpus_id];
+  if (options.web_snapshot_ids) normalized.web_snapshot_ids = [...options.web_snapshot_ids];
   return normalized;
+}
+
+/** Preserve the scope that produced a turn when revisiting it after session settings change. */
+export function turnScope(turn: Turn): Options {
+  const scope = copyOptions(turn.options);
+  if (turn.policy) scope.allowed_doc_ids = turn.policy.allowed_doc_ids ? [...turn.policy.allowed_doc_ids] : null;
+  if (turn.runInfo?.effective_corpus_ids?.length) scope.corpus_ids = [...turn.runInfo.effective_corpus_ids];
+  if (turn.runInfo?.allowed_doc_ids !== undefined) scope.allowed_doc_ids = turn.runInfo.allowed_doc_ids ? [...turn.runInfo.allowed_doc_ids] : null;
+  if (turn.runInfo?.web_snapshot_ids) scope.web_snapshot_ids = [...turn.runInfo.web_snapshot_ids];
+  if (turn.runInfo?.task_id) scope.task_id = turn.runInfo.task_id;
+  if (turn.runInfo?.task_version) scope.task_version = turn.runInfo.task_version;
+  return scope;
 }
 
 /** Build the explicit retrieval set used by every new chat request. */
@@ -64,15 +77,13 @@ export function newTurn(question: string, history: Turn[], options?: Options): T
 
 export function regenerateTurn(turn: Turn, history: Turn[]): Turn {
   const { question, requestMessages: _oldRequest, previousAttempts, ...attempt } = turn;
-  const effective = turn.policy ?? turn.options;
-  const options = copyOptions(effective);
+  const options = turnScope(turn);
   return { ...newTurn(question, history, options), previousAttempts: [...previousAttempts, attempt] };
 }
 
 export function branchFromTurn(turns: Turn[], index: number) {
   const original = turns[index];
-  const effective = original.policy ?? original.options;
-  const options = copyOptions(effective);
+  const options = turnScope(original);
   return { history: turns.slice(0, index).filter(turn => turn.complete && turn.outcome === "completed"), options };
 }
 

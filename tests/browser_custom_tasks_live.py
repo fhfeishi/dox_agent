@@ -196,6 +196,7 @@ async def main():
                 await page.get_by_role("button", name=re.compile("绑定自定义模板的专项报告.*查看任务详情")).click()
                 await page.get_by_role("textbox", name="目标").fill("形成专项报告 v2")
                 await page.get_by_role("button", name="删除", exact=True).click()
+                await page.get_by_role("combobox", name="固定报告模板").select_option("comprehensive|0")
                 await page.get_by_role("button", name="保存并发布").click()
                 await expect(page.get_by_text("已发布 v2").first).to_be_visible()
                 await page.get_by_role("button", name="关闭检查器").click()
@@ -209,6 +210,13 @@ async def main():
                 session = next(item for item in sessions if item["id"] == session_key)
                 assert session["data"]["task_version"] == 2
                 assert session["data"]["options"].get("task_params", {}) == {}
+                # The old intake keeps its v1 template after the session moves to v2.
+                await expect(page.get_by_role("combobox", name="报告模板").first).to_have_value(custom_template["id"])
+                await page.get_by_role("combobox", name="报告知识库").first.select_option(corpus_id)
+                async with page.expect_response(lambda response: response.url.endswith("/api/reports")
+                                                and response.request.method == "POST") as old_report_response:
+                    await page.get_by_role("button", name="重新生成").first.click()
+                assert (await old_report_response.value).status == 201
                 await page.get_by_role("textbox", name="问题", exact=True).fill("再次生成人工智能与医疗 2024 至 2025 报告")
                 await page.get_by_role("button", name="发送 ↑").click()
                 await expect(page.get_by_role("button", name="生成报告").last).to_be_visible()

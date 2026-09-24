@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ComponentProps } from "react
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import { createReport, fetchReportMetadata, fetchTemplates, preflightReport, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TemplateSummary } from "../api";
+import { createReport, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
 import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
@@ -276,6 +276,22 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
 
 function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (report: { report_id: string; markdown: string }) => void }) {
   const { corpora, workspace, activeTask } = useApp();
+  const taskId = attempt.runInfo?.task_id ?? attempt.options.task_id;
+  const taskVersion = attempt.runInfo?.task_version ?? attempt.options.task_version;
+  const currentTaskMatches = activeTask?.id === taskId && activeTask?.version === taskVersion;
+  const [historicalTask, setHistoricalTask] = useState<TaskInfo | null>(null);
+  const [taskLoadError, setTaskLoadError] = useState("");
+  useEffect(() => {
+    if (!taskId?.startsWith("custom-") || !taskVersion || currentTaskMatches) return;
+    let active = true;
+    void fetchTaskVersion(taskId, taskVersion).then(
+      (task) => { if (active) { setHistoricalTask(task); setTaskLoadError(""); } },
+      (error) => { if (active) setTaskLoadError(`原任务版本读取失败：${(error as Error).message}`); },
+    );
+    return () => { active = false; };
+  }, [taskId, taskVersion, currentTaskMatches]);
+  // The session may upgrade while an older intake remains visible; bind its report to that run's task version.
+  const reportTask = currentTaskMatches ? activeTask : historicalTask?.id === taskId && historicalTask?.version === taskVersion ? historicalTask : undefined;
   const [local, setLocal] = useState<ReportInfo | null>(null);
   const report = attempt.report ?? local;
   const [busy, setBusy] = useState(false);
@@ -286,7 +302,9 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   const [coverageBusy, setCoverageBusy] = useState(false);
   const [coverageError, setCoverageError] = useState("");
   const [showCoverage, setShowCoverage] = useState(false);
-  const scopeIds = attempt.options.corpus_ids ?? (attempt.options.corpus_id ? [attempt.options.corpus_id] : []);
+  const scopeIds = attempt.runInfo?.effective_corpus_ids ?? attempt.options.corpus_ids ??
+    (attempt.options.corpus_id ? [attempt.options.corpus_id] : []);
+  const allowedDocIds = attempt.runInfo?.allowed_doc_ids ?? attempt.options.allowed_doc_ids;
   const [corpusId, setCorpusId] = useState(scopeIds.length === 1 ? scopeIds[0] : "");
   const params = attempt.policy?.report_params;
   const [domain, setDomain] = useState(params?.domain ?? "");
@@ -311,8 +329,8 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
     setAudience(params.audience ?? "专业研究人员");
     setLength(params.length ?? "标准篇幅");
   }, [params]);
-  const boundReportTask = activeTask?.kind === "custom" && activeTask.engine_task_id === "task4" && Boolean(activeTask.report_template_id);
-  const [templateId, setTemplateId] = useState(boundReportTask ? activeTask?.report_template_id ?? "" : params?.template_id ?? "comprehensive");
+  const boundReportTask = reportTask?.kind === "custom" && reportTask.engine_task_id === "task4" && Boolean(reportTask.report_template_id);
+  const [templateId, setTemplateId] = useState(boundReportTask ? reportTask?.report_template_id ?? "" : params?.template_id ?? "comprehensive");
   const [templateOptions, setTemplateOptions] = useState<TemplateSummary[]>([]);
   useEffect(() => {
     let active = true;
@@ -323,15 +341,15 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
     return () => { active = false; };
   }, []);
   useEffect(() => {
-    if (boundReportTask) setTemplateId(activeTask?.report_template_id ?? "");
+    if (boundReportTask) setTemplateId(reportTask?.report_template_id ?? "");
     else if (!templateId && params?.template_id) setTemplateId(params.template_id);
-  }, [activeTask?.report_template_id, boundReportTask, params?.template_id, templateId]);
-  const boundTemplate = templateOptions.find((item) => item.id === activeTask?.report_template_id);
+  }, [reportTask?.report_template_id, boundReportTask, params?.template_id, templateId]);
+  const boundTemplate = templateOptions.find((item) => item.id === reportTask?.report_template_id);
   const availableTemplates = boundReportTask
-    ? [{ id: activeTask?.report_template_id ?? "", name: boundTemplate?.name ?? activeTask?.report_template_id ?? "固定模板",
-        kind: boundTemplate?.kind ?? "custom", status: "published", version: activeTask?.report_template_version ?? 0 }]
+    ? [{ id: reportTask?.report_template_id ?? "", name: boundTemplate?.name ?? reportTask?.report_template_id ?? "固定模板",
+        kind: boundTemplate?.kind ?? "custom", status: "published", version: reportTask?.report_template_version ?? 0 }]
     : templateOptions;
-  const ready = Boolean(domain.trim() && yearFrom >= 1900 && yearTo <= 2100 && yearFrom <= yearTo && templateId && scopeIds.includes(corpusId));
+  const ready = Boolean((!taskId?.startsWith("custom-") || reportTask) && domain.trim() && yearFrom >= 1900 && yearTo <= 2100 && yearFrom <= yearTo && templateId && scopeIds.includes(corpusId));
   useEffect(() => { setPreflight(null); }, [corpusId, domain, yearFrom, yearTo, fundType, templateId]);
   useEffect(() => {
     setCoverage(null);
@@ -345,26 +363,26 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
     try {
       if (!scopeIds.includes(corpusId)) throw new Error("请确认本次报告使用的单一知识库");
       let docIds: string[] | undefined;
-      if (attempt.options.allowed_doc_ids?.length) {
+      if (allowedDocIds?.length) {
         const response = await fetch(`/api/documents?corpus=${encodeURIComponent(corpusId)}`);
         if (!response.ok) throw new Error("无法读取所选知识库的文档范围");
         const docs = await response.json() as { doc_id: string }[];
         const corpusDocIds = new Set(docs.map((doc) => doc.doc_id));
-        docIds = attempt.options.allowed_doc_ids.filter((id) => corpusDocIds.has(id));
+        docIds = allowedDocIds.filter((id) => corpusDocIds.has(id));
         if (!docIds.length) throw new Error("所选知识库中没有本轮限定的资料，请调整资料范围后重新发起报告");
       }
       const selectedTemplate = templateOptions.find((item) => item.id === templateId);
-      const customReportTask = activeTask?.kind === "custom" && activeTask?.engine_task_id === "task4";
+      const customReportTask = reportTask?.kind === "custom" && reportTask?.engine_task_id === "task4";
       const boundTemplateIsCustom = availableTemplates.find((item) => item.id === templateId)?.kind === "custom";
       if (!ready) throw new Error("请确认报告知识库、主题和年份范围");
       const request = { domain: domain.trim(), year_from: yearFrom, year_to: yearTo,
         fund_type: fundType.trim(), focus: focus.trim(), purpose: purpose.trim(),
         audience: audience.trim(), length: length.trim(), template_id: templateId,
         template_version: boundReportTask
-          ? activeTask?.report_template_version
+          ? reportTask?.report_template_version
           : boundTemplateIsCustom ? selectedTemplate?.version : undefined,
-        task_id: customReportTask ? activeTask?.id : undefined,
-        task_version: customReportTask ? attempt.options.task_version ?? workspace.taskVersion : undefined,
+        task_id: customReportTask ? reportTask?.id : undefined,
+        task_version: customReportTask ? taskVersion : undefined,
         task_params: attempt.options.task_params ?? {},
         corpus_id: corpusId, doc_ids: docIds,
         session_key: workspace.active, parent_run_id: attempt.runId };
@@ -403,6 +421,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   }
   return (
     <div className="mt-[12px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px]">
+      {taskLoadError ? <p role="alert" className="text-[11px] text-[var(--red)]">{taskLoadError}</p> : null}
       <div className="flex flex-wrap items-center gap-[8px]">
         <span className="text-[12.5px] font-medium text-[var(--slate)]">专项报告</span>
         <span className="text-[11.5px] text-[var(--stone)]">

@@ -160,7 +160,7 @@ class ReportStore:
                 "markdown": row[3], "session_key": row[4], "run_id": row[5], "corpus_id": row[6]}
 
     def list(self, *, session_key: str | None = None, run_id: str | None = None,
-             limit: int = 20) -> list[dict]:
+             limit: int = 20, offset: int = 0) -> list[dict]:
         """M4: metadata only (no markdown), ``created_at DESC``; misses return ``[]``."""
         limit = max(1, min(limit, 100))
         clauses, args = [], []
@@ -174,7 +174,7 @@ class ReportStore:
         with self.connect() as db:
             rows = db.execute(
                 f"SELECT id, created_at, session_key, run_id, corpus_id, params FROM reports {where} "
-                "ORDER BY created_at DESC LIMIT ?", (*args, limit)).fetchall()
+                "ORDER BY created_at DESC LIMIT ? OFFSET ?", (*args, limit, max(0, offset))).fetchall()
         items = []
         for row in rows:
             params = json.loads(row[5])

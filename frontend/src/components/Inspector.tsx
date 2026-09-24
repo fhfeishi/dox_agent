@@ -3,7 +3,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { artifactExportUrl, fetchArtifact, fetchReport, fetchRun, fetchTemplate, fetchTemplates, type ArtifactInfo, type ReportInfo, type RunSnapshot, type TemplateInfo, type TemplateSummary } from "../api";
+import { artifactExportUrl, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchReport, fetchRun, fetchTemplate, fetchTemplates, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type TemplateInfo, type TemplateSummary } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -67,6 +67,11 @@ export function Inspector() {
   const [reportError, setReportError] = useState("");
   const [artifact, setArtifact] = useState<ArtifactInfo | null>(null);
   const [artifactError, setArtifactError] = useState("");
+  const [artifactVersions, setArtifactVersions] = useState<ArtifactVersion[]>([]);
+  const [editingArtifact, setEditingArtifact] = useState(false);
+  const [artifactDraft, setArtifactDraft] = useState("");
+  const [savingArtifact, setSavingArtifact] = useState(false);
+  const [artifactSaveError, setArtifactSaveError] = useState("");
   const [template, setTemplate] = useState<TemplateInfo | null>(null);
   const [templateError, setTemplateError] = useState("");
   const [templateList, setTemplateList] = useState<TemplateSummary[]>([]);
@@ -93,17 +98,43 @@ export function Inspector() {
     if (inspectorTarget.kind !== "artifact") {
       setArtifact(null);
       setArtifactError("");
+      setArtifactVersions([]);
+      setEditingArtifact(false);
       return;
     }
     let active = true;
     setArtifact(null);
     setArtifactError("");
+    setArtifactVersions([]);
+    setEditingArtifact(false);
+    setArtifactSaveError("");
     void fetchArtifact(inspectorTarget.artifactId).then(
       (item) => { if (active) setArtifact(item); },
       (error) => { if (active) setArtifactError(error instanceof Error ? error.message : "成果读取失败"); },
     );
+    void fetchArtifactVersions(inspectorTarget.artifactId).then(
+      (items) => { if (active) setArtifactVersions(items); },
+      (error) => { if (active) setArtifactSaveError(error instanceof Error ? error.message : "版本列表读取失败"); },
+    );
     return () => { active = false; };
   }, [inspectorTarget.kind, inspectorTarget.kind === "artifact" ? inspectorTarget.artifactId : ""]);
+
+  async function saveArtifactVersion(status: "draft" | "completed") {
+    if (inspectorTarget.kind !== "artifact" || !artifactDraft.trim()) return;
+    setSavingArtifact(true);
+    setArtifactSaveError("");
+    try {
+      const updated = await createArtifactVersion(inspectorTarget.artifactId, artifactDraft, status);
+      setArtifact(updated);
+      setArtifactVersions(await fetchArtifactVersions(inspectorTarget.artifactId));
+      setEditingArtifact(false);
+      window.dispatchEvent(new Event("dox-artifacts-changed"));
+    } catch (error) {
+      setArtifactSaveError(error instanceof Error ? error.message : "保存版本失败");
+    } finally {
+      setSavingArtifact(false);
+    }
+  }
 
   useEffect(() => {
     if (inspectorTarget.kind !== "template") {
@@ -336,24 +367,57 @@ export function Inspector() {
               <Card>
                 <h2 className="text-[15px] font-semibold text-[var(--ink)]">{artifact.title}</h2>
                 <p className="mt-[6px] text-[11.5px] text-[var(--stone)]">
-                  {ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type} · 版本 {artifact.version}
+                  {ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type} · 版本 {artifact.version} · {artifact.status === "draft" ? "草稿" : artifact.status === "completed" ? "已完成" : artifact.status === "failed" ? "失败" : "生成中"}
                   {artifact.legacy ? " · 历史报告（只读兼容）" : ""}
                 </p>
                 <p className="mt-[4px] break-all text-[11px] text-[var(--stone)]">
-                  来源运行：{artifact.run_id || "未记录"} · 会话：{artifact.session_key || "未记录"}
+                  来源运行：{artifact.run_available === true ? artifact.run_id : "未记录"} · 会话：{artifact.session_key || "未记录"}
                 </p>
+                {artifact.status === "failed" && artifact.fail_reason ? <p role="alert" className="mt-[6px] text-[12px] text-[var(--red)]">{artifact.fail_reason}</p> : null}
+                {artifact.type === "answer_snapshot" ? <p className="mt-[5px] text-[12px] text-[var(--steel)]">
+                  {artifact.source_verification === "verified" ? "原始回答已核验"
+                    : artifact.source_verification === "user_modified" ? "用户修订版本"
+                    : "原始输出未核验"}
+                </p> : null}
+                {artifactVersions.length > 1 ? <label className="mt-[9px] flex items-center gap-[8px] text-[12px] text-[var(--steel)]">
+                  查看版本
+                  <select aria-label="成果版本" value={artifact.version} disabled={editingArtifact}
+                    onChange={(event) => {
+                      if (inspectorTarget.kind !== "artifact") return;
+                      setArtifactSaveError("");
+                      void fetchArtifact(inspectorTarget.artifactId, Number(event.target.value)).then(setArtifact,
+                        (error) => setArtifactSaveError(error instanceof Error ? error.message : "版本读取失败"));
+                    }}
+                    className="rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] px-[7px] py-[4px]">
+                    {artifactVersions.map((item) => <option key={item.version} value={item.version}>版本 {item.version} · {item.status === "draft" ? "草稿" : item.status === "failed" ? "失败" : "已完成"}</option>)}
+                  </select>
+                </label> : null}
+                {artifactSaveError ? <p role="alert" className="mt-[7px] text-[12px] text-[var(--red)]">{artifactSaveError}</p> : null}
                 <div className="mt-[12px] flex flex-wrap gap-[8px]">
                   <Button size="sm" onClick={() => void navigator.clipboard.writeText(artifact.markdown)}>复制</Button>
-                  <Button size="sm" variant="ghost" onClick={() => downloadText(artifact.markdown, `artifact-${artifact.artifact_id.slice(0, 8)}.md`)}>下载 .md</Button>
-                  <a href={artifactExportUrl(artifact.artifact_id, "docx")}
+                  <Button size="sm" variant="ghost" onClick={() => downloadText(artifact.markdown, `artifact-${artifact.artifact_id.slice(0, 8)}-v${artifact.version}.md`)}>下载 .md</Button>
+                  <a href={artifactExportUrl(artifact.artifact_id, "docx", artifact.version)}
                      className="font-app inline-flex h-[26px] items-center rounded-[6px] px-[8px] text-[12px] text-[var(--slate)] hover:bg-[var(--surface)]">
                     导出 .docx
                   </a>
-                  {artifact.run_id ? (
+                  {!artifact.legacy ? <Button size="sm" variant="ghost" onClick={() => {
+                    setArtifactDraft(artifact.markdown);
+                    setArtifactSaveError("");
+                    setEditingArtifact(true);
+                  }}>编辑新版本</Button> : null}
+                  {artifact.run_available === true ? (
                     <Button size="sm" variant="ghost" onClick={() => showInspector({ kind: "execution", runId: artifact.run_id })}>查看来源运行</Button>
                   ) : null}
                 </div>
-                <div className="markdown mt-[12px]"><Markdown remarkPlugins={[remarkGfm]}>{artifact.markdown}</Markdown></div>
+                {editingArtifact ? <div className="mt-[12px]">
+                  <textarea aria-label="成果 Markdown" value={artifactDraft} onChange={(event) => setArtifactDraft(event.target.value)}
+                    className="min-h-[260px] w-full rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-[12px] leading-[1.6] text-[var(--ink)]" />
+                  <div className="mt-[8px] flex flex-wrap gap-[7px]">
+                    <Button size="sm" disabled={savingArtifact || !artifactDraft.trim()} onClick={() => void saveArtifactVersion("draft")}>保存草稿</Button>
+                    <Button size="sm" variant="ghost" disabled={savingArtifact || !artifactDraft.trim()} onClick={() => void saveArtifactVersion("completed")}>完成新版本</Button>
+                    <Button size="sm" variant="ghost" onClick={() => setEditingArtifact(false)}>取消</Button>
+                  </div>
+                </div> : <div className="markdown mt-[12px]"><Markdown remarkPlugins={[remarkGfm]}>{artifact.markdown}</Markdown></div>}
               </Card>
             ) : null}
           </>

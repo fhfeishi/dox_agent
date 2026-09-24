@@ -144,10 +144,13 @@ export type ArtifactSummary = {
   created_at: string; updated_at: string; session_key: string; run_id: string; corpus_ids: string[];
   task_id: string; template_id: string; export_format: string; export_status: string;
   fail_reason: string; legacy?: boolean;
+  source_verification?: "verified" | "unverified" | "user_modified";
+  run_available?: boolean;
 };
 export type ArtifactInfo = ArtifactSummary & {
   version: number; markdown: string; citations: { doc_id: string; version: string; page?: number | null }[];
 };
+export type ArtifactVersion = { version: number; created_at: string; status: string; source_verification: string };
 
 /** W3-B: artifacts for one session (undefined = global list; "" filters empty session). */
 export async function fetchArtifacts(sessionKey?: string, signal?: AbortSignal): Promise<ArtifactSummary[]> {
@@ -157,9 +160,22 @@ export async function fetchArtifacts(sessionKey?: string, signal?: AbortSignal):
   return response.json();
 }
 
-export async function fetchArtifact(artifactId: string): Promise<ArtifactInfo> {
-  const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}`);
+export async function fetchArtifact(artifactId: string, version?: number): Promise<ArtifactInfo> {
+  const suffix = version === undefined ? "" : `?version=${version}`;
+  const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}${suffix}`);
   return jsonOrThrow(response, "成果不可用") as Promise<ArtifactInfo>;
+}
+
+export async function fetchArtifactVersions(artifactId: string): Promise<ArtifactVersion[]> {
+  const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/versions`);
+  return jsonOrThrow(response, "成果版本不可用") as Promise<ArtifactVersion[]>;
+}
+
+export async function createArtifactVersion(artifactId: string, markdown: string, status: "draft" | "completed"): Promise<ArtifactInfo> {
+  const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/versions`, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ markdown, status }),
+  });
+  return jsonOrThrow(response, "保存版本失败") as Promise<ArtifactInfo>;
 }
 
 export async function createArtifact(params: {
@@ -172,8 +188,8 @@ export async function createArtifact(params: {
 }
 
 /** W3-B: direct export URL (real .docx or .md); opening it triggers the download. */
-export function artifactExportUrl(artifactId: string, format: "md" | "docx"): string {
-  return `/api/artifacts/${encodeURIComponent(artifactId)}/export?format=${format}`;
+export function artifactExportUrl(artifactId: string, format: "md" | "docx", version?: number): string {
+  return `/api/artifacts/${encodeURIComponent(artifactId)}/export?format=${format}${version === undefined ? "" : `&version=${version}`}`;
 }
 
 export type RunSnapshot = {

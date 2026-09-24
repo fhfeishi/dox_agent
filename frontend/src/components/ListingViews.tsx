@@ -115,39 +115,51 @@ const ARTIFACT_TYPE_LABEL: Record<string, string> = { answer_snapshot: "回答�
 
 export function ReportsView() {
   const { workspace, startTask, corpora, showInspector } = useApp();
-  const [artifactList, setArtifactList] = useState<{ sessionKey: string; items: ArtifactSummary[] } | null>(null);
+  const [scope, setScope] = useState<"all" | "current">("all");
+  const [artifactList, setArtifactList] = useState<{ key: string; items: ArtifactSummary[] } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [revision, setRevision] = useState(0);
+
+  useEffect(() => {
+    const refresh = () => setRevision((value) => value + 1);
+    window.addEventListener("dox-artifacts-changed", refresh);
+    return () => window.removeEventListener("dox-artifacts-changed", refresh);
+  }, []);
 
   useEffect(() => {
     let active = true;
+    const key = scope === "all" ? "all" : `current:${workspace.active ?? ""}`;
     setArtifactList(null);
     setError("");
     setLoading(true);
-    // W3-B: the central page lists the active session's artifacts; the global list is the next slice.
-    if (!workspace.active) {
-      setLoading(false);
-      return;
-    }
-    void fetchArtifacts(workspace.active).then(
-      (items) => { if (active) setArtifactList({ sessionKey: workspace.active, items }); },
+    // An omitted query means global; the current-session filter always sends its exact key.
+    void fetchArtifacts(scope === "all" ? undefined : workspace.active ?? "").then(
+      (items) => { if (active) setArtifactList({ key, items }); },
       (cause) => { if (active) setError(cause instanceof Error ? cause.message : "成果列表读取失败"); },
     ).finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
-  }, [workspace.active]);
+  }, [scope, workspace.active, revision]);
 
-  const artifacts = artifactList?.sessionKey === workspace.active ? artifactList.items : [];
+  const key = scope === "all" ? "all" : `current:${workspace.active ?? ""}`;
+  const artifacts = artifactList?.key === key ? artifactList.items : [];
 
   return (
     <ViewShell
-      title="本会话成果"
-      description="当前会话生成的成果（回答快照与专项报告）。跨会话成果库将在后续阶段开放。"
+      title="成果"
+      description="查看已保存的回答快照与专项报告。可切换全部成果或当前会话。"
       actions={<Button onClick={() => void startTask("task4")}>新建专项报告</Button>}
     >
+      <div className="col-span-full flex gap-[6px]">
+        <button type="button" aria-pressed={scope === "all"} onClick={() => setScope("all")}
+          className={`rounded-[7px] px-[11px] py-[6px] text-[12px] ${scope === "all" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>全部成果</button>
+        <button type="button" aria-pressed={scope === "current"} onClick={() => setScope("current")}
+          className={`rounded-[7px] px-[11px] py-[6px] text-[12px] ${scope === "current" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>当前会话</button>
+      </div>
       {error ? <p role="alert" className="col-span-full text-[13px] text-[var(--red)]">{error}</p> : null}
       {loading ? <p className="col-span-full text-[13px] text-[var(--steel)]">正在读取成果…</p> : null}
       {!loading && !error && !artifacts.length ? (
-        <p className="col-span-full text-[13px] text-[var(--steel)]">本会话还没有成果。可在回答操作条选择“保存为成果”。</p>
+        <p className="col-span-full text-[13px] text-[var(--steel)]">{scope === "current" ? "本会话还没有成果。" : "还没有成果。"}可在回答操作条选择“保存为成果”。</p>
       ) : null}
       {artifacts.map((item) => (
         <button key={item.artifact_id} type="button"
@@ -155,10 +167,14 @@ export function ReportsView() {
           className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-left hover:border-[var(--primary)]">
           <span className="block text-[14px] font-semibold text-[var(--ink)]">{item.title || "未命名成果"}</span>
           <span className="mt-[5px] block text-[12px] text-[var(--steel)]">
-            {ARTIFACT_TYPE_LABEL[item.type] ?? item.type} · 版本 {item.current_version} ·{" "}
+            {ARTIFACT_TYPE_LABEL[item.type] ?? item.type} · 版本 {item.current_version} · {item.status === "completed" ? "已完成" : item.status === "draft" ? "草稿" : item.status === "failed" ? "失败" : "生成中"} ·{" "}
             {item.corpus_ids.length
               ? item.corpus_ids.map((id) => corpora.find((corpus) => corpus.id === id)?.name ?? id).join("、")
               : "来源库未记录"} · {item.created_at?.slice(0, 10) || "时间未记录"}
+          </span>
+          <span className="mt-[4px] block text-[11.5px] text-[var(--stone)]">
+            会话：{workspace.sessions.find((session) => session.id === item.session_key)?.title || item.session_key || "未记录"} · {item.run_available === true ? "来源运行可回读" : "来源运行未记录"}
+            {item.type === "answer_snapshot" ? ` · ${item.source_verification === "verified" ? "原始回答已核验" : item.source_verification === "user_modified" ? "用户修订版本" : "原始输出未核验"}` : ""}
           </span>
         </button>
       ))}

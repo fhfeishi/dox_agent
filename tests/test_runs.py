@@ -49,7 +49,8 @@ def chat_body(cid, run_id, content="问题"):
 def test_user_chat_run_persists_the_server_effective_scope(tmp_path):
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
-        assert client.post("/api/chat", json=chat_body(cid, "chat-run-0001")).status_code == 200
+        response = client.post("/api/chat", json=chat_body(cid, "chat-run-0001"))
+        assert response.status_code == 200 and response.text.count("event: done\n") == 1
         snapshot = client.get("/api/runs/chat-run-0001").json()
     assert snapshot["run_type"] == "chat" and snapshot["status"] == "completed"
     assert snapshot["session_key"] == "sess-1"

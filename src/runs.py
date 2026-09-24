@@ -116,3 +116,12 @@ class RunStore:
         if row is None:
             raise KeyError("运行记录不存在")
         return json.loads(row[0])
+
+    def existing_ids(self, run_ids: list[str]) -> set[str]:
+        ids = list(dict.fromkeys(run_id for run_id in run_ids if run_id))
+        if not ids:
+            return set()
+        with self.connect() as db:
+            rows = db.execute(f"SELECT run_id FROM runs WHERE run_id IN ({','.join('?' for _ in ids)})",
+                              ids).fetchall()
+        return {row[0] for row in rows}

@@ -467,8 +467,8 @@
 
 - 采用：新增应用级 `ArtifactStore`（`STATE_DIR/artifacts.sqlite3`），`Artifact` 为 `answer_snapshot`/`report` 两类，按稳定 `artifact_id` 记录类型、状态、标题、当前版本、`session_key`、`run_id`、`corpus_ids`、任务/模板、导出与失败原因；`artifact_versions` 追加式版本，新版本不覆盖旧版本。引用沿用关联 `RunSnapshot.citations`，“逐条引用落库”列为可选项。
 - 兼容读取：现有 `reports` 表不改写；未关联 Artifact 的历史报告在 `GET /api/artifacts` 中以 `report:<report_id>` 只读合成，缺 `run_id`/`corpus_id` 显示“未记录”。
-- 落库与关联：`POST /api/artifacts` 保存回答快照时必须引用已持久化且已完成的 chat run；`run_id` 存在只是必要条件，不能证明客户端提交的正文或范围真实。服务端以 RunSnapshot 的会话/任务/有效库/引用为权威，并核对首版正文与该次实际输出；旧运行无法核对时显示“输出未核验”，用户修订另建版本。task4 报告成功后由报告流程创建 `type=report` 的 Artifact 并关联其 run。此条于 2026-09-24 根据实施核对**修正**首切片“仅校验 run 存在”的口径；实现与验收待 §16.16 W3-B1/B2 收口。
+- 落库与关联：`POST /api/artifacts` 保存回答快照时必须引用已持久化且已完成的 chat run；`run_id` 存在只是必要条件，不能证明客户端提交的正文或范围真实。服务端以 RunSnapshot 的会话/任务/有效库/引用为权威，并核对首版正文与该次实际输出；旧运行无法核对时显示“输出未核验”，用户修订另建版本。task4 报告成功后由报告流程创建 `type=report` 的 Artifact 并关联其 run。此条于 2026-09-24 根据实施核对**修正**首切片“仅校验 run 存在”的口径；实现与验收见 ITERATION §16.17。
 - 列表语义：`GET /api/artifacts` 省略 `session_key` = 全局，显式空串 = 空会话筛选，指定值 = 过滤；三者在测试中分列。
 - 导出：新增 `src/docx_export.py` 生成**真实 OOXML** `.docx`（标题/表格/段落），旧 HTML `.doc` 回答导出保留；PDF 后置。
-- 成果页 IA：中央“成果”页与右侧检查器，沿用五入口；W3 完成前仍标“本会话成果”，全局成果库与跨会话 UI 属后续切片。
-- 影响：`src/artifacts.py`、`src/docx_export.py`（新增）、`src/main.py`（artifacts 接口与报告自动建件）、`frontend/src/api.ts`/`store.tsx`/`ListingViews.tsx`/`Inspector.tsx`/`MessageView.tsx`/`ChatView.tsx`。测试 `tests/test_artifacts.py`；`browser_tasks` 覆盖保存与预览。A7（保留/归档）与生命周期状态流转仍待做。
+- 成果页 IA：中央“成果”页与右侧检查器，沿用五入口；全局成果列表默认跨会话，提供当前会话筛选；实现与边界见 ITERATION §16.17。
+- 影响：`src/artifacts.py`、`src/docx_export.py`（新增）、`src/main.py`（artifacts 接口与报告自动建件）、`frontend/src/api.ts`/`store.tsx`/`ListingViews.tsx`/`Inspector.tsx`/`MessageView.tsx`/`ChatView.tsx`。测试 `tests/test_artifacts.py`；`browser_tasks` 与 `browser_artifacts_live` 覆盖保存、失败重试、版本、全局预览及隔离恢复。A7 采用成组备份、不自动清理的首版策略；自动归档/清理由后续阶段按迁移与恢复证据另立项。

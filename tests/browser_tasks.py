@@ -41,6 +41,7 @@ async def main():
     chat_bodies: list[dict] = []
     report_bodies: list[dict] = []
     artifacts_store: list[dict] = []
+    artifact_markdowns: dict[str, list[str]] = {}
     report_scope: dict[str, str | None] = {"initial": None, "generated": None}
     try:
         async with async_playwright() as p:
@@ -98,11 +99,13 @@ async def main():
                     report_bodies.append(body)
                     report_scope["generated"] = body.get("session_key")
                     artifacts_store.append({
-                        "artifact_id": "report:new-report", "type": "report", "status": "completed",
+                        "artifact_id": "artifact:new-report", "type": "report", "status": "completed",
                         "title": "医疗", "current_version": 1, "created_at": "2026-09-23", "updated_at": "2026-09-23",
                         "session_key": body.get("session_key", ""), "run_id": body.get("run_id", ""),
+                        "run_available": True,
                         "corpus_ids": ["c1"], "task_id": "task4", "template_id": "comprehensive",
                         "export_format": "md", "export_status": "", "fail_reason": ""})
+                    artifact_markdowns["artifact:new-report"] = ["# 测试报告"]
                     await r.fulfill(json={"report_id": "new-report", "markdown": "# 测试报告"})
                 elif r.request.url.endswith("/new-report"):
                     await r.fulfill(json={"report_id": "new-report", "markdown": "# 测试报告"})
@@ -125,39 +128,61 @@ async def main():
                 return {"artifact_id": "report:legacy-report", "type": "report", "status": "completed",
                         "title": "旧报告", "current_version": 1, "created_at": "2026-09-21", "updated_at": "2026-09-21",
                         "session_key": session_key or "", "run_id": "", "corpus_ids": [],
+                        "run_available": False,
                         "task_id": "task4", "template_id": "", "export_format": "md", "export_status": "",
                         "fail_reason": "", "legacy": True}
 
             async def artifacts(r):
                 url = r.request.url
                 path = urlsplit(url).path
-                if r.request.method == "POST":
+                if r.request.method == "POST" and path.rstrip("/").endswith("/api/artifacts"):
                     body = r.request.post_data_json
                     item = {"artifact_id": "artifact:answer", "type": "answer_snapshot", "status": "completed",
                             "title": body.get("title") or "回答快照", "current_version": 1,
                             "created_at": "2026-09-23", "updated_at": "2026-09-23",
                             "session_key": body.get("session_key", ""), "run_id": body.get("run_id", ""),
+                            "run_available": True,
                             "corpus_ids": ["c1"], "task_id": "task2", "template_id": "",
                             "export_format": "md", "export_status": "", "fail_reason": ""}
                     artifacts_store.append(item)
+                    artifact_markdowns[item["artifact_id"]] = ["回答"]
                     await r.fulfill(status=201, json=item)
                     return
                 if path.rstrip("/").endswith("/api/artifacts"):
                     session_key = parse_qs(urlsplit(url).query).get("session_key", [None])[0]
                     items = list(artifacts_store)
-                    if session_key == report_scope["initial"]:
-                        items.append(legacy_artifact(session_key))
+                    if session_key is None or session_key == report_scope["initial"]:
+                        items.append(legacy_artifact(report_scope["initial"] or ""))
                     if session_key is not None:
                         items = [item for item in items if item["session_key"] == session_key]
                     await r.fulfill(json=items)
                     return
                 artifact_id = unquote(path.split("/api/artifacts/", 1)[1].split("/", 1)[0])
+                if path.endswith("/versions"):
+                    found = next((item for item in artifacts_store if item["artifact_id"] == artifact_id), None)
+                    if not found:
+                        await r.fulfill(status=404, json={"detail": "成果不存在"})
+                    elif r.request.method == "POST":
+                        body = r.request.post_data_json
+                        artifact_markdowns[artifact_id].append(body["markdown"])
+                        found["current_version"] = len(artifact_markdowns[artifact_id])
+                        found["status"] = body["status"]
+                        await r.fulfill(status=201, json={**found, "version": found["current_version"],
+                            "markdown": body["markdown"], "citations": [], "source_verification": "user_modified"})
+                    else:
+                        await r.fulfill(json=[{"version": index + 1, "status": "completed" if index == 0 else found["status"],
+                            "source_verification": "verified" if index == 0 else "user_modified"}
+                            for index in range(len(artifact_markdowns[artifact_id]))])
+                    return
                 if artifact_id == "report:legacy-report":
                     await r.fulfill(json={**legacy_artifact(""), "markdown": "# 旧报告正文", "citations": []})
                     return
                 found = next((item for item in artifacts_store if item["artifact_id"] == artifact_id), None)
                 if found:
-                    await r.fulfill(json={**found, "markdown": "# 测试报告", "citations": []})
+                    selected = int(parse_qs(urlsplit(url).query).get("version", [found["current_version"]])[0])
+                    await r.fulfill(json={**found, "version": selected,
+                        "markdown": artifact_markdowns[artifact_id][selected - 1], "citations": [],
+                        "source_verification": "verified" if selected == 1 else "user_modified"})
                 else:
                     await r.fulfill(status=404, json={"detail": "成果不存在"})
 
@@ -220,7 +245,7 @@ async def main():
 
             # Legacy reports are read back as artifacts; missing run/corpus stay "未记录".
             await page.get_by_role("button", name="成果", exact=True).click()
-            await expect(page.get_by_role("heading", name="本会话成果")).to_be_visible()
+            await expect(page.get_by_role("heading", name="成果")).to_be_visible()
             await expect(page.get_by_text("旧报告", exact=True)).to_be_visible()
             await expect(page.get_by_text(re.compile("报告 · 版本 1"))).to_be_visible()
             await page.get_by_role("button", name="对话", exact=True).click()
@@ -312,13 +337,22 @@ async def main():
             # Given a saved report, when the user opens the central report page,
             # then they can read and download it without an unimplemented placeholder.
             await page.get_by_role("button", name="成果", exact=True).click()
-            await expect(page.get_by_role("heading", name="本会话成果")).to_be_visible()
+            await expect(page.get_by_role("heading", name="成果")).to_be_visible()
             await page.get_by_role("button", name=re.compile("医疗.*报告 · 版本")).last.click()
             await expect(page.get_by_text("成果预览", exact=True)).to_be_visible()
             await expect(page.get_by_role("heading", name="测试报告")).to_be_visible()
+            # Given a completed artifact, editing creates a draft version while the
+            # original remains selectable and the central card reflects the new version.
+            await page.get_by_role("button", name="编辑新版本").click()
+            await page.get_by_role("textbox", name="成果 Markdown").fill("# 修订报告")
+            await page.get_by_role("button", name="保存草稿").click()
+            await expect(page.get_by_role("heading", name="修订报告")).to_be_visible()
+            await expect(page.get_by_role("button", name=re.compile("医疗.*报告 · 版本 2"))).to_be_visible()
+            await page.get_by_role("combobox", name="成果版本").select_option("1")
+            await expect(page.get_by_role("heading", name="测试报告")).to_be_visible()
             async with page.expect_download() as central_download:
                 await page.get_by_role("button", name="下载 .md").last.click()
-            assert (await central_download.value).suggested_filename.endswith(".md")
+            assert (await central_download.value).suggested_filename.endswith("-v1.md")
             # The artifact preview returns to the overview. A pinned preview survives
             # navigation; unpinned context follows the next section.
             await page.get_by_role("button", name="返回上一预览").click()
@@ -336,11 +370,17 @@ async def main():
             await expect(page.get_by_text(re.compile("共 2 份.*填表日期命中 1.*资助类别命中 1"))).to_be_visible()
             await expect(page.get_by_text("缺字段报告.pdf · 日期 missing · 类别 missing")).to_be_visible()
             await expect(page.get_by_text("不代表 PDF/OCR 识别正确率")).to_be_visible()
-            # Given an artifact in the previous session, a new session has an empty artifact page.
+            # Given artifacts in earlier sessions, the global page still finds them after
+            # starting a new session; the explicit current-session filter is empty.
             await page.get_by_role("button", name="新建对话").click()
             await page.get_by_role("button", name="成果", exact=True).click()
+            await expect(page.get_by_role("heading", name="成果")).to_be_visible()
+            await expect(page.get_by_role("button", name=re.compile("医疗.*报告 · 版本"))).to_be_visible()
+            await page.get_by_role("button", name="当前会话", exact=True).click()
             await expect(page.get_by_text(re.compile("本会话还没有成果"))).to_be_visible()
             await expect(page.get_by_role("button", name=re.compile("医疗.*报告 · 版本"))).to_have_count(0)
+            await page.get_by_role("button", name="全部成果", exact=True).click()
+            await expect(page.get_by_role("button", name=re.compile("医疗.*报告 · 版本"))).to_be_visible()
             assert not errors, errors
             print("PASS: task selection and corpus scope, report task intake/generation, AC-11 legacy source fallback, AC-12 coverage/unmatched UI")
             await browser.close()

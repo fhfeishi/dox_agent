@@ -1,6 +1,7 @@
 """One FastAPI entrypoint for corpus ingestion, evidence and agent streaming."""
 
 import asyncio
+import hashlib
 import json
 import logging
 import os
@@ -158,6 +159,12 @@ class ArtifactCreate(BaseModel):
     markdown: str = Field(min_length=1, max_length=500000)
     session_key: str | None = Field(default=None, max_length=120)
     corpus_ids: list[str] | None = Field(default=None, max_length=6)
+
+
+class ArtifactVersionCreate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    markdown: str = Field(min_length=1, max_length=500000)
+    status: Literal["draft", "completed"] = "draft"
 
 
 class CorpusCreate(BaseModel):
@@ -1073,6 +1080,21 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             sources: list[dict] = []
             telemetry: dict = {}
             outcome = "interrupted"
+            answer_parts: list[str] = []
+            snapshot_finished = False
+
+            async def persist_outcome() -> None:
+                await asyncio.to_thread(
+                    app.state.runs.update, payload.run_id, status=outcome,
+                    ended_at=datetime.now(UTC).isoformat(),
+                    metrics={"usage": usage.snapshot(), "telemetry": telemetry},
+                    # Exact UTF-8 token concatenation is the answer shown by the client.
+                    # A digest avoids treating client-submitted artifact text as authoritative.
+                    answer_sha256=(hashlib.sha256("".join(answer_parts).encode("utf-8")).hexdigest()
+                                   if outcome == "completed" else ""),
+                    citations=[{"doc_id": s.get("doc_id", ""), "corpus_id": s.get("corpus_id", ""),
+                                "version": s.get("version", ""), "title": s.get("title", ""),
+                                "page": s.get("page")} for s in sources])
             # A2: declare the server-effective run context before any content, so the UI can show
             # the authoritative scope instead of only echoing the client request.
             yield sse("run", {"run_id": payload.run_id, "session_key": payload.session_key or "",
@@ -1109,6 +1131,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                 sources = event["data"]
                             if event["event"] == "telemetry":
                                 telemetry = event["data"]
+                            if event["event"] == "token" and isinstance(event["data"].get("text"), str):
+                                answer_parts.append(event["data"]["text"])
+                            if event["event"] == "done":
+                                # Completion is emitted once below, after the run is durable.
+                                continue
                             data = event["data"]
                             if event["event"] in {"step", "telemetry"}:
                                 data = {**data, "run_id": payload.run_id}
@@ -1116,8 +1143,15 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                             if event["event"] == "telemetry":
                                 yield sse("usage", {**usage.snapshot(), "run_id": payload.run_id})
                     yield sse("usage", {**usage.snapshot(), "run_id": payload.run_id})
-                    yield sse("done", {"ok": True})
                     outcome = "completed"
+                    try:
+                        # The UI enables "save as artifact" on done. Persist first so an
+                        # immediate save cannot race the run's completed status/hash.
+                        await persist_outcome()
+                        snapshot_finished = True
+                    except Exception:  # noqa: BLE001 - snapshot bookkeeping must not break the answer
+                        logger.warning("run snapshot update failed: %s", payload.run_id)
+                    yield sse("done", {"ok": True})
             except asyncio.CancelledError:
                 outcome = "interrupted"
                 raise
@@ -1141,22 +1175,41 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                     yield sse("policy", {**policy, "stop_reason": "failed"})
                 yield sse("error", {"message": "问答未完成，请检查模型配置或稍后重试"})
             finally:
-                try:
-                    await asyncio.to_thread(
-                        app.state.runs.update, payload.run_id, status=outcome,
-                        ended_at=datetime.now(UTC).isoformat(),
-                        metrics={"usage": usage.snapshot(), "telemetry": telemetry},
-                        citations=[{"doc_id": s.get("doc_id", ""), "corpus_id": s.get("corpus_id", ""),
-                                    "version": s.get("version", ""), "title": s.get("title", ""),
-                                    "page": s.get("page")} for s in sources])
-                except Exception:  # noqa: BLE001 - snapshot bookkeeping must not break the stream
-                    logger.warning("run snapshot update failed: %s", payload.run_id)
+                if not snapshot_finished:
+                    try:
+                        await persist_outcome()
+                    except Exception:  # noqa: BLE001 - snapshot bookkeeping must not break the stream
+                        logger.warning("run snapshot update failed: %s", payload.run_id)
 
         return StreamingResponse(
             stream(),
             media_type="text/event-stream",
             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
         )
+
+    async def ensure_report_artifact(report: dict) -> None:
+        """Repair the report→artifact link after a retry, without changing a saved report."""
+        run_id = report.get("run_id", "")
+        try:
+            snapshot = await asyncio.to_thread(app.state.runs.get, run_id)
+            if (snapshot.get("run_type") != "report" or snapshot.get("status") != "completed"
+                    or snapshot.get("metrics", {}).get("report_id") != report["report_id"]):
+                return
+            await asyncio.to_thread(app.state.artifacts.ensure_report, report)
+        except Exception:  # noqa: BLE001 - the saved report remains readable through compatibility
+            logger.warning("artifact link unavailable for report run: %s", run_id)
+
+    async def record_report_failure(run_id: str, payload: ReportRequest, reason: str) -> None:
+        try:
+            await asyncio.to_thread(app.state.runs.update, run_id, status="failed",
+                                    ended_at=datetime.now(UTC).isoformat())
+            await asyncio.to_thread(app.state.artifacts.record_failed_report,
+                                    run_id=run_id, title=payload.domain,
+                                    session_key=payload.session_key or "",
+                                    corpus_id=payload.corpus_id or "",
+                                    template_id=payload.template_id, reason=reason)
+        except Exception:  # noqa: BLE001 - bookkeeping cannot mask the generation error
+            logger.warning("failed report status unavailable for run: %s", run_id)
 
     @app.get("/api/reports")
     async def list_reports(session_key: str | None = None, run_id: str | None = None, limit: int = 20):
@@ -1220,6 +1273,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         if payload.run_id:  # M3: idempotent per (session_key, run_id), same fingerprint only
             existing = await asyncio.to_thread(app.state.reports.find, session_key, payload.run_id)
             if existing is not None:
+                await ensure_report_artifact(existing)
                 return JSONResponse({**existing, "idempotent": True}, status_code=200)
         if not created and snapshot.get("status") == "running":
             # A1: a second request while this report run is still generating must not race it.
@@ -1228,12 +1282,12 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         try:
             markdown = await generate_markdown(kn, settings, payload.model_dump())
         except ValueError as exc:
-            try:
-                await asyncio.to_thread(app.state.runs.update, run_id, status="failed",
-                                        ended_at=datetime.now(UTC).isoformat())
-            except Exception:  # noqa: BLE001 - snapshot bookkeeping must not mask the report error
-                logger.warning("run snapshot update failed: %s", run_id)
+            await record_report_failure(run_id, payload, str(exc))
             raise HTTPException(422, str(exc)) from exc
+        except Exception as exc:  # noqa: BLE001 - provider details stay out of the API response
+            await record_report_failure(run_id, payload, "报告生成失败")
+            logger.warning("report generation failed: %s", type(exc).__name__)
+            raise HTTPException(500, "报告生成失败，请检查模型配置或稍后重试") from exc
         report_id = uuid4().hex
         await asyncio.to_thread(app.state.reports.save, report_id, payload.model_dump(), markdown,
                                 session_key=session_key, run_id=run_id,
@@ -1245,14 +1299,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except Exception:  # noqa: BLE001 - the report is already saved; snapshot is best-effort here
             logger.warning("run snapshot update failed: %s", run_id)
         try:
-            # W3-B: a successful report automatically becomes an artifact linked to its run.
-            await asyncio.to_thread(
-                app.state.artifacts.create, uuid4().hex, type="report", title=payload.domain,
-                markdown=markdown, session_key=session_key, run_id=run_id,
-                corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
-                task_id="task4", template_id=payload.template_id)
-        except Exception:  # noqa: BLE001 - the report itself is already saved
-            logger.warning("artifact create failed for report run: %s", run_id)
+            await ensure_report_artifact(await asyncio.to_thread(app.state.reports.get, report_id))
+        except KeyError:  # pragma: no cover - report was just saved in this request
+            logger.warning("saved report could not be read for artifact linking: %s", report_id)
         return JSONResponse({"report_id": report_id, "params": payload.model_dump(), "markdown": markdown,
                              "run_id": run_id, "idempotent": False}, status_code=201)
 
@@ -1281,56 +1330,114 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 "task_id": "task4", "template_id": report.get("template_id", ""),
                 "export_format": "md", "export_status": "", "fail_reason": "", "legacy": True}
 
-    async def resolve_artifact(artifact_id: str) -> dict:
+    async def resolve_artifact(artifact_id: str, version: int | None = None) -> dict:
         """Fetch an artifact, falling back to the compatible report source for legacy ids."""
         if artifact_id.startswith("report:"):
             try:
                 report = await asyncio.to_thread(app.state.reports.get, artifact_id[len("report:"):])
             except KeyError as exc:
                 raise HTTPException(404, "成果不存在") from exc
-            return {**artifact_from_report(report), "markdown": report["markdown"], "citations": []}
+            if version not in (None, 1):
+                raise HTTPException(404, "成果版本不存在")
+            available = await asyncio.to_thread(app.state.runs.existing_ids, [report.get("run_id", "")])
+            return {**artifact_from_report(report), "version": 1,
+                    "markdown": report["markdown"], "citations": [],
+                    "run_available": report.get("run_id", "") in available}
         try:
-            return await asyncio.to_thread(app.state.artifacts.get, artifact_id)
+            item = await asyncio.to_thread(app.state.artifacts.get, artifact_id, version)
         except KeyError as exc:
             raise HTTPException(404, "成果不存在") from exc
+        available = await asyncio.to_thread(app.state.runs.existing_ids, [item.get("run_id", "")])
+        return {**item, "run_available": item.get("run_id", "") in available}
 
     @app.get("/api/artifacts")
     async def list_artifacts(session_key: str | None = None, type: str | None = None,
                              status: str | None = None, limit: int = 50):
         """§16.15: omitted session_key = global; explicit empty string = empty-session filter."""
+        limit = max(1, min(limit, 200))
         items = await asyncio.to_thread(app.state.artifacts.list, session_key=session_key,
                                         type=type, status=status, limit=limit)
         if type in (None, "report") and status in (None, "completed"):
-            # Compatible read of legacy reports (no rewrite); skip ones already linked by run_id.
-            linked_runs = {item["run_id"] for item in items if item.get("run_id")}
-            reports = await asyncio.to_thread(app.state.reports.list, session_key=session_key, limit=limit)
-            items.extend(artifact_from_report(report) for report in reports
-                         if not report.get("run_id") or report["run_id"] not in linked_runs)
+            # The visible artifact page is insufficient for dedup: a linked report can sit
+            # beyond it. Page through read-only legacy rows until the requested window fills.
+            linked_runs = await asyncio.to_thread(app.state.artifacts.report_run_ids)
+            offset, legacy = 0, []
+            while len(legacy) < limit:
+                reports = await asyncio.to_thread(app.state.reports.list,
+                                                  session_key=session_key, limit=100, offset=offset)
+                if not reports:
+                    break
+                legacy.extend(artifact_from_report(report) for report in reports
+                              if not report.get("run_id") or report["run_id"] not in linked_runs)
+                offset += len(reports)
+                if len(reports) < 100:
+                    break
+            items.extend(legacy[:limit])
         items.sort(key=lambda item: item.get("created_at", ""), reverse=True)
-        return items[:max(1, min(limit, 200))]
+        items = items[:limit]
+        available = await asyncio.to_thread(app.state.runs.existing_ids,
+                                            [item.get("run_id", "") for item in items])
+        return [{**item, "run_available": item.get("run_id", "") in available} for item in items]
 
     @app.post("/api/artifacts", status_code=201)
     async def create_artifact(payload: ArtifactCreate):
-        """Save a run's result as a traceable artifact; it must reference a persisted run."""
+        """Save only the exact completed chat output as an original answer snapshot."""
         try:
             snapshot = await asyncio.to_thread(app.state.runs.get, payload.run_id)
         except KeyError as exc:
             raise HTTPException(422, "该运行没有持久化记录，不能保存为可追溯成果") from exc
+        if payload.type != "answer_snapshot" or snapshot.get("run_type") != "chat":
+            raise HTTPException(422, "此入口只能保存问答运行的回答快照")
+        if snapshot.get("status") != "completed":
+            raise HTTPException(422, "运行尚未完成，不能保存原始回答快照")
+        expected_hash = snapshot.get("answer_sha256")
+        if not expected_hash:
+            raise HTTPException(422, "该运行没有可核验的输出；旧运行不能保存为原始回答快照")
+        if hashlib.sha256(payload.markdown.encode("utf-8")).hexdigest() != expected_hash:
+            raise HTTPException(422, "成果正文与该次运行的实际回答不一致")
+        if payload.session_key is not None and payload.session_key != snapshot.get("session_key", ""):
+            raise HTTPException(422, "成果会话与来源运行不一致")
+        if payload.corpus_ids is not None and payload.corpus_ids != snapshot.get("effective_corpus_ids", []):
+            raise HTTPException(422, "成果知识库范围与来源运行不一致")
         title = payload.title.strip() or (payload.markdown.strip().splitlines() or ["未命名成果"])[0][:60]
         created = await asyncio.to_thread(
-            app.state.artifacts.create, uuid4().hex, type=payload.type, title=title,
-            markdown=payload.markdown, session_key=payload.session_key or snapshot.get("session_key", ""),
-            run_id=payload.run_id, corpus_ids=payload.corpus_ids or snapshot.get("effective_corpus_ids", []),
-            task_id=snapshot.get("task_id", ""), citations=snapshot.get("citations", []))
+            app.state.artifacts.create, uuid4().hex, type="answer_snapshot", title=title,
+            markdown=payload.markdown, session_key=snapshot.get("session_key", ""),
+            run_id=payload.run_id, corpus_ids=snapshot.get("effective_corpus_ids", []),
+            task_id=snapshot.get("task_id", ""), citations=snapshot.get("citations", []),
+            source_verification="verified")
         return created
 
     @app.get("/api/artifacts/{artifact_id}")
-    async def get_artifact(artifact_id: str):
-        return await resolve_artifact(artifact_id)
+    async def get_artifact(artifact_id: str, version: int | None = None):
+        return await resolve_artifact(artifact_id, version)
+
+    @app.get("/api/artifacts/{artifact_id}/versions")
+    async def list_artifact_versions(artifact_id: str):
+        if artifact_id.startswith("report:"):
+            await resolve_artifact(artifact_id)
+            return [{"version": 1, "status": "completed", "source_verification": "unverified"}]
+        try:
+            return await asyncio.to_thread(app.state.artifacts.list_versions, artifact_id)
+        except KeyError as exc:
+            raise HTTPException(404, "成果不存在") from exc
+
+    @app.post("/api/artifacts/{artifact_id}/versions", status_code=201)
+    async def add_artifact_version(artifact_id: str, payload: ArtifactVersionCreate):
+        if artifact_id.startswith("report:"):
+            raise HTTPException(409, "历史报告为只读兼容成果")
+        current = await resolve_artifact(artifact_id)
+        if current["status"] == "generating":
+            raise HTTPException(409, "成果生成中，不能编辑")
+        if current["status"] == "failed" and payload.status != "draft":
+            raise HTTPException(409, "失败成果须先保存为草稿再完成")
+        return await asyncio.to_thread(app.state.artifacts.add_version, artifact_id,
+                                       markdown=payload.markdown, citations=current["citations"],
+                                       status=payload.status)
 
     @app.get("/api/artifacts/{artifact_id}/export")
-    async def export_artifact(artifact_id: str, format: str = "md"):
-        item = await resolve_artifact(artifact_id)
+    async def export_artifact(artifact_id: str, format: str = "md", version: int | None = None):
+        item = await resolve_artifact(artifact_id, version)
         filename = artifact_id.replace(":", "-")
         if format == "md":
             return Response(item["markdown"], media_type="text/markdown; charset=utf-8",

@@ -107,6 +107,7 @@ export function ChatView() {
     inspectorOpen,
     toggleInspector,
     setTurnReport,
+    saveAnswerArtifact,
     exportChat,
     showToast,
   } = useApp();
@@ -282,6 +283,7 @@ export function ChatView() {
                         connected && ready ? () => void regenerateAt(i) : undefined
                       }
                       onReport={(report) => setTurnReport(i, report)}
+                      onSaveArtifact={turn.outcome === "completed" ? () => void saveAnswerArtifact(turn.runId, turn.answer) : undefined}
                       onDraft={() => setInput(turn.answer)}
                       onExport={(format) =>
                         void downloadTurn(

@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { fetchReports, type ReportSummary } from "../api";
+import { fetchArtifacts, type ArtifactSummary } from "../api";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
@@ -111,50 +111,54 @@ export function TasksView() {
   );
 }
 
+const ARTIFACT_TYPE_LABEL: Record<string, string> = { answer_snapshot: "回答快照", report: "报告" };
+
 export function ReportsView() {
   const { workspace, startTask, corpora, showInspector } = useApp();
-  const [reportList, setReportList] = useState<{ sessionKey: string; items: ReportSummary[] } | null>(null);
+  const [artifactList, setArtifactList] = useState<{ sessionKey: string; items: ArtifactSummary[] } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
     let active = true;
-    setReportList(null);
+    setArtifactList(null);
     setError("");
     setLoading(true);
-    // W0 deliberately stays within the active session. The global Artifact list belongs to W3.
+    // W3-B: the central page lists the active session's artifacts; the global list is the next slice.
     if (!workspace.active) {
       setLoading(false);
       return;
     }
-    void fetchReports(workspace.active).then(
-      (items) => { if (active) setReportList({ sessionKey: workspace.active, items }); },
-      (cause) => { if (active) setError(cause instanceof Error ? cause.message : "报告列表读取失败"); },
+    void fetchArtifacts(workspace.active).then(
+      (items) => { if (active) setArtifactList({ sessionKey: workspace.active, items }); },
+      (cause) => { if (active) setError(cause instanceof Error ? cause.message : "成果列表读取失败"); },
     ).finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
   }, [workspace.active]);
 
-  const reports = reportList?.sessionKey === workspace.active ? reportList.items : [];
+  const artifacts = artifactList?.sessionKey === workspace.active ? artifactList.items : [];
 
   return (
     <ViewShell
-      title="本会话报告"
-      description="查看当前会话生成的专项报告。选择“专项报告”任务、确认资料范围后，可在对话中生成新报告。"
+      title="本会话成果"
+      description="当前会话生成的成果（回答快照与专项报告）。跨会话成果库将在后续阶段开放。"
       actions={<Button onClick={() => void startTask("task4")}>新建专项报告</Button>}
     >
       {error ? <p role="alert" className="col-span-full text-[13px] text-[var(--red)]">{error}</p> : null}
-      {loading ? <p className="col-span-full text-[13px] text-[var(--steel)]">正在读取报告…</p> : null}
-      {!loading && !error && !reports.length ? (
-        <p className="col-span-full text-[13px] text-[var(--steel)]">本会话还没有报告。</p>
+      {loading ? <p className="col-span-full text-[13px] text-[var(--steel)]">正在读取成果…</p> : null}
+      {!loading && !error && !artifacts.length ? (
+        <p className="col-span-full text-[13px] text-[var(--steel)]">本会话还没有成果。可在回答操作条选择“保存为成果”。</p>
       ) : null}
-      {reports.map((report) => (
-        <button key={report.report_id} type="button" onClick={() => showInspector({ kind: "report", reportId: report.report_id, sessionKey: workspace.active })}
+      {artifacts.map((item) => (
+        <button key={item.artifact_id} type="button"
+          onClick={() => showInspector({ kind: "artifact", artifactId: item.artifact_id })}
           className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-left hover:border-[var(--primary)]">
-          <span className="block text-[14px] font-semibold text-[var(--ink)]">{report.domain || "未命名报告"}</span>
+          <span className="block text-[14px] font-semibold text-[var(--ink)]">{item.title || "未命名成果"}</span>
           <span className="mt-[5px] block text-[12px] text-[var(--steel)]">
-            {report.template_id || "模板未记录"} · {report.corpus_id
-              ? (corpora.find((corpus) => corpus.id === report.corpus_id)?.name ?? report.corpus_id)
-              : "来源库未记录"} · {report.created_at?.slice(0, 10) || "时间未记录"}
+            {ARTIFACT_TYPE_LABEL[item.type] ?? item.type} · 版本 {item.current_version} ·{" "}
+            {item.corpus_ids.length
+              ? item.corpus_ids.map((id) => corpora.find((corpus) => corpus.id === id)?.name ?? id).join("、")
+              : "来源库未记录"} · {item.created_at?.slice(0, 10) || "时间未记录"}
           </span>
         </button>
       ))}

@@ -11,6 +11,7 @@ import {
 } from "react";
 import {
   ApiError,
+  createArtifact,
   fetchCorpora,
   fetchTasks,
   ingestCorpus,
@@ -40,8 +41,9 @@ export type NavKey = "chat" | "tasks" | "library" | "reports" | "prompts";
 export type InspectorTarget = { kind: "overview" } | { kind: "task"; taskId: string } |
   { kind: "template"; templateId: string } |
   { kind: "corpus"; corpusId: string } | { kind: "report"; reportId: string; sessionKey: string } |
+  { kind: "artifact"; artifactId: string } |
   { kind: "document"; doc: DocumentInfo; page: number | null; corpusId: string } |
-  { kind: "execution" };
+  { kind: "execution"; runId?: string };
 
 function inspectorIdentity(target: InspectorTarget): string {
   switch (target.kind) {
@@ -50,8 +52,9 @@ function inspectorIdentity(target: InspectorTarget): string {
     case "template": return `template:${target.templateId}`;
     case "corpus": return `corpus:${target.corpusId}`;
     case "report": return `report:${target.sessionKey}:${target.reportId}`;
+    case "artifact": return `artifact:${target.artifactId}`;
     case "document": return `document:${target.corpusId}:${target.doc.doc_id}:${target.doc.version}:${target.page ?? 0}`;
-    case "execution": return "execution";
+    case "execution": return `execution:${target.runId ?? "latest"}`;
   }
 }
 export type EditState = { index: number; text: string } | null;
@@ -130,6 +133,8 @@ export interface AppValue {
   send: (regenerate?: boolean, override?: SendOverride) => Promise<void>;
   regenerateAt: (index: number) => Promise<void>;
   setTurnReport: (index: number, report: { report_id: string; markdown: string }) => void;
+  /** W3-B: save a completed answer as a traceable artifact linked to its run. */
+  saveAnswerArtifact: (runId: string, markdown: string, title?: string) => Promise<void>;
   stop: () => void;
   editing: EditState;
   setEditing: Dispatch<SetStateAction<EditState>>;
@@ -415,6 +420,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
       return next;
     });
     void workspace.saveNow(latestTurns.current, options);
+  }
+
+  async function saveAnswerArtifact(runId: string, markdown: string, title?: string) {
+    try {
+      const artifact = await createArtifact({
+        type: "answer_snapshot", run_id: runId, markdown,
+        session_key: workspace.active || undefined, title,
+      });
+      showToast(`已保存为成果「${artifact.title}」`);
+    } catch (e) {
+      setError(`保存成果失败：${(e as Error).message}`);
+    }
   }
 
   async function send(regenerate = false, override?: SendOverride) {
@@ -977,6 +994,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       send,
       regenerateAt,
       setTurnReport,
+      saveAnswerArtifact,
       stop,
       editing,
       setEditing,

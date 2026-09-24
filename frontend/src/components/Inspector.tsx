@@ -3,7 +3,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { fetchReport, fetchRun, fetchTemplate, fetchTemplates, type ReportInfo, type RunSnapshot, type TemplateInfo, type TemplateSummary } from "../api";
+import { artifactExportUrl, fetchArtifact, fetchReport, fetchRun, fetchTemplate, fetchTemplates, type ArtifactInfo, type ReportInfo, type RunSnapshot, type TemplateInfo, type TemplateSummary } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -15,6 +15,7 @@ type InspTab = "out" | "cite" | "src";
 const OUTCOME_LABEL: Record<string, string> = {
   running: "进行中", completed: "已完成", interrupted: "已中断", failed: "未完成", timed_out: "已超时",
 };
+const ARTIFACT_TYPE_LABEL: Record<string, string> = { answer_snapshot: "回答快照", report: "报告" };
 
 function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactNode }) {
   return (
@@ -64,6 +65,8 @@ export function Inspector() {
   const [tab, setTab] = useState<InspTab>("out");
   const [report, setReport] = useState<ReportInfo | null>(null);
   const [reportError, setReportError] = useState("");
+  const [artifact, setArtifact] = useState<ArtifactInfo | null>(null);
+  const [artifactError, setArtifactError] = useState("");
   const [template, setTemplate] = useState<TemplateInfo | null>(null);
   const [templateError, setTemplateError] = useState("");
   const [templateList, setTemplateList] = useState<TemplateSummary[]>([]);
@@ -85,6 +88,22 @@ export function Inspector() {
     );
     return () => { active = false; };
   }, [inspectorTarget.kind, inspectorTarget.kind === "report" ? inspectorTarget.reportId : ""]);
+
+  useEffect(() => {
+    if (inspectorTarget.kind !== "artifact") {
+      setArtifact(null);
+      setArtifactError("");
+      return;
+    }
+    let active = true;
+    setArtifact(null);
+    setArtifactError("");
+    void fetchArtifact(inspectorTarget.artifactId).then(
+      (item) => { if (active) setArtifact(item); },
+      (error) => { if (active) setArtifactError(error instanceof Error ? error.message : "成果读取失败"); },
+    );
+    return () => { active = false; };
+  }, [inspectorTarget.kind, inspectorTarget.kind === "artifact" ? inspectorTarget.artifactId : ""]);
 
   useEffect(() => {
     if (inspectorTarget.kind !== "template") {
@@ -112,8 +131,11 @@ export function Inspector() {
   }, []);
 
   // B2: read the persisted run snapshot back for the execution summary; a legacy run without one
-  // is shown as "运行信息未记录" instead of failing silently.
-  const executionRunId = turns[turns.length - 1]?.runId ?? "";
+  // is shown as "运行信息未记录" instead of failing silently. An artifact can target its own run.
+  const latestRunId = turns[turns.length - 1]?.runId ?? "";
+  const executionRunId = inspectorTarget.kind === "execution" && inspectorTarget.runId
+    ? inspectorTarget.runId : latestRunId;
+  const isLatestRun = executionRunId === latestRunId;
   useEffect(() => {
     if (inspectorTarget.kind !== "execution" || !executionRunId) {
       setRunSnapshot(null);
@@ -183,10 +205,11 @@ export function Inspector() {
             : inspectorTarget.kind === "corpus" ? "知识库预览"
             : inspectorTarget.kind === "document" ? "资料预览"
             : inspectorTarget.kind === "report" ? "报告预览"
+            : inspectorTarget.kind === "artifact" ? "成果预览"
             : inspectorTarget.kind === "execution" ? "执行摘要" : "检查器"}
         </span>
         <span className="min-w-0 flex-1 truncate text-[11.5px] text-[var(--stone)]">
-          {selectedTask?.name ?? selectedTemplate?.name ?? corpus?.name
+          {selectedTask?.name ?? selectedTemplate?.name ?? corpus?.name ?? artifact?.title
             ?? (inspectorTarget.kind === "document" ? inspectorTarget.doc.title
             : inspectorTarget.kind === "report" ? "本会话报告"
             : inspectorTarget.kind === "execution" ? "最近一轮回答"
@@ -302,6 +325,40 @@ export function Inspector() {
           </>
         ) : null}
 
+        {inspectorTarget.kind === "artifact" ? (
+          <>
+            <SectionTitle aside={<span className="text-[11px] text-[var(--stone)]">{artifact ? ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type : ""}</span>}>
+              成果
+            </SectionTitle>
+            {artifactError ? <p role="alert" className="text-[12px] text-[var(--red)]">{artifactError}</p> : null}
+            {!artifact && !artifactError ? <p className="text-[12px] text-[var(--steel)]">正在读取成果…</p> : null}
+            {artifact?.artifact_id === inspectorTarget.artifactId ? (
+              <Card>
+                <h2 className="text-[15px] font-semibold text-[var(--ink)]">{artifact.title}</h2>
+                <p className="mt-[6px] text-[11.5px] text-[var(--stone)]">
+                  {ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type} · 版本 {artifact.version}
+                  {artifact.legacy ? " · 历史报告（只读兼容）" : ""}
+                </p>
+                <p className="mt-[4px] break-all text-[11px] text-[var(--stone)]">
+                  来源运行：{artifact.run_id || "未记录"} · 会话：{artifact.session_key || "未记录"}
+                </p>
+                <div className="mt-[12px] flex flex-wrap gap-[8px]">
+                  <Button size="sm" onClick={() => void navigator.clipboard.writeText(artifact.markdown)}>复制</Button>
+                  <Button size="sm" variant="ghost" onClick={() => downloadText(artifact.markdown, `artifact-${artifact.artifact_id.slice(0, 8)}.md`)}>下载 .md</Button>
+                  <a href={artifactExportUrl(artifact.artifact_id, "docx")}
+                     className="font-app inline-flex h-[26px] items-center rounded-[6px] px-[8px] text-[12px] text-[var(--slate)] hover:bg-[var(--surface)]">
+                    导出 .docx
+                  </a>
+                  {artifact.run_id ? (
+                    <Button size="sm" variant="ghost" onClick={() => showInspector({ kind: "execution", runId: artifact.run_id })}>查看来源运行</Button>
+                  ) : null}
+                </div>
+                <div className="markdown mt-[12px]"><Markdown remarkPlugins={[remarkGfm]}>{artifact.markdown}</Markdown></div>
+              </Card>
+            ) : null}
+          </>
+        ) : null}
+
         {inspectorTarget.kind === "template" ? (
           <>
             <SectionTitle>输出模板</SectionTitle>
@@ -319,12 +376,12 @@ export function Inspector() {
 
         {inspectorTarget.kind === "execution" ? (
           <>
-            <SectionTitle aside={<span className="text-[11px] text-[var(--stone)]">{latest ? OUTCOME_LABEL[latest.outcome] ?? latest.outcome : "无"}</span>}>
+            <SectionTitle aside={<span className="text-[11px] text-[var(--stone)]">{runStatus ? OUTCOME_LABEL[runStatus] ?? runStatus : "无"}</span>}>
               运行概览
             </SectionTitle>
-            {!latest ? (
+            {!isLatestRun && !runSnapshot ? (
               <Card>
-                <p className="text-[12.5px] text-[var(--steel)]">当前会话还没有可展示的执行记录。</p>
+                <p className="text-[12.5px] text-[var(--steel)]">运行信息未记录（历史运行或快照写入失败）。</p>
               </Card>
             ) : (
               <>
@@ -334,10 +391,10 @@ export function Inspector() {
                     <p className="mt-[6px] text-[12px] text-[var(--steel)]">运行信息未记录（历史运行或快照写入失败）。</p>
                   ) : null}
                   <dl className="mt-[8px] grid grid-cols-[auto_1fr] gap-x-[10px] gap-y-[4px] text-[12px]">
-                    <dt className="text-[var(--stone)]">运行 ID</dt><dd className="truncate font-code text-[var(--charcoal)]">{latest.runId}</dd>
-                    <dt className="text-[var(--stone)]">状态</dt><dd className="text-[var(--charcoal)]">{OUTCOME_LABEL[runStatus] ?? runStatus}</dd>
-                    <dt className="text-[var(--stone)]">总耗时</dt><dd className="text-[var(--charcoal)]">{latest.totalMs != null ? formatDuration(latest.totalMs) : "未提供"}</dd>
-                    <dt className="text-[var(--stone)]">首 token</dt><dd className="text-[var(--charcoal)]">{latest.firstTokenMs != null ? formatDuration(latest.firstTokenMs) : "未收到正文"}</dd>
+                    <dt className="text-[var(--stone)]">运行 ID</dt><dd className="truncate font-code text-[var(--charcoal)]">{executionRunId || "未记录"}</dd>
+                    <dt className="text-[var(--stone)]">状态</dt><dd className="text-[var(--charcoal)]">{(OUTCOME_LABEL[runStatus] ?? runStatus) || "未记录"}</dd>
+                    <dt className="text-[var(--stone)]">总耗时</dt><dd className="text-[var(--charcoal)]">{isLatestRun && latest?.totalMs != null ? formatDuration(latest.totalMs) : isLatestRun ? "未提供" : "未记录（仅快照）"}</dd>
+                    <dt className="text-[var(--stone)]">首 token</dt><dd className="text-[var(--charcoal)]">{isLatestRun && latest?.firstTokenMs != null ? formatDuration(latest.firstTokenMs) : isLatestRun ? "未收到正文" : "未记录（仅快照）"}</dd>
                     <dt className="text-[var(--stone)]">模型</dt><dd className="truncate text-[var(--charcoal)]">{runModel || "未记录"}</dd>
                     <dt className="text-[var(--stone)]">资源策略</dt><dd className="text-[var(--charcoal)]">{runPolicy || "未记录"}</dd>
                     <dt className="text-[var(--stone)]">服务端实际范围</dt><dd className="text-[var(--charcoal)]">{effectiveScopeLabel || "未记录"}</dd>
@@ -346,7 +403,7 @@ export function Inspector() {
 
                 <Card className="mb-[10px]">
                   <div className="text-[12.8px] font-medium text-[var(--ink)]">执行阶段</div>
-                  {latest.steps?.length ? (
+                  {isLatestRun && latest?.steps?.length ? (
                     <ol className="mt-[8px] space-y-[6px]">
                       {latest.steps.map((step) => (
                         <li key={`${step.id}-${step.sequence}-${step.status}`} className="flex items-center gap-[8px] text-[12px]">
@@ -357,17 +414,21 @@ export function Inspector() {
                         </li>
                       ))}
                     </ol>
-                  ) : <p className="mt-[6px] text-[12px] text-[var(--steel)]">没有阶段记录。</p>}
+                  ) : <p className="mt-[6px] text-[12px] text-[var(--steel)]">{isLatestRun ? "没有阶段记录。" : "仅保留运行快照，阶段明细未记录。"}</p>}
                 </Card>
 
                 <Card>
                   <div className="text-[12.8px] font-medium text-[var(--ink)]">检索与用量</div>
-                  <p className="mt-[6px] text-[12px] leading-[1.6] text-[var(--steel)]">
-                    路径 {latest.telemetry?.path ?? "未记录"} · 命中片段 {latest.telemetry?.chunks_retrieved ?? "未记录"} · 选中报告 {latest.telemetry?.reports_selected ?? "未记录"} · 上下文 {latest.telemetry?.context_tokens ?? "未记录"} tokens
-                  </p>
-                  <p className="mt-[5px] text-[12px] leading-[1.6] text-[var(--steel)]">
-                    输入 {latest.usage?.input_tokens ?? "未提供"} · 输出 {latest.usage?.output_tokens ?? "未提供"} · 总 {latest.usage?.total_tokens ?? "未提供"} · 调用 {latest.usage?.calls ?? 0} 次
-                  </p>
+                  {isLatestRun ? (
+                    <>
+                      <p className="mt-[6px] text-[12px] leading-[1.6] text-[var(--steel)]">
+                        路径 {latest?.telemetry?.path ?? "未记录"} · 命中片段 {latest?.telemetry?.chunks_retrieved ?? "未记录"} · 选中报告 {latest?.telemetry?.reports_selected ?? "未记录"} · 上下文 {latest?.telemetry?.context_tokens ?? "未记录"} tokens
+                      </p>
+                      <p className="mt-[5px] text-[12px] leading-[1.6] text-[var(--steel)]">
+                        输入 {latest?.usage?.input_tokens ?? "未提供"} · 输出 {latest?.usage?.output_tokens ?? "未提供"} · 总 {latest?.usage?.total_tokens ?? "未提供"} · 调用 {latest?.usage?.calls ?? 0} 次
+                      </p>
+                    </>
+                  ) : <p className="mt-[6px] text-[12px] leading-[1.6] text-[var(--steel)]">{"实时阶段与用量仅对最近一轮可见；来源运行的快照指标通过 GET /api/runs/<id> 回读。"}</p>}
                 </Card>
               </>
             )}

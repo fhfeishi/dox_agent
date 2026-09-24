@@ -424,6 +424,7 @@ export function MessageView({
   onReport,
   onDraft,
   onExport,
+  onSaveArtifact,
   defaultOpen = false,
   compact = false,
 }: {
@@ -434,6 +435,7 @@ export function MessageView({
   onReport?: (report: { report_id: string; markdown: string }) => void;
   onDraft?: () => void;
   onExport?: (format: "md" | "word") => void;
+  onSaveArtifact?: () => void;
   defaultOpen?: boolean;
   compact?: boolean;
 }) {
@@ -559,6 +561,18 @@ export function MessageView({
                 导出 Word
               </button>
             </>
+          ) : null}
+          {onSaveArtifact && attempt.outcome === "completed" && attempt.answer ? (
+            <button
+              type="button"
+              aria-label="保存为成果"
+              onClick={onSaveArtifact}
+              title="把这条回答保存为可追溯成果"
+              className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-[12px] text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
+            >
+              <Icon name="library" size={13} strokeWidth={1.9} />
+              保存为成果
+            </button>
           ) : null}
           {onRegenerate ? (
             <button

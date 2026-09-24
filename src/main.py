@@ -36,6 +36,8 @@ from .agent.corpora import (
 from .agent.graph import build_graph
 from .agent.models import tracing
 from .agent.usage import TurnUsage
+from .artifacts import ArtifactStore
+from .docx_export import markdown_to_docx
 from .knowledge import Knowledge, KnowledgeGroup
 from .official_docs import import_official
 from .parsers import collect_sources, import_defaults, parse_web
@@ -148,6 +150,16 @@ class OfficialRequest(BaseModel):
     sections: list[Literal["langchain", "langgraph", "deepagents"]] = Field(default=["langchain", "langgraph", "deepagents"], min_length=1, max_length=3)
 
 
+class ArtifactCreate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    type: Literal["answer_snapshot", "report"] = "answer_snapshot"
+    run_id: str = Field(min_length=8, max_length=80)
+    title: str = Field(default="", max_length=200)
+    markdown: str = Field(min_length=1, max_length=500000)
+    session_key: str | None = Field(default=None, max_length=120)
+    corpus_ids: list[str] | None = Field(default=None, max_length=6)
+
+
 class CorpusCreate(BaseModel):
     model_config = ConfigDict(extra="forbid")
     name: str = Field(min_length=1, max_length=80)
@@ -212,6 +224,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.reports = ReportStore(settings.state_dir / "reports.sqlite3")
         # W3-A: run snapshots live with the other application-level state.
         app.state.runs = RunStore(settings.state_dir / "runs.sqlite3")
+        # W3-B: first-class artifacts (answer snapshots + reports) in application state.
+        app.state.artifacts = ArtifactStore(settings.state_dir / "artifacts.sqlite3")
         app.state.import_lock = asyncio.Lock()
         app.state.preview = None
         app.state.official_job = {"status": "idle", "total": 0, "completed": 0, "imported": 0, "changed": 0, "errors": []}
@@ -1230,6 +1244,15 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                     metrics={"report_id": report_id})
         except Exception:  # noqa: BLE001 - the report is already saved; snapshot is best-effort here
             logger.warning("run snapshot update failed: %s", run_id)
+        try:
+            # W3-B: a successful report automatically becomes an artifact linked to its run.
+            await asyncio.to_thread(
+                app.state.artifacts.create, uuid4().hex, type="report", title=payload.domain,
+                markdown=markdown, session_key=session_key, run_id=run_id,
+                corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
+                task_id="task4", template_id=payload.template_id)
+        except Exception:  # noqa: BLE001 - the report itself is already saved
+            logger.warning("artifact create failed for report run: %s", run_id)
         return JSONResponse({"report_id": report_id, "params": payload.model_dump(), "markdown": markdown,
                              "run_id": run_id, "idempotent": False}, status_code=201)
 
@@ -1247,6 +1270,76 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             return await asyncio.to_thread(app.state.runs.get, run_id)
         except KeyError as exc:
             raise HTTPException(404, "运行记录未记录") from exc
+
+    def artifact_from_report(report: dict) -> dict:
+        """§16.15: legacy reports read back as ``type=report`` artifacts without rewriting them."""
+        return {"artifact_id": "report:" + report["report_id"], "type": "report", "status": "completed",
+                "title": report.get("domain") or "未命名报告", "current_version": 1,
+                "created_at": report.get("created_at", ""), "updated_at": report.get("created_at", ""),
+                "session_key": report.get("session_key", ""), "run_id": report.get("run_id", ""),
+                "corpus_ids": [report["corpus_id"]] if report.get("corpus_id") else [],
+                "task_id": "task4", "template_id": report.get("template_id", ""),
+                "export_format": "md", "export_status": "", "fail_reason": "", "legacy": True}
+
+    async def resolve_artifact(artifact_id: str) -> dict:
+        """Fetch an artifact, falling back to the compatible report source for legacy ids."""
+        if artifact_id.startswith("report:"):
+            try:
+                report = await asyncio.to_thread(app.state.reports.get, artifact_id[len("report:"):])
+            except KeyError as exc:
+                raise HTTPException(404, "成果不存在") from exc
+            return {**artifact_from_report(report), "markdown": report["markdown"], "citations": []}
+        try:
+            return await asyncio.to_thread(app.state.artifacts.get, artifact_id)
+        except KeyError as exc:
+            raise HTTPException(404, "成果不存在") from exc
+
+    @app.get("/api/artifacts")
+    async def list_artifacts(session_key: str | None = None, type: str | None = None,
+                             status: str | None = None, limit: int = 50):
+        """§16.15: omitted session_key = global; explicit empty string = empty-session filter."""
+        items = await asyncio.to_thread(app.state.artifacts.list, session_key=session_key,
+                                        type=type, status=status, limit=limit)
+        if type in (None, "report") and status in (None, "completed"):
+            # Compatible read of legacy reports (no rewrite); skip ones already linked by run_id.
+            linked_runs = {item["run_id"] for item in items if item.get("run_id")}
+            reports = await asyncio.to_thread(app.state.reports.list, session_key=session_key, limit=limit)
+            items.extend(artifact_from_report(report) for report in reports
+                         if not report.get("run_id") or report["run_id"] not in linked_runs)
+        items.sort(key=lambda item: item.get("created_at", ""), reverse=True)
+        return items[:max(1, min(limit, 200))]
+
+    @app.post("/api/artifacts", status_code=201)
+    async def create_artifact(payload: ArtifactCreate):
+        """Save a run's result as a traceable artifact; it must reference a persisted run."""
+        try:
+            snapshot = await asyncio.to_thread(app.state.runs.get, payload.run_id)
+        except KeyError as exc:
+            raise HTTPException(422, "该运行没有持久化记录，不能保存为可追溯成果") from exc
+        title = payload.title.strip() or (payload.markdown.strip().splitlines() or ["未命名成果"])[0][:60]
+        created = await asyncio.to_thread(
+            app.state.artifacts.create, uuid4().hex, type=payload.type, title=title,
+            markdown=payload.markdown, session_key=payload.session_key or snapshot.get("session_key", ""),
+            run_id=payload.run_id, corpus_ids=payload.corpus_ids or snapshot.get("effective_corpus_ids", []),
+            task_id=snapshot.get("task_id", ""), citations=snapshot.get("citations", []))
+        return created
+
+    @app.get("/api/artifacts/{artifact_id}")
+    async def get_artifact(artifact_id: str):
+        return await resolve_artifact(artifact_id)
+
+    @app.get("/api/artifacts/{artifact_id}/export")
+    async def export_artifact(artifact_id: str, format: str = "md"):
+        item = await resolve_artifact(artifact_id)
+        filename = artifact_id.replace(":", "-")
+        if format == "md":
+            return Response(item["markdown"], media_type="text/markdown; charset=utf-8",
+                            headers={"Content-Disposition": f'attachment; filename="{filename}.md"'})
+        if format == "docx":
+            data = await asyncio.to_thread(markdown_to_docx, item["markdown"])
+            return Response(data, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                            headers={"Content-Disposition": f'attachment; filename="{filename}.docx"'})
+        raise HTTPException(422, "首期仅支持 md / docx 导出")
 
     @app.get("/api/reports/{report_id}/export")
     async def export_report(report_id: str, format: str = "md"):

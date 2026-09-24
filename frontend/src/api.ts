@@ -139,6 +139,43 @@ export async function fetchReport(reportId: string): Promise<ReportInfo> {
   return jsonOrThrow(response, "报告不可用") as Promise<ReportInfo>;
 }
 
+export type ArtifactSummary = {
+  artifact_id: string; type: string; status: string; title: string; current_version: number;
+  created_at: string; updated_at: string; session_key: string; run_id: string; corpus_ids: string[];
+  task_id: string; template_id: string; export_format: string; export_status: string;
+  fail_reason: string; legacy?: boolean;
+};
+export type ArtifactInfo = ArtifactSummary & {
+  version: number; markdown: string; citations: { doc_id: string; version: string; page?: number | null }[];
+};
+
+/** W3-B: artifacts for one session (undefined = global list; "" filters empty session). */
+export async function fetchArtifacts(sessionKey?: string, signal?: AbortSignal): Promise<ArtifactSummary[]> {
+  const query = sessionKey === undefined ? "" : `?session_key=${encodeURIComponent(sessionKey)}`;
+  const response = await fetch(`/api/artifacts${query}`, signal ? { signal } : undefined);
+  if (!response.ok) throw new Error("成果列表不可用（" + response.status + "）");
+  return response.json();
+}
+
+export async function fetchArtifact(artifactId: string): Promise<ArtifactInfo> {
+  const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}`);
+  return jsonOrThrow(response, "成果不可用") as Promise<ArtifactInfo>;
+}
+
+export async function createArtifact(params: {
+  type?: string; run_id: string; markdown: string; title?: string; session_key?: string; corpus_ids?: string[];
+}): Promise<ArtifactInfo> {
+  const response = await fetch("/api/artifacts", {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(params),
+  });
+  return jsonOrThrow(response, "保存成果失败") as Promise<ArtifactInfo>;
+}
+
+/** W3-B: direct export URL (real .docx or .md); opening it triggers the download. */
+export function artifactExportUrl(artifactId: string, format: "md" | "docx"): string {
+  return `/api/artifacts/${encodeURIComponent(artifactId)}/export?format=${format}`;
+}
+
 export type RunSnapshot = {
   contract_version: number; run_id: string; created_at: string; updated_at: string;
   session_key: string; parent_run_id: string; run_type: string; status: string;

@@ -80,6 +80,7 @@ export function Composer() {
     ingestBusy,
     showToast,
     status,
+    model,
   } = useApp();
 
   const [popOpen, setPopOpen] = useState(false);
@@ -253,6 +254,12 @@ export function Composer() {
             </span>
           ) : null}
         </div>
+
+        <p aria-label="本次运行配置" className="mb-[7px] text-[11px] leading-[1.5] text-[var(--stone)]">
+          本次配置：{activeTask?.name ?? taskId} · {corpusIds.length
+            ? corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")
+            : "未选择知识库"} · {scoped ? `限定 ${scoped} 份资料` : "全部已入库资料"} · 本地资料 · 网络关闭 · {model || "模型未记录"} · {taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}
+        </p>
 
         {corpusOpen ? (
           <div ref={corpusRef} className="mb-[8px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] shadow-[0_8px_24px_-12px_rgba(15,15,15,0.2)]">

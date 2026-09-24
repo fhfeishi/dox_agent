@@ -60,6 +60,7 @@ export function SidePanel() {
   } = useApp();
 
   const [query, setQuery] = useState("");
+  const [sessionFilter, setSessionFilter] = useState<"all" | "pinned">("all");
   const [reports, setReports] = useState<ReportSummary[]>([]);
 
   useEffect(() => {
@@ -91,13 +92,39 @@ export function SidePanel() {
         s.title.toLowerCase().includes(q),
     );
   const sessions = allSessions.filter(
-    (s) => !s.data.archived && !isLegacyBranch(s) && s.title.toLowerCase().includes(q),
+    (s) => !s.data.archived && !isLegacyBranch(s) && s.title.toLowerCase().includes(q)
+      && (sessionFilter === "all" || s.data.pinned),
   );
   const archived = allSessions.filter((s) => s.data.archived);
   const visibleKbs = corpora.filter((c) => c.name.toLowerCase().includes(q));
   const visibleTasks = tasks.filter((t) => `${t.name} ${t.description}`.toLowerCase().includes(q));
 
-  const unsaved = !allSessions.some((s) => s.id === workspace.active) && !q;
+  const unsaved = !allSessions.some((s) => s.id === workspace.active) && !q && sessionFilter === "all";
+  const sessionEntry = (session: Saved<SessionData>) => (
+    <Fragment key={session.id}>
+      <SessionRow
+        id={session.id} title={session.title} active={session.id === workspace.active}
+        pinned={Boolean(session.data.pinned)}
+        taskName={session.data.task_id ? taskNames[session.data.task_id] : undefined}
+        disabled={!workspace.loaded || sessionBusy}
+        onSelect={() => void switchSession(session.id)}
+        onRename={(title) => void workspace.rename(title, session.id)}
+        onArchive={() => void workspace.setArchived(session.id, true)}
+        onPin={() => void workspace.setPinned(session.id, !session.data.pinned)}
+      />
+      {childrenOf(session.id).length ? (
+        <ul className="mb-[2px] ml-[14px] space-y-[1px] border-l border-[var(--hairline)] pl-[8px]">
+          {childrenOf(session.id).map((child) => (
+            <li key={child.id}><button type="button" disabled={!workspace.loaded || sessionBusy}
+              onClick={() => void switchSession(child.id)}
+              className="w-full truncate rounded-[6px] px-[8px] py-[6px] text-left text-[12px] text-[var(--steel)] transition-colors hover:bg-[#f1efec] disabled:opacity-40">
+              {child.title} <span className="text-[var(--stone)]">· 历史分支</span>
+            </button></li>
+          ))}
+        </ul>
+      ) : null}
+    </Fragment>
+  );
 
   return (
     <aside className="flex w-[276px] shrink-0 flex-col border-r border-[var(--hairline)] bg-[var(--surface-soft)]">
@@ -175,6 +202,12 @@ export function SidePanel() {
 
         {nav === "chat" && (
           <>
+            <div className="flex gap-[6px] px-[8px] pt-[4px]">
+              <button type="button" aria-label="全部会话" onClick={() => setSessionFilter("all")}
+                className={`rounded-full px-[9px] py-[4px] text-[11px] ${sessionFilter === "all" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)]"}`}>全部</button>
+              <button type="button" aria-label="仅看置顶" onClick={() => setSessionFilter("pinned")}
+                className={`rounded-full px-[9px] py-[4px] text-[11px] ${sessionFilter === "pinned" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)]"}`}>置顶</button>
+            </div>
             {unsaved && (
               <div>
                 <GroupLabel className="pt-[2px]">今天</GroupLabel>
@@ -186,44 +219,20 @@ export function SidePanel() {
                 />
               </div>
             )}
+            {sessions.some((session) => session.data.pinned) ? (
+              <div><GroupLabel className="pt-[2px]">置顶会话</GroupLabel>
+                {sessions.filter((session) => session.data.pinned).map(sessionEntry)}
+              </div>
+            ) : null}
             {(["今天", "昨天", "更早"] as const).map((group) => {
-              const items = sessions.filter((s) => groupOf(sessionTime(s)) === group);
+              const items = sessions.filter((s) => !s.data.pinned && groupOf(sessionTime(s)) === group);
               if (!items.length) return null;
               return (
                 <div key={group}>
                   <GroupLabel className={unsaved || group !== "今天" ? "" : "pt-[2px]"}>
                     {group}
                   </GroupLabel>
-                  {items.map((session) => (
-                    <Fragment key={session.id}>
-                      <SessionRow
-                        id={session.id}
-                        title={session.title}
-                        active={session.id === workspace.active}
-                        taskName={session.data.task_id ? taskNames[session.data.task_id] : undefined}
-                        disabled={!workspace.loaded || sessionBusy}
-                        onSelect={() => void switchSession(session.id)}
-                        onRename={(title) => void workspace.rename(title, session.id)}
-                        onArchive={() => void workspace.setArchived(session.id, true)}
-                      />
-                      {childrenOf(session.id).length ? (
-                        <ul className="mb-[2px] ml-[14px] space-y-[1px] border-l border-[var(--hairline)] pl-[8px]">
-                          {childrenOf(session.id).map((child) => (
-                            <li key={child.id}>
-                              <button
-                                type="button"
-                                disabled={!workspace.loaded || sessionBusy}
-                                onClick={() => void switchSession(child.id)}
-                                className="w-full truncate rounded-[6px] px-[8px] py-[6px] text-left text-[12px] text-[var(--steel)] transition-colors hover:bg-[#f1efec] disabled:opacity-40"
-                              >
-                                {child.title} <span className="text-[var(--stone)]">· 历史分支</span>
-                              </button>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-                    </Fragment>
-                  ))}
+                  {items.map(sessionEntry)}
                 </div>
               );
             })}
@@ -232,7 +241,7 @@ export function SidePanel() {
                 {q ? "没有匹配的会话。" : "还没有会话。"}
               </p>
             )}
-            {!!archived.length && (
+            {sessionFilter === "all" && !!archived.length && (
               <details className="px-[8px] pt-[10px] text-[12px]">
                 <summary className="cursor-pointer text-[var(--steel)]">
                   已归档会话 · {archived.length}
@@ -443,20 +452,24 @@ function SessionRow({
   id,
   title,
   active,
+  pinned,
   taskName,
   disabled,
   onSelect,
   onRename,
   onArchive,
+  onPin,
 }: {
   id: string;
   title: string;
   active: boolean;
+  pinned: boolean;
   taskName?: string;
   disabled: boolean;
   onSelect: () => void;
   onRename: (title: string) => void;
   onArchive: () => void;
+  onPin: () => void;
 }) {
   const [editing, setEditing] = useState<string | null>(null);
   const [draft, setDraft] = useState(title);
@@ -499,6 +512,7 @@ function SessionRow({
         }`}
       >
         <span className="min-w-0 flex-1 truncate text-[13px]">{title || "未命名会话"}</span>
+        {pinned ? <span className="shrink-0 text-[10px] text-[var(--primary)]">置顶</span> : null}
         {taskName && (
           <span className="shrink-0 rounded-[4px] bg-[var(--tint-lavender)] px-[5px] py-[1px] text-[10px] font-semibold text-[var(--purple)]">
             {taskName}
@@ -506,6 +520,10 @@ function SessionRow({
         )}
       </button>
       <span className="hidden shrink-0 items-center gap-[2px] group-hover:flex">
+        <button type="button" aria-label={pinned ? "取消置顶会话" : "置顶会话"}
+          title={pinned ? "取消置顶" : "置顶"}
+          className="rounded-[5px] px-[3px] py-[2px] text-[10px] text-[var(--steel)] hover:bg-[var(--surface)]"
+          onClick={onPin}>{pinned ? "取消" : "置顶"}</button>
         <button
           type="button"
           aria-label="重命名会话"

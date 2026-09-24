@@ -5,7 +5,7 @@ import { createBranch as makeBranch, deepCopy, trimBranches, type Branch } from 
 
 export type Saved<T = Record<string, unknown>> = { id: string; revision: number; title: string; data: T; updated_at?: string; source_status?: string };
 /** U1.2: `task_id` binds a session to one task; it lives next to `options`, not inside it. */
-export type SessionData = { turns: Turn[]; options: Options; archived?: boolean; branches?: Branch[]; task_id?: string; task_version?: number; corpus_id?: string; corpus_confirmed?: boolean; corpus_ids?: string[]; source_session_id?: string; source_turn_index?: number };
+export type SessionData = { turns: Turn[]; options: Options; archived?: boolean; pinned?: boolean; branches?: Branch[]; task_id?: string; task_version?: number; corpus_id?: string; corpus_confirmed?: boolean; corpus_ids?: string[]; source_session_id?: string; source_turn_index?: number };
 export const DEFAULT_TASK_ID = "task1";
 
 export async function workspaceRequest(path: string, body?: unknown) {
@@ -179,6 +179,10 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     await enqueue({ ...item, data: { ...item.data, archived } });
     if (archived && id === activeRef.current) await select();
   }
+  async function setPinned(id: string, pinned: boolean) {
+    const item = sessionsRef.current.find(session => session.id === id);
+    if (item) await enqueue({ ...item, data: { ...item.data, pinned } });
+  }
   async function setTaskVersion(version: number, nextOptions?: Options) {
     taskVersionRef.current = version;
     setBoundTaskVersion(version);
@@ -188,5 +192,5 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     }
     await saveNow(turnsRef.current, optionsRef.current, branchesRef.current, taskIdRef.current, corpusIdRef.current, true);
   }
-  return { sessions, active, loaded, message, branches, taskVersion, setTaskVersion, select, flush, saveNow, saveCorpusSelection, branchInPlace, viewBranch, restoreBranch, rename, setArchived };
+  return { sessions, active, loaded, message, branches, taskVersion, setTaskVersion, select, flush, saveNow, saveCorpusSelection, branchInPlace, viewBranch, restoreBranch, rename, setArchived, setPinned };
 }

@@ -118,6 +118,23 @@ async def main():
             await page.reload()
             await expect(page.get_by_text("历史分支").first).to_be_visible()
 
+            # Given two regular sessions, when one is pinned and the list is filtered,
+            # then the pinned session remains findable after a browser reload.
+            store[source_id]["title"] = "历史主会话"
+            title = "历史主会话"
+            await page.reload()
+            await page.get_by_role("button", name="新建对话").click()
+            await ask("第三问")
+            side = page.locator("aside").first
+            await side.get_by_role("button", name=title, exact=True).hover()
+            await side.get_by_role("button", name="置顶会话").click()
+            assert store[source_id]["data"]["pinned"] is True
+            await side.get_by_role("button", name="仅看置顶").click()
+            await expect(side.get_by_role("button", name=re.compile(title))).to_be_visible()
+            await expect(side.get_by_role("button", name="第三问", exact=True)).to_have_count(0)
+            await page.reload()
+            await expect(page.locator("aside").first.get_by_role("button", name=re.compile(title))).to_be_visible()
+
             assert not errors, errors
             print("PASS: U5 edit-in-place, persistence, restore, legacy nesting")
             await browser.close()

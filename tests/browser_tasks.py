@@ -251,6 +251,10 @@ async def main():
             await page.goto(origin)
             # New sessions auto-select the first corpus directory; there is no confirmation gate.
             await expect(page.get_by_text(re.compile("当前对话：演示库（1/6）"))).to_be_visible()
+            # Given the current task and scope, when the user prepares to send,
+            # then the visible configuration matches the local-only run contract.
+            await expect(page.get_by_label("本次运行配置")).to_contain_text("本地资料")
+            await expect(page.get_by_label("本次运行配置")).to_contain_text("演示库")
 
             # Legacy reports are read back as artifacts; missing run/corpus stay "未记录".
             await page.get_by_role("button", name="成果", exact=True).click()
@@ -319,6 +323,7 @@ async def main():
             await expect(page.get_by_role("heading", name="综合报告模板")).to_be_visible()
             await page.get_by_role("button", name="返回上一预览").click()
             await page.get_by_role("button", name="使用此任务").click()
+            await expect(page.get_by_label("本次运行配置")).to_contain_text("专项报告")
             await page.get_by_role("textbox", name="问题", exact=True).fill("生成医疗项目报告")
             await page.get_by_role("button", name="发送 ↑").click()
             await expect(page.get_by_role("button", name="生成报告")).to_be_visible()

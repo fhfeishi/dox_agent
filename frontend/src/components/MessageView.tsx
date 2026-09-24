@@ -275,7 +275,7 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
 }
 
 function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (report: { report_id: string; markdown: string }) => void }) {
-  const { corpora, workspace } = useApp();
+  const { corpora, workspace, activeTask } = useApp();
   const [local, setLocal] = useState<ReportInfo | null>(null);
   const report = attempt.report ?? local;
   const [busy, setBusy] = useState(false);
@@ -299,6 +299,10 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
     return () => { active = false; };
   }, []);
   useEffect(() => { if (!templateId && params?.template_id) setTemplateId(params.template_id); }, [params?.template_id, templateId]);
+  // W4-B: a report-type custom task preselects the template it binds.
+  useEffect(() => {
+    if (!templateId && activeTask?.report_template_id) setTemplateId(activeTask.report_template_id);
+  }, [activeTask?.report_template_id, templateId]);
   const ready = Boolean(params?.domain && params?.year_from && params?.year_to && params?.template_id);
   useEffect(() => {
     setCoverage(null);
@@ -323,8 +327,11 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       // W3-A/A5: keep the derived report run id within the 80-char contract even if the intake id is long.
       const reportRunId = report ? crypto.randomUUID() : `${attempt.runId.slice(0, 72)}-report`;
       const selectedTemplate = templateOptions.find((item) => item.id === templateId);
+      const customReportTask = activeTask?.kind === "custom" && activeTask?.engine_task_id === "task4";
       const result = await createReport({ ...params, template_id: templateId || params?.template_id,
         template_version: selectedTemplate?.kind === "custom" ? selectedTemplate.version : undefined,
+        task_id: customReportTask ? activeTask?.id : undefined,
+        task_version: customReportTask ? workspace.taskVersion : undefined,
         corpus_id: corpusId, doc_ids: docIds,
         session_key: workspace.active, run_id: reportRunId, parent_run_id: attempt.runId });
       if (onReport) onReport({ report_id: result.report_id, markdown: result.markdown });

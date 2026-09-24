@@ -109,13 +109,17 @@ class CustomTaskStore:
 
     def copy_builtin(self, source_task_id: str) -> dict:
         source = next((item for item in list_tasks() if item["id"] == source_task_id), None)
-        if source is None or source_task_id not in {"task1", "task2"}:
-            raise TaskMissing("首版只能复制问答或对比任务")
+        if source is None or source_task_id not in {"task1", "task2", "task4"}:
+            raise TaskMissing("首版只能复制问答、对比或报告任务")
         task = {**source, "id": f"custom-{uuid4().hex}", "engine_task_id": source_task_id,
                 "kind": "custom", "status": "draft", "revision": 1, "version": 0,
                 "background": "", "goal": source["description"], "requirements": "",
                 "parameter_defaults": {}}
         task["parameters"] = []
+        if source_task_id == "task4":
+            # W4-B: a report-type custom task may bind a published output template version.
+            task["report_template_id"] = ""
+            task["report_template_version"] = 0
         with self.connect() as db:
             db.execute("INSERT INTO tasks (id, draft) VALUES (?,?)", (task["id"], json.dumps(task, ensure_ascii=False)))
         return task

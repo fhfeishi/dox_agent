@@ -154,6 +154,9 @@ class ReportRequest(BaseModel):
     run_id: str | None = Field(default=None, max_length=80)
     # W3-A: a report run is an independent child of the task4 intake chat run.
     parent_run_id: str | None = Field(default=None, max_length=80)
+    # W4-B: optional report-type custom task (engine task4) whose fixed version is recorded.
+    task_id: str | None = Field(default=None, max_length=80)
+    task_version: int | None = Field(default=None, ge=1, le=100000)
 
     @field_validator("doc_ids")
     @classmethod
@@ -202,6 +205,8 @@ class TaskDraft(BaseModel):
     requirements: str | None = Field(default=None, max_length=4000)
     parameter_defaults: dict[str, str] | None = None
     parameters: list[TaskParameter] | None = Field(default=None, max_length=20)
+    report_template_id: str | None = Field(default=None, max_length=80)
+    report_template_version: int | None = Field(default=None, ge=0, le=100000)
 
     @field_validator("parameter_defaults")
     @classmethod
@@ -1473,12 +1478,30 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 "year_from": payload.year_from, "year_to": payload.year_to,
                 "fund_type": payload.fund_type or "不限", "focus": payload.focus or "无",
             })
+        # W4-B: optional report-type custom task; its fixed version is recorded with the run.
+        task_id = "task4"
+        task_version = None
+        if payload.task_id is not None:
+            if payload.task_id in {task["id"] for task in list_tasks()}:
+                if payload.task_id != "task4":
+                    raise HTTPException(422, "报告只能由 task4 或报告型自定义任务生成")
+            else:
+                try:
+                    task_definition = await asyncio.to_thread(
+                        app.state.custom_tasks.version, payload.task_id, payload.task_version)
+                except TaskMissing as exc:
+                    raise HTTPException(422, "报告型自定义任务不存在或尚未发布") from exc
+                if task_definition.get("engine_task_id") != "task4":
+                    raise HTTPException(422, "该自定义任务不是报告型任务") from None
+                task_id = payload.task_id
+                task_version = task_definition["version"]
         # W3-A: a report is an independent run whose parent is the task4 intake chat run.
         # The fingerprint check runs first: reusing a run_id with different parameters is a
         # conflict (409) rather than silently returning a differently-scoped report.
         run_id = payload.run_id or uuid4().hex
         fingerprint = request_fingerprint({
             "type": "report", "template_id": payload.template_id, "template_version": template_version,
+            "task_id": task_id, "task_version": task_version or 0,
             "domain": payload.domain,
             "year_from": payload.year_from, "year_to": payload.year_to, "fund_type": payload.fund_type,
             "focus": payload.focus, "doc_ids": payload.doc_ids or [], "corpus_id": payload.corpus_id or "",
@@ -1487,13 +1510,15 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             snapshot, created = await asyncio.to_thread(
                 app.state.runs.create, run_id, fingerprint,
                 session_key=session_key, parent_run_id=payload.parent_run_id or "",
-                run_type="report", task_id="task4", model=settings.model_name,
+                run_type="report", task_id=task_id, task_version=task_version, engine_task_id="task4",
+                model=settings.model_name,
                 resource_policy="local_only",
                 requested_corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
                 effective_corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
                 allowed_doc_ids=payload.doc_ids,
                 params={"domain": payload.domain, "year_from": payload.year_from, "year_to": payload.year_to,
                         "template_id": payload.template_id, "template_version": template_version,
+                        "task_id": task_id, "task_version": task_version or 0,
                         "fund_type": payload.fund_type,
                         "focus": payload.focus},
                 param_sources={}, output_intent="document")

@@ -80,6 +80,52 @@ def test_custom_template_rejects_undeclared_or_unused_variables(tmp_path):
     assert no_heading.status_code == 422
 
 
+def test_report_type_custom_task_records_task_and_template_versions(tmp_path, monkeypatch):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None):
+        return "# 报告"
+
+    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    app, cid = ready_app(tmp_path)
+    with TestClient(app) as client:
+        template_id = copy_template(client)
+        client.put(f"/api/templates/custom/{template_id}/draft", json={
+            "revision": 1, "name": "报告模板", "content": "# 报告\n\n## 一、背景\n", "variables": []})
+        client.post(f"/api/templates/custom/{template_id}/publish", json={"revision": 2})
+
+        task = client.post("/api/tasks/custom", json={"source_task_id": "task4"}).json()
+        assert task["engine_task_id"] == "task4"
+        client.put(f"/api/tasks/custom/{task['id']}/draft", json={
+            "revision": 1, "name": "我的报告任务", "goal": "生成报告",
+            "report_template_id": template_id, "report_template_version": 1})
+        published = client.post(f"/api/tasks/custom/{task['id']}/publish", json={"revision": 2})
+        assert published.json()["version"] == 1
+
+        response = client.post("/api/reports", json={
+            "domain": "医疗", "year_from": 2024, "year_to": 2025,
+            "template_id": template_id, "template_version": 1,
+            "corpus_id": cid, "session_key": "s1", "run_id": "report-task-0001",
+            "task_id": task["id"], "task_version": 1})
+        assert response.status_code == 201
+        run = client.get("/api/runs/report-task-0001").json()
+        artifact = client.get("/api/artifacts?session_key=s1").json()[0]
+    assert run["task_id"] == task["id"] and run["task_version"] == 1 and run["engine_task_id"] == "task4"
+    assert artifact["task_id"] == task["id"] and artifact["task_version"] == 1
+    assert artifact["template_version"] == 1
+
+
+def test_report_rejects_a_non_report_custom_task(tmp_path):
+    app, cid = ready_app(tmp_path)
+    with TestClient(app) as client:
+        task = client.post("/api/tasks/custom", json={"source_task_id": "task1"}).json()
+        client.put(f"/api/tasks/custom/{task['id']}/draft", json={"revision": 1, "name": "问答", "goal": "问答"})
+        client.post(f"/api/tasks/custom/{task['id']}/publish", json={"revision": 2})
+        response = client.post("/api/reports", json={
+            "domain": "医疗", "year_from": 2024, "year_to": 2025, "template_id": "comprehensive",
+            "corpus_id": cid, "run_id": "report-wrong-task-1",
+            "task_id": task["id"], "task_version": 1})
+    assert response.status_code == 422
+
+
 def test_report_rejects_unpublished_custom_template(tmp_path):
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:

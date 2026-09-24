@@ -41,6 +41,7 @@ import { useWorkspace } from "./workspace";
 export type NavKey = "chat" | "tasks" | "library" | "reports" | "prompts";
 export type InspectorTarget = { kind: "overview" } | { kind: "task"; taskId: string } |
   { kind: "template"; templateId: string } |
+  { kind: "web"; snapshotId: string } |
   { kind: "corpus"; corpusId: string } | { kind: "report"; reportId: string; sessionKey: string } |
   { kind: "artifact"; artifactId: string } |
   { kind: "document"; doc: DocumentInfo; page: number | null; corpusId: string } |
@@ -51,6 +52,7 @@ function inspectorIdentity(target: InspectorTarget): string {
     case "overview": return "overview";
     case "task": return `task:${target.taskId}`;
     case "template": return `template:${target.templateId}`;
+    case "web": return `web:${target.snapshotId}`;
     case "corpus": return `corpus:${target.corpusId}`;
     case "report": return `report:${target.sessionKey}:${target.reportId}`;
     case "artifact": return `artifact:${target.artifactId}`;
@@ -536,6 +538,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     // Bind the turn to the corpus the user is browsing, so the answer scope matches the library.
     const effectiveOptions: Options = {
       ...(uiFlags.tasks ? { ...scope, task_id: taskId, task_version: workspace.taskVersion } : { allowed_doc_ids: scope.allowed_doc_ids ?? null }),
+      web_snapshot_ids: scope.web_snapshot_ids ?? [],
       ...corpusOptions,
     };
     const question = override?.question ?? (regenerate ? history.at(-1)?.question : input.trim());
@@ -552,14 +555,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
       task_params: scope.task_params ?? {},
       corpus_id: corpusOptions.corpus_id,
       corpus_ids: corpusOptions.corpus_ids,
+      web_snapshot_ids: scope.web_snapshot_ids ?? [],
       // W3-A: the snapshot records the session and the client-visible defaults; the server still
       // resolves and stores the authoritative effective corpus/doc scope.
       session_key: workspace.active || undefined,
       run_context: {
-        resource_policy: "local_only",
+        resource_policy: scope.web_snapshot_ids?.length ? "local_plus_urls" : "local_only",
         output_intent: activeTask?.artifacts?.default ?? "text",
-        visible_params: { task_id: taskId, corpus_ids: requestCorpusIds, allowed_doc_ids: scope.allowed_doc_ids ?? null },
-        param_sources: { task_id: "user", corpus_ids: "session", allowed_doc_ids: "user" },
+        visible_params: { task_id: taskId, corpus_ids: requestCorpusIds, allowed_doc_ids: scope.allowed_doc_ids ?? null, web_snapshot_ids: scope.web_snapshot_ids ?? [] },
+        param_sources: { task_id: "user", corpus_ids: "session", allowed_doc_ids: "user", web_snapshot_ids: "user" },
       },
     };
     const request = new AbortController();
@@ -873,6 +877,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   const handleOpenSource = (source: Source, n: number) => {
+    if (source.kind === "web" && source.snapshot_id) {
+      showInspector({ kind: "web", snapshotId: source.snapshot_id });
+      return;
+    }
     if (!source.doc_id) {
       setError(`引用 [${n}] 缺少文档定位信息，无法跳转`);
       return;

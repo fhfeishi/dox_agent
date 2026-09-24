@@ -115,3 +115,67 @@ def test_user_explicit_topic_works_without_corpus_domain_and_overrides_it():
     assert without_domain["domain"] == with_domain["domain"] == "癫痫致痫网络"
     assert without_domain["sources"]["domain"] == "user"
     assert build_report_brief([{"role": "user", "content": "帮我写报告"}], today=date(2026, 9, 24))["domain"] == ""
+
+
+def test_user_confirmed_web_snapshot_can_support_an_answer_without_local_matches(tmp_path):
+    # Given a confirmed, versioned web snapshot and no matching local document
+    snapshot = {"web_snapshot_id": "web-1", "title": "公开资料", "url": "https://example.com/research",
+                "fetched_at": "2026-09-24T00:00:00+00:00", "version": "hash-1", "markdown": "网页事实：有研究方法。"}
+    model = RecordingModel("有研究方法 [1]")
+
+    # When the user asks with that snapshot in the run scope
+    async def run():
+        app = graph.build_graph(Knowledge(tmp_path / "db"), Settings(_env_file=None), model)
+        return [event async for event in app.astream({
+            "messages": [{"role": "user", "content": "有哪些研究方法？"}],
+            "task_id": "task1", "preparation": "ready", "web_snapshots": [snapshot]}, stream_mode="custom")]
+
+    events = asyncio.run(run())
+
+    # Then the answer receives that exact saved body and exposes a resolvable web source
+    sources = next(event["data"] for event in events if event["event"] == "sources")
+    assert sources[0]["kind"] == "web" and sources[0]["snapshot_id"] == "web-1"
+    assert sources[0]["version"] == "hash-1"
+    assert "网页事实：有研究方法" in model.seen
+
+
+def test_confirmed_web_snapshot_shares_the_context_budget(tmp_path):
+    # Given a very long confirmed snapshot and a small context budget
+    body = "研究方法与实验设置。" * 20000
+    snapshot = {"web_snapshot_id": "web-long", "title": "长网页", "url": "https://example.com/long",
+                "fetched_at": "2026-09-24T00:00:00+00:00", "version": "hash-long", "markdown": body}
+    model = RecordingModel("有研究方法 [1]")
+
+    async def run():
+        app = graph.build_graph(Knowledge(tmp_path / "db"),
+                                Settings(_env_file=None, retrieve_context_tokens=1024), model)
+        return [event async for event in app.astream({
+            "messages": [{"role": "user", "content": "有哪些研究方法？"}], "task_id": "task1",
+            "preparation": "ready", "web_snapshots": [snapshot]}, stream_mode="custom")]
+
+    events = asyncio.run(run())
+
+    # Then the snapshot is read inside the budget and the cut is visible in the source
+    sources = next(event["data"] for event in events if event["event"] == "sources")
+    assert sources[0]["truncated"] is True
+    assert graph.estimate_tokens(body) > 1024
+    assert graph.estimate_tokens(model.seen) < graph.estimate_tokens(body)
+
+
+def test_short_web_snapshot_is_read_in_full(tmp_path):
+    snapshot = {"web_snapshot_id": "web-short", "title": "短网页", "url": "https://example.com/short",
+                "fetched_at": "2026-09-24T00:00:00+00:00", "version": "hash-short",
+                "markdown": "网页事实：有研究方法。"}
+    model = RecordingModel("有研究方法 [1]")
+
+    async def run():
+        app = graph.build_graph(Knowledge(tmp_path / "db"), Settings(_env_file=None), model)
+        return [event async for event in app.astream({
+            "messages": [{"role": "user", "content": "有哪些研究方法？"}], "task_id": "task1",
+            "preparation": "ready", "web_snapshots": [snapshot]}, stream_mode="custom")]
+
+    events = asyncio.run(run())
+
+    sources = next(event["data"] for event in events if event["event"] == "sources")
+    assert sources[0]["truncated"] is False
+    assert "网页事实：有研究方法。" in model.seen

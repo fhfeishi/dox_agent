@@ -8,7 +8,7 @@ import os
 import shutil
 import tempfile
 from contextlib import asynccontextmanager
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Literal
 from uuid import uuid4
@@ -63,6 +63,7 @@ from .retrieval import fit_history
 from .runs import RunConflict, RunStore, request_fingerprint
 from .workspace import Workspace
 from .workspace import router as workspace_router
+from .web_snapshots import WebSnapshotStore
 
 logger = logging.getLogger(__name__)
 
@@ -101,7 +102,7 @@ class RunContext(BaseModel):
     model_config = ConfigDict(extra="forbid")
     visible_params: dict[str, object] = Field(default_factory=dict)
     param_sources: dict[str, str] = Field(default_factory=dict)
-    resource_policy: Literal["local_only"] = "local_only"
+    resource_policy: Literal["local_only", "local_plus_urls"] = "local_only"
     output_intent: str = Field(default="", max_length=200)
 
 
@@ -117,6 +118,7 @@ class ChatRequest(BaseModel):
     corpus_id: str | None = Field(default=None, min_length=1, max_length=120)
     # KB-4a: retrieval set (1–6); mutually exclusive with corpus_id, absent = default corpus.
     corpus_ids: list[str] | None = Field(default=None, min_length=1, max_length=6)
+    web_snapshot_ids: list[str] = Field(default_factory=list, max_length=6)
     run_id: str = Field(default_factory=lambda: uuid4().hex, min_length=8, max_length=80)
     # W3-A: optional snapshot context; absent stays backward compatible (local_only / 未记录).
     session_key: str | None = Field(default=None, max_length=120)
@@ -127,6 +129,13 @@ class ChatRequest(BaseModel):
     def corpus_ids_are_unique(cls, value: list[str] | None):
         if value is not None and len(value) != len(set(value)):
             raise ValueError("corpus_ids 不能包含重复知识库")
+        return value
+
+    @field_validator("web_snapshot_ids")
+    @classmethod
+    def web_snapshot_ids_are_unique(cls, value: list[str]):
+        if len(value) != len(set(value)):
+            raise ValueError("网页快照不能重复选择")
         return value
 
     @field_validator("allowed_doc_ids")
@@ -172,6 +181,12 @@ class ReportRequest(BaseModel):
 
 class WebRequest(BaseModel):
     url: str = Field(min_length=1, max_length=4000)
+
+
+class WebConfirmRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    target_corpus_id: str | None = Field(default=None, min_length=1, max_length=120)
+    save_for_run: bool = False
 
 
 class OfficialRequest(BaseModel):
@@ -299,6 +314,15 @@ def sse(event: str, data: object) -> str:
     return f"event: {event}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n"
 
 
+def prune_web_previews(previews: dict, now: datetime, *, limit: int = 20) -> dict:
+    """W6-A: drop expired previews and keep at most ``limit`` newest ones (single-user app)."""
+    fresh = {key: value for key, value in previews.items() if value["expires_at"] > now}
+    if len(fresh) <= limit:
+        return fresh
+    newest = sorted(fresh.items(), key=lambda item: item[1]["expires_at"], reverse=True)
+    return dict(newest[:limit])
+
+
 def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     settings = settings or get_settings()
 
@@ -319,8 +343,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.custom_templates = TemplateStore(settings.state_dir / "custom_templates.sqlite3")
         # W3-B: first-class artifacts (answer snapshots + reports) in application state.
         app.state.artifacts = ArtifactStore(settings.state_dir / "artifacts.sqlite3")
+        app.state.web_snapshots = WebSnapshotStore(settings.state_dir / "web_snapshots.sqlite3")
         app.state.import_lock = asyncio.Lock()
-        app.state.preview = None
+        app.state.previews = {}
         app.state.official_job = {"status": "idle", "total": 0, "completed": 0, "imported": 0, "changed": 0, "errors": []}
         app.state.official_task = None
         # H1/H2: per-corpus Knowledge cache (default corpus reuses app.state.knowledge),
@@ -1159,15 +1184,14 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     async def preview(payload: WebRequest):
         try:
             doc = await parse_web(payload.url, settings)
-            import uuid
-
-            preview_id = uuid.uuid4().hex
-            info = await asyncio.to_thread(default_corpus_info, settings)
-            if info is None:
-                raise HTTPException(409, "尚无知识库，请先新建知识库")
-            # Single-user app: only latest preview retained, not arbitrary browser-supplied content.
-            app.state.preview = (preview_id, doc, info.id)
-            return {"preview_id": preview_id, **doc.model_dump()}
+            now = datetime.now(UTC)
+            preview_id = uuid4().hex
+            expires_at = now + timedelta(minutes=15)
+            async with app.state.import_lock:
+                app.state.previews = prune_web_previews(app.state.previews, now)
+                app.state.previews[preview_id] = {"doc": doc, "fetched_at": now.isoformat(),
+                                                  "expires_at": expires_at}
+            return {"preview_id": preview_id, "expires_at": expires_at.isoformat(), **doc.model_dump()}
         except HTTPException:
             raise
         except (ValueError, TimeoutError) as exc:
@@ -1177,17 +1201,31 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(502, "抓取失败，请检查解析器安装、会话或网站访问权限") from exc
 
     @app.post("/api/web/confirm/{preview_id}")
-    async def confirm(preview_id: str):
+    async def confirm(preview_id: str, payload: WebConfirmRequest):
+        if bool(payload.target_corpus_id) == payload.save_for_run:
+            raise HTTPException(422, "请选择一个目标知识库或仅用于本次运行")
         async with app.state.import_lock:
-            current = app.state.preview
-            if current is None or current[0] != preview_id:
+            app.state.previews = prune_web_previews(app.state.previews, datetime.now(UTC))
+            current = app.state.previews.get(preview_id)
+            if current is None or current["expires_at"] <= datetime.now(UTC):
                 raise HTTPException(409, "预览已失效，请重新抓取")
-            info = await asyncio.to_thread(find_corpus, current[2])
-            if info is None or info.missing:
-                raise HTTPException(409, "预览目标知识库已不可用，请重新抓取")
-            result = await asyncio.to_thread(knowledge_for(info).put, current[1])
-            app.state.preview = None
-            return result
+            result = {}
+            if payload.target_corpus_id:
+                info = await asyncio.to_thread(find_corpus, payload.target_corpus_id)
+                if info is None or info.missing:
+                    raise HTTPException(409, "目标知识库已不可用，请重新选择")
+                result = await asyncio.to_thread(knowledge_for(info).put, current["doc"])
+            snapshot = await asyncio.to_thread(app.state.web_snapshots.save, current["doc"],
+                                               fetched_at=current["fetched_at"])
+            del app.state.previews[preview_id]
+            return {**result, "web_snapshot_id": snapshot["web_snapshot_id"]}
+
+    @app.get("/api/web/snapshots/{snapshot_id}")
+    async def read_web_snapshot(snapshot_id: str):
+        try:
+            return await asyncio.to_thread(app.state.web_snapshots.get, snapshot_id)
+        except KeyError as exc:
+            raise HTTPException(404, "网页快照不存在") from exc
 
     @app.post("/api/chat")
     async def chat(payload: ChatRequest, request: Request):
@@ -1276,10 +1314,22 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 chat_knowledge = knowledge_for(default_info)
                 chat_preparation = default_info.preparation
 
-        if not selected_infos:
+        web_snapshots = []
+        for snapshot_id in payload.web_snapshot_ids:
+            try:
+                web_snapshots.append(await asyncio.to_thread(app.state.web_snapshots.get, snapshot_id))
+            except KeyError as exc:
+                raise HTTPException(422, "网页快照不存在或尚未确认") from exc
+        resource_policy = "local_plus_urls" if web_snapshots else "local_only"
+        web_versions = [{"snapshot_id": item["web_snapshot_id"], "version": item["version"]}
+                        for item in web_snapshots]
+
+        if not selected_infos and not web_snapshots:
             raise HTTPException(409, "尚无可用知识库，请先新建知识库并添加文档")
-        if chat_preparation != "ready":
+        if chat_preparation != "ready" and not web_snapshots:
             raise HTTPException(409, "所选首个知识库尚无已入库文档，请先添加文档或刷新；系统不会自动切换到其他知识库")
+        # W6-A: confirmed snapshots let the run proceed, but the corpus keeps its real
+        # preparation state; neither the run event nor the snapshot may claim it is ready.
 
         if payload.allowed_doc_ids:
             selected_memberships = {doc_id: [] for doc_id in payload.allowed_doc_ids}
@@ -1304,6 +1354,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "task_version": task_definition["version"] if task_definition else None,
             "params": effective_params, "param_sources": effective_sources,
             "corpus_ids": requested_corpus_ids, "allowed_doc_ids": payload.allowed_doc_ids or [],
+            "web_snapshots": web_versions,
             "messages": [m.model_dump() for m in payload.messages],
             "run_context": run_context.model_dump() if run_context else None,
         })
@@ -1314,13 +1365,16 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 task_version=task_definition["version"] if task_definition else None,
                 engine_task_id=engine_task_id,
                 model=settings.model_name,
-                resource_policy=run_context.resource_policy if run_context else "local_only",
+                resource_policy=resource_policy,
                 requested_corpus_ids=requested_corpus_ids,
                 effective_corpus_ids=[cid for cid, _ in selected_infos],
                 allowed_doc_ids=payload.allowed_doc_ids,
-                params=effective_params,
+                params={**effective_params, **({"web_snapshot_ids": payload.web_snapshot_ids,
+                                                "web_snapshot_versions": web_versions}
+                                               if web_snapshots else {})},
                 param_sources=effective_sources,
-                output_intent=run_context.output_intent if run_context else "")
+                output_intent=run_context.output_intent if run_context else "",
+                preparation=chat_preparation)
         except RunConflict as exc:
             raise HTTPException(409, str(exc)) from exc
         except Exception:  # noqa: BLE001 - snapshot bookkeeping must never block the answer
@@ -1351,16 +1405,21 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                     # A digest avoids treating client-submitted artifact text as authoritative.
                     answer_sha256=(hashlib.sha256("".join(answer_parts).encode("utf-8")).hexdigest()
                                    if outcome == "completed" else ""),
-                    citations=[{"doc_id": s.get("doc_id", ""), "corpus_id": s.get("corpus_id", ""),
-                                "version": s.get("version", ""), "title": s.get("title", ""),
-                                "page": s.get("page")} for s in sources])
+                    citations=[({"kind": "web", "snapshot_id": s["snapshot_id"],
+                                 "url": s.get("url"), "fetched_at": s.get("fetched_at"),
+                                 "version": s.get("version", ""), "title": s.get("title", "")}
+                                if s.get("kind") == "web" and s.get("snapshot_id") else
+                                {"doc_id": s.get("doc_id", ""), "corpus_id": s.get("corpus_id", ""),
+                                 "version": s.get("version", ""), "title": s.get("title", ""),
+                                 "page": s.get("page")}) for s in sources])
             # A2: declare the server-effective run context before any content, so the UI can show
             # the authoritative scope instead of only echoing the client request.
             yield sse("run", {"run_id": payload.run_id, "session_key": payload.session_key or "",
                               "task_id": payload.task_id,
                               "task_version": task_definition["version"] if task_definition else None,
                               "model": settings.model_name,
-                              "resource_policy": run_context.resource_policy if run_context else "local_only",
+                              "resource_policy": resource_policy,
+                              "web_snapshot_ids": payload.web_snapshot_ids,
                               "effective_corpus_ids": [cid for cid, _ in selected_infos],
                               "allowed_doc_ids": payload.allowed_doc_ids})
             try:
@@ -1378,6 +1437,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                 "runtime_usage": usage,
                                 "preparation": chat_preparation,
                                 "corpus_domain": chat_domain,
+                                "web_snapshots": web_snapshots,
                                 "task_id": engine_task_id,
                                 "custom_task": ({**{key: task_definition[key] for key in (
                                     "background", "category", "goal", "requirements")},

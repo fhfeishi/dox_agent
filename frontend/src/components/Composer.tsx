@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useApp } from "../store";
+import { confirmWeb, previewWeb, type WebPreview } from "../api";
 import { Icon } from "./Icons";
 import { CorpusPicker } from "./CorpusPicker";
 import { ScopeSelector } from "./ScopeSelector";
@@ -86,6 +87,12 @@ export function Composer() {
   const [popOpen, setPopOpen] = useState(false);
   const [corpusOpen, setCorpusOpen] = useState(false);
   const [scopeOpen, setScopeOpen] = useState(false);
+  const [webOpen, setWebOpen] = useState(false);
+  const [webUrl, setWebUrl] = useState("");
+  const [webPreviews, setWebPreviews] = useState<WebPreview[]>([]);
+  const [webTarget, setWebTarget] = useState("");
+  const [webBusy, setWebBusy] = useState(false);
+  const [webError, setWebError] = useState("");
   const taRef = useRef<HTMLTextAreaElement>(null);
   const popRef = useRef<HTMLDivElement>(null);
   const corpusRef = useRef<HTMLDivElement>(null);
@@ -158,6 +165,35 @@ export function Composer() {
     });
   }
   const scoped = options.allowed_doc_ids?.length ?? 0;
+  async function addWebPreview() {
+    setWebBusy(true); setWebError("");
+    try {
+      const preview = await previewWeb(webUrl.trim());
+      setWebPreviews((items) => [...items, preview]);
+      setWebUrl("");
+    } catch (error) {
+      setWebError(error instanceof Error ? error.message : "网页预览失败");
+    } finally { setWebBusy(false); }
+  }
+  async function acceptWeb(previewId: string, destination: "run" | "corpus") {
+    if (destination === "corpus" && !webTarget) { setWebError("请选择目标知识库"); return; }
+    setWebBusy(true); setWebError("");
+    try {
+      const result = await confirmWeb(previewId, destination === "run"
+        ? { save_for_run: true } : { target_corpus_id: webTarget });
+      setWebPreviews((items) => items.filter((item) => item.preview_id !== previewId));
+      if (destination === "run") {
+        setOptions((current) => ({ ...current,
+          web_snapshot_ids: [...new Set([...(current.web_snapshot_ids ?? []), result.web_snapshot_id])] }));
+        showToast("网页快照已加入本次运行范围");
+      } else {
+        void refreshCorpora();
+        showToast("网页资料已加入所选知识库");
+      }
+    } catch (error) {
+      setWebError(error instanceof Error ? error.message : "网页确认失败");
+    } finally { setWebBusy(false); }
+  }
 
   return (
     <div className="shrink-0 bg-gradient-to-t from-[var(--canvas)] via-[var(--canvas)] to-transparent px-[32px] pb-[20px]">
@@ -258,8 +294,34 @@ export function Composer() {
         <p aria-label="本次运行配置" className="mb-[7px] text-[11px] leading-[1.5] text-[var(--stone)]">
           本次配置：{activeTask?.name ?? taskId} · {corpusIds.length
             ? corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")
-            : "未选择知识库"} · {scoped ? `限定 ${scoped} 份资料` : "全部已入库资料"} · 本地资料 · 网络关闭 · {model || "模型未记录"} · {taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}
+            : "未选择知识库"} · {scoped ? `限定 ${scoped} 份资料` : "全部已入库资料"} · {options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"} · {model || "模型未记录"} · {taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}
         </p>
+
+        {options.web_snapshot_ids?.length ? <div className="mb-[7px] flex items-center gap-[7px] text-[11px] text-[var(--steel)]">
+          已确认网页快照 {options.web_snapshot_ids.length} 个
+          <button type="button" className="text-[var(--link)]" onClick={() => setOptions((current) => ({ ...current, web_snapshot_ids: [] }))}>清除本次网页范围</button>
+        </div> : null}
+
+        {webOpen ? <div className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-[12px]">
+          <div className="flex gap-[6px]">
+            <input aria-label="指定网址" type="url" value={webUrl} onChange={(event) => setWebUrl(event.target.value)} placeholder="https://example.com/article"
+              className="min-w-0 flex-1 rounded border border-[var(--hairline)] px-[7px] py-[5px]" />
+            <button type="button" disabled={webBusy || !webUrl.trim()} onClick={() => void addWebPreview()} className="rounded bg-[var(--primary)] px-[9px] text-white disabled:opacity-50">预览网页</button>
+          </div>
+          {webError ? <p role="alert" className="mt-[5px] text-[var(--red)]">{webError}</p> : null}
+          {webPreviews.map((item) => <div key={item.preview_id} className="mt-[8px] rounded border border-[var(--hairline)] p-[7px]">
+            <p className="font-medium">{item.title} · {item.origin}</p>
+            <p className="mt-[2px] max-h-[75px] overflow-auto text-[var(--steel)]">{item.markdown || item.pages.map((page) => page.text).join("\n").slice(0, 700)}</p>
+            <p className="mt-[2px] text-[var(--stone)]">预览有效至 {item.expires_at}</p>
+            <div className="mt-[5px] flex flex-wrap items-center gap-[6px]">
+              <button type="button" disabled={webBusy} onClick={() => void acceptWeb(item.preview_id, "run")} className="rounded border px-[7px] py-[3px]">仅用于本次运行</button>
+              <select aria-label="网页目标知识库" value={webTarget} onChange={(event) => setWebTarget(event.target.value)} className="rounded border px-[5px] py-[3px]">
+                <option value="">选择目标库</option>{corpora.filter((corpus) => !corpus.missing).map((corpus) => <option key={corpus.id} value={corpus.id}>{corpus.name}</option>)}
+              </select>
+              <button type="button" disabled={webBusy || !webTarget} onClick={() => void acceptWeb(item.preview_id, "corpus")} className="rounded border px-[7px] py-[3px] disabled:opacity-50">加入所选知识库</button>
+            </div>
+          </div>)}
+        </div> : null}
 
         {corpusOpen ? (
           <div ref={corpusRef} className="mb-[8px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] shadow-[0_8px_24px_-12px_rgba(15,15,15,0.2)]">
@@ -414,6 +476,9 @@ export function Composer() {
                       showToast("请在“设置与运维”中导入文件");
                     }}
                   />
+                  <PopItem title="指定网址" description="先预览，再选择本次运行或一个知识库" onClick={() => {
+                    setPopOpen(false); setWebOpen(true);
+                  }} />
                 </div>
               ) : null}
             </div>

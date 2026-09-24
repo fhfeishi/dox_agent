@@ -19,11 +19,27 @@ from langgraph.graph import END, START, StateGraph
 
 from ..knowledge import Knowledge
 from ..prompts import DEFAULT_TASK_ID, task_instruction
-from ..retrieval import assemble_reports, chunk_source, tokens
+from ..retrieval import assemble_reports, chunk_source, estimate_tokens, tokens
 from .config import Settings
 from .evidence import validate_citations
 from .models import model_for
 from .routing import TurnOptions, answer_policy, resolve_policy
+
+
+def fit_web_body(text: str, budget_tokens: int) -> tuple[str, bool]:
+    """W6-A: bound one confirmed web snapshot by the remaining context budget (D-L8 estimate)."""
+    if budget_tokens <= 0:
+        return "", True
+    if estimate_tokens(text) <= budget_tokens:
+        return text, False
+    limit = max(1, int(len(text) * budget_tokens / max(1, estimate_tokens(text))))
+    body = text[:limit]
+    for _ in range(3):
+        if estimate_tokens(body) <= budget_tokens:
+            break
+        limit = max(1, int(limit * 0.9))
+        body = text[:limit]
+    return body, True
 
 
 class State(TypedDict, total=False):
@@ -34,6 +50,7 @@ class State(TypedDict, total=False):
     custom_task: dict | None
     preparation: str
     corpus_domain: str
+    web_snapshots: list[dict]
     retrieval: object
     context: object
     sources: list[dict]
@@ -166,7 +183,8 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
     async def understand(state: State):
         get_stream_writer()({"event": "status", "data": {"message": "正在理解问题"}})
         options = TurnOptions.model_validate(state.get("options") or {})
-        policy = await resolve_policy(options, knowledge, state.get("preparation", "ready"))
+        policy = await resolve_policy(options, knowledge, state.get("preparation", "ready"),
+                                      has_web_sources=bool(state.get("web_snapshots")))
         get_stream_writer()({"event": "policy", "data": policy})
         return {"policy": policy, "stop_reason": policy["stop_reason"], "execution_path": "direct"}
 
@@ -205,10 +223,11 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
                 if current is None or report.score > current.score:
                     merged[report.doc.doc_id] = report
             result.reports = sorted(merged.values(), key=lambda item: item.score, reverse=True)
+        has_web = bool(state.get("web_snapshots"))
         return {
             "retrieval": result,
-            "execution_path": "retrieve" if result.matched else "direct",
-            "stop_reason": state.get("stop_reason") if result.matched else "no_reports",
+            "execution_path": "retrieve" if result.matched else "web" if has_web else "direct",
+            "stop_reason": state.get("stop_reason") if result.matched or has_web else "no_reports",
         }
 
     async def assemble(state: State):
@@ -263,6 +282,30 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
             scope, path = "本轮命中的报告片段", "chunk_only"
         else:
             sources, markdown, scope, path = [], "", "", "direct"
+        sources = list(sources)
+        web_sections = []
+        # W6-A: web bodies share the same context budget as local evidence, so six long
+        # pages cannot push a run past the model window; a cut stays visible in the source.
+        web_budget = max(0, settings.retrieve_context_tokens - estimate_tokens(markdown))
+        web_truncated = False
+        for snapshot in state.get("web_snapshots") or []:
+            number = len(sources) + 1
+            body, cut = fit_web_body(snapshot["markdown"], web_budget)
+            web_budget = max(0, web_budget - estimate_tokens(body))
+            web_truncated = web_truncated or cut
+            sources.append({"citation": number, "kind": "web", "snapshot_id": snapshot["web_snapshot_id"],
+                            "url": snapshot["url"], "title": snapshot["title"],
+                            "version": snapshot["version"], "fetched_at": snapshot["fetched_at"],
+                            "truncated": cut, "snippet": body[:240]})
+            web_sections.append(f"[{number}] 网页快照：{snapshot['title']}（{snapshot['url']}；"
+                                f"抓取于 {snapshot['fetched_at']}；版本 {snapshot['version']}）\n"
+                                f"<report>\n{body}\n</report>")
+        if web_truncated:
+            writer({"event": "status", "data": {"message": "部分网页快照超出预算，已截断"}})
+        if web_sections:
+            markdown = "\n\n".join(part for part in (markdown, *web_sections) if part)
+            scope = "本轮选定的本地与网页快照资料"
+            path = "retrieve_web" if path != "direct" else "web"
         writer({"event": "sources", "data": sources})
         if not sources:
             text = no_match_notice(state)

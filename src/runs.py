@@ -14,7 +14,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 CONTRACT_VERSION = 1
-RESOURCE_POLICIES = ("local_only",)
+RESOURCE_POLICIES = ("local_only", "local_plus_urls")
 
 
 class RunConflict(RuntimeError):
@@ -75,6 +75,7 @@ class RunStore:
             "params": fields.get("params", {}),
             "param_sources": fields.get("param_sources", {}),
             "output_intent": fields.get("output_intent", ""),
+            "preparation": fields.get("preparation", ""),
             "ended_at": "",
             "metrics": {},
             "citations": [],

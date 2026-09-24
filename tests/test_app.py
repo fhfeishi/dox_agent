@@ -126,7 +126,7 @@ def test_api_and_validation(tmp_path):
             client.post("/api/chat", json={"messages": [{"role": "assistant", "content": "x"}]}).status_code
             == 422
         )
-        assert client.post("/api/web/confirm/unknown").status_code == 409
+        assert client.post("/api/web/confirm/unknown", json={"save_for_run": True}).status_code == 409
 
 
 def test_document_markdown_endpoint_returns_full_body(tmp_path):
@@ -187,26 +187,80 @@ def test_chat_rejects_client_research_state_and_starts_fresh(tmp_path):
     assert states[0] is not states[1]
 
 
-def test_preview_requires_confirmation(tmp_path, monkeypatch):
+def test_user_web_previews_are_isolated_and_confirmed_to_an_explicit_destination(tmp_path, monkeypatch):
     from src import main
 
-    async def fake(*args):
+    async def fake(url, settings):
         return Document(
-            title="Page",
-            origin="https://example.com",
+            title=url.rsplit("/", 1)[-1],
+            origin=url,
             kind="web",
             parser="fake",
-            pages=[Page(number=1, text="review first")],
+            pages=[Page(number=1, text="review " + url)],
         )
 
     monkeypatch.setattr(main, "parse_web", fake)
     app, store = setup(tmp_path)
     with TestClient(app) as client:
-        preview = client.post("/api/web/preview", json={"url": "https://example.com"}).json()
+        second = client.post("/api/corpora", json={"name": "second"}).json()
+        first = client.post("/api/web/preview", json={"url": "https://example.com/one"}).json()
+        later = client.post("/api/web/preview", json={"url": "https://example.com/two"}).json()
         assert store.all() == []
-        assert client.post("/api/web/confirm/" + preview["preview_id"]).status_code == 200
-        assert len(store.all()) == 1
-        assert client.post("/api/web/confirm/" + preview["preview_id"]).status_code == 409
+        assert client.post("/api/web/confirm/" + first["preview_id"]).status_code == 422
+        confirmed = client.post("/api/web/confirm/" + first["preview_id"],
+                                json={"target_corpus_id": second["id"]})
+        run_only = client.post("/api/web/confirm/" + later["preview_id"], json={"save_for_run": True})
+        assert confirmed.status_code == run_only.status_code == 200
+        assert store.all() == []
+        assert len(client.get(f"/api/documents?corpus={second['id']}").json()) == 1
+        assert client.post("/api/web/confirm/" + first["preview_id"],
+                           json={"target_corpus_id": second["id"]}).status_code == 409
+        snapshot_id = run_only.json()["web_snapshot_id"]
+        snapshot = client.get(f"/api/web/snapshots/{snapshot_id}").json()
+        assert snapshot["url"] == "https://example.com/two"
+        assert snapshot["content_hash"] and snapshot["fetched_at"]
+
+    # Confirmed run snapshots remain readable after the service restarts.
+    restarted, _ = setup(tmp_path)
+    with TestClient(restarted) as client:
+        assert client.get(f"/api/web/snapshots/{snapshot_id}").json()["url"] == "https://example.com/two"
+
+
+def test_user_confirmed_web_snapshot_is_bound_to_the_actual_chat_run(tmp_path, monkeypatch):
+    # Given a confirmed web snapshot kept outside the knowledge base
+    from src import main
+
+    async def fake_page(url, settings):
+        return Document(title="网页证据", origin=url, kind="web", parser="fake",
+                        pages=[Page(number=1, text="网页事实")], markdown="网页事实")
+
+    class RecordingGraph:
+        async def astream(self, state, **kwargs):
+            source = state["web_snapshots"][0]
+            yield {"event": "sources", "data": [{"citation": 1, "kind": "web",
+                "snapshot_id": source["web_snapshot_id"], "url": source["url"],
+                "version": source["version"], "title": source["title"]}]}
+            yield {"event": "token", "data": {"text": "网页事实 [1]"}}
+            yield {"event": "done", "data": {"ok": True}}
+
+    monkeypatch.setattr(main, "parse_web", fake_page)
+    app, _ = setup(tmp_path, lambda *_: RecordingGraph())
+    with TestClient(app) as client:
+        preview = client.post("/api/web/preview", json={"url": "https://example.com/one"}).json()
+        snapshot_id = client.post(f"/api/web/confirm/{preview['preview_id']}",
+                                  json={"save_for_run": True}).json()["web_snapshot_id"]
+        corpus_id = client.get("/api/corpora").json()[0]["id"]
+
+        # When the user explicitly includes that snapshot in a chat run
+        response = client.post("/api/chat", json={"messages": [{"role": "user", "content": "网页说了什么"}],
+            "corpus_ids": [corpus_id], "web_snapshot_ids": [snapshot_id], "run_id": "web-run-0001"})
+        run = client.get("/api/runs/web-run-0001").json()
+
+    # Then the effective resource policy and versioned web source are persisted
+    assert response.status_code == 200 and "snapshot_id" in response.text
+    assert run["resource_policy"] == "local_plus_urls"
+    assert run["params"]["web_snapshot_ids"] == [snapshot_id]
+    assert run["citations"][0]["snapshot_id"] == snapshot_id
 
 
 def test_sse_success_and_failure(tmp_path):
@@ -261,7 +315,7 @@ def test_preparation_guards_and_lightweight_health(tmp_path, monkeypatch):
         assert "尚无已入库文档" in response.text
         assert client.post("/api/official-docs", json={}).status_code == 409
         assert client.post("/api/ingest/local").status_code == 409
-        assert client.post("/api/web/confirm/unknown").status_code == 409
+        assert client.post("/api/web/confirm/unknown", json={"save_for_run": True}).status_code == 409
         app.state.preparation = "error"
         assert client.post("/api/chat", json=payload).status_code == 409
 
@@ -314,3 +368,41 @@ def test_chat_rejects_both_corpus_id_and_corpus_ids(tmp_path):
         assert both.status_code == 422
         empty = client.post("/api/chat", json={"messages": [{"role": "user", "content": "x"}], "corpus_ids": []})
         assert empty.status_code == 422
+
+
+def test_web_run_reports_the_real_corpus_state(tmp_path, monkeypatch):
+    # Given a corpus without documents and one snapshot confirmed for this run only
+    from src import main
+
+    async def fake_page(url, settings):
+        return Document(title="网页证据", origin=url, kind="web", parser="fake",
+                        pages=[Page(number=1, text="网页事实")], markdown="网页事实")
+
+    class RecordingGraph:
+        async def astream(self, state, **kwargs):
+            source = state["web_snapshots"][0]
+            yield {"event": "sources", "data": [{"citation": 1, "kind": "web",
+                "snapshot_id": source["web_snapshot_id"], "url": source["url"],
+                "version": source["version"], "title": source["title"]}]}
+            yield {"event": "token", "data": {"text": "网页事实 [1]"}}
+            yield {"event": "done", "data": {"ok": True}}
+
+    monkeypatch.setattr(main, "parse_web", fake_page)
+    app, store = setup(tmp_path, lambda *_: RecordingGraph())
+    with TestClient(app) as client:
+        corpus_id = client.get("/api/corpora").json()[0]["id"]
+        assert store.all() == []
+        preview = client.post("/api/web/preview", json={"url": "https://example.com/one"}).json()
+        snapshot_id = client.post(f"/api/web/confirm/{preview['preview_id']}",
+                                  json={"save_for_run": True}).json()["web_snapshot_id"]
+
+        # When the run uses that snapshot while the selected corpus has no documents
+        response = client.post("/api/chat", json={"messages": [{"role": "user", "content": "网页说了什么"}],
+            "corpus_ids": [corpus_id], "web_snapshot_ids": [snapshot_id], "run_id": "web-run-0002"})
+        run = client.get("/api/runs/web-run-0002").json()
+
+    # Then the run proceeds without claiming the corpus is ready
+    assert response.status_code == 200
+    assert run["resource_policy"] == "local_plus_urls"
+    assert run["preparation"] != "ready"
+    assert run["params"]["web_snapshot_ids"] == [snapshot_id]

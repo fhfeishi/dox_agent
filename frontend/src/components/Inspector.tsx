@@ -3,7 +3,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { archiveCustomTemplate, archiveTask, artifactExportUrl, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchReport, fetchRun, fetchTemplate, fetchTemplates, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary } from "../api";
+import { archiveCustomTemplate, archiveTask, artifactExportUrl, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchReport, fetchRun, fetchTemplate, fetchTemplates, fetchWebSnapshot, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -69,6 +69,8 @@ export function Inspector() {
   const [taskEditBusy, setTaskEditBusy] = useState(false);
   const [report, setReport] = useState<ReportInfo | null>(null);
   const [reportError, setReportError] = useState("");
+  const [webSnapshot, setWebSnapshot] = useState<WebSnapshot | null>(null);
+  const [webError, setWebError] = useState("");
   const [artifact, setArtifact] = useState<ArtifactInfo | null>(null);
   const [artifactError, setArtifactError] = useState("");
   const [artifactVersions, setArtifactVersions] = useState<ArtifactVersion[]>([]);
@@ -84,6 +86,16 @@ export function Inspector() {
   const [templateEditMessage, setTemplateEditMessage] = useState("");
   const [runSnapshot, setRunSnapshot] = useState<RunSnapshot | null>(null);
   const [runSnapshotMissing, setRunSnapshotMissing] = useState(false);
+
+  useEffect(() => {
+    if (inspectorTarget.kind !== "web") return;
+    let active = true;
+    setWebSnapshot(null); setWebError("");
+    void fetchWebSnapshot(inspectorTarget.snapshotId).then(
+      (value) => { if (active) setWebSnapshot(value); },
+      (error) => { if (active) setWebError(error instanceof Error ? error.message : "网页快照读取失败"); });
+    return () => { active = false; };
+  }, [inspectorTarget]);
 
   useEffect(() => {
     if (inspectorTarget.kind !== "report") {
@@ -341,6 +353,7 @@ export function Inspector() {
             : inspectorTarget.kind === "template" ? "输出模板预览"
             : inspectorTarget.kind === "corpus" ? "知识库预览"
             : inspectorTarget.kind === "document" ? "资料预览"
+            : inspectorTarget.kind === "web" ? "网页快照"
             : inspectorTarget.kind === "report" ? "报告预览"
             : inspectorTarget.kind === "artifact" ? "成果预览"
             : inspectorTarget.kind === "execution" ? "执行摘要" : "检查器"}
@@ -348,6 +361,7 @@ export function Inspector() {
         <span className="min-w-0 flex-1 truncate text-[11.5px] text-[var(--stone)]">
           {selectedTask?.name ?? selectedTemplate?.name ?? corpus?.name ?? artifact?.title
             ?? (inspectorTarget.kind === "document" ? inspectorTarget.doc.title
+            : inspectorTarget.kind === "web" ? webSnapshot?.title ?? "正在读取网页"
             : inspectorTarget.kind === "report" ? "本会话报告"
             : inspectorTarget.kind === "execution" ? "最近一轮回答"
             : activeTask && taskCapable ? `· ${activeTask.name}` : "· 专业问答")}
@@ -756,6 +770,19 @@ export function Inspector() {
             <Button size="sm" className="mb-[14px]" onClick={() => openFullPreview(inspectorTarget.doc, inspectorTarget.page, inspectorTarget.corpusId, true)}>放大阅读</Button>
             <TextPreview doc={inspectorTarget.doc} corpus={inspectorTarget.corpusId} />
           </>
+        ) : null}
+
+        {inspectorTarget.kind === "web" ? (
+          <div>
+            <SectionTitle>已确认网页快照</SectionTitle>
+            {webError ? <p role="alert" className="text-[12px] text-[var(--red)]">{webError}</p> : null}
+            {webSnapshot ? <>
+              <p className="break-all text-[11px] text-[var(--stone)]">{webSnapshot.url} · 抓取 {webSnapshot.fetched_at} · 版本 {webSnapshot.version}</p>
+              <div className="markdown mt-[12px] max-h-[70vh] overflow-auto rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px] text-[12px]">
+                <Markdown remarkPlugins={[remarkGfm]}>{webSnapshot.markdown}</Markdown>
+              </div>
+            </> : !webError ? <p className="text-[12px] text-[var(--stone)]">正在读取…</p> : null}
+          </div>
         ) : null}
 
         {inspectorTarget.kind === "overview" && tab === "out" ? (

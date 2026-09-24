@@ -1,11 +1,11 @@
-export type Source = { title: string; url: string; snippet: string; page?: number; doc_id?: string; corpus_id?: string; version?: string; origin?: string; kind?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean; citation?: number };
+export type Source = { title: string; url: string; snippet: string; page?: number; doc_id?: string; corpus_id?: string; version?: string; origin?: string; kind?: string; snapshot_id?: string; fetched_at?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean; citation?: number };
 export type Message = { role: "user" | "assistant"; content: string };
 export type Usage = { run_id?: string; input_tokens: number | null; output_tokens: number | null; total_tokens: number | null; reported_tokens: number | null; calls: number; reported_calls: number; complete: boolean; missing_reasons?: Record<string, number>; calls_by_phase?: Record<string, number> };
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string; duration_ms?: number };
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; chunks_retrieved: number; reports_selected: number; context_tokens: number; invalid_citations?: number };
-export type Options = { allowed_doc_ids: string[] | null; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string; corpus_ids?: string[] };
+export type Options = { allowed_doc_ids: string[] | null; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string; corpus_ids?: string[]; web_snapshot_ids?: string[] };
 /** W3-A: client-visible run parameters recorded with the server-side snapshot. */
-export type RunContext = { visible_params?: Record<string, unknown>; param_sources?: Record<string, string>; resource_policy?: "local_only"; output_intent?: string };
+export type RunContext = { visible_params?: Record<string, unknown>; param_sources?: Record<string, string>; resource_policy?: "local_only" | "local_plus_urls"; output_intent?: string };
 export type ChatRequestOptions = Options & { task_version?: number; session_key?: string; run_context?: RunContext };
 export class ApiError extends Error {
   readonly detail?: unknown;
@@ -108,6 +108,25 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
 }
 export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; purpose?: string; audience?: string; length?: string; sources?: Record<string, string>; scope_fingerprint?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
 export type ReportPreflight = { total: number; corpus_total: number; excluded: { date: number; year: number; category: number }; date_hits: number; category_hits: number; eligible_count: number; eligible: { doc_id: string; version: string; title: string; corpus_id: string }[]; fingerprint: string };
+export type WebPreview = { preview_id: string; expires_at: string; title: string; origin: string; pages: { number: number; text: string }[]; markdown?: string };
+export type WebSnapshot = { web_snapshot_id: string; url: string; title: string; fetched_at: string; version: string; content_hash: string; parse_status: string; markdown: string };
+
+export async function previewWeb(url: string): Promise<WebPreview> {
+  const response = await fetch("/api/web/preview", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url }) });
+  return await jsonOrThrow(response, "网页预览失败") as WebPreview;
+}
+
+export async function confirmWeb(previewId: string, target: { target_corpus_id?: string; save_for_run?: boolean }): Promise<{ web_snapshot_id: string; doc_id?: string }> {
+  const response = await fetch(`/api/web/confirm/${encodeURIComponent(previewId)}`, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(target),
+  });
+  return await jsonOrThrow(response, "网页确认失败") as { web_snapshot_id: string; doc_id?: string };
+}
+
+export async function fetchWebSnapshot(snapshotId: string): Promise<WebSnapshot> {
+  const response = await fetch(`/api/web/snapshots/${encodeURIComponent(snapshotId)}`);
+  return await jsonOrThrow(response, "网页快照读取失败") as WebSnapshot;
+}
 export type ReportSummary = { report_id: string; created_at?: string; session_key?: string; run_id?: string; corpus_id?: string; template_id?: string; domain?: string; year_from?: number; year_to?: number };
 export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean };
 export type ReportMetadataCoverage = {

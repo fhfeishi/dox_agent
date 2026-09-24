@@ -65,6 +65,7 @@ export function Composer() {
     tasks,
     tasksError,
     taskId,
+    activeTask,
     startTask,
     taskCapable,
     currentCorpus,
@@ -122,7 +123,31 @@ export function Composer() {
   const emptyScopeCorpus = corpora.find((item) => corpusIds.includes(item.id) && item.preparation !== "ready");
   const repairScope = !corpusIds.length || corpusIds.length > 6 ||
     corpusIds.some((id) => !corpora.some((item) => item.id === id && !item.missing));
-  const canSend = input.trim().length > 0 && !busy && ready && workspace.loaded && connected && scopeReady;
+  const taskParams = options.task_params ?? {};
+  const taskFields = activeTask?.parameters ?? [];
+  const taskInputsValid = taskFields.every((field) => {
+    const value = taskParams[field.key] ?? field.default;
+    if (value == null || value === "") return !field.required;
+    if (field.type === "integer") return typeof value === "number" && Number.isInteger(value) && Math.abs(value) <= 1_000_000;
+    if (field.type === "enum") return field.options?.includes(String(value));
+    if (field.type === "boolean") return typeof value === "boolean";
+    if (field.type === "year_range") {
+      const years = value as { from?: number; to?: number };
+      return Number.isInteger(years?.from) && Number.isInteger(years?.to) &&
+        (years.from ?? 0) >= 1900 && (years.to ?? 0) <= 2100 && (years.from ?? 0) <= (years.to ?? 0);
+    }
+    return typeof value === "string" && value.length <= 500;
+  });
+  const taskReady = tasks.find((task) => task.id === taskId)?.kind !== "custom" || Boolean(activeTask);
+  const canSend = input.trim().length > 0 && !busy && ready && workspace.loaded && connected && scopeReady && taskInputsValid && taskReady;
+  function setTaskParam(key: string, value: unknown) {
+    setOptions((current) => {
+      const next = { ...current.task_params };
+      if (value === undefined) delete next[key];
+      else next[key] = value;
+      return { ...current, task_params: next };
+    });
+  }
   const scoped = options.allowed_doc_ids?.length ?? 0;
 
   return (
@@ -170,6 +195,7 @@ export function Composer() {
             </button>
           </div>
         ) : null}
+        {!taskReady ? <p role="status" className="mb-[8px] text-[12px] text-[var(--steel)]">正在读取此会话绑定的任务版本…</p> : null}
 
         {/* corpus + scope chips */}
         <div className="mb-[8px] flex flex-wrap items-center gap-[6px]">
@@ -237,6 +263,40 @@ export function Composer() {
           </div>
         ) : null}
 
+        {activeTask?.kind === "custom" ? (
+          <div className="mb-[8px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-[12px] text-[var(--slate)]">
+            <div>任务 v{workspace.taskVersion ?? activeTask.version} · {corpusIds.length} 个知识库 · {scoped ? `${scoped} 份指定资料` : "全部资料"} · 网络关闭 · {activeTask.output_hint || "文本回答"}</div>
+            {Object.entries(activeTask.parameter_defaults ?? {}).length ? <div className="mt-[3px]">文本默认：{Object.entries(activeTask.parameter_defaults ?? {}).map(([key, value]) => `${key}=${value}`).join("；")}</div> : null}
+            {taskFields.length ? <div className="mt-[8px] flex flex-wrap gap-[8px]">{taskFields.map((field) => {
+              const value = taskParams[field.key] ?? field.default;
+              const year = (value ?? {}) as { from?: number; to?: number };
+              return <label key={field.key} className="min-w-[130px] text-[11px]">{field.label}{field.required ? " *" : ""}
+                {field.type === "enum" ? <select aria-label={field.label} value={String(value ?? "")}
+                  onChange={(event) => setTaskParam(field.key, event.target.value || undefined)}
+                  className="mt-[3px] block w-full rounded border border-[var(--hairline)] bg-[var(--canvas)] p-[5px]">
+                    <option value="">请选择</option>{field.options?.map((option) => <option key={option} value={option}>{option}</option>)}
+                  </select> : field.type === "boolean" ? <select aria-label={field.label} value={value === true ? "true" : value === false ? "false" : ""}
+                    onChange={(event) => setTaskParam(field.key, event.target.value ? event.target.value === "true" : undefined)}
+                    className="mt-[3px] block w-full rounded border border-[var(--hairline)] bg-[var(--canvas)] p-[5px]">
+                    <option value="">请选择</option><option value="true">是</option><option value="false">否</option>
+                  </select> : field.type === "year_range" ? <span className="mt-[3px] flex gap-[4px]">
+                    <input aria-label={`${field.label}起`} type="number" min={1900} max={2100} value={year.from ?? ""}
+                      onChange={(event) => setTaskParam(field.key, { ...year, from: event.target.value ? Number(event.target.value) : undefined })}
+                      className="w-[72px] rounded border border-[var(--hairline)] bg-[var(--canvas)] p-[5px]" />
+                    <input aria-label={`${field.label}止`} type="number" min={1900} max={2100} value={year.to ?? ""}
+                      onChange={(event) => setTaskParam(field.key, { ...year, to: event.target.value ? Number(event.target.value) : undefined })}
+                      className="w-[72px] rounded border border-[var(--hairline)] bg-[var(--canvas)] p-[5px]" />
+                  </span> : <input aria-label={field.label} type={field.type === "integer" ? "number" : "text"}
+                    value={String(value ?? "")} title={field.help}
+                    onChange={(event) => setTaskParam(field.key, event.target.value === "" ? undefined : field.type === "integer" ? Number(event.target.value) : event.target.value)}
+                    className="mt-[3px] block w-full rounded border border-[var(--hairline)] bg-[var(--canvas)] p-[5px]" />}
+                {Object.hasOwn(taskParams, field.key) ? <button type="button" className="text-[var(--link)]" onClick={() => setTaskParam(field.key, undefined)}>使用默认</button> : null}
+              </label>;
+            })}</div> : null}
+            {!taskInputsValid ? <p role="alert" className="mt-[5px] text-[var(--red)]">请填写有效的任务参数后发送。</p> : null}
+          </div>
+        ) : null}
+
         {/* input */}
         <div className="rounded-[12px] border border-[var(--hairline-strong)] bg-[var(--canvas)] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[border-color,box-shadow] focus-within:border-[var(--primary)] focus-within:shadow-[0_0_0_3px_var(--primary-soft)]">
           <textarea
@@ -291,7 +351,7 @@ export function Composer() {
                     </p>
                   ) : null}
                   {taskCapable && tasks.length ? (
-                    tasks.map((task) => (
+                    tasks.filter((task) => task.kind !== "custom" || Boolean(task.version)).map((task) => (
                       <PopItem
                         key={task.id}
                         title={task.name}

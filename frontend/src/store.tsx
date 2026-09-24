@@ -13,6 +13,7 @@ import {
   ApiError,
   createArtifact,
   fetchCorpora,
+  fetchTaskVersion,
   fetchTasks,
   ingestCorpus,
   streamChat,
@@ -244,6 +245,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   );
   const [taskId, setTaskId] = useState("task1");
   const [tasks, setTasks] = useState<TaskInfo[]>([]);
+  const [publishedTask, setPublishedTask] = useState<{ id: string; version: number; task: TaskInfo } | null>(null);
   const [tasksError, setTasksError] = useState("");
   const [previewDoc, setPreviewDoc] = useState<PreviewTarget>(null);
   const [fullPreviewReturnsToInspector, setFullPreviewReturnsToInspector] = useState(false);
@@ -301,6 +303,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
     corpusIds,
     setCorpusIds,
   );
+  useEffect(() => {
+    const selected = tasks.find((task) => task.id === taskId);
+    const version = workspace.taskVersion;
+    if (selected?.kind !== "custom" || !version) { setPublishedTask(null); return; }
+    let active = true;
+    void fetchTaskVersion(taskId, version)
+      .then((task) => { if (active) setPublishedTask({ id: taskId, version, task }); })
+      .catch((e) => { if (active) setError(`此会话绑定的任务版本不可用：${(e as Error).message}`); });
+    return () => { active = false; };
+  }, [taskId, workspace.taskVersion, tasks]);
   function updateOptions(value: SetStateAction<Options>) {
     const next = typeof value === "function" ? value(options) : value;
     setOptions(next);
@@ -465,6 +477,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
     const history = override?.history ?? turns;
     const scope = override?.options ?? options;
+    if (tasks.find((task) => task.id === taskId)?.kind === "custom" && !activeTask) {
+      setError("任务发布版本尚未加载，请稍后重试");
+      return;
+    }
     if (scope.allowed_doc_ids && scopeDocumentsError) {
       setError(`限定资料列表不可用：${scopeDocumentsError}`);
       return;
@@ -490,6 +506,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       ...turn.options,
       ...(uiFlags.tasks ? { task_id: taskId } : {}),
       ...(uiFlags.tasks && workspace.taskVersion ? { task_version: workspace.taskVersion } : {}),
+      task_params: scope.task_params ?? {},
       corpus_id: corpusOptions.corpus_id,
       corpus_ids: corpusOptions.corpus_ids,
       // W3-A: the snapshot records the session and the client-visible defaults; the server still
@@ -933,7 +950,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     workspace.sessions.find((s) => s.id === workspace.active)?.title ??
     turns[0]?.question?.slice(0, 100) ??
     "";
-  const activeTask = tasks.find((task) => task.id === taskId);
+  const listedTask = tasks.find((task) => task.id === taskId);
+  const activeTask = listedTask?.kind === "custom" && workspace.taskVersion
+    ? publishedTask?.id === taskId && publishedTask.version === workspace.taskVersion ? publishedTask.task : undefined
+    : listedTask;
   const taskNames: Record<string, string> = {};
   for (const task of tasks) taskNames[task.id] = task.name;
 

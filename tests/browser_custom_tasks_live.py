@@ -43,9 +43,15 @@ async def main():
                 await page.get_by_role("textbox", name="目标").fill("比较方法")
                 await page.get_by_role("textbox", name="具体要求").fill("逐项引用")
                 await page.get_by_role("textbox", name="默认关注点").fill("技术路线")
+                await page.get_by_role("button", name="添加参数").click()
+                await page.get_by_role("textbox", name="参数1名称").fill("topic")
+                await page.get_by_role("textbox", name="参数1标签").fill("研究主题")
+                await page.get_by_role("checkbox", name="必填").check()
                 await page.get_by_role("button", name="保存并发布").click()
                 await expect(page.get_by_text("已发布 v1").first).to_be_visible()
                 await page.get_by_role("button", name="使用此任务").click()
+                await expect(page.get_by_role("textbox", name="研究主题")).to_be_visible()
+                await page.get_by_role("textbox", name="研究主题").fill("研究方法")
                 await page.get_by_role("textbox", name="问题", exact=True).fill("有哪些方法？")
                 await page.get_by_role("button", name="发送 ↑").click()
                 await expect(page.get_by_role("button", name="保存为成果")).to_be_visible()
@@ -64,6 +70,7 @@ async def main():
                 assert run["task_id"] == task["id"] and run["task_version"] == 1
                 assert run["params"]["focus"] == "技术路线"
                 assert run["param_sources"]["focus"] == "task_default"
+                assert run["params"]["topic"] == "研究方法" and run["param_sources"]["topic"] == "user"
                 assert run["citations"][0]["doc_id"] == doc["doc_id"]
                 await browser.close()
         finally:

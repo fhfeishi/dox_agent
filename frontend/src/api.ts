@@ -3,7 +3,7 @@ export type Message = { role: "user" | "assistant"; content: string };
 export type Usage = { run_id?: string; input_tokens: number | null; output_tokens: number | null; total_tokens: number | null; reported_tokens: number | null; calls: number; reported_calls: number; complete: boolean; missing_reasons?: Record<string, number>; calls_by_phase?: Record<string, number> };
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string; duration_ms?: number };
 export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<string, number>; chunks_retrieved: number; reports_selected: number; context_tokens: number; invalid_citations?: number };
-export type Options = { allowed_doc_ids: string[] | null; task_id?: string; corpus_id?: string; corpus_ids?: string[] };
+export type Options = { allowed_doc_ids: string[] | null; task_id?: string; task_params?: Record<string, unknown>; corpus_id?: string; corpus_ids?: string[] };
 /** W3-A: client-visible run parameters recorded with the server-side snapshot. */
 export type RunContext = { visible_params?: Record<string, unknown>; param_sources?: Record<string, string>; resource_policy?: "local_only"; output_intent?: string };
 export type ChatRequestOptions = Options & { task_version?: number; session_key?: string; run_context?: RunContext };
@@ -14,7 +14,8 @@ export class ApiError extends Error {
     this.detail = detail;
   }
 }
-export type TaskInfo = { id: string; name: string; description: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; parameter_defaults?: Record<string, string> };
+export type TaskParameter = { key: string; label: string; type: "text" | "integer" | "enum" | "boolean" | "year_range"; help?: string; required?: boolean; options?: string[]; default?: unknown };
+export type TaskInfo = { id: string; name: string; description: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; parameter_defaults?: Record<string, string>; parameters?: TaskParameter[] };
 export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
@@ -241,9 +242,14 @@ export async function saveTaskDraft(task: TaskInfo): Promise<TaskInfo> {
   const { revision, name, description, background, goal, requirements, parameter_defaults } = task;
   const response = await fetch(`/api/tasks/custom/${encodeURIComponent(task.id)}/draft`, {
     method: "PUT", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ revision, name, description, background, goal, requirements, parameter_defaults }),
+    body: JSON.stringify({ revision, name, description, background, goal, requirements, parameter_defaults, parameters: task.parameters }),
   });
   return jsonOrThrow(response, "保存草稿失败") as Promise<TaskInfo>;
+}
+
+export async function fetchTaskVersion(taskId: string, version: number): Promise<TaskInfo> {
+  const response = await fetch(`/api/tasks/custom/${encodeURIComponent(taskId)}/versions/${version}`);
+  return jsonOrThrow(response, "任务版本不可用") as Promise<TaskInfo>;
 }
 
 export async function publishTask(task: TaskInfo): Promise<TaskInfo> {

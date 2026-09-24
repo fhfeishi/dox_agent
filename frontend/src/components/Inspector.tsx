@@ -3,7 +3,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { artifactExportUrl, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchReport, fetchRun, fetchTemplate, fetchTemplates, publishTask, saveTaskDraft, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type TaskInfo, type TemplateInfo, type TemplateSummary } from "../api";
+import { artifactExportUrl, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchReport, fetchRun, fetchTemplate, fetchTemplates, publishTask, saveTaskDraft, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -217,6 +217,12 @@ export function Inspector() {
     } catch (e) { setTaskEditMessage((e as Error).message); }
     finally { setTaskEditBusy(false); }
   }
+  function changeTaskParameter(index: number, change: Partial<TaskParameter>) {
+    if (!taskDraft) return;
+    const parameters = [...(taskDraft.parameters ?? [])];
+    parameters[index] = { ...parameters[index], ...change };
+    setTaskDraft({ ...taskDraft, parameters });
+  }
   const selectedTemplate = inspectorTarget.kind === "template"
     ? (template?.id === inspectorTarget.templateId ? template : templateList.find((item) => item.id === inspectorTarget.templateId) ?? null)
     : null;
@@ -330,6 +336,44 @@ export function Inspector() {
                         onChange={(event) => setTaskDraft({ ...taskDraft, parameter_defaults: { ...taskDraft.parameter_defaults, focus: event.target.value } })}
                         className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[12px] text-[var(--ink)]" />
                     </label>
+                    <div className="border-t border-[var(--hairline)] pt-[8px]">
+                      <div className="mb-[6px] flex items-center justify-between text-[12px] text-[var(--slate)]"><span>输入参数</span>
+                        <button type="button" className="text-[var(--link)]" onClick={() => setTaskDraft({ ...taskDraft, parameters: [
+                          ...(taskDraft.parameters ?? []), { key: `input_${(taskDraft.parameters?.length ?? 0) + 1}`, label: "新参数", type: "text" },
+                        ] })}>添加参数</button>
+                      </div>
+                      {(taskDraft.parameters ?? []).map((field, index) => <div key={index} className="mb-[8px] rounded-[6px] border border-[var(--hairline)] p-[7px] text-[11px]">
+                        <div className="flex gap-[5px]">
+                          <input aria-label={`参数${index + 1}名称`} value={field.key} onChange={(event) => changeTaskParameter(index, { key: event.target.value })}
+                            placeholder="英文标识" className="min-w-0 flex-1 rounded border border-[var(--hairline)] p-[4px]" />
+                          <input aria-label={`参数${index + 1}标签`} value={field.label} onChange={(event) => changeTaskParameter(index, { label: event.target.value })}
+                            placeholder="显示名称" className="min-w-0 flex-1 rounded border border-[var(--hairline)] p-[4px]" />
+                          <button type="button" className="text-[var(--red)]" onClick={() => setTaskDraft({ ...taskDraft, parameters: taskDraft.parameters?.filter((_, i) => i !== index) })}>删除</button>
+                        </div>
+                        <div className="mt-[5px] flex items-center gap-[6px]">
+                          <select aria-label={`参数${index + 1}类型`} value={field.type} onChange={(event) => changeTaskParameter(index, { type: event.target.value as TaskParameter["type"], default: undefined, options: [] })}
+                            className="rounded border border-[var(--hairline)] p-[4px]">
+                            <option value="text">文本</option><option value="integer">整数</option><option value="enum">选项</option><option value="boolean">是/否</option><option value="year_range">年份区间</option>
+                          </select>
+                          <label><input type="checkbox" checked={Boolean(field.required)} onChange={(event) => changeTaskParameter(index, { required: event.target.checked })} /> 必填</label>
+                        </div>
+                        <input aria-label={`参数${index + 1}帮助`} value={field.help ?? ""} onChange={(event) => changeTaskParameter(index, { help: event.target.value })}
+                          placeholder="帮助说明（可选）" className="mt-[5px] w-full rounded border border-[var(--hairline)] p-[4px]" />
+                        {field.type === "enum" ? <input aria-label={`参数${index + 1}选项`} value={field.options?.join("，") ?? ""}
+                          onChange={(event) => changeTaskParameter(index, { options: event.target.value.split(/[，,]/).map((item) => item.trim()).filter(Boolean) })}
+                          placeholder="用逗号分隔选项" className="mt-[5px] w-full rounded border border-[var(--hairline)] p-[4px]" /> : null}
+                        {field.type === "boolean" ? <select aria-label={`参数${index + 1}默认`} value={field.default === true ? "true" : field.default === false ? "false" : ""}
+                          onChange={(event) => changeTaskParameter(index, { default: event.target.value === "" ? undefined : event.target.value === "true" })}
+                          className="mt-[5px] w-full rounded border border-[var(--hairline)] p-[4px]"><option value="">无默认</option><option value="true">默认是</option><option value="false">默认否</option></select>
+                          : field.type === "year_range" ? <div className="mt-[5px] flex gap-[5px]">{(["from", "to"] as const).map((side) => <input key={side} aria-label={`参数${index + 1}默认${side === "from" ? "起" : "止"}`} type="number" placeholder={side === "from" ? "起始年" : "结束年"}
+                            value={(field.default as { from?: number; to?: number } | undefined)?.[side] ?? ""}
+                            onChange={(event) => changeTaskParameter(index, { default: { ...(field.default as object ?? {}), [side]: event.target.value ? Number(event.target.value) : undefined } })}
+                            className="min-w-0 flex-1 rounded border border-[var(--hairline)] p-[4px]" />)}</div>
+                          : <input aria-label={`参数${index + 1}默认`} type={field.type === "integer" ? "number" : "text"} value={field.default == null ? "" : String(field.default)}
+                            onChange={(event) => changeTaskParameter(index, { default: event.target.value === "" ? undefined : field.type === "integer" ? Number(event.target.value) : event.target.value })}
+                            placeholder="默认值（可选）" className="mt-[5px] w-full rounded border border-[var(--hairline)] p-[4px]" />}
+                      </div>)}
+                    </div>
                     <p className="text-[11px] text-[var(--stone)]">运行配置：当前会话知识库 · 本地资料 · 网络关闭 · {selectedTask.output_hint || "文本回答"}</p>
                     <div className="flex gap-[6px]"><Button disabled={taskEditBusy} onClick={() => void persistTask(false)}>保存草稿</Button><Button disabled={taskEditBusy} onClick={() => void persistTask(true)}>保存并发布</Button></div>
                     {taskEditMessage ? <p role="status" className="text-[12px] text-[var(--steel)]">{taskEditMessage}</p> : null}
@@ -499,6 +543,7 @@ export function Inspector() {
                     <dt className="text-[var(--stone)]">模型</dt><dd className="truncate text-[var(--charcoal)]">{runModel || "未记录"}</dd>
                     <dt className="text-[var(--stone)]">任务版本</dt><dd className="text-[var(--charcoal)]">{runSnapshot?.task_version ? `${tasks.find((task) => task.id === runSnapshot.task_id)?.name ?? runSnapshot.task_id} · v${runSnapshot.task_version}` : "未记录"}</dd>
                     <dt className="text-[var(--stone)]">参数来源</dt><dd className="text-[var(--charcoal)]">{runSnapshot?.param_sources ? Object.entries(runSnapshot.param_sources).map(([key, source]) => `${key}: ${source === "task_default" ? "任务默认" : source}`).join("；") : "未记录"}</dd>
+                    <dt className="text-[var(--stone)]">实际参数</dt><dd className="break-all text-[var(--charcoal)]">{runSnapshot?.params ? Object.entries(runSnapshot.params).map(([key, value]) => `${key}: ${typeof value === "object" ? JSON.stringify(value) : String(value)}`).join("；") : "未记录"}</dd>
                     <dt className="text-[var(--stone)]">资源策略</dt><dd className="text-[var(--charcoal)]">{runPolicy || "未记录"}</dd>
                     <dt className="text-[var(--stone)]">服务端实际范围</dt><dd className="text-[var(--charcoal)]">{effectiveScopeLabel || "未记录"}</dd>
                   </dl>

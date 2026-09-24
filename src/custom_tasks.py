@@ -5,6 +5,8 @@ import sqlite3
 from pathlib import Path
 from uuid import uuid4
 
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
 from .prompts import list_tasks
 
 
@@ -14,6 +16,83 @@ class TaskConflict(ValueError):
 
 class TaskMissing(ValueError):
     pass
+
+
+class TaskInvalid(ValueError):
+    pass
+
+
+RESERVED_KEYS = {"task_id", "task_version", "corpus_id", "corpus_ids", "allowed_doc_ids",
+                 "model", "resource_policy", "output_intent", "run_id"}
+
+
+class TaskParameter(BaseModel):
+    """A bounded, declarative input; task definitions cannot grant runtime capabilities."""
+
+    model_config = ConfigDict(extra="forbid")
+    key: str = Field(min_length=1, max_length=40, pattern=r"^[a-z][a-z0-9_]*$")
+    label: str = Field(min_length=1, max_length=80)
+    type: str = Field(pattern=r"^(text|integer|enum|boolean|year_range)$")
+    help: str = Field(default="", max_length=500)
+    required: bool = False
+    options: list[str] = Field(default_factory=list, max_length=20)
+    default: object | None = None
+
+    @model_validator(mode="after")
+    def check_definition(self):
+        if self.key in RESERVED_KEYS:
+            raise ValueError("参数名称不能覆盖运行范围或权限字段")
+        if self.type == "enum":
+            if not self.options or len(self.options) != len(set(self.options)) or any(
+                not value or len(value) > 80 for value in self.options
+            ):
+                raise ValueError("枚举参数需要不重复的非空选项")
+        elif self.options:
+            raise ValueError("只有枚举参数可以设置选项")
+        if "default" in self.model_fields_set and self.default is not None:
+            self.validate_value(self.default)
+        return self
+
+    def validate_value(self, value: object) -> None:
+        valid = (
+            self.type == "text" and isinstance(value, str) and len(value) <= 500
+            or self.type == "integer" and type(value) is int and -1_000_000 <= value <= 1_000_000
+            or self.type == "enum" and isinstance(value, str) and value in self.options
+            or self.type == "boolean" and type(value) is bool
+            or self.type == "year_range" and isinstance(value, dict)
+            and set(value) == {"from", "to"} and all(type(year) is int and 1900 <= year <= 2100
+                                                       for year in value.values())
+            and value["from"] <= value["to"]
+        )
+        if not valid:
+            raise ValueError(f"参数「{self.label}」的值与类型或选项不匹配")
+
+
+def resolve_task_params(definition: dict, supplied: dict[str, object]) -> tuple[dict, dict]:
+    """Resolve the published contract; caller combines it with non-task run context."""
+    legacy = definition.get("parameter_defaults", {})
+    schema = [TaskParameter.model_validate(item) for item in definition.get("parameters", [])]
+    known = set(legacy) | {item.key for item in schema}
+    if unknown := set(supplied) - known:
+        raise ValueError(f"任务没有这些输入参数：{', '.join(sorted(unknown))}")
+    values = {**legacy}
+    sources = {key: "task_default" for key in legacy}
+    for item in schema:
+        if item.key in supplied:
+            item.validate_value(supplied[item.key])
+            values[item.key] = supplied[item.key]
+            sources[item.key] = "user"
+        elif item.default is not None:
+            values[item.key] = item.default
+            sources[item.key] = "task_default"
+        elif item.required:
+            raise ValueError(f"请填写必填参数「{item.label}」")
+    for key in set(supplied) & set(legacy):
+        if not isinstance(supplied[key], str) or len(supplied[key]) > 500:
+            raise ValueError(f"参数「{key}」须为 500 字以内的文本")
+        values[key] = supplied[key]
+        sources[key] = "user"
+    return values, sources
 
 
 class CustomTaskStore:
@@ -36,6 +115,7 @@ class CustomTaskStore:
                 "kind": "custom", "status": "draft", "revision": 1, "version": 0,
                 "background": "", "goal": source["description"], "requirements": "",
                 "parameter_defaults": {}}
+        task["parameters"] = []
         with self.connect() as db:
             db.execute("INSERT INTO tasks (id, draft) VALUES (?,?)", (task["id"], json.dumps(task, ensure_ascii=False)))
         return task
@@ -62,6 +142,9 @@ class CustomTaskStore:
             if task["revision"] != revision:
                 raise TaskConflict("草稿已由其他编辑更新，请刷新后重试")
             task.update(changes)
+            keys = [item["key"] for item in task.get("parameters", [])]
+            if len(keys) != len(set(keys)) or set(keys) & task.get("parameter_defaults", {}).keys():
+                raise TaskInvalid("参数名称重复或与旧文本默认值冲突")
             task["revision"] += 1
             task["status"] = "draft"
             db.execute("UPDATE tasks SET draft=? WHERE id=?", (json.dumps(task, ensure_ascii=False), task_id))

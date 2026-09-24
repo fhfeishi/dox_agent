@@ -302,6 +302,8 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
 
     async with asyncio.timeout(settings.run_timeout):
         response = await model.ainvoke(messages)
+        if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
+            raise ValueError("报告达到模型输出长度上限，未保存截断正文；请缩小篇幅或资料范围")
         content = response.content if isinstance(response.content, str) else str(response.content)
         if valid(content):
             return with_sources(content)
@@ -309,6 +311,8 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
                                       "标题使用 #、章节使用 ##，关键事实引用有效的 [n] 编号。"
                                       "上一稿仅作待修复草稿：\n" + content)
         response = await model.ainvoke([*messages, repair])
+        if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
+            raise ValueError("报告达到模型输出长度上限，未保存截断正文；请缩小篇幅或资料范围")
         content = response.content if isinstance(response.content, str) else str(response.content)
     if not valid(content):
         raise ValueError("报告引用或结构校验失败，请检查来源与模型输出后重试")

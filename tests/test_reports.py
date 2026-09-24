@@ -94,6 +94,20 @@ def test_user_invalid_report_citations_are_repaired_once_or_fail(tmp_path):
     assert "真实来源 [1]" in fixed
 
 
+def test_user_truncated_model_output_is_never_saved_as_a_complete_report(tmp_path):
+    # Given a model response that looks plausible but reached the provider output limit
+    class TruncatedModel:
+        async def ainvoke(self, messages):
+            return SimpleNamespace(content="# 报告\n\n## 发现\n证据 [1]",
+                                   response_metadata={"finish_reason": "length"})
+
+    # When generation receives that response, then no partial body is returned as complete
+    with pytest.raises(ValueError, match="输出长度上限"):
+        asyncio.run(generate_markdown(_store(tmp_path), Settings(_env_file=None),
+            {"domain": "癫痫", "year_from": 2021, "year_to": 2025,
+             "template_id": "comprehensive"}, llm=TruncatedModel()))
+
+
 def test_user_report_generation_filters_by_form_date_and_fund_type(tmp_path):
     # Given reports inside/outside the explicit form-date and fund-type criteria
     store = Knowledge(tmp_path / "db")

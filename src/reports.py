@@ -186,8 +186,13 @@ class ReportStore:
         return items
 
 
-async def generate_markdown(knowledge, settings, params: dict, *, llm=None) -> str:
-    """Generate report Markdown from the selected reports and the template instruction."""
+async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
+                            template_content: str | None = None) -> str:
+    """Generate report Markdown from the selected reports and the template instruction.
+
+    ``template_content`` lets a published custom template's Markdown replace the built-in
+    structure; variables already substituted by the caller.
+    """
     template_id = params["template_id"]
     query = " ".join(part for part in (params.get("domain", ""), params.get("focus", "")) if part)
     selected_ids = set(params["doc_ids"]) if params.get("doc_ids") else None
@@ -235,7 +240,8 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None) -> s
         f"{report['header']}\n<report>\n{report['markdown']}\n</report>" for report in context.reports)
     messages = [
         SystemMessage(content=task_instruction("task4", phase="report")
-                      + "\n\n模板章节：\n" + report_template(template_id)),
+                      + "\n\n模板章节：\n" + (template_content if template_content is not None
+                                              else report_template(template_id))),
         HumanMessage(content=header + "\n\n可引用原文证据：\n" + reports_text),
     ]
     response = await model.ainvoke(messages)

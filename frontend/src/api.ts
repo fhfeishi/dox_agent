@@ -106,7 +106,7 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rel_path: relPath, new_name: newName }) });
   await jsonOrThrow(response, "重命名文件失败");
 }
-export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; fund_type?: string; focus?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; corpus_id?: string };
+export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; corpus_id?: string };
 export type ReportSummary = { report_id: string; created_at?: string; session_key?: string; run_id?: string; corpus_id?: string; template_id?: string; domain?: string; year_from?: number; year_to?: number };
 export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean };
 export type ReportMetadataCoverage = {
@@ -259,8 +259,8 @@ export async function publishTask(task: TaskInfo): Promise<TaskInfo> {
   return jsonOrThrow(response, "发布任务失败") as Promise<TaskInfo>;
 }
 
-export type TemplateSummary = { id: string; name: string };
-export type TemplateInfo = TemplateSummary & { content: string };
+export type TemplateSummary = { id: string; name: string; kind?: string; status?: string; version?: number };
+export type TemplateInfo = TemplateSummary & { content: string; variables?: string[]; purpose?: string; revision?: number; source_template_id?: string };
 
 /** W1: read-only built-in output templates for the shared inspector preview. */
 export async function fetchTemplates(signal?: AbortSignal): Promise<TemplateSummary[]> {
@@ -269,9 +269,42 @@ export async function fetchTemplates(signal?: AbortSignal): Promise<TemplateSumm
   return response.json();
 }
 
-export async function fetchTemplate(templateId: string, signal?: AbortSignal): Promise<TemplateInfo> {
-  const response = await fetch(`/api/templates/${encodeURIComponent(templateId)}`, signal ? { signal } : undefined);
+export async function fetchTemplate(templateId: string, version?: number): Promise<TemplateInfo> {
+  const query = version === undefined ? "" : `?version=${version}`;
+  const response = await fetch(`/api/templates/${encodeURIComponent(templateId)}${query}`);
   return jsonOrThrow(response, "输出模板不可用") as Promise<TemplateInfo>;
+}
+
+export type CustomTemplate = { id: string; kind: string; status: string; revision: number; version: number;
+  name: string; purpose: string; content: string; variables: string[]; source_template_id?: string };
+
+/** W4-B: custom output templates (copy a built-in, edit a draft, publish immutable versions). */
+export async function copyTemplate(sourceTemplateId: string): Promise<CustomTemplate> {
+  const response = await fetch("/api/templates/custom", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ source_template_id: sourceTemplateId }),
+  });
+  return jsonOrThrow(response, "复制模板失败") as Promise<CustomTemplate>;
+}
+
+export async function fetchCustomTemplate(templateId: string): Promise<CustomTemplate> {
+  const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}`);
+  return jsonOrThrow(response, "模板不可用") as Promise<CustomTemplate>;
+}
+
+export async function saveTemplateDraft(templateId: string, revision: number,
+  changes: { name?: string; purpose?: string; content?: string; variables?: string[] }): Promise<CustomTemplate> {
+  const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}/draft`, {
+    method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision, ...changes }),
+  });
+  return jsonOrThrow(response, "保存模板草稿失败") as Promise<CustomTemplate>;
+}
+
+export async function publishTemplate(templateId: string, revision: number): Promise<CustomTemplate> {
+  const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}/publish`, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision }),
+  });
+  return jsonOrThrow(response, "发布模板失败") as Promise<CustomTemplate>;
 }
 
 export function streamChat(messages: Message[], signal: AbortSignal, receive: (event: Event) => void, options?: ChatRequestOptions): Promise<void>;

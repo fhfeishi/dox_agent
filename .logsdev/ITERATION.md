@@ -1,7 +1,7 @@
 # ITERATION — dox_agent 当前工作
 
 - 更新时间：2026-09-24。
-- **当前执行入口：§16.18「W4 自定义任务与输出模板」**。W3-B 已随 `0c57a0f` 提交；W4-A 的问答/对比自定义任务主链已实施，实际检查与未完成项见 §16.19。W4-B 报告模板及 W4-C 生命周期仍待实施。真实模型报告与 OCR 可信度继续单列；未跟踪个人脚本不属于本阶段。
+- **当前执行入口：§16.18「W4 自定义任务与输出模板」**。W3-B 已随 `0c57a0f` 提交；W4-A（`e789a8c`，含参数补齐）与 W4-B 自定义报告模板首切片（§16.20，未提交）已实施：后端 172 / 前端 31 测试、构建与 12 个离线浏览器脚本通过。剩余 W4-B 报告型自定义任务，以及 W4-C 生命周期/兼容收口；真实模型报告与 OCR 可信度继续单列；未跟踪个人脚本不属于本阶段。
 - 长期说明见 [`PROJECT.md`](PROJECT.md)；关键取舍见 [`DECISIONS.md`](DECISIONS.md)。
 
 ## 1. 当前目标与必要约束
@@ -1972,3 +1972,14 @@ W3-A 已收口（B1–B4 完成）。W3-B 涉及 Artifact 存储与全局成果�
 - **W4-A 参数补齐（2026-09-24）**：新增文本、整数、枚举、布尔、年份区间的声明式参数 schema、默认值及必填校验；独立 `task_params` 请求字段避免与知识库/模型/网络策略混用。会话可保存用户填写值；发送前显示固定任务版本、资料与网络策略和输入控件；服务端按固定版本校验并在运行快照记录实际值及 `user`/`task_default` 来源。旧 `parameter_defaults` 文本字段兼容，未知参数、类型/选项/年份错误和缺必填均在建 run 前拒绝。保存草稿拒绝重复或保留字段名。
 - **本批实际检查**（Linux，基于 `2bbd2c6`）：后端全量 **168 passed**（1 Starlette 弃用警告）；前端 **31 passed**；构建通过（既有动态导入与 chunk 告警）；`browser_custom_tasks_live.py` 使用真实 API/SQLite/浏览器与离线图替身，覆盖编辑必填参数、发布、发送、成果和用户值/默认来源回读；旧 `browser_tasks.py` 通过；新 Python 模块与测试 `ruff` 通过。
 - **尚未实现**：分类/边界/澄清字段与完整四段编辑器、归档/版本升级入口属于 W4-C 收口；W4-B 自定义报告模板未开始。当前浏览器测试使用离线图替身，不能代表真实模型效果。
+
+### 16.20 W4-B 自定义报告模板竖切（2026-09-24，已实施；基于 `e789a8c`）
+
+按 §16.18 W4-B 规格实现输出模板对象、发布版本与报告绑定；报告仍单库、沿用填表日期/类别确定性筛选与缺失计数。内置四模板保持只读，复制后可编辑并发布不可变版本。
+
+- **模板对象**：新增 `src/custom_templates.py` 的 `TemplateStore`（`STATE_DIR/custom_templates.sqlite3`，`templates`/`versions` 两表）；`OutputTemplate` 校验名称/正文、至少一个章节标题、变量只能引用 `domain`/`year_range`/`year_from`/`year_to`/`fund_type`/`focus`，且声明与实际使用一致（缺声明、重复、未使用均在建件前拒绝）。草稿以修订号防并发覆盖；发布追加不可变版本，旧版不被覆盖。
+- **接口**：`POST /api/templates/custom`（复制内置）、`GET /api/templates/custom/{id}`、`GET /api/templates/custom/{id}/versions/{v}`、`PUT /api/templates/custom/{id}/draft`、`POST /api/templates/custom/{id}/publish`；`GET /api/templates` 返回内置 + 自定义（含状态/版本）；`GET /api/templates/{id}` 支持内置或自定义已发布版本。
+- **报告绑定**：`ReportRequest.template_id` 由四类 `Literal` 放宽为字符串并新增可选 `template_version`；自定义模板在建 run 前解析到固定发布版本，变量用报告参数渲染后注入提示词；未发布/未知模板 422。运行指纹含 `template_version`；RunSnapshot `params` 与报告 Artifact 的 `template_version` 均记录该版本。内置模板行为不变。
+- **前端**：报告卡新增“报告模板”选择器（内置 + 已发布自定义，自定义显示版本），首次从 intake 值初始化；检查器模板预览对内置提供“复制为自定义模板”，对自定义提供名称/正文/变量编辑与“保存草稿/保存并发布”，发布后旧报告仍读原版本。
+- **本轮实际运行证据**（Linux，当前工作树，基于 `e789a8c`）：`.venv/bin/python -m pytest tests -q` → **172 passed**（新增 `tests/test_custom_templates.py` 4 例：草稿/发布/报告绑定与变量替换、非法变量拒绝、未发布模板 422、版本不可变）；`npm --prefix frontend test` → **31 passed**；`npm --prefix frontend run build` 通过；12 个离线 Playwright 脚本全部退出 0；`git diff --check` 通过；新增文件 `ruff` 无告警。
+- **未完成**：报告型自定义任务（从 task4 复制并绑定模板版本，属 W4-B 剩余项）、模板变量样例/预览增强、归档/版本升级入口与四段编辑器属 W4-C；真实模型报告未验。

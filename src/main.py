@@ -47,11 +47,18 @@ from .custom_tasks import (
     TaskParameter,
     resolve_task_params,
 )
+from .custom_templates import (
+    OutputTemplate,
+    TemplateConflict,
+    TemplateMissing,
+    TemplateStore,
+    render_template,
+)
 from .docx_export import markdown_to_docx
 from .knowledge import Knowledge, KnowledgeGroup
 from .official_docs import import_official
 from .parsers import collect_sources, import_defaults, parse_web
-from .prompts import list_tasks, list_templates, report_template
+from .prompts import REPORT_TEMPLATES, list_tasks, list_templates, report_template
 from .reports import ReportStore, generate_markdown, summarize_report_metadata
 from .retrieval import fit_history
 from .runs import RunConflict, RunStore, request_fingerprint
@@ -136,7 +143,9 @@ class ReportRequest(BaseModel):
     domain: str = Field(min_length=1, max_length=120)
     year_from: int = Field(ge=1900, le=2100)
     year_to: int = Field(ge=1900, le=2100)
-    template_id: Literal["achievements", "hotspots", "future_directions", "comprehensive"]
+    template_id: str = Field(min_length=1, max_length=80)
+    # W4-B: custom templates are resolved to a fixed published version; built-ins ignore it.
+    template_version: int | None = Field(default=None, ge=1, le=100000)
     fund_type: str = Field(default="", max_length=120)
     focus: str = Field(default="", max_length=2000)
     doc_ids: list[str] | None = Field(default=None, min_length=1, max_length=20)
@@ -210,6 +219,25 @@ class TaskPublish(BaseModel):
     revision: int = Field(ge=1)
 
 
+class TemplateCopy(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    source_template_id: str
+
+
+class TemplateDraft(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    revision: int = Field(ge=1)
+    name: str | None = Field(default=None, min_length=1, max_length=80)
+    purpose: str | None = Field(default=None, max_length=500)
+    content: str | None = Field(default=None, min_length=1, max_length=20000)
+    variables: list[str] | None = Field(default=None, max_length=10)
+
+
+class TemplatePublish(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    revision: int = Field(ge=1)
+
+
 class CorpusCreate(BaseModel):
     model_config = ConfigDict(extra="forbid")
     name: str = Field(min_length=1, max_length=80)
@@ -275,6 +303,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         # W3-A: run snapshots live with the other application-level state.
         app.state.runs = RunStore(settings.state_dir / "runs.sqlite3")
         app.state.custom_tasks = CustomTaskStore(settings.state_dir / "custom_tasks.sqlite3")
+        app.state.custom_templates = TemplateStore(settings.state_dir / "custom_templates.sqlite3")
         # W3-B: first-class artifacts (answer snapshots + reports) in application state.
         app.state.artifacts = ArtifactStore(settings.state_dir / "artifacts.sqlite3")
         app.state.import_lock = asyncio.Lock()
@@ -439,16 +468,68 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     @app.get("/api/templates")
     async def templates():
-        """W1: read-only output-template catalogue (built-in Markdown section structures)."""
-        return list_templates()
+        """W1/W4-B: built-in catalogue plus custom template drafts/published versions."""
+        builtins = [{**item, "kind": "builtin", "status": "published", "version": 0}
+                    for item in list_templates()]
+        custom = await asyncio.to_thread(app.state.custom_templates.list)
+        return builtins + custom
+
+    @app.post("/api/templates/custom", status_code=201)
+    async def copy_template(payload: TemplateCopy):
+        try:
+            return await asyncio.to_thread(app.state.custom_templates.copy_builtin, payload.source_template_id)
+        except TemplateMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+    @app.get("/api/templates/custom/{template_id}")
+    async def custom_template(template_id: str):
+        try:
+            return await asyncio.to_thread(app.state.custom_templates.get, template_id)
+        except TemplateMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+    @app.get("/api/templates/custom/{template_id}/versions/{version}")
+    async def custom_template_version(template_id: str, version: int):
+        try:
+            return await asyncio.to_thread(app.state.custom_templates.version, template_id, version)
+        except TemplateMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+    @app.put("/api/templates/custom/{template_id}/draft")
+    async def save_template_draft(template_id: str, payload: TemplateDraft):
+        changes = payload.model_dump(exclude={"revision"}, exclude_unset=True)
+        try:
+            return await asyncio.to_thread(app.state.custom_templates.save_draft,
+                                           template_id, payload.revision, changes)
+        except TemplateMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except TemplateConflict as exc:
+            raise HTTPException(409, str(exc)) from exc
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+
+    @app.post("/api/templates/custom/{template_id}/publish")
+    async def publish_template(template_id: str, payload: TemplatePublish):
+        try:
+            return await asyncio.to_thread(app.state.custom_templates.publish, template_id, payload.revision)
+        except TemplateMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except TemplateConflict as exc:
+            raise HTTPException(409, str(exc)) from exc
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
 
     @app.get("/api/templates/{template_id}")
-    async def template_detail(template_id: str):
-        """W1: one template's section structure, for the shared inspector preview."""
-        entry = next((item for item in list_templates() if item["id"] == template_id), None)
-        if entry is None:
-            raise HTTPException(404, "报告模板不存在")
-        return {**entry, "content": report_template(template_id)}
+    async def template_detail(template_id: str, version: int | None = None):
+        """W1/W4-B: built-in structure or a custom published version, for the inspector preview."""
+        builtin = next((item for item in list_templates() if item["id"] == template_id), None)
+        if builtin is not None:
+            return {**builtin, "kind": "builtin", "content": report_template(template_id),
+                    "variables": [], "version": 0}
+        try:
+            return await asyncio.to_thread(app.state.custom_templates.version, template_id, version)
+        except TemplateMissing as exc:
+            raise HTTPException(404, "报告模板不存在") from exc
 
     def corpus_counts(info: CorpusInfo) -> dict:
         """KM-S2: lightweight file counts for the overview card (read-only, never parses).
@@ -1376,12 +1457,29 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             if not set(payload.doc_ids) <= available_ids:
                 raise HTTPException(422, "报告限定文档必须属于指定知识库")
         session_key = payload.session_key or ""
+        # W4-B: resolve a custom template to its fixed published version before the run is created;
+        # built-in templates keep their read-only structure.
+        template_content: str | None = None
+        template_version = 0
+        if payload.template_id not in REPORT_TEMPLATES:
+            try:
+                definition = await asyncio.to_thread(app.state.custom_templates.version,
+                                                      payload.template_id, payload.template_version)
+            except TemplateMissing as exc:
+                raise HTTPException(422, "自定义报告模板不存在或尚未发布") from exc
+            template_version = int(definition.get("version", 0))
+            template_content = render_template(definition["content"], {
+                "domain": payload.domain, "year_range": f"{payload.year_from}–{payload.year_to}",
+                "year_from": payload.year_from, "year_to": payload.year_to,
+                "fund_type": payload.fund_type or "不限", "focus": payload.focus or "无",
+            })
         # W3-A: a report is an independent run whose parent is the task4 intake chat run.
         # The fingerprint check runs first: reusing a run_id with different parameters is a
         # conflict (409) rather than silently returning a differently-scoped report.
         run_id = payload.run_id or uuid4().hex
         fingerprint = request_fingerprint({
-            "type": "report", "template_id": payload.template_id, "domain": payload.domain,
+            "type": "report", "template_id": payload.template_id, "template_version": template_version,
+            "domain": payload.domain,
             "year_from": payload.year_from, "year_to": payload.year_to, "fund_type": payload.fund_type,
             "focus": payload.focus, "doc_ids": payload.doc_ids or [], "corpus_id": payload.corpus_id or "",
         })
@@ -1395,7 +1493,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 effective_corpus_ids=[payload.corpus_id] if payload.corpus_id else [],
                 allowed_doc_ids=payload.doc_ids,
                 params={"domain": payload.domain, "year_from": payload.year_from, "year_to": payload.year_to,
-                        "template_id": payload.template_id, "fund_type": payload.fund_type,
+                        "template_id": payload.template_id, "template_version": template_version,
+                        "fund_type": payload.fund_type,
                         "focus": payload.focus},
                 param_sources={}, output_intent="document")
         except RunConflict as exc:
@@ -1413,7 +1512,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(409, "该报告正在生成中")
         # A failed (or otherwise terminal, unsaved) run falls through and can be safely retried.
         try:
-            markdown = await generate_markdown(kn, settings, payload.model_dump())
+            markdown = await generate_markdown(kn, settings, payload.model_dump(),
+                                               **({"template_content": template_content}
+                                                  if template_content is not None else {}))
         except ValueError as exc:
             await record_report_failure(run_id, payload, str(exc))
             raise HTTPException(422, str(exc)) from exc

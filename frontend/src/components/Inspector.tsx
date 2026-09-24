@@ -3,7 +3,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { artifactExportUrl, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchReport, fetchRun, fetchTemplate, fetchTemplates, publishTask, saveTaskDraft, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary } from "../api";
+import { artifactExportUrl, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchReport, fetchRun, fetchTemplate, fetchTemplates, publishTask, publishTemplate, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -79,6 +79,9 @@ export function Inspector() {
   const [template, setTemplate] = useState<TemplateInfo | null>(null);
   const [templateError, setTemplateError] = useState("");
   const [templateList, setTemplateList] = useState<TemplateSummary[]>([]);
+  const [templateDraft, setTemplateDraft] = useState<CustomTemplate | null>(null);
+  const [templateEditBusy, setTemplateEditBusy] = useState(false);
+  const [templateEditMessage, setTemplateEditMessage] = useState("");
   const [runSnapshot, setRunSnapshot] = useState<RunSnapshot | null>(null);
   const [runSnapshotMissing, setRunSnapshotMissing] = useState(false);
 
@@ -144,15 +147,31 @@ export function Inspector() {
     if (inspectorTarget.kind !== "template") {
       setTemplate(null);
       setTemplateError("");
+      setTemplateDraft(null);
       return;
     }
+    const templateId = inspectorTarget.templateId;
     let active = true;
     setTemplate(null);
     setTemplateError("");
-    void fetchTemplate(inspectorTarget.templateId).then(
-      (item) => { if (active) setTemplate(item); },
-      (error) => { if (active) setTemplateError(error instanceof Error ? error.message : "输出模板读取失败"); },
-    );
+    setTemplateDraft(null);
+    // W4-B: custom templates also load their editable draft; built-ins stay read-only.
+    const load = async () => {
+      try {
+        if (templateId.startsWith("custom-")) {
+          const item = await fetchCustomTemplate(templateId);
+          if (!active) return;
+          setTemplate(item);
+          setTemplateDraft(item);
+        } else {
+          const item = await fetchTemplate(templateId);
+          if (active) setTemplate(item);
+        }
+      } catch (error) {
+        if (active) setTemplateError(error instanceof Error ? error.message : "输出模板读取失败");
+      }
+    };
+    void load();
     return () => { active = false; };
   }, [inspectorTarget.kind, inspectorTarget.kind === "template" ? inspectorTarget.templateId : ""]);
 
@@ -222,6 +241,31 @@ export function Inspector() {
     const parameters = [...(taskDraft.parameters ?? [])];
     parameters[index] = { ...parameters[index], ...change };
     setTaskDraft({ ...taskDraft, parameters });
+  }
+  async function persistTemplate(publish: boolean) {
+    if (!templateDraft) return;
+    setTemplateEditBusy(true);
+    try {
+      const saved = await saveTemplateDraft(templateDraft.id, templateDraft.revision, {
+        name: templateDraft.name, purpose: templateDraft.purpose,
+        content: templateDraft.content, variables: templateDraft.variables,
+      });
+      const result = publish ? await publishTemplate(saved.id, saved.revision) : saved;
+      setTemplateDraft(result);
+      setTemplate(result);
+      setTemplateEditMessage(publish ? `已发布 v${result.version}` : "草稿已保存");
+    } catch (e) { setTemplateEditMessage((e as Error).message); }
+    finally { setTemplateEditBusy(false); }
+  }
+  async function duplicateTemplate() {
+    if (!template) return;
+    setTemplateEditBusy(true);
+    try {
+      const copied = await copyTemplate(template.id);
+      setTemplateEditMessage(`已复制为「${copied.name}」，可编辑后发布`);
+      showInspector({ kind: "template", templateId: copied.id });
+    } catch (e) { setTemplateEditMessage((e as Error).message); }
+    finally { setTemplateEditBusy(false); }
   }
   const selectedTemplate = inspectorTarget.kind === "template"
     ? (template?.id === inspectorTarget.templateId ? template : templateList.find((item) => item.id === inspectorTarget.templateId) ?? null)
@@ -506,14 +550,51 @@ export function Inspector() {
 
         {inspectorTarget.kind === "template" ? (
           <>
-            <SectionTitle>输出模板</SectionTitle>
+            <SectionTitle aside={template?.kind === "custom" ? <span className="text-[11px] text-[var(--stone)]">{template.status === "published" ? `已发布 v${template.version}` : "草稿"}</span> : undefined}>
+              输出模板
+            </SectionTitle>
             {templateError ? <p role="alert" className="text-[12px] text-[var(--red)]">{templateError}</p> : null}
             {!template && !templateError ? <p className="text-[12px] text-[var(--steel)]">正在读取输出模板…</p> : null}
             {template?.id === inspectorTarget.templateId ? (
               <Card>
-                <h2 className="text-[15px] font-semibold text-[var(--ink)]">{template.name}</h2>
-                <p className="mt-[4px] text-[11.5px] text-[var(--stone)]">内置只读模板 · 报告按此章节结构生成</p>
-                <div className="markdown mt-[12px]"><Markdown remarkPlugins={[remarkGfm]}>{template.content}</Markdown></div>
+                {template.kind === "custom" && templateDraft ? (
+                  <>
+                    <h2 className="text-[15px] font-semibold text-[var(--ink)]">{templateDraft.name}</h2>
+                    <p className="mt-[4px] text-[11.5px] text-[var(--stone)]">自定义模板 · 发布后作为不可变版本；改模板不影响旧报告</p>
+                    <div className="mt-[12px] space-y-[8px]">
+                      <label className="block text-[12px] text-[var(--slate)]">名称
+                        <input aria-label="模板名称" value={templateDraft.name}
+                          onChange={(event) => setTemplateDraft({ ...templateDraft, name: event.target.value })}
+                          className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[12px] text-[var(--ink)]" />
+                      </label>
+                      <label className="block text-[12px] text-[var(--slate)]">章节正文（Markdown）
+                        <textarea aria-label="模板正文" value={templateDraft.content} rows={10}
+                          onChange={(event) => setTemplateDraft({ ...templateDraft, content: event.target.value })}
+                          className="font-code mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[11.5px] text-[var(--ink)]" />
+                      </label>
+                      <label className="block text-[12px] text-[var(--slate)]">变量（逗号分隔，可引用 domain/year_range/year_from/year_to/fund_type/focus）
+                        <input aria-label="模板变量" value={templateDraft.variables.join("，")}
+                          onChange={(event) => setTemplateDraft({ ...templateDraft, variables: event.target.value.split(/[，,]/).map((item) => item.trim()).filter(Boolean) })}
+                          className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[12px] text-[var(--ink)]" />
+                      </label>
+                      <div className="flex gap-[6px]">
+                        <Button disabled={templateEditBusy} onClick={() => void persistTemplate(false)}>保存草稿</Button>
+                        <Button disabled={templateEditBusy} onClick={() => void persistTemplate(true)}>保存并发布</Button>
+                      </div>
+                      {templateEditMessage ? <p role="status" className="text-[12px] text-[var(--steel)]">{templateEditMessage}</p> : null}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="text-[15px] font-semibold text-[var(--ink)]">{template.name}</h2>
+                    <p className="mt-[4px] text-[11.5px] text-[var(--stone)]">内置只读模板 · 报告按此章节结构生成</p>
+                    <div className="markdown mt-[12px]"><Markdown remarkPlugins={[remarkGfm]}>{template.content}</Markdown></div>
+                    <div className="mt-[12px] flex gap-[6px]">
+                      <Button disabled={templateEditBusy} onClick={() => void duplicateTemplate()}>复制为自定义模板</Button>
+                    </div>
+                    {templateEditMessage ? <p role="status" className="text-[12px] text-[var(--steel)]">{templateEditMessage}</p> : null}
+                  </>
+                )}
               </Card>
             ) : null}
           </>

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type ComponentProps } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import { createReport, fetchReportMetadata, type ReportInfo, type ReportMetadataCoverage, type Source, type Step } from "../api";
+import { createReport, fetchReportMetadata, fetchTemplates, type ReportInfo, type ReportMetadataCoverage, type Source, type Step, type TemplateSummary } from "../api";
 import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
@@ -287,6 +287,18 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   const scopeIds = attempt.options.corpus_ids ?? (attempt.options.corpus_id ? [attempt.options.corpus_id] : []);
   const [corpusId, setCorpusId] = useState("");
   const params = attempt.policy?.report_params;
+  // W4-B: an explicit template selector; text intake only seeds the initial value.
+  const [templateId, setTemplateId] = useState(params?.template_id ?? "");
+  const [templateOptions, setTemplateOptions] = useState<TemplateSummary[]>([]);
+  useEffect(() => {
+    let active = true;
+    void fetchTemplates().then(
+      (items) => { if (active) setTemplateOptions(items.filter((item) => item.kind !== "custom" || item.status === "published")); },
+      () => { if (active) setTemplateOptions([]); },
+    );
+    return () => { active = false; };
+  }, []);
+  useEffect(() => { if (!templateId && params?.template_id) setTemplateId(params.template_id); }, [params?.template_id, templateId]);
   const ready = Boolean(params?.domain && params?.year_from && params?.year_to && params?.template_id);
   useEffect(() => {
     setCoverage(null);
@@ -310,7 +322,10 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       }
       // W3-A/A5: keep the derived report run id within the 80-char contract even if the intake id is long.
       const reportRunId = report ? crypto.randomUUID() : `${attempt.runId.slice(0, 72)}-report`;
-      const result = await createReport({ ...params, corpus_id: corpusId, doc_ids: docIds,
+      const selectedTemplate = templateOptions.find((item) => item.id === templateId);
+      const result = await createReport({ ...params, template_id: templateId || params?.template_id,
+        template_version: selectedTemplate?.kind === "custom" ? selectedTemplate.version : undefined,
+        corpus_id: corpusId, doc_ids: docIds,
         session_key: workspace.active, run_id: reportRunId, parent_run_id: attempt.runId });
       if (onReport) onReport({ report_id: result.report_id, markdown: result.markdown });
       else setLocal(result);
@@ -350,6 +365,16 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
             className="ml-[5px] rounded border border-[var(--hairline)] bg-[var(--canvas)] px-[5px] py-[3px]">
             <option value="">请选择单一知识库</option>
             {scopeIds.map((id) => <option key={id} value={id}>{corpora.find((item) => item.id === id)?.name ?? id}</option>)}
+          </select>
+        </label>
+        <label className="text-[11.5px] text-[var(--slate)]">
+          报告模板
+          <select aria-label="报告模板" value={templateId} disabled={busy}
+            onChange={(event) => setTemplateId(event.target.value)}
+            className="ml-[5px] rounded border border-[var(--hairline)] bg-[var(--canvas)] px-[5px] py-[3px]">
+            {templateOptions.map((item) => (
+              <option key={item.id} value={item.id}>{item.name}{item.kind === "custom" ? `（自定义 v${item.version}）` : ""}</option>
+            ))}
           </select>
         </label>
         <button

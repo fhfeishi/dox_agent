@@ -480,3 +480,11 @@
 - 理由与代价：当前 `ChatRequest`/`ReportRequest` 和图/检索分支均硬编码内置 ID；把自定义卡片直接当新 task id 会产生错误路由或隐式回退。需增加定义存储、版本解析、请求接线和旧会话回读，但不扩展新的执行管线。交互与分批验收见 ITERATION §16.18。
 - W4-A 首切片采用应用状态库 `custom_tasks.sqlite3` 保存草稿和不可变版本；只复制 task1/task2，服务端将自定义 ID 映射到现有引擎 ID，再执行图/检索。运行与会话保存固定版本；编辑草稿不改已发布版本。报告模板接线仍按 ITERATION §16.18 的 W4-B 实施。
 - W4-A 参数补齐：类型化任务输入走独立 `task_params` 字段；W3 的 `run_context.visible_params` 仍是运行摘要，不能覆盖任务字段。服务端按发布版本校验并合成默认/用户来源；不把任务参数解释为知识库范围、模型或联网权限。报告模板仍待 W4-B。
+
+## W4-B 自定义输出模板与报告绑定（2026-09-24）
+
+- 采用：输出模板成为独立版本化对象（`TemplateStore`，`STATE_DIR/custom_templates.sqlite3`）。内置四模板只读，可复制为自定义草稿；草稿以修订号防并发覆盖，发布追加不可变版本，旧报告读原版本。变量仅可引用声明过的报告参数（`domain`/`year_range`/`year_from`/`year_to`/`fund_type`/`focus`），缺声明、重复或未使用均在发布前拒绝；不允许脚本/include/HTML 执行。
+- 报告绑定：`ReportRequest.template_id` 放宽为字符串并新增 `template_version`；自定义模板在建 run 前解析到固定发布版本并按报告参数渲染后注入提示词，未发布/未知模板 422。运行指纹、RunSnapshot `params` 与报告 Artifact 均记录模板版本；内置模板与旧请求行为不变。
+- 兼容：`template_id` 原为四类 `Literal`，放宽后仍只接受已存在模板；旧内置报告、缺 `template_version` 的历史记录读回为“版本未记录”，不补造。
+- 影响：`src/custom_templates.py`（新增）、`src/main.py`（模板接口与报告解析/指纹/Artifact 版本）、`src/reports.py`（可注入模板正文）、`frontend/src/api.ts`/`components/MessageView.tsx`/`components/Inspector.tsx`。测试 `tests/test_custom_templates.py`。
+- 未完成：报告型自定义任务（从 task4 复制并绑定模板版本）与 W4-C 生命周期/归档收口仍待做。

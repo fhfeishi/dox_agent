@@ -89,7 +89,8 @@ class ArtifactStore:
                                "markdown, citations, status, source_verification, fail_reason) VALUES (?,?,?,?,?,?,?,?)",
                                (artifact_id, version, timestamp, report["markdown"], "[]", "completed", "verified", ""))
                     meta = {**json.loads(row[3]), "source_verification": "verified",
-                            "source_report_id": report["report_id"]}
+                            "source_report_id": report["report_id"],
+                            "template_version": report.get("params", {}).get("template_version", 0)}
                     db.execute("UPDATE artifacts SET current_version=?, status='completed', updated_at=?, "
                                "fail_reason='', payload=? WHERE id=?",
                                (version, timestamp, json.dumps(meta), artifact_id))
@@ -106,7 +107,8 @@ class ArtifactStore:
                      1, report.get("session_key", ""), run_id,
                      json.dumps([report["corpus_id"]] if report.get("corpus_id") else []),
                      "task4", params.get("template_id", ""), "md", "", "",
-                     json.dumps({"source_verification": "verified", "source_report_id": report["report_id"]})))
+                     json.dumps({"source_verification": "verified", "source_report_id": report["report_id"],
+                                 "template_version": params.get("template_version", 0)})))
                 db.execute("INSERT INTO artifact_versions (artifact_id, version, created_at, "
                            "markdown, citations, status, source_verification, fail_reason) VALUES (?,?,?,?,?,?,?,?)",
                            (artifact_id, 1, timestamp, report["markdown"], "[]", "completed", "verified", ""))
@@ -196,6 +198,7 @@ class ArtifactStore:
             # Rows from the first W3-B slice had an empty payload. They cannot claim an
             # exact source match retroactively, even when their linked run is available.
             "source_verification": json.loads(row[15]).get("source_verification", "unverified"),
+            "template_version": json.loads(row[15]).get("template_version", 0),
         }
         return item
 

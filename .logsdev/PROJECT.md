@@ -1,6 +1,6 @@
 # PROJECT — dox_agent
 
-- 最近核对：2026-09-24（W3-B 已随 `0c57a0f` 提交；W4-A 问答/对比自定义任务与类型化参数已实施，检查与缺口见 ITERATION §16.19。W4-B 自定义报告模板与 W4-C 生命周期、W5–W7、真实模型/OCR 仍待验）。
+- 最近核对：2026-09-24（W4-C 已随 `fb5e17b` 提交封口，verifier 的 2 个 P1 + 2 个 P2 已修复并补测，见 ITERATION §16.24；G10e-A/B/C 已随 `81bd39f`/`3c47fc9` 提交，D 只补齐 `python-docx` 子集、Pandoc 试验未做，见 §16.25；W5 已开工但未达退出条件，见 §16.26；W6-A 网页快照后端与 URL 界面已实施，见 §16.27。真实模型报告与 OCR 可信度仍待验）。
 - 当前产品规划见 [`ITERATION.md`](ITERATION.md) §16；知识库收口见 §15；关键取舍见 [`DECISIONS.md`](DECISIONS.md)。
 - **最新知识库契约（主干已实施并收口）**：不设默认库或首次确认；新对话自动选目录顺序首库，对话可选择 1–6 库；名称等于子目录名；显式刷新发现本地变化并增量入库，并显示当前库进度与失败库原因；总览卡片显示源文件/已入库/待处理/失败计数；新会话与所有发送入口显式发送 `corpus_ids`。KM-S1–S4 与 W0–W2 已实施并运行验证（全量 pytest、Node、构建、12 个离线浏览器脚本），KM-S5 真实格式小样本与真实模型/OCR 仍待验；实现与证据见 [`ITERATION.md`](ITERATION.md) §15.8 / §16.12 / §16.13。
 - 本文是项目的长期稳定说明，自包含；详细任务状态与完成证据在 ITERATION。
@@ -44,7 +44,8 @@
 - **扩展（规划，非首期验收）**：task5 项目画像/task6 成果汇编/task7 领域综述/task8 可视化简报；两轴分离（意图 × 产出物输出参数）。Markdown 和真实 DOCX 已可从成果导出；PDF/图表仍后置。W4 的自定义任务复用 task1–task4 执行模式，不等于这些新任务引擎已实现。见 [`ITERATION.md`](ITERATION.md) §9/§16.18。
 
 **专项报告**
-- 当前生成端点仅单 `corpus_id`；多库会话在报告卡片独立选择一个报告库，确认前不生成，不默认使用基础库。报告请求携带本轮选中且属于所选库的 `doc_ids`；会话检索集合保持原值。多库 intake 不从首库静默填领域，需明确填写。
+- 当前生成端点仅单 `corpus_id`；多库会话在报告卡片独立选择一个报告库，确认前不生成，不默认使用基础库。报告请求携带本轮选中且属于所选库的 `doc_ids`；会话检索集合保持原值。多库 intake 不从首库静默填领域；选定报告库后可显示其可靠领域建议，由用户确认或改写。
+- **报告体验（规划，ITERATION §8.9）**：自然语言需求形成带来源的可编辑摘要（单库可靠领域建议、最近五个完整自然年填表日期、类别不限、综合或任务固定模板），确认前预检实际入选/排除资料；多库缺报告库/领域、文本冲突或零入选时给就地修正动作。确认后的写作参数进入生成提示，再从成果页审阅、修订与导出。服务端过滤、模板版本和单库边界不放宽；此体验尚未实施。
 - 必填：研究领域、起止年份、模板；可选：基金/项目类别、指定文件、分析重点。
 - 四模板：`achievements`/`hotspots`/`future_directions`/`comprehensive`；输出 Markdown，支持预览/复制/`.md` 下载。
 - 用户确认“报告年份”按填表日期年份（报告提交时间）解释。报告过滤从 MinerU Markdown 的显式 `填表日期` 与 `资助类别` 标签提取；日期缺失的文档排除并计数，类别指定时仅精确类别匹配。当前实现依赖解析文本；35/35 字段可见，3 份原 PDF 首页抽查吻合，但总体 OCR 误识别率未量化；文件名项目起止年份不参与报告年份筛选。热点结论限定样本、按项目去重；事实、已实现应用、潜在应用、未来推断分开表达。
@@ -104,6 +105,7 @@
 | `GET /api/tasks` | 固定 task1–4：`id`/`name`/`description`/`output_hint`/`has_template`（兼容保留）/`templates`（新增）/`artifacts`（默认+允许集） |
 | `GET /api/templates`、`GET /api/templates/{id}` | 内置输出模板只读目录与章节内容（`id`/`name`/`content`）；未知模板 404；章节仍以 `src/templates/*.md` 为唯一权威 |
 | `POST /api/reports`、`GET /api/reports/{id}`、`GET /api/reports?session_key=`、`GET /api/reports/{id}/export?format=md` | 报告生成（retrieve→assemble→模板→LLM）/按 id 取/按会话列表/导出（首期仅 md）；参数 `session_key`/`run_id`（幂等）/`parent_run_id`/`corpus_id`；`run_id` 复用需同指纹，冲突 409；无匹配 422 |
+| `POST /api/reports/preflight` | G10e-B：用与生成端**同一个**资格过滤函数预检（入选/排除计数、文件清单、范围指纹）；只读，不调用模型；零候选时前端不得发起生成 |
 | `GET /api/runs/{run_id}` | W3-A 最小运行快照：服务端有效的任务/库范围/文档白名单/资源策略/模型/状态与完成指标；无记录 404（历史“运行信息未记录”） |
 | `GET\|PUT /api/ocr-config` | ~~liteparse OCR 模式/语言~~ **已移除（K13：改用 mineru 自动识别）** |
 | `GET /api/corpora` | 库列表：目录名派生 `name`、稳定 `id`、`kind`/`domain`/`description`/`rel_path`、missing/准备状态、源文件/已入库/待处理/失败计数和 job；读取不触发解析 |
@@ -116,7 +118,9 @@
 | `GET\|PUT /api/corpora/{id}/ocr` | ~~按库 OCR 模式/语言~~ **已移除（K13：mineru 自动识别语言）**；`ingest?force=true` 保留用于切换解析器后重建 |
 | `POST /api/ingest/local`、`POST /api/ingest/text` | 本地导入（txt/md/pdf/docx）/ 手工补正文；准备中 409 |
 | `GET\|POST /api/official-docs` | 官方 Markdown 发现与批量更新（单进程内存任务） |
-| `POST /api/web/preview`、`/api/web/confirm/{id}` | 网页快照预览与确认入库 |
+| `POST /api/web/preview` | W6-A：抓取预览，返回 `preview_id`/`expires_at`（15 分钟）；多个预览互不覆盖，过期项在新预览/确认时惰性清理 |
+| `POST /api/web/confirm/{id}` | W6-A：确认落点二选一——`target_corpus_id`（入库到指定库）或 `save_for_run=true`（仅本次运行）；都给或都不给 422，预览失效 409 |
+| `GET /api/web/snapshots/{id}` | W6-A：读取已确认的持久快照（URL/抓取时间/内容哈希即版本/正文）；重启后仍可读，未知 id 404 |
 | `POST /api/chat` | SSE 流式问答（见 4.2）；前端发送当前会话选择的 `corpus_ids`（1–6 库），旧 `corpus_id` 仅作兼容 |
 | `GET\|PUT /api/workspace/{sessions\|notes}(/{key})` | 会话与笔记读写；409 revision 冲突、413 超 4MB、422 笔记来源非法 |
 | `GET /{asset_path}` | 托管 `frontend/dist`；`api/` 前缀与越界 404 |
@@ -128,6 +132,8 @@
 多库边界（已实施）：会话只维护 1–6 个检索库集合，取消 `base ∈ retrieval set` 前端约束。应用统一显式发送 `corpus_ids`；旧 `corpus_id` 接口兼容，二者仍不可同送。服务端直接 API 从未包含浏览基础库概念。旧缺省默认库逻辑已改为目录顺序首库，配置 `DEFAULT_CORPUS` 不再支配该选择。
 
 请求：`messages`（1–20 条，每条 ≤12000，总 ≤40000，末条必须 user）、`allowed_doc_ids`（可空，非空 1–20）、`task_id`（默认 `task1`，`task1–4`；**task4 走 intake 分支、不生成正文**；未知 422）、`corpus_id`（可选，缺省默认库；未知 404）、`corpus_ids`（可选，1–6，**与 `corpus_id` 二选一**，同送 422；缺省默认库；KB-4）、`run_id`（8–80）、`session_key`（W3-A 可选）、`run_context`（W3-A 可选：`visible_params`/`param_sources`/`resource_policy`/`output_intent`）。禁止额外字段（含已移除的 `execution_mode`/`query_routing`/`evidence_level`）。
+
+W6-A 网页资料：`web_snapshot_ids`（可选，≤6 个已确认快照 id，不可重复）；有快照时服务端把 `resource_policy` 定为 `local_plus_urls`，网页引用为 `kind="web"`（带 `snapshot_id`/`url`/`fetched_at`/`version`/`truncated`），与本地引用统一编号。快照正文与本地证据**共用** `RETRIEVE_CONTEXT_TOKENS` 预算，超出即截断并在来源标 `truncated`。所选知识库未就绪时仍可运行，但 `preparation`/`stop_reason` 保留真实状态，**不伪装为 ready**。
 
 SSE 事件：`run`（W3-A 服务端有效范围/模型/资源策略）、`status`、`policy`（route/stop_reason/notice/allowed_doc_ids）、`step`、`telemetry`、`sources`（附服务端 `citation`，先于 token）、`token`、`usage`、`done`、`error`。无 `done` 的断流视为未完成；失败用 `error` 且不发送 `done`。
 
@@ -199,10 +205,14 @@ SSE 事件：`run`（W3-A 服务端有效范围/模型/资源策略）、`status
 
 任务模板与输出模板分离。任务记录背景、目标、输入参数及可见默认值、资料/网络策略、执行约束、成果类型和版本；输出模板记录成果结构与格式。所有影响范围的默认值须在执行前可见并写入运行快照。task2/task3 不启用隐藏年份过滤；task4 可继续使用可见、可改的最近五个完整自然年填表日期默认。
 
-W4-A **已实施**：复制内置 task1/task2 为自定义问答/对比任务，编辑草稿、发布不可变版本、在会话中固定版本；文本/整数/枚举/布尔/年份区间参数由服务端校验，运行快照保留实际值与来源。完整四段编辑器和归档仍待做。**已采纳、待实施**的 W4-B 方向是复制四份只读内置报告模板为带版本的自定义 Markdown 章节模板，并接入报告型任务。W4 不引入新执行引擎、联网或 Skill 权限；对象与验收见 [`ITERATION.md`](ITERATION.md) §16.18–16.19。
+W4 **已随 `fb5e17b` 提交封口（verifier 的 2 个 P1 + 2 个 P2 已修复并补测，见 ITERATION §16.24）**：task1/task2/task4 可复制为版本化自定义任务，完整任务说明、边界、澄清条件、产出说明与类型化参数由服务端按发布版本校验；会话固定任务版本并提供显式升级。四份内置只读模板可复制为版本化自定义模板，报告型任务固定绑定发布模板版本；复制、归档/恢复、旧记录兼容和六库成组恢复均已实现。修复提交封口后 W4 才标完成。W4 不引入新执行引擎、联网或 Skill 权限；实现与反馈证据见 [`ITERATION.md`](ITERATION.md) §16.19–16.22。
+
+**报告体验（G10e，A/B/C 已实施；D 仅补齐 `python-docx` 子集，Pandoc 试验未做）**：一句自然语言或任务卡即可启动，服务端以用户目标、已选库、任务版本和可见安全默认形成运行简报；报告卡让用户就地调整，点击一次“生成报告”便开始。系统内部拟纲并写执行摘要，不要求用户写完整提示词、逐项填写可选字段或逐步审批大纲/摘要。只有多库尚未选报告库、主题无法判定或范围冲突等真正阻断项才问一条具体问题。生成前自动用服务端同一过滤规则预检，零候选不调用模型；用途、读者、重点问题、篇幅和发布任务参数进入实际报告提示。报告仍只用一个明确库，年份按填表日期，模板版本由服务端确定。一次启动、共用过滤的自动资料预检和证据化写作已可用（见 ITERATION §16.25）；Word 导出质量（G10e-D）与真实模型小样本仍未验，不能把整条旅程标为已支持。
+
+**Word 报告管线选型（A，目标契约；基础子集已实施，Pandoc 增强未验）**：当前代码已通过 LLM API 生成 Markdown，Artifact 用 `python-docx` 导出真实 OOXML，但只覆盖简单标题、段落和表格。选用“Markdown 内容源 → 确定性 DOCX 渲染”的 A 方案：报告正文/引用固定为可回读 Artifact 版本，用户下载 DOCX 时从该版本导出；模型不直接生成 Word 格式。先把当前导出补成可用的中文研究报告样式并自动核对内容，再以固定样例试验 Pandoc `--reference-doc`，试验通过且依赖可随产品提供后才切为优先渲染器；当前环境尚未检出 Pandoc/LibreOffice。失败只影响导出，不丢 Markdown 或重跑模型。研究报告的 Word **样式母版**与 W4 的**内容模板**分离；固定申报书表单/预算/签章等需求出现并有真实表单样例后，才评估 C 双通道。调研报告的 C 推荐面向严格申报表，不代表本项目现阶段必须采用；实施与验收见 [`ITERATION.md`](ITERATION.md) §8.9/§16.23。
 
 成果是一级对象，报告只是成果类型之一。最小 RunSnapshot 已落地，记录服务端实际采用的任务标识、资料范围、资源策略、模型、时间、状态与可用指标；W4 再扩展不可变任务版本和完整默认来源，W6 再扩展网络快照。W3-B 已有 Artifact 存储、reports 兼容读取、全局/当前会话列表、原始回答哈希核验、可回读的编辑版本与失败报告状态，以及真实 DOCX；旧运行/旧成果无法核验时明确显示“未核验”。状态库保留成组备份与恢复，当前不自动清理。执行过程展示检索、阅读、工具、生成和校验等可观察阶段，不展示或编造模型私有思维链。W3-B 契约和证据见 [`ITERATION.md`](ITERATION.md) §16.15–16.17。
 
-网络资料默认关闭，按“仅知识库 / 指定网址 / 允许搜索”显式选择并保存快照。现有网页接口绑定首库且只保留最近一次预览，不能直接接 UI；先扩展为目标库/运行绑定、多预览隔离和持久快照，再做前端与搜索。Prompt 是指令资产，Skill 是包含输入、执行规则、Prompt、允许工具和输出契约的版本化能力包；两者共用入口但不混用模型。首版 Skill 不运行任意代码或安装第三方插件。
+网络资料默认关闭，按“仅知识库 / 指定网址 / 允许搜索”显式选择并保存快照。**W6-A 已实施**：预览改为多预览隔离 + 15 分钟有效期，确认时显式选择“入库到指定库”或“仅本次运行”，快照持久化为 `web_snapshots.sqlite3` 并进入运行记录与引用（见 ITERATION §16.27）。W6-B 受控搜索仍未开始，不自动联网。Prompt 是指令资产，Skill 是包含输入、执行规则、Prompt、允许工具和输出契约的版本化能力包；两者共用入口但不混用模型。首版 Skill 不运行任意代码或安装第三方插件。
 
-实施顺序为：封口当前会话报告与基线 → 统一五入口与右侧检查器 → 补知识库体验 → 最小运行快照 + 成果闭环 → 自定义任务/输出模板 → 完善对话 → 网页资源后端扩展 + URL/受控搜索 → Prompt/Skill。W0/W1 不宣称全局成果库；跨会话报告/成果从 W3 开始。详细对象、交互、阶段退出条件和现状矩阵以 [`ITERATION.md`](ITERATION.md) §16 为唯一执行依据。
+实施顺序为：封口当前会话报告与基线 → 统一五入口与右侧检查器 → 补知识库体验 → 最小运行快照 + 成果闭环 → 自定义任务/输出模板 → 完善对话（W5，进行中） → 网页资源后端扩展 + URL/受控搜索（W6-A 已实施，W6-B 未开始） → Prompt/Skill。W0/W1 不宣称全局成果库；跨会话报告/成果从 W3 开始。详细对象、交互、阶段退出条件和现状矩阵以 [`ITERATION.md`](ITERATION.md) §16 为唯一执行依据。

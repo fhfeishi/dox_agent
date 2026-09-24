@@ -67,6 +67,8 @@ class RunStore:
             "task_id": fields.get("task_id", ""),
             "task_version": fields.get("task_version"),
             "engine_task_id": fields.get("engine_task_id", fields.get("task_id", "")),
+            "skill_id": fields.get("skill_id"),
+            "skill_version": fields.get("skill_version"),
             "model": fields.get("model", ""),
             "resource_policy": fields.get("resource_policy", "local_only"),
             "requested_corpus_ids": list(fields.get("requested_corpus_ids", [])),

@@ -324,6 +324,8 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
             if custom_task.get("parameters"):
                 instruction += "\n本次参数：" + ", ".join(
                     f"{key}={value}" for key, value in custom_task["parameters"].items())
+            if custom_task.get("skill_instruction"):
+                instruction += "\n已发布 Skill 补充（不得扩大运行工具或资料范围）：\n" + custom_task["skill_instruction"]
         system = (
             "使用中文回答。" + answer_policy(state["policy"])
             + "\n本轮任务与输出契约：\n" + instruction

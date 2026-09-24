@@ -393,7 +393,7 @@ export function SidePanel() {
         )}
         {nav === "prompts" ? (
           <div className="px-[10px] pt-[8px] text-[12px] leading-[1.6] text-[var(--steel)]">
-            内置指令随任务发布；自定义 Prompt 与 Skill 管理将在后续阶段提供。
+            在中央区域浏览、复制和编辑 Prompt / Skill；启用的 Skill 可绑定到自定义任务。
           </div>
         ) : null}
       </div>

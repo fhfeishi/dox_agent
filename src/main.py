@@ -57,14 +57,22 @@ from .docx_export import markdown_to_docx
 from .knowledge import Knowledge, KnowledgeGroup
 from .official_docs import import_official
 from .parsers import collect_sources, import_defaults, parse_web
+from .prompt_skills import (
+    AssetConflict,
+    AssetInvalid,
+    AssetMissing,
+    PromptSkillStore,
+    render_skill,
+    validate_asset,
+)
 from .prompts import REPORT_TEMPLATES, list_tasks, list_templates, report_template
 from .reports import ReportStore, generate_markdown, preflight_report, summarize_report_metadata
 from .retrieval import fit_history
 from .runs import RunConflict, RunStore, request_fingerprint
+from .web_search import allowed_result, normalize_domain, search_web
+from .web_snapshots import WebSnapshotStore
 from .workspace import Workspace
 from .workspace import router as workspace_router
-from .web_snapshots import WebSnapshotStore
-from .web_search import allowed_result, normalize_domain, search_web
 
 logger = logging.getLogger(__name__)
 
@@ -238,6 +246,37 @@ class TaskCopy(BaseModel):
     source_task_id: str
 
 
+class AssetCreate(BaseModel):
+    kind: Literal["prompt", "skill"]
+    source_id: str | None = None
+
+
+class AssetDraft(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    revision: int
+    name: str | None = Field(default=None, max_length=120)
+    purpose: str | None = Field(default=None, max_length=500)
+    body: str | None = Field(default=None, max_length=12000)
+    variables: list[str] | None = Field(default=None, max_length=30)
+    example: str | None = Field(default=None, max_length=1000)
+    rules: str | None = Field(default=None, max_length=4000)
+    inputs: list[str] | None = Field(default=None, max_length=30)
+    prompt_id: str | None = None
+    prompt_version: int | None = Field(default=None, ge=0)
+    tools: list[str] | None = Field(default=None, max_length=10)
+    resource_policy: Literal["local_only", "allow_selected_web"] | None = None
+    output_contract: str | None = Field(default=None, max_length=4000)
+    test_inputs: dict[str, str] | None = None
+
+
+class AssetRevision(BaseModel):
+    revision: int
+
+
+class AssetTest(BaseModel):
+    inputs: dict[str, str] = Field(default_factory=dict)
+
+
 class TaskDraft(BaseModel):
     model_config = ConfigDict(extra="forbid")
     revision: int = Field(ge=1)
@@ -254,6 +293,8 @@ class TaskDraft(BaseModel):
     parameters: list[TaskParameter] | None = Field(default=None, max_length=20)
     report_template_id: str | None = Field(default=None, max_length=80)
     report_template_version: int | None = Field(default=None, ge=0, le=100000)
+    skill_id: str | None = Field(default=None, max_length=80)
+    skill_version: int | None = Field(default=None, ge=1)
 
     @field_validator("parameter_defaults")
     @classmethod
@@ -364,6 +405,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         # W3-A: run snapshots live with the other application-level state.
         app.state.runs = RunStore(settings.state_dir / "runs.sqlite3")
         app.state.custom_tasks = CustomTaskStore(settings.state_dir / "custom_tasks.sqlite3")
+        app.state.prompt_skills = PromptSkillStore(settings.state_dir / "prompt_skills.sqlite3")
         app.state.custom_templates = TemplateStore(settings.state_dir / "custom_templates.sqlite3")
         # W3-B: first-class artifacts (answer snapshots + reports) in application state.
         app.state.artifacts = ArtifactStore(settings.state_dir / "artifacts.sqlite3")
@@ -476,6 +518,100 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "corpus_id": default_info.id if default_info else "",
             "index_progress": active_knowledge.dense.progress if active_knowledge and active_knowledge.dense else None,
         }
+
+    @app.get("/api/prompt-skills")
+    async def list_prompt_skills(include_archived: bool = False):
+        items = await asyncio.to_thread(app.state.prompt_skills.list, include_archived)
+        for item in items:
+            if item["kind"] == "skill":
+                item["referenced_by"] = await asyncio.to_thread(app.state.custom_tasks.referenced_by_skill, item["id"])
+        return items
+
+    @app.post("/api/prompt-skills", status_code=201)
+    async def create_prompt_skill(payload: AssetCreate):
+        try:
+            return await asyncio.to_thread(app.state.prompt_skills.create, payload.kind, payload.source_id)
+        except AssetMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except AssetInvalid as exc:
+            raise HTTPException(422, str(exc)) from exc
+
+    @app.get("/api/prompt-skills/{asset_id}")
+    async def get_prompt_skill(asset_id: str):
+        try:
+            return await asyncio.to_thread(app.state.prompt_skills.get, asset_id)
+        except AssetMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+    @app.get("/api/prompt-skills/{asset_id}/versions/{version}")
+    async def get_prompt_skill_version(asset_id: str, version: int):
+        try:
+            return await asyncio.to_thread(app.state.prompt_skills.version, asset_id, version)
+        except AssetMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+    @app.put("/api/prompt-skills/{asset_id}/draft")
+    async def save_prompt_skill(asset_id: str, payload: AssetDraft):
+        try:
+            return await asyncio.to_thread(app.state.prompt_skills.save, asset_id, payload.revision,
+                                           payload.model_dump(exclude={"revision"}, exclude_unset=True))
+        except AssetMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except AssetConflict as exc:
+            raise HTTPException(409, str(exc)) from exc
+
+    @app.post("/api/prompt-skills/{asset_id}/publish")
+    async def publish_prompt_skill(asset_id: str, payload: AssetRevision):
+        try:
+            return await asyncio.to_thread(app.state.prompt_skills.publish, asset_id, payload.revision)
+        except AssetMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except AssetConflict as exc:
+            raise HTTPException(409, str(exc)) from exc
+        except AssetInvalid as exc:
+            raise HTTPException(422, str(exc)) from exc
+
+    @app.post("/api/prompt-skills/{asset_id}/enable")
+    async def enable_prompt_skill(asset_id: str):
+        return await set_prompt_skill_enabled(asset_id, True)
+
+    @app.post("/api/prompt-skills/{asset_id}/disable")
+    async def disable_prompt_skill(asset_id: str):
+        return await set_prompt_skill_enabled(asset_id, False)
+
+    async def set_prompt_skill_enabled(asset_id: str, enabled: bool):
+        try:
+            return await asyncio.to_thread(app.state.prompt_skills.set_enabled, asset_id, enabled)
+        except AssetMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except AssetInvalid as exc:
+            raise HTTPException(422, str(exc)) from exc
+
+    @app.post("/api/prompt-skills/{asset_id}/archive")
+    async def archive_prompt_skill(asset_id: str):
+        try:
+            return await asyncio.to_thread(app.state.prompt_skills.archive, asset_id)
+        except AssetMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except AssetInvalid as exc:
+            raise HTTPException(422, str(exc)) from exc
+
+    @app.post("/api/prompt-skills/{asset_id}/test")
+    async def test_prompt_skill(asset_id: str, payload: AssetTest):
+        try:
+            item = await asyncio.to_thread(app.state.prompt_skills.get, asset_id)
+            if item["kind"] != "skill":
+                raise AssetInvalid("只有 Skill 可以测试")
+            prompt = await asyncio.to_thread(app.state.prompt_skills.version, item["prompt_id"], item["prompt_version"])
+            validate_asset(item, prompt)
+            rendered = render_skill(item, prompt, payload.inputs)
+            stages = (["检索"] if "knowledge_search" in item["tools"] else []) + (["阅读"] if "knowledge_read" in item["tools"] else []) + ["回答"]
+            return {"rendered_prompt": rendered, "stages": stages,
+                    "structure_valid": True, "model_executed": False}
+        except AssetMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except AssetInvalid as exc:
+            raise HTTPException(422, str(exc)) from exc
 
     @app.get("/api/tasks")
     async def tasks(include_archived: bool = False):
@@ -1419,6 +1555,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 chat_preparation = default_info.preparation
 
         web_snapshots = []
+        if (payload.web_snapshot_ids and task_definition and task_definition.get("skill_snapshot")
+                and task_definition["skill_snapshot"]["skill"]["resource_policy"] == "local_only"):
+            raise HTTPException(422, "此任务绑定的 Skill 仅允许本地资料")
         for snapshot_id in payload.web_snapshot_ids:
             try:
                 web_snapshots.append(await asyncio.to_thread(app.state.web_snapshots.get, snapshot_id))
@@ -1472,6 +1611,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 session_key=payload.session_key or "", run_type="chat", task_id=payload.task_id,
                 task_version=task_definition["version"] if task_definition else None,
                 engine_task_id=engine_task_id,
+                skill_id=task_definition.get("skill_id") if task_definition else None,
+                skill_version=task_definition.get("skill_version") if task_definition else None,
                 model=settings.model_name,
                 resource_policy=resource_policy,
                 requested_corpus_ids=requested_corpus_ids,
@@ -1557,6 +1698,12 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                                            ("输出要求", "output_instructions"))
                                         if task_definition.get(key)),
                                     "parameters": task_values}
+                                    | ({"skill_instruction": render_skill(
+                                        task_definition["skill_snapshot"]["skill"],
+                                        task_definition["skill_snapshot"]["prompt"],
+                                        {key: str(task_values.get(key, "")) for key in
+                                         task_definition["skill_snapshot"]["skill"]["inputs"]})}
+                                       if task_definition.get("skill_snapshot") else {})
                                     if task_definition else None),
                                 "options": {"allowed_doc_ids": payload.allowed_doc_ids},
                             },

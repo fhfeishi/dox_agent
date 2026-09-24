@@ -15,7 +15,7 @@ export class ApiError extends Error {
   }
 }
 export type TaskParameter = { key: string; label: string; type: "text" | "integer" | "enum" | "boolean" | "year_range"; help?: string; required?: boolean; options?: string[]; default?: unknown };
-export type TaskInfo = { id: string; name: string; description: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; archived?: boolean; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; category?: string; boundaries?: string; clarification_conditions?: string; output_instructions?: string; parameter_defaults?: Record<string, string>; parameters?: TaskParameter[]; report_template_id?: string; report_template_version?: number };
+export type TaskInfo = { id: string; name: string; description: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; archived?: boolean; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; category?: string; boundaries?: string; clarification_conditions?: string; output_instructions?: string; parameter_defaults?: Record<string, string>; parameters?: TaskParameter[]; report_template_id?: string; report_template_version?: number; skill_id?: string; skill_version?: number };
 export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
@@ -241,7 +241,7 @@ export function artifactExportUrl(artifactId: string, format: "md" | "docx", ver
 export type RunSnapshot = {
   contract_version: number; run_id: string; created_at: string; updated_at: string;
   session_key: string; parent_run_id: string; run_type: string; status: string;
-  task_id: string; task_version?: number | null; engine_task_id?: string; model: string; resource_policy: string;
+  task_id: string; task_version?: number | null; engine_task_id?: string; skill_id?: string | null; skill_version?: number | null; model: string; resource_policy: string;
   requested_corpus_ids: string[]; effective_corpus_ids: string[]; allowed_doc_ids: string[] | null;
   params: Record<string, unknown>; param_sources: Record<string, string>; output_intent: string;
   ended_at: string; metrics: Record<string, unknown>; citations: { doc_id: string; version: string; page?: number | null }[];
@@ -287,12 +287,12 @@ export async function copyTask(source_task_id: string): Promise<TaskInfo> {
 export async function saveTaskDraft(task: TaskInfo): Promise<TaskInfo> {
   const { revision, name, description, background, goal, requirements, category, boundaries,
     clarification_conditions, output_instructions, parameter_defaults, report_template_id,
-    report_template_version } = task;
+    report_template_version, skill_id, skill_version } = task;
   const response = await fetch(`/api/tasks/custom/${encodeURIComponent(task.id)}/draft`, {
     method: "PUT", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ revision, name, description, background, goal, requirements, category, boundaries,
       clarification_conditions, output_instructions, parameter_defaults, parameters: task.parameters,
-      report_template_id, report_template_version }),
+      report_template_id, report_template_version, skill_id, skill_version }),
   });
   return jsonOrThrow(response, "保存草稿失败") as Promise<TaskInfo>;
 }
@@ -317,6 +317,40 @@ export async function archiveTask(taskId: string): Promise<TaskInfo> {
 export async function restoreTask(taskId: string): Promise<TaskInfo> {
   const response = await fetch(`/api/tasks/custom/${encodeURIComponent(taskId)}/restore`, { method: "POST" });
   return jsonOrThrow(response, "恢复任务失败") as Promise<TaskInfo>;
+}
+
+export type PromptSkill = {
+  id: string; kind: "prompt" | "skill"; name: string; purpose: string; version: number; revision: number;
+  builtin: boolean; enabled: boolean; archived: boolean; referenced_by?: string[];
+  body?: string; variables?: string[]; example?: string; rules?: string; inputs?: string[];
+  prompt_id?: string; prompt_version?: number; tools?: string[];
+  resource_policy?: "local_only" | "allow_selected_web"; output_contract?: string; test_inputs?: Record<string, string>;
+};
+
+export async function fetchPromptSkills(): Promise<PromptSkill[]> {
+  return jsonOrThrow(await fetch("/api/prompt-skills?include_archived=true"), "Prompt / Skill 列表不可用") as Promise<PromptSkill[]>;
+}
+export async function createPromptSkill(kind: "prompt" | "skill", source_id?: string): Promise<PromptSkill> {
+  return jsonOrThrow(await fetch("/api/prompt-skills", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, source_id }) }), "创建失败") as Promise<PromptSkill>;
+}
+export async function savePromptSkill(item: PromptSkill): Promise<PromptSkill> {
+  const { revision, name, purpose, body, variables, example, rules, inputs, prompt_id, prompt_version,
+    tools, resource_policy, output_contract, test_inputs } = item;
+  return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/draft`, { method: "PUT", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ revision, name, purpose, body, variables, example, rules, inputs, prompt_id,
+      prompt_version, tools, resource_policy, output_contract, test_inputs }) }), "保存失败") as Promise<PromptSkill>;
+}
+export async function publishPromptSkill(item: PromptSkill): Promise<PromptSkill> {
+  return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/publish`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision: item.revision }) }), "启用失败") as Promise<PromptSkill>;
+}
+export async function setPromptSkillEnabled(item: PromptSkill, enabled: boolean): Promise<PromptSkill> {
+  return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/${enabled ? "enable" : "disable"}`, { method: "POST" }), "状态更新失败") as Promise<PromptSkill>;
+}
+export async function archivePromptSkill(item: PromptSkill): Promise<PromptSkill> {
+  return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/archive`, { method: "POST" }), "归档失败") as Promise<PromptSkill>;
+}
+export async function testPromptSkill(item: PromptSkill, inputs: Record<string, string>): Promise<{ rendered_prompt: string; stages: string[]; structure_valid: boolean; model_executed: boolean }> {
+  return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/test`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ inputs }) }), "静态检查失败") as Promise<{ rendered_prompt: string; stages: string[]; structure_valid: boolean; model_executed: boolean }>;
 }
 
 export type TemplateSummary = { id: string; name: string; kind?: string; status?: string; archived?: boolean; version?: number };

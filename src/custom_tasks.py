@@ -1,5 +1,7 @@
 """Versioned user task definitions stored with application state."""
 
+from __future__ import annotations
+
 import json
 import sqlite3
 from pathlib import Path
@@ -8,6 +10,7 @@ from uuid import uuid4
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from .custom_templates import TemplateMissing, TemplateStore
+from .prompt_skills import AssetMissing, PromptSkillStore, validate_asset
 from .prompts import REPORT_TEMPLATES, list_tasks
 
 
@@ -158,6 +161,13 @@ class CustomTaskStore:
         items = [normalize_task(json.loads(row[0])) for row in rows]
         return items if include_archived else [item for item in items if not item["archived"]]
 
+    def referenced_by_skill(self, skill_id: str) -> list[str]:
+        with self.connect() as db:
+            drafts = db.execute("SELECT draft FROM tasks").fetchall()
+            versions = db.execute("SELECT definition FROM versions").fetchall()
+        return sorted({item["id"] for (raw,) in drafts + versions
+                       if (item := json.loads(raw)).get("skill_id") == skill_id})
+
     def save_draft(self, task_id: str, revision: int, changes: dict) -> dict:
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
@@ -211,6 +221,43 @@ class CustomTaskStore:
             if not task["name"].strip() or not task["goal"].strip():
                 raise TaskInvalid("任务名称和目标不能为空")
             self._validate_report_binding(task)
+            skill_id = task.get("skill_id")
+            if skill_id:
+                if task.get("engine_task_id") == "task4":
+                    raise TaskInvalid("报告型任务暂不支持 Skill；请使用对话型任务")
+                store = PromptSkillStore(self.path.parent / "prompt_skills.sqlite3")
+                try:
+                    current = store.get(skill_id)
+                    skill = store.version(skill_id, task.get("skill_version"))
+                    prompt = store.version(skill["prompt_id"], skill["prompt_version"])
+                except (AssetMissing, TypeError) as exc:
+                    raise TaskInvalid("Skill 或 Prompt 指定版本不存在") from exc
+                if current["kind"] != "skill" or current["archived"] or not current["enabled"]:
+                    raise TaskInvalid("只能绑定已启用的 Skill")
+                try:
+                    validate_asset(skill, prompt)
+                except ValueError as exc:
+                    raise TaskInvalid(str(exc)) from exc
+                # The current graph has a fixed retrieval path. A Skill cannot remove a tool
+                # that this engine will still use; reject the binding instead of implying isolation.
+                required_tools = ({"knowledge_search", "knowledge_read"}
+                                  if task.get("engine_task_id") in {"task2", "task3"}
+                                  else {"knowledge_search"})
+                if not required_tools <= set(skill["tools"]):
+                    raise TaskInvalid("Skill 允许工具未覆盖该任务固定执行路径")
+                if set(skill["inputs"]) - ({item["key"] for item in task.get("parameters", [])}
+                                            | set(task.get("parameter_defaults", {}))):
+                    raise TaskInvalid("任务输入未覆盖 Skill 参数")
+                if any(item["key"] in skill["inputs"] and item["type"] != "text"
+                       for item in task.get("parameters", [])):
+                    raise TaskInvalid("首版 Skill 输入仅支持文本任务参数")
+                if any(item["key"] in skill["inputs"] and not item.get("required")
+                       and item.get("default") is None for item in task.get("parameters", [])):
+                    raise TaskInvalid("Skill 输入必须是任务必填参数或有默认值")
+                # Freeze both referenced definitions. Later edits or archives must not rewrite a published task.
+                task["skill_snapshot"] = {"skill": skill, "prompt": prompt}
+            else:
+                task.pop("skill_snapshot", None)
             task["version"] += 1
             task["status"] = "published"
             db.execute("INSERT INTO versions VALUES (?,?,?)", (task_id, task["version"], json.dumps(task, ensure_ascii=False)))

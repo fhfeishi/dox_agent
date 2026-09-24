@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { copyTask, fetchArtifacts, type ArtifactSummary } from "../api";
+import { archivePromptSkill, copyTask, createPromptSkill, fetchArtifacts, fetchPromptSkills, publishPromptSkill, savePromptSkill, setPromptSkillEnabled, testPromptSkill, type ArtifactSummary, type PromptSkill } from "../api";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
@@ -198,13 +198,62 @@ export function ReportsView() {
 }
 
 export function PromptSkillView() {
-  const { setNav } = useApp();
+  const [items, setItems] = useState<PromptSkill[]>([]);
+  const [selected, setSelected] = useState<PromptSkill | null>(null);
+  const [query, setQuery] = useState("");
+  const [message, setMessage] = useState("");
+  const [testResult, setTestResult] = useState("");
+  async function reload(id?: string) {
+    const next = await fetchPromptSkills(); setItems(next);
+    if (id) setSelected(next.find((item) => item.id === id) ?? null);
+  }
+  useEffect(() => { void reload().catch((error) => setMessage((error as Error).message)); }, []);
+  async function run(action: () => Promise<PromptSkill>) {
+    try { const item = await action(); await reload(item.id); setMessage("已保存"); setTestResult(""); }
+    catch (error) { setMessage((error as Error).message); }
+  }
+  const customPrompts = items.filter((item) => item.kind === "prompt" && item.version && item.enabled && !item.archived);
   return (
-    <ViewShell title="Prompt / Skill" description="这里将管理可复用指令和受控能力。当前版本的指令随内置任务发布，尚不支持在界面中查看、编辑或启用自定义 Skill。">
-      <div className="col-span-full rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[20px]">
-        <p className="text-[13px] text-[var(--steel)]">现有四个任务可以使用内置指令。选择任务后可查看用途与输出要求。</p>
-        <Button className="mt-[12px]" onClick={() => setNav("tasks")}>查看任务</Button>
+    <ViewShell title="Prompt / Skill" description="Prompt 是可复用指令；Skill 声明输入、资料范围与输出。静态检查只展示渲染结果，不运行模型。"
+      actions={<div className="flex gap-[6px]"><Button onClick={() => void run(() => createPromptSkill("prompt"))}>新建 Prompt</Button><Button onClick={() => void run(() => createPromptSkill("skill"))}>新建 Skill</Button></div>}>
+      <div className="col-span-full"><input aria-label="搜索 Prompt 或 Skill" placeholder="搜索名称或用途" value={query} onChange={(event) => setQuery(event.target.value)}
+        className="w-full rounded border border-[var(--hairline)] bg-[var(--surface)] p-[8px] text-[13px]" />
+        {message ? <p role="status" className="mt-[7px] text-[12px]">{message}</p> : null}</div>
+      <div className="col-span-full grid gap-[8px] sm:grid-cols-2">
+        {items.filter((item) => `${item.name} ${item.purpose}`.toLowerCase().includes(query.toLowerCase())).map((item) =>
+          <button key={item.id} type="button" onClick={() => { setSelected({ ...item }); setTestResult(""); setMessage(""); }}
+            className="rounded border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-left text-[12px]">
+            <strong>{item.name}</strong> · {item.kind === "prompt" ? "Prompt" : "Skill"} · {item.builtin ? "内置只读" : item.archived ? "已归档" : item.enabled ? `已启用 v${item.version}` : "草稿/停用"}
+            <span className="mt-[4px] block text-[var(--steel)]">{item.purpose}</span>
+          </button>)}
       </div>
+      {selected ? <div className="col-span-full space-y-[9px] rounded border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-[12px]">
+        <h2 className="text-[16px] font-semibold">{selected.kind === "prompt" ? "Prompt" : "Skill"} · {selected.name}</h2>
+        {(["name", "purpose"] as const).map((key) => <label key={key} className="block">{key === "name" ? "名称" : "用途"}<input aria-label={key} disabled={selected.builtin || selected.archived} value={selected[key]}
+          onChange={(event) => setSelected({ ...selected, [key]: event.target.value })} className="mt-[3px] block w-full rounded border p-[6px]" /></label>)}
+        {selected.kind === "prompt" ? <>
+          <label className="block">正文<textarea aria-label="Prompt 正文" disabled={selected.builtin || selected.archived} value={selected.body ?? ""} onChange={(event) => setSelected({ ...selected, body: event.target.value })} className="mt-[3px] block min-h-[130px] w-full rounded border p-[6px]" /></label>
+          <label className="block">变量（逗号分隔）<input aria-label="Prompt 变量" disabled={selected.builtin || selected.archived} value={selected.variables?.join(", ") ?? ""} onChange={(event) => setSelected({ ...selected, variables: event.target.value.split(",").map((value) => value.trim()).filter(Boolean) })} className="mt-[3px] block w-full rounded border p-[6px]" /></label>
+          <label className="block">示例<input aria-label="Prompt 示例" disabled={selected.builtin || selected.archived} value={selected.example ?? ""} onChange={(event) => setSelected({ ...selected, example: event.target.value })} className="mt-[3px] block w-full rounded border p-[6px]" /></label>
+        </> : <>
+          <label className="block">执行规则<textarea aria-label="Skill 规则" disabled={selected.archived} value={selected.rules ?? ""} onChange={(event) => setSelected({ ...selected, rules: event.target.value })} className="mt-[3px] block min-h-[80px] w-full rounded border p-[6px]" /></label>
+          <label className="block">输入参数（逗号分隔）<input aria-label="Skill 输入" disabled={selected.archived} value={selected.inputs?.join(", ") ?? ""} onChange={(event) => setSelected({ ...selected, inputs: event.target.value.split(",").map((value) => value.trim()).filter(Boolean) })} className="mt-[3px] block w-full rounded border p-[6px]" /></label>
+          <label className="block">使用 Prompt<select aria-label="Skill Prompt" disabled={selected.archived} value={selected.prompt_id ? `${selected.prompt_id}|${selected.prompt_version ?? 0}` : ""} onChange={(event) => { const [prompt_id, version] = event.target.value.split("|"); setSelected({ ...selected, prompt_id, prompt_version: Number(version) }); }} className="mt-[3px] block w-full rounded border p-[6px]"><option value="">选择已启用 Prompt</option>{customPrompts.map((item) => <option key={item.id} value={`${item.id}|${item.version}`}>{item.name} v{item.version}</option>)}</select></label>
+          <label className="block">资料策略<select aria-label="Skill 资料策略" disabled={selected.archived} value={selected.resource_policy ?? "local_only"} onChange={(event) => setSelected({ ...selected, resource_policy: event.target.value as PromptSkill["resource_policy"] })} className="mt-[3px] block w-full rounded border p-[6px]"><option value="local_only">仅本地</option><option value="allow_selected_web">允许已选网页</option></select></label>
+          <div>允许工具：{(["knowledge_search", "knowledge_read"] as const).map((tool) => <label key={tool} className="ml-[10px]"><input type="checkbox" disabled={selected.archived} checked={selected.tools?.includes(tool) ?? false} onChange={(event) => setSelected({ ...selected, tools: event.target.checked ? [...(selected.tools ?? []), tool] : (selected.tools ?? []).filter((value) => value !== tool) })} /> {tool}</label>)}</div>
+          <label className="block">输出契约<textarea aria-label="Skill 输出" disabled={selected.archived} value={selected.output_contract ?? ""} onChange={(event) => setSelected({ ...selected, output_contract: event.target.value })} className="mt-[3px] block min-h-[70px] w-full rounded border p-[6px]" /></label>
+          {(selected.inputs ?? []).map((key) => <label key={key} className="block">测试输入：{key}<input aria-label={`测试输入 ${key}`} value={selected.test_inputs?.[key] ?? ""}
+            onChange={(event) => setSelected({ ...selected, test_inputs: { ...selected.test_inputs, [key]: event.target.value } })} className="mt-[3px] block w-full rounded border p-[6px]" /></label>)}
+          <Button onClick={() => void testPromptSkill(selected, selected.test_inputs ?? {}).then((result) => setTestResult(`静态结构检查通过；未运行模型。阶段：${result.stages.join(" → ")}\n\n${result.rendered_prompt}`)).catch((error) => setMessage((error as Error).message))}>静态检查</Button>
+          {testResult ? <pre className="whitespace-pre-wrap rounded bg-[var(--surface-soft)] p-[9px]">{testResult}</pre> : null}
+          <p>被任务引用：{selected.referenced_by?.join("、") || "暂无"}</p>
+        </>}
+        <div className="flex flex-wrap gap-[6px]">{selected.builtin ? <Button onClick={() => void run(() => createPromptSkill("prompt", selected.id))}>复制为自定义</Button> : <>
+          <Button onClick={() => void run(() => createPromptSkill(selected.kind, selected.id))}>复制</Button>
+          <Button onClick={() => void run(() => savePromptSkill(selected))}>保存草稿</Button><Button onClick={() => void run(async () => publishPromptSkill(await savePromptSkill(selected)))}>保存并启用</Button>
+          <Button onClick={() => void run(() => setPromptSkillEnabled(selected, !selected.enabled))}>{selected.enabled ? "停用" : "启用"}</Button>
+          <Button onClick={() => void run(() => archivePromptSkill(selected))}>归档</Button></>}</div>
+      </div> : null}
     </ViewShell>
   );
 }

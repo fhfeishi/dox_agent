@@ -3,7 +3,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { archiveCustomTemplate, archiveTask, artifactExportUrl, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchReport, fetchRun, fetchTemplate, fetchTemplates, fetchWebSnapshot, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary, type WebSnapshot } from "../api";
+import { archiveCustomTemplate, archiveTask, artifactExportUrl, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchPromptSkills, fetchReport, fetchRun, fetchTemplate, fetchTemplates, fetchWebSnapshot, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type PromptSkill, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -81,6 +81,7 @@ export function Inspector() {
   const [template, setTemplate] = useState<TemplateInfo | null>(null);
   const [templateError, setTemplateError] = useState("");
   const [templateList, setTemplateList] = useState<TemplateSummary[]>([]);
+  const [skillList, setSkillList] = useState<PromptSkill[]>([]);
   const [templateDraft, setTemplateDraft] = useState<CustomTemplate | null>(null);
   const [templateEditBusy, setTemplateEditBusy] = useState(false);
   const [templateEditMessage, setTemplateEditMessage] = useState("");
@@ -240,6 +241,7 @@ export function Inspector() {
   const selectedTask = inspectorTarget.kind === "task"
     ? tasks.find((item) => item.id === inspectorTarget.taskId) : null;
   useEffect(() => { setTaskDraft(selectedTask ? { ...selectedTask } : null); setTaskEditMessage(""); }, [selectedTask?.id, selectedTask?.revision]);
+  useEffect(() => { void fetchPromptSkills().then(setSkillList).catch(() => setSkillList([])); }, [selectedTask?.id]);
   async function persistTask(publish: boolean) {
     if (!taskDraft) return;
     setTaskEditBusy(true);
@@ -451,6 +453,15 @@ export function Inspector() {
                         </select>
                       </label>
                     ) : null}
+                    {selectedTask.engine_task_id !== "task4" ? <label className="block text-[12px] text-[var(--slate)]">固定 Skill 版本
+                      <select aria-label="固定 Skill 版本" value={taskDraft.skill_id ? `${taskDraft.skill_id}|${taskDraft.skill_version ?? 0}` : ""}
+                        onChange={(event) => { const [skill_id, version] = event.target.value.split("|"); setTaskDraft({ ...taskDraft, skill_id: skill_id || undefined, skill_version: skill_id ? Number(version) : undefined }); }}
+                        className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[6px]">
+                        <option value="">不使用 Skill</option>
+                        {skillList.filter((item) => item.kind === "skill" && item.enabled && !item.archived && item.version).map((item) =>
+                          <option key={item.id} value={`${item.id}|${item.version}`}>{item.name} v{item.version}</option>)}
+                      </select>
+                    </label> : null}
                     <label className="block text-[12px] text-[var(--slate)]">默认关注点
                       <input aria-label="默认关注点" value={taskDraft.parameter_defaults?.focus ?? ""}
                         onChange={(event) => setTaskDraft({ ...taskDraft, parameter_defaults: { ...taskDraft.parameter_defaults, focus: event.target.value } })}
@@ -722,6 +733,7 @@ export function Inspector() {
                     <dt className="text-[var(--stone)]">首 token</dt><dd className="text-[var(--charcoal)]">{isLatestRun && latest?.firstTokenMs != null ? formatDuration(latest.firstTokenMs) : isLatestRun ? "未收到正文" : "未记录（仅快照）"}</dd>
                     <dt className="text-[var(--stone)]">模型</dt><dd className="truncate text-[var(--charcoal)]">{runModel || "未记录"}</dd>
                     <dt className="text-[var(--stone)]">任务版本</dt><dd className="text-[var(--charcoal)]">{runSnapshot?.task_version ? `${tasks.find((task) => task.id === runSnapshot.task_id)?.name ?? runSnapshot.task_id} · v${runSnapshot.task_version}` : "未记录"}</dd>
+                    <dt className="text-[var(--stone)]">Skill 版本</dt><dd className="break-all text-[var(--charcoal)]">{runSnapshot?.skill_id ? `${runSnapshot.skill_id} · v${runSnapshot.skill_version ?? "未记录"}` : "未使用"}</dd>
                     <dt className="text-[var(--stone)]">参数来源</dt><dd className="text-[var(--charcoal)]">{runSnapshot?.param_sources ? Object.entries(runSnapshot.param_sources).map(([key, source]) => `${key}: ${source === "task_default" ? "任务默认" : source}`).join("；") : "未记录"}</dd>
                     <dt className="text-[var(--stone)]">实际参数</dt><dd className="break-all text-[var(--charcoal)]">{runSnapshot?.params ? Object.entries(runSnapshot.params).map(([key, value]) => `${key}: ${typeof value === "object" ? JSON.stringify(value) : String(value)}`).join("；") : "未记录"}</dd>
                     <dt className="text-[var(--stone)]">资源策略</dt><dd className="text-[var(--charcoal)]">{runPolicy || "未记录"}</dd>

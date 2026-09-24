@@ -67,6 +67,11 @@ async def main():
             async def templates(r):
                 await r.fulfill(json=TEMPLATES)
 
+            async def prompt_skills(r):
+                await r.fulfill(json=[{"id": "builtin-task1", "kind": "prompt", "name": "精准问答",
+                    "purpose": "基于资料问答", "body": "请引用来源", "variables": [], "example": "示例",
+                    "version": 0, "revision": 0, "enabled": True, "archived": False, "builtin": True}])
+
             async def template_detail(r):
                 template_id = r.request.url.rsplit("/", 1)[-1]
                 name = next((item["name"] for item in TEMPLATES if item["id"] == template_id), template_id)
@@ -235,6 +240,7 @@ async def main():
             await page.route(re.compile(r".*/api/documents(?:\?.*)?$"), documents)
             await page.route(re.compile(r".*/api/corpora(?:\?.*)?$"), corpora)
             await page.route("**/api/tasks**", tasks)
+            await page.route("**/api/prompt-skills**", prompt_skills)
             await page.route("**/api/templates**", templates)
             await page.route("**/api/templates/*", template_detail)
             await page.route("**/api/workspace/sessions", sessions)
@@ -265,8 +271,10 @@ async def main():
 
             # task views are reachable from the rail and show the output contract
             await page.get_by_role("button", name="Prompt / Skill").click()
-            await expect(page.get_by_text("尚不支持在界面中查看、编辑或启用自定义 Skill", exact=False)).to_be_visible()
-            await page.get_by_role("button", name="查看任务").click()
+            await expect(page.get_by_role("button", name="新建 Skill")).to_be_visible()
+            await page.get_by_role("button", name=re.compile("精准问答 · Prompt")).click()
+            await expect(page.get_by_label("Prompt 正文")).to_have_value("请引用来源")
+            await page.get_by_role("button", name="任务", exact=True).click()
             await expect(page.get_by_text("对比维度表 + 可比性前提")).to_be_visible()
 
             # selecting a task binds a new session and returns to chat

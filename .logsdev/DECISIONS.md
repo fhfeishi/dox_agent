@@ -472,3 +472,10 @@
 - 导出：新增 `src/docx_export.py` 生成**真实 OOXML** `.docx`（标题/表格/段落），旧 HTML `.doc` 回答导出保留；PDF 后置。
 - 成果页 IA：中央“成果”页与右侧检查器，沿用五入口；全局成果列表默认跨会话，提供当前会话筛选；实现与边界见 ITERATION §16.17。
 - 影响：`src/artifacts.py`、`src/docx_export.py`（新增）、`src/main.py`（artifacts 接口与报告自动建件）、`frontend/src/api.ts`/`store.tsx`/`ListingViews.tsx`/`Inspector.tsx`/`MessageView.tsx`/`ChatView.tsx`。测试 `tests/test_artifacts.py`；`browser_tasks` 与 `browser_artifacts_live` 覆盖保存、失败重试、版本、全局预览及隔离恢复。A7 采用成组备份、不自动清理的首版策略；自动归档/清理由后续阶段按迁移与恢复证据另立项。
+
+## W4 自定义任务与输出模板启动边界（2026-09-24，规划已采纳，W4-A 首切片已实施）
+
+- 依据：用户明确要求完善自定义任务和模板并指导下一步；这取代 ITERATION §16.15 对 **W4** 的“等待真实使用证据”门槛。不能从这一要求推断六类新报告形态、W6 网络搜索或 W7 Skill 已获实施依据。
+- 采用：用户任务有独立身份与不可变发布版本，并显式绑定一个已有 `engine_task_id`（task1–task4）；检索/图分支沿用该执行模式，任务说明与参数受 `base.md` 和服务端校验约束。输出模板与任务分开管理，内置四模板只读、自定义模板从其复制并独立版本化；会话、RunSnapshot、报告与成果固定记录实际采用的任务/模板版本和参数来源。
+- 理由与代价：当前 `ChatRequest`/`ReportRequest` 和图/检索分支均硬编码内置 ID；把自定义卡片直接当新 task id 会产生错误路由或隐式回退。需增加定义存储、版本解析、请求接线和旧会话回读，但不扩展新的执行管线。交互与分批验收见 ITERATION §16.18。
+- W4-A 首切片采用应用状态库 `custom_tasks.sqlite3` 保存草稿和不可变版本；只复制 task1/task2，服务端将自定义 ID 映射到现有引擎 ID，再执行图/检索。运行与会话保存固定版本；编辑草稿不改已发布版本。类型化参数及报告模板接线仍按 ITERATION §16.18 后续实施。

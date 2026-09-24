@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { fetchArtifacts, type ArtifactSummary } from "../api";
+import { copyTask, fetchArtifacts, type ArtifactSummary } from "../api";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
@@ -46,12 +46,22 @@ function ViewShell({
 }
 
 export function TasksView() {
-  const { tasks, tasksError, taskId, showInspector, taskCapable } = useApp();
+  const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks } = useApp();
+  const [copyError, setCopyError] = useState("");
+  async function makeCopy(source: string) {
+    try {
+      const task = await copyTask(source);
+      await refreshTasks();
+      showInspector({ kind: "task", taskId: task.id });
+      setCopyError("");
+    } catch (e) { setCopyError((e as Error).message); }
+  }
 
   return (
     <ViewShell
       title="任务模板"
       description="任务决定 system prompt 与输出契约。选中任务后会新建一个绑定该任务的会话；task4 专项报告走统一报告入口，不在聊天中生成正文。"
+      actions={<div className="flex gap-[6px]"><Button onClick={() => void makeCopy("task1")}>复制问答任务</Button><Button onClick={() => void makeCopy("task2")}>复制对比任务</Button></div>}
     >
       {!taskCapable ? (
         <div className="col-span-full rounded-[12px] border border-dashed border-[var(--hairline-strong)] bg-[var(--surface-soft)] p-[24px] text-center">
@@ -66,6 +76,7 @@ export function TasksView() {
           {tasksError}
         </p>
       ) : null}
+      {copyError ? <p role="alert" className="text-[13px] text-[var(--red)]">{copyError}</p> : null}
       {taskCapable && !tasks.length && !tasksError ? (
         <p className="text-[13px] text-[var(--stone)]">正在读取任务列表…</p>
       ) : null}
@@ -90,6 +101,7 @@ export function TasksView() {
                   {task.name}
                   {active ? <Pill tone="lav">当前</Pill> : null}
                   {task.has_template ? <Pill tone="sky">含模板</Pill> : null}
+                  {task.kind === "custom" ? <Pill tone="lav">{task.status === "published" ? `我的任务 · v${task.version}` : task.version ? `草稿 · 已发布 v${task.version}` : "草稿"}</Pill> : <Pill tone="sky">内置</Pill>}
                 </span>
                 <span className="flex-1 text-[12.3px] leading-[1.55] text-[var(--steel)]">
                   {task.description}

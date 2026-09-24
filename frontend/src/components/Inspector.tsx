@@ -3,7 +3,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { artifactExportUrl, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchReport, fetchRun, fetchTemplate, fetchTemplates, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type TemplateInfo, type TemplateSummary } from "../api";
+import { artifactExportUrl, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchReport, fetchRun, fetchTemplate, fetchTemplates, publishTask, saveTaskDraft, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type TaskInfo, type TemplateInfo, type TemplateSummary } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -59,10 +59,14 @@ export function Inspector() {
     corpora,
     openCorpus,
     startTask,
+    refreshTasks,
     openFullPreview,
     showInspector,
   } = useApp();
   const [tab, setTab] = useState<InspTab>("out");
+  const [taskDraft, setTaskDraft] = useState<TaskInfo | null>(null);
+  const [taskEditMessage, setTaskEditMessage] = useState("");
+  const [taskEditBusy, setTaskEditBusy] = useState(false);
   const [report, setReport] = useState<ReportInfo | null>(null);
   const [reportError, setReportError] = useState("");
   const [artifact, setArtifact] = useState<ArtifactInfo | null>(null);
@@ -200,6 +204,19 @@ export function Inspector() {
   const citations = latest?.sources ?? [];
   const selectedTask = inspectorTarget.kind === "task"
     ? tasks.find((item) => item.id === inspectorTarget.taskId) : null;
+  useEffect(() => { setTaskDraft(selectedTask ? { ...selectedTask } : null); setTaskEditMessage(""); }, [selectedTask?.id, selectedTask?.revision]);
+  async function persistTask(publish: boolean) {
+    if (!taskDraft) return;
+    setTaskEditBusy(true);
+    try {
+      const saved = await saveTaskDraft(taskDraft);
+      const result = publish ? await publishTask(saved) : saved;
+      setTaskDraft(result);
+      await refreshTasks();
+      setTaskEditMessage(publish ? `已发布 v${result.version}` : "草稿已保存");
+    } catch (e) { setTaskEditMessage((e as Error).message); }
+    finally { setTaskEditBusy(false); }
+  }
   const selectedTemplate = inspectorTarget.kind === "template"
     ? (template?.id === inspectorTarget.templateId ? template : templateList.find((item) => item.id === inspectorTarget.templateId) ?? null)
     : null;
@@ -298,6 +315,26 @@ export function Inspector() {
                 <p className="mt-[8px] text-[12.5px] leading-[1.6] text-[var(--steel)]">{selectedTask.description}</p>
                 {selectedTask.example ? <p className="mt-[10px] text-[12px] text-[var(--slate)]">示例：{selectedTask.example}</p> : null}
                 {selectedTask.output_hint ? <p className="mt-[8px] text-[12px] text-[var(--slate)]">输出：{selectedTask.output_hint}</p> : null}
+                {selectedTask.kind === "custom" && taskDraft ? (
+                  <div className="mt-[12px] space-y-[8px]">
+                    <p className="text-[12px] text-[var(--steel)]">基于 {selectedTask.engine_task_id} · {selectedTask.status === "published" ? `已发布 v${selectedTask.version}` : selectedTask.version ? `草稿 · 当前发布 v${selectedTask.version}` : "未发布草稿"}</p>
+                    {([ ["name", "名称"], ["background", "背景"], ["goal", "目标"], ["requirements", "具体要求"] ] as const).map(([key, label]) => (
+                      <label key={key} className="block text-[12px] text-[var(--slate)]">{label}
+                        <textarea aria-label={label} value={taskDraft[key] ?? ""}
+                          onChange={(event) => setTaskDraft({ ...taskDraft, [key]: event.target.value })}
+                          className="mt-[4px] min-h-[44px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[12px] text-[var(--ink)]" />
+                      </label>
+                    ))}
+                    <label className="block text-[12px] text-[var(--slate)]">默认关注点
+                      <input aria-label="默认关注点" value={taskDraft.parameter_defaults?.focus ?? ""}
+                        onChange={(event) => setTaskDraft({ ...taskDraft, parameter_defaults: { ...taskDraft.parameter_defaults, focus: event.target.value } })}
+                        className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[12px] text-[var(--ink)]" />
+                    </label>
+                    <p className="text-[11px] text-[var(--stone)]">运行配置：当前会话知识库 · 本地资料 · 网络关闭 · {selectedTask.output_hint || "文本回答"}</p>
+                    <div className="flex gap-[6px]"><Button disabled={taskEditBusy} onClick={() => void persistTask(false)}>保存草稿</Button><Button disabled={taskEditBusy} onClick={() => void persistTask(true)}>保存并发布</Button></div>
+                    {taskEditMessage ? <p role="status" className="text-[12px] text-[var(--steel)]">{taskEditMessage}</p> : null}
+                  </div>
+                ) : null}
                 {selectedTask.templates?.length ? (
                   <div className="mt-[12px]">
                     <div className="text-[11px] font-semibold tracking-[0.5px] text-[var(--stone)] uppercase">输出模板</div>
@@ -315,7 +352,7 @@ export function Inspector() {
                     </div>
                   </div>
                 ) : null}
-                <Button className="mt-[14px]" onClick={() => void startTask(selectedTask.id)}>使用此任务</Button>
+                {selectedTask.status !== "draft" || selectedTask.version ? <Button className="mt-[14px]" onClick={() => void startTask(selectedTask.id)}>{selectedTask.status === "draft" ? "使用已发布版本" : "使用此任务"}</Button> : null}
               </Card>
             ) : <Card>任务已不可用，请刷新任务列表。</Card>}
           </>
@@ -460,6 +497,8 @@ export function Inspector() {
                     <dt className="text-[var(--stone)]">总耗时</dt><dd className="text-[var(--charcoal)]">{isLatestRun && latest?.totalMs != null ? formatDuration(latest.totalMs) : isLatestRun ? "未提供" : "未记录（仅快照）"}</dd>
                     <dt className="text-[var(--stone)]">首 token</dt><dd className="text-[var(--charcoal)]">{isLatestRun && latest?.firstTokenMs != null ? formatDuration(latest.firstTokenMs) : isLatestRun ? "未收到正文" : "未记录（仅快照）"}</dd>
                     <dt className="text-[var(--stone)]">模型</dt><dd className="truncate text-[var(--charcoal)]">{runModel || "未记录"}</dd>
+                    <dt className="text-[var(--stone)]">任务版本</dt><dd className="text-[var(--charcoal)]">{runSnapshot?.task_version ? `${tasks.find((task) => task.id === runSnapshot.task_id)?.name ?? runSnapshot.task_id} · v${runSnapshot.task_version}` : "未记录"}</dd>
+                    <dt className="text-[var(--stone)]">参数来源</dt><dd className="text-[var(--charcoal)]">{runSnapshot?.param_sources ? Object.entries(runSnapshot.param_sources).map(([key, source]) => `${key}: ${source === "task_default" ? "任务默认" : source}`).join("；") : "未记录"}</dd>
                     <dt className="text-[var(--stone)]">资源策略</dt><dd className="text-[var(--charcoal)]">{runPolicy || "未记录"}</dd>
                     <dt className="text-[var(--stone)]">服务端实际范围</dt><dd className="text-[var(--charcoal)]">{effectiveScopeLabel || "未记录"}</dd>
                   </dl>

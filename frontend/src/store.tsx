@@ -113,6 +113,7 @@ export interface AppValue {
   activeTask: TaskInfo | undefined;
   taskNames: Record<string, string>;
   startTask: (taskId: string) => Promise<void>;
+  refreshTasks: () => Promise<void>;
 
   /* workspace / sessions */
   workspace: ReturnType<typeof useWorkspace>;
@@ -335,11 +336,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
     toastTimer.current = window.setTimeout(() => setToast(null), 2200);
   }
 
+  async function refreshTasks() {
+    try { setTasks(await fetchTasks()); setTasksError(""); }
+    catch (e) { setTasksError(e instanceof Error ? e.message : "任务列表不可用"); }
+  }
+
   useEffect(() => {
     if (!uiFlags.tasks) return;
-    void fetchTasks()
-      .then(setTasks)
-      .catch((e) => setTasksError(e instanceof Error ? e.message : "任务列表不可用"));
+    void refreshTasks();
   }, []);
 
   useEffect(() => {
@@ -485,6 +489,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const requestOptions: ChatRequestOptions = {
       ...turn.options,
       ...(uiFlags.tasks ? { task_id: taskId } : {}),
+      ...(uiFlags.tasks && workspace.taskVersion ? { task_version: workspace.taskVersion } : {}),
       corpus_id: corpusOptions.corpus_id,
       corpus_ids: corpusOptions.corpus_ids,
       // W3-A: the snapshot records the session and the client-visible defaults; the server still
@@ -632,12 +637,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  async function switchSession(id?: string, task?: string, corpus?: string) {
+  async function switchSession(id?: string, task?: string, corpus?: string, version?: number) {
     setSessionBusy(true);
     await settleActiveRun();
     try {
       await workspace.saveNow(latestTurns.current, options);
-      await workspace.select(id, task, corpus);
+      await workspace.select(id, task, corpus, version);
       setEditing(null);
       setError("");
       setStatus("");
@@ -651,7 +656,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   async function startTask(nextTaskId: string) {
     setTaskId(nextTaskId);
-    await switchSession(undefined, nextTaskId);
+    const selected = tasks.find((item) => item.id === nextTaskId);
+    if (selected?.kind === "custom" && !selected.version) {
+      setError("请先发布任务，再创建会话");
+      return;
+    }
+    await switchSession(undefined, nextTaskId, undefined, selected?.kind === "custom" ? selected.version : undefined);
     setStatus("已切换到新任务并新建会话；原会话保留在会话列表");
   }
 
@@ -978,6 +988,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       activeTask,
       taskNames,
       startTask,
+      refreshTasks,
       workspace,
       activeTitle,
       sessionBusy,

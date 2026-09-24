@@ -65,6 +65,8 @@ class RunStore:
             "run_type": fields.get("run_type", ""),
             "status": fields.get("status", "running"),
             "task_id": fields.get("task_id", ""),
+            "task_version": fields.get("task_version"),
+            "engine_task_id": fields.get("engine_task_id", fields.get("task_id", "")),
             "model": fields.get("model", ""),
             "resource_policy": fields.get("resource_policy", "local_only"),
             "requested_corpus_ids": list(fields.get("requested_corpus_ids", [])),

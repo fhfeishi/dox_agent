@@ -30,6 +30,7 @@ class State(TypedDict, total=False):
     options: dict
     policy: dict
     task_id: str
+    custom_task: dict | None
     preparation: str
     corpus_domain: str
     retrieval: object
@@ -232,6 +233,17 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
             return {"answer": text, "invalid_citations": 0, "execution_path": path}
         writer({"event": "status", "data": {"message": "基于选定报告组织回答"}})
         instruction = task_instruction(state.get("task_id", DEFAULT_TASK_ID))
+        custom_task = state.get("custom_task")
+        if custom_task:
+            # The engine's base.md stays first. User-authored task text may refine the work,
+            # but cannot replace citation, insufficient-evidence, or safety constraints.
+            instruction += "\n\n自定义任务补充（若与以上规则冲突，以上规则优先）：\n" + "\n".join(
+                f"{label}：{custom_task.get(key, '')}" for key, label in
+                (("background", "背景"), ("goal", "目标"), ("requirements", "具体要求"))
+            )
+            if custom_task.get("parameters"):
+                instruction += "\n本次参数：" + ", ".join(
+                    f"{key}={value}" for key, value in custom_task["parameters"].items())
         system = (
             "使用中文回答。" + answer_policy(state["policy"])
             + "\n本轮任务与输出契约：\n" + instruction

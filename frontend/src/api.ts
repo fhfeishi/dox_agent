@@ -6,7 +6,7 @@ export type Telemetry = { run_id?: string; path?: string; stages_ms: Record<stri
 export type Options = { allowed_doc_ids: string[] | null; task_id?: string; corpus_id?: string; corpus_ids?: string[] };
 /** W3-A: client-visible run parameters recorded with the server-side snapshot. */
 export type RunContext = { visible_params?: Record<string, unknown>; param_sources?: Record<string, string>; resource_policy?: "local_only"; output_intent?: string };
-export type ChatRequestOptions = Options & { session_key?: string; run_context?: RunContext };
+export type ChatRequestOptions = Options & { task_version?: number; session_key?: string; run_context?: RunContext };
 export class ApiError extends Error {
   readonly detail?: unknown;
   constructor(message: string, detail?: unknown) {
@@ -14,7 +14,7 @@ export class ApiError extends Error {
     this.detail = detail;
   }
 }
-export type TaskInfo = { id: string; name: string; description: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] } };
+export type TaskInfo = { id: string; name: string; description: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; parameter_defaults?: Record<string, string> };
 export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
@@ -195,7 +195,7 @@ export function artifactExportUrl(artifactId: string, format: "md" | "docx", ver
 export type RunSnapshot = {
   contract_version: number; run_id: string; created_at: string; updated_at: string;
   session_key: string; parent_run_id: string; run_type: string; status: string;
-  task_id: string; model: string; resource_policy: string;
+  task_id: string; task_version?: number | null; engine_task_id?: string; model: string; resource_policy: string;
   requested_corpus_ids: string[]; effective_corpus_ids: string[]; allowed_doc_ids: string[] | null;
   params: Record<string, unknown>; param_sources: Record<string, string>; output_intent: string;
   ended_at: string; metrics: Record<string, unknown>; citations: { doc_id: string; version: string; page?: number | null }[];
@@ -225,11 +225,32 @@ export type Event =
   | { event: "done"; data: { ok: boolean } }
   | { event: "error"; data: { message: string } };
 
-/** GET /api/tasks: the fixed first-release task set. Only sent when the backend exposes it. */
+/** Built-in tasks and user-owned draft/published definitions. */
 export async function fetchTasks(signal?: AbortSignal): Promise<TaskInfo[]> {
   const response = await fetch("/api/tasks", signal ? { signal } : undefined);
   if (!response.ok) throw new Error("任务列表不可用（" + response.status + "）");
   return response.json();
+}
+
+export async function copyTask(source_task_id: string): Promise<TaskInfo> {
+  const response = await fetch("/api/tasks/custom", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ source_task_id }) });
+  return jsonOrThrow(response, "复制任务失败") as Promise<TaskInfo>;
+}
+
+export async function saveTaskDraft(task: TaskInfo): Promise<TaskInfo> {
+  const { revision, name, description, background, goal, requirements, parameter_defaults } = task;
+  const response = await fetch(`/api/tasks/custom/${encodeURIComponent(task.id)}/draft`, {
+    method: "PUT", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ revision, name, description, background, goal, requirements, parameter_defaults }),
+  });
+  return jsonOrThrow(response, "保存草稿失败") as Promise<TaskInfo>;
+}
+
+export async function publishTask(task: TaskInfo): Promise<TaskInfo> {
+  const response = await fetch(`/api/tasks/custom/${encodeURIComponent(task.id)}/publish`, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision: task.revision }),
+  });
+  return jsonOrThrow(response, "发布任务失败") as Promise<TaskInfo>;
 }
 
 export type TemplateSummary = { id: string; name: string };

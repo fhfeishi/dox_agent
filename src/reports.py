@@ -246,6 +246,17 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     context = assemble_reports(result.reports, knowledge.read_markdown,
                                total_tokens=settings.retrieve_context_tokens,
                                report_tokens=settings.retrieve_report_tokens)
+    # Report generation reads packed full documents. Chunk citations from retrieval can
+    # assign several [n] labels to one document, while the writer naturally numbers the
+    # visible documents. Keep the report's labels one-to-one with the text actually sent.
+    visible_reports = [report for report in context.reports if report["markdown"].strip()]
+    if not visible_reports:
+        raise ValueError("所选报告在上下文预算内没有可读正文，请缩小资料范围")
+    sources = [{"citation": index, "doc_id": report["doc"].doc_id,
+                "title": report["doc"].title, "version": report["doc"].version,
+                "page": None,
+                "url": f"/api/documents/{report['doc'].doc_id}?version={report['doc'].version}"}
+               for index, report in enumerate(visible_reports, 1)]
     model = llm or model_for(settings)
     header = (f"领域：{params['domain']}\n填表日期年份（报告提交时间）：{params['year_from']}–{params['year_to']}\n"
               "填表日期来源：文档解析文本，未逐份对照原 PDF\n"
@@ -258,9 +269,12 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     brief = (f"写作目的：{params.get('purpose') or '研究进展梳理'}\n"
              f"目标读者：{params.get('audience') or '专业研究人员'}\n"
              f"预期篇幅：{params.get('length') or '标准篇幅'}\n"
-             f"已核定候选资料：{preflight['eligible_count']} 份；实际引用须来自下方编号原文。")
+             f"已核定候选资料：{preflight['eligible_count']} 份；本次实际入模全文 {len(visible_reports)} 份。"
+             "实际引用须来自下方编号原文；每个 [n] 指向一份文档，不代表检索片段编号。"
+             "未入模候选不得推断为正文为空或无成果。")
     reports_text = "\n\n".join(
-        f"{report['header']}\n<report>\n{report['markdown']}\n</report>" for report in context.reports)
+        f"[{index}] {report['header']}\n<report>\n{report['markdown']}\n</report>"
+        for index, report in enumerate(visible_reports, 1))
     custom_instruction = ""
     if task_definition:
         fields = (("背景", "background"), ("目标", "goal"), ("具体要求", "requirements"),
@@ -289,11 +303,11 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     def valid(markdown: str) -> bool:
         return bool(re.search(r"(?m)^# .+\n", markdown) and re.search(r"(?m)^## .+", markdown)
                     and re.search(r"\[\d{1,3}\]", markdown)
-                    and not validate_citations(markdown, context.sources))
+                    and not validate_citations(markdown, sources))
 
     def with_sources(markdown: str) -> str:
         lines = []
-        for source in context.sources:
+        for source in sources:
             page = f"，第{source['page']}页" if source.get("page") else ""
             lines.append(f"[{source['citation']}] {source['title']}"
                          f"（文档 {source['doc_id']}，版本 {source['version']}{page}）")

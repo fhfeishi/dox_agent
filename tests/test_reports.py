@@ -29,14 +29,20 @@ def add_report_doc(store):
 
 def test_report_generation_uses_template_and_selected_reports(tmp_path):
     model = FakeModel()
+    store = Knowledge(tmp_path / "db")
+    store.put(Document(title="双页报告", origin="two-pages.pdf", kind="pdf", parser="mineru",
+                       pages=[Page(number=1, text="癫痫机制证据"), Page(number=2, text="癫痫治疗证据")],
+                       markdown="资助类别:面上项目\n填表日期:2025年01月05日\n# 癫痫致痫网络\n正文"))
     markdown = asyncio.run(generate_markdown(
-        _store(tmp_path), Settings(_env_file=None),
+        store, Settings(_env_file=None),
         {"domain": "癫痫", "year_from": 2021, "year_to": 2025, "template_id": "achievements"},
         llm=model))
     assert markdown.startswith("# 报告")
     assert "模板章节" in model.seen and "总体成果概述" in model.seen  # section structure injected
     assert "癫痫致痫网络" in model.seen  # selected report markdown injected
     assert "来源附录（系统记录）" in markdown and "[1]" in markdown
+    assert model.seen.count("[1] 《双页报告》") == 1
+    assert markdown.split("## 来源附录（系统记录）\n", 1)[1].count("双页报告") == 1
 
 
 def test_user_published_report_inputs_reach_the_generation_prompt(tmp_path):

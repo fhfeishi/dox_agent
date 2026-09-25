@@ -3,10 +3,12 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { archiveCustomTemplate, archiveTask, artifactExportUrl, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchPromptSkills, fetchReport, fetchRun, fetchTemplate, fetchTemplates, fetchWebSnapshot, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type PromptSkill, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary, type WebSnapshot } from "../api";
+import { archiveCustomTemplate, archiveTask, artifactExportUrl, changeArtifactFigure, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchFigureCandidates, fetchPromptSkills, fetchReport, fetchRun, fetchTemplate, fetchTemplates, fetchWebSnapshot, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type PromptSkill, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
+import { ReportMarkdown } from "./ReportMarkdown";
+import type { ReportFigure } from "./ReportMarkdown";
 import remarkGfm from "remark-gfm";
 import { TextPreview } from "./DocumentPreview";
 
@@ -78,6 +80,8 @@ export function Inspector() {
   const [artifactDraft, setArtifactDraft] = useState("");
   const [savingArtifact, setSavingArtifact] = useState(false);
   const [artifactSaveError, setArtifactSaveError] = useState("");
+  const [figureCandidates, setFigureCandidates] = useState<ReportFigure[]>([]);
+  const [editingFigureId, setEditingFigureId] = useState("");
   const [template, setTemplate] = useState<TemplateInfo | null>(null);
   const [templateError, setTemplateError] = useState("");
   const [templateList, setTemplateList] = useState<TemplateSummary[]>([]);
@@ -151,6 +155,23 @@ export function Inspector() {
       window.dispatchEvent(new Event("dox-artifacts-changed"));
     } catch (error) {
       setArtifactSaveError(error instanceof Error ? error.message : "保存版本失败");
+    } finally {
+      setSavingArtifact(false);
+    }
+  }
+
+  async function updateFigure(figureId: string, replacementId?: string) {
+    if (inspectorTarget.kind !== "artifact") return;
+    setArtifactSaveError("");
+    setSavingArtifact(true);
+    try {
+      const updated = await changeArtifactFigure(inspectorTarget.artifactId, figureId, replacementId);
+      setArtifact(updated);
+      setArtifactVersions(await fetchArtifactVersions(inspectorTarget.artifactId));
+      setEditingFigureId("");
+      window.dispatchEvent(new Event("dox-artifacts-changed"));
+    } catch (error) {
+      setArtifactSaveError(error instanceof Error ? error.message : "修改图片失败");
     } finally {
       setSavingArtifact(false);
     }
@@ -560,9 +581,11 @@ export function Inspector() {
               <Card>
                 <div className="mb-[12px] flex gap-[8px]">
                   <Button size="sm" onClick={() => void navigator.clipboard.writeText(report.markdown)}>复制</Button>
-                  <Button size="sm" variant="ghost" onClick={() => downloadText(report.markdown, `report-${report.report_id.slice(0, 8)}.md`)}>下载 .md</Button>
+                  {report.figures?.length ? <a href={`/api/reports/${encodeURIComponent(report.report_id)}/export?format=zip`}>下载图文 ZIP</a>
+                    : <Button size="sm" variant="ghost" onClick={() => downloadText(report.markdown, `report-${report.report_id.slice(0, 8)}.md`)}>下载 .md</Button>}
+                  <a href={`/api/reports/${encodeURIComponent(report.report_id)}/export?format=docx`}>导出 .docx</a>
                 </div>
-                <div className="markdown"><Markdown remarkPlugins={[remarkGfm]}>{report.markdown}</Markdown></div>
+                <div className="markdown"><ReportMarkdown markdown={report.markdown} figures={report.figures} reportId={report.report_id} /></div>
               </Card>
             ) : null}
           </>
@@ -611,7 +634,8 @@ export function Inspector() {
                 {artifactSaveError ? <p role="alert" className="mt-[7px] text-[12px] text-[var(--red)]">{artifactSaveError}</p> : null}
                 <div className="mt-[12px] flex flex-wrap gap-[8px]">
                   <Button size="sm" onClick={() => void navigator.clipboard.writeText(artifact.markdown)}>复制</Button>
-                  <Button size="sm" variant="ghost" onClick={() => downloadText(artifact.markdown, `artifact-${artifact.artifact_id.slice(0, 8)}-v${artifact.version}.md`)}>下载 .md</Button>
+                  {artifact.figures?.length ? <a href={artifactExportUrl(artifact.artifact_id, "zip", artifact.version)}>下载图文 ZIP</a>
+                    : <Button size="sm" variant="ghost" onClick={() => downloadText(artifact.markdown, `artifact-${artifact.artifact_id.slice(0, 8)}-v${artifact.version}.md`)}>下载 .md</Button>}
                   <a href={artifactExportUrl(artifact.artifact_id, "docx", artifact.version)}
                      className="font-app inline-flex h-[26px] items-center rounded-[6px] px-[8px] text-[12px] text-[var(--slate)] hover:bg-[var(--surface)]">
                     导出 .docx
@@ -625,6 +649,33 @@ export function Inspector() {
                     <Button size="sm" variant="ghost" onClick={() => showInspector({ kind: "execution", runId: artifact.run_id })}>查看来源运行</Button>
                   ) : null}
                 </div>
+                {artifact.figures?.length && !editingArtifact ? <div className="mt-[10px] space-y-[7px]">
+                  {artifact.figures.map((figure) => <div key={figure.figure_id} className="rounded border border-[var(--hairline)] p-[7px] text-[12px]">
+                    <span>{figure.caption} · 原 PDF 第 {figure.page} 页</span>
+                    <div className="mt-[4px] flex gap-[8px]">
+                      <Button size="sm" variant="ghost" disabled={savingArtifact} onClick={() => void updateFigure(figure.figure_id)}>移除图片</Button>
+                      <Button size="sm" variant="ghost" disabled={savingArtifact} onClick={() => {
+                        setEditingFigureId(figure.figure_id);
+                        void fetchFigureCandidates(artifact.artifact_id).then(setFigureCandidates,
+                          (error) => setArtifactSaveError(error instanceof Error ? error.message : "候选图读取失败"));
+                      }}>替换图片</Button>
+                    </div>
+                    {editingFigureId === figure.figure_id ? <div className="mt-[7px] space-y-[6px]">
+                      {figureCandidates.filter((candidate) => candidate.figure_id !== figure.figure_id &&
+                        candidate.doc_id === figure.doc_id &&
+                        !artifact.figures?.some((used) => used.figure_id === candidate.figure_id)).map((candidate) => (
+                        <button key={candidate.figure_id} type="button" disabled={savingArtifact}
+                          onClick={() => void updateFigure(figure.figure_id, candidate.figure_id)}
+                          className="flex w-full items-center gap-[8px] rounded border border-[var(--hairline)] p-[5px] text-left hover:bg-[var(--canvas)]">
+                          <img src={`/api/artifacts/${encodeURIComponent(artifact.artifact_id)}/figure-candidates/${candidate.figure_id}`}
+                            alt={candidate.caption} className="h-[55px] w-[75px] object-contain" />
+                          <span>{candidate.caption} · PDF 第 {candidate.page} 页</span>
+                        </button>
+                      ))}
+                      {!figureCandidates.length ? <p>正在查找本次入模资料中的可用图片…</p> : null}
+                    </div> : null}
+                  </div>)}
+                </div> : null}
                 {editingArtifact ? <div className="mt-[12px]">
                   <textarea aria-label="成果 Markdown" value={artifactDraft} onChange={(event) => setArtifactDraft(event.target.value)}
                     className="min-h-[260px] w-full rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-[12px] leading-[1.6] text-[var(--ink)]" />
@@ -633,7 +684,7 @@ export function Inspector() {
                     <Button size="sm" variant="ghost" disabled={savingArtifact || !artifactDraft.trim()} onClick={() => void saveArtifactVersion("completed")}>完成新版本</Button>
                     <Button size="sm" variant="ghost" onClick={() => setEditingArtifact(false)}>取消</Button>
                   </div>
-                </div> : <div className="markdown mt-[12px]"><Markdown remarkPlugins={[remarkGfm]}>{artifact.markdown}</Markdown></div>}
+                </div> : <div className="markdown mt-[12px]"><ReportMarkdown markdown={artifact.markdown} figures={artifact.figures} artifact={{ id: artifact.artifact_id, version: artifact.version }} /></div>}
               </Card>
             ) : null}
           </>

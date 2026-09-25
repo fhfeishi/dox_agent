@@ -1,4 +1,4 @@
-import type { Event, Message, Source, Options, Policy, RunInfo } from "./api.ts";
+import type { Event, Message, Source, Options, Policy, RunInfo, ReportInfo } from "./api.ts";
 
 export type Attempt = {
   runId: string;
@@ -16,7 +16,7 @@ export type Attempt = {
   firstTokenMs: number | null;
   totalMs: number | null;
   elapsedMs: number | null;
-  report?: { report_id: string; markdown: string };
+  report?: ReportInfo;
 };
 export type Turn = Attempt & {
   question: string;

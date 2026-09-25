@@ -106,7 +106,7 @@ def build_report_brief(messages: list[dict], corpus_domain: str = "", *, today: 
     brief = {"domain": corpus_domain, "year_from": current_year - 5,
              "year_to": current_year - 1, "fund_type": "", "template_id": "comprehensive",
              "focus": "", "purpose": "研究进展梳理", "audience": "专业研究人员",
-             "length": "标准篇幅"}
+             "length": "标准篇幅", "illustrated": False}
     sources = {key: "safe_default" for key in brief}
     if corpus_domain:
         sources["domain"] = "corpus"
@@ -114,6 +114,9 @@ def build_report_brief(messages: list[dict], corpus_domain: str = "", *, today: 
         if message.get("role") != "user":
             continue
         content = message.get("content", "")
+        if "配图" in content or "图文报告" in content:
+            brief["illustrated"] = True
+            sources["illustrated"] = "user"
         if match := _DOMAIN.search(content) or _TOPIC.search(content):
             brief["domain"] = match.group(1).strip()
             sources["domain"] = "user"

@@ -2,11 +2,13 @@
 
 import asyncio
 import hashlib
+import io
 import json
 import logging
 import os
 import shutil
 import tempfile
+import zipfile
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -66,6 +68,7 @@ from .prompt_skills import (
     validate_asset,
 )
 from .prompts import REPORT_TEMPLATES, list_tasks, list_templates, report_template
+from .report_figures import change_figure, insert_figures, select_figures
 from .reports import ReportStore, generate_markdown, preflight_report, summarize_report_metadata
 from .retrieval import fit_history
 from .runs import RunConflict, RunStore, request_fingerprint
@@ -168,6 +171,7 @@ class ReportRequest(BaseModel):
     purpose: str = Field(default="研究进展梳理", max_length=200)
     audience: str = Field(default="专业研究人员", max_length=200)
     length: str = Field(default="标准篇幅", max_length=80)
+    illustrated: bool = False
     doc_ids: list[str] | None = Field(default=None, min_length=1, max_length=20)
     corpus_id: str | None = Field(default=None, min_length=1, max_length=120)
     session_key: str | None = Field(default=None, max_length=120)
@@ -239,6 +243,11 @@ class ArtifactVersionCreate(BaseModel):
     model_config = ConfigDict(extra="forbid")
     markdown: str = Field(min_length=1, max_length=500000)
     status: Literal["draft", "completed"] = "draft"
+
+
+class FigureReplaceRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    figure_id: str = Field(pattern=r"^[a-f0-9]{20}$")
 
 
 class TaskCopy(BaseModel):
@@ -1774,7 +1783,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
         )
 
-    async def ensure_report_artifact(report: dict) -> None:
+    async def ensure_report_artifact(report: dict, figures: list[dict] | None = None) -> None:
         """Repair the report→artifact link after a retry, without changing a saved report."""
         run_id = report.get("run_id", "")
         try:
@@ -1782,7 +1791,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             if (snapshot.get("run_type") != "report" or snapshot.get("status") != "completed"
                     or snapshot.get("metrics", {}).get("report_id") != report["report_id"]):
                 return
-            await asyncio.to_thread(app.state.artifacts.ensure_report, report)
+            if figures:
+                await asyncio.to_thread(app.state.artifacts.ensure_report, report, figures)
+            else:
+                await asyncio.to_thread(app.state.artifacts.ensure_report, report)
         except Exception:  # noqa: BLE001 - the saved report remains readable through compatibility
             logger.warning("artifact link unavailable for report run: %s", run_id)
 
@@ -1923,7 +1935,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         report_params["candidate_count"] = scope["eligible_count"]
         report_params["candidate_docs"] = scope["eligible"]
         report_sources = {key: "user_confirmed" for key in (
-            "domain", "year_from", "year_to", "fund_type", "focus", "purpose", "audience", "length")}
+            "domain", "year_from", "year_to", "fund_type", "focus", "purpose", "audience", "length", "illustrated")}
         report_sources["template_id"] = "published_task" if task_definition else "user_confirmed"
         if payload.parent_run_id:
             try:
@@ -1971,16 +1983,18 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             existing = await asyncio.to_thread(app.state.reports.find, session_key, payload.run_id)
             if existing is not None:
                 await ensure_report_artifact(existing)
-                return JSONResponse({**existing, "idempotent": True}, status_code=200)
+                return JSONResponse({**await get_report(existing["report_id"]), "idempotent": True}, status_code=200)
         if not created and snapshot.get("status") == "running":
             # A1: a second request while this report run is still generating must not race it.
             raise HTTPException(409, "该报告正在生成中")
         # A failed (or otherwise terminal, unsaved) run falls through and can be safely retried.
         try:
+            visible_sources: list[dict] = []
             markdown = await generate_markdown(
                 kn, settings, report_params,
                 **({"template_content": template_content} if template_content is not None else {}),
-                **({"task_definition": task_definition} if task_definition is not None else {}))
+                **({"task_definition": task_definition} if task_definition is not None else {}),
+                **({"visible_sources": visible_sources} if payload.illustrated else {}))
         except ValueError as exc:
             await record_report_failure(run_id, report_params, str(exc))
             raise HTTPException(422, str(exc)) from exc
@@ -1988,10 +2002,27 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             await record_report_failure(run_id, report_params, "报告生成失败")
             logger.warning("report generation failed: %s", type(exc).__name__)
             raise HTTPException(500, "报告生成失败，请检查模型配置或稍后重试") from exc
+        figures: list[dict] = []
+        info = (await asyncio.to_thread(find_corpus, payload.corpus_id) if payload.corpus_id
+                else await asyncio.to_thread(default_corpus_info, settings))
+        if payload.illustrated:
+            if info is not None:
+                try:
+                    figures = await asyncio.to_thread(select_figures, kn, info, visible_sources, markdown)
+                    markdown = insert_figures(markdown, figures)
+                    figures = [figure for figure in figures if f"figures/{figure['figure_id']}." in markdown]
+                except Exception:  # An image cache failure cannot discard the completed text report.
+                    logger.exception("illustrated report figure selection failed")
+                    figures = []
+            if not figures:
+                note = "\n\n> 未找到可可靠复用的图，本报告以文字呈现。\n"
+                marker = "\n\n## 来源附录（系统记录）"
+                markdown = markdown.replace(marker, note + marker, 1) if marker in markdown else markdown + note
+        report_params["visible_sources"] = visible_sources
         report_id = uuid4().hex
         await asyncio.to_thread(app.state.reports.save, report_id, report_params, markdown,
                                 session_key=session_key, run_id=run_id,
-                                corpus_id=payload.corpus_id or "")
+                                corpus_id=info.id if info else "")
         try:
             await asyncio.to_thread(app.state.runs.update, run_id, status="completed",
                                     ended_at=datetime.now(UTC).isoformat(),
@@ -1999,18 +2030,47 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except Exception:  # noqa: BLE001 - the report is already saved; snapshot is best-effort here
             logger.warning("run snapshot update failed: %s", run_id)
         try:
-            await ensure_report_artifact(await asyncio.to_thread(app.state.reports.get, report_id))
+            await ensure_report_artifact(await asyncio.to_thread(app.state.reports.get, report_id), figures)
         except KeyError:  # pragma: no cover - report was just saved in this request
             logger.warning("saved report could not be read for artifact linking: %s", report_id)
         return JSONResponse({"report_id": report_id, "params": report_params, "markdown": markdown,
-                             "run_id": run_id, "idempotent": False}, status_code=201)
+                             "run_id": run_id, "idempotent": False,
+                             "figures": [{key: value for key, value in figure.items() if key != "bytes"}
+                                         for figure in figures]}, status_code=201)
 
     @app.get("/api/reports/{report_id}")
     async def get_report(report_id: str):
         try:
-            return await asyncio.to_thread(app.state.reports.get, report_id)
+            report = await asyncio.to_thread(app.state.reports.get, report_id)
         except KeyError as exc:
             raise HTTPException(404, "报告不存在") from exc
+        artifact = await asyncio.to_thread(app.state.artifacts.report_artifact, report.get("run_id", "")) if report.get("run_id") else None
+        figures = []
+        if artifact:
+            for version in await asyncio.to_thread(app.state.artifacts.list_versions, artifact["artifact_id"]):
+                saved = await asyncio.to_thread(app.state.artifacts.get, artifact["artifact_id"], version["version"])
+                if saved["markdown"] == report["markdown"]:
+                    figures = saved["figures"]
+                    break
+        return {**report, "figures": figures}
+
+    @app.get("/api/reports/{report_id}/figures/{figure_id}")
+    async def report_figure(report_id: str, figure_id: str):
+        try:
+            report = await asyncio.to_thread(app.state.reports.get, report_id)
+            artifact = await asyncio.to_thread(app.state.artifacts.report_artifact, report["run_id"])
+            if not artifact:
+                raise KeyError("图片不存在")
+            for version in await asyncio.to_thread(app.state.artifacts.list_versions, artifact["artifact_id"]):
+                try:
+                    data, media_type = await asyncio.to_thread(app.state.artifacts.image,
+                                                               artifact["artifact_id"], version["version"], figure_id)
+                    return Response(data, media_type=media_type, headers={"Cache-Control": "private, immutable"})
+                except KeyError:
+                    continue
+        except KeyError:
+            pass
+        raise HTTPException(404, "报告图片不存在")
 
     @app.get("/api/runs/{run_id}")
     async def get_run(run_id: str):
@@ -2136,34 +2196,139 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(409, "成果生成中，不能编辑")
         if current["status"] == "failed" and payload.status != "draft":
             raise HTTPException(409, "失败成果须先保存为草稿再完成")
+        try:
+            return await asyncio.to_thread(app.state.artifacts.add_version, artifact_id,
+                                           markdown=payload.markdown, citations=current["citations"],
+                                           status=payload.status)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+
+    async def figure_candidates_for_artifact(artifact_id: str) -> list[dict]:
+        item = await resolve_artifact(artifact_id)
+        if item["type"] != "report" or item.get("legacy") or len(item["corpus_ids"]) != 1:
+            raise HTTPException(422, "该成果没有可替换的原 PDF 图片")
+        reports = await asyncio.to_thread(app.state.reports.list, run_id=item["run_id"], limit=1)
+        if not reports:
+            raise HTTPException(422, "来源报告未记录")
+        report = await asyncio.to_thread(app.state.reports.get, reports[0]["report_id"])
+        visible = report["params"].get("visible_sources") or []
+        info = await asyncio.to_thread(find_corpus, item["corpus_ids"][0])
+        if not info or not visible:
+            return []
+        knowledge = knowledge_for(info)
+        return await asyncio.to_thread(select_figures, knowledge, info, visible, report["markdown"], 12, False)
+
+    @app.get("/api/artifacts/{artifact_id}/figure-candidates")
+    async def artifact_figure_candidates(artifact_id: str):
+        candidates = await figure_candidates_for_artifact(artifact_id)
+        return [{key: value for key, value in figure.items() if key != "bytes"} for figure in candidates]
+
+    @app.get("/api/artifacts/{artifact_id}/figure-candidates/{figure_id}")
+    async def artifact_figure_candidate_image(artifact_id: str, figure_id: str):
+        candidates = await figure_candidates_for_artifact(artifact_id)
+        figure = next((item for item in candidates if item["figure_id"] == figure_id), None)
+        if not figure:
+            raise HTTPException(404, "候选图片已不可用")
+        return Response(figure["bytes"], media_type=figure["media_type"], headers={"Cache-Control": "no-store"})
+
+    async def change_artifact_figure(artifact_id: str, figure_id: str, replacement: dict | None):
+        item = await resolve_artifact(artifact_id)
+        if item["type"] != "report" or item.get("legacy") or item["status"] == "generating":
+            raise HTTPException(409, "当前成果不能修改图片")
+        old = next((figure for figure in item["figures"] if figure["figure_id"] == figure_id), None)
+        if not old:
+            raise HTTPException(404, "图片不属于当前成果版本")
+        if replacement and replacement["figure_id"] == figure_id:
+            raise HTTPException(422, "请选择另一张图片")
+        if replacement and any(figure["figure_id"] == replacement["figure_id"] for figure in item["figures"]):
+            raise HTTPException(422, "该图片已在当前成果中")
+        try:
+            markdown = change_figure(item["markdown"], old, replacement)
+        except ValueError as exc:
+            raise HTTPException(409, str(exc)) from exc
+        figures = [figure for figure in item["figures"] if figure["figure_id"] != figure_id]
+        if replacement:
+            figures.append(replacement)
         return await asyncio.to_thread(app.state.artifacts.add_version, artifact_id,
-                                       markdown=payload.markdown, citations=current["citations"],
-                                       status=payload.status)
+                                       markdown=markdown, citations=item["citations"],
+                                       status="completed", figures=figures)
+
+    @app.delete("/api/artifacts/{artifact_id}/figures/{figure_id}", status_code=201)
+    async def remove_artifact_figure(artifact_id: str, figure_id: str):
+        return await change_artifact_figure(artifact_id, figure_id, None)
+
+    @app.post("/api/artifacts/{artifact_id}/figures/{figure_id}/replace", status_code=201)
+    async def replace_artifact_figure(artifact_id: str, figure_id: str, payload: FigureReplaceRequest):
+        current = await resolve_artifact(artifact_id)
+        old = next((item for item in current.get("figures", []) if item["figure_id"] == figure_id), None)
+        if not old:
+            raise HTTPException(404, "图片不属于当前成果版本")
+        candidates = await figure_candidates_for_artifact(artifact_id)
+        replacement = next((item for item in candidates if item["figure_id"] == payload.figure_id
+                            and item["doc_id"] == old["doc_id"] and item["citation"] == old["citation"]), None)
+        if not replacement:
+            raise HTTPException(422, "候选图片必须来自该处论点引用的同一份资料")
+        return await change_artifact_figure(artifact_id, figure_id, replacement)
 
     @app.get("/api/artifacts/{artifact_id}/export")
     async def export_artifact(artifact_id: str, format: str = "md", version: int | None = None):
         item = await resolve_artifact(artifact_id, version)
         filename = artifact_id.replace(":", "-")
+        images = {}
+        for figure in item.get("figures", []):
+            extension = "png" if figure["media_type"] == "image/png" else "jpg"
+            try:
+                data, _ = await asyncio.to_thread(app.state.artifacts.image, artifact_id,
+                                                   item["version"], figure["figure_id"])
+            except KeyError as exc:
+                raise HTTPException(409, "成果图片附件缺失") from exc
+            images[f"figures/{figure['figure_id']}.{extension}"] = data
         if format == "md":
+            if images:
+                raise HTTPException(422, "图文报告请下载 Markdown + 图片 ZIP")
             return Response(item["markdown"], media_type="text/markdown; charset=utf-8",
                             headers={"Content-Disposition": f'attachment; filename="{filename}.md"'})
         if format == "docx":
             try:
-                data = await asyncio.to_thread(markdown_to_docx, item["markdown"])
+                data = await asyncio.to_thread(markdown_to_docx, item["markdown"], images)
             except ValueError as exc:
                 raise HTTPException(422, str(exc)) from exc
             return Response(data, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                             headers={"Content-Disposition": f'attachment; filename="{filename}.docx"'})
-        raise HTTPException(422, "首期仅支持 md / docx 导出")
+        if format == "zip" and images:
+            output = io.BytesIO()
+            with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED) as bundle:
+                bundle.writestr("report.md", item["markdown"])
+                for name, data in images.items():
+                    bundle.writestr(name, data)
+            return Response(output.getvalue(), media_type="application/zip",
+                            headers={"Content-Disposition": f'attachment; filename="{filename}.zip"'})
+        raise HTTPException(422, "可导出 md / docx；图文成果还可导出 zip")
+
+    @app.get("/api/artifacts/{artifact_id}/versions/{version}/figures/{figure_id}")
+    async def artifact_figure(artifact_id: str, version: int, figure_id: str):
+        try:
+            data, media_type = await asyncio.to_thread(app.state.artifacts.image, artifact_id, version, figure_id)
+        except KeyError as exc:
+            raise HTTPException(404, "成果图片不存在") from exc
+        return Response(data, media_type=media_type, headers={"Cache-Control": "private, immutable"})
 
     @app.get("/api/reports/{report_id}/export")
     async def export_report(report_id: str, format: str = "md"):
-        if format != "md":
-            raise HTTPException(422, "首期仅支持 md 导出")
         try:
             report = await asyncio.to_thread(app.state.reports.get, report_id)
         except KeyError as exc:
             raise HTTPException(404, "报告不存在") from exc
+        if format != "md":
+            artifact = await asyncio.to_thread(app.state.artifacts.report_artifact, report.get("run_id", ""))
+            if artifact:
+                for version in await asyncio.to_thread(app.state.artifacts.list_versions, artifact["artifact_id"]):
+                    saved = await asyncio.to_thread(app.state.artifacts.get, artifact["artifact_id"], version["version"])
+                    if saved["markdown"] == report["markdown"]:
+                        return await export_artifact(artifact["artifact_id"], format, version["version"])
+            raise HTTPException(422, "报告没有可导出的图片附件")
+        if "![" in report["markdown"] and "(figures/" in report["markdown"]:
+            raise HTTPException(422, "图文报告请下载 Markdown + 图片 ZIP")
         return Response(report["markdown"], media_type="text/markdown; charset=utf-8",
                         headers={"Content-Disposition": f'attachment; filename="report-{report_id}.md"'})
 

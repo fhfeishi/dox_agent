@@ -106,7 +106,7 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rel_path: relPath, new_name: newName }) });
   await jsonOrThrow(response, "重命名文件失败");
 }
-export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; purpose?: string; audience?: string; length?: string; sources?: Record<string, string>; scope_fingerprint?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
+export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; purpose?: string; audience?: string; length?: string; illustrated?: boolean; sources?: Record<string, string>; scope_fingerprint?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
 export type ReportPreflight = { total: number; corpus_total: number; excluded: { date: number; year: number; category: number }; date_hits: number; category_hits: number; eligible_count: number; eligible: { doc_id: string; version: string; title: string; corpus_id: string }[]; fingerprint: string };
 export type WebPreview = { preview_id: string; expires_at: string; title: string; origin: string; pages: { number: number; text: string }[]; markdown?: string };
 export type WebSnapshot = { web_snapshot_id: string; url: string; title: string; fetched_at: string; version: string; content_hash: string; parse_status: string; markdown: string; search_query?: string; search_domains?: string[]; search_time_filter?: string; search_provider?: string };
@@ -146,7 +146,7 @@ export async function fetchWebSnapshot(snapshotId: string): Promise<WebSnapshot>
   return await jsonOrThrow(response, "网页快照读取失败") as WebSnapshot;
 }
 export type ReportSummary = { report_id: string; created_at?: string; session_key?: string; run_id?: string; corpus_id?: string; template_id?: string; domain?: string; year_from?: number; year_to?: number };
-export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean };
+export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean; figures?: import("./components/ReportMarkdown").ReportFigure[] };
 export type ReportMetadataCoverage = {
   corpus_id: string; total: number;
   date: { hits: number; missing: number };
@@ -195,8 +195,21 @@ export type ArtifactSummary = {
 };
 export type ArtifactInfo = ArtifactSummary & {
   version: number; markdown: string; citations: { doc_id: string; version: string; page?: number | null }[];
+  figures?: import("./components/ReportMarkdown").ReportFigure[];
 };
 export type ArtifactVersion = { version: number; created_at: string; status: string; source_verification: string };
+
+export async function fetchFigureCandidates(artifactId: string): Promise<import("./components/ReportMarkdown").ReportFigure[]> {
+  const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/figure-candidates`);
+  return jsonOrThrow(response, "可替换图片读取失败") as Promise<import("./components/ReportMarkdown").ReportFigure[]>;
+}
+
+export async function changeArtifactFigure(artifactId: string, figureId: string, replacementId?: string): Promise<ArtifactInfo> {
+  const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/figures/${encodeURIComponent(figureId)}${replacementId ? "/replace" : ""}`,
+    replacementId ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ figure_id: replacementId }) }
+      : { method: "DELETE" });
+  return jsonOrThrow(response, "修改图片失败") as Promise<ArtifactInfo>;
+}
 
 /** W3-B: artifacts for one session (undefined = global list; "" filters empty session). */
 export async function fetchArtifacts(sessionKey?: string, signal?: AbortSignal): Promise<ArtifactSummary[]> {
@@ -234,7 +247,7 @@ export async function createArtifact(params: {
 }
 
 /** W3-B: direct export URL (real .docx or .md); opening it triggers the download. */
-export function artifactExportUrl(artifactId: string, format: "md" | "docx", version?: number): string {
+export function artifactExportUrl(artifactId: string, format: "md" | "docx" | "zip", version?: number): string {
   return `/api/artifacts/${encodeURIComponent(artifactId)}/export?format=${format}${version === undefined ? "" : `&version=${version}`}`;
 }
 

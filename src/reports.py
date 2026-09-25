@@ -225,7 +225,8 @@ class ReportStore:
 
 async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
                             template_content: str | None = None,
-                            task_definition: dict | None = None) -> str:
+                            task_definition: dict | None = None,
+                            visible_sources: list[dict] | None = None) -> str:
     """Generate report Markdown from the selected reports and the template instruction.
 
     ``template_content`` lets a published custom template's Markdown replace the built-in
@@ -257,6 +258,8 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
                 "page": None,
                 "url": f"/api/documents/{report['doc'].doc_id}?version={report['doc'].version}"}
                for index, report in enumerate(visible_reports, 1)]
+    if visible_sources is not None:
+        visible_sources.extend(sources)
     model = llm or model_for(settings)
     header = (f"领域：{params['domain']}\n填表日期年份（报告提交时间）：{params['year_from']}–{params['year_to']}\n"
               "填表日期来源：文档解析文本，未逐份对照原 PDF\n"

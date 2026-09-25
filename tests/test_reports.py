@@ -1,13 +1,19 @@
 """E MVP: report storage, generation and export (R1, markdown only)."""
 
 import asyncio
+import json
+from io import BytesIO
 from types import SimpleNamespace
+from zipfile import ZipFile
 
 import pytest
 from fastapi.testclient import TestClient
+from PIL import Image, ImageDraw
 
 from src.agent.config import Settings
+from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
+from src.parsers import sha256_file
 from src.reports import ReportStore, generate_markdown, report_metadata, summarize_report_metadata
 from tests.test_app import setup
 
@@ -304,10 +310,89 @@ def test_api_report_create_get_and_export(tmp_path, monkeypatch):
         assert client.get(f"/api/reports/{report_id}").json()["markdown"].startswith("# 报告")
         exported = client.get(f"/api/reports/{report_id}/export?format=md")
         assert exported.status_code == 200 and exported.text.startswith("# 报告")
-        assert client.get(f"/api/reports/{report_id}/export?format=docx").status_code == 422
+        word = client.get(f"/api/reports/{report_id}/export?format=docx")
+        assert word.status_code == 200 and word.content.startswith(b"PK")
         assert client.get("/api/reports/missing").status_code == 404
         assert client.post("/api/reports", json={"domain": "x", "year_from": 2025, "year_to": 2020,
                                                  "template_id": "achievements"}).status_code == 422
+
+
+def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monkeypatch):
+    """A real PDF crop, source scope and OOXML/ZIP bytes must agree end to end."""
+    class FigureModel:
+        async def ainvoke(self, messages):
+            return SimpleNamespace(content="# 报告\n\n## 架构\n云边协同架构 [1]。")
+
+    monkeypatch.setattr("src.reports.model_for", lambda settings: FigureModel())
+    app, store = setup(tmp_path)
+    source = tmp_path / ".knowledge" / "fixture" / "source" / "study.pdf"
+    parsed = tmp_path / ".knowledge" / "fixture" / "parsed" / "study.pdf"
+    (parsed / "images").mkdir(parents=True)
+    cover = Image.new("RGB", (640, 400), "white")
+    ImageDraw.Draw(cover).text((30, 30), "LOGO", fill="black")
+    chart = Image.new("RGB", (640, 400), "white")
+    draw = ImageDraw.Draw(chart)
+    draw.rectangle((50, 60, 580, 350), outline="blue", width=12)
+    draw.line((80, 300, 220, 170, 400, 230, 540, 80), fill="red", width=10)
+    alternative = Image.new("RGB", (640, 400), "white")
+    ImageDraw.Draw(alternative).ellipse((90, 50, 550, 350), outline="green", width=16)
+    source.parent.mkdir(parents=True, exist_ok=True)
+    cover.save(source, save_all=True, append_images=[chart, alternative])
+    chart.save(parsed / "images" / "chart.jpg", quality=95)
+    alternative.save(parsed / "images" / "alternative.jpg", quality=95)
+    middle = {"pages": [
+        {"page_idx": 0, "blocks": [{"type": "image", "index": 0, "bbox": [0, 0, 1, 1],
+                                    "content": [{"image_path": "images/chart.jpg"}]}]},
+        {"page_idx": 1, "blocks": [
+            {"type": "chart", "index": 0, "bbox": [0, 0, 1, 1],
+             "content": [{"type": "chart_body", "image_path": "images/chart.jpg"},
+                         {"type": "chart_caption", "content": [{"type": "text", "content": "图1 云边协同架构"}]}]},
+            {"type": "table", "index": 1, "bbox": [0, 0, 1, 1],
+             "content": [{"image_path": "images/chart.jpg"}]}]},
+        {"page_idx": 2, "blocks": [{"type": "chart", "index": 0, "bbox": [0, 0, 1, 1],
+             "content": [{"type": "chart_body", "image_path": "images/alternative.jpg"},
+                         {"type": "chart_caption", "content": [{"type": "text", "content": "图2 边缘计算拓扑"}]}]}]}]}
+    (parsed / "middle_json.json").write_text(json.dumps(middle, ensure_ascii=False))
+    doc = store.put(Document(title="云边协同", origin=str(source), kind="pdf", parser="mineru",
+                             pages=[Page(number=1, text="标题"), Page(number=2, text="云边协同架构"),
+                                    Page(number=3, text="边缘计算拓扑")],
+                             markdown="填表日期：2025年\n资助类别：面上项目\n云边协同架构"))
+    store.record_file("study.pdf", source.stat().st_size, source.stat().st_mtime_ns,
+                      sha256_file(source), doc["doc_id"], "indexed")
+    with TestClient(app) as client:
+        created = client.post("/api/reports", json={"domain": "云边协同", "year_from": 2025,
+            "year_to": 2025, "template_id": "comprehensive", "corpus_id": corpus_id_for("fixture"),
+            "illustrated": True})
+        assert created.status_code == 201
+        report = created.json()
+        assert len(report["figures"]) == 1 and report["figures"][0]["page"] == 2
+        figure_id = report["figures"][0]["figure_id"]
+        image = client.get(f"/api/reports/{report['report_id']}/figures/{figure_id}")
+        assert image.status_code == 200 and image.content == (parsed / "images" / "chart.jpg").read_bytes()
+        word = client.get(f"/api/reports/{report['report_id']}/export?format=docx")
+        with ZipFile(BytesIO(word.content)) as package:
+            assert any(name.startswith("word/media/") for name in package.namelist())
+            body = package.read("word/document.xml").decode()
+            assert "图1 云边协同架构" in body and "第 2 页" in body
+        bundle = client.get(f"/api/reports/{report['report_id']}/export?format=zip")
+        with ZipFile(BytesIO(bundle.content)) as package:
+            assert package.read(f"figures/{figure_id}.jpg") == image.content
+            assert f"figures/{figure_id}.jpg" in package.read("report.md").decode()
+        artifact = client.get("/api/artifacts").json()[0]
+        candidates = client.get(f"/api/artifacts/{artifact['artifact_id']}/figure-candidates").json()
+        alternative_id = next(item["figure_id"] for item in candidates if item["page"] == 3)
+        replaced = client.post(f"/api/artifacts/{artifact['artifact_id']}/figures/{figure_id}/replace",
+                               json={"figure_id": alternative_id})
+        assert replaced.status_code == 201 and replaced.json()["version"] == 2
+        assert replaced.json()["figures"][0]["figure_id"] == alternative_id
+        assert client.get(f"/api/artifacts/{artifact['artifact_id']}/versions/2/figures/{alternative_id}").status_code == 200
+        removed = client.delete(f"/api/artifacts/{artifact['artifact_id']}/figures/{alternative_id}")
+        assert removed.status_code == 201 and removed.json()["version"] == 3
+        assert not removed.json()["figures"]
+        assert client.get(f"/api/artifacts/{artifact['artifact_id']}?version=1").json()["figures"]
+        source.write_bytes(source.read_bytes() + b"changed")
+        assert client.get(f"/api/artifacts/{artifact['artifact_id']}/figure-candidates").json() == []
+        assert client.get(f"/api/reports/{report['report_id']}/figures/{figure_id}").content == image.content
 
 
 def test_report_store_migrates_legacy_schema(tmp_path):

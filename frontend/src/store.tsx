@@ -140,7 +140,7 @@ export interface AppValue {
   setOptions: Dispatch<SetStateAction<Options>>;
   send: (regenerate?: boolean, override?: SendOverride) => Promise<void>;
   regenerateAt: (index: number) => Promise<void>;
-  setTurnReport: (index: number, report: { report_id: string; markdown: string }) => void;
+  setTurnReport: (index: number, report: import("./api").ReportInfo) => void;
   /** W3-B: save a completed answer as a traceable artifact linked to its run. */
   saveAnswerArtifact: (runId: string, markdown: string, title?: string) => Promise<void>;
   stop: () => void;
@@ -464,7 +464,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await activeRun.current?.catch(() => undefined);
   }
 
-  function setTurnReport(index: number, report: { report_id: string; markdown: string }) {
+  function setTurnReport(index: number, report: import("./api").ReportInfo) {
     replaceTurns((current) => {
       const next = [...current];
       if (next[index]) next[index] = { ...next[index], report };

@@ -11,6 +11,7 @@ read back from the linked run snapshot).
 """
 
 import json
+import re
 import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
@@ -56,6 +57,9 @@ class ArtifactStore:
                 db.execute("ALTER TABLE artifact_versions ADD COLUMN source_verification TEXT NOT NULL DEFAULT 'unverified'")
             if "fail_reason" not in columns:
                 db.execute("ALTER TABLE artifact_versions ADD COLUMN fail_reason TEXT NOT NULL DEFAULT ''")
+            if "figures" not in columns:
+                db.execute("ALTER TABLE artifact_versions ADD COLUMN figures TEXT NOT NULL DEFAULT '[]'")
+            db.execute("CREATE TABLE IF NOT EXISTS artifact_images (sha256 TEXT PRIMARY KEY, data BLOB NOT NULL)")
             db.execute("CREATE INDEX IF NOT EXISTS artifact_versions_doc ON artifact_versions(artifact_id)")
 
     def connect(self):
@@ -68,13 +72,24 @@ class ArtifactStore:
                               "WHERE type='report' AND run_id!=''").fetchall()
         return {row[0] for row in rows}
 
-    def ensure_report(self, report: dict) -> dict:
+    def report_artifact(self, run_id: str) -> dict | None:
+        with self.connect() as db:
+            row = db.execute("SELECT id FROM artifacts WHERE type='report' AND run_id=? "
+                             "ORDER BY created_at LIMIT 1", (run_id,)).fetchone()
+        return self.get(row[0]) if row else None
+
+    def ensure_report(self, report: dict, figures: list[dict] | None = None) -> dict:
         """Atomically repair or create one artifact for a persisted report run."""
         run_id = report.get("run_id", "")
         if not run_id:
             raise ValueError("历史报告没有运行记录，保持只读兼容")
+        figures = figures or []
+        figure_meta = [{key: value for key, value in figure.items() if key != "bytes"} for figure in figures]
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
+            for figure in figures:
+                db.execute("INSERT OR IGNORE INTO artifact_images VALUES (?,?)",
+                           (figure["sha256"], figure["bytes"]))
             row = db.execute("SELECT id, status, current_version, payload FROM artifacts "
                              "WHERE type='report' AND run_id=? "
                              "ORDER BY created_at LIMIT 1", (run_id,)).fetchone()
@@ -86,8 +101,9 @@ class ArtifactStore:
                     version = row[2] + 1
                     timestamp = _now()
                     db.execute("INSERT INTO artifact_versions (artifact_id, version, created_at, "
-                               "markdown, citations, status, source_verification, fail_reason) VALUES (?,?,?,?,?,?,?,?)",
-                               (artifact_id, version, timestamp, report["markdown"], "[]", "completed", "verified", ""))
+                               "markdown, citations, status, source_verification, fail_reason, figures) VALUES (?,?,?,?,?,?,?,?,?)",
+                               (artifact_id, version, timestamp, report["markdown"], "[]", "completed", "verified", "",
+                                json.dumps(figure_meta, ensure_ascii=False)))
                     params = report.get("params", {})
                     meta = {**json.loads(row[3]), "source_verification": "verified",
                             "source_report_id": report["report_id"],
@@ -114,8 +130,9 @@ class ArtifactStore:
                                  "template_version": params.get("template_version"),
                                  "task_version": params.get("task_version")})))
                 db.execute("INSERT INTO artifact_versions (artifact_id, version, created_at, "
-                           "markdown, citations, status, source_verification, fail_reason) VALUES (?,?,?,?,?,?,?,?)",
-                           (artifact_id, 1, timestamp, report["markdown"], "[]", "completed", "verified", ""))
+                           "markdown, citations, status, source_verification, fail_reason, figures) VALUES (?,?,?,?,?,?,?,?,?)",
+                           (artifact_id, 1, timestamp, report["markdown"], "[]", "completed", "verified", "",
+                            json.dumps(figure_meta, ensure_ascii=False)))
         return self.get(artifact_id)
 
     def record_failed_report(self, *, run_id: str, title: str, session_key: str,
@@ -173,7 +190,7 @@ class ArtifactStore:
         return self.get(artifact_id)
 
     def add_version(self, artifact_id: str, *, markdown: str, citations: list[dict] | None = None,
-                    status: str = "completed") -> dict:
+                    status: str = "completed", figures: list[dict] | None = None) -> dict:
         """Append a new immutable version; the previous version is never overwritten."""
         timestamp = _now()
         with self.connect() as db:
@@ -182,10 +199,23 @@ class ArtifactStore:
             if row is None:
                 raise KeyError("成果不存在")
             version = int(row[0]) + 1
+            old_figures = json.loads(db.execute("SELECT figures FROM artifact_versions WHERE artifact_id=? AND version=?",
+                                                (artifact_id, row[0])).fetchone()[0])
+            if figures is None:
+                figures = [figure for figure in old_figures if f"figures/{figure['figure_id']}." in markdown]
+            referenced = set(re.findall(r"\(figures/([a-f0-9]{20})\.(?:jpg|png)\)", markdown))
+            if referenced != {figure["figure_id"] for figure in figures}:
+                raise ValueError("成果正文中的图片与附件不一致")
+            for figure in figures:
+                if "bytes" in figure:
+                    db.execute("INSERT OR IGNORE INTO artifact_images VALUES (?,?)",
+                               (figure["sha256"], figure["bytes"]))
+            figure_meta = [{key: value for key, value in figure.items() if key != "bytes"} for figure in figures]
             db.execute("INSERT INTO artifact_versions (artifact_id, version, created_at, markdown, citations, "
-                       "status, source_verification, fail_reason) VALUES (?,?,?,?,?,?,?,?)",
+                       "status, source_verification, fail_reason, figures) VALUES (?,?,?,?,?,?,?,?,?)",
                        (artifact_id, version, timestamp, markdown,
-                        json.dumps(citations or [], ensure_ascii=False), status, "user_modified", ""))
+                        json.dumps(citations or [], ensure_ascii=False), status, "user_modified", "",
+                        json.dumps(figure_meta, ensure_ascii=False)))
             meta = {**json.loads(row[1]), "source_verification": "user_modified"}
             db.execute("UPDATE artifacts SET current_version=?, updated_at=?, status=?, payload=? WHERE id=?",
                        (version, timestamp, status, json.dumps(meta), artifact_id))
@@ -226,7 +256,7 @@ class ArtifactStore:
                 raise KeyError("成果不存在")
             item = self._row_payload(row)
             version_row = db.execute(
-                "SELECT version, created_at, markdown, citations, status, source_verification, fail_reason "
+                "SELECT version, created_at, markdown, citations, status, source_verification, fail_reason, figures "
                 "FROM artifact_versions WHERE artifact_id=? AND version=?",
                 (artifact_id, version if version is not None else item["current_version"])).fetchone()
         if version is not None and not version_row:
@@ -235,11 +265,26 @@ class ArtifactStore:
         item["version_created_at"] = version_row[1] if version_row else ""
         item["markdown"] = version_row[2] if version_row else ""
         item["citations"] = json.loads(version_row[3]) if version_row else []
+        item["figures"] = json.loads(version_row[7]) if version_row else []
         if version_row:
             item["status"] = version_row[4]
             item["source_verification"] = version_row[5]
             item["fail_reason"] = version_row[6]
         return item
+
+    def image(self, artifact_id: str, version: int, figure_id: str) -> tuple[bytes, str]:
+        with self.connect() as db:
+            row = db.execute("SELECT figures FROM artifact_versions WHERE artifact_id=? AND version=?",
+                             (artifact_id, version)).fetchone()
+            if not row:
+                raise KeyError("成果版本不存在")
+            figure = next((item for item in json.loads(row[0]) if item["figure_id"] == figure_id), None)
+            if not figure:
+                raise KeyError("图片不属于该成果版本")
+            data = db.execute("SELECT data FROM artifact_images WHERE sha256=?", (figure["sha256"],)).fetchone()
+        if not data:
+            raise KeyError("图片附件不存在")
+        return data[0], figure["media_type"]
 
     def get_version(self, artifact_id: str, version: int) -> dict:
         with self.connect() as db:

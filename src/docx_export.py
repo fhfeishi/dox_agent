@@ -13,12 +13,14 @@ from docx.opc.constants import RELATIONSHIP_TYPE as RT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt
+from PIL import Image
 
 _HEADING = re.compile(r"^(#{1,6})\s+(.*)$")
 _TABLE_SEPARATOR = re.compile(r"^\s*\|?[\s:|-]+\|?\s*$")
 _LIST = re.compile(r"^\s*(?:([-+*])|(\d+)[.)])\s+(.+)$")
 _LINK = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)")
 _INLINE_MATH = re.compile(r"(?<!\\)\$(?!\$)(?=\S)[^\n$]*?\S\$(?!\$)")
+_IMAGE = re.compile(r"^!\[.*\]\((figures/[a-f0-9]{20}\.(?:jpg|png))\)$")
 
 
 def _split_row(line: str) -> list[str]:
@@ -67,7 +69,7 @@ def _styles(document) -> None:
     footer.add_run(" 页")
 
 
-def markdown_to_docx(markdown: str) -> bytes:
+def markdown_to_docx(markdown: str, images: dict[str, bytes] | None = None) -> bytes:
     """Render Markdown headings, tables and paragraphs into a real ``.docx`` byte string."""
     if re.search(r"(?m)^\s*\$\$|\\\[|\\\(", markdown) or _INLINE_MATH.search(markdown):
         raise ValueError("当前 Word 导出尚不支持公式排版，请先下载 Markdown 原文")
@@ -81,6 +83,16 @@ def markdown_to_docx(markdown: str) -> bytes:
     index = 0
     while index < len(lines):
         line = lines[index]
+        if image := _IMAGE.match(line.strip()):
+            if not images or image.group(1) not in images:
+                raise ValueError("图文报告图片附件缺失，不能导出不完整的 Word")
+            stream = io.BytesIO(images[image.group(1)])
+            with Image.open(stream) as picture:
+                width_cm = min(15, 18 * picture.width / picture.height, picture.width * 2.54 / 96)
+            stream.seek(0)
+            document.add_picture(stream, width=Cm(width_cm))
+            index += 1
+            continue
         heading = _HEADING.match(line)
         if heading:
             paragraph = document.add_heading(level=min(len(heading.group(1)), 6))

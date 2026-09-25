@@ -10,6 +10,7 @@ import { formatDuration, type Attempt } from "../conversation";
 import { stopLabels } from "../policy";
 import { Icon } from "./Icons";
 import { Button } from "./ui";
+import { ReportMarkdown } from "./ReportMarkdown";
 import { useApp } from "../store";
 
 const STEP_STATUS: Record<Step["status"], { label: string; cls: string }> = {
@@ -274,7 +275,7 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
   );
 }
 
-function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (report: { report_id: string; markdown: string }) => void }) {
+function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (report: ReportInfo) => void }) {
   const { corpora, workspace, activeTask } = useApp();
   const taskId = attempt.runInfo?.task_id ?? attempt.options.task_id;
   const taskVersion = attempt.runInfo?.task_version ?? attempt.options.task_version;
@@ -316,6 +317,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   const [purpose, setPurpose] = useState(params?.purpose ?? "研究进展梳理");
   const [audience, setAudience] = useState(params?.audience ?? "专业研究人员");
   const [length, setLength] = useState(params?.length ?? "标准篇幅");
+  const [illustrated, setIllustrated] = useState(Boolean(params?.illustrated));
   const [adjust, setAdjust] = useState(false);
   useEffect(() => {
     if (!params) return;
@@ -328,6 +330,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
     setPurpose(params.purpose ?? "研究进展梳理");
     setAudience(params.audience ?? "专业研究人员");
     setLength(params.length ?? "标准篇幅");
+    setIllustrated(Boolean(params.illustrated));
   }, [params]);
   const boundReportTask = reportTask?.kind === "custom" && reportTask.engine_task_id === "task4" && Boolean(reportTask.report_template_id);
   const [templateId, setTemplateId] = useState(boundReportTask ? reportTask?.report_template_id ?? "" : params?.template_id ?? "comprehensive");
@@ -377,7 +380,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       if (!ready) throw new Error("请确认报告知识库、主题和年份范围");
       const request = { domain: domain.trim(), year_from: yearFrom, year_to: yearTo,
         fund_type: fundType.trim(), focus: focus.trim(), purpose: purpose.trim(),
-        audience: audience.trim(), length: length.trim(), template_id: templateId,
+        audience: audience.trim(), length: length.trim(), illustrated, template_id: templateId,
         template_version: boundReportTask
           ? reportTask?.report_template_version
           : boundTemplateIsCustom ? selectedTemplate?.version : undefined,
@@ -395,7 +398,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
         ? crypto.randomUUID() : lastRequest.current?.runId ?? `${attempt.runId.slice(0, 72)}-report`;
       lastRequest.current = { key, runId: reportRunId };
       const result = await createReport({ ...request, scope_fingerprint: scope.fingerprint, run_id: reportRunId });
-      if (onReport) onReport({ report_id: result.report_id, markdown: result.markdown });
+      if (onReport) onReport(result);
       else setLocal(result);
     } catch (e) {
       setError(e instanceof Error ? e.message : "生成报告失败");
@@ -450,6 +453,9 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
               <option key={item.id} value={item.id}>{item.name}{item.kind === "custom" ? `（已发布 v${item.version}${item.status === "draft" ? "，另有草稿" : ""}）` : "（内置 v0）"}</option>
             ))}
           </select>
+        </label>
+        <label className="flex items-center gap-[4px] text-[11.5px] text-[var(--slate)]">
+          <input type="checkbox" checked={illustrated} disabled={busy} onChange={(event) => setIllustrated(event.target.checked)} />图文报告
         </label>
         <button
           type="button"
@@ -517,19 +523,14 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       {report ? (
         <div className="mt-[8px]">
           <div className="markdown max-h-[360px] overflow-auto rounded-[8px] border border-[var(--hairline-soft)] bg-[var(--canvas)] p-[10px]">
-            <Markdown remarkPlugins={[remarkGfm]}>{report.markdown}</Markdown>
+            <ReportMarkdown markdown={report.markdown} figures={report.figures} reportId={report.report_id} />
           </div>
           <div className="mt-[6px] flex gap-[10px] text-[12px]">
             <button type="button" onClick={() => void copyReport()} className="text-[var(--primary)] hover:underline">
               复制
             </button>
-            <button
-              type="button"
-              onClick={() => downloadText(report.markdown, `report-${report.report_id.slice(0, 8)}.md`)}
-              className="text-[var(--primary)] hover:underline"
-            >
-              下载 .md
-            </button>
+            {report.figures?.length ? <a href={`/api/reports/${encodeURIComponent(report.report_id)}/export?format=zip`}>下载图文 ZIP</a>
+              : <button type="button" onClick={() => downloadText(report.markdown, `report-${report.report_id.slice(0, 8)}.md`)} className="text-[var(--primary)] hover:underline">下载 .md</button>}
           </div>
         </div>
       ) : null}
@@ -553,7 +554,7 @@ export function MessageView({
   startedTick?: number;
   onRegenerate?: () => void;
   onOpenSource?: (source: Source, n: number) => void;
-  onReport?: (report: { report_id: string; markdown: string }) => void;
+  onReport?: (report: ReportInfo) => void;
   onDraft?: () => void;
   onExport?: (format: "md" | "word") => void;
   onSaveArtifact?: () => void;

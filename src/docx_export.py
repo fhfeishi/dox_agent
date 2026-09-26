@@ -18,6 +18,8 @@ from PIL import Image
 _HEADING = re.compile(r"^(#{1,6})\s+(.*)$")
 _TABLE_SEPARATOR = re.compile(r"^\s*\|?[\s:|-]+\|?\s*$")
 _LIST = re.compile(r"^\s*(?:([-+*])|(\d+)[.)])\s+(.+)$")
+_FENCE = re.compile(r"^\s*```")
+_QUOTE = re.compile(r"^\s*>\s?(.*)$")
 _LINK = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)")
 _INLINE_MATH = re.compile(r"(?<!\\)\$(?!\$)(?=\S)[^\n$]*?\S\$(?!\$)")
 _IMAGE = re.compile(r"^!\[.*\]\((figures/[a-f0-9]{20}\.(?:jpg|png))\)$")
@@ -69,8 +71,35 @@ def _styles(document) -> None:
     footer.add_run(" 页")
 
 
-def markdown_to_docx(markdown: str, images: dict[str, bytes] | None = None) -> bytes:
-    """Render Markdown headings, tables and paragraphs into a real ``.docx`` byte string."""
+def _append_sources(document, citations: list[dict]) -> None:
+    """G10e-D: a readable source appendix, so a Word reader can check every [n] citation."""
+    if not citations:
+        return
+    document.add_heading("引用来源", level=2)
+    for number, item in enumerate(citations, start=1):
+        title = item.get("title") or item.get("doc_id") or "未记录来源"
+        details: list[str] = []
+        if item.get("kind") == "web":
+            if item.get("url"):
+                details.append(str(item["url"]))
+            if item.get("fetched_at"):
+                details.append(f"抓取于 {item['fetched_at']}")
+        else:
+            if item.get("page"):
+                details.append(f"第 {item['page']} 页")
+            if item.get("corpus_id"):
+                details.append(f"知识库 {item['corpus_id']}")
+        suffix = f"（{"；".join(details)}）" if details else ""
+        _add_text(document.add_paragraph(), f"[{number}] {title}{suffix}")
+
+
+def markdown_to_docx(markdown: str, images: dict[str, bytes] | None = None,
+                     citations: list[dict] | None = None) -> bytes:
+    """Render Markdown headings, lists, tables and paragraphs into a real ``.docx``.
+
+    ``citations`` (G10e-D) appends a source appendix so every ``[n]`` stays checkable;
+    it never rewrites the body. Formulas are still rejected instead of being dropped.
+    """
     if re.search(r"(?m)^\s*\$\$|\\\[|\\\(", markdown) or _INLINE_MATH.search(markdown):
         raise ValueError("当前 Word 导出尚不支持公式排版，请先下载 Markdown 原文")
     document = Document()
@@ -117,12 +146,35 @@ def markdown_to_docx(markdown: str, images: dict[str, bytes] | None = None) -> b
                     for column, text in enumerate(row[:len(header)]):
                         cells[column].text = _plain(text)
             continue
+        if _FENCE.match(line):
+            body: list[str] = []
+            index += 1
+            while index < len(lines) and not _FENCE.match(lines[index]):
+                body.append(lines[index])
+                index += 1
+            index += 1
+            paragraph = document.add_paragraph()
+            run = paragraph.add_run("\n".join(body))
+            run.font.name = "Consolas"
+            run.font.size = Pt(10)
+            continue
+        if quote := _QUOTE.match(line):
+            quoted = [quote.group(1)]
+            index += 1
+            while index < len(lines) and (continued := _QUOTE.match(lines[index])):
+                quoted.append(continued.group(1))
+                index += 1
+            paragraph = document.add_paragraph()
+            paragraph.paragraph_format.left_indent = Cm(0.8)
+            _add_text(paragraph, " ".join(part for part in quoted if part.strip()))
+            continue
         if match := _LIST.match(line):
             paragraph = document.add_paragraph(style="List Bullet" if match.group(1) else "List Number")
             _add_text(paragraph, match.group(3))
         elif line.strip():
             _add_text(document.add_paragraph(), line)
         index += 1
+    _append_sources(document, citations or [])
     buffer = io.BytesIO()
     document.save(buffer)
     return buffer.getvalue()

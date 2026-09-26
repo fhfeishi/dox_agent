@@ -37,7 +37,14 @@ async def main():
                 await route.fulfill(status=200, content_type="text/event-stream", body=body)
 
             async def sessions(route):
-                if route.request.method == "PUT":
+                if route.request.method == "DELETE":
+                    sid = route.request.url.rsplit("/", 1)[-1]
+                    if sid not in store:
+                        await route.fulfill(status=404, json={"detail": "记录不存在"})
+                    else:
+                        del store[sid]
+                        await route.fulfill(json={"id": sid, "deleted": True})
+                elif route.request.method == "PUT":
                     data = route.request.post_data_json
                     sid = route.request.url.rsplit("/", 1)[-1]
                     record = {"id": sid, "revision": store.get(sid, {}).get("revision", 0) + 1, "title": data["title"], "data": data["data"]}
@@ -146,8 +153,20 @@ async def main():
             await page.reload()
             await expect(page.locator("aside").first.get_by_role("button", name=re.compile(title))).to_be_visible()
 
+            # Given two sessions, when the active one is deleted the list drops it and the
+            # app falls back to another session instead of showing an empty workspace.
+            await page.reload()
+            side = page.locator("aside").first
+            assert len(store) >= 2, sorted(store)
+            await side.get_by_role("button", name="第三问", exact=True).hover()
+            await side.get_by_role("button", name="删除会话").click()
+            await side.get_by_role("button", name="确认删除").click()
+            await expect(side.get_by_role("button", name="第三问", exact=True)).to_have_count(0)
+            assert "第三问" not in {item["title"] for item in store.values()}, sorted(store)
+            await expect(side.get_by_role("button", name=re.compile("历史主会话"))).to_be_visible()
+
             assert not errors, errors
-            print("PASS: U5 edit-in-place, persistence, restore, legacy nesting")
+            print("PASS: U5 edit-in-place, persistence, restore, legacy nesting, delete")
             await browser.close()
     finally:
         server.shutdown()

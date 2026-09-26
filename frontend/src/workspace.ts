@@ -15,6 +15,15 @@ export async function workspaceRequest(path: string, body?: unknown) {
   return data;
 }
 
+export async function workspaceDelete(path: string) {
+  const response = await fetch(path, { method: "DELETE" });
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(typeof data.detail === "string" ? data.detail : "删除失败");
+  }
+  return await response.json();
+}
+
 export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch<SetStateAction<Turn[]>>, setOptions: (options: Options) => void,
   taskId: string = DEFAULT_TASK_ID, setTaskId?: (taskId: string) => void,
   corpusId: string = "", setCorpusId?: (corpusId: string) => void,
@@ -172,6 +181,18 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     await saveNow(restored, restoredOptions, next);
     return restored;
   }
+  /** U9: drop a session for good; deleting the active one falls back to the next visible session. */
+  async function remove(id: string) {
+    await workspaceDelete(`/api/workspace/sessions/${id}`);
+    if (pending.current?.id === id) pending.current = null;
+    delete revisions.current[id];
+    const remaining = sessionsRef.current.filter(item => item.id !== id);
+    updateSessions(remaining);
+    if (id === activeRef.current) {
+      const next = remaining.find(item => !item.data.archived);
+      await select(next?.id);
+    }
+  }
   async function rename(title: string, id?: string) {
     const item = sessionsRef.current.find(session => session.id === (id ?? activeRef.current));
     if (item && title.trim()) await enqueue({ ...item, title: title.trim().slice(0, 200) });
@@ -195,5 +216,5 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     }
     await saveNow(turnsRef.current, optionsRef.current, branchesRef.current, taskIdRef.current, corpusIdRef.current, true);
   }
-  return { sessions, active, loaded, message, branches, taskVersion, setTaskVersion, select, flush, saveNow, saveCorpusSelection, branchInPlace, viewBranch, restoreBranch, rename, setArchived, setPinned };
+  return { sessions, active, loaded, message, branches, taskVersion, setTaskVersion, select, flush, saveNow, saveCorpusSelection, branchInPlace, viewBranch, restoreBranch, rename, setArchived, setPinned, remove };
 }

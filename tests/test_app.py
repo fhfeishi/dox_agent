@@ -474,3 +474,16 @@ def test_web_run_reports_the_real_corpus_state(tmp_path, monkeypatch):
     assert run["resource_policy"] == "local_plus_urls"
     assert run["preparation"] != "ready"
     assert run["params"]["web_snapshot_ids"] == [snapshot_id]
+
+
+def test_session_can_be_deleted_and_stays_deleted(tmp_path):
+    app, _ = setup(tmp_path)
+    with TestClient(app) as client:
+        saved = client.put("/api/workspace/sessions/s-1", json={"title": "会话", "data": {"turns": []}}).json()
+        assert saved["id"] == "s-1"
+        assert any(item["id"] == "s-1" for item in client.get("/api/workspace/sessions").json())
+
+        assert client.delete("/api/workspace/sessions/s-1").json()["deleted"] is True
+        assert not any(item["id"] == "s-1" for item in client.get("/api/workspace/sessions").json())
+        assert client.delete("/api/workspace/sessions/s-1").status_code == 404
+        assert client.delete("/api/workspace/notes/s-1").status_code == 404

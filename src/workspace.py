@@ -48,6 +48,16 @@ class Workspace:
         return payload
 
 
+    def delete(self, kind, key):
+        """Remove one session or note; unknown ids and kind mismatches are 404."""
+        with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            row = db.execute("SELECT kind FROM records WHERE id=?", (key,)).fetchone()
+            if row is None or row[0] != kind:
+                raise HTTPException(404, "记录不存在")
+            db.execute("DELETE FROM records WHERE id=?", (key,))
+
+
 def note_status(note, knowledge):
     refs = note["data"].get("sources", [])
     status = "current" if refs else "unverified"
@@ -69,6 +79,15 @@ def list_records(kind: str, request: Request):
         for record in records:
             record["source_status"] = note_status(record, request.app.state.knowledge)
     return records
+
+
+@router.delete("/workspace/{kind}/{key}")
+def delete_record(kind: str, key: str, request: Request):
+    """U9/W5: a session the user no longer needs can be removed; its artifacts stay."""
+    if kind not in ("sessions", "notes") or len(key) > 80:
+        raise HTTPException(404)
+    request.app.state.workspace.delete(kind, key)
+    return {"id": key, "deleted": True}
 
 
 @router.put("/workspace/{kind}/{key}")

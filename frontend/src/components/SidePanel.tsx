@@ -111,6 +111,7 @@ export function SidePanel() {
         onRename={(title) => void workspace.rename(title, session.id)}
         onArchive={() => void workspace.setArchived(session.id, true)}
         onPin={() => void workspace.setPinned(session.id, !session.data.pinned)}
+        onDelete={() => void workspace.remove(session.id)}
       />
       {childrenOf(session.id).length ? (
         <ul className="mb-[2px] ml-[14px] space-y-[1px] border-l border-[var(--hairline)] pl-[8px]">
@@ -459,6 +460,7 @@ function SessionRow({
   onRename,
   onArchive,
   onPin,
+  onDelete,
 }: {
   id: string;
   title: string;
@@ -470,9 +472,11 @@ function SessionRow({
   onRename: (title: string) => void;
   onArchive: () => void;
   onPin: () => void;
+  onDelete: () => void;
 }) {
   const [editing, setEditing] = useState<string | null>(null);
   const [draft, setDraft] = useState(title);
+  const [confirming, setConfirming] = useState(false);
 
   if (editing === id) {
     return (
@@ -536,6 +540,20 @@ function SessionRow({
         >
           <Icon name="edit" size={12} />
         </button>
+        {confirming ? (
+          <>
+            <button type="button" aria-label="确认删除会话"
+              className="rounded-[5px] px-[4px] py-[2px] text-[10px] text-[var(--red)] hover:bg-[var(--surface)]"
+              onClick={() => { setConfirming(false); onDelete(); }}>确认删除</button>
+            <button type="button" aria-label="取消删除会话"
+              className="rounded-[5px] px-[4px] py-[2px] text-[10px] text-[var(--steel)] hover:bg-[var(--surface)]"
+              onClick={() => setConfirming(false)}>取消</button>
+          </>
+        ) : (
+          <button type="button" aria-label="删除会话" title="删除会话"
+            className="rounded-[5px] px-[3px] py-[2px] text-[10px] text-[var(--steel)] hover:bg-[var(--surface)]"
+            onClick={() => setConfirming(true)}>删除</button>
+        )}
         <button
           type="button"
           aria-label="归档会话"

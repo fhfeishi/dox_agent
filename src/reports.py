@@ -88,6 +88,32 @@ def report_metadata(markdown: str) -> tuple[int | None, str | None, str, str]:
     category = next(iter(categories)) if category_status == "matched" else None
     return year, category, year_status, category_status
 
+_PERIOD_LABELS = ("研究期限", "执行年限")
+_YAML_YEAR = re.compile(r"^(startYear|endYear)\s*:\s*(\d{4})\s*$")
+
+
+def report_period(markdown: str) -> tuple[int | None, int | None]:
+    """Project start/end years from the header or front matter.
+
+    Display-only: the report-year filter still requires the filing date (填表日期), because
+    a project period says when the work ran, not when the report was submitted.
+    """
+    years: list[int] = []
+    for line in markdown.splitlines()[:64]:
+        text = _plain_markdown(line).strip().strip("|").strip()
+        match = _YAML_YEAR.match(text)
+        if match:
+            value = int(match.group(2))
+            if 1900 <= value <= 2100:
+                years.append(value)
+            continue
+        if any(label in text for label in _PERIOD_LABELS):
+            found = [int(item.group(1)) for item in _YEAR.finditer(text)
+                     if 1900 <= int(item.group(1)) <= 2100]
+            if len(found) >= 2:
+                return found[0], found[-1]
+    return (years[0], years[-1]) if len(years) >= 2 else (None, None)
+
 
 def _report_metadata(markdown: str) -> tuple[int | None, str | None]:
     """Compatibility helper used by report selection."""
@@ -121,27 +147,58 @@ def preflight_report(knowledge, params: dict) -> dict:
     excluded = {"date": 0, "year": 0, "category": 0}
     date_hits = category_hits = 0
     eligible = []
+    reasons: list[dict] = []
+    observed: set[int] = set()
     for doc in scoped:
-        year, category, date_status, category_status = report_metadata(knowledge.read_markdown(doc["doc_id"]))
+        markdown = knowledge.read_markdown(doc["doc_id"])
+        year, category, date_status, category_status = report_metadata(markdown)
         date_hits += date_status == "matched"
         category_hits += category_status == "matched"
+        if year is not None:
+            observed.add(year)
         if year is None:
             excluded["date"] += 1
+            reason = "date"
         elif not params["year_from"] <= year <= params["year_to"]:
             excluded["year"] += 1
+            reason = "year"
         elif params.get("fund_type") and category != params["fund_type"]:
             excluded["category"] += 1
+            reason = "category"
         else:
             eligible.append({"doc_id": doc["doc_id"], "version": doc["version"],
                              "title": doc["title"], "corpus_id": params.get("corpus_id") or ""})
+            continue
+        start, end = report_period(markdown)
+        reasons.append({"doc_id": doc["doc_id"], "title": doc["title"], "reason": reason,
+                        "period": f"{start}–{end}" if start and end else ""})
     scope = {"corpus_id": params.get("corpus_id") or "", "doc_ids": sorted(selected) if selected else None,
              "year_from": params["year_from"], "year_to": params["year_to"],
              "fund_type": params.get("fund_type") or "",
              "eligible": sorted((doc["corpus_id"], doc["doc_id"], doc["version"]) for doc in eligible)}
     fingerprint = hashlib.sha256(json.dumps(scope, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+    observed_years = sorted(observed)
+    hint = ""
+    if scoped:
+        if eligible and excluded["date"]:
+            hint = (f"另有 {excluded['date']} 份资料因缺少填表日期未纳入（多为解析产物不含该字段）；"
+                    "可对该知识库执行「重导入」补全解析字段。")
+        elif eligible:
+            hint = ""
+        elif excluded["date"] == len(scoped):
+            hint = ("所选资料都没有可识别的填表日期（多为解析产物不含该字段，例如只有项目起止年份）；"
+                    "请对该知识库执行「重导入」补全解析字段，或换一个知识库后再生成。")
+        elif excluded["year"]:
+            span = f"{min(observed_years)}–{max(observed_years)}" if observed_years else "无"
+            hint = (f"有 {excluded['year']} 份资料因填表日期年份不在 {params['year_from']}–{params['year_to']} "
+                    f"被排除（库中可识别的填表日期年份为 {span}）；请把年份改到该区间，或另选资料范围。")
+        elif excluded["category"]:
+            hint = (f"有 {excluded['category']} 份资料因资助类别与「{params.get('fund_type')}」不符被排除；"
+                    "可将类别改为不限后重试。")
     return {"total": len(scoped), "corpus_total": len(docs), "excluded": excluded,
             "date_hits": date_hits, "category_hits": category_hits,
-            "eligible_count": len(eligible), "eligible": eligible, "fingerprint": fingerprint}
+            "eligible_count": len(eligible), "eligible": eligible, "fingerprint": fingerprint,
+            "reasons": reasons, "observed_years": observed_years, "hint": hint}
 
 
 class ReportStore:

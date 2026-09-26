@@ -468,6 +468,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       </div>
       {preflight ? <div className="mt-[7px] text-[11.5px] leading-[1.6] text-[var(--steel)]">
         <p>按当前条件预检：{preflight.eligible_count} 份符合筛选候选（所选范围共 {preflight.total} 份）；日期缺失/歧义 {preflight.excluded.date}，年份不符 {preflight.excluded.year}，类别不符 {preflight.excluded.category}。候选数不等于模型实际读取或引用数。</p>
+        {preflight.hint ? <p className="mt-[4px] text-[var(--red)]">{preflight.hint}</p> : null}
         <details><summary className="cursor-pointer text-[var(--primary)]">查看候选资料与版本</summary>
           <ul className="max-h-[120px] overflow-auto pl-[16px]">{preflight.eligible.map((doc) => <li key={doc.doc_id}>{doc.title} · {doc.version}</li>)}</ul>
         </details>

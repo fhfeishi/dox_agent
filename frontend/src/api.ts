@@ -107,7 +107,7 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
   await jsonOrThrow(response, "重命名文件失败");
 }
 export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; purpose?: string; audience?: string; length?: string; illustrated?: boolean; sources?: Record<string, string>; scope_fingerprint?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
-export type ReportPreflight = { total: number; corpus_total: number; excluded: { date: number; year: number; category: number }; date_hits: number; category_hits: number; eligible_count: number; eligible: { doc_id: string; version: string; title: string; corpus_id: string }[]; fingerprint: string };
+export type ReportPreflight = { total: number; corpus_total: number; excluded: { date: number; year: number; category: number }; date_hits: number; category_hits: number; eligible_count: number; eligible: { doc_id: string; version: string; title: string; corpus_id: string }[]; fingerprint: string; reasons?: { doc_id: string; title: string; reason: string; period?: string }[]; observed_years?: number[]; hint?: string };
 export type WebPreview = { preview_id: string; expires_at: string; title: string; origin: string; pages: { number: number; text: string }[]; markdown?: string };
 export type WebSnapshot = { web_snapshot_id: string; url: string; title: string; fetched_at: string; version: string; content_hash: string; parse_status: string; markdown: string; search_query?: string; search_domains?: string[]; search_time_filter?: string; search_provider?: string };
 export type WebSearchResult = { result_id: string; url: string; title: string; snippet: string };
@@ -194,7 +194,8 @@ export type ArtifactSummary = {
   run_available?: boolean;
 };
 export type ArtifactInfo = ArtifactSummary & {
-  version: number; markdown: string; citations: { doc_id: string; version: string; page?: number | null }[];
+  version: number; markdown: string; citations: ({ doc_id?: string; corpus_id?: string; version?: string; title?: string;
+    page?: number | null; kind?: string; snapshot_id?: string; url?: string; fetched_at?: string })[];
   figures?: import("./components/ReportMarkdown").ReportFigure[];
 };
 export type ArtifactVersion = { version: number; created_at: string; status: string; source_verification: string };
@@ -257,7 +258,8 @@ export type RunSnapshot = {
   task_id: string; task_version?: number | null; engine_task_id?: string; skill_id?: string | null; skill_version?: number | null; model: string; resource_policy: string;
   requested_corpus_ids: string[]; effective_corpus_ids: string[]; allowed_doc_ids: string[] | null;
   params: Record<string, unknown>; param_sources: Record<string, string>; output_intent: string;
-  ended_at: string; metrics: Record<string, unknown>; citations: { doc_id: string; version: string; page?: number | null }[];
+  ended_at: string; metrics: Record<string, unknown>; citations: ({ doc_id?: string; corpus_id?: string; version?: string; title?: string;
+    page?: number | null; kind?: string; snapshot_id?: string; url?: string; fetched_at?: string })[];
 };
 
 /** W3-A: read a persisted run snapshot; legacy runs without one return 404. */

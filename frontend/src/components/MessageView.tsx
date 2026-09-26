@@ -469,6 +469,28 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       {preflight ? <div className="mt-[7px] text-[11.5px] leading-[1.6] text-[var(--steel)]">
         <p>按当前条件预检：{preflight.eligible_count} 份符合筛选候选（所选范围共 {preflight.total} 份）；日期缺失/歧义 {preflight.excluded.date}，年份不符 {preflight.excluded.year}，类别不符 {preflight.excluded.category}。候选数不等于模型实际读取或引用数。</p>
         {preflight.hint ? <p className="mt-[4px] text-[var(--red)]">{preflight.hint}</p> : null}
+        {preflight.eligible_count === 0 && (preflight.observed_years?.length ?? 0) > 0 ? (
+          <button type="button"
+            className="mt-[4px] rounded border border-[var(--hairline)] px-[6px] py-[2px] text-[11px] text-[var(--primary)]"
+            onClick={() => {
+              const years = preflight.observed_years ?? [];
+              setYearFrom(Math.min(...years));
+              setYearTo(Math.max(...years));
+            }}>
+            把年份改为 {Math.min(...(preflight.observed_years ?? []))}–{Math.max(...(preflight.observed_years ?? []))}（库中实际填表年份）
+          </button>
+        ) : null}
+        {preflight.reasons?.length ? (
+          <details><summary className="cursor-pointer text-[var(--primary)]">查看被排除的资料（{preflight.reasons.length} 份）</summary>
+            <ul className="max-h-[120px] overflow-auto pl-[16px]">
+              {preflight.reasons.map((item) => (
+                <li key={item.doc_id}>{item.title} · {item.reason === "date"
+                  ? (item.period ? `缺填表日期（项目起止 ${item.period}）` : "缺填表日期")
+                  : item.reason === "year" ? "填表日期年份不在窗口内" : "资助类别不符"}</li>
+              ))}
+            </ul>
+          </details>
+        ) : null}
         <details><summary className="cursor-pointer text-[var(--primary)]">查看候选资料与版本</summary>
           <ul className="max-h-[120px] overflow-auto pl-[16px]">{preflight.eligible.map((doc) => <li key={doc.doc_id}>{doc.title} · {doc.version}</li>)}</ul>
         </details>

@@ -25,10 +25,14 @@ def _caption(block: dict) -> str:
                     if isinstance(item, dict) and "caption" in str(item.get("type", ""))).strip()
 
 
-def _same_row(a: list, b: list) -> bool:
-    return (max(a[1], b[1]) < min(a[3], b[3]) and
-            abs((a[1] + a[3]) / 2 - (b[1] + b[3]) / 2) < .08 and
-            min(abs(a[2] - b[0]), abs(b[2] - a[0])) < .06)
+def _near_panel(a: list, b: list) -> bool:
+    horizontal = (max(a[1], b[1]) < min(a[3], b[3]) and
+                  abs((a[1] + a[3]) / 2 - (b[1] + b[3]) / 2) < .08 and
+                  min(abs(a[2] - b[0]), abs(b[2] - a[0])) < .06)
+    vertical = (max(a[0], b[0]) < min(a[2], b[2]) and
+                abs((a[0] + a[2]) / 2 - (b[0] + b[2]) / 2) < .08 and
+                min(abs(a[3] - b[1]), abs(b[3] - a[1])) < .06)
+    return horizontal or vertical
 
 
 def _verified_image(pdf_path: Path, page_idx: int, bbox: list, image_path: Path) -> bytes | None:
@@ -47,7 +51,15 @@ def _verified_image(pdf_path: Path, page_idx: int, bbox: list, image_path: Path)
                               round(bbox[2] * rendered.width), round(bbox[3] * rendered.height)))
         reference = ImageOps.grayscale(ImageOps.fit(crop, (128, 128)))
         difference = ImageStat.Stat(ImageChops.difference(image, reference)).mean[0]
-        return data if difference < 15 else None
+        image_stat, reference_stat = ImageStat.Stat(image), ImageStat.Stat(reference)
+        contrast = image_stat.stddev[0] * reference_stat.stddev[0]
+        if difference >= 15 or contrast < 64:
+            return None
+        # White document backgrounds can hide a wrong sparse chart in the mean error.
+        # Pixel correlation also requires the chart marks to occupy the same locations.
+        covariance = sum((a - image_stat.mean[0]) * (b - reference_stat.mean[0])
+                         for a, b in zip(image.tobytes(), reference.tobytes())) / (128 * 128)
+        return data if covariance / contrast >= .9 else None
     except (OSError, ValueError, RuntimeError, IndexError):
         return None
 
@@ -98,9 +110,12 @@ def select_figures(knowledge, corpus, visible_docs: list[dict], markdown: str, l
                         not re.match(r"^图\s*\d", caption) or len(caption) > 280 or
                         any(word in caption.lower() for word in ("表格", "表单", "申请表", "签名", "签章", "印章", "徽标", "logo"))):
                     continue
-                # Shared captions on adjacent panels cannot safely label one cached image.
+                # Shared captions on horizontally or vertically adjacent panels cannot
+                # safely label a single cached image. Distinct captions remain eligible.
                 if any(isinstance(other, dict) and other is not block and other.get("type") in {"chart", "image"} and
-                       isinstance(other.get("bbox"), list) and _same_row(bbox, other["bbox"])
+                       isinstance(other.get("bbox"), list) and len(other["bbox"]) == 4 and
+                       all(isinstance(v, (int, float)) for v in other["bbox"]) and
+                       _near_panel(bbox, other["bbox"]) and _caption(other) in {"", caption}
                        for other in blocks):
                     continue
                 paths = _image_paths(block)

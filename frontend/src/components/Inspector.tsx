@@ -355,6 +355,17 @@ export function Inspector() {
   const runModel = runSnapshot?.model || latest?.runInfo?.model || "";
   const runPolicy = runSnapshot?.resource_policy || latest?.runInfo?.resource_policy || "";
   const runStatus = runSnapshot?.status || latest?.outcome || "";
+  // W5/W6-A: the run scope now includes confirmed web snapshots; show them next to the
+  // corpus scope so an answer backed by URLs is never described as local-only.
+  const webSnapshotIds = ((runSnapshot?.params?.web_snapshot_ids as string[] | undefined)
+    ?? latest?.runInfo?.web_snapshot_ids ?? []);
+  const webVersions = (runSnapshot?.params?.web_snapshot_versions as
+    { snapshot_id?: string; version?: string }[] | undefined) ?? [];
+  const webCitations = (runSnapshot?.citations ?? []).filter((item) => item.kind === "web").length;
+  const webScopeLabel = webSnapshotIds.length
+    ? `${webSnapshotIds.length} 个指定网址快照`
+      + (webVersions.length ? `（版本 ${webVersions.map((item) => (item.version ?? "").slice(0, 8)).filter(Boolean).join("、")}）` : "")
+    : "未使用";
 
   return (
     <aside
@@ -664,13 +675,15 @@ export function Inspector() {
                       {figureCandidates.filter((candidate) => candidate.figure_id !== figure.figure_id &&
                         candidate.doc_id === figure.doc_id &&
                         !artifact.figures?.some((used) => used.figure_id === candidate.figure_id)).map((candidate) => (
-                        <button key={candidate.figure_id} type="button" disabled={savingArtifact}
-                          onClick={() => void updateFigure(figure.figure_id, candidate.figure_id)}
-                          className="flex w-full items-center gap-[8px] rounded border border-[var(--hairline)] p-[5px] text-left hover:bg-[var(--canvas)]">
-                          <img src={`/api/artifacts/${encodeURIComponent(artifact.artifact_id)}/figure-candidates/${candidate.figure_id}`}
-                            alt={candidate.caption} className="h-[55px] w-[75px] object-contain" />
-                          <span>{candidate.caption} · PDF 第 {candidate.page} 页</span>
-                        </button>
+                        <div key={candidate.figure_id} className="rounded border border-[var(--hairline)] p-[5px]">
+                          <p>{candidate.caption}</p>
+                          <div className="mt-[4px] flex gap-[8px]">
+                            <a href={`/api/documents/${encodeURIComponent(candidate.doc_id)}/file?corpus=${encodeURIComponent(candidate.corpus_id)}&version=${encodeURIComponent(candidate.doc_version)}#page=${candidate.page}`}
+                              target="_blank" rel="noreferrer">查看原 PDF 第 {candidate.page} 页</a>
+                            <button type="button" disabled={savingArtifact} onClick={() => void updateFigure(figure.figure_id, candidate.figure_id)}
+                              className="text-[var(--primary)] hover:underline">选用此图</button>
+                          </div>
+                        </div>
                       ))}
                       {!figureCandidates.length ? <p>正在查找本次入模资料中的可用图片…</p> : null}
                     </div> : null}
@@ -788,6 +801,7 @@ export function Inspector() {
                     <dt className="text-[var(--stone)]">参数来源</dt><dd className="text-[var(--charcoal)]">{runSnapshot?.param_sources ? Object.entries(runSnapshot.param_sources).map(([key, source]) => `${key}: ${source === "task_default" ? "任务默认" : source}`).join("；") : "未记录"}</dd>
                     <dt className="text-[var(--stone)]">实际参数</dt><dd className="break-all text-[var(--charcoal)]">{runSnapshot?.params ? Object.entries(runSnapshot.params).map(([key, value]) => `${key}: ${typeof value === "object" ? JSON.stringify(value) : String(value)}`).join("；") : "未记录"}</dd>
                     <dt className="text-[var(--stone)]">资源策略</dt><dd className="text-[var(--charcoal)]">{runPolicy || "未记录"}</dd>
+                    <dt className="text-[var(--stone)]">网页快照</dt><dd className="text-[var(--charcoal)]">{webScopeLabel}{webCitations ? ` · 网页引用 ${webCitations} 条` : ""}</dd>
                     <dt className="text-[var(--stone)]">服务端实际范围</dt><dd className="text-[var(--charcoal)]">{effectiveScopeLabel || "未记录"}</dd>
                   </dl>
                 </Card>

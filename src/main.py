@@ -1783,20 +1783,22 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
         )
 
-    async def ensure_report_artifact(report: dict, figures: list[dict] | None = None) -> None:
+    async def ensure_report_artifact(report: dict, figures: list[dict] | None = None) -> bool:
         """Repair the report→artifact link after a retry, without changing a saved report."""
         run_id = report.get("run_id", "")
         try:
             snapshot = await asyncio.to_thread(app.state.runs.get, run_id)
             if (snapshot.get("run_type") != "report" or snapshot.get("status") != "completed"
                     or snapshot.get("metrics", {}).get("report_id") != report["report_id"]):
-                return
+                return False
             if figures:
                 await asyncio.to_thread(app.state.artifacts.ensure_report, report, figures)
             else:
                 await asyncio.to_thread(app.state.artifacts.ensure_report, report)
+            return True
         except Exception:  # noqa: BLE001 - the saved report remains readable through compatibility
             logger.warning("artifact link unavailable for report run: %s", run_id)
+            return False
 
     async def record_report_failure(run_id: str, params: dict, reason: str) -> None:
         try:
@@ -2002,6 +2004,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             await record_report_failure(run_id, report_params, "报告生成失败")
             logger.warning("report generation failed: %s", type(exc).__name__)
             raise HTTPException(500, "报告生成失败，请检查模型配置或稍后重试") from exc
+        text_markdown = markdown
         figures: list[dict] = []
         info = (await asyncio.to_thread(find_corpus, payload.corpus_id) if payload.corpus_id
                 else await asyncio.to_thread(default_corpus_info, settings))
@@ -2030,9 +2033,29 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except Exception:  # noqa: BLE001 - the report is already saved; snapshot is best-effort here
             logger.warning("run snapshot update failed: %s", run_id)
         try:
-            await ensure_report_artifact(await asyncio.to_thread(app.state.reports.get, report_id), figures)
+            linked = await ensure_report_artifact(await asyncio.to_thread(app.state.reports.get, report_id), figures)
         except KeyError:  # pragma: no cover - report was just saved in this request
             logger.warning("saved report could not be read for artifact linking: %s", report_id)
+            linked = False
+        if figures and not linked:
+            try:
+                saved = await asyncio.to_thread(app.state.artifacts.report_artifact, run_id)
+                linked = bool(saved and saved["markdown"] == markdown and
+                              {item["figure_id"] for item in saved["figures"]} ==
+                              {item["figure_id"] for item in figures})
+            except Exception:  # Artifact storage can still be unavailable.
+                linked = False
+        if figures and not linked:
+            # The report is already saved, but its image links must never point at absent
+            # Artifact attachments. Keep the completed model text as a readable fallback.
+            marker = "\n\n## 来源附录（系统记录）"
+            note = "\n\n> 图片附件未能保存，本报告以文字呈现。\n"
+            markdown = (text_markdown.replace(marker, note + marker, 1) if marker in text_markdown
+                        else text_markdown + note)
+            figures = []
+            await asyncio.to_thread(app.state.reports.save, report_id, report_params, markdown,
+                                    session_key=session_key, run_id=run_id,
+                                    corpus_id=info.id if info else "")
         return JSONResponse({"report_id": report_id, "params": report_params, "markdown": markdown,
                              "run_id": run_id, "idempotent": False,
                              "figures": [{key: value for key, value in figure.items() if key != "bytes"}
@@ -2223,14 +2246,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         candidates = await figure_candidates_for_artifact(artifact_id)
         return [{key: value for key, value in figure.items() if key != "bytes"} for figure in candidates]
 
-    @app.get("/api/artifacts/{artifact_id}/figure-candidates/{figure_id}")
-    async def artifact_figure_candidate_image(artifact_id: str, figure_id: str):
-        candidates = await figure_candidates_for_artifact(artifact_id)
-        figure = next((item for item in candidates if item["figure_id"] == figure_id), None)
-        if not figure:
-            raise HTTPException(404, "候选图片已不可用")
-        return Response(figure["bytes"], media_type=figure["media_type"], headers={"Cache-Control": "no-store"})
-
     async def change_artifact_figure(artifact_id: str, figure_id: str, replacement: dict | None):
         item = await resolve_artifact(artifact_id)
         if item["type"] != "report" or item.get("legacy") or item["status"] == "generating":
@@ -2290,7 +2305,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                             headers={"Content-Disposition": f'attachment; filename="{filename}.md"'})
         if format == "docx":
             try:
-                data = await asyncio.to_thread(markdown_to_docx, item["markdown"], images)
+                data = await asyncio.to_thread(markdown_to_docx, item["markdown"], images, item.get("citations") or [])
             except ValueError as exc:
                 raise HTTPException(422, str(exc)) from exc
             return Response(data, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",

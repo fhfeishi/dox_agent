@@ -14,7 +14,7 @@ from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from src.parsers import sha256_file
-from src.reports import ReportStore, generate_markdown, report_metadata, summarize_report_metadata
+from src.reports import ReportStore, generate_markdown, preflight_report, report_metadata, report_period, summarize_report_metadata
 from tests.test_app import setup
 
 
@@ -332,14 +332,18 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
     ImageDraw.Draw(cover).text((30, 30), "LOGO", fill="black")
     chart = Image.new("RGB", (640, 400), "white")
     draw = ImageDraw.Draw(chart)
-    draw.rectangle((50, 60, 580, 350), outline="blue", width=12)
-    draw.line((80, 300, 220, 170, 400, 230, 540, 80), fill="red", width=10)
+    draw.line((20, 20, 600, 380), fill="black", width=4)
     alternative = Image.new("RGB", (640, 400), "white")
     ImageDraw.Draw(alternative).ellipse((90, 50, 550, 350), outline="green", width=16)
+    stacked = Image.new("RGB", (640, 600), "white")
+    ImageDraw.Draw(stacked).line((30, 30, 600, 260), fill="red", width=10)
+    ImageDraw.Draw(stacked).ellipse((100, 350, 530, 550), outline="blue", width=12)
     source.parent.mkdir(parents=True, exist_ok=True)
-    cover.save(source, save_all=True, append_images=[chart, alternative])
+    cover.save(source, save_all=True, append_images=[chart, alternative, stacked])
     chart.save(parsed / "images" / "chart.jpg", quality=95)
     alternative.save(parsed / "images" / "alternative.jpg", quality=95)
+    stacked.crop((0, 0, 640, 300)).save(parsed / "images" / "top.jpg", quality=95)
+    stacked.crop((0, 300, 640, 600)).save(parsed / "images" / "bottom.jpg", quality=95)
     middle = {"pages": [
         {"page_idx": 0, "blocks": [{"type": "image", "index": 0, "bbox": [0, 0, 1, 1],
                                     "content": [{"image_path": "images/chart.jpg"}]}]},
@@ -351,11 +355,17 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
              "content": [{"image_path": "images/chart.jpg"}]}]},
         {"page_idx": 2, "blocks": [{"type": "chart", "index": 0, "bbox": [0, 0, 1, 1],
              "content": [{"type": "chart_body", "image_path": "images/alternative.jpg"},
-                         {"type": "chart_caption", "content": [{"type": "text", "content": "图2 边缘计算拓扑"}]}]}]}]}
+                         {"type": "chart_caption", "content": [{"type": "text", "content": "图2 边缘计算拓扑"}]}]}]},
+        {"page_idx": 3, "blocks": [
+            {"type": "chart", "index": 0, "bbox": [0, 0, 1, .5],
+             "content": [{"type": "chart_body", "image_path": "images/top.jpg"}]},
+            {"type": "chart", "index": 1, "bbox": [0, .5, 1, 1],
+             "content": [{"type": "chart_body", "image_path": "images/bottom.jpg"},
+                         {"type": "chart_caption", "content": [{"type": "text", "content": "图3 云边协同架构上下图"}]}]}]}]}
     (parsed / "middle_json.json").write_text(json.dumps(middle, ensure_ascii=False))
     doc = store.put(Document(title="云边协同", origin=str(source), kind="pdf", parser="mineru",
                              pages=[Page(number=1, text="标题"), Page(number=2, text="云边协同架构"),
-                                    Page(number=3, text="边缘计算拓扑")],
+                                    Page(number=3, text="边缘计算拓扑"), Page(number=4, text="组合图")],
                              markdown="填表日期：2025年\n资助类别：面上项目\n云边协同架构"))
     store.record_file("study.pdf", source.stat().st_size, source.stat().st_mtime_ns,
                       sha256_file(source), doc["doc_id"], "indexed")
@@ -390,6 +400,24 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
         assert removed.status_code == 201 and removed.json()["version"] == 3
         assert not removed.json()["figures"]
         assert client.get(f"/api/artifacts/{artifact['artifact_id']}?version=1").json()["figures"]
+        wrong = Image.new("RGB", (640, 400), "white")
+        ImageDraw.Draw(wrong).line((20, 380, 600, 20), fill="black", width=4)
+        wrong.save(parsed / "images" / "chart.jpg", quality=95)
+        changed_cache = client.post("/api/reports", json={"domain": "云边协同", "year_from": 2025,
+            "year_to": 2025, "template_id": "comprehensive", "corpus_id": corpus_id_for("fixture"),
+            "illustrated": True})
+        assert changed_cache.status_code == 201 and changed_cache.json()["figures"] == []
+        chart.save(parsed / "images" / "chart.jpg", quality=95)
+        with monkeypatch.context() as patch:
+            def fail_attachments(*args, **kwargs):
+                raise OSError("artifact database unavailable")
+            patch.setattr(app.state.artifacts, "ensure_report", fail_attachments)
+            failed_attachment = client.post("/api/reports", json={"domain": "云边协同", "year_from": 2025,
+                "year_to": 2025, "template_id": "comprehensive", "corpus_id": corpus_id_for("fixture"),
+                "illustrated": True})
+        assert failed_attachment.status_code == 201 and failed_attachment.json()["figures"] == []
+        assert "figures/" not in failed_attachment.json()["markdown"]
+        assert client.get(f"/api/reports/{failed_attachment.json()['report_id']}").json()["markdown"] == failed_attachment.json()["markdown"]
         source.write_bytes(source.read_bytes() + b"changed")
         assert client.get(f"/api/artifacts/{artifact['artifact_id']}/figure-candidates").json() == []
         assert client.get(f"/api/reports/{report['report_id']}/figures/{figure_id}").content == image.content
@@ -462,3 +490,39 @@ def test_user_report_metadata_endpoint_returns_per_corpus_coverage(tmp_path):
     assert response.json() == {"corpus_id": corpus["id"], "total": 0,
                                "date": {"hits": 0, "missing": 0},
                                "category": {"hits": 0, "missing": 0}, "unmatched": []}
+
+
+def test_preflight_explains_why_no_document_is_eligible(tmp_path):
+    # Given a document whose parsed text carries only a project period, no filing date
+    store = Knowledge(tmp_path / "db")
+    store.put(Document(title="无填表日期", origin="/docs/a.pdf", kind="pdf", parser="mineru",
+                       pages=[Page(number=1, text="正文")],
+                       markdown="---\nprojectName: 示例\nstartYear: 2022\nendYear: 2025\n---\n\n# 示例\n正文"))
+
+    result = preflight_report(store, {"corpus_id": "kb", "year_from": 2021, "year_to": 2025})
+
+    # Then the exclusion is attributed to the missing field and the remediation is named
+    assert result["eligible_count"] == 0 and result["excluded"]["date"] == 1
+    assert result["reasons"][0]["reason"] == "date"
+    assert result["reasons"][0]["period"] == "2022–2025"
+    assert "重导入" in result["hint"]
+
+
+def test_preflight_reports_the_filing_years_it_actually_found(tmp_path):
+    # Given one document filed in 2026 while the window is 2021-2025
+    store = Knowledge(tmp_path / "db")
+    store.put(Document(title="2026 结题", origin="/docs/b.pdf", kind="pdf", parser="mineru",
+                       pages=[Page(number=1, text="正文")],
+                       markdown="资助类别:面上项目\n填表日期:2026年02月02日\n# 标题\n正文"))
+
+    result = preflight_report(store, {"corpus_id": "kb", "year_from": 2021, "year_to": 2025})
+
+    assert result["eligible_count"] == 0 and result["excluded"]["year"] == 1
+    assert result["observed_years"] == [2026]
+    assert "2026" in result["hint"]
+
+
+def test_report_period_reads_the_project_years_without_changing_the_filter(tmp_path):
+    assert report_period("| 研究期限 | 2022-01-01 00:00:00.0到2025-12-31 00:00:00.0 |") == (2022, 2025)
+    assert report_period("startYear: 2022\nendYear: 2025") == (2022, 2025)
+    assert report_period("# 标题\n正文") == (None, None)

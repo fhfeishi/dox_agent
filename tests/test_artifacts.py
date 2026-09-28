@@ -32,7 +32,7 @@ def ready_app(tmp_path):
     corpus.mkdir(parents=True, exist_ok=True)
     settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
-    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+    store.put(Document(title="seed", origin="2021_2025_P1_张三_seed.md", kind="text", parser="text",
                        pages=[Page(number=1, text="正文")],
                        markdown="填表日期：2025年\n正文"))
     cid = corpus_id_for("fixture")
@@ -100,7 +100,7 @@ def test_user_artifact_uses_null_for_unrecorded_versions_and_retries_preserve_pr
     attempts = 0
 
     async def generate_once_failed(knowledge, settings, params, *, llm=None, template_content=None,
-                                   task_definition=None):
+                                   task_definition=None, visible_sources=None):
         nonlocal attempts
         attempts += 1
         if attempts == 1:
@@ -233,7 +233,7 @@ def test_legacy_report_is_readable_as_an_artifact_without_rewriting_it(tmp_path)
 
 
 def test_report_generation_creates_a_linked_artifact(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
         return "# 报告"
 
     monkeypatch.setattr("src.main.generate_markdown", fake_generate)
@@ -252,7 +252,7 @@ def test_report_generation_creates_a_linked_artifact(tmp_path, monkeypatch):
 
 
 def test_user_report_retry_repairs_a_failed_artifact_link(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
         return "# 报告"
 
     monkeypatch.setattr("src.main.generate_markdown", fake_generate)
@@ -285,7 +285,7 @@ def test_user_report_retry_repairs_a_failed_artifact_link(tmp_path, monkeypatch)
 def test_user_failed_report_is_visible_and_retry_keeps_the_failed_version(tmp_path, monkeypatch):
     attempts = 0
 
-    async def generate_once_failed(knowledge, settings, params, *, llm=None):
+    async def generate_once_failed(knowledge, settings, params, *, llm=None, visible_sources=None):
         nonlocal attempts
         attempts += 1
         if attempts == 1:
@@ -317,7 +317,7 @@ def test_user_failed_report_is_visible_and_retry_keeps_the_failed_version(tmp_pa
 
 
 def test_user_sees_a_safe_failed_report_status_without_provider_details(tmp_path, monkeypatch):
-    async def generate_failed(knowledge, settings, params, *, llm=None):
+    async def generate_failed(knowledge, settings, params, *, llm=None, visible_sources=None):
         raise RuntimeError("private provider token")
 
     monkeypatch.setattr("src.main.generate_markdown", generate_failed)

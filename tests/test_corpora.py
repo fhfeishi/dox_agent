@@ -5,11 +5,10 @@ import sqlite3
 
 from src.agent.config import Settings
 from src.agent.corpora import resolve_default, scan_corpora
-from src.knowledge import Document, Knowledge, Page
 
 
-def make_settings(tmp_path, default_corpus="demo_langchain"):
-    return Settings(_env_file=None, corpora_root=tmp_path / "knowledge", default_corpus=default_corpus)
+def make_settings(tmp_path):
+    return Settings(_env_file=None, corpora_root=tmp_path / "knowledge")
 
 
 def seed_sqlite(path, count):
@@ -84,15 +83,15 @@ def test_empty_directory_is_a_visible_corpus_without_creating_source(tmp_path):
     assert not item.source_dir.exists()
 
 
-def test_first_corpus_is_directory_sorted_and_ignores_default_and_readiness(tmp_path):
-    settings = make_settings(tmp_path, "自然科学基金")
+def test_first_corpus_is_directory_sorted_and_ignores_readiness(tmp_path):
+    settings = make_settings(tmp_path)
     (tmp_path / "knowledge" / "a-empty").mkdir(parents=True)
     seed_ready(tmp_path, "demo_langchain", 2)
     seed_ready(tmp_path, "自然科学基金", 3)
     infos = scan_corpora(settings)
     assert [item.rel_path for item in infos] == ["a-empty", "demo_langchain", "自然科学基金"]
     assert next(item for item in infos if item.is_default).rel_path == "a-empty"
-    assert resolve_default(infos, settings).rel_path == "a-empty"
+    assert resolve_default(infos).rel_path == "a-empty"
 
 
 def test_unready_corpus_is_still_the_default_candidate(tmp_path):
@@ -102,12 +101,12 @@ def test_unready_corpus_is_still_the_default_candidate(tmp_path):
     (source / "a.md").write_text("x", encoding="utf-8")
     infos = scan_corpora(settings)
     assert infos and next(item for item in infos if item.is_default).rel_path == "only"
-    assert resolve_default(infos, settings).rel_path == "only"
+    assert resolve_default(infos).rel_path == "only"
 
 
 def test_legacy_display_names_migrate_to_alias(tmp_path):
     # Given a legacy K6 rel-keyed display name in corpora.json
-    settings = make_settings(tmp_path, default_corpus="自然科学基金")
+    settings = make_settings(tmp_path)
     seed_ready(tmp_path, "自然科学基金")
     state = tmp_path / "knowledge" / ".state"
     state.mkdir(parents=True, exist_ok=True)
@@ -135,33 +134,3 @@ def test_user_scan_with_corrupt_corpus_registry_preserves_file_and_fails_clearly
     with pytest.raises(ValueError, match="无法读取或已损坏"):
         scan_corpora(settings)
     assert registry.read_text(encoding="utf-8") == "{invalid"
-
-
-def test_migrate_layout_moves_demo_state_and_rewrites_origins(tmp_path, monkeypatch):
-    from src.agent import corpora
-    monkeypatch.setattr(corpora, "DOX_AGENT_ROOT", tmp_path)
-    root = tmp_path / ".knowledge"
-    # legacy app state under data/
-    (tmp_path / "data").mkdir()
-    for name in ("workspace.sqlite3", "reports.sqlite3", "corpora.json", "official-preparation.json"):
-        (tmp_path / "data" / name).write_text(name, encoding="utf-8")
-    # legacy demo corpus with a file-type origin (M1)
-    demo = tmp_path / ".demo_langchain"
-    raw = demo / "source" / "README.md"
-    raw.parent.mkdir(parents=True)
-    raw.write_text("正文", encoding="utf-8")
-    store = Knowledge(demo / "datadb" / "knowledge.sqlite3")
-    store.put(Document(title="README", origin=str(raw), kind="text", parser="markdown",
-                       pages=[Page(number=1, text="正文")], markdown="正文"))
-    settings = Settings(_env_file=None, corpora_root=root, state_dir=root / ".state",
-                        default_corpus="demo_langchain")
-
-    log = corpora.migrate_layout(settings)
-
-    assert log and not demo.exists()
-    new_raw = root / "demo_langchain" / "source" / "README.md"
-    assert new_raw.is_file()
-    moved = Knowledge(root / "demo_langchain" / "datadb" / "knowledge.sqlite3")
-    assert moved.all()[0]["origin"] == str(new_raw)  # origin rewritten, id stable
-    assert (root / ".state" / "workspace.sqlite3").read_text(encoding="utf-8") == "workspace.sqlite3"
-    assert not (tmp_path / "data").exists()

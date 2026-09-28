@@ -15,7 +15,7 @@ import httpx
 from .agent.config import Settings
 from .agent.corpora import SOURCE_SUFFIXES
 from .knowledge import Document, Page
-from .retrieval import RawBlock, chunk_blocks
+from .retrieval import RawBlock
 
 
 def _first_file(directory: Path, names: list[str]) -> Path | None:
@@ -161,7 +161,8 @@ def _kill_process_group(process) -> None:
         pass
 
 
-def parse_file(path: Path, settings: Settings, *, parsed_dir: Path | None = None) -> Document:
+def parse_file(path: Path, settings: Settings, *, parsed_dir: Path | None = None,
+               reuse_cache: bool = True) -> Document:
     suffix = path.suffix.lower()
     markdown = ""
     if suffix in {".txt", ".md", ".markdown"}:
@@ -172,7 +173,7 @@ def parse_file(path: Path, settings: Settings, *, parsed_dir: Path | None = None
     elif suffix == ".pdf":
         out_dir = parsed_dir or path.parent / ".mineru" / path.stem
         # L1: reuse the mineru cache; only run the CLI when no cached parse exists.
-        markdown, pages = read_mineru_output(out_dir)
+        markdown, pages = read_mineru_output(out_dir) if reuse_cache else ("", [])
         if not pages:
             markdown, pages = parse_pdf_pages(path, settings, out_dir)
         parser = "mineru"
@@ -285,6 +286,7 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
     imported, errors = [], []
     for rel, path in current.items():
         prev = manifest.get(rel)
+        digest = ""
         try:
             stat = path.stat()
             if not force and prev and prev["status"] == "indexed" and prev["size"] == stat.st_size and prev["mtime_ns"] == stat.st_mtime_ns:
@@ -295,17 +297,22 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
                 knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, prev["doc_id"], "indexed")
                 skipped += 1
                 continue
-            document = parse_file(path, settings, parsed_dir=(parsed_root / rel) if parsed_root else None)
+            changed_pdf = path.suffix.lower() == ".pdf" and (force or not prev or prev["sha256"] != digest)
+            # A changed PDF must never publish its new source hash with the old MinerU cache.
+            # Parse into a digest-specific directory so a failed attempt keeps the prior cache.
+            parsed_dir = (parsed_root / rel / ".versions" / digest if changed_pdf and parsed_root
+                          else parsed_root / rel if parsed_root else None)
+            document = parse_file(path, settings, parsed_dir=parsed_dir, reuse_cache=not changed_pdf)
+            if sha256_file(path) != digest:
+                raise ValueError("源文件在解析期间发生变化")
             # KB-5/T1: reuse the manifest doc_id so a rename/reimport updates in place.
-            result = knowledge.put(document, doc_id=(prev or {}).get("doc_id"))
+            blocks = None
             # PDF reports get block-accurate chunks (tables stay whole); other kinds rely on
-            # the page-level fallback that ``put`` already indexed.
+            # the page-level fallback. Both forms publish with the body in one transaction.
             if parsed_root is not None and path.suffix.lower() == ".pdf":
-                blocks = read_mineru_blocks(parsed_root / rel)
-                if blocks:
-                    knowledge.put_chunks(result["doc_id"], result["version"],
-                                         chunk_blocks(result["doc_id"], result["version"], document.title, blocks))
-            knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, digest, result["doc_id"], "indexed")
+                blocks = read_mineru_blocks(parsed_dir) or None
+            result = knowledge.put(document, doc_id=(prev or {}).get("doc_id"),
+                                   source_file=(rel, stat.st_size, stat.st_mtime_ns, digest), blocks=blocks)
             imported.append(result)
             updated += 1 if prev else 0
             added += 0 if prev else 1
@@ -314,7 +321,8 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
             try:
                 stat = path.stat()
                 knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, (prev or {}).get("sha256", ""),
-                                      (prev or {}).get("doc_id"), "error")
+                                      (prev or {}).get("doc_id"), "error", digest,
+                                      f"{type(exc).__name__}: {exc}")
             except OSError:
                 pass
 

@@ -11,7 +11,7 @@ from src.parsers import import_defaults
 
 def settings_for(tmp_path):
     return Settings(_env_file=None, corpora_root=tmp_path / "knowledge",
-                    default_corpus="demo", state_dir=tmp_path / "state")
+                    state_dir=tmp_path / "state")
 
 
 def seed_corpus(tmp_path, name):

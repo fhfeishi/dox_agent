@@ -94,9 +94,9 @@ async def main():
 
             async def report_metadata(r):
                 await r.fulfill(json={"corpus_id": "c1", "total": 2,
-                    "date": {"hits": 1, "missing": 1}, "category": {"hits": 1, "missing": 1},
+                    "period": {"hits": 1, "missing": 1}, "category": {"hits": 1, "missing": 1},
                     "unmatched": [{"doc_id": "d-missing", "title": "缺字段报告.pdf", "corpus_id": "c1",
-                                   "date": "missing", "category": "missing"}]})
+                                   "period": "missing", "category": "missing"}]})
 
             async def reports(r):
                 if r.request.method == "POST":
@@ -132,9 +132,15 @@ async def main():
             async def report_preflight(r):
                 no_candidate = r.request.post_data_json.get("year_from") == 2030
                 await r.fulfill(json={"total": 2, "corpus_total": 2,
-                    "excluded": {"date": 1, "year": 1 if no_candidate else 0, "category": 0},
-                    "date_hits": 1, "category_hits": 1, "eligible_count": 0 if no_candidate else 1,
-                    "eligible": [] if no_candidate else [{"doc_id": "d1", "title": "示例报告", "version": "v1", "corpus_id": "c1"}],
+                    "excluded": {"period": 1, "year": 1 if no_candidate else 0, "category": 0},
+                    "period_hits": 1, "category_hits": 1, "eligible_count": 0 if no_candidate else 1,
+                    "eligible": [] if no_candidate else [{"doc_id": "d1", "title": "示例报告", "version": "v1", "corpus_id": "c1", "project_year_from": 2022, "project_year_to": 2025}],
+                    "reasons": [{"doc_id": "d2", "title": "2022–2025 项目", "reason": "year", "period": "2022–2025"}
+                        if no_candidate else
+                        {"doc_id": "d2", "title": "无项目区间报告", "reason": "period", "period": ""}],
+                    "observed_years": [2022, 2025],
+                    "hint": "有 1 份资料的项目区间与 2030–2030 不相交（库中项目起止年份覆盖 2022–2025）；请调整年份或资料范围。" if no_candidate else
+                        "另有 1 份资料因文件名缺少有效项目起止年份未纳入；请按项目起止年份重命名文件后刷新资料。",
                     "fingerprint": ("b" if no_candidate else "a") * 64})
 
             def legacy_artifact(session_key):
@@ -348,6 +354,30 @@ async def main():
             assert report_bodies[-1].get("template_id") == "comprehensive"
             assert report_bodies[-1].get("scope_fingerprint") == "a" * 64
             assert report_bodies[-1].get("template_version") is None, report_bodies[-1]
+            assert report_bodies[-1].get("report_mode") == "theme"
+            await page.get_by_role("combobox", name="报告范围").select_option("review")
+            await page.get_by_role("button", name="重新生成").first.click()
+            for _ in range(50):
+                if len(report_bodies) > 1:
+                    break
+                await asyncio.sleep(0.1)
+            assert report_bodies[-1].get("report_mode") == "review"
+            # The preflight result is explainable without requiring a filing-date field.
+            await expect(page.get_by_text("另有 1 份资料因文件名缺少有效项目起止年份未纳入")).to_be_visible()
+            await page.get_by_text("查看被排除的资料（1 份）").click()
+            await expect(page.get_by_text("无项目区间报告 · 文件名缺少有效项目区间")).to_be_visible()
+
+            # With a window outside every project period the run is refused, and the card offers
+            # the years the corpus actually has instead of silently widening the window.
+            await page.get_by_role("button", name="调整", exact=True).click()
+            await page.get_by_label("起始年份").fill("2030")
+            await page.get_by_label("结束年份").fill("2030")
+            await page.get_by_role("button", name="重新生成").first.click()
+            await expect(page.get_by_text(re.compile("当前范围没有符合条件的资料"))).to_be_visible()
+            await page.get_by_role("button", name=re.compile("把年份改为 2022–2025")).click()
+            assert await page.get_by_label("起始年份").input_value() == "2022"
+            assert await page.get_by_label("结束年份").input_value() == "2025"
+            await page.get_by_role("button", name="收起调整").click()
             await page.context.grant_permissions(["clipboard-read", "clipboard-write"])
             report_card = page.locator("article").filter(has_text="测试报告").first
             await report_card.get_by_role("button", name="复制", exact=True).click()
@@ -401,20 +431,20 @@ async def main():
             await page.get_by_role("button", name="对话", exact=True).click()
             await page.get_by_role("combobox", name="报告知识库").select_option("c1")
             await page.get_by_role("button", name="查看元数据覆盖与未命中资料").click()
-            await expect(page.get_by_text(re.compile("共 2 份.*填表日期命中 1.*资助类别命中 1"))).to_be_visible()
-            await expect(page.get_by_text("缺字段报告.pdf · 日期 missing · 类别 missing")).to_be_visible()
-            await expect(page.get_by_text("不代表 PDF/OCR 识别正确率")).to_be_visible()
+            await expect(page.get_by_text(re.compile("共 2 份.*文件名项目区间可识别 1.*资助类别命中 1"))).to_be_visible()
+            await expect(page.get_by_text("缺字段报告.pdf · 项目区间 missing · 类别 missing")).to_be_visible()
+            await expect(page.get_by_text("项目区间来自文件名")).to_be_visible()
             # Given artifacts in earlier sessions, the global page still finds them after
             # starting a new session; the explicit current-session filter is empty.
             await page.get_by_role("button", name="新建对话").click()
             await page.get_by_role("button", name="成果", exact=True).click()
             await expect(page.get_by_role("heading", name="成果")).to_be_visible()
-            await expect(page.get_by_role("button", name=re.compile("医疗.*报告 · 版本"))).to_be_visible()
+            await expect(page.get_by_role("button", name=re.compile("医疗.*报告 · 版本")).first).to_be_visible()
             await page.get_by_role("button", name="当前会话", exact=True).click()
             await expect(page.get_by_text(re.compile("本会话还没有成果"))).to_be_visible()
             await expect(page.get_by_role("button", name=re.compile("医疗.*报告 · 版本"))).to_have_count(0)
             await page.get_by_role("button", name="全部成果", exact=True).click()
-            await expect(page.get_by_role("button", name=re.compile("医疗.*报告 · 版本"))).to_be_visible()
+            await expect(page.get_by_role("button", name=re.compile("医疗.*报告 · 版本")).first).to_be_visible()
             assert not errors, errors
             print("PASS: task selection and corpus scope, report task intake/generation, AC-11 legacy source fallback, AC-12 coverage/unmatched UI")
             await browser.close()

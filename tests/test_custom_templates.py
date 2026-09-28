@@ -19,7 +19,7 @@ def ready_app(tmp_path):
     corpus.mkdir(parents=True)
     settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
-    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+    store.put(Document(title="seed", origin="2021_2025_P1_张三_seed.md", kind="text", parser="text",
                        pages=[Page(number=1, text="正文")], markdown="填表日期：2025年\n正文"))
     return create_app(settings, store, lambda *_: QuietGraph()), corpus_id_for("fixture")
 
@@ -33,7 +33,7 @@ def copy_template(client, source="comprehensive"):
 def test_custom_template_draft_publish_and_report_binding(tmp_path, monkeypatch):
     captured: dict = {}
 
-    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, visible_sources=None):
         captured["template_content"] = template_content
         captured["params"] = params
         return "# 自定义报告"
@@ -81,7 +81,7 @@ def test_custom_template_rejects_undeclared_or_unused_variables(tmp_path):
 
 
 def test_report_type_custom_task_records_task_and_template_versions(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
         return "# 报告"
 
     monkeypatch.setattr("src.main.generate_markdown", fake_generate)
@@ -115,7 +115,7 @@ def test_report_type_custom_task_records_task_and_template_versions(tmp_path, mo
 
 def test_user_report_task_bound_to_builtin_template_accepts_version_zero(tmp_path, monkeypatch):
     # Given a published report task bound to the built-in comprehensive template
-    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
         return "# 内置模板报告"
 
     monkeypatch.setattr("src.main.generate_markdown", fake_generate)
@@ -144,7 +144,7 @@ def test_user_report_task_bound_to_builtin_template_accepts_version_zero(tmp_pat
 
 
 def test_user_report_requires_explicit_task_version_and_rejects_parameter_bypass(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
         assert task_definition["background"] == "只依据资料"
         assert params["task_params"] == {"topic": "医疗"}
         return "# 报告"
@@ -252,7 +252,7 @@ def test_user_copies_custom_template_and_archives_without_changing_version(tmp_p
 
 def test_user_archived_template_keeps_published_task_version_runnable(tmp_path, monkeypatch):
     async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None,
-                            task_definition=None):
+                            task_definition=None, visible_sources=None):
         return "# 固定版本报告"
 
     monkeypatch.setattr("src.main.generate_markdown", fake_generate)
@@ -276,7 +276,7 @@ def test_user_archived_template_keeps_published_task_version_runnable(tmp_path, 
 
 
 def test_user_cannot_publish_report_task_without_authoritative_template_binding(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
         return "# 报告"
     monkeypatch.setattr("src.main.generate_markdown", fake_generate)
     app, _ = ready_app(tmp_path)

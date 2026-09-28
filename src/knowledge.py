@@ -6,6 +6,7 @@ import re
 import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
+from uuid import uuid4
 
 from pydantic import BaseModel, Field
 
@@ -48,8 +49,10 @@ def lines_for(text: str) -> list[str]:
 
 
 class Knowledge:
-    def __init__(self, path: Path, *, settings=None, vectordb_dir: Path | None = None):
+    def __init__(self, path: Path, *, settings=None, vectordb_dir: Path | None = None,
+                 source_root: Path | None = None):
         self.path = path
+        self.source_root = source_root
         self.dense = None
         self._chunks: list[dict] | None = None
         if settings is not None and settings.embedding_path.strip():
@@ -65,6 +68,10 @@ class Knowledge:
             db.execute("""CREATE TABLE IF NOT EXISTS files (
                 rel_path TEXT PRIMARY KEY, size INTEGER NOT NULL, mtime_ns INTEGER NOT NULL,
                 sha256 TEXT NOT NULL, doc_id TEXT, status TEXT NOT NULL, updated_at TEXT NOT NULL)""")
+            if "observed_sha256" not in {row[1] for row in db.execute("PRAGMA table_info(files)")}:
+                db.execute("ALTER TABLE files ADD COLUMN observed_sha256 TEXT NOT NULL DEFAULT ''")
+            if "last_error" not in {row[1] for row in db.execute("PRAGMA table_info(files)")}:
+                db.execute("ALTER TABLE files ADD COLUMN last_error TEXT NOT NULL DEFAULT ''")
             # K12: per-corpus settings (OCR mode/language and the last applied values).
             db.execute("""CREATE TABLE IF NOT EXISTS meta (
                 key TEXT PRIMARY KEY, value TEXT NOT NULL)""")
@@ -82,9 +89,60 @@ class Knowledge:
             db.execute("CREATE INDEX IF NOT EXISTS chunks_doc ON chunks(doc_id)")
 
     def connect(self):
+        if uri := getattr(self, "_memory_uri", None):
+            return sqlite3.connect(uri, uri=True, timeout=30)
         return sqlite3.connect(self.path, timeout=30)
 
-    def put(self, doc: Document, *, doc_id: str | None = None) -> dict:
+    def freeze(self) -> "Knowledge":
+        """Copy one committed SQLite view for a chat run, then verify its source scope."""
+        before = {(doc["doc_id"], doc["version"], doc.get("source_sha256", ""))
+                  for doc in self.current()}
+        uri = f"file:dox-run-{uuid4().hex}?mode=memory&cache=shared"
+        anchor = sqlite3.connect(uri, uri=True, check_same_thread=False)
+        try:
+            with self.connect() as db:
+                db.backup(anchor)
+            frozen = object.__new__(Knowledge)
+            frozen.path = self.path
+            frozen.dense = None
+            frozen.source_root = self.source_root
+            frozen._chunks = None
+            frozen._memory_uri = uri
+            frozen._memory_anchor = anchor
+            frozen._live_source = self
+            # Compare the scope before copying, inside the copied DB, and after copying.
+            # A source changed during backup must not silently disappear from the run.
+            copied = {(doc["doc_id"], doc["version"], doc.get("source_sha256", ""))
+                      for doc in frozen.current()}
+            if copied != before:
+                raise ValueError("资料在冻结期间发生变化，本轮未生成回答；请重新发送")
+            frozen.assert_snapshot_current()
+            frozen._frozen_valid_ids = {doc_id for doc_id, _, _ in copied}
+            frozen.source_root = None
+            return frozen
+        except BaseException:
+            anchor.close()
+            raise
+
+    def assert_snapshot_current(self) -> None:
+        live = getattr(self, "_live_source", None)
+        if live is None:
+            return
+        frozen = {(doc["doc_id"], doc["version"], doc.get("source_sha256", ""))
+                  for doc in self.current()}
+        current = {(doc["doc_id"], doc["version"], doc.get("source_sha256", ""))
+                   for doc in live.current()}
+        if frozen != current:
+            raise ValueError("资料在冻结期间发生变化，本轮未生成回答；请重新发送")
+
+    def close_snapshot(self) -> None:
+        anchor = getattr(self, "_memory_anchor", None)
+        if anchor is not None:
+            anchor.close()
+            self._memory_anchor = None
+
+    def put(self, doc: Document, *, doc_id: str | None = None,
+            source_file: tuple[str, int, int, str] | None = None, blocks=None) -> dict:
         if not any(p.text.strip() for p in doc.pages):
             raise ValueError("解析结果为空，未入库")
         # KB-5/T1: callers may pass a stable id (manifest) so a rename/reimport updates in place
@@ -98,6 +156,9 @@ class Knowledge:
             ).encode()
         ).hexdigest()[:20]
         metadata = doc.model_dump(exclude={"pages", "markdown"})
+        from .retrieval import RawBlock, chunk_blocks
+        chunks = chunk_blocks(doc_id, version, doc.title, blocks if blocks is not None else
+                              [RawBlock(page=page.number, text=page.text) for page in doc.pages])
         with self.connect() as db:
             old = db.execute("SELECT version FROM docs WHERE id=?", (doc_id,)).fetchone()
             db.execute("INSERT OR REPLACE INTO docs VALUES (?, ?, ?)",
@@ -106,11 +167,19 @@ class Knowledge:
             db.executemany("INSERT INTO doc_pages VALUES (?, ?, ?)",
                            [(doc_id, p.number, p.text) for p in doc.pages])
             db.execute("INSERT OR REPLACE INTO doc_markdown VALUES (?, ?)", (doc_id, doc.markdown))
-        # Fallback index: page-level chunks keep every document searchable; report imports
-        # replace them with block-accurate chunks via ``put_chunks``.
-        from .retrieval import RawBlock, chunk_blocks
-        self.put_chunks(doc_id, version, chunk_blocks(
-            doc_id, version, doc.title, [RawBlock(page=page.number, text=page.text) for page in doc.pages]))
+            db.execute("DELETE FROM chunks WHERE doc_id=?", (doc_id,))
+            db.executemany("INSERT OR REPLACE INTO chunks VALUES (?,?,?,?,?,?,?)",
+                           [(chunk.chunk_id, chunk.doc_id, chunk.version, chunk.title,
+                             chunk.heading, chunk.page, chunk.text) for chunk in chunks])
+            if source_file is not None:
+                rel, size, mtime_ns, digest = source_file
+                db.execute("""INSERT OR REPLACE INTO files
+                           (rel_path,size,mtime_ns,sha256,doc_id,status,updated_at,observed_sha256,last_error)
+                           VALUES (?,?,?,?,?,?,?,?,?)""",
+                           (rel, size, mtime_ns, digest, doc_id, "indexed",
+                            datetime.now(UTC).isoformat(), digest, ""))
+        # The body, chunks and successful manifest pointer become visible together.
+        self._chunks = None
         return {
             "doc_id": doc_id,
             "version": version,
@@ -134,6 +203,43 @@ class Knowledge:
             metadata = {key: value for key, value in data.items() if key not in ("pages", "markdown")}
             docs.append({"doc_id": doc_id, "version": version, "page_count": count, **metadata})
         return docs
+
+    def current(self) -> list[dict]:
+        """Documents eligible for new work; historical reads still use ``all``/``get``."""
+        manifest = self.files()
+        by_id = {item["doc_id"]: item for item in manifest.values() if item["doc_id"]}
+        frozen_ids = getattr(self, "_frozen_valid_ids", None)
+        result = []
+        for doc in self.all():
+            if frozen_ids is not None and doc["doc_id"] not in frozen_ids:
+                continue
+            item = by_id.get(doc["doc_id"])
+            if item and item["status"] != "indexed":
+                continue
+            if item and self.source_root is not None:
+                path = self.source_root / item["rel_path"]
+                try:
+                    stat = path.stat()
+                    if (stat.st_size != item["size"] or stat.st_mtime_ns != item["mtime_ns"]):
+                        # A changed timestamp alone need not invalidate a byte-identical file.
+                        from .parsers import sha256_file
+                        if sha256_file(path) != item["sha256"]:
+                            continue
+                except OSError:
+                    continue
+            result.append({**doc, "source_sha256": item["sha256"] if item else ""})
+        return result
+
+    def assert_current_sources(self, sources: list[dict]) -> None:
+        if live := getattr(self, "_live_source", None):
+            live.assert_current_sources(sources)
+            return
+        versions = {doc["doc_id"]: doc["version"] for doc in self.current()}
+        if any(versions.get(item["doc_id"]) != item["version"] for item in sources if item.get("doc_id")):
+            raise ValueError("资料在执行期间发生变化，本轮未生成回答；请重新发送")
+
+    def source_sha256(self, doc_id: str, corpus_id: str = "") -> str:
+        return next((item["sha256"] for item in self.files().values() if item["doc_id"] == doc_id), "")
 
     def get(self, doc_id: str) -> dict:
         with self.connect() as db:
@@ -197,10 +303,11 @@ class Knowledge:
         from .retrieval import Chunk, ReportDoc, metadata_from_filename, select_reports
 
         allowed = set(allowed_doc_ids) if allowed_doc_ids is not None else None
-        docs = [doc for doc in self.all() if allowed is None or doc["doc_id"] in allowed]
+        docs = [doc for doc in self.current() if allowed is None or doc["doc_id"] in allowed]
+        current_ids = {doc["doc_id"] for doc in docs}
         by_doc: dict[str, list[Chunk]] = {}
         for row in self.chunk_rows():
-            if allowed is None or row["doc_id"] in allowed:
+            if row["doc_id"] in current_ids:
                 by_doc.setdefault(row["doc_id"], []).append(Chunk(**row))
         reports = []
         for doc in docs:
@@ -219,14 +326,21 @@ class Knowledge:
         with self.connect() as db:
             return {
                 row[0]: {"rel_path": row[0], "size": row[1], "mtime_ns": row[2], "sha256": row[3],
-                         "doc_id": row[4], "status": row[5], "updated_at": row[6]}
+                         "doc_id": row[4], "status": row[5], "updated_at": row[6],
+                         "observed_sha256": row[7], "last_error": row[8]}
                 for row in db.execute("SELECT * FROM files")
             }
 
-    def record_file(self, rel_path: str, size: int, mtime_ns: int, sha256: str, doc_id: str | None, status: str) -> None:
+    def record_file(self, rel_path: str, size: int, mtime_ns: int, sha256: str,
+                    doc_id: str | None, status: str, observed_sha256: str | None = None,
+                    last_error: str = "") -> None:
         with self.connect() as db:
-            db.execute("INSERT OR REPLACE INTO files VALUES (?,?,?,?,?,?,?)",
-                       (rel_path, size, mtime_ns, sha256, doc_id, status, datetime.now(UTC).isoformat()))
+            db.execute("""INSERT OR REPLACE INTO files
+                       (rel_path,size,mtime_ns,sha256,doc_id,status,updated_at,observed_sha256,last_error)
+                       VALUES (?,?,?,?,?,?,?,?,?)""",
+                       (rel_path, size, mtime_ns, sha256, doc_id, status,
+                        datetime.now(UTC).isoformat(), observed_sha256 if observed_sha256 is not None else sha256,
+                        last_error[:300]))
 
     def drop_file(self, rel_path: str) -> str | None:
         """K1: a missing source file leaves the manifest and the docs table (BM25 excluded)."""
@@ -360,6 +474,23 @@ class KnowledgeGroup:
     def __init__(self, members: list[tuple[str, Knowledge]]):
         self.members = list(members)
 
+    def freeze(self) -> "KnowledgeGroup":
+        frozen_members = []
+        try:
+            for corpus_id, knowledge in self.members:
+                frozen_members.append((corpus_id, knowledge.freeze()))
+            for _, knowledge in frozen_members:
+                knowledge.assert_snapshot_current()
+            return KnowledgeGroup(frozen_members)
+        except BaseException:
+            for _, knowledge in frozen_members:
+                knowledge.close_snapshot()
+            raise
+
+    def close_snapshot(self) -> None:
+        for _, knowledge in self.members:
+            knowledge.close_snapshot()
+
     def retrieve(self, query: str, **kwargs):
         from .retrieval import retrieve_multi
         return retrieve_multi(self.members, query, **kwargs)
@@ -374,3 +505,10 @@ class KnowledgeGroup:
 
     def all(self) -> list[dict]:
         return [doc for _, knowledge in self.members for doc in knowledge.all()]
+
+    def assert_current_sources(self, sources: list[dict]) -> None:
+        for corpus_id, knowledge in self.members:
+            knowledge.assert_current_sources([item for item in sources if item.get("corpus_id") == corpus_id])
+
+    def source_sha256(self, doc_id: str, corpus_id: str = "") -> str:
+        return next((knowledge.source_sha256(doc_id) for cid, knowledge in self.members if cid == corpus_id), "")

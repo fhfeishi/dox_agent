@@ -11,6 +11,7 @@ import { ReportMarkdown } from "./ReportMarkdown";
 import type { ReportFigure } from "./ReportMarkdown";
 import remarkGfm from "remark-gfm";
 import { TextPreview } from "./DocumentPreview";
+import { TargetReportView } from "./TargetReportView";
 
 type InspTab = "out" | "cite" | "src";
 
@@ -385,6 +386,7 @@ export function Inspector() {
         <span className="text-[13.5px] font-semibold tracking-[-0.1px] text-[var(--ink)]">
           {inspectorTarget.kind === "task" ? "任务预览"
             : inspectorTarget.kind === "template" ? "输出模板预览"
+            : inspectorTarget.kind === "target" ? "四维信息"
             : inspectorTarget.kind === "corpus" ? "知识库预览"
             : inspectorTarget.kind === "document" ? "资料预览"
             : inspectorTarget.kind === "web" ? "网页快照"
@@ -565,6 +567,10 @@ export function Inspector() {
           </>
         ) : null}
 
+        {inspectorTarget.kind === "target" ? (
+          <TargetReportView corpusId={inspectorTarget.corpusId} docId={inspectorTarget.docId} />
+        ) : null}
+
         {inspectorTarget.kind === "corpus" ? (
           <>
             <SectionTitle>知识库</SectionTitle>
@@ -572,7 +578,7 @@ export function Inspector() {
               <Card>
                 <h2 className="text-[15px] font-semibold text-[var(--ink)]">{corpus.name}</h2>
                 <p className="mt-[8px] text-[12px] text-[var(--steel)]">
-                  已入库 {corpus.indexed_count ?? corpus.docs_count} / 源文件 {corpus.source_count ?? "未记录"}
+                  当前可检索 {corpus.indexed_count ?? corpus.docs_count} / 源文件 {corpus.source_count ?? "未记录"}
                   {corpus.failed_count ? ` · 失败 ${corpus.failed_count}` : ""}
                 </p>
                 <p className="mt-[5px] text-[12px] text-[var(--steel)]">{corpus.missing ? "目录缺失，请重新关联" : corpus.preparation === "ready" ? "可用于检索" : "待处理"}</p>

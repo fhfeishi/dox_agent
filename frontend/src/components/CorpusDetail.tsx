@@ -3,12 +3,13 @@ import { deleteCorpus, reassociateCorpus, renameCorpus, setCorpusDescription } f
 import { useApp } from "../store";
 import { useDocuments } from "../useDocuments";
 import { CorpusFiles } from "./CorpusFiles";
-import { Drawer } from "./Drawer";
+import { TargetReports } from "./TargetReports";
 import { Button, Pill } from "./ui";
+import { Icon } from "./Icons";
 
 const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演示库", unknown: "知识库" };
 
-/** Corpus detail drawer: documents, source files and per-corpus import for one corpus id. */
+/** Corpus main-area view: 资料（源文件管理）与四维浏览（报告单元）。 */
 export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose: () => void }) {
   const {
     corpora,
@@ -19,6 +20,8 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
     ingestBusy,
     connected,
     openPreview,
+    corpusView,
+    setCorpusView,
   } = useApp();
   const corpus = corpora.find((c) => c.id === corpusId) ?? null;
   const { documents, error, refresh } = useDocuments(connected, corpusId);
@@ -66,19 +69,29 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
   }
 
   return (
-    <Drawer
-      open
-      onClose={onClose}
-      title={corpus.name}
-      level="z-[78]"
-      width="max-w-[560px]"
-      subtitle={
-        <p className="mt-[4px] flex flex-wrap items-center gap-[8px] text-[11.5px] text-[var(--stone)]">
+    <section aria-label={`知识库 ${corpus.name}`} className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
+      <header className="flex h-[52px] shrink-0 items-center gap-[10px] border-b border-[var(--hairline)] pr-[14px] pl-[18px]">
+        <button type="button" aria-label="返回知识库列表" onClick={onClose}
+          className="grid size-[26px] place-items-center rounded-[6px] text-[var(--steel)] hover:bg-[var(--surface)]">
+          <Icon name="chevronLeft" size={14} />
+        </button>
+        <span className="text-[14px] font-semibold text-[var(--ink)]">{corpus.name}</span>
+        <span className="min-w-0 flex-1 truncate text-[11.5px] text-[var(--stone)]">
           {KIND_LABEL[corpus.kind] ?? corpus.kind}
           {corpus.domain && corpus.domain !== "unknown" ? ` · ${corpus.domain}` : ""} · {corpus.docs_count} 份
-        </p>
-      }
-    >
+        </span>
+        <nav aria-label="库内视图" className="flex items-center gap-[4px]">
+          {(["files", "target"] as const).map((key) => (
+            <button key={key} type="button" onClick={() => setCorpusView(key)}
+              className={`rounded-[6px] px-[9px] py-[5px] text-[12px] ${corpusView === key
+                ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>
+              {key === "files" ? "资料" : "四维浏览"}
+            </button>
+          ))}
+        </nav>
+      </header>
+
+      <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[24px] py-[16px]">
       <div className="flex flex-wrap items-center gap-[8px]">
         {!corpus.missing && isActive ? (
           <Button variant="ghost" size="sm" disabled={corpusIds.length <= 1} onClick={() => setSearchCorpusIds(corpusIds.filter((id) => id !== corpus.id))}>从当前对话移除</Button>
@@ -210,15 +223,19 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
       ) : (
         <>
           {error ? <p role="alert" className="text-[12.5px] text-[var(--red)]">{error}</p> : null}
-          <CorpusFiles
-            corpusId={corpus.id}
-            corpusName={corpus.rel_path}
-            documents={documents}
-            onPreview={(document) => openPreview(document, null, corpus.id)}
-            onChanged={() => refresh()}
-            onRetryImport={() => runCorpusIngest(corpus.id)}
-            connected={connected}
-          />
+          {corpusView === "files" ? (
+            <CorpusFiles
+              corpusId={corpus.id}
+              corpusName={corpus.rel_path}
+              documents={documents}
+              onPreview={(document) => openPreview(document, null, corpus.id)}
+              onChanged={() => refresh()}
+              onRetryImport={() => runCorpusIngest(corpus.id)}
+              connected={connected}
+            />
+          ) : (
+            <TargetReports corpusId={corpus.id} />
+          )}
           {corpus.job ? <p role="status" className="text-[11.5px] text-[var(--steel)]">
             {corpus.job.status === "running" ? `刷新中 ${corpus.job.completed}/${corpus.job.total || "?"}` :
               corpus.job.status === "partial" ? `部分完成：${corpus.job.errors.length} 项失败` :
@@ -227,6 +244,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           </p> : null}
         </>
       )}
-    </Drawer>
+      </div>
+    </section>
   );
 }

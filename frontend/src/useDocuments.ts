@@ -5,6 +5,8 @@ export type DocumentInfo = {
   doc_id: string; title: string; origin: string; version: string; captured_at: string;
   kind: string; parser: string; pages: number; rel_path?: string; status?: string;
   corpus_id?: string; corpus_name?: string;
+  /** 证据引文：只用于在规范化正文中定位，不参与检索或发送。 */
+  focus?: string;
 };
 
 /** Single owner of the document list. Other views consume it instead of fetching again.

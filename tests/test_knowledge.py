@@ -65,6 +65,43 @@ def test_failed_import_keeps_good_document(tmp_path):
     source.write_bytes(b"\xff\xfe")
     assert len(import_defaults(store, settings, root=source_root)["errors"]) == 1
     assert store.read(store.all()[0]["doc_id"])["text"] == "测试正文"
+    # Historical body remains readable, but a new search cannot use the failed source.
+    assert store.search("测试正文") == []
+
+
+def test_changed_source_is_not_searchable_before_reimport(tmp_path):
+    source_root = tmp_path / "source"
+    source_root.mkdir()
+    source = source_root / "a.txt"
+    source.write_text("旧版正文", encoding="utf-8")
+    store = Knowledge(tmp_path / "db", source_root=source_root)
+    settings = Settings(_env_file=None, corpora_root=tmp_path / "knowledge")
+    import_defaults(store, settings, root=source_root)
+    assert store.search("旧版正文")
+    frozen = store.freeze()
+    original_sha = frozen.source_sha256(store.all()[0]["doc_id"])
+    source.write_text("新版正文", encoding="utf-8")
+    assert store.search("旧版正文") == []
+    assert store.read(store.all()[0]["doc_id"])["text"] == "旧版正文"
+    assert frozen.source_sha256(store.all()[0]["doc_id"]) == original_sha
+    with pytest.raises(ValueError, match="变化"):
+        frozen.assert_current_sources([{"doc_id": store.all()[0]["doc_id"],
+                                        "version": store.all()[0]["version"]}])
+    frozen.close_snapshot()
+
+
+def test_run_view_keeps_one_committed_version_until_closed(tmp_path):
+    store = Knowledge(tmp_path / "db")
+    first = store.put(document("旧版施工时间"))
+    frozen = store.freeze()
+    try:
+        store.put(document("新版施工时间"))
+        assert frozen.read_markdown(first["doc_id"], first["version"])
+        assert frozen.search("旧版施工时间")
+        with pytest.raises(ValueError, match="变化"):
+            frozen.assert_current_sources([{"doc_id": first["doc_id"], "version": first["version"]}])
+    finally:
+        frozen.close_snapshot()
 
 
 def test_user_reads_markdown_and_pages_from_separate_storage(tmp_path):

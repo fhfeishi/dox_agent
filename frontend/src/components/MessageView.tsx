@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ComponentProps } from "react
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import { createReport, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
+import { createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
 import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
@@ -318,6 +318,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   const [audience, setAudience] = useState(params?.audience ?? "专业研究人员");
   const [length, setLength] = useState(params?.length ?? "标准篇幅");
   const [illustrated, setIllustrated] = useState(Boolean(params?.illustrated));
+  const [reportMode, setReportMode] = useState<"theme" | "review">("theme");
   const [adjust, setAdjust] = useState(false);
   useEffect(() => {
     if (!params) return;
@@ -369,8 +370,13 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       if (allowedDocIds?.length) {
         const response = await fetch(`/api/documents?corpus=${encodeURIComponent(corpusId)}`);
         if (!response.ok) throw new Error("无法读取所选知识库的文档范围");
-        const docs = await response.json() as { doc_id: string }[];
-        const corpusDocIds = new Set(docs.map((doc) => doc.doc_id));
+        const [docs, files] = await Promise.all([
+          response.json() as Promise<{ doc_id: string }[]>, fetchCorpusFiles(corpusId),
+        ]);
+        // The current document list omits stale entries; keep their manifest membership
+        // so an explicit selection reaches the server and receives a conflict response.
+        const corpusDocIds = new Set([...docs.map((doc) => doc.doc_id),
+          ...files.files.map((file) => file.doc_id).filter((id): id is string => Boolean(id))]);
         docIds = allowedDocIds.filter((id) => corpusDocIds.has(id));
         if (!docIds.length) throw new Error("所选知识库中没有本轮限定的资料，请调整资料范围后重新发起报告");
       }
@@ -380,7 +386,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       if (!ready) throw new Error("请确认报告知识库、主题和年份范围");
       const request = { domain: domain.trim(), year_from: yearFrom, year_to: yearTo,
         fund_type: fundType.trim(), focus: focus.trim(), purpose: purpose.trim(),
-        audience: audience.trim(), length: length.trim(), illustrated, template_id: templateId,
+        audience: audience.trim(), length: length.trim(), illustrated, report_mode: reportMode, template_id: templateId,
         template_version: boundReportTask
           ? reportTask?.report_template_version
           : boundTemplateIsCustom ? selectedTemplate?.version : undefined,
@@ -391,7 +397,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
         session_key: workspace.active, parent_run_id: attempt.runId };
       const scope = await preflightReport(request);
       setPreflight(scope);
-      if (!scope.eligible_count) throw new Error("当前范围没有符合条件的资料。请调整年份、类别或资料范围，并查看缺失元数据。");
+      if (!scope.eligible_count) throw new Error("当前范围没有符合条件的资料。请调整项目年份、类别或资料范围，并查看缺失元数据。");
       const key = JSON.stringify({ request, fingerprint: scope.fingerprint });
       // A changed scope starts a new child run; an unchanged failed request reuses its run id.
       const reportRunId = report || (lastRequest.current && lastRequest.current.key !== key)
@@ -428,7 +434,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       <div className="flex flex-wrap items-center gap-[8px]">
         <span className="text-[12.5px] font-medium text-[var(--slate)]">专项报告</span>
         <span className="text-[11.5px] text-[var(--stone)]">
-          {domain || "待指定主题"} · 填表日期 {yearFrom}–{yearTo} · {fundType || "类别不限"} · {availableTemplates.find((item) => item.id === templateId)?.name ?? templateId}
+          {domain || "待指定主题"} · 项目年份 {yearFrom}–{yearTo} · {fundType || "类别不限"} · {availableTemplates.find((item) => item.id === templateId)?.name ?? templateId}
         </span>
         <label className="text-[11.5px] text-[var(--slate)]">
           报告知识库
@@ -457,6 +463,14 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
         <label className="flex items-center gap-[4px] text-[11.5px] text-[var(--slate)]">
           <input type="checkbox" checked={illustrated} disabled={busy} onChange={(event) => setIllustrated(event.target.checked)} />图文报告
         </label>
+        <label className="text-[11.5px] text-[var(--slate)]">范围
+          <select aria-label="报告范围" value={reportMode} disabled={busy}
+            onChange={(event) => setReportMode(event.target.value as "theme" | "review")}
+            className="ml-[5px] rounded border border-[var(--hairline)] bg-[var(--canvas)] px-[5px] py-[3px]">
+            <option value="theme">主题研究</option>
+            <option value="review">合格资料综述</option>
+          </select>
+        </label>
         <button
           type="button"
           disabled={busy || !ready}
@@ -467,7 +481,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
         </button>
       </div>
       {preflight ? <div className="mt-[7px] text-[11.5px] leading-[1.6] text-[var(--steel)]">
-        <p>按当前条件预检：{preflight.eligible_count} 份符合筛选候选（所选范围共 {preflight.total} 份）；日期缺失/歧义 {preflight.excluded.date}，年份不符 {preflight.excluded.year}，类别不符 {preflight.excluded.category}。候选数不等于模型实际读取或引用数。</p>
+        <p>按项目区间与年份窗口相交预检：{allowedDocIds?.length ? "本次限定资料" : "所选库"}符合条件的 {preflight.eligible_count} 份（所选范围共 {preflight.total} 份）；来源失效 {preflight.excluded.stale ?? 0}，项目区间缺失 {preflight.excluded.period}，年份不相交 {preflight.excluded.year}，类别不符 {preflight.excluded.category}。候选数不等于模型实际读取或引用数。</p>
         {preflight.hint ? <p className="mt-[4px] text-[var(--red)]">{preflight.hint}</p> : null}
         {preflight.eligible_count === 0 && (preflight.observed_years?.length ?? 0) > 0 ? (
           <button type="button"
@@ -477,22 +491,22 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
               setYearFrom(Math.min(...years));
               setYearTo(Math.max(...years));
             }}>
-            把年份改为 {Math.min(...(preflight.observed_years ?? []))}–{Math.max(...(preflight.observed_years ?? []))}（库中实际填表年份）
+            把年份改为 {Math.min(...(preflight.observed_years ?? []))}–{Math.max(...(preflight.observed_years ?? []))}（库中项目年份）
           </button>
         ) : null}
         {preflight.reasons?.length ? (
           <details><summary className="cursor-pointer text-[var(--primary)]">查看被排除的资料（{preflight.reasons.length} 份）</summary>
             <ul className="max-h-[120px] overflow-auto pl-[16px]">
               {preflight.reasons.map((item) => (
-                <li key={item.doc_id}>{item.title} · {item.reason === "date"
-                  ? (item.period ? `缺填表日期（项目起止 ${item.period}）` : "缺填表日期")
-                  : item.reason === "year" ? "填表日期年份不在窗口内" : "资助类别不符"}</li>
+                <li key={item.doc_id}>{item.title} · {item.reason === "period"
+                  ? "文件名缺少有效项目区间"
+                  : item.reason === "year" ? `项目区间 ${item.period} 与年份窗口不相交` : item.reason === "stale" ? "来源已变化或不可用" : "资助类别不符"}</li>
               ))}
             </ul>
           </details>
         ) : null}
         <details><summary className="cursor-pointer text-[var(--primary)]">查看候选资料与版本</summary>
-          <ul className="max-h-[120px] overflow-auto pl-[16px]">{preflight.eligible.map((doc) => <li key={doc.doc_id}>{doc.title} · {doc.version}</li>)}</ul>
+          <ul className="max-h-[120px] overflow-auto pl-[16px]">{preflight.eligible.map((doc) => <li key={doc.doc_id}>{doc.title} · 项目 {doc.project_year_from}–{doc.project_year_to} · {doc.version}</li>)}</ul>
         </details>
       </div> : null}
       <div className="mt-[7px] text-[11.5px] text-[var(--stone)]">
@@ -524,16 +538,16 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
           {coverage ? (
             <>
               <p>{corpora.find((item) => item.id === coverage.corpus_id)?.name ?? coverage.corpus_id}：
-                共 {coverage.total} 份；填表日期命中 {coverage.date.hits}、缺失/歧义 {coverage.date.missing}；
+                共 {coverage.total} 份；文件名项目区间可识别 {coverage.period.hits}、缺失 {coverage.period.missing}；
                 资助类别命中 {coverage.category.hits}、缺失 {coverage.category.missing}。</p>
               {coverage.unmatched.length ? (
                 <ul className="mt-[3px] max-h-[120px] list-disc overflow-auto pl-[18px]">
                   {coverage.unmatched.map((doc) => (
-                    <li key={doc.doc_id}>{doc.title} · 日期 {doc.date} · 类别 {doc.category}</li>
+                    <li key={doc.doc_id}>{doc.title} · 项目区间 {doc.period} · 类别 {doc.category}</li>
                   ))}
                 </ul>
-              ) : <p>所有资料均识别到日期和类别标签。</p>}
-              <p className="mt-[3px]">此统计仅反映解析文本字段覆盖，不代表 PDF/OCR 识别正确率。</p>
+              ) : <p>所有资料均识别到项目区间和类别标签。</p>}
+              <p className="mt-[3px]">项目区间来自文件名；类别统计仅反映解析文本字段覆盖。</p>
             </>
           ) : null}
         </div>
@@ -541,6 +555,12 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       {error ? (
         <p role="alert" className="mt-[6px] text-[11.5px] text-[var(--red)]">
           {error}
+          {reportMode === "theme" && error.includes("没有匹配的报告") ? (
+            <button type="button" className="ml-[7px] text-[var(--primary)] underline"
+              onClick={() => { setReportMode("review"); setError(""); }}>
+              改做合格资料综述
+            </button>
+          ) : null}
         </p>
       ) : null}
       {report ? (

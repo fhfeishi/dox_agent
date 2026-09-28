@@ -64,6 +64,11 @@ def base_prompt() -> str:
     return _read(BASE_FILE)
 
 
+def target_instruction() -> str:
+    """Fixed extraction contract for the four-dimension target JSON."""
+    return _read("target_extract.md")
+
+
 def task_prompt(task_id: str) -> str:
     """Task specific role, focus and output contract. Unknown ids raise, never fall back."""
     return _read(_entry(task_id)["file"])

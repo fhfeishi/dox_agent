@@ -88,6 +88,17 @@ def test_user_finds_the_report_that_answers_the_question():
     assert result.reports[0].term_cover == 1.0
 
 
+def test_body_match_survives_weak_title_matches_outside_recall_window():
+    reports = [ReportDoc(str(i), "v", "人工医疗研究") for i in range(40)]
+    reports.append(ReportDoc("target", "v", "其他课题"))
+    chunks = {str(i): [chunk_of(str(i), "人工方法概述")] for i in range(40)}
+    chunks["target"] = [chunk_of("target", "人工医疗诊断证据")]
+    result = select_reports(chunks, reports, "人工医疗诊断", config=replace(
+        RetrievalConfig(), report_recall_m=40, max_reports={"task1": 5}))
+    assert result.matched
+    assert "target" in [item.doc.doc_id for item in result.reports]
+
+
 def test_user_gets_one_report_per_project_when_reports_repeat():
     # Given two reports of the same project that both match
     first = ReportDoc("a", "v", "报告一", project_no="82030037")
@@ -267,8 +278,18 @@ def test_user_recalls_report_matching_only_the_extra_query():
     # When the extra query contributes the only report-index hit
     result = select_reports(chunks, [chinese, genomics], "癫痫网络特征",
                             config=config, extra_queries=["genomics"])
-    # Then Layer A recalls the report that only the extra query matches
-    assert [report.doc.doc_id for report in result.reports] == ["b"]
+    # The extra-query report survives; body recall may also include the primary-query report.
+    assert "b" in [report.doc.doc_id for report in result.reports]
+
+
+def test_user_finds_body_only_match_beyond_title_recall_limit():
+    # A document whose title is unrelated must not disappear just because 40 earlier
+    # titles filled the first-stage budget.
+    reports = [ReportDoc(str(index), "v", f"编号{index}") for index in range(41)]
+    chunks = {doc.doc_id: [chunk_of(doc.doc_id, "稀有靶点" if doc.doc_id == "40" else "常规资料")]
+              for doc in reports}
+    result = select_reports(chunks, reports, "稀有靶点")
+    assert result.matched and [report.doc.doc_id for report in result.reports] == ["40"]
 
 
 def test_user_coverage_counts_all_candidate_chunks_not_only_top_scored():

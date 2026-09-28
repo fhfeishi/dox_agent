@@ -47,6 +47,7 @@ export type InspectorTarget = { kind: "overview" } | { kind: "task"; taskId: str
   { kind: "artifact"; artifactId: string } |
   { kind: "document"; doc: DocumentInfo; page: number | null; corpusId: string } |
   { kind: "execution"; runId?: string };
+  | { kind: "target"; corpusId: string; docId: string; index: number };
 
 function inspectorIdentity(target: InspectorTarget): string {
   switch (target.kind) {
@@ -59,6 +60,7 @@ function inspectorIdentity(target: InspectorTarget): string {
     case "artifact": return `artifact:${target.artifactId}`;
     case "document": return `document:${target.corpusId}:${target.doc.doc_id}:${target.doc.version}:${target.page ?? 0}`;
     case "execution": return `execution:${target.runId ?? "latest"}`;
+    case "target": return `target:${target.corpusId}:${target.docId}:${target.index}`;
   }
 }
 export type EditState = { index: number; text: string } | null;
@@ -172,6 +174,8 @@ export interface AppValue {
   /* corpus detail drawer */
   openCorpusId: string | null;
   openCorpus: (id: string) => void;
+  corpusView: "files" | "target";
+  setCorpusView: (view: "files" | "target") => void;
   closeCorpus: () => void;
   newCorpusOpen: boolean;
   setNewCorpusOpen: Dispatch<SetStateAction<boolean>>;
@@ -261,6 +265,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [explorerDoc, setExplorerDoc] = useState<ExplorerTarget>(null);
   const [openCorpusId, setOpenCorpusId] = useState<string | null>(null);
   const [newCorpusOpen, setNewCorpusOpen] = useState(false);
+  const [corpusView, setCorpusView] = useState<"files" | "target">("files");
   const [corpusId, setCorpusId] = useState("");
   const [corpusConfirmed, setCorpusConfirmed] = useState(false);
   const [corpusIds, setCorpusIds] = useState<string[]>([]);
@@ -280,6 +285,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (inspectorNav.current !== nav) {
       inspectorNav.current = nav;
+      // 库内主区只在知识库入口下存在；离开该入口时收起，避免遗留半层。
+      if (nav !== "library") {
+        setOpenCorpusId(null);
+        setCorpusView("files");
+      }
       if (!inspectorPinned) setInspectorStack([{ kind: "overview" }]);
     }
   }, [nav, inspectorPinned]);
@@ -806,9 +816,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setDrawerOpen(false);
     setInspectorOpen(false);
     setFullPreviewReturnsToInspector(returnToInspector);
-    // The preview is a focused reading surface; close the corpus detail so the two drawers
-    // never stack (and desktop click-through cannot dismiss the wrong layer).
-    setOpenCorpusId(null);
+    // 库内视图是主区而非抽屉：预览时不关闭它，返回后仍保留筛选、选中报告与滚动位置。
     // With the doc-panel flag on, citations open the explorer (tree + raw file viewer);
     // otherwise fall back to the text-only / PDF preview.
     if (uiFlags.docPanel) {
@@ -831,6 +839,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setPreviewDoc(null);
     setExplorerOpen(false);
     setOpenCorpusId(id);
+    setCorpusView("files");
   }
 
   function toggleInspector() {
@@ -838,7 +847,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       // W1 migration: legacy document/corpus surfaces still exist. Close them before
       // showing the shared inspector so two right-side layers cannot conflict.
       setDrawerOpen(false);
-      setOpenCorpusId(null);
       setPreviewDoc(null);
       setExplorerOpen(false);
     }
@@ -847,7 +855,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   function showInspector(target: InspectorTarget) {
     setDrawerOpen(false);
-    setOpenCorpusId(null);
     setPreviewDoc(null);
     setExplorerOpen(false);
     setInspectorStack((stack) => {
@@ -864,6 +871,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   function closeCorpus() {
     setOpenCorpusId(null);
+    setCorpusView("files");
   }
 
   function openExplorer() {
@@ -1144,6 +1152,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       openCorpusId,
       openCorpus,
       closeCorpus,
+      corpusView,
+      setCorpusView,
       newCorpusOpen,
       setNewCorpusOpen,
       drawerOpen,
@@ -1216,6 +1226,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       sidebarCollapsed,
       openCorpusId,
       newCorpusOpen,
+      corpusView,
       workspace,
     ],
   );

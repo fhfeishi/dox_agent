@@ -42,7 +42,7 @@ export async function ingestCorpus(corpusId: string, force = false): Promise<Cor
 }
 
 
-export type CorpusFile = { rel_path: string; size: number; status: string; doc_id: string | null };
+export type CorpusFile = { rel_path: string; size: number; status: string; doc_id: string | null; reason?: string };
 export type CorpusFileListing = { source_dir: string; files: CorpusFile[]; misplaced_files: string[] };
 
 async function jsonOrThrow(response: Response, fallback: string) {
@@ -106,12 +106,67 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rel_path: relPath, new_name: newName }) });
   await jsonOrThrow(response, "重命名文件失败");
 }
-export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; purpose?: string; audience?: string; length?: string; illustrated?: boolean; sources?: Record<string, string>; scope_fingerprint?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
-export type ReportPreflight = { total: number; corpus_total: number; excluded: { date: number; year: number; category: number }; date_hits: number; category_hits: number; eligible_count: number; eligible: { doc_id: string; version: string; title: string; corpus_id: string }[]; fingerprint: string; reasons?: { doc_id: string; title: string; reason: string; period?: string }[]; observed_years?: number[]; hint?: string };
+export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; purpose?: string; audience?: string; length?: string; illustrated?: boolean; report_mode?: "theme" | "review"; sources?: Record<string, string>; scope_fingerprint?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
+export type ReportPreflight = { total: number; corpus_total: number; excluded: { period: number; year: number; category: number; stale?: number }; period_hits: number; category_hits: number; eligible_count: number; eligible: { doc_id: string; version: string; title: string; corpus_id: string; project_year_from: number; project_year_to: number }[]; fingerprint: string; reasons?: { doc_id: string; title: string; reason: string; period?: string }[]; observed_years?: number[]; hint?: string };
 export type WebPreview = { preview_id: string; expires_at: string; title: string; origin: string; pages: { number: number; text: string }[]; markdown?: string };
 export type WebSnapshot = { web_snapshot_id: string; url: string; title: string; fetched_at: string; version: string; content_hash: string; parse_status: string; markdown: string; search_query?: string; search_domains?: string[]; search_time_filter?: string; search_provider?: string };
 export type WebSearchResult = { result_id: string; url: string; title: string; snippet: string };
 export type WebSearch = { search_id: string; expires_at: string; query: string; domains: string[]; time_filter: string; provider: string; results: WebSearchResult[] };
+
+export type TargetJob = { job_id: string; corpus_id: string; status: "running" | "done" | "partial" | "error"; completed: number; total: number; errors: { doc_id: string; error: string }[] };
+export type TargetEvidence = { version: string; locator: { basis: string; page?: number; chunk_id?: string; heading?: string; start_char?: number; end_char?: number }; quote: string };
+export type TargetItem = {
+  id: string; name: string; desc: string;
+  status?: string;
+  evidence: TargetEvidence[];
+};
+export type TargetFacet = { key: string; state: "has" | "未提及" | "异常"; items: TargetItem[] };
+export type TargetRelation = { from: { dimension: string; item_id: string }; to: { dimension: string; item_id: string }; basis: string };
+export type TargetReport = {
+  doc_id: string; title: string; source_name: string; index_status: string;
+  process: { status: string; coverage: { processed: number; total: number } };
+  facets: Record<string, { state: "has" | "未提及" | "异常" }>;
+  stale: boolean; message: string;
+};
+export type TargetDocument = {
+  doc_id: string; title: string; origin: string; version: string; captured_at: string;
+  kind: string; parser: string; pages: number;
+};
+export type TargetDetail = {
+  doc_id: string; version: string; source_hash: string;
+  schema_version: number; prompt_version: number;
+  model: string; generated_at: string;
+  process: { status: string; coverage: { processed: number; total: number } };
+  facets: TargetFacet[];
+  relations: TargetRelation[];
+  title: string; source_name: string;
+  document: TargetDocument;
+  error?: string;
+};
+
+/** 库内四维报告单元列表（首批不做筛选，只读取当前可检索资料）。 */
+export async function fetchTargetReports(corpusId: string): Promise<TargetReport[]> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/reports`);
+  return await jsonOrThrow(response, "四维列表不可用") as Promise<TargetReport[]>;
+}
+
+export async function fetchTargetDetail(corpusId: string, docId: string): Promise<TargetDetail> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/reports/${encodeURIComponent(docId)}/target`);
+  return await jsonOrThrow(response, "四维信息不可用") as Promise<TargetDetail>;
+}
+
+export async function extractTargets(corpusId: string, docIds: string[], force = false): Promise<TargetJob> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/target`, {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ doc_ids: docIds, force }),
+  });
+  return await jsonOrThrow(response, "生成四维信息失败") as Promise<TargetJob>;
+}
+
+export async function fetchTargetJob(corpusId: string, jobId: string): Promise<TargetJob> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/target/jobs/${encodeURIComponent(jobId)}`);
+  return await jsonOrThrow(response, "四维任务状态不可用") as Promise<TargetJob>;
+}
 
 export async function webSearchCapability(): Promise<{ available: boolean; provider: string; max_selected: number }> {
   const response = await fetch("/api/web/search/capability");
@@ -149,9 +204,9 @@ export type ReportSummary = { report_id: string; created_at?: string; session_ke
 export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean; figures?: import("./components/ReportMarkdown").ReportFigure[] };
 export type ReportMetadataCoverage = {
   corpus_id: string; total: number;
-  date: { hits: number; missing: number };
+  period: { hits: number; missing: number };
   category: { hits: number; missing: number };
-  unmatched: { doc_id: string; title: string; corpus_id: string; date: string; category: string }[];
+  unmatched: { doc_id: string; title: string; corpus_id: string; period: string; category: string }[];
 };
 export type Policy = Options & { route: "research" | "clarify"; stop_reason: string; notice?: string; report_params?: ReportParams };
 

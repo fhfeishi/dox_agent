@@ -5,7 +5,7 @@ function statusDot(corpus: CorpusInfo): { tone: string; label: string } {
   if (corpus.missing) return { tone: "bg-[var(--red)]", label: "目录缺失" };
   if (corpus.job?.status === "running") return { tone: "bg-[#e0a000] animate-pulse", label: "正在导入" };
   if (corpus.job?.status === "error") return { tone: "bg-[var(--red)]", label: "导入失败" };
-  if (corpus.preparation === "ready") return { tone: "bg-[var(--green)]", label: "就绪" };
+  if (corpus.preparation === "ready") return { tone: "bg-[var(--green)]", label: "可检索" };
   if (corpus.preparation === "empty") return { tone: "bg-[#e0a000]", label: "空库" };
   return { tone: "bg-[#e0a000]", label: "空库" };
 }

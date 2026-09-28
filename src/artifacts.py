@@ -85,6 +85,11 @@ class ArtifactStore:
             raise ValueError("历史报告没有运行记录，保持只读兼容")
         figures = figures or []
         figure_meta = [{key: value for key, value in figure.items() if key != "bytes"} for figure in figures]
+        # The Word appendix and the inspector read these; a report with no recorded sources
+        # would silently export without any way to check its [n] references.
+        corpus_id = report.get("corpus_id", "")
+        citations = [{**source, "corpus_id": source.get("corpus_id") or corpus_id}
+                     for source in (report.get("params", {}).get("visible_sources") or [])]
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
             for figure in figures:
@@ -102,7 +107,8 @@ class ArtifactStore:
                     timestamp = _now()
                     db.execute("INSERT INTO artifact_versions (artifact_id, version, created_at, "
                                "markdown, citations, status, source_verification, fail_reason, figures) VALUES (?,?,?,?,?,?,?,?,?)",
-                               (artifact_id, version, timestamp, report["markdown"], "[]", "completed", "verified", "",
+                               (artifact_id, version, timestamp, report["markdown"],
+                                json.dumps(citations, ensure_ascii=False), "completed", "verified", "",
                                 json.dumps(figure_meta, ensure_ascii=False)))
                     params = report.get("params", {})
                     meta = {**json.loads(row[3]), "source_verification": "verified",
@@ -131,7 +137,8 @@ class ArtifactStore:
                                  "task_version": params.get("task_version")})))
                 db.execute("INSERT INTO artifact_versions (artifact_id, version, created_at, "
                            "markdown, citations, status, source_verification, fail_reason, figures) VALUES (?,?,?,?,?,?,?,?,?)",
-                           (artifact_id, 1, timestamp, report["markdown"], "[]", "completed", "verified", "",
+                           (artifact_id, 1, timestamp, report["markdown"],
+                            json.dumps(citations, ensure_ascii=False), "completed", "verified", "",
                             json.dumps(figure_meta, ensure_ascii=False)))
         return self.get(artifact_id)
 

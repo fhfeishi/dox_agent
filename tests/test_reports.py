@@ -13,8 +13,15 @@ from PIL import Image, ImageDraw
 from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
-from src.parsers import sha256_file
-from src.reports import ReportStore, generate_markdown, preflight_report, report_metadata, report_period, summarize_report_metadata
+from src.parsers import import_defaults, sha256_file
+from src.reports import (
+    ReportStore,
+    generate_markdown,
+    preflight_report,
+    project_period,
+    report_category,
+    summarize_report_metadata,
+)
 from tests.test_app import setup
 
 
@@ -36,7 +43,7 @@ def add_report_doc(store):
 def test_report_generation_uses_template_and_selected_reports(tmp_path):
     model = FakeModel()
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="双页报告", origin="two-pages.pdf", kind="pdf", parser="mineru",
+    store.put(Document(title="双页报告", origin="2021_2025_P1_张三_two-pages.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="癫痫机制证据"), Page(number=2, text="癫痫治疗证据")],
                        markdown="资助类别:面上项目\n填表日期:2025年01月05日\n# 癫痫致痫网络\n正文"))
     markdown = asyncio.run(generate_markdown(
@@ -49,6 +56,42 @@ def test_report_generation_uses_template_and_selected_reports(tmp_path):
     assert "来源附录（系统记录）" in markdown and "[1]" in markdown
     assert model.seen.count("[1] 《双页报告》") == 1
     assert markdown.split("## 来源附录（系统记录）\n", 1)[1].count("双页报告") == 1
+
+
+def test_review_reads_all_eligible_text_without_theme_match(tmp_path):
+    store = Knowledge(tmp_path / "db")
+    for title in ("第一份", "第二份"):
+        store.put(Document(title=title, origin=f"/docs/2021_2025_P1_张三_{title}.pdf", kind="pdf", parser="mineru",
+                           pages=[Page(number=1, text="研究正文")],
+                           markdown=f"填表日期:2025年01月05日\n# {title}\n独立研究结果"))
+
+    class ReviewModel:
+        def __init__(self):
+            self.seen = []
+
+        async def ainvoke(self, messages):
+            prompt = "\n".join(message.content for message in messages)
+            self.seen.append(prompt)
+            if "仅概括提供的原文段落" in prompt:
+                return SimpleNamespace(content="独立研究结果")
+            return SimpleNamespace(content="# 合格资料综述\n\n## 发现\n两份资料 [1] [2]")
+
+    model = ReviewModel()
+    params = {"domain": "不存在的主题", "year_from": 2021, "year_to": 2025,
+              "template_id": "comprehensive", "report_mode": "review"}
+    result = asyncio.run(generate_markdown(store, Settings(_env_file=None), params, llm=model))
+    assert len(model.seen) == 1 + params["coverage"]["segments_processed"]
+    assert "第一份" in result and "第二份" in result
+    assert params["coverage"]["eligible"] == params["coverage"]["text_processed"] == 2
+    assert all(item["segments_total"] == item["segments_processed"] for item in params["coverage"]["documents"])
+
+    class TruncatedSummary:
+        async def ainvoke(self, _messages):
+            return SimpleNamespace(content="片段", response_metadata={"finish_reason": "length"})
+
+    with pytest.raises(ValueError, match="摘要被截断"):
+        asyncio.run(generate_markdown(store, Settings(_env_file=None),
+                    {**params, "coverage": None}, llm=TruncatedSummary()))
 
 
 def test_user_published_report_inputs_reach_the_generation_prompt(tmp_path):
@@ -79,7 +122,7 @@ def test_user_report_brief_reaches_writing_with_its_confirmed_scope(tmp_path):
     # Then the model receives the actual brief and its selected evidence boundary
     assert "给评审会决策" in model.seen and "临床研究者" in model.seen
     assert "比较证据冲突" in model.seen and "简短" in model.seen
-    assert "填表日期年份（报告提交时间）：2021–2025" in model.seen
+    assert "项目年份窗口（与文件名中的项目起止区间相交）：2021–2025" in model.seen
 
 
 def test_user_invalid_report_citations_are_repaired_once_or_fail(tmp_path):
@@ -120,17 +163,17 @@ def test_user_truncated_model_output_is_never_saved_as_a_complete_report(tmp_pat
              "template_id": "comprehensive"}, llm=TruncatedModel()))
 
 
-def test_user_report_generation_filters_by_form_date_and_fund_type(tmp_path):
-    # Given reports inside/outside the explicit form-date and fund-type criteria
+def test_user_report_generation_filters_by_project_period_and_fund_type(tmp_path):
+    # Given reports inside/outside the explicit project window and fund-type criteria
     store = Knowledge(tmp_path / "db")
     add_report_doc(store)
-    store.put(Document(title="旧项目", origin="old.pdf", kind="pdf", parser="mineru",
+    store.put(Document(title="旧项目", origin="2019_2020_P2_李四_old.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="旧项目证据")],
-                       markdown="资助类别:面上项目\n填表日期:2020年12月31日\n旧项目证据"))
-    store.put(Document(title="其他类别", origin="other.pdf", kind="pdf", parser="mineru",
+                       markdown="资助类别:面上项目\n填表日期:2025年12月31日\n旧项目证据"))
+    store.put(Document(title="其他类别", origin="2023_2025_P3_王五_other.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="其他类别证据")],
                        markdown="资助类别:重点项目\n填表日期:2025年03月02日\n其他类别证据"))
-    store.put(Document(title="类别缺失", origin="unknown-category.pdf", kind="pdf", parser="mineru",
+    store.put(Document(title="类别缺失", origin="2025_2027_P4_赵六_unknown-category.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="类别未知证据")],
                        markdown="填表日期:2025年06月02日\n类别未知证据"))
     model = FakeModel()
@@ -145,15 +188,15 @@ def test_user_report_generation_filters_by_form_date_and_fund_type(tmp_path):
     assert "旧项目证据" not in model.seen
     assert "其他类别证据" not in model.seen
     assert "类别未知证据" not in model.seen
-    assert "填表日期年份（报告提交时间）：2025–2025" in model.seen
+    assert "项目年份窗口（与文件名中的项目起止区间相交）：2025–2025" in model.seen
     assert "资助类别缺失资料（所选范围内）：1" in model.seen
-    assert "未逐份对照原 PDF" in model.seen
+    assert "不代表报告提交年份" in model.seen
 
 
 def test_user_report_generation_ignores_generic_category_labels_in_body(tmp_path):
     # Given a report whose body reuses the generic category label for a different field
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="基金报告", origin="fund.pdf", kind="pdf", parser="mineru",
+    store.put(Document(title="基金报告", origin="2023_2025_P5_张三_fund.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="证据")],
                        markdown="资助类别：联合基金项目\n填表日期：2025年12月\n"
                                 "## 项目摘要\n类别：报告/墙报/科普\n项目证据"))
@@ -169,31 +212,28 @@ def test_user_report_generation_ignores_generic_category_labels_in_body(tmp_path
     assert "项目证据" in model.seen
 
 
-def test_user_report_generation_stops_when_selected_reports_have_no_form_date(tmp_path):
-    # Given a selected corpus whose only report has no parseable form date
+def test_user_report_generation_accepts_project_filename_without_form_date(tmp_path):
+    # Given a project archive with no filing-date field but a valid filename period
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="日期未知", origin="unknown.pdf", kind="pdf", parser="mineru",
+    store.put(Document(title="日期未知", origin="2022_2025_P6_张三_unknown.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="证据")], markdown="资助类别:面上项目\n证据"))
     model = FakeModel()
 
-    # When strict form-date filtering is requested
-    with pytest.raises(ValueError, match="没有符合填表日期年份"):
-        asyncio.run(generate_markdown(store, Settings(_env_file=None),
-            {"domain": "医疗", "year_from": 2025, "year_to": 2025, "template_id": "comprehensive"},
-            llm=model))
+    asyncio.run(generate_markdown(store, Settings(_env_file=None),
+        {"domain": "证据", "year_from": 2025, "year_to": 2025, "template_id": "comprehensive"},
+        llm=model))
 
-    # Then unknown-year material never reaches generation
-    assert model.seen == ""
+    assert "日期未知" in model.seen
 
 
 def test_user_report_preflight_and_generation_share_the_same_eligible_scope(tmp_path):
-    # Given four local reports with a missing date, an old date, a different category, and a match
+    # Given four local reports with a missing filename period, an old project, a different category, and a match
     app, store = setup(tmp_path)
     add_report_doc(store)
-    for title, header in (("无日期", "资助类别:面上项目"),
-                          ("旧年份", "填表日期:2020年\n资助类别:面上项目"),
-                          ("其他类别", "填表日期:2025年\n资助类别:重点项目")):
-        store.put(Document(title=title, origin=title, kind="text", parser="text",
+    for title, origin, header in (("无区间", "unknown", "资助类别:面上项目"),
+                          ("旧年份", "2019_2020_P7_李四_old.md", "资助类别:面上项目"),
+                          ("其他类别", "2024_2026_P8_王五_other.md", "资助类别:重点项目")):
+        store.put(Document(title=title, origin=origin, kind="text", parser="text",
                            pages=[Page(number=1, text=title)], markdown=header + "\n" + title))
     with TestClient(app) as client:
         corpus_id = client.get("/api/corpora").json()[0]["id"]
@@ -207,7 +247,7 @@ def test_user_report_preflight_and_generation_share_the_same_eligible_scope(tmp_
         assert response.status_code == 200, response.text
         result = response.json()
         assert result["total"] == 4 and result["eligible_count"] == 1
-        assert result["excluded"] == {"date": 1, "year": 1, "category": 1}
+        assert result["excluded"] == {"period": 1, "year": 1, "category": 1, "stale": 0}
         assert result["eligible"][0]["title"] == "报告"
         assert result["fingerprint"]
 
@@ -221,7 +261,7 @@ def test_user_changed_report_scope_requires_a_new_preflight(tmp_path):
         body = {"corpus_id": corpus_id, "domain": "癫痫", "year_from": 2025, "year_to": 2025,
                 "template_id": "comprehensive"}
         old = client.post("/api/reports/preflight", json=body).json()["fingerprint"]
-        store.put(Document(title="新增报告", origin="new", kind="text", parser="text",
+        store.put(Document(title="新增报告", origin="2023_2025_P9_赵六_new.md", kind="text", parser="text",
                            pages=[Page(number=1, text="新证据")], markdown="填表日期:2025年\n新证据"))
 
         # When generation uses the old preflight fingerprint
@@ -232,64 +272,50 @@ def test_user_changed_report_scope_requires_a_new_preflight(tmp_path):
         assert "资料范围已变化" in str(response.json()["detail"])
 
 
-def test_user_report_metadata_reads_markdown_tables_bold_labels_and_aliases():
-    # Given labels written as a Markdown table, bold inline fields and controlled aliases
-    # When report metadata is parsed
+def test_user_report_category_reads_markdown_tables_bold_labels_and_aliases():
     values = [
-        "| **填表日期** | 2025年3月 |\n| **资助类别** | 面上项目 |",
-        "- **填报日期**：2024年12月\n> **项目类别**：重点项目",
-        "类别：青年项目\n填表日期：2023年",
+        "| **资助类别** | 面上项目 |",
+        "> **项目类别**：重点项目",
+        "类别：青年项目",
     ]
 
-    # Then the explicit label values are normalized consistently
-    assert [report_metadata(value)[:2] for value in values] == [
-        (2025, "面上项目"), (2024, "重点项目"), (2023, "青年项目")]
+    assert [report_category(value) for value in values] == [
+        ("面上项目", "matched"), ("重点项目", "matched"), ("青年项目", "matched")]
 
 
-def test_user_report_metadata_marks_conflicts_and_ignores_unlabelled_years():
-    # Given conflicting repeated labels and unrelated years elsewhere in the text
-    markdown = ("| 填表日期 | 2024年 |\n| 填报日期 | 2025年 |\n"
-                "资助类别：面上项目\n项目类别：重点项目\n国家自然科学基金委员会制（2026年）")
-
-    # When metadata is parsed
-    year, category, year_status, category_status = report_metadata(markdown)
-
-    # Then conflicting fields stay missing and unrelated years are not inferred
-    assert (year, category) == (None, None)
-    assert (year_status, category_status) == ("ambiguous", "ambiguous")
-    assert report_metadata("2025年项目\n国家自然科学基金委员会制（2026年）")[2:] == ("missing", "missing")
-    assert report_metadata("填表日期：1800年表格，2025年填报")[0] == 2025
-    assert report_metadata("| 填表日期 |\n| 2025年 |")[2] == "missing"
-    assert report_metadata("资助类别：联合基金项目\n## 项目摘要\n类别：报告/墙报/科普")[1] == "联合基金项目"
-    assert report_metadata("# 报告标题\n填表日期：2025年\n资助类别：面上项目\n# 正文\n类别：报告/墙报/科普")[1] == "面上项目"
+def test_user_report_category_marks_conflicts_and_ignores_body_labels():
+    markdown = "资助类别：面上项目\n项目类别：重点项目\n国家自然科学基金委员会制（2026年）"
+    assert report_category(markdown) == (None, "ambiguous")
+    assert report_category("2025年项目\n国家自然科学基金委员会制（2026年）") == (None, "missing")
+    assert report_category("资助类别：联合基金项目\n## 项目摘要\n类别：报告/墙报/科普")[0] == "联合基金项目"
+    assert report_category("# 报告标题\n资助类别：面上项目\n# 正文\n类别：报告/墙报/科普")[0] == "面上项目"
     actual_header = ("![](images/page_0_image_0.jpg)\n\n项目批准号 92159302\n\n"
                      "# 国家自然科学基金\n\n# 资助项目结题/成果报告\n\n"
-                     "资助类别：重大研究计划\n填表日期：2025年12月23日\n"
+                     "资助类别：重大研究计划\n"
                      "## 项目摘要\n类别：报告/墙报/科普")
-    assert report_metadata(actual_header)[:2] == (2025, "重大研究计划")
-    long_header = "填表日期：2025年\n资助类别：面上项目\n" + "说明\n" * 62 + "类别：报告/墙报/科普"
-    assert report_metadata(long_header)[1:] == ("面上项目", "matched", "matched")
+    assert report_category(actual_header) == ("重大研究计划", "matched")
+    long_header = "资助类别：面上项目\n" + "说明\n" * 63 + "类别：报告/墙报/科普"
+    assert report_category(long_header) == ("面上项目", "matched")
 
 
 def test_user_report_metadata_summary_lists_only_missing_field_identifiers(tmp_path):
-    # Given one fully labelled and one ambiguous report in a corpus
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="可识别报告", origin="known.pdf", kind="pdf", parser="mineru",
+    store.put(Document(title="可识别报告", origin="2021_2025_P1_张三_known.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="正文")], markdown="填表日期：2025年\n资助类别：面上项目"))
     conflict_id = store.put(Document(title="冲突报告", origin="conflict.pdf", kind="pdf", parser="mineru",
                                      pages=[Page(number=1, text="正文")],
-                                     markdown="填表日期：2024年\n填报日期：2025年"))["doc_id"]
+                                     markdown="资助类别：面上项目\n项目类别：重点项目"))["doc_id"]
 
     # When metadata coverage is summarized
     summary = summarize_report_metadata(store, "fund-a")
 
     # Then each field has explicit totals and the unmatched list contains no document text
     assert summary["total"] == 2
-    assert summary["date"] == {"hits": 1, "missing": 1}
+    assert summary["period"] == {"hits": 1, "missing": 1}
     assert summary["category"] == {"hits": 1, "missing": 1}
     unmatched = next(item for item in summary["unmatched"] if item["title"] == "冲突报告")
     assert unmatched == {"doc_id": conflict_id, "title": "冲突报告",
-                         "corpus_id": "fund-a", "date": "ambiguous", "category": "missing"}
+                         "corpus_id": "fund-a", "period": "missing", "category": "ambiguous"}
 
 
 def _store(tmp_path):
@@ -325,9 +351,8 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
 
     monkeypatch.setattr("src.reports.model_for", lambda settings: FigureModel())
     app, store = setup(tmp_path)
-    source = tmp_path / ".knowledge" / "fixture" / "source" / "study.pdf"
-    parsed = tmp_path / ".knowledge" / "fixture" / "parsed" / "study.pdf"
-    (parsed / "images").mkdir(parents=True)
+    source = tmp_path / ".knowledge" / "fixture" / "source" / "2025_2025_P1_张三_study.pdf"
+    parsed = tmp_path / ".knowledge" / "fixture" / "parsed" / source.name
     cover = Image.new("RGB", (640, 400), "white")
     ImageDraw.Draw(cover).text((30, 30), "LOGO", fill="black")
     chart = Image.new("RGB", (640, 400), "white")
@@ -340,6 +365,8 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
     ImageDraw.Draw(stacked).ellipse((100, 350, 530, 550), outline="blue", width=12)
     source.parent.mkdir(parents=True, exist_ok=True)
     cover.save(source, save_all=True, append_images=[chart, alternative, stacked])
+    parsed = parsed / ".versions" / sha256_file(source)
+    (parsed / "images").mkdir(parents=True)
     chart.save(parsed / "images" / "chart.jpg", quality=95)
     alternative.save(parsed / "images" / "alternative.jpg", quality=95)
     stacked.crop((0, 0, 640, 300)).save(parsed / "images" / "top.jpg", quality=95)
@@ -367,7 +394,7 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
                              pages=[Page(number=1, text="标题"), Page(number=2, text="云边协同架构"),
                                     Page(number=3, text="边缘计算拓扑"), Page(number=4, text="组合图")],
                              markdown="填表日期：2025年\n资助类别：面上项目\n云边协同架构"))
-    store.record_file("study.pdf", source.stat().st_size, source.stat().st_mtime_ns,
+    store.record_file(source.name, source.stat().st_size, source.stat().st_mtime_ns,
                       sha256_file(source), doc["doc_id"], "indexed")
     with TestClient(app) as client:
         created = client.post("/api/reports", json={"domain": "云边协同", "year_from": 2025,
@@ -488,41 +515,76 @@ def test_user_report_metadata_endpoint_returns_per_corpus_coverage(tmp_path):
     # Then the response is scoped to that library and contains coverage counters
     assert response.status_code == 200
     assert response.json() == {"corpus_id": corpus["id"], "total": 0,
-                               "date": {"hits": 0, "missing": 0},
+                               "period": {"hits": 0, "missing": 0},
                                "category": {"hits": 0, "missing": 0}, "unmatched": []}
 
 
-def test_preflight_explains_why_no_document_is_eligible(tmp_path):
-    # Given a document whose parsed text carries only a project period, no filing date
+def test_preflight_explains_missing_filename_period(tmp_path):
+    # A period in parsed text does not override the current filename contract.
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="无填表日期", origin="/docs/a.pdf", kind="pdf", parser="mineru",
+    store.put(Document(title="无项目区间", origin="/docs/a.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="正文")],
                        markdown="---\nprojectName: 示例\nstartYear: 2022\nendYear: 2025\n---\n\n# 示例\n正文"))
 
     result = preflight_report(store, {"corpus_id": "kb", "year_from": 2021, "year_to": 2025})
 
-    # Then the exclusion is attributed to the missing field and the remediation is named
-    assert result["eligible_count"] == 0 and result["excluded"]["date"] == 1
-    assert result["reasons"][0]["reason"] == "date"
-    assert result["reasons"][0]["period"] == "2022–2025"
-    assert "重导入" in result["hint"]
+    assert result["eligible_count"] == 0 and result["excluded"]["period"] == 1
+    assert result["reasons"][0]["reason"] == "period"
+    assert "命名" in result["hint"]
 
 
-def test_preflight_reports_the_filing_years_it_actually_found(tmp_path):
-    # Given one document filed in 2026 while the window is 2021-2025
+def test_preflight_excludes_changed_source_and_explains_it(tmp_path):
+    root = tmp_path / "source"
+    root.mkdir()
+    source = root / "2021_2025_P1_张三_report.md"
+    source.write_text("填表日期:2025年01月05日\n# 报告\n旧版证据", encoding="utf-8")
+    store = Knowledge(tmp_path / "db", source_root=root)
+    import_defaults(store, Settings(_env_file=None), root=root)
+    params = {"corpus_id": "kb", "year_from": 2021, "year_to": 2025}
+    before = preflight_report(store, params)
+    assert before["eligible_count"] == 1
+    source.write_text("填表日期:2025年01月05日\n# 报告\n新版证据", encoding="utf-8")
+    after = preflight_report(store, params)
+    assert after["eligible_count"] == 0 and after["excluded"]["stale"] == 1
+    assert after["reasons"][0]["reason"] == "stale"
+    assert after["fingerprint"] != before["fingerprint"]
+
+
+def test_preflight_reports_the_project_years_it_actually_found(tmp_path):
+    # Given a project beginning in 2026 while the window ends in 2025
     store = Knowledge(tmp_path / "db")
-    store.put(Document(title="2026 结题", origin="/docs/b.pdf", kind="pdf", parser="mineru",
+    store.put(Document(title="2026 项目", origin="/docs/2026_2028_P2_李四_b.pdf", kind="pdf", parser="mineru",
                        pages=[Page(number=1, text="正文")],
                        markdown="资助类别:面上项目\n填表日期:2026年02月02日\n# 标题\n正文"))
 
     result = preflight_report(store, {"corpus_id": "kb", "year_from": 2021, "year_to": 2025})
 
     assert result["eligible_count"] == 0 and result["excluded"]["year"] == 1
-    assert result["observed_years"] == [2026]
+    assert result["observed_years"] == [2026, 2028]
     assert "2026" in result["hint"]
 
 
-def test_report_period_reads_the_project_years_without_changing_the_filter(tmp_path):
-    assert report_period("| 研究期限 | 2022-01-01 00:00:00.0到2025-12-31 00:00:00.0 |") == (2022, 2025)
-    assert report_period("startYear: 2022\nendYear: 2025") == (2022, 2025)
-    assert report_period("# 标题\n正文") == (None, None)
+def test_project_period_uses_filename_only():
+    assert project_period("/docs/2022_2025_P1_张三_示例.md") == (2022, 2025)
+    assert project_period("/docs/2026_2025_P1_张三_无效.md") == (None, None)
+    assert project_period("/docs/示例.md") == (None, None)
+
+
+def test_report_artifact_keeps_the_sources_the_report_used(tmp_path):
+    # Given a generated report whose visible documents were recorded
+    from src.artifacts import ArtifactStore
+
+    store = ArtifactStore(tmp_path / "artifacts.sqlite3")
+    report = {"report_id": "r1", "run_id": "run-1", "session_key": "s1", "corpus_id": "c1",
+              "markdown": "# 报告\n\n## 一、总体成果概述\n成果 [1]",
+              "params": {"domain": "医疗", "template_id": "comprehensive",
+                         "visible_sources": [{"citation": 1, "doc_id": "d1", "title": "报告甲",
+                                              "version": "v1", "page": None,
+                                              "url": "/api/documents/d1?version=v1"}]}}
+
+    artifact = store.ensure_report(report)
+
+    # Then the appendix can name every [n] instead of exporting an empty source list
+    assert len(artifact["citations"]) == 1
+    assert artifact["citations"][0]["title"] == "报告甲"
+    assert artifact["citations"][0]["corpus_id"] == "c1"

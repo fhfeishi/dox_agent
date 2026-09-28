@@ -12,6 +12,7 @@ import json
 import re
 import sqlite3
 from datetime import UTC, datetime
+from itertools import pairwise
 from pathlib import Path
 
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -19,12 +20,16 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from .agent.evidence import validate_citations
 from .agent.models import model_for
 from .prompts import report_template, task_instruction
-from .retrieval import assemble_reports
+from .retrieval import ReportDoc, assemble_reports, estimate_tokens, metadata_from_filename
 
 COLUMNS = ("session_key", "run_id", "corpus_id")
-_YEAR = re.compile(r"(?<!\d)(\d{4})(?!\d)")
+
+
+class ScopeChanged(ValueError):
+    """The confirmed evidence scope changed before the model could use it."""
+
+
 _LABELS = {
-    "填表日期": "date", "填报日期": "date",
     "资助类别": "category", "项目类别": "category", "类别": "category",
 }
 
@@ -45,9 +50,9 @@ def _label_and_value(cell: str) -> tuple[str, str] | None:
     return (_LABELS[label], "") if label in _LABELS else None
 
 
-def report_metadata(markdown: str) -> tuple[int | None, str | None, str, str]:
-    """Read labelled fields from the document header, keeping repeated conflicts ambiguous."""
-    values: dict[str, list[str]] = {"date": [], "category": []}
+def report_category(markdown: str) -> tuple[str | None, str]:
+    """Read the explicit fund category from the header; conflicting labels stay ambiguous."""
+    values: list[str] = []
     title_block_started = False
     title_block_open = False
     for line_number, line in enumerate(markdown.splitlines()):
@@ -55,7 +60,7 @@ def report_metadata(markdown: str) -> tuple[int | None, str | None, str, str]:
             break
         heading = re.match(r"^\s{0,3}(#{1,6})(?:\s+|$)", line)
         if heading:
-            if (len(heading.group(1)) == 1 and not any(values.values())
+            if (len(heading.group(1)) == 1 and not values
                     and (not title_block_started or title_block_open)):
                 title_block_started = title_block_open = True
                 continue
@@ -67,99 +72,99 @@ def report_metadata(markdown: str) -> tuple[int | None, str | None, str, str]:
         for index, item in enumerate(parsed):
             if item is None:
                 continue
-            field, value = item
+            _, value = item
             if not value and index + 1 < len(cells):
                 value = _plain_markdown(cells[index + 1].strip())
             if value:
-                values[field].append(value)
+                values.append(value)
 
-    years: set[int] = set()
-    for value in values["date"]:
-        year = next((int(match.group(1)) for match in _YEAR.finditer(value)
-                     if 1900 <= int(match.group(1)) <= 2100), None)
-        if year is not None:
-            years.add(year)
-    categories = {re.sub(r"\s+", " ", value).strip() for value in values["category"] if value.strip()}
-    year_status = ("ambiguous" if len(years) > 1 else "matched" if years else
-                   "invalid" if values["date"] else "missing")
+    categories = {re.sub(r"\s+", " ", value).strip() for value in values if value.strip()}
     category_status = ("ambiguous" if len(categories) > 1 else "matched" if categories else
                        "missing")
-    year = next(iter(years)) if year_status == "matched" else None
     category = next(iter(categories)) if category_status == "matched" else None
-    return year, category, year_status, category_status
-
-_PERIOD_LABELS = ("研究期限", "执行年限")
-_YAML_YEAR = re.compile(r"^(startYear|endYear)\s*:\s*(\d{4})\s*$")
+    return category, category_status
 
 
-def report_period(markdown: str) -> tuple[int | None, int | None]:
-    """Project start/end years from the header or front matter.
-
-    Display-only: the report-year filter still requires the filing date (填表日期), because
-    a project period says when the work ran, not when the report was submitted.
-    """
-    years: list[int] = []
-    for line in markdown.splitlines()[:64]:
-        text = _plain_markdown(line).strip().strip("|").strip()
-        match = _YAML_YEAR.match(text)
-        if match:
-            value = int(match.group(2))
-            if 1900 <= value <= 2100:
-                years.append(value)
-            continue
-        if any(label in text for label in _PERIOD_LABELS):
-            found = [int(item.group(1)) for item in _YEAR.finditer(text)
-                     if 1900 <= int(item.group(1)) <= 2100]
-            if len(found) >= 2:
-                return found[0], found[-1]
-    return (years[0], years[-1]) if len(years) >= 2 else (None, None)
+def project_period(origin: str) -> tuple[int | None, int | None]:
+    """Use only the current filename contract for project years."""
+    meta = metadata_from_filename(Path(origin).name)
+    start, end = meta.get("year_from"), meta.get("year_to")
+    if start is None or end is None or not 1900 <= start <= end <= 2100:
+        return None, None
+    return start, end
 
 
-def _report_metadata(markdown: str) -> tuple[int | None, str | None]:
-    """Compatibility helper used by report selection."""
-    year, category, _, _ = report_metadata(markdown)
-    return year, category
+def review_segments(markdown: str, max_chars: int = 6000) -> list[tuple[int, int, str]]:
+    """Cover parsed text by section, splitting oversized sections without dropping chars."""
+    boundaries = sorted({0, len(markdown), *[match.start() for match in
+                                           re.finditer(r"(?m)^#{1,6}\s", markdown)]})
+    pieces = []
+    for left, right in pairwise(boundaries):
+        for start in range(left, right, max_chars):
+            end = min(start + max_chars, right)
+            if markdown[start:end].strip():
+                pieces.append((start, end))
+    # One model call per tiny heading is prohibitively slow on real reports. Pack adjacent
+    # sections while preserving their exact character ranges for evidence tracing.
+    packed: list[tuple[int, int]] = []
+    for start, end in pieces:
+        if packed and start == packed[-1][1] and end - packed[-1][0] <= max_chars:
+            packed[-1] = (packed[-1][0], end)
+        else:
+            packed.append((start, end))
+    return [(start, end, markdown[start:end]) for start, end in packed]
 
 
 def summarize_report_metadata(knowledge, corpus_id: str) -> dict:
     """Return field coverage and a content-free list of documents needing review."""
-    docs = knowledge.all()
-    date_hits = category_hits = 0
+    docs = knowledge.current()
+    period_hits = category_hits = 0
     unmatched = []
     for doc in docs:
-        _, _, date_status, category_status = report_metadata(knowledge.read_markdown(doc["doc_id"]))
-        date_hits += date_status == "matched"
+        start, end = project_period(doc["origin"])
+        _, category_status = report_category(knowledge.read_markdown(doc["doc_id"]))
+        period_status = "matched" if start is not None and end is not None else "missing"
+        period_hits += period_status == "matched"
         category_hits += category_status == "matched"
-        if date_status != "matched" or category_status != "matched":
+        if period_status != "matched" or category_status != "matched":
             unmatched.append({"doc_id": doc["doc_id"], "title": doc["title"], "corpus_id": corpus_id,
-                              "date": date_status, "category": category_status})
+                              "period": period_status, "category": category_status})
     return {"corpus_id": corpus_id, "total": len(docs),
-            "date": {"hits": date_hits, "missing": len(docs) - date_hits},
+            "period": {"hits": period_hits, "missing": len(docs) - period_hits},
             "category": {"hits": category_hits, "missing": len(docs) - category_hits},
             "unmatched": unmatched}
 
 
 def preflight_report(knowledge, params: dict) -> dict:
     """Select report candidates once with mutually exclusive exclusion reasons."""
-    docs = knowledge.all()
+    docs = knowledge.current()
+    stored = knowledge.all()
     selected = set(params["doc_ids"]) if params.get("doc_ids") else None
     scoped = [doc for doc in docs if selected is None or doc["doc_id"] in selected]
-    excluded = {"date": 0, "year": 0, "category": 0}
-    date_hits = category_hits = 0
+    current_ids = {doc["doc_id"] for doc in docs}
+    stale = [doc for doc in stored if doc["doc_id"] not in current_ids
+             and (selected is None or doc["doc_id"] in selected)]
+    excluded = {"period": 0, "year": 0, "category": 0, "stale": len(stale)}
+    period_hits = category_hits = 0
     eligible = []
-    reasons: list[dict] = []
+    reasons: list[dict] = [{"doc_id": doc["doc_id"], "title": doc["title"], "reason": "stale", "period": ""}
+                           for doc in stale]
     observed: set[int] = set()
     for doc in scoped:
-        markdown = knowledge.read_markdown(doc["doc_id"])
-        year, category, date_status, category_status = report_metadata(markdown)
-        date_hits += date_status == "matched"
+        try:
+            markdown = knowledge.read_markdown(doc["doc_id"], doc["version"])
+        except (KeyError, ValueError) as exc:
+            raise ScopeChanged("资料在预检期间发生变化，请重新预检") from exc
+        start, end = project_period(doc["origin"])
+        category, category_status = report_category(markdown)
+        period_hits += start is not None
         category_hits += category_status == "matched"
-        if year is not None:
-            observed.add(year)
-        if year is None:
-            excluded["date"] += 1
-            reason = "date"
-        elif not params["year_from"] <= year <= params["year_to"]:
+        if start is not None and end is not None:
+            observed.update((start, end))
+        if start is None or end is None:
+            excluded["period"] += 1
+            reason = "period"
+        elif end < params["year_from"] or start > params["year_to"]:
             excluded["year"] += 1
             reason = "year"
         elif params.get("fund_type") and category != params["fund_type"]:
@@ -167,36 +172,42 @@ def preflight_report(knowledge, params: dict) -> dict:
             reason = "category"
         else:
             eligible.append({"doc_id": doc["doc_id"], "version": doc["version"],
-                             "title": doc["title"], "corpus_id": params.get("corpus_id") or ""})
+                             "source_sha256": doc.get("source_sha256", ""),
+                             "title": doc["title"], "corpus_id": params.get("corpus_id") or "",
+                             "project_year_from": start, "project_year_to": end})
             continue
-        start, end = report_period(markdown)
         reasons.append({"doc_id": doc["doc_id"], "title": doc["title"], "reason": reason,
                         "period": f"{start}–{end}" if start and end else ""})
     scope = {"corpus_id": params.get("corpus_id") or "", "doc_ids": sorted(selected) if selected else None,
+             "year_basis": "project_period_overlap",
              "year_from": params["year_from"], "year_to": params["year_to"],
              "fund_type": params.get("fund_type") or "",
-             "eligible": sorted((doc["corpus_id"], doc["doc_id"], doc["version"]) for doc in eligible)}
+             "eligible": sorted((doc["corpus_id"], doc["doc_id"], doc["version"], doc["source_sha256"])
+                                for doc in eligible),
+             "stale": sorted((doc["doc_id"], doc["version"]) for doc in stale)}
     fingerprint = hashlib.sha256(json.dumps(scope, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     observed_years = sorted(observed)
     hint = ""
     if scoped:
-        if eligible and excluded["date"]:
-            hint = (f"另有 {excluded['date']} 份资料因缺少填表日期未纳入（多为解析产物不含该字段）；"
-                    "可对该知识库执行「重导入」补全解析字段。")
+        if eligible and excluded["period"]:
+            hint = (f"另有 {excluded['period']} 份资料因文件名缺少有效项目起止年份未纳入；"
+                    "请按项目起止年份重命名文件后刷新资料。")
         elif eligible:
             hint = ""
-        elif excluded["date"] == len(scoped):
-            hint = ("所选资料都没有可识别的填表日期（多为解析产物不含该字段，例如只有项目起止年份）；"
-                    "请对该知识库执行「重导入」补全解析字段，或换一个知识库后再生成。")
+        elif excluded["period"] == len(scoped):
+            hint = ("所选资料的文件名都没有有效项目起止年份；"
+                    "请按 <起年>_<止年>_<项目号>_<负责人>_<标题> 命名后刷新资料。")
         elif excluded["year"]:
             span = f"{min(observed_years)}–{max(observed_years)}" if observed_years else "无"
-            hint = (f"有 {excluded['year']} 份资料因填表日期年份不在 {params['year_from']}–{params['year_to']} "
-                    f"被排除（库中可识别的填表日期年份为 {span}）；请把年份改到该区间，或另选资料范围。")
+            hint = (f"有 {excluded['year']} 份资料的项目区间与 {params['year_from']}–{params['year_to']} 不相交"
+                    f"（库中项目起止年份覆盖 {span}）；请调整年份或资料范围。")
         elif excluded["category"]:
             hint = (f"有 {excluded['category']} 份资料因资助类别与「{params.get('fund_type')}」不符被排除；"
                     "可将类别改为不限后重试。")
-    return {"total": len(scoped), "corpus_total": len(docs), "excluded": excluded,
-            "date_hits": date_hits, "category_hits": category_hits,
+    if stale and not hint:
+        hint = f"另有 {len(stale)} 份源文件已变化或不可用，需刷新或修复后才能用于新报告。"
+    return {"total": len(scoped) + len(stale), "corpus_total": len(stored), "excluded": excluded,
+            "period_hits": period_hits, "category_hits": category_hits,
             "eligible_count": len(eligible), "eligible": eligible, "fingerprint": fingerprint,
             "reasons": reasons, "observed_years": observed_years, "hint": hint}
 
@@ -294,20 +305,75 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     query = params.get("domain", "")
     preflight = await asyncio.to_thread(preflight_report, knowledge, params)
     if params.get("scope_fingerprint") and params["scope_fingerprint"] != preflight["fingerprint"]:
-        raise ValueError("资料范围已变化，请重新预检后再生成")
+        raise ScopeChanged("资料范围已变化，请重新预检后再生成")
     eligible_ids = [doc["doc_id"] for doc in preflight["eligible"]]
     if not eligible_ids:
-        raise ValueError("所选范围内没有符合填表日期年份与基金类别的资料；缺少填表日期的资料不会纳入")
-    result = await asyncio.to_thread(knowledge.retrieve, query, task_id="task4", allowed_doc_ids=eligible_ids)
-    if not result.matched:
-        raise ValueError("没有匹配的报告，无法生成")
-    context = assemble_reports(result.reports, knowledge.read_markdown,
-                               total_tokens=settings.retrieve_context_tokens,
-                               report_tokens=settings.retrieve_report_tokens)
-    # Report generation reads packed full documents. Chunk citations from retrieval can
-    # assign several [n] labels to one document, while the writer naturally numbers the
-    # visible documents. Keep the report's labels one-to-one with the text actually sent.
-    visible_reports = [report for report in context.reports if report["markdown"].strip()]
+        raise ValueError("所选范围内没有项目区间与年份窗口相交且符合基金类别的资料")
+    model = llm or model_for(settings)
+    deadline = asyncio.get_running_loop().time() + settings.run_timeout
+    if params.get("report_mode", "theme") == "review":
+        # Freeze all eligible parsed bodies before the first model call. A review cannot
+        # quietly fall back to task4's top-10 retrieval or its excerpt budget.
+        try:
+            frozen = [(doc, await asyncio.to_thread(knowledge.read_markdown, doc["doc_id"], doc["version"]))
+                      for doc in preflight["eligible"]]
+        except (KeyError, ValueError) as exc:
+            raise ScopeChanged("资料在读取期间发生变化，请重新预检后生成") from exc
+        current = await asyncio.to_thread(preflight_report, knowledge, params)
+        if current["fingerprint"] != preflight["fingerprint"]:
+            raise ScopeChanged("资料在读取期间发生变化，请重新预检后生成")
+        if any(not body.strip() for _, body in frozen):
+            raise ValueError("合格资料存在空正文，不能标记为全集综述")
+        visible_reports = []
+        coverage_docs = []
+        for doc, body in frozen:
+            pieces = review_segments(body)
+            summaries = []
+            for index, (start, end, piece) in enumerate(pieces, 1):
+                remaining = deadline - asyncio.get_running_loop().time()
+                if remaining <= 0:
+                    raise ValueError("资料摘要超过本次运行时限，不能标记为全集综述")
+                try:
+                    response = await asyncio.wait_for(model.ainvoke([
+                        SystemMessage(content="仅概括提供的原文段落，保留具体事实、数字、分歧与不确定处。不得补充段落外事实。"),
+                        HumanMessage(content=f"资料：{doc['title']}；章节段 {index}/{len(pieces)}；解析文本字符 {start + 1}–{end}。\n{piece}"),
+                    ]), timeout=remaining)
+                except TimeoutError as exc:
+                    raise ValueError("资料摘要超过本次运行时限，不能标记为全集综述") from exc
+                if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
+                    raise ValueError("资料摘要被截断，不能标记为全集综述")
+                summary = response.content if isinstance(response.content, str) else str(response.content)
+                if not summary.strip():
+                    raise ValueError("资料摘要为空，不能标记为全集综述")
+                summaries.append(f"原文字符 {start + 1}–{end}：{summary.strip()}")
+            visible_reports.append({"doc": ReportDoc(doc["doc_id"], doc["version"], doc["title"]),
+                                    "header": doc["title"], "markdown": "\n".join(summaries)})
+            coverage_docs.append({"doc_id": doc["doc_id"], "version": doc["version"],
+                                  "segments_total": len(pieces), "segments_processed": len(summaries),
+                                  "source_ranges": [[start + 1, end] for start, end, _ in pieces]})
+        if estimate_tokens("\n".join(item["markdown"] for item in visible_reports)) > settings.retrieve_context_tokens:
+            raise ValueError("全部资料摘要超过本次模型上下文预算，请缩小年份或限定资料")
+        params["coverage"] = {"eligible": len(frozen), "text_processed": len(frozen),
+                              "segments_processed": sum(item["segments_processed"] for item in coverage_docs),
+                              "summaries_in_model": len(visible_reports), "uncovered": 0,
+                              "documents": coverage_docs}
+    else:
+        result = await asyncio.to_thread(knowledge.retrieve, query, task_id="task4", allowed_doc_ids=eligible_ids)
+        if not result.matched:
+            raise ValueError("没有匹配的报告，无法生成；可选择合格资料综述")
+        try:
+            context = assemble_reports(result.reports, knowledge.read_markdown,
+                                       total_tokens=settings.retrieve_context_tokens,
+                                       report_tokens=settings.retrieve_report_tokens)
+        except (KeyError, ValueError) as exc:
+            raise ScopeChanged("资料在检索期间发生变化，请重新预检后生成") from exc
+        current = await asyncio.to_thread(preflight_report, knowledge, params)
+        if current["fingerprint"] != preflight["fingerprint"]:
+            raise ScopeChanged("资料在检索期间发生变化，请重新预检后生成")
+        # Match source numbers to the documents actually sent to the writer.
+        visible_reports = [report for report in context.reports if report["markdown"].strip()]
+        params["coverage"] = {"eligible": len(eligible_ids), "retrieval_matches": len(result.reports),
+                              "documents_in_model": len(visible_reports)}
     if not visible_reports:
         raise ValueError("所选报告在上下文预算内没有可读正文，请缩小资料范围")
     sources = [{"citation": index, "doc_id": report["doc"].doc_id,
@@ -317,13 +383,13 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
                for index, report in enumerate(visible_reports, 1)]
     if visible_sources is not None:
         visible_sources.extend(sources)
-    model = llm or model_for(settings)
-    header = (f"领域：{params['domain']}\n填表日期年份（报告提交时间）：{params['year_from']}–{params['year_to']}\n"
-              "填表日期来源：文档解析文本，未逐份对照原 PDF\n"
-              f"所选资料元数据覆盖：{preflight['total']} 份；填表日期命中 {preflight['date_hits']}、缺失/歧义 {preflight['total'] - preflight['date_hits']}；"
-              f"资助类别命中 {preflight['category_hits']}、缺失/歧义 {preflight['total'] - preflight['category_hits']}\n"
-              f"填表日期缺失资料（未纳入，所选范围内）：{preflight['excluded']['date']}\n"
-              f"资助类别缺失资料（所选范围内）：{preflight['total'] - preflight['category_hits']}\n"
+    header = (f"领域：{params['domain']}\n项目年份窗口（与文件名中的项目起止区间相交）：{params['year_from']}–{params['year_to']}\n"
+              f"报告范围：{'全部合格资料的已解析文本综述' if params.get('report_mode') == 'review' else '主题研究'}\n"
+              "项目起止年份按文件名推断；不代表报告提交年份或成果实际发生时间\n"
+              f"所选资料元数据覆盖：{preflight['total'] - preflight['excluded']['stale']} 份当前可用；项目区间可识别 {preflight['period_hits']}、缺失 {preflight['excluded']['period']}；"
+              f"资助类别命中 {preflight['category_hits']}、缺失/歧义 {preflight['total'] - preflight['excluded']['stale'] - preflight['category_hits']}\n"
+              f"项目区间缺失资料（未纳入，所选范围内）：{preflight['excluded']['period']}\n"
+              f"资助类别缺失资料（所选范围内）：{preflight['total'] - preflight['excluded']['stale'] - preflight['category_hits']}\n"
               f"模板：{template_id}\n基金类别：{params.get('fund_type') or '不限'}\n"
               f"分析重点：{params.get('focus') or '无'}")
     brief = (f"写作目的：{params.get('purpose') or '研究进展梳理'}\n"
@@ -374,20 +440,25 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
         appendix = "\n\n## 来源附录（系统记录）\n" + "\n".join(lines)
         return markdown.rstrip() + appendix + "\n"
 
-    async with asyncio.timeout(settings.run_timeout):
-        response = await model.ainvoke(messages)
-        if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
-            raise ValueError("报告达到模型输出长度上限，未保存截断正文；请缩小篇幅或资料范围")
-        content = response.content if isinstance(response.content, str) else str(response.content)
-        if valid(content):
-            return with_sources(content)
-        repair = HumanMessage(content="上一个报告存在标题、章节或来源编号问题。请依据同一批证据重写完整最终报告；"
-                                      "标题使用 #、章节使用 ##，关键事实引用有效的 [n] 编号。"
-                                      "上一稿仅作待修复草稿：\n" + content)
-        response = await model.ainvoke([*messages, repair])
-        if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
-            raise ValueError("报告达到模型输出长度上限，未保存截断正文；请缩小篇幅或资料范围")
-        content = response.content if isinstance(response.content, str) else str(response.content)
+    try:
+        # Segment summaries and final writing share one run budget. A fresh timeout here
+        # could double the configured limit after a long review.
+        async with asyncio.timeout_at(deadline):
+            response = await model.ainvoke(messages)
+            if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
+                raise ValueError("报告达到模型输出长度上限，未保存截断正文；请缩小篇幅或资料范围")
+            content = response.content if isinstance(response.content, str) else str(response.content)
+            if valid(content):
+                return with_sources(content)
+            repair = HumanMessage(content="上一个报告存在标题、章节或来源编号问题。请依据同一批证据重写完整最终报告；"
+                                          "标题使用 #、章节使用 ##，关键事实引用有效的 [n] 编号。"
+                                          "上一稿仅作待修复草稿：\n" + content)
+            response = await model.ainvoke([*messages, repair])
+            if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
+                raise ValueError("报告达到模型输出长度上限，未保存截断正文；请缩小篇幅或资料范围")
+            content = response.content if isinstance(response.content, str) else str(response.content)
+    except TimeoutError as exc:
+        raise ValueError("报告超过本次运行时限，未保存未完成正文；请缩小资料范围") from exc
     if not valid(content):
         raise ValueError("报告引用或结构校验失败，请检查来源与模型输出后重试")
     return with_sources(content)

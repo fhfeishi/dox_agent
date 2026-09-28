@@ -35,6 +35,11 @@ if [[ "$embedding_enabled" == 1 ]]; then
   "$python" src/launcher.py embedding
 fi
 if [[ ! -f frontend/dist/index.html || "${REBUILD_FRONTEND:-0}" == 1 ]]; then
+  # WSL can resolve Windows npm from /mnt while Linux node is absent from PATH.
+  # Prefer the user's Linux Node installation for a build rooted in the WSL filesystem.
+  if ! command -v node >/dev/null 2>&1 && [[ -x "$HOME/.local/bin/node" && -x "$HOME/.local/bin/npm" ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+  fi
   (cd frontend && npm ci && npm run build)
 fi
 printf '打开 http://127.0.0.1:%s\n' "${PORT:-8000}"

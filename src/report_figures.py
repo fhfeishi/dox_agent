@@ -77,7 +77,9 @@ def select_figures(knowledge, corpus, visible_docs: list[dict], markdown: str, l
         if not entry or source["version"] != versions.get(source["doc_id"]):
             continue
         pdf_path = (corpus.source_dir / entry["rel_path"]).resolve()
-        parsed_dir = (corpus.root / "parsed" / entry["rel_path"]).resolve()
+        parsed_dir = (corpus.root / "parsed" / entry["rel_path"] / ".versions" / entry["sha256"]).resolve()
+        # Legacy unversioned MinerU output has no source hash binding, so it cannot
+        # safely supply figures for a report tied to the current indexed PDF.
         if (pdf_path.suffix.lower() != ".pdf" or not pdf_path.is_relative_to(corpus.source_dir.resolve())
                 or not parsed_dir.is_relative_to((corpus.root / "parsed").resolve())
                 or not pdf_path.is_file() or sha256_file(pdf_path) != entry["sha256"]):

@@ -30,7 +30,6 @@ from .agent.corpora import (
     corpus_root_for,
     default_corpus_info,
     load_corpus_overrides,
-    migrate_layout,
     rewrite_origins,
     save_corpus_overrides,
     scan_corpora,
@@ -69,9 +68,17 @@ from .prompt_skills import (
 )
 from .prompts import REPORT_TEMPLATES, list_tasks, list_templates, report_template
 from .report_figures import change_figure, insert_figures, select_figures
-from .reports import ReportStore, generate_markdown, preflight_report, summarize_report_metadata
+from .reports import ReportStore, ScopeChanged, generate_markdown, preflight_report, summarize_report_metadata
 from .retrieval import fit_history
 from .runs import RunConflict, RunStore, request_fingerprint
+from .targets import (
+    TargetMissing,
+    TargetStale,
+    extract_target,
+    list_target_reports,
+    remove_target,
+    target_detail,
+)
 from .web_search import allowed_result, normalize_domain, search_web
 from .web_snapshots import WebSnapshotStore
 from .workspace import Workspace
@@ -172,6 +179,7 @@ class ReportRequest(BaseModel):
     audience: str = Field(default="专业研究人员", max_length=200)
     length: str = Field(default="标准篇幅", max_length=80)
     illustrated: bool = False
+    report_mode: Literal["theme", "review"] = "theme"
     doc_ids: list[str] | None = Field(default=None, min_length=1, max_length=20)
     corpus_id: str | None = Field(default=None, min_length=1, max_length=120)
     session_key: str | None = Field(default=None, max_length=120)
@@ -366,6 +374,19 @@ class FileRename(BaseModel):
     new_name: str = Field(min_length=1, max_length=255)
 
 
+class TargetExtractRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    doc_ids: list[str] = Field(min_length=1, max_length=20)
+    force: bool = False
+
+    @field_validator("doc_ids")
+    @classmethod
+    def target_doc_ids_are_unique(cls, value: list[str]):
+        if len(value) != len(set(value)):
+            raise ValueError("doc_ids 不能包含重复文档")
+        return value
+
+
 def workspace_path(settings, knowledge) -> Path:
     """K0: keep sessions/notes in the app-level ``state_dir``, independent of the active corpus.
 
@@ -402,12 +423,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     @asynccontextmanager
     async def lifespan(app):
-        for line in await asyncio.to_thread(migrate_layout, settings):
-            logger.info("layout migration: %s", line)
         info = await asyncio.to_thread(default_corpus_info, settings)
         db_path = info.db_dir / "knowledge.sqlite3" if info else Path(settings.state_dir) / "knowledge.sqlite3"
         app.state.knowledge = knowledge or Knowledge(
-            db_path, settings=settings, vectordb_dir=info.vectordb_dir if info else None)
+            db_path, settings=settings, vectordb_dir=info.vectordb_dir if info else None,
+            source_root=info.source_dir if info else None)
+        if knowledge is not None and info is not None:
+            app.state.knowledge.source_root = info.source_dir
         app.state.workspace = Workspace(workspace_path(settings, app.state.knowledge))
         app.state.knowledge.workspace = app.state.workspace
         app.state.reports = ReportStore(settings.state_dir / "reports.sqlite3")
@@ -429,6 +451,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.corpus_knowledge = {}
         app.state.corpus_jobs = {}
         app.state.corpus_tasks = {}
+        app.state.target_jobs = {}
+        app.state.target_tasks = {}
         app.state.preparation = "ready" if knowledge is not None else "running"
 
         async def prepare():
@@ -467,6 +491,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 corpus_task.cancel()
         if app.state.corpus_tasks:
             await asyncio.gather(*app.state.corpus_tasks.values(), return_exceptions=True)
+        for target_task in app.state.target_tasks.values():
+            if not target_task.done():
+                target_task.cancel()
+        if app.state.target_tasks:
+            await asyncio.gather(*app.state.target_tasks.values(), return_exceptions=True)
 
     app = FastAPI(title="dox_agent", version="0.2.0", lifespan=lifespan)
 
@@ -488,7 +517,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             # 方案 A: derived data stays inside the corpus dir (datadb/ + vectordb/), never
             # in source/; a non-default corpus gets its own vector directory.
             cached = Knowledge(db_path, settings=settings,
-                               vectordb_dir=info.vectordb_dir)
+                               vectordb_dir=info.vectordb_dir, source_root=info.source_dir)
             app.state.corpus_knowledge[info.id] = cached
         return cached
 
@@ -785,17 +814,19 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             on_disk = {path.relative_to(info.source_dir).as_posix(): path
                        for path in collect_sources(info.source_dir)}
         manifest = knowledge_for(info).files() if info.sqlite is not None else {}
+        current_ids = {doc["doc_id"] for doc in knowledge_for(info).current()} if info.sqlite is not None else set()
         failed = sum(1 for rel in on_disk if manifest.get(rel, {}).get("status") == "error")
-        on_disk_indexed = sum(1 for rel in on_disk if manifest.get(rel, {}).get("status") == "indexed")
+        on_disk_indexed = sum(1 for rel in on_disk if manifest.get(rel, {}).get("doc_id") in current_ids)
         removed = sum(1 for rel in manifest if rel not in on_disk)
         return {
             "source_count": len(on_disk),
-            "indexed_count": info.docs_count,
+            "indexed_count": len(current_ids),
             "pending_count": len(on_disk) - on_disk_indexed - failed + removed,
             "failed_count": failed,
         }
 
     def corpus_payload(info: CorpusInfo) -> dict:
+        counts = corpus_counts(info)
         dense = None
         if info.sqlite and info.sqlite.resolve() == app.state.knowledge.path.resolve():
             dense = app.state.knowledge.dense
@@ -810,7 +841,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "domain": info.domain,
             "rel_path": info.rel_path,
             "docs_count": info.docs_count,
-            "preparation": info.preparation,
+            "preparation": "ready" if counts["indexed_count"] else "empty",
             "is_default": info.is_default,
             "alias": info.alias,
             "dir_name": info.dir_name or info.root.name,
@@ -818,7 +849,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "missing": info.missing,
             "index_progress": dense.progress if dense else None,
             "job": app.state.corpus_jobs.get(info.id),
-            **corpus_counts(info),
+            **counts,
         }
 
     @app.get("/api/corpora")
@@ -950,7 +981,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         if info is None:
             raise HTTPException(404, "知识库不存在")
         running = app.state.corpus_tasks.get(corpus_id)
-        if (running and not running.done()) or app.state.import_lock.locked():
+        target_running = app.state.target_tasks.get(corpus_id)
+        if ((running and not running.done()) or (target_running and not target_running.done())
+                or app.state.import_lock.locked()):
             raise HTTPException(409, "知识库正在上传或导入，暂不能删除")
         def remove():
             if not info.missing:
@@ -959,6 +992,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 else:
                     shutil.rmtree(info.db_dir, ignore_errors=True)
                     shutil.rmtree(info.vectordb_dir, ignore_errors=True)
+                    shutil.rmtree(info.root / "target", ignore_errors=True)
                     if info.root.exists() and not any(info.root.iterdir()):
                         shutil.rmtree(info.root, ignore_errors=True)
             overrides = load_corpus_overrides(settings)
@@ -1086,6 +1120,78 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         request.app.state.corpus_tasks[corpus_id] = asyncio.create_task(run())
         return job
 
+    @app.get("/api/corpora/{corpus_id}/reports")
+    async def target_reports(corpus_id: str):
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        if info.missing:
+            raise HTTPException(409, "知识库目录已缺失")
+        if info.sqlite is None:
+            return []
+        return await asyncio.to_thread(list_target_reports, info, knowledge_for(info))
+
+    @app.get("/api/corpora/{corpus_id}/reports/{doc_id}/target")
+    async def target_report_detail(corpus_id: str, doc_id: str):
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        if info.missing:
+            raise HTTPException(409, "知识库目录已缺失")
+        try:
+            return await asyncio.to_thread(target_detail, info, knowledge_for(info), doc_id)
+        except TargetMissing as exc:
+            raise HTTPException(404, str(exc.args[0])) from exc
+        except TargetStale as exc:
+            raise HTTPException(409, {"stale": True, "message": str(exc)}) from exc
+
+    @app.post("/api/corpora/{corpus_id}/target", status_code=202)
+    async def target_extract(request: Request, corpus_id: str, payload: TargetExtractRequest):
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "知识库不存在")
+        if info.missing:
+            raise HTTPException(409, "知识库目录已缺失")
+        running = request.app.state.target_tasks.get(corpus_id)
+        if running and not running.done():
+            raise HTTPException(409, "该知识库正在生成四维信息")
+        knowledge = knowledge_for(info)
+        current_ids = {doc["doc_id"] for doc in await asyncio.to_thread(knowledge.current)}
+        missing = [doc_id for doc_id in payload.doc_ids if doc_id not in current_ids]
+        if missing:
+            raise HTTPException(422, {"message": "所选资料已更新或不可用", "doc_ids": missing})
+        job_id = uuid4().hex
+        job = {"job_id": job_id, "corpus_id": corpus_id, "status": "running",
+               "completed": 0, "total": len(payload.doc_ids), "errors": []}
+        request.app.state.target_jobs[job_id] = job
+
+        async def run_target_job():
+            for doc_id in payload.doc_ids:
+                try:
+                    record = await extract_target(info, knowledge, settings, doc_id, force=payload.force)
+                    if record["process"]["status"] == "已完成":
+                        job["completed"] += 1
+                    else:
+                        job["errors"].append({"doc_id": doc_id,
+                                              "error": record.get("error") or "四维提取未完成"})
+                except (TargetMissing, TargetStale, ValueError) as exc:
+                    job["errors"].append({"doc_id": doc_id, "error": str(exc)})
+                except Exception as exc:
+                    logger.exception("Target extraction failed for %s", doc_id)
+                    job["errors"].append({"doc_id": doc_id, "error": type(exc).__name__})
+            job["status"] = ("done" if not job["errors"] else
+                             "partial" if job["completed"] else "error")
+
+        request.app.state.target_tasks[corpus_id] = asyncio.create_task(run_target_job())
+        return job
+
+    @app.get("/api/corpora/{corpus_id}/target/jobs/{job_id}")
+    async def target_job(corpus_id: str, job_id: str):
+        job = app.state.target_jobs.get(job_id)
+        if job is None or job["corpus_id"] != corpus_id:
+            raise HTTPException(404, "四维提取任务不存在")
+        return job
+
     def source_file(info: CorpusInfo, rel_path: str) -> Path:
         target = (info.source_dir / rel_path).resolve()
         if not target.is_relative_to(info.source_dir.resolve()) or not target.is_file():
@@ -1114,6 +1220,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         if info.missing:
             raise HTTPException(409, "知识库目录已缺失")
         manifest = await asyncio.to_thread(knowledge_for(info).files) if info.sqlite is not None else {}
+        current_ids = ({doc["doc_id"] for doc in await asyncio.to_thread(knowledge_for(info).current)}
+                       if info.sqlite is not None else set())
 
         def listing():
             on_disk = {path.relative_to(info.source_dir).as_posix(): path
@@ -1121,8 +1229,12 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             items = []
             for rel, path in sorted(on_disk.items()):
                 entry = manifest.get(rel)
+                status = ("pending" if entry and entry["status"] == "indexed"
+                          and entry["doc_id"] not in current_ids else entry["status"] if entry else "new")
                 items.append({"rel_path": rel, "size": path.stat().st_size,
-                              "status": entry["status"] if entry else "new", "doc_id": entry["doc_id"] if entry else None})
+                              "status": status, "doc_id": entry["doc_id"] if entry else None,
+                              "reason": entry["last_error"] if entry and status == "error" else
+                              "源文件已变化，请刷新" if status == "pending" else ""})
             for rel, entry in sorted(manifest.items()):
                 if rel not in on_disk:
                     items.append({"rel_path": rel, "size": entry["size"], "status": "removed", "doc_id": entry["doc_id"]})
@@ -1195,6 +1307,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         target = await asyncio.to_thread(source_file, info, rel_path)
         await asyncio.to_thread(target.unlink)
         doc_id = await asyncio.to_thread(knowledge_for(info).drop_file, rel_path)
+        await asyncio.to_thread(remove_target, info, doc_id)
         return {"rel_path": rel_path, "doc_id": doc_id}
 
     @app.patch("/api/corpora/{corpus_id}/files")
@@ -1230,7 +1343,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             kn = knowledge_for(info) if info.sqlite is not None else None
             if kn is None:
                 return []  # Read-only listing never creates a database for an empty corpus.
-        docs = await asyncio.to_thread(kn.all)
+        docs = await asyncio.to_thread(kn.current)
         # D1: additive fields only. `status` is always "indexed" because this list is the corpus;
         # `meta` stays empty until stage B adds report metadata (B2/B3), so the frontend tree
         # can already be built from `rel_path` without a second endpoint.
@@ -1256,6 +1369,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(404, "文档不存在") from exc
         if version and version != doc["version"]:
             raise HTTPException(422, "文档已更新，请重新搜索")
+        if doc_id not in {item["doc_id"] for item in await asyncio.to_thread(kn.current)}:
+            raise HTTPException(409, "原文件已变化或不可用，旧版本原文无法预览")
         resolved = local_path_in_roots(doc["origin"], settings)
         path = resolved[0] if resolved else None
         if path is None or not path.is_file():
@@ -1540,7 +1655,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             selected_infos = selected
             chat_knowledge = (knowledge_for(selected[0][1]) if len(selected) == 1
                               else KnowledgeGroup([(cid, knowledge_for(info)) for cid, info in selected]))
-            chat_preparation = "ready" if all(info.preparation == "ready" for _, info in selected) else "empty"
+            chat_preparation = "ready" if all(knowledge_for(info).current() for _, info in selected) else "empty"
             # A multi-corpus report intake must ask the user to name its domain;
             # the first selected corpus is only the browsing base, not an authority.
             chat_domain = selected[0][1].domain if len(selected) == 1 else ""
@@ -1553,7 +1668,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                           "message": "该知识库目录已缺失，请重新关联或解绑"})
             selected_infos = [(info.id, info)]
             chat_knowledge = knowledge_for(info)
-            chat_preparation = info.preparation
+            chat_preparation = "ready" if chat_knowledge.current() else "empty"
             chat_domain = info.domain
         else:
             default_info = await asyncio.to_thread(default_corpus_info, settings)
@@ -1561,7 +1676,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             if default_info:
                 selected_infos = [(default_info.id, default_info)]
                 chat_knowledge = knowledge_for(default_info)
-                chat_preparation = default_info.preparation
+                if app.state.preparation == "ready":
+                    chat_preparation = "ready" if chat_knowledge.current() else "empty"
 
         web_snapshots = []
         if (payload.web_snapshot_ids and task_definition and task_definition.get("skill_snapshot")
@@ -1582,23 +1698,28 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
         if not selected_infos and not web_snapshots:
             raise HTTPException(409, "尚无可用知识库，请先新建知识库并添加文档")
-        if chat_preparation != "ready" and not web_snapshots:
-            raise HTTPException(409, "所选首个知识库尚无已入库文档，请先添加文档或刷新；系统不会自动切换到其他知识库")
-        # W6-A: confirmed snapshots let the run proceed, but the corpus keeps its real
-        # preparation state; neither the run event nor the snapshot may claim it is ready.
-
         if payload.allowed_doc_ids:
             selected_memberships = {doc_id: [] for doc_id in payload.allowed_doc_ids}
+            stale_docs = []
             for corpus_id, info in selected_infos:
                 store = knowledge_for(info)
-                doc_ids = {doc["doc_id"] for doc in await asyncio.to_thread(store.all)}
-                for doc_id in selected_memberships:
+                doc_ids = {doc["doc_id"] for doc in await asyncio.to_thread(store.current)}
+                stored_ids = {doc["doc_id"] for doc in await asyncio.to_thread(store.all)}
+                for doc_id, owners in selected_memberships.items():
                     if doc_id in doc_ids:
-                        selected_memberships[doc_id].append(corpus_id)
+                        owners.append(corpus_id)
+                    elif doc_id in stored_ids:
+                        stale_docs.append({"corpus_id": corpus_id, "doc_id": doc_id})
+            if stale_docs:
+                raise HTTPException(409, {"message": "限定资料已变化或不可用，请重新选择范围", "documents": stale_docs})
             if any(not owners for owners in selected_memberships.values()):
                 raise HTTPException(422, "限定文档必须属于本次选择的知识库")
             if any(len(owners) != 1 for owners in selected_memberships.values()):
                 raise HTTPException(422, "限定文档在所选知识库中的归属不唯一")
+        if chat_preparation != "ready" and not web_snapshots:
+            raise HTTPException(409, "所选知识库尚无已入库文档或当前可检索资料，请刷新或从范围移除后重试")
+        # W6-A: confirmed snapshots let the run proceed, but the corpus keeps its real
+        # preparation state; neither the run event nor the snapshot may claim it is ready.
 
         # W3-A: persist the server-effective run context before streaming. A run_id reused with a
         # different request fingerprint is rejected (409), so one snapshot never stands in for two runs.
@@ -1651,25 +1772,35 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             outcome = "interrupted"
             answer_parts: list[str] = []
             snapshot_finished = False
+            frozen_knowledge = None
+            frozen_at = ""
+
+            def persisted_citation(source: dict) -> dict:
+                if source.get("kind") == "web" and source.get("snapshot_id"):
+                    return {"kind": "web", "snapshot_id": source["snapshot_id"],
+                            "url": source.get("url"), "fetched_at": source.get("fetched_at"),
+                            "version": source.get("version", ""), "title": source.get("title", "")}
+                citation = {"doc_id": source.get("doc_id", ""), "corpus_id": source.get("corpus_id", ""),
+                            "version": source.get("version", ""), "title": source.get("title", ""),
+                            "page": source.get("page")}
+                digest = (frozen_knowledge.source_sha256(citation["doc_id"], citation["corpus_id"])
+                          if frozen_knowledge is not None else "")
+                if digest:
+                    citation["source_sha256"] = digest
+                return citation
 
             async def persist_outcome() -> None:
                 await asyncio.to_thread(
                     app.state.runs.update, payload.run_id, status=outcome,
                     ended_at=datetime.now(UTC).isoformat(),
-                    metrics={"usage": usage.snapshot(), "telemetry": telemetry,
+                    metrics={"usage": usage.snapshot(), "telemetry": telemetry, "frozen_at": frozen_at,
                              "report_brief": policy.get("report_params") if policy and
                              policy.get("stop_reason") == "report_pending" else None},
                     # Exact UTF-8 token concatenation is the answer shown by the client.
                     # A digest avoids treating client-submitted artifact text as authoritative.
                     answer_sha256=(hashlib.sha256("".join(answer_parts).encode("utf-8")).hexdigest()
                                    if outcome == "completed" else ""),
-                    citations=[({"kind": "web", "snapshot_id": s["snapshot_id"],
-                                 "url": s.get("url"), "fetched_at": s.get("fetched_at"),
-                                 "version": s.get("version", ""), "title": s.get("title", "")}
-                                if s.get("kind") == "web" and s.get("snapshot_id") else
-                                {"doc_id": s.get("doc_id", ""), "corpus_id": s.get("corpus_id", ""),
-                                 "version": s.get("version", ""), "title": s.get("title", ""),
-                                 "page": s.get("page")}) for s in sources])
+                    citations=[persisted_citation(source) for source in sources])
             # A2: declare the server-effective run context before any content, so the UI can show
             # the authoritative scope instead of only echoing the client request.
             yield sse("run", {"run_id": payload.run_id, "session_key": payload.session_key or "",
@@ -1682,7 +1813,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                               "allowed_doc_ids": payload.allowed_doc_ids})
             try:
                 async with asyncio.timeout(settings.run_timeout):
-                    graph = graph_factory(chat_knowledge, settings)
+                    if engine_task_id != "task4":
+                        frozen_knowledge = await asyncio.to_thread(chat_knowledge.freeze)
+                        frozen_at = datetime.now(UTC).isoformat()
+                    graph = graph_factory(frozen_knowledge or chat_knowledge, settings)
                     with tracing(settings):
                         async for event in graph.astream(
                             {
@@ -1776,6 +1910,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                         await persist_outcome()
                     except Exception:  # noqa: BLE001 - snapshot bookkeeping must not break the stream
                         logger.warning("run snapshot update failed: %s", payload.run_id)
+                if frozen_knowledge is not None:
+                    frozen_knowledge.close_snapshot()
 
         return StreamingResponse(
             stream(),
@@ -1832,7 +1968,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                       "message": "该知识库目录已缺失，请重新关联或解绑"})
         if info.sqlite is None:
             return {"corpus_id": corpus_id, "total": 0,
-                    "date": {"hits": 0, "missing": 0}, "category": {"hits": 0, "missing": 0},
+                    "period": {"hits": 0, "missing": 0}, "category": {"hits": 0, "missing": 0},
                     "unmatched": []}
         knowledge = await knowledge_for_request(corpus_id)
         return await asyncio.to_thread(summarize_report_metadata, knowledge, corpus_id)
@@ -1843,10 +1979,16 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(422, "起始年份不能晚于结束年份")
         kn = await knowledge_for_request(payload.corpus_id)
         if payload.doc_ids:
-            available_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.all)}
+            available_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.current)}
             if not set(payload.doc_ids) <= available_ids:
+                stored_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.all)}
+                if set(payload.doc_ids) & (stored_ids - available_ids):
+                    raise HTTPException(409, "报告限定资料已变化或不可用，请重新选择范围")
                 raise HTTPException(422, "报告限定文档必须属于指定知识库")
-        return await asyncio.to_thread(preflight_report, kn, payload.model_dump())
+        try:
+            return await asyncio.to_thread(preflight_report, kn, payload.model_dump())
+        except ScopeChanged as exc:
+            raise HTTPException(409, str(exc)) from exc
 
     @app.post("/api/reports")
     async def create_report(payload: ReportRequest):
@@ -1854,14 +1996,20 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(422, "起始年份不能晚于结束年份")
         kn = await knowledge_for_request(payload.corpus_id)
         if payload.doc_ids:
-            available_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.all)}
+            available_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.current)}
             if not set(payload.doc_ids) <= available_ids:
+                stored_ids = {doc["doc_id"] for doc in await asyncio.to_thread(kn.all)}
+                if set(payload.doc_ids) & (stored_ids - available_ids):
+                    raise HTTPException(409, "报告限定资料已变化或不可用，请重新选择范围")
                 raise HTTPException(422, "报告限定文档必须属于指定知识库")
-        scope = await asyncio.to_thread(preflight_report, kn, payload.model_dump())
+        try:
+            scope = await asyncio.to_thread(preflight_report, kn, payload.model_dump())
+        except ScopeChanged as exc:
+            raise HTTPException(409, str(exc)) from exc
         if payload.scope_fingerprint and payload.scope_fingerprint != scope["fingerprint"]:
             raise HTTPException(409, "资料范围已变化，请重新预检后再生成")
         if not scope["eligible_count"]:
-            raise HTTPException(422, "所选范围内没有符合填表日期年份与基金类别的资料；请调整范围或查看缺失元数据")
+            raise HTTPException(422, "所选范围内没有项目区间与年份窗口相交且符合基金类别的资料；请调整范围或查看缺失元数据")
         session_key = payload.session_key or ""
         template_content: str | None = None
         template_version = 0
@@ -1996,7 +2144,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 kn, settings, report_params,
                 **({"template_content": template_content} if template_content is not None else {}),
                 **({"task_definition": task_definition} if task_definition is not None else {}),
-                **({"visible_sources": visible_sources} if payload.illustrated else {}))
+                visible_sources=visible_sources)
+        except ScopeChanged as exc:
+            await record_report_failure(run_id, report_params, str(exc))
+            raise HTTPException(409, str(exc)) from exc
         except ValueError as exc:
             await record_report_failure(run_id, report_params, str(exc))
             raise HTTPException(422, str(exc)) from exc
@@ -2127,8 +2278,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             if version not in (None, 1):
                 raise HTTPException(404, "成果版本不存在")
             available = await asyncio.to_thread(app.state.runs.existing_ids, [report.get("run_id", "")])
+            visible = (report.get("params") or {}).get("visible_sources") or []
             return {**artifact_from_report(report), "version": 1,
-                    "markdown": report["markdown"], "citations": [],
+                    "markdown": report["markdown"],
+                    "citations": [{**source, "corpus_id": source.get("corpus_id") or report.get("corpus_id", "")}
+                                  for source in visible],
                     "run_available": report.get("run_id", "") in available}
         try:
             item = await asyncio.to_thread(app.state.artifacts.get, artifact_id, version)

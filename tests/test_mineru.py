@@ -7,7 +7,8 @@ from pathlib import Path
 import pytest
 
 from src.agent.config import Settings
-from src.parsers import parse_file, read_mineru_output
+from src.knowledge import Knowledge
+from src.parsers import import_defaults, parse_file, read_mineru_output
 
 
 def test_read_classic_content_list_groups_by_page(tmp_path):
@@ -61,6 +62,31 @@ def test_parse_file_runs_command_and_caches_output(tmp_path):
     assert doc.parser == "mineru" and doc.kind == "pdf"
     assert [page.number for page in doc.pages] == [2]
     assert (parsed / "full.md").is_file()
+
+
+def test_changed_pdf_does_not_publish_old_parse_cache(tmp_path):
+    script = tmp_path / "echo_pdf.py"
+    script.write_text(
+        "import json, pathlib, sys\n"
+        "source = pathlib.Path(sys.argv[1]); out = pathlib.Path(sys.argv[2])\n"
+        "out.mkdir(parents=True, exist_ok=True)\n"
+        "text = source.read_bytes().decode()\n"
+        "(out / 'full.md').write_text('填表日期:2025年01月05日\\n' + text, encoding='utf-8')\n"
+        "(out / 'x_content_list.json').write_text(json.dumps([{'type':'text','text':text,'page_idx':0}]))\n",
+        encoding="utf-8",
+    )
+    root = tmp_path / "source"
+    root.mkdir()
+    pdf = root / "a.pdf"
+    pdf.write_bytes(b"old body")
+    settings = Settings(_env_file=None, mineru_cmd=f"{sys.executable} {script} {{pdf}} {{out}}")
+    store = Knowledge(tmp_path / "db", source_root=root)
+    parsed = tmp_path / "parsed"
+    assert import_defaults(store, settings, root=root, parsed_root=parsed)["added"] == 1
+    pdf.write_bytes(b"new body")
+    assert import_defaults(store, settings, root=root, parsed_root=parsed)["updated"] == 1
+    assert store.search("old body") == []
+    assert store.search("new body")
 
 
 def test_parse_file_reports_missing_mineru_command(tmp_path):

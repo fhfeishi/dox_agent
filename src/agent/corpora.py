@@ -4,7 +4,7 @@ Layout (方案 A, 2026-09-22): ``CORPORA_ROOT/<corpus>/`` holds ``source/`` (raw
 possibly nested by domain), ``datadb/`` (sqlite) and ``vectordb/`` (vector store), so one
 corpus can be moved, backed up or deleted as a single directory. Scanning is read-only:
 counting opens sqlite with ``mode=ro`` and never creates files. §10: all persistence lives
-under CORPORA_ROOT; the default corpus is ``DEFAULT_CORPUS`` (else the first ready corpus), and
+under CORPORA_ROOT; the default corpus is the first present directory in name order, and
 ``.state/`` (a dot dir, skipped by scanning) holds workspace/reports/overrides.
 """
 
@@ -14,13 +14,10 @@ import hashlib
 import json
 import os
 import re
-import shutil
 import sqlite3
 import tempfile
 from dataclasses import dataclass, replace
 from pathlib import Path
-
-from .config import DOX_AGENT_ROOT
 
 # Fund report files: <year_from>_<year_to>_<project_no>_<pi>_<title>.pdf (corpus_management §3.3).
 # Project-metadata archives reuse the same naming convention as Markdown, so both kinds
@@ -58,12 +55,6 @@ class CorpusInfo:
 
 
 OVERRIDES_FILENAME = "corpora.json"
-STATE_FILES = ("workspace.sqlite3", "reports.sqlite3", "runs.sqlite3", "artifacts.sqlite3",
-               "custom_tasks.sqlite3", "custom_templates.sqlite3", "corpora.json",
-               "official-preparation.json")
-DEMO_DIRNAME = "demo_langchain"
-
-
 def rewrite_origins(db_path: Path, old_root: Path, new_root: Path, log: list[str]) -> None:
     """M1: rewrite file-type origins after a corpus move; doc ids stay stable."""
     if not db_path.is_file():
@@ -82,59 +73,6 @@ def rewrite_origins(db_path: Path, old_root: Path, new_root: Path, log: list[str
                 changed += 1
     if changed:
         log.append(f"rewrote {changed} origin(s) in {db_path}")
-
-
-def migrate_layout(settings) -> list[str]:
-    """§10 one-time, idempotent migration: move legacy state/demo under ``CORPORA_ROOT``.
-
-    Order (M3): copy/move -> verify -> delete the old directory. Any failure keeps the old
-    directory (no silent data loss). Test ``*.png`` are not part of verification.
-    """
-    root = corpus_root_for(settings)
-    state = Path(settings.state_dir)
-    if root != (DOX_AGENT_ROOT / ".knowledge").resolve():
-        return []  # custom corpus root: no repo-layout migration
-    root.mkdir(parents=True, exist_ok=True)
-    log: list[str] = []
-
-    old_demo = DOX_AGENT_ROOT / ".demo_langchain"
-    new_demo = root / DEMO_DIRNAME
-    if old_demo.is_dir() and not new_demo.exists():
-        shutil.copytree(old_demo, new_demo)
-        if new_demo.is_dir():
-            rewrite_origins(new_demo / DB_DIRNAME / "knowledge.sqlite3", old_demo, new_demo, log)
-            shutil.rmtree(old_demo, ignore_errors=True)
-            log.append(f"moved {old_demo} -> {new_demo}")
-
-    legacy = DOX_AGENT_ROOT / "data"
-    for name in STATE_FILES:
-        target, source = state / name, legacy / name
-        if target.exists() or not source.is_file():
-            continue
-        state.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, target)
-        if target.is_file():
-            log.append(f"copied {source} -> {target}")
-
-    if not (state / "workspace.sqlite3").exists() and root.is_dir():
-        legacy_ws = next((child / DB_DIRNAME / "workspace.sqlite3" for child in sorted(root.iterdir())
-                          if (child / DB_DIRNAME / "workspace.sqlite3").is_file()), None)
-        if legacy_ws is not None:
-            state.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(legacy_ws, state / "workspace.sqlite3")
-            log.append(f"copied {legacy_ws} -> {state / 'workspace.sqlite3'}")
-
-    if legacy.is_dir():
-        unknown = [p.name for p in legacy.iterdir()
-                   if p.is_file() and p.name not in STATE_FILES and not p.name.endswith(".png")]
-        missing = [name for name in STATE_FILES
-                   if (legacy / name).is_file() and not (state / name).is_file()]
-        if not unknown and not missing:
-            shutil.rmtree(legacy, ignore_errors=True)
-            log.append(f"removed {legacy}")
-        else:
-            log.append(f"kept {legacy} (unknown={unknown}, unmigrated={missing})")
-    return log
 
 
 def corpus_id_for(rel_path: str) -> str:
@@ -218,18 +156,14 @@ def corpus_root_for(settings) -> Path:
     return Path(settings.corpora_root).resolve()
 
 
-def resolve_default(infos: list[CorpusInfo], settings=None) -> CorpusInfo | None:
-    """Return the first present corpus in the server's directory-name order.
-
-    ``settings`` remains optional for callers from older code; DEFAULT_CORPUS no longer
-    affects conversation scope or API ordering.
-    """
+def resolve_default(infos: list[CorpusInfo]) -> CorpusInfo | None:
+    """Return the first present corpus in the server's directory-name order."""
     return next((info for info in sorted(infos, key=lambda item: item.rel_path) if not info.missing), None)
 
 
 def default_corpus_info(settings) -> CorpusInfo | None:
     """The active default corpus, resolved without raising when nothing is ready."""
-    return resolve_default(scan_corpora(settings), settings)
+    return resolve_default(scan_corpora(settings))
 
 
 def default_db_path(settings) -> Path:
@@ -346,7 +280,7 @@ def scan_corpora(settings) -> list[CorpusInfo]:
         )
 
     infos = list(found.values())
-    default = resolve_default(infos, settings)
+    default = resolve_default(infos)
     if default is not None:
         infos = [replace(info, is_default=(info.id == default.id)) for info in infos]
     return sorted(infos, key=lambda info: (not info.is_default, info.rel_path))

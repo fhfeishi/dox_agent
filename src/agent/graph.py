@@ -146,7 +146,7 @@ def intake_reply(params: dict) -> tuple[str, bool]:
         origin = "当前库建议" if params.get("sources", {}).get("domain") == "corpus" else "用户指定"
         known.append(f"研究主题：{params['domain']}（{origin}，可修改）")
     if params.get("year_from") and params.get("year_to"):
-        known.append(f"填表日期年份（报告提交时间）：{params['year_from']}–{params['year_to']}")
+        known.append(f"项目年份窗口（按文件名起止区间相交）：{params['year_from']}–{params['year_to']}")
     if params.get("fund_type"):
         known.append(f"基金类别：{params['fund_type']}")
     else:
@@ -309,6 +309,9 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
             markdown = "\n\n".join(part for part in (markdown, *web_sections) if part)
             scope = "本轮选定的本地与网页快照资料"
             path = "retrieve_web" if path != "direct" else "web"
+        # This runs before the first answer token: a changed source must never be used
+        # as if it still matched the version carried by its citation.
+        await asyncio.to_thread(knowledge.assert_current_sources, sources)
         writer({"event": "sources", "data": sources})
         if not sources:
             text = no_match_notice(state)

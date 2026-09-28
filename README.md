@@ -52,14 +52,13 @@
 | `.knowledge/<库>/source/` | 该库原始文件（PDF / Markdown，可按领域再分子目录） |
 | `.knowledge/<库>/datadb/` | 该库 SQLite：`knowledge.sqlite3`（原文/版本） |
 | `.knowledge/<库>/vectordb/` | 该库向量索引（Chroma） |
-| `.knowledge/demo_langchain/` | 演示库（原 `.demo_langchain/`），同一 `source/` + `datadb/` + `vectordb/` 约定 |
 | `.knowledge/.state/` | 应用级八库：`workspace.sqlite3`（会话/笔记）、`reports.sqlite3`（报告）、`runs.sqlite3`（运行快照）、`artifacts.sqlite3`（成果）、`custom_tasks.sqlite3`（自定义任务）、`custom_templates.sqlite3`（自定义模板）、`web_snapshots.sqlite3`（网页快照）、`prompt_skills.sqlite3`（Prompt/Skill 资产）；`corpora.json` 保存显示名覆盖。八库按 §16.17 的成组备份契约一起备份与恢复 |
 
 > `.knowledge/` 数据默认不入库（见 `.gitignore`），只保留 `README.md`。
 
-> **配置映射（§10）**：所有本地持久化只在 `CORPORA_ROOT`（默认 `.knowledge`）下；每个直接子目录 = 一个自包含库。新对话与省略范围的旧 API 按实际一级子目录名字典序选首库；`DEFAULT_CORPUS` 仅为旧配置兼容读取，不影响选择。`DATA_DIR`/`VECTORDB_DIR`/`KNOWLEDGE_ROOT`/`TEXT_ROOT` 已废弃（启动时忽略）。
+> **配置映射（§10）**：所有本地持久化只在 `CORPORA_ROOT`（默认 `.knowledge`）下；每个直接子目录 = 一个自包含库。新对话与省略范围的旧 API 按实际一级子目录名字典序选首库；`DEFAULT_CORPUS`、`DATA_DIR`、`VECTORDB_DIR`、`KNOWLEDGE_ROOT`、`TEXT_ROOT` 已废弃（启动时忽略）。
 
-> **当前演示语料**：`demo_langchain`（启动时自动从旧 `.demo_langchain/` 迁移并重写文件型 origin）。系统不设持久默认库；新对话使用按实际目录名排序的首个知识库，`DEFAULT_CORPUS` 不改变顺序。
+系统不设持久默认库；新对话使用按实际目录名排序的首个知识库。旧 `.demo_langchain/` 和 `data/` 不再在启动时自动迁移，已有文件不会自动删除。
 
 ## 运行
 
@@ -84,6 +83,7 @@ bash launch.sh
 | `dev` | pytest、ruff |
 
 前端开发：`cd frontend && npm run dev`。
+在 WSL 中，`node` 与 `npm` 须都来自 Linux；若终端误用 Windows `npm` 导致 UNC 路径或 `tsc` 报错，先将 Linux Node 所在目录放到 `PATH` 前面。本机示例：`PATH="$HOME/.local/bin:$PATH" npm run build`。
 
 ## 配置（`.env`）
 
@@ -94,7 +94,6 @@ bash launch.sh
 | `MODEL_NAME` / `MODEL_BASE_URL` / `MODEL_API_KEY` | `deepseek-chat` / `https://api.deepseek.com` / 空 | 问答模型（OpenAI 兼容） |
 | `CORPORA_ROOT` | `<repo>/.knowledge` | 语料根：每个直接子目录 = 一个自包含知识库（`source/`+`datadb/`+`vectordb/`） |
 | `STATE_DIR` | `<CORPORA_ROOT>/.state` | 应用级状态目录（会话/报告/运行快照/成果/自定义任务与模板/网页快照/Prompt·Skill）；默认随 `CORPORA_ROOT` 派生 |
-| `DEFAULT_CORPUS` | `demo_langchain` | 已弃用；兼容读取但不影响首库顺序 |
 | `EMBEDDING_PATH` | 空 | 本地 embedding 模型目录；空 = 仅 BM25，不加载 embedding |
 | `EMBEDDING_DEVICE` | `cpu` | embedding 设备 |
 | `MINERU_CMD` / `MINERU_HOME` | `mineru-kit parse … --tier standard --format middle_json` / 模型缓存目录 | PDF 解析（mineru 4.0.5，K13）；`MINERU_CMD` 支持 `{pdf}`/`{out}` 模板 |

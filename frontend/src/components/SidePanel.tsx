@@ -366,8 +366,8 @@ export function SidePanel() {
                     {report.domain || "未命名报告"} · {report.corpus_id
                       ? (corpora.find((corpus) => corpus.id === report.corpus_id)?.name ?? report.corpus_id)
                       : "来源库未记录"} · {report.year_from != null && report.year_to != null
-                      ? `填表日期 ${report.year_from}–${report.year_to}`
-                      : "填表日期年份未记录"}
+                      ? `年份窗口 ${report.year_from}–${report.year_to}`
+                      : "年份窗口未记录"}
                   </span>
                   <span className="text-[11px] text-[var(--stone)]">
                     {report.template_id || "模板未记录"} · {report.created_at?.slice(0, 10) ?? ""}

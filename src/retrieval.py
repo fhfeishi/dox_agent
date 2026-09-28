@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import hashlib
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 from rank_bm25 import BM25Plus
@@ -271,6 +271,27 @@ def select_reports(
     scores = [float(value) for value in BM25Plus(corpus).get_scores(layer_a_terms)]
     recalled = [docs[index] for index in
                 sorted(range(len(docs)), key=lambda i: (-scores[i], i))[: max(1, config.report_recall_m)]]
+    # A weak title match must not hide a document whose evidence occurs only in its body.
+    # Keep every lexical body candidate until the shared chunk ranking; an early top-k here
+    # would recreate the same false negative at a different layer.
+    recalled_ids = {doc.doc_id for doc in recalled}
+    query_terms = set(layer_a_terms)
+    for doc in docs:
+        if doc.doc_id not in recalled_ids and any(
+            chunk.version == doc.version and query_terms.intersection(tokens(chunk.text))
+            for chunk in chunks_by_doc.get(doc.doc_id, [])
+        ):
+            recalled.append(doc)
+            recalled_ids.add(doc.doc_id)
+
+    def retry_full_corpus() -> RetrievalResult | None:
+        if len(recalled) == len(docs):
+            return None
+        # Title/heading recall can omit a document whose only match is in its body.
+        # Pay for a full chunk pass only when the bounded pass would say "no match".
+        return select_reports(chunks_by_doc, reports, query,
+                              config=replace(config, report_recall_m=len(docs)), task_id=task_id,
+                              allowed_doc_ids=allowed_doc_ids, extra_queries=extra_queries)
 
     # Layer B：在候选报告池内做一次 chunk 级精排，RRF 的 rank 是**池内全局排名**。
     # 若改为“每文档各自排名”，每个文档第 1 名都会得到相同 RRF，无法区分强弱命中。
@@ -329,9 +350,15 @@ def select_reports(
         cover = len(set(specific) & hit_tokens) / len(specific) if specific else 1.0
         scored.append((sum(fused[cid] for cid in top), cover, doc, candidates))
     if not scored:
+        broader = retry_full_corpus()
+        if broader is not None:
+            return broader
         return RetrievalResult(reports=[], matched=False, reason="no_reports", specific=tuple(specific))
     top1 = max(cover for _, cover, _, _ in scored)
     if not broad and top1 < config.min_term_cover:
+        broader = retry_full_corpus()
+        if broader is not None:
+            return broader
         return RetrievalResult(reports=[], matched=False, reason="no_reports", candidates=len(scored),
                                specific=tuple(specific))
 

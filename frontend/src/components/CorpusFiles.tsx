@@ -6,6 +6,7 @@ import { Icon } from "./Icons";
 const STATUS_LABEL: Record<string, string> = {
   new: "待导入",
   indexed: "已入库",
+  pending: "待同步",
   error: "解析失败",
   removed: "源文件缺失",
 };
@@ -106,7 +107,7 @@ export function CorpusFiles({
     const document = (file.doc_id ? docsById.get(file.doc_id) : undefined) ?? documents.find((item) =>
       item.rel_path === `${corpusName}/source/${file.rel_path}` || item.rel_path?.endsWith(`/${corpusName}/source/${file.rel_path}`));
     if (document) represented.add(document.doc_id);
-    return { file, document, status: document ? "indexed" : file.status };
+    return { file, document, status: file.status };
   });
   for (const document of documents) {
     if (!represented.has(document.doc_id)) {
@@ -234,7 +235,8 @@ export function CorpusFiles({
                   <span className="shrink-0 text-[var(--stone)]">
                     {status === "error" ? "已保存，未入库 · 解析失败" : STATUS_LABEL[status] ?? status}
                   </span>
-                  {document && onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
+                  {file.reason ? <span className="max-w-[220px] truncate text-[var(--red)]" title={file.reason}>{file.reason}</span> : null}
+                  {status === "indexed" && document && onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
                   {status === "error" ? (
                     <button
                       type="button"

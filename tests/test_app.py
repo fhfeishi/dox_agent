@@ -89,7 +89,10 @@ def test_user_upload_parse_failure_stays_saved_and_can_be_retried(tmp_path):
 
     assert response.status_code == 201
     assert len(response.json()["errors"]) == 1
-    assert files == [{"rel_path": "broken.txt", "size": 9, "status": "error", "doc_id": None}]
+    assert len(files) == 1
+    assert {key: files[0][key] for key in ("rel_path", "size", "status", "doc_id")} == {
+        "rel_path": "broken.txt", "size": 9, "status": "error", "doc_id": None}
+    assert "UnicodeDecodeError" in files[0]["reason"]
 
 
 def test_user_corpus_overview_reports_source_and_index_status_counts(tmp_path):
@@ -142,6 +145,63 @@ def test_document_markdown_endpoint_returns_full_body(tmp_path):
         assert payload["version"] == store.get(key)["version"]
         assert client.get(f"/api/documents/{key}/markdown?version=stale").status_code == 422
         assert client.get("/api/documents/missing/markdown").status_code == 404
+
+
+def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkeypatch):
+    import time
+    from types import SimpleNamespace
+
+    from src import targets
+
+    class TargetModel:
+        async def ainvoke(self, messages):
+            return SimpleNamespace(content='''{
+              "facets": [
+                {"key":"场景","items":[{"id":"s1","name":"临床诊疗","desc":"用于临床诊疗流程。","evidence":[{"quote":"临床诊疗场景"}]}]},
+                {"key":"问题","items":[{"id":"p1","name":"识别困难","desc":"解决病灶识别困难。","evidence":[{"quote":"病灶识别困难"}]}]},
+                {"key":"技术","items":[{"id":"t1","name":"深度学习","desc":"采用深度学习方法。","evidence":[{"quote":"采用深度学习"}]}]},
+                {"key":"成果","items":[{"id":"o1","name":"原型系统","desc":"报告记载已形成原型。","status":"已取得","evidence":[{"quote":"形成原型系统"}]}]}
+              ],
+              "relations": [
+                {"from":{"dimension":"场景","item_id":"s1"},"to":{"dimension":"问题","item_id":"p1"},"basis":"原文明示"},
+                {"from":{"dimension":"问题","item_id":"p1"},"to":{"dimension":"技术","item_id":"t1"},"basis":"原文明示"}
+              ]
+            }''', response_metadata={})
+
+    monkeypatch.setattr(targets, "model_for", lambda settings: TargetModel())
+    app, store = setup(tmp_path)
+    body = "# 报告\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。"
+    saved = store.put(Document(title="示例报告", origin="report.md", kind="text", parser="markdown",
+                               pages=[Page(number=1, text=body)], markdown=body))
+    with TestClient(app) as client:
+        corpus_id = client.get("/api/corpora").json()[0]["id"]
+        started = client.post(f"/api/corpora/{corpus_id}/target", json={"doc_ids": [saved["doc_id"]]})
+        assert started.status_code == 202
+        job_id = started.json()["job_id"]
+        deadline = time.monotonic() + 3
+        while time.monotonic() < deadline:
+            job = client.get(f"/api/corpora/{corpus_id}/target/jobs/{job_id}").json()
+            if job["status"] != "running":
+                break
+            time.sleep(0.01)
+
+        reports = client.get(f"/api/corpora/{corpus_id}/reports").json()
+        detail = client.get(f"/api/corpora/{corpus_id}/reports/{saved['doc_id']}/target")
+        assert job["status"] == "done" and job["completed"] == job["total"] == 1
+        assert reports[0]["process"]["status"] == "已完成"
+        assert all(value["state"] == "has" for value in reports[0]["facets"].values())
+        assert detail.status_code == 200
+        assert detail.json()["facets"][3]["items"][0]["status"] == "已取得"
+        assert detail.json()["relations"][0]["basis"] == "原文明示"
+        assert detail.json()["facets"][0]["items"][0]["evidence"][0]["version"] == saved["version"]
+
+        store.put(Document(title="示例报告", origin="report.md", kind="text", parser="markdown",
+                           pages=[Page(number=1, text=body + "\n更新")], markdown=body + "\n更新"),
+                  doc_id=saved["doc_id"])
+        stale = client.get(f"/api/corpora/{corpus_id}/reports/{saved['doc_id']}/target")
+        assert stale.status_code == 409
+        assert stale.json()["detail"]["stale"] is True
+        assert stale.json()["detail"]["message"] == "资料已更新"
 
 
 def test_user_pdf_preview_preflight_distinguishes_stale_version_and_missing_source(tmp_path):

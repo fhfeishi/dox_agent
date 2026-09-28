@@ -174,7 +174,10 @@ def markdown_to_docx(markdown: str, images: dict[str, bytes] | None = None,
         elif line.strip():
             _add_text(document.add_paragraph(), line)
         index += 1
-    _append_sources(document, citations or [])
+    # Generated reports already carry the authoritative, numbered source appendix
+    # in their Markdown. Appending the generic list would duplicate every citation.
+    if not re.search(r"(?m)^## 来源附录（系统记录）\s*$", markdown):
+        _append_sources(document, citations or [])
     buffer = io.BytesIO()
     document.save(buffer)
     return buffer.getvalue()

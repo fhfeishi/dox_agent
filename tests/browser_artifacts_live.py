@@ -34,7 +34,13 @@ class OfflineGraph:
         yield {"event": "done", "data": {"ok": True}}
 
 
-async def offline_report(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None):
+async def offline_report(knowledge, settings, params, *, llm=None, template_content=None,
+                         task_definition=None, visible_sources=None):
+    doc = knowledge.current()[0]
+    if visible_sources is not None:
+        visible_sources.append({"citation": 1, "doc_id": doc["doc_id"], "title": doc["title"],
+                                "version": doc["version"], "page": 1,
+                                "url": f"/api/documents/{doc['doc_id']}?version={doc['version']}"})
     return "# 实测报告\n\n| 结论 | 来源 |\n| --- | --- |\n| 已验证 | [1] 样本 |\n"
 
 
@@ -60,7 +66,7 @@ async def main():
         settings = Settings(_env_file=None, corpora_root=corpus_root, state_dir=state_dir,
                             model_api_key=SecretStr("offline-test"), auto_import_official=False)
         knowledge = Knowledge(corpus_dir / "datadb" / "knowledge.sqlite3", settings=settings)
-        doc = knowledge.put(Document(title="样本", origin="sample", kind="text", parser="text",
+        doc = knowledge.put(Document(title="样本", origin="2021_2025_P1_张三_sample.md", kind="text", parser="text",
                                      pages=[Page(number=1, text="证据正文")],
                                      markdown="填表日期：2025年\n资助类别：面上项目\n证据正文"))
         corpus_id = corpus_id_for("fixture")

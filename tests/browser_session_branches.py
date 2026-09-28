@@ -21,6 +21,8 @@ async def main():
     origin = f"http://127.0.0.1:{server.server_port}"
     store: dict[str, dict] = {}
     chat_bodies: list[dict] = []
+    slow_put_id = ""
+    slow_put_started = asyncio.Event()
     try:
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
@@ -47,6 +49,9 @@ async def main():
                 elif route.request.method == "PUT":
                     data = route.request.post_data_json
                     sid = route.request.url.rsplit("/", 1)[-1]
+                    if sid == slow_put_id:
+                        slow_put_started.set()
+                        await asyncio.sleep(.4)
                     record = {"id": sid, "revision": store.get(sid, {}).get("revision", 0) + 1, "title": data["title"], "data": data["data"]}
                     store[sid] = record
                     await route.fulfill(json=record)
@@ -143,6 +148,8 @@ async def main():
             await page.reload()
             await page.get_by_role("button", name="新建对话").click()
             await ask("第三问")
+            await page.wait_for_timeout(650)
+            assert any(item["title"] == "第三问" for item in store.values()), [(sid, item["title"]) for sid, item in store.items()]
             side = page.locator("aside").first
             await side.get_by_role("button", name=title, exact=True).hover()
             await side.get_by_role("button", name="置顶会话").click()
@@ -158,10 +165,15 @@ async def main():
             await page.reload()
             side = page.locator("aside").first
             assert len(store) >= 2, sorted(store)
+            slow_put_id = next(sid for sid in store if sid not in {source_id, "legacy"})
+            await side.get_by_role("button", name="第三问", exact=True).hover()
+            await side.get_by_role("button", name="置顶会话").click()
+            await asyncio.wait_for(slow_put_started.wait(), timeout=3)
             await side.get_by_role("button", name="第三问", exact=True).hover()
             await side.get_by_role("button", name="删除会话").click()
             await side.get_by_role("button", name="确认删除").click()
             await expect(side.get_by_role("button", name="第三问", exact=True)).to_have_count(0)
+            await page.wait_for_timeout(500)
             assert "第三问" not in {item["title"] for item in store.values()}, sorted(store)
             await expect(side.get_by_role("button", name=re.compile("历史主会话"))).to_be_visible()
 

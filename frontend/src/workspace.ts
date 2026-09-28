@@ -109,7 +109,8 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     pending.current = null;
     const existing = sessionsRef.current.find(item => item.id === activeRef.current);
     await enqueue({ id: activeRef.current, revision: revisions.current[activeRef.current] ?? 0,
-      title: existing?.title ?? snapshot[0]?.question.slice(0, 100) ?? "新会话",
+      title: existing?.title && (existing.title !== "新会话" || existing.data.turns.length > 0)
+        ? existing.title : snapshot[0]?.question.slice(0, 100) ?? "新会话",
       data: { ...existing?.data, turns: snapshot, options: effectiveOptions, branches: branchSnapshot,
         task_id: taskSnapshot, task_version: taskVersionRef.current, corpus_id: corpusSnapshot,
         corpus_confirmed: corpusConfirmedRef.current, corpus_ids: [...corpusIdsRef.current] } });
@@ -126,7 +127,9 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     localStorage.setItem("dox-agent-session", active);
     const existing = sessionsRef.current.find(item => item.id === active);
     pending.current = { id: active, revision: revisions.current[active] ?? 0,
-      title: existing?.title ?? turns[0].question.slice(0, 100), data: { ...existing?.data, turns, options, branches,
+      title: existing?.title && (existing.title !== "新会话" || existing.data.turns.length > 0)
+        ? existing.title : turns[0].question.slice(0, 100),
+      data: { ...existing?.data, turns, options, branches,
         task_id: taskIdRef.current, task_version: taskVersionRef.current, corpus_id: corpusIdRef.current, corpus_confirmed: corpusConfirmedRef.current,
         corpus_ids: [...corpusIdsRef.current] } };
     const timer = setTimeout(() => { void flush().catch(() => undefined); }, 500);
@@ -183,6 +186,8 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
   }
   /** U9: drop a session for good; deleting the active one falls back to the next visible session. */
   async function remove(id: string) {
+    // A queued PUT may otherwise recreate this row after DELETE has completed.
+    await flush();
     await workspaceDelete(`/api/workspace/sessions/${id}`);
     if (pending.current?.id === id) pending.current = null;
     delete revisions.current[id];

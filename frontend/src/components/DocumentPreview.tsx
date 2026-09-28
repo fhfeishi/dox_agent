@@ -7,6 +7,7 @@ import { documentMeta, isLegacyParser } from "../documentMeta";
 import { loadPreviewText } from "../documentText";
 import { downloadText, openTextInNewTab } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
+import { TargetFocusedText } from "./TargetFocusedText";
 import { Pill } from "./ui";
 import type { DocumentInfo } from "../useDocuments";
 
@@ -48,7 +49,9 @@ export function DocumentPreview({
       {isPdf && doc ? (
         <PdfViewer docId={doc.doc_id} version={doc.version} page={page ?? null} pages={doc.pages} corpus={corpus} />
       ) : (
-        <TextPreview doc={doc} corpus={corpus} />
+        doc?.focus
+          ? <TargetFocusedText doc={doc} corpus={corpus} quote={doc.focus} />
+          : <TextPreview doc={doc} corpus={corpus} />
       )}
     </DocumentPanel>
   );

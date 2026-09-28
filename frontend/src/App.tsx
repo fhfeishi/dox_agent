@@ -1,16 +1,20 @@
-import { ChatView } from "./components/ChatView";
-import { CorpusDetail } from "./components/CorpusDetail";
-import { CorpusGrid } from "./components/CorpusGrid";
-import { DocumentExplorer } from "./components/DocumentExplorer";
-import { DocumentPreview } from "./components/DocumentPreview";
 import { IconRail } from "./components/IconRail";
-import { Inspector } from "./components/Inspector";
-import { PromptSkillView, ReportsView, TasksView } from "./components/ListingViews";
-import { OpsDrawer } from "./components/OpsDrawer";
 import { StatusBanner, Toast } from "./components/Overlays";
 import { SidePanel } from "./components/SidePanel";
 import { useApp } from "./store";
+import { lazy, Suspense } from "react";
 import type { CSSProperties } from "react";
+
+const ChatView = lazy(() => import("./components/ChatView").then((module) => ({ default: module.ChatView })));
+const CorpusDetail = lazy(() => import("./components/CorpusDetail").then((module) => ({ default: module.CorpusDetail })));
+const CorpusGrid = lazy(() => import("./components/CorpusGrid").then((module) => ({ default: module.CorpusGrid })));
+const DocumentExplorer = lazy(() => import("./components/DocumentExplorer").then((module) => ({ default: module.DocumentExplorer })));
+const DocumentPreview = lazy(() => import("./components/DocumentPreview").then((module) => ({ default: module.DocumentPreview })));
+const Inspector = lazy(() => import("./components/Inspector").then((module) => ({ default: module.Inspector })));
+const OpsDrawer = lazy(() => import("./components/OpsDrawer").then((module) => ({ default: module.OpsDrawer })));
+const TasksView = lazy(() => import("./components/ListingViews").then((module) => ({ default: module.TasksView })));
+const ReportsView = lazy(() => import("./components/ListingViews").then((module) => ({ default: module.ReportsView })));
+const PromptSkillView = lazy(() => import("./components/ListingViews").then((module) => ({ default: module.PromptSkillView })));
 
 /**
  * Layout composition only: rail → side panel → main view, plus the floating output
@@ -51,38 +55,42 @@ export function App() {
           inspectorOpen ? "xl:pr-[calc(var(--inspector-width)+28px)]" : ""
         }`}
       >
-        {nav === "chat" ? <ChatView /> : null}
-        {nav === "tasks" ? <TasksView /> : null}
-        {nav === "library" ? <CorpusGrid /> : null}
-        {nav === "reports" ? <ReportsView /> : null}
-        {nav === "prompts" ? <PromptSkillView /> : null}
+        <Suspense fallback={<div className="p-6 text-sm text-[var(--muted)]">正在加载…</div>}>
+          {nav === "chat" ? <ChatView /> : null}
+          {nav === "tasks" ? <TasksView /> : null}
+          {nav === "library" ? (openCorpusId
+            ? <CorpusDetail key={openCorpusId} corpusId={openCorpusId} onClose={closeCorpus} />
+            : <CorpusGrid />) : null}
+          {nav === "reports" ? <ReportsView /> : null}
+          {nav === "prompts" ? <PromptSkillView /> : null}
+        </Suspense>
       </div>
 
-      <Inspector />
-      <OpsDrawer />
+      <Suspense fallback={null}>
+        <Inspector />
+        <OpsDrawer />
 
-      {openCorpusId ? <CorpusDetail key={openCorpusId} corpusId={openCorpusId} onClose={closeCorpus} /> : null}
-
-      <DocumentPreview
-        doc={previewDoc?.doc ?? null}
-        page={previewDoc?.page ?? null}
-        corpus={previewDoc?.corpusId ?? effectiveCorpusId}
-        onClose={closeFullPreview}
-      />
-
-      {uiDocPanel ? (
-        <DocumentExplorer
-          open={explorerOpen}
-          onClose={() => setExplorerOpen(false)}
-          corpusReady={corpusReady}
-          corpus={explorerDoc?.corpusId ?? effectiveCorpusId}
-          docId={explorerDoc?.docId ?? null}
-          page={explorerDoc?.page ?? null}
-          onNavigate={(docId, page) => setExplorerDoc(docId ? { docId, page } : null)}
-          allowedDocIds={options.allowed_doc_ids}
-          onLimitScope={(ids) => setOptions((o) => ({ ...o, allowed_doc_ids: ids }))}
+        <DocumentPreview
+          doc={previewDoc?.doc ?? null}
+          page={previewDoc?.page ?? null}
+          corpus={previewDoc?.corpusId ?? effectiveCorpusId}
+          onClose={closeFullPreview}
         />
-      ) : null}
+
+        {uiDocPanel ? (
+          <DocumentExplorer
+            open={explorerOpen}
+            onClose={() => setExplorerOpen(false)}
+            corpusReady={corpusReady}
+            corpus={explorerDoc?.corpusId ?? effectiveCorpusId}
+            docId={explorerDoc?.docId ?? null}
+            page={explorerDoc?.page ?? null}
+            onNavigate={(docId, page) => setExplorerDoc(docId ? { docId, page } : null)}
+            allowedDocIds={options.allowed_doc_ids}
+            onLimitScope={(ids) => setOptions((o) => ({ ...o, allowed_doc_ids: ids }))}
+          />
+        ) : null}
+      </Suspense>
 
       <Toast />
       <StatusBanner />

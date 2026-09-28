@@ -2,7 +2,7 @@
  * Display-only project metadata parsed from the filename convention
  * `<year_from>_<year_to>_<project_no>_<pi>_<title>.pdf` (see corpus_management §3.3);
  * project-metadata archives reuse the same convention as Markdown.
- * The filename's year bounds are project bounds, not report years. Cards show
+ * The filename's year bounds are project bounds, not filing years. Cards show
  * filename-derived fields and unparseable names simply render nothing extra.
  */
 export type FundMeta = { yearFrom: number; yearTo: number; projectNo: string; pi: string; title: string };

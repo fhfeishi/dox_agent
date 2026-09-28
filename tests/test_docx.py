@@ -5,8 +5,8 @@ import io
 from docx import Document as DocxDocument
 
 from src.agent.config import Settings
-from src.docx_export import markdown_to_docx
 from src.agent.corpora import SOURCE_SUFFIXES
+from src.docx_export import markdown_to_docx
 from src.parsers import parse_file
 
 
@@ -44,6 +44,13 @@ def test_export_appends_a_readable_source_appendix():
     assert "[1] 癫痫报告（第 3 页；知识库 c1）" in text
     assert "[2] 公开资料（https://example.com/a；抓取于 2026-09-24T00:00:00+00:00）" in text
     assert "主要发现 [1]" in text
+
+
+def test_export_does_not_duplicate_the_report_source_appendix():
+    markdown = "# 报告\n\n## 发现\n证据 [1]。\n\n## 来源附录（系统记录）\n[1] 癫痫报告（文档 d1，版本 v1）"
+    document = _read(markdown_to_docx(markdown, citations=[{"doc_id": "d1", "title": "癫痫报告"}]))
+    text = "\n".join(paragraph.text for paragraph in document.paragraphs)
+    assert text.count("[1] 癫痫报告") == 1
 
 
 def test_export_without_citations_has_no_appendix():

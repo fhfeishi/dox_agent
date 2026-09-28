@@ -2,9 +2,11 @@
 
 import asyncio
 import json
+from io import BytesIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
+from zipfile import ZipFile
 
 from browser_artifacts_live import start_server
 from PIL import Image, ImageDraw
@@ -28,10 +30,9 @@ async def main():
     with TemporaryDirectory(prefix="dox-figures-live-") as directory:
         root = Path(directory)
         corpus = root / ".knowledge" / "fixture"
-        source = corpus / "source" / "study.pdf"
-        parsed = corpus / "parsed" / "study.pdf"
+        source = corpus / "source" / "2025_2025_P1_张三_study.pdf"
+        parsed = corpus / "parsed" / source.name
         source.parent.mkdir(parents=True)
-        (parsed / "images").mkdir(parents=True)
         cover = Image.new("RGB", (640, 400), "white")
         ImageDraw.Draw(cover).text((30, 30), "LOGO", fill="black")
         chart = Image.new("RGB", (640, 400), "white")
@@ -39,6 +40,9 @@ async def main():
         alternative = Image.new("RGB", (640, 400), "white")
         ImageDraw.Draw(alternative).ellipse((90, 50, 550, 350), outline="green", width=16)
         cover.save(source, save_all=True, append_images=[chart, alternative])
+        source_digest = sha256_file(source)
+        parsed = parsed / ".versions" / source_digest
+        (parsed / "images").mkdir(parents=True)
         chart.save(parsed / "images" / "chart.jpg", quality=95)
         alternative.save(parsed / "images" / "alternative.jpg", quality=95)
         pages = [{"page_idx": 0, "blocks": []}]
@@ -55,8 +59,8 @@ async def main():
             pages=[Page(number=1, text="标题"), Page(number=2, text="云边协同架构"),
                    Page(number=3, text="边缘计算拓扑")],
             markdown="填表日期：2025年\n资助类别：面上项目\n云边协同架构"))
-        knowledge.record_file("study.pdf", source.stat().st_size, source.stat().st_mtime_ns,
-                              sha256_file(source), doc["doc_id"], "indexed")
+        knowledge.record_file(source.name, source.stat().st_size, source.stat().st_mtime_ns,
+                              source_digest, doc["doc_id"], "indexed")
         reports.model_for = lambda settings: FigureModel()
         origin, server, thread, listener = start_server(create_app(settings, knowledge))
         try:
@@ -69,6 +73,25 @@ async def main():
                     "template_id": "comprehensive", "corpus_id": corpus_id_for("fixture"),
                     "illustrated": True})
                 assert response.status == 201, await response.text()
+                report = await response.json()
+                assert len(report["figures"]) == 1 and report["figures"][0]["page"] == 2
+                figure_id = report["figures"][0]["figure_id"]
+                figure_response = await page.request.get(
+                    f"{origin}/api/reports/{report['report_id']}/figures/{figure_id}")
+                assert figure_response.status == 200
+                figure_bytes = await figure_response.body()
+                assert figure_bytes == (parsed / "images" / "chart.jpg").read_bytes()
+                docx_response = await page.request.get(
+                    f"{origin}/api/reports/{report['report_id']}/export?format=docx")
+                assert docx_response.status == 200
+                with ZipFile(BytesIO(await docx_response.body())) as package:
+                    assert any(name.startswith("word/media/") for name in package.namelist())
+                    assert "图1 云边协同架构" in package.read("word/document.xml").decode()
+                zip_response = await page.request.get(
+                    f"{origin}/api/reports/{report['report_id']}/export?format=zip")
+                assert zip_response.status == 200
+                with ZipFile(BytesIO(await zip_response.body())) as package:
+                    assert package.read(f"figures/{figure_id}.jpg") == figure_bytes
                 await page.get_by_role("button", name="成果", exact=True).click()
                 await page.get_by_role("button", name="云边协同", exact=False).first.click()
                 image = page.get_by_role("img", name="图1 云边协同架构")
@@ -84,6 +107,7 @@ async def main():
                 await page.get_by_role("combobox", name="成果版本").select_option("1")
                 await expect(page.get_by_role("img", name="图1 云边协同架构")).to_be_visible()
                 await browser.close()
+                print(f"PASS: versioned PDF figure, page 2, preview and DOCX/ZIP; source_sha256={source_digest}")
         finally:
             server.should_exit = True
             thread.join(timeout=10)

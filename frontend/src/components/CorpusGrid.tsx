@@ -16,6 +16,7 @@ const PREPARATION: Record<string, { label: string; tone: "mint" | "yellow" | "ro
 function statusOf(corpus: CorpusInfo): { label: string; tone: "mint" | "yellow" | "rose" | "gray" } {
   if (corpus.missing) return { label: "目录缺失", tone: "rose" };
   if (corpus.job?.status === "running") return { label: "导入中", tone: "yellow" };
+  if ((corpus.indexed_count ?? corpus.docs_count) === 0) return { label: "无当前可检索资料", tone: "yellow" };
   if (corpus.failed_count) return { label: "部分失败", tone: "rose" };
   if (corpus.job?.status === "error" || corpus.preparation === "error") return { label: "导入失败", tone: "rose" };
   if (corpus.pending_count) return { label: "待入库", tone: "yellow" };
@@ -267,7 +268,7 @@ export function CorpusGrid() {
 
                 <footer className="mt-auto flex items-center gap-[10px] border-t border-[var(--hairline-soft)] pt-[11px] text-[11.5px] text-[var(--stone)]">
                   <span>
-                    已入库 <b className="font-semibold text-[var(--slate)]">{corpus.indexed_count ?? corpus.docs_count}</b> / 源文件 <b className="font-semibold text-[var(--slate)]">{corpus.source_count ?? 0}</b>
+                    当前可检索 <b className="font-semibold text-[var(--slate)]">{corpus.indexed_count ?? corpus.docs_count}</b> / 源文件 <b className="font-semibold text-[var(--slate)]">{corpus.source_count ?? 0}</b>
                   </span>
                   {corpus.pending_count || corpus.failed_count ? (
                     <span className="text-[#9a6500]">
@@ -288,6 +289,8 @@ export function CorpusGrid() {
                     className="rounded-[6px] bg-[var(--primary-soft)] px-[8px] py-[5px] text-[var(--primary-pressed)] hover:bg-[var(--primary-soft-2)] disabled:opacity-50">与此库对话</button>
                   <button type="button" disabled={Boolean(corpus.missing)} onClick={() => openCorpus(corpus.id)}
                     className="rounded-[6px] px-[8px] py-[5px] text-[var(--steel)] hover:bg-[var(--surface)] disabled:opacity-50">添加资料</button>
+                  <button type="button" disabled={Boolean(corpus.missing)} onClick={() => openCorpus(corpus.id)}
+                    className="rounded-[6px] px-[8px] py-[5px] text-[var(--steel)] hover:bg-[var(--surface)] disabled:opacity-50">四维浏览</button>
                   <button type="button" disabled={Boolean(corpus.missing) || ingestBusy} onClick={() => void runCorpusIngest(corpus.id)}
                     className="rounded-[6px] px-[8px] py-[5px] text-[var(--steel)] hover:bg-[var(--surface)] disabled:opacity-50">刷新</button>
                 </div>

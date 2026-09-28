@@ -32,7 +32,7 @@ def ready_app(tmp_path, factory=None):
     corpus.mkdir(parents=True)
     settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path)
     store = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
-    store.put(Document(title="seed", origin="seed", kind="text", parser="text",
+    store.put(Document(title="seed", origin="2021_2025_P1_张三_seed.md", kind="text", parser="text",
                        pages=[Page(number=1, text="正文")], markdown="填表日期：2025年\n正文"))
     cid = corpus_id_for("fixture")
     maker = factory or (lambda corpus_id: FakeGraph(corpus_id))
@@ -187,7 +187,7 @@ def test_cancelled_run_backfills_interrupted_status(tmp_path):
 
 
 def test_user_report_run_is_a_child_of_the_intake_run(tmp_path, monkeypatch):
-    async def fake_generate(knowledge, settings, params, *, llm=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
         return "# 报告"
 
     monkeypatch.setattr("src.main.generate_markdown", fake_generate)
@@ -221,7 +221,7 @@ def test_user_report_run_records_server_verified_brief_origins(tmp_path, monkeyp
             yield {"event": "token", "data": {"text": "可以生成"}}
             yield {"event": "done", "data": {"ok": True}}
 
-    async def fake_generate(knowledge, settings, params, *, llm=None):
+    async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
         return "# 报告"
 
     monkeypatch.setattr("src.main.generate_markdown", fake_generate)

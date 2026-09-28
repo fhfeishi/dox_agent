@@ -20,6 +20,7 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
   const [progress, setProgress] = useState("");
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [selectedDoc, setSelectedDoc] = useState<string | null>(null);
+  const [pendingJobId, setPendingJobId] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     try {
@@ -34,32 +35,67 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
     void load();
   }, [load]);
 
+  /** 尚未结束的任务：再查一次最新进度，不把前端停止等待当成后端失败。 */
+  async function checkPending() {
+    if (!pendingJobId) return;
+    setBusy(true);
+    try {
+      setProgress(`查询任务 ${pendingJobId.slice(0, 8)}…`);
+      const current = await fetchTargetJob(corpusId, pendingJobId);
+      setProgress(`已完成 ${current.completed} / 共 ${current.total}`
+        + (current.errors.length
+          ? ` · 失败 ${current.errors.length} 项：${current.errors.map((item) => item.error).join("、")}`
+          : ""));
+      await load();
+      if (current.status !== "running") {
+        setPendingJobId(null);
+        setError("");
+        showToast("四维提取已结束，列表已刷新");
+      }
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function runExtraction(force: boolean) {
     const docIds = force && selectedDoc ? [selectedDoc] : [...selected];
     if (!docIds.length) return;
     setBusy(true);
     setError("");
+    setPendingJobId(null);
     setProgress("已提交，正在提取…");
     try {
       const job = await extractTargets(corpusId, docIds, force);
       let last = job;
+      let running = true;
       for (let attempt = 0; attempt < 240; attempt += 1) {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         const current = await fetchTargetJob(corpusId, job.job_id);
         last = current;
-        setProgress(current.status === "running"
+        running = current.status === "running";
+        setProgress(running
           ? `提取中 · 已完成 ${current.completed} / 共 ${current.total}`
           : `已完成 ${current.completed} / 共 ${current.total}`
             + (current.errors.length
               ? ` · 失败 ${current.errors.length} 项：${current.errors.map((item) => item.error).join("、")}`
               : ""));
-        if (current.status !== "running") break;
+        if (!running) break;
       }
       await load();
-      // 不隐瞒失败：只有全部成功才提示更新完成。
-      if (last.status === "done") showToast("四维信息已更新");
-      else if (last.status === "partial") setError(`部分完成：成功 ${last.completed} / 共 ${last.total}，失败 ${last.errors.length} 项`);
-      else setError(last.errors.map((item) => item.error).join("、") || "四维提取失败");
+      // 不隐瞒失败，也不把“前端停止等待”当成后端失败：
+      // running 表示轮询窗口结束但任务仍在进行，其余状态按真实结果呈现。
+      if (running) {
+        setPendingJobId(last.job_id);
+        setError("仍在处理：已停止自动刷新，可点击“继续查看状态”查看最新进度");
+      } else if (last.status === "done") {
+        showToast("四维信息已更新");
+      } else if (last.status === "partial") {
+        setError(`部分完成：成功 ${last.completed} / 共 ${last.total}，失败 ${last.errors.length} 项`);
+      } else {
+        setError(last.errors.map((item) => item.error).join("、") || "四维提取失败");
+      }
     } catch (e) {
       setError((e as Error).message);
       setProgress("");
@@ -85,6 +121,11 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
         {selectedDoc ? (
           <Button variant="ghost" size="sm" disabled={busy} onClick={() => void runExtraction(true)}>
             重新提取所选
+          </Button>
+        ) : null}
+        {pendingJobId ? (
+          <Button variant="quiet" size="sm" disabled={busy} onClick={() => void checkPending()}>
+            继续查看状态
           </Button>
         ) : null}
       </div>

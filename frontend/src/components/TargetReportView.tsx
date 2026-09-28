@@ -5,7 +5,7 @@ import { Pill } from "./ui";
 
 /** 报告详情：四个分区 + 原文明示关联 + 证据定位（版本不符显示“资料已更新”）。 */
 export function TargetReportView({ corpusId, docId }: { corpusId: string; docId: string }) {
-  const { inspectorTarget, showInspector } = useApp();
+  const { inspectorTarget, showInspector, openEvidence } = useApp();
   const index = inspectorTarget.kind === "target" ? inspectorTarget.index : 0;
   const [detail, setDetail] = useState<TargetDetail | null>(null);
   const [error, setError] = useState("");
@@ -27,10 +27,10 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
   const relations = detail.relations.filter((item) => item.from.dimension === active.key
     || item.to.dimension === active.key);
 
-  function openEvidence(evidence: TargetEvidence) {
-    showInspector({
-      kind: "document",
-      doc: {
+  function openEvidenceAt(evidence: TargetEvidence) {
+    const isPdf = evidence.locator.basis === "pdf_page";
+    // 走放大预览：它才是承载“正文定位/跳页”的表面，关闭后回到该报告的四维分区。
+    openEvidence({
         doc_id: detail!.document.doc_id,
         title: detail!.document.title,
         origin: detail!.document.origin,
@@ -40,12 +40,10 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
         parser: detail!.document.parser,
         pages: detail!.document.pages,
         corpus_id: corpusId,
-        // 正文定位用后端“解析正文”口径：有可靠页码则跳页，否则交给引文逐字定位。
-        focus: evidence.locator.basis === "pdf_page" ? undefined : evidence.quote,
       },
-      page: evidence.locator.basis === "pdf_page" ? (evidence.locator.page ?? null) : null,
+      isPdf ? (evidence.locator.page ?? null) : null,
       corpusId,
-    });
+      isPdf ? undefined : evidence.quote);
   }
 
   return (
@@ -90,7 +88,7 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
               {item.evidence.map((evidence, position) => (
                 <li key={`${evidence.quote}:${position}`}>
                   <button type="button" className="text-left text-[11.5px] text-[var(--link)] hover:underline"
-                    onClick={() => openEvidence(evidence)}>
+                    onClick={() => openEvidenceAt(evidence)}>
                     {evidence.locator.basis === "pdf_page" ? `第 ${evidence.locator.page} 页` : "解析正文位置"} · “{evidence.quote.slice(0, 60)}…”
                   </button>
                 </li>

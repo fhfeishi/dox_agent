@@ -46,7 +46,7 @@ export type InspectorTarget = { kind: "overview" } | { kind: "task"; taskId: str
   { kind: "corpus"; corpusId: string } | { kind: "report"; reportId: string; sessionKey: string } |
   { kind: "artifact"; artifactId: string } |
   { kind: "document"; doc: DocumentInfo; page: number | null; corpusId: string } |
-  { kind: "execution"; runId?: string };
+  { kind: "execution"; runId?: string }
   | { kind: "target"; corpusId: string; docId: string; index: number };
 
 function inspectorIdentity(target: InspectorTarget): string {
@@ -161,11 +161,15 @@ export interface AppValue {
   openDocument: (docId: string, page?: number) => void;
   /** Open a preview for a specific corpus (browsing must not depend on the active corpus). */
   openPreview: (doc: DocumentInfo, page: number | null, corpusId: string) => void;
-  openFullPreview: (doc: DocumentInfo, page: number | null, corpusId: string, returnToInspector?: boolean) => void;
+  openFullPreview: (doc: DocumentInfo, page: number | null, corpusId: string, returnToInspector?: boolean, focus?: string, evidence?: boolean) => void;
+  /** 四维证据：统一走放大预览（可靠页码 PDF 跳页，否则在解析正文中定位引文）。 */
+  openEvidence: (doc: DocumentInfo, page: number | null, corpusId: string, focus?: string) => void;
   closeFullPreview: () => void;
   limitScope: (ids: string[] | null) => void;
   previewDoc: PreviewTarget;
   setPreviewDoc: Dispatch<SetStateAction<PreviewTarget>>;
+  /** 放大预览承载的证据引文：命中时在解析正文中定位，为空表示按页码/普通预览打开。 */
+  previewFocus: string | null;
   explorerOpen: boolean;
   setExplorerOpen: Dispatch<SetStateAction<boolean>>;
   explorerDoc: ExplorerTarget;
@@ -260,6 +264,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [taskVersionError, setTaskVersionError] = useState("");
   const [tasksError, setTasksError] = useState("");
   const [previewDoc, setPreviewDoc] = useState<PreviewTarget>(null);
+  const [previewFocus, setPreviewFocus] = useState<string | null>(null);
   const [fullPreviewReturnsToInspector, setFullPreviewReturnsToInspector] = useState(false);
   const [explorerOpen, setExplorerOpen] = useState(false);
   const [explorerDoc, setExplorerDoc] = useState<ExplorerTarget>(null);
@@ -812,14 +817,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
     openFullPreview(doc, page, corpusId, inspectorOpen);
   }
 
-  function openFullPreview(doc: DocumentInfo, page: number | null, corpusId: string, returnToInspector = false) {
+  function openFullPreview(doc: DocumentInfo, page: number | null, corpusId: string, returnToInspector = false, focus?: string, evidence = false) {
     setDrawerOpen(false);
     setInspectorOpen(false);
     setFullPreviewReturnsToInspector(returnToInspector);
+    setPreviewFocus(focus ?? null);
     // 库内视图是主区而非抽屉：预览时不关闭它，返回后仍保留筛选、选中报告与滚动位置。
-    // With the doc-panel flag on, citations open the explorer (tree + raw file viewer);
-    // otherwise fall back to the text-only / PDF preview.
-    if (uiFlags.docPanel) {
+    // With the doc-panel flag on, plain document browsing opens the explorer (tree + raw
+    // file viewer); otherwise fall back to the text-only / PDF preview.
+    // 四维证据统一走放大预览：文件浏览器没有“回到该报告四维分区”的返回路径；
+    // 可靠页码在这里表现为 PDF 跳页，其余表现为正文定位。
+    if (uiFlags.docPanel && !evidence) {
       setExplorerDoc({ docId: doc.doc_id, page, corpusId });
       setExplorerOpen(true);
       return;
@@ -827,8 +835,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setPreviewDoc({ doc, page, corpusId });
   }
 
+  /** 四维证据入口：放大预览承载正文定位，关闭后回到该报告的四维分区。 */
+  function openEvidence(doc: DocumentInfo, page: number | null, corpusId: string, focus?: string) {
+    // 证据（页码跳页或正文定位）一律走放大预览，不再分支到文件浏览器。
+    openFullPreview(doc, page, corpusId, true, focus, true);
+  }
+
   function closeFullPreview() {
     setPreviewDoc(null);
+    setPreviewFocus(null);
     if (fullPreviewReturnsToInspector) setInspectorOpen(true);
     setFullPreviewReturnsToInspector(false);
   }
@@ -1141,10 +1156,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
       openDocument,
       openPreview,
       openFullPreview,
+      openEvidence,
       closeFullPreview,
       limitScope: (ids) => updateOptions((o) => ({ ...o, allowed_doc_ids: ids })),
       previewDoc,
       setPreviewDoc,
+      previewFocus,
       explorerOpen,
       setExplorerOpen,
       explorerDoc,
@@ -1219,6 +1236,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       editing,
       viewingBranch,
       previewDoc,
+      previewFocus,
       explorerOpen,
       explorerDoc,
       drawerOpen,

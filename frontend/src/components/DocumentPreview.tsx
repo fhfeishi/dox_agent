@@ -20,14 +20,19 @@ export function DocumentPreview({
   doc,
   page,
   corpus,
+  focus,
   onClose,
 }: {
   doc: DocumentInfo | null;
   page?: number | null;
   corpus?: string;
+  /** 证据引文：命中时在解析正文中定位，优先于按页码打开原文件。 */
+  focus?: string | null;
   onClose: () => void;
 }) {
-  const isPdf = !!doc && doc.kind === "pdf";
+  const quote = focus?.trim() ?? "";
+  // 文本定位不能落在页码上：有引文时一律走规范化正文定位。
+  const isPdf = !!doc && doc.kind === "pdf" && !quote;
   return (
     <DocumentPanel
       open={!!doc}
@@ -49,8 +54,9 @@ export function DocumentPreview({
       {isPdf && doc ? (
         <PdfViewer docId={doc.doc_id} version={doc.version} page={page ?? null} pages={doc.pages} corpus={corpus} />
       ) : (
-        doc?.focus
-          ? <TargetFocusedText doc={doc} corpus={corpus} quote={doc.focus} />
+        // quote 非空不代表 doc 非空：两件都要成立才进入定位组件。
+        doc && quote
+          ? <TargetFocusedText doc={doc} corpus={corpus} quote={quote} />
           : <TextPreview doc={doc} corpus={corpus} />
       )}
     </DocumentPanel>

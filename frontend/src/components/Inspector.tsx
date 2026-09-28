@@ -11,6 +11,7 @@ import { ReportMarkdown } from "./ReportMarkdown";
 import type { ReportFigure } from "./ReportMarkdown";
 import remarkGfm from "remark-gfm";
 import { TextPreview } from "./DocumentPreview";
+import { TargetFocusedText } from "./TargetFocusedText";
 import { TargetReportView } from "./TargetReportView";
 
 type InspTab = "out" | "cite" | "src";
@@ -851,7 +852,11 @@ export function Inspector() {
             <SectionTitle>资料原文</SectionTitle>
             <p className="mb-[12px] break-all text-[11px] text-[var(--stone)]">{documentMeta(inspectorTarget.doc)}</p>
             <Button size="sm" className="mb-[14px]" onClick={() => openFullPreview(inspectorTarget.doc, inspectorTarget.page, inspectorTarget.corpusId, true)}>放大阅读</Button>
-            <TextPreview doc={inspectorTarget.doc} corpus={inspectorTarget.corpusId} />
+            {inspectorTarget.doc.focus ? (
+              <TargetFocusedText doc={inspectorTarget.doc} corpus={inspectorTarget.corpusId} quote={inspectorTarget.doc.focus} />
+            ) : (
+              <TextPreview doc={inspectorTarget.doc} corpus={inspectorTarget.corpusId} />
+            )}
           </>
         ) : null}
 

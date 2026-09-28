@@ -33,6 +33,7 @@ export function App() {
     options,
     setOptions,
     previewDoc,
+    previewFocus,
     closeFullPreview,
     explorerOpen,
     setExplorerOpen,
@@ -74,6 +75,7 @@ export function App() {
           doc={previewDoc?.doc ?? null}
           page={previewDoc?.page ?? null}
           corpus={previewDoc?.corpusId ?? effectiveCorpusId}
+          focus={previewFocus}
           onClose={closeFullPreview}
         />
 

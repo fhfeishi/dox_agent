@@ -204,6 +204,52 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         assert stale.json()["detail"]["message"] == "资料已更新"
 
 
+def test_user_target_extraction_refuses_to_publish_when_the_source_changes(tmp_path, monkeypatch):
+    import time
+    from types import SimpleNamespace
+
+    from src import targets
+
+    app, store = setup(tmp_path)
+    body = "# 报告\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。"
+    saved = store.put(Document(title="示例报告", origin="report.md", kind="text", parser="markdown",
+                               pages=[Page(number=1, text=body)], markdown=body))
+
+    class TargetModel:
+        """第一次模型调用期间替换资料：提取器读到的是旧版本，发布前才变。"""
+
+        async def ainvoke(self, messages):
+            store.put(Document(title="示例报告", origin="report.md", kind="text", parser="markdown",
+                               pages=[Page(number=1, text=body + "\n更新")], markdown=body + "\n更新"),
+                      doc_id=saved["doc_id"])
+            return SimpleNamespace(content='''{
+              "facets": [
+                {"key":"场景","items":[{"id":"s1","name":"临床诊疗","desc":"用于临床诊疗流程。","evidence":[{"quote":"临床诊疗场景"}]}]},
+                {"key":"问题","items":[]}, {"key":"技术","items":[]}, {"key":"成果","items":[]}
+              ]
+            }''', response_metadata={})
+
+    monkeypatch.setattr(targets, "model_for", lambda settings: TargetModel())
+    with TestClient(app) as client:
+        corpus_id = client.get("/api/corpora").json()[0]["id"]
+        started = client.post(f"/api/corpora/{corpus_id}/target", json={"doc_ids": [saved["doc_id"]]})
+        assert started.status_code == 202
+        job_id = started.json()["job_id"]
+        deadline = time.monotonic() + 3
+        while time.monotonic() < deadline:
+            job = client.get(f"/api/corpora/{corpus_id}/target/jobs/{job_id}").json()
+            if job["status"] != "running":
+                break
+            time.sleep(0.01)
+        stale = client.get(f"/api/corpora/{corpus_id}/reports/{saved['doc_id']}/target")
+
+    # 期间变化的结果不得发布：任务报“资料已更新”，旧结果也没有落盘。
+    assert job["status"] == "error", job
+    assert job["errors"] and job["errors"][0]["error"] == "资料已更新", job["errors"]
+    assert not (tmp_path / ".knowledge" / "fixture" / "target" / f"{saved['doc_id']}.json").exists()
+    assert stale.status_code == 404
+
+
 def test_user_pdf_preview_preflight_distinguishes_stale_version_and_missing_source(tmp_path):
     app, store = setup(tmp_path)
     source = tmp_path / ".knowledge" / "preview-test" / "source" / "report.pdf"

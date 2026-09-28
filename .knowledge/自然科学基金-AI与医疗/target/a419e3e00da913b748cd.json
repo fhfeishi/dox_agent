@@ -1,0 +1,267 @@
+{
+  "doc_id": "a419e3e00da913b748cd",
+  "version": "0f558283cb7966a7b5a4",
+  "source_hash": "84c659276076d90480c17198c57670682888cf1537efc1f54cd8858e9075a10d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:58:42.674040+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-516b602fd1cf",
+          "name": "结直肠癌N分期与再分期",
+          "desc": "对于无转移的结直肠癌，淋巴结受累与否是评估患者预后和选择治疗方案的重要决定因素。",
+          "evidence": [
+            {
+              "quote": "对于无转移的结直肠癌，淋巴结受累与否(N分期)是评估患者预后和选择治疗方案的重要决定因素。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 676,
+                "end_char": 720
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ]
+        },
+        {
+          "id": "item-329eb55be82b",
+          "name": "结直肠癌风险分层与治疗指导",
+          "desc": "为优化结直肠癌的风险分层进而指导治疗奠定基础。",
+          "evidence": [
+            {
+              "quote": "为优化结直肠癌的风险分层进而指导治疗奠定了基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3543,
+                "end_char": 3565
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3283f91cdd65",
+          "name": "隐匿转移灶识别争议",
+          "desc": "对于如何定义淋巴隐匿转移灶在N分期中的地位尚存在巨大争议，以H&E染色为基础的常规病理分析多不能有效识别OTC。",
+          "evidence": [
+            {
+              "quote": "然而，对于如何定义淋巴隐匿转移灶(occult tumor cells, OTC)在N分期中的地位尚存在巨大争议。原因在于以H&E染色为基础的常规病理分析多不能有效识别OTC。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 721,
+                "end_char": 808
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ]
+        },
+        {
+          "id": "item-379d33b57835",
+          "name": "OTC漏诊率接近25%",
+          "desc": "对常规病理诊断N0期的淋巴结进行免疫组化染色，发现OTC漏诊率接近25%。",
+          "evidence": [
+            {
+              "quote": "我们对常规病理诊断N0期的淋巴结进行免疫组化染色，发现OTC漏诊率接近25%。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 809,
+                "end_char": 847
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ]
+        },
+        {
+          "id": "item-71aae6c8a6d8",
+          "name": "缺乏高质量标注数据集",
+          "desc": "对肿瘤转移淋巴结的研究非常有限，原因在于缺乏高质量标注的数据集。",
+          "evidence": [
+            {
+              "quote": "但对肿瘤转移淋巴结的研究却非常有限，原因在于缺乏高质量标注的数据集。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 873,
+                "end_char": 906
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-287b2914e615",
+          "name": "自监督对比学习预训练",
+          "desc": "以显性转移淋巴结图像作为输入建立预训练模型，再用少量人工标注的包含OTC的图像微调模型。",
+          "evidence": [
+            {
+              "quote": "本项目拟采用自监督对比学习的方法，以显性转移淋巴结图像作为输入建立预训练模型，进而采用少量人工标注的包含OTC的图像微调模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 939,
+                "end_char": 1000
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ]
+        },
+        {
+          "id": "item-b9cf0635b40e",
+          "name": "注意力机制多示例模型",
+          "desc": "建立基于注意力机制的多示例深度学习模型，实现不同转移状态淋巴结分类与转移灶精准定位。",
+          "evidence": [
+            {
+              "quote": "我们首先探索建立了基于注意力机制的多示例深度学习模型，顺利实现了对不同转移状态（Negative，ITC，MM和MacroM）淋巴结的分类，并通过对注意力评分的可视化实现了对转移灶的精准定位",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2956,
+                "end_char": 3050
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ]
+        },
+        {
+          "id": "item-97e1055efbad",
+          "name": "虚拟免疫组化与多标记染色",
+          "desc": "训练基于生成对抗深度学习框架的模型，实现通过常规H&E染色图像生成解析肿瘤微环境的分子标志物IHC图像。",
+          "evidence": [
+            {
+              "quote": "训练了基于生成对抗深度学习框架的模型，实现了通过常规H&E染色图像生成用于解析结直肠癌肿瘤微环境的常用分子标志物的IHC图像，图像质量通过了视觉图灵测试",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3272,
+                "end_char": 3347
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-491a7910f911",
+          "name": "最大H&E与IHC配对数据集",
+          "desc": "建立可用于不同模态病理图像的通用精确配准流程，并以此建立目前最大的结直肠癌H&E和IHC配对图像数据集。",
+          "evidence": [
+            {
+              "quote": "建立了可用于不同模态病理图像的通用精确配准流程，并以之为基础建立了目前最大的结直肠癌H&E和IHC配对图像数据集",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3213,
+                "end_char": 3268
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-34d019d49d57",
+          "name": "虚拟多标志物染色图像",
+          "desc": "通过对虚拟IHC图像中DAB通道的去卷积和多通道整合，建立虚拟多标志物染色图像。",
+          "evidence": [
+            {
+              "quote": "通过对虚拟IHC图像中DAB通道的去卷积和多通道整合，建立了虚拟多标志物染色图像",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3351,
+                "end_char": 3390
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-55ac8a37c0f5",
+          "name": "空间分子标志物预测复发风险",
+          "desc": "通过对虚拟多标志物图像进行单细胞分割和空间组学分析，获得可用于预测直肠癌风险的空间分子标志物。",
+          "evidence": [
+            {
+              "quote": "通过对虚拟多标志物图像进行单细胞分割和空间组学分析，获得了可用于预测直肠癌风险的空间分子标志物，实现了患者复发转移风险的预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3394,
+                "end_char": 3455
+              },
+              "version": "0f558283cb7966a7b5a4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-516b602fd1cf"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-3283f91cdd65"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-71aae6c8a6d8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-287b2914e615"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b9cf0635b40e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-491a7910f911"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-97e1055efbad"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-55ac8a37c0f5"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+![](images/page_0_image_0.jpg)
+
+项目批准号 82205315申请代码 H3121归口管理部门收件日期
+
+![](images/page_0_image_2.jpg)
+
+20251182205315
+
+# 国家自然科学基金
+
+# 资助项目结题/成果报告
+
+资助类别:青年科学基金项目（C类）[原青年科学基金项目]
+
+亚类说明:
+
+附注说明:
+
+项目名称:基于大数据和机器学习的中医体质智能分类研究
+
+负责人:韩东燃
+
+BRID: 07086.00.05680
+
+电子邮件: handongr@gmail.com
+
+电话: 13466590473
+
+依托单位: 北京中医药大学
+
+联系人: 秦灵灵
+
+电话: 15210969396
+
+资助经费:30.0000（万元）
+
+执行年限: 2023.01-2025.12
+
+填表日期:2025年12月29日
+
+国家自然科学基金委员会制（2025年）
+
+## 项目摘要
+
+## 中文摘要:
+
+精准体质辨识是普及中医治未病的关键途径，兼夹体质在人群中普遍存在，难以精确识别和描述，为实现九种体质分类在精准治未病中的应用，需要更加精准的分类方法。基于大数据和机器学习的聚类算法能够实现海量数据的精准分类，在生物医学和心理学等领域已获得广泛应用。本项目拟将大数据算法应用在经典中医体质理论中，以尝试减少其在实际测算过程中尚需医师参与的人为主观性，并提升其分类算法的精准性，具体内容包括:（1）基于机器学习的中医体质分类及其临床意义解读
+
+（2）基于真实世界中医体质量表数据形态和分布，重新构建量表题目权重（3）基于真实世界体质和临床数据构建动态演化的智能治未病调体方案基于机器学习的聚类算法可提高体质分类精准度、普适性和兼容性，对促进中医体质学理论发展，加深对人体生命活动规律的认知，开发基于中医体质的智能健康管理，推动中医体质的临床应用和普及精准化治未病具有重要意义。
+
+## Abstract:
+
+With the deepening of the aging trend in China, the prevalence of chronic diseases increases, and the medical expenditure increases. The physiotherapy of Traditional Chinese medicine has a complete set of theories and methods for the change of nutritional state, immune ability, physical (fitness, emotional stability and other aspects. Therefore, the evaluation of TCM constitution can be used as an important guide for preventive medicine and disease treatment. Accurate constitution identification is an important condition for promoting and popularizing the treatment of benign diseases. However, in actual constitution classification studies, 8 kinds of biased constitutions and a small number of double constitutions are mainly taken as the research objects, and the relatively simplified classification method restricts the practical application of nine kinds of constitution classification in the precise treatment of benign diseases. Clustering algorithm has been widely used in various fields, such as biomedicine, psychology and other fields. However, it has not been used in TCM constitution theory, and the current classification methods are subjective and lack of accuracy. Therefore, this project will :(1) interpret the constitution category of TCM constitution based on machine learning; (2) Establishment of intelligent prescription database based on expert and machine learning; (3)Based on the data form and distribution of TCM physical fitness scale in the real world, reconstruct the scale item weight.Clustering algorithm based on machine learning can improve the physique classification accuracy, universality and compatibility, to promote the development of the theory of traditional Chinese medicine physique, deepen the cognition of human body life activity rule and development based on the traditional Chinese medicine physique health intelligent management, promote the clinical application and popularization of TCM constitution accurate cure not ill is of great significance.
+
+关键词（用分号分开）:人工智能；机器学习；中医体质；数据降维；聚类分析
+
+Keywords (separated by;): Artificial Intelligence; Machine Learning; Traditional Chinese Medicine Constitution; Dimension Reduction; Clustering Analysis
+
+## 结题摘要
+
+中文摘要（对项目的背景、主要研究内容、重要结果、关键数据及其科学意义等做简单概述）:
+
+围绕精准体质辨识在中医治未病中的关键需求，本项目依托93811份真实世界大规模中医体质量表数据，系统引入机器学习与聚类分析技术，旨在降低传统辨识对医师主观判断的依赖，并解决复杂兼夹体质的识别难题。项目严格按照既定目标执行，完成了基于机器学习的体质分类研究、条目权重重构及智能调体方案框架构建。
+
+研究过程中，本项目首先构建了整合统计学方法与机器学习模型的混合权重计算框架，通过集成排序确立了更稳健的条目权重及各体质核心症状。相关模型展现出卓越的预测效能，受试者工作特征曲线下面积达0.819至0.936，为量表结构的科学验证与快速筛查工具的开发提供了客观依据。针对兼夹体质的高复杂度，项目采用无监督学习策略，结合UMAP降维与高斯混合模型聚类技术，成功识别出10个具有特征性症状模式的临床亚群，为复杂体质的精细化辨识与个体化干预奠定了理论基础。
+
+在成果转化与应用方面，项目研发了智能治未病管理体系千人千方小程序，并在浙江省磐安县落地实施了示范项目。通过精准辨识、动态评估与个性化干预的闭环模式，该体系对偏颇体质展现出显著的调节效应，其中气郁质改善率达20.13%，气虚质改善率达14.59%，有力验证了科研成果在基层卫生服务一线的应用价值。
+
+项目已取得丰硕的学术产出，包括在国际期刊Chinese Medicine发表的机器学习辅助体质快速判定研究，以及在BMC Public Health发表的躯体亚健康机制研究，累计产出中文核心论文2篇，SC I论文2篇（其中一篇是2025年接收，2026年见刊） ，另外还有2篇SCI论文在投（其中1篇已经进入同行审议阶段）。此外，项目申请发明专利: 一种中医体质智能辨识方法系统存储介质及设备，专利申请号202511795989.4。总体而言，本项目实现了中医体质辨识从传统等权计分向数据驱动智能辨识的方法学升级，为中医体质学研究提供了可复用的技术路线，并为精准治未病智能工具的推广奠定了坚实基础。
+
+## Abstract (Brief description of research background, main methods, contributions, and research data):
+
+Addressing the critical need for precise constitution identification in the preventive treatment of disease within Traditional Chinese Medicine (TCM), this project relied on 93,811 real-world, large-scale TCM constitution scale responses. By systematically introducing machine learning and cluster analysis technologies, the study aimed to reduce reliance on clinicians' subjective judgments and resolve the identification challenges of complex concurrent constitutions. The project was executed strictly according to established objectives, completing research on machine learning-based constitution classification, reweighting of scale items, and the construction of an intelligent health management framework.
+
+During the research process, the project first constructed a hybrid weight calculation framework integrating statistical methods and machine learning models. Through ensemble ranking, it established more robust item weights and core symptom sets for each constitution. The associated models demonstrated excellent predictive performance, with the Area Under the Receiver Operating Characteristic Curve (AUC) ranging from 0.819 to 0.936, providing an objective basis for the scientific validation of scale structures and the development of rapid screening tools. Addressing the high complexity of concurrent constitutions, the project adopted an unsupervised learning strategy, combining UMAP dimensionality reduction with Gaussian Mixture Model (GMM) clustering
+
+technology. This successfully identified 10 clinical subgroups with characteristic symptom patterns, laying a theoretical foundation for the refined identification and individualized intervention of complex constitutions.
+
+Regarding achievement transformation and application, the project developed the Qianren Qianfang WeChat mini-program as an intelligent health management system, which was implemented as a demonstration project in Pan'an County, Zhejiang Province. Through a closed-loop mode of precise identification, dynamic assessment, and personalized intervention, the system showed significant regulatory effects on unbalanced constitutions. Specifically, the improvement rate reached 20.13% for Qi-stagnation and 14.59% for Qi-deficiency, effectively validating the application value of these scientific research results in primary healthcare. C
+
+The project has achieved significant academic results, including one paper on machine learning-assisted rapid constitution identification published in Chinese Medicine and one paper on the mechanism of somatic sub-health published in BMC Public Health. A total of 2 Chinese core journal papers and 2 SCI papers have been published (one accepted in 2025 and to appear in 2026). In addition, another 2 SCI papers are under submission, with one already under peer review.Additionally, the project applied for an invention patent titled "An Intelligent Identification Method, System, Storage Medium, and Device for Traditional Chinese Medicine Constitution" (Patent Application No. 202511795989.4). Overall, this project achieved a methodological upgrade of TCM constitution identification from traditional equal-weight scoring to data-driven intelligent identification, providing a reproducible technical route for TCM constitution research and laying a solid foundation for the promotion of intelligent tools for precise preventive treatment of disease.
+
+关键词（用分号分开）:体质辨识；治未病；机器学习；聚类分析；智能调体
+
+Keywords (separated by;) Constitution Identification; Preventive Healthcare; Machine Learning; Clustering Analysis; Intelligent Constitution Adjustment
+
+## 正文
+
+《结题/成果报告》正文分为两个部分:结题部分和成果部分。请按照《结题/成果报告》填报说明及撰写要求填写。
+
+## （一）结题部分
+
+## 1. 研究计划执行情况概述
+
+## （1）按计划执行情况
+
+本项目自2023年1月启动以来，严格遵循《资助项目计划书》的进度安排，分阶段、高质量地完成了所有既定任务。
+
+多源数据采集与预处理阶段:我们收集并清理了共计93,811份真实世界的中医体质量表数据，并同步开展了覆盖4,921例兼夹体质人群的细分数据集构建工作。通过对原始数据进行标准化和离散化处理，为后续机器学习算法的训练奠定了坚实的数据基础。
+
+算法框架构建与模型选型阶段:针对体质判定这一核心环节，不仅对比了UMAP、t-SNE、PCA等多种降维技术，还构建了包含 CatBoost、XGBoost、神经网络等9种模型的集成学习框架。通过交叉验证和超参数调优，优选出了最适合中医体质数据的判定路径。
+
+身心关联机制挖掘阶段:在完成基础分类研究后，进一步利用网络分析和潜在剖面分析技术，对体质与心理症状的复杂交互进行了系统建模。该阶段的研究有效地拓展了中医体质学的理论内涵，产出了多篇高质量学术论文。
+
+系统研发与落地应用阶段:在项目后期，我们将前期沉淀的快速判定模型进行工程化转化。在浙江省磐安县落地开展了“千人千方”健康管理项目，并完成了配套微信小程序的开发与上线工作，成功将研究成果推向基层卫生服务一线。
+
+## （2）研究目标完成情况
+
+实现了中医体质分类的精准化与临床意义的深度解读:本项目成功实现了对九种体质及其复杂兼夹状态的精准分类。通过无监督聚类算法，我们将兼夹体质科学地划分为10个特征鲜明的子群，解决了以往兼夹体质难以精确描述的难题。
+
+同时，通过身心网络模型，明确了气虚、阴虚等体质在心理亚健康中的核心地位，完成了计划书中对体质临床意义进行现代科学解读的目标。
+
+完成了基于真实世界的中医体质评价体系权重重构:项目彻底达成了“重新构建量表题目权重”这一核心任务。通过集成机器学习框架，我们从9万余例真实样本中提取并量化了各症状条目的权重，识别出了各体质的“核心症状集”，修正了传统赋分方式中的主观偏差。这一成果不仅优化了现有判定标准， 为开发更简便、高效的筛查工具提供了算法依据。
+
+构建了动态演化的智能“治未病”健康管理模式:项目达成了“构建智能治未病方案”的最终应用目标。我们不仅在理论上开发出了AUC高达0.819-0.936的快速判定模型，更在实践中通过“千人千方”项目和小程序，建立了一套涵盖“精准辨识-动态评估-个性化干预”的闭环系统。这标志着项目不仅停留在算法研究层面，更在推动中医体质精准化、普及化方面取得了实质性突破。
+
+圆满完成各项学术指标:截至结题，本项目已在国际期刊Chinese Medicine发表学术论文 1 篇，BMC Public Health 发表学术论文 1 篇，另有 2 篇高水平 SCI论文正在审稿中（涉及权重计算与聚类分析，见附件），在中文核心期刊发表论文2篇，申请国家发明专利 项， 研发数字化系统1套，全面达成了青年科学基金项目的产出要求。
+
+## 2. 研究工作主要进展、结果和影响
+
+## (1) 主要研究内容
+
+1. 集成机器学习框架下的中医体质评价量表权重重构与核心症状集提取研究
+
+本项目针对《中医体质分类与判定量表》（CCMQ）传统评分体系中“条目等权重设置”可能忽略症状诊断贡献度差异、难以捕捉关键临床特征的局限性，开展了深度的数据驱动研究。研究依托于93,811份覆盖广泛人群的真实世界CCMQ有效响应数据，旨在通过客观计算重构各体质维度的条目权重。在方法论层面，我们创新性地构建了一个高鲁棒性的集成混合计算框架，该框架有机整合了3种统计学方法（信息熵法EWM、稀疏回归Sparse Regression、普通最小二乘法OLS）与6种前沿机器学习算法（CatBoost、XGBoost、LightGBM、随机森林RF、梯度提升决策树GBDT、多层感知机MLP），通过多维度、跨算法的“集成排序”（Ensemble Ranking）策略，对67个条目在9种中医体质维度下的区分度与诊断价值进行了量化评估。
+
+研究结果首先建立了严谨的自动化权重计算流程。通过对海量样本的预处理与多算法并行计算，该流程确保了从特征提取到权重输出的科学性与可重复性。在具体的权重分布分析中，研究发现各症状条目对体质判定的贡献呈现显著的非均衡性分布，成功识别出了各体质类型的“核心症状集”。以气虚质（QiD）为例，计算结果显示“容易感冒”、“说话声音低弱”、“容易疲乏”等条目的权重值显著高于“头晕”或“面色萎黄”等边缘症状；在阳虚质（YaD）中，“畏冷”、 “手足不温”等条目表现出极高的权重贡献。这种基于数据科学的权重层级， 在数学层面清晰地印证了中医辨证理论中“主症”与“次症”的逻辑差异，证明了核心条目在判定体质本质属性中的决定性作用。
+
+跨9种体质类型的权重热图可视化进一步揭示了症状的特异性与共性特征。热图结果直观展示了不同体质在症状分布上的边界感:平和质主要由“精力充沛”、“睡眠良好”等正向指标驱动权重，而8种偏颇体质则分别表现出高度集中的特征条目簇。例如，阴虚质的权重高度集中于“手足心发热”与“口干咽燥”，而痰湿质则聚焦于“舌苔厚腻”与“腹部肥满”。热图中纵向的体质维度与横向的症状条目交织出的高亮度区域，精细刻画了体质间的核心特征分布规律，并揭示了部分条目在多种偏颇体质间的交叉重叠现象，为中医复杂兼夹体质的辨识提供了深层的逻辑依据。
+
+项研究的科学意义在于实现了中医体质评价从“经验定性”向“数据驱动的范式转化。通过大规模数据实证，研究不仅为中医体质评价量表的权重分配提供了客观的数学基准，有效修正了传统赋分模式中的主观偏差，还为后续开发精简化、高精度的体质筛查工具提供了关键的条目优选标准。这一底层算法的重构显著提升了体质辨识的客观性与精准度，为构建智能化中医健康管理平台奠定了扎实的理论支撑与技术基础，对于推动中医治未病领域的标准化和数字化进程具有重要的参考价值。
+
+## 2. 基于聚类算法的复杂中医兼夹体质群体特征挖掘研究
+
+本项目针对中医临床中兼夹体质模式高度复杂（理论组合高达248种）且识别难度大的现状，应用流形学习与无监督聚类算法开展了深层分群研究1。基于全国范围内收集的4.921例兼夹体质（定义为具有两种或两种以上偏颇体质）受试者数据，系统构建了一套涵盖数据特征工程、非线性降维及概率聚类的分析模型。在特征构建阶段，研究对比了5级里克特量表原始数据与二值化转换数据，发现二值化处理能更有效地减少噪声并增强症状存在性的区分度。在流形学习降维的可视化展示中（见图1），研究对比了UMAP、t-SNE及 PC 种方法的效果，结果显示 UMAP与 t-SNE在处理中医主观症状数据时， 能显著揭示出比线性PCA算法更为集中的局部结构和分群趋势，证明了中医体质数据内部存在显著的非线性特征。
+
+A
+
+![](images/page_7_image_4.jpg)
+
+![](images/page_7_chart_5.jpg)
+
+![](images/page_7_image_6.jpg)
+
+![](images/page_7_image_7.jpg)
+
+![](images/page_7_image_8.jpg)
+
+F
+
+![](images/page_7_chart_10.jpg)
+
+图 1两种数据类型的降维可视化图；(A-C) 针对二值化转换数据的降维结果，分别采用 UMAP (A)、t-SNE (B) 和 PCA (C)；(D -F) 针对 5 点李克特量表数据的降维结果，分别采用 UMAP (D)、t-SNE (E) 和 PCA (F)。
+
+为了确定最优的聚类模式，进一步采用了 K-means、DBSCAN 及高斯混合模型进行多轮建模，并应用肘部法则、KNN图及贝叶斯信息准则等严谨的参数优化技术（见图2）。
+
+A
+
+![](images/page_8_chart_3.jpg)
+
+B
+
+![](images/page_8_chart_5.jpg)
+
+C
+
+![](images/page_8_chart_7.jpg)
+
+![](images/page_8_chart_8.jpg)
+
+E
+
+![](images/page_8_chart_10.jpg)
+
+F
+
+![](images/page_8_chart_12.jpg)
+
+![](images/page_8_chart_13.jpg)
+
+H
+
+![](images/page_8_chart_15.jpg)
+
+1
+
+![](images/page_8_chart_17.jpg)
+
+图 2 不同降维方法下聚类算法的最佳参数选择；(A-C) 基于 UMAP(A)、t-SNE (B) 和 PCA (C) 的 K-means 算法 K 值选择；(D-F) 基于 UMAP (D)、t-SNE (E) 和 PCA (F) 的 DBSCAN 算法 值选择；(G-I) 基于 UMAP (G)、t-SNE (H) 和 PCA (I) 的高斯混合模型 (GMM) 分量数选择。
+
+在不同模型性能的量化评价中，结果显示“UMAP 降维 + GMM 聚类”的组合在二值化数据集上取得了最优的评价指标，其轮廓系数达0.367，CH指数达5466.325，DB 指数为 0.795，标志着该分群方案具有极高的类内紧密度与类间分离度。这一结果优于传统的 K-means方法，能够更准确地捕捉中医症状分布的概率特性。
+
+终研究成功将复杂的兼夹体质人群划分为10个具有鲜明临床特征的聚类子群。通过引入相对贡献度与聚类特异性指标，研究精细刻画了各子群的核心症状模式。具体而言，聚类1、4、9表现为不同程度的“内热”特征，其中聚类4呈现出明显的全身性不适与热感，且与外部温度无关；聚类2、3、5则聚焦于“畏寒”特质，其中聚类5突出表现为深层的环境不耐受及面色晦暗、易生斑点等典型血瘀表征；聚类10则具有显著的过敏与免疫超敏反应特征，涉及频繁的喷嚏、鼻塞及皮肤抓痕等症状。其余聚类如6、7、8则分别侧重于循环系统的痛症、情绪感知的过度敏感以及系统性的虚弱表现。
+
+该研究的科学价值在于突破了传统体质单纯两两组合的认知瓶颈，通过无监督学习揭示了兼夹体质背后的自然聚集模式与病理特征，为“精准中医”的人群细分提供了现代数学依据。研究发现这些聚类特征与自主神经功能紊乱、慢性低度炎症及内分泌代谢失衡等现代生理病理机制密切相关，为实现个体化的辨质调养与精准施治提供了重要的技术平台。目前，该研究产出的兼夹体质聚类识别方案已申报国家发明专利一项。
+
+## 3. 自动化机器学习驱动的中医体质高效判定模型研发
+
+针对大规模人群中医体质健康筛查中存在的评估流程冗长、条目负荷过重以及传统线性计分法难以捕捉中医非线性复杂特征等瓶颈问题，本研究开展了基于自动化机器学习技术的高效判定模型研发。研究纳入了91,145 份具有全国代表性的《中医体质分类与判定量表》有效响应样本，旨在通过数据驱动的方式，在保证高预测精度的前提下实现量表条目的极限压缩，从而构建适用于移动医疗和远程筛查场景的智能辨识方案。
+
+在方法论层面，本研究创新性地引入了基于树结构的流水线优化工具（TPOT）作为核心算法框架。TPOT通过遗传编程技术，在无需人工干预的情况下，自动在复杂的搜索空间内进行数据变换、模型选型及超参数调优（见图3模型训练流程图），从而寻找最优的机器学习流水线。
+
+![](images/page_10_image_2.jpg)
+
+图 3 模型训练流程图
+
+为了全面评估 AutoML的效能，我们设计了两阶段研究路径:首先，针对9种中医体质子量表，利用TPOT对所有可能的条目组合进行全局遍历与优化搜旨在识别能够表征单一类别本质的最小条目集；其次，引入无监督机器学习算法变量聚类作为基准对比方案，对全量表条目进行特征聚类，评估其在不依赖预定义维度时的预测表现。
+
+研究结果首先确立了AutoML在特征筛选中的卓越性能（见图4模型预测效能对比图）。分析结果显示，基于TPOT优化的监督学习方案在预测9种中医体质分类时展现出极高的稳健性，其受试者工作特征曲线下面积（AUC）稳定在0.819至0.936之间，显著优于传统的统计筛选方法。具体而言，除气郁质仅需单一条目（“感到心烦意乱或无端焦虑”）即可达到AUC=0.8的预设阈值外，其余8种体质均仅需2至4个核心条目即可实现精准判定。例如，气虚质通过“容易疲倦”和“容易气短”等核心指标即可维持优异的分类性能，这在数学层面不仅实现了条目的极简压缩，亦与中医“抓主症”的临床思路高度吻合。
+
+![](images/page_11_image_3.jpg)
+
+![](images/page_11_chart_4.jpg)
+
+![](images/page_11_chart_5.jpg)
+
+图 4 使用适当的有监督机器学习方法对基于 TPOT 和 varclus 筛选出的项（Items）进行预测性能的比较；A基于TPOT和 varclus筛选出的项的频率。B 使用适当的有监督机器学习方法，基于 TPOT 和 varclus 筛选出的项在预测中医体质（BC）分类中的表现。C使用适当的有监督机器学习方法，基于TPOT和 varclus筛选出的项在预测中医体质（BC）得分中的表现。在C 图中，RMSE指标表示为 RMSE/RMSEmax，MAPE指标表示为 MAPE/MAPEmax。
+
+在体质得分预测（严重程度评估）方面，AutoML同样表现出高度的准确性。当R-squared (R2)指数超过0.8时，体质得分预测的均方根误差（RMSE）稳定在6.241至9.877之间，有效控制了评估偏差。研究通过“拐点法”（Elbow Method）识别了预测效能提升的边际效益，从而为不同临床需求提供了不同梯度的条目精简方案。此外，对比研究表明，监督学习方案在预测精度上全面超越了无监督的变量聚类方案，这进一步证实在现阶段中医标准化诊断中，结合专家经验预定义的维度结构在机器学习建模中具有不可替代的先验优势。
+
+该项研究的科学意义在于证明了自动化机器学习在中医标准化辨识中的高度可行性与优越性。相关成果已正式发表于国际学术期刊Chinese Medicine (2024)，为推动中医体质辨识从“长表评估”向“瞬时判定”转化提供了核心算法引擎。本研究产出的精简判定模型不仅大幅降低了用户的答题负担，提升了大规模流调的依从性，更为后续研发基于移动端和可穿戴设备的智能“治未病”决策支持系统提供了坚实的技术基石，具有显著的临床应用前景和学术示范意
+
+## 4.“形神一体”视域下中医体质与心理健康的交互网络机制研究
+
+本研究立足中医“形神一体”的整体医学观，旨在探索中医体质 （形）与心理症状（神）之间的复杂交互作用机制。传统研究多采用简单的相关分析，难以揭示多个体质与心理因子之间的深层拓扑关系。为此，我们引入了网络分析方法，通过构建高斯图形模型并结合 EBICglasso算法，对 420 名受试者的 9种中医体质得分与 SCL-90量表的10个心理症状因子进行了结构化建模。该网络包含19个节点，旨在识别出维持身心系统稳态的关键核心节点及连接体质与心理症状的“桥梁”路径。
+
+中医体质与心理症状的交互网络拓扑结构清晰展现了身心互动的复杂模式（见图5）。在网络图中， 节点间的连线代表变量间的偏相关系数，体现了控制其他变量后的纯粹关联 结果显示，偏颇体质与心理症状之间存在广泛且紧密的连接，特别是气郁质与抑郁、人际关系敏感等因子之间表现出极高的边权重。此外，通过桥梁中心性分析发现，气郁质在网络中扮演了至关重要的“枢纽”角色，是连接生理体质偏颇与心理病理症状的主要中介路径。这一发现从数据科学角度印证了中医理论中“肝失疏泄、气机郁滞”诱发多种情志问题的科学内涵。
+
+![](images/page_12_image_6.jpg)
+
+![](images/page_12_image_7.jpg)
+
+图 5 中医体质与心理症状的交互网络拓扑图
+
+节点中心性评价进一步锁定了身心健康干预的关键靶点。在包含强度、接近度及中介度的中心性分布图中，结果显示气虚质、阴虚质和痰湿质在中医体质子网络中具有最高的中心性，意味着这些体质是驱动其他体质偏颇发生的底层病理基础。在心理症状子网络中，抑郁、焦虑和躯体化表现出较强的中心性（图6）。通过对整个身心交互网络的稳定性检验，研究证实了网络结构的鲁棒性，确保了识别出的核心节点具有高度的可靠性与临床参考价值。
+
+![](images/page_13_image_3.jpg)
+
+图 6 中医体质与心理症状网络中心性指标
+
+该研究的科学意义在于利用现代网络分析技术，首次定量化地揭示了中医体质与心理健康之间“形神交互”的动态图谱。研究发现的桥梁节点及核心体质节点，为“治未病”在心理健康领域的精准应用提供了明确的切入点。通过针对气虚质、气郁质等核心风险体质进行早期调理，不仅能改善个体的生理偏颇，更能有效预防心理症状的链式演化。相关研究成果已在中文核心期刊发表，为中医“身心同治”原则提供了重要的循证依据，具有显著的理论创新性与临床指导意义。
+
+## 5. 基于潜在剖面分析的人群健康分层
+
+为进一步探究中医体质在群体层面的异质性分布及其对身心健康状态的驱动作用，本研究引入了个体中心的潜在剖面分析方法，旨在从多维体质得分中识别出具有相似特征的潜在健康表型。研究基于1,029例受试者的中医体质分类量表数据，将9种体质得分作为显性指标进行建模，并通过一系列严格的统计指标对潜在模型进行拟合评价。在潜在剖面模型拟合指标的对比中，系统评估了1至4类模型的赤池信息准则（AIC）、贝叶斯信息准则（BIC）及校正后的BIC，并结合Entropy熵值及似然比检验（LMRT,BLRT）结果发现，3剖面模型在保持统计显著性的同时，各类别比例分布均匀且具有最佳的解释效能。
+
+研究成功识别出三类特征鲜明的健康剖面，并揭示了不同人群的中医体质分布模式（见图7）。分析结果显示:第一类受试者约占总样本的49.6%，表现为平和质得分显著较高，而其余8种偏颇体质得分均处于极低水平， 被定义为“健康组”；第二类受试者占比 38.3%，其各项偏颇体质得分呈现中等程度的抬升，表现为亚健康倾向，定义为“亚健康组”；第三类受试者虽然占比最低（12.1%），但其气虚、阳虚、阴虚、痰湿、湿热、血瘀、气郁及特禀质得分均显著高于其他两组，呈现出严重的整体性体质偏颇，被定义为“不健康组”。这种基于潜在分类的剖面图直观地展示了群体健康状态从量变到质变的动态演化过程，为临床开展人群分级管理提供了客观依据。
+
+![](images/page_14_chart_4.jpg)
+
+图7 三类别潜在剖面模型在9 种中医体质得分上的特征分布
+
+针对不同健康分层人群的身心健康差异分析进一步证实了分层模型的科学价值。通过对不同剖面受试者的症状自评量表（SCL-90）得分及匹兹堡睡眠质量指数进行方差分析，研究发现“不健康组”在躯体化、强迫、人际敏感、抑郁、焦虑等心理维度以及睡眠障碍得分上均显著高于“健康组”和“亚健康组”（P< 0.001）。相关性分析及回归分析结果进一步表明，偏颇体质得分与心理症状、睡眠质量呈显著正相关，且体质偏颇程度越深，个体的心理压力感和睡眠受损程度越严重。
+
+该项研究的科学意义在于利用数据驱动的方法，突破了传统单一维度评价体质的局限，实现了对群体身心健康状态的系统分层。研究揭示了偏颇体质在不同健康背景下对心理和睡眠质量的影响路径，为“治未病”在重点人群中的精准投放奠定了理论基础。通过识别“不健康组”这一高风险群体并针对其核心偏颇体质进行早期调控，不仅可以改善个体的生理体质，更能有效降低其演变为严重心理障碍或睡眠疾病的风险，具有显著的预防医学价值和临床应用前景。
+
+## 6. 躯体亚健康的中介与调节作用研究
+
+本项目立足于中医“形神合一”理论，深入探讨了家庭环境（外部因素）与躯体生理状态（内部因素）对青少年心理健康的协同影响机制。研究通过对647名中小学生进行横断面调查，系统评估了家庭功能、躯体亚健康状态及心理健康问题之间的关联。在研究方法上，我们构建了一个整合的中介与调节效应模型，重点考察了躯体亚健康在家庭功能影响心理健康过程中的双重角色—既作为心身互动的病理路径（中介作用），又作为个体心理脆性的脆弱因素（调节作用）。
+
+研究结果显著揭示了躯体亚健康在中医“调神”中的关键地位。中介效应分析显示，躯体亚健康介导了家庭功能对心理健康的负面影响，其中气郁质（β= -0.27）、气虚质（β=-0.13）和痰湿质（β=-0.12）表现出了最强的中介效应方向，说明功能失调的家庭环境可能先导致个体产生特定的中医体质/亚健康偏颇，进而引发心理与行为障碍。此外，调节效应分析证实，躯体亚健康水平较高的青少年在面临家庭功能失调时，表现出更高的心理易感性，更容易产生焦虑、抑郁等负性情绪。
+
+该研究的科学价值在于通过现代心理测量与中医体质辨识的深度融合，首次阐明了躯体功能失衡在家庭压力向心理问题转化过程中的“生物学中转站”作用。研究发现气郁、气虚等中医偏颇状态是身心系统失衡的关键环节，这为通过中医“辨质调养”来干预青少年心理健康提供了科学的理论依据。相关成果已发表于国际公共卫生期刊BMC Public Health (2026)，不仅丰富了中医体质学的身心医学内涵，也为构建“家庭-生理-心理”一体化的青少年精准防护体系提供了重要的实证支撑。
+
+## 7. 智能“治未病”管理体系构建
+
+本项目在完成底层算法重构与身心关联机制研究的基础上，积极响应国家关于中医药数字化转型的号召，将科研成果转化为实际应用，构建了一套适应县域环境的智能“治未病”健康管理体系。该体系以本项目研发的机器学习体质判定算法为核心引擎，在浙江省磐安县落地实施了个性化的“千人千方”治未病健康管理示范项目。在实施过程中，严格遵循《中医体质分类与判定》（ZYYXH/T157-2009）行业标准，确保了体质辨识逻辑的权威性与一致性。同时，项目在技术架构上对标《国家医疗健康大数据安全管理规范》，建 了涵盖数据脱敏、访问控制与日志审计的全生命周期安全防控机制，确保了居民健康档案及敏感信息的安全性与隐私性。
+
+智能管理体系的数字化载体——“千人千方”微信小程序，实现了中医健康服务的全流程闭环（见图8）。该平台整合了前期的AutoML快速判定模型、中医专家知识库及大语言模型交互技术，形成了“体质辨识一健康对话一养生建议”的功能矩阵。通过简洁的交互界面，居民可快速完成多维度的中医体质自测，并实时获得由系统出具的个性化调体报告。系统后台的数据采集与治理模块展示了该体系强大的数据底座能力。根据最新的《数据采集报告》显示，该系统已初步建成了县域中医健康数据资源库，涵盖了居民脱敏基础画像、基于标准问诊生成的体质评分、多模态舌面影像数据以及详尽的交互对话语料。
+
+![](images/page_16_image_4.jpg)
+
+图8"千人千方“小程序界面示意图
+
+在区域化试点应用中，该体系展现出良好的用户参与度与服务效能。初步运营数据显示，平台累计产生交互消息总量达2146条，其中用户主动咨询与反馈消息1044条，反映出居民对数字化中医服务的高需求；系统累计有效会话时长

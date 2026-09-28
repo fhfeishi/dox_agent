@@ -1,0 +1,251 @@
+{
+  "doc_id": "f9884fa14fbc971f606a",
+  "version": "ef511f123dcaff6231a5",
+  "source_hash": "278bd3f360ab131582bb2b852178b042e1a7d31bd06f876e4e153a381bf05beb",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:01:45.823535+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b06b02539e51",
+          "name": "肿瘤药物基因数据碎片化",
+          "desc": "碎片化和可用数据的异质性使获得肿瘤、药物、基因和相关变异具有极大挑战性，众多数据库分散不能互相操作或共享。",
+          "evidence": [
+            {
+              "quote": "碎片化和可用数据的异质性使获得肿瘤、药物、基因和相关变异具有极大的挑战性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 676,
+                "end_char": 712
+              },
+              "version": "ef511f123dcaff6231a5"
+            }
+          ]
+        },
+        {
+          "id": "item-472a6ed47d4b",
+          "name": "基因检测临床解读",
+          "desc": "随着二代测序成本快速下降，对海量变异位点的解读逐渐成为基因检测临床应用的决速步。",
+          "evidence": [
+            {
+              "quote": "随着二代测序成本的快速下降，对海量变异位点的解读逐渐成为基因检测临床应用的决速步。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2172,
+                "end_char": 2212
+              },
+              "version": "ef511f123dcaff6231a5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-85ae1aa78127",
+          "name": "数据库碎片化与异质性",
+          "desc": "众多数据库作为独立资源分散在不同网站，成为临床医生、遗传学家及患者获取资料的重大壁垒。",
+          "evidence": [
+            {
+              "quote": "众多数据库作为一个个独立资源分散在不同的网站，通常不能互相操作或共享，成为临床医生、遗传学家、生物学家和患者获得第一手资料并最大化多样化数据的重大壁垒。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 713,
+                "end_char": 788
+              },
+              "version": "ef511f123dcaff6231a5"
+            }
+          ]
+        },
+        {
+          "id": "item-70da377c5161",
+          "name": "大量位点未收录",
+          "desc": "很多变异位点未包含在专家人工编撰的数据库中。",
+          "evidence": [
+            {
+              "quote": "但很多位点未包含在这些数据库中",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2242,
+                "end_char": 2256
+              },
+              "version": "ef511f123dcaff6231a5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7c1fbc1bca1a",
+          "name": "BERT与DistilBERT命名实体识别",
+          "desc": "基于BERT的命名实体识别模型和基于DistilBERT的简化模型分别进行训练、验证和测试，并采用两阶段微调。",
+          "evidence": [
+            {
+              "quote": "基于BERT的命名实体识别(name entity recognition, NER)模型和基于DistilBERT的简化NER模型分别进行了训练、验证和测试",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2517,
+                "end_char": 2595
+              },
+              "version": "ef511f123dcaff6231a5"
+            }
+          ]
+        },
+        {
+          "id": "item-5a30384fa927",
+          "name": "关系抽取模型优化分析",
+          "desc": "对实体标记令牌（BERT-EM）和实体遮掩（BERT-MT）两种关系抽取模型进行优化分析。",
+          "evidence": [
+            {
+              "quote": "通过对实体标记令牌(Entity Marker Token, BERT-EM)和实体遮掩(Entity Mask Token, BERT-MT)两种关系抽取模型的优化分析发现，BERT-EM性能更优",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2862,
+                "end_char": 2960
+              },
+              "version": "ef511f123dcaff6231a5"
+            }
+          ]
+        },
+        {
+          "id": "item-5b5956b8a1a0",
+          "name": "人工标注与NLP结合",
+          "desc": "华大基因遗传咨询师按标注指南对400篇完整PubMed文章进行人工标注，用于训练与评估。",
+          "evidence": [
+            {
+              "quote": "华大基因经验丰富的遗传咨询师根据已发布的标注指南对总共400篇完整的PubMed文章进行了人工标注。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2387,
+                "end_char": 2436
+              },
+              "version": "ef511f123dcaff6231a5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2337ddc498b4",
+          "name": "标注一致性Jaccard指数0.866",
+          "desc": "四种实体类型（基因、变异、疾病和物种）的总体Jaccard指数计算为0.866。",
+          "evidence": [
+            {
+              "quote": "四种实体类型（基因、变异、疾病和物种）的总体Jaccard指数计算为0.866",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2477,
+                "end_char": 2515
+              },
+              "version": "ef511f123dcaff6231a5"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-1bb830d74869",
+          "name": "NER各实体F1分数",
+          "desc": "基于BERT的第二阶段微调NER对基因、变异、疾病和物种的F1分数分别为97.28%、93.52%、92.54%和95.76%。",
+          "evidence": [
+            {
+              "quote": "基于BERT的第二阶段微调NER 对基因、变异、疾病和物种的F1分数分别为97.28%、93.52%、92.54%和95.76%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2686,
+                "end_char": 2749
+              },
+              "version": "ef511f123dcaff6231a5"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-20398cfac078",
+          "name": "大语言模型变体实体提取突破",
+          "desc": "首次通过大型语言模型提取变体的实体类型，实现与最先进变体提取模型tmVar相当的F1分数。",
+          "evidence": [
+            {
+              "quote": "首次通过大型语言模型提取了变体的实体类型，并实现了与最先进的变体提取模型tmVar相当的F1分数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2813,
+                "end_char": 2860
+              },
+              "version": "ef511f123dcaff6231a5"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b06b02539e51"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-85ae1aa78127"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-70da377c5161"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7c1fbc1bca1a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5b5956b8a1a0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-2337ddc498b4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5a30384fa927"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-20398cfac078"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,1371 @@
+![](images/page_0_image_0.jpg)
+
+项目批准号 81930055申请代码 H2502归口管理部门收件日期
+
+![](images/page_0_image_2.jpg)
+
+20240281930055
+
+# 国家自然科学基金
+
+# 资助项目结题/成果报告
+
+资助类别:重点项目
+
+亚类说明:
+
+附注说明:法医生物物证溯源的新技术与新方法
+
+多源组学结合人工智能探索五类分子标记进行体液（斑）精准组织溯项目名称:源的系统研究
+
+负责人: 朱波峰
+
+BRID: 09219.00.68162
+
+电子邮件:zhubofeng7372@126.com
+
+电话: 020-61648787
+
+依托单位: 南方医科大学
+
+联系人:赵镇
+
+电话: 020-61648165
+
+直接费用:297.0000（万元）
+
+执行年限: 2020.01-2024.12
+
+填表日期:2025年01月14日
+
+国家自然科学基金委员会制（2023年）
+
+## 项目摘要
+
+## 中文摘要:
+
+遗留在犯罪现场的体液（斑）检材是最重要的法医生物物证之一，有助于判断案件性质和现场重建，能够为案件的侦破提供指向性线索，对这些生物物证的精准溯源是亟待解决的关键科学问题。前期研究揭示不同类型体液间存在较多差异表达的特异性分子标记物，但仅应用一类分子标记难以实现精准溯源。本研究拟探索多源组学技术系统甄选不同类型体液间差异表达的五类分子标记；通过RT-q PCR及q-PCR技术对特异性分子标记进行验证与评估；基于毛细管电泳平台建立两套并行复合扩增检测体系并全面评估复合扩增体系的法医学应用系统效能；基于标记物的分型结果构建人工智能预测模型，应用ROC曲线系统评估预测模型在实际检案工作中的应用效能；在此基础上构建法医体液（斑）精准溯源智能分析系统。本研究有望在不同法医体液物证特别是在降解、混合等特殊环境下的体液（斑）检材精准溯源的新理论、新技术和新方法等研究上取得重要的科学突破。
+
+## Abstract:
+
+Forensic body fluid samples left at the crime scene are one of the most important forensic biological evidence, which can help to determine the nature of the case and reconstruct the criminal scene, and provide a directive clue for the detection of the case. The precise tracing of these biological evidence is a key scientific problem to be solved urgently in the forensic research field. Previous studies have revealed that there are many specific molecular markers differentially expressed in different body fluids, but it is difficult to trace the precise origin by using only one class of molecular markers. Only when various kinds of specific markers are combined together can the results be multi-dimensionally interpreted and verified. Based on this, the present study proposes to systematically select five different body fluid specific molecular markers (mRNA, miRNA, circRNA, microorganisms and DNA methylation) using high-throughput sequencing technology and validate the specific molecular markers by RT-qPCR/q-PCR technology, further constructing a complex genotyping assay based on the traditional capillary electrophoresis (CE) platform of public security with the above-mentioned molecular markers and evaluate its forensic application efficiency. In order to improve the accuracy of the identification of forensic body fluids, the random forest prediction model based on typing values and the convolution neural network prediction model based on typing profiles were constructed with the machine learning algorithm of the artificial intelligence. The present study is expected to achieve important scientific breakthroughs in the research of new theories, new technologies and new methods for tracing the precise individual origin of different forensic biological evidence, especially in the special environment of degradation and mixing, and become a strong theoretical and practical support for scientific and technological police.
+
+关键词（用分号分开）:法医遗传学；体液斑精准溯源；法医基因组学；
+
+法医微生物学；法医智能分析
+
+Keywords (separated by;): Forensic Genetics; Body fluid identification; Forensic Genomics; Forensic Microbiome; Forensic Artificial Intelligence
+
+## 结题摘要
+
+## 中文摘要（对项目的背景、主要研究内容、重要结果、关键数据及其科学意义等做简单概述）:
+
+对体液（斑）进行精准组织溯源，明确案发现场体液（斑）类型，有助于案件现场重建及判断案件性质。对这些生物物证的精准溯源是亟待解决的关键科学问题。本研究针对法医案件现场体液（斑）精准组织溯源的难题，系统性地探索了基于转录组学、微生物组学、表观组学和基因组学的多组学技术方法，形成了从分子标记的甄选、评估、验证到应用的系统分析流程，为体液（斑）精准溯源提供了新的范式。在法医实践需求的驱动下，本研究深入探究了转录组分子标记在体液斑精准组织溯源中的应用价值。构建了以下技术体系:mRNA与miRNA共逆转体系，用于五种常见体液（精液、血液、唾液、阴道液和月经血）的鉴定。miRNA与circRNA共逆转体系，用于检测暴露在外界环境中的血液样本中miRNA和circRNA分子标记的稳定性。mRNA和1ncRNA检测体系，用于探索其在体液溯源方面的潜能。基于NGS平台，揭示不同体液（斑）的核心微生物群，为基于微生物组的体液斑精准溯源研究奠定了理论和应用基础。利用人工智能算法，研发了DNA甲基化位点筛选新策略。通过对全基因组甲基化芯片测序公共数据集的深度分析，结合多种特征选择算法，筛选目标甲基化位点，并通过Pyrosequen cing检测验证和预测模型构建。自主研发了基于鉴识性DNA甲基化标记的SNaPshot检测体系，为体液斑精准组织溯源提供了表观遗传解决方案。探索了机器学习算法在多组学数据分析中的适用性，开发了多个体液（斑）精准溯源新模型，建立了法医多组学数据分析模式，并在实际案件中推广应用。针对微量、降解等法医疑难生物检材，研发了基于特征工程算法的分子遗传标记甄选新策略。结合公安系统法医平台，基于CE、NGS和焦磷酸测序技术构建的检测体系，扩增子长度小于200bp，灵敏度达到0.0625ng，实现了法医疑难检材个体识别、复杂亲缘鉴定和生物地理溯源的技术突破。上述研究工作共发表SCI论文35篇，参编书籍8本，参与制定司法部技术规范1项，培养博硕士研究生27名，博士后4名。申请技术发明专利4项。连续三年入选全球前2%顶尖科学家榜单。
+
+# Abstract (Brief description of research background, main methods, contributions, and research data):
+
+Accurate tissue tracing of body fluids (stains) and clarifying their types at the crime scene are crucial for reconstructing the crime scene and determining the nature of the case. Precise tracing of these biological evidence types is an urgent scientific challenge that needs to be addressed. This study systematically explores multi-omics techniques based on transcriptomics, microbiomics, epigenomics, and genomics to address the challenge of precise tissue tracing of body fluids (stains) at forensic crime scenes. We have established a comprehensive analytical workflow for the selection, evaluation, validation, and application of molecular markers, providing a new paradigm for precise tracing of body fluids (stains).Driven by the needs of forensic practice, this study has deeply explored the application value of transcriptomic molecular markers in precise tissue tracing of body fluid stains. The following technical systems have been constructed: An mRNA and miRNA co-reverse transcription system for the identification of five common body fluids (semen, blood, saliva, vaginal fluid, and menstrual blood). An miRNA and circRNA co-reverse transcription system for detecting the stability of miRNA and circRNA molecular markers in blood samples exposed to external environments. An mRNA and 1ncRNA detection system to explore their potential in body fluid tracing. Based on the NGS platform, we have revealed the core microbiota of different body fluids (stains), laying the theoretical and application foundations for precise tissue tracing of body fluid stains based on microbiomics. Using artificial intelligence algorithms, we have developed new strategies for screening DNA methylation sites. By conducting in-depth analyses of public datasets from whole-genome methylation sequencing and combining multiple feature selection algorithms, we have identified target methylation sites. These sites were validated through Pyrosequencing and used to construct predictive models. We have independently developed a SNaPshot detection system based on forensic DNA methylation markers, providing an epigenetic solution for precise tissue tracing of body fluid stains. We have explored the applicability of machine learning algorithms in multi-omics data analysis, developed multiple new models for precise tracing of body fluids (stains), and established a forensic multi-omics data analysis model that has been promoted and applied in actual casework. For forensic challenging biological evidence, such as trace and degraded samples, we have developed new strategies for selecting molecular genetic markers based on feature engineering algorithms. In collaboration with forensic platforms within the public security system, we have constructed a detection system based on CE, NGS, and pyrosequencing technologies. This system features amplicons smaller than 200 bp and a sensitivity of 0.0625 ng, achieving technical breakthroughs in individual identification, complex kinship analysis, and biogeographical tracing of forensic challenging samples.The above research work has resulted in the publication of 35 SCI papers, co-authoring of 8 books, participation in the development of one technical standards by the Ministry of Justice, training of 27 doctoral and master' s students and 4 postdoctoral researchers. Four technical invention patents have been applied for. Ranked among the top 2% of global scientists for three consecutive years.
+
+关键词（用分号分开）:体液斑组织溯源；多组学分子标记；法医学应用；机器学习算法；
+
+Keywords (separated by;): Body fluid identification; Multi-omics molecular markers; Forensic application; Machine learning algorithm;
+
+## 正文
+
+《结题/成果报告》正文分为两个部分:结题部分和成果部分。请按照《结题/成果报告》填报说明及撰写要求填写。
+
+## （一）结题部分
+
+## 1. 研究计划执行情况概述
+
+（1）按计划执行情况
+
+本项目按照原定计划和方案严格执行，未做变动和调整。
+
+（2）研究目标完成情况
+
+本项目按计划完成了既定的研究目标，概述如下:
+
+1）对体液（斑）进行精准组织溯源，明确案发现场体液（斑）类型，有助于案件现场重建及判断案件性质。针对法医案件现场体液（斑）精准组织溯源难题，系统深入地探究基于多组学技术方法溯源的新策略，形成多组学分子标记的甄选、评估、验证和应用的系统分析流程，为体液（斑）精准溯源提供新范式；结合CE、qPCR、NGS等平台构建系列分型检测体系，评估体系的法医学应用效能；探索机器学习算法对不同组学数据的适用性，建立法医多组学数据分析模式，开发多个体液（斑）精准溯源新模型，在法医实际案件中推广和应用。
+
+2)针对如微量、降解等法医疑难生物检材鉴识研究，研发了基于特征工程算法的分子遗传标记甄选新策略；结合公安系统法医平台，基于CE、NGS和Pyrosequencing技术自主研发构建的系列检测体系，扩增子小于200bp，灵敏度0.0625ng，也实现了法医疑难检材个体识别、复杂亲缘鉴定、生物地理溯源等技术新突破。
+
+3)上述系列工作共发表SCI论文35篇，参编书籍8本，参与出台司法部技术规范1项，培养博硕士研究生共27名，博士后4名。荣获国家卫生健康突出贡献中青年专家；国务院和广东省享受政府特殊津贴人员；河南省科学技术奖二等奖；申请技术发明专利四项。
+
+## 2. 研究工作主要进展、结果和影响
+
+（1）主要研究内容
+
+1）在转录组层面:探究体液间表达差异的各类RNA分子标记在体液溯源中的应用价值。目前已基于转录组测序数据和利用公共数据库及国内外已发表的文献，筛选出体液特异的RNA分子标记（包括mRNA、miRNA）、血液特异的 circRNA及精液和血液特异性IncRNA 分子标记。我们先后构建了mRNA与miRNA共逆转体系用于五种常见体液鉴定；miRNA与 circRNA共逆转体系检测暴露在外界环境中的血液样本的 miRNA和 circRNA分子标记的稳定性；以及 mRNA和 IncRNA检测体系探究其在体液溯源方面的潜能。
+
+2)在微生物组层面:首先使用目前最常用的16SrRNA V3-V4测序技术对唾液、皮肤及唾液和皮肤的混合物进行检测，以揭示不同检材中富含的微生物群落结构差异及其核心微生物群的生物信息。为了甄选更可靠且更适用于法医体液（斑）溯源的测序方法，我们使用了两种测序方法对外周血、唾液、阴道分泌物及月经血中的微生物多样性进行探究。此外，我们还探究了阴道分泌物、唾液、精液三种类型体液间的差异微生物标志物、月经周期对女性阴道微生物群落的影响、不同类型体液样本暴露不同时长时的微生物群落变化特征、探究并筛选了不同种属的唾液微生物群落构成及具有种属间差异性的微生物标志物。基于上述测序数据，将70%和30%的数据分别为训练数据和验证数据并用于构建随机森林预测模型，并使用ROC曲线来判断模型的效能。
+
+3）在表观组层面:揭示不同类型体液（斑）表观遗传差异，系统甄选不同体液间表达差异的特异性DNA 甲基化分子标记，自主研发了基于鉴识性DNA甲基化标记的SNaPshot检测体系，为体液斑精准组织溯源提供表观遗传解决方案。人体不同组织器官存在具有差异的DNA甲基化模式，这些模式相对稳定、具有可遗传性，上述特征使DNA甲基化成为一种较理想的体液(斑)溯源分子标记。针对法医实践中常见的五种体液（斑）类型，通过 Infinium Methylation EPIC BeadChip系统甄选和Pyrosequencing准确验证，最终获得一组体液特异性的DNA甲基化分子标记，并结合CE平台构建了一个甲基化敏感性的 SNaPshot 检测体系和人工智能的预测模型，实现体液（斑）精准组织溯源。同时，团队通过对五种常见人源体液斑以及五种常见动物的血液或唾液DNA样本进行验证，证实该体系具有较高的种属特异性和法医实践应用价值。此外，团队利用人工智能算法研发了DNA甲基化位点筛选新策略，即通过对全基因组甲基化芯片测序公共数据集进行深度分析，结合多种特征选择算法进行目标甲基化位点筛选、Pyrosequencing检测验证和预测模型的构建，为实现体液斑精准组织溯源提供有利工具。
+
+4)在基因组层面:本项目研发了适用于降解检材个体识别、亲子鉴定和祖源推断系列AIM-DIP、II-SNP复合检测体系；基于上述分型检测体系在不同族群中开展系列研究，为法医个体识别似然率和父权指数的计算提供坚实基础数据支持；基于人工智能特征选择算法研发了全基因组DIP分子标记甄选新策略，并形成可实现主要五大洲际人群及东亚内部人群生物地理精准溯源的检测新方案；基于线粒体闭环结构和多拷贝的特性，开拓全长测序策略，研究确证了纳米球测序mtDNA的法医适用性，有助于解决母系溯源问题；在降解检材亲缘鉴定方面，
+
+研究验证了1993个高多态性ⅡI-SNP在家系中二级亲缘关系鉴定效能。
+
+（2）取得主要研究进展、重要结果、关键数据等及其科学意义或应用前景
+
+1）在转录组层面进行体液（斑）鉴识，系统筛选并验证体液间差异表达的RNA分子标记。
+
+不同RNA分子标记在体液(斑)溯源的应用上各具优势。我们先后构建了:mRNA与miRNA共逆转体系用于五种法医常见体液（斑）鉴定；miRNA与circRNA 的共逆转体系用于检测环境血液样本中 miRNA 和 circRNA 分子标记的稳定性；构建mRNA和 lncRNA检测体系，进行lncRNA在体液（斑）溯源的应用价值研究。此外，与南方医科大学王栋团队进行深度合作，共同开发RNADisease v4.0数据库（http://www.rnadisease.org/)，实现生信技术和数据资源共享，为法医领域开展转录组RNA相关研究提供支撑。
+
+1.1）构建mRNA和miRNA共逆转体系用于五种常见体液（斑）鉴定。
+
+利用公共数据库及国内外文献筛选出不同体液间差异表达的10个RNA分子标记（每种体液各1个mRNA和1个miRNA分子标记）以及2个内参基因（18S rRNA和 RNU6b）构建 mRNA和 miRNA共逆转体系，即一份样本同时逆转可得mRNA和miRNA分子，用于后续体液样本的定量检测。结果显示mRNA和 miRNA 共逆转体系可以较好的区分五种类型体液（图1)，表现为 HBB 和miR451a可区分血液与非血液样本，MMP7和 miR185-5p可区分外周血和月经血，PRM1和 miR135b-5p 可区分精液和其他体液，STATH和 miR205-5p可区分唾液与其他体液，CYP2B7P1和 miR372-3p可区分阴道分泌液和其他体液。PCA和UMAP分析（图2）显示该共逆转体系可将常见五种体液彼此区分开来。
+
+![](images/page_6_chart_8.jpg)
+
+![](images/page_6_chart_9.jpg)
+
+![](images/page_6_chart_10.jpg)
+
+![](images/page_6_chart_11.jpg)
+
+![](images/page_6_chart_12.jpg)
+
+图1:小提琴图显示共逆转mRNA 和 miRNA 体系在五种体液中的相对表达情况
+
+此外，我们构建RNA标准品进行该体系中RNA分子标记的扩增效率验证。结果显示该体系中 RNA 分子扩增良好，各RNA 分子的扩增效率范围为95.30%- 107.23%, $R ^ { 2 }$ 均大于0.98（图3)。为了将本体系更好的运用于实际案件中，我们构建了五个判别函数（表1)。将目标RNA分子在5种体液样本中所得的ΔCt值带入公式，根据计算结果进行体液判别。结果判读: $\mathrm{D}1>0,\mathrm{D}2<0,\mathrm{D}3<0,\mathrm{D}4>0,$判别为月经血样本 $\left( \mathrm{MB} \right); \mathrm{D1} < 0, \mathrm{D2} < 0, \mathrm{D3} > 0, \mathrm{D4} < 0$ ，判别为阴道分泌液样本(VA); $\mathrm{D}1 < 0, \mathrm{D}2 > 0, \mathrm{D}3 > 0, \mathrm{D}4 < 0$ ，判别为唾液样本（SA）； $\mathrm{D}1 < 0, \mathrm{D}2 > 0, \mathrm{D}3 < 0, \mathrm{D}4 < 0$ ，判别为精液样本（SE）: $\mathrm{D}1<0,\mathrm{D}2>0,\mathrm{D}3<0,\mathrm{D}4>0$ ，判别为外周血样本（PB）。为了验证判别函数的准确性，后续使用未知样本（40例）数据作为验证集，验证判别函数的准确性。如表2所示，盲测样本结果正确，提示根据共逆转体系建立的判别函数能有效判别未知样本的体液类型。
+
+![](images/page_7_chart_3.jpg)
+
+![](images/page_7_chart_4.jpg)
+
+图2:PCA 和 UMAP 图显示共逆转 mRNA 和 miRNA 体系在五种体液中的表达情况
+
+![](images/page_7_chart_6.jpg)
+
+图 3:共逆转 mRNA 和 miRNA 体系中 RNA 分子标记的扩增效率
+
+表1. 建立五种判别公式
+
+<table><tr><td>编号 判别公式</td><td></td></tr><tr><td rowspan="2"></td><td> $\mathrm{Discriminant~1~(D1)} = 0.291*\mathrm{HBB}+0.080*\mathrm{STATH}-1.493*\mathrm{MMP}7+0.084*\mathrm{PRM}1+0.241*\mathrm{CYPTP2B}1-$ </td></tr><tr><td> $0.021^{\circ}  min  451 a  + 0.030^{\circ}  min  135 b  - 5 p  + 0.011^{\circ}  min  205 - 5 p  - 0.028^{\circ}  min  185 - 5 p  + 020^{\circ}  min  372 - 3 p  + 698.089$ </td></tr><tr><td rowspan="2">2</td><td> $\mathrm{Discrimian}(2)=-0.034^{\circ}\mathrm{HBB}-0.255^{\circ}\mathrm{STATH}+0.236^{\circ}\mathrm{MMP7}-0.148^{\circ}\mathrm{PRM}1+0.908^{\circ}\mathrm{CYPP2B}1-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{PMP7}-0.034^{\circ}\mathrm{P1}+0.034^{\circ}\mathrm{P1}+0.0.034^{\circ}\mathrm{P1}+0.034^{\circ}\mathrm{P1}+0.0.034^{\circ}\mathrm{P1}+0.034^{\circ}\mathrm{P1}+0.0.034^{P1}\mathrm{P1}+0.0.034^{\circ}\mathrm{P1}+0.0.034^{P1}\mathrm{P1}+0.0.034^{\circ}\mathrm{P1}+0.0.034^{P1}\mathrm{P1}+0.0.034^{P1}+0.0.034^{P1}\mathrm{P1}+0.0.034^{P1}+0.0.034^{P1}\mathrm{P1}+0.0.034^{P1}+0.0.034^{P1}\mathrm{P1}+0.0.0.034^{P1}\mathrm{P1}+0.0.034^{P1}+0.0.034^{P1}+0.0.034^{P1}\mathrm{P1}+0.0.0.034^{P1}+0.0.034^{P1}\mathrm{P1}+0.0.0.034^{P1}+0.0.0.034^{P1}\mathrm{P1}+0.0.0.034^{P1}+0.0.034^{P1}\mathrm{P1}+0.0.34^{P1}+0.0.0.0.034^{P1}\mathrm{P1}+0.0.354^{P1}+0.354^{P1}+0.354^{P1}+0.354^{P1}\mathrm{P1}+0.354^{P1}+0.354^{P1}+0.354^{P}\mathrm{P1}+0.354^{P1}\mathrm{P1}+0.3554^{P}+0.354^{P1}+0.354^{P}\mathrm{P1}+0.355554^{P}+0.3554^{P}+0.3554^{P}+0.3554^{P}+0.3555554^{P}+0.54^{P}+0.555554^{P}+0.5555554^{P}+0.5554^{P}+0.5555554^$ </td></tr><tr><td> $0.006^{\ast} \mathrm{miR}451\mathrm{a}+0.115^{\ast} \mathrm{miR}135\mathrm{b}-5\mathrm{p}+0.059^{\ast} \mathrm{miR}205-5-0.059^{\ast} \mathrm{miR}185-5\mathrm{p}-0.098^{\ast} \mathrm{miR}372-3\mathrm{p}-576.576$ </td></tr><tr><td rowspan="2">3</td><td> $\mathrm{Discrimianat} 3 (\mathrm{D}3)=0.048^{\circ} \mathrm{HBB}-0.604^{\circ} \mathrm{STATH}-0.087^{\circ} \mathrm{MMP}7+0.476^{\circ} \mathrm{PRM}1-$ </td></tr><tr><td> $0.119^{\circ} CVP7P2B1+0.033^{\circ} min 451 a -0.007^{\circ} min 135 b -5 p +0.043^{\circ} min 205-5+0.014^{\circ} min 185-$   $5p+0.038^{*} \min 372-3p+240.277$ </td></tr><tr><td rowspan="2">4</td><td> $\mathrm{Discriminant}4(\mathrm{D}4)=-0.26^{\circ}\mathrm{HBB}+0.349^{\circ}\mathrm{STATH}+0.387^{\circ}\mathrm{MMP}7+0.456^{\circ}\mathrm{PRM}1+0.276^{\circ}\mathrm{CYP}7\mathrm{P}2\mathrm{B}1-$ </td></tr><tr><td> $0 . 1 1 ^ { \ast } \mathsf { m i R } 4 5 1 \mathsf { a } + 0 . 0 2 ^ { \ast } \mathsf { m i R } 1 3 5 \mathsf { b } - 5 \mathsf { p } + 0 . 0 2 1 ^ { \ast } \mathsf { m i R } 2 0 5 - 5 - 0 . 0 1 4 ^ { \ast } \mathsf { m i R } 1 8 5 - 5 \mathsf { p } + 0 . 0 8 5 ^ { \ast } \mathsf { m i R } 3 7 2 - 3 \mathsf { p } - 1 0 2 1 . 6 3 6$ </td></tr></table>
+
+表2. 盲测样本的判别结果
+
+| 样本号 | D1 | D2 | D3 | D4 | 预测样本类型 | 实际样本类型 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | -388.976535 | 164.286125 | -94.027215 | 447.51858 | PB | PB |
+| 2 | -389.36662 | 164.293535 | -93.91987 | 447.87764 | PB | PB |
+| 3 | -389.402745 | 164.685545 | -93.764885 | 448.132665 | PB | PB |
+| 4 | -388.910935 | 164.602145 | -93.518485 | 447.790785 | PB | PB |
+| 5 | -389.1509533 | 166.6000922 | -94.38861728 | 447.8424624 | PB | PB PB |
+| 6 | -389.7703881 | 166.3723511 | -93.82450879 | 447.9465121 | PB |  |
+| 7 | -389.6499528 | 164.618939 | -94.29159484 | 448.052757 | PB | PB |
+| 8 | -390.1592769 | 166.5312785 | -93.31186138 | 448.3075375 | PB | PB |
+| 9 | -178.282435 | 383.019345 | 554.122465 | -159.902665 | SA | SA |
+| 10 | -178.105125 | 383.21755 | 553.750225 | -159.790315 | SA | SA |
+| 11 | -177.681765 | 382.99073 | 552.645265 | -158.286885 | SA | SA |
+| 12 | -177.700555 | 382.97229 | 551.912565 | -157.9939 | SA | SA |
+| 13 | -178.1938803 | 384.783538 | 555.1240153 | -160.7401121 | SA | SA |
+| 14 | -178.3726371 | 382.4664937 | 553.7849515 | -159.7334135 | SA | SA |
+| 15 | -178.0858235 | 384.6107758 | 554.480211 | -160.2493541 | SA | SA |
+| 16 | -178.0567349 | 385.2487649 | 554.1693702 | -160.5751946 | SA | SA |
+| 17 | 1078.65498 | -68.713105 | -8.41462 | 64.361995 | MB | MB |
+| 18 | 1083.81685 | -68.44697 | -7.453785 | 63.030595 | MB | MB |
+| 19 | 1084.18208 | -68.663515 | -7.64244 | 63.09383 | MB | MB |
+| 20 | 1086.57517 | -69.00596 | -7.192125 | 61.69442 | MB | MB |
+
+绿色背景表示D<0，橙色背景表示D>0。
+
+此外，我们还进行灵敏性检测和验证。将目标RNA分子标记的 cDNA进行连续倍比稀释，检测每种标记在对应体液的最小检出值。如图4所示，在PB样本中，HBB 和 miR-451a 的最低检出值为 0.01 pg。PRM1 和 miR135b-5p 在精液样本中的最低检出值 0.01 ng。在 SA 中，STATH 标记的最低检出值是 1 ng，而miR205-5p 的最低检出值是 0.01 ng。CYP2B7P1 和 miR372-3p 的 VA 样本中的最低检出值是 1 ng。而 MMP7 在 MB 样本中的最低检出值为 0.01 ng，miR185-5p为1 ng。
+
+为了进一步研究mRNA和miRNA共逆转体系用于实际法医样本的可能性，我们制备了11种模拟样本（5种PB，6种SE）。如图5所示，对于血液样本，mRNA和miRNA共逆转体系可以成功检测到所有模拟血样的HBB和miR451a。室温下暴露21天后，在PB样本中仍可检出HBB。与PB样本相似，PRM1和miR135b-5p在沉积于实验室地板和窗户玻璃上的干燥SE样本中可成功检出。PRM1和 miR135b-5p也在室温下暴露于避孕套2 天的 SE样品中被检出。但在避孕套暴露于37C2天的 SE样本中PRM1未检出；而miR135b-5p仅检出一个。
+
+在实际的法医案件中，多种体液的混合物经常出现在犯罪现场，特别是在涉及一些性犯罪的案件中，如 SE和 VA或 SA的混合物是常见的。因此，我们研究这个共逆转体系在混合样本中的检测性能。由于miRNAs通过其相对表达量的高低来区分体液，因此miRNAs区分混合体液样本的组织类型的能力仍处于初级阶段。正如预期的那样，在两种或三种体液的不同混合物中只发现了mRNA标记物，并且使用miRNA标记物预测较差（表3)，这与之前的报道一致。以上结果表明，在mRNA和miRNA共逆转体系中，不同体液混合物检测的结果显示所有mRNA分子标记成功检出。由于这五种mRNA具有较高的体液特异性，故利用mRNA和miRNA共逆转体系可以在一定程度上区分混合体液的组织类型。
+
+![](images/page_9_chart_3.jpg)
+
+![](images/page_9_chart_4.jpg)
+
+![](images/page_9_chart_5.jpg)
+
+![](images/page_9_chart_6.jpg)
+
+![](images/page_9_chart_7.jpg)
+
+图 4:共逆转 mRNA 和 miRNA 体系中各 RNA 分子的灵敏性研究
+
+![](images/page_9_chart_9.jpg)
+
+![](images/page_9_chart_10.jpg)
+
+图5:共逆转mRNA 和 miRNA 体系在模拟样品中的验证
+
+表3. 混合体液样本的验证
+
+<table><tr><td rowspan="2">混合样本</td><td rowspan="2">18S</td><td rowspan="2">HBB</td><td rowspan="2">MMP7</td><td rowspan="2">STATH</td><td rowspan="2">PRM1</td><td rowspan="2">CYP2B7P1</td><td rowspan="2">RNU6b</td><td colspan="2">结果</td></tr><tr><td>mRNA</td><td>miRNA</td></tr><tr><td>PB:SE=1:1</td><td>3/3</td><td>3/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>+++</td><td>十</td></tr><tr><td>PB:SE=1:10</td><td>3/3</td><td>3/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>+++</td><td>+</td></tr><tr><td>PB:SE=10:1</td><td>3/3</td><td>3/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>+++</td><td>十</td></tr><tr><td>PB:SA=1:1</td><td>3/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>+++</td><td>十</td></tr><tr><td>PB:SA=1:10</td><td>3/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>+++</td><td>十</td></tr><tr><td>PB:SA=1:50</td><td>3/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>X X</td><td>X</td></tr><tr><td>SE: VA=1:1</td><td>3/3</td><td>0/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>3/3</td><td>3/3</td><td>× 士</td><td>十</td></tr><tr><td>SE: VA=1:5</td><td>3/3</td><td>0/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>3/3</td><td>3/3</td><td>-++ 十</td><td>+</td></tr><tr><td>SE: VA=5:1</td><td>3/3</td><td>0/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>3/3</td><td>3/3</td><td>+++</td><td>十</td></tr><tr><td>SE: MB=1:1</td><td>3/3</td><td>3/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>+++</td><td></td></tr><tr><td>SE: MB=1:5</td><td>3/3</td><td>3/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>+++</td><td>十</td></tr><tr><td>SE: MB=1:5</td><td>3/3</td><td>3/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>+++</td><td>十</td></tr><tr><td>PB:SE:VA=1:1:1</td><td>3/3</td><td>3/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>3/3</td><td>3/3</td><td>+++</td><td>十</td></tr><tr><td>PB:SE:SA=1:1:1</td><td>3/3</td><td>3/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>3/3</td><td>3/3</td><td>+++</td><td>+</td></tr><tr><td>SE:VA:SA=1:1:1</td><td>3/3</td><td>0/3</td><td>0/3</td><td>3/3</td><td>3/3</td><td>3/3</td><td>3/3</td><td>+++</td><td>十</td></tr><tr><td>SE:MB:SA=1:1:1</td><td>3/3</td><td>3/3</td><td>3/3</td><td>3/3</td><td>3/3</td><td>0/3</td><td>3/3</td><td>+++</td><td>十</td></tr></table>
+
++++，特异识别体液；+，阳性结果，但体液识别不具特异性。
+
+1.2) 构建miRNA 和 circRNA 共逆转体系用于环境中血迹样本的检测。
+
+为了更好的模拟法医现场的样本，我们利用外周血样本制备了一系列的降解样本，利用 miRNA 和 circRNA 共逆转体系（miR451a、miR16-5p、circ000095、18S rRNA 和 RNU6b)，检測 miRNA 和 circRNA 分子在环境血迹样本中的稳定性和检出效能。
+
+如图6A所示，circ0000095是由反向剪接形成的环状 RNA，其结构已通过Sanger测序验证。三个目标 RNA 分子标记的相对表达量，可通过目标 RNA的Ct值减去内参(18S rRNA 和 RNU6b)的平均 Ct 值即 ΔCt=Ct( circRNA 或 miRNA) -Ct（avg 18S rRNA & RNU6b)，用于计算 miRNA 和 circRNA 的相对表达量。如图6B-D所示，30份体液样本（每种体液6份）中circ0000095、miR451a、miR16-5p 分子标记物的相对表达量。circ0000095 分子标记仅在所有 PB 样本中成功检出，表明 circ0000095 是 PB 的特异性分子标记（图 6B）。miR451a 和 miR16-5p在血液样本（包括PB和MB样本）中的相对表达量明显高于其他体液样本（图6C-D)。此外，PCA、UMAP和LDA的结果显示，这30个体液样本聚为两个不同的聚类，PB样本在一个聚类群中，其余样本在另一个聚类群中。这些结果表明，这些目标RNA分子标记可以区分PB与其他体液样本（图6E)。总的来说，这些 RNA 标记（miR451a、mi16-5p 和 circ0000095）是 PB 特异性的分子标记。通过测定扩增效率来评估 circ0000095、miR451a 和 miR16-5p 标记物的性能。如图 7A-C所示，circ0000095、miR451a和 miR16-5p 的扩增效率分别为 97.29%、103.36%和96.90%，对应的 $R ^ { 2 }$ 值均大于0.99，显示良好的线性关系。
+
+![](images/page_11_image_3.jpg)
+
+B
+
+![](images/page_11_image_5.jpg)
+
+![](images/page_11_image_6.jpg)
+
+![](images/page_11_image_7.jpg)
+
+![](images/page_11_chart_8.jpg)
+
+![](images/page_11_chart_9.jpg)
+
+![](images/page_11_chart_10.jpg)
+
+图 6:所研究的 miRNAs 和 circRNA 的特异性。(A) circ0000095 结构示意图。（B-D）采用miRNA 和 circRNA 共逆转体系检测所研究的 RNA 标记物的相对表达量。柱状图上方的值是每个样本的ΔCt值。(E)在五种体液中检测所研究的RNA表达的主成分分析（PCA）、线性判别分析（LDA）和均匀流形近似和投影（UMAP）图
+
+![](images/page_11_chart_12.jpg)
+
+![](images/page_11_chart_13.jpg)
+
+![](images/page_11_chart_14.jpg)
+
+图 7: circ0000095(A)、miR451a (B)和 miR16-5p (C)的扩增效率
+
+随后进一步评价这些目标RNA分子标记物的灵敏性。如图8所示，miR-451a和 miR16-5p 在 PB 样本 0.01 pg 可以检出，而 circ0000095 在 PB 样本 0.1 ng 可以检出。由于温度对体液样本中RNA的检出至关重要，我们将PB样本分别放置在不同的高温条件下 $(37\;^{\circ} C$ $$5 5 ~ ^ { \circ } \mathrm { C } .$$ 和 $9 5 ~ ^ { \circ } \mathrm { C } )$ 暴露0、0.5、1、3和7天后，继而对干燥血迹样本中目标RNA分子标记进行检测。如图9所示，在高温条件下，干燥血迹样本中所有目标RNA分子标记和内参基因（RNU6b和18SrRNA)在每个时间点均可检出。目标 RNA 和内参基因（18S rRNA和 RNU6b）随着温度的升高和时间的延长，Ct值逐渐升高，特别是在 $9 5   ^ { \circ } \mathrm { C }$ 、暴露7天条件下，Ct值逐渐升高，说明其表达量逐渐降低。18S rRNA 在各检测点的 Ct值均低于RNU6b，说明 18S rRNA 的表达量高于 RNU6b。miRNA 标记物（miR451a 和miR16-5p）在所有检测点的Ct值均显著低于circ0000095标记物。在各高温下，miR451a 比 miR16-5p 更稳定 $(37 \; ^{\circ} C ;$ miR451a: b=0.5168; miR16-5p: b=0.8258, $5 5   ^ { \circ } \mathrm { C }$ :miR451a:b=0.5155；miR16-5p:b=0.8976 和 $95 ^{\circ} C ;$ miR451a:b=0.4464; miR16-5p: b=0.8442)。在 $3 7   ^ { \circ } \mathrm { C }$ （circ00000095:b=0.5746）和 $5 5   ^ { \circ } \mathrm { C }$ (circ0000095: b=0.7002)下，circ00000095 比 miR16-5p更稳定，除了在 $9 5   ^ { \circ } \mathrm { C } 1$ 温度下(b=0.9345)。
+
+我们将制备的干燥血迹标本分别放置于一定强度的紫外光照射0、0.5、1、3、7天，随后检测所研究的RNA分子的表达变化情况。结果表明，在紫外线照射下的目标RNA分子标记和内参基因在每个时间点均可被检出。如图10所示，随着紫外线照射时间的延长，miR16-5p、miR451a 和 circ00000095 标记的 Ct 值逐渐升高，表明这些RNA分子标记逐渐降解，特别是在照射了7天时。此外，18S rRNA在紫外光照射下比RNU6b更稳定（18SrRNA:b=0.665；RNU6b:b=0.7818）。此外，circ0000095 和 miR451a的表达比 miR16-5p（circ00000095:b=0.5682；miR451a:b=0.8329；miR16-5p:b=1.0017）更稳定。
+
+在犯罪现场，犯罪分子可能会使用一些常见的消毒剂和洗涤剂清洗现场，以掩盖其罪行。为了模拟这种情况，我们制备了一系列干燥的血迹样本浸泡在几种常见的消毒剂、洗涤剂和无菌水中。以未经任何处理的干燥血迹样本作为对照组。结果显示，在不同消毒剂处理后均检测到目标RNA分子标记和内参基因(图11)。miR451a 的 Ct 值低于 miR16-5p 和 circ0000095，这意味着 miR451a的表达高于miR16-5p和 circ0000095。与对照相比，三个RNA标记物（miR451a、miR156-5p和circ000095）的不同消毒剂处理后相对稳定，没有明显差异 $(p > 0.05)$ ，这可能是由于浸泡时间不足所致。
+
+此外，我们进一步探讨低温对体液样品储存的影响。我们将干燥血迹样本分别置于不同的低温 $( 4^{\circ}C 、 -20^{\circ}C 、 -80^{\circ}C )$ 下暴露30、180和365天。结果表明，不同低温暴露下干燥血迹样本中所有RNA分子标记和内参基因在每个时间点均可检出。此外，miR451a、miR16-5p和 circ0000095的表达在不同温度下随着时间延长逐渐升高，甚至在 $\mathbf { - 8 0 ^ { \circ } C l }$ 时亦是如此（图12）。在相同的暴露时间内，血迹样本的 RNA 表达在 $\mathbf { - 8 0 \; ^ { \circ } C l }$ 时高于 $- 2 0 \; ^ { \circ } \mathrm { C } .$ 和 $4 \; ^ { \circ } \mathrm { C } .$ 。miR451a 的 Ct 值低于 miR16- $5 \mathrm { p }$ ，而 miRNA 的 Ct 值低于 circ0000095，表明在相同处理下，miRNA 比circ0000095 表达更高，miR451a 比 miR16-5p 表达更高。
+
+<table><tr><td rowspan="2">Dilution(pg)</td><td colspan="3">miR451a</td><td colspan="3">miR16-5p</td><td colspan="3">circ0000095</td><td rowspan="8">Ct Value 35 30 25 20</td></tr><tr><td>10000</td><td>17.69</td><td>17.47</td><td>17.78</td><td>17.68</td><td>17.41</td><td>17.41</td><td>19.50</td><td>19.47 19.43</td></tr><tr><td>1000</td><td>21.24</td><td>21.16</td><td>21.32</td><td>20.92</td><td>21.37</td><td>21.41</td><td>22.80</td><td>22.78</td><td>22.87</td></tr><tr><td>100</td><td>24.54</td><td>24.53</td><td>24.24</td><td>24.41</td><td>24.40</td><td>24.47</td><td>25.63</td><td>25.48</td><td>25.42</td></tr><tr><td>10</td><td>27.70</td><td>27.75</td><td>27.95</td><td>27.85</td><td>27.86</td><td>27.86</td><td>28.76</td><td>28.82</td><td>28.92</td></tr><tr><td>1</td><td>30.78</td><td>30.83</td><td>30.65</td><td>31.04</td><td>30.71</td><td>31.22</td><td>31.77</td><td>31.64</td><td>32.22</td></tr><tr><td>0.1</td><td>31.90</td><td>31.58</td><td>33.14</td><td>31.89</td><td>32.07</td><td>31.97</td><td>ND</td><td>ND</td><td>ND</td></tr></table>
+
+图 8:在 miRNA 和 circRNA 共逆转体系中，目标 RNA 分子标记的灵敏性热图
+
+![](images/page_13_chart_5.jpg)
+
+![](images/page_13_chart_6.jpg)
+
+![](images/page_13_chart_7.jpg)
+
+图9:检测高温下这些RNA的Ct值随时间变化规律。温度分别为 $3 7   ^ { \circ } \mathrm { C } _ { \circ }$ $$5 5 \; ^ { \circ } \mathrm { C }  、  $$ $9 5 \; ^ { \circ } \mathrm { C }$时间分别为0、0.5、1、3、7天
+
+![](images/page_13_chart_9.jpg)
+
+![](images/page_13_chart_10.jpg)
+
+![](images/page_13_chart_11.jpg)
+
+![](images/page_13_chart_12.jpg)
+
+![](images/page_13_chart_13.jpg)
+
+图10:检测在紫外光照射下这些RNA的Ct值随时间变化规律。时间分别为0、0.5、1、3、7天
+
+![](images/page_14_chart_2.jpg)
+
+![](images/page_14_chart_3.jpg)
+
+![](images/page_14_chart_4.jpg)
+
+![](images/page_14_chart_5.jpg)
+
+![](images/page_14_chart_6.jpg)
+
+图11:检测不同消毒剂处理后这些RNA表达变化情况。消毒剂分别是次氯酸钠、含氯消毒剂、75%酒精、水及洗洁精。对照组为没有任何处理的干燥血迹样本
+
+![](images/page_14_chart_8.jpg)
+
+![](images/page_14_chart_9.jpg)
+
+![](images/page_14_chart_10.jpg)
+
+图12:检测低温处理后这些RNA分子标记随时间变化情况。低温分别为 $4 \; ^{\circ} C  、 -20 \; ^{\circ} C .$ $-80   ^{\circ} C ;$ 时间分别为30天、180天和365天
+
+1.3）构建 mRNA和 lncRNA 检测体系探究 lncRNA 在体液鉴定方面潜能。我们通过筛选 GEO 数据库，结合R 语言筛选出外周血和精液特异性的lncRNA分子，同时在该体系内引入外周血和精液特异的mRNA分子共同检测，18S rRNA 作为内参，构建 mRNA 和 lncRNA 的检测体系，探究 lncRNA 分子在体液鉴定方面的潜能。本研究采用RT-qPCR对48个体液样本进行目标RNA分子的检测。小提琴图（图13A）的结果显示，在血液样本（PB和MB）中，HBB的相对表达水平显著升高。lnc-SLC25A39在PB样本中特异性表达。PRM1和lnc-LINC00279-202是 SE样本的特异性 RNA标记物。如图13B所示，4个目标RNA分子标记具有良好的敏感性和特异性 $(AUC = 1.000)$ ，表明这些RNA分子标记能高效地识别目标体液。如图14所示，所有目标RNA分子标记的扩增效率均在94.38%\~101.86%之间。这些标记物的 $R ^ { 2 }$ 值在0.993\~0.997之间，呈现良好的线性关系。
+
+![](images/page_15_chart_2.jpg)
+
+![](images/page_15_chart_3.jpg)
+
+![](images/page_15_chart_4.jpg)
+
+![](images/page_15_chart_5.jpg)
+
+![](images/page_15_chart_6.jpg)
+
+![](images/page_15_chart_7.jpg)
+
+![](images/page_15_chart_8.jpg)
+
+![](images/page_15_chart_9.jpg)
+
+图13:探究目标 mRNA和lncRNA分子标记特异性。(A）检测所研究的 RNA分子标记在五种体液样本中相对表达量；(B) 这些 RNA 的 ROC 结果
+
+![](images/page_15_chart_11.jpg)
+
+![](images/page_15_chart_12.jpg)
+
+![](images/page_15_chart_13.jpg)
+
+![](images/page_15_chart_14.jpg)
+
+图 14:检测目标 mRNA 和 lncRNA 分子标记的扩增效率
+
+![](images/page_15_image_16.jpg)
+
+图15:检测目标RNA分子标记物的灵敏性热图
+
+为了进一步评估上述所研究的RNA分子标记的灵敏性，如图15所示，HBB在 PB 样本中的灵敏性为 0.1 pg。lnc-SLC25A39 在 PB 样本中的灵敏性为 0.1 pg。
+
+lnc-LINC00279-202 和 PRM1 在 SE 样本中的灵敏性为 1 ng。利用目标 RNA 分子标记在70个样本（包括20个PB，20个 SE和 30个非PB和非 SE样本即10个SA，10个VA和10个MB）的相对表达量数据结合10个分类算法模型构建体液溯源预测模型。10个模型的性能如图16所示，10个模型的预测精度已达到100%，AUC值为1，说明10个模型在PB和 SE样本中的体液预测效果较好。另外，随机选取21个样本作为验证集，对上述算法进行外部验证。结果表明，21个样本均被准确区分体液类型。 1
+
+为了评价所选RNA分子标记在混合体液中的性能，我们利用五种体液样本制备了几种不同体积混合比的混合体液样本。正如预期的那样，1ncRNA分子标记（lnc-SLC25A39和lnc-LINC00279-202）成功地鉴定了三到五种组织来源的不同混合物中的目标体液样本（图17）。此外，在不同的体液混合物中没有mRNA（HBB和PRM1）标记物缺失。由于这四个RNA分子标记具有较高的体液特异性，可用于检测混合样本中是否还有PB或SE的组织类型。
+
+![](images/page_16_image_4.jpg)
+
+图16:基于目标 mRNA和lncRNA分子标记的表达量构建随机森林分类模型
+
+![](images/page_16_image_6.jpg)
+
+图17:检测混合样本中目标RNA分子标记的相对表达量。框内的颜色表示成功检出目标RNA分子标记，而框内没有颜色表示目标RNA未检出
+
+2）揭示不同体液（斑）核心微生物群，为基于微生物组进行体液斑精准组织溯源研究奠定理论和应用基础。
+
+## 2.1)唾液、皮肤及其混合物的微生物群落多样性探究。
+
+本课题组招募了20-30岁的男性志愿者，知情同意后采集了其样本（唾液、皮肤及两者混合物各20份）并基于二代测序技术进行16S rRNAV3-V4测序，探索不同体液样本间微生物群落构成差异。共获得3074235个高质量有效细菌序列和5110个细菌操作性分类单元（OTU）。这些OTU被归类为不同的50个门、572个科和1320个属。主坐标分析（PCoA）和无度量多维标定分析（NMDS）结果显示，唾液和皮肤样本被明显区分，皮肤样本分布相对分散，唾液-皮肤混合物散布在唾液和皮肤样本之间（图18）。组间差异分析表明，三组样本之间菌群结构具有显著的统计学差异，且组间差异显著大于组内差异。与皮肤样本相比，唾液样本中丰度差异显著的微生物是副流感嗜血杆菌T3T1、黄热奈瑟菌、溶血性双歧杆菌、黑色素原菌和牙本质放线菌，而皮肤样本主要是痤疮丙酸杆菌和结核硬皮杆菌（图19）。此结果表明利用微生物分子标记能够对唾液和皮肤样本进行鉴定，并且区分两者的混合物，为后续多种不同的体液鉴定和溯源提供新思路。
+
+![](images/page_17_chart_4.jpg)
+
+![](images/page_17_chart_5.jpg)
+
+图 18:基于样本 OTU 的丰度和 Bray-Curtis 距离的 PCoA 和 NMDS 图
+
+![](images/page_17_chart_7.jpg)
+
+B
+
+![](images/page_17_chart_9.jpg)
+
+图19:基于属（A）和种（B）水平皮肤、唾液及两者混合物之间的差异比较分析图
+
+分别对志愿者的四种类型的体液样本（唾液组R1、外周血组R2、月经血组
+
+R3 和阴道分泌物组 R4）进行 16S rRNA V3-V4 二代测序和 16S rRNA V1-V9 三代测序。首先对样本中微生物的基因组DNA进行提取和定量。PB8样本由于提取的DNA量无法满足后续建库要求而被剔除，同理，在16S V1-V9测序中PB3样本不符合要求被剔除。然后分别使用连接不同Barcode的引物对剩余样本进行扩增、文库构建。采用IlluminaNovaSeq和PacBio两种测序技术进行测序，并对下机数据进行处理得到可用数据。
+
+以序列之间的相似性高于97%为标准对各样本进行OTU聚类（图20)，16S V3-V4测序中得到了3797个OTUs，被注释为不同的40个门、265个科、570个属和406个种。在界水平上，1227个OTUs被注释为未知。16SV1-V9测序数据中有592个OTUs，注释为18个门、78个科、148个属和167个种。界水平上所有 OTUs 均被注释为细菌。16S V3-V4 测序的注释物种数目明显高于16S V1- V9测序(图21)，但其物种注释率较低（图22)。可能是由于二代测序读长较短，16SrRNA基因序列也因分辨度不够而出现OTU不能被注释到任何物种的情况。稀释曲线（图23)表明随着测序数量的增加，曲线趋于平缓(SA3和PB7除外)，该测序结果足够反应当前四种体液所包含的微生物，但SA3和PB7的曲线仍处于上升阶段，提示为了获得完整的群落特征后续测序中需增加测序深度。
+
+基于 16S V3-V4 测序结果的门水平物种相对丰度分析展示出四种体液所包含的物种和丰度情况，即R1组包括变形菌门（30.58%）、厚壁菌门（26.51%）、拟杆菌门（25.71%）和梭杆菌门（11.59%）等；R2组含有变形菌门（19.3%）、厚壁菌门（5.37%）、放线菌门（1.66%）等；R3组中，MB1包括72.4%的放线菌门和24.72%的厚壁菌门，MB3、MB4和MB7包括厚壁菌门（78.54%）、拟杆菌门（13.02%）等；R4组中，VF1包括87.40%的放线菌门和8.76%的厚壁菌门，VF3、VF4和VF7包括88.59%的厚壁菌门、5.95%的拟杆菌门等（图24A）。基于16S V1-V9测序数据的门水平物种相对丰度分析结果显示，R1 组包括厚壁菌门（57.25%）、拟杆菌门（18.30%）和变形菌门（15.50%）等；R2组含有变形菌门（94.13%）、厚壁菌门（1.66%）和放线菌门（1.29%）等；R3组存在两种不同的优势菌，即MB1包含87.21%的软壁菌门、9.56%的放线菌门等，MB3、MB4和MB7包含厚壁菌门（95.77%）、拟杆菌门（1.85%）等；R4组中，VF1包括软壁菌门（71.75%）和放线菌门（27.79%）等，VF3、VF4和VF7包括99.88%的厚壁菌门等（图24B)。MB1和VF1样本的两种测序结果存在差异，且两者的结果均与健康女性特有样本中的优势菌（厚壁菌门）不符合，此现象亟待后续进一步验证分析。
+
+![](images/page_19_chart_2.jpg)
+
+图20:根据序列相似性注释为门、纲、目、科、属和种水平下的物种数目及两测序方法在不同水平下的相同物种的数目。左边的纵坐标表示的是两种测序方法在不同分类水平下的注释物种的数目，右边的纵坐标表示的是不同分类水平下两种测序方法相同物种的数目。蓝色代表16S V3-V4测序，黄色代表16S V1-V9测序，绿色表示相同物种的数目
+
+![](images/page_19_chart_4.jpg)
+
+图21:四种体液根据序列相似性注释为界、门、纲、目、科、属和种水平下物种数目。纵坐标表示的是注释物种数目，横坐标代表的是不同的分类水平。R1代表唾液样本组；R2代表外周血组；R3代表月经血（第二天）组；R4代表阴道分泌物组；“-”后的2表示基于二代测序16S V3-V4的结果；3表示基于三代测序16S V1-V9结果
+
+![](images/page_19_image_6.jpg)
+
+图22:16S V3-V4测序（蓝）和16S V1-V9测序（黄）结果在不同水平上物种注释率比较
+
+B
+
+A
+
+![](images/page_20_chart_4.jpg)
+
+![](images/page_20_chart_5.jpg)
+
+图23:稀释曲线。不同颜色曲线代表不同样本，各样本被抽取的序列总数在横坐标中显示，对应深度下所检测到的 OTUs 数在纵坐标中显示。(A)基于16SrRNA V3-V4 测序结果所构建的稀释曲线图。(B)基于 $16 S rRNAV1-V9$ 测序结果所构建的稀释曲线图
+
+![](images/page_20_chart_7.jpg)
+
+![](images/page_20_chart_8.jpg)
+
+图24:门水平物种相对丰度柱形图。横坐标（Samplename）是样品名称；纵坐标（Relative Abundance）表示相对丰度；Others表示图中这10个门之外的其他所有门的相对丰度之和。(A)基于16S rRNA V3-V4测序结果的门水平物种相对丰度图。(B)基于16S rRNA V1-V9 测序结果的门水平物种相对丰度图
+
+表 4. 二代测序中不同分组之间基于 Weighted Unifrac 距离的 AMOVA 结果\*
+
+| vs_group | SS | df | MS | Fs | p-value |
+| --- | --- | --- | --- | --- | --- |
+| R1-R2 | 80.3142 | 1 | 80.3142 | 78.8053 | 0.001* |
+| R1-R3 | 1.1864 | 1 | 1.1864 | 6.9904 | 0.002* |
+| R1-R4 | 1.4748 | 1 | 1.4748 | 9.5619 | 0.002* |
+| R2-R3 | 57.8635 | 1 | 57.8635 | 41.1869 | 0.007* |
+| R2-R4 | 58.7685 | 1 | 58.7685 | 42.3562 | 0.005* |
+| R3-R4 | 0.1065 | 1 | 0.1065 | 0.4512 | 0.536 |
+| R1-R2-R3-R4 | 106.6920 | 3 | 35.5640 | 47.8791 | &lt;0.001* |
+
+\*vs group表示分析的组名称；SS为总方差，又称离差平方和；df为自由度；MS 为均方差；Fs为F检验值；P-value为相对应P值，标有“\*”即 P值小于 0.05说明组间差异显著
+
+四种体液之间基于 Weighted Unifrac 距离的 AMOVA 分析结果显示不同分组两两之间存在显著差异，但R3-R4组间无显著差异（表4和表5)。此外，R3-R4的ANOSIM分析结果表明这两个分组之间菌群的种类和丰度无显著差异，与AMOVA结果一致，且组内差异显著大于组间差异（图25)，可能与体液类型、个体差异、样本特殊性或样本容量等因素有关。无论是基于16S V3-V4的结果，还是基于16S V1-V9的结果，在样本水平和分组水平上的聚类结果均表现为R3组和 R4 组的距离较小，R1 组和 R2 组的距离较远（图26)。MB1 和 VF1的群落结构相似，与同一体液类型的样本相聚较远。
+
+此外，基于 Weighted Unifrac 距离进行 PCoA 分析，发现 R3 组和 R4 组聚集在一起，与 R1、R2的距离较远（图27)。R2组中，PB1、PB4、PB7聚集在第一和第二主成分内，PB8、PB9、PB10聚集在第二和第三主成分内（图27B)，但并未发现 R2 组中的微生物群落结构存在统计学上的性别差异。基于 OTU 水平的 NMDS 分析结果与 PCoA 相似（图 28）。
+
+为了甄选出四种体液之间丰度变化显著且具有统计学差异的生物标记，本项目组将 LDA 值的阈值设置为 3 后进行了LEfSe (Linear discriminant analysis Effect Size)分析。基于16S V3-V4测序结果的进化分支图显示，从种水平看，R1组的差异菌群为产黑色素普雷沃菌、牙周梭杆菌、副流感嗜血杆菌V型和流感嗜血杆菌；R2组的差异菌群为奥斯陆莫拉氏菌、皮氏罗尔斯顿菌、绿脓假单胞菌和约氏不动杆菌；R3组的差异菌群为普雷沃菌和二路普雷沃尔菌；R4组的主要菌群为惰性乳杆菌和詹氏乳杆菌（图29A）。基于16S V1-V9测序结果的进化分支图显示，产黑色普雷沃菌、牙周梭杆菌和缓症链球菌为R1组的差异菌群；粘质沙雷氏菌、恶臭假单胞菌和嗜根寡养单胞菌为R2组的差异菌群；凝固拟杆菌、大芬戈尔德菌和二路普雷沃尔菌被认为是R3组中存在的差异菌群；惰性乳杆菌为R4组的差异菌群（图29B)。在种水平上，R2组的差异菌群在两种测序结果中存在着差异，但两者呈现的菌群均为机会致病菌。这四种体液间差异菌群所在的门与物种相对丰度分析得到的结果一致。
+
+表 5. 三代测序中不同分组之间基于加权 Unifrac 距离的 AMOVA 结果\*
+
+| vs_group | SS | df | MS | Fs | P-value |
+| --- | --- | --- | --- | --- | --- |
+| R1-R2 | 1.4642 | 1 | 1.4642 | 26.8298 | 0.001* |
+| R1-R3 | 0.6288 | 1 | 0.6288 | 5.1343 | 0.002* |
+| R1-R4 | 0.6694 | 1 | 0.6694 | 5.0552 | 0.001* |
+| R2-R3 | 1.2814 | 1 | 1.2814 | 18.5438 | 0.001* |
+| R2-R4 | 1.2475 | 1 | 1.2475 | 15.5356 | 0.001* |
+| R3-R4 | 0.0105 | 1 | 0.0105 | 0.0552 | 0.6850 |
+| R1-R2-R3-R4 | 2.7947 | 3 | 0.9316 | 9.0774 | &lt;0.001* |
+
+\*vs\_group表示分析组名称；SS 为总方差，又称为离差平方和；df为自由度；MS 为均方(差); Fs为F检验值；P-value为相对应的P值，标有“\*”即P值小于0.05说明组间差异显著。
+
+![](images/page_22_chart_3.jpg)
+
+图25:基于ANOSIM方法进行组间差异分析。（A）基于 16S rRNA V1-V9 测序结果
+
+A
+
+![](images/page_22_image_6.jpg)
+
+B
+
+![](images/page_22_image_8.jpg)
+
+![](images/page_22_image_9.jpg)
+
+D
+
+![](images/page_22_chart_11.jpg)
+
+图 26:样本水平和群体水平基于 weighted Unifrac 距离的 UPGMA 聚类树。左侧是 UPGMA聚类树结构，不同的颜色代表不同的组别，右侧是各样本在门水平上的物种相对丰度分布图，右侧图例表示的是物种在门水平上的名称。（A）基于16SrRNAV3-V4测序结果各样本的 UPGMA 聚类。(B)基于16S rRNA V3-V4测序结果四个分组的 UPGMA聚类。（C）基于16SrRNAV1-V9测序结果各样本间的 UPGMA聚类。（D）基于16S rRNA V1-V9 测序结果各分组之间的 UPGMA 聚类
+
+B
+
+![](images/page_23_image_3.jpg)
+
+![](images/page_23_image_4.jpg)
+
+图27:基于 OTU 水平的 PCoA 分析的 3D图。PC1、PC2和 PC3 分别表示第一、二和三主成分，百分比表示主成分对样本差异的贡献值；图中的每个点表示一个样本，同一个组的样本使用同一色系中的不同颜色表示。(A)基于16S rRNA V3-V4测序结果。(B) 基于 16S rRNA V1-V9 测序结果
+
+![](images/page_23_chart_6.jpg)
+
+![](images/page_23_chart_7.jpg)
+
+图28:基于OTU水平的NMDS分析结果。图中的每个点表示一个样本，点与点之间的距离表示差异程度，同一个组的样本使用同一种颜色表示。(A)基于16SrRNAV3-V4测序结果。(B)基于 16S rRNA V1-V9测序结果
+
+2.3）探究女性一个月经周期内阴道微生物的变化。
+
+在前期实验中，我们观察到月经血和阴道分泌物样本中的微生物群落构成无明显的统计学差异，故再次招募了三名女性志愿者，分别在月经期的前三天、卵泡期、排卵期和黄体期采集阴道拭子。随后对采集的18份阴道来源样本使用全长16SrRNA测序分析。每个样本平均的测序深度为19788，且长度分布在1500 bp左右。根据序列相似性，共得到了682条扩增子序列变体（ASV）。α多样性指标表明:6个时间点采集的阴道样本之间的微生物群落多样性无显著统计学差异（图30）。在种水平上，不同个体相同采集时间点的阴道微生物群落组成差异较大，同一个体不同采集时间点的阴道微生物群落相似（图31）。主坐标分析
+
+（PCoA）显示多数阴道样本聚集在一起（图32a），主成分分析（PCA）表明不同个体来源的阴道样本聚集在一起，且不受采样时间点的限制（图32b）。阴道样本的主导微生物菌群在一个月经周期内保持稳定，故后续我们的阴道来源样本的采集可在月经周期的任何时间点进行。
+
+![](images/page_24_image_3.jpg)
+
+![](images/page_24_image_4.jpg)
+
+图29:基于LEfSe分析的进化分支图。在进化分支图中，由内至外辐射的圆圈代表着由门至属（或种）的分类级别。在不同分类级别上的每一个小圆圈代表该水平下的一个分类，小圆圈直径大小与相对丰度大小呈正比。无显著差异的物种统一着色为黄色，差异物种Biomarker伴随组进行着色，红色节点表示在红色组别中起到重要作用的微生物类群，绿色节点表示在绿色组别中起到重要作用的微生物类群，若图中某一组缺失，则表明此组中并无差异显著的物种。四个分组信息见左侧图例，物种信息见右侧图例。(A)基于 16S rRNA V3-V4 测序结果所构建的进化分支图。(B) 基于 16S rRNA V1-V9测序结果所构建的进化分支图
+
+![](images/page_24_chart_6.jpg)
+
+![](images/page_24_chart_7.jpg)
+
+![](images/page_24_chart_8.jpg)
+
+图30:一个月经周期阴道样本的α多样性指数箱线图。P值为六个分组之间Kruskal-Wallis检验的P值。F1、F2、F3分别指月经期第一、第二和第三天采集的月经血样本；F4指卵泡期采集的阴道分泌物样本；F5为排卵期采集的阴道分泌物样本；F6为黄体期采集的阴道分泌物样本
+
+![](images/page_25_chart_2.jpg)
+
+图31:种水平上的物种相对丰度柱形图。横坐标表示样本名称，其中“2VF-”后的“1、2和3”分别表示3个不同的志愿者，F1、F2和F3分别指月经期第一、第二和第三天采集的月经血样本；F4指卵泡期采集的阴道分泌物样本；F5为排卵期采集的阴道分泌物样本；F6为黄体期采集的阴道分泌物样本
+
+![](images/page_25_chart_4.jpg)
+
+![](images/page_25_chart_5.jpg)
+
+图 32:基于六个不同采样时间点阴道样本 ASVs 的 (a)主坐标分析(Principal co-ordinates analysis, PCoA)和(b)主成分分析(Principal Component Analysis, PCA）图。F1、F2和 F3分别指月经期第一、第二和第三天采集的月经血样本；F4指卵泡期采集的阴道分泌物样本；F5为排卵期采集的阴道分泌物样本；F6为黄体期采集的阴道分泌物样本
+
+2.4)探究唾液、精液和阴道分泌物样间差异微生物标志物。
+
+在志愿者知情同意的前提下采集了 23 份唾液、21 份精液和 25 份阴道分泌物样本，基于全长16SrRNA基因测序技术探索这些样本的微生物群落构成。每个样本的平均有效序列为17137，且所有的样本根据序列相似性得到了14058个ASVs。α多样性指标（图33）表明唾液中微生物多样性最高、精液中次之、阴道分泌物中微生物多样性最低，且三种体液两两之间的微生物多样性存在显著差异。在门水平，唾液和精液样本以厚壁菌门和变形菌门为主，而厚壁菌门在阴道分泌物样本中占主导地位（图34a）。在属水平上，三种体液样本的主导菌属各不相同，如唾液为链球菌属、奈瑟菌属和嗜血杆菌属；精液为罗尔斯通菌属和鞘脂单胞菌属；阴道分泌物为乳酸杆菌属（图34b）。在PCA分析中，唾液样本聚集在一块且较为紧密，精液样本聚集在一块，大部分阴道分泌物样本聚集在一块，其余的则散在分布(图35a)。PCoA分析(图35b)得到了与PCA相似的结果，虽其阴道分泌物样本分布的较为分散，但依然聚集在一起。将18个在阴道周期内采集的样本与3种体液样本的测序数据放在一起分析，Ven图（图36）的结果显示三种类型体液共有ASVs数为29个，唾液、精液和阴道分泌液样本分别具有4475、7446 和 1082个独特的 ASVs。正交偏最小二乘法判别分析(OPLS-DA)被用来进一步探究三种体液间的差异。两点在图中的距离越近，表明这两个样本间的物种丰度组成越相似。虽然在月经周期内阴道样本的微生物稳定性研究，发现阴道样本具有个体相对稳定性和特异性，但月经周期内不同时间点的所有采集的阴道样本依然与阴道分泌液样本聚集在一起，个别样本与精液的距离相对较近，唾液和精液分别聚在一起（图37）。随机森林分析对三种体液间 top20的差异标志物进行筛选，并根据重要性排名绘制成丰度热图（图38)，唾液、精液的差异菌种分别有12和8个，阴道分泌物中未发现显著的差异生物标志物。线性判别分析（LEfSe）在LDA值为4时，三种类型体液之间有15种具有统计学差异的菌种(表6)，唾液、精液和阴道分泌液中分别有8、3和4种，这些差异菌的结果与我们前期研究结果基本相符合。
+
+![](images/page_26_chart_3.jpg)
+
+![](images/page_26_chart_4.jpg)
+
+![](images/page_26_chart_5.jpg)
+
+图33:三种类型体液样本α多样性指数箱线图。Saliva指的是唾液样本，Semen指精液样本，Vagina指阴道分泌物样本
+
+![](images/page_27_chart_2.jpg)
+
+图34:门水平(a) 和属水平(b)的物种相对丰度柱状图。”SA”开头的样本为唾液样本；“SE”开头的样本为精液样本；“VF”开头的样本为阴道分泌物样本
+
+![](images/page_27_chart_4.jpg)
+
+![](images/page_27_chart_5.jpg)
+
+图 35:基于三种类型体液样本 ASVs数据的(a) 主成分分析(Principal Component Analysis，PCA）图和 (b)主坐标分析（Principal co-ordinates analysis, PCoA）
+
+![](images/page_27_chart_7.jpg)
+
+图36:Venn图。每个色块代表一个分组，蓝色、红色、绿色分别代表的是唾液、精液和阴道分泌物样本。色块间的重叠区域指示相应组间所共有的ASVs，每个区块的数字指示该区块所包含的ASV的数目
+
+![](images/page_28_chart_2.jpg)
+
+图 37:正交偏最小二乘法判别分析(orthogonal partial least-squares discriminationanalysis，OPLS-DA)图。图中两个点的距离越近，表明这两个样本间的物种丰度组成越相似
+
+![](images/page_28_image_4.jpg)
+
+图38:随机森林分析中重要性排名前20位（默认值）的物种绝对丰度热图。柱状图横坐标为物种对于分类器模型的重要性打分值。热图纵坐标为种水平的分类单元名；横坐标为样本名称；图中颜色由蓝到白再到红，分别代表着这些物种在各样本中的丰度从小到大。
+
+表6:三种类型体液样本之间基于线性判别分析（LEfSe）得到的差异生物标志物\*
+
+<table><tr><td>Species</td><td></td><td>Group LDA_score</td><td>P value</td></tr><tr><td colspan="2">Streptococcus_sp_ B2 Neisseria_perflava</td><td>Saliva</td><td>4.0700 0.0000</td></tr><tr><td colspan="2">Saliva Fusobacterium_pseudoperiodonticum</td><td>Saliva 4.0829</td><td>0.0000</td></tr><tr><td colspan="2">Streptococcus_gwangjuense</td><td>4.0968</td><td>0.0000</td></tr><tr><td colspan="2">Saliva Veillonella_sp_oral_taxon_158</td><td>4.1619</td><td>0.0000</td></tr><tr><td colspan="2">Saliva Saliva Neisseria_subflava</td><td>4.1637</td><td>0.0000</td></tr><tr><td colspan="2">Saliva Streptococcus_mitis</td><td>4.4610</td><td>0.0000</td></tr><tr><td colspan="2">Saliva Haemophilus_parainfluenzae</td><td>4.6089</td><td>0.0000</td></tr><tr><td colspan="2">bacterium_Ellin339 Semen</td><td>4.7305</td><td>0.0000</td></tr><tr><td colspan="2">Sphingomonas_sp_ Semen</td><td>4.1233</td><td>0.0000</td></tr><tr><td colspan="2"></td><td>4.7935</td><td>0.0000</td></tr><tr><td colspan="2">Ralstonia_sp_</td><td>5.1538 Semen</td><td>0.0000</td></tr><tr><td colspan="2">Aerococcus_christensenii</td><td>Vagina 4.1375</td><td>0.0101</td></tr><tr><td colspan="2">Streptococcus_agalactiae</td><td>4.4996 Vagina</td><td>0.0260</td></tr><tr><td colspan="2">Lactobacillus_crispatus</td><td>Vagina 5.0991</td><td>0.0027</td></tr><tr><td colspan="2">Lactobacillus_iners</td><td>5.1597 Vagina</td><td>0.0010</td></tr></table>
+
+P值小于0.05代表具有统计学意义，LDA表示线性回归分析
+
+2.5）探究不同种属来源唾液中微生物结构差异及筛选种属特异性微生物标志物。
+
+宠物猫和宠物狗在人们的生活中扮演着日益重要的作用，我们采集了人唾液20份、猫、犬唾液各30份并使用16SV3-V4测序来探究不同种属来源唾液中微生物群落结构的差异。人、猫和犬唾液样本的平均测序深度分别为61966、56332和81849reads，且稀释曲线指出所有样本均达到平台期。根据序列相似性，人、猫、犬的唾液样本分别获得了4488、15056、18304个ASVs，三者共有98个ASVs。α多样性表明犬唾液的微生物多样性最高、猫唾液次之，人唾液微生物多样性最低。门水平物种组成热图（图39）显示犬和猫唾液的主导菌门为卟啉单胞菌门，人唾液中的链球菌门和奈瑟菌门为优势菌门。基于三个种群唾液之间Bray-Curtis距离的PCoA图（图40a）显示人、猫、犬的唾液分别聚集在一起，人唾液样本聚集的较为紧密，猫唾液样本聚集的较为松散。非度量多维尺度分析(NMDS)得到与PCoA较相似的结果(图40b)，但犬唾液样本的聚集也较为分散。随机森林重要性排名（表7）表明犬、猫和人唾液样本中分别有5、3和9种特异性菌，有生殖道放线菌和犬咬嗜二氧化碳菌在犬和猫唾液中丰度较高，而在人唾液中丰度较低，故这两种菌可用于区分动物和人的唾液样本。唾液中的微生物群落具有较高的种属特异性，若在案发现场发现疑似唾液样本，可通过检测唾液中的优势菌来判别是否来源于人。
+
+![](images/page_29_image_4.jpg)
+
+图39:门水平的物种组成热图。图中的据类为基于样本物种组成数据的欧式距离的UPGMA聚类。最右边的图例表示样本的分组，热图中的颜色由红到绿分别代表的是在样本中的相对丰度
+
+![](images/page_29_chart_6.jpg)
+
+![](images/page_29_chart_7.jpg)
+
+图40:基于三种不同种属来源的唾液样本 ASVs数据的（a)主坐标分析（PCoA）图和(b) 非度量多维尺度分析(NMDS)图
+
+表7:三个不同种属的唾液样本基于随机森林分析重要性排名前20的差异生物标志物。数值表示的是相应物种在该分组方案中的丰度
+
+| Species | Canine | Feline | Homo |
+| --- | --- | --- | --- |
+| Conchiformibius_kuhniae | 0.1333 | 838.6667 | 0.8500 |
+| [Prevotella]_tannerae | 0.0000 | 0.0000 | 147.5000 |
+| Rothia_mucilaginosa | 5.2333 | 4.7333 | 2204.7500 |
+| Kingella_potus | 13.0333 | 0.4667 | 20.1000 |
+| Haemophilus_parainfluenzae | 6.4000 | 6.6000 | 4615.8000 |
+| Suttonella_ornithocola | 1.8000 | 19.0000 | 0.0000 |
+| Bulleidia_moorei | 0.1000 | 0.0000 | 82.3500 |
+| Rothia_dentocariosa | 0.3667 | 0.1333 | 1007.3000 |
+| Psychrobacter_meningitidis | 116.4000 | 33.4000 | 0.5500 |
+| Lachnoanaerobaculum_orale | 0.1000 | 0.0000 | 116.6000 |
+| Pasteurella_aerogenes | 5.7333 | 0.0667 | 0.5000 |
+| Veillonella_parvula | 2.6000 | 1.5667 | 1292.8500 |
+| Prevotella_nanceiensis | 0.1333 | 0.3000 | 416.0000 |
+| Abiotrophia_defectiva | 1536.9000 | 127.1333 | 0.6000 |
+| Actinomyces_hyovaginalis | 154.7333 | 333.7667 | 32.2500 |
+| Rothia_aeria | 0.0000 | 0.4000 | 886.3000 |
+| Capnocytophaga_canimorsus | 2211.9667 | 1934.5667 | 0.8500 |
+| Corynebacterium_durum | D 0.0000 | 0.0667 | 147.2000 |
+| Neisseria_animaloris | 217.0000 | 6.8000 | 0.0000 |
+| Moraxella_ovis | 564.3667 | 2111.7000 | 1.7500 |
+
+## 2.6）暴露在环境中的体液（斑）样本中微生物群落稳定性的探究及随机森林模型的构建与验证。
+
+在前期研究中，本项目基于微生物组学理论和技术对五种体液（斑）进行系统研究，并已初步筛选出体液（斑）间差异的微生物标志物。由于前期实验中使用的样本均为新鲜的样本，但实际案件中的检材通常暴露于环境中，检材中的微生物是否会受暴露环境的影响尚未可知。故我们使用前期实验中的三种类型体液(唾液、阴道分泌物、精液)拭子和空白拭子(NC)在室内环境中暴露1天(T1)、3天（T2）、7天（T3）和14天（T4）。全长16SrRNA测序和多种统计分析揭示随暴露时长增加三种体液拭子中微生物群落变化情况，并筛选出稳定且具有体液间差异性的微生物用于后续体液（斑）的精准鉴别。所有样本共获得3852个扩增子序列变体（ASVs)，被注释为不同的17个门、125个属和130个种。未暴露NC的测序数据量均低于暴露NC样本。暴露之后，NC样本中变形菌门相对丰度降低、罗尔斯通菌属相对丰度增加和鞘氨醇单胞菌属的相对丰度降低(图41)。α多样性指出暴露14天内的样本物种多样性逐渐降低，但在14天时物种多样性开始增加（图42）。暴露时长的不同，三种体液（斑）样本的微生物群落构成的变化趋势也存在差异。PCoA和MDS 分析表明不同暴露时长的唾液样本之间的微生物群落结构无显著差异(图43)，但主导菌门、属和种的相对丰度存在差异，如肺炎双球菌的丰度随着暴露时间的增加而逐渐降低，嗜热链球菌和副流感嗜血杆菌的丰度保持稳定（图44-45）。PCA指出暴露时长不会影响来自同一个体阴道分泌物的聚集（图46)。惰性乳杆菌的丰度随着暴露时长增加而保持稳定，无乳链球菌的丰度随着暴露时长增加而减少（图47）。精液样本的PCA分析指出未暴露的与暴露14天的精液的微生物群落结构存在差异（图48）。OPLS-DA显示唾液、阴道分泌物和精液均不受暴露时长的影响，且三种体液间微生物群落结构存在差异（图49）。LEfSe显示唾液中优势微生物是肺炎双球菌和副流感嗜血杆菌、阴道分泌物中的差异微生物为惰性乳杆菌和无乳链球菌（图50）。基于不同暴露时长的三类体液微生物数据构建并训练的三分类随机森林（RF）模型和三种二分类RF模型（图51）。三分类RF模型预测唾液和阴道分泌物的效能较高，但精液的预测效能不佳。三个二分类RF模型预测三种体液的效能均较高。此次实验中我们发现前期挑选的体液间差异微生物在室内环境暴露14天内具有稳定性，可用于后续体液（斑）精准溯源。
+
+![](images/page_31_chart_3.jpg)
+
+图41:空白对照样本在5个时间点的物种丰度堆积柱形图。(A)门水平上丰度排名前10的物种堆积柱形图；(B）属水平上丰度排名前10的物种堆积柱形图；（C)种水平上丰度排名前30 的物种堆积柱形图
+
+![](images/page_31_chart_5.jpg)
+
+图42:阿尔法多样性参数箱线图
+
+![](images/page_32_chart_3.jpg)
+
+![](images/page_32_chart_4.jpg)
+
+图43:基于暴露不同时长的唾液样本之间Bray\_curtis距离的（A）主坐标分析图和（B）多维尺度分析图
+
+![](images/page_32_chart_6.jpg)
+
+B
+
+![](images/page_32_chart_8.jpg)
+
+图44:唾液样本的主导菌群在不同暴露时间点变化的折线图。(A)门水平的菌群变化折线图；(B)属水平的菌群变化折线图
+
+![](images/page_33_chart_2.jpg)
+
+图45:唾液样本的三个主导菌种在不同暴露时间点的柱状图
+
+![](images/page_33_chart_4.jpg)
+
+图46:阴道分泌物样本不同暴露时长的主成分分析
+
+![](images/page_33_chart_6.jpg)
+
+图47:阴道分泌物样本的三个主导菌种在不同暴露时间点的柱状图
+
+PCA Analysis
+
+![](images/page_34_chart_3.jpg)
+
+图48:精液样本不同暴露时长的主成分分析
+
+![](images/page_34_chart_5.jpg)
+
+图49:三种类型体液（斑）样本和空白对照拭子的正交-偏最小二乘法分析图
+
+![](images/page_35_chart_2.jpg)
+
+图50:四种类型样本之间具有显著差异的微生物柱状图
+
+![](images/page_35_chart_4.jpg)
+
+![](images/page_35_chart_5.jpg)
+
+![](images/page_35_chart_6.jpg)
+
+![](images/page_35_chart_7.jpg)
+
+图51:受试者工作特征曲线（ROC）。“AUC”指的是曲线下的面积。（A）三分类（三种体液）随机森林模型分析40份验证样本的ROC曲线；（B）二分类（SE和SA）随机森林模型分析25份验证样本的ROC曲线；（C）二分类（SA和VF）随机森林模型分析30份验证样本的ROC曲线；（D）二分类（SE和VF）随机森林模型分析27份验证样本的 ROC曲线
+
+3)基于DNA甲基化标记的体液斑精准溯源技术研究。
+
+3.1）在表观遗传学DNA甲基化层面进行体液（斑）鉴识，结合人工智能特征选择算法系统筛选并验证体液间差异表达的DNA甲基化（CpG）分子标记。
+
+本研究结合我们前期研究成果以及国内外相关领域的技术发展和研究趋势，提出了一套完整的DNA甲基化分析体液斑的组织来源解决方案:利用基因表达数据库（Gene Expression Omnibus，GEO）和团队前期研究 Illumina Human Methylation 450K BeadChip、Illumina Human Methylation EPIC BeadChip(850K)甲基化微珠芯片获得体液斑基因表达谱，在全基因组范围内分别筛选出具有体液鉴识能力的CpG位点，并采用“DNA甲基化模式分析+人工智能特征选择”的筛选策略，挑选出信息含量丰富、种属特异性强，剔除个体间差异大以及易受个体族群、疾病等因素影响较大的 CpG 位点。用焦磷酸测序(pyrosequencing)技术进一步检测和验证法医现场常见的多种类型体液斑；分别采用多种机器学习分类模型进行体液斑迹鉴识预测模型的构建，最终甄选出可准确推断体液斑检材组织来源类型的 CpG 位点。
+
+本研究通过前期文献调研和从NCBI的GEO数据库下载数据进行分析，共获取了123个GEO数据集，其中450K平台92个，850K平台31个，总计样本量超过3000个。研究聚焦于五种体液（外周血、阴道分泌液、唾液、月经血和精液）的健康或对照样本微阵列数据。经过筛选，最终纳入了包括GSE37966、GSE39560、GSE46573、GSE48472、GSE53849、GSE55734、GSE59505、GSE59507、GSE64096、GSE72556、GSE73745、GSE77283、GSE99184和前期研究团队在内的数据集进行整合分析。分析流程包括数据质量控制、缺失值填补、归一化处理和位点甄选（图52-53）。利用 RnBeads软件包的 BMIQ算法对数据矩阵进行归一化处理，最终获得354,748个CpG位点用于后续分析。通过主成分分析(PCA)，不同体液样本的聚类分布展示了所有样本降维后的整体甲基化模式。
+
+![](images/page_36_image_6.jpg)
+
+图52:体液特异性差异CpG在外周血、唾液、精液、阴道分泌物和月经血样本中的系统筛选流程
+
+![](images/page_37_chart_2.jpg)
+
+![](images/page_37_chart_3.jpg)
+
+图53:来自GEO数据库整合Illumina BeadChip数据集的数据预处理和质量控制。（A）数据预处理前后探针和样本情况；（B）缺失值填补对甲基化分布的影响；（C）归一化校正前后beta值的比较。这两个分布都是通过在每组中随机抽样100万个值来估计的；（D）样本在主成分上坐标的散点图
+
+此外，本研究采用RnBeads v2.0软件包中的多种定量和统计方法，对五种体液样本进行体液特异性CpG标记的筛选（图54）。根据差异的大小、比率和统计显著性，为每个CpG位点分配一个综合排名，排名越低表示差异越显著。最终结果以散点图表示，红点代表统计上显著差异的甲基化位点。在血液和非血液样本中鉴定出114,180个 CpG 位点；在唾液和非唾液样本中鉴定出80,562个 CpG位点；在月经血和非月经血样本中鉴定出110,303个CpG位点；在精液和非精液样本中鉴定出137,831个CpG位点；在阴道分泌物和非阴道分泌物样本中鉴定出96,192个CpG位点，校正后的p值均低于0.05（图54A）。根据综合排名结果，选择每种体液类型的前5000个体液特异性CpG位点，显示出不同的甲基化模式和基因功能注释类别（图54B）。与其他体液相比，精液在甲基化模式和基因功能注释方面表现出明显的差异，其CpG位点主要定位于所有体液类型的基因体区域。来自阴道分泌物和经血的CpG位点在基因功能注释的分类上具有高度的相似性。值得注意的是，精液中较高比例的CpG位点被注释为CpG岛，达到23.42%，大大超过其他体液中观察到的水平（低于15%）。
+
+在本研究中，我们采用了多种特征选择算法来识别体液特异性CpG位点，包括弹性网络、信息增益比、基于随机森林的特征重要性以及互信息系数等方法。对于每种体液，特征选择后生成了四个 CpG 集，每个集合包含前 2000 个 CpG位点。通过取这四个集合的交集，我们得到了候选的CpG位点（图55)。我们根据团队前期的研究结果和文献查阅，选择了14个CpG标记进行进一步分析，这些标记包括cg23246703、cg14991487、cg02184042、cg17545418、cg10523105、cg22902266、cg01512719、cg04193143、cg20985399、cg17583946、cg08647349、cg21885317、cg16606773和cg0778667位点。
+
+![](images/page_38_image_2.jpg)
+
+图54:外周血、唾液、精液、阴道分泌物和月经血样本中体液特异性CpG位点的可视化。（A）不同临界阈值下体液特异性CpG的散点图；具有统计学显著性的体液特异性CpG标记用红点表示；第一行的散点图基于校正后p值0.05的结果；第二行的散点图基于校正后p值0.05，根据综合排名，排名前10000名的位点；（B）体液特异性CpG的甲基化模式（第一行）和基因功能注释类别（第二行）
+
+EWAS 数据中心整合了不同数据库中各类样本的 DNA甲基化微阵列数据，为全基因组表观遗传关联分析提供了数据支持。通过该中心的在线数据库，可对每个CpG位点进行基本角色检索，涵盖组织类型、年龄、祖先来源、性别和变异等因素。以cg23246703为例，其雷达图（图56A）显示，组织类型对甲基化模式的影响显著，而其他因素影响相对较小。经此策略筛选和评估的CpG位点具有较强的体液特异性和表达稳定性。值得注意的是，在焦磷酸测序图谱中发现未被 ID 注释的 CpGs 位于 14 个 CpGs 的上游或下游。这些标记显示出与 14 个CpGs相似的甲基化模式，如图56B所示。
+
+本研究焦磷酸测序对14个DNA甲基化位点的体液特异性进行了验证（图57)，观察到的平均甲基化水平与收集的 DNA甲基化微阵列数据集的分析结果基本一致（图 58和表8）。阴道分泌物样本中有三个CpG（cg23246703、cg14991487和cg02184042)的甲基化模式显著。同样，唾液样本中的 cg17545418、cg10523105、cg22902266、cg01512719和cg04193143位点也存在唾液特异性甲基化特征。在 cg20985399 和 cg17583946 上鉴定出独特的经血特异性甲基化模式。在精液样本中观察到cg08647349的精液特异性甲基化模式。在CpG cg21885317、cg16606773和cg07786675 上发现了血液特异性甲基化模式。
+
+![](images/page_39_image_2.jpg)
+
+![](images/page_39_image_3.jpg)
+
+![](images/page_39_chart_4.jpg)
+
+![](images/page_39_image_5.jpg)
+
+![](images/page_39_chart_6.jpg)
+
+![](images/page_39_chart_7.jpg)
+
+![](images/page_39_image_8.jpg)
+
+![](images/page_39_image_9.jpg)
+
+图55:采用弹性网、信息增益比、基于随机森林的特征重要性和互信息系数特征选择算法后，每种体液的体液特异性 $\mathrm { C p G }$ 结果的维恩图。对于一种体液，特征选择后生成4个 $\mathrm { C p G }$ 集，每个CpG集包含前2000个CpG。每个维恩图下面紫色条上的数字1、2、3和4表示相交的特征选择算法的数量。紫色条的长度和白色数字表示该交集算法数目下对应的CpG数量
+
+![](images/page_39_image_11.jpg)
+
+B
+
+![](images/page_39_chart_13.jpg)
+
+C
+
+![](images/page_39_chart_15.jpg)
+
+图56:cg23246703影响因素角色分析，cg08647349相似的 DNA甲基化模式，以及六种体液特异性CpG的最大互信息系数特征选择。(A)雷达图对cg23246703的角色分析；(B) cg08647349 的 DNA甲基化模式上游 CpG （cg08647349 - 1)； (C) 14 种体液特异性CpG的最大信息系数（MIC）特征选择柱状图
+
+基于 14 个 CpG 的测序结果，使用 Python version 3.12.4 构建各种机器学习分类模型。Lazy Predict 0.02.12 版本用于快速部署模型，其中包含 26 种分类算法。结果如图59A所示，表明这些模型在默认超参数下表现出不同程度的性能。在考虑到模型的复杂性、可解释性、训练时间、鲁棒性和可扩展性等因素，选择了RandomForestClassifier模型。该模型在训练集和测试集上都表现出优异的分类性能，能够有效区分五种类型的体液样本（图59C和59E）。采用最大信息系数（MIC）特征选择方法进一步筛选了14个体液特异性CpG。MIC特征选择完成后，为每个CpG分配相应的信息含量值，通过将这些值从高到低排序，识别出六个CpG（图56C）。基于6个 CpG的测序结果，使用 Lazy Predict 包构建各种机器学习分类模型（图59B）。综合考虑到模型复杂程度、训练时间和结果可解释性等因素，选择逻辑回归分类器来构建分类模型。在调优的超参数组合下，该模型在训练集和测试集上都表现出优异的分类性能，准确率达到100%(图59D和 59F)。
+
+![](images/page_40_chart_3.jpg)
+
+图57:14个体液特异性CpG的焦磷酸测序图谱。在焦磷酸测序片段中设置质量受控的胞嘧啶碱基（黄色条），以评估亚硫酸氢盐的转化效率
+
+DNAm是一种重要的表观遗传修饰，广泛存在于真核生物基因组中，在调节基因表达和控制必要的发育过程中起着至关重要的作用。DNAm已被众多学者广泛研究和应用，包括年龄估计、同卵双胞胎鉴定、体液和组织鉴定、胎儿DNA甲基化检测等，是法医遗传学研究中最重要的分子标记之一。包括Illumina Human methylation 450K/EPIC BeadChip微阵列在内的全基因组 DNA甲基化分析技术的应用，进一步推动了体液斑迹鉴定中DNA标记的研究。然而，DNAm模式可能受到生物体中遗传和环境因素的综合影响。因此，在将这些液体特异性CpG应用于法医实践之前，应尽可能全面地系统评估上述因素对这些标记物甲基化模式的影响。在以往的研究中，通常使用Illumina450K和EPIC（850K）甲基化微阵列从各种体液样本中获取甲基化谱，随后使用生物信息学分析方法鉴定体液特异性 $\operatorname { C \mathfrak { p } G } .$ 。然而，这些研究往往受到法医样本量不足的限制，并且测序样本的种族、年龄、生理和病理状态以及环境暴露等条件难以保持一致性。此外，人为设置阈值可能在一定程度上导致在筛选体液特异性CpG的发生遗漏。一些CpG位点在识别体液斑方面表现出有限的潜能，需要挖掘更多的标记。在这项研究中，RnBeads被用于根据综合排名评分对体液进行差异甲基化分析。该分数将绝对和相对效应大小以及统计建模的p值结合为一个分数。较低的分数对应于较高的排名和较大程度的差异甲基化。总体而言，该方法使已识别的体液特异性CpG在统计上更加稳健。采用多特征选择算法进一步筛选体液特异性 $\mathrm { C p G }$ ，获得候选标记物的信息含量更加丰富。每种算法都可以基于不同的标准（如特征重要性和信息内容）来评估 $\mathrm { C p G }$ 。通过多种算法同时选择的 CpG被认为具有丰富的信息量和较强的特异性。基于焦磷酸测序结果的机器学习分类模型可以识别五种法医体液样本，较好地解决了目前阴道分泌物和经血样本鉴别效力有限的问题。同样，由六个 $\mathrm { C p G }$ 构建的逻辑回归模型在体液鉴定中表现出理想的性能，其较少的标记使其更适合法医实践。
+
+表8:15 个体液特异性 DNA 甲基化位点的基本信息
+
+<table><tr><td rowspan="2">CpGIDa</td><td rowspan="2">染色体位置 b</td><td rowspan="2">目标基因</td><td colspan="5">Beta值（平均值±标准差）。</td></tr><tr><td>外周血</td><td>唾液</td><td>精液</td><td>阴道液</td><td>月经血</td></tr><tr><td>cg07786675</td><td>chr1:27189985</td><td>SFN</td><td>0.91±0.05</td><td>0.57±0.15</td><td>0.31±0.08</td><td>0.52±0.11</td><td>0.55±0.13</td></tr><tr><td>cg16606773</td><td>chr20:19955806</td><td>RIN2</td><td>0.59±0.07</td><td>0.08±0.12</td><td>0.02±0.03</td><td>0.09±0.06</td><td>0.24±0.14</td></tr><tr><td>cg21885317</td><td>chr8:124248094</td><td>ZHX1C8orf76</td><td>0.94±0.04</td><td>0.62±0.22</td><td>0.42±0.19</td><td>0.5±0.24</td><td>0.5±0.24</td></tr><tr><td>cg01512719</td><td>chr13:49879770</td><td></td><td>0.98±0.02</td><td>0.68±0.17</td><td>0.97±0.02</td><td>0.95±0.02</td><td>0.89±0.04</td></tr><tr><td>cg04193143</td><td>chr6:169435454</td><td>RP3-495K2.2</td><td>0.95±0.03</td><td>0.72±0.22</td><td>0.97±0.02</td><td>0.91±0.04</td><td>0.87±0.04</td></tr><tr><td>cg10523105</td><td>chr14:74178976</td><td>PNMA1</td><td>0.09±0.05</td><td>0.33±0.17</td><td>0.07±0.03</td><td>0.09±0.03</td><td>0.1±0.02</td></tr><tr><td>cg17545418</td><td>chr16:56709853</td><td></td><td>0.05±0.03</td><td>0.33±0.15</td><td>0.02±0.02</td><td>0.1±0.03</td><td>0.1±0.04</td></tr><tr><td>cg22902266</td><td>chr9:96714313</td><td>BARX1</td><td>0.1±0.05</td><td>0.44±0.2</td><td>0.03±0.01</td><td>0.09±0.02</td><td>0.11±0.02</td></tr><tr><td>cg08647349</td><td>chr1:7439692</td><td>CAMTA1</td><td>0.16±0.05</td><td>0.11±0.05</td><td>0.95±0.03</td><td>0.11±0.06</td><td>0.1±0.03</td></tr><tr><td>cg14991487</td><td>chr2:176987404</td><td>HOXD-AS2/HOXD9</td><td>0.06±0.06</td><td>0.05±0.05</td><td>0.02±0.01</td><td>0.57±0.22</td><td>0.36±0.24</td></tr><tr><td>cg23246703</td><td>chr2:200334854</td><td>SATB2-AS1/SATB2</td><td>0.06±0.03</td><td>0.06±0.02</td><td>0.02±0.01</td><td>0.37±0.15</td><td>0.25±0.15</td></tr><tr><td>cg02184042</td><td>chr11:44629743</td><td>CD82</td><td>0.93±0.03</td><td>0.90±0.06</td><td>0.96±0.01</td><td>0.41±0.26</td><td>0.72±0.16</td></tr><tr><td>cg17583946</td><td>chr2:63275034</td><td>AC009501.4</td><td>0.07±0.05</td><td>0.04±0.02</td><td>0.03±0.02</td><td>0.16±0.07</td><td>0.29±0.1</td></tr><tr><td>cg20985399</td><td>chr15:65689263</td><td>IGDCC4</td><td>0.17±0.08</td><td>0.1±0.05</td><td>0.03±0.03</td><td>0.08±0.02</td><td>0.36±0.17</td></tr></table>
+
+注:aIlluminaInfiniumMethylation450KBeadchip中的唯一ID。
+
+b人类参考基因组37(GRCh37/hg19)的染色体位置。
+
+c芯片实验中CpG位点的数据统计，粗体数字表示位点目标体液的Beta值。
+
+![](images/page_42_chart_2.jpg)
+
+![](images/page_42_chart_3.jpg)
+
+![](images/page_42_chart_4.jpg)
+
+![](images/page_42_chart_5.jpg)
+
+![](images/page_42_chart_6.jpg)
+
+![](images/page_42_chart_7.jpg)
+
+![](images/page_42_chart_8.jpg)
+
+![](images/page_42_chart_9.jpg)
+
+![](images/page_42_chart_10.jpg)
+
+![](images/page_42_chart_11.jpg)
+
+![](images/page_42_chart_12.jpg)
+
+![](images/page_42_chart_13.jpg)
+
+![](images/page_42_chart_14.jpg)
+
+![](images/page_42_chart_15.jpg)
+
+图58:14 个体液特异性 CpG在五种体液中的 DNA甲基化模式。以 cg23246703 为例，该标记物在阴道分泌物样本中的平均甲基化表达水平为34.44%，而在其他类型体液中的平均甲基化表达水平分别为8.88%（血液）、11.25%（经血）、10.44%（唾液）和 6.44%（精液）。Holm调整后的 $p$ 值表示为 $^ { * } : < 0 . 0 5 , ^ { * * } : < 0 . 0 1 , ^ { * * * } : < 0 . 0 0 1 , ^ { * * * * } : <$ 0.0001
+
+![](images/page_43_image_2.jpg)
+
+![](images/page_43_image_3.jpg)
+
+![](images/page_43_chart_4.jpg)
+
+![](images/page_43_chart_5.jpg)
+
+![](images/page_43_chart_6.jpg)
+
+![](images/page_43_chart_7.jpg)
+
+图 59:使用两组机器学习模型进行性能评估:14 个体液特异性 CpG和通过最大信息系数（MIC）特征选择选择的六个CpG。(A）基于14个体液特异性CpG的多个机器学习模型的快速部署性能；(B)基于六种体液特异性CpG的多个机器学习模型的快速部署性能；(C)基于14种体液特异性 CpG的 RandomForestClassifier 混淆矩阵；(D) 基于六个体液特异性 CpG 的 logistic 回归混淆矩阵；(E) 基于 14 个体液特异性 CpG 的 RandomForestClassifier 的ROC 曲线；(F) 基于六个体液特异性 CpG的 Logistic 回归 ROC 曲线
+
+3.2）体液特异性DNA甲基化位点的筛选、验证和CE平台检测。
+
+研究针对外周血、精液、阴道液、唾液、月经血这五种常见人体体液，采用人类DNA甲基化芯片技术对五种体液进行了全基因组DNA甲基化位点的表达量快速扫描检测，甄选出具有代表性的体液特异性表达差异的DNA甲基化位点，甄选标准同前，不再赘述，并采用焦磷酸测序技术对甄选出的CpG位点的特异性进行验证，最终从法医学应用的角度，基于毛细管电泳平台构建一个甲基化敏感性的 SNaPshot 检测体系，以及三种类型的五种体液斑预测模型。构建CpG位点的焦磷酸测序体系的引物见表9，检测图例同前。具体的研究思路见图60。
+
+![](images/page_44_image_4.jpg)
+
+图60:基于DNA甲基化进行体液斑溯源的技术方案
+
+表9:15个体液特异性表达差异的甲基化位点焦磷酸测序引物和产物信息\*
+
+| CpG | 正向引物 | 反向引物 | 测序引物 | 片段大小 |
+| --- | --- | --- | --- | --- |
+| cg08846870 | GTAGYGGGAATTAGYGTTTTAGAT | CAAACCAACTCTTCTAAACCRAAC | TAACCCTAACTCTAAAAAAACTA | 183bp |
+| cg15443535 | GATAGGGTTTYGTYGTGATTATAGG | CACCAACACRAACAACCRATAC | GTATTTGGAGTTAGAGTAGTAGG | 193bp |
+| cg24301930 | GTATGGTTTTTGYGTTTATAGATGA | AAAATAAACCCCRAACTAACCTC | AAGTTGAGTTAGTTAGTAAGGTTTT | 111bp |
+| cg25922751 | AATATTGAGGTTTGATTTATGGTG | AAACACCRCAACCTAATACAAAT | CAACCTAATACAAATCATCT | 127bp |
+| cg10863922 | GTYGTTAGGTAGTAGTATTAGTAGGTTTAGT | CAATACAAATAATATATCAAAAAACCA | GTAGGGTAGTTTTAGTAGTTG | 125bp |
+| cg03902386 | GTGATGAAAGATTATTAGTATTTGATGT | CAATTTCCACATAAAAACACRAAAC | AAAACACTAAACCAACTA | 84bp |
+| cg03282313 | GTGATATGTAAGATTTGAATGAAGG | ATAACAAAACCATAACTCAAATTCA | GTATATGGTTAGTGGTGGAATT | 94bp |
+| cg05614346 | GAAGGAGGTTTAGTTGAGAGTTTG | AAACCAAACCCACACCTACTAC | CCCACACCTACTACCTACCTAA | 85bp |
+| cg17627654 | GGTAGTAGGTATTAGAGAYGTAGGGAT | ACTCRTCAAATAATTATAAAAACTCCTAC | AAACTCCTACCTACCACACAC | 116bp |
+| cg10210594 | GATTYGTTGYGTTAGGATTTTGTA | CAACCCTAATATTACAAACRTAAACC | GTTGAGTTAGGATTTTGTAGATT | 100bp |
+| cg24772753 | GAYGATTTTTYGTGGTGGAGTATT | AACCCAACACCAAACCTCTTT | CCAACACCAAACCTCTTTAT | 178bp |
+| cg15760474 | TGTTTGGGTTTGGTTGTGTG | ACCCAACTTCCATAAAACTACATAC | TGGGTTTGGTTGTGTGTGTT | 95bp |
+| cg05558714 | AGGAATTTTAYGGTAGGGATAGATT | TTTCCATACTACTTTCCAAAAACA | GGTAGGGATAGATTATAGTATA | 95bp |
+| cg12152558 | GGGTTTTAATTTTTGTAAATGGTAT | TAATTAACTATAAAAAATTAACAAAATAAAC | TGTTTAAGATAGAAATTGAT | 104bp |
+| cg07452397 | GTTTYGTTTTGGTAATAATTTTTG | AAAACTACACTAACTCTTTCTTATCCA | TTCTTATCCATAAATAACACAAA | 102bp |
+
+\*在PCR的正向或反向引物的5'端上添加了生物素标记，即标红的引物
+
+研究从上述焦磷酸测序体系验证结果中进一步甄选获得体液特异性的八个CpG位点（表10)，基于毛细管电泳平台构建了一个甲基化敏感性多重SNaPshot检测体系（图61），用于鉴定五种常见体液的组织来源鉴定。
+
+表10:甲基化敏感性的多重SNaPshot检测体系引物设计和产物信息\*
+
+<table><tr><td rowspan="2">编号</td><td rowspan="2">CpG ID</td><td rowspan="2">延伸方向</td><td rowspan="2">目标体液</td><td rowspan="2">单碱基延伸引物</td><td rowspan="2">产物大小</td><td colspan="5">8个CpG位点的单碱基延伸反应</td></tr><tr><td>q2</td><td colspan="4">cg201930 T</td></tr><tr><td>CpG1</td><td>cg25922751</td><td>正</td><td>静脉血</td><td>GTAGGTTAGGGYGGGGATATATATT</td><td></td><td>26 bp C</td><td colspan="5" rowspan="3">cqg01202213</td></tr><tr><td>CpG2</td><td>cg24301930</td><td>正</td><td>静脉血</td><td>(CT),AAGTTGYGTTAGTTAGTAAGGTTTT</td><td>36 bp</td></tr><tr><td>CpG3</td><td>cg03902386</td><td>正</td><td>唾液-精液</td><td>(CT)10AAGGTTGTGTTTTTTTAGTG</td><td>41 bp</td></tr><tr><td>CpG4</td><td>cg03282313</td><td>正</td><td>唾液-精液</td><td>(CT)10TGGGTATATGGTTAGTGGTGGAATT</td><td>46 bp</td><td rowspan="3"></td><td rowspan="3">黑(黄)色峰:碱基C- 红色峰:碱基T-</td><td rowspan="3">-甲基化 未甲基化</td></tr><tr><td>IQ</td><td>内质控C</td><td></td><td></td><td>(CT)12TAGGTAGTAGTATTAGTAGGTTTAG</td><td>50 bp</td></tr><tr><td>CpG5</td><td>cg24772753</td><td>反</td><td>月经血</td><td>(CT)CCAACACCAAACCTCTTTATAAAAC</td><td>28 bp</td></tr><tr><td>CpG6</td><td>cg05558714</td><td>反</td><td>阴道分泌液</td><td>(CT)3TCACTCTTTAAATAAAACCAATCCC</td><td></td><td>q24772753 32 bp</td><td rowspan="2"></td><td rowspan="2">A q15614346 qgl5550714 q176200</td></tr><tr><td></td><td></td><td></td><td>月经血-精液</td><td></td><td></td><td>36 bp</td></tr><tr><td>CpG7</td><td>cg05614346</td><td>反</td><td></td><td>(CT)5CCTACTACCTACCTAACRAAAATAC</td><td></td><td></td><td rowspan="2">绿色峰:碱基A-</td><td rowspan="2">-甲基化 蓝色峰:碱基G 未甲基化</td></tr><tr><td>CpG8</td><td>cg07452397</td><td>反</td><td>阴道分泌液</td><td>(CT)7TTTCTTATCCATAAATAACACAAAC</td><td></td><td>40 bp</td></tr></table>
+
+\*针对这些 $\mathrm { C p G }$ 位点分别设计正向或反向延伸的单碱基延伸引物，并在5'端带上不同长度的CT重复序列，从而将同一延伸方向的4个片段长度区分开。正向延伸出红色、黑色峰，分别表示碱基T和C。反向的就是出蓝色、绿色峰，分别表示碱基G和A。除这些位点外，我们也在体系中引入1个内质控（IQ）碱基C用于检测亚硫酸氢盐的转化效率
+
+研究提取犬、猫、大鼠、小鼠以及鸽子五种动物的血液或唾液DNA样本，对多重SNaPshot检测体系的种属特异性进行测试和验证（图61）；并将精液与月经血、精液与唾液、精液与阴道液的DNA分别按1:1、1:2和1:4进行混合，以测试该体系对混合体液样本的鉴定效能（图62）。为测试多重SNaPshot检测体系的灵敏度，取每种体液中获得的10ngDNA投入亚硫酸氢盐转化，然后分别投入约0.5ng、1 ng、2 ng、5 ng以及10 ng亚硫酸氢盐转化后的DNA（从亚硫酸氢盐转化中洗脱的总DNA的1/20、1/10、1/5、1/2和1）进行多重SNaPshot反应，并在所有测试样品中获得成功的DNA甲基化分析结果（图63）。通过初步的测试评估，该体系具有良好的种属特异性、灵敏度以及对混合样本的有限的鉴定能力。
+
+![](images/page_45_chart_7.jpg)
+
+![](images/page_45_chart_8.jpg)
+
+图61:CpG位点多重SNaPshot检测体系的种属特异性测试电泳图
+
+![](images/page_46_chart_3.jpg)
+
+![](images/page_46_chart_4.jpg)
+
+![](images/page_46_chart_5.jpg)
+
+图62:不同类型体液DNA混合样本的多重SNaPshot体系检测的DNA甲基化水平。（A）精液与月经血；（B）精液与唾液；（C）精液与阴道液
+
+![](images/page_46_chart_7.jpg)
+
+![](images/page_46_chart_8.jpg)
+
+![](images/page_46_chart_9.jpg)
+
+![](images/page_46_chart_10.jpg)
+
+![](images/page_46_chart_11.jpg)
+
+图63:不同DNA投入量的多重SNaPshot体系检测的DNA甲基化水平。（A）外周血；（B）唾液；（C）月经血；（D）精液；（E）阴道液
+
+为方便多重SNaPshot体系检测数据的解读，研究基于上述获得的体液特异性CpG位点的焦磷酸测序结果，设定每个位点对目标体液的分类阈值，建立了人工体液鉴定模式分析方法，并构建了基于支持向量机和随机森林算法的两种机器学习预测模型。同时，另采集95份体液样本进行多重SNaPshot体系检测，对这些模型进行了验证。基于人工体液鉴定模式图的预测模型准确率为95.79%；除唾液(96.84%)外，支持向量机预测模型对4种体液的预测准确率为100.00%(表11);随机森林预测模型对5种体液的预测准确率均为100.00%。综上，多重SNaPshot检测系统和随机森林预测模型可以实现体液组织来源的准确识别。
+
+表11:支持向量机预测模型的测试性能度量
+
+|  | 性能度量参数 外周血模型 | 月经血模型 | 唾液模型 | 精液模型 | 阴道液模型 |
+| --- | --- | --- | --- | --- | --- |
+| 支持向量数 | 11 | 25 | 10 | 5 | 11 |
+| 准确率 | 100% | 100% | 96.84% | 100% | 100% |
+| Kappa值 | 1.0000 | 1.0000 | 0.9100 | 1.0000 | 1.0000 |
+| 灵敏度 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| 特异性 | 1.0000 | 1.0000 | 0.8696 | 1.0000 | 1.0000 |
+
+4)疑难生物检材个体识别、亲缘关系鉴定和祖源检测体系研究。
+
+致力于法医疑难降解生物检材精准鉴识研究，解决微量和降解检材的个体识别、亲缘鉴定和生物地理祖先来源推断。
+
+4.1）自主研发了适用于降解检材祖源推断、个体识别和亲子鉴定的60 AIM-DIP复合扩增检测体系。
+
+从dbSNP数据库中筛选祖先信息推断DIP位点，筛选原则为:最小等位基因频率≥0.1；位点间距离相隔不小于5Mb，或位于不同的染色体；针对群体差异明显的非洲、亚洲和欧洲群体，等位基因频率差异>0.5；针对具有典型的混合基因来源的南亚及美洲群体，等位基因频率差异>0.2；针对同质性较高的亚洲内部群体，等位基因频率差异>0.2，所有位点满足以上任意一条即可被纳入。基于上述的筛选原则，最终获得56个具有祖先信息的AIM-DIP位点，同时从文献中选取3个Y-DIP位点，与性别基因 Amelogenin一起对性别进行更准确的判断。研究已成功构建了分型检测体系，该体系种属特异性强、对降解检材的适应性好、灵敏度高（0.625ngDNA）。并对陕西汉族、贵州汉族、水族、侗族和内蒙古满族群体样本进行分型检测和群体遗传学分析。效能评估的结果显示该体系在推断非洲、欧洲和东亚人群的祖先起源方面具有较高效能（图64 68)。基于56AIM-DIP研究陕西汉族、贵州汉族、水族、侗族和内蒙古满族群体祖先成分，研究结果表明汉族、水族、侗族和内蒙古满族与东亚人群有着密切的遗传关系。本研究所构建的复合检测体系已申请国家发明专利，发表相关研究成果。
+
+![](images/page_47_image_6.jpg)
+
+图64:（A）64 Panel的等位基因分型标准物；（B）60-panel的等位基因分型标准物
+
+![](images/page_48_chart_2.jpg)
+
+图65:56个AIM-DIP位点在不同洲际群体的插入等位基因频率分布热图。热图显示内蒙古满族和26个洲际群体的 56个 AIM-DIP位点的等位基因频率分布差异
+
+A
+
+![](images/page_48_image_5.jpg)
+
+![](images/page_48_image_6.jpg)
+
+![](images/page_48_image_7.jpg)
+
+![](images/page_48_image_8.jpg)
+
+图66:汉族和26个洲际群体的群体水平和个体水平的主成分分析。（A）28个洲际群体在群体水平的主成分分析；（B）非洲、欧洲、东亚、南亚和美洲人口在个体水平的主成分分析；（C）非洲、欧洲、东亚和南亚人群的个体水平的主成分分析；（D）非洲、欧洲和东亚人群的个体水平的主成分分析
+
+![](images/page_49_image_2.jpg)
+
+![](images/page_49_image_3.jpg)
+
+图67:基于56个AIM-DIP位点的系统发育树图。（A）水族、侗族和26个洲际群体的无根系统发育树；（B）采用UPGMA方法构建了水族、侗族和26个洲际群体的有根系统发育树。不同的颜色代表不同的洲际人口，蓝色、橙色、绿色、南亚、欧洲、东亚、美洲和非洲人口
+
+![](images/page_49_image_5.jpg)
+
+图68:对两个研究的汉族群体和26个洲际群体的 STRUCTURE分析。（A）K=3 时28个群体在个体水平上的遗传结构分析；(B)显示非洲、欧洲和东亚人群祖先成分的三元图；（C）显示非洲、欧洲、美洲和东亚人口祖先成分的三元图；（D）显示非洲、欧洲、美洲、东亚和南亚人口祖先信息成分的三元图；（E）显示非洲、欧洲、美洲、东亚、南亚人群和陕西汉族人群祖先信息成分的三元图；（F）显示非洲、欧洲、美洲、东亚、南亚、陕西汉族和贵州汉族人群祖先信息成分的三元图
+
+4.2）自主研发了包含64个位点的复合扩增检测体系。
+
+研究基于CE平台开发一组鉴别效能更高的、适用于高度降解检材检测的、包括常染色体上59个DIP位点、2个miniSTR基因座，Y染色体上2个DIP位点，及1个性别鉴别基因（Amelogenin）的六色荧光标记复合扩增同步分型检测体系，所有扩增子小于200bp。体系中纳入mini STR基因座，能更容易提示混合检材的存在；体系中纳入Y-DIP位点，能够对性别进行更准确的鉴定。该体系稳定性好、灵敏度高、特异强，能对法医降解等疑难生物检材进行高效的复合扩增和检测分型。为调查该体系在中国群体中的遗传多态性及法医学应用性能，应用该体系对湖南汉族、贺州汉族、土家族、青海藏族和西藏藏族健康无关个体样本进行分型检测。并通过计算期望杂合度、累积匹配概率、累积个体识别概率等方法，探讨64个位点在上述群体的遗传多态性。研究结果显示（图69-71），体系中包括的59个常染色体DIP位点在湖南汉族、贺州汉族、土家族、青海藏族和西藏藏族群体中遗传多态性高、个体识别力强。64个位点在湖南汉族、贺州汉族、土家族、青海藏族和西藏藏族群体的累积个体识别概率分别为1-9.833E-28 1.7273E-27、2.4635E-27、1-9.253E-27、1-5.061E-26；累积非父排除概率分别为0.9999978、0.99999898、0.99999905、0.99999729、0.99999895，表明64个位点可以用于上述群体的法医学个体识别和亲权鉴定。该体系为东亚人群法医学个人识别和亲缘关系鉴定应用提供了有效的新工具，且容易在基层法医DNA实验室推广应用。
+
+![](images/page_50_image_3.jpg)
+
+图69:2个mini STR和59个常染色体DIP位点在湖南汉族（A）、青海藏族（B）和西藏藏族（C）群体中的法医学参数热图
+
+![](images/page_50_chart_5.jpg)
+
+![](images/page_50_chart_6.jpg)
+
+![](images/page_50_chart_7.jpg)
+
+![](images/page_50_chart_8.jpg)
+
+![](images/page_50_chart_9.jpg)
+
+![](images/page_50_chart_10.jpg)
+
+图70:土家族和贺州汉族61个位点法医学参数（PIC、PE、MP、He、DP和 TPI）的小提琴图
+
+![](images/page_51_chart_2.jpg)
+
+![](images/page_51_chart_3.jpg)
+
+![](images/page_51_chart_4.jpg)
+
+![](images/page_51_chart_5.jpg)
+
+图71:基于61个位点等位基因频率的全同胞检测的 $\mathrm { L o g _ { 1 0 } ( L R ) }$ 分布密度曲线和概率曲线。（A,B）基于土家族61个位点等位基因频率的 $\mathrm { L o g _ { 1 0 } ( L R ) }$ 分布密度曲线和区分全同胞和非亲缘关系个体的概率曲线。（C,D）基于贺州汉族61个位点等位基因频率的 $\mathrm { L o g _ { 1 0 } ( L R ) }$ 分布密度曲线和区分全同胞和非亲缘个体的概率曲线
+
+4.3) 基于DNA 纳米球测序平台研究用于法医鉴定的 mtDNA 全基因组测序系统。
+
+研究了一种基于DNA纳米球测序平台，采用长片段扩增策略的新型mtDNA全基因组测序系统，按照国际法医遗传学会（ISFG）的标准，对该系统进行了全面评估，包括测序质量、全线粒体DNA覆盖度和均衡性、特征点检测及异质性识别，涵盖了多种样本类型，包括混合样本、降解样本、不同体液来源样本和母系家系样本等。研究结果显示该系统在阳性对照DNA样本、FTA血痕样本、降解样本、混合样本和母系家系样本中表现出高质量的测序数据和准确的特征点和异质性解析能力。该系统在各类样本中表现出极高的测序准确性，Q20和Q30值均超过90%，mtDNA覆盖率高；能够有效检测出混合样本中的异质性，并表现出较高的检测精度，尤其在测序深度超过500×时，异质性比例检测的误差小；在不同体液来源样本和母系家系样本中保持高效的检测能力（图72-74)。这些结果表明，该系统在法医鉴定中具有较高的性能和应用前景，能够为个体识别和母系遗传研究提供有力支持。
+
+C Sequencing depths of 16569 loci in 37 functional regions of the mtDNA genome in positive control DNA samples
+
+![](images/page_52_chart_3.jpg)
+
+![](images/page_52_chart_4.jpg)
+
+![](images/page_52_image_5.jpg)
+
+![](images/page_52_image_6.jpg)
+
+图 72: 阳性对照 DNA 样本和 FTA 血卡样本中全 mtDNA 序列以及 37 个功能区的平均测序深度分布频率直方图和平均测序深度柱状图
+
+![](images/page_52_chart_8.jpg)
+
+图73:FTA 血痕样本（28份）和阳性对照标准DNA（9947A和9948）中碱基质量值Q20和 Q30 的比率，以及参考全基因组 DNA、mtDNA 和核 DNA 的比对率
+
+![](images/page_53_image_2.jpg)
+
+图74:两个家系中 20个个体的mtDNA全基因组序列的家系图和系统发育树
+
+4.4) 基于 MGISEQ-2000 测序平台研究 1993 个 SNP 位点的法医学应用。
+
+研究结合了来自千人基因组计划和人类基因组多样性研究的数据，以全面研究中国朝鲜族的遗传结构。结果显示，该体系是个人识别和亲子鉴定的可靠工具，即使在处理降解DNA样本时也能保持高检测率。群体遗传学研究揭示了该体系能够在全球和区域范围内揭示群体亚结构，特别是汉族群体与东亚北部和南部少数民族的区别，表明其在区域祖先推断中的潜力。此外，研究还发现中国朝鲜族与不同地区的汉族群体以及某些北方少数民族在基因组层面上具有更高的遗传亲和性（图75-77）。
+
+此外，我们还检测了汉族无关个体样本和家系样本的1993个SNP位点，并通过LR法、IBS法和亲缘系数法评估了该SNP体系对汉族三级以内亲缘关系鉴定的系统效能。结果显示，基于LR法，当以累计亲缘关系指数大于10000作为判定亲缘关系的阈值时，1993个SNP位点能够对亲子关系、全同胞关系、半同胞关系、祖孙关系和叔姨舅姑/侄关系进行准确的区分。当以累计一代表亲指数大于1000作为判定一代表亲关系的阈值时，该体系能够对高于94%的一代表亲关系和无关个体进行区分。在IBS 策略下，1993个SNP位点的累计IBS 评分可以区分一级亲缘关系与无关个体，以及二级亲缘关系和无关个体。然而，CIBS值的分布在二级亲缘关系和一代表亲关系之间、一代表亲与无关个体之间存在重叠。这表明在IBS策略下，1993个SNP位点仅能作为一项辅助性的工具对一级亲缘关系与无关个体以及二级亲缘关系和无关个体鉴定给出倾向性的意见（图78-81）。研究验证了1993个高多态性ⅡI-SNP在家系中二级亲缘关系鉴定效能，为如志愿军遗骸等降解检材鉴定提供技术支持，并形成了实践指导性的似然比和状态一致性判定阈值，推动研究成果的转化落地。
+
+![](images/page_54_image_3.jpg)
+
+图75:不同人群的成对 $F _ { S T }$ 值。（A）不同洲际群体（包括非洲、欧洲、东亚、南亚、美洲、中南亚、中东和大洋洲种群）之间估计的 $F _ { S T }$ 值热图。颜色范围从红色到蓝色，对应于从低到高的 $F _ { S T }$ 值；（B）中国朝鲜族与参考群体之间 $F _ { S T }$ 值的条形图。标有相同颜色的种群表明它们来自同一大陆；（B）当K=9的ADMIXTURE结果。不同种群的遗传成分用不同的颜色表示
+
+![](images/page_54_image_5.jpg)
+
+![](images/page_54_chart_6.jpg)
+
+![](images/page_54_chart_7.jpg)
+
+![](images/page_54_chart_8.jpg)
+
+![](images/page_54_chart_9.jpg)
+
+![](images/page_55_image_0.jpg)
+
+图76:估计中国朝鲜族和参考群体之间的基因流。（A）中国朝鲜族和参考群体的配对outgroup-f3。颜色梯度的范围从绿色到红色，对应于从低到高的outgroup-f3值。地图显示了每个人口的大致地理分布；（B）中国朝鲜族和东亚参考人群的成对f3值；（C-E）在[Mbuti, Korean C; X,Y]模型下，Dstats 检验的 f4 值分布，其中 X代表不同地区的汉族人口，Y代表不同的东亚人口，Mbuti人口作为外群
+
+图77:中国朝鲜族与参考种群的系统发育相关性。（A）群体水平的最大似然系统发育树；（B）个体水平最大似然系统发育树；（C）在考虑了四个迁移事件后，群体水平的最大似然树和系统发育的成对残差
+
+![](images/page_55_chart_5.jpg)
+
+![](images/page_55_chart_6.jpg)
+
+图78:1993个 SNP位点的平均测序深度频数分布直方图以及杂合 SNP位点的杂合子均衡
+
+性频数分布直方图。（A）1993个SNP位点的平均测序深度频数分布直方图；（B）杂合 SNP位点的杂合子均衡性频数分布直方图
+
+![](images/page_56_chart_3.jpg)
+
+图79:真实家系中亲子、全同胞、半同胞、祖孙、叔（舅姑姨）/侄和一代表亲的似然比分布箱线图PC，亲子对；FS，全同胞；GC，祖孙；UN:叔（舅姑姨）/侄；FC，一代表亲
+
+![](images/page_56_chart_5.jpg)
+
+![](images/page_56_chart_6.jpg)
+
+![](images/page_56_chart_7.jpg)
+
+![](images/page_56_chart_8.jpg)
+
+![](images/page_56_chart_9.jpg)
+
+![](images/page_56_chart_10.jpg)
+
+图80:在不考虑LD时，当阈值设定为t1=4和t2=-4时模拟全同胞（FS）、半同胞（FS）、祖孙（GC）、叔侄（UN）、姑侄（Aunt-nephew）和一代表亲（FC）似然比的自然对数频数分布直方图和密度曲线
+
+![](images/page_56_chart_12.jpg)
+
+图81:基于1993 个 SNP位点的 CIBS 值在不同层级亲缘关系中的概率密度曲线。PC，亲子对；FS，全同胞；GC，祖孙关系；UN，叔（舅姑姨）/侄；AN，姑（姨）/侄；FC，一代表亲
+
+## 3. 研究人员的合作与分工。
+
+朱波峰:负责本研究项目总体方案的策划、组织、管理和实施；关键技术攻关；成果的转化应用。
+
+沈春梅、倪加加、盛华芳:负责收集外周血、唾液、精液、阴道分泌液以及月经血样本，建立样本库，并开展了群体遗传多样性研究，进行数据汇总、分析以及科研档案管理。参与研究方案的设计及项目具体实施。承担焦磷酸测序、毛细管电泳等关键技术支持。 N
+
+解通、李双琳、陈曼、崔伟:提取体液RNA和微生物DNA，进行质控、富集和文库构建等。完成不同体液样本的高通量测序工作。
+
+梅书燕、陈雪冰:进行不同体液间的 mRNA、miRNA、circRNA表达差异和微生物多样性分析，初步筛选体液间差异表达的多组学特异性分子标记。
+
+周咏松、梅书燕、陈雪冰:利用RT-qPCR技术及 ${ \mathsf { q P C R } }$ 技术对候选体液间差异表达的转录组以及基于NGS平台对微生物组标记进行验证与评估，甄选确定一系列体液斑样本精准溯源分子标记物。 C
+
+兰琼、方雅婷、陈雪冰:结合DNA甲基化、转录组、微生物组以及基因组标记，构建和验证多套并行复合扩增检测体系。建立人工智能预测模型，结合实际案件样本，验证法医生物物证智能分析系统的实际应用效能。
+
+## 4. 国内外学术合作交流等情况。
+
+本研究中不再重复展示2019年至2022年参与的相关学术交流会议详情，相关内容已在国家自然科学基金面上项目（项目号:81772031）中详细呈现。
+
+1）2022年10月，复旦大学上海医学院院庆，报告题目为《群体遗传与法医基因组学研究》。
+
+2）2022年11月，苏州大学第二届“东吴”法医学高峰论坛，报告题目为《法医物证鉴识多组学研究》。
+
+3）2022年12月，第十四届中山医学院学术节，报告题目为《NGS研究多种类型分子遗传标记》。
+
+4）2022年6月，西北政法大学鉴定人培训，报告题目为《法医物证鉴定执业新领域研究进展》。
+
+5）2022年7月，公安部物证鉴定中心，报告题目为《多种分子遗传标记在法医降解检材中的应用研究》。
+
+6）2023年12月，西南政法大学举办的“法庭科学:创新与挑战暨法庭科学学科建设”学术研讨会，报告题目为《体液斑精准组织溯源研究》。
+
+7）2023年11月，陕西省司法鉴定协会举办法医物证司法鉴定专业培训
+
+班，报告题目为《识“血”寻踪，见微知著一法医疑难生物检材系统鉴识》。
+
+8）2023年10月，甘肃政法大学，甘肃省证据科学技术研究与应用重点实验室换届学术委员会，报告题目为《法医疑难生物检材精准鉴识研究》。
+
+9）2023年5月，海南医学院，参加其主办的“一带一路”热带医学联盟第五届热带医学高峰论坛，报告题目为《热带生物检材的法医精准鉴识研究》。
+
+10）2023年3月，公安部鉴定中心，参加刘耀院士牵头承担的中国工程院咨询研究项目“生物安全体系下法医与物证技术发展战略研究”，报告题目为《生物安全之人类遗传资源与生物资源安全》。
+
+11）2023年4月，国家自然科学基金委员会主办、南方医科大学承办的“生物检材微生物组与法医个体身份精准鉴识”发展战略研讨会暨国家自然科学基金重大项目《法医转录组分子鉴识》启动会，报告题目为《法医物证鉴识多V组学创新研究挑战与机遇》。
+
+12）2023年10月，纪念“晋祠会议”40周年暨“中国法医学科学技术发展论坛，报告题目为《基于CpG标记的多策略体液斑精准溯源研究》。
+
+13）2023年7月，广州市司法鉴定协会，报告题目为《法医物证鉴定执业新领域基础理论与前沿进展》。
+
+14）2023年7月，杭州之江实验室，报告题目为《“见微知著”-法医疑难生物检材多组学智能精准鉴识研究》。
+
+15）2024年5月，南京医科大学建校九十周年，汇报的题目:法医疑难生物检材的精准鉴识研究。
+
+16）2024年5月，在高密市召开山东省公安机关DNA技术应用培训班，汇报的题目:法医物证鉴定执业新领域研究进展。
+
+17）2024年7月，在浙江湖州举行前沿医药生物技术交流会暨首届清华大学医学院-山西医科大学前沿医药生物技术研讨会，汇报的题目:法医疑难生物检材精准鉴识研究。
+
+18）2024年8月，在辽宁省沈阳市召开“第三届海峡两岸法医学术交流会暨首届全国法医学专业研究生科研创新学术交流会”，汇报的题目:多组学技术在体液斑精准组织溯源中的应用研究。
+
+19）2024年9月，在湖北省十堰市组织召开“第七届全国法医DNA检验技术研讨会”，汇报的题目:法医降解生物检材DNA分析。
+
+20）2024年9月，应国际法医遗传学学会邀请，赴西班牙参加国际法医遗传学学会第30届大会。并进行壁报展示，题目分别为:①Forensic Kinship Classification Based on CE Genotyping Platform from the Machine Learning Perspective: A Pilot Study on A Newly Validated Six-Dye InDel Panel; ②Using the temporal dynamics of both microbial taxonomy and metabolic functional pathways improved the accuracy of TsD estimation for saliva stains .
+
+21）2024年10月，在广州线下举办2024年度广东省法医物证鉴定专业培训班，就“法医物证鉴定现状及发展”等内容进行现场授课。
+
+22）2024年11月，全国法医学教育与学科建设高峰论坛暨中山大学中山医学院法医学系建系四十周系庆活动，汇报的题目:法医疑难生物检材的精准鉴识研究。 7
+
+23）2024年11月，汕头大学医学院医学前沿系列讲座，汇报的题目:法医生物物证精准鉴识研究。
+
+24）2024年12月，司法鉴定科学研究院，汇报的题目:科研选题和基金撰写心得。
+
+## 5. 存在的问题、建议及其他需要说明的情况。
+
+本研究到目前为止，基本按照既定目标完成。后续需要在大规模真实案件样本集中充分验证，以支持本项目研究结论及相关模型的泛化性。
+
+## （二）成果部分
+
+## 1. 项目取得成果的总体情况。
+
+1）在转录组层面:立足法医实践需求，系统探究转录组分子标记对体液斑精准组织溯源的应用价值，基于不同的转录组分子标记自主研发系列检测体系，有助于五种常见体液斑精准组织溯源。多种RNA分子标记在不同的体液斑中具有组织特异性表达，团队通过转录组测序和生物信息分析筛选并验证了体液斑间差异表达的RNA分子标记，先后构建了①mRNA与miRNA共逆转录体系用于五种常见体液斑鉴定，②miRNA与 circRNA的共逆转录体系用于降解体液斑鉴定，③构建 mRNA和 lncRNA 检测体系，进行 lncRNA在体液（斑）溯源的应用价值研究。mRNA与miRNA 体系的灵敏度为0.1pg\~0.01ng。通过模拟11种环境样本、不同离体时间、非人源及混合体液斑样本对体系进行应用效能验证研究；在miRNA和circRNA共逆转录体系中，通过不同温度、紫外线、消毒溶液浓度处理的方式制备降解样本，证实共逆转录体系对不同类型的降解体液斑均具有潜在的应用价值；lncRNA分子标记（lnc-SLC25A39和lnc-LINC00279-202）成功地鉴定了三到五种组织来源的不同混合物中的目标体液样本。此外，与南方医科大学王栋团队进行深度合作，共同开发RNADiseasev4.0数据库，实现生信技术和数据资源共享，为法医领域开展转录组RNA相关研究提供支撑。
+
+2）在微生组层面:揭示不同体液（斑）核心微生物群，为基于微生物组进行体液斑精准组织溯源研究奠定理论和应用基础。针对法医案发现场体液（斑）精准组织溯源难题，聚焦唾液、皮肤及其混合物等生物检材，揭示不同检材中富含的微生物群落结构差异及其核心微生物群生物信息，证实微生物标志物对唾液、皮肤拭子及其混合物具有较高的鉴识能力，为后续基于微生物组开展体液（斑）组织来源鉴定提供研究思路。同时，研究团队首次探究了二代测序和三代测序平台对揭示体液（斑）微生物多样性及其优势菌群的潜在差异，为法医领域开展微生物组后续研究提供了重要参考。随后，针对唾液、阴道分泌物及精液样本开展了高物种分辨率的微生物群落研究，系统遴选了不同体液斑间差异的微生物标志物。此外，还深入探究了复杂因素对体液（斑）微生物群落结构的影响，如探索整个月经周期中阴道微生物群落结构的时相差异性，不同暴露时长下唾液、精液和阴道分泌液微生物组成的变化规律，并对人、猫和犬的唾液微生物群落结构进行系统研究，为复杂环境下开展基于微生物组的体液(斑)鉴识开拓了研究思路。综合上述研究，本人与中国工程院刘超院士合作主编专著《法医微生物组学》(ISBN:978-7-306-08289-3)，为推动微生物组学在法医学领域的普及和应用贡献力量。
+
+3）在表观组层面:揭示不同类型体液（斑）表观遗传差异，系统甄选不同体液间表达差异的特异性DNA甲基化分子标记，自主研发了基于鉴识性DNA甲基化标记的SNaPshot检测体系，为体液斑精准组织溯源提供表观遗传解决方案。人体不同组织器官具有差异DNA甲基化模式，这些模式相对稳定、具有可遗传性，上述特征使DNA甲基化成为一种较理想的体液（斑）溯源分子标记。针对法医实践中常见的五种体液（斑）类型，通过 Infinium Methylation EPIC BeadChip系统甄选和 Pyrosequencing 准确验证，最终获得一组体液特异性的 DNA甲基化分子标记，并结合CE平台构建了一个甲基化敏感性 SNaPshot检测体系和人工智能的预测模型，实现体液（斑）精准组织溯源。同时，团队通过对五种常见人源体液斑以及五种常见动物的血液或唾液DNA样本进行验证，证实该体系具有较高的种属特异性和法医实践应用价值。此外，团队利用人工智能算法研发了DNA甲基化位点筛选新策略，即通过对全基因组甲基化芯片测序公共数据集进行深度分析，结合多种特征选择算法进行目标甲基化位点筛选，为同时实现体液斑精准组织溯源和精液遗留人生物年龄推断提供有利工具。
+
+4)在基因组层面:长期致力于法医疑难降解生物检材鉴识研究，自主研发多套新型分子标记检测体系，解决降解和微量检材的个体识别、亲缘鉴定和生物地理祖先来源推断。围绕法医疑难生物检材，特别是微量和降解检材鉴识的难题，创新结合分子标记的短扩增子（<200bp）分型策略，自主研发了适用于降解检材个体识别、亲子鉴定和祖源推断系列AIM-DIP、II-SNP复合检测体
+
+系，其种属特异性强、降解检材的适应性好、灵敏度高（0.625ngDNA）。基于上述分型检测体系在不同族群中开展系列研究，为法医个体识别似然率和父权指数的计算提供坚实基础数据支持。同时，基于人工智能特征选择算法研发了全基因组DIP分子标记甄选新策略，并形成可实现主要五大洲际人群及东亚内部人群生物地理精准溯源的检测新方案（专利号:ZL202410436345.5）。团队的系列研究也推动和参与了法医DNA领域相关标准和技术规范（SF/T0132-2023、SF/ZJD0105006-2018）的出台，为新型分子遗传标记在基层法医DNA实验室的应用示范做出重要贡献，已在公安和司法鉴定机构应用。此外，基于线粒体闭环结构和多拷贝的特性，开拓全长测序策略，研究确证了纳米球测序mtDNA的法医适用性，解决母系溯源问题。在降解检材亲缘鉴定方面，研究验证了1993个高多态性ⅡI-SNP在家系中二级亲缘关系鉴定效能，为如志愿军遗骸等降解检材鉴定提供技术支持，并形成了实践指导性的似然比和状态一致性判定阈值，推动研究成果的转化落地。
+
+上述系列工作共发表SCI论文35篇，参编书籍8本，参与出台司法部技术规范1项，培养博硕士研究生共27名，博士后4名。荣获国家卫生健康突出贡献中青年专家；2024年国务院和广东省享受政府特殊津贴人员；河南省科学技术奖二等奖；申请技术发明专利四项
+
+## 2. 项目成果转化及应用情况。
+
+以第1完成人申请技术发明专利4项（专利申请号:2022110717477；2022114583575；2021110901606;2021103973474)
+
+## 3. 人才培养情况。
+
+受资助以来，共培养硕士研究生9人，毕业2人；博士研究生18人，毕业11人；博士后4人，出站博士后3人（1人获面上项目，2人获青年基金），在站博士后1人；有11人次获得国家奖学金。
+
+## 4. 其他需要说明的成果。
+
+## 5. 项目成果科普性介绍或展示网站。
+
+因为部分内容涉及专利申请，所以尚未做成果科普性介绍。
+
+## 研究成果目录
+
+项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。请按照期刊论文、会议论文、学术专著、专利、会议报告、标准、软件著作权、科研奖励、人才培养、成果转化的顺序列出，其它重要研究成果如标本库、科研仪器设备、共享数据库、获得领导人批示的重要报告或建议等，应重点说明研究成果的主要内容、学术贡献及应用前景等。
+
+项目负责人不得将非本人或非参与者所取得的研究成果、与受资助项目无关的研究成果、未标注国家自然科学基金资助和项目批准号的论文以及取得时间早于项目资助期开始时间的研究成果列入报告中。发表的研究成果（包括专利），项目负责人和参与者均应如实注明得到国家自然科学基金项目资助和项目批准号，科学基金作为主要资助渠道或者发挥主要资助作用的，应当将自然科学基金作为第一顺序进行标注。
+
+## 期刊论文
+
+(1) Chen, Man; Chen, Chong; Li, Ning; Su, Yuerong; Cui, Wei; Huang, Yan; Cai, Meiming; Zhu, Bofeng; Forensi c efficiency evaluation of a mtDNA whole genome sequencing system constructed with long fragment amplification strategy on DNA nanobal1 sequencing platform, FORENSIC SCIENCE INTERNATIONAL-GENETICS, 2024, 73(103126). SCIE. 第一标注
+
+(2) Mei, Shuyan; Cai, Meiming; Lei, Fanzhang; Wang, Xi; Yuan, Xi; Lin, Yifeng; Zhu, Bofeng; Revealing microbial community characteristics in healthy human, cat and canine salivas and looking for species-specific microbes, INTERNATIONAL JOURNAL OF LEGAL MEDICINE, 2024, 138(6): 2259-2269. SCIE. 第一标注
+
+(3) Zhao, Ming; Cai, Meiming; Lei, Fanzhang; Yuan, Xi; Liu, Qinglin; Fang, Yating; Zhu, Bofeng; AI-driven feature selection and epigenetic pattern analysis: A screening strategy of CpGs validated by pyrosequencing for body fluid identification, Forensic Sci Int, 2024, 6(367). SCIE. 第一标注
+
+(4) Chen, Xuebing; Xu, Hui; Lin, Yifeng; Zhu, Bofeng; Forensic stability evaluation of selected miRNA and circRNA markers in human bloodstained samples exposed to different environmental conditions, FORENSIC SCIENCE INTERNATIONAL，2024，362(112148).SCIE. 第一标注
+
+(5) Mei, Shuyan; Wang, Xi; Lei, Fanzhang; Lan, Qiong; Cai, Meiming; Zhu, Bofeng; Focus on studying the effects of different exposure durations on the microbial structures and characteristics of three types of body f1uids, FORENSIC SCIENCE INTERNATIONAL, 2024, 356(111949). SCIE. 第一标注
+
+(6) Zhou, Yongsong; Wang, Jingneng; Wu, Buling; Zhu, Bofeng; Rapid determination of furazolidone residues in animal foods by time-resolved fluorescence immunochromatography, FOOD CHEMISTRY, 2024, 1(445). SCIE. 第一标注
+
+(7) Cai, Meiming; Lei, Fanzhang; Liu, Yanfang; Wang, Xi; Wang, Hongdan; Xie, Weibing; Yang, Zi; Yang, Shangwu; Zhu, Bofeng; Joint application of A-InDels and miniSTRs for forensic personal, full and half sibling identifications, and genetic differentiation analyses in two populations from China, BMC GENOMICS, 2024, 25(1). SCIE. 第二标注
+
+(8) Liu, Liu; Wang, Chan; Wang, Haowei; Miao, Lin; Xie, Tong; Tian, Yunqing; Li, Xiaodong; Huang, Yizhen; Zeng, Xiaofeng; Zhu, Bofeng; Identification of the circRNA-miRNA-mRNA network for treating methamphetamine-induced relapse and behavioral sensitization with cannabidiol, CNS NEUROSCIENCE & THERAPEUTICS, 2024， 30(5). SCIE. 第三标注
+
+(9) Liu, Liu; Li, Shuanglin; Cui, Wei; Fang, Yating; Mei, Shuyan; Chen, Man; Xu, Hui; Bai, Xiaole; Zhu, Bofeng; Ancestry analysis using a self-developed 56 AIM-InDel loci and machine learning methods, FORENSIC SCIENCE INTERNATIONAL， 2024， 361(112065). SCIE. 第二标注
+
+(10) Fang, Yating; Chen, Man; Cai, Meiming; Lei, Fanzhang; Zhu, Bofeng; Selection and validation of a novel set of specific differential methylation markers and construction of a random forest prediction model for the accurate tissue origin identifications of body fluids involving young and middle-aged group of Chinese Han population, INTERNATIONAL JOURNAL OF LEGAL MEDICINE, 2023, 137(5): 1395-1405. SCIE. 第一标注
+
+(11) Mei, Shuyan; Yi, Shaohua; Cai, Meiming; Zhang, Yunying; Cui, Wei; Xu, Hui; Lan, Qiong; Zhu, Bofeng; Ex ploring the forensic effectiveness and population genetic differentiation by self-constructed 41 multi-InDel panel in Yunnan Zhuang group, GENE, 2023, 860(15). SCIE. 第一标注
+
+(12) Fang, Yating; Chen, Man; Zhu, Bofeng; Construction and evaluation of in-house methylation-sensitive SNaPshot system and three classification prediction models for identifying the tissue origin of body fluid, JOUR NAL OF ZHEJIANG UNIVERSITY-SCIENCE B, 2023, 24(9): 839-852. SCIE. 第一标注
+
+(13) Fang, Yating; Liu, Yanfang; Xu, Hui; Zhu, Bofeng; Performance evaluation of an in-house panel containing 59 autosomal InDels for forensic identification in Chinese Hui and Mongolian groups, GENOMICS, 2023, 115(1). SCIE. 第一标注
+
+(14) Zhang, Yunying; Lei, Fanzhang; Xu, Hui; Zhang, Xingru; Zhao, Ming; Lan, Qiong; Zhu, Bofeng; Exploratio n of the ancestral inference effectiveness of 126 AI-SNPs and the genetic feature of Inner Mongolian Manchu group， GENE, 2023, 873(147456). SCIE. 第一标注
+
+(15) Cui, Wei; Chen, Man; Yang, Yan; Cai, Meiming; Lan, Qiong; Xie, Tong; Zhu, Bofeng; Applications of 1993 single nucleotide polymorphism loci in forensic pairwise kinship identifications and inferences, FORENSIC SCIENCE INTERNATIONAL-GENETICS, 2023, 65(102889). SCIE. 第一标注
+
+(16) Lan, Qiong; Cai, Meiming; Lei, Fanzhang; Shen, Chunmei; Zhu, Bofeng; Systematically exploring the performance of a self-developed Multi-InDel system in forensic identification, ancestry inference and genetic structure analysis of Chinese Manchu and Mongolian groups, FORENSIC SCIENCE INTERNATIONAL, 2023, 346(13). SCIE. 第二标注
+
+(17) Chen, Man; Cui, Wei; Bai, Xiaole; Fang, Yating; Yao, Hongbin; Zhang, Xingru; Lei, Fanzhang; Zhu, Bofeng; Comprehensive evaluations of individual discrimination, kinship analysis, genetic relationship exploration and biogeographic origin prediction in Chinese Dongxiang group by a 60-plex DIP panel, HEREDITAS, 2023， 160(1). SCIE. 第一标注
+
+(18)蔡美铭；陈曼；季观庆；方雅婷；许惠；兰琼；白小乐；朱波峰；法医转录组学的研究进展及展望，中国法医学杂志，2023，38(2):166-171. 其他. 第一标注
+
+(19) Chen, Xuebing; Xu, Hui; Zhu, Bofeng; Forensic validation of a combined analysis of mRNA and miRNA markers for precise tissue origin inferences of five kinds of body fluids by RT-qPCR, ELECTROPHORESIS, 2023, 44(21-22):1714-1724. SCIE. 第一标注
+
+(20) Cui, Wei; Chen, Man; Yao, Hongbing; Yang, Qing; Liu, Liu; Bai, Xiaole; Chen, Ling; Zhu, Bofeng; Forens ic Characterization and Genetic Portrait of the Gannan Tibetan Ethnic Group via 165 AI-SNP Loci, FRONTIERS IN BIOSCIENCE-LANDMARK, 2023， 28(6). SCIE. 第一标注
+
+(21) Lan, Qiong; Lin, Yifeng; Wang, Xi; Yuan, Xi; Shen, Chunmei; Zhu, Bofeng; Targeted sequencing of high-density SNPs provides an enhanced tool for forensic applications and genetic landscape exploration in Chinese Korean ethnic group, HUMAN GENOMICS, 2023, 17(1). SCIE. 第二标注
+
+(22) Yuxin Guo; Xingru Zhang; Haoqing Zhang; Yaoshun Liu; Jianfeng Shi; Haotian Meng; Xin Chen; Qiong Lan; Zhu, Bofeng; Application of microfluidic technologies in forensic analysis, Electrophoresis, 2023, 44(21-22):1725-1743. SCIE. 第一标注
+
+(23) Chen, Jia; Lin, Jiahao; Hu, Yongfei; Ye, Meijun; Yao, Linhui; Wu, Le; Zhang, Wenhai; Wang, Meiyi; Deng, Tingting; Guo, Feng; Huang, Yan; Zhu, Bofeng; Wang, Dong; RNADisease v4.0: an updated resource of RNA-associated diseases, providing RNA-disease analysis, enrichment and prediction, NUCLEIC ACIDS RESEARCH, 2023， 51(D1). SCIE. 第五标注
+
+(24) Wang, Hongdan; Chen, Man; Chen, Chong; Fang, Yating; Cui, Wei; Lei, Fanzhang; Zhu, Bofeng; Genetic Background of Kirgiz Ethnic Group From Northwest China Revealed by Mitochondrial DNA Control Region Sequences on Massively Paralle1 Sequencing, FRONTIERS IN GENETICS, 2022, 13(23). SCIE. 第一标注
+
+(25) Mei, Shuyan; Zhao, Ming; Liu, Yanfang; Zhao, Congying; Xu, Hui; Fang, Yating; Zhu, Bofeng; Evaluations and comparisons of microbial diversities in four types of body fluids based on two 16S rRNA gene sequencing methods, FORENSIC SCIENCE INTERNATIONAL, 2022, 331(111128). SCIE. 第一标注
+
+(26) Jin, Xiao-Ye; Liu, Yan-Fang; Cui, Wei; Chen, Chong; Zhang, Xing-Ru; Huang, Jiang; Zhu, Bo-Feng; Develo pment a multiplex panel of AISNPs, multi-allelic InDels, microhaplotypes, and Y-SNP/InDel loci for multiple forensic purposes via the NGS, ELECTROPHORESIS, 2022, 43(4): 632-644. SCIE. 第二标注
+
+(27) Lan, Qiong; Zhao, Congying; Chen, Chong; Xu, Hui; Fang, Yating; Yao, Hongbing; Zhu, Bofeng; Forensic Feature Exploration and Comprehensive Genetic Insights Into Yugu Ethnic Minority and Northern Han Population via a Novel NGS-Based Marker Set, FRONTIERS IN GENETICS, 2022, 13(27). SCIE. 第一标注
+
+(28) Liu, Yanfang; Mei, Shuyan; Jin, Xiaoye; Zhao, Ming; Zhu, Bofeng; Independent development and validation of a novel six-color fluorescence multiplex panel including 61 diallelic DIPs and 2 miniSTRs for forensic degradation sample, ELECTROPHORESIS, 2022， 43(13-14): 1423-1437. SCIE. 第一标注
+
+(29) Zhou, Yongsong; Cui, Wei; Wu, Buling; Zhu, Bofeng; Development and validation of a new multiplex Y-STR panel designed to increase the power of discrimination, ELECTROPHORESIS, 2022, 43(18-19):1899-1910. SCIE. 第一标注
+
+(30) Zhao, Congying; Xu, Hui; Fang, Yating; Zhao, Ming; Lan, Qiong; Chen, Man; Mei, Shuyan; Zhu, Bofeng; Sy stematic selections and forensic application evaluations of 111 individual identification SNPs in the Chinese Inner Mongolia Manchu group, FRONTIERS IN GENETICS, 2022, 13(5). SCIE. 第一标注
+
+(31) Zhang, Wenqing; Jin, Xiaoye; Wang, Yijie; Chen, Chong; Zhu, Bofeng; Genetic structure analyses and ancestral information inference of Chinese Kyrgyz group via a panel of 39 AIM-DIPs, GENOMICS, 2021, 113(4):2056-2064. SCIE. 第一标注
+
+(32) Yao, Ting; Han, Xiaolong; Guan, Tianshan; Zhai, Chuangyan; Liu, Changhui; Liu, Chao; Zhu, Bofeng; Chen, Ling; Exploration of the microbiome community for saliva, skin, and a mixture of both from a population living in Guangdong, INTERNATIONAL JOURNAL OF LEGAL MEDICINE, 2021, 135(1): 53-62. SCIE. 第二标注
+
+(33) Zhang, Wenqing; Zhou, Ronghui; Yang, Yuting; Peng, Shuanglin; Xiao, Dexuan; Kong, Tingting; Cai, Xiaoxiao; Zhu, Bofeng; Aptamer-mediated synthesis of multifunctional nano-hydroxyapatite for active tumour bioimaging and treatment, CELL PROLIFERATION, 2021, 54(9). SCIE. 第一标注
+
+(34) Chen, Chong; Jin, Xiaoye; Zhang, Xingru; Zhang, Wenqing; Guo, Yuxin; Tao, Ruiyang; Chen, Anqi; Xu, Qiannan; Li, Min; Yang, Yue; Zhu, Bofeng; Comprehensive Insights Into Forensic Features and Genetic Background of Chinese Northwest Hui Group Using Six Distinct Categories of 231 Molecular Markers, FRONTIERS IN GENETICS, 2021， 12(15). SCIE. 第二标注
+
+(35) Guo, Yuxin; Xia, Zhiyu; Cui, Wei; Chen, Chong; Jin, Xiaoye; Zhu, Bofeng; Joint Genetic Analyses of Mitochondrial and Y-Chromosome Molecular Markers for a Population from Northwest China, GENES, 2020, 11(5). SCIE. 第二标注
+
+(36) Liu, Yanfang; Jin, Xiaoye; Mei, Shuyan; Lan, Qiong; Fang, Yating; Liu, Chao; Zhu, Bofeng; A set of novel multi-allelic SNPs for forensic application developed through massively parallel sequencing and its examples of population genetic studies, ELECTROPHORESIS, 2020, 41(23): 2036-2046. SCIE. 第二标注
+
+(37)雷梵章；陈曼；梅书燕；方雅婷；朱波峰；微生物组学的法医学应用新进展、挑战和机遇，法医学杂志，2022 38(5):625-639. 北大中文核心期刊. 第一标注
+
+## 学术专著
+
+（1）刘超（主编）；朱波峰（主编）；《法医微生物学》，中山大学出版社，2024.
+
+（2）从斌（主编）；官大威（主编）；朱波峰（编委）；《法医学》（供八年制及“5+3”一体化临床医学等专业用），人民卫生出版社，2024.
+
+（3）从斌（主编）；张林（主编）；朱波峰（编委）；《法医学》（国家卫生健康委员会“十四五”规划教材，第8版），人民卫生出版社，2024.
+
+(4) Hirak Ranjan Dash, Kelly M. Elkins (主编) ; Noora Rashid Al-Snan (主编); Bofeng Zhu（编委）；《Next generation sequencing technology in DNA analysis》 , Academic Press, 2023.
+
+(5) Ling Li(主编); Yiping Hou(主编); Bofeng Zhu (编委); 《Forensic medicine:2nd Edition》,人民卫生出版社，2020.
+
+(6) 赵虎（主编）；刘超（主编）；朱波峰（编委）；《高级法医学》，郑州大学出版社，2021.
+
+（7）张素华（主编）；朱波峰（编委）；《DNA鉴定前沿》，科学出版社，2020.
+
+(8) 李明（主编）；周宏伟（主编）；朱波峰（编委）；《分子诊断技术与应用》，科学出版社，2024.
+
+## 专利
+
+(1）朱波峰；李双琳；方雅婷；兰琼；一种用于降解检材推断的生物地理祖先DIPs和性别鉴定的复合扩增盒，2022-11-17，中国，CN202211458357.5.
+
+(2) 朱波峰；方雅婷；陈曼；一种8CpG panel检测试剂盒以及体液分类的两种预测模型，2022-09-02，中国，CN20221107 1747.7.
+
+(3) 朱波峰；刘艳芳；沈春梅；宋丹璐；金海英；一种用于降解检材分型的人类常染色体和性染色体上64个基因座的六色荧光标记检测体系，2021-04-14，中国，CN202110397347.4.
+
+(4) 朱波峰；靳小业；崔伟；陈冲；一种基于NGS技术检测四种类型129个分子遗传标记的复合扩增体系，2021-9-17，中国，CN202111090160.6
+
+标准
+
+(1）中国标准，张素华；李成涛；朱波峰；谢建辉；侯一平；陶瑞旸；陈安琪；法医InDe1分型与应用技术规范，SF/T 0132-2023，司法鉴定科学研究院，2023-10-7.
+
+## 科研奖励
+
+(1） 朱波峰(1/1)；2024年国务院享受政府特殊津贴人员，广东省人力资源和社会保障厅（由广东省代发文件），其他，其他，2024（朱波峰）.
+
+(2) 朱波峰(1/1)；广东省2024年享受政府特殊津贴，广东省人力资源和社会保障厅，其他，其他，2024（朱波峰）.
+
+(3) 朱波峰(1/1)；国家卫生健康突出贡献中青年专家称号，国家卫生健康委员会，其他，其他，2021（朱波峰）.
+
+(4) 朱波峰(1/1)；广东省最美科技工作者荣誉称号，中共广东省委宣传部，其他，其他，2021（朱波峰）
+
+(5) 朱波峰(3/10)；河南省科学技术进步奖，河南省人民政府，科技进步，省部二等奖，2023（王红丹；冯战启；朱波峰；郭涵；康冰；张梦汀；高越；王栋；秦利涛；郭梁洁）
+
+(6) 朱波峰(3/7)；河南省科学技术进步奖，河南省人民政府，科技进步，其他，2022（王红丹；刘琳；朱波峰；王莉；冯战启；尹姗姗；廖世秀）.
+
+(7)朱波峰(3/10)；河南医学科技奖，河南省医学会，科技进步，其他，2023（王红丹；冯战启；朱波峰；郭涵；康冰；张梦汀；高越；王栋；秦利涛；郭梁洁）.
+
+(8) 朱波峰(3/7)；河南医学科技奖，河南省医学会，科技进步，其他，2021（王红丹；刘琳；朱波峰；王莉；冯战启；尹姗姗；廖世秀）.
+
+## 人才培养
+
+## 1. 出站博士后/毕业博士/毕业硕士/在站博士后/在读博士/在读硕士
+
+(1) 陈雪冰；出站博士后，基于四种 RNA 分子构建共逆转体系进行法医体液(斑)精准溯源研究，朱波峰，2020-8-1至2023-5-30.
+
+(2) 兰琼；出站博士后，联合基因组和微生物组策略的生物检材 DNA线索挖掘:父系溯源和离体时间推断研究，朱波峰，2022-8-1至2024-7-30.
+
+(3) 周咏松；出站博士后，52个InDe1s祖先信息标记的筛选及其在法医祖源推断中的应用研究，朱波峰，2021-6-1至2023-3-30.
+
+(4) 兰琼；毕业博士，41个Multi-InDel体系的法医学应用及联合多种分子标记解晰汉族和裕固族的遗传背景，朱波峰，2020-9-1至2022-5-20.
+
+(5) 崔伟；毕业博士，多种策略下 SNP遗传标记对汉族群体不同层级亲缘关系鉴识的效能评估与亲缘关系预测研究，朱波峰，2021-9-1至2023-5-10. C
+
+(6) 陈曼；毕业博士，MtDNA全基因组二代测序体系的法医学验证及与核内分子标记联合应用进行复杂亲缘关系鉴识研究，朱波峰，2021-9-1至2023-5-10.
+
+(7) 许惠；毕业博士，基于CE-InDe1和 NGS-STR的联合应用对三级以内不同亲缘关系鉴识的效能分析，朱波峰，2022-9-1至2024-5-10.
+
+(8) 梅书燕；毕业博士，五种常见体液(斑)中微生物群落特征、三种影响因素的探索及潜在体液间差异微生物标志物的筛选研究，朱波峰，2021-9-1至2023-5-10.
+
+(9) 方雅婷；毕业博士，全基因组内体液特异性表达差异甲基化位点的系统甄选、验证与体液精准溯源的应用研究，朱波峰，2020-9-1至2022-5-10.
+
+(10) 兰江维；毕业博士，犬InDel 标记复合扩增检测体系的构建、验证及应用研究，朱波峰，2022-9-1至2024-5-20.
+
+(11) 刘柳；毕业博士，大麻二酚通过circMeis2-miR-183-5p-Kcnj5轴减轻甲基苯丙胺复吸的分子机制研究，朱波峰，2022-9-1至2024-5-20.
+
+(12) 李双琳；毕业博士，适用于降解检材的祖源推断DIP体系的研发及其在群体遗传学和法医学中的应用，朱波峰，2020-9-1至2022-5-20.
+
+(13) 曾阔；毕业博士，基于靶向捕获高通量测序的SNP一体化体系的法医学应用研究，朱波峰，2022-9-1至2024-5-20.
+
+(14) 张星茹；毕业博士，多因素对复杂亲缘关系鉴定影响的研究，朱波峰，2022-9-1至2024-5-20.
+
+(15) 赵聪颖；毕业硕士，111 个II SNP 位点的甄选及基于 MPS 分型的法医学应用研究，朱波峰，2020-9-1至2022-5-20.
+
+(16) 张蕴盈；毕业硕士，126个AI-SNP位点的祖源推断效能及内蒙古满族群体遗传特征的探究，朱波峰2021-9-1至2023-5-20.
+
+(17) 刘芬；在站博士后.
+
+(18) 赵铭；在读博士.
+
+(19) 董博南；在读博士.
+
+(20) 雷梵章；在读博士.
+
+(21) 蔡美铭；在读博士.
+
+(22) 袁曦；在读博士.
+
+(23) 王茜；在读博士.
+
+(24) 田梁杰；在读博士.
+
+(25) 林一峰；在读硕士.
+
+(26) 梁清琳；在读硕士.
+
+(27) 刘清林；在读硕士.
+
+(28) 吴晓连；在读硕士.
+
+(29) 吴益漫；在读硕士.
+
+(30) 沈若男；在读硕士.
+
+(31) 石鑫；在读硕士.
+
+## 学术交流
+
+(1) 2024-9-9至2024-9-13, 参加30th Congress of the International Society for Forensic Genetics, 西班牙,朱波峰；兰琼；雷梵章. 1
+
+(2) 2023-1-14至2023-1-14，举办第二届华南精准法医学高峰论坛暨2022年广东省精准应用学会法医学分会年会，广州，广东省精准医学应用学会，朱波峰.
+
+(3)2023-3-25至2023-3-26，举办“生物检材的微生物组与法医个体身份精准鉴识”发展战略研讨会，广州，国家自然科学基金委员会医学科学部，朱波峰.
+
+(4) 2024-5-14至2024-5-14，举办第三届南方法医论坛暨广州市法医多组学精准鉴识重点实验室第二届学术研讨会，广州，南方医科大学，朱波峰.
+
+(5) 2024-9-21至2024-9-21，举办第三届华南精准法医学发展论坛暨广州市法医多组学精准鉴识重点实验室第三届学术研讨会，广州，广东省精准医学应用学会，朱波峰。
+
+(6) 2020-5-23至2020-5-23，举办“首届南方法医论坛-暨网络云讲堂”法庭科学云峰会，腾讯会议平台，南方医科大学，朱波峰.
+
+## 项目成果应用前景
+
+本项目成果拟应用领域:1、法医物证学
+
+预计在5年以内推广使用
+
+附表:研究成果统计数据表（本表针对各种类型资助项目收集数据以便进行整体资助效果分析使用，并非要求每类项目都具有以下各类成果。
+
+<table><tr><td rowspan=4>获奖（项）</td><td colspan=15>国家级</td><td colspan=10>省部级</td><td rowspan=3 colspan=2>其他</td></tr><tr><td colspan=4>自然科学奖</td><td colspan=5>科技进步奖</td><td colspan=6>发明奖</td><td colspan=6>自然科学奖</td><td colspan=4>科技进步奖</td></tr><tr><td colspan=2>一等</td><td colspan=2>二等</td><td colspan=2>一等</td><td colspan=3>二等</td><td colspan=3>一等</td><td colspan=3>二等</td><td colspan=3>一等</td><td colspan=3>二等</td><td colspan=2>—一等</td><td colspan=2>二等</td></tr><tr><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>1</td><td colspan=2>7</td></tr><tr><td rowspan=4>学术报告/论文/专著/其他（篇）</td><td colspan=3>特邀学术报告</td><td colspan=14>学术论文</td><td rowspan=2 colspan=3>学术专著</td><td rowspan=2 colspan=7>其他</td></tr><tr><td rowspan=2>国际学术会议</td><td rowspan=2 colspan=2>国内学术会议</td><td colspan=4>发表论文数</td><td colspan=10>论文检索收录情况</td></tr><tr><td colspan=2>期论义</td><td colspan=2>会议</td><td colspan=2>SCIE/SSCI</td><td colspan=2>EI</td><td colspan=3>北大中文核心期刊</td><td colspan=3>CSSCI</td><td colspan=2>中文</td><td>外文</td><td colspan=2>标本库</td><td colspan=2>数据库</td><td colspan=2>科研仪器设备</td><td>重要报告</td></tr><tr><td>0</td><td colspan=2>0</td><td colspan=2>37</td><td colspan=2>0</td><td colspan=2>35</td><td colspan=2>0</td><td colspan=3>1</td><td colspan=3>0</td><td colspan=2>6</td><td>2</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr><tr><td rowspan=4>专利/标准/软著/成果转化</td><td colspan=7>专利（项）</td><td colspan=12>标准</td><td rowspan=3>软件著作权</td><td rowspan=2 colspan=7>成果转化</td></tr><tr><td colspan=3>国内</td><td colspan=4>国外</td><td rowspan=2 colspan=2>国际</td><td colspan=10>国内</td></tr><tr><td>申请</td><td colspan=2>授权</td><td colspan=2>申请</td><td colspan=2>授权</td><td colspan=2>国家</td><td colspan=3>行业</td><td colspan=3>地方</td><td colspan=2>企业</td><td colspan=2>技术转让技</td><td colspan=2>术许可作</td><td colspan=2>价投资</td><td>经济效益(万元)</td></tr><tr><td>4</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>1</td><td colspan=3>0</td><td colspan=2>0</td><td>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr><tr><td rowspan=4>人才培养及学术交流</td><td colspan=16>人才培养（人）</td><td colspan=11>举办和参加学术会议</td></tr><tr><td colspan=8>中青年学术带头人</td><td rowspan=2 colspan=2>出站博士后</td><td rowspan=2 colspan=3>毕业博士</td><td rowspan=2 colspan=3>毕业硕士</td><td colspan=4>举办国际学术会议</td><td colspan=4>举办国内学术会议</td><td colspan=3>参加国际学术会议</td></tr><tr><td>优青</td><td colspan=2>杰青</td><td colspan=2>创新群体</td><td colspan=2>其他</td><td></td><td colspan=2>次数</td><td colspan=2>人数</td><td colspan=2>次数</td><td colspan=2>人数</td><td colspan=2>次数</td><td>人数</td></tr><tr><td>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td></td><td colspan=2>3</td><td colspan=3>11</td><td colspan=3>2</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>5</td><td colspan=2>870</td><td colspan=2>1</td><td>3</td></tr></table>
+
+## 国家自然科学基金项目资金决算表
+
+项目批准号:81930055
+
+项目负责人:朱波峰
+
+金额单位:万元
+
+<table><tr><td rowspan="3">序号</td><td rowspan="3">科目名称</td><td colspan="3">预算数</td><td rowspan="2">累计支出数</td><td rowspan="2">结余数</td><td rowspan="2">结余占比</td></tr><tr><td>批准预算</td><td>预算调整</td><td>调整后预算</td></tr><tr><td>(1)</td><td>(2)</td><td>(3) = (1) +(2)</td><td>(4)</td><td>(5) =(3)− (4)</td><td>(6)=(5)÷(3)</td></tr><tr><td>1</td><td>项目总经费</td><td>356.4000</td><td>0.0000</td><td>356.4000</td><td></td><td>一</td><td>53.17%</td></tr><tr><td>2</td><td>项目直接费用</td><td>297.0000</td><td>0.0000</td><td>297.0000</td><td>107.4889</td><td>189.5111</td><td>一</td></tr><tr><td>3</td><td>1、设备费</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td></td></tr><tr><td>4</td><td>其中:设备购置费</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td></td></tr><tr><td>5</td><td>2、业务费</td><td>253.3000</td><td>0.0000</td><td>253.3000</td><td>94.2598</td><td>159.0402</td><td></td></tr><tr><td>6</td><td>3、劳务费</td><td>43.7000</td><td>0.0000</td><td>43.7000</td><td>13.2291</td><td>30.4709</td><td></td></tr><tr><td>7</td><td>项目间接费用</td><td>59.4000</td><td>0.0000</td><td>59.4000</td><td></td><td>一</td><td></td></tr></table>
+
+注:1.本表仅填列自然科学基金批准资助的项目经费决算情况，其他来源资金的经费决算情况不属于本表填报范围；
+
+2.本表中（1）、（3）、（5）、（6）栏为系统自动生成，不需项目负责人填写；本表中（2）栏填列预算调整数；本表中（4）栏填列项目的实际支出数；3.本表中第7行数值由系统自动生成，不需项目负责人填写:
+
+4.第7行“预算调整”栏请参照《国家自然科学基金预算制项目决算表编制说明》中有关要求填列。
+
+# 决算说明书
+
+(请按照《国家自然科学基金预算制项目决算表编制说明》等的有关要求，说明项目预算支出情况、预算调整情况、资金结余情况、合作研究外拨资金情况、单价50万元（含）以上的设备情况、资金管理和使用过程中的问题建议，以及其他需要说明的事项。)
+
+## 1. 项目基本情况
+
+本人承担的“多源组学结合人工智能探索五类分子标记进行体液（斑）精准组织溯源的系统研究”项目目前已进入结题阶段，经费开支明细帐已经由依托单位南方医科大学财务系统导出，并经财务处认可。
+
+## 2. 项目预算支出与资金结余情况
+
+本项目总预算2,970,000.00元，共执行1,074,889.67元，共余1,895,110.33元，其中:
+
+1)材料费共执行247,399.77元，结余838,400.23元。
+
+2)测试化验加工费共执行167,072.00元，结余344,928.00元。
+
+3)差旅会议国际合作交流费共执行9,284.27元，结余245,915.73元。
+
+4)出版文献信息传播知识产权事务费共执行18,842.13元， 结余146.157.87元。
+
+5)劳务费共执行132,291.50元，结余304,708.50元。
+
+项目结题资金结余的详细情况可见附件:项目结题资金结余情况说明。
+
+## 3. 预算调整情况
+
+无。
+
+## 4. 合作研究外拨资金情况
+
+科研合作费共执行500,000.00元。
+
+5. 单价50万元(含)以上的设备情况
+
+6. 资金管理和使用过程中的问题建议无。
+
+## 7. 其他需要说明的事项
+
+<table><tr><td colspan="7">项目负责人承诺:我所承担的项目（编号:81930055 名称:多源组学结合人工智能探索五类分子标记进行体液（斑）精准组织溯源的系统研究）结题报告内容真实，数据准确，未出现《国家科学技术保密规定》中列举的属于国家科学技术秘密范围的内容，不涉及敏感科技信息。在今后的研究工作中，如有与本项目相关的成果，将如实注明得到国家自然科学基金项目资助和项目批准号，并报送国家自然科学基金委员会。项目负责人（签章日期:</td></tr><tr><td colspan="4">依托单位科研管理部门:负责人（签章）:日期:</td><td colspan="2">依托单位财务管理部门:D负责人（签章）:日期:</td><td>依托单位审查意见:依托单位公章:</td></tr><tr><td colspan="7">科学处审核意见:                           EP</td></tr><tr><td rowspan="2">完成情况综合评分(划√)</td><td>优</td><td>良</td><td colspan="2">中</td><td>差</td><td rowspan="2">负责人（签章）:日期:</td></tr><tr><td></td><td></td><td colspan="2"></td><td></td></tr><tr><td colspan="7">科学部核准意见（对重点项目等）:S                                                                                              负责人（签章）:日期:</td></tr><tr><td colspan="7">分管委领导意见（对重大项目等）:委领导（签章）:日期:</td></tr></table>
+
+## 电子附件目录
+
+| 序号 | 附件类型 | 附件名称 | 备注 |
+| --- | --- | --- | --- |
+| 1 | 其他 | 项目决算表 | 项目决算表 |
+| 2 | 奖励 | 省部级奖励 | 省部级奖励 |
+| 3 | 其他 | 国内外学术会议 | 国内外学术会议 |
+| 4 | 其他 | 硕博论文封面 | 硕博论文封面 |
+| 5 | 论著 | 参编书籍与技术规范 | 参编书籍与技术规范 |
+| 6 | 专利 | 专利 | 专利 |
+| 7 | 其他 | 项目结题资金结余情况说明 | 项目结题资金结余情况说明 |

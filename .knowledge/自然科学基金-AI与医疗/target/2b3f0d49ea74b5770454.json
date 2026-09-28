@@ -1,0 +1,251 @@
+{
+  "doc_id": "2b3f0d49ea74b5770454",
+  "version": "d3d82d41bf1fcdd135b8",
+  "source_hash": "cf29b4680d9239a981f77a867dec25180cc8b53e9f3b53d7cd97e90d4e1ee5e1",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:06:12.178552+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2ff5353051a6",
+          "name": "急性阑尾炎基层首诊",
+          "desc": "急性阑尾炎是最常见外科急症，且属于基层首诊病种，基层医生的经验欠缺是错误诊断的主要因素。",
+          "evidence": [
+            {
+              "quote": "急性阑尾炎（AA）是最常见外科急症，且属于基层首诊病种，基层医生的经验欠缺是错误诊断的主要因素。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 648,
+                "end_char": 695
+              },
+              "version": "d3d82d41bf1fcdd135b8"
+            }
+          ]
+        },
+        {
+          "id": "item-bfb9d3d8ee80",
+          "name": "分级诊疗制度推进",
+          "desc": "研究融入医学领域知识、建立更精准的AA超声影像智能诊断方法，对推进我国分级诊疗制度至关重要。",
+          "evidence": [
+            {
+              "quote": "因此，研究融入医学领域知识，建立更精准的AA超声影像智能诊断方法，对推进我国分级诊疗制度至关重要。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 696,
+                "end_char": 744
+              },
+              "version": "d3d82d41bf1fcdd135b8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-db0b5ee70523",
+          "name": "基层医生经验欠缺导致误诊",
+          "desc": "基层医生的经验欠缺是急性阑尾炎错误诊断的主要因素。",
+          "evidence": [
+            {
+              "quote": "基层医生的经验欠缺是错误诊断的主要因素",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 676,
+                "end_char": 694
+              },
+              "version": "d3d82d41bf1fcdd135b8"
+            }
+          ]
+        },
+        {
+          "id": "item-940080552542",
+          "name": "需要多模态信息融合诊断",
+          "desc": "需要结合解剖结构相对位置、器官组织形态特征、生命体征运动模式、辅助检查特征描述等多维领域知识。",
+          "evidence": [
+            {
+              "quote": "本项目拟基于解剖结构相对位置、器官组织形态特征、生命体征运动模式、辅助检查特征描述的领域知识构建智能模型解决AA诊断问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 745,
+                "end_char": 804
+              },
+              "version": "d3d82d41bf1fcdd135b8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4f212b94eda3",
+          "name": "深度水平集与自注意力全景分割",
+          "desc": "建立基于深度水平集和自注意力机制的阑尾超声图像全景分割算法，并基于图神经网络表达解剖关系。",
+          "evidence": [
+            {
+              "quote": "建立基于深度水平集和自注意力机制的阑尾超声图像全景分割算法，进而基于图神经网络对解剖关系进行表达",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 838,
+                "end_char": 885
+              },
+              "version": "d3d82d41bf1fcdd135b8"
+            }
+          ]
+        },
+        {
+          "id": "item-55a0c3314c54",
+          "name": "变分信息瓶颈特征筛选",
+          "desc": "结合变分信息瓶颈原理筛选最重要的特征并实现多模态信息叠加。",
+          "evidence": [
+            {
+              "quote": "结合变分信息瓶颈原理来筛选最重要的特征并实现多模态信息叠加，并结合基于医生成长学习模式的符合代价函数从而实现更有效的急性阑尾炎分期判断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3201,
+                "end_char": 3267
+              },
+              "version": "d3d82d41bf1fcdd135b8"
+            }
+          ]
+        },
+        {
+          "id": "item-704c70bd79d1",
+          "name": "稠密光流时空一致性分割",
+          "desc": "基于生命体征运动模式对视频进行运动周期解耦，构建基于稠密光流的时空一致性分割模型计算时间强度量化曲线特征参数。",
+          "evidence": [
+            {
+              "quote": "再构建基于稠密光流的时空一致性分割模型用于计算时间强度量化曲线特征参数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 969,
+                "end_char": 1003
+              },
+              "version": "d3d82d41bf1fcdd135b8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-99b51d252fe5",
+          "name": "超声模型诊断性能优于医师",
+          "desc": "验证了基于超声成像的深度学习模型是术前诊断急性阑尾炎的一种简单实用的工具，其诊断性能优于超声科医生。",
+          "evidence": [
+            {
+              "quote": "验证了基于超声成像的深度学习模型是术前诊断急性阑尾炎的一种简单实用的工具，其诊断性能优于超声科医生",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3132,
+                "end_char": 3180
+              },
+              "version": "d3d82d41bf1fcdd135b8"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-3da86cb623d4",
+          "name": "拓展至肺炎与甲状腺结节",
+          "desc": "拓展相关知识应用于类鼻疽肺炎诊断任务及预测Bethesda I类甲状腺结节。",
+          "evidence": [
+            {
+              "quote": "最后，我们拓展相关知识应用于类鼻疽肺炎诊断任务及预测Bethesda I 类甲状腺结节",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3269,
+                "end_char": 3311
+              },
+              "version": "d3d82d41bf1fcdd135b8"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-1cb933858a47",
+          "name": "论文与授权专利",
+          "desc": "在国际重要SCI刊物发表学术论文2篇，申请中国发明专利1项并已授权，建立1个小规模急性阑尾炎数据库。",
+          "evidence": [
+            {
+              "quote": "项目组在国际重要SCI刊物发表学术论文2篇，另有2篇已完成的期刊论文正在投稿中，申请中国发明专利1项（已授权）。此外，建立了1个小规模急性阑尾炎数据库。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3490,
+                "end_char": 3565
+              },
+              "version": "d3d82d41bf1fcdd135b8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2ff5353051a6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-db0b5ee70523"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-940080552542"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4f212b94eda3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-55a0c3314c54"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-99b51d252fe5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-704c70bd79d1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3da86cb623d4"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

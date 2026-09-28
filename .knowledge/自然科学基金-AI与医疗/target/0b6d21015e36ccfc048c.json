@@ -1,0 +1,251 @@
+{
+  "doc_id": "0b6d21015e36ccfc048c",
+  "version": "5b7505b620e1322db963",
+  "source_hash": "393fe004d4293b0b9758900ee95c6a2bdd7dab8258f4e8ae1fa7f460fefed93c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:04:12.548117+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-56a0819c33ee",
+          "name": "自发性脑出血预后预测",
+          "desc": "自发性脑出血出血后30天病死率接近40%，仅约15%病人可在发病后30天实现生活自理。",
+          "evidence": [
+            {
+              "quote": "自发性脑出血出血后30天病死率接近40%，仅15%左右脑出血病人可在发病后30天实现生活自理，带来巨大的社会经济负担。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2573,
+                "end_char": 2631
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ]
+        },
+        {
+          "id": "item-0c910392d11b",
+          "name": "脑出血临床治疗决策",
+          "desc": "利用影像组学和机器学习算法建立智能预后预测模型，从而指导临床治疗决策。",
+          "evidence": [
+            {
+              "quote": "建立准确的自发性脑出血智能预后预测模型，从而指导临床治疗决策",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2697,
+                "end_char": 2726
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-430e0035bf67",
+          "name": "已有预测方法片面准确度低",
+          "desc": "患者预后对临床决策具有重要意义，但已有预测方法普遍比较片面，准确度不高。",
+          "evidence": [
+            {
+              "quote": "患者预后对临床决策具有重要意义，但已有预测方法普遍比较片面，准确度不高。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2632,
+                "end_char": 2667
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ]
+        },
+        {
+          "id": "item-bbe769a6d693",
+          "name": "预后预测特征维度高",
+          "desc": "需要从大量临床影像特征中筛选出与患者预后关系最密切的关键特征。",
+          "evidence": [
+            {
+              "quote": "筛选挖掘出与病人预后关系最密切的影像和临床特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 889,
+                "end_char": 911
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e48e681d7869",
+          "name": "半自动分割提取影像特征",
+          "desc": "采用半自动分割技术以CT图像血肿高密度范围为感兴趣区逐层分割，提取大量影像特征值。",
+          "evidence": [
+            {
+              "quote": "采用半自动分割技术，以CT图像血肿高密度范围为感兴趣区，逐层分割，提取计算每个感兴趣区的大量影像特征值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2814,
+                "end_char": 2864
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ]
+        },
+        {
+          "id": "item-26c554de023e",
+          "name": "六种机器学习算法对比建模",
+          "desc": "采用支持向量机、K邻近、逻辑回归、决策树、极限梯度增强树和随机森林6种算法建立预后预测模型并评价准确度。",
+          "evidence": [
+            {
+              "quote": "采用支持向量机、K邻近、逻辑回归、决策树、极限梯度增强树(XGBoost)和随机森林6种机器学习算法建立脑出血预后预测模型，评价分析各算法准确度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2966,
+                "end_char": 3037
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ]
+        },
+        {
+          "id": "item-f7f720735c92",
+          "name": "三种特征筛选方法",
+          "desc": "采用方差选择法、特征选择法和Lasso回归三种方法筛选出关键特征。",
+          "evidence": [
+            {
+              "quote": "采用方差选择法、特征选择法和Lasso回归三种方法筛选出关键特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2931,
+                "end_char": 2962
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d92f513122b6",
+          "name": "515例样本与19个关键特征",
+          "desc": "共收集515例脑出血患者临床影像与预后信息，提取1035个特征经降维得到19个关键特征。",
+          "evidence": [
+            {
+              "quote": "共收集515例脑出血患者临床、影像和预后信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3040,
+                "end_char": 3061
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-3dfafa84a104",
+          "name": "六种算法准确度均超80%",
+          "desc": "全部6种机器学习算法均建立预后预测模型，准确度都超过了80%。",
+          "evidence": [
+            {
+              "quote": "全部6种机器学习算法均建立了预后预测模型，且准确度都超过了80%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3207,
+                "end_char": 3238
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-11ab7149c12d",
+          "name": "随机森林模型性能最佳",
+          "desc": "测试集中随机森林算法模型敏感度92.3%、特异度90.9%、准确度91.3%，是准确度最高的预测模型。",
+          "evidence": [
+            {
+              "quote": "测试集中随机森林算法模型的敏感度、特异度和准确度分别达到92.3％、90.9％和91.3％，是准确度最高的预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3240,
+                "end_char": 3296
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-56a0819c33ee"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-430e0035bf67"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-bbe769a6d693"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f7f720735c92"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e48e681d7869"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d92f513122b6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-26c554de023e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-11ab7149c12d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

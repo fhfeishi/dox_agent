@@ -1,0 +1,267 @@
+{
+  "doc_id": "ee5c1bb5119ba118434d",
+  "version": "63a7d1d0462db004a98f",
+  "source_hash": "90b67e67d3cd9e182ed26e666a9c22ec6f7221ae29ac99f39312ebecfe2ff8c7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T10:38:08.335403+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-37aaa43185ae",
+          "name": "RC框架结构抗震分析",
+          "desc": "地震作用下梁柱承受循环轴力、弯矩和剪力的耦合作用，对结构抗震性能产生显著影响。",
+          "evidence": [
+            {
+              "quote": "梁、柱在地震作用下承受循环轴力、弯矩和剪力的耦合作用，其时变过程对结构抗震性能产生显著影响。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 662,
+                "end_char": 707
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ]
+        },
+        {
+          "id": "item-eaf57bfead5e",
+          "name": "既有本构模型的工程应用受限",
+          "desc": "多维本构与弥散裂缝理论模型物理含义明确，但在构件层次滞回响应模拟中建模复杂、效率低。",
+          "evidence": [
+            {
+              "quote": "现有基于多维本构与弥散裂缝理论的分析模型虽具有明确物理含义，但在构件层次滞回响应模拟中存在建模复杂、计算效率低的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2885,
+                "end_char": 2942
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ef898f0d270b",
+          "name": "现有本构无法模拟压弯剪耦合",
+          "desc": "既有本构无法基于构件试验模拟压弯剪耦合效应。",
+          "evidence": [
+            {
+              "quote": "本项目重点解决现有本构无法基于构件试验模拟压弯剪耦合效应的难题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 708,
+                "end_char": 739
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ]
+        },
+        {
+          "id": "item-3e788c08f746",
+          "name": "循环退化与滞回捏拢难以统一模拟",
+          "desc": "难以统一模拟压弯剪耦合作用下的循环退化、滞回捏拢及空间约束效应。",
+          "evidence": [
+            {
+              "quote": "且难以统一模拟压弯剪耦合作用下的循环退化、滞回捏拢及空间约束效应",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2944,
+                "end_char": 2975
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dd9869ed570d",
+          "name": "本构参数多维空间建立",
+          "desc": "提出可模拟弯曲、剪切破坏的构件本构模型，并基于试验数据库建立参数多维空间。",
+          "evidence": [
+            {
+              "quote": "提出可模拟弯曲、剪切破坏的构件本构模型，并基于梁、柱拟静力试验数据库建立本构参数多维空间",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 743,
+                "end_char": 786
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ]
+        },
+        {
+          "id": "item-6b424d8486ab",
+          "name": "人工智能非线性拓扑关系建模",
+          "desc": "通过特征子集优化揭示影响延性和循环退化特性的特征，利用人工智能建立特征参数与本构参数的非线性拓扑关系。",
+          "evidence": [
+            {
+              "quote": "利用人工智能建立特征参数与本构参数的非线性拓扑关系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 826,
+                "end_char": 850
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ]
+        },
+        {
+          "id": "item-e25c049d27fb",
+          "name": "力与损伤双触发自适应更新机制",
+          "desc": "通过力状态与损伤状态的双触发机制实现骨架参数与滞回参数的在线更新。",
+          "evidence": [
+            {
+              "quote": "通过力状态与损伤状态的双触发机制实现骨架参数与滞回参数的在线更新",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3113,
+                "end_char": 3144
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ]
+        },
+        {
+          "id": "item-a1aa6cd7dfe1",
+          "name": "自适应集中塑性铰模型",
+          "desc": "基于拓扑关系建立可模拟压弯剪耦合的自适应集中塑性铰模型。",
+          "evidence": [
+            {
+              "quote": "基于拓扑关系建立可模拟压弯剪耦合的自适应集中塑性铰模型，实现本构参数自适应更新机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 855,
+                "end_char": 895
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-87cf5470da94",
+          "name": "RC梁柱自适应恢复力模型",
+          "desc": "构建骨架参数与滞回参数两类机器学习代理模型，形成面向压弯剪耦合的自适应恢复力模型。",
+          "evidence": [
+            {
+              "quote": "构建了骨架参数与滞回参数两类机器学习代理模型，建立了面向压弯剪耦合响应模拟的RC梁柱自适应恢复力模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3190,
+                "end_char": 3239
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-84148d187321",
+          "name": "空间约束效应恢复力模型",
+          "desc": "建立并验证考虑空间约束效应的RC梁压弯剪耦合恢复力模型。",
+          "evidence": [
+            {
+              "quote": "建立并验证了考虑空间约束效应的RC梁压弯剪耦合恢复力模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3377,
+                "end_char": 3404
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-a5875f73a84c",
+          "name": "发明专利授权",
+          "desc": "形成可模拟构件压弯剪耦合的分析方法与地震响应预测模型训练等专利。",
+          "evidence": [
+            {
+              "quote": "可模拟构件压弯剪耦合的分析方法、系统、设备及介质",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3850,
+                "end_char": 3873
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-37aaa43185ae"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ef898f0d270b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ef898f0d270b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-dd9869ed570d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6b424d8486ab"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-87cf5470da94"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e25c049d27fb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-87cf5470da94"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,435 @@
+![](images/page_0_image_0.jpg)
+
+项目批准号 12171103申请代码 A0603归口管理部门收件日期
+
+![](images/page_0_image_2.jpg)
+
+20250112171103
+
+# 国家自然科学基金
+
+# 资助项目结题/成果报告
+
+资助类别:面上项目
+
+亚类说明:
+
+附注说明:
+
+项目名称:基于深度学习算法的不完全信息下多人非零和随机微分投资博弈问题
+
+负责人:邓超
+
+BRID: 06328.00.07170
+
+电子邮件:dengchaohunan@163.com
+
+电话: 020-39123147
+
+依托单位:广东外语外贸大学
+
+联系人: 季柄彤
+
+电话: 020-36207045
+
+直接费用:50.0000（万元）
+
+执行年限: 2022.01-2025.12
+
+填表日期:2025年12月24日
+
+国家自然科学基金委员会制（2025年）
+
+## 项目摘要
+
+## 中文摘要:
+
+数字经济与智能化时代，如何利用智能技术处理好数据信息提高投资业务竞争力是当前金融机构面临的重要问题。针对此问题，本项目构建不完全信息下多人非零和随机微分投资博弈模型，刻画市场信息不完全特征和投资机构的竞争行为；通过分离定理和鞅方法，将博弈的均衡用一类完全耦合线性正倒向随机微分方程组（FBSDEs）的解表示；在生成元存在随机系数的情况下，给出此类高维FBSD Es解的存在唯一性结果；设计适用深度学习数值算法，智能化处理信息和求解高维FBSDEs，得到均衡投资策略;通过与传统算法对比，证明深度学习算法的有效性和准确性；搜集实际数据并估计模型参数，开展仿真分析和实证分析，揭示同行竞争行为对投资决策的作用机理和影响。最后，形成基于深度学习数值算法的不完全信息下多人非零和随机微分投资博弈智能决策体系，为机构提高智能投资竞争力和防范市场非理性投资风险提供新思路和技术支持。
+
+## Abstract:
+
+In the era of digital economy and intelligent society, how to use intelligent technology to process data and information to improve the competitiveness of investment business is an important problem for financial institutions. To solve this problem, this project constructs a class of non-zero sum stochastic differential investment game with n agents under incomplete information settings to depict the characteristics of incomplete information market and the competitive behaviors of investment institutions; through the separation theorem and martingale method, we aim to show that the equilibrium investment strategy of the game can be characterized by a class of fully-coupled linear forward backward stochastic differential equations (FBSDEs) . The existence and uniqueness results for the high-dimensional FBSDEs with stochastic coefficients are obtained. Two sets of deep learning algorithms are used for the numerical computation: one to estimate investor' s mean return rate and the other to solve the FBSDEs. Then we find the equilibrium investment strategy. Moreover, we demonstrate the efficiency and accuracy by a base-case comparison; In addition, we collect actual data and estimate model parameters, and reveal the mechanism and influence of peer competition behaviors on investment decisions by empirical analysis. Finally, an intelligent decision-making system of non-zero and stochastic differential investment game among n agents under incomplete information settings based on deep learning numerical algorithms is formed, which provides new ideas and technical support for institutions to improve the competitiveness of intelligent investment and prevent irrational investment risks in the market.
+
+关键词（用分号分开）:资产组合选择；不完全信息；随机微分博弈；
+
+正倒向随机微分方程；深度学习
+
+Keywords (separated by;): Portfolio Selection; Incomplete Information; Stochastic differential Game; FBSDE; Deep Learning
+
+## 结题摘要
+
+## 中文摘要（对项目的背景、主要研究内容、重要结果、关键数据及其科学意义等做简单概述）:
+
+本项目面向数字经济时代金融机构在复杂信息环境中提升决策竞争力的迫切需求，聚焦“不完全信息下多人非零和随机微分投资博弈”这一核心科学问题，开展了贯穿理论、算法与实证的全链条研究。研究系统构建了多类部分信息下的非零和随机微分博弈模型，以刻画机构投资者在信念异质与策略互动下的竞争行为；创新性地运用分离定理与鞅方法，将博弈均衡求解转化为一类完全耦合的线性正倒向随机微分方程组（FBSDEs）的求解问题，并在随机系数条件下证明了其高维解的存在唯一性；针对高维FBSDEs数值求解的难点，设计了两阶段深度学习算法，实现了均衡策略的高效、稳健求解。在实证与应用层面，项目围绕“信息如何影响投资者行为与市场”这一主线展开。基于投资者注意力有限的特征，研究从三类信息来源——资产披露、媒体报道与网络搜索——切入，运用人工智能与知识图谱技术构建文本指标（如疫情关注度与媒体语气），测度信息风险并分析其与资本市场的动态关联。进一步地，在博弈框架下，对“漂绿”“AI清洗”等热点现象开展了机制分析与实证检验。本项目的科学意义在于，深度融合随机分析、博弈论、人工智能与实证金融，为解决“不完全信息”与“多主体互动”两大经济学难题提供了系统的方法论框架，并将该范式拓展至绿色金融、企业披露等交叉领域。研究成果不仅为金融机构在竞争环境下进行智能配置与风险管理提供了新工具，也为金融监管、环境政策制定提供了可量化的决策参考。
+
+## Abstract (Brief description of research background, main methods, contributions, and research data):
+
+This project addresses the urgent need for financial institutions to enhance decision-making competitiveness in the complex information environment of the digital economy. It focuses on the core scientific problem of "multi-agent non-zero-sum stochastic differential investment games under incomplete information," conducting a comprehensive study integrating theoretical, algorithmic, and empirical research. The research systematically constructs multiple classes of non-zero-sum stochastic differential game models under partial information to characterize the competitive behavior of institutional investors with heterogeneous beliefs and strategic interactions. Innovatively employing separation theorems and martingale methods, it transforms the equilibrium solution of the games into solving a class of fully coupled linear forward-backward stochastic differential equations (FBSDEs) and proves the existence and uniqueness of high-dimensional solutions under stochastic coefficient conditions. To address the challenge of numerically solving high-dimensional FBSDEs, a two-phase deep learning algorithm is designed, achieving efficient and robust computation of equilibrium strategies. At the empirical and application level, the project centers on the theme of "how information influences investor behavior and markets." Based on the characteristic of limited investor attention, the research examines three primary information sources—asset disclosures, media reports, and internet searches—using artificial intelligence and knowledge graph technologies to construct textual indicators (such as pandemic attention and media sentiment) to measure information risk and analyze its dynamic relationship with capital markets. Furthermore, within the game-theoretic framework, it conducts mechanistic analysis and empirical tests on热点phenomena such as "greenwashing" and "AI washing." The scientific significance of this project lies in its deep integration of stochastic analysis, game theory, artificial intelligence, and empirical finance, providing a systematic methodological framework for addressing the two major economic challenges of "incomplete information" and "multi-agent interaction." It extends this paradigm to emerging交叉fields such as green finance and corporate disclosure. The research outcomes not only offer new tools for intelligent asset allocation and risk management for financial institutions in competitive environments but also provide quantifiable
+
+| decision-making references for financial regulation and environmental policy formulation. |
+| --- |
+| 关键词（用分号分开）:资产组合选择；不完全信息；随机微分博弈； 正倒向随机微分方程；深度学习 |
+| Keywords (separated by;): &amp;nbsp;Portfolio Selection; &amp;nbsp;Incomplete Information; Stochastic differential Game; FBSDE; &amp;nbsp;Deep Learning |
+
+## 正文
+
+《结题/成果报告》正文分为两个部分:结题部分和成果部分。请按照《结题/成果报告》填报说明及撰写要求填写。
+
+## 《基于深度学习算法的不完全信息下多人非零和随机微分投资博弈问题》结题/成果报告 \_
+
+## （一）结题部分
+
+1. 研究计划执行情况概述。
+
+（1）按计划执行情况。
+
+数字经济与智能化时代，如何利用智能技术处理好数据信息提高投资业务竞争力是当前金融机构面临的重要问题。针对此问题，本项目构建不完全信息下多人非零和随机微分投资博弈模型，刻画市场信息不完全特征和投资机构的竞争行为;通过分离定理和鞅方法，将博的均衡用一类完全耦合线性正倒向随机微分方程组(FBSDES)的解表示;在生成元存在随机系数的情况下，给出此类高维FBSDEs解的存在唯一性结果;设计适用深度学习数值算法,智能化处理信息和求解高维FBSDES，得到均衡投资策略:通过与传统算法对比，证明深度学习算法的有效性和准确性;搜集实际数据并估计模型参数，开展仿真分析和实证分析，揭示同行竞争行为对投资决策的作用机理和影响。最后，形成基于深度学习数值算法的不完全信息下多人非零和随机微分投资博弈智能决策体系，为机构提高智能投资竞争力和防范市场非理性投资风险提供新思路和技术支持。按照项目执行计划，本项目“基于深度学习算法的不完全信息下多人非零和随机微分投资博弈问题”于2021年获得国家自然科学基金面上项目立项，在4年的研究中，项目任务进展顺利，构建了一系部分信息多人非零和随机微分博弈框架下的投资决策模型，并利用高维FBSDEs随机控制理论和深度学习算法，得到了一类均衡模型的均衡决策，并结合中国金融市场数据，分析了信息对复杂环境中投资决策的影响。
+
+（2）研究目标完成情况。
+
+团队发表和接收论文15篇，其中 SSCI/SCI论文13篇，CSSCI论文2篇，工作论文3篇，超额完成研究目标（4-6篇学术论文），培养研究生5人。在经费使用方面，本项目获国家自然科学基金委员会资助经费80万元，在经费使用过程中，严格遵守财务规则制度，按计划使用经费，至2025年12月，已总共支出45.1725万元，结余经费34.8275万元（占比43.53%）。
+
+## 2. 研究工作主要进展、结果和影响。
+
+## (1）主要研究内容
+
+本项目聚焦于不完全信息环境下，金融市场中多个竞争性主体(如基金经理、保险公司）的动态投资决策博弈问题。核心研究内容包括:
+
+1.理论模型构建:考虑“相对财富竞争”与“相对收益率竞争”两类现实情境分别构建了部分信息下多人非零和随机微分投资博弈模型。模型综合考虑了市场弱有效性导致的信息异质性（如对资产收益的不同先验信息） 主体间的竞争互动（关注同行或市场平均回报）以及不同的风险偏好目标（指数效用、均值-方差）。
+
+2.理论求解与算法设计:针对模型产生的复杂非线性优化问题，超越了传统动态规划的局限，引入了全耦合正倒向随机微分方程（FBSDE）理论和广义哈密顿-雅可比-贝尔曼（HJB）方程方法，致力于证明均衡策略的存在性并求解其解析或数值形式。特别地，设计了深度学习算法，以高效求解高维、部分信息下的博弈均衡数值解。
+
+3.智能信息挖掘、实证与应用分析:基于理论模型和数值结果，利用智能算法，通过文本挖掘，构建信息指标，结合真实金融市场数据（如全球十大保险公司财务数据、中国股市与媒体数据）进行实证检验，探究了先验信息差异、市场竞争强度、群体效应、极端外部信息（如媒体报道）等因素对投资决策、资产价格及风险传导的具体影响机制。
+
+4.模型拓展与延伸:将有限参与者博弈拓展至无限参与者的均值场博弈，以研究群体行为的宏观规律；并将相关理论应用于衍生品定价、再保险定价、绿色投资等更广泛的金融实际问题。
+
+## 研究影响
+
+本项目研究在理论、方法与实践层面均产生显著影响:在理论上，构建了不完全信息下投资博弈的统一分析框架并证明了高维随机方程解的存在唯一性，推动了多学科交叉融合；在方法上，创新设计了高效求解复杂博弈的深度学习算法，为相关研究提供了可扩展的智能计算工具；在实践上，成果已通过高水平论文发表、政策报告获中央及省级部门采纳、以及拓展应用于企业绿色行为与AI策略分析等多个前沿领域，体现了学术价值与社会服务的有效结合，项目主持人邓超获 2025年度威立 Wiley 中国高贡献作者奖。
+
+(2）取得的主要研究进展、重要结果、关键数据等及其科学意义或应用前景。
+
+## 主要研究进展与重要结果
+
+## 1. 理论构建:建立了不完全信息下投资博弈的 FBSDEs 均衡框架
+
+本研究在理论层面取得了系统性突破。首先，创造性地运用分离定理与鞅方法，将部分信息下多人非零和随机微分博弈问题转化为对一类完全耦合的线性正倒向随机微分方程组（FBSDEs）的求解问题，构建了连接博弈均衡与随机分析的理论桥梁。其次，在更具一般性的“生成元包含随机系数”的条件下 严格证明了该高维FBSDEs解的存在性与唯一性，为均衡策略的适定性提供了坚实的数学保证。最后，在解的呈现方式上，针对均值-方差等特定目标函数，推导出均衡策略的显式解析表达式；而在指数效用等更一般情形下，则通过该理论框架将均衡策略完整表征为FBSDEs的解，从而为后续数值计算确立了明确的理论路径与收敛依据。径。
+
+## 2. 算法创新与验证:设计了高效求解高维 FBSDEs的深度学习算法
+
+针对理论框架产生的高维、非线性FBSDEs数值求解难题，创新性地设计一类两阶段的深度学习算法。该算法利用神经网络的万能逼近能力，智能处理不完全信息结构，直接求解均衡策略
+
+表 1 两阶段深度学习算法
+
+<div class="docvortex-algorithm" style="white-space: pre-wrap; font-family:monospace;">
+算法1：求解FBSDE的深度学习算法
+输入： $\mathcal { M }$ 维神经网络结构的参数 $Y _ { 0 }$ 以及每一个解元 $z _ { t _ { k } }$ 的参数 $\overline { { \theta ^ { n n , k } } }$
+$(k \in \{0  允  \ldots , \overline{N-1}\})$ 。算法训练时的最大迭代次数 $e p ^ { t r a i n }$ 、初始学习率 $l r$ 以及批大小
+(mini-batch size) $B _ { \circ }$
+一个k对应的的最优神经网络参数 $\theta ^ { n n , k } \quad ( k \in \{ 0 , \ldots , N - 1 \} )$ 和 $Y _ { 0 }$
+初始化 $\theta ^ { n n , k } ~ ( k \in \{ 0 , \ldots , N - 1 \} )$ 和 $Y _ { 0 }$
+2：选择批大小B和学习率lr
+3：While 当前训练次数不等于最大迭代次数 do
+4: 通过正向方程（forward equation）生成B样本点 $\{ ( X _ { t _ { N } } ^ { j } , Y _ { t _ { N } } ^ { j } , Z _ { t _ { N } } ^ { j } ) \}$ 的最小批次
+5： 计算损失函数值
+6： 使用梯度下降法方法更新参数 $\theta ^ { n n , k }$ 和 $Y _ { 0 }$
+7：根据方案更新学习率 $l r$
+8: end while
+9: 返回最优参数 $\theta ^ { n n , k } \quad ( k \in \{ 0 , \ldots , N - 1 \} )$ 和 $Y _ { 0 }$
+</div>
+
+Journal on Financial Mathematics
+
+## 3. 实证发现与机制揭示:基于中国市场的实证检验与拓展应用
+
+在实证研究与机制揭示方面，本项目基于中国金融市场开展了多层次的实证研究。首先，在投资博弈领域，通过对中国基金市场的仿真与实证分析发现，基金经理之间的竞争行为会显著提升其投资组合的风险承担水平，且在信息质量较低、先验不确定性较高的环境中，这种风险放大效应更为凸显。竞争同时引发了策略的趋同与分化，研究从微观层面揭示了“相对业绩关注”通过调节管理人的有效风险厌恶程度，进而影响资产价格波动的传导机制。
+
+其次，研究将博弈分析框架拓展至企业环境行为领域，构建了气候不确定性下的绿色信号博弈模型。理论推导表明，仅当企业社会责任活动的社会边际收益超过其成本时，那些面临较低负向气候不确定性暴露（即气候风险感知较弱）的企业，反而表现出更强的“漂绿”动机。进一步地，本项目还将不完全信息博弈的分析范式，从环境领域延伸至技术创新领域，探究了企业在人工智能（AI）竞争中的策略性披露行为（即“AI清洗”）。构建的领导-追随者博弈模型与实证研究表明，同业技术竞争压力会显著驱动企业，特别是技术追随者，夸大其AI投入与应用水平，该效应在信息不对称程度高的环境中更为突出。这与“漂绿”研究共同揭示了，在不同前沿领域(环境与科技)，竞争压力与信息环境如何交互作用，塑造了企业为迎合市场预期而采取的策略性信号传递行为，深化了对企业多维声誉博弈机制的理解。
+
+此外，本项目还深入探究了不完全信息对资本市场的广泛影响。通过智能文本挖掘技术量化分析国家媒体报导等公共信息，研究发现极端信息(如疫情报道)的关注度与情绪色调，与股票市场收益率之间存在双向的格兰杰因果关系，且风险外溢效应在不同行业、产权性质与时间尺度上呈现异质性特征。这一系列实证工作从机构竞争、企业策略到宏观信息传染等多个维度，揭示了不完全信息环境下经济主体复杂互动的内在逻辑与影响后果。
+
+## 科学意义与应用前景
+
+科学意义:本项目的科学意义主要以下三个方面:首先，通过有机整合随机分析中的正倒向微分方程理论、博弈论与深度学习算法，构建了一个能够同时处理信息不完全与策略互动的统一分析框架，为解决经济学中长期存在的多主体动态决策问题提供了方法学创新。其次，在理论上证明了随机系数下高维线性FBSDEs解的存在唯一性，并首创了针对金融博弈场景的深度学习数值解法，突破了传统方法在维度与复杂性上的局限。再者，成功将这一理论范式从经典的投资竞争研究，拓展至气候风险与企业绿色行为等新兴前沿领域，揭示了金融决策与环境决策在博弈逻辑上的内在统一性，显著拓宽了该研究范式的外延与应用边界。
+
+在实践应用层面，本成果形成了从理论到工具的完整价值链。所研发的深度学习求解器及智能决策体系，能够为基金管理公司、保险机构等在复杂信息环境中进行资产配置、负债管理与风险控制提供可计算、可优化的定量支持，直接助力其投资竞争力的提升。同时，关于竞争行为放大市场风险、媒体信息传染效应、气候风险暴露影响企业漂绿动机以及AI信息漂洗等一系列实证发现，为金融监管部门和环境监管部门构建更精准的风险监测与预警系统提供了关键指标与理论依据。此外，这套研究方法论具备良好的可迁移性，其核心逻辑可被应用于分析平台经济中的商家竞争、数字货币市场的投资者博弈以及供应链金融中的信用博弈等多种存在策略性互动与信息不对称的现实商业场景，为数字经济时代的智能决策提供了一种具有广泛适用性的分析范本
+
+## 3. 研究人员的合作与分工。
+
+本项目参与人员总共有10人，主研教师8人，学生2人。主研人员周超、赵绪哲、张琰、关岳、王海龙主要负责模型的构建和求解，张倩生、周利以及参与学生主要负责模型的验证与相关实证研究。
+
+## 4. 国内外学术合作交流等情况。
+
+国内学术合作方面:（1）高水平学术会议参与与成果宣讲:项目组成员积极参与国内外顶级学术会议，系统宣讲研究成果并获取同行反馈。近年来，先后参加中国金融学年会、中国金融博士生论坛、中国运筹学会金融工程与金融风险管理分会学术年会、金融系统工程与风险管理年会、粤港澳大湾区数字金融论坛等国内重要学术会议，并报告项目核心进展，特别是在不完全信息投资博弈的均衡求解算法、以及气候风险与绿色信号博弈等拓展方向上的创新工作，引发了同行的广泛关注与讨论，有效提升了项目的学术影响力。
+
+国际学术合作方面:主办重要国际学术研讨会:为深化理论前沿交流，项目主持人于 2022年1 月联合昆山杜克大学成功主办了“DKU-NUSRI Joint Workshop on Pure and Applied Mathematics 2022”。会议汇集了包括中国科学院彭实戈院士在内的多位国内外随机分析、金融数学领域的顶尖学者，共举办32场高水平学术报告。此次会议不仅为本项目提供了与国际前沿学者直接对话、深化理论认知的宝贵机会，也成功搭建了一个高层次的国际合作交流平台，显著增强了团队的国际学术活跃度。
+
+在研究过程中申请人邓超与项目团队成员新加坡国立大学周超副教授在金融数学 SCI/SSCI 期刊 SIAM Journal on Financial Mathematics 合作发表论文 2 篇。项目团队邀请法国曼恩-勒芒大学 Said Hamadène教授、英国华威大学梁歌春教授、澳大利亚麦考瑞大学金卓等多位海外知名专家。 \_
+
+## 5. 存在的问题、建议及其他需要说明的情况。
+
+尽管项目取得了预期成果，但研究过程中也暴露出一些值得深化的问题:
+
+(1)模型动态与学习机制的丰富性:当前模型虽考虑了异质先验，但假设其固定不变。未来的研究可引入贝叶斯学习或适应性学习机制，使投资者能够根据观测到的市场信号动态更新其信念，使模型更贴合现实。
+
+(2)算法效率与可解释性的平衡:深度学习算法虽高效，但其“黑箱”特性在一定程度上降低了均衡策略的经济解释直观性。后续工作可探索开发更具可解释性的神经网络结构，或结合符号回归等方法，从数值结果中提炼更具概括性的经济规律。
+
+(3)跨市场应用的普适性检验:当前实证主要基于中国市场。建议未来利用全球多个市场的数据对模型进行检验，探究不同市场制度、投资者结构下竞争博弈机理的共性与特性。
+
+## （二）成果部分
+
+## 1. 项目取得成果的总体情况。
+
+团队发表和接收论文 15 篇，其中 SSCI/SCI 论文 13 篇，CSSCI 论文 2 篇，工作论文2篇，超额完成研究目标（4-6篇学术论文）。
+
+## 项目成果目录:
+
+[1] Deng, C., Su. X. \*, Zhou. C. Relative wealth concerns with partial information and heterogeneous priors. SIAM Journal on Financial Mathematics, 2024, 15(2),360-398. SSCI/SCI
+
+[2] Deng, C., Su. X. \*, Zhou. C. Peer effect and dynamic ALM games among insurers, Mathematics and Financial Economics, 2024, 18(2-3),457-481. SSCI/SCI.
+
+[3] Cheng, J., Deng, C., Liu, S., & Zeng, X. (2025). An equilibrium model of reinsurance pricing. Statistics & Probability Letters, 216, 110280. SCI，音序作者
+
+[4] Yue, S., Ma, C., Deng, C., & Zhao, X.. Pricing foreign equity options under a regime-switching model with liquidity risk and default risk. Communications in Statistics-Theory and Methods, 2025, 54(16), 4981-5005,
+
+[5] Deng, C., Li. S., Yun Hong\*. When local and foreign investors meet the Chinese government's risk perception about COVID-19. Journal of Multinational Financial Management, 2024, 74,100858. SSCI
+
+[6] Hong, Y., Jiang. Y., Su. X. \*, Deng, C\*. Extreme state media reporting and the extreme stock market during COVID-19: A multi-quantile VaR Granger causality approach in China, Research in International Business and Finance, 2024,67,102143.SSCI. 中科院 Top期刊，共同通讯作者
+
+[7]邓超，吴志平,李诗雨，姚海祥.人民币原油期货是否具有国际影响力?——基于东南亚金融市场的实证研究.财经理论与实践, 2023,44(02):25-31. CSSCI.
+
+[8] 邓超，吴志平;彭成，姚海祥.溢出效应视角下国内原油期货价格影响力研究[J].运筹与管理,2023(4). CSCD
+
+[9] Deng, C., Liang, C., Hong, Y., & Jiang, Y.. CCTV news' asymmetric impact on the Chinese stock market during COVID-19: A combination analysis based on the SVAR and NARDL models. Emerging Markets Finance and Trade,2023, 59(4), 1232-1246. SSCI
+
+[10]Deng, C., Su. X., Wang, G., Peng. C.\*. The existence of flight-to-quality under extreme conditions: Evidence from a nonlinear perspective in Chinese stockbond sectors. Economic Modelling. 2022, 113,105895. SSCI. 中科院 Top 期刊.
+
+[11]Deng, C., Zhou X, Peng.C, Zhu H.\*, Going green: Insight from asymmetric risk spillover between investor attention and pro-environmental investment. Finance Research Letters, 2022, 47, 102565. SSCI.
+
+[12]Deng, C., Chen, K., Yu, L., He, Y., Hong, Y., & Jiang, Y. The asymmetric relationship between state media tone and the Chinese bond market during COVID-19: Evidence from a nonlinear ARDL model. Journal of Behavioral and Experimental Finance,2025, 46, 101048. SSCI, JCR —区
+
+[13]Liu, R., Deng, C., Chen, K., & Deng, H. (2026). Managerial Green Preferences and the Allocation of Patient Capital. Finance Research Letters, 2026,91,109174，共同一作，SSCI \_
+
+[14]Ma, Y., Su, X. and Deng, C.\*, 2026. Directional Extreme Risk Spillovers Between Onshore and Offshore Renminbi Markets: Evidence From Financial Events. International Journal of Finance & Economics. 2026, 31:869 -887.SSCI,通讯作者
+
+[15]Yue, S., Wu, Q., Luo, L., & Deng, C.\*, Pricing vulnerable forward starting options under a jump-diffusion model with stochastic volatility. Communications in Statistics-Simulation and Computation, 2025, Online, SCI，通讯作者
+
+## 工作论文
+
+[1]邓超，刘如梦，竞争压力、信息环境与企业“AI清洗”——基于不完全信息博弈视角，2025年
+
+[2]邓超，陈治伍，气候不确定性暴露与绿色信号博弈，2024年
+
+## 2. 项目成果转化及应用情况。
+
+依托衍生省级教学改革项目2项，广州市基础与应用研究基础项目1项，全国金融专业硕士入库案例2项，广州市增城区发展与改革局横向项目1项，获国家级、省部级批示与采纳咨询报告3份（内容涉及个人征信、国有资本投资以及稳定币竞争）。
+
+[1]经济\*行\*力\*，\*个\*征\*管理面临的\*形势、\*问题及对策建\*,2024年，获中央政治局委员，中国法学会会长批示，主持人邓超独立作者
+
+[2]\*有\*本\*\*营\*司发展情况、面临的问题挑\*及对策建\*，2025年，获中国法学会主要领导批示，主持人邓超独立作者
+
+[3]\*\*币\*的全球影响与应对策略，2025年，获中央有关部门综合采用，广东省委相关部门单篇采用，主持人邓超第一作者
+
+[4]新文科建设背景下粤港澳大湾区国际化复合型金融人才培养的研究与实
+
+践(粤教高函[2021]29号，广东省高等教学改革项目)，已结题，邓超主持
+
+[5]金融风险管理——第十五章金融衍生品市场风险管理(粤教高函[2024]27号，广东省课程思政示范项目)，在研，邓超主持
+
+[6]增城区发展和改革局“十五五”规划前期课题研究服务项目（十五五”时期增城推进金融业高质量发展研究），2024.05-2025.11，横向项目，已结题，邓超主持
+
+[7]基于高维正倒向随机系统的微分博弈，数值算法及金融中的应用(202201010552)，2022.04-2024.12，广州市基础与应用研究基础项目， 已结题邓超主持
+
+[8]一“石”是否能激起千层浪？——黑石集团CMBS违约案例分析，中国金融专业学位入库案例
+
+## 3. 人才培养情况。
+
+培养硕士研究生毕业5人。
+
+2025届研究生陈治伍，毕业论文:气候不确定性暴露与绿色信号博弈
+
+2025届研究李玫姝，毕业论文: 基于机器学习算法的双因子天气期权产品设计及应用研究
+
+2024届研究余莉，毕业论文:中美气候政策不确定性对中国大宗商品市场的影响研究——基于气候地缘政治视角
+
+2024届硕士李诗雨，毕业论文:突发公共危机下媒体关注和交叉上市公司收益率的极端相依关系研究
+
+2023届硕士吴志平，毕业论文:人民币原油期货是否具有国际影响力？基于东南亚金融市场的实证研究
+
+![](images/page_12_image_14.jpg)
+
+4. 其他需要说明的成果。
+
+5. 项目成果科普性介绍或展示网站。
+
+## 研究成果目录
+
+项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。请按照期刊论文、会议论文、学术专著、专利、会议报告、标准、软件著作权、科研奖励、人才培养、成果转化的顺序列出，其它重要研究成果如标本库、科研仪器设备、共享数据库、获得领导人批示的重要报告或建议等，应重点说明研究成果的主要内容、学术贡献及应用前景等。
+
+项目负责人不得将非本人或非参与者所取得的研究成果、与受资助项目无关的研究成果、未标注国家自然科学基金资助和项目批准号的论文以及取得时间早于项目资助期开始时间的研究成果列入报告中。发表的研究成果（包括专利），项目负责人和参与者均应如实注明得到国家自然科学基金项目资助和项目批准号，科学基金作为主要资助渠道或者发挥主要资助作用的，应当将自然科学基金作为第一顺序进行标注。
+
+## 期刊论文
+
+(1) Chao Deng; Xizhi Su; Chao Zhou; Relative Wealth Concerns with Partial Information and Heterogeneous Priors, SIAM Journal on Financial Mathematics, 2024, 15(2). SCIE, SSCI. 第一标注
+
+(2) Chao Deng; Xizhi Su; Chao Zhou; Peer effect and dynamic ALM games among insurers, Mathematics and Financial Economics, 2024, 18(2-3):457-481. SSCI. 第一标注
+
+(3) Jiang Cheng; Chao Deng; Shuyan Liu; Xudong Zeng; An equilibrium model of reinsurance pricing, Statistic s and Probability Letters, 2025, 216(2025). SCIE, SSCI. 第一标注
+
+(4) Yong Ma; Xiaojian Su; Chao Deng; Directional Extreme Risk Spillovers Between Onshore and Offshore Renminbi Markets: Evidence From Financial Events, International Journal of Finance Economics, 2026, 31(31):869-887. SSCI. 第三标注
+
+(5) 邓超；周晓莺；彭成； 朱慧明；Going green: Insight from asymmetric risk spillover between investor attention and pro-environmental investment, Finance Research Letters, 2022, 47. SSCI. 第一标注
+
+(6) Chao Deng; Shiyu Li; Yun Hong; When local and foreign investors meet the Chinese government's risk perception about COVID-19, Journal of Multinational Financial Management, 2024, 74(无). SSCI. 第一标注
+
+(7) Chao Deng; XiaoJian Su; Gangjin Wang; Cheng Peng; The existence of ight-to-quality under extreme conditions: Evidence from a nonlinear perspective in Chinese stocks and bonds' sectors, Economic Modelling, 2022， 113(2022). SSCI. 第一标注 1
+
+(8) Yun Hong; Yanhui Jiang; Xiaojian Su; Chao Deng; Extreme state media repo: ting and the extreme stock market during COVID-19: A multi-quantile VaR Granger causality approach in China, Research in International Business and Finance, 2024, 67(无). SSCI. 第一标注 1
+
+(9) Chao Deng; Congcong Liang; Yun Hong; Yanhui Jiang; CCTV News' Asymmetric Impact on the Chinese Stock Market during COVID-19: A Combination Analysis Based on the SVAR and NARDL Models, Emerging Markets Finance and Trade, 2022， 59(4). SSCI. 第一标注
+
+(10) 邓超；吴志平；彭成；姚海祥；溢出效应视角下国内原油期货价格影响力研究，运筹与管理，2023，32(4). CSSCI. 第一标注
+
+(11) 刘如梦；邓超；陈科源；邓慧敏；Managerial Green Preferences and the Allocation of Patient Capital,Fina nce Research Letters, 2026, 91(无). SSCI. 第一标注
+
+(12) 邓超；陈科源；余莉；贺银喜；洪昀； Yanhui Jiang； The asymmetric relationship between state media tone and the Chinese bond market during COVID-19: Evidence from a nonlinear ARDL model, Journal of Behavioral and Experimental Finance, 2025， 46(无). SSCI. 第一标注
+
+(13) Yue, Shengjie; Ma, Chaoqun; 邓超; Zhao, Xinwei; Pricing foreign equity options under a regime-switching model with liquidity risk and default risk, Communications In Statistics-theory and Methods, 2025, 54(16): 4981-5005.SCIE. 第一标注
+
+(14) 乐胜杰; Qixia Wu; 罗兰兰; 邓超; Pricing vulnerable forward starting options under a jump-diffusion model with stochastic volatility, Communications in Statistics-Simulation and Computation, 2025,无(无). SCIE. 第二标注
+
+(15) 邓超；吴志平；李诗雨；姚海祥；人民币原油期货是否具有国际影响力?——基于东南亚金融市场的实证研究，财经理论与实践，2023，44(2):25-31. CSSCI. 第一标注
+
+其他（标准库、数据库、科研仪器设备、重要报告）
+
+(1) 我个征管理面临的形势、问题及对策建，（保密需要，标题进行脱敏处理）中央政治局委员，中国法学会会长批示肯定
+
+## 项目成果应用前景
+
+本项目成果拟应用领域:1、机构级投资决策2、平台经济定价竞争
+
+预计在5-10年推广使用
+
+附表:研究成果统计数据表（本表针对各种类型资助项目收集数据以便进行整体资助效果分析使用，并非要求每类项目都具有以下各类成果。
+
+<table><tr><td rowspan=4>获奖（项）</td><td colspan=16>国家级</td><td colspan=11>部级1</td><td rowspan=3 colspan=2>其他</td></tr><tr><td colspan=4>自然科学奖</td><td colspan=5>科技进步奖</td><td></td><td colspan=6>发明奖</td><td colspan=7>自然科学奖</td><td colspan=4>科技进步奖</td></tr><tr><td colspan=2>一等</td><td colspan=2>二等</td><td colspan=2>一等</td><td colspan=3>二等</td><td></td><td colspan=3>一等</td><td colspan=3>二等</td><td colspan=3>等</td><td colspan=4>等</td><td colspan=2>一等</td><td colspan=2>二等</td></tr><tr><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>0</td><td></td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=4>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td></tr><tr><td rowspan=4>学术报告/论文/专著/其他（篇）</td><td colspan=3>特邀学术报告</td><td colspan=15>学术论文</td><td rowspan=2 colspan=4>学术专著</td><td rowspan=2 colspan=7>其他</td></tr><tr><td rowspan=2>国际学术会议</td><td rowspan=2 colspan=2>国内学术会议</td><td colspan=4>发表论文数</td><td colspan=11>论文检索收录情况</td></tr><tr><td colspan=2>期论义</td><td colspan=2>会议</td><td colspan=2>SCIE/SSCI</td><td colspan=3>EI</td><td colspan=3>北大中文核心期刊</td><td colspan=3>CSSCI</td><td colspan=2>中文</td><td colspan=2>外文</td><td colspan=2>标本库</td><td colspan=2>数据库</td><td colspan=2>科研仪器设备</td><td>重要报告</td></tr><tr><td>0</td><td colspan=2>0</td><td colspan=2>15</td><td colspan=2>0</td><td colspan=2>13</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>2</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>1</td></tr><tr><td rowspan=4>专利/标准/软著/成果转化</td><td></td><td colspan=6>专利（项）</td><td colspan=2></td><td colspan=11>标准</td><td rowspan=3 colspan=2>软件著作权</td><td rowspan=2 colspan=7>成果转化</td></tr><tr><td colspan=3>国内</td><td colspan=4>国外</td><td rowspan=2 colspan=2>国际</td><td colspan=11>国内</td></tr><tr><td>申请</td><td colspan=2>授权</td><td colspan=2>申请</td><td colspan=2>授权</td><td colspan=3>国家</td><td colspan=3>行业</td><td colspan=3>地方</td><td colspan=2>企业</td><td colspan=2>技术转让技</td><td colspan=2>术许可作</td><td colspan=2>价投资</td><td>经济效益(万元)</td></tr><tr><td>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>C</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr><tr><td rowspan=4>人才培养及学术交流</td><td colspan=17>人才培养（人）</td><td colspan=12>举办和参加学术会议</td></tr><tr><td colspan=8>中青年学术带头人</td><td rowspan=2 colspan=3>出站博士后</td><td rowspan=2 colspan=3>毕业博士</td><td rowspan=2 colspan=3>毕业硕士</td><td colspan=4>举办国际学术会议</td><td colspan=5>举办国内学术会议</td><td colspan=3>参加国际学术会议</td></tr><tr><td>优青</td><td colspan=2>杰青</td><td colspan=2>创新群体</td><td colspan=2>其他</td><td></td><td colspan=2>次数</td><td colspan=2>人数</td><td colspan=3>次数</td><td colspan=2>人数</td><td colspan=2>次数</td><td>人数</td></tr><tr><td>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td></td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr></table>
+
+国家自然科学基金项目资金决算表
+
+项目批准号:12171103
+
+项目负责人:邓超
+
+金额单位:万元
+
+<table><tr><td rowspan="3">行次</td><td rowspan="3">科目名称</td><td colspan="3">预算数</td><td rowspan="2">累计支出数</td><td rowspan="2">结余数</td><td rowspan="2">结余资金比例</td></tr><tr><td>批准预算</td><td>预算调整</td><td>调整后预算</td></tr><tr><td>(1)</td><td>(2)</td><td>(3) = (1) +(2)</td><td>(4)</td><td>(5) =(3)-(4)</td><td>(6)</td></tr><tr><td>(1)</td><td>项目总经费</td><td>80.0000</td><td>0.0000</td><td>80.0000</td><td></td><td></td><td>43.53%</td></tr><tr><td>(2)</td><td>项目直接费用</td><td>50.0000</td><td>0.0000</td><td>50.0000</td><td>15.1725</td><td>34.8275</td><td></td></tr><tr><td>(3)</td><td>1、设备费</td><td>2.0000</td><td>0.0000</td><td>2.0000</td><td>0.0000</td><td>2.0000</td><td></td></tr><tr><td>(4)</td><td>其中:设备购置费</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td></td></tr><tr><td>(5)</td><td>2、业务费</td><td>27.2000</td><td>0.0000</td><td>27.2000</td><td>2.1567</td><td>25.0433</td><td></td></tr><tr><td>(6)</td><td>3、劳务费</td><td>20.8000</td><td>0.0000</td><td>20.8000</td><td>13.0158</td><td>7.7842</td><td></td></tr><tr><td>(7)</td><td>项目间接费用</td><td>30.0000</td><td>0.0000</td><td>30.0000</td><td></td><td></td><td></td></tr></table>
+
+注:1.本表中（1）、（3）、（5）、（6）栏为系统自动生成，无需填写；本表中（2）栏填列预算调整数；本表中（4）栏填列项目的实际支出数。
+
+2.第（1）行=第（2）+（7）行
+
+第（2）行=第（3）+（5）+（6）行；
+
+第（3）栏=第（1）+（2）栏；
+
+第（5）栏=第（3）-（4）栏；
+
+第（1）行第（6）栏=第（2）行第（5）栏/第（1）行第（3）栏100%；
+
+第（1）行第（1）栏=第（1）行第（3）栏；
+
+第（1）行第（2）栏=0；
+
+第（4）栏≤第（3）栏；
+
+第（2）行第（5）栏≥0。
+
+# 决算说明书
+
+（请按照《国家自然科学基金预算制项目决算表编制说明》等有关要求，说明各科目支出、预算调整、结余情况，合作研究转拨资金情况，单价≥50万元的设备情况，资金使用和管理过程中遇到的问题及建议，以及其他需要说明的事项等。）
+
+根据《国家自然科学基金预算制项目决算表编制说明》等相关要求，现对项目“基于深度学习算法的不完全信息下多人非零和随机微分投资博弈问题”的经费使用情况说明如下:
+
+## 一、项目资金收支总体情况
+
+本项目获国家自然科学基金委员会批准总经费为人民币80万元，其中:直接费用:人民币50万元；间接费用:人民币30万元
+
+截至2025年12月31日，项目累计实际支出453725.70元（其中直接费用支出151725.70元，间接费用支出300000.00元），预算结余348274.30元（均为直接费用结余），总体预算执行率为56.47%。经费使用严格遵守国家自然科学基金项目资金管理办法及学校相关财务规章制度，所有支出均真实、合规，用于项目研究与相关管理运行。
+
+## 1. 直接费用部分（总计支出151725.70元）
+
+差旅费:预算100000.00元，支出15786.70元，执行率15.79%。主要用于国内学术交流与调研。
+
+会议费:预算50000.00元，支出0.00元，执行率0%。原计划c会议通过其他渠道解决。
+
+国际合作与交流费:预算80000.00元，支出0.00元，执行率0%。受外部环境影响，国际交流计划未能实施。
+
+设备费:预算20000.00元，支出0.00元，执行率0%。研究依托现有计算平台，未购置新设备。
+
+专家咨询费: 预算80000.00元，支出42700.00元，执行率53.38%。用于支付校外专家咨询与评审费用。
+
+出版/文献/信息传播/知识产权事务费:预算42000.00元，支出5781.00元，执行率13.76%。用于论文版面费及资料购置。
+
+劳务费:预算128000.00元，支出87458.00元，执行率68.33%。用于支付参与项目研究的学生及临时人员劳务报酬。
+
+2. 间接费用部分:预算300000.00元，支出300000.00元，执行率100%。按规定全部用于补偿依托单位间接成本及绩效支出。
+
+## 二、预算调整情况
+
+项目执行期间，未对批复预算进行任何调整。
+
+## 三、合作研究资金转拨情况
+
+本项目无合作研究单位，未发生合作研究资金转拨。
+
+## 四、单价50万元以上设备购置情况
+
+本项目未使用项目资金购置单价50万元以上的设备。
+
+## 五、资金结余情况说明
+
+项目结题时形成直接费用资金结余348274.30元，间接费用无结余。直接费用结余主要源于“会议费”、“国际合作与交流费”、“设备费”等科目因研究计划调整及客观条件限制未能按原预算执行。课题组将根据《国家自然科学基金资助项目资金管理办法》及自然科学基金委关于结余资金的最新规定，配合依托单位办理结余资金的后续处理手续。
+
+## 六、资金管理遇到的问题及建议
+
+项目资金管理规范有序。间接费用的及时足额使用，有效保障了项目依托单位的条件支撑和团队成员的积极性。建议在今后项目预算编制时，进一步加强前瞻性与精准性评估，特别是在涉及国内外交流等受外部环境影响较大的科目上，可探索更灵活的预算安排机制。
+
+## 七、其他需要说明的事项
+
+无。
+
+# 结余资金情况说明
+
+项目结余资金共计34.83万元，全部为直接费用结余。结余产生的主要原因如下:
+
+1.客观条件变化导致部分活动无法实施:项目执行后期，受国际形势变化及疫情影响，原计划的重要国际学术交流合作（预算8.00万元）与部分国内专题研讨会（预算5.00万元）被迫取消或转为线上进行，相关预算未能执行。
+
+2.研究内容与方法的特性使然:本项目侧重于理论建模、算法设计与数值模拟，高度依赖现有高性能计算集群与软件平台。因此，计划中用于购置专用设备的经费（预算2.00万元）经评估无必要支出。同时，理论研究对实验材料的消耗极低，相应预算亦未使用。
+
+3.依托单位成本分摊与资源协同:项目开展过程中，部分学术会议、数据资源获取得到了依托单位相关课题及平台的协同支持，客观上减少了对本项目“出版/文献/信息传播/知识产权事务费”（部分结余）及“差旅费”等科目的预算需求。
+
+后续资金使用计划:
+
+课题组将按规定程序申请使用结余资金，初步计划如下:
+
+一是深化研究:支持气候金融博弈、AI治理等前沿交叉方向的研究，用于计算资源租赁、数据分析及小型工具购置。
+
+二是学术交流与团队建设:资助团队成员参加国内高水平学术会议，举办小型专题研讨会。
+
+三是成果整理与转化:用于支付后续研究成果的版面费、图书文献资料购买，以及支持政策咨询报告的深化调研与撰写。
+
+课题组承诺将严格遵守经费管理规定，确保资金使用规范、安全、有效。
+
+注:结余资金比例超过30%的项目该部分必填。
+
+<table><tr><td colspan="7">项目负责人承诺:我所承担的项目（编号:12171103 名称:基于深度学习算法的不完全信息下多人非零和随机微分投资博弈问题）结题报告内容真实，数据准确，未出现《国家科学技术保密规定》中列举的属于国家科学技术秘密范围的内容，不涉及敏感科技信息。在今后的研究工作中，如有与本项目相关的成果，将如实注明得到国家自然科学基金项目资助和项目批准号，并报送国家自然科学基金委员会。项目负责人（签日期:</td></tr><tr><td colspan="4">依托单位科研管理部门:负责人（签章）:日期:</td><td colspan="2">依托单位财务管理部门:负责人（签章）:日期:</td><td>依托单位审查意见:依托单位公章:</td></tr><tr><td colspan="7">科学处审核意见:                              P</td></tr><tr><td rowspan="2">完成情况综合评分(划√)</td><td>优</td><td>良</td><td colspan="2">中</td><td>差</td><td rowspan="2">负责人（签章）:日期:</td></tr><tr><td></td><td></td><td colspan="2"></td><td></td></tr><tr><td colspan="7">科学部核准意见  对重点项目等）:NSF负责人（签章）:日期:</td></tr><tr><td colspan="7">分管委领导意见（对重大项目等）:委领导（签章）:日期:</td></tr></table>
+
+## 电子附件目录
+
+| 序号 | 附件类型 | 附件名称 | 备注 |
+| --- | --- | --- | --- |
+| 1 | 论著 | 项目论文成果 | 15篇正式发表论文首页 |
+| 2 | 论著 | 项目论文成果2 | 在线发表论文 |
+| 3 | 奖励 | 邓超-威立Wiley中国高贡献作者 | 威立Wiley中国高贡献作者奖 |
+| 4 | 其他 | 项目衍生成果 | 项目衍生的咨询报告、案例、教改项目 |
+| 5 | 其他 | 组织国际会议 | 组织国际会议 |

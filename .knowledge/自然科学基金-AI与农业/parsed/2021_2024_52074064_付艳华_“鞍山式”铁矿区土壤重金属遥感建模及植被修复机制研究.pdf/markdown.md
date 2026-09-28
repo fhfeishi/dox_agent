@@ -1,0 +1,682 @@
+![](images/page_0_image_0.jpg)
+
+项目批准号 52074064申请代码 E0407归口管理部门收件日期
+
+![](images/page_0_image_2.jpg)
+
+20240152074064
+
+# 国家自然科学基金
+
+# 资助项目结题/成果报告
+
+资助类别:面上项目
+
+亚类说明:
+
+附注说明:
+
+项目名称:“鞍山式”铁矿区土壤重金属遥感建模及植被修复机制研究
+
+负责人:付艳华 BRID: 03835.00.33036
+
+电子邮件: fuyanhua@mail.neu.edu. 电话: 83656200 cn
+
+依托单位:东北大学
+
+联系人:成雅剑
+
+电话: 02483687375
+
+直接费用:58.0000（万元） 执行年限: 2021.01-2024.12
+
+填表日期:2025年01月03日
+
+国家自然科学基金委员会制（2023年）
+
+## 项目摘要
+
+## 中文摘要:
+
+鞍山式铁矿在我国铁矿资源中占50%以上，其大规模开发已造成植被覆盖率下降、尾矿粉尘污染严重，严重破坏了矿区及周边城市的生态环境，已形成生态环境时序恶化的趋势。如何以生态系统服务机制为导向，对矿区生态恢复进行实时、科学有效地监测已成为矿山生态恢复的关键问题。本项目以实现基于铁矿区植被修复机制的矿区生态恢复为目标，研究创建铁矿区生态恢复新机制和模式，以此促进区域生态文明和绿色矿山建设。本项目将重点解决以下关键技术问题:1）基于多源遥感数据的植被类型识别及提取建模研究；2）基于高光谱植被重金属含量信息反演建模研究；3）重金属含量对不同植被生长的影响机理研究；4）“鞍山式”铁矿区植被修复机制研究。本项目的研究成果对推动我国鞍山式铁矿区形成科学、高效的生态恢复机制和监测具有重要的理论及现实意义，同时部分研究成果也可应用于其他露天铁矿及金属矿山领域，为实现我国钢铁行业的两化融合提供技术支持。
+
+## Abstract:
+
+Anshan-type iron ore accounts for more than 50% of China 's iron ore resources. Its large-scale development has caused a decline in vegetation coverage and serious pollution of tailings dust, which has seriously damaged the ecological environment of the mining area and surrounding cities, and has formed a deterioration of the ecological environment trend. How to use the ecosystem service mechanism as a guide to conduct real-time, scientific and effective monitoring of ecological restoration in mining areas has become a key issue in mine ecological restoration. This project aims to realize the ecological restoration of the mining area based on the vegetation restoration mechanism of the iron mining area, and studies to create a new mechanism and model of ecological restoration in the iron mining area, in order to promote regional ecological civilization and green mine construction. This project will focus on solving the following key technical issues: 1) Research on vegetation type identification and extraction modeling based on multi-source remote sensing data; 2) Research on inversion modeling based on hyperspectral vegetation heavy metal content information; 3) Study on the effect mechanism of heavy metal content on the growth of different vegetations; 4) Study on the vegetation restoration mechanism of "Anshan-style" iron mining area. The research results of this project have important theoretical and practical significance for promoting the formation of scientific and efficient ecological restoration mechanism and monitoring in Anshan Iron Ore Area in China. Meanwhile, some of the research results can also be applied to other open-pit iron ore and metal mine fields, providing technical support for the realization of the integration of the two industries in China's iron and steel industry.
+
+关键词（用分号分开）:鞍山式铁矿；多源遥感大数据；深度学习建模；
+
+重金属污染；植被修复
+
+Keywords (separated by;): Anshan-type iron ore; Multi-source remote sensing big data; Deep learning modeling; Heavy metal pollution; vegetation restoration
+
+## 结题摘要
+
+中文摘要（对项目的背景、主要研究内容、重要结果、关键数据及其科学意义等做简单概述）:
+
+鞍山式铁矿在我国铁矿资源中占比突出，然而大规模开发已引发严重的生态环境问题，包括植被覆盖率下降、矿区尾矿污染等，亟需探索实时、科学有效的生态恢复监测方法。本项目以实现矿区生态恢复及绿色矿山建设为目标，围绕遥感时序大数据、高光谱反演建模和植被识别展开研究，完成以下主要工作:
+
+一、基于遥感时序大数据和深度学习方法的矿区地物变化检测方法。提出了用于矿区典型地物变化自动提取的深度学习模型，例如RATT-UNet、FADC-VIS、CNN-WOA-TELM、IRDE-Net、RS-ELM、GAF-D CNN等，构建了矿区地物变化检测新方法。
+
+二、基于高光谱数据的土壤反演模型及改良机制。以高光谱遥感技术为核心，采集可见-近红外与热红外光谱数据，并提出一系列模型，例如CNN-GRC-ELM、LU-TELM-SOA、SNV-PCA-BPNN、MSC-ELM、RVIPSO-MELM、TSVD-IVTELM、MIELM-AE、MTSVD-TGJO-ELM等。逐步提升土壤成分检测的精度，利用模型获取土壤重金属及理化特性的大范围分布，成功实现了大范围高精度分布反演。
+
+三、基于多源遥感数据的植被类型识别与生态恢复机制研究。利用Goog1e Earth Engine（GEE）和Landsat多时相数据，研究矿区土地利用与景观格局变化，结合动态景观分析技术揭示植被退化趋势。基于三维LiDAR点云数据，提出LPFE-Net，实现露天矿区道路提取。
+
+本项目成果集成了多源遥感与深度学习技术，在矿山生态恢复和绿色矿山建设中具有重要的理论与应用价值，为我国矿区生态修复的科学监测和评估提供了关键技术支撑，同时对其他金属矿区的生态治理具有较强的推广意义。项目组共发表国内外学术期刊论文33篇，申请发明专利4项，培养研究生22名。
+
+## Abstract (Brief description of research background, main methods, contributions, and research data):
+
+The Anshan-type iron ore accounts for a significant portion of China's iron ore resources. However, large-scale exploitation has led to serious ecological and environmental issues, including reduced vegetation cover and tailings pollution in mining areas. There is an urgent need to explore real-time, scientifically effective methods for monitoring ecological restoration. This project aims at achieving ecological restoration in mining areas and developing green mines, focusing on research involving remote sensing time-series big data, hyperspectral inversion modeling, and vegetation identification, and accomplishing the following key tasks:
+
+1.Development of a mining area surface feature change detection method based on remote sensing time-series big data and deep learning. We propose deep learning models for the automatic extraction of typical surface feature changes in mining areas, such as RATT-UNet, FADC-VIS, CNN-WOA-TELM, IRDE-Net, RS-ELM, GAF-DCNN, and others, establishing a novel approach for detecting surface feature changes in mining areas.
+
+2. Soil inversion models and improvement mechanisms based on hyperspectral data. Utilizing hyperspectral remote sensing technology as the core, we collected visible-near infrared and thermal infrared spectral data and proposed several models, such as CNN-GRC-ELM, LU-TELM-SOA, SNV-PCA-BPNN, MSC-ELM, RVIPSO-MELM, TSVD-IVTELM, MIELM-AE, MTSVD-TGJO-ELM, etc., incrementally improving the accuracy of soil component detection. The models enable the large-scale mapping of soil heavy metals and physicochemical properties, successfully achieving high-precision spatial distribution inversion over extensive areas.
+
+3. Research on vegetation type identification and ecological restoration mechanisms based on multi-source remote sensing data. Utilizing Google Earth Engine (GEE) and multi-temporal Landsat data, the study examines land use and landscape pattern changes in mining areas, revealing trends of vegetation degradation through dynamic landscape analysis techniques. Based on 3D LiDAR point cloud data, we propose LPFE-Net to achieve road extraction in open-pit mining areas. The project's outcomes integrate multi-source remote sensing and deep learning technologies, offering significant theoretical and practical value for mine ecological restoration and the development of green mines. It provides critical technical support for the scientific monitoring and assessment of ecological restoration in China's mining areas, with substantial implications for the ecological management of other metal mining areas. The project team has published 33 academic journal papers domestically and internationally, filed 4 invention patents, and trained 22 students.
+
+关键词（用分号分开）:鞍山式铁矿；多源遥感大数据；深度学习建模；重金属污染；植被修复
+
+Keywords (separated by;): Anshan-type iron ore; Multi-source remote sensing big data; Deep learning modeling; Heavy metal pollution; vegetation restoration
+
+## 正文
+
+《结题/成果报告》正文分为两个部分:结题部分和成果部分。请按照《结题/成果报告》填报说明及撰写要求填写。
+
+## (一）结题部分
+
+## 1. 研究计划执行情况概述。
+
+（1）按计划执行情况。
+
+自从2020年9月被批准后，本项目便开启了研究工作，一直持续到2024年12月末。在执行过程中，基本按照申请书的“年度研究计划”进行，并基本完成各项研究内容，研究成果符合项目预期。本项目的研究计划执行情况详细如表1所示。
+
+表1 研究计划及其执行情况
+
+| 研究计划 | 执行情况 |
+| --- | --- |
+| 2021.01-2022.06:基于遥感时序大数据和机器学习方法的矿区地物变化检测方法及高光谱建模方法，包括:1. 区时序遥感数据、无人机三维点云数据预处理。2. 研究区实地土壤、植被等采样、化验及分析工作。3. 土壤、植被高光谱数据测量及预处理。4. 研发遥感大数据时间序列模型及特征融合方法。5. 研发基于机器学习的土壤高光谱建模技术。 | 本年度围绕基于遥感时序大数据和机器学习方法的矿区地物变化检测方法及高光谱建模方法开展研究，本年度发表论文11篇，申请专利1项。 |
+| 2022.07-2023.06:研究面向对象变化信息自动提取方法、无人机遥感数据的植被三维识别模型及恢复机制，包括:1. 研究基于卷积神经网络的矿区地物自动提取方法。2. 研究无人机植被三维识别模型。3. 研究土壤改良机制与技术。4. 研究高光谱植被重金属含量信息反演方法。 | 本年度围绕研究面向对象变化信息自动提取方法、无人机遥感数据的植被三维识别模型及恢复机制开展研究，本年度发表论文11篇，申请专利1项。 |
+| 2023.06-2024.12:在典型矿区进行应用，对东北寒地铁矿区废弃地进行植被恢复，包括: | 本年度围绕东北寒地铁矿区废弃地进行植被恢复开展研究，本基金课题组今年已按项目计划按期完成预 |
+| 1. 研究（潜在）超累积植物对重金 属的耐受机制和富集机理。 2. 研究东北寒地铁矿区废弃地恢复 植被的筛选方法和优化模式。 3. 研究不同恢复模式下的空间优化 关键技术。 4. 对关键算法进行验证，并完成相 应的文档工作。 | 定目标，在项目进展上具有重大突 破。本年度项目组在发表11篇论文， 申请专利2项。 |
+
+## （2）研究目标完成情况。
+
+本项目已按项目计划按期完成预定研究目标。本项目针对东北地区鞍山式铁矿生态恢复监测及优化配置的关键问题，利用多源遥感大数据，建立多层级-多尺度的矿区生态环境指标监测体系，通过构建遥感时序模型、高光谱定量反演模型、无人机三维可视化模型及InVEST生态系统服务评估模型，对不同阶段的矿山生态恢复过程进行监测及优化配置，建立科学、有效的生态恢复机制，构建并优化以提升生态系统服务价值为导向的矿区生态安全格局。研究目标完成详细情况如表2所示。
+
+表2 研究目标及其完成情况
+
+| 研究目标 | 完成情况 |
+| --- | --- |
+| 习方法的矿区地物变化检测方法研 究工作。基于多源遥感大数据以及 深度学习算法，提取矿区典型地物 时空变化分布特征，揭示矿区宏观 尺度生态恢复过程中的土壤、植被 等生态要素时空演变规律。 | 出了相对应的有效的解决方法， 相关成果发表在 IEEE Geoscience and Remote Sensing Letters、 Part A: Spectrochimica Acta Molecular and Biomolecular |
+| 开展构建基于高光谱数据的土壤反 | 国际领先水平的研究成果。 本项目针对这一关键科学问题，提 出了相对应的有效的解决方法， |
+| 建立矿区土壤属性的遥感反演模 型，揭示土壤重金属分布规律，提 出土壤改良机制。 开展基于多源遥感数据的植被类型 识别和反演建模及生态恢复机制研 究工作。利用无人机三维点云数据 | and Biomolecular Minerals Spectroscopy Measurement、IEEE Transactions on Instrumentation and Measurement等 国际顶级期刊上，形成了10余篇 SCI论文，在遥感高光谱反演建模与 土壤检测分析方向上达到了国际领 先水平的研究成果。 本项目针对这一关键科学问题，提 |
+| 势物种筛选和超累积植被恢复机 制。在案例矿山进行示范应用，实 现矿区安全发展与生态效益最大 C D | and Neuroscience、Remote Sensing、 Neural Computing &amp; Applications、 IEEE Transactions on Instrumentation and Measurement等国际顶级期刊 |
+
+## 2. 研究工作主要进展、结果和影响。
+
+## （1）主要研究内容。
+
+本项目针对东北地区鞍山式铁矿生态恢复监测及优化配置的关键问题，获取遥感时序大数据（Landsat系列卫星、国产系列卫星、哨兵卫星，以及无人机点云数据等）、高光谱遥感数据、激光雷达（LiDAR）等数据集，通过多尺度输入和多特征融合的卷积神经网络、改进极限学习机等算法实现了基于遥感时序大数据和深度学习的矿区地表时空演变建模技术、基于高光谱遥感技术的植被与土壤重金属反演预测方法、铁矿区植被优化配置技术和恢复机制，具体在以下三个方面开展了研究:
+
+## 一、基于遥感时序大数据和深度学习方法的矿区地物变化检测方法。研究内
+
+容包括基于遥感时序数据预处理和时序模型构建、基于机器学习建模自动提取变化信息、矿区典型地物景观特征时空变化规律。本部分主要研究具体为:对于矿区典型地物分类与识别，通过遥感时序大数据获取高光谱数据，获取途径包括无人机高光谱图像数据、国产高分五号高光谱卫星。光谱数据的原始形式是一维数据，可转换为更能捕捉光谱数据的空间结构和特征的二维数据。参考多尺度输入和多特征融合的卷积神经网络提出了RATT-UNet、FADC-VIS、CNN-WOA-TELM、IRDE-Net、RS-ELM、GAF-DCNN等模型，构建了基于遥感时序大数据和深度学习方法的矿区地物变化检测方法。
+
+二、构建基于高光谱数据的土壤反演模型及改良机制。研究内容包括实地光谱数据采集与化学化验、高光谱图像的获取与处理、构建基于高光谱遥感数据的土壤重金属及理化特性反演模型。本部分主要研究具体为:通过实地光谱数据采集与化学化验获得研究区域内不同子区域的数据，以保证尽量覆盖所有子区域。采集可见-近红外与热红外等多类型光谱融合，并使用外积分析方法进行融合。模型以改进极限学习机为基点，结合卷积神经网络等深度学习算法以及群智能优化算法，提出了一系列相关检测与反演模型即CNN-GRC-ELM、LU-TELM-SOA、SNV-PCA-BPNN、MSC-ELM、RVIPSO-MELM、TSVD-IVTELM、MIELM-AE、MTSVD-TGJO-ELM等模型，逐步提升土壤成分检测的精度，利用反演模型获取土壤重金属及理化特性的大范围分布。
+
+三、基于多源遥感数据的植被类型识别和反演建模及生态恢复机制研究。研究内容包括特征变换和特征选择、构建基于无人机遥感数据的植被三维识别模型。本部分主要研究具体为:基于 Google Earth Engine（GEE）平台和 Landsat多时相遥感数据，提出了结合动态景观分析技术的土地利用与景观格局演变研究方法。基于移动窗口的动态景观分析方法揭示了不同区域在时间维度上的景观格局变化。依据三维LiDAR点云数据，构建了基于局部点特征增强网络（LPFE-Net）的露天矿区道路提取方法。基于3D卷积神经网络和深度残差网络，提出铁矿采场分类模型。
+
+（2）取得的主要研究进展、重要结果、关键数据等及其科学意义或应用前景。
+
+本项目以多源遥感大数据为主要技术手段，研究露天开采过程中地表植被、土壤、水体等环境要素空间分布规律及恢复机制，从而对矿区景观格局进行多尺度空间优化配置，本项目的重要进展如下:
+
+一、基于遥感时序大数据和深度学习方法的矿区地物变化检测方法
+
+（1）利用RATT-UNet从高分辨率遥感图像中提取露天矿道路
+
+基于遥感影像的露天矿道路提取是具有挑战性的任务，特别是在矿区道路中没有明显的路边缘且背景干扰较大的情况下，这属于矿区典型地物变化自动提取。现有的道路提取方法往往难以应对复杂背景和模糊边界。针对上述问题，我们提出了基于深度学习的道路提取方法一一RATT-UNet模型，这参考了多尺度输入和多特征融合的卷积神经网络（多尺度卷积神经网络结构及深层次特征融合）。首先，提出了新型RATT单元，结合了残差连接和注意力机制。残差连接通过提高信息流动来改善特征学习效率，注意力机制能集中网络的注意力于更为重要的特征区域，减少背景噪声干扰。此外，对传统U-Net架构进行了改进，采用RATT单元替代了普通卷积单元，从而更好地提取矿区道路的细节特征，避免了背景信息的干扰。在损失函数设计方面提出了复合损失函数，结合了结构相似性指标（SSIM）和传统的二元交叉熵及Dice系数损失。通过引入SSIM，能够有效地减少道路边界模糊问题，提高分割的精度，尤其是在复杂背景下。此外，设计了一系列后处理优化操作，包括去除独立噪声斑块、填充孔洞、精细化道路中心线和连接断裂道路，从而进一步提升了提取结果的质量。研究结果表明，RATT-UNet在露天矿道路提取任务中表现优异，准确地提取了道路信息，减少了噪声干扰，并提高了边界分割精度。相比传统的网络模型，RATT-UNet在矿区道路提取中具有更高的鲁棒性和精确度。这实现了“基于遥感时序大数据和深度学习方法的矿区地物变化检测方法”的遥感影像数据与深度学习模型的相关预设方法。该工作发表于 SCI JCR Q1 的 IEEE Geoscience and Remote Sensing Letters 期刊上。
+
+![](images/page_9_image_3.jpg)
+
+图 1 RATT-UNet 模型结构
+
+(2）FADC-VIS:基于近红外可见光谱和对比增强深度网络的新型矿石分类铁矿石分类作为现代社会的重要战略资源分类任务，对于提高资源利用率、降低生产成本及减少排放具有重要意义。然而，实际的光谱数据集中样本数量少且类别不平衡，限制了传统机器学习和深度学习模型的预测能力。当前在光谱分析领域主要的方法是通过使用增强网络如GAN或者扩散模型进行样本的生成，但是这样的方法往往面临运算量巨大，样本含量不足时生成样本质量受限等问题。为了解决上述问题，我们提出了基于短时傅里叶变换（STFT）增强的光谱数据处理方法和对比学习深度网络（FADC-VIS）在增加样本数量的同时平衡各类别样本的数量，以达到对少数类别样本的有效识别。具体而言，我们使用短时傅里叶变换将一维光谱数据转化为二维时频表示，由于光谱样本的低频段相位信息往往包含和基线信息中和散射，实验条件相关的信息，因此对其进行扰动可以有效的模拟样本在不同测定条件下的结果。同时通过实部和虚部增强生成RGB图像，可以保留更多的光谱特征，并使得提取能力更强的二维网络得到应用。之后我们引入基于插值JS散度的教师-学生网络，对增强数据和原始数据在特征空间中的一致性进行约束，在保证增强数据的有效性的同时增加增强模型的鲁棒性。最后我们设计了动态更新的锚点策略，为混合增强和原始样本并根据类别设置正负样本对，通过将正样本对拉近，同时将负样本对拉远，模型提取样本间的全局和局部结构信息，获取了更高的分类精度。最后我们将多个模块结合取得了良好的综合预测性能。最后实验证明了我们方法的有效性，在多类别小样本矿石分类任务中，提出方法的准确率达到97%，其中少数类别样本的召回率从原始网络的30%提高到了96%，在各项指标上均优于传统方法。该工作发表于SCIJCRQ1的Microchemical Journal 期刊上。
+
+![](images/page_10_image_3.jpg)
+
+图 2 FASC-VIS 框架
+
+（3）基于无人机成像光谱的农田土壤养分估算与制图
+
+土壤有机质（SOM）和总氮（STN）是土壤质量与肥力的关键指标，对精准
+
+农业至关重要。土壤理化特性是土壤有机质（SOM）和土壤全氮（STN），这与土壤重金属都属于土壤理化特性。传统实验室方法虽准确，但不适用于大规模、高效率监测。我们提出基于无人机高光谱成像和机器学习的土壤养分估算与制图方法。成像光谱是精准农业中获取土壤理化特性的重要技术，这应用了无人机成像光谱，并参考了“基于高光谱数据的土壤反演模型”。我们采用了搭载Resonon Pika L 高光谱相机的大疆 M600 Pro 无人机，该相机能够覆盖 400-1000 nm 的可见光至近红外光谱范围，具备0.1米的分辨率。以松辽平原农田土壤为对象，比较了标准正态变量变换、多元散射校正、一阶微分和二阶微分四种光谱预处理方法，引入竞争自适应重加权采样一连续投影算法（CARS-SPA）筛选特征波段，所处理的光谱是无人机高光谱图像数据即通过无人机上的机载高光谱仪获取研究区域的高光谱数据。结合粒子群优化算法优化极限学习机算法（PSO-ELM）构建SOM和STN的反演模型，这属于“改进极限学习机算法”。研究结果表明，多元散射校正的预处理效果最佳，CARS-SPA筛选的特征波段有效降低了SOM和 STN的预测误差。PSO-ELM模型精度高于偏最小二乘和支持向量机，适用于高光谱图像获取土壤养分空间分布。研究为无人机高光谱图像应用于田间尺度的土壤养分估测和数字制图提供了参考，更为“基于高光谱数据的土壤反演模型”研究实践了相关流程即实地化学化验、无人机高光谱图像的获取与处理、构建基于高光谱遥感数据的土壤理化特性反演模型。该工作发表于 SCI JCR Q1的Sensors 期刊。
+
+![](images/page_11_image_3.jpg)
+
+(a)
+
+![](images/page_11_image_5.jpg)
+
+(b)
+
+图3基于最优模型反演的土壤有机质及全氮含量空间分布
+
+## （4）基于深度网络和反射光谱的煤炭识别
+
+本研究针对快速识别煤种的需求，提出了结合深度学习和反射光谱技术的方法。传统煤种识别方法依赖于人工经验和化学分析，存在效率低、成本高和准确性不足的问题。为此，采集了不同煤种的光谱数据，并将其转换为二维光谱以增强特征提取能力。在此基础上，提出了基于卷积神经网络（CNN）和双层极限学习机（TELM）的识别模型，并利用鲸鱼优化算法（WOA）对模型参数进行优化。实验结果表明，该方法在识别无烟煤、烟煤和矸石时的准确率分别达到96.84%、97.14%和98.16%，整体准确率为97.6%，显著优于传统机器学习方法。该研究为现场快速、低成本、高效识别煤种提供了新的技术手段，对提高煤炭利用效率、降低环境污染和指导煤炭生产具有重要意义。该工作发表于SCIJCRQ1的 Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy 期刊上。
+
+![](images/page_12_image_3.jpg)
+
+图 4 CNN-WOA-TELM
+
+（5）基于实测光谱和高分五号高光谱的铁尾矿表层含水率遥感反演方法
+
+尾矿库是高势能的人造泥石流危险源，存在溃坝风险和扬尘危害。实时监测尾砂含水量对保障尾矿库安全和矿区环境至关重要。高光谱遥感技术是快速、精确监测尾砂含水量的有效手段，这参考了“基于高光谱数据的土壤反演模型”。我们以鞍山一本溪铁矿群的高硅型铁尾矿为研究区域，这属于东北地区鞍山式铁矿所在区域。样本为77个尾砂样品，进行实地光谱数据采集与化学化验以获得实验室光谱（高光谱）与铁尾矿表层含水率。首先，借鉴光谱理论以及现代智能算法的结合，通过竞争性自适应加权重采样法（CARS）筛选出水分敏感波段，建立三维波段光谱指数（TBI），从事实现光谱特征处理。然后，使用随机森林（RF）、粒子群优化的极限学习机（PSO-ELM）和卷积神经网络（CNN）算法构建了尾砂水分反演模型，这发展与拓展了“改进极限学习机算法”。最后，通过卫星上的星载高光谱仪获取研究区域的高光谱数据，使用国产高分五号高光谱卫星数据进行模型应用，这涉及“高光谱图像的获取与处理”以及“构建基于高光谱遥感数据的土壤重金属及理化特性反演模型”的技术，从而获取了尾矿库表层含水率的时空分布特征。研究结果表明，尾砂光谱反射率随含水率升高而下降，且在特定波长处出现O-H吸收特征。CARS方法能有效降维高光谱数据，筛选出敏感波段，并构建了与水分含量高度相关的TBI指数。基于TBI指数和反射率数据集的CNN模型室内验证精度高，实地验证也显示出良好的预测效果，为铁尾矿水分含量的实时快速监测提供了参考，更为“基于高光谱数据的土壤反演模型”研究实践了完整流程即实地光谱数据采集与化学化验、高光谱图像的获取与处理、构建基于高光谱遥感数据的理化特性反演模型。该工作发表于SCIJCR Q4 的光谱学与光谱分析(Spectroscopy and Spectral Analysis)期刊上。
+
+![](images/page_13_image_3.jpg)
+
+图5 建模方法及参数设置
+
+## （6）基于深度集成学习和图像编码反射光谱的煤炭类型识别
+
+本研究提出了基于深度集成学习和图像编码反射光谱的煤种识别方法，旨在优化煤炭资源分配并提高其利用效率。研究背景指出，煤炭作为重要的化石燃料其类型识别对高效利用和减少环境污染至关重要。传统方法如人工分拣和化学分析存在效率低和准确性差的问题，因此开发高效智能的煤种识别方法具有重要意义。研究方法包括使用Gramian Angular Summation Field (GASF)、Gramian Angular Difference Field (GADF)、Markov Transition Field (MTF)和 Recurrence Plot (RP)等方法将反射光谱编码为图像，以增强光谱特征的表达能力。针对煤矿环境中样本采集困难的问题，研究提出了一种新型扩散模型来扩充数据集。进一步，研究设计了深度集成学习模型IRDE-Net，通过多级融合策略整合局部和全局特征，以提高识别性能。实验结果表明，IRDE-Net在MTF编码的光谱图像上表现最佳。研究量化了不同方法在煤炭应用过程中因误识别导致的成本增加和污染排放，结果表明所提方法在能源利用效率、成本控制和污染物减排方面具有显著优势。该研究为煤炭资源的高效利用和环境保护提供了新的技术手段，对能源资源的实际应用具有重要的指导意义。该工作发表于SCIJCRQ1的Fuel期刊上。
+
+![](images/page_14_image_3.jpg)
+
+图 6 IRDE-Net
+
+## （7）基于粗糙集极端学习机和多光谱的铁矿石品位分布探索
+
+本研究旨在利用Sentinel-2多光谱数据和粗糙集极限学习机（RS-ELM）快速探测铁矿石品位分布，以优化矿山开采计划和品位控制。研究首先通过直接正交信号校正和数学变换处理多光谱信息，增强数据质量并抑制噪声。在此基础上，提出了基于粗糙集理论的极限学习机，通过计算隐藏层矩阵的依赖度来删除冗余节点，简化网络结构，并采用白化变换提高数值稳定性。实验结果表明，RS-ELM在探测铁矿石品位分布时表现出较高的精度且所需节点数量最少，表明网络结构合理。此外，基于Sentinel-2数据和RS-ELM构建的品位分布图清晰展示了矿山品位的变化趋势，并根据边界品位和工业品位将矿山划分为非矿、次生矿和主矿区域，为主采矿区的规划提供了依据。该研究为矿山品位管理提供了高效、低成本的技术手段，有助于提高资源利用效率和矿山开采的可持续性。该工作发表于
+
+SCI JCR Q1 的 Expert Systems With Applications 期刊上。
+
+![](images/page_15_chart_3.jpg)
+
+![](images/page_15_chart_4.jpg)
+
+图7矿石的等级分布与三种类型矿石的分布。
+
+## (8）基于激光诱导击穿光谱(LIBS)和深度学习的煤、夹石和围岩识别
+
+针对煤炭开采和选矿过程中煤、矸石和围岩的精准识别问题，提出了基于激光诱导击穿光谱（LIBS）和深度学习的识别方法。煤、矸石和围岩的准确识别对提高煤炭产量和质量、减少有害气体排放至关重要。首先，利用聚类技术选择关键光谱带，并通过Gramian角场（GAF）将LIBS数据转换为二维光谱图像，以增强特征表达能力。针对矿山样本获取困难的问题，提出了扩散模型扩充数据集。提出了基于GAF的深度卷积神经网络（GAF-DCNN），该模型结合多分支结构和跨尺度融合策略，并通过扩张卷积扩展模型的感受野，以高效学习细粒度局部光谱特征和空间-光谱特征。实验结果表明，该方法在准确率、精确率和召回率上均达到92.44%，且测试时间消耗较低。与多种先进方法相比，GAF-DCNN在识别任务中表现出色，即使在矸石和围岩光谱数据高度相似和严重相关的情况下，仍能保持高精度识别。该研究为煤炭开采和选矿阶段的智能化识别提供了新思路，有助于提高煤炭利用效率。该工作发表于 SCI JCR Q1 的 IEEE Transactions on Instrumentation and Measurement 期刊上。
+
+![](images/page_15_image_8.jpg)
+
+图 8 GAF-DCNN
+
+## 二、构建基于高光谱数据的土壤反演模型及改良机制
+
+## （1）基于Cnn-GRC-ELM的土地成分反演研究
+
+盐碱土盐分的检测作为土地利用与生态恢复领域的重要任务，对于改善土壤质量、提升农业生产力以及生态修复具有重要意义。土壤理化特性是土壤盐分，这与土壤重金属都属于土壤理化特性。传统的化学分析方法虽然具有较高的精度，但操作繁琐、耗时且成本较高，在大范围应用中存在局限。光谱技术因其高效、经济、无损的特点被广泛应用。传统光谱分析方法依赖于一维光谱数据，且在提取复杂数据特征时存在困难。为了克服这些问题，提出了基于可见近红外光谱和二维深度学习的盐分检测方法。首先，通过实地光谱数据采集与化学化验获取一维光谱与土壤理化特性，提出了将一维光谱数据转化为二维光谱数据的方法。一维光谱数据无法展现数据纹理特征，二维数据能捕捉光谱数据空间结构特征，提高了卷积神经网络（CNN）提取特征的能力。模型能更好地理解不同盐分含量对光谱数据的影响，进而提升了模型在复杂背景下的识别精度。其次，结合了重力搜索算法（GSA）和水库计算极限学习机（RC-ELM），优化了模型的初始权重和偏置。在RC-ELM算法中，由于权重和偏置的初始化问题，往往会影响模型的性能和稳定性。使用GSA对RC-ELM的初始参数进行优化，提高了预测的准确性和稳定性。GSA通过模拟天体之间的引力相互作用来优化参数，确保了模型在训练过程中能够更好地收敛到全局最优解。CNN-GRC-ELM模型集成了CNN和GRC-ELM算法，能够有效处理二维光谱数据。模型结构包括6个卷积层、3个池化层、2个全连接层和1个GRC-ELM层，采用残差算法以避免梯度消失和过拟合问题，从而增强了模型的训练效果和泛化能力。卷积层通过滤波器提取光谱数据中的特征，池化层则用于减少数据的复杂性，增强特征的鲁棒性。全连接层将提取的特征传递给GRC-ELM进行最终的预测，从而实现了对盐碱土盐分含量的高效预测。从二维光谱图像的新角度实现了“基于高光谱数据的土壤反演模型”。该工作发表于 SCI JCR Q1 的 Microchemical Journal 期刊上。
+
+![](images/page_16_image_5.jpg)
+
+图 9 CNN-GRC-ELM 模型结构
+
+## （2）基于LU-TELM-SOA的赤铁矿TFe含量预测模型及光谱波段选择
+
+铁矿石中TFe（总铁）含量是衡量铁矿石工业价值的重要指标，传统化学分析方法虽然准确，但因操作复杂和耗时较长，难以满足快速检测需求。为了解决这一问题，提出了基于双隐层极限学习机（LU-TELM）与海鸥优化算法（SOA）的新型TFe含量预测模型，并结合波段修剪方法进行光谱数据降维。具体而言，首先通过波段修剪法对赤铁矿的近红外光谱数据进行降维分析，以去除冗余信息并提取对TFe含量敏感的光谱波段，显著降低了模型计算复杂度。然后，基于LU分解优化传统极限学习机（ELM）的权重和阈值，构建双隐层极限学习机(LU-TELM)模型。LU分解通过将复杂的矩阵求逆问题转化为线性方程组求解，提高了模型训练的效率和稳定性。为了进一步提升模型性能，创新性地引入了SOA优化算法，对多个LU-TELM模型进行权重优化，将预测效果较好的模型赋予更大的权重，从而构建了LU-TELM-SOA组合模型。SOA模拟海鸥在捕食过程中的全局搜索与局部优化行为，通过优化组合权重，显著提升了模型的预测准确性和稳定性。实验结果表明，LU-TELM-SOA模型在赤铁矿TFe含量预测中的R²高达0.995，均方根误差（RMSE）显著降低，预测性能优于传统单一模型和其他机器学习方法。该工作发表于 SCI JCRQ2 的 Journal of Sensors 期刊上。
+
+![](images/page_17_image_4.jpg)
+
+图 10 LU-TELM-SOA 的流程
+
+## （3）基于红外光谱的矽卡岩型铁矿品位反演模型研究
+
+矽卡岩型铁矿作为中国重要的铁矿石资源，其品位评估对矿区管理和开采规划具有重要意义。然而，传统的化学分析方法尽管精度高，但耗时长且成本高，无法满足现代矿业对实时、快速监测的需求。为了解决这一问题，提出了基于可见-近红外光谱数据和机器学习算法的高精度铁矿品位反演方法。首先对采集的225个铁矿样本的光谱数据进行预处理。为消除噪声和增强光谱特征，采用了Savitzky-Golay（SG）平滑处理、标准正态变量变换（SNV）和连续统去除（CR）三种方法。SG平滑通过多项式拟合去除随机噪声，SNV校正了由于颗粒大小和表面散射引起的光谱偏移，而CR则通过归一化处理增强了光谱的吸收特征。随后，采用主成分分析（PCA）和遗传算法（GA）对光谱数据进行降维。PCA通过提取数据中的主成分来减少冗余，GA通过模拟自然选择和遗传变异寻找最优特征波段组合。在建模阶段，基于随机森林（RF）和反向传播神经网络（BPNN）分别构建了多种铁矿品位反演模型。其中，BPNN通过多层感知器结构实现对光谱数据的非线性拟合，并结合批量训练方法提高计算效率。最终模型的性能通过决定系数（R²）、均方根误差（RMSE）、预测偏差残差（RPD）和平均相对误差（MRE）进行评估。结果表明，SNV-PCA-BPNN模型表现最佳，R²达0.99，RMSE为0.0048，RPD为37.70，显著优于其他组合模型。该研究为铁矿品位的快速检测提供了高效、低成本的方法，对矿业资源的智能化管理具有重要意义。该工作发表于 SCI JCR Q2 的 Infrared Physics and Technology 期刊上。
+
+![](images/page_18_image_4.jpg)
+
+图11 矽卡岩型铁矿品位反演的整体流程
+
+## （4）基于径向基神经网络的盐碱地重金属含量定量反演
+
+盐碱地重金属污染对农业生产和生态环境具有重要影响，传统检测方法效率低、成本高，难以满足快速、大范围监测需求。提出了基于径向基神经网络（RBFNN）的重金属含量定量反演方法，研究了锰（Mn）、钴（Co）和铁（Fe）在盐碱地中的分布规律。以吉林省镇赉县为研究区域，采集了65个土壤样本并使用 SVCHR-1024 地物光谱仪获取光谱数据。通过 Savitzky-Golay（SG）平滑、多元散射校正（MSC）和连续统去除（CR）对原始光谱进行预处理，分别减少噪声干扰、校正光谱散射偏差并增强吸收特征。随后，构建了差值（DI）、比值（RI）和归一化差异指数（NDI）三种光谱指数，并通过相关性分析筛选敏感波段组合以优化模型输入。最终，基于RBFNN算法建立了重金属含量的定量反演模型，模型性能通过R²和RMSE等指标评估。结果显示，模型在Mn、Co和Fe的预测中均表现出较高精度，R²分别为0.7034、0.8976和0.8484，平均预测精度超过 88%。为盐碱地重金属监测提供了高效技术支持。该工作发表于 SCIJCR Q4的光谱学与光谱分析(Spectroscopy and Spectral Analysis)期刊上。
+
+![](images/page_19_image_4.jpg)
+
+![](images/page_19_image_5.jpg)
+
+![](images/page_19_image_6.jpg)
+
+![](images/page_19_image_7.jpg)
+
+图12 三种预处理方法结合差值指数与锰含量的相关分布图
+
+## （5）基于MSC-ELM模型的土壤重金属含量反演研究
+
+土壤重金属污染对生态环境和人类健康有重大影响。快速准确地反演盐碱地土壤中重金属元素含量对于环境保护和土壤改良具有重要意义。使用传统的化学检测方法来检测重金属元素的含量需要很长的测试时间，并且具有价格高的缺点。将高光谱数据与机器学习模型相结合，反演土壤中的重金属含量。使用分数阶导数（FOD）对原始反射光谱进行预处理，然后构建六个三波段光谱指数（TBI），并通过最优波段组合（OBC）算法获得相应的最优波段组合参数。为了解决双隐含层极限学习机（TELM）的缺点，在第一隐含层节点之间引入了新的权重参数，并在此基础上将其扩展到多层，提出了MSC-ELM模型。将改进后的模型与随机森林（RF）、偏最小二乘（PLS）和极值学习机（ELM）等几种模型进行了比较。通过引入均方根误差（RMSE）和性能与四分位数之比（RPIQ）等几个性能指标，对模型性能进行了分析和比较。实验结果表明，FOD变换可以消除基线漂移，降低频谱噪声。构建的TBI可以有效地增强与重金属含量的相关性，减少冗余信息，增强光谱特征。与其他模型相比，MSC-ELM模型实现了更好的性能指标，并获得了最佳的预测性能。本研究为土壤重金属含量的检测提供了准确、快速的方法，对退化土壤的改良和生态恢复具有重要意义。该工作发表于SCIJCRQ1的 Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy期刊上。
+
+![](images/page_20_image_3.jpg)
+
+图13 土壤重金属含量反演的整体流程
+
+## （6）基于改进极限学习机的铁矿总铁含量检测
+
+铁矿总铁含量（TFe）是评估铁矿石品质的重要指标，直接影响矿区开采和资源利用效率。然而，传统的化学分析方法虽然具有较高的精度，但由于其成本高、耗时长，难以满足矿区高效、实时检测的需求。提出了基于光谱数据的改进极限学习机（ELM）模型，用于快速高效地检测赤铁矿中的TFe含量。针对传统ELM模型在高维光谱数据处理中表现出的过拟合、对初始权重敏感等问题，设计了多层极限学习机（MELM）架构，并引入了一系列优化措施。首先，模型通过随机值初始化（Random ValueInitialization）机制优化了初始权重分布，避免了传统ELM模型中因初始参数不当导致的性能波动。其次，采用密集连接（DenseConnection）技术，将前所有层的输出作为当前层的输入，使得每一层都能重复利用前层的特征，提高了光谱数据的特征提取能力，特别是在高冗余光谱数据中表现突出。此外，模型中引入了动态优化隐藏层节点数量的策略，根据光谱数据的复杂性动态调整每层神经元的数量，从而提升了模型对多样化光谱特征的适应能力，增强了泛化性能。该研究为矿区TFe含量的快速检测提供了高效可靠的解决方案。该工作发表于 SCI JCR Q3 的 Spectroscopy Letters 期刊上。
+
+![](images/page_21_image_4.jpg)
+
+图14当隐藏层数为3时，具有随机值和密集连接的检测赤铁矿总铁含量的结构
+
+（7）利用可见-近红外与热红外光谱融合的外积分析方法估算铁矿尾矿成分铁尾矿主要由 $\mathrm { S i O } _ { 2 }$ 和铁组成，其含量决定了尾矿的潜在再利用策略。光谱学在表征和预测矿物如铁氧化物、粘土和 $\mathrm { S i O } _ { 2 }$ 方面显示出更高效率。研究区域为辽宁省本溪市歪头山铁尾矿库，这属于东北地区鞍山式铁矿所在区域。可见近红外（Vis-NIR）和热红外（TIR）光谱通过外部积分算法（OPA）融合。尾砂TFe和 SiO2成分含量反演模型为偏最小二乘回归（PLSR）、随机森林（RF）和粒子群优化的极限学习机（PSO-ELM），这发展与拓展了“改进极限学习机算法”以及参考了“基于高光谱数据的土壤反演模型”。研究结果表明，Vis-NIR的 1163-2499 nm 特征与 TFe 相关， TIR 的 8-9.4 和 10.7-12 μm 发射率特征与 SiO2相关。与原始光谱相比，融合光谱的相关系数从0.66提高到0.87（TFe）和从0.64提高到 $0.84( SiO _2)$ 。使用 OPA融合光谱的预测模型显著优于单独的 Vis-NIR和TIR光谱。RF模型输入融合光谱提供了最高的准确性。这些结果为使用光谱学进行尾矿成分估算提供了理论基础和技术支持，涉及到实地光谱数据采集与化学化验、构建基于高光谱数据的理化特性模型。该工作发表于SCIJCR Q2的Minerals期刊上。
+
+![](images/page_22_image_3.jpg)
+
+图15 OPA融合过程(a)及生成的矩阵展开过程和转回外积矩阵的过程(b)
+
+（8）基于高光谱和RVIPSO-MELM的土壤反演建模分析
+
+研究土壤的性质和组成对生态环境具有重要意义。传统的含量检测方法大多基于化学分析，由于成本高且效率低，难以适用于大面积土地。为改进盐碱土壤的传统盐分检测方法，采用光谱学与改进的ELM模型相结合的方法对盐碱土壤进行研究，进一步扩展了光谱分析方法的应用场景。基于收集的土壤样本及其对应的光谱反射率和含量数据，提出了由随机值改进的粒子群优化（RVIPSO）算法优化的多层极限学习机（RVIPSO-MELM)模型。首先，使用主成分分析（PCA）提取光谱数据特征，然后采用ELM算法建立光谱数据的分类模型。最后，为提高准确性和速度，应用了改进的粒子群优化算法。实验结果表明，该模型结合了多层随机值ELM（RV-MELM）和由改进粒子群优化算法优化的多层ELM模型（IPSO-MELM）的优点，通过启发式算法搜索最优值并具有随机性，提高了模型优化的速度和性能。本研究提出了有效的改进盐碱土壤的盐分检测方法，对生态环境具有重要意义。该工作发表于 SCI JCR Q4 的 Spectroscopy and Spectral Analysis期刊上。
+
+(9）基于光谱差异和含量差异的土壤数据增强、反演模型构建与改良机制研究
+
+土壤分析对于发展精准农业和监测土地质量具有重要意义，但基于光谱的化学计量学模型因样本量有限而受到制约。提出了基于光谱差异和含量差异的数据增强与模型构建方法，实现了对数量有限的原始样本进行数据扩充并应用深度学习。保留光谱差异和含量差异均为零的增强样本有助于提高模型性能。模型使用随机向量功能链接（RVFL）网络、极限学习机（ELM）和一维卷积神经网络（1D CNN），通过集成平均预测含量差异的新样本。实现了新型数据增强方法，并将CNN应用于数量不足的原始样本，为改进模型和光谱预处理的应用奠定了基础。该工作发表于 SCI JCR Q1 的 Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy 期刊上。
+
+![](images/page_23_chart_5.jpg)
+
+(A)
+
+![](images/page_23_chart_7.jpg)
+
+(B)
+
+![](images/page_23_chart_9.jpg)
+
+(C)
+
+![](images/page_23_chart_11.jpg)
+
+![](images/page_23_chart_12.jpg)
+
+图16 光谱数据和含量数据
+
+## （10）基于可见近红外光谱的盐碱土盐分监测及定量反演模型
+
+盐碱土盐分监测对于土地资源管理和生态恢复具有重要意义。传统的田间调查和实验室分析方法因其时间和人力成本较高，难以满足大范围动态监测的需求。为了解决这一问题，提出了基于可见近红外光谱技术和多模型融合的盐分监测方法，结合了光谱数据预处理、特征提取与多算法建模，全面提升了盐分反演的精度和效率。首先对光谱数据进行预处理，采用Savitzky-Golay（SG）平滑算法和多元散射校正（MSC）消除光谱噪声和散射干扰。然后，基于三种光谱指数（DI、RI和NDI），结合Spearman相关分析筛选出与盐分含量相关性显著的敏感波段（r>0.8）。在此基础上，采用偏最小二乘回归（PLSR）、随机森林（RF）和径向基函数神经网络（RBF-NN）构建盐分反演模型，并对比三种模型的预测性能。结果显示，基于RBF-NN的模型在盐分含量预测中的性能最佳，其决定系数（R²）达到0.950，均方根误差（RMSE）为1.014，模型的预测能力显著优于PLSR和RF。RBF-NN凭借其高效的非线性拟合能力，成功解决了光谱数据中的随机性和非线性问题，为盐碱土盐分动态监测提供了可靠技术支持。该工作发表于 SCI JCR Q2 的 Minerals 期刊上。
+
+![](images/page_24_image_4.jpg)
+
+图17 盐碱土盐分监测及定量反演的整体流程
+
+## （11）基于可见-红外光谱和TSVD-IVTELM的铜矿品位快速检测
+
+矿石品位快速识别对于加速矿物选矿过程至关重要。在传统的矿石品位检测中，多依赖于化学方法。尽管这些方法具有较高的准确性，但存在耗时长、检测成本高的问题。因此提出了一种基于可见-近红外光谱和截断奇异值分解增量型双隐层极限学习机（TSVD-IVTELM）算法的矿石品位检测方法。首先，通过光谱仪获取每个样本的光谱数据。然后，利用蒙特卡洛交叉验证（MonteCarlo Cross-Validation）排除异常样本，并采用偏最小二乘回归（Partial LeastSquares Regression）提取光谱数据的潜在变量，以降低数据维度。最后，使用TSVD-IVTELM算法进行回归分析。对比实验结果表明，TSVD-IVTELM在回归分析中具有最小的均方根误差和最佳的拟合性能。该工作发表于SCIJCRQ2的Measurement 期刊上。
+
+![](images/page_25_image_4.jpg)
+
+图 18 TSVD-IVTELM 的流程
+
+## （12）基于分数阶导数光谱和机器学习的铁矿石品位快速检测
+
+化学检测技术耗时长，会导致其在矿物加工中的应用滞后。将可见-近红外光谱技术与机器学习（ML）算法相结合，以实现铁矿石品位的快速检测，从而满足矿山生产的需求。首先，采用标准正态变换（Standard Normal Variate,SNV）
+
+和去趋势化（De-trending,DT）对原始光谱数据进行预处理，以消除噪声和基线漂移的影响。随后，通过直接正交信号校正（Direct Orthogonal Signal Correction, DOSC）去除多余信号。在此基础上，对经DOSC处理后的光谱数据应用分数阶导数（Fractional-Order Derivative, FOD），进一步增强光谱的细节信息。为了提取光谱特征并降低光谱数据的维度，提出了多层增量极限学习机自编码器(Multilayer Incremental Extreme Learning Machine Autoencoder, MIELM-AE)。MIELM-AE能够自动匹配网络节点数和网络层数，以最小化重构误差。实验结果表明，使用 MIELM-AE降维后的极限学习机(Extreme Learning Machine, ELM)的皮尔逊相关系数（Pearson Correlation Coefficient, R²）从0.715提升到 0.821，相较于未采用降维方法的直接ELM模型表现更优。为提高测量精度，本文引入了 Tikhonov 正则化和截断奇异值分解（Truncated Singular Value Decomposition, TSVD），有效缓解了ELM隐含层矩阵的病态问题，并通过增量算法匹配最优网络节点。在此基础上，提出了双正则化增量极限学习机（Double-Regularization Incremental Extreme Learning Machine, DRIELM）。实验结果显示，当分数阶导数阶数为0.4时，DRIELM模型的检测精度达到最高，其皮尔逊相关系数R²为0.932。该工作发表于 SCI JCR Q1 的 IEEE Transactions on Instrumentation and Measurement 期刊上。 O
+
+## （13）基于可见红外光谱和MTSVD-TGJO-ELM的钼矿品位快速检测
+
+快速确定矿石品位能够显著提升选矿效率。然而，目前现有的钼矿品位测定方法相对滞后于实际选矿工作的需求。针对这一问题，提出了结合可见光-红外光谱技术与机器学习的新方法，用于快速检测钼矿品位。研究中，首先收集了128个钼矿样本进行光谱测试以获取光谱数据。在数据处理中，利用偏最小二乘法从973个光谱特征中提取了13个潜变量。为了确定光谱信号与钼含量之间的非线性关系，采用 Durbin-Watson 检验和运行检验对 LV1 和 LV2 的部分残差图和扩展部分残差图进行了分析。由于光谱数据表现出非线性特征，引入极限学习机（ELM）替代传统线性建模方法进行钼矿品位建模。为了解决参数不合理的问题，应用自适应T分布的黄金豺狼优化（TGJO）对ELM进行参数优化。针对ELM求解不适定问题，通过改进的截断奇异值分解（MTSVD）对ELM输出矩阵进行分解。最终，提出了基于改进截断奇异值分解和自适应T分布黄金豺狼优化的极限学习机方法（MTSVD-TGJO-ELM）。与其他经典机器学习算法相比，MTSVD-TGJO-ELM具有最高的准确率。这为矿石品位的快速检测提供了一种新方法，有助于提高钼矿的选矿精度和矿石回收率。该工作发表于SCIJCRQ1的 Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy 期刊上。
+
+## 三、基于多源遥感数据的植被类型识别和反演建模及生态恢复机制
+
+## （1）基于GEE的鞍山市土地利用与景观格局时空演变研究
+
+随着矿区开发的不断推进，鞍山市的土地利用结构和景观格局发生了显著变化，这种变化对区域生态环境和城市发展产生了深远的影响。为系统研究这些变化特征，基于Google Earth Engine（GEE）平台和 Landsat多时相遥感数据，提出了结合动态景观分析技术的土地利用与景观格局演变研究方法。首先通过GEE平台获取2008年、2014年和2020年三期Landsat影像数据，并采用随机森林(RF)算法对土地利用类型进行分类。为提高分类精度，对训练样本进行了优化设计，并通过混淆矩阵验证了分类结果的精度，三期土地利用分类的整体精度均超过90%。接着，为揭示不同区域在时间维度上的景观格局变化，创新性地提出了基于移动窗口的动态景观分析方法。该方法通过计算景观破碎度、聚合度和形状指数等景观指标，分析了矿区景观的时空变化趋势，特别是在受采矿活动显著影响的区域中，动态度模型有效捕捉了景观变化的加速趋势。研究结果显示，鞍山市在研究时段内的土地利用变化主要集中在矿区和城镇扩张区域。矿区景观破碎度显著上升，而大孤山和东鞍山矿区的生态恢复表现较为显著，景观聚合度有所提高，但其他矿区如西鞍山则仍存在较大的生态恢复压力。的研究成果不仅为区域生态修复提供了科学依据，也为类似城市的土地利用规划提供了参考。该工作发表于 SCI JCR Q2 的 Frontiers in Environmental Science 期刊上。
+
+![](images/page_27_image_5.jpg)
+
+![](images/page_27_image_6.jpg)
+
+![](images/page_27_image_7.jpg)
+
+![](images/page_27_image_8.jpg)
+
+![](images/page_27_image_9.jpg)
+
+![](images/page_27_image_10.jpg)
+
+图19鞍山城市区域景观格局的栅格图。(A)2008年斑块密度；(B)2014年斑块密度；(C)2020年斑块密度；(D)2008香农多样性指数；(E)2014香农多样性指数；(F)2020年香农多样性指数
+
+（2）基于无人机点云数据的露天矿阶梯特征线提取方法
+
+露天矿阶梯特征线是矿区空间信息描述和智能化生产规划的重要内容，现有
+
+特征线绘制方法依赖人工解译，效率低且易受主观因素影响。提出了基于无人机点云数据的露天矿阶梯特征线自动提取方法。采用大疆Phantom4RTK无人机对辽宁省鞍山市某露天矿进行航测，获取高精度三维点云数据。通过多层次局部表面拟合算法（MLS）对点云数据进行规则网格化重采样，以消除不均匀采样引起的误差。随后，基于四方向Sobel算子计算各点的高程梯度，并结合自适应阈值法检测阶梯特征点。通过种子增长算法追踪特征点并提取控制节点，最终利用非均匀有理B样条（NURBS）算法拟合光滑特征线。实验表明，该方法有效解决了现有方法中特征线断裂和局部丢失的问题，其综合精度和效率显著提升。该工作发表于 SCI JCR Q1 的 Sensors 期刊上。
+
+![](images/page_28_image_3.jpg)
+
+图20 阶梯特征线提取方法的示意图
+
+## （3）基于LPFE-Net的露天矿区道路点云提取方法
+
+露天矿区道路的精准提取是矿山智能化运营和无人驾驶车辆调度的重要基础。然而，由于矿区道路边界模糊、形状不规则且道路区域与非道路区域样本比例严重失衡，传统的基于遥感图像或点云数据的方法难以满足准确性和实时性的双重需求。针对这一问题，提出了基于局部点特征增强网络（LPFE-Net）的露天矿区道路提取方法。设计了新型的LPFE-Net网络架构，其核心包含局部点特征增强单元（PFEUnit）和多尺度残差模块。PFE单元通过K近邻（KNN）算法确定邻域点，采用融合几何特征（位置、相对距离）与颜色特征的方式增强点云特征表达能力。进一步地，PFE单元利用空间注意力机制、通道注意力机制以及残差连接的结合方式，实现了特征的筛选和关键信息的强化，从而有效减少特征丢失。多尺度残差模块在每个点的邻域上叠加PFE单元，扩展了感受野，进一步保留了邻域几何细节。同时，通过在不同尺度上加入残差连接，模型能够融合多层特征，提升信息流动性，降低网络复杂度。为解决道路区域与非道路区域样本不平衡的问题，设计了加权复合损失函数，结合交叉熵损失和Dice损失，通过动态调整类别权重，有效缓解了类别失衡对模型训练的影响。此外，LPFE-Net采用了编码-解码结构，在解码过程中通过跳跃连接将编码层的高层语义信息与解码层的低层细节特征进行融合，从而更准确地恢复道路细节。在鞍山市某露天矿的点云数据集上进行实验，数据集采用六折交叉验证。与现有方法(如PointNet、PointNet++、KPConv 和 RandLA-Net）相比，LPFE-Net 在道路提取的多项指标（包括mIoU、精确率、召回率和F1分数）上均取得了最佳结果，其中 mIoU提升1.22%，F1 分数提升 0.75%。在复杂场景中，LPFE-Net 能够更好地处理模糊道路边界和复杂地形。此外，LPFE-Net的测试时间仅次于RandLA-Net，显示了较高的计算效率，能够满足矿区实时道路提取的需求。提出的LPFE-Net在露天矿区道路提取任务中表现优异，解决了道路边界模糊和样本类别不平衡等问题。该工作发表于 SCI JCR Q1 的 IEEE Geoscience and Remote Sensing Letters期刊上。
+
+![](images/page_29_image_3.jpg)
+
+图21 不同方法的道路提取结果
+
+（4）基于正交总最小二乘拟合和GA-TELM的矿平面三维点云数据除尘
+
+随着智慧矿山建设的进一步发展，矿区三维（3D）点云模型的建立变得非常普遍。然而，卡车作业导致矿区的3D点云模型中包含了尘点，并且通过Context Capture建模软件建立的3D点云模型为中空结构。之前的点云去噪算法会导致模型中出现空洞。针对上述问题，提出了基于正交最小二乘拟合和遗传算法改进的双层极限学习机（GA-TELM）的点云去噪方法。具体步骤包括通过正交最小二乘拟合分离尘点和地面点，并使用GA-TELM修复空洞。该方法的优势如下:首先，该方法能够在去噪的同时避免生成空洞，从而解决工程问题。其次，与讨论的其他方法相比，GA-TELM在空洞修复方面具有更好的效果。最后，该方法基于实际问题设计，可用于具有相同问题的矿区。该方法能够有效去除矿区平坦区域的尘点，并确保模型的完整性。该工作发表于 SCI JCR Q3 的 Computational Intelligence and Neuroscience 期刊上。
+
+## （5）基于可见-近红外光谱和遥感的矿区快速检测研究
+
+全铁含量（TFE）分析的准确性和快速性可以加速矿区铁矿石的生产。虽然传统的TFE检测方法精度较高，但其检测速度难以满足生产需求。因此，提出了基于反射光谱和遥感的TFE检测方法。首先，利用HR SVC-1024光谱仪获取每个样本的光谱数据。然后，使用小波变换和平滑主成分分析对光谱进行降噪和降维。为提高TFE的检测精度，提出了基于改进麻雀搜索算法和批量归一化优化的双隐含层可变神经节点极限学习机（MSSA-BNVTELM）。实验结果表明，MSSA-BNVTELM 相比其他算法具有更高的检测精度。利用 Sentinel-2 数据和MSSA-BNVTELM建立了矿区遥感检测模型，并绘制了矿区TFE分布图。该遥感方法可有效检测矿区TFE分布，为矿区生产计划提供帮助。该工作发表于SCI JCR Q1 的 Remote Sensing 期刊上。
+
+![](images/page_30_image_5.jpg)
+
+图22 研究区域遥感图像
+
+## （6）基于高光谱遥感数据和三维深度神经网络的铁矿石场测绘与监测
+
+我们探索了结合高光谱遥感数据和地面数据的新处理方法，并基于新型3D卷积神经网络和数据融合构建模型。该方法可用于铁矿采场的监测与变化制图。首先，利用无人机搭载的高光谱成像仪对铁矿采场进行高光谱成像；其次，收集铁矿样本并使用地面光谱仪测量样本的光谱数据；第三，将高光谱遥感数据与地面数据相结合，并提出数据增强方法。最后，基于3D卷积神经网络和深度残差网络，提出铁矿采场分类模型，并将其应用于采场监测与制图。本研究方法在五分类问题中总体准确率达99.62%，提供了快速、准确、低成本的铁矿采场监测方法。该工作发表于 SCI JCR Q2 的 Neural Computing & Applications 期刊上。
+
+![](images/page_31_image_4.jpg)
+
+(a)
+
+![](images/page_31_image_6.jpg)
+
+![](images/page_31_image_7.jpg)
+
+![](images/page_31_image_8.jpg)
+
+图23 不同方法的分类结果
+
+## （7）用于车辆轨迹预测的混合卡尔曼递归神经网络
+
+本文提出了基于混合卡尔曼递归神经网络(HKR-Net)的车辆轨迹预测方法旨在提高自动驾驶系统中对周围车辆运动的预测精度和可靠性。研究背景指出，准确预测周围车辆的运动轨迹是实现安全自动驾驶的关键，但现有基于学习的方法在生成符合物理规律和现实场景的轨迹方面仍面临挑战。为此，提出了基于编码器-解码器架构的深度学习框架，结合了车辆动力学模型（VDM）和扩展卡尔曼滤波器（EKF），以实现多步多模态的轨迹预测。HKR-Net通过双重注意力机制提取历史运动信息和环境特征，利用VDM约束轨迹预测，并通过EKF融合场景上下文信息，以生成平滑且符合物理规律的轨迹。实验结果表明，HKR-Net在Lyft Level5数据集上表现出色，与多种基线方法相比，在预测误差、可行性和可解释性方面均具有显著优势。该研究的意义在于为自动驾驶系统提供了一种高效、准确且符合物理规律的轨迹预测模型，有助于提升自动驾驶的安全性和可靠性，同时为复杂交通场景下的车辆运动建模提供了新的思路。该工作发表于SCI JCR Q1 的 IEEE Transactions on Instrumentation and Measurement 期刊上。
+
+## 3. 研究人员的合作与分工。
+
+本项目研究团队共包括11名成员，其中包括教授3人、博士研究生4人、硕士研究生4人。项目成员都是工作在教学和科研第一线的骨于人才，具有丰富的科研经验和锐意进取的探索精神。项目成员既有来自江河建筑学院的从事城乡规划的付艳华教授，也有来自资源与土木工程学院的从事测绘遥感的包妮沙教授又有来自信息科学与工程学院的从事智能控制的肖冬教授。项目成员涵盖三位教授的研究团队（课题组）即博士研究生与硕士研究生。项目成员依据工作需要与研究基础进行任务分工，由各个学院的教授领导所在课题组的博士研究生与硕士研究生完成，并互相合作完成交叉内容从而合作发表多篇国内外学术期刊论文。在项目执行中，项目成员在独立完成各自负责的研究内容的同时，定期组织线上与线下组会，解决涉及交叉的研究内容，安排相关学生实践商讨出的解决方法，从而保证了各项研究内容的顺利实施与完成。本项目组的全部参与人员以及具体分工详见表3。
+
+表3项目团队研究人员的分工明细
+
+| 研究人员 | 主要分工 |
+| --- | --- |
+| 付艳华 | 本项目负责人，主要负责土壤改良机制、植被恢复机制研究、基于不同立地类型植被群落优化的生态恢复机制研究等，涉及研究内容二、研究内容三，并研究相关交叉内容 |
+| 肖冬 | 主要负责基于遥感时序大数据和深度学习方法的矿区地物变化检测方法研究、基于高光谱数据的土壤反演模型等，涉及研究内容一、研究内容二，并研究相关交叉内容 |
+| 包妮沙 | 主要负责基于遥感时序大数据和深度学习方法的矿区地物变化检 |
+|  | 测方法研究、基于高光谱数据的土壤反演模型等，涉及研究内容一、研究内容二，并研究相关交叉内容 |
+| 蒋露杰 | 参与土壤改良机制、植被恢复机制研究、基于不同立地类型植被群落优化的生态恢复机制研究等，涉及研究内容二、研究内容三 |
+| 张雅琳 | 参与土壤改良机制、植被恢复机制研究、基于不同立地类型植被群落优化的生态恢复机制研究等，涉及研究内容二、研究内容三 |
+| 刘葳 | 参与土地利用分析、景观格局分析与优化、生态与景观规划、基于不同立地类型植被群落优化的生态恢复机制研究等，涉及研究内容二、研究内容三 |
+| 黄杰 | 参与基于高光谱数据的土壤反演模型等，涉及研究内容二 |
+| 闫泽林 | 参与基于遥感时序大数据和深度学习方法的矿区地物变化检测方法研究、基于高光谱数据的土壤反演模型等，涉及研究内容一、研究内容二 |
+| 万鲁山 | 参与基于高光谱数据的土壤反演模型等，涉及研究内容二 |
+| 谢鸿菲 | 参与基于高光谱数据的土壤反演模型等，涉及研究内容二 |
+| 邹嘉博 | 参与基于高光谱数据的土壤反演模型等，涉及研究内容二 |
+
+## 4. 国内外学术合作交流等情况。
+
+Conference on Computer Science and Communication Technology (ICCSCT 2023)、International Conference on Computer Application and Information Security (ICCAIS 2021)等国际国内学术会议。
+
+## 5. 存在的问题、建议及其他需要说明的情况。
+
+无。
+
+## （二）成果部分
+
+## 1. 项目取得成果的总体情况。
+
+项目组取得了多项成果，共发表国内外学术期刊论文33篇，包括Frontiers in Environmental Science、Microchemical Journal、Remote Sensing、IEEE Transactions on Instrumentation and Measurement、 IEEE Geoscience and Remote Sensing Letters、Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy等期刊。申请发明专利4项。课题组培养研究生22名。
+
+## 2. 项目成果转化及应用情况。
+
+本项目在项目成果转化及应用方面，依据在土壤重金属反演技术、植被重金属含量反演技术、寒地铁矿废弃地生态恢复等技术领域的研究成果，申请了多项发明专利。专利的详细列表如下:
+
+（1）东北大学.一种基于光谱差与含量差的土壤数据增强方法:CN202311576119.9[P].2024-05-24. N
+
+（2）东北大学.一种基于金字塔与深层神经网络的土壤定量建模方法:CN202411065219.X[P].2024-11-15.
+
+（3）东北大学.一种基于物料比例的矿石传送带防堵塞系统及方法:CN202310598716.5[P].2023-08-04.
+
+（4）东北大学.一种基于光谱特征指数的北方环境下伪装材料的识别方法:CN202210736637.1[P].2022-10-18.
+
+## 3. 人才培养情况。
+
+[1]硕士研究生，蒋露杰，学位论文题目为《鞍山市主城区生态保护修复分区及管控策略研究》，获得“建筑学”学科硕士学位，导师付艳华，2022年6月毕业。
+
+[2]硕士研究生，张雅琳，学位论文题目为《基于生态安全格局的鞍海城市开发边界划定研究》，获得“建筑学”学科硕士学位，导师付艳华，2023年6月毕业。
+
+[3]硕士研究生，刘葳，学位论文题目为《沈阳市蓝绿空间降温效应的供需关系分析及优化研究》， 获得“建筑学”学科硕士学位，导师付艳华，2024年6月毕业。
+
+[4]硕士研究生，黄杰，学位论文题目为《基于反射光谱和改进ELM的土壤重金属含量检测研究》，获得“控制工程”学科硕士学位，导师肖冬，2023年6月毕业。
+
+[5]硕士研究生，闫泽林，学位论文题目为《基于深度学习和三维点云的露天矿山道路提取研究》，获得“控制工程”学科硕士学位，导师肖冬，2023年6月毕业。
+
+[6] 硕士研究生，张慧媛，学位论文题目为《基于RWSSA-ELM的矿区三维点云数据灰尘去除》，获得“控制工程”学科硕士学位，导师肖冬，2022年7月毕业。
+
+[7]硕士研究生，尹玲玉，学位论文题目为《基于深度学习的露天矿山遥感图像
+
+道路提取方法的研究与实现》，获得“控制科学与工程”学科硕士学位，导师肖冬，2022年6月毕业。
+
+[8]硕士研究生，万鲁山，学位论文题目为《基于光谱和改进ELM的盐碱地遥感反演研究》，获得“控制理论与控制工程”学科硕士学位，导师肖冬，2021年6月毕业。
+
+[9]硕士研究生，谢鸿菲，学位论文题目为《基于机器学习和近红外光谱对铜矿石含量检测方法的研究》，获得“控制工程”学科硕士学位，导师肖冬 2021年6月毕业。
+
+[10]硕士研究生，王宝华，学位论文题目为《基于深度学习和近红外光谱的煤炭种类识别方法研究》，获得“矿业工程”学科硕士学位，导师孙效玉，2023年6月毕业。
+
+[11]硕士研究生，黎璋，学位论文题目为《煤炭低位热值与全水分的软测量建模方法研究》，获得“控制工程”学科硕士学位，导师肖冬，2021年6月毕业。
+
+[12]硕士研究生，单佳伟，学位论文题目为《全钒液流电池建模及SOC估计》，获得“控制科学与工程”学科硕士学位，导师肖冬，2023年6月毕业。
+
+[13]硕士研究生，麦木提敏·巴莱提，学位论文题目为《基于DIRU-Net方法的煤块图像分割研究》，获得“电子信息”学科硕士学位，导师肖冬，2023年6月毕业。
+
+[14]硕士研究生，韩子松，学位论文题目为《基于遥感数据的全球尾矿库实例分割及变化检测方法研究》，获得“测绘科学与技术”学科硕士学位，导师包妮沙，2024年5月毕业。
+
+[15]硕士研究生，钱慧亚，学位论文题目为《基于多源遥感数据的辽河三角洲滨海湿地分类与水质参数反演研究》，获得“测绘科学与技术”学科硕士学位，导师包妮沙，2024年5月毕业。
+
+[16]硕士研究生，李秋玥，学位论文题目为《干旱半干早区露天矿生态环境遥感监测模型研究》，获得“测绘科学与技术”学科硕士学位，导师包妮沙，2023年5月毕业。
+
+[17]硕士研究生，胡怡斌，学位论文题目为《基于高光谱技术的异常目标识别》，获得“测绘科学与技术”学科硕士学位，导师包妮沙，2023年5月毕业。
+
+[18]硕士研究生，曹粤，学位论文题目为《基于国产高光谱卫星的尾矿主要成分反演方法研究一以辽宁省金属矿为例》，获得“测绘科学与技术”学科硕士学位，导师包妮沙，2022年5月毕业。
+
+[19]硕士研究生，徐景余，学位论文题目为《基于稀疏表示的伪装目标高光谱识别方法研究》，获得“测绘科学与技术”学科硕士学位，导师包妮沙，2022
+
+年5月毕业。
+
+[20]硕士研究生，于嘉欣，学位论文题目为《基于国产高分卫星和改进Faster-RCNN模型的露天煤矿开采区目标识别》，获得“测绘科学与技术”学科硕士学位，导师包妮沙，2022年5月毕业。
+
+[21]硕士研究生，范改革，学位论文题目为《新疆黑山露天煤矿区生态环境变化遥感监测与分析》，获得“摄影测量与遥感”学科硕士学位，导师包妮沙，2021年6月毕业。 N
+
+[22]硕士研究生，杨晓宇，学位论文题目为《基于机载高光谱遥感技术的耕地土壤养分反演方法研究》，获得“摄影测量与遥感”学科硕士学位，导师包妮沙，2021年6月毕业。
+
+4. 其他需要说明的成果。
+
+无。
+
+无。
+
+5. 项目成果科普性介绍或展示网站。
+
+## 研究成果目录
+
+项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。请按照期刊论文、会议论文、学术专著、专利、会议报告、标准、软件著作权、科研奖励、人才培养、成果转化的顺序列出，其它重要研究成果如标本库、科研仪器设备、共享数据库、获得领导人批示的重要报告或建议等，应重点说明研究成果的主要内容、学术贡献及应用前景等。
+
+项目负责人不得将非本人或非参与者所取得的研究成果、与受资助项目无关的研究成果、未标注国家自然科学基金资助和项目批准号的论文以及取得时间早于项目资助期开始时间的研究成果列入报告中。发表的研究成果（包括专利），项目负责人和参与者均应如实注明得到国家自然科学基金项目资助和项目批准号，科学基金作为主要资助渠道或者发挥主要资助作用的，应当将自然科学基金作为第一顺序进行标注。
+
+## 期刊论文
+
+(1) Dong Xiao; Lingyu Yin; Yanhua Fu; Open-Pit Mine Road Extraction From High-Resolution Remote Sensing Images Using RATT-UNet, IEEE Geoscience and Remote Sensing Letters, 2022, 19: 3002205. 第一标注
+
+(2) Dong Xiao; Quoc Huy Vu; Ba Tuan Le; Salt content in saline-alkali soil detection using visible-near infrared spectroscopy and a 2D deep learning, Microchemical Journal, 2021, 165: 106182. 第三标注
+
+(3) Yanhua Fu; Lushan Wan; Yachun Mao; Tao Ren; Dong Xiao; Research on TFe Content of Hematite Based on LU-TELM-SOA and Selection of Band, Journal of Sensors, 2021, 2021: 5515165. 第五标注
+
+(4) Xiaoyu Yang; Nisha Bao; Wenwen Li; Shanjun Liu; Yanhua Fu; Yachun Mao; Soil Nutrient Estimation and Mapping in Farmland Based on UAV Imaging Spectrometry, Sensors, 2021, 21(11): 3919-3929. 第二标注
+
+(5) Xiaohua Li; Jian Wen; Yanhua Fu; Yachun Mao; Wang Cao; Jiaqi Huang; Zhanguo Zhao; Ge Yu; Visible-NIR spectral characteristics and grade inversion model of skarn-type iron ore, Infrared Physics and Technology, 2022，123:104170. 第二标注
+
+(6) Dong Xiao; Jie Huang; Jian Li; Yanhua Fu; Zhenni Li; Inversion study of cadmium content in soil based on reflection spectroscopy and MSC-ELM model, Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy，2022，283:121696. 第一标注
+
+(7)付艳华；刘晶；毛亚纯；曹旺；黄家其；赵占国；径向基神经网络的苏打盐碱地重金属定量反演，光谱学与光谱分析，2022，42(5):1595-1600. 第二标注
+
+(8) Yanhua Fu; Lujie Jiang; Yalin Zhang; Lushan Wan; Dong Xiao; Detection of total iron content based on improved extreme learning machine, Spectroscopy Letters, 2022, 55(4): 284-289. 第五标注
+
+(9) Nisha Bao; Haimei Lei; Yue Cao; Shanjun Liu; Xiaowei Gu; Bin Zhou; Yanhua Fu; Iron Ore Tailing Composition Estimation Using Fused Visible-Near Infrared and Thermal Infrared Spectra by Outer Product Analysis，Minerals， 2022，12(3):382. 第一标注
+
+(10) Dong Xiao; Quoc Huy Vu; Ba Tuan Le; Thai Thuy Lam Ha; A method for mapping and monitoring of iron ore stopes based on hyperspectral remote sensing-ground data and a 3D deep neural network, Neural Computing and Applications，2023，2023(35):12221-12232.第三标注
+
+(11) 宋妮娜；肖冬；李森；高宇洁；基于光谱和改进极限学习机的土壤含盐量分析，光谱学与光谱分析，2022，42(8):2482-2487.第二标注
+
+(12) Mengyuan Xu; Yachun Mao; Mengqi Zhang; Dong Xiao; Hongfei Xie; Rapid Detection of Iron Ore and Mining Areas Based on MSSA-BNVTELM, Visible—Infrared Spectroscopy, and Remote Sensing, Remote Sensing, 2023, 15(16):4100. 第二标注
+
+(13) Lushan Wan; Zhizhong Mao; Dong Xiao; Zhenni Li; Soil data augmentation and model construction based on spectral difference and content difference, Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy, 2024，317:124360.第二标注
+
+(14)曹粤；包妮沙；周斌；顾晓薇；刘善军；虞茉莉；基于实测光谱和国产高分五号高光谱卫星的铁尾矿表层含水率遥感反演方法研究，光谱学与光谱分析，2023，43(4):1225-1233. 第二标注
+
+(15) Xie, Hongfei; Xiao, Dong; Mao, Zhizhong; Rapid Detection of Iron Ore Grades Based on Fractional-Order Derivative Spectroscopy and Machine Learning, IEEE TRANSACTIONS ON INSTRUMENTATION AND MEASUREMENT, 2023, 72. 第二标注
+
+(16) Wei Li; Jing Liu; Nisha Bao; Xinqi Mao; Yachun Mao; Yanhua Fu; Wang Cao; Jiaqi Huang; Zhanguo Zhao; Sa linity Monitoring at Saline Sites with Visible-Near-Infrared Spectral Data, Minerals, 2021, 11(10):1086. 第二标注
+
+(17) Hongfei Xie; Zhizhong Mao; Dong Xiao; Jingyi Liu; Rapid detection of copper ore grade based on visible-infrared spectroscopy and TSVD-IVTELM, Measurement, 2022, 203: 112003. 第二标注
+
+(18) Hong-fei Xie; Zhi-zhong Mao; Dong Xiao; Zhen-ni Li; Rapid detection of molybdenum ore grade based on visible-infrared spectroscopy and MTSVD-TGJO-ELM, Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy，2023，298:122789. 第二标注
+
+(19) Yanhua Fu; Yalin Zhang; Research on temporal and spatial evolution of land use and landscape pattern in Anshan City based on GEE, Frontiers in Environmental Science, 2022, 10: 988346-988358. 第一标注
+
+(20) Yachun Mao; Hui Wang; Wang Cao; Yuwen Fu; Yanhua Fu; Liming He; Nisha Bao; Extraction of Step-Feature Lines in Open-Pit Mines Based on UAV Point-Cloud Data, Sensors, 2022, 22(15): 5706-5706. 第二标注
+
+(21) Xiao, Dong; Yan, Zelin; Li, Jian; Gu, Zhengmin; Fu, Yanhua; Yin, Lingyu; Road Extraction From Point Clouds of Open-Pit Mine Using LPFE-Net, IEEE GEOSCIENCE AND REMOTE SENSING LETTERS, 2023, 20. 第一标注
+
+(22) Jingli Wang; Huiyuan Zhang; Jingxiang Gao; Dong Xiao; Dust Removal from 3D Point Cloud Data in Mine Plane Areas Based on Orthogonal Total Least Squares Fitting and GA-TELM, Computational Intelligence and Neuroscience，2021，2021:1-8. 第二标注
+
+(23) Yiyang Wang; Boyan Li; Haoyang Li; Dong Xiao; Accurate Coal Classification Using PAIPSO-ELM with Near-Infrared Reflectance Spectroscopy, ACS Omega, 2024, 9(48): 47756-47764. 第四标注
+
+(24) Xiao, Dong; Thi Tra Giang Le; Trung Thanh Doan; Ba Tuan Le; Coal identification based on a deep network and reflectance spectroscopy, Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy, 2022, 270:120859.第四标注
+
+(25) Zelin Yan; Dong Xiao; Hui Sun; Lizhi Zhang; Lingyu Yin; Coal type identification with application result quantification based on deep-ensemble learning and image-encoded reflectance spectroscopy, Fuel, 2024, 373:132381.第二标注
+
+(26) Xu, Mengyuan; Mao, Yachun; Yan, Zelin; Zhang, Mengqi; Xiao, Dong; Coal and Gangue Classification Based on Laser-Induced Breakdown Spectroscopy and Deep Learning, ACS OMEGA, 2023, 8(50): 47646-47657. 第二标注
+
+(27) Boyan Li; Dong Xiao; Hongfei Xie; Jie Huang; Zelin Yan; Coal Classification Based on Reflection Spectroscopy and the IAT-TELM Algorithm, ACS Omega, 2023, 8: 35232-35241. 第二标注
+
+(28) Dong Xiao; Zelin Yan; Jian Li; Yanhua Fu; Zhenni Li; Boyan Li; Coal Identification Based on Reflection Spectroscopy and Deep Learning: Paving the Way for Efficient Coal Combustion and Pyrolysis, ACS omega, 2022, 7:23919-23928. 第一标注
+
+(29) Hongfei Xie; Dong Xiao; Zhizhong Mao; Exploration of grade distribution in iron mines based on rough set extreme learning machine and multispectral, Expert Systems with Applications, 2024, 265: 125938. 第二标注
+
+(30) Zou, Jiabo; Xiao, Dong; Huang, Jie; Gu, Zhengmin; FADC-VIS: A novel ore classification method based on near-infrared visible spectrum and contrast-enhanced deep network, MICROCHEMICAL JOURNAL, 2024, 207:112229. 第二标注
+
+(31) Zhenni Li; Hui Sun; Dong Xiao; Hongfei Xie; Hybrid Kalman Recurrent Neural Network for Vehicle Trajectory Prediction, IEEE Transactions on Instrumentation and Measurement, 2024, 73: 1-14. 第三标注(32) Zelin Yan; Dong Xiao; Identification of Coal, Gangue, and Surrounding Rock Based on LIBS and Deep Learning, IEEE Transactions on Instrumentation and Measurement, 2024, 73: 1-9. 第二标注
+
+(33)毛亚纯；文杰；曹旺；丁瑞波；王世佳；付艳华；徐梦圆；基于鞍山式铁矿成像光谱的融合算法研究，光谱学与光谱分析，2024，44(9):2620-2625.第二标注
+
+## 专利
+
+(1) 肖冬；张汉权；毛昕琦；付艳华；曹旺；一种基于物料比例的矿石传送带防堵塞系统及方法，2023-05-25，中国，CN 202310598716.5.
+
+(2) 包妮沙；胡怡斌；刘善军；毛亚纯；付艳华；肖东；贺黎明； 一种基于光谱特征指数的北方环境下伪装材料的识别方法，2022-06-27，中国，CN202210736637.1.
+
+(3) 万鲁山；肖冬；毛志忠；李贞妮；一种基于光谱差与含量差的土壤数据增强方法，2023-11-23，中国，CN2023115761 19.9.
+
+(4) 万鲁山；肖冬；毛志忠；李贞妮；一种基于金字塔与深层神经网络的土壤定量建模方法，2024-08-05，中国，CN2024 11065219.X.
+
+## 项目成果应用前景
+
+本项目成果拟应用领域:1、矿区人居环境治理2、矿区区域规划
+
+预计在5年以内推广使用
+
+附表:研究成果统计数据表（本表针对各种类型资助项目收集数据以便进行整体资助效果分析使用，并非要求每类项目都具有以下各类成果。
+
+<table><tr><td rowspan=4>获奖（项）</td><td colspan=16>国家级</td><td colspan=10>省部级</td><td rowspan=3 colspan=2>其他</td></tr><tr><td colspan=4>自然科学奖</td><td colspan=6>科技进步奖</td><td colspan=6>发明奖</td><td colspan=6>自然科学奖</td><td colspan=4>科技进步奖</td></tr><tr><td colspan=2>一等</td><td colspan=2>二等</td><td colspan=3>一等</td><td colspan=3>二等</td><td colspan=3>一等</td><td colspan=3>二等</td><td colspan=3>一等</td><td colspan=3>二等</td><td colspan=2>一等</td><td colspan=2>二等</td></tr><tr><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td></tr><tr><td rowspan=4>学术报告/论文/专著/其他（篇）</td><td colspan=3>特邀学术报告</td><td colspan=15>学术论文</td><td rowspan=2 colspan=3>学术专著</td><td rowspan=2 colspan=7>其他</td></tr><tr><td rowspan=2>国际学术会议</td><td rowspan=2 colspan=2>国内学术会议</td><td colspan=5>发表论文数</td><td colspan=10>论文检索收录情况</td></tr><tr><td colspan=2>期论义</td><td colspan=3>会议</td><td colspan=2>SCIE/SSCI</td><td colspan=2>EI</td><td colspan=3>北大中文核心期刊</td><td colspan=3>CSSCI</td><td colspan=2>中文</td><td>外文</td><td colspan=2>标本库</td><td colspan=2>数据库</td><td colspan=2>科研仪器设备</td><td>重要报告</td></tr><tr><td>0</td><td colspan=2>0</td><td colspan=2>33</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr><tr><td rowspan=4>专利/标准/软著/成果转化</td><td colspan=8>专利（项）</td><td colspan=12>标准</td><td rowspan=3>软件著作权</td><td rowspan=2 colspan=7>成果转化</td></tr><tr><td colspan=3>国内</td><td colspan=5>国外</td><td rowspan=2 colspan=2>国际</td><td colspan=10>国内</td></tr><tr><td>申请</td><td colspan=2>授权</td><td colspan=2>申请</td><td colspan=3>授权</td><td colspan=2>国家</td><td colspan=3>行业</td><td colspan=3>地方</td><td colspan=2>企业</td><td colspan=2>技术转让技</td><td colspan=2>术许可作</td><td colspan=2>价投资</td><td>经济效益(万元)</td></tr><tr><td>4</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr><tr><td rowspan=4>人才培养及学术交流</td><td colspan=17>人才培养（人）</td><td colspan=11>举办和参加学术会议</td></tr><tr><td colspan=9>中青年学术带头人</td><td rowspan=2 colspan=2>出站博士后</td><td rowspan=2 colspan=3>毕业博士</td><td rowspan=2 colspan=3>毕业硕士</td><td colspan=4>举办国际学术会议</td><td colspan=4>举办国内学术会议</td><td colspan=3>参加国际学术会议</td></tr><tr><td>优青</td><td colspan=2>杰青</td><td colspan=2>创新群体</td><td></td><td colspan=3>其他</td><td colspan=2>次数</td><td colspan=2>人数</td><td colspan=2>次数</td><td colspan=2>人数</td><td colspan=2>次数</td><td>人数</td></tr><tr><td>0</td><td colspan=2>0</td><td colspan=2>0</td><td></td><td colspan=3>0</td><td colspan=2>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr></table>
+
+## 国家自然科学基金项目资金决算表
+
+项目批准号:52074064
+
+项目负责人:付艳华
+
+金额单位:万元
+
+<table><tr><td rowspan="3">序号</td><td rowspan="3">科目名称</td><td colspan="3">预算数</td><td rowspan="2">累计支出数</td><td rowspan="2">结余数</td><td rowspan="2">结余占比</td></tr><tr><td>批准预算</td><td>预算调整</td><td>调整后预算</td></tr><tr><td>(1)</td><td>(2)</td><td>(3) =(1) +(2)</td><td>(4)</td><td>(5) =(3)- (4)</td><td>(6)=(5)÷(3)</td></tr><tr><td>1</td><td>项目总经费</td><td>69.6000</td><td>0.0000</td><td>69.6000</td><td></td><td>一</td><td>32.74%</td></tr><tr><td>2</td><td>项目直接费用</td><td>58.0000</td><td>0.0000</td><td>58.0000</td><td>35.2102</td><td>22.7898</td><td>一</td></tr><tr><td>3</td><td>1、设备费</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td></td></tr><tr><td>4</td><td>其中:设备购置费</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td></td></tr><tr><td>5</td><td>2、业务费</td><td>44.8000</td><td>-5.0000</td><td>39.8000</td><td>17.0122</td><td>22.7878</td><td></td></tr><tr><td>6</td><td>3、劳务费</td><td>13.2000</td><td>5.0000</td><td>18.2000</td><td>18.1980</td><td>0.0020</td><td></td></tr><tr><td>7</td><td>项目间接费用</td><td>11.6000</td><td>0.0000</td><td>11.6000</td><td></td><td></td><td></td></tr></table>
+
+注:1.本表仅填列自然科学基金批准资助的项目经费决算情况，其他来源资金的经费决算情况不属于本表填报范围；
+
+2.本表中（1）、（3）、（5）、（6）栏为系统自动生成，不需项目负责人填写；本表中（2）栏填列预算调整数；本表中（4）栏填列项目的实际支出数；3.本表中第7行数值由系统自动生成，不需项目负责人填写:
+
+4.第7行“预算调整”栏请参照《国家自然科学基金预算制项目决算表编制说明》中有关要求填列。
+
+# 决算说明书
+
+(请按照《国家自然科学基金预算制项目决算表编制说明》等的有关要求，说明项目预算支出情况、预算调整情况、资金结余情况、合作研究外拨资金情况、单价50万元（含）以上的设备情况、资金管理和使用过程中的问题建议，以及其他需要说明的事项。)
+
+## 一、项目预算支出情况
+
+项目预算总额69.6000万元，支出46.8102万元，结余22.7898万元。具体情况如下:
+
+## 1. 设备费0.0000万元
+
+预算批复0.0000万元，支出0.0000万元，结余0.0000万元。
+
+## 2. 业务费17.0122万元
+
+预算批复44.8000万元，调整后的预算39.8000万元，支出17.0122万元，结余22.7878万元。其中，差旅费，主要用于项目运行过程中鞍山、本溪、辽阳、北京、长沙等地采样、项目调研、交流等发生的差旅费；出版论文费，论文检索费；测试化验费，检测分析鞍山、辽阳等铁矿区排土场、尾矿库的土壤和尾砂，对铁矿区排土场、尾矿库重金属污染及有机质组成及含量进行理化分析，为土地复垦提供技术支持。
+
+## 3. 劳务费18.1980万元
+
+预算批复13.2000万元，调整后的预算18.2000万元，支出18.1980万元，结余0.0020万元。主要用于支付参与本课题采样、调研、资料整理、数据分析与处理、相关技术研究、撰写论文、报告等的研究生助研津贴。
+
+## 4. 间接费11.6000万元
+
+预算批复数11.6000万元，支出11.6000万元，结余0.0000。主要用于管理费及用支付课题组主要成员的绩效，对课题组主要成员在项目调研、数据分析、建模、优化、评价等关键技术研究的付出予以绩效奖励。
+
+## 二、预算调整情况说明
+
+业务费预算过剩，调减5.0000万元，调整后的预算为39.8000万元；劳务费预算不足，调增5.0000万元，调整后的预算为18.2000万元。项目在预算执行过程中，聘用了科研助理，逐年增加了多人次的硕、博士研究生做大量的采样、调研、大数据分析与建模、撰写论文、报告等工作，原劳务费预算不足，故调增了劳务费，对应的就调减了同额度的业务费。
+
+## 三、资金结余情况
+
+截止到项目截止日，结余资金22.7898万元。结余资金将用于后续理论应用于实践研究，尤其是模型的多情境数据反演、土地复垦实验应用研究。
+
+## 四、合作研究外拨资金情况
+
+无。
+
+## 五、单价50万元及以上的设备情况
+
+## 六、资金管理和使用过程中的问题建议
+
+## 七、其他需要说明的事项
+
+项目结余资金22.7898万元，主要原因是在项目研究最重要的两年2021年、2022年疫情严重，国家严格控制外出时间较多，线下交流多改为线上交流、线上会议等，故减少了项目执行过程中差旅次数和费用。在多次团队人数较多的调研中，针对矿区偏远交通不便、方便携带大型大量的采样设备、工具、样本等，采用自驾，不便取证报销，一切费用自理，没有使用项目经费从而节省了部分项目经费。论文出版大多选择不收版面费的期刊。以上多方面原因使得资金结余，希望将结余资金资助项目的后续研究。
+
+<table><tr><td colspan="7">项目负责人承诺:我所承担的项目（编号:52074064 名称:“鞍山式”铁矿区土壤重金属遥感建模及植被修复机制研究）结题报告内容真实，数据准确，未出现《国家科学技术保密规定》中列举的属于国家科学技术秘密范围的内容，不涉及敏感科技信息。在今后的研究工作中，如有与本项目相关的成果，将如实注明得到国家自然科学基金项目资助和项目批准号，并报送国家自然科学基金委员会。项目负责人（签章日期:</td></tr><tr><td colspan="4">依托单位科研管理部门:负责人（签章）:日期:</td><td colspan="2">依托单位财务管理部门:D负责人（签章）:日期:</td><td>依托单位审查意见:依托单位公章:</td></tr><tr><td colspan="7">科学处审核意见:                           EP</td></tr><tr><td rowspan="2">完成情况综合评分(划√)</td><td>优</td><td>良</td><td colspan="2">中</td><td>差</td><td rowspan="2">负责人（签章）:日期:</td></tr><tr><td></td><td></td><td colspan="2"></td><td></td></tr><tr><td colspan="7">科学部核准意见（对重点项目等）:S                                                                                             负责人（签章）:日期:</td></tr><tr><td colspan="7">分管委领导意见（对重大项目等）:委领导（签章）:日期:</td></tr></table>
+
+## 电子附件目录
+
+| 序号 | 附件类型 | 附件名称 | 备注 |
+| --- | --- | --- | --- |
+| 1 | 论著 | 期刊论文1 | Research on temporal and spatialevolution of land use andlandscape pattern in Anshan Citybased on GEE |
+| 2 | 论著 | 期刊论文2 | Open-Pit Mine Road ExtractionFrom High-Resolution RemoteSensing Images Using RATT-UNet |
+| 3 | 论著 | 期刊论文3 | Inversion study of cadmiumcontent in soil based onreflection spectroscopy andMSC-ELM model |
+| A | 论著 | 期刊论文4 | Exploration of grade distributionin iron mines based on rough setextreme learning machine andmultispectral |
+| 5 | 论著 | O期刊论文5 | Salt content in saline-alkalisoil detection using visible-nearinfrared spectroscopy and a 2Ddeep learning |
+| 6 | 其他 | 硕士生论文1 | 蒋露杰硕士研究生学位论文封面 |
+| 7 | 其他 | 硕士生论文2 | 张雅琳硕士研究生学位论文封面 |
+| 8 | 其他 | 硕士生论文3 | 刘葳硕士研究生学位论文封面 |
+| 9 | 其他 | 硕士生论文4 | 黄杰硕士研究生学位论文封面 |
+| 10 | 其他 | 硕士生论文5 | 闫泽林硕士研究生学位论文封面 |
+| 11 | 其他 | 硕士生论文6 | 张慧媛硕士研究生学位论文封面 |
+| 12 | 其他 | 硕士生论文7 | 尹玲玉硕士研究生学位论文封面 |
+| 13 | 其他 | 硕士生论文8 | 万鲁山硕士研究生学位论文封面 |
+| 14 | 其他 | 硕士生论文9 | 谢鸿菲硕士研究生学位论文封面 |
+| 15 | 其他 | 硕士生论文10 | 王宝华硕士研究生学位论文封面 |
+| 16 | 其他 | 硕士生论文11 | 黎璋硕士研究生学位论文封面 |
+| 17 | 其他 | 硕士生论文12 | 单佳伟硕士研究生学位论文封面 |
+| 18 | 其他 | 硕士生论文13 | 麦木提敏·巴莱提硕士研究生学位论文封面 |
+| 19 | 其他 | 硕士生论文14 | 韩子松硕士研究生学位论文封面 |
+| 20 | 其他 | 硕士生论文15 | 钱慧亚硕士研究生学位论文封面 |
+| 21 | 其他 | 硕士生论文16 | 李秋玥硕士研究生学位论文封面 |
+| 22 | 其他 | 硕士生论文17 | 胡怡斌硕士研究生学位论文封面 |
+| 23 | 其他 | 硕士生论文18 | 曹粤硕士研究生学位论文封面 |
+| 24 | 其他 | 硕士生论文19 | 徐景余硕士研究生学位论文封面 |
+| 25 | 其他 | 硕士生论文20 | 于嘉欣硕士研究生学位论文封面 |
+| 26 | 其他 | 硕士生论文21 | 范改革硕士研究生学位论文封面 |
+| 27 | 其他 | 硕士生论文22 | 杨晓宇硕士研究生学位论文封面 |

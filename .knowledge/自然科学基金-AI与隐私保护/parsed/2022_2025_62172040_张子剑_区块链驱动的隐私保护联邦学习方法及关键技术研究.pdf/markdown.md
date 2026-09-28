@@ -1,0 +1,327 @@
+![](images/page_0_image_0.jpg)
+
+项目批准号 62172040申请代码 F0206归口管理部门收件日期
+
+![](images/page_0_image_2.jpg)
+
+20250162172040
+
+# 国家自然科学基金
+
+# 资助项目结题/成果报告
+
+资助类别:面上项目
+
+亚类说明:
+
+附注说明:
+
+项目名称:区块链驱动的隐私保护联邦学习方法及关键技术研究
+
+负责人:张子剑 BRID: 08566.00.76895
+
+电子邮件: zhangzijian@bit.edu.cn 电话: 18511925808
+
+依托单位: 北京理工大学
+
+联系人:刘文清
+
+电话: 010-68913590
+
+直接费用:59.0000（万元）
+
+执行年限: 2022.01-2025.12
+
+填表日期:2025年12月23日
+
+国家自然科学基金委员会制（2025年）
+
+## 项目摘要
+
+## 中文摘要:
+
+联邦学习凭借无需参与者共享数据的技术特色，在日益增长的数据共享需求与先进的隐私挖掘算法之间的矛盾渐趋突出的当下，迅速成为新一代人工智能前沿代表性技术之一。然而现有联邦学习的方法和技术仍难以应对危害巨大的内部威胁以及安全高效的应用需求，导致联邦学习的模型健壮性、隐私性、实用性均面临严峻挑战。本项目针对前述三个挑战，研究区块链驱动的隐私保护联邦学习方法及关键技术。首先，研究支持消息重载的新型区块链异步共识机制，保证模型健壮性；其次，突破链上随机变量秘密生成与过程验证技术，保证模型隐私性；接着，探索优化算法与同态算术电路的高效映射方法，保证模型实用性。最后，研发实验原型系统及分析测试工具集，验证前述方法的有效性。本研究旨在利用区块链技术帮助联邦学习抵抗投毒与推断攻击，保证模型收敛性与结果准确性，保护数据隐私，并提升模型收敛速度，为联邦学习大规模、合规的落地应用提供理论支持与技术保障。
+
+## Abstract:
+
+With the growing predicament between the ever-increasing demand of data sharing and the advanced privacy mining algorithms, federated learning rapidly becomes one of the next-generation representative techniques of the Artificial Intelligence (AI) frontier, because of its special technical advantage of no use to share local data. Unfortunately, the approaches and techniques of the current federated learning can hardly cope with tremendous damage from insider threats, as well as the security and efficiency requirements from applications so far, which leads severe challenges for the robustness, privacy and practicality of federated learning models. This project studies the Blockchain-driven Privacy Preserving Federated Learning Approaches and Core Techniques to handle the aforementioned challenges. First, the Byzantine-robust federated learning approach is learned by designing new asynchronous consensus mechanisms that support message overload; Second, the differentially private federated learning approach is obtained by breaking through the on-chain random variable secret and verifiable generation techniques; Third, the zero-knowledge verifiable federated learning model can be attained by exploring an efficient mapping method from optimization algorithms to homomorphic arithmetic circuits; Finally, the corresponding prototype and analysis toolkit are developed to verify the effectiveness of the proposed approaches. With the help of blockchain, this project aims at assisting the federated learning technique to resist against the poisoning and inference attacks on training data and learning models, ensure the convergence of learning models and the accuracy of learning results, protect the privacy of training data, and improve the convergence speed of learning models, so as to provide theoretical and technical support for large-scale and legitimate applications.
+
+关键词（用分号分开）:差分隐私；区块链；联邦学习；共识；可验证计算
+
+Keywords (separated by;): Differential Privacy; Blockchain; Federated Learning; Consensus; Verifiable Computing
+
+## 结题摘要
+
+## 中文摘要（对项目的背景、主要研究内容、重要结果、关键数据及其科学意义等做简单概述）:
+
+本项目围绕“区块链驱动的隐私保护联邦学习方法及关键技术研究”，面向联邦学习在不可信、多方协作环境中面临的健壮性、隐私性与实用性三重挑战，系统研究区块链共识机制、隐私保护与可验证计算技术的协同设计。项目提出并实现了区块链驱动的隐私保护数据交易与联邦学习原型系统及分析测试工具集，在真实或仿真链上环境完成端到端流程验证；围绕异步与拜占庭环境下的可靠协作，提出支持消息重载与高吞吐的共识协议与优化策略（如Phantasm、HCA、Dolphin等），提升了复杂网络条件下系统稳定性；面向隐私泄露与推断攻击风险，设计了结合智能合约与密码学机制的隐私保护协议，并形成可验证与隐私保护联邦学习方案（如NoV等），支持在不暴露本地数据与中间参数的前提下对训练与聚合过程进行验证；针对参数零知识验证开销高的问题，探索优化算法到算术电路/证明系统的高效映射与模块化实现路径，显著增强了可验证联邦学习的可部署性。根据年度进展统计，2022-2024年累计录用/发表论文18篇，授权发明专利1项、受理专利3项。项目成果为数据要素流通、跨机构联合建模及可信智能服务提供了可复用的方法与原型支撑，对推动隐私计算、可信人工智能与区块链融合发展具有重要科学意义与应用前景。
+
+## Abstract (Brief description of research background, main methods, contributions, and research data):
+
+This project focuses on blockchain-driven privacy-preserving federated learning methods and key technologies, aiming to address the fundamental challenges of robustness, privacy, and practical deployability in federated earning under untrusted, multi-party collaborative environments. By integrating blockchain consensus mechanisms, cryptographic privacy protection, and verifiable computation techniques, the project systematically investigates secure and trustworthy federated learning frameworks and their practical implementations.
+
+The project designs and implements a blockchain-driven privacy-preserving data trading and federated learning prototype system, together with a comprehensive analysis and testing toolkit. End-to-end validation is conducted in real-world or simulated blockchain environments, demonstrating the feasibility of secure collaborative learning across decentralized participants. To improve system reliability in asynchronous and Byzantine settings, several optimized consensus protocols and mechanisms—such as Phantasm, HCA, and Dolphin—are proposed, enabling message reloading, higher throughput, and improved stability under complex network conditions.
+
+To mitigate privacy leakage and inference attacks, the project develops cryptography-enhanced protocols combined with smart contracts, ensuring data confidentiality and integrity throughout the federated learning lifecycle. Furthermore, verifiable and privacy-preserving federated learning schemes, including NoV, are proposed to enable correctness verification of training and aggregation processes without revealing local data or intermediate model parameters. To address the high computational overhead of zero-knowledge parameter verification, the project explores efficient mappings from learning algorithms to arithmetic circuits and proof systems, as well as modular optimization strategies, significantly improving the practicality and deployability of verifiable federated learning.
+
+According to the project progress reports from 2022 to 2024, a total of 18 peer-reviewed papers have been published or accepted, along with one authorized invention patent and
+
+```
+ three patent applications. The project outcomes provide reusable methods, system
+prototypes, and technical foundations for data element circulation, cross-institutional
+ collaborative modeling, and trustworthy intelligent services. Overall, this work
+ contributes important theoretical insights and practical solutions to the integration of
+blockchain, privacy-preserving computation, and trusted artificial intelligence, with
+ significant scientific value and application potential.
+ 关键词（用分号分开）：区块链；联邦学习；隐私保护；共识机制；可验证计算
+Keywords (separated by;): Blockchain; Federated Learning; Privacy
+ Protection; Consensus Mechanism; Verifiable Computation
+```
+
+## 正文
+
+## (一)结题部分
+
+1. 研究计划执行情况概述。
+
+（1）按计划执行情况。
+
+本项目自立项以来，始终严格按照项目任务书和研究计划有序推进，研究工作分阶段展开，各阶段研究内容、技术路线和预期目标均得到落实，整体执行情况良好，未对原定研究计划作出调整。
+
+在项目实施前期阶段，项目组围绕“区块链驱动的隐私保护联邦学习方法及关键技术研究”这一总体目标，重点开展了基础系统构建和核心方法的初步探索工作。该阶段，项目组系统分析了联邦学习在不可信分布式环境下面临的数据隐私、系统健壮性和结果可验证性等关键技术挑战，明确了以区块链共识机制、密码学隐私保护技术和可验证计算方法为核心的研究思路。在此基础上，项目组完成了区块链驱动隐私保护联邦学习总体技术路线设计，并率先推进了若干关键模块的实现与验证工作，包括基于区块链的隐私数据查询与交易系统
+
+(SmartAuction)、基于可搜索代理重加密的海量数据交易方案、健壮性联邦学习相关算法以及基于零知识证明和可信执行环境的联邦学习方法等。上述研究成果在原型实现和实验层面验证了研究路线的可行性，为后续系统化研究奠定了坚实基础。
+
+在项目实施中期阶段，项目组在前期研究成果的基础上，进一步围绕核心研究任务，系统推进了区块链驱动隐私保护联邦学习关键技术的深化研究和扩展验证。该阶段，项目组重点完善了区块链驱动的联邦学习原型系统及分析测试工具集，并将研究对象拓展至更加复杂和具有代表性的应用场景。在系统与方法层面，项目组针对非侵入式负载监控等典型任务，设计并验证了多种联邦学习模型方案；在健壮性方面，提出了增强签名图神经网络鲁棒性的算法，通过结构正则化和双重架构设计，有效提升了模型在噪声和对抗环境下的稳定性；在区块链基础机制方面，项目组提出并系统研究了Phantasm和HCA两种共识协议，为支持消息重载的异步共识技术提供了理论与实验支撑；同时，在可验证计算方向，完成了零知识证明在机器学习中应用的系统性分析和形式化建模工作，为后续具体方案设计奠定了理论基础。上述研究工作均严格对应研究计划中的中期目标，推动项目由“可行性验证”向“方法体系化”阶段稳步推进。
+
+在项目实施后期阶段，项目组在既有理论分析和方法设计成果的基础上，进一步强化了系统化集成、性能优化和应用导向研究。该阶段，项目组围绕隐私保护数据交易、共识机制优化、健壮性联邦学习和可验证联邦学习等方向，提出并完善了多项具有代表性的具体方案，包括基于区块链的隐私保护密封投标拍卖方案、去中心化物联网数据交易方案、HiTAPS系列阈值签名方案以及面向高延迟环境的Dolphin拜占庭容错共识协议。在联邦学习方向，项目组提出了NoV隐私保护与抗拜占庭故障联邦学习方案，以及基于训练质量评估与链上酬金支付的联邦学习方法，通过零知识证明和秘密共享技术，实现了隐私保护、鲁棒性和公平激励的协同保障。上述方法均完成了原型实现和实验验证，相关实验结果表明其在复杂网络环境和恶意参与者存在情况下具有良好的有效性和实用性。该阶段研究成果标志着项目研究工作由单项技术突破向完整技术体系与应用验证阶段的顺利过渡。
+
+总体来看，本项目研究工作严格遵循项目任务书和既定研究计划，研究内容按照前期基础构建、中期方法深化、后期系统集成与应用验证的节奏有序推进，各阶段目标清晰、衔接合理，未出现研究方向偏离或执行延误情况，圆满完成了计划内的研究任务。
+
+## （2）研究目标完成情况。
+
+本项目针对联邦学习在不可信分布式环境中面临的模型健壮性、模型隐私性和模型实用性三大核心挑战，严格按照既定技术路线推进研究工作，在各项研究目标上均取得了实质性进展，整体完成情况良好。
+
+围绕研究目标“通过支持消息重载的异步共识协议增强联邦学习模型健壮性”，项目组系统研究了区块链共识机制与联邦学习流程的协同设计问题。在区块链层面，项目提出并深入研究了多种支持消息重载的异步拜占庭容错共识协议，包括 Phantasm、HCA 和 Dolphin等。这些协议通过改进区块引用、重投票机制和并行出块方式，使区块链在异步网络和拜占庭环境下能够稳定运行，并支持对已达成共识的局部模型参数进行安全重载。在此基础上，项目进一步研究了将共识机制与联邦学习任务流程相结合的方法，使融合服务器能够借助智能合约在链上对参与者提交的局部模型参数进行分析，并结合数据特征空间与样本空间相似度检测异常参数更新。相关方法在面对参与者设备故障、异常行为以及模型投毒攻击时，能够有效降低异常参与者对全局模型的影响，显著提升联邦学习系统的健壮性。
+
+围绕研究目标“基于链上随机数秘密生成与过程验证的差分隐私联邦学习方法”，项目组系统研究了区块链去中心化特性与差分隐私机制的融合设计。通过引入链上随机变量的秘密生成与验证机制，项目实现了对差分隐私噪声生成过程的可信约束，避免融合服务器或单个参与者操控随机性，从机制上防止推断攻击。在此基础上，项目结合智能合约、安全多方计算和概率近似正确理论，对全局模型参数在链上的扰动过程进行建模与验证，在保证模型收敛性和误差有界的前提下，有效提升了联邦学习模型的隐私保护能力。相关差分隐私联邦学习方案完成了算法设计和实验验证，验证了其在隐私性与模型性能之间的合理平衡。
+
+围绕研究目标“基于优化算法与同态算术电路高效映射的参数零知识验证方法”，项目组针对联邦学习中训练过程不可见、局部模型参数求解过程难以验证以及零知识证明计算开销较大的问题，系统开展了理论与方法研究。项目深入分析了联邦学习中常见优化算法的计算结构，探索了优化算法向同态算术电路、Rank-1约束系统及零知识证明系统的高效映射技术，提出了参数零知识验证的联邦学习技术路线。在此基础上，项目构建了可验证联邦学习方案，使参与者能够在不暴露本地训练数据和中间模型参数的前提下，借助区块链智能合约高效验证局部模型参数的求解过程。相关方法在理论分析和实验评估中均表现出较好的验证效率和可部署性，显著提升了可验证联邦学习方案的实用性。
+
+围绕研究目标“区块链驱动的隐私保护联邦学习原型系统及分析测试工具集”，项目组在前述理论模型和关键方法的基础上，完成了系统化集成与实际检验工作。项目搭建了区块链驱动的隐私保护联邦学习原型系统，集成了支持消息重载的共识机制模块、差分隐私联邦学习模块以及参数零知识验证模块，并配套开发了分析测试工具集。在系统层面，项目面向分类、聚类和回归等代表性机器学习任务开展验证:在分类和回归任务中，以非侵入式负载监控为代表，设计并实现了InFocus、MSDC等模型方案；在聚类和异常检测任务中，结合鲁棒图学习方法对参与者行为进行建模与分析。通过在真实或半真实数据集上的实验评估，项目验证了所提出区块链驱动隐私保护联邦学习方法在健壮性、隐私性和实用性三方面的综合有效性。
+
+![](images/page_6_image_5.jpg)
+
+V综上所述，本项目围绕立项阶段提出的四项研究目标，均形成了明确的技术方案和可验证的研究成果，在模型健壮性、模型隐私性和模型实用性等关键问题上实现了预期突破，整体研究目标已顺利完成。
+
+## 2. 研究工作主要进展、结果和影响。
+
+（1）主要研究内容。
+
+本项目围绕区块链驱动的隐私保护联邦学习方法及关键技术，针对联邦学习在不可信分布式环境中面临的健壮性不足、隐私泄露风险高以及参数可验证性与实用性难以兼顾等核心问题，系统开展了多层次、多方向的研究工作，主要研究内容包括以下几个方面。
+
+第一，区块链驱动的隐私保护联邦学习总体架构与原型系统研究。项目以去中心化区块链系统为基础，研究区块链与联邦学习流程的深度融合机制，构建支持多参与方协作学习、参数安全聚合与结果可验证的系统架构。围绕数据交易、模型训练、参数聚合和结果发布等关键环节，设计并实现了多种区块链驱动的隐私保护系统和分析测试工具集，为联邦学习在不可信环境中的落地应用提供系统级支撑。
+
+第二，面向联邦学习的健壮性提升方法研究。针对联邦学习中节点故障、拜占庭行为以及模型投毒攻击等问题，项目从区块链共识机制和学习算法两个层面展开研究。一方面，研究支持消息重载和高吞吐的共识协议，提升区块链在异步网络环境中的稳定性与性能，为联邦学习提供可靠的底层共识保障；另一方面，探索鲁棒学习方法和异常参与者检测机制，提高联邦学习系统在恶意环境下的收敛性和学习结果的准确性。
+
+第三，隐私保护与抗推断攻击的联邦学习方法研究。针对联邦学习中模型参数可能泄露参与者隐私、融合服务器可能发动推断攻击等问题，项目深入研究了密码学技术在联邦学习中的应用，重点探索零知识证明、秘密共享、差分隐私等方法与区块链技术的结合方式。通过设计隐私保护联邦学习协议，实现了在不暴露本地训练数据和中间模型参数的前提下，对训练和聚合过程进行验证，有效降低隐私泄露风险。
+
+第四，参数零知识验证的联邦学习关键技术研究。针对联邦学习中优化算法复杂、参数验证开销高的问题，项目系统研究了优化算法与同态算术电路、零知识证明之间的高效映射机制，提出了参数零知识验证的联邦学习技术路线。通过降低零知识证明生成与验证的计算复杂度，提升了可验证联邦学习方法在真实应用场景中的实用性。
+
+通过上述研究内容的协同推进，项目形成了一套较为完整的区块链驱动隐私保护联邦学习理论体系与技术方案。
+
+（2）取得的主要研究进展、重要结果、关键数据等及其科学意义或应用前景。
+
+围绕项目提出的“区块链驱动的隐私保护联邦学习方法及关键技术研究”总体目标，项目组针对联邦学习在不可信分布式环境下面临的健壮性、隐私性与实用性三大核心挑战，系统开展了理论方法、关键技术、协议设计以及原型系统实现等多层次研究，在多个方向上取得了实质性进展和重要成果。
+
+在系统与基础设施层面，项目围绕联邦学习所依赖的数据获取、数据交易与协作机制，构建了多种区块链驱动的隐私保护原型系统。项目设计并实现了SmartAuction隐私数据查询与交易系统，通过公钥加密、数字签名和智能合约机制，实现数据提交、数据请求、隐私拍卖与查询等操作流程。该系统在真实区块链环境中完成部署与测试，验证了在无可信第三方条件下实现隐私数据交易和公平竞争的可行性。在此基础上，项目进一步提出了基于可搜索代理重加密的海量数据交易方案，有效解决了云存储场景中加密数据检索结果可能被篡改以及交易公平性难以保障的问题。该方向成果为联邦学习中数据要素的安全流通与可信使用提供了重要技术支撑，也为后续联邦学习系统构建奠定了可靠的数据基础。上述系统类成果在功能完整性、可部署性和安全性方面均得到了实验验证，形成了可复用的系统设计经验，具有良好的工程参考价值。
+
+针对联邦学习常运行于网络条件复杂、节点行为不可预测的环境，项目在区块链共识机制与系统健壮性方面取得了系列理论与方法进展。项目围绕支持消息重载的异步共识机制展开深入研究，提出并系统分析了多种新型共识协议。其中，Phantasm共识协议针对基于有向无环图的区块链中区块排序结果不稳定的问题，通过引入自适应区块引用策略，提高了排序稳定性和系统抗分裂攻击能力；HCA共识机制面向联盟链应用场景，优化了领导者生成区块与节点协作方式，在保证安全性的同时显著提升了系统吞吐量和运行效率。此外，项目还提出了基于存储激励机制的变式共识算法，通过一致性哈希与本地可检索性证明技术，在计算资源利用与去中心化存储之间取得平衡，构建了可支持消息重载的可靠区块链存储系统。相关成果在理论上分析了安全性与活性，在实验层面通过仿真和原型验证了性能优势，为区块链在联邦学习场景中的应用提供了高可靠的底层支撑，对区块链共识机制本身的发展亦具有一定推动作用。
+
+在学习算法层面，项目针对模型投毒、异常更新和恶意参与者问题，提出了多种健壮性联邦学习方法。项目设计了基于剩余熵的图生成与鲁棒节点分类方法，将图神经网络与结构化信息熵度量相结合，构建了可用于异常节点检测和鲁棒分类的学习框架。该方法在多个数据集和多种分类器设置下进行了实验验证，结果表明其在多种对抗攻击场景中均能有效提升模型鲁棒性和检测准确率。此外，项目还提出了增强签名图神经网络健壮性的学习方案，通过扩展Weisfeiler-
+
+Lehman图同构测试并引入结构正则化器，在学习节点表示的同时对图结构进行去噪，有效缓解了签名图神经网络对噪声边和恶意扰动的敏感性。相关实验结果表明，该方法在真实世界数据集上显著改善了模型在复杂环境中的稳定性。上述成果从算法层面为联邦学习在恶意环境中的安全运行提供了重要保障，丰富了健壮性联邦学习与图学习交叉领域的研究内容。
+
+针对联邦学习中模型参数可能泄露参与者隐私的问题，项目系统研究了隐私保护机制与区块链的协同设计。项目提出了基于区块链随机变量秘密生成与过程验证的差分隐私联邦学习方法，利用区块链的去中心化特性，使隐私保护所需的随机扰动既不可预测也不可被单方操控，从机制上防止融合服务器或恶意参与者发动推断攻击。同时，项目结合安全多方计算与智能合约技术，使参与者能够验证隐私保护过程的正确性，在保证模型收敛性和误差有界的前提下，实现隐私性与可用性的平衡。该方向成果为隐私敏感场景下的联邦学习应用提供了更高置信度的安全保障。
+
+在可验证性方面，项目针对联邦学习中“训练过程黑盒化”和“参数验证成本高”的难题，提出了基于零知识证明的可验证与隐私保护联邦学习方案。该方案能够在不暴露训练数据和中间参数的前提下，证明参与者确实按照约定算法完成了训练，并支持在隐私条件下完成全局模型聚合。为提升实用性，项目深入研究了优化算法向同态算术电路和 Rank-1 约束系统的高效映射技术，进一步构建了基于二次算术程序的联邦学习参数零知识证明方法。在此基础上，项目实现了优化过程可验证的零知识智能合约，支持分类、聚类和回归等多种联邦学习任务，在保证可验证性和隐私性的同时显著降低了证明生成与验证开销。相关方案已在本地环境完成实现与测试，实验结果表明该方法在运行效率和可部署性方面具有明显改进，为零知识证明技术在机器学习领域的应用提供了可行路径。
+
+针对联邦学习中参与者贡献难以量化、数据质量参差不齐的问题，项目提出基于训练质量评估与链上酬金支付的联邦学习方法。该方法通过零知识证明生成训练质量证明，融合服务器结合训练损失进行统计建模，并由区块链智能合约自动完成质量评估和报酬支付。该机制在保护隐私的前提下引入经济激励，有效鼓励参与者提供高质量训练数据和计算资源。该成果为构建公平、可持续的联邦学习生态提供了新的技术思路，具有良好的实际应用前景。
+
+在系统集成方面，项目构建了区块链驱动的隐私保护联邦学习原型系统及配套分析测试工具集，集成了拜占庭健壮联邦学习模块、差分隐私联邦学习模块以及参数零知识验证模块，对系统健壮性、隐私泄露风险和性能进行了系统评估。实验结果表明，所提出方法能够在复杂网络和不可信环境下实现隐私性、健壮性与实用性的协同保障。
+
+从科学意义上看，本项目系统揭示了区块链共识机制、密码学隐私保护技术与联邦学习协作过程之间的内在联系，丰富了可信分布式机器学习的理论体系；从应用前景上看，相关成果可为医疗数据联合分析、金融风控、能源系统优化和智慧城市等场景提供可信协作学习的技术支撑，对推动隐私计算与可信人工智能的规模化应用具有重要意义。 \_
+
+## 3. 研究人员的合作与分工。
+
+在项目实施过程中，项目组围绕“区块链驱动的隐私保护联邦学习方法及关键技术研究”的总体目标，依据研究内容设置和已发表论文成果的研究方向，对研究人员进行了明确分工与协作安排。各成员围绕区块链共识机制、隐私保护联邦学习、参数零知识验证以及系统实现与实验验证等方向开展协同研究，形成了结构清晰、分工合理、成果导向明确的合作机制。
+
+在基于共识消息重载的拜占庭健壮联邦学习方法研究方面，研究工作主要围绕支持消息重载的异步拜占庭共识协议、共识机制与联邦学习流程的融合以及系统健壮性分析展开。该方向的主要参与人员包括:魏志远、章显昊、陆鑫、于洋、尹昊、马腾、李春磊、张子昂。在基于链上随机变量的差分隐私联邦学习方法研究方面，研究重点聚焦于链上随机数秘密生成、差分隐私扰动机制设计以及隐私攻击防御方法。该方向的主要参与人员包括:杨小萱、陈曦、赖文骞、何家玲、刘文聪、李昀庭、王姝琪、林绍琛、高德峰。在基于参数零知识验证的实用联邦学习方法研究方面，研究工作围绕优化算法与算术电路的高效映射、参数零知识验证机制设计以及可验证联邦学习方案的实用性提升展开。该方向的主要参与人员包括:刘旭洋、冯开宇、张周宇、邢智博、张峄天、唐誉铭。在区块链驱动的隐私保护联邦学习原型系统及分析测试工具集方面，研究人员在前述三项研究内容的基础上，协同完成了系统架构设计、模块集成和实验验证工作。该方向的主要参与人员包括:魏志远、陆鑫、陈曦、刘旭洋、冯开宇、邢智博、张子昂、李昀庭、邱磊、张国强、张皓天、李承益。
+
+在项目执行期间，研究团队人员随研究生培养进程呈现阶段性加入与退出变化。2022年，尹昊、何家玲、张周宇、刘文聪在完成阶段性研究任务后毕业退出项目。2023年，随着新一届研究生入组，杨小萱、陈曦、李昀庭、张子昂加入项目研究，同时张峄天、唐誉铭、王姝琪、林绍琛、高德峰在该年度完成学位培养并毕业退出项目。2024年，陆鑫、冯开宇、邱磊在完成学位培养后毕业退出项目。2025年，马腾、张国强、张皓天、李承益完成培养计划后毕业退出项目。除上述人员外，其余成员在项目执行周期内持续参与研究工作，未发生中途退出情况。
+
+## 4. 国内外学术合作交流等情况。
+
+在项目实施过程中，项目组积极开展国内外学术交流与合作研究，通过参加国际高水平学术会议、开展多机构联合研究以及推进研究生联合培养等方式，不断提升研究成果的学术影响力和国际可见度。围绕区块链共识机制、隐私保护联邦学习、健壮性机器学习和可验证计算等研究方向，项目组以论文发表和学术报告等形式参加了多项国际重要学术会议，相关成果发表于AAAI、WWW等国际知名会议，与国内外同行就联邦学习在不可信分布式环境下面临的关键问题进行了广泛交流。
+
+在学术合作方面，项目组与多所国内外高校和科研机构保持了长期稳定的合作关系，包括华北电力大学、北京微芯区块链与边缘计算研究院、重庆大学、电子科技大学、合肥工业大学、奥克兰大学（University of Auckland）、得克萨斯克里斯汀大学（Texas Christian University）以及帕多瓦大学（University of Padua）等，围绕区块链共识协议、隐私保护联邦学习方法、鲁棒机器学习与可验证计算等方向开展联合研究，相关成果以联合署名形式发表于IEEE Transactions on Dependable and Secure Computing、IEEE Transactions on Services Computing、IEEE Transactions on Smart Grid、IEEE Internet of Things Journal 以及ACM Computing Surveys等国际主流期刊，体现了多机构协同研究在理论分析、方法设计和实验验证等方面的优势互补。
+
+此外，项目组还与奇安信科技集团股份有限公司开展了产学研合作交流，围绕区块链安全、隐私计算与联邦学习的工程应用场景进行技术探讨与研究协同，促进研究成果与实际需求的对接。在国际合作方面，项目依托与奥克兰大学的合作基础，推进博士研究生联合培养与科研交流，联合培养研究生深度参与了本项目的核心研究工作，并以项目成果为基础完成学术论文发表。总体来看，本项目在国内外学术交流与国际合作研究方面进展顺利，为项目研究工作的持续深化和高质量成果产出提供了有力支撑。
+
+## 5. 存在的问题、建议及其他需要说明的情况。
+
+## （二）成果部分
+
+## 1. 项目取得成果的总体情况。
+
+本项目围绕“区块链驱动的隐私保护联邦学习方法及关键技术研究”这一核心研究目标，针对联邦学习在不可信分布式环境中普遍面临的信任缺失、系统健壮性不足、隐私泄露风险高以及训练与聚合过程不可验证等关键问题，系统开展了理论方法研究、关键协议与机制设计、原型系统实现以及实验验证工作，形成了一套覆盖数据交易、共识机制、学习算法、隐私保护与可验证计算的完整研究成果体系。
+
+在区块链驱动的隐私保护数据交易与联邦学习基础系统方面，项目设计并实现了多项具有代表性的原型系统与方案。项目提出并实现了SmartAuction隐私数据查询与交易系统，通过公钥加密、数字签名与智能合约技术，实现数据提交、数据请求、数据拍卖与数据查询等操作，在不依赖可信第三方的情况下保障了数据交易的公平性与参与方隐私。该系统已在真实区块链平台完成实现与测试，验证了其在隐私保护与系统可用性之间的良好平衡。在此基础上，项目进一步提出了基于可搜索代理重加密的海量数据交易方案，有效防止云存储在返回检索结果时的篡改行为，并通过智能合约约束交易流程中的恶意行为，为联邦学习中数据要素的可信流通和隐私查询提供了技术支撑。
+
+在区块链共识机制与系统健壮性方面，项目围绕联邦学习对高吞吐、低延迟和高鲁棒性的底层需求，系统研究了支持消息重载的异步共识机制，并提出了多种改进型共识协议。项目提出的Phantasm共识协议针对基于有向无环图的区块链中区块排序结果不稳定的问题，通过设计合理的区块引用策略，提高了排序稳定性并增强了系统抵御分裂攻击的能力。针对联盟链场景，项目设计了HCA共识机制，优化了领导者生成区块与节点协作流程，提高了系统整体性能与稳定性。此外，项目还提出了基于存储激励机制的变式共识算法，通过一致性哈希与本地可检索性证明技术，在计算能力利用与去中心化存储之间实现平衡，构建了可支持消息重载的可靠区块链存储系统。这些研究成果为区块链在复杂网络和不可信环境下支撑联邦学习任务提供了坚实的底层保障。
+
+在健壮性联邦学习方法与异常参与者检测方面，项目从学习算法层面对联邦学习在恶意环境下的稳定性问题进行了深入研究。针对模型投毒和异常节点干扰问题，项目提出了基于剩余熵的图生成与鲁棒节点分类方法，结合图神经网络与结构化信息熵度量，显著提升了在多种对抗攻击场景下异常节点检测的准确性和鲁棒性。同时，项目还提出了增强签名图神经网络健壮性的学习方案，通过扩展Weisfeiler-Lehman图同构测试并引入结构正则化器，抑制有符号图中的噪声影响，从而提升模型在真实世界数据集上的鲁棒性。这些方法为联邦学习在存在恶意参与者和复杂攻击条件下的稳定收敛提供了算法层面的保障。
+
+在隐私保护与可验证联邦学习协议方面，项目系统研究了密码学技术与区块链机制的协同应用，提出了多种兼顾隐私性与可验证性的联邦学习方案。项目设计了基于零知识证明与安全多方计算的可验证联邦学习方案，在不暴露参与者本地训练数据和中间模型参数的前提下，实现了对参与者训练过程正确性的验证，并支持在隐私保护条件下完成全局模型聚合。与此同时，项目还提出了基于区块链与可信执行环境的联邦学习方案，利用区块链和智能合约对联邦学习任务进行管理和审计，使任务发布者能够验证不受信任参与者的训练行为，提高了系统整体的可信度。
+
+在参数零知识验证与实用性提升方面，针对联邦学习中优化算法复杂、零知识证明计算和通信开销较大的问题，项目深入研究了优化算法向同态算术电路与Rank-1 约束系统的高效映射技术，并进一步构建了基于二次算术程序的联邦学习参数零知识验证方法。在此基础上，项目实现了优化过程可验证的零知识智能合约，支持分类、聚类和回归等多种联邦学习任务，在保证隐私性和可验证性的同时显著降低了验证成本，增强了可验证联邦学习方案的工程实用性。
+
+在激励机制与训练质量感知联邦学习方面，项目提出了基于训练质量评估与链上酬金支付的联邦学习方法。该方法通过零知识证明生成训练质量证明，并利用区块链智能合约实现训练质量评估与自动支付，引入经济激励机制以鼓励参与方提供高质量训练数据，从而缓解了联邦学习中客户端数据质量参差不齐对模型性能的不利影响。
+
+在系统集成与实验验证方面，项目最终构建了区块链驱动的隐私保护联邦学习原型系统及配套分析测试工具集，集成了拜占庭健壮联邦学习模块、差分隐私联邦学习模块以及参数零知识验证模块，对系统健壮性、隐私泄露风险和运行性能进行了系统评估。实验结果表明，该系统在复杂网络和不可信环境下能够实现隐私性、健壮性与实用性的协同保障。
+
+总体来看，本项目围绕区块链与隐私保护联邦学习的关键科学与技术问题，形成了从区块链共识机制、健壮性学习算法、隐私保护与可验证计算协议到系统原型验证的完整成果体系，相关成果覆盖面广、技术路线清晰，为联邦学习在隐私敏感和多方协作场景中的实际应用提供了系统性的理论基础与技术支撑。在成果数量方面，项目形成了较为系统的学术论文成果，在国际期刊和会议上录用和发表SCI/EI检索论文累计14篇，其中CCF A类论文6篇，取得发明专利授权1项、受理专利2项，申报软件著作权1项。
+
+## 2. 项目成果转化及应用情况。
+
+本项目围绕区块链驱动的隐私保护联邦学习关键技术，在完成理论研究和原型系统验证的基础上，积极推进研究成果向微芯区块链与边缘计算相关应用场景转移。依托北京微芯区块链与边缘计算研究院等平台，项目形成了可复用的共识机制、隐私保护与可验证计算技术模块，并在原型系统中完成集成与测试，为后续工程化应用奠定基础。相关成果可应用于边缘计算环境下的多方协同建模和数据安全共享，适用于金融、能源、工业物联网等对数据隐私和系统可信性要求较高的场景，有助于降低数据协作成本、提升系统稳定性和运行效率。在社会效益方面，项目成果为构建可信数据流通与隐私保护机制提供了技术支撑，对推动区块链与人工智能融合应用、提升区域创新能力和数字治理水平具有积极作用。
+
+## 3. 人才培养情况。
+
+项目执行期间，项目负责人张子剑由副教授晋升并转任为北京理工大学网络空间安全学院长聘教授。项目执行期间培养并毕业博士研究生尹昊、何家玲(2022年毕业）以及陆鑫（2024年毕业）。上述博士研究生在学期间围绕区块链共识机制、隐私保护联邦学习方法和系统实现等方向开展研究工作，毕业后分别进入国家网络安全管理机构、高校和国家相关业务部门工作或继续从事科研。项目执行期间培养并毕业硕士研究生刘文聪、张周宇（2022年毕业），张峄天、唐誉铭、王姝琪、林绍琛、高德峰（2023年毕业），冯开宇、邱磊（2024年毕业），以及马腾、张国强、张皓天、李承益（2025年毕业）。上述硕士研究生在项目研究过程中参与了联邦学习算法实现、系统实验和应用验证等工作，毕业后进入互联网企业、金融机构、高校或科研院所就业或深造。此外，项目在青年科技骨于培养方面也取得了积极进展。项目研究过程中培养并支持青年科研人员赵凯祺，其目前任职于哈尔滨工业大学（深圳），长期从事隐私数据挖掘与知识图建模研究，在相关领域形成了稳定的研究方向和持续的学术影响力，体现了项目在青年科技骨干培养和国际学术人才成长方面的积极作用。
+
+## 4. 其他需要说明的成果。
+
+## 5. 项目成果科普性介绍或展示网站。
+
+在数字经济快速发展的今天，人工智能正深刻改变着医疗、金融、能源、交通等多个领域。然而，人工智能模型的训练高度依赖数据，而数据往往分散在不同机构和设备中，涉及大量个人隐私和商业敏感信息，难以直接集中共享。这一现实矛盾，使得“数据如何在不被泄露的前提下发挥价值”成为制约人工智能发展的关键问题。联邦学习正是在这一背景下提出的一种新型人工智能技术。它允许多个参与方在不共享原始数据的情况下，通过各自本地训练模型、仅交换模型参数的方式，共同构建一个高质量的全局模型。这样，数据可以“可用不可见”，在一定程度上缓解了隐私与共享之间的冲突。然而，联邦学习并非天然安全可靠:当参与方之间互不信任、网络环境复杂、甚至存在恶意行为时，联邦学习仍面临模型被攻击、隐私被推断、训练过程难以验证等一系列挑战。
+
+本项目围绕这些现实难题，探索了一条“区块链驱动的隐私保护联邦学习”技术路径，目标是让联邦学习在真实、不可信的环境中，变得更可靠、更安全、更实用。
+
+在真实环境中，参与联邦学习的设备可能会出现故障，也可能被攻击者控制，故意上传错误甚至有害的模型参数，导致最终模型失效。本项目从区块链技术入手，引入支持消息重载的共识机制，使得已经记录在区块链上的模型参数在满足严格条件时可以被安全修正，从而避免“一次错误永久影响模型”的问题。在此基础上，项目结合图神经网络和信息熵分析方法，对参与者在多个学习任务中的行为进行综合分析，识别可能存在异常或恶意行为的参与者群体，并在模型融合阶段降低其影响。这种做法就像在多人协作中引入了一套“行为审计与权重调节机制”，显著提升了联邦学习在复杂环境下的稳定性和健壮性。虽然联邦学习不直接共享原始数据，但研究表明，攻击者仍可能通过分析模型参数或训练过程，推断出参与者的隐私信息。为此，本项目提出了一种基于区块链的差分隐私联邦学习方法。项目利用区块链的公开透明和去中心化特性，设计了链上随机变量的秘密生成与验证机制，使得用于保护隐私的“随机噪声”既无法被单个参与者控制，也无法被提前预测。这样，即使攻击者掌握了模型参数，也难以还原出原始数据。同时，通过安全多方计算和智能合约，项目实现了对随机噪声生成过程的验证，确保隐私保护措施本身是可信的、不可被篡改的。这一成果，相当于为联邦学习引入了一套“公开但不可预测”的隐私保护机制，在保障模型准确性的同时，有效降低了隐私泄露风险。在传统联邦学习中，参与者很难确认其他人是否真的按规则训练了模型，融合服务器是否正确计算了全局模型。本项目引入了零知识证明技术，使得参与者可以在不泄露任何数据和中间参数的前提下，证明“我确实按要求完成了训练”。为解决机器学习算法复杂、验证效率低的问题，项目提出了优化算法与算术电路的高效映射方法，并构建了基于二次算术程序的零知识证明框架，使多种常见学习任务（如分类、回归、聚类）都能实现可验证训练这相当于为联邦学习提供了一种“看不见过程，但能确信结果正确”的技术保障在理论方法之外，本项目还搭建了区块链驱动的隐私保护联邦学习原型系统及分析测试工具集，将上述技术集成到一个完整流程中，对模型健壮性、隐私保护能力和系统性能进行系统评估。实验结果表明，该系统在面对设备故障、恶意攻击和隐私威胁时，仍能保持较好的学习效果和运行效率。
+
+总体来看，本项目通过将区块链、联邦学习和密码学技术深度融合，构建了一套面向真实复杂环境的隐私保护协作学习方案。相关成果为医疗数据联合分析、金融风控建模、工业互联网、智慧城市等场景提供了可信的数据协作新模式，也为我国在隐私计算和可信人工智能领域的持续发展提供了重要技术储备。
+
+## 研究成果目录
+
+项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。请按照期刊论文、会议论文、学术专著、专利、会议报告、标准、软件著作权、科研奖励、人才培养、成果转化的顺序列出，其它重要研究成果如标本库、科研仪器设备、共享数据库、获得领导人批示的重要报告或建议等，应重点说明研究成果的主要内容、学术贡献及应用前景等。
+
+项目负责人不得将非本人或非参与者所取得的研究成果、与受资助项目无关的研究成果、未标注国家自然科学基金资助和项目批准号的论文以及取得时间早于项目资助期开始时间的研究成果列入报告中。发表的研究成果（包括专利），项目负责人和参与者均应如实注明得到国家自然科学基金项目资助和项目批准号，科学基金作为主要资助渠道或者发挥主要资助作用的，应当将自然科学基金作为第一顺序进行标注。
+
+## 期刊论文
+
+(1) Wei, Zhiyuan; Sun, Jing; Zhang, Zijian; Zhang, Xianhao; Yang, Xiaoxuan; Zhu, Liehuang; Survey on Quality Assurance of Smart Contracts, ACM Computing Surveys, 2024, 57(2). 第四标注
+
+(2) Lu, Xin; Zhang, Zijian; Zhou, Tyler; Niu, Tao; Li, Meng; Guan, Zhitao; Ma, Teng; Zhu, Liehuang; Decentralized Fair IoT Data Trading via Searchable Proxy Re-Encryption, IEEE Internet of Things Journal, 2024, 11(11):19485-19499. 其他. 第一标注
+
+(3) Zijian Zhang; Xin Lu; Meng Li; Jincheng An; Yang Yu; Hao Yin; Liehuang Zhu; Yong Liu; Bakh Khoussainov; A Blockchain-based Privacy-Preserving Scheme for Sealed-bid Auction, IEEE Transactions on Dependable and Secure Computing， 2024. 第一标注
+
+(4) Liu, Xuyang; Feng, Kaiyu; Zhang, Zijian; Li, Meng; Chen, Xi; Lai, Wenqian; Zhu, Liehuang; Dolphin: Efficient Non-Blocking Consensus via Concurrent Block Generation, IEEE Transactions on Mobile Computing, 2024, 23(12). 第二标注
+
+(5) Zijian Zhang; Xuyang Liu; Meng Li; Hao Yin; Liehuang Zhu; Bakh Khoussainov; Keke Gai; HCA: Hashchain-based Consensus Acceleration via Re-voting, IEEE Transactions on Dependable and Secure Computing,, 2023. 第一标注 D
+
+(6) Zijian Zhang; Xuyang Liu; Kaiyu Feng; Mingchao Wan; Meng Li; Jin Dong; Liehuang Zhu; Phantasm: Adaptive Scalable Mining Toward Stable BlockDAG, IEEE Transactions on Services Computing, 2023. 第一标注
+
+(7) Jialing He; Zijian Zhang; Liran Ma; Zhouyu Zhang; Meng Li; Bakh Khoussainov; Jiamou Liu; Liehuang Zhu; InFocus: Amplifying Critical Feature Influence on Non-Intrusive Load Monitoring through Self-Attention Mechanisms, IEEE Transactions on Smart Grid, 2023, 14(5). 第一标注
+
+(8) Lu, Xin; Zhang, Zijian; Ma, Teng; Li, Meng; Zhou, Tyler; Shen, Wei; Zhu, Liehuang; Trusted Execution Environment With Rollback Protection for Smart Contract-Based IoT Data Trading, IEEE INTERNET OF THINGS JOURNAL, 2024，11(20):32901-32909. 第二标注
+
+(9) Zhang, Mengxiao; Liu, Jiamou; Feng, Kaiyu; Beltran, Fernando; Zhang, Zijian; SmartAuction: A blockchain-based secure implementation of private data queries, FUTURE GENERATION COMPUTER SYSTEMS-THE INTERNATIONAL JOURNAL OF ESCIENCE, 2023， 138: 198-211. 第一标注
+
+## 会议论文
+
+(1) Li, Meng; Ding, Hanni; Wang, Qing; Zhang, Zijian; Conti, Mauro; Threshold Signatures with&amp;nbsp;Private Accountability via&amp;nbsp;Secretly Designated Witnesses, 29th Australasian Conference on Information Security and Privacy, ACISP 2024, Sydney， NSW， Australia， 2024-07-15至2024-07-17. 其他. 第三标注
+
+(2) Jialing He; Jiamou Liu; Zijian Zhang; Yang Chen; Yiwei Liu; Bakh Khoussainov; Liehuang Zhu; MSDC: Exploiting Multi-State Power Consumption in Non-intrusive Load Monitoring Based on a Dual-CNN Model, Proceedings of the Thirty-Seventh AAAI Conference on Artificial Intelligence, Washington, DC, USA, 2023-02-07至. 第一标注(3) Zeyu Zhang; Jiamou Liu; Xianda Zheng; Yifei Wang; Pengqian Han; Yupan Wang; Kaiqi Zhao; Zijian Zhang; RSGNN: A Model-agnostic Approach for Enhancing the Robustness of Signed Graph Neural Networks, WWW '23: The ACM Web Conference 2023, New York, United States, 2023-04-30至. 第二标注
+
+(4) Yu, Yang; Jin, Rui; Yin, Hao; Gai, Keke; Zhang, Zijian; A Searchable Re-encryption-based Scheme for Massive Data Transactions, 2022 IEEE 8th International Conference on Edge Computing and Scalable Cloud (EdgeCom)，Xi’an，China，2022-06-25至2022-06-27. 第一标注
+
+(5) Liu, Wencong; Liu, Jiamou; Zhang, Zijian; Liu, Yiwei; Zhu, Liehuang; Residual Entropy-based Graph Generative Algorithms, Proceedings of the 21st International Conference on Autonomous Agents and Multiagent Systems, Virtual Event New Zealand, 2022-05-09至2022-05-13. 第一标注
+
+## 专利
+
+(1）邢智博；张子剑；李春磊；陆鑫；魏志远；李臻；刘旭洋；祝烈煌；一种基于零知识证明的隐私保护与可验证的联邦学习方法，2024-07-23至2042-04-11，中国，CN202210374786.8.
+
+(2) 张子剑；李春磊；张子昂；李昀庭；邢智博；王亚杰；祝烈煌；高振鹏；张超；一种基于模型健壮性过滤器的隐私联邦学习系统，2024-12-15，中国，202411849112.4.
+
+(3)张子剑；李昀庭；张子昂；邢智博；王亚杰；祝烈煌；高振鹏；张超；一种基于训练质量评估与链上酬金支付的联邦学习方法，2024-12-15，中国，202411848973.0.
+
+## 软件著作权
+
+(1） 张子剑；李昀庭；张子昂；邢智博；王亚杰；祝烈煌；可验证联邦学习平台V1.0，2025SR1741245，原始取得，全部权利，2025-08-05.
+
+## 人才培养
+
+## 1. 出站博士后/毕业博士/毕业硕士/在站博士后/在读博士/在读硕士
+
+(1) 马腾；毕业硕士，面向长安链的智能合约机密计算系统设计与实现，乔珂欣，2022-08-31至2025-05-28.
+
+(2) 冯开宇；毕业硕士，基于流水线的高性能区块链共识算法设计与实现，张子剑，2021-08-31至2024-05-29.
+
+(3) 邱磊；毕业硕士，基于多特征融合的区块链隐蔽交易识别关键技术研究，张子剑，2021-08-31至2024-05-29.
+
+(4) 李承益；毕业硕士，低轨卫星通信网络认证与密钥协商方案设计与仿真实现，张子剑，2022-08-31至2025-05-28.
+
+(5) 张皓天；毕业硕士，基于隐私计算的政企贷款信用评估系统设计与实现，张子剑，2022-08-31至2025-05-28.
+
+(6) 张国强；毕业硕士，面向加密货币的细粒度区块链流量识别研究，张子剑，2022-08-31至2025-05-28.
+
+(7) 王姝琪；毕业硕士，基于区块链的多维隐蔽交易识别关键技术研究，张子剑，2021-12-31至2023-05-28.
+
+(8) 尹昊；毕业博士，需求驱动的区块链共识机制研究，祝烈煌， 2021-12-31至2022-06-08.
+
+(9) 何家玲；毕业博士，基于电量数据分析的非侵入式用户行为挖掘方法研究，祝烈煌，2021-12-31至2022-06-08.
+
+(10) 刘文聪；毕业硕士，基于熵的对抗性防御图生成算法研究，张子剑，2021-12-31至2022-06-04.
+
+(11) 张周宇；毕业硕士，基于对抗噪声的智能电网数据隐私保护研究，张子剑，2021-12-31至2022-06-04.
+
+(12) 张峄天；毕业硕士，基于区块链的可验证隐私保护联邦学习关键技术研究，张子剑，2021-12-31至2023-05-28.
+
+(13) 林绍琛；毕业硕士，基于网络延迟和算力的中本聪共识协议攻击关键技术研究，张子剑，2021-12-31至2023-05-28.
+
+(14) 陆鑫；毕业博士，隐私保护的数据所有权与使用权共享关键技术研究，张子剑，2021-12-31至2024-06-08.
+
+(15) 唐誉铭；毕业硕士，基于同态加密的隐私求交与联邦学习关键技术研究，张子剑，2021-12-31至2023-05-28.
+
+(16) 高德峰；毕业硕士，基于0AI的5G移动通信网元故障仿真系统设计与实现，张子剑，2021-12-31至2023-05-28.
+
+## 项目成果应用前景
+
+本项目成果拟应用领域:1、隐私保护联邦学习 2、区块链与边缘计算 3、数据安全与可信计算预计在5年以内推广使用 Y
+
+附表:研究成果统计数据表（本表针对各种类型资助项目收集数据以便进行整体资助效果分析使用，并非要求每类项目都具有以下各类成果。
+
+```
+                   国家级                      1 部级
+        自然科学奖     科技进步奖      发明奖     自然科学奖     科技进步奖    其他
+获奖（项）  一等   二等   一等   二等   一等  二等    等    等    一等  二等
+       0    0    0    0    0    0    0    0    0    0    0
+      特邀学术报告           学术论文           学术专著         其他
+学术报告/论 国际学术 国内学术 发表论文数   论文检索收录情况
+                     SCIE/  北大中文                    科研仪器
+              期论义
+                  会议
+文/专著/其 会议 会议
+ 他（篇）                 SSCI EI 核心期刊 CSSCI 中文 外文 标本库 数据库 设备 重要报告
+       0   0   9  5   0   0   0   0   0   0   0  0   0   0
+           专利（项）             标准                   成果转化
+专利/标准/  国内      国外             国内       软件著作
+软著/成果转                国际                  权             经济效益
+  化   申请  授权  申请  授权     国家  行业  地方  企业     技术转让技术许可作价投资 (万元)
+       2   1   0  0    C  0   0   0   0   1   0   0  0   0
+                 人才培养（人）                    举办和参加学术会议
+人才培养及     中青年学术带头人   出站博士后 毕业博士 毕业硕士 举办国际学术会议 举办国内学术会议 参加国际学术会议
+ 学术交流 优青  杰青 创新群体 其他                 次数  人数  次数  人数  次数  人数
+       0   0   0   0   0    3    13  0   0   0   0   0   0
+```

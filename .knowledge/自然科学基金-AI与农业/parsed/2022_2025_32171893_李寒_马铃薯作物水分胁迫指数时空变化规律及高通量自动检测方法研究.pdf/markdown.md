@@ -1,0 +1,91 @@
+## 项目摘要
+
+## 中文摘要:
+
+马铃薯是世界上第四大粮食作物，其水分胁迫状态检测对马铃薯节水灌溉、抗旱育种等具有重要意义。基于直接检测法的作物水分胁迫指数(CWSI)可以反映作物的水分胁迫状态，并且具有高通量检测的潜力。制约该方法应用的主要因素是CWSI时空变异性不明以及在大田环境下高通量检测方法实现困难。因此，本研究旨在解决大田环境下马铃薯作物CWSI在何位置(where)检测、如何自动快速检测(how)以及何时检测(when)的问题，在已有研究基础上重点开展:(1)基于稠密点云和时间稳定性的马铃薯植株CWSI空间分布差异性研究；(2)基于移动机器人和多模态图像融合的马铃薯CWSI高通量自动检测方法研究；(3)马铃薯CWSI关键生育期变化规律和日变化规律研究；(4)不同尺度CWSI检测方案评价与融合方法研究。项目成果有助于发挥多模态图像融合技术优势，为马铃薯作物的精细灌溉和抗旱育种作物水分胁迫检测提供技术支撑。
+
+## Abstract:
+
+Potato is the fourth largest food crop in the world, and its water stress detection is of great significance for water-saving irrigation and drought resistance breeding of potato. Crop Water Stress Index (CWSI) based on direct detection method can reflect the status of crop water stress, and has the potential of high-throughput detection. The main factors restricting the application of this method are the unknown spatial-temporal variability of CWSI in field environment and the difficulty of high-throughput detection of CWSI. Therefore, this study aims to solve the problems of where, when, and how to automatically and quickly detect CWSI of potato crops in the field environment. On the basis of existing research, this study focuses on: (1)The spatial distribution differences of potato plant CWSI based on dense point clouds and temporal stability; (2) Research on high-throughput automatic detection method of potato CWSI based on autonomous mobile robot and multi-mode image; (3) The changes and trends of potato CWSI both in different key growth periods and at different times of the day; (4) Comparative evaluation and fusion of CWSI in different scales. The results of the project will become an important data and technical support for water stress status detection in precision irrigation and drought resistance breeding, through utilizing the advantages of multi-mode image fusion technology.
+
+关键词（用分号分开）:大田作物；信息融合；多模态；多尺度表型；
+
+作物水分胁迫指数
+
+Keywords (separated by;): Field crop; Information fusion; Multi-mode; Multi-scale phenotypic information; Crop water stress index
+
+## 结题摘要
+
+## 中文摘要（对项目的背景、主要研究内容、重要结果、关键数据及其科学意义等做简单概述）:
+
+马铃薯是世界第四大粮食作物，其水分胁迫状态的准确检测对节水灌溉管理和抗旱品种选育具有重要意义。作物水分胁迫指数（Crop Water Stress Index，CWSI）作为一种基于冠层温度的非接触式指标，具备高通量监测潜力，但在大田条件下仍面临时空变异性机理不清和自动化检测实现困难等问题。本项目以大田条件下的马铃薯作物为研究对象，围绕CWSI在何位置检测（where）、如何自动快速检测（how）以及何时检测（when）等关键科学问题，系统开展了马铃薯水分胁迫高通量检测方法与应用研究。主要研究成果包括:开展了基于稠密点云和时间稳定性的马铃薯植株CWSI空间分布差异性研究，揭示了马铃薯冠层不同位置CWSI的空间差异特征及其稳定分布规律，为大田条件下CWSI合理取样位置和代表性区域的确定提供了依据；开展了基于移动机器人和多模态图像融合的马铃薯CW SI高通量自动检测方法研究，实现了大田环境下马铃薯冠层可见光与热红外图像的自动获取、配准与分割，并完成CWSI的自动化计算，为CWSI的快速、连续和高通量检测提供了技术支撑；开展了马铃薯CWSI关键生育期变化规律及其日变化规律研究，系统比较了不同CWSI计算方法在不同马铃薯品种中对水分胁迫的响应特征，明确了CWSI最优检测时间，为马铃薯水分胁迫精准监测提供了依据；开展了不同空间尺度CWSI检测方案的对比评价与融合方法研究，对比评价了不同CWSI计算与冠层温度提取方案的适用性，分析了不同生育阶段下CWSI检测精度的差异特征，为提升大尺度水分胁迫监测的稳定性和可靠性提供了方法支撑。上述研究成果有助于深化对马铃薯CWSI时空变异特征的认识，推动CWSI在大田条件下的自动化与高通量应用，为马铃薯精细灌溉管理和抗旱育种中的水分胁迫检测提供了技术支撑和理论依据。
+
+# Abstract (Brief description of research background, main methods, contributions, and research data):
+
+Potato is the world' s fourth most important food crop, and accurate detection of its water stress status is of great significance for water-saving irrigation management and the breeding of drought-tolerant cultivars. The Crop Water Stress Index (CWSI), as a non-contact indicator based on canopy temperature, has strong potential for high-throughput monitoring; however, under field conditions it still faces challenges such as unclear mechanisms of spatiotemporal variability and difficulties in achieving automated detection. Focusing on potato crops under field conditions, this project systematically investigated high-throughput methods and applications for potato water stress detection by addressing three key scientific questions: where to measure CWSI, how to achieve rapid and automated detection, and when to perform detection. The main achievements are as follows. First, a study on the spatial variability of potato CWSI based on dense point clouds and temporal stability was conducted, revealing the spatial differences and stable distribution patterns of CWSI at different canopy positions, thereby providing a basis for determining rational sampling locations and representative areas for CWSI measurement under field conditions. Second, a high-throughput automated CWSI detection method based on mobile robots and multimodal image fusion was developed, enabling automatic acquisition, registration, and segmentation of visible and thermal infrared images of potato canopies in the field, as well as automated CWSI computation, thus providing technical support for rapid, continuous, and high-throughput CWSI monitoring. Third, the temporal dynamics of potato CWSI at key growth stages and its diurnal variation were investigated, and the responses of different CWSI calculation methods to water stress across different potato cultivars were systematically compared, identifying the optimal timing for CWSI detection and providing a basis for precise monitoring of potato water stress. Fourth, comparative evaluation and fusion of CWSI detection schemes at different spatial scales were carried out, assessing the applicability of different CWSI calculation methods and canopy temperature extraction strategies, and analyzing differences in CWSI detection accuracy across growth stages,
+
+```
+ thereby offering methodological support for improving the stability and reliability of
+ large-scale water stress monitoring. Overall, these findings deepen the understanding of
+ the spatiotemporal variability of potato CWSI, promote the automation and
+ high-throughput application of CWSI under field conditions, and provide technical
+ support and theoretical foundations for water stress detection in precision irrigation
+management and drought-resistance breeding of potato.
+关键词（用分号分开）：信息融合；多模态；多尺度表型；作物水分胁迫指数；
+机器人
+                                                                      scale
+Keywords (separated by;): Information fusion; Multi-mode;     Multi
+phenotypic information; Crop Water Stress Index; Robot
+```
+
+## 正文
+
+《结题/成果报告》正文分为两个部分:结题部分和成果部分。请按照《结题/成果报告》填报说明及撰写要求填写。
+
+## (一）结题部分
+
+## 1. 研究计划执行情况概述。
+
+（1）按计划执行情况。
+
+马铃薯生长对水分条件高度敏感，水分胁迫直接影响其产量与品质。基于冠层温度的作物水分胁迫指数具有无损、高通量检测的潜力，但在马铃薯应用中仍面临空间表征不清、自动化程度不足及多尺度适用性不明确等问题。因此，本项目以马铃薯为研究对象，开展了以下四个方面的研究工作:
+
+## 1）、基于稠密点云和时间稳定性的马铃薯植株CWSI空间分布差异性研究
+
+针对马铃薯植株水分胁迫在冠层内空间分布特征不明确的问题，开展了基于稠密点云和时间稳定性的马铃薯植株CWSI空间分布差异性研究。集成热红外与双目可见光传感器，构建了三维移动平台，开展多时序作物冠层数据采集；通过建立热红外与可见光图像的高精度配准方法，将冠层温度信息映射至三维空间，构建作物冠层RGB信息、温度与CWSI的稠密点云。在此基础上，从单点尺度和冠层尺度对CWSI进行计算与空间分布分析，系统揭示了马铃薯冠层不同部位CWSI的空间差异特征及其随时间变化的稳定分布规律，为马铃薯水分胁迫靶向监测位置的确定提供了理论依据。
+
+## 2)、基于多模态图像融合的马铃薯CWSI高通量自动检测方法研究
+
+围绕传统CWSI计算中人工依赖强、检测效率低、难以实现自动分割等问题，开展了基于多模态图像融合的马铃薯CWSI高通量自动检测方法研究。依托三维移动平台和ROS系统，实现可见光与热红外相机的同步控制，沿预设路径对马铃薯冠层进行循环扫描，自动完成多模态图像的同步获取；针对多模态图像配准问题，采用PSPNet网络对可见光图像进行分割，生成作物冠层与湿参考面区域掩膜，并结合改进的BSO-Powell算法，实现掩膜与热红外图像的精确配准；在此基础上，将分割区域映射至温度矩阵，自动提取冠层温度与湿参考面温度，结合气象数据实现CWSI的自动化、高通量计算，为后续CWSI时序分析和蒸腾特征研究提供了数据支撑。
+
+## 3)、马铃薯CWSI关键生育期变化规律和日变化规律研究
+
+围绕大田条件下参考面构建困难、不同CWSI计算方法适用性不明确等问题，开展了马铃薯CWSI关键生育期变化规律及日变化特征研究。通过最优参考面选取实验，获取人工湿参考面与干、湿叶片温度间的线性关系，提出基于最优参考面模型的改进CWSI计算方法；依托自主研发的便携式CWSI检测装置和嵌入的 YOLOv5-seg 深度学习分割模型，实现田间数据获取和 CWSI自动计算；系统比较传统模型、自适应模型与改进模型在不同建模方法下与土壤体积含水率的相关性，分析不同CWSI计算方法在不同马铃薯品种中的适用性差异，并在此基础上明确了马铃薯水分胁迫的最佳检测时段，为大田马铃薯水分胁迫状态的高通量检测提供技术支撑。
+
+## 4)、多尺度CWSI检测方案评价与融合方法研究
+
+围绕无人机遥感条件下CWSI检测精度不足、多源数据协同性差等问题，开展了多尺度CWSI检测方案评价与融合方法研究。融合热红外温度矩阵与伪彩色影像信息，提出基于分层注意力机制的马铃薯冠层分割方法，有效削弱复杂土壤背景干扰，为无人机尺度CWSI精确计算奠定基础；系统比较不同冠层温度提取方案在不同生育阶段下对 CWSI计算结果的影响，在此基础上构建并优化 CWSI与土壤水分含量之间的反演模型，形成适用于无人机尺度的马铃薯水分胁迫监测与反演技术方案。
+
+课题完全按照计划顺利执行，取得了预期的进展和成果。
+
+## （2）研究目标完成情况。
+
+课题完全按照计划顺利执行，取得了预期的进展和成果。
+
+## 1）预期目标:
+
+通过开展“马铃薯作物水分胁迫指数时空变化规律及高通量自动检测方法研究”，拟形成马铃薯植株CWSId三维可视化软件1套；马铃薯植株CWSId高通量检测平台1套；大田环境下基于多源信息的马铃薯植株 CWSId自动获取方法1套；马铃薯植株CWSI₄时空变化规律模型1套。
+
+课题研究期间拟发表高水平论文7篇以上，其中SCI/EI收录论文5篇以上，发表在《农业工程学报》等入选中国科技期刊卓越行动计划的期刊2篇以上。积极参加多边学术交流，参加农业工程等领域的国际国内高水平学术会议2次以上，交流研究成果，扩大研究成果影响范围；邀请国外专家来访1次，提高研究深度和国际化水平。申请发明专利2项以上。培养博士生2名以上，硕士生4名以上。
+
+## 2）实际完成情况:
+
+本项目执行过程中，形成马铃薯植株CWSId高通量检测平台和三维可视化软件各1套；形成大田环境下基于多源信息的马铃薯植株CWSId自动获取方法1套；形成马铃薯植株CWSIa时空变化规律模型1套。以上成果申请并授权专利2项。获批软件著作权2项。
+
+共发表论文7篇，其中 SCI/EI论文5篇，发表在《农业工程学报》等入选中国科技期刊卓越行动计划的期刊2篇。
+
+参加国际国内高水平学术会议2次，分别为2024年中国农业机械学会学术年会、CIGR2024，并通过访问日本京都大学和访问美国UIUC等学校的两次国际访问，交流研究成果，扩大研究成果影响范围；
+
+培养博士研究生2名，硕士生5名（已毕业4名）。
+
+综上所述，本研究完成了项目各项成果指标。

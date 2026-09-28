@@ -1,0 +1,763 @@
+![](images/page_0_image_0.jpg)
+
+项目批准号 72171184申请代码 G0112归口管理部门收件日期
+
+![](images/page_0_image_2.jpg)
+
+20250172171184
+
+# 国家自然科学基金
+
+# 资助项目结题/成果报告
+
+资助类别:面上项目
+
+亚类说明:
+
+附注说明:
+
+项目名称:联邦学习视角的安全可信商务智能与偏隐私知识模型研究
+
+负责人:夏火松
+
+BRID: 09283.00.35266
+
+电子邮件:1179094639@qq.com
+
+电话: 02787800491
+
+依托单位: 武汉纺织大学
+
+联系人: 李杰燕
+
+电话: 027-59367469
+
+直接费用:48.0000（万元）
+
+执行年限: 2022.01-2025.12
+
+填表日期:2025年12月15日
+
+国家自然科学基金委员会制（2025年）
+
+## 项目摘要
+
+## 中文摘要:
+
+本项目提出“商务智能中的安全可信与隐私保护”的科学问题。该问题是大数据与智能时代知识管理的热点问题，具有广泛实际背景。为了揭示商务智能中安全可信与隐私保护机理，首先，研究商务智能中的数据特征与隐私保护特征，具体探索利用联邦学习解释商务智能中隐私保护与数据特征之间的关系机理；其次，研究商务智能中的安全可信隐私保护框架:用设计科学设计偏隐私知识模型，研究模型中的知识隐藏、隐私保护机器学习、隐私让渡、在线知识共享的行为机制；再次，探索利用联邦学习的数据特征与隐私让渡激励机制及效率问题，设计隐私保护平衡机制的科学方法；最后，构建偏隐私知识模型。在研究中，拟选择APP、在线产品、社交媒体等3类应用来验证理论成果。项目的价值:从联邦学习视角探索商务智能中安全可信与隐私保护的知识识别方法；揭示商务智能中的安全可信与隐私知识管理机理。
+
+## Abstract:
+
+Based on the context of big data and intelligent era, this project puts forward a scientific problems: How to identification the security and trusted knowledge of BI and designing models of privacy preserving of BI. The problem is a hot and important big data and intelligent knowledge management issues in the knowledge management analytics with a wide range of actual background. In order to improve the model of risk security and trusted knowledge and privacy preserving of BI, the project study on the mechanism of data characters and privacy preserving requirements in BI and from the federal Learning. Firstly, the project analysis the common features of source of BI and privacy requirements of the characteristics of BI source, the project specifically aims to address the gap of the relationship between privacy preserving requirements and BI by federal Learning; Secondly, the project research a trustworthy privacy preserving framework and designing for Grey Private Knowledge model for BI with models of knowledge hiding, Privacy-preserving machine learning, privacy transfer , Online knowledge sharing of BI based on privacy knowledge management map; Thirdly, present a relationship model for data characters and incentive mechanism and efficiency of privacy transfer in BI and then answer the question: what is the mechanism of grey private knowledge management in BI. Finally, we propose a model of grey private knowledge of security and trusted BI based on federal Learning. In the research, three kinds of applications in app, online products and social media of BI based on federal Learning are selected to verify the theoretical results. The research contributions can provide the new methodologies of private knowledge identification and the mechanism of designing a model of security and trusted BI; it can provide a apply model for grey private knowledge management based on federal Learning in the context of big data and intelligent.
+
+关键词（用分号分开）:管理信息系统；偏隐私知识管理；联邦学习；商务智能；知识隐藏
+
+Keywords (separated by;): management information systems; grey privacy KM; federal Learning; BI; knowledge hiding
+
+## 结题摘要
+
+中文摘要（对项目的背景、主要研究内容、重要结果、关键数据及其科学意义等做简单概述）:
+
+项目背景:在AI情景下，大量数据激发了行为洞察、风险预见和业务模式等创新同时也能可能造成数据安全威胁和隐私风险。项目提出偏隐私概念，从联邦学习视角分析组织与个人及社会在合理的隐私让渡下，实现社会价值和经济价值的增值与共赢。
+
+重要结果:项目构建了商务智能的隐私让渡和隐藏行为模型。发现了联邦学习策略视角的交易数据、交互数据和测度数据等三类数据与强化学习方法，构建了联邦学习策略的交易数据、交互数据和测量数据的奖励价值函数，揭示了强化学习的商务智能安全可信机理；构建了负责任AI的测度变量，弥补了知识管理缺乏偏隐私知识管理的理论与方法研究；提出了安全可信和可解释与负责任AI的偏隐私产品管理模式及商务智能系统模型。
+
+在Journalof KnowledgeManagement、InternationalJournal of Production Resear ch、Financial Innovation、Technological Forecasting & Social Change、 Expert System s With Applications、Journal of Forecasting等重要期刊发表15篇论文和软件著作权2部。主办了2次国际和国内学术会议，发表了2篇国际会议论文，作为国际国内大会主席2次；应邀在国际国内会议作主题报告15次；应邀参加国际国内学术会议27次；主办重要国际国内学术会议2次和高端学术论坛13次，为制造业和政府提供了智库服务；培养学术研究生21人。
+
+关键数据:负责任AI测度数据和纺织服装智能配棉、数字化转型数据；在线评论数据与2个案例数据。
+
+科学意义:项目探索了安全可信AI识别方法与偏隐私知识管理；揭示了联邦学习视角的商务智能安全可信机理和偏隐私知识管理理论及应用。为智能数据管理科学、知识管理应用中一类问题更深入研究提供了安全可信与隐私保护平衡的智能管理与偏隐私知识管理理论与方法。
+
+## Abstract (Brief description of research background, main methods, contributions, and research data):
+
+In the AI context, massive volumes of data have not only fueled innovations in behavioral insights, risk prediction, and business models, but also potentially given rise to data security threats and privacy risks. This project pioneers the concept of partial privacy protection, and from the perspective of federated learning, explores how organizations, individuals, and society can achieve the value increment and win-win outcome of both social and economic benefits under the premise of reasonable privacy concession.
+
+This project has constructed a privacy concession model and a hidden behavior model for business intelligence. From the perspective of federated learning strategies, it classifies data into three categories, namely transaction data, interaction data, and measurement data, and combines reinforcement learning methods to build reward value functions for these three types of data, thereby revealing the secure and trusted operation mechanism of business intelligence based on reinforcement learning. It has established a measurement index system for responsible artificial intelligence, filling the gap in theoretical and methodological research on partial privacy knowledge management in the field of knowledge management. It has proposed a partial privacy product management model and a supporting business intelligence system model for artificial intelligence that integrates security, trustworthiness, interpretability, and accountability.
+
+The project team has published 15 academic papers in internationally important journals, including Journal of Knowledge Management, International Journal of Production Research, Financial Innovation, Technological Forecasting & Social Change, Expert Systems With Applications, and Journal of Forecasting, and obtained 2 software copyrights. It has hosted 2 international and domestic academic conferences, published 2 international
+
+```
+conference papers, and served as the chair of international and domestic academic
+ conferences twice. The team has been invited to deliver 15 keynote speeches at various
+ international and domestic academic conferences and participated in 27 academic
+conferences for exchanges. It has hosted 2 important international and domestic academic
+conferences and 13 high-end academic forums, providing think tank consulting services
+ for manufacturing enterprises and government departments. The project has trained a
+ total of 21 academic postgraduate students.
+This project explores the recognition methods of secure and trustworthy AI and the
+management of partial privacy knowledge. It reveals the secure and trustworthy mechanism
+of business intelligence from the perspective of federated learning, as well as the
+theory and application of partial privacy knowledge management. The research provides
+theoretical and methodological support for the intelligent management balancing
+security, trustworthiness and privacy protection, and the management of partial privacy
+knowledge, which can facilitate the in-depth study of a category of issues in the fields
+of intelligent data management science and knowledge management app lications.
+关键词（用分号分开）：偏隐私知识管理；商务智能；知识隐藏；
+                                                                       联邦学习；
+ 管理信息系统
+                                                BI.
+Keywords (separated by;): Grey privacy KM;               knowledge hiding;federal
+learning; MIS
+```
+
+## 正文
+
+《结题/成果报告》正文分为两个部分:结题部分和成果部分。请按照《结题成果报告》填报说明及撰写要求填写。
+
+## (一)结题部分
+
+## 1. 研究计划执行情况概述。
+
+## （1）按计划执行情况。
+
+项目预期研究结果:项目的主要成果为研究报告、学术论文、研究生培养、博士与青年教师的培养。①预计在国内外重要期刊上发表论文8 至 12 篇，其中在 SSCI、SCI 重要期刊发表论文 4 至 6 篇，高水平论文 ②参加国际会议5至8次，进一步加强国际合作。③以该项目为主要研究内容，培养青年教师 2到3人，培养研究生8 至12 人。④加强科技成果为社会服务工作，获取软件著作权或者专利1-2项，并为社会提供科技服务。⑤提交研究报告1份。
+
+## （2）研究目标完成情况。
+
+项目超额完成所有目标任务。已经在JKM、IJPR、TFSC、FI、ESWA、JF、JCIS、IJFM、JDM发表SSCI、SCI 重要期刊发表论文论文15篇，软件著作权2部。主办了2次国际和国内学术会议，发表了2篇国际会议论文，作为国际国内大会主席2次；应邀在国际国内会议作主题报告15次；应邀参加国际国内学术会议27次；主办重要国际国内学术会议2次和高端学术论坛13次等重要国际国内交流，为制造业和政府提供了近20次智库服务；培养了学术研究生21人。
+
+## 2. 研究工作主要进展、结果和影响。
+
+## （1）主要研究内容。
+
+项目结合联邦学习与注意力机制，探索了大数据与智能情景下，商务智能的安全可信与隐私保护的理论方法两大问题，主要研究内容按照“数据隐藏动机→信息让渡行为（在隐藏数据与让渡信息现象中，分析社会价值与经济价值共赢的特征信息）→隐私保护知识（在信息中，利用联邦学习视角等获取知识）智慧（构建智慧支持的商务智能安全可信偏隐私知识管理模型）”的逻辑开展了四个方面的研究。项目研究了影响商务智能的信息与知识隐藏动机、商务智能的隐私让渡和隐藏行为模型、构建联邦学习的安全可信商务智能新方法、构建偏隐私知识管理模型与应用新模式。
+
+## (2)取得的主要研究进展、重要结果、关键数据等及其科学意义或应用前景。
+
+项目背景:在AI情景下，大量数据激发了行为洞察、风险预见和业务模式等创新同时也能可能造成数据安全威胁和隐私风险。项目提出偏隐私概念，从联邦学习视角分析组织与个人及社会在合理的隐私让渡下，实现社会价值和经济价值的增值与共赢。
+
+重要结果:项目构建了商务智能的隐私让渡和隐藏行为模型。发现了联邦学习策略视角的交易数据、交互数据和测度数据等三类数据与强化学习方法，构建了联邦学习策略的交易数据(TD)、交互数据(ID)和测量数据(MD的奖励价值函数，揭示了强化学习的商务智能安全可信机理；构建了负责任AI的测度变量，弥补了知识管理缺乏偏隐私知识管理的理论与方法研究；提出了安全可信和可解释与负责任人工智能的偏隐私产品管理模式及商务智能系统模型。
+
+在国际知名的国际排名第一知识管理杂志期刊 Journal of Knowledge Management（一区，SSCI）、重要的 A类期刊 International Journal of Production Research（SCI,Q1,2024 IF7.3，运作管理与管理科学 OR /MS 5 /86)，也是中科院分区中工程技术类TOP期刊)、FinancialInnovation(SSCI,Q1, 2024 IF 7.2)、Technological Forecasting & Social Change (SSCI, Q1,2024 IF 13.3)、Expert Systems With Applications (SCI,Q1, 2024 IF 7.5)、Journal of Forecasting (SSCI,Q1,2024,IF2.7) 、Journal of Computer Information Systems(SCI, Q2, 2024, IF4.2)、International Journal of Emerging Markets
+
+(SSCI,Q1,2024,IF 3)、Big Data(SCI)、Expert Systems (SCI)、Journal of database management (SCI)、Journal of Financial Research(SSCI)等发表15篇重要期刊论文和软件著作权2部。主办了2次国际和国内学术会议，发表了2篇国际会议论文，作为国际国内大会主席2次；应邀在国际国内会议作主题报告15次；应邀参加国际国内学术会议27次；主办重要国际国内学术会议2次和高端学术论坛13次等重要国际国内交流，为制造业和政府提供了智库服务；培养学术研究生21人。
+
+关键数据:负责任AI测度数据和纺织服装智能配棉与数字化转型数据；在线评论数据与2个案例数据。
+
+科学意义:项目探索了智能情景下安全可信AI识别方法与偏隐私知识管理；揭示了联邦学习视角的商务智能安全可信机理和偏隐私知识管理理论及应用。为智能数据管理科学、知识管理应用中一类问题更深入研究提供了安全可信与隐私保护平衡的智能管理与偏隐私知识管理理论与方法。
+
+## 典型的重要成果说明如下:
+
+从商务智能信息与知识隐藏现象中探索人与组织的行为动机，根据数据的属性与特征提取关系，建立交互数据、测量数据与交易数据的获取与存取模型。
+
+企业调研获得了一手数据。在研究过程中首先从现实出发（Relevance）分析人工智能视角的流程优化与商务智能中的信息与知识隐藏的动机，分析企业的需求与研究供给，重点调研了两个主要企业:裕大华智能制造和华新水泥数字化
+
+![](images/page_6_image_8.jpg)
+
+图1裕大华智能制造调研
+
+建设（如图1和图2所示）。
+
+![](images/page_6_image_11.jpg)
+
+图2华新水泥数字化建设
+
+主要完成商务智能的隐私让渡和隐藏行为模型的构建。建立适合商务智能隐私保护需求模型，研究隐私让渡与隐藏行为的关系。研究的问题可以细化为2个:在什么价值驱动下个人和组织对于商务智能为什么要进行隐私让渡，商务智能中的隐私让渡与信息及知识泄露有哪些行为？构建数据技术生态系统的可信隐私保护知识获取模型；（2）构建隐私让渡与隐私保护共识的商务智能安全可信逻辑模型。为了研究目标任务，分别选取了如下4个场景:数字化转型企业（棉纺织企业）、应急电子医疗领域、数字化电子支付领域和在线新闻开展可信知识获取模型的研究，并在隐私保护共识中发现了如下的研究结论:
+
+第一项研究，强化学习中的奖励机制的设计能够有限的促进目标函数的优化目标提高。在深度RL的大数据驱动匹配模型中，对于棉花混纺优化模型的算法进行了设计。研究发现:从智能制造纺织企业出发，采用RL的方法，在不改变质量的前提下降低纱线成本，找到每种纱线成本最低的配棉方案(调整每种棉花的加入比例）（见论文[5,13]）。
+
+第二项研究，为了解决医疗用品周转效率低问题的调度（EMSS）算法以及突发公共卫生事件中供需点调度的不平衡问题，开发了具有最小基尼系数和调度时间的双目标优化模型，并引入了强化学习机制来更新和交换信息素在种群之间，通过设置奖励因子来调整信息素，提高算法收敛速度（见论文[2]）。
+
+第三项研究，从数字化人民币使用的场景研究在什么价值驱动下个人和组织愿意使用数字化人民币和使用的行为。金融科技移动支付平台正在迅速扩张；而这种扩张反过来又带来了诸多风险。迫切需要更好地理解这些风险，并促进更安全的支付行为。本研究旨在基于深度学习构建移动支付平台的知识图谱，以用于风险分析和政策推理。我们从收集到的政策文档中识别实体，提取实体之间的关并绘制移动支付领域的风险知识图谱。我们认为，采用无监督的半自动知识获取方法可以减少因知识不足而导致的移动支付风险。该方法的一个显著优势是无需监督即可获取风险知识。与其他模型不同，由于不需要人工标注，三元组的关系抽取可以在无监督条件下进行，而以往的三元组抽取通常是有监督的。与其他无监督模型相比，我们的模型在精确率上有所提升，而召回率与以往的无监督关系抽取方法相当。无监督关系抽取能够快速、大规模地抽取文本关系，节省了用于标注的人力资源。该方法为一个基础性问题提供了潜在解决方案:政策文档的内容和数量已超出组织和个人的理解能力。我们的研究表明，构建国家政策风险知识图谱是可行的，这有助于移动支付平台理解国家政策、降低平台运营风险，同时也能让用户快速了解移动支付的风险并最大限度地减少这些风险带来的影响。（见论文[7,9,10]，[12]）
+
+研究的假设:H1a，与原始支付方式有关的隐私问题会对用户使用DCEP的意愿产生积极影响；H1b，对原始支付方式的隐私担忧对DCEP的相对优势产生了积极影响，从而对用户使用DCEP的意愿产生了积极的影响；H1c，DCEP安全感知对用户使用DCEP的意愿产生积极影响；H1d，DCEP的感知安全性正向影响其相对优势，从而正向影响用户使用 DCEP的意愿；H1e，DCEP的相对优势正影响用户使用 DCEP的意愿。H2a，用户对DCEP技术任务的感知对用户使用 DCEP的意愿有正向影响；H2b，用户支付需求的特征正向影响用户的技术任务匹配感知，从而正向影响用户使用DCEP的意愿。H2c，DCEP的技术特征正向影响用户对技术任务的感知，然后正向影响用户使用DCEP的意愿。H3a，切换成本对用户使用DCEP的意愿产生了负面影响；H3b，政府支持对用户使用DCEP的意愿有正向影响；H3c，政府支持可以积极影响用户的技术任务进度，进而积极影响用户使用DCEP的意愿。研究发现隐私问题与原始支付方式和DCEP的技术任务执行水平对用户采用DCEP的意愿有正向影响（见论文[4]）。
+
+第四项研究，关于在线新闻开展的可信知识获取模型研究，分别从假新闻识别和新闻对于金融投资影响的视角、文本评论数据的情感挖掘开展了研究，研究发现商务智能中的情感信息、隐私信息与领域知识等具有高度的相关性（见论文[4]）。构建数智化转型背景企业联邦学习的安全可信商务智能新方法。研究插入算子后信息回溯、因果分析的联邦学习框架联邦学习机制；构建联邦学习与算子结合迭代的算法模型(包含假新闻识别)[5]。
+
+第五项研究，探索联邦学习策略的商务智能安全可信机理，构建了负责任和可信AI的测度变量。研究在构建的负责任AI变量基础上，以342家证券公司为样本，考察了负责任的AI信息治理机制对企业绩效的影响。研究根据企业的负责任AI应用得分，将其分为对照组和实验组。该研究将企业采用负责任的AI治理实践视为一项“准自然”实验，并运用多期双重差分（DID）回归模型来揭示其中的因果关系。研究还探讨了负责任AI治理各维度在推动绩效提升中的相对重要性。结果表明，采用负责任AI治理实践的企业在绩效方面有显著提升。本研究通过加深对负责任AI治理如何影响业务成果的理解，并为未来研究提供理论基础，为学术讨论做出了贡献。从实践角度来看，它为组织提供了可操作的指导，展示了伦理AI治理如何推动可持续的业务增长并提升整体企业绩效。（见论文[6,11]）。
+
+该研究通过探索性单案例研究，首次构建异类知识管理理论框架，揭示时尚企业如何通过数字化转型实现可持续价值共创。该研究以中国高端女装龙头企业赢家时尚集团（EEKA）为案例，剖析数字化转型中异类知识的挖掘、共享与破坏如何驱动价值共创。研究采用探索性单案例研究方法，数据采集融合一手访谈与二手资料，运用“滚雪球”法逐层访谈并编码。研究基于结构化数据分析框架通过一阶概念提取、二阶主题凝练及聚合概念生成，结合持续比较法验证理论饱和度。该研究在理论层面提出了异类知识管理框架，通过数据资源能力的平台整合与异类知识共享，企业能够间接推动价值共创，而知识隐匿行为则会削弱数字化转型效果。研究提出四大核心命题:数据资源能力正向促进价值共创(命题1);平台整合能力强化数据资源共享（命题2）；异类知识共享是数据资源转化为价值共创的关键中介（命题3）；平台整合能力、数据资源能力与价值共创受到异类知识隐藏与异类知识破坏调节影响（命题4）。《Journal of Knowledge Management》是专注于知识管理理论与实践研究的国际权威学术期刊，是知识管理排名第一，SSCI JCR Q1；中科院 2025年分区1。（见论文[1]）
+
+3. 研究人员的合作与分工。
+
+研究人员10人在夏火松教授项目负责人进行开拓创新形成了合作共赢的效果。研究中依据任务分工，创新并超额完成了研究任务，取得了一批成果，参与的老师研究生都得到了提高。
+
+夏火松武汉纺织大学，管理学院，二级教授。主要是研究问题的提出、模型的设计、创新点的提炼和分工协作管理。▲
+
+刘颖（YINGLIU），加州州立大学长滩分校（CSULB），商学院（Co11egeof Business），教授。主要是对于商务智能在美国研究与实践存在的研究问题进行团队讨论与指导。
+
+张作鹏，北佛罗里达大学(University of North Florida)，Coggins 商学院(Coggin College of Business)，管理系，副教授。主要是对于课题在研究过程中形成科研成果中进行团队讨论与指导。
+
+马小刚，武汉纺织大学，管理学院，讲师。主要是对于课题在研究过程中商务智能在运作管理中进行团队讨论。 2
+
+洪紫映，武汉纺织大学，管理学院电子商务系，讲师。主要是对于课题在研究过程中商务智能在医疗运作情景中进行团队讨论。
+
+郭昊，武汉纺织大学，管理学院，讲师。主要是对于课题在研究过程中商务智能在信息系统数据安全情景中进行团队讨论。
+
+曾款，武汉纺织大学，管理学院，讲师。主要是对于课题在研究过程中商务智能在物流运作管理情景中进行团队讨论。
+
+安五岳武汉纺织大学，管理学院，硕士研究生。主要是对于课题在研究过程中数据收集、部分的模型的验证与算法实验，并进行团队讨论。
+
+柳静武汉纺织大学，管理学院，硕士研究生。主要是对于课题在研究过程中数据收集、部分模型验证与自动摘要算法实验，并进行团队讨论。
+
+翁娟，武汉纺织大学，管理学院管理科学与工程系，硕士。主要是对于课题在研究过程中数据收集、部分纺织服装数字化转型模型的验证与算法实验，并进行团队讨论。
+
+## 4. 国内外学术合作交流等情况。
+
+## 1）4年应邀在国际国内会议作报告15次
+
+（1）2025年11月11日下午2:00（枫园教学楼214）武汉大学信管学院研究生作报告《AI时代数据分析与数据挖掘算法设计》。
+
+（2）2025年6月15日“第二届智慧物流与供应链国际会议-人工智能时代的物流与供应链管理”，并作主题报告《智能情景的数据安全可信与隐私保护模型》（由湖北省系统工程学会和武汉纺织大学主办的第二届智慧物流与供应链管理国际会议。聚焦人工智能时代的数据安全问题，系统阐述了智能环境下数据隐私保护的创新模型和技术路径，为物流与供应链管理中的数据安全治理提供了重要参考（https://em.wtu.edu.cn/info/1051/17198.htm）
+
+（3）2025年4月17日上午在武汉科技大学青山校区主楼810，管理学院夏火松教授应科学出版社邀请作《AI赋能下的产教融合课程建设思考与案例》报告
+
+（4）2025年07月11日至13日夏火松参加第三届校友经济论坛并作主题报告《校友经济驱动产业融合创新 数智时代管理创新》https://news.wtu.edu.cn/info/1002/95797.htm
+
+（5）20241012T013在第十五届（2024）复杂科学管理学术研讨会做主题报告:可解释人工智能视角的复杂市场价格波动研究。（有武汉大学原校长刘经南院士、多位杰青长江学者和校长院长、资深教授和青年学者）。
+
+（6）20241018T020参加CNAIS2024学术年会（天津南开大学），并做院长/系主任论坛主题报告:AI情景下的地方高校信管专业人才培养模式
+
+（7）2023年7月31日，为期一周的“第四届全国高校大数据管理与商务智能人才培养暨产教合作论坛”在汕头大学隆重开幕。夏火松应邀参会，并作《AI向善视角的大数据管理与商务智能风险与欺诈识别》学术交流报告。
+
+（8）420230327至20230328在上海对外经贸大学学参加“全国高校新商科开源创新教育研讨会”并做主题报告“开源软件与全球运作管理”
+
+（9）2023年10月19日-20，在中国北京，作为编委参加了“中国纺织出版社70年纪念会”，并在经管分会编委会议作主题报告“纺织服装数字化智能化转型路径”。
+
+（10）20230323-25主办“数智时代人保财险专业知识能力提升方案设计与实施研讨会”并作《全面贯彻落实“二十大”精神，推进基层管理创新》的主题报告
+
+（11）2023年9月23日，在中国武汉，作为主题报告人之一参加了“智能交通与物流工程学科建设与创新高峰论坛(2023)暨第十一届湖北地区机械与物流工程研究生学术论坛”“基于深度强化学习与大数据驱动的智能配棉模型研究”。
+
+（12）20220801夏火松教授在第三届全国高校大数据管理与商务智能人才培养论坛作主题报告“可解释的人工智能与商务智能”主题报告。该报告从国家需求、三个调研企业现状与文献梳理提出研究问题，从基础理论方法讨论研究视角，从已经发表论文的研究动机、研究过程与研究发现分享了研究成果，最后对于可能的研究方向进行了报告，报告收到了欢迎。
+
+（13）20220528-29 参加了武汉国际电子商务会议 WHICEB2022，宣读论文2篇
+
+（14）2022年12年18日夏火松应武汉大学邀请在“电子商务学科发展论坛暨武汉大学电子商务专业成立20周年庆典”上做了主题报告:AI商业化应用的管理类学科建设与研究思考
+
+(15)2022年12年22日夏火松应武汉纺织大学邀请在“高端人才论坛”上做了主题报告:可解释人工智能视角的流程优化与商务智能研究
+
+## 2）4年应邀参加国际国内学术会议27次
+
+（1）2025年10月17日至10月19日重庆工商大学，参加了第5届数据智能与管理学术会议并在分论坛数字韧性做分论坛主席。
+
+（2）2025年10月24日至10月26日北京理工大学，参加了CNAIS2025学术年会，并获得20年纪念序列之二的（大模型辅助生成个人相片及鼓励文字）（10年连续相伴（陈国青、毛基业和徐心署名））。
+
+（3）2025年10月31日至11月1日武汉大学，参加了第20届全国计算机模拟与信息技术学会会议暨中国双法研究会计算机模拟分会年会（曾任副理事长、常务理事），并获得荣誉理事纪念。
+
+2025年6月28日至29西安，参加了第18届信息管理中国夏季研讨
+
+（5）2025年11月21日至23海南陵水，参加了中国信息经济学会第37届学术年会。
+
+V（6）2025年12月13日湖北经济学院，参加了湖北省电子商务年会和湖北省三创赛启动仪式，主持了3个主题报告。
+
+（7）20240106东湖学院，第五届湖北省农业电子商务发展论坛，主持吴江讲座。
+
+（8）2024062930参加厦门 CSWIM2024会议。
+
+（9）2024071415参加武汉光谷会展中心，第二届工程管理前沿年会(FEM2024)。
+
+（10）2024072630，河北张家口市河北北方学院，中国电子信息行业联合会数字经济专委会学术年会。
+
+（11）2024082627参加武汉大学，第六届2024电子商务与数字创新年会。
+
+（12）20240920T021，云南昆明，参加“第四届数据智能与管理学术会议暨2024年管理科学与工程学会人工智能技术与管理应用分会年会”会议。
+
+(13)20241025T028中国信息经济学会年会（北京中央财经大学经济学院)。
+
+（14）20230225至20230226沈阳东北大学参加管理科学与工程年会并继续当选为理事(第一届至第四届);420230311至20230312上海外国语大学参加2023年CNAIS第1次理事会议；2023年8月16日，湖南工商大学、国防科大交流。
+
+（15）2023年10月20日-22，在中国杭州，作为理事参加了“中国系统工程学会信息系统工程专业委员会CNAIS2023学术年会”
+
+（16）2023年11月24日至26日，在中国杭州，作为常务理事参加了“第35 届中国信息经济学年会暨第13 届博士生论坛”。
+
+（17）20230617参加山西财经大学“第十四届复杂科学管理学术研讨会”并在闭幕式做承办下一届研讨会演讲。
+
+（18）2023071-2参加苏州第一届工程管理前沿学术年会。
+
+（19）2023年7月20日至23日中山大学夏火松应邀参加中国信息经济学会第八届理事会第五次会议。
+
+（20）2023年9月8-11日，作为嘉宾参加了西安交通大学管理学院:新一代互联网数字经济创新发展论坛暨第一届Web3.0信息与运营管理学术会议交流。
+
+（21）2023年9月24日，在中国长沙，作为理事参加了“管理科学与工程学会第四届理事会第一次会议。
+
+（22）2023年11月10日至12日，在中国重庆，作为理事参加了“管理科学与工程2023年年会-主题:新时代人工智能背景下的管理科学与工程”。
+
+（23）20230401在华中科技大学主办“湖北省系统工程学会第九届第一次会员代表大会暨学术交流会”，被选为副理事长。
+
+（24）2023年11月19日，在中国武汉:华中科技大学管理学院，作为论坛发起参与人之一，参加了“第二十届湖北省信息管理与电子商务学术论坛主题:新智能的信管专业建设”。
+
+（25）2023年10月28日，在中国武汉，作为副理事长参加了“2023年湖北省电子商务学会年会暨第二届湖北省高校大学生直播电商大赛启动仪式”，并主持一专家报告。
+
+（26）202201789，夏火松教授应邀参加了线上的2021年中国信息经济学年会；20220825第十三届复杂科学管理研讨会（线上）。
+
+（27）参加了20221202至04 CNAIS年会（线上）。
+
+## 3）主办重要国际国内学术会议2次和高端学术论坛13次
+
+（1）2023年10月14日-15日，在中国武汉，作为会议主席主办了“第三届数据智能与管理学术会议暨2023年管理科学与工程学会人工智能技术与管理应用分会年会”会议。
+
+(会议特别邀请到唐立新院士、刘忠教授、方晓教授、陈雷教授等多位专家。此外，来自北京大学、清华大学、复旦大学、浙江大学、南京大学、北京航空航天大学、北京交通大学、北京理工大学、西安交通大学、上海财经大学、香港城市大学、香港中文大学（深圳）、以及BOSS直聘等近20所知名高校和企业一百多名专家学者参会。会议设置1场特邀Tutorial（大模型及应用）和20余场精品报告，线上线下同步进行，旨在为该研究领域的学者和专家提供一个分享研究成果、探讨存在的问题与挑战、探索前沿科技交流的平台。10月15日上午，大会正式召开，管理科学与工程学会人工智能技术与管理应用分会主任委员、北京航空航天大学吴俊杰教授及中国工程院院士、武汉纺织大学校长徐卫林教授分别致辞。开幕式由武汉纺织大学管理学院夏火松教授主持。大会报告第二阶段由夏火松主持。会上，方晓教授通过线上方式作了题为《Use-inspired AIand Computational Design Science Research in Information Systems》的报告; IEEE院士、香港科技大学（广州）信息枢纽院长陈雷教授分享了题目为“面向大模型的数据科学”的报告。大会还颁发了第三届数据智能与管理学术“优秀论文奖”和“优秀论文提名奖”，本届大会主席夏火松教授、吴俊杰教授为获奖论文作者颁发了证书。）
+
+(2)20241012T013组织主办第十五届（2024)复杂科学管理学术研讨会（武汉武汉纺织大学南湖校区），大会主席，并做主题报告:可解释人工智能视角的复杂市场价格波动研究。（有武汉大学原校长刘经南院士、多位杰青长江学者和校长院长、资深教授和青年学者）。
+
+（3）2025年主办高端学术论坛3次。2024年主办高端学术论坛2次；2023年主办高端学术论坛8次
+
+第1期（20250528）高端学术讲座，题目:基于案例研究的智慧养老数据资源建设多主体协作机制探究，朱庆华，南京大学信息管理学院教授、博士生导师，教育部“长江学者奖励计划”特聘教授，南京大学信息管理学院（原）副院长。时间:2025年05月28周三下午3:00地点:武汉纺织大学南湖校区西配楼三楼大会议室）；
+
+第2期（20251031）高端学术讲座 题目:人工智能与元宇宙赋能的数字化转型研究程絮森中国人民大学教授、博士生导师，教育部青年长江学者，时间:2025年10月31星期五上午上午10:00-12:00地点:武汉纺织大学南湖校区西配楼三楼大会议室）；
+
+第3期（20251107）高端学术讲座题目:人工智能时代的数智商务研究:探索与思考，吴俊杰，北京航空航天大学教授、博士生导师、国家杰青，时间:2025年11月7日星期五上午10:00-12:00地点:武汉纺织大学南湖校区西配楼北楼三楼大会议室
+
+第4期（20247064）高端学术讲座题目:人工智能聊天机器人的拟人化对用户持续使用在线健康咨询服务的影响关系研究，牟健，韩国釜山大学商学院教授副院长时间:2024年07月06日星期六上午9:00，地点:武汉纺织大学南湖校区西配楼三楼大会议室）；
+
+第5期（20241119）高端学术讲座题目:人工智能赋能管理学研究探索:以金融科技系列研究为例，马宝君上海外国语大学教授、博士生导师，教育部青年长江学者
+
+第6期柴一栋（20230211高端学术论坛，题目:考虑对抗攻击威胁的鲁棒人工智能方法研究）；
+
+第7期高宝骏（20230621 武汉大学，讲座题目:The Pitfalls of Review Solicitation: Evidence from a Natural Experiment on TripAdvisor);
+
+第8期李文立（20230811大连理工大学，讲座题目:企业社交活动与企业信用的关系一网络中心性的调节作用）；
+
+第9期陆伟（20230906武汉大学，讲座题目:大模型驱动的科技情报研究探索）；
+
+第10期毛基业（20230913人民大学，讲座题目:高校教师职业生涯中的若干重要问题、案例教学的组织与实施；
+
+第11期林志杰（20230922清华大学，讲座题目:数字化平台的商业影响）；
+
+第12期张紫琼（20231013哈尔滨工业大学，讲座题目:多维评分系统“默认设计”的影响机制研究）；
+
+第13期宋一丞（20231103，美国明尼苏达大学，讲座题目:强化学习和大模型研究问题）。
+
+5. 存在的问题、建议及其他需要说明的情况。
+
+## （二）成果部分
+
+## 1. 项目取得成果的总体情况。
+
+在国际知名的国际排名第一知识管理杂志期刊 Journal of Knowledge Management（一区,SSCI）、重要的 A类期刊 International Journal of Production Research （SCI,Q1,2024 IF7.3，运作管理与管理科学 OR /MS 5 /86)，也是中科院分区中工程技术类TOP期刊)、Financial Innovation(SSCI,Q1，2024 IF 7.2)、 Technological Forecasting & Social Change (SSCI, Q1,2024 IF 13.3) 、Expert Systems With Applications (SCI,Q1, 2024 IF 7.5) Journal of Forecasting (SSCI,Q1,2024, IF2.7)、Journal of Computer Information Systems (SCI, Q2, 2024, IF4.2)、International Journal of Emerging Markets (SSCI,Q1,2024, IF 3)、Big Data (SCI)、Expert Systems (SCI)、Journal of database management (SCI)、Journal of Financial Research (SSCI)等发表15篇重要期刊论文和软件著作权2部。主办了2次国际和国内学术会议，发表了2篇国际会议论文，作为国际国内大会主席2次；应邀在国际国内会议作主题报告15次；应邀参加国际国内学术会议27次；主办重要国际国内学术会议2次和高端学术论坛13次等重要国际国内交流，为制造业和政府提供了智库服务；培养学术研究生21人。
+
+已经发表 SSCI、SCI 重要期刊发表论文论文15篇，软件著作权2部。
+
+[1] Huosong Xia, Xinyu Wang, Justin Zuopeng Zhang, Veda C. Storey and Nakul Gupta.Hiding and destroying outlier knowledge on digital transformation and value co creation: impacts and insights from the fashion industry.Journal of Knowledge Management.2025,29(5):1412-1445. SSCI,Q1, 2024 IF 9.5, cited 2. (72171184;71871172)
+
+Xia Huosong,Sun Zelin,Wang Yuan,Zhang Justin Zuopeng, Kamal MM ,Jasimuddin SM, Islam N..Emergency medical supplies scheduling during public health emergencies: algorithm design based on Al techniques.International Journal of Production Research.2025,63(2):628-650.SCI, Q1,2024 IF7.3（运作管理与管理科学OR /MS 5 /86)，也是中科院分区中工程技术类 TOP期刊）,cited 15.（72171184;71871172）
+
+[3] Huosong Xia, Yuan Wang, Justin Zuopeng Zhang, Leven J. Zheng, Muhammad Mustafa Kamal, Varsha Arya,COVID-19 fake news detection: A hybrid CNN-BiLSTM-AM model,Technological Forecasting & Social Change,195,2023,122746,https://doi.org/10.1016/j.techfore.2023.122746. sSCl,Q1,2024 IF 13.3,cited 30.(72171184;71871172)
+
+[4] Huosong Xia,Yuan Wang, Jeffrey Gauthier, Justin Zuopeng Zhang .Knowledge graph of mobile payment platforms based on deep learning: Risk analysis and policy implications.Expert Systems With Applications.2022,208,DO110.1016/j.eswa.2022.118143. SCl,Q1, 2024 IF 7.5,cited 10.(72171184,71871172)
+
+[5] Huosong Xia, Xiaoyu Hou, Justin Zuopeng Zhang, Mohammad Zoynul Abedin.A new probability forecasting model for cotton yarn futures price volatility with explainable Al and bigdata.Journalof Forecasting.2025,44(1):112-135.SSCI,Q1,2024,IF2. cited 2 (72171184;71871172)
+
+[6] Huosong Xia, Hao Chen, Justin Zuopeng ZHANG, Muhammad Mustafa KAMAL.Exploring the impact of responsible Al governance on corporate performance: A quasi-natural experiment.Technological Forecasting & Social Change.2026,223,124425:1-12 https://doi.org/10.1016/j.techfore.2025.124425 SSCI Q1,2024 IF 13.3. (72171184,71871172)
+
+[7] Xia, H., Zhang, Q., Zhang, J.Z. and Zheng, L.J.Exploring investors' willingness to use robo-advisors: mediating role of emotional response, Industrial Management & Data Systems.2023,123(11):2857-2881. SCI,Q2,2024 IF4.7, cited14.(72171184;71871172)
+
+[8] Huosong Xia, Xiaoyu Hou, et al.LSTM model of cotton price index volatility risk based on explainable artificial intelligence,Big Data. 2024,12(1):49-62. SCl,Q2,2024 IF 2,cited 1. (72171184; 71871172)
+
+[9] Huosong Xia, Yaqi Tian, Justin Zuopeng Zhang, Yulong Liu.Exploring the impact of online news sentiment and relevance on stock market risks: A signalling theory perspective.Expert Systems,2025,42(1):1-16. sCI,Q2,2024 IF 2.3,cited 1. (72171184;71871172)
+
+[10] Xia, Huosong; Chen, Siyi; Zhang, Justin; Liu, Yulong.Superposition Effect of Online News on Fintech Platforms [J].International Journal of Emerging Markets.2025, 20(3):1214-1234. sSCI,Q1,2024,IF 3, cited 2.(72171184;71871172)
+
+[11] Xia HS, Xu CL,Zhang JZ,Jasimuddin SM,Li XY.The Influence of Readability of Financial App Privacy Policy on Enterprise Performance.Journal of database management.2024,35(1):1-16. SCI,Q4,2024 IF0.8.(72171184;71871172)
+
+[12] Huosong Xia, Yangmei Gao, Justin Zuopeng Zhang.Understanding the adoption context of China' s digital currency electronic payment.Financial Innovation.2023,9(1):63 https://doi.org/10.1186/s40854-023-00467-5.SSCl, Q1, 2024 IF 7.2,cited 43. (71871172;72171184)
+
+[13] Huosong Xia, Yuan Wang, Sajjad Jasimuddin, Justin Zuopeng Zhang & Andrew Thomas (2022) A big-data-driven matching model based on deep reinforcement learning for cotton blending, International Journal of Production Research.023,61(22):7573-7591. SCI,Q1,2024IF7.3（运作管理与管理科学OR/MS 5/86)，也是中科院分区中工程技术类 TOP 期刊）cited 7.（71871172; 72171184)
+
+[14] Huosong Xia, Duqun Lu, Boqiang Lin, Jeretta Horn Nord & Justin ZuopengZhang.Trust in Fintech: Risk, Governance, and Continuance Intention [J], Journal of Computer Information Systems.2023,63(3):648-662.SCl, Q2,2024,IF4.2,cited 13.( 71871172 72171184)
+
+[15] Guoxiao Xia, Changsheng Hu, Huosong Xia, Yangchun Chi.Different effects across countries: An explanation based on investors' behavior.Journal of Financial Research.2023,46(4):1141-1163.SSCI, Q2,2024 IF 2.1. (71671134,71871172, 72171184)
+
+## 2 软著2项
+
+软著:高建宇（指导的研究生），夏火松，艾梦涵. 图像目标检测软件V1.0软著第14291210号 登记号 2024SR1887337
+
+软著:丁宇航（指导的研究生），夏火松.全自动织物疵点识别与分类系统V1.0 软著第 14296412 号 登记号 2024SR1892539
+
+## 3 其他论文
+
+[1]Xia, H., Wang, P., Wan, T., Zhang, Z.J., Weng, J. and Jasimuddin, S.M. (2022), "Peer-to-peer lending platform risk analysis: an early warning model based on multi-dimensional information", Journal of Risk Finance, 23(3):303-323. ESCl , (71871172;72171184)(ABS1) ISSN:1526-5943
+
+[2]夏火松，王园.爱国情怀是否影响对华为和苹果的选择？——在线手机购买评论分析.信息与管理研究.2021,6(06):98-113(71871172；72171184).
+
+## 2. 项目成果转化及应用情况。
+
+成果在深圳赢家（上市企业）、武汉裕大华等企业等到了较好的转化。
+
+中国的棉纺织产业正经历数字化转型与升级的关键时期，以应对劳动力成本上升和原材料价格剧烈波动等压力与挑战。在智能制造中，如何在确保产品质量的同时构建基于成本的竞争力，是亟待解决的关键问题。论文主要的研究了3个问题。包括如何在确保产品质量的前提下降低制造企业的成本？如何利用大数据驱动的匹配模型优化深度强化学习模型？如何通过基于深度强化学习的大数据驱动匹配模型优化智能制造成本？
+
+从大数据与强化学习的视角出发，这篇论文设计了一种结合交易、交互与测量数据的奖励值体系。该体系通过融合奖励机制与马尔可夫决策过程，实现了智能纺织厂中不同原材料组合的优化配置。提出了一种深度强化学习驱动的应用方案，旨在解决实际问题，并构建了基于深度强化学习的棉花配比大数据驱动匹配模型。离线策略旨在构建一个记忆库和神经网络，并使用强化学习的激励机制迭代最优纱线匹配方案，以实现智能棉花匹配的目标。结果表明，在保证质量的前提下，可以使用大数据优化深度强化学习。基于深度强化学习模型的大数据匹配模型可以优化制造成本。
+
+主要创新和理论价值:（1）第一次提出了智能配料的大数据的新视角三分类:交易数据、交互数据和测度数据，有效解决数据在决策中的完备性；（2）最早提出了在工艺稳定情景下智能配料中，质量在整体前20%行业的基础上，成本优化的强化学习奖励机制算法；（3）较好的解决了中美博弈中美国通过新疆棉制裁中国纺织行业的价格歧视问题；（4）在智能配料算法中融于了领域经验知识提高算法的精准性和效率。这篇论文克服了监督学习中人工阅读和人工标注的主观性以及无监督学习的大聚类误差。RL算法用于分析数据，更客观、更方便。在保证质量的前提下，设计了一个大数据驱动的匹配模型来优化深度RL。由大数据模型驱动的深度RL模型用于优化智能制造成本。该模型采用了一种结合RL和深度学习的DQN算法，这与之前深度学习中的监督和无监督方法不同。代理人通过奖励机制不断与环境互动，以找到价格最低的棉花混纺方案。这扩展了RL的应用领域。离线策略旨在构建一个记忆库和神经网络，RL的激励机制用于迭代最优纱线匹配方案，以实现智能棉花匹配的目标。基于RL的大数据驱动匹配模型有利于解决棉花混纺问题，也为中国智能制造业提出了一种新模型。该模型为中国智能制造的发展提供了新的技术研究方向，促进了中国制造业的发展。从大数据和RL的角度来看，我们设计了一个结合交易数据交互数据、测量数据，并结合奖励机制和马尔可夫决策的奖励值。本文构建了一个基于大数据驱动匹配模型的棉花混纺智能制造优化模型。针对智能纺织工厂中不同原材料的组合，提出如何在保证产品质量的前提下降低制造企业的成本，应用大数据驱动的深度RL来解决这个问题。
+
+第一次提出了智能配料的大数据的新视角三分类:交易数据、交互数据和测度数据，有效解决数据在决策中的完备性；
+
+（2）最早提出了在工艺稳定情景下智能配料中，质量在整体前20%行业的基础上，成本优化的强化学习奖励机制算法；
+
+（3）较好的解决了中美博弈中美国通过新疆棉制裁中国纺织行业的价格歧视问题；
+
+（4）在智能配料算法中融于了领域经验知识提高算法的精准性和效率
+
+（5）在媒体中的得到了正面的好评与转载。
+
+## 3. 人才培养情况。
+
+## 1）研究生培养
+
+在2022年-2025年4年期间培养了研究生21位毕业。研究生田雅其、王园、陈思熠获得国家奖学金。路笃群、田雅其、侯晓宇、张倩、王园等5位在武汉大学信息管理学院、南京大学、上海外国语大学、苏州大学攻读博士，参加课题研究生安五岳博士毕业进入高校任教职。培养的在读研究生4名:杨雯静、张宁婕、赵伟杰、邓童杰2026年将毕业。以下是4年毕业研究生的毕业研究论文题目及去向。
+
+（1）刘万超金融科技赋能对银行风险承担的影响研究 湖北省公务员
+
+（2）叶佩雯 金融科技情景下的理财意愿和信任传染模型研究 武汉大型上市国企
+
+（3）谢文芳 数字化转型情境下消费者购买偏隐私产品的行为模型研究高校
+
+（4）付詹妮 文化创意类众筹融资绩效模型研究 公务员
+
+（5）高扬湄，数字普惠金融价值共创机制研究 武汉上市企业
+
+(6）张倩，可解释智能投顾情绪响应的投资者满意度模型，张倩研究生升学攻读苏州大学博士
+
+（7）徐昌龙，金融科技APP隐私政策对企业绩效作用机制 深圳创新企业
+
+（8）何禹治，比特币投资者情绪与价格波动关系模型 武汉大型企业
+
+（9）王园，可解释人工智能的配棉模型与系统研究读武汉大学信息管理学院博士
+
+（10）许泽强，直播带货对消费者购买行为的影响机理研究 武汉企业
+
+（11）路笃群，XAI视角下棉纺织供应链金融信用风险识别模型研究读武汉大学信息管理学院 博士
+
+（12）陈思熠XAI对投资者安全行为影响模型一众筹平台为例 答辩优秀（校优秀硕士学位论文），字节跳动、高校
+
+（13)侯晓宇可解释人工智能视角下棉纱价格波动模型研究 答辩优秀(校优秀硕士学位论文），上海外国语大学博士
+
+（14）朱丁可解释人工智能视角的虚假信息知识获取模型 答辩优秀（校优秀硕士学位论文），长江存储科技有限责任公司东湖高新
+
+（15）郭锦毅社交媒体影响个人投资行为的风险模型 答辩优秀（校优秀硕士学位论文），公务员
+
+（16）田雅其基于隐私保护与信息安全视角的前置仓智能模型研究良好国奖获得者，南京大学博士
+
+（17）丁宇航计算机科学与技术学术研究生，基于双流特征融合与循环反
+
+馈解码的视频描述算法研究，湖北交通投资集团
+
+（18）高建宇 计算机科学与技术学术研究生，基于YOL0v8的织物疵点检测算法研究 武昌理工
+
+(19)陈豪 负责任AI的信息治理对企业绩效影响机制研究 北京丰台区公务员
+
+（20）王欣雨管理科学与工程新型电商情景的AIGC安全可信模型研究杭州东方通信 上市的国有控股企业（股票代码600776）
+
+（21）李星宇 管理科学与工程 可解释AI 视角的 AIGC 虚假信息识别与治理模型研究 北森云计算有限公司
+
+## 2）2023年夏火松教授入选管理学高贡献学者。中国知网高被引学者（2024年,2025 年全国高被引学者Top1%)
+
+夏火松教授入选校友会2023中国大学管理学高贡献学者，全国第三方大学评价研究机构艾瑞深校友会网最新发布校友会2023中国高贡献学者完整名单，榜单显示，中国高校管理学门类共有437 名杰出学者入选2023 中国高贡献学者榜单，其中，夏火松教授入选管理学高贡献学者。
+
+## 3）参与课题的老师和研究生得到了极大的提升
+
+（1）培养了青年教师，3位获得了国家自科基金青年项目并从讲师评为副教授。
+
+洪紫映和曾款在研究期间于2023年获得国家自科基金青年项目，后面加入团队的马吉峰于2024年获得国家自科基金青年项目。
+
+## （2）海外2名合作者也在研究中得到相互促进交流和提高的作用
+
+刘颖（YINGLIU），加州州立大学长滩分校（CSULB），商学院（College of Business），教授。后成为管理信息系统系主任。
+
+张作鹏，北佛罗里达大学(University of North Florida)，Coggins 商学院(Coggin College of Business)，管理系，副教授。后成为团队长期合作者。
+
+## （3）参与的研究生博士毕业并进入高校工作和知名企业骨干
+
+安五岳博士毕业正式进入武汉纺织大学管理学院教师；翁娟（腾讯科技有限公司，北京，算法工程师）和柳静（北京安恬果宝技术有限公司，产品经理）均在北京从事商务智能相关工作，并成为骨干。孙泽林在科讯嘉联信息技术有限公司从事大模型算法工程师。
+
+## 4. 其他需要说明的成果。
+
+2023获奖获批情况:政府奖:武汉市第十八次社会科学优秀成果奖-优秀提名奖（在线评论的异类知识情感分析-运用机器学习方法，夏火松杨伊态潘筱听张作鹏安五岳）；
+
+非政府奖:科技创新标兵-企业决策支持研究中心平台 夏火松；
+
+20230424指导教师:夏火松，中国商业统计学会、全国大学生市场调查与分析大赛组委会三等奖“时间管理APP对减少网络成瘾影响的实证分析（郭锦毅等研研究生5人）”
+
+另外还有录用和在投的研究成果。
+
+## 5. 项目成果科普性介绍或展示网站。
+
+加强与纺织企业联系并提升纺织管理理论研究影响，2025年9月10日至11日，常熟夏火松参加中国纺织工业企业管理协会（企业家联合），评为:专家委员会委员（202507至203007，证书编号:LIT210202507002）、帮扶专家。
+
+（1）2023年10月31日，在中国泰安，作为终审专家参加了“第十一届全国纺织企业管理创新成果及管理创新成果主创者终审会”，并推荐点评2家企业(深圳赢家时尚、福建新华源）； 5
+
+（2）2023年8月22日至23日调研福建新华源、长源考察；23日至24日调研深圳赢家（香港上市企业）。
+
+（3）202509夏火松和王清迪撰写的《AI赋能时尚企业数字化转型》入选中国纺织工业企业管理协会纺织服装企业管理创新研究报告及经典案例(02019-2024)（P152-P156)
+
+（4）2023年8月9日至11日，参加由省社科联组织的“2023年社科专家市县行活动”第二场调研来到黄冈，围绕“数字化赋能白莲河水库流域综合治理和统筹全面发展”进行深入调研。
+
+（5）20221027至1101夏火松教授带领团队为黄梅企业诊断咨询咨询。
+
+## 研究成果目录
+
+项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。请按照期刊论文、会议论文、学术专著、专利、会议报告、标准、软件著作权、科研奖励、人才培养、成果转化的顺序列出，其它重要研究成果如标本库、科研仪器设备、共享数据库、获得领导人批示的重要报告或建议等，应重点说明研究成果的主要内容、学术贡献及应用前景等。
+
+项目负责人不得将非本人或非参与者所取得的研究成果、与受资助项目无关的研究成果、未标注国家自然科学基金资助和项目批准号的论文以及取得时间早于项目资助期开始时间的研究成果列入报告中。发表的研究成果（包括专利），项目负责人和参与者均应如实注明得到国家自然科学基金项目资助和项目批准号，科学基金作为主要资助渠道或者发挥主要资助作用的，应当将自然科学基金作为第一顺序进行标注。
+
+## 期刊论文
+
+(1) Xia, Huosong; Wang, Xinyu; Zhang, Justin Zuopeng; Storey, Veda C.; Gupta, Nakul; Hiding and destroying outlier knowledge on digital transformation and value co-creation: impacts and insights from the fashion industry, Journal of Knowledge Management, 2025, 29(5): 1412-1445. SSCI. 第一标注
+
+(2) Xia Huosong; Sun Zelin; Wang Yuan; Zhang Justin Zuopeng; Kamal MM; Jasimuddin SM; Islam N; Emergency medical supplies scheduling during public health emergencies: algorithm design based on AI techniques, Internati onal Journal of Production Research, 2025, 63(2): 628-650. SCIE. 第一标注
+
+(3) Huosong Xia; Yuan Wang; Justin Zuopeng Zhang; Leven J. Zheng; Muhammad Mustafa Kamal; Varsha Arya; COVID-19 fake news detection: A hybrid CNN-BiLSTM-AM model, Technological Forecasting and Social Change, 2023, 195(122746). SSCI. 第一标注
+
+(4) Huosong Xia; Yuan Wang; Jeffrey Gauthier; Justin Zuopeng Zhang; Knowledge graph of mobile payment platforms based on deep learning: Risk analysis and policy implications, Expert Systems With Applications, 2022, 208(118143). SCIE，EI. 第一标注
+
+(5) Huosong Xia; Xiaoyu Hou; Justin Zuopeng Zhang; Mohammad Zoynul Abedin; A new probability forecasting model for cotton yarn futures price volatility with explainable AI and big data, Journal of Forecasting, 2025, 44(1):112-135. SSCI. 第一标注 1
+
+(6) Huosong Xia; Hao Chen; Justin Zuopeng ZHANG; Muhammad Mustafa KAMAL; Exploring the impact of responsible AI governance on corporate performance: A quasi-natural experiment, Technological Forecasting & Social Change, 2025, 223(124425). SSCI. 第一标注 1
+
+(7) Huosong Xia; Qian Zhang; Justin Zuopeng Zhang; Leven J. Zheng; Exploring investors' willingness touse robo-advisors: mediating role of emotional response, Industrial Management amp;amp; Data Systems, 2023, 123(11):2857-2881. SCIE. 第一标注
+
+(8) Huosong Xia; Xiaoyu Hou; Justin Zuopeng Zhang; LSTM model of cotton price index volatility risk based on explainable artificial intelligence, Big Data, 2024, 12(1): 49-62. SCIE. 第一标注
+
+(9) Huosong Xia; Yaqi Tian; Justin Zuopeng Zhang; Yulong Liu; Exploring the impact of online news sentiment and relevance on stock market risks: A signalling theory perspective, Expert Systems, 2025, 42(1): 1-16. SCIE. 第一标注
+
+(10) Huosong Xia; Siyi Chen; Justin Z. Zhang; Yulong Liu; Superposition effect of online news on fintech platforms, International Journal of Emerging Markets, 2025, 20(3): 1214-1234. SSCI. 第一标注
+
+(11) Huosong Xia; Changlong Xu; Justin Z. Zhang; Sajjad M. Jasimuddin; Xinyu Li; The Influence of Readability of Financial App Privacy Policy on Enterprise Performance, Journal of Database Management, 2024, 35(1):1-16. SCIE. 第一标注
+
+(12) Huosong Xia; Yangmei Gao; Justin Zuopeng Zhang; Understanding the adoption context of China's digital currency electronic payment, Financial Innovation, 2023, 9(1): 9-63. SSCI. 第二标注
+
+(13) Huosong Xia; Yuan Wang; Sajjad Jasimuddin; Justin Zuopeng Zhang; Andrew Thomas; A big-data-driven matching model based on deep reinforcement learning for cotton blending, International Journal of Production Research, 2023， 61(22):7573-7591. SCIE. 第二标注
+
+(14) Huosong Xia; Duqun Lu; Boqiang Lin; Jeretta Horn Nord; Justin ZuopengZhang; Trust in Fintech: Risk, Governance, and Continuance Intention, Journal of Computer Information Systems, 2023, 63(3): 648-662. SCIE, EI. 第二标注 1
+
+(15) Guoxiao Xia; Changsheng Hu; Huosong Xia; Yangchun Chi; Different momentum effects across countries: An explanation based on investors' behavior, Journal of Financial Research, 2023, 46(4):1141-1163. SSCI. 第三标注
+
+## 项目成果应用前景
+
+本项目成果拟应用领域:1、智能制造产业数字化转型 2、高端服务产业数智化转型3、金融和医疗相关精准决策模型优化
+
+预计在5年以内推广使用
+
+附表:研究成果统计数据表（本表针对各种类型资助项目收集数据以便进行整体资助效果分析使用，并非要求每类项目都具有以下各类成果。
+
+```
+                   国家级                      1 部级
+        自然科学奖     科技进步奖      发明奖     自然科学奖     科技进步奖    其他
+获奖（项）  一等   二等   一等   二等   一等  二等    等    等    一等  二等
+       0    0    0    0    0    0    0    0    0    0    0
+      特邀学术报告           学术论文           学术专著         其他
+学术报告/论 国际学术 国内学术 发表论文数   论文检索收录情况
+                     SCIE/  北大中文                    科研仪器
+文/专著/其 会议 会议
+              期论义
+                  会议
+ 他（篇）                 SSCI EI 核心期刊 CSSCI 中文 外文 标本库 数据库 设备 重要报告
+       0   0  15  0   15  0   0   0   0   0   0  0   0   0
+           专利（项）             标准                   成果转化
+专利/标准/  国内      国外             国内       软件著作
+软著/成果转                国际                  权             经济效益
+  化   申请  授权  申请  授权     国家  行业  地方  企业     技术转让技术许可作价投资 (万元)
+       0   0   0  0    C  0   0   0   0   0   0   0  0   0
+                 人才培养（人）                    举办和参加学术会议
+人才培养及     中青年学术带头人   出站博士后 毕业博士 毕业硕士 举办国际学术会议 举办国内学术会议 参加国际学术会议
+ 学术交流 优青  杰青 创新群体 其他                 次数  人数  次数  人数  次数  人数
+       0   0   0   0   0    0    0   0   0   0   0   0   0
+```
+
+国家自然科学基金项目资金决算表
+
+项目批准号:72171184
+
+项目负责人:夏火松
+
+金额单位:万元
+
+```
+                                                       预算数                             累计支出数             结余数           结余资金比例
+行次             科目名称                  批准预算             预算调整             调整后预算
+                                       (1)              (2)         (3) = (1) + (2)      (4)         (5) =(3)-(4)         (6)
+ (1)  项目总经费                                62.4000          0.0000           62.4000                                           54.38%
+ (2)  项目直接费用                               48.0000          0.0000          48.0000          14.0698         33.9302
+ (3)    1、设备费                              2.0000           0.0000           2.0000          1.9770          0.0230
+ (4)      其中：设备购置费                         0.0000           0.0000           0.0000          0.0000          0.0000
+ (5)   2、业务费                               22.0000          0.0000           22.0000         4.4928          17.5072
+ (6)   3、劳务费                               24.0000          0.0000           24.0000         7.6000          16.4000
+ (7)  项目间接费用                               14.4000           0.0000          14.4000
+```
+
+注:1.本表中（1）、（3）、（5）、（6）栏为系统自动生成，无需填写；本表中（2）栏填列预算调整数；本表中（4）栏填列项目的实际支出数。
+
+2.第（1）行=第（2）+（7）行
+
+第（2）行=第（3）+（5）+（6）行；
+
+第（3）栏=第（1）+（2）栏；
+
+第（5）栏=第（3）-（4）栏；
+
+第（1）行第（6）栏=第（2）行第（5）栏/第（1）行第（3）栏100%；
+
+第（1）行第（1）栏=第（1）行第（3）栏；
+
+第（1）行第（2）栏=0；
+
+第（4）栏≤第（3）栏；
+
+第（2）行第（5）栏≥0。
+
+## 决算说明书
+
+```
+                       决算说明书
+ (请按照《国家自然科学基金预算制项目决算表编制说明》等  关要求， 兄  目支出 预算调整、结余情况，
+ 合作研究转拨资金情况，单价≥50万元的设备情况，资金使用和管理过程中遇到的问题 及建议，以及其他需要说
+                               财务处
+ 明的事项等。)
+ 总经费：48万元                   总支出14.069875万元 总结余33.930125万元
+      原预算                        已经支出及说明
+ 1、设备费2.00万元：                    支出：1.977万元 结余0.023万元
+ 其中，（1）设备购置费0.00万元。
+    (2) 设备试置费
+            0.00万元。
+    （3）设备升级改造费：2.00万元。         说明：包括用于研究生链接显示设备（5台大
+                                显示器32英寸和相关辅助升级改造的电脑综
+                                合材料费）总计1.9770万元
+                    D
+ 2、业务费22.00万元：                 说明：
+ 其中，（1）材料费1.00万元；              材料费拟用于年末没有及时报销的相关费用。
+    (2)测试化验加工费1.00万元          测试化验加工费拟用于年末没有及时报销费用。
+    (3)差旅、会议国际合作与交流费6.00+1.00+10.00=17.00万元。说明：差旅费支出3.880965万元；小型会议
+                                    费1万元未支出 拟用于未来研究
+                                    差旅费。
+      国际合作与交流费10.00万元;           说明：国际合作交流（美国）因去美国签
+                                证未办理成功，所以该项费用未支出。拟用
+                                于继续研究的劳务费支持。
+     出版/文献/信息传播/知识产权事务费3.00万元。  说明：出版信息传播支出0.61191万元，拟
+                                用于年末没有及时报销的相关费用。
+3、劳务费24.00万元：大约按总经费的50%预算劳务费。   说明：已经打卡近4年的参与课题研究生劳
+                                务费7.6万元，结余16.4万元用于还未发放
+                                以及提高结题后研究生深入研究的劳务费
+```
+
+结余资金情况说明
+
+```
+   （1）业务费结余中其中预算的国际合作交流（美国）10万元，因去美国签证未办理成功，所以
+ 该项费用未支出，拟用于继续研究的劳务费支持；差旅费和部分会议费结余主要是还有部分未及时报
+ 销，拟用于未来研究差旅费；另外业务费中的发表和出版信息传播支出等结余，拟用于未及时报销
+ 0
+   （2）劳务费结余16.4万元主要是后评估还有近两年研究生参与研究成果的修改发表用，将来
+用于还未发放以及提高结题后研究生深入研究。
+                              2025
+```
+
+注:结余资金比例超过30%的项目该部分必填。
+
+```
+项目负责人承诺：
+  我所承担的项目（编号：72171184 名称：联邦学习视角的安全可信商务智能与偏隐
+私知识模型研究）结题报告内容真实，数据准确，未出现《国家科学技术保密规定》中列
+举的属于国家科学技术秘密范围的内容，不涉及敏感科技信息。在今后的研究工作中，如
+有与本项目相关的成果，将如实注明得到国家自然科学基金项目资助和项目批准号，并报
+送国家自然科学基金委员会。
+                          项目负责人（签
+                           日期：
+ 依托单位科研管理部门：  依托单位财务管理部门：   依托单位审查意见：
+负责人（签章）：      负责人（签章）：       依托单位公章：
+日期：           日期：
+科学处审核意见：
+               EP
+ 完成情况  优   良   中   差   负责人（签章）：
+ 综合评分                  日期：
+ (划√)
+科学部核准意见  对重点项目等）：
+NSF
+                           负责人（签章）：
+                          日期：
+ 分管委领导意见（对重大项目等）：
+                           委领导（签章）：
+                          日期：
+```
+
+## 电子附件目录
+
+```
+序号        附件类型                附件名称                         备注
+                                              Hiding and destroying outlier
+                                              knowledge on digital
+  1 论著                  第一标注论文之1              transformation and value
+                                              co-creation: impacts and insights
+                                              from the fashion industry.Journal
+                                             of Knowledge Management
+                                              Emergency medical supplies
+                                              scheduling during public health
+  2  论著                 第一标注论文之2             emergencies: algorithm design
+                                              based on AI
+                                              techniques. International Journal
+                                             of Production Research
+                                             COVID-19 fake news detection: A
+  3  论著                 第一标注论文之3              hybrid CNN-BiLSTM-AM
+                                              model,Technological Forecasting &
+                                             Social Change
+                                             Knowledge graph of mobile payment
+                                             platforms based on deep learning:
+  4 论著                 第一标注论文之               Risk analysis and policy
+                                  D          implications.Expert Systems With
+                                              Applications
+                                              A new probability forecasting
+                                              model for cotton yarn futures
+                      第一
+  5  论著                   一标注论文之5             price volatility with explainable
+                                              AI and big data.Journal of
+   SFC
+                                              Forecasting
+                                              Exploring the impact of
+                                             responsible AI governance on
+  6  论著                第一标注论文之6              corporate performance: A
+                                             quasi-natural
+                                             experiment.Technological
+                                              Forecasting & Social Change
+                                              Exploring investors' willingness
+                                             to use robo-advisors: mediating
+  7 论著                  第一标注论文之7              role of emotional response,
+                                              Industrial Management & Data
+                                             Systems
+                                              LSTM model of cotton price index
+  8  论著                 第一标注论文之8              volatility risk based on
+                                              explainable artificial
+                                              intelligence.Big Data
+                                              Exploring the impact of online
+  9  论著                 第一标注论文之9              news sentiment and relevance on
+                                             stock market risks: A signalling
+                                              theory perspective.Expert Systems
+                                              Superposition Effect of Online
+```
+
+```
+10论著         第一标注论文之10     News on Fintech
+                           Platforms.International Journal
+                           of Emerging Markets
+                           The Influence of Readability of
+11论著         第一标注论文之11     Financial App Privacy Policy on
+                           Enterprise Performance.Journal of
+                           database management
+                           Understanding the adoption
+12论著         第二标注论文之12     context of China's digital
+                           currency electronic
+                           payment.Financial Innovation
+                           A big-data-driven matching model
+                           based on deep reinforcement
+13论著         第二标注论文之13     learning for
+                                  cotton blending,
+                           International Journal of
+                           Production Research
+                           Trust in Fintech: Risk,
+14论著         第二标注论文之14     Governance, and Continuance
+                           Intention, Journal of Computer
+                           Information Systems
+                           Different momentum effects across
+15论著         第三标注论文之       countries: An explanation based
+                           on investors' behavior.Journal of
+                           Financial Research
+                           2025丁宇航软著丁宇航 夏火松
+16其他         软件著作权         全自动织物疵点识别与分类系统V1.0
+                           软著第14296412号
+17 其他        软件著作权         软著电子证书高建宇夏火松艾梦涵
+                           图像目标检测软件V1.0 软著
+18其他         最近三篇论文收录检查报   最近三篇论文收录检查报告
+             告
+19其他         2025全国高被引学者   夏火松-2025全国高被引学者_证书（
+                           中文版）
+20 其他        2024全国高被引学者   夏火松-2024全国高被引学者_证书（
+                           中文版）
+```

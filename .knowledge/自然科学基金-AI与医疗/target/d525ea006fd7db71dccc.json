@@ -1,0 +1,267 @@
+{
+  "doc_id": "d525ea006fd7db71dccc",
+  "version": "3e7a85e1b47bd2d9ffd2",
+  "source_hash": "60c12705597d9820ff9c18eafd79a94ed10c3b8e85785a7be3ac6c80f5d01f2e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:58:42.663609+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-aa2784ea2745",
+          "name": "肝癌消融治疗术后评估",
+          "desc": "肝癌消融治疗的长期预后好，但存在术后局部肿瘤进展率高的预后难题。",
+          "evidence": [
+            {
+              "quote": "肝癌消融治疗的长期预后好，但存在术后局部肿瘤进展（LTP）率高的预后难题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 686,
+                "end_char": 722
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ]
+        },
+        {
+          "id": "item-afe90895af34",
+          "name": "早期肝癌个体化治疗决策",
+          "desc": "实现精准个体化预测，辅助治疗决策。",
+          "evidence": [
+            {
+              "quote": "构建早期肝癌消融治疗LTP预后风险模型，实现精准个体化预测，辅助治疗决策",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1026,
+                "end_char": 1061
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-181dc59a4a73",
+          "name": "消融区覆盖关系难以定量评价",
+          "desc": "目前缺乏定量评价消融区范围与肿瘤边缘的覆盖关系、难以精准预测LTP。",
+          "evidence": [
+            {
+              "quote": "针对目前缺乏定量评价消融区范围与肿瘤边缘的覆盖关系难以精准预测LTP的临床需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 788,
+                "end_char": 827
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ]
+        },
+        {
+          "id": "item-f21df7118fb2",
+          "name": "跨模态分割标注成本高",
+          "desc": "跨模态分割存在标注成本高的难题。",
+          "evidence": [
+            {
+              "quote": "（1）针对跨模态分割标注成本高的难题，提出基于 SAM 模型构建跨模态分割方案。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2433,
+                "end_char": 2472
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ]
+        },
+        {
+          "id": "item-6ad8d95c748c",
+          "name": "消融后组织形变配准困难",
+          "desc": "消融后组织存在形变，配准精度影响疗效评估。",
+          "evidence": [
+            {
+              "quote": "（2）针对消融后组织形变难题，创新性提出基于注意力引导特征屏蔽与体积保持约束的刚柔混合配准方法（DRRA - MaskVC）。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2627,
+                "end_char": 2689
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ae9e2c0b2de4",
+          "name": "跨模态SAM分割方案",
+          "desc": "提出基于SAM模型构建跨模态分割方案，仅用单模态标注数据训练适配多模态的分割网络。",
+          "evidence": [
+            {
+              "quote": "该方案利用多模态空间一致性分割，无需目标模态标注及复杂配准，仅用单模态标注数据就能训练适配多模态的分割网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2473,
+                "end_char": 2525
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ]
+        },
+        {
+          "id": "item-02437a4a7d31",
+          "name": "刚柔混合配准方法",
+          "desc": "提出基于注意力引导特征屏蔽与体积保持约束的刚柔混合配准方法DRRA-MaskVC。",
+          "evidence": [
+            {
+              "quote": "创新性提出基于注意力引导特征屏蔽与体积保持约束的刚柔混合配准方法（DRRA - MaskVC）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2642,
+                "end_char": 2688
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ]
+        },
+        {
+          "id": "item-3a496e92a2fa",
+          "name": "术前影像组学评分系统",
+          "desc": "基于多中心临床研究开发基于钆塞酸增强MRI的术前影像组学评分系统I-score。",
+          "evidence": [
+            {
+              "quote": "（3）基于多中心临床研究，开发基于钆塞酸增强 MRI 的术前影像组学评分系统（I - score）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2824,
+                "end_char": 2872
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-99676195dc78",
+          "name": "分割DSC 88.1±5.1",
+          "desc": "在钆塞酸增强HBP期肝脏局灶性病灶分割中DSC达88.1±5.1、NSD为89.9±6.7，显著优于其他方法并减少70%人工标注工作量。",
+          "evidence": [
+            {
+              "quote": "DSC 达到 88.1 ± 5.1，NSD 为 89.9 ± 6.7，显著优于其他方法，且减少 70%人工标注工作量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2550,
+                "end_char": 2607
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-70935718fe67",
+          "name": "配准效率0.21s与精度最优",
+          "desc": "配准方法计算效率仅需0.21s，肝脏配准精度DSC=0.97，肿瘤配准误差CMD=6.78mm，最小消融边界评估准确率提升至85%。",
+          "evidence": [
+            {
+              "quote": "此方法在计算效率上仅需 0.21s，肝脏配准精度（DSC = 0.97）、肿瘤配准误差（CMD = 6.78mm）达到最优",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2690,
+                "end_char": 2750
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-da0a55db5a89",
+          "name": "复发风险预测AUC优异",
+          "desc": "I-score在训练集与两个外部验证集效能优异（AUC=0.93、0.86、0.84），早期复发预测C-index=0.84。",
+          "evidence": [
+            {
+              "quote": "在训练集与两个外部验证集中效能优异（AUC = 0.93，0.86，0.84），早期复发预测效能良好（C - index = 0.84）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2914,
+                "end_char": 2981
+              },
+              "version": "3e7a85e1b47bd2d9ffd2"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-aa2784ea2745"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-181dc59a4a73"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6ad8d95c748c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-02437a4a7d31"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ae9e2c0b2de4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-99676195dc78"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3a496e92a2fa"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-da0a55db5a89"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

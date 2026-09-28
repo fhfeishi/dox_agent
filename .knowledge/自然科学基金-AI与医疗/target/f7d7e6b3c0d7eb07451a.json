@@ -1,0 +1,284 @@
+{
+  "doc_id": "f7d7e6b3c0d7eb07451a",
+  "version": "920d9c9cdb29f2a102d7",
+  "source_hash": "19a898411c0b9a1f9ec904bf073f846ee02606ca1b74fd1a27d06ded287394dc",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:04:16.014928+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bb62cbd36007",
+          "name": "抗癌药物联用精准用药",
+          "desc": "抗癌药物联用有提高疗效、降低耐药性、减少副作用的效果，是癌症精准用药研究的重要任务。",
+          "evidence": [
+            {
+              "quote": "抗癌药物联用有提高疗效、降低耐药性、减少副作用的效果，是癌症精准用药研究的重要任务。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 670,
+                "end_char": 711
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ]
+        },
+        {
+          "id": "item-142456e4a506",
+          "name": "肝癌协同药物验证应用",
+          "desc": "以肝癌为例，结合计算预测和细胞系实验验证预测的协同药物对。",
+          "evidence": [
+            {
+              "quote": "最后以肝癌为例，结合计算预测和细胞系实验，验证预测的协同药物对，为模型的应用提供范例。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 916,
+                "end_char": 958
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3c961e4f5b11",
+          "name": "药物组合多样性与个体差异",
+          "desc": "药物组合多样性和个体间差异是药物联用精准化的瓶颈。",
+          "evidence": [
+            {
+              "quote": "药物组合多样性和个体间差异是药物联用精准化的瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 712,
+                "end_char": 735
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ]
+        },
+        {
+          "id": "item-9c198e634859",
+          "name": "协同机制复杂与数据缺乏",
+          "desc": "药物协同作用机制复杂、实验数据缺乏使现有方法的准确性和推广性不太理想。",
+          "evidence": [
+            {
+              "quote": "但药物协同作用机制复杂、实验数据缺乏使现有方法的准确性和推广性不太理想。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 768,
+                "end_char": 803
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ]
+        },
+        {
+          "id": "item-7424a12d7f53",
+          "name": "细胞系与患者数据存在差异",
+          "desc": "针对细胞系数据和患者数据的差异，需要提高模型在患者数据上的泛化能力。",
+          "evidence": [
+            {
+              "quote": "针对细胞系数据和患者数据的差异，开发了一种基于迁移学习的药物响应预测模型DiSyn，提高了基于细胞系数据训练的模型在患者数据上的泛化能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3237,
+                "end_char": 3304
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1fcd98d4844e",
+          "name": "JoinSyn双视图联合学习",
+          "desc": "基于高通量药物组合实验数据构建预测药物协同作用分值的深度学习模型JoinSyn，利用双视图联合学习根据药物和细胞特征预测协同作用。",
+          "evidence": [
+            {
+              "quote": "本项目首先基于高通量药物组合实验数据构建了一个预测药物协同作用分值的深度学习模型JoinSyn，利用双视图联合学习根据药物和细胞特征来预测药物组合的协同作用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2950,
+                "end_char": 3028
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ]
+        },
+        {
+          "id": "item-f031df88422f",
+          "name": "DiSyn迁移学习药物响应预测",
+          "desc": "开发基于迁移学习的药物响应预测模型DiSyn。",
+          "evidence": [
+            {
+              "quote": "开发了一种基于迁移学习的药物响应预测模型DiSyn",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3253,
+                "end_char": 3277
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ]
+        },
+        {
+          "id": "item-69db6c8409cd",
+          "name": "多来源数据整合评估药物相似性",
+          "desc": "整合多来源数据评估药物相似性以预测作用机制相似的药物组合。",
+          "evidence": [
+            {
+              "quote": "整合多来源数据评估药物相似性以预测作用机制相似的药物组合",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 830,
+                "end_char": 857
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bedce86290cd",
+          "name": "JoinSyn优于现有方法",
+          "desc": "JointSyn在各种评估指标中均优于现有深度学习和机器学习方法，微调后可改进对未见数据的药物协同预测。",
+          "evidence": [
+            {
+              "quote": "JointSyn在各种评估指标中均优于现有深度学习和机器学习方法，微调的JointSyn能改进对未见数据的药物协同预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3029,
+                "end_char": 3087
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-8c2e9f4dee8c",
+          "name": "泛癌协同药物组合图谱",
+          "desc": "利用JoinSyn生成泛癌的协同药物组合估计图谱，探讨不同肿瘤间的差异模式。",
+          "evidence": [
+            {
+              "quote": "利用JointSyn生成了泛癌的协同药物组合估计图谱",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3089,
+                "end_char": 3114
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-efb36fbc79fe",
+          "name": "药物响应模型全面评估",
+          "desc": "对现有代表性深度学习药物响应预测模型从拟合能力、运行时间、跨数据集泛化能力等角度进行系统评估。",
+          "evidence": [
+            {
+              "quote": "对现有代表性深度学习药物响应预测模型从拟合能力、运行时间、跨数据集泛化能力等角度进行了全面评估",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3154,
+                "end_char": 3200
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-f02a37c3d835",
+          "name": "两项药物预测专利",
+          "desc": "申请基于多视图的药物协同作用预测方法、利用解耦合成方法精准预测临床患者药物敏感性响应专利2项。",
+          "evidence": [
+            {
+              "quote": "一种基于多视图的药物协同作用预测方法、装置及系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3401,
+                "end_char": 3424
+              },
+              "version": "920d9c9cdb29f2a102d7"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-bb62cbd36007"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9c198e634859"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7424a12d7f53"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f031df88422f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1fcd98d4844e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bedce86290cd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-69db6c8409cd"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8c2e9f4dee8c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

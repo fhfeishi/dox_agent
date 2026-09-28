@@ -1,0 +1,267 @@
+{
+  "doc_id": "faa9ec7c52a4b9103440",
+  "version": "44cab8a506471fbabd07",
+  "source_hash": "e4fc5fcb623b3a71b7299b73287fb69a062b413baafb682ea03487d1fafd823d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:58:44.055893+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-64d1ad15dda8",
+          "name": "病理图像细胞量化分析",
+          "desc": "病理检查通常为肿瘤等恶性疾病的最后确诊提供重要依据，被称为临床诊断的金标准，细胞精确量化分析给病理医生带来难度和强度的双重考验。",
+          "evidence": [
+            {
+              "quote": "病理检查通常为肿瘤等恶性疾病的最后确诊提供重要依据，因此被称为临床诊断的“金标准”。在病理检查中，细胞的精确量化分析工作给病理医生带来了难度和强度的“双重考验”，导致漏诊与误诊的情况时有发生。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 628,
+                "end_char": 723
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ]
+        },
+        {
+          "id": "item-875d11c3f39a",
+          "name": "临床病理诊断人工智能应用",
+          "desc": "探索人工智能框架在临床病理诊断中的应用潜能，为病理图像的辅助分析提供理论基础、技术储备和应用示范。",
+          "evidence": [
+            {
+              "quote": "进一步探索人工智能框架在临床病理诊断中的应用潜能，为病理图像的辅助分析提供强有力的理论基础、技术储备和应用示范",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 963,
+                "end_char": 1017
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ef49e523fbbc",
+          "name": "病理图像异质性问题",
+          "desc": "病理图像细胞检测任务存在病理图像异质性问题。",
+          "evidence": [
+            {
+              "quote": "目前病理图像细胞检测任务仍然存在三个特有的关键问题亟待进一步研究，分别是病理图像异质性问题、前景细胞特征混杂问题以及细胞稀疏标注问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 770,
+                "end_char": 836
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ]
+        },
+        {
+          "id": "item-eb87e84a59ce",
+          "name": "前景细胞特征混杂",
+          "desc": "前景细胞特征存在混杂问题。",
+          "evidence": [
+            {
+              "quote": "前景细胞特征混杂问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 816,
+                "end_char": 825
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ]
+        },
+        {
+          "id": "item-46d1c675c6c5",
+          "name": "细胞稀疏标注问题",
+          "desc": "细胞稀疏标注带来训练困难。",
+          "evidence": [
+            {
+              "quote": "以及细胞稀疏标注问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 826,
+                "end_char": 835
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-593721732bd0",
+          "name": "点级监督细胞分割方法",
+          "desc": "提出基于点级监督的细胞核与细胞膜分割方法，解决传统方法依赖像素级标注的问题。",
+          "evidence": [
+            {
+              "quote": "本项目提出了一种基于点级监督的细胞核与细胞膜分割方法，解决了传统方法依赖于像素级标注的问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2668,
+                "end_char": 2713
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ]
+        },
+        {
+          "id": "item-318e07161835",
+          "name": "随机特征增强域泛化方法",
+          "desc": "提出基于随机特征增强的域泛化方法，提升模型在不同数据域之间的适应性。",
+          "evidence": [
+            {
+              "quote": "项目提出了基于随机特征增强的域泛化方法，提升了模型在不同数据域之间的适应性，显著增强了跨医院、跨设备图像的鲁棒性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2717,
+                "end_char": 2772
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ]
+        },
+        {
+          "id": "item-5f480564fd0a",
+          "name": "多实例学习与困难样本挖掘",
+          "desc": "针对全切片图像分类任务提出多实例学习与困难样本挖掘方法，并针对稀疏标注提出损失校准策略。",
+          "evidence": [
+            {
+              "quote": "针对全切片图像分类任务，项目提出了多实例学习与困难样本挖掘方法，通过优化训练过程，提高了分类精度和鲁棒性。此外，项目针对稀疏标注带来的挑战，还提出了一种损失校准策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2774,
+                "end_char": 2855
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-296f6cbd178e",
+          "name": "常规染色预测蛋白表达",
+          "desc": "提出通过常规染色切片预测细胞蛋白表达的方法，在癌症早期筛查和治疗方案制定中具有重要意义。",
+          "evidence": [
+            {
+              "quote": "在临床应用方面，项目还提出了通过常规染色切片预测细胞蛋白表达的方法，解决了临床诊断中的一些实际问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2879,
+                "end_char": 2927
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-06530c9cee7e",
+          "name": "高水平会议期刊发表",
+          "desc": "研究成果已在MICCAI、IEEE BIBM、ISBI等高水平会议或期刊发表。",
+          "evidence": [
+            {
+              "quote": "本项目研究成果已在MICCAI、IEEE BIBM、ISBI等高水平会议/期刊发表",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2951,
+                "end_char": 2991
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-35150618b03d",
+          "name": "3项国家发明专利",
+          "desc": "获得了3项国家发明专利。",
+          "evidence": [
+            {
+              "quote": "且获得了3项国家发明专利",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2993,
+                "end_char": 3004
+              },
+              "version": "44cab8a506471fbabd07"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-64d1ad15dda8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ef49e523fbbc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-46d1c675c6c5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5f480564fd0a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-593721732bd0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-296f6cbd178e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-318e07161835"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-35150618b03d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

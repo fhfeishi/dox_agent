@@ -1,0 +1,324 @@
+![](images/page_0_image_0.jpg)
+
+项目批准号 12426503申请代码 A0404归口管理部门收件日期
+
+![](images/page_0_image_2.jpg)
+
+20258012426503
+
+# 国家自然科学基金
+
+# 资助项目结题/成果报告
+
+资助类别:数学天元基金项目
+
+亚类说明:数学天元基金
+
+附注说明:天元数学专题讲习班项目/天元数学高级研讨班项目
+
+项目名称:复杂大数据贝叶斯分析研讨班
+
+负责人:蔡敬衡 BRID: 09708.00.18086
+
+电子邮件: caijheng@mail.sysu.edu 电话: 020-84111810 cn
+
+依托单位:中山大学
+
+联系人:冯春华 电话: 020-84115962
+
+直接费用:15.0000（万元） 执行年限: 2025.01-2025.12
+
+填表日期:2025年12月19日
+
+国家自然科学基金委员会制（2025年）
+
+## 项目摘要
+
+## 中文摘要:
+
+本项目拟申请天元数学高级研讨班项目。复杂大数据分析近年来成为了统计学科领域的热点，然而现有的复杂大数据分析主要在频率框架下进行。随着现代计算机技术和统计计算方法的迅猛发展，加之先验信息的有效利用，贝叶斯方法在复杂数据的建模和分析方面的优势得以凸显。因此，在贝叶斯框架下考虑复杂大数据的建模和统计推断问题具有重要的科学意义和应用前景。本项目旨在汇集来自应用数学和统计学等领域的学术专家，特别是中青年学者，展开深入的讨论与交流，在贝叶斯框架下围绕生存分析、医疗大数据、高维数据与机器学习等领域中的数理统计方法进行研究，并且探讨具体模型和方法在实际学科领域的应用，共同为交叉科学研究贡献智慧和力量。
+
+## Abstract:
+
+This project is Tianyuan Mathematical Senior Seminar. Complex big data analysis has become a hot topic in the field of statistics in recent years, but the existing complex big data analysis is mainly carried out under the frequency framework. With the rapid development of modern computer technology and statistical computation methods, coupled with the effective use of prior information, the advantages of Bayesian method in the modeling and analysis of complex data have been highlighted. Therefore, it is of great scientific significance and application prospect to consider the modeling and statistical inference of complex big data under the Bayesian framework. This project aims to bring together academic experts from the fields of applied mathematics and statistics, especially young and middle-aged scholars, to conduct in-depth discussions and exchanges, to conduct research on mathematical statistical methods in the fields of survival analysis, medical big data, high-dimensional data and machine learning under the Bayesian framework, and to explore the application of specific models and methods in practical disciplines, so as to jointly contribute wisdom and strength to interdisciplinary scientific research.
+
+关键词（用分号分开）:贝叶斯估计；大数据；复杂数据；
+
+Keywords (separated by;): Bayesian Estimation; Big Data; Complex Data;
+
+## 结题摘要
+
+中文摘要（对项目的背景、主要研究内容、重要结果、关键数据及其科学意义等做简单概述）:
+
+本项目于2025年10月10日一13日在中山大学举办“复杂大数据贝叶斯分析研讨班暨统计交叉应用前沿论坛”。研讨班共有50多名师生参加，共有17场报告及一场主题讨论，聚焦贝叶斯分析的理论研究及统计交叉应用研究。参会的学术专家，特别是中青年学者，通过研讨班展开深入的讨论与交流，在贝叶斯框架下围绕高维数据与机器学习、医疗大数据、生存分析等领域中的数理统计方法进行研究，并且探讨具体模型和方法在实际学科领域的应用。研讨班让更多中青年学者和学生快速了解复杂大数据分析和贝叶斯分析两个领域的学术前沿。另外，参会学者们也通过研讨班交流探讨模型与方法的实际应用，推动交叉学科研究。本项目执行期间撰写了两篇关于贝叶斯分析应用的论文
+
+## Abstract (Brief description of research background, main methods, contributions, and research data):
+
+From October 10 to 13, 2025, this project successfully organized the Workshop on Bayesian Analysis of Complex Big Data and Frontier Forum on Interdisciplinary Statistical Applications at Sun Yat-sen Uni versity. Drawing over 50 faculty members and students, the workshop comprised 17 academic presentations and one thematic discussion, centered on the theoretical advancements of Bayesian analysis and cutting-edge research in interdisciplinary statistical applications. Distinguished academic experts in attendance, with a particular focus on young and middle-aged scholars, engaged in in-depth deliberations and knowledge exchange. Within the Bayesian framework, they explored mathematical and statistical methodologies applicable to high-dimensional data and machine learning, medical big data, survival analysis, and other related fields, while also delving into the practical implementation of specific models and methods across various academic disciplines. This workshop served as an effective platform for young and middle-aged scholars as well as students to rapidly acquaint themselves with the latest academic frontiers in both complex big data analysis and Bayesian analysis. Furthermore, participating scholars exchanged insights on the real-world application of relevant models and methods, thereby fostering the development of interdisciplinary research. During the implementation phase of this project, two academic papers focusing on the applications of Bayesian analysis were completed and submitted for publication.
+
+关键词（用分号分开）:贝叶斯估计；大数据；复杂数据；
+
+Keywords (separated by;): Bayesian Estimation; Big Data; Complex Data;
+
+## 正文
+
+《结题/成果报告》正文分为两个部分:结题部分和成果部分。请按照《结题/成果报告》填报说明及撰写要求填写。
+
+## (一）结题部分
+
+## 1. 研究计划执行情况概述。
+
+（1）按计划执行情况。
+
+本项目于2025年10月10日—13日在中山大学举办“复杂大数据贝叶斯分析研讨班暨统计交叉应用前沿论坛”。研讨班邀请了来自应用数学和统计学等领域的学术专家，特别是中青年学者，通过研讨班展开深入的讨论与交流，在贝叶斯框架下围绕高维数据与机器学习、医疗大数据、生存分析等领域中的数理统计方法进行研究，并且探讨具体模型和方法在实际学科领域的应用。
+
+研究计划顺利执行。
+
+## （2）研究目标完成情况。
+
+研讨班让更多中青年学者和学生快速了解复杂大数据分析和贝叶斯分析两个领域的学术前沿。另外，参会学者们也通过研讨班交流探讨模型与方法的实际应用，推动交叉学科研究。
+
+研究目标顺利完成。
+
+![](images/page_3_image_12.jpg)
+
+## 2. 研究工作主要进展、结果和影响。
+
+（1）主要研究内容。
+
+研讨班共有50多名师生参加，共有17场报告及一场主题讨论，聚焦贝叶斯分析的理论研究及统计交叉应用研究。报告详情如下。
+
+1) 题目:Deep distributional learning with non-crossing quantile network（线上）
+
+主讲人:朱宏图（北卡罗来纳大学教堂山分校）
+
+2) 题目:Marginal Likelihood Decomposition for Evaluating Covariance Structures of Repeated Measures in Randomized Controlled Trials(线上)主讲人:陈明辉（康涅狄格大学）
+
+3) 题目:度量分布函数:非欧数据的统计新基石主讲人:王学钦（中国科学技术大学）
+
+4) 题目: Analyzing functional data with a mixture of covariance structures using a curved-based sampling scheme主讲人:史建清（南方科技大学）
+
+5) 题目:任务驱动统计学习:新的统计推断研究范式主讲人:严晓东（西安交通大学） C
+
+6) 题目: Inference of high-dimensional weak instrumental variable regression models without ridge-regularization主讲人:郭旭（北京师范大学）
+
+7) 题目: Simultaneous variable selection and estimation for a partially linear Cox model主讲人:胡涛（首都师范大学）
+
+8) 题目: Bayesian integrative region segmentation in spatially resolved transcriptomic studies主讲人:罗翔宇（中国人民大学）
+
+9) 题目: Distribution-free prediction sets for regression under target shift主讲人:唐炎林（华东师范大学）
+
+10)题目:Heavy-tailed density estimation讲人:江声（香港中文大学（深圳））
+
+题目: Jump-size-based Bayesian detection of multiple change-points with an application to London house price index主讲人:马志华（深圳大学）
+
+12)题目: The quantile-based empirical likelihood for the ROC curves主讲人:刘鹏飞（江苏师范大学）
+
+13)题目:Bayesian analysis of Frechet regression主讲人:刘鹤飞（云南财经大学）
+
+14)题目: Generalized quantile regression for recurrent event data with covariate measurement error主讲人:何海金（深圳大学）
+
+15) 题目: Heterogeneous mediation analysis for Cox proportional hazards model with multiple mediators主讲人:孙熔茜（深圳大学）
+
+16)题目: Penalized weighted generalized estimation equations for highdimensional longitudinal data with informative cluster size主讲人:蒋学军（南方科技大学）
+
+17)题目:贝叶斯Lasso 验证性因子分析模型主讲人:潘俊豪（中山大学）
+
+18)讨论:人工智能时代贝叶斯统计的机遇与挑战主持人:宋心远（香港中文大学）
+
+（2）取得的主要研究进展、重要结果、关键数据等及其科学意义或应用前景。
+
+本项目执行期间撰写了两篇关于贝叶斯分析应用的论文。
+
+① 《A hierarchical Bayesian latent class mixture model with censorship for detection of linear changes and correlation analysis across populations in antimicrobial resistance》。该文提出了 种分层潜类别混合模型，用于检测跨群体抗菌素耐药性的线性变化并进行相关性分析。该文提出贝叶斯方法来估计模型中的未知参数，通过模拟研究评估所提方法的实际性能，最终应用该模型与方法论分析美国国家抗菌素耐药性监测系统（NARMS)的实证数据集。该文已投稿至《StatisticalTheory and Related Fields》杂志并已完成一审的修改，目前在等待二审结果。
+
+②《基于Yeo-Johnson变换的隐马尔可夫模型贝叶斯分析》。该文提出了基于Yeo-Johnson变换的隐马尔可夫模型以分析异构纵向数据。该模型假设数据来自不同的潜在状态总体，从而揭示异构纵向数据的内在结构与变化机制。另外，模型引入Yeo-Johnson变换以处理非正态数据。该文采用了贝叶斯分析方法，包括马尔可夫链蒙特卡洛方法和Watanabe -Akaike信息准则，估计未知参数和确定潜在状态数目。模拟结果显示本文提出的方法能够正确地估计未知参数和潜在状态数目。该文最后利用此模型分析1997年美国青年纵向调查数据集。该文已投稿至《应用概率统计》杂志并已经收到一审意见，目前为修改阶段。
+
+## 3. 研究人员的合作与分工。
+
+项目负责人蔡敬衡负责研讨班整体统筹和组织工作，包括:联系大会邀请报告的专家，会议通知的发放，会议手册的制作，会场的布置，专家接送，会议期间餐饮安排，等等。
+
+项目参加人康凯负责研讨班组织工作，包括会场的布置，专家接送，研讨现场协助，等等。
+
+## 4. 国内外学术合作交流等情况。
+
+本项目于2025年10月10日—13日举办国内会议“复杂大数据贝叶斯分析研讨班暨统计交叉应用前沿论坛”。
+
+## 5. 存在的问题、建议及其他需要说明的情况。
+
+## （二）成果部分
+
+## 1. 项目取得成果的总体情况。
+
+本项目执行期间撰写了两篇关于贝叶斯分析应用的论文:《Ahierarchical Bayesian latent class mixture model with censorship for detection of linear changes and correlation analysis across populations in antimicrobial resistance》和《基于Yeo-Johnson变换的隐马尔可夫模型贝叶斯分析》。目前均在审稿阶段。
+
+2. 项目成果转化及应用情况。
+
+## 3. 人才培养情况。
+
+本项目执行期间有两名硕士生毕业。
+
+4. 其他需要说明的成果。
+
+5. 项目成果科普性介绍或展示网站。无
+
+## 研究成果目录
+
+项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。请按照期刊论文、会议论文、学术专著、专利、会议报告、标准、软件著作权、科研奖励、人才培养、成果转化的顺序列出，其它重要研究成果如标本库、科研仪器设备、共享数据库、获得领导人批示的重要报告或建议等，应重点说明研究成果的主要内容、学术贡献及应用前景等。
+
+项目负责人不得将非本人或非参与者所取得的研究成果、与受资助项目无关的研究成果、未标注国家自然科学基金资助和项目批准号的论文以及取得时间早于项目资助期开始时间的研究成果列入报告中。发表的研究成果（包括专利），项目负责人和参与者均应如实注明得到国家自然科学基金项目资助和项目批准号，科学基金作为主要资助渠道或者发挥主要资助作用的，应当将自然科学基金作为第一顺序进行标注。
+
+## 人才培养
+
+1. 出站博士后/毕业博士/毕业硕士/在站博士后/在读博士/在读硕士
+
+(1) 黄泽阳；毕业硕士，混合总体项目响应理论模型的贝叶斯推断，蔡敬衡，2025-01-01至2025-06-30.
+
+(2) 何锦华；毕业硕士，混合总体响应时间模型的贝叶斯分析，蔡敬衡，2025-01-01至2025-06-30.
+
+## 学术交流
+
+(1) 2025-10-10至2025-10-13，举办举办或参加学术会议/举办国内学术会议/复杂大数据贝叶斯分析研讨班暨统计交叉应用前沿论坛，广东省广州市，中山大学，蔡敬衡.
+
+附表:研究成果统计数据表（本表针对各种类型资助项目收集数据以便进行整体资助效果分析使用，并非要求每类项目都具有以下各类成果。
+
+```
+                   国家级                      1 部级
+        自然科学奖     科技进步奖      发明奖     自然科学奖     科技进步奖    其他
+获奖（项）  一等   二等   一等   二等   一等  二等    等    等    一等  二等
+       0    0    0    0    0    0    0    0    0    0    0
+      特邀学术报告           学术论文           学术专著         其他
+学术报告/论 国际学术 国内学术 发表论文数   论文检索收录情况
+                     SCIE/  北大中文                    科研仪器
+文/专著/其 会议 会议
+              期论义
+                  会议
+ 他（篇）                 SSCI EI 核心期刊 CSSCI 中文 外文 标本库 数据库 设备 重要报告
+       0   0   0  0   0   0   0   0   0   0   0  0   0   0
+           专利（项）             标准                   成果转化
+专利/标准/  国内      国外             国内       软件著作
+软著/成果转                国际                  权             经济效益
+  化   申请  授权  申请  授权     国家  行业  地方  企业     技术转让技术许可作价投资 (万元)
+       0   0   0  0    C  0   0   0   0   0   0   0  0   0
+                 人才培养（人）                    举办和参加学术会议
+人才培养及     中青年学术带头人   出站博士后 毕业博士 毕业硕士 举办国际学术会议 举办国内学术会议 参加国际学术会议
+ 学术交流 优青  杰青 创新群体 其他                 次数  人数  次数  人数  次数  人数
+       0   0   0   0   0    0    2   0   0   1   50  0   0
+```
+
+国家自然科学基金项目资金决算表
+
+项目批准号:12426503
+
+项目负责人:蔡敬衡
+
+金额单位:万元
+
+```
+                                                     预算数                            累计支出数             结余数          结余资金比例
+行次             科目名称                 批准预算             预算调整            调整后预算
+                                      (1)              (2)         (3) =(1) +(2)                  (5) =(3)- (4)        (6)
+ (1)  项目总经费                               15.0000          0.0000         15.0000                       一                  44.04%
+ (2)  项目直接费用                             15.0000           0.0000         15.0000          8.3939         6.6061
+ (3)   1、设备费                              0.0000           0.0000          0.0000          0.0000         0.0000
+                                                                    D
+ (4)      其中：设备购置费                        0.0000           0.0000          0.0000          0.0000         0.0000
+ (5)   2、业务费                             11.0000           0.0000         11.0000          4.8739         6.1261
+ (6)   3、劳务费                              4.0000          0.0000           4.0000          3.5200         0.4800
+ (7)  项目间接费用
+```
+
+注:1.本表中（1）、（3）、（5）、（6）栏为系统自动生成，无需填写；本表中（2）栏填列预算调整数；本表中（4）栏填列项目的实际支出数。
+
+2.第（1）行=第（2）+（7）行
+
+第（2）行=第（3）+（5）+（6）行；
+
+第（3）栏=第（1）+（2）栏；
+
+第（5）栏=第（3）-（4）栏；
+
+第（1）行第（6）栏=第（2）行第（5）栏/第（1）行第（3）栏100%；
+
+第（1）行第（1）栏=第（1）行第（3）栏；
+
+第（1）行第（2）栏=0；
+
+第（4）栏≤第（3）栏；
+
+第（2）行第（5）栏≥0。
+
+## 决算说明书
+
+（请按照《国家自然科学基金预算制项目决算表编制说明》等有关要求，说明各科目支出、预算调整、结余情况，合作研究转拨资金情况，单价≥50万元的设备情况，资金使用和管理过程中遇到的问题及建议，以及其他需要说明的事项等。）
+
+本项目共支出直接经费8.3939万元。
+
+1、设备费支出总计0万元，其中设备购置费支出0万元。
+
+2、业务费支出4.8739万元，其中材料费支出0万元，测试化验加工费支出0万元，燃料动力费支出0万元，差旅/会议/国际合作交流费支出4.8739万元，出版/文献/信息传播/知识产权事务费支出0万元,其他支出0万元。会议费用于举办“复杂大数据贝叶斯分析研讨班暨统计交叉应用前沿论坛”。 D
+
+3、劳务费支出3.5200万元，其中劳务性费用支出0.23万元，用于支付举办会议临时聘用人员；专家咨询费支出3.29万元。
+
+本项目无间接经费预算及支出。
+
+另外，在执行过程中， 不存在预算调整的情况。本项目并无合作研究外拨资金。
+
+本项目直接经费结余6.6061万元。资金结余产生原因:（1）办会过程中原来预算中重要专家的差旅费由专家自行承担，因此该项无需支出；（2）参会人员中有广州本地专家和学生，这部分参会人员无需负担住宿费用，另外办会过程中的控制支出，因此会议费有剩余。项目负责人希望能把结余资金继续使用在后续相关研究当中，包括:（1）项目组成员参加会议或调研；（2）再次举办小型会议或研讨班；（3）支付专家咨询费。
+
+项目负责人承诺将在结题后继续向自然科学基金委提供与资助项目相关的研究成果，并按要求提交依托单位，列入项目成果档案。
+
+结余资金情况说明
+
+```
+   资金结余产生原因：（1）办会过程中原来预算中重要专家的差旅费由专家自行承担，因此该项
+无需支出；（2）参会人员中有广州本地专家和学生，这部分参会人员无需负担住宿费用，另外办会
+过程中的控制支出，因此会议费有剩余。
+   项目负责人希望能把结余资金继续使用在后续相关研究当中，包括：（1）项目组成员参加会议
+或调研；（2）再次举办小型会议或研讨班；（3）支付专家咨询费。
+                              2025
+```
+
+## 注:结余资金比例超过30%的项目该部分必填。
+
+```
+项目负责人承诺：
+  我所承担的项目（编号：12426503 名称：复杂大数据贝叶斯分析研讨班）结题报告
+内容真实，数据准确，未出现《国家科学技术保密规定》中列举的属于国家科学技术秘密
+范围的内容，不涉及敏感科技信息。在今后的研究工作中，如有与本项目相关的成果，将
+如实注明得到国家自然科学基金项目资助和项目批准号，并报送国家自然科学基金委员会
+                          项目负责人（签
+                           日期：
+ 依托单位科研管理部门：  依托单位财务管理部门：   依托单位审查意见：
+负责人（签章）：      负责人（签章）：       依托单位公章：
+日期：           日期：
+科学处审核意见：
+ 完成情况  优   良   中   差   负责人（签章）：
+ 综合评分                  日期：
+ (划√)
+科学部核准意见  对重点项目等）：
+NSF
+                           负责人（签章）：
+                          日期：
+ 分管委领导意见（对重大项目等）：
+                           委领导（签章）：
+                          日期：
+```
+
+## 电子附件目录
+
+```
+序号   附件类型      附件名称           备注
+                       已投稿至《Statistical Theory and
+ 1 论著       A hierarchical Related
+            Bayesian LCMMs Fields》杂志并已完成一审的修改，
+                       目前在等待二审结果。
+            基于Yeo-Johnson变换的 投稿至《应用概率统计》杂志并已经
+ 2 论著       隐马尔可夫模型贝叶斯分
+            析          收到一审意见，目前为修改阶段。
+ 3 其他       决算表及决算说明书（盖 决算表及决算说明书 盖章）
+            章）
+ 4 其他       何锦华论文扉页    硕士论文扉页
+ 5 其他       黄泽阳论文扉页    硕士论文扉页
+ 6 其他       会议议程       会议议程
+```

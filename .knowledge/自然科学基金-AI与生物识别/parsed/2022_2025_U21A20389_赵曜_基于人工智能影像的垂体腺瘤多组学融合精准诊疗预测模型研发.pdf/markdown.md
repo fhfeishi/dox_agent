@@ -1,0 +1,335 @@
+![](images/page_0_image_0.jpg)
+
+![](images/page_0_image_1.jpg)
+
+202509U21A20389
+
+# 国家自然科学基金
+
+# 资助项目结题/成果报告
+
+资助类别:联合基金项目
+
+亚类说明:重点支持项目
+
+附注说明:区域创新发展联合基金
+
+项目名称:基于人工智能影像的垂体腺瘤多组学融合精准诊疗预测模型研发
+
+负责人:赵曜 BRID: 09221.00.58026
+
+电子邮件: zhaoyaohs@vip.sina.com 电话: 021-54601801
+
+依托单位:复旦大学
+
+联系人: 熊莉君
+
+电话: 021-31243718
+
+直接费用:260.0000（万元）
+
+执行年限: 2022.01-2025.12
+
+填表日期:2026年01月19日
+
+国家自然科学基金委员会制（2025年）
+
+## 项目摘要
+
+## 中文摘要:
+
+垂体腺瘤是最常见的神经内分泌肿瘤，临床危害严重，诊疗困难。申请人牵头组建了垂体腺瘤多学科融合诊疗新体系，提高了该病的综合疗效，但目前仍缺乏客观的个体化评估体系，导致无法精准预测诸多能影响治疗安全性和效果的重要临床事件。本研究团队前期依靠大样本临床数据库和生物样本库，开展了垂体腺瘤多模态影像辨识、影像组学和基因组学等系列研究，发现了多个和治疗预后相关的标志物；同时掌握了人工智能方法的关键技术，开展了垂体腺瘤诊疗相关的预测研究。在此基础上，本课题拟通过沪晋两地多家单位优势学科合作，利用强人工智能方法，以影像学为核心，交叉融合临床表征、宏观病理学、微观基因等多组学信息，深入挖掘关键标志物，构建垂体腺瘤的个体化诊疗预测模型，用于精准预测手术安全性、药物和放疗敏感性、内分泌功能恢复和肿瘤复发等临床事件，以期增加手术安全性，避免无效的药物和放射治疗，提高术后内分泌管理水平，防止或延缓肿瘤复发。
+
+## Abstract:
+
+Pituitary adenomas are the most common neuroendocrine tumors with severe clinical consequences while currently there are still obstacles and difficulties in diagnosis and treatment. We have developed a clinical model integrating multiple disciplines, which has improved the therapeutic efficacy. However, due to the lack of an individualized and objective assessment system, it is hard to accurately predict important clinical events, which could affect the safety and efficacy of treatment. Based on our clinical huge database and biobank, we have performed multiple studies on radiology, radiomics, and genomics. We found that several biomarkers are associated with the treatment and prognosis of pituitary adenomas. With the key technique of artificial intelligence, we also performed researches to predict the diagnosis and treatment of pituitary adenomas. In this grant proposal, we wi1l develop close cooperation among major clinical and research centers in Shanghai and Shanxi Province. We will use a general artificial intelligence technique (self-adapted neural network) to accurately predict clinical events such as surgical safety, medical and radiotherapeutical sensitivity, endocrine function recovery, and tumor recurrence. With radiology being the cornerstone, the system will incorporate clinical semantic features, pathologic features and genomic features, which will be used to investigate the key biomarkers and construct an individualized model for the diagnosis and treatment of pituitary adenomas. The validated individualized prediction model might increase the safety of surgery, avoid unnecessary and ineffective medication or radiotherapy, improve postoperative endocrine management, as well as prevent the tumor recurrence.
+
+关键词（用分号分开）:垂体腺瘤；影像组学；基因组学；病理组学；强人工智能
+
+Keywords (separated by;): Pituitary Adenoma; Radiomics; Genomics; Pathomics; General Artificial Intelligence
+
+## 结题摘要
+
+## 中文摘要（对项目的背景、主要研究内容、重要结果、关键数据及其科学意义等做简单概述）:
+
+本课题围绕垂体腺瘤个体化诊疗的关键挑战，构建并整合了一个涵盖5450例患者（回顾性4250例，前瞻性1200例）的大型多中心数据库。该数据库系统整合了完整的临床资料、原始磁共振影像（DI COM）、高分辨率数字化病理切片（SVS格式）及配套生物样本，并从中挖掘出包括GNAS（11%）、USP 8（4%）等关键驱动基因，以及10,011种蛋白质与29,219个磷酸化位点等海量分子特征，为模型构建提供了多维数据基础。在此数据基础上，依托强人工智能方法深度融合影像、临床、病理及基因组、转录组等多组学信息，建立了一套覆盖诊疗全链条的个体化预测模型体系。在研究内容与成果方面:基于多任务深度学习框架实现了肿瘤与周围关键结构的自动精准分割及海绵窦侵袭识别；利用病理大模型提取定量形态学特征，构建了复发风险分层模型，可将患者分为低、中、高风险三层，并揭示PI T1/TPIT谱系中低分化亚型具有更高复发风险；开发了基于多参数MRI的放射组学模型， 实现了术前无创预测肿瘤血供与质地，辅助手术决策与入路规划；首次提出了基于分子特征的垂体瘤七型分类系统，明确了各亚型潜在的治疗靶点及其与药物敏感性的关联；此外，针对功能性垂体瘤构建了可预测立体定向放疗后内分泌缓解的人工智能模型。本系列模型已在华山医院、山西协作中心及全国多中心网络中开展系统化应用与验证，显著推动了诊疗流程的精准化与标准化，相关成果已形成一项专利并建成两个软件应用平台，为垂体腺瘤智能诊疗体系的建立提供了完整、可靠的技术范式，具有重要的临床转化价值与科研意义。
+
+## Abstract (Brief description of research background, main methods, contributions, and research data):
+
+This project addresses key challenges in the individualized diagnosis and treatment of pituitary adenomas. By constructing and integrating a large-scale multicenter database encompassing 5,450 patients (4,250 retrospective, 1,200 prospective), and utilizing strong artificial intelligence methods to deeply integrate multi-omics information including imaging, clinical data, pathology, genomics, and transcriptomics, a comprehensive individualized prediction model system covering the entire diagnostic and therapeutic chain has been established. The database systematically integrates complete clinical records, original magnetic resonance images (DICOM), high-resolution digital pathology slides (SVS format), and corresponding biospecimens. From this, key driver genes such as GNAS (11%) and USP8 (4%), along with a vast array of molecular features including 10,011 proteins and 29,219 phosphorylation sites, have been identified, providing a multidimensional data foundation for model development.
+
+In terms of research content and outcomes: a multi-task deep learning framework was employed to achieve automatic and precise segmentation of the tumor and surrounding critical structures, as well as identification of cavernous sinus invasion; a pathological large model was used to extract quantitative morphological features, constructing a recurrence risk stratification model that categorizes patients into low-, medium-, and high-risk tiers, revealing that poorly differentiated subtypes within the PIT1/TPIT lineage carry a higher recurrence risk; a radiomics model based on multiparameter MRI was developed to enable non-invasive preoperative prediction of tumor blood supply and texture, assisting in surgical decision-making and approach planning; a novel molecular feature-based seven-subtype classification system for pituitary tumors was proposed for the first time, clarifying potential therapeutic targets for each subtype and their association with drug sensitivity; furthermore, an artificial intelligence model was built to predict endocrine remission following stereotactic radiotherapy for functional pituitary tumors.
+
+This series of models has undergone systematic application and validation at Huashan Hospital, Shanxi Collaborative Center, and within a nationwide multicenter network, significantly advancing the precision and standardization of the diagnostic and therapeutic process. Related achievements have resulted in one patent and the establishment of two software application platforms. This work provides a comprehensive and reliable technological paradigm for the development of an intelligent diagnosis and treatment system for pituitary adenomas, holding substantial clinical translational value and scientific significance.
+
+关键词（用分号分开）:垂体瘤；多任务；大模型；个体化诊疗；
+
+Keywords (separated by;): Pituitary adenoma; Multi-task; Foundation model; Individualized treatment;
+
+## 正文
+
+《结题/成果报告》正文分为两个部分:结题部分和成果部分。请按照《结题成果报告》填报说明及撰写要求填写。
+
+## （一）结题部分
+
+## 1. 研究计划执行情况概述。
+
+（1）按计划执行情况。
+
+本课题围绕“构建垂体腺瘤的个体化治疗预测模型”的建立开展研究，研究严格按计划执行，已全面完成各阶段任务:第一阶段完成临床数据提取与样本筛选；第二阶段完成多组学数据采集，分析和特征提取；第三阶段成功整合多模态数据并构建、优化了人工智能预测模型；第四阶段实现模型验证、亚型分析及成果转化。
+
+## （2）研究目标完成情况。
+
+利用强人工智能方法，以影像学为核心，交叉融合临床表征、宏观病理学、微观基因等多组学信息，深入挖掘关键标志物，构建垂体腺瘤的个体化治疗预测模型，用于精准预测手术安全性、药物和放疗敏感性、内分泌功能恢复和肿瘤复发等临床事件。(已完成)
+
+## 2. 研究工作主要进展、结果和影响。
+
+（1）主要研究内容。
+
+本课题围绕“构建垂体腺瘤的个体化治疗预测模型”的建立开展研究。各部分实际完成情况如下:
+
+①完善垂体腺瘤多中心数据库和生物样本库，涵盖临床数据库、影像数据库、病理数据库、生物样本库。（已完成）
+
+②构建垂体腺瘤多维度多组学特征库:包括临床特征库、影像特征库、病理特征库、基因组学数据、转录组学数据、表观组学数据。（已完成）
+
+③构建人工智能模型，整合宏观与微观数据，构建垂体腺瘤的多任务分期分型模型，预测垂体腺瘤复发、血供、质地、血管神经黏连、海绵窦侵袭，药物/放疗敏感性，内分泌功能恢复等。（已完成）
+
+④在前瞻性以及外部数据库中验证模型的普适性。（已完成）
+
+（2）取得的主要研究进展、重要结果、关键数据等及其科学意义或应用前景。 1
+
+## ①完善垂体腺瘤多中心数据库和生物样本库
+
+已成功构建并完善了一个大型垂体腺瘤多中心数据库，累计纳入病例5450例。病例来源包括:复旦大学附属华山医院（4500例）、长治医学院附属和平医院（200例）、宁夏医科大学总医院（250例）、福建医科大学附属第一医院（120例）、上海市第一人民医院（100例）、南京大学医学院附属金陵医院（100例）、昆明医科大学第一附属医院（40例）、山西省人民医院（30例）、贵州医科大学附属医院（30例），以及山东第一医科大学第一附属医院、中国医科大学附属盛京医院、重庆市人民医院、上海交通大学医学院附属仁济医院(各20例)。其中，回顾性数据4250例，前瞻性数据1200例。数据库已部署于专属网站(https://x.ybridge.net/)，可实现数据的标准化管理与共享（图1)。
+
+![](images/page_5_image_7.jpg)
+
+图1、大型垂体腺瘤多中心数据库
+
+该数据库整合了多维度、高标准的研究数据:完整的临床信息（相关成果发表于Int J Surg 2024，IF = 14；Thromb Res 2023，IF = 10)；鞍区磁共振 DICOM格式原始图像数据（相关成果发表于Radiology 2024，IF = 12；Clin Radiol 2025，IF =2.2）；数字化病理切片（SVS格式）图像数据（相关成果发表于JPathol2022，
+
+IF = 9.9; J Pathol Clin Res 2023, IF = 3.7; Acta Neuropathol Commun 2025, IF = 7); 4）配套的肿瘤组织及外周血生物样本（相关成果发表于Cell Rep Med 2023，IF = 17; Cell Res 2022, IF = 46)。
+
+## ②构建垂体腺瘤多维度多组学特征库
+
+在本多中心数据库中，我们已整合以下结构化数据与模型:
+
+临床特征库:已提取包括人口学信息、临床症状、体征、肿瘤特征（质地、血供、切除范围）、术后并发症、对药物或放疗的敏感性以及复发情况等在内的多维临床数据。
+
+## 影像特征库与深度学习模型:构建了一个多任务深度学习框架
+
+(MTMAU-Net)，用于同步实现垂体瘤分割、血管分割及海绵窦侵袭识别。分析表明，该模型在分割任务中取得了最优性能，其 Dice 系数达 90.84 ± 0.55%，优于既往报道的单任务模型（Dice系数89.8%，图2）。结合分割任务后，海绵窦侵袭识别的分类性能也得到提升，准确率为 88.05 ± 2.84%，AUC 为 0.89 ± 0.08。基于此框架，可高通量提取各感兴趣区域的影像组学特征。（相关成果发表于 Clin Radiol 2025，IF = 2.2)
+
+![](images/page_6_image_8.jpg)
+
+图2、垂体瘤和血管分割模型（MTMAU-Net)，可精准分割肿瘤和血管
+
+病理特征库与大模型分析:采用先进的病理大模型，提取了包括细胞形态规整度、核浆比、核异型性、排列整齐度等在内的一系列可解释的定量病理特征。(图 3、相关成果发表于J Pathol Clin Res 2023，IF = 3.7)
+
+![](images/page_7_image_3.jpg)
+
+图3、病理大模型提取可解释的定量病理特征
+
+基因组学分析:全外显子组测序(WES)共检出7333个突变基因，包含11092个非同义单核苷酸变异及419个小片段插入缺失。鉴定出多个与垂体瘤功能相关的显著突变基因，包括GNAS (11%)、KRT76 (8%)、TCHH(6%)、ZMIZ2 (6%)、DGKZ (6%)、KRTAP9-2(5%) 和 USP8 (4%)。体细胞碱基替换谱分析显示，垂体瘤中 C>A颠换比例相对较高，而肿瘤突变负荷处于中低水平。（图4、相关成果发表于Cell Res 2022, IF = 46)
+
+![](images/page_7_image_6.jpg)
+
+图4、垂体瘤的基因突变图谱
+
+转录组、蛋白质组和磷酸化组学分析:RNA测序共识别出18,397个表达基因。蛋白质组学分析共鉴定到10,011种蛋白质及29,219个磷酸化位点(对应5,483种磷酸化蛋白）。谱系特异性转录因子（PIT1、TPIT、SF1）及激素相关基因（GH1、PRL、TSHB、POMC、LHB、FSHB）的表达具有亚型特异性。蛋白质调控结果显示，分别有 6545个和 684个 CNA 对 mRNA和蛋白质水平产生显著的顺式效应。（图5、相关成果发表于Cell Res 2022，IF = 46)
+
+![](images/page_8_image_3.jpg)
+
+图5、垂体瘤的蛋白组学图谱
+
+## ③构建垂体腺瘤的多任务分期分型模型并在前瞻性和外部数据库中验证
+
+针对垂体腺瘤的复发预测，本研究整合了病理组学与单细胞RNA测序数据。
+
+基于病理大模型，我们从1146例回顾性收集的患者（训练队列）的HE染色切片中提取定量病理特征，构建了预测无复发生存期的ADAPT模型。该模型可将无功能性PitNETs患者分为低、中、高风险三层。在多变量分析中，ADAPT模型展现出稳健的复发预测效能:在前瞻性验证队列（1300例）与外部验证队列（1245例）中，高风险组相较于低风险组的风险比（HR）分别为7.70（95%Cl 2.34- 25.4, p<0.001）与 6.16（95% Cl 3.01 - 12.6, p<0.001)。该模型在功能性PitNETs 队列(797 例)中同样具有风险分层能力(高风险 vs. 低风险:HR 2.71, 95% Cl1.44-5.09,p=0.002，图6)。此外，病理图像已实现间质标志物，CD4，CD31等分子标志物的3D可视化呈现（图7）。相关成果已转化为网页应用程序并完成软件注册（http://adapt-ai.cn，图 8）。
+
+D
+
+![](images/page_9_image_1.jpg)
+
+A. Kaplan-Meier curve in the training cohort
+
+![](images/page_9_chart_5.jpg)
+
+B. Kaplan-Meier curve in the prospective validation cohort
+
+![](images/page_9_chart_7.jpg)
+
+```
+          Number at risk: n (%)
+   risk=low 643 (100) 639 (99)   634 (99)   631 (98)   609 (95)   456 (71)   151 (23)   81 (13)
+risk=medium 339 (100) 326 (96)   315 (93)   308 (91)   278 (82)   158 (47)   75 (22)    49 (14)
+  risk=high 164 (100) 154 (94)   135 (82)   129 (79)   109 (66)   78 (48)    62 (38)    61 (37)
+```
+
+C. Kaplan-Meier curve in the external validation cohort
+
+![](images/page_9_chart_10.jpg)
+
+D. Kaplan-Meier curve in the functioning cohort
+
+![](images/page_9_chart_12.jpg)
+
+```
+           Number at risk: n (%)
+    risk=low703 (100)  481 (68)   466 (66)   456 (65)   381 (54)    279
+                                                                       (40)    153 (22)    41 (6)
+risk=medium 370 (100)  264 (71)   254 (69)   241 (65)    224 (61)      7 (48)  97 (26)     35 (9)
+                                                                    177
+   risk=high 132 (100) 103 (78)   97 (73)     92 (70)    83 (63)    54 (41)     20 (15)     9 (7)
+```
+
+```
+        Number at risk: n (%)
+ risk=low567 (100)  476 (84)    330 (58)   257 (45)    187 (33)    160 (28)   139 (25)    76 (13)
+risk=high 230 (100) 183 (80)    115 (50)    90 (39)    72 (31)     57 (25)     52 (23)    36 (16)
+```
+
+图6、病理组学模型在内部验证、外部验证、前瞻性验证和功能性验证组中均能较好预测垂体瘤的复发风险
+
+![](images/page_9_image_16.jpg)
+
+![](images/page_9_chart_17.jpg)
+
+![](images/page_9_chart_18.jpg)
+
+![](images/page_9_chart_19.jpg)
+
+![](images/page_9_chart_20.jpg)
+
+![](images/page_9_chart_21.jpg)
+
+图7、大模型所处理的病理图像已实现间质标志物，CD4，CD31等分子标志物的可视化呈现
+
+![](images/page_10_image_2.jpg)
+
+图8、病理大模型相关成果已转化为网页应用程序
+
+进一步，通过单细胞RNA测序，我们系统解析了各亚型垂体瘤的细胞组成，追溯其细胞起源，并据此将垂体瘤分为高分化型与低分化型（图9)。在包含800例患者的独立队列中验证发现，关键分子标志物可有效预测肿瘤远期复发。尤其在PIT1与TPIT谱系中，低分化亚型提示更高的复发风险。基于上述发现，本研究在国际上首次提出了基于分化程度、具有复发预测价值的垂体瘤分子分型体系(图 10，相关成果发表于 Cell Reports Medicine 2023，IF = 17)。
+
+![](images/page_10_image_5.jpg)
+
+图9、根据单细胞RNA测序将垂体瘤分为高分化型与低分化型
+
+![](images/page_11_chart_2.jpg)
+
+![](images/page_11_chart_3.jpg)
+
+![](images/page_11_chart_4.jpg)
+
+图10、关键分子标志物可有效预测肿瘤远期复发
+
+针对垂体瘤的血供、质地及血管神经粘连等关键手术特征，本研究团队开发并验证了一套基于多参数磁共振序列的放射组学模型，可在术前无创预测肿瘤血供与质地。通过术前多参数磁共振序列（包括平扫T1、T2、增强T1、动脉自旋标记[ASL]及弥散加权成像[DWI]）提取放射组学特征，分析结果显示，增强T1序列的放射组学特征联合相对脑血流量(rCBF)值在预测肿瘤血供方面表现优异(图11)，训练集与验证集的受试者工作特征曲线下面积（AUC）分别为0.906（95%CI: 0.855-0.982）和0.873（95% CI:0.849-0.965）。同样，T2与 DWI序列的放射组学特征结合相对表观扩散系数（rADC）值及形态学参数，在预测肿瘤质地方面也展现出良好效能（图12），训练集与验证集的 AUC 分别为 0.876（95% CI: 0.818-0.956）和0.869（95%CI:0.772-0.979）。该预测结果作为手术难度评分的重要组成部分，能够辅助外科医生术前评估肿瘤切除范围、预测术后并发症风险，并据此制定个体化手术策略。
+
+![](images/page_11_chart_7.jpg)
+
+![](images/page_11_chart_8.jpg)
+
+![](images/page_11_chart_9.jpg)
+
+![](images/page_11_chart_10.jpg)
+
+![](images/page_11_chart_11.jpg)
+
+![](images/page_11_chart_12.jpg)
+
+图11、增强 T1序列的放射组学特征联合rCBF 值有效预测肿瘤血供
+
+![](images/page_12_image_0.jpg)
+
+![](images/page_12_chart_3.jpg)
+
+![](images/page_12_chart_4.jpg)
+
+![](images/page_12_chart_5.jpg)
+
+![](images/page_12_chart_6.jpg)
+
+![](images/page_12_chart_7.jpg)
+
+![](images/page_12_chart_8.jpg)
+
+图 12、T2 与 DWI 序列的放射组学特征结合 rADC 值有效预测肿瘤质地
+
+针对垂体瘤的海绵窦侵袭问题，本研究构建了一个整合肿瘤分割与海绵窦侵袭识别的多任务多轴注意力 UNet 网络（MTMAU-Net)。通过联合分割任务，模型在识别海绵窦侵袭的分类性能也得到提升（准确度:88.05%±2.84%，AUC: 0.89±0.08)，体现了多任务集成学习的优势。在外部验证队列中，尽管其侵袭病例分布与训练集存在差异，MTMAU-Net 仍表现出稳健的性能，分类任务准确度为84.55%（AUC:0.87）。通过Grad-CAM可视化技术，本研究进一步阐明了模型的决策依据:对于侵袭性肿瘤，模型主要关注包绕颈内动脉及海绵窦的肿瘤区域，这与临床评估的重点相符；而对于非侵袭性肿瘤，模型则更关注肿瘤中心区域。这表明模型能够根据肿瘤的侵袭性特征自适应地调整注意力模式（图13，相关研究成果已发表于 Clinical Radiology 2024，IF = 2.2)。
+
+![](images/page_12_chart_11.jpg)
+
+![](images/page_12_image_12.jpg)
+
+![](images/page_12_image_13.jpg)
+
+![](images/page_12_image_14.jpg)
+
+图13、垂体瘤多任务深度学习框架可精准识别肿瘤侵袭性
+
+针对垂体腺瘤的药物敏感性，本研究对垂体瘤样本进行了多组学测序，整合基因组、转录组、蛋白质组及磷酸化蛋白质组四个层面的数据。结合肿瘤临床特征与多组学分析，首次提出了一种基于分子特征的垂体瘤七型分类系统，并明确了各亚型潜在的治疗靶点，这些标志物均能够提示肿瘤对药物的敏感性。该工作在国际上首次建立了具有临床治疗指导潜力的垂体瘤分子分型新标准（图14，相关成果发表于Cell Research 2023，IF = 46)。
+
+![](images/page_13_image_3.jpg)
+
+图14、基于分子特征的垂体瘤七型分类系统，各亚型潜在的治疗靶点
+
+针对垂体腺瘤的放疗敏感性，将肢端肥大症患者的HE染色病理切片，并结合其临床与遗传信息，训练了一个低秩融合卷积神经网络模型，用于预测患者经立体定向放射外科治疗后的内分泌缓解情况（图15）。结果显示，LFCNN模型在内部测试集中预测该结局的患者层面准确率达到92.9%，敏感性与特异性分别为87.5%和100.0%。在训练队列中，该模型是初始累计缓解的显著预测因子（风险比 9.58，95%置信区间 3.89-23.59；p < 0.001)，其预测效能优于已知的预后标志物。此外，模型在外部队列中也得到有效验证（风险比9.06，95%置信区间1.14-72.25；p=0.012，图16)。研究证实，整合临床与遗传标志物与数字病理图像，可有效预测活动性肢端肥大症患者SRS术后的内分泌结局。该模型性能优于现有预后指标，具有辅助临床治疗决策的潜力（相关成果发表于∫Pathol 2022，IF = 9.9)。
+
+![](images/page_14_image_2.jpg)
+
+图15、低秩融合卷积神经网络模型预测患者放射外科治疗后的内分泌缓解率
+
+```
+                准确性   敏感性  特异性                            准确性  敏感性   特异性
+病理组学预测          85.7% 0.750 1.000       病理组学预测            75.7% 0.750 0.750
+临床、 基因指标预测      71.4% 0.750 0.667       临床  基因指标预测        61.4% 0.650 0.667
+结合病理组学与         92.9% 0.875 1.000       结合病理组学与           85.0% 0.723 1.000
+临床、基因指标                                 临床、基因指标
+```
+
+图16、模型在内部验证和外部验证组中均得到良好的预测效能
+
+## 3. 研究人员的合作与分工。
+
+本研究采用多学科协作模式，由项目负责人赵曜教授统筹规划与资源协调。各环节分工明确:吴越负责影像数据收集与标注，程海霞承担病理切片扫描与判读，姜宁与王蒙负责生物样本的处理与分析，汤文龙负责山西省受试者招募，共同完成了高质量多中心数据库与生物样本库的建设。赵仲华研究员主导基因组学测序与分析。乔霓丹、吴国庆与吴永亮组成算法团队，共同负责人工智能模型的构建、调试与算法开发，整合宏观影像与微观组学数据，最终构建并验证了多任务预测模型。整个团队通过紧密协作，有效贯通了从临床数据采集、多组学分析到智能模型构建的完整研究链条。
+
+## 4. 国内外学术合作交流等情况。
+
+本研究团队积极开展国内外高水平学术交流，成果在多个权威会议上获得展示与讨论。赵曜教授作为项目牵头人，在中国垂体腺瘤协作组年会上作题为《垂体腺瘤元宇宙》的大会报告，并在亚洲神经肿瘤大会上主持了“垂体肿瘤前沿”专题研讨会。核心研究人员也在各自领域深度参与交流:乔霓丹、吴国庆等算法成员在国际医学人工智能大会上，分别就《融合多组学数据的垂体腺瘤智能诊疗模型构建》、《基于深度学习的垂体瘤手术难度术前评估》等题目进行了口头报告或壁报展示。吴越医师在国际磁共振成像学会年会上交流了《基于多模态MRI的垂体腺瘤侵袭性预测模型》工作。程海霞主任在中华医学会病理学分会年会上分享了《垂体腺瘤病理数字化与人工智能辅助诊断》的经验。
+
+本项目的创新体系和重要成果也引起了国际顶尖团队的高度关注，并促成了系列高水平的来访交流与合作对话:美国麻省总医院（MGH）垂体瘤中心核心专家 Karen Miller 教授、Nicholas Tritos 教授到访，就垂体瘤内分泌管理与临床研究设计进行了深入研讨；意大利那不勒斯费德里科二世大学内分泌科中心主任RosarioPivonello教授来访，双方探讨垂体腺瘤的代谢组学与靶向治疗研究；国际神经外科联盟（WFNS）内镜分会主席、日本大阪市立大学神经外科主任Takeo Goto教授来访，重点交流了内镜手术技术与人工智能术前规划的结合应用；日本神经肿瘤协会秘书长、京都大学神经外科主任Yokishi Arakawa教授，以及亚洲神经肿瘤协会主席、韩国亚洲大学神经外科主任 SeeHyuk Kim 教授联袂到访，共同探讨了亚洲人群垂体腺瘤的流行病学特征与多中心临床研究合作方案。
+
+## 5. 存在的问题、建议及其他需要说明的情况。
+
+## （二）成果部分
+
+## 1. 项目取得成果的总体情况。
+
+利用强人工智能方法，以影像学为核心，交叉融合临床表征、宏观病理学、微观基因等多组学信息，建立并验证了构建垂体腺瘤的个体化治疗预测模型，用于精准预测手术安全性、药物和放疗敏感性、内分泌功能恢复和肿瘤复发等临床事件；
+
+形成两个软件，构建APP网站；
+
+申请专利1项；
+
+在国内外期刊上发表论文11篇，其中10分以上6篇；
+
+项目组成员共计出席国内外学术会议20余次，推广研究成果；
+
+毕业研究生1名，培养研究生4名。
+
+## 2. 项目成果转化及应用情况。
+
+项目已在华山医院垂体腺瘤诊疗中心、山西协作中心及全国多中心网络中得到系统化应用与验证，显著推进了诊疗流程的精准化与标准化
+
+在华山医院，该模型已深度整合至垂体腺瘤多学科联合诊疗（MDT）临床路径中。作为术前评估的常规工具，模型通过量化预测手术全切概率、邻近关键结构损伤风险及术后内分泌功能恢复可能性，为手术方案（如是否采用内镜、手术入路规划）提供了关键数据支撑，辅助神经外科、内分泌科、放疗科医生制定个性化治疗方案。在术后管理中，模型对肿瘤复发风险及对药物/放疗敏感性的预测，用于指导患者的风险分层与长期随访策略，实现了从“经验驱动”到“数据与算法辅助决策”的转变。
+
+在山西省内的区域队列中，该模型的应用重点在于验证其普适性与提升区域诊疗同质化水平。利用山西地区特点鲜明的患者队列进行外部验证，证实了模型在不同人口结构及医疗资源环境下的稳定性能。山西协作中心的医生能够共享华山医院的算法能力，对本地病例进行高水准的术前评估与预后预测，有效促进了先进诊疗经验的技术下沉，缩小了区域间诊疗差距。
+
+此外，通过中国垂体腺瘤协作组，该模型的标准化评估流程已推广至多家合作中心。各中心在统一数据标准下，将模型预测结果用于本地的MDT讨论，形成了“集中训练-分布验证-本地应用”的创新模式。全国多中心回顾性与前瞻性数据均表明，该模型对手术安全性、复发风险的预测能力在不同中心间保持稳健。
+
+申请专利一项:一种基于全切片病理图像的垂体腺瘤复发预测模型构建方法及预测系统
+
+构建数据库网站:https://x.ybridge.net/
+
+构建全自动病理图像分析网站:http://adapt-ai.cn/

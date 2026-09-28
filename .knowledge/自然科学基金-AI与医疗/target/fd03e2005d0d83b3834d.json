@@ -1,0 +1,268 @@
+{
+  "doc_id": "fd03e2005d0d83b3834d",
+  "version": "572d4c8cc8209bd74b74",
+  "source_hash": "cb1f56cd6638e7b1ce8482e7a4309988822bea2be44a6dd632c6fc038fb75de8",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:06:10.709407+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5c9d532b3434",
+          "name": "膝关节疾病MRI诊断",
+          "desc": "膝关节疾病是最常见的骨科疾病，临床上主要依靠磁共振检查诊断。",
+          "evidence": [
+            {
+              "quote": "膝关节疾病是最常见的骨科疾病，临床上主要依靠磁共振(MRI)检查诊断。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 648,
+                "end_char": 682
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ]
+        },
+        {
+          "id": "item-0f828582e903",
+          "name": "关节镜金标准引入智能诊断",
+          "desc": "首次提出将关节镜检查结果这一诊断膝关节疾病的金标准应用于MRI智能诊断模型的构建中。",
+          "evidence": [
+            {
+              "quote": "首次提出将关节镜检查结果这一诊断膝关节疾病的金标准应用于MRI智能诊断模型的构建中",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 841,
+                "end_char": 881
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9be25a562c24",
+          "name": "人工读片主观性与漏诊",
+          "desc": "膝关节结构复杂、损伤类型多样，临床医生阅片时不可避免存在一定的误漏诊。",
+          "evidence": [
+            {
+              "quote": "由于膝关节结构复杂，损伤类型多样，临床医生阅片时不可避免存在一定的误漏诊。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 683,
+                "end_char": 719
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ]
+        },
+        {
+          "id": "item-204ca2b90dee",
+          "name": "AI模型可解释性差与验证不足",
+          "desc": "以人工标注训练的膝关节AI模型仍存在误差率，算法可解释性差且缺乏手术金标准验证。",
+          "evidence": [
+            {
+              "quote": "但以人工标注训练的膝关节AI模型仍存在一定的误差率；同时算法的可解释性差，临床应用存在风险。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 742,
+                "end_char": 787
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-97f64b6f471d",
+          "name": "知识蒸馏教师-学生网络",
+          "desc": "构建基于知识蒸馏的教师-学生网络，通过199例配对MRI-关节镜数据实现诊断知识迁移。",
+          "evidence": [
+            {
+              "quote": "研究团队构建了基于知识蒸馏的“教师-学生”网络，通过199例配对MRI-关节镜数据实现了诊断知识的有效迁移",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2912,
+                "end_char": 2964
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ]
+        },
+        {
+          "id": "item-3998ee20a99b",
+          "name": "MCSNet多任务3D网络",
+          "desc": "开发MCSNet多任务3D网络，实现半月板精确分割与损伤分类的同步优化。",
+          "evidence": [
+            {
+              "quote": "同时开发了MCSNet多任务3D网络，实现半月板精确分割与损伤分类的同步优化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3021,
+                "end_char": 3058
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ]
+        },
+        {
+          "id": "item-2629cd5fd5bf",
+          "name": "空间注意力机制可视化",
+          "desc": "通过空间注意力机制提供可视化热图提升可解释性。",
+          "evidence": [
+            {
+              "quote": "并通过空间注意力机制提供可视化热图",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3094,
+                "end_char": 3110
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ec0b91da75bd",
+          "name": "外侧半月板撕裂AUC提升至0.751",
+          "desc": "使外侧半月板撕裂检测AUC从0.672显著提升至0.751。",
+          "evidence": [
+            {
+              "quote": "使外侧半月板撕裂检测AUC从0.672显著提升至0.751",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2966,
+                "end_char": 2994
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-b96d4a9a9c3e",
+          "name": "半月板分割Dice 0.812",
+          "desc": "平均Dice系数达0.812，内侧半月板分类准确率最高达0.980，模型性能超越参与测试的临床医师水平。",
+          "evidence": [
+            {
+              "quote": "平均Dice系数达0.812，内侧半月板分类准确率最高达0.980，并通过空间注意力机制提供可视化热图，模型性能超越参与测试的临床医师水平",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3060,
+                "end_char": 3128
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-a5c409134a55",
+          "name": "前交叉韧带定位与分类",
+          "desc": "建立全自动定位与分类系统，实现3.77±2.74mm的定位精度和0.79的分类准确率。",
+          "evidence": [
+            {
+              "quote": "实现3.77±2.74mm的定位精度和0.79的分类准确率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3157,
+                "end_char": 3185
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-b2020a7e20ae",
+          "name": "人机协同提升8-15%",
+          "desc": "人机协同试验验证算法辅助可使医师诊断准确率提升8-15%。",
+          "evidence": [
+            {
+              "quote": "通过人机协同试验验证，算法辅助可使医师诊断准确率提升8-15%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3204,
+                "end_char": 3234
+              },
+              "version": "572d4c8cc8209bd74b74"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5c9d532b3434"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9be25a562c24"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-204ca2b90dee"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-97f64b6f471d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3998ee20a99b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b96d4a9a9c3e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2629cd5fd5bf"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b2020a7e20ae"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

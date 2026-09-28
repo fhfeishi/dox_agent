@@ -1,0 +1,406 @@
+![](images/page_0_image_0.jpg)
+
+项目批准号 92159301申请代码 H1826归口管理部门收件日期
+
+![](images/page_0_image_2.jpg)
+
+20250492159301
+
+# 国家自然科学基金
+
+# 资助项目结题/成果报告
+
+资助类别:重大研究计划
+
+亚类说明:集成项目
+
+附注说明:肿瘤演进与诊疗的分子功能可视化研究
+
+基于影像和病理组学多模态信息融合的三阴性乳腺癌关键分子可视化项目名称:与诊疗新策略
+
+负责人: 邵志敏
+
+BRID: 09015.00.87327
+
+电子邮件: zhimingshao@fudan.edu.
+
+电话: 021-64175590
+
+依托单位: 复旦大学
+
+联系人:熊莉君
+
+电话: 021-31243718
+
+直接费用:350.0000（万元）
+
+执行年限: 2022.01-2025.12
+
+填表日期:2025年12月23日
+
+国家自然科学基金委员会制（2025年）
+
+## 项目摘要
+
+## 中文摘要:
+
+本项目研究方向为:肿瘤诊疗中的跨尺度和多模态信息融合与方案决策。三阴性乳腺癌恶性程度高，缺乏针对性治疗手段，预后较差。明确三阴性乳腺癌侵袭、转移和治疗抵抗等各演进阶段的关键调控分子并实现其可视化有望提供新的诊疗策略。项目组前期绘制了465例三阴性乳腺癌的多组学图谱，鉴定了多个关键分子（Cancer Cel1， 2019；Cel1 Metabolism，2021），制定了新的精准治疗策略并通过临床试验验证其有效性（Cel1 Research, 2021）。我们假设:人工智能结合医学数字图像可以实现前期鉴定的关键分子可视化，推动精准治疗模式的便捷临床应用。我们将立足已有的三阴性乳腺癌多组学队列，进一步明确调控肿瘤侵袭、转移和治疗抵抗的关键分子及治疗靶点，基于影像和病理多模态信息融合实现其可视化，并研发人工智能辅助的诊疗决策系统，最终建立三阴性乳腺癌精准诊疗新模式，指导临床实践并改善患者预后。
+
+## Abstract:
+
+Triple-negative breast cancer (TNBC) is a subset of breast cancers defined by the lack of expression of estrogen receptor, progesterone receptor, and human epidermal growth factor receptor 2. Clinical management of TNBC is a great challenge because of its high incidence of visceral metastases and the lack of well-recognized therapeutic targets. Identifying the key molecules which involve in tumor progression may help improve the diagnosis and management strategies regarding TNBC. Moreover, the rapid development of artificial intelligence (AI) has brought new hope to the visualization and clinical translation of these crucial molecules. This project intends to identify the key molecules driving invasion, metastasis and resistance to treatment in triple-negative breast cancer. by multi omics and other cutting-edge technologies. Furthermore, deep mining of image and pathological image information will be conducted to visualize of key molecules of tumor and microenvironment heterogeneity, which will guide the clinical diagnosis and treatment of TNBC. This project aims to establish a new model of precision medicine of TNBC under the guidance of AI, thus raise the therapeutic effect.
+
+关键词（用分号分开）:乳腺肿瘤；三阴性乳腺癌；人工智能；可视化；精准治疗
+
+Keywords (separated by;): breast cancer; triple-negative breast cancer; artificial intelligence; visualization; precision treatment
+
+## 结题摘要
+
+## 中文摘要（对项目的背景、主要研究内容、重要结果、关键数据及其科学意义等做简单概述）:
+
+三阴性乳腺癌（TNBC）预后差、诊疗难度大，精准分型指导下的靶向治疗是突破临床瓶颈的关键。基于本中心中国乳腺癌多组学队列，本项目系统开展三大核心工作:（1）完成调控三阴性乳腺癌转移及治疗抵抗的关键分子筛选与功能鉴定，并开展临床验证；（2）完成病理-影像融合人工智能模型构建，实现三阴性乳腺癌关键分子可视化；（3）构建多组学多模态融合预测模型及一站式人工智能辅助决策系统，助力三阴性乳腺癌精准诊疗决策。研究结果提示:BLIS 亚型中鸟苷二磷酸甘露糖可抑制同源重组修复、增强 PARP 抑制剂敏感性；LAR 亚型中联合靶向铁死亡调控蛋白GPX4能改善免疫治疗疗效；IM 亚型中 CCL19 与 PD-1 单抗联合可强化 T 细胞杀伤功能。针对以上靶点展开临床研究，“复旦分型”指导精准治疗显著提升患者客观缓解率，延长患者无进展生存期。利用人工智能系统可视化治疗靶点，显著缩短检测时间、降低检测成本，准确率超85%，多组学多模态预测模型与一站式人工智能辅助决策系统已推广至全国100余家医院。本项目形成“多组学整合靶点挖掘与前瞻性临床验证一多模态融合人工智能模型标志分子可视化一一站式人工智能辅助诊疗系统落地”的完整体系，发表学术论文15篇，申请发明专利2项，培养硕博研究生20名，为 TNBC 精准诊疗提供了完整的理论体系、关键靶点与转化工具，开启了智慧医疗在乳腺癌诊疗中的临床应用新格局
+
+## Abstract (Brief description of research background, main methods, contributions, and research data):
+
+Triple-negative breast cancer (TNBC) is associated with poor prognosis and significant clinical challenges, and targeted therapy guided by precise subtyping is key to overcoming these clinical bottlenecks. Based on the Chinese Breast Cancer Genomic Atlas (CBCGA) established at Fudan University Shanghai Cancer Center (FUSCC) , this project created a closed-loop research and translational framework that integrates multi-omics target screening and validation, artificial intelligence-based target visualization, and multi-omics multi-modal fusion models to assist clinical decision-making. The project systematically addresses three core tasks: (1) the identification and functional validation of key molecules regulating TNBC metastasis and treatment resistance, followed by clinical verification; (2) the development of a pathology-imaging fusion artificial intelligence model to visualize key molecules in TNBC; (3) the construction of a multi-omics multi-modal fusion predictive model and a one-stop AI-assisted decision-making system to support precise TNBC diagnosis and treatment decisions. The results indicate that in the BLIS subtype, guanosine diphosphate-mannose (GDP-M) inhibits homologous recombination repair and enhances sensitivity to PARP inhibitors; in the LAR subtype, GPX4 inhibitors improve immunotherapy efficacy; and in the IM subtype, the combination of CCL19 and PD-1 monoclonal antibody enhances T cel1 cytotoxic function. Clinical research targeting these molecules, guided by the "Fudan Classification" for precision treatment, significantly improves objective response rates and prolongs progression-free survival. The use of artificial intelligence to visualize therapeutic targets significantly shortens testing time, reduces costs, and achieves an accuracy rate exceeding 85%. The multi-omics multi-modal predictive model and one-stop AI-assisted decision-making system have been expanded to over 100 hospitals nationwide. This project has formed a complete system: multi-omics integrated target discovery and prospective clinical validation, multi-modal fusion AI model molecular visualization, and one-stop AI-assisted diagnostic and treatment system implementation. It has resulted in the publication of 15 academic papers, the filing of 2 invention patents, and the training of 20 graduate students. This work provides a comprehensive theoretical
+
+| framework, key targets, and translational tools for precise TNBC diagnosis and treatment, marking a new era in the clinical application of intelligent healthcare in breast cancer. |
+| --- |
+| 关键词（用分号分开）:三阴性乳腺癌；人工智能；可视化；精准治疗； |
+| Keywords (separated by;): triple-negative breast cancer; artificial intelligence; visualization; precision treatment; |
+
+## 正文
+
+《结题/成果报告》正文分为两个部分:结题部分和成果部分。请按照《结题/成果报告》填报说明及撰写要求填写。
+
+## （一）结题部分
+
+## 1. 研究计划执行情况概述。
+
+（1）按计划执行情况。
+
+完全按计划执行。
+
+（2）研究目标完成情况。
+
+1） 完成调控三阴性乳腺癌转移及治疗抵抗的关键分子筛选并鉴定功能
+
+2） 完成病理-影像融合人工智能模型构建，实现三阴性乳腺癌关键分子可视化
+
+3）完成融合病理-影像数据的一站式系统构建，指导三阴性乳腺癌临床实践
+
+## 2. 研究工作主要进展、结果和影响。
+
+（1）主要研究内容。
+
+1）基于多组学队列，筛选调控三阴性乳腺癌转移及治疗抵抗的关键分子，如:鸟苷二磷酸甘露糖（GDP-M）、谷胱甘肽转移酶P1（GSTP1）等，并鉴定其功能；
+
+2）建立乳腺癌病理-影像组学跨尺度多模态融合人工智能模型，实现三阴性乳腺癌关键分子可视化；
+
+3） 构建了融合数字病理、影像组学等多模态数据的三阴性乳腺癌预测模型，实现一站式人工智能辅助决策系统的构建、验证与临床应用
+
+（2）取得的主要研究进展、重要结果、关键数据等及其科学意义或应用前景。
+
+1） 揭示调控三阴性乳腺癌转移及治疗抵抗的关键分子并鉴定功能
+
+本项目依托多组学整合策略，持续丰富和深化三阴性乳腺癌“复旦分型”的理论内涵，为后续核心靶点挖掘及多模态融合预测模型的建立奠定坚实基础。项目早期已构建涵盖 465例患者的复旦肿瘤三阴性乳腺癌（triple-negative breast cancer, TNBC）多组学队列（Jiang et al. Cancer Cell. 2019)，并首次提出三阴性乳腺癌“复旦分型”体系。在此基础上，项目组不断扩展样本规模，系统纳入蛋白组学、影像组学和病理组学数据，并同步完成临床随访更新，最终形成覆盖微观层面的基因组、转录组、蛋白组、代谢组以及宏观层面的病理组学和影像组学、并匹配高质量随访信息的全维度 TNBC 多组学数据库（Jiang et al. Nat Cancer. 2024封面论文；Lin et al. Cancer Cell. 2024)。
+
+在此基础上，项目组进一步系统解析TNBC关键调控分子，筛选并验证各亚型的特异性治疗靶点。在免疫调节型（immunomodulatory,IM）亚型中，团队发现干扰素诱导的烟酸代谢紊乱可导致免疫细胞衰老，而补充烟酰胺单核苷酸能够逆转免疫耐受、显著增强治疗反应（Fu et al. Sci Transl Med. 2025)。在免疫调节型（IM）与间充质样（mesenchymal,MES）亚型中特异性富集CCL19+树突状细胞，该类细胞通过关键分子CCL19调控CCR7+记忆性T细胞功能，与免疫治疗形成协同效应。联合应用 CCL19 与 PD-1 单抗可进一步增强 T 细胞肿瘤杀伤能力，激活TNBC抗肿瘤免疫反应，具有提升免疫治疗疗效的潜在临床价值（Wu et al. Med. 2023)。围绕基底样免疫抑制型（basal-like immune suppressive, BLIS）TNBC中同源重组缺陷评分较低、缺乏有效治疗手段的临床难题，团队尝试通过代谢重编程诱导同源重组缺陷，发现关键代谢物鸟苷二磷酸甘露糖（GDP-M）可抑制同源重组修复、增强同源重组缺陷，从而提升PARP抑制剂及免疫治疗敏感性（Ding et al. Sci Transl Med. 2024)。在腔面雄激素受体（luminal androgen receptor, LAR）亚型中，揭示了 HEBP2 高表达肿瘤细胞与 CCL3+巨噬细胞之间的谷氨酰胺代谢竞争关系，GSTP1 抑制剂可显著增强免疫治疗疗效（Xiao et al. Cell Metab.2025)。此外，项目组发现 LAR 亚型以氧化磷脂酰乙醇胺及谷胱甘肽代谢（尤其是GPX4）显著上调为特征，GPX4抑制剂可诱导铁死亡并协同增强免疫治疗效果（Yang et al. Cell Metab. 2023）。
+
+结合“复旦分型”的框架和各亚型的特异靶点，项目组通过一系列前瞻性临床研究系统验证了关键靶点的临床应用价值。前期，团队依托“复旦分型”已实施多项前瞻性临床试验，其中包括针对多线治疗失败的晚期难治性 TNBC 患者开展的FUTURE伞形临床研究，结果显示分型指导的精准治疗显著优于传统化疗方案，客观缓解率达 29.8%，较传统化疗提升 2 倍（Jiang et al. Cell Res. 2021；Liu et al. Cell Res. 2023)。针对一线 IM 亚型患者开展的 FUTURE-C-PLUS 研究中，采用免疫联合抗血管生成治疗方案，患者获得了持久获益，81.3%的患者达到客观缓解，中位无进展生存期延长至 13.6 个月（Chen et al. Clin Cancer Res. 2022; Wu et al. Mol Cancer. 2022)。
+
+在此基础上，项目组进一步将分型精准指导的临床研究拓展至不同治疗阶段的三阴性乳腺癌患者人群。针对晚期一线治疗场景，项目组开展FUTURE-SUPER多中心临床试验。与传统化疗相比，分型精准指导治疗使中位无进展生存期从5.7 个月延长至 11.3 个月（Fan et al. Lancet Oncol. 2024)，为后续通过 TNBC 关键分子可视化指导临床诊疗提供了重要理论支撑。同时，针对早期三阴性乳腺癌，基于项目组原创多基因模型设计的 II 期临床试验BCTOP-T-A01 使高危患者总体生存率提升超过 10%（He et al. BMJ.2024)。
+
+![](images/page_6_image_3.jpg)
+
+图1. 揭示调控三阴性乳腺癌转移及治疗抵抗的关键分子并鉴定功能
+
+a）基于多组学数据库，建立三阴性乳腺癌“复旦分型”，b）鉴定各亚型特异靶点c）基于“复旦分型”，开展靶向特异靶点的临床试验，d）分型精准治疗显著提升疗效
+
+构建病理-影像融合的人工智能模型，实现三阴性乳腺癌关键分子可视七
+
+在上述研究基础上，项目组整合影像组学与病理组学多模态信息，实现了“复旦分型”及其关键调控分子的可视化表达。前期，团队已完成与多组学队列严格匹配的影像组学与病理组学图像数据库建设，并证实通过影像组学、病理组学结合人工智能算法可实现复旦分型的精准识别（Jiang et al. Cell Rep Med. 2022; Zhao et al. Fundam Res. 2022)。随后，项目组进一步深化影像组学与病理组学在关键分子可视化方面的研究。
+
+在病理组学方面，项目组原创性提出肿瘤单细胞形态与拓扑检测(sc-MTOP)算法，系统描绘乳腺癌生态系统多样性，为微观分子病理可视化提供了全新分析框架。首先，通过分析细胞微生态模式与无复发生存的关系，识别出四种具有不同分子特征且与患者预后密切相关的乳腺癌生态型；其次，结合多组学数据发现，TNBC局部富集炎症细胞可提示肿瘤微环境免疫激活状态，有利于免疫治疗疗效提升。该研究表明，sc-MTOP算法可在单细胞分辨率下解析数字病理切片中的肿瘤生态系统，使数字病理与人工智能成为复旦分型精准体系中具有特色的重要研究方向和转化工具（Zhao et al. Nat Commun. 2023)。
+
+C
+
+![](images/page_7_image_1.jpg)
+
+在影像组学方面，团队提出了一种无创识别肿瘤异质性的创新方法，并结合多组学数据，将微观分子特征与影像表型进行关联，实现分子层面的影像可视化。基于TNBC影像组学数据库，提取与肿瘤内部异质性相关的影像特征，将患者划分为不同的影像异质性亚组。研究表明:其一，影像组学、基因组学与组织病理学评估的肿瘤内异质性趋势高度一致，验证了影像组学评估肿瘤异质性的可靠性；其二，影像组学异质性较高的患者预后显著较差；其三，高异质性患者表现出致癌信号通路激活和代谢异常，并可能对铁死亡靶向治疗更为敏感（Su et al. Sci Adv. 2023)。此外，依托多中心大样本影像组学数据库，项目组构建了乳腺癌无创预后预测模型，该模型在多个外部验证队列中表现出良好的稳定性，且影像组学评分独立于传统预后决定因素，有望用于临床风险分层的便捷应用（You et al. npj Precis Oncol. 2024)。
+
+a
+
+![](images/page_7_chart_7.jpg)
+
+![](images/page_7_chart_8.jpg)
+
+b
+
+![](images/page_7_image_10.jpg)
+
+![](images/page_7_image_11.jpg)
+
+d
+
+![](images/page_7_image_13.jpg)
+
+![](images/page_7_chart_14.jpg)
+
+![](images/page_7_image_15.jpg)
+
+图2. 构建病理-影像融合的人工智能模型，实现三阴性乳腺癌关键分子可视化a）利用数字病理可视化分子分型，b）利用数字病理可视化关键分子(Ma et al. Cancer Cell. 2025 第二标注)
+
+c）利用影像组学可视化分子分型，d）利用影像组学可视化瘤内异质性(Su et al. Sci Adv. 2023 第一标注)
+
+## 3）构建融合病理-影像数据的一站式系统，指导三阴性乳腺癌临床实践
+
+在上述工作基础上，项目最终建立了多组学多模态融合预测模型及一站式人工智能辅助决策系统（Jiang et al. Nat Cancer. 2024封面论文；Zhang et al. Cell RepMed.2025)。基于既有生物学和临床认知，项目提出多组学、多模态数据可从不同层面刻画肿瘤生物学特征，联合多维信息构建人工智能模型有助于更加全面地解析肿瘤特性，从而实现对患者预后及分子特征的精准分层。基于这一假设，项目组首先整合微观层面的多组学数据与宏观数字病理、影像组学特征，构建TNBC预后预测模型，结果显示多模态模型较单模态模型具有显著更优的预测性能。
+
+具体而言，项目整合了肿瘤分期、分子分型、转录组、代谢组、影像组学和病理组学六个维度的数据，并分别构建包含1-6个维度特征的预后预测模型。在公共测试集中，4-6维度模型的预测效能显著优于2-3 维度模型，而2-3 维度模型又明显优于单维度模型。上述结果表明，随着融合特征维度的增加，模型预后预测能力持续提升，提示有必要开展多维度数据检测，以支持患者风险的精细化分层。
+
+为推动人工智能预测模型的临床转化，项目组对模型与算法进行封装和部署，构建了融合数字病理与影像信息的乳腺癌一站式人工智能决策系统。该系统支持输入单张患者H&E染色全扫描数字病理图像或对比增强磁共振影像，即可自动输出肿瘤精准分型预测结果并提示潜在治疗靶点。系统平台已实现与医院HIS系统及病理系统的互联互通，形成“医嘱开具—病理扫描与上传—系统自动分析结果反馈”的完整闭环流程；对于外院患者，可通过云平台完成图像传输、自动分析与报告反馈。系统对乳腺癌激素受体状态的预测准确率为96.1%，HER2状态预测准确率为 88.9%，腔面型乳腺癌 SNF 分型预测准确率为 72.6%，TNBC四分型预测准确率达81%；从医嘱开具至报告反馈的中位时间为3个工作日。
+
+c）开展全国多中心前瞻性临床试验，验证人工智能辅助分型精准治疗有效性
+
+a
+
+![](images/page_9_image_4.jpg)
+
+![](images/page_9_image_5.jpg)
+
+![](images/page_9_image_6.jpg)
+
+b
+
+![](images/page_9_image_8.jpg)
+
+C
+
+![](images/page_9_image_10.jpg)
+
+图3. 构建融合病理-影像数据的一站式系统，指导三阴性乳腺癌临床实践
+
+a）构建一站式人工智能辅助决策系统示意图，b）一站式系统主页
+
+## 3. 研究人员的合作与分工。
+
+本项目由复旦大学附属肿瘤医院邵志敏教授担任项目负责人，全面负责项目总体设计与统筹协调、研究方案制定、项目实施监督、技术路线把控及经费的整体管理。临床诊疗团队以李剑伟教授为核心，负责三阴性乳腺癌临床队列的建立、临床数据的系统采集与分析，并承担“一站式”诊疗决策系统的临床验证工作。基础与转化研究团队由江一舟研究员（复旦大学附属肿瘤医院）和郑撼球教授（清华大学）共同负责，开展多组学数据的获取与综合分析，筛选关键治疗靶点，并系统解析其在肿瘤转移和耐药中的分子机制。影像团队由顾雅佳、常才及黄云霞教授组成，负责钼靶、磁共振及超声等多模态医学影像数据的收集、质控、勾勒与定量分析，并协同人工智能团队推进影像数据与多组学信息的多模态融合。病理团队由杨文涛教授负责，承担项目相关病理数据的产生、分析及质量控制。人工智能团队由中国科学院自动化研究所刘振宇研究员和南京信息工程大学徐军教授团队共同组成，负责医学影像与数字病理人工智能关键技术研发，实现分子分型及关键靶点的宏观与微观层面量化分析，并主导“一站式”智能辅助诊疗决策系统的构建与集成。
+
+## 4. 国内外学术合作交流等情况。
+
+本项目积极促进与国际同领域知名专家合作，团队与法国马赛癌症研究中心的François Bertucci 教授合作，基于覆盖基因组、转录组、蛋白质组、代谢组、放射组和数字病理等多模态组学数据，建立了中国乳腺癌患者的综合多组学图谱，通过跨组学整合分析实现了患者精准分层，并揭示了种族特异性的分子特征及潜在治疗靶点，成果发表于NatureCancer（封面论文）。同时，本项目积极开展医工交叉等跨领域协作，与美国佐治亚理工学院与埃默里大学 Wallace H. Coulter生物医学工程系 Anant Madabhushi教授合作，构建了包含4.1亿个细胞的乳腺癌单细胞图谱，深入解析肿瘤及微环境细胞形态和拓扑学特征，相关成果发表于Nature Communications 杂志。
+
+本项目高度重视与国际同行的学术交流，积极开展多层次、多形式的国际学术沟通。本团队邵志敏教授于 SABCS 2024 General Session 口头报告了新辅助卡瑞利珠单抗 camrelizumab（抗-PD-1）联合化疗 vs 化疗在早期/局部进展性三阴乳腺癌中的研究。李俊杰教授于 SABCS 2024 General Session 口头报告了SHR-A1811（第三代 HER2 靶向 ADC）在新辅助 HER2 阳性乳腺癌中的研究，基于该临床试验的转化研究发表于Cancer Cell杂志，被国际知名专家墨尔本大学 Sherene Loi 和 Roberto Salgado 教授高度评价为“应用空间可视化标志物指导精准用药的关键一步（Provide valuable insights into spatial biomarkers .. represents a significant step toward ADC precision therapy)
+
+5. 存在的问题、建议及其他需要说明的情况。无
+
+## （二）成果部分
+
+## 1. 项目取得成果的总体情况。
+
+(1)在 Cancer Cell、Science Translational Medicine、Nature Communications等期刊发表论文15篇，发表论文清单（#代表共同第一作者，\*代表通讯作者）:
+
+![](images/page_10_image_8.jpg)
+
+Fu T#, Jin X#, He M#, Chen YY#, Yang YS#, Chen L, Zhang HY, Fan L, Wu J, Wang ZH, Chu YW, Liu RH\*, Jiang YZ\*, Shao ZM\*. Interferon-induced senescent CD8(+) T cells reduce anti-PD1 immunotherapy efficacy in early triple-negative breast cancer. Sci Transl Med. 2025 Sep 10;17(815):eadj7808. (Article, IF=14.6,第一标注)
+
+2) Ma D#, Dai LJ#, Wu XR#, Liu CL#, Zhao S, Zhang H, Chen L, Xiao Y, Li M, Zhao YZ, Yang L, Zhou T, Li JJ, Yang WT, Jiang YZ\*, Shao ZM\*. Spatial determinants of antibody-drug conjugate SHR-A1811 efficacy in neoadjuvant treatment for HER2-positive breast cancer. Cancer Cell. 2025 Jun 9;43(6):1061-1075.e7.(Article, IF=44.5，第二标注)
+
+3) Su GH#, Xiao Y#, You C#, Zheng RC#, Zhao S#, Sun SY, Zhou JY, Lin LY, Wang H\*, Shao ZM\*, Gu YJ\*, Jiang YZ\*. Radiogenomic-based multiomic analysis reveals imaging intratumor heterogeneity phenotypes and therapeutic targets. Sci Adv. 2023 Oct 6;9(40):eadf0837. (Article, IF=12.5,第一标注)
+
+4) Zhang H#, Yang F#, Xu Y#, Zhao S, Jiang YZ\*, Shao ZM\*, Xiao Y\*. Multimodal integration using a machine learning approach facilitates risk stratification in HR+/HER2- breast cancer. Cell Rep Med. 2025 Feb 18;6(2):101924.(Article, IF=10.6，第一标注)
+
+5) Fan L#, Wang ZH#, Ma LX#, Wu SY#, Wu J#, Yu KD#, Sui XY, Xu Y, Liu XY, Chen L, Zhang WJ, Jin X, Xiao Q, Shui RH, Xiao Y, Wang H, Yang YS, Huang XY, Cao AY, Li JJ, Di GH, Liu GY, Yang WT, Hu X, Xia Y, Liang QN, Jiang YZ\*, Shao ZM\*. Optimising first-line subtyping-based therapy in triple-negative breast cancer (FUTURE-SUPER): a multi-cohort, randomised, phase 2 trial. Lancet Oncol. 2024 Feb;25(2):184-197. (Article, IF=35.9，第三标注)
+
+6) He M#, Jiang YZ#, Gong Fan L, Liu XY, Liu Y, Tang LC, Mo M, Hou YF, Di GH, Liu Yu Wu J, Yan X, Zeng XH, Fu DY, Song CG, Zhuang ZG, Wang J, Wang ZH\*, Shao ZM\*. Intensive chemotherapy versus standard chemotherapy among patients with high risk, operable, triple negative breast cancer based on integrated mRNA-lncRNA signature (BCTOP-T-A01): randomised, multicentre, phase 3 trial. BMJ. 2024 Oct23;387:e079603. (Article, IF=42.7，第三标注)
+
+7)Jiang YZ#\*, Ma D#, Jin X#, Xiao Y#, Yu Y#, Shi J#, Zhou YF, Fu T, Lin CJ, Dai LJ, Liu CL, Zhao S, Su GH, Hou W, Liu Y, Chen Q, Yang J, Zhang N, Zhang WJ, Liu W, Ge W, Yang WT, You C, Gu Y, Kaklamani V, Bertucci F, Verschraegen C, Daemen A, Shah NM, Wang T, Guo T, Shi L, Perou CM, Zheng Y\*, Huang W\*, Shao ZM\*. Integrated multiomic profiling of breast cancer in the Chinese population reveals patient stratification and therapeutic vulnerabilities. Nat Cancer. 2024 Apr;5(4):673-690. (Article, IF=28.5，第三标注)
+
+8) Liu Y#, Zhu XZ#, Xiao Y#, Wu SY#, Zuo WJ, Yu Q, Cao AY, Li JJ, Yu KD, Liu GY, Wu J, Sun T, Cui JW, Lv Z, Li HP, Zhu XY, Jiang YZ\*, Wang ZH\*, Shao ZM\*. Subtyping-based platform guides precision medicine for heavily pretreated metastatic triple-negative breast cancer: The FUTURE phase II umbrella clinical trial. Cell Res. 2023 May;33(5):389-402 (Article, IF=25.9，第三标注)
+
+9) Su GH, Jiang L, Xiao Y, Zheng RC, Wang H, Jiang YZ, Peng WJ, Shao ZM, Gu YJ\*, You C\*. A Multiomics Signature Highlights Alterations Underlying Homologous Recombination Deficiency in Triple-Negative Breast Cancer. Ann Surg Oncol. 2022 Oct;29(11):7165-7175. (Article, IF=3.5，第四标注)
+
+10) Ding JH#, Xiao Y#, Yang F#, Song XQ#, Xu Y, Ding Ding R, Shao ZM\*, Di GH\*, Jiang YZ\*. Guanosine diphosphate-mannose suppresses homologous recombination repair and potentiates antitumor immunity in triple-negativebreast cancer.Sci Transl Med. 2024 Jan 3;16(728):eadg7740.(Article, IF=14.6，第四标注)
+
+11) Zhao S#, Chen DP#, Fu T#, Yang JC#, Ma D, Zhu XZ, Wang XX, Jiao YP, Jin X, Xiao Y, Xiao WX, Zhang HY, Lv H, Madabhushi A, Yang WT\*, Jiang YZ\*, Xu J\*, Shao ZM\* Single-cell morphological and topological atlas reveals the ecosystem diversity of human breast cancer. Nat Commun. 2023 Oct 25;14(1):6796. (Article, IF=15.7，第四标注)
+
+12) Su GH#, Xiao Y#, Jiang L, Zheng RC, Wang H, Chen Y, Gu YJ\*, You C\*, Shao ZM. Radiomics features for assessing tumor-infiltrating lymphocytes correlate with molecular traits of triple-negative breast cancer. J Transl Med. 2022 Oct 15;20(1):471. (Article, IF=7.5，第五标注)
+
+Lin CJ#, Jin X#, Ma D#, Chen C#, Ou-Yang Y#, Pei YC, Zhou CZ, Qu FL Wang YJ, Liu CL, Fan L, Hu X\*, Shao ZM\*, Jiang YZ\*. Genetic interactions reveal distinct biological and therapeutic implications in breast cancer. Cancer Cell. 2024 Apr 8;42(4):701-719.e12. (Article, IF=44.5, 第六标注)
+
+14) Jiang L#, You C#, Xiao Y#, Wang H#, Su GH#, Xia BQ, Zheng RC, Zhang DD, Jiang YZ\*, Gu YJ\*, Shao ZM\*. Radiogenomic analysis reveals tumor heterogeneity of triple-negative breast cancer. Cell Rep Med. 2022 Jul 19;3(7):100694.(Article, IF=10.6，第六标注)
+
+15) Zhao S#, Yan CY#, Lv H#, Yang JC#, You C#, Li ZA, Ma D, Xiao Y, Hu J, Yang WT\*, Jiang YZ\*, Xu J\*, Shao ZM\*. Deep learning framework for comprehensive molecular and prognostic stratifications of triple-negative
+
+breast cancer. Fundam Res. 2024 May;4(3):678-689. (Article, IF=6.3, 第八标注)
+
+（2）申请专利2项:
+
+1）邵志敏，肖毅，苏冠华，尤超，江一舟，顾雅佳。识别肿瘤内部异质性的方法、系统和装置，发明专利（申请号:CN202310628012.8）
+
+2）肖毅，张航，杨帆，江一舟，邵志敏。一种基于多模态的腔面型乳腺癌患者复发风险的预测装置，发明专利(申请号:CN202411721652.4)
+
+## 2. 项目成果转化及应用情况。
+
+项目组前期建立了三阴性乳腺癌的“复旦分型”，以及分子分型基础上的精准治疗策略。项目在项目组系列工作的基础上，开发了基于人工智能技术的智能分析工具，促进“复旦分型”临床应用的降本增效。能够基于常规病理切片或磁共振影像快速、无创地预测乳腺癌“复旦分型”和治疗靶点，将检测时间从传统的两周缩短至半小时以内，检测成本从数千元降至百元左右，准确率达到85%以上。
+
+团队进一步将智能分析技术的模型和算法封装部署，开发了一套简便、实用的“一站式”乳腺癌人工智能辅助决策平台。该平台能够免去传统病理会诊复杂耗时的流程，医生只需上传常规病理切片或影像图像，即可快速获得“复旦分型”诊断结果和治疗建议。目前该平台已累计完成30余家医院近8000例乳腺癌样本的分析，并实现向全国29个省市100余家医院的推广，显著优化了乳腺癌诊疗流程，开启了智慧医疗在乳腺癌分型精准治疗中的新格局。
+
+## 3. 人才培养情况。
+
+项目执行期间项目组成员获得国家自然科学基金青年科学基金项目（A类）1人次。团队成员获国家自然科学基金、科技部重点研发计划课题、上海市自然科学基金等各类项目10余项。项目培养博士研究生毕业5人，硕士研究生毕业5人
+
+## 4. 其他需要说明的成果。
+
+5. 项目成果科普性介绍或展示网站。
+
+## 研究成果目录
+
+项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。请按照期刊论文、会议论文、学术专著、专利、会议报告、标准、软件著作权、科研奖励、人才培养、成果转化的顺序列出，其它重要研究成果如标本库、科研仪器设备、共享数据库、获得领导人批示的重要报告或建议等，应重点说明研究成果的主要内容、学术贡献及应用前景等。
+
+项目负责人不得将非本人或非参与者所取得的研究成果、与受资助项目无关的研究成果、未标注国家自然科学基金资助和项目批准号的论文以及取得时间早于项目资助期开始时间的研究成果列入报告中。发表的研究成果（包括专利），项目负责人和参与者均应如实注明得到国家自然科学基金项目资助和项目批准号，科学基金作为主要资助渠道或者发挥主要资助作用的，应当将自然科学基金作为第一顺序进行标注。
+
+## 期刊论文
+
+(1) Fu, Tong; Jin, Xi; He, Min; Chen, Yi-Yu; Yang, Yun-Song; Chen, Li; Zhang, Hu-Yun-Long; Fan, Lei; Wu, Jiong; Wang, Zhong-Hua; Chu, Yi-Wei; Liu, Rong-Hua; Jiang, Yi-Zhou; Shao, Zhi-Ming; Interferon-induced senescent CD8+ T cells reduce anti-PD1 immunotherapy efficacy in early triple-negative breast cancer, Science Translational Medicine, 2025, 17(815). SCIE. 第一标注
+
+(2) Ma, Ding; Dai, Lei-Jie; Wu, Xiang-Rong; Liu, Cheng-Lin; Zhao, Shen; Zhang, Hang; Chen, Li; Xiao, Yi; Li, Ming; Zhao, Yi-Zhi; Yang, Lin; Zhou, Tong; Li, Jun-Jie; Yang, Wen-Tao; Jiang, Yi-Zhou; Shao, Zhi-Ming; Spatial determinants of antibody-drug conjugate SHR-A1811 efficacy in neoadjuvant treatment for HER2-positive breast cancer, Cancer Cel1, 2025, 43(6): 1-15. SCIE. 第二标注
+
+(3) Guan-Hua Su; Yi Xiao; Chao You; Ren-Cheng Zheng; Shen Zhao; Shi-Yun Sun; Jia-Yin Zhou; Lu-Yi Lin; He Wang; Zhi-Ming Shao; Ya-Jia Gu; Yi-Zhou Jiang; Radiogenomic-based multiomic analysis reveals imaging intratumor heterogeneity phenotypes and therapeutic targets, Science Advances, 2023, 9(40). SCIE. 第一标注
+
+(4) Zhang, Hang; Yang, Fan; Xu, Ying; Zhao, Shen; Jiang, Yi-Zhou; Shao, Zhi-Ming; Xiao, Yi; Multimodal integration using a machine learning approach facilitates risk stratification in HR+/HER2-breast cancer, Cell Reports Medicine, 2025, 6(2). SCIE. 第一标注
+
+(5) Lei Fan; Zhong-Hua Wang; Lin-Xiaoxi Ma; Song-Yang Wu; Jiong Wu; Ke-Da Yu; Xin-Yi Sui; Ying Xu; Xi-Yu Liu; Li Chen; Wen-Juan Zhang; Xi Jin; Qin Xiao; Ruo-Hong Shui; Yi Xiao; Han Wang; Yun-Song Yang; Xiao-Yan Huang; A-Yong Cao; Jun-Jie Li; Gen-Hong Di; Guang-Yu Liu; Wen-Tao Yang; Xin Hu; Yan Xia; Qian-Nan Liang; Yi-Zhou Jiang; Zhi-Ming Shao; Optimising first-line subtyping-based therapy in triple-negative breast cancer (FUTURE-SUPER): a multi-cohort, randomised, phase 2 trial, The Lancet Oncology, 2024, 25(2): 184-197. SCIE. 第三标注
+
+(6) He Min; Jiang Yi-Zhou; Gong Yue; Fan Lei; Liu Xi-Yu; Liu Yin; Tang Li-Chen; Mo Miao; Hou Yi-Feng; Di Gen-Hong; Liu Guang-Yu; Yu Ke-Da; Wu Jiong; Yan Xia; Zeng Xiao-Hua; Fu De-Yuan; Song Chuan-Gui; Zhuang Zhi-Gang; Wu Ke-Jin; Wang Jie; Wang Zhong-Hua; Shao Zhi-Ming; Intensive chemotherapy versus standard chemotherapy among patients with high risk, operable, triple negative breast cancer based on integrated mRNA-lncRNA signature (BCTOP-T-A01): randomised, multicentre, phase 3 trial, BMJ, 2024, 387(0). SCIE. 第三标注
+
+(7) Jiang, Yi-Zhou; Ma, Ding; Jin, Xi; Xiao, Yi; Yu, Ying; Shi, Jinxiu; Zhou, Yi-Fan; Fu, Tong; Lin, Cai-Jin; Dai, Lei-Jie; Liu, Cheng-Lin; Zhao, Shen; Su, Guan-Hua; Hou, Wanwan; Liu, Yaqing; Chen, Qingwang; Yang, Jingcheng; Zhang, Naixin; Zhang, Wen-Juan; Liu, Wei; Ge, Weigang; Yang, Wen-Tao; You, Chao; Gu, Yajia; Kaklamani, Virginia; Bertucci, Francois; Verschraegen, Claire; Daemen, Anneleen; Shah, Nakul M.; Wang, Ting; Guo, Tiannan; Shi, Leming; Perou, Charles M.; Zheng, Yuanting; Huang, Wei; Shao, Zhi-Ming; Integrated multiomic profiling of breast cancer in the Chinese population reveals patient stratification and therapeutic vulnerabilities, NATURE CANCER, 2024, 5(4): 673-690. SCIE. 第三标注
+
+(8) Yin Liu; Xiu-Zhi Zhu; Yi Xiao; Song-Yang Wu; Wen-Jia Zuo; Qiang Yu; A-Yong Cao; Jun-Jie Li; Ke-Da Yu; Guang-Yu Liu; Jiong Wu; Tao Sun; Jiu-Wei Cui; Zheng Lv; Hui-Ping Li; Xiao-Yu Zhu; Yi-Zhou Jiang; Zhong-Hua Wang;
+
+Zhi-Ming Shao; Subtyping-based platform guides precision medicine for heavily pretreated metastatic triple-negative breast cancer: The FUTURE phase II umbrella clinical trial, Cell Research, 2023, 33(5):389-402. SCIE. 第三标注
+
+(9) Guan-Hua Su; Lin Jiang; Yi Xiao; Ren-Cheng Zheng; He Wang; Yi-Zhou Jiang; Wei-Jun Peng; Zhi-Ming Shao; Ya-Jia Gu; Chao You; A Multiomics Signature Highlights Alterations Underlying Homologous Recombination Deficiency in Triple-Negative Breast Cancer, Annals of Surgical Oncology, 2022, 29(11):7165-7175. SCIE. 第四标注
+
+(10) Ding, Jia-Han; Xiao, Yi; Yang, Fan; Song, Xiao-Qing; Xu, Ying; Ding, Xiao-Hong; Ding, Rui; Shao, Zhi-Ming; Di, Gen-Hong; Jiang, Yi-Zhou; Guanosine diphosphate-mannose suppresses homologous recombination repair and potentiates antitumor immunity in triple-negative breast cancer, SCIENCE TRANSLATIONAL MEDICINE, 2024, 16(728). SCIE. 第四标注
+
+(11) Shen Zhao; De-Pin Chen; Tong Fu; Jing-Cheng Yang; Ding Ma; Xiu-Zhi Zhu; Xiang-Xue Wang; Yi-Ping Jiao; Xi Jin; Yi Xiao; Wen-Xuan Xiao; Hu-Yunlong Zhang; Hong Lv; Anant Madabhushi; Wen-Tao Yang; Yi-Zhou Jiang; Jun Xu; Zhi-Ming Shao; Single-cell morphological and topological atlas reveals the ecosystem diversity of human breast cancer, Nature Communications, 2023, 14(1). SCIE. 第四标注
+
+(12) Su, Guan-Hua; Xiao, Yi; Jiang, Lin; Zheng, Ren-Cheng; Wang, He; Chen, Yan; Gu, Ya-Jia; You, Chao; Shao, Zhi-Ming; Radiomics features for assessing tumor-infiltrating lymphocytes correlate with molecular traits of triple-negative breast cancer, JOURNAL OF TRANSLATIONAL MEDICINE, 2022, 20(1). SCIE. 第五标注
+
+(13) Cai-Jin Lin; Xi Jin; Ding Ma; Chao Chen; Yang Ou-Yang; Yu-Chen Pei; Chao-Zheng Zhou; Fei-Lin Qu; Yun-Jin Wang; Cheng-Lin Liu; Lei Fan; Xin Hu; Zhi-Ming Shao; Yi-Zhou Jiang; Genetic interactions reveal distinct biological and therapeutic implications in breast cancer, Cancer Cel1, 2024, 42(4). SCIE. 第六标注
+
+(14) Lin Jiang; Chao You; Yi Xiao; He Wang; Guan-Hua Su; Bing-Qing Xia; Ren-Cheng Zheng; Dan-Dan Zhang; Yi-Zhou Jiang; Ya-Jia Gu; Zhi-Ming Shao; Radiogenomic analysis reveals tumor heterogeneity of triple-negative breast cancer, Cel1 Reports Medicine, 2022, 3(7). SCIE. 第六标注
+
+(15) Shen Zhao; Chao-Yang Yan; Hong Lv; Jingcheng Yang; Chao You; Zi-Ang Li; Ding Ma; Yi Xiao; Jia Hu; Wen-Tao Yang; Yi-Zhou Jiang; Jun Xu; Zhi Ming Shao; Deep learning framework for comprehensive molecular and prognostic stratifications of triple-negative breast cancer, Fundamental research, 2022, 4(3):678-689. SCIE. 第八标注
+
+## 专利
+
+(1) 邵志敏；肖毅；苏冠华；尤超；江一舟；顾雅佳；识别肿瘤内部异质性的方法、系统和装置，2023-05-31，中国，CN 202310628012.8.
+
+(2)肖毅；张航；杨帆；江一舟；邵志敏；一种基于多模态的腔面型乳腺癌患者复发风险的预测装置，2024-11-28，中国，CN202411721652.4.
+
+## 人才培养
+
+1. 出站博士后/毕业博士/毕业硕士/在站博士后/在读博士/在读硕士
+
+(1) 戴磊杰；毕业博士，腔面型乳腺癌代谢异质性图谱构建及精准诊疗策略探索，邵志敏，2022-07-01至2025-04-30.
+
+(2) 傅彤；毕业博士，基于单细胞转录组解析早期三阴性乳腺癌免疫治疗响应机制，邵志敏，2023-03-01至2025-03-31.
+
+(3) 丁佳涵；毕业博士，细胞周期蛋白依赖性激酶6通过增强线粒体生物发生促进HR+/HER2-乳腺癌进展的机制及转化研究，邵志敏，2023-03-01至2025-02-28
+
+(4) 周逸凡；毕业博士，维甲酸促进腔面型乳腺癌免疫治疗疗效的机制研究，邵志敏，2023-03-01至2025-01-31.
+
+(5) 丁瑞；毕业博士，乳腺癌同工酶多样性缺失图谱及关键靶点NMT1的治疗价值探索，邵志敏，2023-03-01至2025-02-28.
+
+(6) 李玉为；毕业硕士，HER2阳性乳腺癌分子分型和精准治疗优化策略，邵志敏，2023-03-01至2024-01-31.
+
+(7) 丁佳涵；毕业硕士，鸟苷二磷酸甘露糖通过抑制同源重组修复增强三阴性乳腺癌对铂类药物敏感性的机制研究，狄根红，2022-01-01至2022-02-28.
+
+(8) 丁晓洪；毕业硕士，DDHD2调控Luminal型乳腺癌脂质代谢的机制及靶向治疗策略探索，江一舟，2022-07-01至2024-02-29.
+
+(9) 李思远；毕业硕士，RNA N6-甲基腺嘌呤修饰在三阴性乳腺癌中的特点及调控机制研究，邵志敏，2022-01-01至2022-01-31.
+
+(10) 吴文雅；毕业硕士，TANK结合激酶1结合蛋白 （TBKBP1）在三阴性乳腺癌中介导卡培他滨耐药及作用机制的研究，狄根红，2022-06-30至2024-02-29.
+
+项目成果应用前景
+
+本项目成果拟应用领域:1、智慧医疗 2、生物医药
+
+预计在10年以上推广使用
+
+附表:研究成果统计数据表（本表针对各种类型资助项目收集数据以便进行整体资助效果分析使用，并非要求每类项目都具有以下各类成果。
+
+<table><tr><td rowspan=4>获奖（项）</td><td colspan=16>国家级</td><td colspan=11>部级1</td><td rowspan=3 colspan=2>其他</td></tr><tr><td colspan=4>自然科学奖</td><td colspan=5>科技进步奖</td><td></td><td colspan=6>发明奖</td><td colspan=7>自然科学奖</td><td colspan=4>科技进步奖</td></tr><tr><td colspan=2>一等</td><td colspan=2>二等</td><td colspan=2>一等</td><td colspan=3>二等</td><td></td><td colspan=3>一等</td><td colspan=3>二等</td><td colspan=3>等</td><td colspan=4>等</td><td colspan=2>一等</td><td colspan=2>二等</td></tr><tr><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>0</td><td></td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=4>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td></tr><tr><td rowspan=4>学术报告/论文/专著/其他（篇）</td><td colspan=3>特邀学术报告</td><td colspan=15>学术论文</td><td rowspan=2 colspan=4>学术专著</td><td rowspan=2 colspan=7>其他</td></tr><tr><td rowspan=2>国际学术会议</td><td rowspan=2 colspan=2>国内学术会议</td><td colspan=4>发表论文数</td><td colspan=11>论文检索收录情况</td></tr><tr><td colspan=2>期论义</td><td colspan=2>会议</td><td colspan=2>SCIE/SSCI</td><td colspan=3>EI</td><td colspan=3>北大中文核心期刊</td><td colspan=3>CSSCI</td><td colspan=2>中文</td><td colspan=2>外文</td><td colspan=2>标本库</td><td colspan=2>数据库</td><td colspan=2>科研仪器设备</td><td>重要报告</td></tr><tr><td>0</td><td colspan=2>0</td><td colspan=2>15</td><td colspan=2>0</td><td colspan=2>15</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr><tr><td rowspan=4>专利/标准/软著/成果转化</td><td></td><td colspan=6>专利（项）</td><td colspan=2></td><td colspan=11>标准</td><td rowspan=3 colspan=2>软件著作权</td><td rowspan=2 colspan=7>成果转化</td></tr><tr><td colspan=3>国内</td><td colspan=4>国外</td><td rowspan=2 colspan=2>国际</td><td colspan=11>国内</td></tr><tr><td>申请</td><td colspan=2>授权</td><td colspan=2>申请</td><td colspan=2>授权</td><td colspan=3>国家</td><td colspan=3>行业</td><td colspan=3>地方</td><td colspan=2>企业</td><td colspan=2>技术转让技</td><td colspan=2>术许可作</td><td colspan=2>价投资</td><td>经济效益(万元)</td></tr><tr><td>2</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>C</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr><tr><td rowspan=4>人才培养及学术交流</td><td colspan=17>人才培养（人）</td><td colspan=12>举办和参加学术会议</td></tr><tr><td colspan=8>中青年学术带头人</td><td rowspan=2 colspan=3>出站博士后</td><td rowspan=2 colspan=3>毕业博士</td><td rowspan=2 colspan=3>毕业硕士</td><td colspan=4>举办国际学术会议</td><td colspan=5>举办国内学术会议</td><td colspan=3>参加国际学术会议</td></tr><tr><td>优青</td><td colspan=2>杰青</td><td colspan=2>创新群体</td><td colspan=2>其他</td><td></td><td colspan=2>次数</td><td colspan=2>人数</td><td colspan=3>次数</td><td colspan=2>人数</td><td colspan=2>次数</td><td>人数</td></tr><tr><td>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td></td><td colspan=3>0</td><td colspan=3>5</td><td colspan=3>5</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr></table>
+
+国家自然科学基金项目资金决算表
+
+项目批准号:92159301
+
+项目负责人:邵志敏
+
+金额单位:万元
+
+<table><tr><td rowspan="3">行次</td><td rowspan="3">科目名称</td><td colspan="3">预算数</td><td rowspan="2">累计支出数</td><td rowspan="2">结余数</td><td rowspan="2">结余资金比例</td></tr><tr><td>批准预算</td><td>预算调整</td><td>调整后预算</td></tr><tr><td>(1)</td><td>(2)</td><td>(3) = (1) + (2)</td><td>(4)</td><td>(5) =(3)-(4)</td><td>(6)</td></tr><tr><td>(1)</td><td>项目总经费</td><td>455.0000</td><td>0.0000</td><td>455.0000</td><td></td><td></td><td>17.00%</td></tr><tr><td>(2)</td><td>项目直接费用</td><td>350.0000</td><td>0.0000</td><td>350.0000</td><td>272.6294</td><td>77.3706</td><td></td></tr><tr><td>(3)</td><td>1、设备费</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td></td></tr><tr><td>(4)</td><td>其中:设备购置费</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td></td></tr><tr><td>(5)</td><td>2、业务费</td><td>250.0000</td><td>0.0000</td><td>250.0000</td><td>200.6294</td><td>49.3706</td><td></td></tr><tr><td>(6)</td><td>3、劳务费</td><td>100.0000</td><td>0.0000</td><td>100.0000</td><td>72.0000</td><td>28.0000</td><td></td></tr><tr><td>(7)</td><td>项目间接费用</td><td>105.0000</td><td>0.0000</td><td>105.0000</td><td></td><td></td><td></td></tr></table>
+
+注:1.本表中（1）、（3）、（5）、（6）栏为系统自动生成，无需填写；本表中（2）栏填列预算调整数；本表中（4）栏填列项目的实际支出数。
+
+2.第（1）行=第（2）+（7）行
+
+第（2）行=第（3）+（5）+（6）行；
+
+第（3）栏=第（1）+（2）栏；
+
+第（5）栏=第（3）-（4）栏；
+
+第（1）行第（6）栏=第（2）行第（5）栏/第（1）行第（3）栏100%；
+
+第（1）行第（1）栏=第（1）行第（3）栏；
+
+第（1）行第（2）栏=0；
+
+第（4）栏≤第（3）栏；
+
+第（2）行第（5）栏≥0。
+
+## 决算说明书
+
+（请按照《国家自然科学基金预算制项目决算表编制说明》等有关要求，说明各科目支出、预算调整、结余情况，合作研究转拨资金情况，单价≥50万元的设备情况，资金使用和管理过程中遇到的问题及建议，以及其他需要说明的事项等。）
+
+本项目国拨专项经费累计使用272.63万元，包括设备费0.00万元，业务费支出200.63万元（材料费49.44万元，测序化验加工费148.92万元，差旅费/会议费/国际合作与交流费0.07万元，出版物/文献/信息传播/ 识产权事务费2.20万元），劳务费支出72.00万元。资金结余77.37万元。
+
+本项目未购买单价50万元（含）以上的设备。
+
+结余资金情况说明
+
+| 本项目剩余少量业务费和劳务费，将用于项目后期补充实验的材料费和测试加工费，研究生及参 与人员劳务费。 |
+| --- |
+| 2025 |
+
+注:结余资金比例超过30%的项目该部分必填。
+
+<table><tr><td colspan="7">项目负责人承诺:我所承担的项目（编号:92159301 名称:基于影像和病理组学多模态信息融合的三阴性乳腺癌关键分子可视化与诊疗新策略）结题报告内容真实，数据准确，未出现《国家科学技术保密规定》中列举的属于国家科学技术秘密范围的内容，不涉及敏感科技信息。在今后的研究工作中，如有与本项目相关的成果，将如实注明得到国家自然科学基金项目资助和项目批准号，并报送国家自然科学基金委员会。项目负责人（签日期:</td></tr><tr><td colspan="4">依托单位科研管理部门:负责人（签章）:日期:</td><td colspan="2">依托单位财务管理部门:负责人（签章）:日期:</td><td>依托单位审查意见:依托单位公章:</td></tr><tr><td colspan="7">科学处审核意见:                         EPC</td></tr><tr><td rowspan="2">完成情况综合评分(划√)</td><td>优</td><td>良</td><td colspan="2">中</td><td>差</td><td rowspan="2">负责人（签章）:日期:</td></tr><tr><td></td><td></td><td colspan="2"></td><td></td></tr><tr><td colspan="7">科学部核准意见 （对重点项目等）:NSF负责人（签章）:日期:</td></tr><tr><td colspan="7">分管委领导意见（对重大项目等）:委领导（签章）:日期:</td></tr></table>
+
+## 电子附件目录
+
+| 序号 | 附件类型 | 附件名称 | 备注 |
+| --- | --- | --- | --- |
+| 1 | 论著 | 论文1 |  |
+| 2 | 论著 | 论文2 |  |
+| 3 | 论著 | 论文3 |  |
+| 4 | 论著 | 论文4 |  |
+| 5 | 论著 | 论文5 |  |
+| 6 | 论著 | 论文6 |  |
+| 7 | 论著 | 论文7 |  |
+| 8 | 论著 | 论文8 |  |
+| 9 | 论著 | 论文9 |  |
+| 10 | 论著 | 论文10 |  |
+| 11 | 论著 | 论文11 |  |
+| 12 | 论著 | 论文12 |  |
+| 13 | 论著 | 论文13 |  |
+| 14 | 论著 | 论文14 |  |
+| 15 | 论著 | 论文15 |  |
+| 16 | 专利 | 专利1 |  |
+| 17 | 专利 | 专利2 |  |

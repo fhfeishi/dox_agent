@@ -1,0 +1,251 @@
+{
+  "doc_id": "9194b67788db5abb50cc",
+  "version": "3e9fbd7465619cfd3c5a",
+  "source_hash": "a7df016a2638c56de03fdff1a24c5e593dfae53d4b1a11529df309f311e8ff8c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:04:12.532668+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8671fe212ff1",
+          "name": "头颈部鳞癌微血管密度预测",
+          "desc": "肿瘤微血管密度是影响头颈部鳞癌肿瘤生长及转移的关键因素，术前准确预测直接影响治疗决策及疗效预测。",
+          "evidence": [
+            {
+              "quote": "肿瘤微血管密度（MVD）是影响头颈部鳞癌（HNSCC）肿瘤生长及转移的关键因素。术前准确预测肿瘤MVD水平直接影响HNSCC患者治疗决策及疗效预测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 660,
+                "end_char": 733
+              },
+              "version": "3e9fbd7465619cfd3c5a"
+            }
+          ]
+        },
+        {
+          "id": "item-9a81517a3ba4",
+          "name": "HNSCC精准诊疗影像标记",
+          "desc": "为HNSCC肿瘤MVD水平预测提供影像学标记，可用于治疗抉择及疗效预测。",
+          "evidence": [
+            {
+              "quote": "本项目为HNSCC肿瘤MVD水平预测提供影像学标记，可用于治疗抉择及疗效预测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 997,
+                "end_char": 1035
+              },
+              "version": "3e9fbd7465619cfd3c5a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9389770eebfb",
+          "name": "免疫组化检测需术后标本",
+          "desc": "传统免疫组化MVD检测需术后标本，有创且无法术前应用，临床亟需无创预测新方法。",
+          "evidence": [
+            {
+              "quote": "传统免疫组化MVD检测需术后标本，有创且无法术前应用，临床亟需无创预测新方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2337,
+                "end_char": 2375
+              },
+              "version": "3e9fbd7465619cfd3c5a"
+            }
+          ]
+        },
+        {
+          "id": "item-7d88c84fdf67",
+          "name": "影像组学特征可反映亚细胞信息",
+          "desc": "前期研究表明DCE-MRI部分定量参数与肿瘤MVD呈正相关，影像组学特征可反映肿瘤亚细胞水平信息变化。",
+          "evidence": [
+            {
+              "quote": "我们前期研究结果表明，DCE-MRI部分定量参数与肿瘤MVD呈正相关，且影像组学特征可反映肿瘤亚细胞水平信息变化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 734,
+                "end_char": 790
+              },
+              "version": "3e9fbd7465619cfd3c5a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3241a339291c",
+          "name": "Tofts双室模型定量参数提取",
+          "desc": "采用Tofts双室模型提取肿瘤实性区Ktrans、Kep、Ve、Vp等定量参数。",
+          "evidence": [
+            {
+              "quote": "采用Tofts双室模型提取肿瘤实性区Ktrans、Kep、Ve、Vp等定量参数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2487,
+                "end_char": 2525
+              },
+              "version": "3e9fbd7465619cfd3c5a"
+            }
+          ]
+        },
+        {
+          "id": "item-732a95d0ae69",
+          "name": "多序列影像组学特征提取",
+          "desc": "通过3D Slicer从多序列MRI中提取1702个影像组学特征，经ICC、ANOVA及LASSO降维筛选。",
+          "evidence": [
+            {
+              "quote": "通过3D Slicer从多序列MRI中提取1702个影像组学特征。经ICC一致性检验、ANOVA筛选及LASSO降维",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2527,
+                "end_char": 2584
+              },
+              "version": "3e9fbd7465619cfd3c5a"
+            }
+          ]
+        },
+        {
+          "id": "item-a603783f0627",
+          "name": "随机森林多模态融合模型",
+          "desc": "采用随机森林算法构建多模态融合模型。",
+          "evidence": [
+            {
+              "quote": "采用随机森林算法构建多模态融合模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2618,
+                "end_char": 2634
+              },
+              "version": "3e9fbd7465619cfd3c5a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-27aa6938a0b7",
+          "name": "训练组AUC 0.86与外部验证",
+          "desc": "训练组AUC达0.86，两个独立外部验证组AUC分别为0.81和0.77，平均准确度79.34%。",
+          "evidence": [
+            {
+              "quote": "训练组AUC达0.86（95%CI: 0.81-0.91），两个独立外部验证组AUC分别为0.81和0.77，平均准确度79.34%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2636,
+                "end_char": 2701
+              },
+              "version": "3e9fbd7465619cfd3c5a"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-fc71fb495ae4",
+          "name": "Ktrans与MVD显著正相关",
+          "desc": "Ktrans与MVD呈显著正相关（r=0.68, p<0.001）。",
+          "evidence": [
+            {
+              "quote": "Ktrans与MVD呈显著正相关（r=0.68, p<0.001）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2744,
+                "end_char": 2776
+              },
+              "version": "3e9fbd7465619cfd3c5a"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-075d20eb9b13",
+          "name": "高MVD组复发风险2.78倍",
+          "desc": "模型预测的高MVD组患者术后复发风险为低MVD组的2.78倍（HR=2.78, p=0.008）。",
+          "evidence": [
+            {
+              "quote": "模型预测的高MVD组患者术后复发风险为低MVD组的2.78倍（HR=2.78, p=0.008）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2778,
+                "end_char": 2825
+              },
+              "version": "3e9fbd7465619cfd3c5a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-8671fe212ff1"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9389770eebfb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7d88c84fdf67"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-732a95d0ae69"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3241a339291c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-fc71fb495ae4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a603783f0627"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-27aa6938a0b7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

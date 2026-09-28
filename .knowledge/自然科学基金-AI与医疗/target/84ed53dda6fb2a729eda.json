@@ -1,0 +1,267 @@
+{
+  "doc_id": "84ed53dda6fb2a729eda",
+  "version": "178a2ace815bca8361d7",
+  "source_hash": "d096087ec1332711a9920d4cb5490eecf2f8cb7b64328f04ca1505b9fb71ba27",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:04:15.974324+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-af5c9ee6414c",
+          "name": "甲状腺癌术后复发风险预测",
+          "desc": "评估甲状腺癌患者术后复发风险对辅助治疗的选择至关重要。",
+          "evidence": [
+            {
+              "quote": "评估甲状腺癌患者术后复发风险对辅助治疗的选择至关重要。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 662,
+                "end_char": 688
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ]
+        },
+        {
+          "id": "item-17a8a2472cbb",
+          "name": "甲状腺癌个体化治疗方案",
+          "desc": "为定位甲状腺癌复发高危人群、制定个体化治疗方案提供新的手段。",
+          "evidence": [
+            {
+              "quote": "为定位甲状腺癌复发高危人群，制定个体化治疗方案提供新的手段",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1024,
+                "end_char": 1052
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8e18948307c6",
+          "name": "病理图像冗余信息干扰",
+          "desc": "病理图像建模存在大量冗余信息干扰和数据量大导致模型效率低两大瓶颈。",
+          "evidence": [
+            {
+              "quote": "但病理图像建模存在大量冗余信息干扰和数据量大导致模型效率低两大瓶颈。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 805,
+                "end_char": 838
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ]
+        },
+        {
+          "id": "item-b55a51e84e33",
+          "name": "现有指南对辅助治疗人群存争议",
+          "desc": "现有指南对术后辅助治疗目标人群存在争议，过度治疗会带来诸多不良后果。",
+          "evidence": [
+            {
+              "quote": "而现有指南对术后辅助治疗目标人群存在争议，过度治疗会带来诸多不良后果，精准预测甲状腺癌患者复发风险成为临床挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2578,
+                "end_char": 2633
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ]
+        },
+        {
+          "id": "item-12e9d5350d88",
+          "name": "病理图像信息未被充分识别",
+          "desc": "病理图像蕴含丰富的生物学信息但未能被肉眼充分识别。",
+          "evidence": [
+            {
+              "quote": "病理图像蕴含丰富的生物学信息但未能被肉眼充分识别",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 689,
+                "end_char": 712
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fb1b138f5de4",
+          "name": "DenseNet特征提取与分类",
+          "desc": "利用弱监督学习方法和DenseNet对图像进行特征提取和分类标记。",
+          "evidence": [
+            {
+              "quote": "再利用弱监督学习方法和 DenseNet 对图像按比例分训练集和测试集进行特征提取和分类标记",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2714,
+                "end_char": 2759
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ]
+        },
+        {
+          "id": "item-cf957bfb26ab",
+          "name": "RGB标准化与图像预处理",
+          "desc": "对全切片病理图像进行预处理，包括分割小方块、去除污点空白区域及标准化。",
+          "evidence": [
+            {
+              "quote": "接着对全切片病理图像进行预处理，包括分割小方块、去除污点空白区域及标准化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2677,
+                "end_char": 2712
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ]
+        },
+        {
+          "id": "item-d96bf5179e8a",
+          "name": "多中心与TCGA外部验证",
+          "desc": "在多中心样本和TCGA数据库样本中采用AUC、准确性、敏感性等指标验证模型。",
+          "evidence": [
+            {
+              "quote": "最后分别在多中心样本和 TCGA 数据库样本中，采用 AUC 值、准确性、敏感性、特异性、阳性预测值及阴性预测值等指标验证模型的准确性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2811,
+                "end_char": 2877
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e949677a7e3c",
+          "name": "复发风险深度学习预测模型",
+          "desc": "建立了甲状腺癌复发风险的深度学习预测模型，在内部验证集取得较好效果。",
+          "evidence": [
+            {
+              "quote": "建立了甲状腺癌复发风险的深度学习预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2790,
+                "end_char": 2809
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-7902e6058407",
+          "name": "TCGA外部验证AUC 0.70",
+          "desc": "TCGA外部验证集AUC值达到0.70，为术后个体化治疗方案制定提供循证依据。",
+          "evidence": [
+            {
+              "quote": "TCGA外部验证集AUC值达到0.70，为甲状腺癌术后个体化治疗方案的制定提供循证依据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2896,
+                "end_char": 2938
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-be4d46c06fd9",
+          "name": "两项甲状腺癌诊疗论文",
+          "desc": "发表降钙素筛查对甲状腺髓样癌预后影响、深度学习预测甲状腺乳头状癌颈淋巴结转移等论文。",
+          "evidence": [
+            {
+              "quote": "Deep learning to predict cervical lymph node metastasis from intraoperative frozen section of tumour in papillary thyroid carcinoma: a multicentre diagnostic study",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3328,
+                "end_char": 3490
+              },
+              "version": "178a2ace815bca8361d7"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-af5c9ee6414c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8e18948307c6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b55a51e84e33"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d96bf5179e8a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fb1b138f5de4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e949677a7e3c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cf957bfb26ab"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7902e6058407"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

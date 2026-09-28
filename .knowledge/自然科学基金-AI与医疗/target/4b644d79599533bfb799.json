@@ -1,0 +1,267 @@
+{
+  "doc_id": "4b644d79599533bfb799",
+  "version": "c9265854f07932efc6ac",
+  "source_hash": "ee3a747861ee664721e935de1e6575c4b4657fe8234b91118616c8a1375e4e54",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T11:58:42.686122+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d9b71723c330",
+          "name": "高危患者肝细胞癌早期诊断",
+          "desc": "高危肝细胞癌患者肝硬化相关结节的早期精准诊断是肝细胞癌诊疗管理的关键环节。",
+          "evidence": [
+            {
+              "quote": "高危肝细胞癌患者肝硬化相关结节的早期精准诊断是肝细胞癌诊疗管理的关键环节。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2765,
+                "end_char": 2801
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ]
+        },
+        {
+          "id": "item-d5098e18eefe",
+          "name": "超声造影在结节诊断中的应用",
+          "desc": "超声造影可实时动态观察结节的血流灌注，在肝硬化相关结节的精准诊断方面具有潜在应用价值。",
+          "evidence": [
+            {
+              "quote": "超声造影可实时动态观察结节的血流灌注，敏感地监测到结节演变过程中的血供改变，在肝硬化相关结节的精准诊断方面具有潜在应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2851,
+                "end_char": 2912
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c2f3f040f553",
+          "name": "病理与MRI随访存在局限",
+          "desc": "目前肝硬化相关结节的精准诊断主要基于病理检查或MRI随访，存在有创、价格昂贵、便利性不足等局限性。",
+          "evidence": [
+            {
+              "quote": "目前肝硬化相关结节的精准诊断主要基于病理检查或MRI随访，存在有创、价格昂贵、便利性不足等局限性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2802,
+                "end_char": 2850
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ]
+        },
+        {
+          "id": "item-a68cf34869e2",
+          "name": "动态图像信息难以人工提取",
+          "desc": "海量的动态图像信息无法通过人力进行提取及分析。",
+          "evidence": [
+            {
+              "quote": "但海量的动态图像信息无法通过人力进行提取及分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 706,
+                "end_char": 728
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ]
+        },
+        {
+          "id": "item-04d5a99a4b20",
+          "name": "常规影像组学无法处理时序差异",
+          "desc": "常规影像组学无法处理动态时序差异性的图像数据。",
+          "evidence": [
+            {
+              "quote": "但常规影像组学无法处理动态时序差异性的图像数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 818,
+                "end_char": 840
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f26217bf7eba",
+          "name": "动态超声造影分割模型BTS-Net",
+          "desc": "建立基于深度学习的动态超声造影分割模型BTS-Net，实现肝局灶性病变自动分割。",
+          "evidence": [
+            {
+              "quote": "本研究建立了基于深度学习的动态超声造影分割模型BTS-Net，获得了满意的分割效能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2954,
+                "end_char": 2995
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ]
+        },
+        {
+          "id": "item-4912175fff2d",
+          "name": "TRC新型时序特征",
+          "desc": "在传统影像组学特征基础上首次提出TRC新型特征，结合影像组学特征与动态超声造影的时间信息。",
+          "evidence": [
+            {
+              "quote": "本研究在传统影像组学特征的基础上，首次提出了TRC新型特征。TRC特征结合了影像组学特征和动态超声造影的时间信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3264,
+                "end_char": 3319
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ]
+        },
+        {
+          "id": "item-3fa2cfe384be",
+          "name": "Delta影像组学策略",
+          "desc": "研究Delta影像组学技术，分析影像组学特征随时间的变化趋势。",
+          "evidence": [
+            {
+              "quote": "于是，我们进一步研究了Delta影像组学技术，分析影像组学特征随时间的变化趋势",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 842,
+                "end_char": 880
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8d9053d5f2a5",
+          "name": "分割Dice与IoU表现",
+          "desc": "BTS-Net在内部测试集和两个外部测试集的平均Dice得分分别为0.78、0.74和0.80，平均IoU分别为0.67、0.62和0.68。",
+          "evidence": [
+            {
+              "quote": "BTS-Net在内部测试集和两个外部测试集的平均Dice得分分别为0.78、0.74和0.80，平均IoU分别为0.67、0.62和0.68",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2996,
+                "end_char": 3065
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-bd45af2c0f85",
+          "name": "TIC曲线可信性验证",
+          "desc": "基于BTS-Net分割结果生成的TIC曲线具有高度可信性，平均ICCs、PCCs分别为0.89、0.92、0.98和0.91、0.93、0.99。",
+          "evidence": [
+            {
+              "quote": "基于BTS-Net的分割结果生成的TIC曲线具有高度的可信性。平均ICCs、PCCs分别为0.89、0.92、0.98和0.91、0.93、0.99。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3101,
+                "end_char": 3175
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-0bbd25f35f14",
+          "name": "分级诊断效能优异",
+          "desc": "测试集诊断效能分别为AUCRN 0.91、AUCDN 0.91、AUCsHCC 0.98、AUC加权平均0.94。",
+          "evidence": [
+            {
+              "quote": "测试集诊断效能分别为AUCRN 0.91，AUCDN 0.91，AUCsHCC 0.98，AUC加权平均0.94",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3419,
+                "end_char": 3474
+              },
+              "version": "c9265854f07932efc6ac"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d9b71723c330"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c2f3f040f553"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-04d5a99a4b20"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4912175fff2d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f26217bf7eba"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8d9053d5f2a5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3fa2cfe384be"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0bbd25f35f14"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

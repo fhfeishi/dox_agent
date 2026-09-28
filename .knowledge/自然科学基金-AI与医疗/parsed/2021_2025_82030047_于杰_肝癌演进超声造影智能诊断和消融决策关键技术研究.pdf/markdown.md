@@ -1,0 +1,527 @@
+![](images/page_0_image_0.jpg)
+
+项目批准号 82030047申请代码 H27归口管理部门收件日期
+
+![](images/page_0_image_2.jpg)
+
+20250282030047
+
+# 国家自然科学基金
+
+# 资助项目结题/成果报告
+
+资助类别:重点项目
+
+亚类说明:
+
+附注说明:超声或核医学影像创新技术研究
+
+项目名称:肝癌演进超声造影智能诊断和消融决策关键技术研究
+
+负责人:于杰
+
+BRID: 03603.00.03123
+
+电子邮件:jiemi301@163.com
+
+电话: 15901417963
+
+依托单位: 中国人民解放军总医院
+
+联系人: 梁辰
+
+电话: 010-66936317
+
+直接费用:297.0000（万元）
+
+执行年限: 2021.01-2025.12
+
+填表日期:2025年12月29日
+
+国家自然科学基金委员会制（2025年）
+
+## 项目摘要
+
+## 中文摘要:
+
+超声造影（CEUS）是肝癌诊断、消融引导和疗效评估的主要影像，具有实时动态、安全便捷优势。然而，CEUS高度依赖医生技术水平，大量时空灌注信息未能精确捕捉，导致肝癌检出、诊断和消融热场规划、判识效能差异大。利用信息技术挖掘肝癌CEUS深层特征对实现肝癌精准诊疗意义重大。因此本课题拟开展:1）建立多中心共享的肝癌规范化CEUS诊断和消融数据库，搭建智能分析标准数据平台；2）创建以多尺度分析和注意力机制为基础的时空特征增强表示深度网络模型，实现不同演进肝癌和消融残癌的CEUS智能诊断和可视监测；3）提出双聚类数据挖掘、模糊推理方法和多任务学习模型，构建肝癌CEUS特征与最优消融参数的关联机制，构建精准量化、鲁棒性高的肝癌消融智能决策系统并有效预警消融后肿瘤进展。通过研究，建立覆盖肝癌诊断、演进可视监测、消融决策和预后评估的CEUS智能诊疗一体化技术并临床验证，对实现肝癌精准诊疗具有重要价值。
+
+## Abstract:
+
+Contrast-enhanced ultrasound (CEUS) is the main image for liver cancer diagnosis, ablation guidance and efficacy evaluation, which has the advantages of real-time, dynamics, safety and convenience. However, CEUS relies heavily on the skill level of doctors, and a large amount of spatiotemporal perfusion information cannot be accurately captured, leading to significant performance differences in liver cancer detection, diagnosis, ablation thermal field planning and evaluation. The use of intelligent information technology to discover the deep features of CEUS is significant for accurate diagnosis and treatment of liver cancer. Therefore, this project is aimed to finish following researches: 1) Establishes a multi-center shared standardized database of liver cancer with data of CEUS diagnosis and ablation, and builds a standard platform for intelligent analysis; 2) Proposes a spatiotemporal feature-enhanced deep network model based on multi-scale analysis and attention mechanism to realize CEUS intelligent diagnosis as well as visual monitoring of different liver cancer evolution stages and residual cancer after ablation. 3) Proposes a hybrid model combining the biclustering data mining, fuzzy inference and multi-task learning methods to build the association mechanism between the CEUS characteristics of liver cancer and the optimal ablation parameters, eventually developing an intelligent ablation decision-making system with high accuracy, precise quantification and good robustness. This research will establish and clinically verify the CEUS integration technology to covering liver cancer intelligent diagnosis, visual monitoring for evolution, ablation decision-making and prognosis evaluation, which is of great value to achieve precise diagnosis and treatment of liver cancer.
+
+关键词（用分号分开）:原发性肝癌；超声造影；微波消融；人工智能；数据库
+
+Keywords (separated by;): primary liver cancer; contrast enhanced ultrasound; microwave ablation; artificial intelligence; database
+
+## 结题摘要
+
+超声诊断肝占位高低年资医生诊断准确率相差20-30%，由于超声不能判识肝癌分子侵袭特征，消融方案套餐化，导致肿瘤消融后复发结局截然不同，因而亟需提升超声对肝癌的诊疗能力。
+
+项目（1）建立了2个标准化数据库，一是肝占位超声影像数据库，病例大于5000，同时制定了规范化语义特征模版，二是肝癌消融数据库，含有标准字段817个，数据2644例。（2）构建了融合时间运动注意力的孪生网络跟踪模型，病灶跟踪精度 86.43%，多通道注意力+多维语义识别+多模特征交互解析空间特征，光流转换+时空表型分离+TimeSformer解析时间特征进行多种分类诊断。基于灰阶超声智能诊断≤3cm肝癌AUC 0.899；超声造影对肝脏结节六分类诊断的平均AUC为0.91，显著优于低年资医生，并与高年资医师和增强MRI相当；超声AI鉴别3型包虫与4种肝占位相比超声专家AUC分别为0.942 vs 0.844；区分无廓清的DN和早期肝癌AUC 0.84；建立肝癌微血管浸润MVI的临床-视觉征象模型，多个外部验证AUC 0.835-0.858，通过关联bulk和单细胞RNA测序，瘤周MVI强注意力区与CD 8+ T细胞浸润减少相关，为指导免疫治疗提供影像参考。（3）肝癌微波消融参数规划系统可为消融医生提供消融时间、功率、针数、针型和针距在内的多项参数，显著提高了低年资医生消融安全和危险部位肿瘤的彻底性；机器学习模型优化肝癌消融和手术治疗选择决策，早期复发率消融降低19.4%，腹腔镜切除降低6.3%。（4）利用肝癌的多模态影像（超声造影+MRI）、生物信息（病理+免疫组化+RNA测序）和预后信息，建立肝癌侵袭能力预测模型，预测高侵袭肝癌测试集AUC为0.811，且在不同亚组中均稳定，指导临床优化高侵袭肝癌治疗方案，复发率从42.4%降至10.5%。
+
+项目推动超声诊疗进入智能、精准、个体化水平，降低了经验依赖。发表项目资助SCI论文35篇，IF最高33分，IF>10分10篇，包括Lancet digital health、J hepatology；Hepatology等，申请国家发明专利4项，获得中国抗癌协会科技一等奖1项，软件转化开立公司，并与GE、医准和汕超签署转化协议中。培养硕博研究生40名，原国自然杰青1名。
+
+## Abstract (Brief description of research background, main methods, contributions, and research data):
+
+There is a 20-30% discrepancy in the diagnostic accuracy for focal liver lesions (FLLs) between junior and senior physicians. Since ultrasound cannot identify the molecular invasive characteristics of liver cancer and ablation regimens are standardized as one-size-fits-all packages, this leads to widely divergent&amp;nbsp;post-ablation recurrence&amp;nbsp;outcomes. Therefore, it is urgent to improve the ultrasound-based diagnosis and treatment capability for liver cancer. This project has achieved the following four core outcomes: (1) Establishment of 2 standardized databases: first, an ultrasound imaging database for FLLs with over 5,000 cases, along with a standardized semantic feature template; second, a liver cancer ablation database containing 2,644 cases with 817 standard fields. (2) Construction of a Siamese network tracking model integrated with temporal motion attention, achieving a lesion tracking accuracy of 86.43%. For diagnostic classification, spatial features were analyzed through multi-channel attention, multi-dimensional semantic recognition and multi-modal feature interaction, while temporal features were extracted through optical flow transformation, spatio-temporal phenotype separation and TimeSformer. The key diagnostic performance metrics are as follows: The AI-based model for diagnosing liver cancer ≤3 cm using grayscale ultrasound achieved an AUC of 0.899; the average AUC of contrast-enhanced ultrasound (CEUS) for six-class classification of FLLs was 0.91, significantly outperforming junior physicians and matching the performance of senior physicians and contrast-enhanced MRI; The ultrasound AI model achieved an AUC of 0.942 in differentiating three types of echinococcosis from four other categories of FLLs, compared with an AUC of 0.844 for ultrasound experts; the AUC for distinguishing dysplastic nodules (DN) without washout from early liver cancer was 0.84; a clinical-imaging model for microvascular invasion
+
+(MVI) of liver cancer was established, with AUC ranging from 0.835 to 0.858 in multiple external validations. By correlating bulk and single-cell RNA sequencing, the MVI high-attention area around the tumor was found to be associated with reduced CD8+ T cell infiltration, providing imaging references for guiding immunotherapy. (3) A microwave ablation parameter planning system for liver cancer was developed, which provides physicians with multiple parameters including ablation time, power, needle number, type, and spacing, significantly improving the technical success rate and local tumor control for junior physicians, particularly in high-risk locations. A machine learning model was built to optimize the decision-making for liver cancer treatment selection between ablation and surgery, resulting in a 19.4% reduction in early recurrence rate for ablation and a 6.3% reduction for laparoscopic resection. (4) Using multi-modal imaging (CEUS + MRI), biological information (pathology, immunohistochemistry, RNA sequencing) and prognostic data of liver cancer, a predictive model for liver cancer invasiveness was established. The AUC of this model for predicting highly invasive liver cancer in the test set was 0.811, with stable performance across different subgroups. This model guides the clinical optimization of treatment regimens for highly invasive liver cancer, reducing the recurrence rate from 42.4% to 10.5%. This project has promoted ultrasound diagnosis and treatment to an intelligent, precise and individualized level, and reduced the reliance on clinical experience. A total of 35 SCI papers funded by this project have been published, with the highest IF of 33 and 10 papers with IF >10, including publications in prestigious journals such as The Lancet Digital Health, Journal of Hepatology and Hepatology. Four national invention patents have been filed, and the First Prize of the Chinese Anti-Cancer Association Science and Technology Award has been received. The software has been transferred to Mindray, and technology transfer agreements are currently under negotiation with GE Healthcare, Yizhun Technology, and Shantou Institute of Ultrasonic Instruments.&amp;nbsp;In addition, 40 postgraduate students (master and doctoral) have been trained, including one recipient of the National Natural Science Foundation Outstanding Young Scientist Fund.
+
+关键词（用分号分开）:肝肿瘤；超声；人工智能；消融；诊断
+
+Keywords (separated by;): hepatic tumors; Ultrasound; artificial intelligence; ablation; diagnosis
+
+## 正文
+
+《结题/成果报告》正文分为两个部分:结题部分和成果部分。请按照《结题成果报告》填报说明及撰写要求填写。
+
+## （一）结题部分
+
+## 1. 研究计划执行情况概述。
+
+（1）按计划执行情况。
+
+① 计划收集有明确诊断的肝占位 CEUS视频影像以及对应的临床信息数据5000例，建立肝占位 CEUS动态图像标定标准，对肿瘤进行标注；实际收集5082个肝结节患者的超声造影（CEUS）视频并对其进行标注。
+
+②计划对 2000例肝癌结节消融 CEUS影像数据进行整理，并将每个病例对应的临床信息转化为标准文本特征；实际收集消融治疗及影像数据2644例并将其对应的临床信息转化为标准文本特征。
+
+③计划整理收集到的影像数据、临床数据、生物标志物数据、消融数据和预后数据，建立标准化的肝占位CEUS 智能诊断数据库和肝癌消融数据库；实际将收集到的各类数据进行整理并建立标准化肝占位智能诊断数据库和肝癌消融数据库。
+
+④计划建立结合多尺度分析及注意力机制的浅层空时卷积神经网络，训练CEUS肝占位动态追踪模型、肝癌最优消融参数规划模型和LTP的分类模型；实际建立了肝占位超声AI辅助诊断系统及消融智能计算方案开放应用平台。
+
+5 计划综合上述进程中开发的模型，建立诊断-治疗一体化肝脏结节智能决策系统，并进行临床验证；实际已建立诊断-治疗一体化肝脏结节智能决策系统并进行临床验证。
+
+（2）研究目标完成情况。
+
+①肝占位超声影像、生物标志物及肝癌消融数据收集
+
+本项目通过前瞻性多中心收集肝占位超声影像资料及临床治疗信息，收集全国59家医院，11种品牌超声设备的5082个肝结节患者的超声造影（CEUS）视频，收集消融治疗及影像数据2644例。此外，完善肝癌病理切片的数字化扫描510例，208例手术切除病理切片（1041张切片），280例穿刺活检肝癌标本（1116张切片）。
+
+## ②肝肿瘤超声数据库消融数据库的建立
+
+12名医生分组审查质控所有视频，选择包含病灶最大切面且增强最明显的图像帧，用矩形框将病灶勾画分割。建立了两个数据库，一是肝占位超声标准化数据库，同时制定了灰阶超声和超声造影规范化语义特征模版，含有标准字段181个，数据5082个；二是肝癌消融数据库，含有标准字段817个，数据2644例。
+
+③肝占位智能诊断、病灶动态追踪及消融参数规划的系列算法和模型
+
+开发基于 Mamba 状态空间建模的选择性多尺度融合分割网络，以及模仿人类视觉感知的多特征压缩分割网络，用于在 B-mode超声、CEUS等不同影像场景中实现高精度的肝脏及病灶分割。在CEUS视频的动态追踪方面，构建了融合时间运动注意力的孪生网络跟踪模型，在造影过程中亮度快速变化、呼吸运动引起位移等复杂场景下保持稳定追踪。在肝癌微波消融参数规划方面，提出了结合超声影像与临床信息的消融参数预测模型， 自动推荐消融功率、时间、针数与针距。
+
+## ④建立诊断-治疗-预测一体化肝脏结节智能决策系统
+
+建立诊断-治疗-预测一体化肝脏结节智能决策系统，并前瞻性地开展多中心临床验证以评估其实际效能。诊断模型包括对六类肝脏结节、小于3cm小肝癌、胆管癌与肝细胞癌、肝癌与肝包虫以及肝癌微血流浸润MVI智能诊断，AUC均大于0.85且达到或超越超声专家水平，其中超声造影分类六种肝占位诊断能力达到增强MRI水平。治疗模型基于既往成功病例构建了肝癌微波消融参数规划系统，指导年轻医生消融显著提高了安全和危险部位肿瘤消融的彻底性，机器学习模型优化肝癌消融和手术治疗选择决策，早期复发率消融降低19.4%，腹腔镜切除降低6.3%。预测模型利用肝癌的多模态影像（超声造影+MRI）、生物信息（病理+免疫组化+RNA测序）和预后信息，建立肝癌侵袭能力预测模型，预测高侵袭肝癌测试集AUC为0.811，指导临床优化高侵袭肝癌治疗方案，复发率从42.4%降至 10.5%。
+
+## 2. 研究工作主要进展、结果和影响。
+
+（1）主要研究内容。
+
+①研究内容一:超声造影智能诊断及消融数据库建立
+
+②研究内容二:肝占位超声造影影像智能诊断
+
+③研究内容三:消融热场智能计算与决策
+
+④研究内容四:智能识别肝癌超声造影特征预测消融疗效
+
+（2）取得的主要研究进展、重要结果、关键数据等及其科学意义或应用前景。
+
+## 一、诊断
+
+## ① CEUS 的肝脏结节动态追踪软件
+
+开发了基于 SiamFC网络的相似匹配机制的灰阶超声及超声造影动态追踪技术，完成对肿瘤灰阶超声及超声造影的同步追踪，平均跟踪速度（FPS）为8.36，平均预测框与标注框中心点像素距离（TE）为19.2像素，平均交并比（mloU）为86.43%。实现了模型自动追踪+人工精细调整的操作模式，且对程序进行了本地部署（图1）。
+
+![](images/page_6_image_9.jpg)
+
+图1. 通过孪生网络提取并匹配模板与搜索区域特征，结合光流引导的时间运动注意力、在线更新的模板以及头部模块生成的整合评分图，实现目标位置预测。
+
+## ② 基于 CEUS 视频的肝占位分类诊断
+
+收集来自全国 59家医院的3725个肝结节CEUS视频建立肝脏局灶性结节多分类模型。在多中心前瞻性外部测试集中，模型平均AUC为0.91(0.86-0.96)，预测效能显著高于低年资 CEUS医生，并于高年资 CEUS 及 MRI医生相当。在模型的辅助下，低年资医生的诊断效能达到高年资CEUS及MRI医生水平（图2）。
+
+![](images/page_7_image_3.jpg)
+
+图2. 模型在内部测试集、外部测试集A、外部测试集B和前瞻性多中心测试集C 中的效能。
+
+## ③针对肝癌侵袭性的智能诊断模型
+
+建立 HCC微血管浸润 MVI基于临床特征及人工读图传统视觉征象特征的临床-视觉征象模型。MAP-USE 模型具有较高的 MVI预测能力（多个外部验证 AUC 0.835-0.858），且适用于多类型造影剂及不同肿瘤大小等多种临床场景（图3）；通过关联 bulk 和单细胞 RNA 测序数据建立 MAP-USE 生物学可解释性，发现其与肿瘤免疫微环境尤其是CD8+T细胞浸润密切相关；MAP-USE瘤周强注意力区与CD8+T细胞浸润减少相关。
+
+![](images/page_8_image_2.jpg)
+
+![](images/page_8_chart_3.jpg)
+
+![](images/page_8_chart_4.jpg)
+
+![](images/page_8_chart_5.jpg)
+
+![](images/page_8_chart_6.jpg)
+
+![](images/page_8_chart_7.jpg)
+
+图 3. 超声智能诊断 MVI 流程图、诊断 AUC 曲线及免疫治疗验证结果
+
+## ④超声造影诊断胆管细胞癌
+
+针对原发性肝癌中最易发生误诊的胆管细胞癌（ICC），本研究共纳入来自全国 49 家医院的 1148 例 ICC 的 CEUS 视频，其中 ICC 占比约 17%，非 ICC 包括 HCC、血管瘤等。数据被随机分为训练集804例、验证集344例；外部测试集A153例、外部测试集B240例。模型基于 ResNet-50，采用8帧关键帧策略，外部测试集AUC 达 0.91， 显著优于初级（0.72）和中级（0.78）CEUS医师，与高年资CEUS（0.87）和高年资MRI医师（0.89）相当。在模型的辅助下，初级和中级医师AUC分别提升至0.89 和 0.90，敏感度从 58%和 70%提升至 93%和 95%，漏诊率分别下降83%和84%。模型在各类亚组中表现稳定，对 LI-RADSM类ICC敏感度达96%，联合LI-RADS后敏感度提升至97%，具备良好的临床推广价值（图4）。
+
+![](images/page_8_image_11.jpg)
+
+图4. 模型在不同LI-RADS 分级病灶中的诊断示例
+
+## ⑤超声智能诊断小肝癌
+
+针对小肝癌（≤3cm）灰阶超声诊断敏感性低且高度依赖医师经验，通过融合影像组学、报告语义与临床特征，构建并比较了8种机器学习模型（图5.A）。在外部验证中，基于XGBoost的联合模型ModelURC诊断准确率达85.9%，诊断性能显著优于低年资（AUC:70.6%）与高年资超声医师（AUC:73.5%）（图5.B)。进一步，在该模型辅助下，低年资与高年资医师的诊断准确率分别提升16.0%与14.0%，助力低年资医师可达到与高年资医师相当的诊断水平（图5.B型在不同大小分层（≤2cm、2-3cm）及不同肝癌风险人群中表现稳定，为小肝癌的早期筛查提供了一种高效、可靠的人工智能辅助工具。
+
+![](images/page_9_image_3.jpg)
+
+<table><tr><td></td><td>AUC (95% CI)</td><td>SEN (%)</td><td>SPE (%)</td><td>ACC (%)</td><td>PPV (%)</td><td>NPV (%)</td></tr><tr><td>ModelURC</td><td>0.899 (0.861-0.931)</td><td>92.8</td><td>77.9</td><td>85.9</td><td>82.9</td><td>90.4</td></tr><tr><td colspan="7">All radiologists</td></tr><tr><td>Without ModelURCassistance</td><td>0.710 (0.690–0.730)a.b</td><td>85.8ab</td><td>56.2ab</td><td>72.1a.b</td><td>69.3</td><td>77.5</td></tr><tr><td>With ModelURC assistance</td><td>0.821 (0.804-0.838)</td><td>93.3</td><td>70.8</td><td>82.9</td><td>78.6</td><td>90.2</td></tr><tr><td colspan="7">Junior radiologists</td></tr><tr><td>Without ModelUR assistance</td><td>0.691 (0.664–0.718)a.b.c</td><td>90.8ac</td><td>47.4a.b.c</td><td>70.6ab</td><td>66.5</td><td>81.7</td></tr><tr><td>With ModelUR ssistance</td><td>0.810 (0.785–0.834)</td><td>95.0</td><td>66.9d</td><td>81.9</td><td>76.8</td><td>92.1</td></tr><tr><td colspan="7">Senior radiologists</td></tr><tr><td>Without ModelUR assistance</td><td>0.729 (0.701-0.758)a.b</td><td>80.8ab</td><td>65.1a.b</td><td>73.5ab</td><td>72.7</td><td>74.7</td></tr><tr><td>With ModelURC assistance</td><td>0.832 (0.808-0.855)</td><td>91.6</td><td>74.7</td><td>83.8</td><td>80.7</td><td>88.6</td></tr></table>
+
+图5.(A）小肝癌多模态超声智能诊断研究设计；（B）模型诊断效能
+
+## ⑥超声智能诊断肝癌与肝包虫
+
+肝包虫病是世界范围流行的致死性寄生虫病，有“虫癌”之称的泡型包虫病十年死亡率达91%。在高原条件下，其诊断十分依赖超声，但具有高侵袭性的泡型包虫检出率仅为56%，且与肝癌、肝血管瘤特征容易混淆，误诊导致当地居民因病致贫并影响西部安定团结。鉴于此，团队开发了全球首个肝包虫病超声智能诊断系统，构建的深度学习模型①鉴别活性囊型包虫病AUC达0.97，有效避免非活性患者接受手术过度治疗；②泡型包虫病诊断灵敏度达97.1%，准确率91%以上，显著提升基层医师诊断能力（敏感度仅为52%）；③模型对合并肝炎的患者，鉴别泡型包虫病和肝癌AUC达0.89（图6）。模型诊断肝包虫病性能超越流行地区资深超声医师（p=0.027），解决了我国西部高原及"一带一路"沿线国家因专业医师短缺导致的诊断瓶颈。该成果在我国四川、青海等十余个县市转化应用。成果发表于权威期刊 lancet digital health，获 WHO 包虫病临床管理中心主任Brunetti教授在该期刊专栏述评:“本研究通过超声图像训练人工智能系统来诊断肝包虫病，其结果可与高流行地区经验丰富的超声医生相媲美甚至更优。”获世界超声医学与生物学联合大会全球唯一最佳研究奖。
+
+![](images/page_10_image_3.jpg)
+
+图6.(A）肝包虫病超声智能诊断研究设计；（B）模型诊断效能
+
+## 二、治疗
+
+## ①肝癌微波消融参数规划系统
+
+收集HCC消融前的影像、临床和消融参数信息以构建MWA-PS。MWA-PS可为消融医生提供，包括:消融时间、功率、针数、针型和针距在内的多项参数。来自四个中心的HCC作为前瞻性队列，患者随机分入:经验丰富医生组（ED）、经验不足医生组（LED）和经验不足医生使用MWA-PS组。中位随访为15.3月，
+
+MWA-PS组显示出比LED组更低的 LTP，并且与 ED组相当（图7）。
+
+图7:MWA-PS的构建过程.（A）可基于多种模态的HCC影像，提取肿瘤影像信息；（B）在ResUnet的高维数据中提取与消融参数高度相关的轮廓信息；（C）通过LSTM将影像特征与消融参数进行联合训练； （D）构建可交互的MWA-PS操作界面。
+
+②HCC的微波消融与腹腔镜切除治疗决策系统
+
+针对HCC患者面临的腹腔镜切除术（LH）与微波消融（MWA）治疗决策的问题，本研究纳入 582 例初发单发 3-5 cm 肝细胞癌患者，LH 组 300 例、MWA组282例，按8:1:1随机划分为训练、验证、测试集，测试集共115例（LH 59，MWA56）。基线年龄、血小板、总蛋白、PTA、INR、合并症指数、早期复发率（LH 32%，MWA 44%）在两组间差异显著。经单因素筛选，LH 模型纳入 ALB、TB、AFP、肿瘤大小4变量，MWA模型纳入 ALT、TP、ALB、AFP 4变量。五算法中，LH-XGB（AUC 0.744）与MWA-SGB（AUC 0.750）最优，并联成混合模型。测试显示，模型预测 ER 概率与实际发生率无差异（p>0.05）；按推荐治疗者ER率显著低于未按推荐者（LH 21% vs 46%，MWA 26% vs 54%，p<0.05）。若全体患者遵循推荐，整体 ER概率可由 38.2%降至25.6%（p<0.001），证明模型具有良好的预测与个体化决策价值（图8）。
+
+![](images/page_12_image_2.jpg)
+
+图8:与传统的主观判断相比，当患者遵循联合模型的建议时，整体早期复发概率可由 38.2%降至 25.6%。
+
+## 三、预测
+
+## ①消融后肿瘤局部进展的高风险肝癌的预测
+
+针对消融后容易出现且危害巨大的肿瘤局部进展（LTP），本研究建立了一种可预测LTP发生风险且对预测结果进行提供微观信息可解释的模型，且针对模型预测结果，对高风险LTP提出可行的治疗方案。研究共纳入1208例肝细胞癌（HCC）患者 分为训练集（n=502）、验证集（n=180）、内部测试集（n=250）和外部测试集（n=276）。模型构建基于术前CEUS、MRI及临床信息，采用LSTM提取 CEUS 特征，pyradiomics 提取 MRI 特征，并通过逻辑回归融合多模态信息。最终模型在内部测试集AUC为 0.809，外部测试集 AUC为 0.811，准确率为 0.780和0.779，敏感性、特异性、NPV均表现良好。模型将肿瘤分为高侵袭性和低侵袭性两组，高侵袭组LTP发生率显著升高。通过8mm最小消融边界策略，高侵袭组LTP率由42.4%降至10.5%，与低侵袭组相当（p=0.613）。模型具有良好的泛化能力和生物学可解释性。
+
+![](images/page_13_image_0.jpg)
+
+图 9. 多模态模型可术前判定HCC 侵袭性，并针对低风险和高高风险肿瘤分别采取5 mm及8 mm的最小消融边界，模型的治疗建议可显著降低局部肿瘤进展。
+
+## ②消融复发高风险人群预测
+
+基于全国多中心共2772 例接受热消融治疗的 HCC 患者数据，通过对消融后肿瘤局部进展（LTP）病灶进行表型无监督聚类分析，首次建立了LTP动态预后风险分级系统，外部验证集LTPI-Ⅲ级的全因死亡风险分别为1.08,1.77及 8.01逐步递增。该系统可实现基于LTP事件的动态风险更新与预后预警，经多中心外部验证，其LTP风险分类准确性超过90%，动态预后预测效能达80%以上（图10）。蛋白质组学分析进一步表明，LTPⅡI-III级与免疫抑制相关蛋白LILRB5及FCGR2B的高表达显著相关，从分子机制层面阐释了其侵袭性表型的生物学基础。本研究首次系统阐明并验证了LTP作为动态预测生物标志物对肝癌患者长期预后的价值， 为个体化治疗与随访策略的制定提供了科学依据及潜在机制支撑。
+
+![](images/page_14_image_0.jpg)
+
+图10. 肝癌消融后复发动态风险预测系统
+
+## 3. 研究人员的合作与分工。
+
+项目按照预定任务由中国人民解放军总医院和西北工业大学合作研究完成。解放军总医院负责收集肝占位超声和消融数据，制定规范的肝占位超声数据采集标准以及占位特征、临床信息标准、消融信息收集标准，提出研究需求和设计，数据处理、临床验证智能诊疗模型结果，转化推广研究成果等。西北工业大学负责研究超声视频跟踪方法、肝占位超声影像智能诊断系统中的智能诊断算法，研究肝癌消融智能决策系统中的算法，研究超声造影联合临床信息智能预警肝癌消融疗效系统中的算法。双方合作产出论文、专利、人才培养等学术任务。
+
+## 4. 国内外学术合作交流等情况。
+
+受邀参加世界超声联合大会、亚太肝病研究协会年会、中华医学会超声年会等会议发言12人次。受邀参加图像计算与数字医学国际研讨会、IEEE先进机器人与机电一体化国际会议（ICARM）、IEEE国际发展与学术会议（ICDL），共计6次。
+
+2025年5月，于杰教授参加世界超声医学与生物学联合会大会，作为分会场主席进行大会发言。
+
+2024年3月，于杰教授赴日本参加亚太肝病研究学会年会并大会发言。
+
+2024年5月，于杰教授赴泰国参加亚洲肿瘤介入大会并大会发言。
+
+2023年11月，于杰教授参加世界超声医学与生物联合会大会（WFUMB2023）并做大会发言。
+
+2021年10月，于杰教授受邀参加（WFUMB）线上会议并做大会发言。
+
+2025年10月，黄庆华教授受邀参加图像计算与数字医学国际研讨会，并进
+
+行发言。
+
+2025年10月，黄庆华教授课题组李光举博士参加图像计算与数字医学国际研讨会，并参加广角OCTA中视网膜血管拓扑树分割赛道，获得决赛二等奖。
+
+2025年10月，黄庆华教授课题组佘超银博士参加图像计算与数字医学国际研讨会，并获得海报组优胜奖。
+
+2025年8月，黄庆华教授课题组谢绍樟博士参加IEEE先进机器人与机电一体化国际会议（ICARM），并获得最佳论文。
+
+2023年11月，黄庆华教授课题组贾利志硕士参加IEEE国际发展与学术会议（ICDL），并获得最佳学生论文。
+
+2021年7月，黄庆华教授课题组周家康博士参加IEEE先进机器人与机电一体化国际会议（ICARM）。
+
+## 5. 存在的问题、建议及其他需要说明的情况。
+
+（1）模型部署环境要求高:模型依赖特定运算框架，与医院 PACS、HIS接口协议不一，部署失败。拟采用容器化封装，将算法转为中立服务，提供标准DICOM/HL7中间件，由信息科一次导入即可在任意终端调阅。
+
+（2）模型监管路径模糊，AI辅助决策类软件定位不清，注册评审尺度不够确切。拟完成算法性能验证、临床回顾与前瞻性试验，提前整理质量体系文档，尝试进入创新通道并获得器械注册证。
+
+（3）模型的临床信任不足，导致主动使用率偏低。拟在输出端同步提供病灶热图、置信度区间及诊断依据，并开放人工修订入口；通过系列培训、典型病例解读和持续性能监测。
+
+## （二）成果部分
+
+## 1. 项目取得成果的总体情况。
+
+发表标注课题号 SCI论文35篇，第一标注8篇，最高IF:33.0,10篇IF>10，包括 Lancet digital health、J hepatology、Hepatology、Radiology等。申请国家发明专利4项，软件著作权2项。申报国家药品监督管理局人工智能医疗器械行业标准并进入批准公示阶段，申报名称《人工智能医疗器械超声影像辅助分析软件算法性能测试方法》，将填补国内超声AI算法性能测试方法的空白，为相关医疗器械的注册审评提供关键的技术依据。获得成果奖励4项，包括中国抗癌协会科技一等奖1项，中国创新创业大赛机器人智能制造专业赛三等奖1项，中国国际经济技术合作促进会荣誉表彰2项。
+
+## 2. 项目成果转化及应用情况。
+
+一项（HCC智能辅助诊断系统）转化开立公司并免费应用到西部高原地区筛查包虫，一项（肝脏局灶性病变多分类智能分析软件）与GE、医准和汕超转化签署协议中，协议价格100万+1500美金/每个终端设备。
+
+## 3. 人才培养情况。
+
+培养硕博研究生16名。于杰教授2023年获得原国家自然科学基金杰出青年基金，李健明医生获2024年国家自然科学基金面上项目1项，丁文臻、杨永峰医生获2024年国家自然科学基金青年项目各1项。黄庆华作为项目负责人获批2023年度基金委数学天元基金重点项目（结题优秀）、2025年度基金委辽宁联合基金重点项目。
+
+## 4. 其他需要说明的成果。
+
+## 无
+
+## 5. 项目成果科普性介绍或展示网站。
+
+本项目注重科研成果的社会化传播与科学普及，通过深度访谈、健康宣教及案例展示等形式，全方位展示了超声AI在肝癌精准诊疗中的创新力量，有效提升了公众的健康素养与科学意识。
+
+1. 于杰教授依托《中国军号》、央视网、快看科普频道等高流量平台，重点普及“AI在肝癌诊疗应用价值”的科学常识，推动肝癌的“早防早筛”。
+
+2. 梁萍教授受邀在 《中华医学杂志》 与 《中国医学论坛报》 等行业权威媒体发表深度观点。高屋建瓴地阐述了超声医学在肝癌诊疗全链条中的核心价值，向医疗界及公众传递了“智能超声”与“精准医疗”的未来发展愿景。
+
+3. 聚焦大众痛点，普及肝癌防治知识，刘方义教授做客 《北京电视台——生活频道》，通过讲述“七旬老人罹患肝癌，微创消融化解危机”的真实案例，生动直观地向公众展示了微波消融技术“微创、高效、安全”的临床优势，消除了患者对治疗的恐惧。
+
+4. 践行社会责任，AI赋能基层医疗项目组积极将科研成果转化为社会服务效能。《医学界智库》、西藏电视台专题报道了团队“AI与便携超声深入高原”的公益行动，重点介绍了项目组利用人工智能技术辅助高原包虫病筛查的创新实践，同时在中国新闻网、中新网、《健康四川》等16家媒体进行报道。这不仅展示了智慧医疗在边远地区的应用潜力，更体现了项目组服务国家战略、开启基层智慧医疗新篇章的社会责任感。
+
+项目组成果展示如下:
+
+![](images/page_16_image_16.jpg)
+
+![](images/page_16_image_17.jpg)
+
+（1） 肿瘤消融数据库平台:
+
+http://183.6.101.54:36888/ablation/#/gt-1ogin
+
+![](images/page_17_image_4.jpg)
+
+（2）肝占位超声AI辅助诊断系统:
+
+![](images/page_17_image_6.jpg)
+
+![](images/page_17_image_7.jpg)
+
+（3）消融智能计算方案开放应用平台:
+
+## 研究成果目录
+
+项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。请按照期刊论文、会议论文、学术专著、专利、会议报告、标准、软件著作权、科研奖励、人才培养、成果转化的顺序列出，其它重要研究成果如标本库、科研仪器设备、共享数据库、获得领导人批示的重要报告或建议等，应重点说明研究成果的主要内容、学术贡献及应用前景等。
+
+项目负责人不得将非本人或非参与者所取得的研究成果、与受资助项目无关的研究成果、未标注国家自然科学基金资助和项目批准号的论文以及取得时间早于项目资助期开始时间的研究成果列入报告中。发表的研究成果（包括专利），项目负责人和参与者均应如实注明得到国家自然科学基金项目资助和项目批准号，科学基金作为主要资助渠道或者发挥主要资助作用的，应当将自然科学基金作为第一顺序进行标注。
+
+## 期刊论文
+
+(1) Rui Cui; Luo Wang; Dongyun Zhang; Kun Zhang; Jianping Dou; Linan Dong; Yixuan Zhang; Jiapeng Wu; Longfei Tan; Yu J; Ping Liang; Combination therapy using microwave ablation and d-mannose-chelated iron oxide nanoparticles inhibits hepatocellular carcinoma progression, Acta Pharm Sin B, 2022, 12(9). SSCI. 第四标注
+
+(2) Yongfeng Yang; Yangdan Cairang; Tian'an Jiang; Jianhua Zhou; Li Zhang; Baowen Qi; Shumei Ma; Lina Tang; Dong Xu; Lingdai Bu; Rui Bu; Xiang Jing; Hui Wang; Zubang Zhou; Cheng Zhao; Baoming Luo; Liwen Liu; Jianqin Guo; Yuzhen Nima; Guoyong Hua; Zengcheng Wa; Yuying Zhang; Guoyi Zhou; Wen Jiang; Changcheng Wang; Yang De; Xiaoling Yu; Zhigang Cheng; Zhiyu Han; Fangyi Liu; Jianping Dou; Hui Feng; Chong Wu; Ruifang Wang; Jie Hu; Qi Yang; Yanchun Luo; Jiapeng Wu; Haining Fan; Ping Liang; Jie Yu; Ultrasound identification of hepatic echinococcosis using a deep convolutional neural network model in China: a retrospective, large-scale, multicentre, diagnostic accuracy study, The Lancet Digital Health, 2023, 5(8). SSCI. 第一标注
+
+(3) Dou Jianping; Chen Xi; Cheng Guangwen; Meng Fankun; Zheng Ying; Zhang Bulin; Zhang Wei; Zhang Yao; Yin Zhiyong; Yang Hong; Lin Peng; Li Jiaping; Chen Zheng; Wei Shujing; Xu Xiting; Chen Chengcai; Chen Biwu; Huang
+
+Xuning; Fan Huiwen; Wu Jing; Zhu Jiabao; Xie Yuhuan; Lu Jingxin; Ding Hong; Yu Jie; Liang Ping; Dual elastography to discriminate adjacent stages of fibrosis and inflammation in chronic hepatitis B: A prospective multicenter study, Hepatology, 2023, 79(2). SSCI. 第四标注
+
+(4) Wenzhen Ding; Yaqing Meng; Jun Ma; Chuan Pang; Jie Tian; Jiapeng Wu; Jie Yu; Ping Liang; Kun Wang; Contrast-enhanced ultrasound-based AI model for multi-classification of focal liver lesions, JOURNAL OF HEPATOLOGY, 2025，83(2). SSCI. 第六标注
+
+(5) Wang Z; Liu M; Zhang DZ; Wu SS; Hong ZX; He GB; Yang H; Xiang BD; Xiao L; Jiang TA; Li K; Tang Z; Huang F; Lu M; Chen JA; Lin YC; Lu X; Wu YQ; Zhang XW; Zhang YF; Cheng C; Ye HL; Wang LT; Zhong HG; Zhong JH; Wang L; Chen M; Liang FF; Chen Y; Xu YS; Yu XL; Cheng ZG; Liu FY; Han ZY; Tang WZ; Yu J; Liang P; Microwave Ablation versus Laparoscopic Resection as First-line Therapy for Solitary 3-5 cm Hepatocellular Carcinoma, Hepatology, 2022，76(1):66-77. SSCI. 第四标注
+
+(6) Chen Sitong; Dou Jianping; Cang Yuancheng; Che Ying; Dong Gang; Zhang Chunlai; Xu Dong; Long Qinxian; Y u Jie; Liang Ping; Microwave versus Radiofrequency Ablation in Treating Predominantly Solid Benign Thyroid Nodules: A Randomized Controlled Trial, RADIOLOGY, 2024, 313(1). SSCI. 第一标注
+
+(7) Wen-jia Cai; Minghua Ying; Rong-qin Zheng; Jintang Liao; Baoming Luo; Lina Tang; Wen Cheng; Hong Yang; An Wei; Yilin Yang; Hui Wang; Yan-chun Luo; Cun Liu; Hui Zhong; Qi Yang; Jie Yu; Ping Liang; Contrast-enhanced ultrasound Liver Imaging Reporting and Data System (LI-RADS) in hepatocellular carcinoma ≤ 5cm: biological characteristics and patient outcomes, Liver Cancer, 2023, 12(4). SSCI. 第四标注
+
+(8) Chuan Pang; Jian-Ming Li; Zhen Wang; Yan-Chun Luo; Zhi-Gang Cheng; Zhi-Yu Han; Fang-Yi Liu; Xiao-Ling Yu; Feng Liang; Hong-Qing Xi; Rong-Qin Zheng; Wen Cheng; Qiang Wei; Song-Yuan Yu; Qin-Ying Li; Guang-Zhi He; Jie Yu; Ping Liang; Age-Dependent Female Survival Advantage in Hepatocellular Carcinoma: A Multicenter Cohort Study Clinical Gastroenterology and Hepatology, 2024, 22(2). SSCI. 第三标注
+
+(9) Wenzhen Ding; Zhen Wang; Fang-Yi Liu; Zhi-Gang Cheng; Xiaoling Yu; Zhiyu Han; Yu J; Ping Liang; A hybrid machine learning model based on semantic information can optimize treatment decision for naive single 3-5cm HCC patients, Liver Cancer, 2022, 11(3): 256-267. SSCI. 第二标注
+
+(10) Du, Zhicheng; Fan, Fangying; Ma, Jun; Liu, Jing; Yan, Xing; Chen, Xuexue; Dong, Yangfang; Wu, Jiapeng; Ding, Wenzhen; Zhao, Qinxian; Wang, Yuling; Zhang, Guojun; Yu, Jie; Lianga, Ping; Development and validation of an ultrasound-based interpretable machine learning model for the classification of ≤3&amp;nbsp;cm hepatocellular carcinoma: a multicentre retrospective diagnostic study., EClinicalMedicine, 2025, 81(无). SSCI. 第四标注
+
+## 专利
+
+(1) 黄庆华；李光举；于杰；丁文臻；基于深度学习的肝脏肿瘤消融后复发级别预测，2025-11-06，中国，202511631851.0.
+
+(2) 黄庆华；田皓哲；于杰；一种基于医学超声造影视频的目标跟踪方法，2023-10-13，中国，202310780859.8.
+
+(3) 于杰；梁萍；黄庆华；丁文臻；窦健萍；逢川；李健明；穆梦娟；高校朋；范方莹；陈思彤；李鑫；基于超声造影的肝细胞癌消融参数智能辅助系统，2024-04-24，中国，2024104949565.
+
+(4) 梁萍；田捷；王坤；丁文臻；于杰；逢川；李健明；孟雅清；马骏；吴嘉鹏；赵景民；郑琳；吴鑫瑶；一种基于超声造影的分布式模型肝脏结节多分类诊断方法，2025-04-28，中国，ZL202510542334X.
+
+## 软件著作权
+
+(1） 于杰；梁萍；董立男；于晓玲；程志刚；刘方义；韩治宇；消融临床数据联合消融影像数据库软件V1.0，021SR1581013，原始取得，全部权利，2021-06-02.
+
+(2) 梁萍；于杰；董立男；罗艳春；张东云；穆梦娟；多脏器超声引导下肿瘤消融数据库平台1.0，2024SR0720162，原始取得，全部权利，2024-5-27.
+
+## 科研奖励
+
+(1) 《远程超声机器人影响质量检测与评价规范》团体标准，中国国际经济技术合作促进会， 团标起草，其他，2025（黄庆华）.
+
+(2) 肿瘤超声诊疗一体化智能体系的建立，中国抗癌协会，科技进步，国家一等奖，2025（梁萍；于杰；刘方义；程志刚；韩治宇；窦健萍；李健明；逢川；杨永峰；肖帆）.
+
+(3) 《远程超声机器人目标扫描定位系统技术规范》团体标准，中国国际经济技术合作促进会，团标起草，其他，2025（黄庆华）.
+
+(4)第十四届中国创新创业大赛机器人智能制造专业赛，第十四届中国创新创业大赛机器人智能制造专业赛组委会，专业赛，其他，2025（黄庆华）.
+
+## 人才培养
+
+1. 出站博士后/毕业博士/毕业硕士/在站博士后/在读博士/在读硕士
+
+(1) 纪然，常学勇，俞晓洁；在读硕士，人才培养/学生培养/在读硕士/纪然，常学勇，俞晓洁.
+
+(2) 陈思彤，逢川；在站博士后，人才培养/学生培养/在站博士后/陈思彤，逄川.
+
+(3) 丁文臻，杨永峰；在读博士.
+
+(4) 吴嘉鹏；毕业博士，基于CEUS深度学习预测HCC侵袭性生物标志物及预后的研究，梁萍，于杰，2023-09-08至2025-05-29.
+
+(5) 薛博洋；毕业硕士，远程运动意图引导下超声机械臂模拟扫查手法的模型化控制策略，黄庆华，2021-10-01至2023-03-28.
+
+(6) 周子澍；毕业硕士，基于超声造影视频的肝脏肿瘤分级诊断研究，黄庆华，2023-10-01至2025-03-28.
+
+(7) 王永臻；毕业硕士，基于高阶知识挖掘与增广的泛化推理方法及医疗应用，黄庆华，2023-10-01至2025-03-28.
+
+(8) 高斌；毕业硕士，机器人辅助颈动脉自主超声扫查系统研究，黄庆华，2021-10-01至2023-03-28.
+
+(9) 李广惠；毕业硕士，医学超声多模态知识融合与诊查过程动态推理研究，黄庆华，2022-01-01至2025-10-31.
+
+(10) 王颖晨；毕业硕士，基于人机意图差异学习的远程机器人超声扫查系统，黄庆华，2023-10-01至2025-03-28.
+
+(11) 贾利志；毕业硕士，面向医学超声图像的深度与演化博弈分割方法研究，黄庆华， 2022-10-01至2024-03-28.
+
+(12) 王明亮；毕业硕士，虚拟现实辅助的远程控制机器人超声扫查系统，黄庆华，2023-10-01至2025-03-28.
+
+## 2. 中青年学术带头人（优青、杰青、创新群体、其他）
+
+(1)丁文臻；其他国家级人才计划，82402280，融合超声及磁共振影像智能规划肝癌高适形性消融热场，2025-01-01至2027-12-31，23.0万元.
+
+(2) 于杰；青年科学基金项目（A类），82325027，影像引导肿瘤微波消融，2024-01-01至2028-12-31，400.0万元.
+
+(3) 李健明；其他国家级人才计划，82471995，基于多模态超声-印迹基因构建甲状腺滤泡性肿瘤可解释智能诊断模型，2025-01-01至2028-12-31，50.0万元.
+
+(4) 杨永峰；其他国家级人才计划，82402281，人工智能-经验医学互补的肝包虫病超声诊断决策系统的研究，2025-01-01至2027-12-31，23.0万元.
+
+## 学术交流
+
+(1) 2024-03-27至2024-03-31，参加举办或参加学术会议/参加国际学术会议/亚太肝病研究学会年会，日本，于杰.
+
+(2) 2024-05-03至2024-05-05，参加举办或参加学术会议/参加国际学术会议/亚洲肿瘤介入大会，泰国，于杰.
+
+(3) 2021-05-25至2021-05-31，参加举办或参加学术会议/参加国际学术会议/世界超声医学与生物学联合线上会议，线上会议，于杰. 1
+
+(4) 2023-11-04至2023-11-07，参加举办或参加学术会议/参加国际学术会议/世界超声医学与生物联合会大会（WFUMB202 3），阿曼，于杰.
+
+(5) 2025-05-29至2025-06-01，参加举办或参加学术会议/参加国际学术会议/世界超声医学与生物学联合会大会，日本，于杰.
+
+## 项目成果应用前景
+
+本项目成果拟应用领域:1、超声体检2、医院术前评估3、高原筛查
+
+预计在5年以内推广使用
+
+附表:研究成果统计数据表（本表针对各种类型资助项目收集数据以便进行整体资助效果分析使用，并非要求每类项目都具有以下各类成果。
+
+<table><tr><td rowspan=4>获奖（项）</td><td colspan=16>国家级</td><td colspan=11>部级1</td><td rowspan=3 colspan=2>其他</td></tr><tr><td colspan=4>自然科学奖</td><td colspan=5>科技进步奖</td><td></td><td colspan=6>发明奖</td><td colspan=7>自然科学奖</td><td colspan=4>科技进步奖</td></tr><tr><td colspan=2>一等</td><td colspan=2>二等</td><td colspan=2>一等</td><td colspan=3>二等</td><td></td><td colspan=3>一等</td><td colspan=3>二等</td><td colspan=3>等</td><td colspan=4>等</td><td colspan=2>一等</td><td colspan=2>二等</td></tr><tr><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>1</td><td colspan=3>0</td><td></td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=4>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>3</td></tr><tr><td rowspan=4>学术报告/论文/专著/其他（篇）</td><td colspan=3>特邀学术报告</td><td colspan=15>学术论文</td><td rowspan=2 colspan=4>学术专著</td><td rowspan=2 colspan=7>其他</td></tr><tr><td rowspan=2>国际学术会议</td><td rowspan=2 colspan=2>国内学术会议</td><td colspan=4>发表论文数</td><td colspan=11>论文检索收录情况</td></tr><tr><td colspan=2>期论义</td><td colspan=2>会议</td><td colspan=2>SCIE/SSCI</td><td colspan=3>EI</td><td colspan=3>北大中文核心期刊</td><td colspan=3>CSSCI</td><td colspan=2>中文</td><td colspan=2>外文</td><td colspan=2>标本库</td><td colspan=2>数据库</td><td colspan=2>科研仪器设备</td><td>重要报告</td></tr><tr><td>0</td><td colspan=2>0</td><td colspan=2>10</td><td colspan=2>0</td><td colspan=2>10</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr><tr><td rowspan=4>专利/标准/软著/成果转化</td><td></td><td colspan=6>专利（项）</td><td colspan=2></td><td colspan=11>标准</td><td rowspan=3 colspan=2>软件著作权</td><td rowspan=2 colspan=7>成果转化</td></tr><tr><td colspan=3>国内</td><td colspan=4>国外</td><td rowspan=2 colspan=2>国际</td><td colspan=11>国内</td></tr><tr><td>申请</td><td colspan=2>授权</td><td colspan=2>申请</td><td colspan=2>授权</td><td colspan=3>国家</td><td colspan=3>行业</td><td colspan=3>地方</td><td colspan=2>企业</td><td colspan=2>技术转让技</td><td colspan=2>术许可作</td><td colspan=2>价投资</td><td>经济效益(万元)</td></tr><tr><td>4</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>C</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>2</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=2>0</td><td>0</td></tr><tr><td rowspan=4>人才培养及学术交流</td><td colspan=17>人才培养（人）</td><td colspan=12>举办和参加学术会议</td></tr><tr><td colspan=8>中青年学术带头人</td><td rowspan=2 colspan=3>出站博士后</td><td rowspan=2 colspan=3>毕业博士</td><td rowspan=2 colspan=3>毕业硕士</td><td colspan=4>举办国际学术会议</td><td colspan=5>举办国内学术会议</td><td colspan=3>参加国际学术会议</td></tr><tr><td>优青</td><td colspan=2>杰青</td><td colspan=2>创新群体</td><td colspan=2>其他</td><td></td><td colspan=2>次数</td><td colspan=2>人数</td><td colspan=3>次数</td><td colspan=2>人数</td><td colspan=2>次数</td><td>人数</td></tr><tr><td>0</td><td colspan=2>1</td><td colspan=2>0</td><td colspan=2>3</td><td></td><td colspan=3>0</td><td colspan=3>1</td><td colspan=3>8</td><td colspan=2>0</td><td colspan=2>0</td><td colspan=3>0</td><td colspan=2>0</td><td colspan=2>5</td><td>5</td></tr></table>
+
+国家自然科学基金项目资金决算表
+
+项目批准号:82030047
+
+项目负责人:于杰
+
+金额单位:万元
+
+<table><tr><td rowspan="3">行次</td><td rowspan="3">科目名称</td><td colspan="3">预算数</td><td rowspan="2">累计支出数</td><td rowspan="2">结余数</td><td rowspan="2">结余资金比例</td></tr><tr><td>批准预算</td><td>预算调整</td><td>调整后预算</td></tr><tr><td>(1)</td><td>(2)</td><td>(3) = (1) + (2)</td><td>(4)</td><td>(5) =(3)-(4)</td><td>(6)</td></tr><tr><td>(1)</td><td>项目总经费</td><td>352.6000</td><td>0.0000</td><td>352.6000</td><td></td><td></td><td>23.81%</td></tr><tr><td>(2)</td><td>项目直接费用</td><td>297.0000</td><td>0.0000</td><td>297.0000</td><td>213.0600</td><td>83.9400</td><td></td></tr><tr><td>(3)</td><td>1、设备费</td><td>19.0000</td><td>-5.0000</td><td>14.0000</td><td>5.3700</td><td>8.6300</td><td></td></tr><tr><td>(4)</td><td>其中:设备购置费</td><td>19.0000</td><td>-5.0000</td><td>14.0000</td><td>5.3700</td><td>8.6300</td><td></td></tr><tr><td>(5)</td><td>2、业务费</td><td>204.4000</td><td>10.0000</td><td>214.4000</td><td>173.6600</td><td>40.7400</td><td></td></tr><tr><td>(6)</td><td>3、劳务费</td><td>73.6000</td><td>-5.0000</td><td>68.6000</td><td>34.0300</td><td>34.5700</td><td></td></tr><tr><td>(7)</td><td>项目间接费用</td><td>55.6000</td><td>0.0000</td><td>55.6000</td><td></td><td></td><td></td></tr></table>
+
+注:1.本表中（1）、（3）、（5）、（6）栏为系统自动生成，无需填写；本表中（2）栏填列预算调整数；本表中（4）栏填列项目的实际支出数。
+
+2.第（1）行=第（2）+（7）行
+
+第（2）行=第（3）+（5）+（6）行；
+
+第（3）栏=第（1）+（2）栏；
+
+第（5）栏=第（3）-（4）栏；
+
+第（1）行第（6）栏=第（2）行第（5）栏/第（1）行第（3）栏100%；
+
+第（1）行第（1）栏=第（1）行第（3）栏；
+
+第（1）行第（2）栏=0；
+
+第（4）栏≤第（3）栏；
+
+第（2）行第（5）栏≥0。
+
+# 决算说明书
+
+（请按照《国家自然科学基金预算制项目决算表编制说明》等有关要求，说明各科目支出、预算调整、结余情况，合作研究转拨资金情况，单价≥50万元的设备情况，资金使用和管理过程中遇到的问题及建议，以及其他需要说明的事项等。）
+
+## 一、经费到账和支出等情况:
+
+本项目中央财政资金直接经费预算297万元。截至2025年12月31日，中国人民解放军总医院已收到中央财政资金直接经费297万元，中央财政资金足额到位。项目依托单位中国人民解放军总医院已累计向合作单位西北工业大学拨付中央财政资金直接经费103.95万元。项目共支出直接经费213.06万元，项目进展过程中有预算调整，项目组己按照相关程序向项目依托单位中国人民解放军总医院履行内部预算调整程序，具体支出明细如下:
+
+## 1、设备费:
+
+预算数19万元，调剂后预算数14万元，项目组支出经费5.37万元，用于购置科研数据处理用电脑和工作站。
+
+## 2、业务费:
+
+预算数204.4万元，调剂后预算数214.4万元，项目组支出经费173.66万元。
+
+1）实验材料费:项目组支出经费112.26万元。支出内容为购买储存数据用移动硬盘，实验动物费、超声造影剂、实验试剂和耗材等实验材料费。
+
+2)测试化验加工费:项目组支出经费42.59万元。支出内容主要为肝癌复发预测模型技术开发、样本的病理检测、样本的组学测序、样本的转录组TCR测序及数字化建库等测试化验加工费用。
+
+3）差旅/会议/国际合作与交流费:项目组支出经费6.97万元。主要用于研究人员参加世界超声医学与生物学国际会和亚太肝病国际会产生的差旅费及住宿费等，国内相关学术交流研讨所产生的差旅费及住宿费等。相关支出标准及结算方式均符合承担单位的有关规定。
+
+4）出版/文献/信息传播/知识产权事务费:项目组支出经费11.84万元。支出内容为支付项目研究过程中的国内发明专利申请费、SCI论文版面费等。
+
+## 3、劳务费:
+
+预算数73.6万元，调剂后预算数68.6万元，项目组支出经费34.03万元。支出内容为项目研究过程中支付给参加项目组研究生的劳务费，聘请相关专家的技术咨询费用。
+
+## 二、经费应付未付和结余情况:
+
+项目组应付未付直接经费4.54万元，中国人民解放军总医院应付未付测试化验经费4.54万元，已签订测试合同并获取测试结果，在结账前未来得及报销。除去应付未付经费，项目组净结余直接经费79.40万元，其中中国人民解放军总医院净结余直接经费27.60万元，西北工业大学净结余直接经费51.80万元。
+
+项目组间接经费情况:解放军总医院已开支科研管理费10.84万元，根据本单位间接经费管理规定，科研绩效25.3元需在课题通过结题验收后发放，故以应付未付形式予以预留。西北工业大学间接经费19.46万元已全部支出，其中管理费支出16.35万元，科研绩效支出3.11万万元。
+
+结余资金情况说明
+
+注:结余资金比例超过30%的项目该部分必填。
+
+<table><tr><td colspan="7">项目负责人承诺:我所承担的项目（编号:82030047 名称:肝癌演进超声造影智能诊断和消融决策关键技术研究）结题报告内容真实，数据准确，未出现《国家科学技术保密规定》中列举的属于国家科学技术秘密范围的内容，不涉及敏感科技信息。在今后的研究工作中，如有与本项目相关的成果，将如实注明得到国家自然科学基金项目资助和项目批准号，并报送国家自然科学基金委员会。项目负责人（签日期:</td></tr><tr><td colspan="4">依托单位科研管理部门:负责人（签章）:日期:</td><td colspan="2">依托单位财务管理部门:负责人（签章）:日期:</td><td>依托单位审查意见:依托单位公章:</td></tr><tr><td colspan="7">科学处审核意见:                             EP</td></tr><tr><td rowspan="2">完成情况综合评分(划√)</td><td>优</td><td>良</td><td colspan="2">中</td><td>差</td><td rowspan="2">负责人（签章）:日期:</td></tr><tr><td></td><td></td><td colspan="2"></td><td></td></tr><tr><td colspan="7">科学部核准意见  对重点项目等）:NSF负责人（签章）:日期:</td></tr><tr><td colspan="7">分管委领导意见（对重大项目等）:委领导（签章）:日期:</td></tr></table>
+
+## 电子附件目录
+
+| 序号 | 附件类型 | 附件名称 | 备注 |
+| --- | --- | --- | --- |
+| 1 | 论著 | Contrast-enhancedultrasound-based AImodel for mu |  |
+| 2 | 论著 | Ultrasoundidentification ofhepatic echinococcosi |  |
+| 3 | 论著 | Microwave ablationversus laparoscopicresection |  |
+| 4 | 论著 | Combination therapyusing microwaveablation and |  |
+| 5 | 论著 | Contrast-EnhancedUltrasound LiverImaging Reporti |  |
+| 6 | 论著 | Dual elastography todiscriminate adjacentstages |  |
+| 7 | 论著 | Age-DependentFemaleSurvival Advantage inHepatoc |  |
+| 8 | 论著 | Hybrid MachineLearning Model Basedon Semantic |  |
+| 9 | 论著 | Microwave versusRadiofrequencyAblation in Treati |  |
+| 10 |  | Development andvalidation of anultrasound-based |  |
+| 1 |  | 基于超声造影的肝细胞癌消融参数智能辅助系统 |  |
+| 12 | 专利 | 一种基于超声造影的分布式模型肝脏结节多分类诊断方法 |  |
+| 13 | 专利 | 一种基于深度学习的肝脏肿瘤消融后复发级别预测 |  |
+| 14 | 专利 | 一种基于医学超声造影视频的目标跟踪方法 |  |
+| 15 | 其他 | 消融临床数据联合消融影像数据库软件 | 软著 |
+|  |  | 多脏器超声引导下肿瘤消 |  |
+| 16 | 其他 | 融数据库平台 | 软著 |
+| 17 | 奖励 | 中国抗癌协会科技奖一等奖 |  |
+| 18 | 奖励 | 第十四届中国创新创业大赛机器人智能制造专业赛三等奖 |  |
+| 19 | 奖励 | 《远程超声机器人影像质量检测与评价规范》团标起草表彰 |  |
+| 20 | 奖励 | 《远程超声机器人目标扫描定位系统技术规范》团标起草表彰 | 25 |
+| 21 | 其他 | 经费明细-西工大 |  |
+| 22 | 其他 | 经费明细-301 |  |

@@ -1,0 +1,9 @@
+# 自动识别文本文件，并在仓库及工作区统一使用 LF
+* text=auto eol=lf
+
+# Windows CMD 脚本保留 CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 不对 Jupyter Notebook 做行尾转换、文本 Diff 或自动合并
+*.ipynb binary

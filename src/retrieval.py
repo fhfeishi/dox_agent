@@ -334,8 +334,14 @@ def select_reports(
             document_frequency[token] = document_frequency.get(token, 0) + 1
     generic = {token for token, count in document_frequency.items()
                if count / total >= config.generic_df_ratio}
-    specific = [token for token in terms if token not in generic]
-    broad = not specific  # 宽泛领域查询：跳过逐文档阈值，取 top MAX_REPORTS 并标 coverage_partial
+    # 候选集中 DF=0 的词项（bigram 分词跨词边界产生的垃圾词，或库中不存在的主题词）
+    # 在任何候选文档里都不可回答，计入覆盖率分母会系统性压低 cover 并造成假无匹配。
+    present = {token for token in terms if document_frequency.get(token, 0) > 0}
+    specific = [token for token in terms if token not in generic and token in present]
+    if not specific and not present:
+        # 全部实词在库中 DF=0：主题确实不存在，保持诚实的无匹配判定。
+        return RetrievalResult(reports=[], matched=False, reason="no_reports", specific=())
+    broad = not specific  # 实词全是泛词的宽泛领域查询：跳过逐文档阈值，标 coverage_partial
 
     scored: list[tuple[float, float, ReportDoc, list[str]]] = []
     for doc in recalled:

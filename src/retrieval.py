@@ -244,6 +244,48 @@ def _query_terms(text: str) -> list[str]:
     return terms
 
 
+_TRAILING_AUX = "与和及的在有是按并就都也而"
+
+
+def _query_topics(query: str, docs: list[ReportDoc], *, min_len: int = 2, max_len: int = 12) -> list[str]:
+    """查询主题抽取：候选库标题最长匹配 + 拉丁词；结尾助词剥离。
+
+    主题词只来自候选库标题：bigram 分词在跨词边界产生的垃圾词（'径规'、'助诊' 等半词）
+    不会成为覆盖率判定的词项；库中不存在的主题保持 DF=0 的无匹配语义。
+    """
+    blob = " ".join(doc.title for doc in docs)
+    blob_lower = blob.lower()
+    topics: list[str] = []
+    i, n = 0, len(query)
+    while i < n:
+        ch = query[i]
+        if ch.isascii() and (ch.isalnum() or ch == "_"):
+            j = i
+            while j < n and query[j].isascii() and (query[j].isalnum() or query[j] == "_"):
+                j += 1
+            word = query[i:j].lower()
+            if len(word) >= 2 and word in blob_lower:
+                topics.append(word)
+            i = j
+            continue
+        best = ""
+        for length in range(min(max_len, n - i), min_len - 1, -1):
+            piece = query[i:i + length]
+            if piece in blob:
+                best = piece
+                break
+        if best:
+            raw = best
+            while len(best) > min_len and best[-1] in _TRAILING_AUX:
+                best = best[:-1]
+            if len(best) >= min_len and best not in _QUERY_STOP:
+                topics.append(best)
+            i += len(raw)
+        else:
+            i += 1
+    return list(dict.fromkeys(topics))
+
+
 def select_reports(
     chunks_by_doc: dict[str, list[Chunk]],
     reports: list[ReportDoc],
@@ -337,10 +379,23 @@ def select_reports(
     # 候选集中 DF=0 的词项（bigram 分词跨词边界产生的垃圾词，或库中不存在的主题词）
     # 在任何候选文档里都不可回答，计入覆盖率分母会系统性压低 cover 并造成假无匹配。
     present = {token for token in terms if document_frequency.get(token, 0) > 0}
-    specific = [token for token in terms if token not in generic and token in present]
-    if not specific and not present:
-        # 全部实词在库中 DF=0：主题确实不存在，保持诚实的无匹配判定。
-        return RetrievalResult(reports=[], matched=False, reason="no_reports", specific=())
+    topics = _query_topics(query, docs)
+    if topics:
+        # 主题级判定：泛词与覆盖率都用完整主题词，主题的 DF 按「全部 bigram 同现」计。
+        topic_freq = {
+            topic: sum(1 for tokens_in_doc in doc_tokens.values()
+                       if all(piece in tokens_in_doc for piece in tokens(topic)))
+            for topic in topics
+        }
+        specific = [topic for topic in topics
+                    if 0 < topic_freq.get(topic, 0) / total < config.generic_df_ratio]
+        if not specific and not any(topic_freq.values()):
+            return RetrievalResult(reports=[], matched=False, reason="no_reports", specific=())
+    else:
+        specific = [token for token in terms if token not in generic and token in present]
+        if not specific and not present:
+            # 全部实词在库中 DF=0：主题确实不存在，保持诚实的无匹配判定。
+            return RetrievalResult(reports=[], matched=False, reason="no_reports", specific=())
     broad = not specific  # 实词全是泛词的宽泛领域查询：跳过逐文档阈值，标 coverage_partial
 
     scored: list[tuple[float, float, ReportDoc, list[str]]] = []
@@ -353,7 +408,9 @@ def select_reports(
         hit_tokens: set[str] = set()
         for cid in candidates:
             hit_tokens.update(pool_tokens[cid])
-        cover = len(set(specific) & hit_tokens) / len(specific) if specific else 1.0
+        cover = (sum(1 for term in specific
+                     if all(piece in hit_tokens for piece in tokens(term))) / len(specific)
+                 if specific else 1.0)
         scored.append((sum(fused[cid] for cid in top), cover, doc, candidates))
     if not scored:
         broader = retry_full_corpus()

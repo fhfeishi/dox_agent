@@ -6,6 +6,7 @@ import io
 import json
 import logging
 import os
+import re
 import shutil
 import tempfile
 import zipfile
@@ -70,6 +71,7 @@ from .prompts import REPORT_TEMPLATES, list_tasks, list_templates, report_templa
 from .report_figures import change_figure, insert_figures, select_figures
 from .reports import ReportStore, ScopeChanged, generate_markdown, preflight_report, summarize_report_metadata
 from .retrieval import fit_history
+from .review.routes import init_storage as review_init_storage, router as review_router
 from .runs import RunConflict, RunStore, request_fingerprint
 from .targets import (
     TargetMissing,
@@ -441,6 +443,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         # W3-B: first-class artifacts (answer snapshots + reports) in application state.
         app.state.artifacts = ArtifactStore(settings.state_dir / "artifacts.sqlite3")
         app.state.web_snapshots = WebSnapshotStore(settings.state_dir / "web_snapshots.sqlite3")
+        # W8: review storage with material isolation + interrupted-run recovery.
+        review_init_storage()
         app.state.import_lock = asyncio.Lock()
         app.state.previews = {}
         app.state.searches = {}
@@ -500,6 +504,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     app = FastAPI(title="dox_agent", version="0.2.0", lifespan=lifespan)
 
     app.include_router(workspace_router)
+    app.include_router(review_router)
 
     def find_corpus(corpus_id: str) -> CorpusInfo | None:
         for info in scan_corpora(settings):
@@ -2505,7 +2510,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     async def frontend(asset_path: str):
         root = (DOX_AGENT_ROOT / "frontend/dist").resolve()
         path = (root / (asset_path or "index.html")).resolve()
-        if asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():
+        # Only known application routes use the SPA entry; missing APIs/assets stay 404.
+        page_route = re.fullmatch(
+            r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
+            r"|chat|tasks|artifacts|prompts)/?", asset_path)
+        if page_route:
+            path = root / "index.html"
+        if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():
             raise HTTPException(404, "页面未构建或资源不存在；请在 frontend 执行 npm run build")
         # index.html must revalidate: after a rebuild its hashed asset names change, and a cached
         # page would reference deleted files. Hashed assets are content-addressed, so cache hard.

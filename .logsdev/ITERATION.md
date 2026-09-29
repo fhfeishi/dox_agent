@@ -2345,3 +2345,40 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 **提交**：`90e8589 target: align prompt_version with the current extraction rule (v1)`，1123 个路径（1122 份 target + 探针文件移出索引）。提交在 9P 上耗时 13m43s，属该映射的正常开销。
 
 **验证边界**：后端测试通过不等于四维语义正确，也未跑前端构建与 `tests/browser_target_facets.py` 浏览器链；`uv sync` 改变了 `.venv` 依赖集合，后续跑测试前无需重装。
+### 16.43 W8-A 形式审查后端骨架：已实施并走通全链（2026-09-29）
+
+按 §16.42 规划实施 W8-A，提交 `b2aa043 review: port the grant-review backend as src/review with the single guideline engine`。工作区仍存在其他写入者的未提交改动（frontend/*、launch.sh 等），本批未纳入。
+
+**实施内容**：
+
+- **删减移植**：归档 14 个后端模块 → `src/review/`（新增包，含 6 个提示词，删 `02_guidelines`）。按裁决删除 legacy 手工规则字段（`WordRule`/`AgeRule`/`words`/`age`/`required_sections`/`budget_cap`/`engine='legacy'`）、`use_model=false` 路径、`local_review`/TOPICS/seeded 人脸伪造硬编码、`/documents/sample` 端点、内置证据与规则种子；`RulePack.engine` 收窄为 `Literal["guideline"]`；`checks.py` 只保留预算确定性复算。
+- **配置适配**：`model_client.py`（替代 `bailian.py`）读取 `REVIEW_MODEL_*` 覆盖、回退主配置 `MODEL_*`；httpx 直连保留，预算旋钮（max_calls/deadline/chunk/max_chars/tokens）保留；删除百炼域名校验与 `enable_thinking` 特有参数；提示词改包内路径。
+- **存储**：`storage.py` 的 DATA 改为 `$STATE_DIR/review/`（当前解析 `.knowledge/.state/review/`），objects 单表 + 中断任务恢复并入主应用 lifespan；上传/指南/报告目录随 init 创建。
+- **挂载**：`routes.py` 以 APIRouter 注册 17 个 `/api/review/*` 端点进 `src/main.py`；`model_client` 兜底异常补 `logger.warning(exc_info=True)`（API 仍返回通用文案）。
+- **依赖核对**：pypdf 6.19.0、olefile 0.47 已随既有依赖安装（transitive），未新增；python-docx/httpx/fastapi 复用。
+
+**前置实测（W8-A 第一步）**：实际配置 `deepseek-flash`@`api.deepseek.com`。短 JSON 0.7s、长 JSON（5816 字符/20 项）32.5s，均 `finish_reason=stop` 且 JSON 可解析 → **通过**，无需 `REVIEW_MODEL_*`。发现其为推理模型，`reasoning_tokens` 占输出预算（实测 6481 中 3366）。
+
+**全链实测（curl 走通，真实模型）**：
+
+| 阶段 | 结果 |
+|---|---|
+| 指南上传 → 清单生成 | 200，`guide-544454c1bc55`（2026 面上填报说明），38 项 checks（model 18 / manual 15 / **calculation 5**） |
+| 启用 | `confirmed=true`，version 2 |
+| 申请书上传（deepfake-2021.pdf，61 页） | 200，元信息提取 completed（title/fund/category/year/birth/budget 均 extracted，domain conflict 留待确认） |
+| PATCH 确认元信息 | 200 |
+| POST /runs 审核 | completed，约 12 分钟，17 次调用（01×6、03×4、04×1、05×6）全 completed |
+| 报告 | findings 50（pass 11 / warning 2 / pending 31 / na 6 / **issue 0**），technical cards 8 |
+| 导出 | `/export/json` 304 KB、`/export/docx` 61 KB，均 200 |
+
+**质量抽查**：5 个 calculation 项全部 pending 并明确说明缺计量工具（正文 30 页、合作单位 2 个、资助期限、500 字摘要、5 篇论文）——如实印证 §6 缺口，属 W8-C 范围；rule-match 对 2026 版指南 × 2021 版申请书正确标 pending；44/50 findings 带页码引用；issue=0 符合诚实性约束（不因缺证据判违规）。
+
+**实施中发现与修复**：
+
+1. `max_tokens` 默认 6000 被 reasoning_tokens 顶穿 → `finish_reason=length` 截断，清单生成 502。默认调至 16000（上限 32768），实测环境用 `REVIEW_MAX_OUTPUT_TOKENS=28000`。截断抛错不造假，属诚实失败。
+2. 兜底 `except ... from None` 吞掉真实异常 → 补完整日志后定位：失败的 01_extract 调用无 usage，属响应前异常；同 payload 独立探针复现成功（50.8s/18 items），重跑后全链通过。
+3. 环境教训（记入 memory）：`pgrep/pkill -f <字符串>` 会匹配 ssh 远程命令自身命令行导致自杀；`cat 不存在文件 > 目标` 会先 truncate 目标再报错；重启服务应按端口查 PID。
+
+**成本**：本次全链总 tokens ≈ **451,096**（含 reasoning）；reasoning 占比高，单次全链审核成本不可忽略，生产使用需提示（DeepSeek 具体单价 [待核实：官方定价页]）。
+
+**验证边界**：后端 API 全链已通过 curl 实测；前端入口与工作台未实施（W8-B）；calculation 计算工具未补（W8-C）；浏览器链未跑；后端测试套件本次未重跑（此前基线 215 passed + 1 既有失败）。

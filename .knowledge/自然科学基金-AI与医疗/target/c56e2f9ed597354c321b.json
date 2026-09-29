@@ -1,0 +1,142 @@
+{
+  "doc_id": "c56e2f9ed597354c321b",
+  "version": "24d2c09ac0cb8ad08f91",
+  "source_hash": "227c9e84b4c40be279447246933ea43e9eeabc1d1b90b7c3829e655e8cb6366c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:04.869315+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-24e9a2c40bed",
+          "name": "抗癌药物敏感性突变标志物预测",
+          "desc": "为携带特定基因组突变的病人群体匹配治疗方案，预测抗癌药物敏感性的突变标志物以支撑癌症精准医疗。",
+          "evidence": [
+            {
+              "quote": "识别抗癌药物敏感性的突变标志物，为携带特定基因组突变的病人群体选择合适的治疗方案，是开发靶向疗法、实现人类癌症精准化医疗的重要环节",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 715
+              },
+              "version": "24d2c09ac0cb8ad08f91"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a3bd3b57bb45",
+          "name": "传统实验方法需计算方法补充",
+          "desc": "传统实验方法预测药物敏感性突变标志物成本高、效率有限，亟需高效而准确的计算方法作为有力补充。",
+          "evidence": [
+            {
+              "quote": "开发高效而准确的计算方法预测抗癌药物敏感性突变标志物，将成为传统实验方法的有力补充",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 717,
+                "end_char": 757
+              },
+              "version": "24d2c09ac0cb8ad08f91"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8e9060d81187",
+          "name": "谱域多层图卷积网络的有向二分图链接预测",
+          "desc": "将药物敏感性与抗药性表示为方向构建突变标志物-药物有向二分网络，利用一阶与二阶近邻矩阵捕获结构信息，开发基于谱域的多层图卷积网络并融合不同层特征。",
+          "evidence": [
+            {
+              "quote": "利用一阶和二阶近邻矩阵捕获有向二分图结构信息，开发基于谱域的多层图卷积网络方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 841,
+                "end_char": 879
+              },
+              "version": "24d2c09ac0cb8ad08f91"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a04060514c73",
+          "name": "IDDGCN可解释动态有向图卷积网络",
+          "desc": "提出可解释的动态有向图卷积网络IDDGCN，通过动态图结构处理多关系变化并引入自注意力机制，提升突变-药物反应预测准确性与可解释性。",
+          "evidence": [
+            {
+              "quote": "IDDGCN（IEEE Journal of Biomedical and Health Informatics，2025）则提出了一种可解释的动态有向图卷积网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3100,
+                "end_char": 3180
+              },
+              "version": "24d2c09ac0cb8ad08f91"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-24e9a2c40bed"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a3bd3b57bb45"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a3bd3b57bb45"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8e9060d81187"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8e9060d81187"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a04060514c73"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

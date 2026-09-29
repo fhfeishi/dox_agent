@@ -1,0 +1,235 @@
+{
+  "doc_id": "821817b00cfcaa5667e5",
+  "version": "caab5e3725a7713fe490",
+  "source_hash": "4599e0b7770e71bd3caa7f3f0b2132c80932a98576d2c0e813a6d26f114d5a08",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:49:46.459805+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b0c38c89e9ce",
+          "name": "局部进展期直肠癌预后预测",
+          "desc": "直肠癌是我国最常见的消化道恶性肿瘤之一，局部进展期直肠癌患者预后不佳。",
+          "evidence": [
+            {
+              "quote": "直肠癌是我国最常见的消化道恶性肿瘤之一，局部进展期直肠癌（LARC）患者预后不佳",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 662,
+                "end_char": 701
+              },
+              "version": "caab5e3725a7713fe490"
+            }
+          ]
+        },
+        {
+          "id": "item-98c88ff2d67d",
+          "name": "为直肠癌个体化精准治疗提供指导",
+          "desc": "在治疗前为LARC患者提供疾病发展和预后的准确预测，为直肠癌个体化精准治疗提供指导。",
+          "evidence": [
+            {
+              "quote": "在治疗前为LARC患者提供疾病发展和预后的准确预测，为直肠癌的个体化精准治疗提供指导",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1013,
+                "end_char": 1054
+              },
+              "version": "caab5e3725a7713fe490"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8ac764c92866",
+          "name": "新辅助治疗影响术前间质含量评估",
+          "desc": "由于LARC患者通常在术前行新辅助放化疗，难以实现术前准确的间质含量评估。",
+          "evidence": [
+            {
+              "quote": "由于LARC患者通常在术前行新辅助放化疗，难以实现术前准确的间质含量评估",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 769,
+                "end_char": 804
+              },
+              "version": "caab5e3725a7713fe490"
+            }
+          ]
+        },
+        {
+          "id": "item-ce718ce95f14",
+          "name": "多数患者未能达pCR且存在远处转移",
+          "desc": "LARC患者接受标准化治疗后大部分未能达到病理完全缓解，且部分患者术后五年内出现远处转移。",
+          "evidence": [
+            {
+              "quote": "局部进展期直肠癌（LARC）患者在接受标准化治疗后大部分患者均未能达到病理完全缓解且部分患者在术后五年内出现无可避免的远处转移",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3016,
+                "end_char": 3078
+              },
+              "version": "caab5e3725a7713fe490"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-965d3505286a",
+          "name": "多参数MRI影像组学构建TSR模型",
+          "desc": "基于T2WI、DWI、ADC及T1增强图像构建多参数影像特征库，对5650个影像组学特征进行LASSO、多因素逻辑回归降维并十折交叉验证建模。",
+          "evidence": [
+            {
+              "quote": "通过基于T2WI、DWI、ADC及T1增强图像的多参数影像进行特征库构建，对5650个影像组学特征进行LASSO、多因素逻辑回归进行降维，并运用十折交叉验证法进行模型构建，成功构建影像组学模型rad-score",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3199,
+                "end_char": 3303
+              },
+              "version": "caab5e3725a7713fe490"
+            }
+          ]
+        },
+        {
+          "id": "item-d93a6d4c8ff7",
+          "name": "影像临床联合预后模型",
+          "desc": "通过纳入临床危险因素构建融合模型Fusion-TSR，用于LARC患者预后评估。",
+          "evidence": [
+            {
+              "quote": "通过纳入临床危险因素构建融合模型Fusion-TSR",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3537,
+                "end_char": 3562
+              },
+              "version": "caab5e3725a7713fe490"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-76456e14bee6",
+          "name": "rad-score诊断效能优于mean ADC",
+          "desc": "训练集rad-score诊断效能优于mean ADC（AUC 0.917 vs 0.776），验证集同样更优（0.787 vs 0.764）。",
+          "evidence": [
+            {
+              "quote": "结果显示在训练集及验证集中，rad-score诊断效能优于mean ADC（训练集 AUC=0.917 vs AUC=0.776，验证集 AUC=0.787 vs AUC=0.764）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3332,
+                "end_char": 3423
+              },
+              "version": "caab5e3725a7713fe490"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-0d76e107eba9",
+          "name": "MR-TSR与Fusion-TSR为不良预后因素",
+          "desc": "MR-TSR为LARC患者DFS不良预后因素，Fusion-TSR为OS不良预后因素。",
+          "evidence": [
+            {
+              "quote": "MR-TSR为LARC患者DFS的不良预后因素（HR=1.662，95% CI=1.077-2.565，p=0.02），而Fusion-TSR为LARC患者OS的不良预后因素（HR=2.373，95% CI=1.281-4.396，p=0.005）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3650,
+                "end_char": 3773
+              },
+              "version": "caab5e3725a7713fe490"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-fcdbe621e72b",
+          "name": "解决新辅助治疗破坏微环境难题",
+          "desc": "通过直接手术患者术后病理标本搭建TSR金标准，解决新辅助治疗破坏肿瘤微环境而使TSR无法在LARC患者中评估的难题。",
+          "evidence": [
+            {
+              "quote": "解决了新辅助治疗破坏肿瘤微环境而使TSR无法在LARC患者中评估的难题，并且基于影像组学及临床及影像组学联合模型所评估的TSR可以预测LARC患者的预后，以辅助治疗决策",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3829,
+                "end_char": 3912
+              },
+              "version": "caab5e3725a7713fe490"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b0c38c89e9ce"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8ac764c92866"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8ac764c92866"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-965d3505286a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-965d3505286a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-76456e14bee6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d93a6d4c8ff7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-fcdbe621e72b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

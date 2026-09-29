@@ -1,0 +1,180 @@
+{
+  "doc_id": "c85d0e196b9ddb8c8d09",
+  "version": "724878d1e1a1666bb213",
+  "source_hash": "dd4ba8d888038697022c97cc95327a2e9c95adf30eb24dc71e9c2822816cf24b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:36.640055+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-74e785ff2365",
+          "name": "海上大范围搜救协同",
+          "desc": "轮船碰撞、飞机坠海等事故的空海无人协同搜救",
+          "evidence": [
+            {
+              "quote": "针对海上大范围搜救探测领域对空海无人协同系统的迫切需求，开展了面向多地点动态集结（MLDR）统一任务框架的多机艇智能协同控制方法研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3063,
+                "end_char": 3129
+              },
+              "version": "724878d1e1a1666bb213"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-23b85857e273",
+          "name": "多机艇协同控制难",
+          "desc": "单个无人艇和多个无人机执行MLDR任务的协同控制问题",
+          "evidence": [
+            {
+              "quote": "并针对单个无人艇和多个无人机在协同执行MLDR任务中的协同控制问题进行研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 804,
+                "end_char": 841
+              },
+              "version": "724878d1e1a1666bb213"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-75c2b21a91c3",
+          "name": "动态航迹规划模型",
+          "desc": "图论与滚动时域优化建立多机-艇动态航迹规划",
+          "evidence": [
+            {
+              "quote": "首先利用图论和滚动时域优化理论建立多重约束下多机-艇动态航迹规划模型，研究空海无人系统动态航迹规划方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 842,
+                "end_char": 892
+              },
+              "version": "724878d1e1a1666bb213"
+            }
+          ]
+        },
+        {
+          "id": "item-29bc971c6d2e",
+          "name": "智能跟踪控制",
+          "desc": "模型预测控制与深度强化学习实现自主跟踪",
+          "evidence": [
+            {
+              "quote": "其次建立基于模型预测控制和深度强化学习的智能跟踪控制方法，实现机-艇协作中对动态航迹的自主跟踪",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 894,
+                "end_char": 940
+              },
+              "version": "724878d1e1a1666bb213"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1d465f305389",
+          "name": "仿真与样机验证",
+          "desc": "开发协同仿真验证系统与试验样机验证方法有效性",
+          "evidence": [
+            {
+              "quote": "开发了一套多机艇协同仿真验证系统和一套试验验证样机系统，在理论仿真和试验中验证了所提方法的有效性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3189,
+                "end_char": 3236
+              },
+              "version": "724878d1e1a1666bb213"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-74e785ff2365"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-23b85857e273"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-23b85857e273"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-75c2b21a91c3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-23b85857e273"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-29bc971c6d2e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-29bc971c6d2e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1d465f305389"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-75c2b21a91c3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1d465f305389"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

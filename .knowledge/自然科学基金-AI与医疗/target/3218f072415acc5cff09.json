@@ -1,0 +1,142 @@
+{
+  "doc_id": "3218f072415acc5cff09",
+  "version": "d4907a4942fccb9c3f9d",
+  "source_hash": "5a77b06a4417ee317984cf258b2a35815522d96fbd5325e5792a0b4640dafc8d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:45.817059+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c27ee553fb91",
+          "name": "冠状动脉慢性闭塞病变介入开通预测与路径规划",
+          "desc": "面向冠脉慢性完全闭塞病变的介入治疗，于术前准确预测开通成功率并提供个体化手术路径规划。",
+          "evidence": [
+            {
+              "quote": "冠状动脉慢性闭塞病变（CTO）开通对改善患者预后意义重大",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 658,
+                "end_char": 685
+              },
+              "version": "d4907a4942fccb9c3f9d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-19b890189417",
+          "name": "CTO介入开通难度大失败率高",
+          "desc": "CTO病变介入开通治疗难度大、失败率高且容易造成严重并发症，亟需术前准确的开通预测及路径规划。",
+          "evidence": [
+            {
+              "quote": "但是CTO病变介入开通治疗难度大、失败率高且容易造成严重并发症，所以急需术前进行准确的开通预测及路径规划",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 709,
+                "end_char": 760
+              },
+              "version": "d4907a4942fccb9c3f9d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4aab51bb3547",
+          "name": "主动学习推理人工神经网络介入开通预测",
+          "desc": "通过设计主动学习推理人工神经网络，准确预测介入开通成功率并提供个体化开通路径规划；重点解决三维冠脉血管自动解剖与多元数据预测模型设计问题。",
+          "evidence": [
+            {
+              "quote": "本项目通过设计主动学习推理人工神经网络，来准确预测介入开通成功率及提供个体化开通路径规划",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 916,
+                "end_char": 959
+              },
+              "version": "d4907a4942fccb9c3f9d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-660ed51b27fb",
+          "name": "构建CTO介入开通CT智能预测与CTA-造影融合路径规划模型",
+          "desc": "构建冠状动脉CTO介入开通CT智能预测模型与冠状动脉CTA与造影智能融合辅助介入开通路径规划模型，显著提高开通成功率并降低并发症。",
+          "evidence": [
+            {
+              "quote": "构建了冠状动脉CTO介入开通CT智能预测模型和冠状动脉CTA与冠状动脉造影智能融合辅助介入开通路径规划模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2976,
+                "end_char": 3028
+              },
+              "version": "d4907a4942fccb9c3f9d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c27ee553fb91"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-19b890189417"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-19b890189417"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4aab51bb3547"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4aab51bb3547"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-660ed51b27fb"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

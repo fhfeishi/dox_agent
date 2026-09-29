@@ -1,0 +1,251 @@
+{
+  "doc_id": "fdc8584ec8662e29dfdd",
+  "version": "a04a5f755c285d2ba8f4",
+  "source_hash": "137ff875c61c01a39863d11782267a4212742ad36a041ff6cad690b447df41f6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:23:26.471618+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cc53c1d7a648",
+          "name": "反刍动物瘤胃甲烷排放预测",
+          "desc": "反刍动物瘤胃发酵产生的甲烷是重要温室气体来源，也造成饲料总能损失。",
+          "evidence": [
+            {
+              "quote": "反刍动物瘤胃发酵产生的甲烷是全球温室气体排放的重要来源之一，不仅加剧全球气候变暖，还造成摄入饲料总能的损失",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 656,
+                "end_char": 708
+              },
+              "version": "a04a5f755c285d2ba8f4"
+            }
+          ]
+        },
+        {
+          "id": "item-55bd1e4c9f35",
+          "name": "低甲烷产量日粮配方",
+          "desc": "通过准确预测甲烷产量，为比较减排措施效果与低甲烷日粮配方提供科学依据。",
+          "evidence": [
+            {
+              "quote": "为低甲烷产量日粮配方提供科学依据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1031,
+                "end_char": 1046
+              },
+              "version": "a04a5f755c285d2ba8f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0927285feb12",
+          "name": "经验回归模型预测误差高",
+          "desc": "现有模型用事先假设的经验回归法建立简单函数关系，不能准确描述甲烷产量与饲料营养特性指标的关系。",
+          "evidence": [
+            {
+              "quote": "现有的预测模型是用事先假设的经验回归法建立的简单函数关系，不能准确描述甲烷产量与饲料营养特性指标的关系，导致预测误差较高、准确性偏低",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 772,
+                "end_char": 837
+              },
+              "version": "a04a5f755c285d2ba8f4"
+            }
+          ]
+        },
+        {
+          "id": "item-4749ad1ad5a3",
+          "name": "瘤胃复杂生物系统难以简单建模",
+          "desc": "反刍动物瘤胃是复杂生物系统，提示必须用不同于现有模型的方法来描述。",
+          "evidence": [
+            {
+              "quote": "反刍动物瘤胃是复杂的生物系统，提示必须用不同于现有模型的方法来描述",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 839,
+                "end_char": 871
+              },
+              "version": "a04a5f755c285d2ba8f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1f6fbaf3aad9",
+          "name": "脉冲神经网络预测模型SNN",
+          "desc": "在MATLAB平台对70种日粮甲烷产量与CNCPS碳水化合物组分进行脉冲神经网络训练建模。",
+          "evidence": [
+            {
+              "quote": "对70种日粮CH₄产量与CNCPS碳水化合物组分进行脉冲神经网络(SNN)训练，建立SNN预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3048,
+                "end_char": 3096
+              },
+              "version": "a04a5f755c285d2ba8f4"
+            }
+          ]
+        },
+        {
+          "id": "item-f763b6fe93e1",
+          "name": "反向传播神经网络BPNN建模",
+          "desc": "在相同变量条件下建立包含2个隐藏层神经元节点的最优BPNN模型。",
+          "evidence": [
+            {
+              "quote": "建立了包含2个隐藏层神经元节点的最优BPNN模型（r2=0.93，p<0.0001）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3400,
+                "end_char": 3441
+              },
+              "version": "a04a5f755c285d2ba8f4"
+            }
+          ]
+        },
+        {
+          "id": "item-6b249015a267",
+          "name": "留一验证与模型比较",
+          "desc": "用留一验证法测试模型准确性，并比较多元线性回归与BPNN的预测性能。",
+          "evidence": [
+            {
+              "quote": "用留一验证法测试模型的准确性，SNN与多元线性回归模型模拟和预测CH₄的准确性一致",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3127,
+                "end_char": 3167
+              },
+              "version": "a04a5f755c285d2ba8f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-833f2e2b75b2",
+          "name": "瘤胃甲烷排放数据库",
+          "desc": "用78篇已发表研究的135个处理均数构建瘤胃CH₄排放数据库，评估现有40个模型性能。",
+          "evidence": [
+            {
+              "quote": "本项目用78篇已发表研究的135个处理均数构建瘤胃CH₄排放数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2735,
+                "end_char": 2767
+              },
+              "version": "a04a5f755c285d2ba8f4"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-dcd186c92fc0",
+          "name": "模型21预测效果较稳健",
+          "desc": "以干物质采食量为变量的模型21预测效果较稳健，多项评价指标表现良好。",
+          "evidence": [
+            {
+              "quote": "以干物质采食量（DMI）为变量的模型21预测效果较稳健",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2800,
+                "end_char": 2826
+              },
+              "version": "a04a5f755c285d2ba8f4"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-053e7958d158",
+          "name": "MLR与BPNN均适合预测CH₄",
+          "desc": "BPNN模型的r2值与一致性相关系数更高、均方根预测误差更低，预测性能更好。",
+          "evidence": [
+            {
+              "quote": "结果表明，MLR和BPNN模型均适合预测CH₄产量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3443,
+                "end_char": 3467
+              },
+              "version": "a04a5f755c285d2ba8f4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-cc53c1d7a648"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0927285feb12"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0927285feb12"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1f6fbaf3aad9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1f6fbaf3aad9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-053e7958d158"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6b249015a267"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dcd186c92fc0"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

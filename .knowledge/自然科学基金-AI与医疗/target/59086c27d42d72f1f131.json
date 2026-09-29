@@ -1,0 +1,142 @@
+{
+  "doc_id": "59086c27d42d72f1f131",
+  "version": "96a0353989f62cfb38f9",
+  "source_hash": "a563281e95477b0056221f605f7ba5818ef10f20fec8a07f00e134d15661f72c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:50.481166+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5e54a9ce24d8",
+          "name": "脑胶质瘤疗效预测",
+          "desc": "面向高级别胶质瘤替莫唑胺化疗，联合影像-病理组学与肿瘤微环境构建疗效预测模型。",
+          "evidence": [
+            {
+              "quote": "高级别胶质瘤(High-grade Glioma,HGG)是成人颅脑最常见的原发恶性肿瘤，替莫唑胺是NCCN指南推荐的标准化疗药物",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 665,
+                "end_char": 729
+              },
+              "version": "96a0353989f62cfb38f9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5b7a1b519396",
+          "name": "肿瘤异质性使影像指标难以准确预测疗效",
+          "desc": "由于肿瘤异质性，相同WHO分级的HGG患者疗效并不完全相同，而基于单纯影像指标的方法尚不能准确预测疗效。",
+          "evidence": [
+            {
+              "quote": "由于肿瘤异质性，相同WHO分级的HGG患者疗效并不完全相同。但目前基于单纯影像指标的方法尚不能准确预测疗效",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 731,
+                "end_char": 783
+              },
+              "version": "96a0353989f62cfb38f9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dfab4f9b0685",
+          "name": "影像-病理组学与肿瘤微环境融合建模",
+          "desc": "通过影像组学和深度学习提取MRI与病理图像特征并构建卷积神经网络，筛选与疗效强相关的影像-病理组学特征，融合影像表型、临床指标、基因表达与肿瘤微环境信息建模。",
+          "evidence": [
+            {
+              "quote": "通过影像组学和深度学习提取MRI和病理图像特征，构建卷积神经网络，筛选与疗效强相关的影像-病理组学特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 943,
+                "end_char": 993
+              },
+              "version": "96a0353989f62cfb38f9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d4a7d38ca010",
+          "name": "治疗前实现脑胶质瘤预后精准预测",
+          "desc": "基于影像-病理组学及肿瘤微环境的预后预测模型能够在治疗前对脑胶质瘤患者预后精准预测，并阐释多种免疫细胞与预后的关系。",
+          "evidence": [
+            {
+              "quote": "结果表明基于影像-病理组学及肿瘤微环境的脑胶质瘤预后预测模型能够实现在治疗前对脑胶质瘤患者预后情况的精准预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2732,
+                "end_char": 2785
+              },
+              "version": "96a0353989f62cfb38f9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5e54a9ce24d8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5b7a1b519396"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5b7a1b519396"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-dfab4f9b0685"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-dfab4f9b0685"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d4a7d38ca010"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

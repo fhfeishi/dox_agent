@@ -1,0 +1,142 @@
+{
+  "doc_id": "21a40e5e21f74f9db4b4",
+  "version": "c3e279b662621b717de4",
+  "source_hash": "70c73692a9aba4a623b6ffe3f04d6e09cea55423a86ff528f07128dcba9d2221",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:17.900546+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0d64561e4b64",
+          "name": "乳腺癌腋窝淋巴结转移精准识别与处理",
+          "desc": "面向乳腺癌腋窝淋巴结处理决策，构建术前精准预测转移的模型并探索转移分子机制，指导最恰当的腋窝处理方式。",
+          "evidence": [
+            {
+              "quote": "乳腺癌腋窝淋巴结转移的诊断和治疗一直是临床上的重要问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2355,
+                "end_char": 2381
+              },
+              "version": "c3e279b662621b717de4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-de533c7e30fc",
+          "name": "传统影像与外科手术评估腋窝淋巴结存在缺陷",
+          "desc": "单纯传统影像学评估腋窝淋巴结准确率无法满足临床需求，而依靠外科手术评估常导致严重术后并发症，降低患者生活质量。",
+          "evidence": [
+            {
+              "quote": "单纯依靠传统影像学评估腋窝淋巴结状态的准确率无法满足临床需求，而依靠外科手术评估腋窝淋巴结状态常会导致严重的术后并发症",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 700,
+                "end_char": 758
+              },
+              "version": "c3e279b662621b717de4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-871eef93201f",
+          "name": "多模态组学大数据高通量预测模型",
+          "desc": "通过深度学习神经网络在影像组学基础上结合基因组学、病理组学及临床信息，建立大数据、高通量、多维度的腋窝淋巴结转移预测模型。",
+          "evidence": [
+            {
+              "quote": "拟通过深度学习神经网络在影像组学基础上结合基因组学、病理组学以及临床信息建立大数据、高通量、多维度预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 856,
+                "end_char": 908
+              },
+              "version": "c3e279b662621b717de4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a1c982b198ff",
+          "name": "弱监督腋窝淋巴结识别模型并实现分子探针临床转化",
+          "desc": "通过弱监督算法构建基于图像的腋窝淋巴结转移识别模型并提升分割效能，搭载PET/CT新型分子探针实现初步临床应用，提升术前检出率。",
+          "evidence": [
+            {
+              "quote": "项目通过弱监督算法成功构建了基于图像的腋窝淋巴结转移识别模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2507,
+                "end_char": 2536
+              },
+              "version": "c3e279b662621b717de4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0d64561e4b64"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-de533c7e30fc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-de533c7e30fc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-871eef93201f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-871eef93201f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a1c982b198ff"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

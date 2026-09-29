@@ -1,0 +1,235 @@
+{
+  "doc_id": "9e2cd78e3b84f37fb23f",
+  "version": "0f97df87533000ffe247",
+  "source_hash": "7f265948c0276a4527124c37777fc216f348799574b1fa6da0a8e9932ea59f18",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:47:14.569803+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7af4e4e78a20",
+          "name": "慢性青光眼智能筛查",
+          "desc": "青光眼是我国常见的不可逆致盲眼病，慢性青光眼占较大比例，早期筛查是预防干预该疾病的有效措施。",
+          "evidence": [
+            {
+              "quote": "青光眼是我国常见的不可逆致盲眼病，其中慢性青光眼占据了较大的比例",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 657,
+                "end_char": 688
+              },
+              "version": "0f97df87533000ffe247"
+            }
+          ]
+        },
+        {
+          "id": "item-50c947a366c9",
+          "name": "为我国青光眼防治提供可靠方案",
+          "desc": "建立基于眼底杯盘分割的青光眼筛查方法，有望为我国青光眼的防治提供可靠的解决方案。",
+          "evidence": [
+            {
+              "quote": "有望为我国青光眼的防治提供可靠的解决方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1020,
+                "end_char": 1039
+              },
+              "version": "0f97df87533000ffe247"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4c497ca414c2",
+          "name": "分割方法难准确提取眼底杯盘",
+          "desc": "当前疾病早筛模型准确性很大程度上受限于现有分割方法难以准确提取眼底杯盘，且青光眼探测大多使用杯盘比而忽略其他图像信息。",
+          "evidence": [
+            {
+              "quote": "然而，当前疾病早筛模型的准确性很大程度上受到了现有分割方法难以准确提取眼底杯盘这一难题的限制，并且青光眼的探测大多使用杯盘比而忽略其他图像信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 728,
+                "end_char": 798
+              },
+              "version": "0f97df87533000ffe247"
+            }
+          ]
+        },
+        {
+          "id": "item-c4fe25234297",
+          "name": "多次编码下采样导致信息丢失",
+          "desc": "现有分割网络多次编码下采样造成信息丢失，影响边界区域分割精度。",
+          "evidence": [
+            {
+              "quote": "降低现有分割网络多次编码下采样造成的信息丢失，改善边界区域的分割精度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2943,
+                "end_char": 2976
+              },
+              "version": "0f97df87533000ffe247"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-00df9643eb6b",
+          "name": "边界引导卷积模块设计",
+          "desc": "借助传统边界探测理论设计具有边界引导特性的卷积模块，实现眼底非结构化数据的探测与保存。",
+          "evidence": [
+            {
+              "quote": "首先借助传统边界探测理论，设计具有边界引导特性的卷积模块，实现眼底非结构化数据的探测与保存",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 836,
+                "end_char": 880
+              },
+              "version": "0f97df87533000ffe247"
+            }
+          ]
+        },
+        {
+          "id": "item-9e992a519b89",
+          "name": "多分支耦合分割网络与组合学习",
+          "desc": "利用卷积模块构建多分支耦合分割网络执行视杯视盘准确提取，并设计边界引导的组合学习网络整合杯盘分割结果与多尺度图像信息指导青光眼筛查。",
+          "evidence": [
+            {
+              "quote": "利用上述卷积模块构建一个多分支耦合的分割网络，执行视杯视盘的准确提取；在此基础上设计一个边界引导的组合学习网络，将杯盘分割结果与多尺度图像中非结构化数据整合起来，指导青光眼的准确筛查",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 885,
+                "end_char": 975
+              },
+              "version": "0f97df87533000ffe247"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9f8e9289e096",
+          "name": "构建多种图像分割模型",
+          "desc": "基于U-Net从卷积模块、跳跃连接、网络分支三方面构建非对称分割网络、边界引导多分支分割模型、边界增强分割网络、循环跳跃分割网络与纹理融合分割网络。",
+          "evidence": [
+            {
+              "quote": "基于经典的U-Net网络从卷积模块、跳跃连接、以及网络分支三个方面分别构建了不同的图像分割模型，具体包括非对称分割网络、边界引导的多分支分割模型、边界增强的分割网络、循环跳跃的分割网络、纹理融合的分割网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3068,
+                "end_char": 3169
+              },
+              "version": "0f97df87533000ffe247"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-407026cb4e2c",
+          "name": "距离引导网络训练策略",
+          "desc": "构建距离引导的网络训练策略，有效改善现有分割网络的图像处理性能。",
+          "evidence": [
+            {
+              "quote": "构建了一种距离引导的网络训练策略，有效改善现有分割网络的图像处理性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3234,
+                "end_char": 3267
+              },
+              "version": "0f97df87533000ffe247"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-36cbf6264b28",
+          "name": "残差驱动半监督分割算法",
+          "desc": "构建残差驱动半监督分割算法与新的分割代价函数，仅借助少量标签与大量无标签数据实现多模态医学图像准确分割。",
+          "evidence": [
+            {
+              "quote": "构建了一种残差驱动的半监督分割算法和一种新的分割代价函数，仅借助少量的标签数据和大量的无标签数据，实现多模态医学图像的准确分割",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3272,
+                "end_char": 3334
+              },
+              "version": "0f97df87533000ffe247"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-7af4e4e78a20"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4c497ca414c2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4c497ca414c2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-00df9643eb6b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-00df9643eb6b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9f8e9289e096"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9e992a519b89"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-36cbf6264b28"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

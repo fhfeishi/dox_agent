@@ -1,0 +1,180 @@
+{
+  "doc_id": "f6dbdfc8a520d7824e53",
+  "version": "661534ad7ffde783912a",
+  "source_hash": "82e1aeba6dcc453e8552b7bf1cead8e3d3b8a5b9a3c7500d57ee926a30e5b0a1",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:01.873697+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5e7b319a4580",
+          "name": "工业智能制造深度学习训练",
+          "desc": "深度学习为核心的大数据智能技术成为工业4.0智能制造突破口",
+          "evidence": [
+            {
+              "quote": "以深度学习为核心的大数据智能技术正逐步成为工业4.0中智能制造的突破口",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 687
+              },
+              "version": "661534ad7ffde783912a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c0d347319949",
+          "name": "海量工业数据训练低效",
+          "desc": "毫秒级数据采集请求与海量物联网传感器实时响应给模型训练带来挑战",
+          "evidence": [
+            {
+              "quote": "工业领域毫秒级数据采集请求，海量物联网传感器实时响应给深度学习模型训练带来了挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 689,
+                "end_char": 728
+              },
+              "version": "661534ad7ffde783912a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1e35cae894dd",
+          "name": "增量迭代优化",
+          "desc": "提出工业数据训练中增量迭代优化的前提条件和方法，减少迭代次数",
+          "evidence": [
+            {
+              "quote": "提出了工业数据训练过程中增量迭代优化的前提条件和方法，减少迭代次数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3095,
+                "end_char": 3127
+              },
+              "version": "661534ad7ffde783912a"
+            }
+          ]
+        },
+        {
+          "id": "item-edda0da3368b",
+          "name": "GPU环境Spark RDD扩展",
+          "desc": "实现迭代数据在分布式异构环境下的缓存和持久化",
+          "evidence": [
+            {
+              "quote": "通过Spark RDD数据结构等在GPU环境中的扩展，实现迭代数据在分布式异构环境下的缓存和持久化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 915,
+                "end_char": 963
+              },
+              "version": "661534ad7ffde783912a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-88149f31aaed",
+          "name": "原型系统与超算评估",
+          "desc": "实现海量高并发工业数据流处理与模型高效训练原型系统，基于国家超算长沙中心完成性能评估",
+          "evidence": [
+            {
+              "quote": "实现适用于海量高并发的工业数据流处理与模型高效训练的原型系统，并基于国家超算长沙中心的超级计算机对本项目的理论和原型进行全面的性能评估与测试",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 977,
+                "end_char": 1046
+              },
+              "version": "661534ad7ffde783912a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5e7b319a4580"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c0d347319949"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c0d347319949"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1e35cae894dd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c0d347319949"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-edda0da3368b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-edda0da3368b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-88149f31aaed"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1e35cae894dd"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-88149f31aaed"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

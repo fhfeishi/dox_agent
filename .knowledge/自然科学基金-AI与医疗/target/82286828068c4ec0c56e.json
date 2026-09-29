@@ -1,0 +1,142 @@
+{
+  "doc_id": "82286828068c4ec0c56e",
+  "version": "d82a5a969e129387fc26",
+  "source_hash": "0f5b56b90b03d1167bfc2e0e6e65e21b95118645cd5d6351bde2b95b5f31cc1f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:29.490333+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6087fa701b00",
+          "name": "肺癌精准靶向治疗基因影像组学",
+          "desc": "面向肺癌靶向治疗耐药问题，整合基因组学、液体活检与影像组学构建辅助疗效预测模型。",
+          "evidence": [
+            {
+              "quote": "原发及继发性耐药是导致肺癌靶向治疗失败的主要因素",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 645,
+                "end_char": 668
+              },
+              "version": "d82a5a969e129387fc26"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-eed5b7997205",
+          "name": "瘤内异质性使局部采样难以识别全貌",
+          "desc": "肿瘤瘤内异质性是导致非小细胞肺癌治疗失败的重要因素，传统病理诊断基于局部采样，难以识别肿瘤全貌。",
+          "evidence": [
+            {
+              "quote": "肿瘤瘤内异质性是导致非小细胞肺癌治疗失败的重要因素，传统病理诊断基于局部采样，难以识别肿瘤全貌",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2406,
+                "end_char": 2452
+              },
+              "version": "d82a5a969e129387fc26"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-57a9556df672",
+          "name": "三维CT深度学习与多组学异质性建模",
+          "desc": "研发针对CT影像尤其三维数据体的深度学习方法从影像层面表征肿瘤全貌，并整合多组学数据推断分析基因组异质性，系统研究肿瘤异质性的特征、规律及影像组学表型。",
+          "evidence": [
+            {
+              "quote": "本研究通过研发针对CT影像尤其是三维数据体的深度学习方法，从影像层面全面表征肿瘤全貌，并整合多组学数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2466,
+                "end_char": 2516
+              },
+              "version": "d82a5a969e129387fc26"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3a260563fb8d",
+          "name": "肺结节良恶性鉴别准确率达92%与ITHscore",
+          "desc": "开发卷积神经网络肺结节良恶性鉴别模型准确率达92%；三维影像组学早期肺腺癌侵袭性量化模型AUC 84.9%；提出瘤内异质性可视化量化方法ITHscore；AI在线阅片平台完成5000余次诊疗活动。",
+          "evidence": [
+            {
+              "quote": "开发基于卷积神经网络的肺结节良恶性鉴别模型，诊断准确性达到92%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2563,
+                "end_char": 2594
+              },
+              "version": "d82a5a969e129387fc26"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6087fa701b00"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-eed5b7997205"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-eed5b7997205"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-57a9556df672"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-57a9556df672"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3a260563fb8d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "doc_id": "6b44ee15e4bc5b7c5dbd",
+  "version": "d557192549c064bbe103",
+  "source_hash": "4bd114ac4664cb01969c9e6465e4f268feae1232480df56826d1a1eb58718df6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:44:39.509872+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c1b3caaa757d",
+          "name": "病理图像域泛化研究",
+          "desc": "制片手法不同、脱色和切片扫描仪差异导致的域偏移会直接影响算法准确性，解决域偏移对数字病理智能判读具有重要意义。",
+          "evidence": [
+            {
+              "quote": "在计算机辅助病理诊断的研究中，由于制片手法不同、脱色和切片扫描仪的差异导致的域偏移问题会直接影响算法的准确性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 643,
+                "end_char": 696
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ]
+        },
+        {
+          "id": "item-06a2782a4621",
+          "name": "推动病理AI跨中心可部署",
+          "desc": "研究为病理人工智能在跨中心、跨设备场景下的稳定泛化与工程可部署提供方法支撑与实证依据。",
+          "evidence": [
+            {
+              "quote": "为病理人工智能在跨中心、跨设备场景下的稳定泛化与工程可部署提供了方法支撑与实证依据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3021,
+                "end_char": 3061
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fdd2bf2f59be",
+          "name": "跨器官跨扫描仪域偏移致泛化退化",
+          "desc": "数字病理模型跨器官、跨制片染色流程与跨扫描仪应用时，形态学差异与成像差异叠加产生显著域偏移，导致分割检测任务性能波动与泛化退化。",
+          "evidence": [
+            {
+              "quote": "数字病理模型在跨器官、跨制片染色流程与跨扫描仪应用时，常因形态学差异与成像差异叠加而产生显著域偏移，进而导致分割、检测等关键任务在真实临床场景中出现性能波动与泛化退化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2384,
+                "end_char": 2466
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ]
+        },
+        {
+          "id": "item-b01f4fbeab10",
+          "name": "IHC膜分割标注昂贵且噪声复杂",
+          "desc": "免疫组化膜分割标注昂贵且噪声复杂，需无监督方法实现稳健建模。",
+          "evidence": [
+            {
+              "quote": "针对 IHC 膜分割标注昂贵且噪声复杂的问题，提出“伪配对数据生成—小波频域分解—域对齐”的无监督分割方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2907,
+                "end_char": 2959
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a78849b83eb6",
+          "name": "双重先验生成连续域图像集",
+          "desc": "通过双重先验知识生成连续域图像集，为域泛化提供数据基础。",
+          "evidence": [
+            {
+              "quote": "通过双重先验知识生成连续域图像集",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 780,
+                "end_char": 795
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ]
+        },
+        {
+          "id": "item-e97c63a5fcea",
+          "name": "自监督学习与热插拔域泛化模块",
+          "desc": "设计针对病理图像的自监督学习任务模型，最终构建热插拔域泛化模块的病理辅助诊断模型用于分割与分类。",
+          "evidence": [
+            {
+              "quote": "针对病理图像特点，设计针对病理图像的自监督学习任务模型；最终构建一个热插拔域泛化模块的病理辅助诊断模型用于病理图像的分割与分类",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 797,
+                "end_char": 859
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bf4ce531ffbf",
+          "name": "COSAS挑战赛域泛化基准",
+          "desc": "在MICCAI 2024举办COSAS挑战赛并形成总结论文，构建跨器官、跨扫描仪腺癌分割域泛化基准，系统分析30支团队方案。",
+          "evidence": [
+            {
+              "quote": "项目在 MICCAI 2024 举办 COSAS 挑战赛并形成总结论文（投稿中），构建跨器官、跨扫描仪腺癌分割域泛化基准，系统分析 30 支团队方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2566,
+                "end_char": 2639
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-d348ad2fec26",
+          "name": "染色与图像质量参数化迁移机制",
+          "desc": "联合建模染色外观与图像质量的参数化迁移机制，通过染色分解与梯度分布约束实现可控颜色与质量调节。",
+          "evidence": [
+            {
+              "quote": "联合建模“染色外观与图像质量”的参数化迁移机制，通过染色分解与梯度分布约束实现可控颜色/质量调节",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2712,
+                "end_char": 2759
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-90848b410225",
+          "name": "测试时风格迁移框架",
+          "desc": "提出基于病理基础模型的测试时风格迁移框架，通过双向风格映射与风格基多样化扩展可覆盖的风格空间。",
+          "evidence": [
+            {
+              "quote": "面向跨器官泛化，提出基于病理基础模型的测试时风格迁移框架，通过双向风格映射与风格基多样化（正交约束）扩展可覆盖的风格空间",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2827,
+                "end_char": 2886
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c1b3caaa757d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-fdd2bf2f59be"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fdd2bf2f59be"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a78849b83eb6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a78849b83eb6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d348ad2fec26"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e97c63a5fcea"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-90848b410225"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

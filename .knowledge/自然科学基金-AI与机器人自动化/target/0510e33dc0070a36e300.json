@@ -1,0 +1,197 @@
+{
+  "doc_id": "0510e33dc0070a36e300",
+  "version": "8741ab25d855605fa351",
+  "source_hash": "df2e60b7a826de6a065f6a13edbe1bcbb322b6aa3054b2bd8ffd9a097e41ae95",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:11:23.136867+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9061af47a670",
+          "name": "大数据少样本自主导航",
+          "desc": "视觉Transformer及基于VT的SLAM的前沿研究热点",
+          "evidence": [
+            {
+              "quote": "作为前沿研究热点的视觉Transformer（VT）及基于VT的SLAM，尚存在许多挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 759,
+                "end_char": 802
+              },
+              "version": "8741ab25d855605fa351"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-95565c5a8c96",
+          "name": "VT参数规模与少样本",
+          "desc": "VT模型参数太多、高性能Few-shot学习缺乏、SLAM少样本应用困难",
+          "evidence": [
+            {
+              "quote": "如何设计具有更多视觉特性的VT模型？如何解决VT参数太多的问题？如何获得高性能的Few-shot学习，并应用于基于VT的SLAM等大数据少样本场景？",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 807,
+                "end_char": 880
+              },
+              "version": "8741ab25d855605fa351"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fab335b4f77e",
+          "name": "SIGMA状态池基础模型",
+          "desc": "分支化序列混合基础块与SHESN状态池，降低模型参数规模",
+          "evidence": [
+            {
+              "quote": "提出并实现了一种分支化序列混合的基础块及其结构化建模统一框架（SIGMA模型），构建了训练与推断一致的可递推状态范式，引入并深入分析了具有复杂网络特性的SHESN状态池分支",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3065,
+                "end_char": 3150
+              },
+              "version": "8741ab25d855605fa351"
+            }
+          ]
+        },
+        {
+          "id": "item-463677d6ffb6",
+          "name": "三维VLM统一框架",
+          "desc": "3D-VisTA、PQ3D、MTU3D三种三维视觉语言模型统一框架与DuMLP-Pin网络",
+          "evidence": [
+            {
+              "quote": "提出了3种新的三维VLM模型统一框架，即三维视觉与文本对齐的3D-VisTA模型，增加提示查询能力的PQ3D模型以及具有空间理解、空间记忆与主动探索的MTU3D模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3186,
+                "end_char": 3267
+              },
+              "version": "8741ab25d855605fa351"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-43c7cdf8634f",
+          "name": "通用具身导航系统",
+          "desc": "创建室内家居数据集，实现新的通用具身导航系统并完成真机验证",
+          "evidence": [
+            {
+              "quote": "针对室内家居场景创建了多个数据集，研究了3D-VisTA，PQ3D与MTU3D等三维VLM模型的落地应用，实现了新的通用具身导航系统，并进行了结合真机的技术验证与性能分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3478,
+                "end_char": 3562
+              },
+              "version": "8741ab25d855605fa351"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-d2e3892e22f6",
+          "name": "顶会顶刊论文",
+          "desc": "发表22篇标注论文，含IEEE TPAMI 1篇，AAAI 2篇、ICCV 2篇、ICRA 4篇，CCF A类6篇",
+          "evidence": [
+            {
+              "quote": "四年来共发表22篇基金标注论文，其中国际期刊论文3篇（包括IEEE Trans. PAMI论文1篇）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3564,
+                "end_char": 3613
+              },
+              "version": "8741ab25d855605fa351"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9061af47a670"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-95565c5a8c96"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-95565c5a8c96"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fab335b4f77e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-95565c5a8c96"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-463677d6ffb6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-463677d6ffb6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-43c7cdf8634f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fab335b4f77e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d2e3892e22f6"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

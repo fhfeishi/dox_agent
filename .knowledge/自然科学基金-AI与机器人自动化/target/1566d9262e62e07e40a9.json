@@ -1,0 +1,197 @@
+{
+  "doc_id": "1566d9262e62e07e40a9",
+  "version": "68c931968cd3e29dbb30",
+  "source_hash": "dab4889937f0a00f87149135da4657fe91dd0c065a3fc0397f2062e4c9cb9249",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:52.943032+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-85527249e72d",
+          "name": "复杂地形轮足机器人自主运动",
+          "desc": "电动并联式多轮足机器人复杂地形全天候自主运动",
+          "evidence": [
+            {
+              "quote": "本项目以电动并联式多轮足机器人为对象，面向复杂地形环境下的全天候自主运动需求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2652,
+                "end_char": 2689
+              },
+              "version": "68c931968cd3e29dbb30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8df5fd4322dc",
+          "name": "重载与地形突变不确定性",
+          "desc": "重载、地形突变与外界扰动导致强耦合与不确定性",
+          "evidence": [
+            {
+              "quote": "针对重载、地形突变与外界扰动导致的强耦合与不确定性问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2745,
+                "end_char": 2771
+              },
+              "version": "68c931968cd3e29dbb30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c03033475696",
+          "name": "多智能体一致性轮速协同",
+          "desc": "轮速协同与自抗扰补偿方法及柔性步态规划框架",
+          "evidence": [
+            {
+              "quote": "提出基于多智能体一致性的轮速协同与自抗扰补偿方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2773,
+                "end_char": 2796
+              },
+              "version": "68c931968cd3e29dbb30"
+            }
+          ]
+        },
+        {
+          "id": "item-0445703ad843",
+          "name": "落足点重构混合越障",
+          "desc": "轮足混合越障策略实现轮式高效率与足式强越障自适应切换",
+          "evidence": [
+            {
+              "quote": "提出基于落足点重构的轮足混合越障策略，实现轮式高效率与足式强越障能力的自适应切换",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2849,
+                "end_char": 2888
+              },
+              "version": "68c931968cd3e29dbb30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-72485f6110bb",
+          "name": "仿真与样机试验验证",
+          "desc": "所提方法均通过仿真与室内外样机试验系统验证",
+          "evidence": [
+            {
+              "quote": "上述方法均通过仿真与室内外样机试验得到系统验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2890,
+                "end_char": 2912
+              },
+              "version": "68c931968cd3e29dbb30"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-9ac3313a40b9",
+          "name": "自主模式选择与跟踪",
+          "desc": "实现不同地形下自主模式选择、参数调整与精准跟踪",
+          "evidence": [
+            {
+              "quote": "实现机器人在不同地形下的自主模式选择、参数调整与精准跟踪",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3026,
+                "end_char": 3053
+              },
+              "version": "68c931968cd3e29dbb30"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-85527249e72d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8df5fd4322dc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8df5fd4322dc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c03033475696"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8df5fd4322dc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0445703ad843"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c03033475696"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-72485f6110bb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0445703ad843"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9ac3313a40b9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

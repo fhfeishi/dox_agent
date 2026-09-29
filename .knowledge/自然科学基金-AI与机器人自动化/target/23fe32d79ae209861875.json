@@ -1,0 +1,197 @@
+{
+  "doc_id": "23fe32d79ae209861875",
+  "version": "5dbd8b0a56992f1ca9a6",
+  "source_hash": "d1a2503e057b9ddf4a582f5a22e476985e543ba1711fa8e845d5e22be01e7be3",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:52.926462+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a00e8e96dbfe",
+          "name": "柔性体自动操控",
+          "desc": "医疗机器人、家庭服务机器人及农业机器人领域关键共性技术",
+          "evidence": [
+            {
+              "quote": "柔性体自动操控技术是医疗机器人、家庭服务机器人及农业机器人等领域亟待突破的关键共性技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2757,
+                "end_char": 2799
+              },
+              "version": "5dbd8b0a56992f1ca9a6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5ed88ec2e3e2",
+          "name": "形变模型难获取与视觉受限",
+          "desc": "柔性体精确形变模型难获取，图像速度噪声与视场受限制约操控性能",
+          "evidence": [
+            {
+              "quote": "柔性体具有复杂的物理和几何特性，其精确形变模型难以获取；同时，视觉系统存在图像速度测量噪声、相机视场受限等因素，严重制约了基于视觉的柔性体操控性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2804,
+                "end_char": 2876
+              },
+              "version": "5dbd8b0a56992f1ca9a6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c0b8a6bfb9a0",
+          "name": "无源雅可比图像速度观测器",
+          "desc": "避免图像深度逆估计导致的系统奇异问题",
+          "evidence": [
+            {
+              "quote": "设计了基于无源雅可比矩阵的图像速度观测器，有效避免了传统方法中图像深度逆估计导致的系统奇异问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2961,
+                "end_char": 3007
+              },
+              "version": "5dbd8b0a56992f1ca9a6"
+            }
+          ]
+        },
+        {
+          "id": "item-790dbc62f24f",
+          "name": "约束模型在线估计",
+          "desc": "基于神经网络的末端执行器约束模型在线估计，突破模型完全未知瓶颈",
+          "evidence": [
+            {
+              "quote": "提出了基于神经网络的末端执行器约束模型在线估计方法，突破了约束面模型完全未知的技术瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3267,
+                "end_char": 3309
+              },
+              "version": "5dbd8b0a56992f1ca9a6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0e3746135bf1",
+          "name": "形变/接触力同步控制",
+          "desc": "无标定视觉伺服下实现柔性体形变与接触力同步精确调控",
+          "evidence": [
+            {
+              "quote": "设计了基于无标定视觉伺服的柔性体形变/接触力同步控制策略，实现了在控制柔性体形变的同时对接触力的精确调控",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3313,
+                "end_char": 3364
+              },
+              "version": "5dbd8b0a56992f1ca9a6"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-ff9afbaac218",
+          "name": "顶刊论文与专利",
+          "desc": "发表高水平SCI论文14篇（顶刊11篇），授权/申请发明专利3项",
+          "evidence": [
+            {
+              "quote": "本项目共发表高水平SCI论文14篇，其中在IEEE T-AC、IEEE TIE、IEEE/ASME TMECH等控制与机器人领域顶级期刊发表论文11篇，授权/申请发明专利3项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3389,
+                "end_char": 3475
+              },
+              "version": "5dbd8b0a56992f1ca9a6"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a00e8e96dbfe"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5ed88ec2e3e2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5ed88ec2e3e2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c0b8a6bfb9a0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5ed88ec2e3e2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-790dbc62f24f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-790dbc62f24f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0e3746135bf1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c0b8a6bfb9a0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ff9afbaac218"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

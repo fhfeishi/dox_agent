@@ -1,0 +1,186 @@
+{
+  "doc_id": "760c6b87a830608dd495",
+  "version": "0269b86346ac04749fc3",
+  "source_hash": "7333f73eeb3960e34d0084ea6a260339933edacebec52cce4f78cbe4a89df360",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:01.859491+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fcbb40582344",
+          "name": "室内人机共融机器人导航",
+          "desc": "移动服务机器人导航中与行人的自然交互",
+          "evidence": [
+            {
+              "quote": "机器人在导航过程中与行人的自然交互，是移动型服务机器人实际应用中要解决的重点问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 690
+              },
+              "version": "0269b86346ac04749fc3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bc3a370abfdd",
+          "name": "机器人缺乏社会意识",
+          "desc": "大多数机器人把行人当障碍物，运动方式不自然，影响导航效率与体验",
+          "evidence": [
+            {
+              "quote": "目前，大多数机器人缺乏社会意识，仅把行人当作障碍物，造成行人需要被动迁就机器人的运动，运动方式不够自然，影响导航效率和用户体验",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 692,
+                "end_char": 754
+              },
+              "version": "0269b86346ac04749fc3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-129ff9952309",
+          "name": "逆向强化学习社会交互学习",
+          "desc": "基于逆向强化学习的社会自适应运动交互学习框架及评估方法",
+          "evidence": [
+            {
+              "quote": "提出了基于逆向强化学习的社会自适应运动交互学习框架及评估方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2566,
+                "end_char": 2595
+              },
+              "version": "0269b86346ac04749fc3"
+            }
+          ]
+        },
+        {
+          "id": "item-1e446680ce88",
+          "name": "环境拓扑特征矩阵表达",
+          "desc": "基于扩展维诺图引导启发式采样与拓扑特征矩阵工作空间精炼化表达",
+          "evidence": [
+            {
+              "quote": "提出了原创性的基于环境拓扑特征矩阵的工作空间精炼化表达方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2725,
+                "end_char": 2753
+              },
+              "version": "0269b86346ac04749fc3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8fcb537ab4af",
+          "name": "路径拟人化置信度超70%",
+          "desc": "解决运动交互学习非同伦问题，拟人化置信度超过70%",
+          "evidence": [
+            {
+              "quote": "人机共融环境下的路径拟人化置信度超过70%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2616,
+                "end_char": 2636
+              },
+              "version": "0269b86346ac04749fc3"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-9e631f755f33",
+          "name": "规划资源消耗毫秒级",
+          "desc": "解决陷阱空间问题，复杂动态环境规划线上资源消耗降低为毫秒级",
+          "evidence": [
+            {
+              "quote": "将复杂动态环境的规划线上资源消耗降低为毫秒级",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2783,
+                "end_char": 2804
+              },
+              "version": "0269b86346ac04749fc3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-fcbb40582344"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-bc3a370abfdd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-bc3a370abfdd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-129ff9952309"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-129ff9952309"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8fcb537ab4af"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1e446680ce88"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9e631f755f33"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

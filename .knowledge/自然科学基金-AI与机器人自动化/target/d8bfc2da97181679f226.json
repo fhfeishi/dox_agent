@@ -1,0 +1,197 @@
+{
+  "doc_id": "d8bfc2da97181679f226",
+  "version": "1af78e278c799d7219ab",
+  "source_hash": "a6910a84a247c66949a46bc93e2d29450f64047bc488c235464934d4aab58cd9",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:10.128110+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-af8b2b48936b",
+          "name": "智能网联车辆队列控制",
+          "desc": "混合交通环境下的车辆队列预测巡航控制",
+          "evidence": [
+            {
+              "quote": "随着智能网联汽车技术的发展，车辆队列运行已成为提升道路通行效率、降低能耗与排放的重要手段。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2753,
+                "end_char": 2797
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d3696bc3cb32",
+          "name": "混合交通确定性模型失效",
+          "desc": "驾驶行为不确定、状态快变与通信非理想挑战队列控制",
+          "evidence": [
+            {
+              "quote": "受驾驶行为不确定性、交通状态快速变化以及通信与执行器非理想等因素影响，传统基于确定性模型的车辆队列控制方法在稳定性、安全性与控制性能方面面临显著挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2844,
+                "end_char": 2918
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-91eddb202b0e",
+          "name": "驾驶行为预测模型",
+          "desc": "机器学习建模人类驾驶纵向加速度与跟驰特征",
+          "evidence": [
+            {
+              "quote": "分析了人类驾驶车辆纵向加速度与跟驰行为特征，引入机器学习方法建立了驾驶行为预测模型，为车辆队列预测巡航控制提供先验信息支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3040,
+                "end_char": 3101
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ]
+        },
+        {
+          "id": "item-612b34d74ab6",
+          "name": "模型-数据融合控制框架",
+          "desc": "MPC与数据驱动融合实现参数自适应优化",
+          "evidence": [
+            {
+              "quote": "提出了模型预测控制与数据驱动方法相融合的车辆队列预测巡航控制框架，实现了对预测模型参数和控制参数的自适应优化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3269,
+                "end_char": 3323
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6a0bccbca4bc",
+          "name": "碰撞率降至0%",
+          "desc": "碰撞率由最高17.5%降至0%，成功率提升至85%-96%",
+          "evidence": [
+            {
+              "quote": "与传统模型预测控制和强化学习方法相比，在不同驾驶风格条件下将车辆队列碰撞率由最高 17.5% 降低至 0%，队列运行成功率提升至 85%–96%。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3371,
+                "end_char": 3443
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-b4c881fa092a",
+          "name": "间距误差降至1.44m",
+          "desc": "最大车间距误差由29.25m降至1.44m，平顺性改善49.8%",
+          "evidence": [
+            {
+              "quote": "在考虑通信延迟约 100 ms 和执行器响应滞后约 500 ms 的商用车辆队列场景中，平均最大车间距误差由 29.25 m 降低至 1.44 m，控制性能显著提升。在预测巡航控制应用中，车辆队列行驶平顺性指标平均改善约 49.8%。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3444,
+                "end_char": 3560
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-af8b2b48936b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d3696bc3cb32"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d3696bc3cb32"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-91eddb202b0e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d3696bc3cb32"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-612b34d74ab6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-612b34d74ab6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6a0bccbca4bc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-91eddb202b0e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b4c881fa092a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

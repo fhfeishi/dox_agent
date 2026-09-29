@@ -1,0 +1,197 @@
+{
+  "doc_id": "8646950da414d37212f2",
+  "version": "1b2c70220df8e1d17e6c",
+  "source_hash": "436e5fa361840a849a6e9889d703b8818ce41bd0a1ecb6f88fb4a2b48afebeb2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:11:19.609796+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c6118e1d5bf9",
+          "name": "高动态有人环境服务机器人",
+          "desc": "有人环境高动态特性给机器人自主作业安全可靠性带来挑战",
+          "evidence": [
+            {
+              "quote": "机器人在走入公众与社会服务过程中，有人环境的高动态特性，给它们自主作业的安全性与可靠性带来巨大挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 665,
+                "end_char": 713
+              },
+              "version": "1b2c70220df8e1d17e6c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d200051cf4e2",
+          "name": "非完备感知与静态假设",
+          "desc": "传统静态场景假设架构难以解决遮挡噪声导致的非完备感知问题",
+          "evidence": [
+            {
+              "quote": "本课题针对高动态复杂场景下机器人环境建模问题，探索一种“自上而下”的设计范式—即从人类概念出发，参照人类语言语义、认知概念和推理方法等要素来指导系统框架设计",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 803,
+                "end_char": 880
+              },
+              "version": "1b2c70220df8e1d17e6c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-44810efb8d5f",
+          "name": "Mamba+图注意力地点识别",
+          "desc": "视觉Mamba嵌入与空间图注意力网络，全局检索与局部重排序平衡精度效率",
+          "evidence": [
+            {
+              "quote": "一是提出基于视觉Mamba嵌入与空间图注意力网络的地点识别方法，通过全局检索与局部重排序平衡精度与效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2796,
+                "end_char": 2846
+              },
+              "version": "1b2c70220df8e1d17e6c"
+            }
+          ]
+        },
+        {
+          "id": "item-ba704ac4a033",
+          "name": "知识图谱+大模型分层规划",
+          "desc": "构建知识图谱ActKG并融合大语言模型实现分层任务规划，减少幻觉错误",
+          "evidence": [
+            {
+              "quote": "二是构建知识图谱（ActKG）并融合大语言模型实现分层任务规划，减少幻觉错误",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2848,
+                "end_char": 2885
+              },
+              "version": "1b2c70220df8e1d17e6c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-482f2115e32c",
+          "name": "Recall@1达99.1%",
+          "desc": "地点识别Recall@1最高达99.1%，闭环检测召回率93.3%且延迟仅4.5毫秒",
+          "evidence": [
+            {
+              "quote": "在MSLS、Pitts30k等数据集上地点识别Recall@1最高达99.1%，闭环检测召回率提升至93.3%且延迟仅4.5毫秒；定位误差降低超10%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2982,
+                "end_char": 3056
+              },
+              "version": "1b2c70220df8e1d17e6c"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-db5408f263b1",
+          "name": "高风险场景应用",
+          "desc": "成果已用于军事指挥、自主导航等高风险场景，支撑国防与工业自动化",
+          "evidence": [
+            {
+              "quote": "应用前景广阔，成果已用于军事指挥、自主导航等高风险场景，为国防与工业自动化提供关键技术支撑",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3144,
+                "end_char": 3188
+              },
+              "version": "1b2c70220df8e1d17e6c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c6118e1d5bf9"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d200051cf4e2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d200051cf4e2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-44810efb8d5f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d200051cf4e2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ba704ac4a033"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-44810efb8d5f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-482f2115e32c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ba704ac4a033"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-db5408f263b1"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

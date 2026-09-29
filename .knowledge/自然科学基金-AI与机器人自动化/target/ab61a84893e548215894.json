@@ -1,0 +1,180 @@
+{
+  "doc_id": "ab61a84893e548215894",
+  "version": "1d24995a02e08018f0f6",
+  "source_hash": "3f08c8865321c6060e05363a8ecad38512bdbbb1882fbbcc7fd3dafc4d6e1648",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:35.382751+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ed53b474aa48",
+          "name": "AUV自主学习与控制",
+          "desc": "预规划预编程局限下的AUV自主性提升",
+          "evidence": [
+            {
+              "quote": "现存的AUV通常不具备很好的自主性，普遍局限于预规划或预编程任务模式。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 657,
+                "end_char": 691
+              },
+              "version": "1d24995a02e08018f0f6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9f0d3e67b6b0",
+          "name": "传统强化学习样本需求大",
+          "desc": "传统RL需大量样本学习缓慢，示范学习不能提升自主性",
+          "evidence": [
+            {
+              "quote": "研究表明，传统强化学习方法可以通过在线自主学习提高AUV的自主性，但需要大量的样本且学习速度缓慢。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 692,
+                "end_char": 740
+              },
+              "version": "1d24995a02e08018f0f6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a4fd160288c5",
+          "name": "深度交互强化学习",
+          "desc": "人的经验以奖赏信号离线训练加速自主学习",
+          "evidence": [
+            {
+              "quote": "本项目研究采用最新的深度交互强化学习方法，将设计者和非技术人员的经验知识以奖赏信号的形式离线训练AUV，加速AUV自主学习",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2805,
+                "end_char": 2865
+              },
+              "version": "1d24995a02e08018f0f6"
+            }
+          ]
+        },
+        {
+          "id": "item-5f7187dcd2c1",
+          "name": "双奖赏信号融合",
+          "desc": "人的奖赏与环境奖赏结合双神经网络在线改进策略",
+          "evidence": [
+            {
+              "quote": "最后将人的奖赏信号与传统强化学习中的环境奖赏信号结合，并采用基于双神经网络的强化学习技术通过在线自主学习改进 AUV控制策略，以应对海洋环境的不确定性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2916,
+                "end_char": 2991
+              },
+              "version": "1d24995a02e08018f0f6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c99c108e927b",
+          "name": "Gazebo仿真验证",
+          "desc": "交互RL更快获得良好策略且更好适应新任务环境",
+          "evidence": [
+            {
+              "quote": "实验结果表明与传统强化学习方法相比，深度交互强化学习方法可以使AUV更快地获得良好的控制策略，结合人的奖赏与环境奖赏可以进一步提高控制策略的收敛速度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3042,
+                "end_char": 3116
+              },
+              "version": "1d24995a02e08018f0f6"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ed53b474aa48"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9f0d3e67b6b0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9f0d3e67b6b0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a4fd160288c5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9f0d3e67b6b0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5f7187dcd2c1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a4fd160288c5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c99c108e927b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5f7187dcd2c1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c99c108e927b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

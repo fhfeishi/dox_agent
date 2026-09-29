@@ -1,0 +1,197 @@
+{
+  "doc_id": "6c62710e1fa9a23d4fe6",
+  "version": "1066d48b27c444167c0d",
+  "source_hash": "3aa67e6b9affbc36d5982bfd6d18aa6b7d35c24d7adc395d212e0cd85ad6644b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:48:15.238362+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ecbd856e251e",
+          "name": "公共场所火灾应急疏散救援",
+          "desc": "大规模人员密集公共场所的火灾疏散与救援路径规划",
+          "evidence": [
+            {
+              "quote": "公共场所规模大、功能多、人员密集、火灾隐患较大，是城市消防重点和难点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 688,
+                "end_char": 722
+              },
+              "version": "1066d48b27c444167c0d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0adf20a795ce",
+          "name": "传统路径规划难以应对动态火灾",
+          "desc": "复杂室内外三维环境下的疏散调度处置难以用传统算法应对",
+          "evidence": [
+            {
+              "quote": "传统应急疏散救援路径规划算法已经难于应对在复杂室内外三维环境中的具体疏散、调度和处置步骤。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 723,
+                "end_char": 767
+              },
+              "version": "1066d48b27c444167c0d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b3375164ea86",
+          "name": "EG2RL全局引导强化学习",
+          "desc": "增强全局引导策略深度强化动态路径规划算法",
+          "evidence": [
+            {
+              "quote": "提出了适用于动态火灾环境疏散的EG2RL（Enhanced Globally Guidance Reinforcement Learning）增强全局引导策略深度强化动态路径规划算法，在局部观察集中加入全局引导策略中和全局位置引导信息，进行路径规划优化，提高动态环境下个体疏散的效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2583,
+                "end_char": 2723
+              },
+              "version": "1066d48b27c444167c0d"
+            }
+          ]
+        },
+        {
+          "id": "item-22ba846a71db",
+          "name": "协作式DDQN群体疏散",
+          "desc": "多智能体神经网络与经验共享的CDDQN算法",
+          "evidence": [
+            {
+              "quote": "提出群体协作式DDQN（Cooperative Double Deep Q Network, CDDQN）算法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2769,
+                "end_char": 2824
+              },
+              "version": "1066d48b27c444167c0d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8989b1669c29",
+          "name": "个体疏散效率提升",
+          "desc": "EG2RL提高动态环境下个体疏散效率",
+          "evidence": [
+            {
+              "quote": "提高动态环境下个体疏散的效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2710,
+                "end_char": 2723
+              },
+              "version": "1066d48b27c444167c0d"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-cc5e9b910b71",
+          "name": "疏散工具应用转化",
+          "desc": "三维场景重建、风险分析、火灾仿真与损失评估工具应用于应急预案与演练",
+          "evidence": [
+            {
+              "quote": "研发室内外三维场景重建方法、潜在风险空间分析、火灾场景数值仿真以及灾后损失评价等工具，分别应用于大型公共场所三维应急预案优化、城中村火灾消防救援演练、半导体集成电路高科技园区火灾风险情景仿真与损失评估。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2918,
+                "end_char": 3018
+              },
+              "version": "1066d48b27c444167c0d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ecbd856e251e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0adf20a795ce"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0adf20a795ce"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b3375164ea86"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0adf20a795ce"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-22ba846a71db"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b3375164ea86"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8989b1669c29"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-22ba846a71db"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cc5e9b910b71"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

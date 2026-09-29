@@ -1,0 +1,142 @@
+{
+  "doc_id": "ec9c4b38d3e0d438d20e",
+  "version": "52474ef2b4049f5ad79f",
+  "source_hash": "7a3abe81b6522340c726527654c4999f23ac53bdec5b1604e45cceb91e3352df",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:36.141039+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-617e49154620",
+          "name": "运动想像脑电解码与脑机接口康复",
+          "desc": "面向基于脑机接口的主动式智能运动康复，建立精度高、泛化能力强的运动想像解码方法。",
+          "evidence": [
+            {
+              "quote": "利用运动想像脑电(MI-EEG)解码人的运动意图是基于脑机接口的智能康复方法的核心",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 695
+              },
+              "version": "52474ef2b4049f5ad79f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-38cc2de9eb62",
+          "name": "MI-EEG低信噪比致特征可分性与表达受限",
+          "desc": "MI-EEG信噪比和空间分辨率低，削弱与脑活动的信息相关性且难以准确定位脑活动位置，导致特征可分性降低和特征表达不完整，成为传感器域解码的瓶颈。",
+          "evidence": [
+            {
+              "quote": "因MI-EEG信噪比和空间分辨率低,削弱与脑活动间的信息相关性,且难以准确定位脑活动位置,导致特征可分性降低和特征表达不完整,这正是传感器域MI解码的瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 726,
+                "end_char": 802
+              },
+              "version": "52474ef2b4049f5ad79f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8c3e37cd1835",
+          "name": "脑源成像与深度迁移学习的脑源域MI解码",
+          "desc": "从交叉学科角度研究脑源域MI解码，利用镜像神经元机理与VR改善采集质量，用生成对抗网络扩增数据，基于ESI在皮层空间进行脑源时空估计并设计域对抗三维卷积网络与参数迁移策略。",
+          "evidence": [
+            {
+              "quote": "本项目将从交叉学科角度研究脑源域MI解码方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 804,
+                "end_char": 825
+              },
+              "version": "52474ef2b4049f5ad79f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cd11ba235bb9",
+          "name": "提出中心偶极子与代表性偶极子概念及4种脑源域解码方法",
+          "desc": "基于Desikan-Killiany与Destrieux分区提出中心偶极子与代表性偶极子概念，利用挤压-激励模块量化频带与ROI重要性，获得4种脑源域MI-EEG数据表达与解码方法，并提出脑源空间域适应网络提升泛化能力。",
+          "evidence": [
+            {
+              "quote": "基于Desikan-Killiany和Destrieux分区创新性地提出中心偶极子（CD）和代表性偶极子（RD）的概念",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3088,
+                "end_char": 3146
+              },
+              "version": "52474ef2b4049f5ad79f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-617e49154620"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-38cc2de9eb62"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-38cc2de9eb62"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8c3e37cd1835"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8c3e37cd1835"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cd11ba235bb9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "doc_id": "def72829471ebf43ab83",
+  "version": "35d932bbc9d6ce22d32b",
+  "source_hash": "ca445d0eb8fc9f3a34c195ee11d8fb8d42a06a343e64f40ec8c33071a43346f3",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:20.327501+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cfe60e299863",
+          "name": "跳动心脏机器人辅助手术",
+          "desc": "心脏跳动状态下的外科手术运动补偿与力反馈",
+          "evidence": [
+            {
+              "quote": "相较传统的心脏手术，心脏跳动状态下外科手术的创伤小、不破坏心脏正常功能、能够在手术过程中进行操作评测、术后恢复快，具有更好的手术效益。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3166,
+                "end_char": 3232
+              },
+              "version": "35d932bbc9d6ce22d32b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a37253dfa1e9",
+          "name": "运动补偿低与力感知缺失",
+          "desc": "跳动状态补偿精度低、操作力感知缺失，不能作为临床标准术式",
+          "evidence": [
+            {
+              "quote": "但是，跳动状态下心脏运动补偿精度低、医生操作力感知缺失，导致该操作还不能作为临床标准术式。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3233,
+                "end_char": 3277
+              },
+              "version": "35d932bbc9d6ce22d32b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-03422a38cb06",
+          "name": "RCM约束运动学求解",
+          "desc": "解决机械臂RCM约束下的奇异性问题",
+          "evidence": [
+            {
+              "quote": "提出了RCM约束下手术机器人运动学模型求解方法，解决了机械臂在RCM约束下的奇异性问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3488,
+                "end_char": 3530
+              },
+              "version": "35d932bbc9d6ce22d32b"
+            }
+          ]
+        },
+        {
+          "id": "item-ca1d3c28eb72",
+          "name": "自适应参考阻抗模型",
+          "desc": "解决接触力震荡问题实现稳定主动端力反馈",
+          "evidence": [
+            {
+              "quote": "提出自适应参考阻抗模型参数调节方法，解决接触力震荡问题，实现稳定主动端力反馈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3575,
+                "end_char": 3612
+              },
+              "version": "35d932bbc9d6ce22d32b"
+            }
+          ]
+        },
+        {
+          "id": "item-6552fb1f5280",
+          "name": "心脏运动在线检测预测",
+          "desc": "融合多源数据与深度学习时延补偿适应非周期非线性运动",
+          "evidence": [
+            {
+              "quote": "提出跳动心脏的在线运动检测与预测方法，融合多源数据，运用深度学习和时延补偿算法，适应非周期性、非线性心脏运动。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3614,
+                "end_char": 3668
+              },
+              "version": "35d932bbc9d6ce22d32b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-040264f633c9",
+          "name": "手术技术难点攻克",
+          "desc": "解决跳动心脏外科手术部分技术难点，推动临床应用",
+          "evidence": [
+            {
+              "quote": "这些成果解决了跳动心脏外科手术的部分技术难点，具有潜在的应用前景，有望推动跳动心脏手术机器人在临床中的应用，提升外科手术的质量与安全性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3669,
+                "end_char": 3736
+              },
+              "version": "35d932bbc9d6ce22d32b"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-cfe60e299863"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a37253dfa1e9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a37253dfa1e9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-03422a38cb06"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a37253dfa1e9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ca1d3c28eb72"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a37253dfa1e9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6552fb1f5280"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ca1d3c28eb72"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-040264f633c9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6552fb1f5280"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-040264f633c9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

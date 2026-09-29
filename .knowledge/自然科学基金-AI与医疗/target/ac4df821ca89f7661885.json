@@ -1,0 +1,142 @@
+{
+  "doc_id": "ac4df821ca89f7661885",
+  "version": "990883f7c8a584593fea",
+  "source_hash": "bd5ae60b5b46171b8c35236ce32a92ad7ebea836461a23d8444cae86e9639e81",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:36.092670+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c71aa5a3cbd6",
+          "name": "肺癌免疫治疗疗效评估",
+          "desc": "面向晚期肺癌免疫治疗，构建多模态标注数据库与AI影像组学疗效及病情演进预测模型。",
+          "evidence": [
+            {
+              "quote": "我国肺癌发病率和致死率均位居恶性肿瘤首位，尽管免疫治疗为传统治疗及靶向治疗无效的晚期肺癌者提供了全新的治疗模式",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 654,
+                "end_char": 708
+              },
+              "version": "990883f7c8a584593fea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7bbc24d4476d",
+          "name": "缺乏快速准确全面的免疫疗效评估方法",
+          "desc": "由于缺乏快速、准确、全面、动态的免疫疗效评估方法，肺癌晚期患者5年生存率不足5%，严重制约免疫治疗临床获益。",
+          "evidence": [
+            {
+              "quote": "但由于缺乏快速、准确、全面、动态的免疫疗效评估方法，肺癌晚期患者5年生存率不足5%，极大的制约了肺癌患者免疫治疗的临床获益",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 710,
+                "end_char": 770
+              },
+              "version": "990883f7c8a584593fea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3162ebdf0aa4",
+          "name": "AI与影像组学融合的肺癌免疫疗效预测系统",
+          "desc": "融合人工智能与影像组学技术，建立大样本肺癌免疫治疗多维标注数据库，实现CT影像组学特征自动识别与提取，研发疗效预测与病情进展分析辅助诊断系统。",
+          "evidence": [
+            {
+              "quote": "通过融合新的人工智能与影像组学技术，建立大样本肺癌免疫治疗多维标注数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 845,
+                "end_char": 880
+              },
+              "version": "990883f7c8a584593fea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-da12c84531ca",
+          "name": "全自动AI系统预测基因突变及靶向疗效AUC 0.813",
+          "desc": "研发基于肺区引导注意力的全肺分析深度学习系统，实现基因突变及靶向疗效预测AUC=0.813；提出肿瘤体积动态变化作为新型影像学生物标志物，并开发三级淋巴结构智能病理系统AUC=0.851。",
+          "evidence": [
+            {
+              "quote": "成功实现基因突变及靶向疗效预测，并实现了AUC=0.813的良好效能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3122,
+                "end_char": 3155
+              },
+              "version": "990883f7c8a584593fea"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c71aa5a3cbd6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-7bbc24d4476d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7bbc24d4476d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3162ebdf0aa4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3162ebdf0aa4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-da12c84531ca"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

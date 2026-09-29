@@ -1,0 +1,142 @@
+{
+  "doc_id": "31b2d82daf4a759a8135",
+  "version": "4cdbae750c2fd438a178",
+  "source_hash": "c2b66bc87e01eb8a81e3c34e40ae97fcad13e5a8e6708c969f84573947c76461",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:34.842856+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-786901a8f073",
+          "name": "肺癌影像组学多视图学习",
+          "desc": "面向肺癌无创低成本精确诊断需求，研究影像组学多视图学习理论与算法并验证于免疫治疗标志物预测。",
+          "evidence": [
+            {
+              "quote": "肺癌是对我国人民生命健康危害最大的恶性肿瘤，利用影像组学进行无创、低成本、精确诊断已成为肺癌临床个性化精准治疗的迫切需求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 712
+              },
+              "version": "4cdbae750c2fd438a178"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2af8e7d1bd3f",
+          "name": "影像组学特征关联复杂致综合分析能力不足",
+          "desc": "影像组学特征关联复杂，现有影像组学技术综合分析能力显著不足，亟需开展多视图学习理论与算法研究。",
+          "evidence": [
+            {
+              "quote": "然而，影像组学特征关联复杂，现有影像组学技术综合分析能力显著不足",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 714,
+                "end_char": 745
+              },
+              "version": "4cdbae750c2fd438a178"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5e8aa056978b",
+          "name": "结构+统计多视图完备表征与半监督结构化学习",
+          "desc": "研究肺癌影像“结构+统计”多视图完备表征模型，并突破特征提取与视图选择、多视图半监督高阶结构化表征学习、跨域自适应迁移等关键技术。",
+          "evidence": [
+            {
+              "quote": "研究肺癌影像“结构+统计”多视图完备表征模型，奠定项目的核心理论基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 868,
+                "end_char": 901
+              },
+              "version": "4cdbae750c2fd438a178"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0bc42c95618a",
+          "name": "发表CCF A类会议与SCI论文30篇",
+          "desc": "以第一/通讯作者发表CCF A类会议和SCI高水平论文30篇（IEEE Transactions 10篇），申请国家发明专利2项、软件著作权1项，培养博士9人、硕士4人。",
+          "evidence": [
+            {
+              "quote": "以第一/通讯作者身份发表CCF A类会议和SCI高水平论文30篇，其中IEEE Transactions（国际电气工程师学会会刊）10篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3237,
+                "end_char": 3304
+              },
+              "version": "4cdbae750c2fd438a178"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-786901a8f073"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2af8e7d1bd3f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2af8e7d1bd3f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5e8aa056978b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5e8aa056978b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0bc42c95618a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

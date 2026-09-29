@@ -1,0 +1,224 @@
+{
+  "doc_id": "d0d155e08c86a3c4f513",
+  "version": "861532795231fd2094a0",
+  "source_hash": "dc0b955c0cdd9f0892af3c8728057526e63f269ad8cc2905838f5b86b25f10e0",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:58:25.811246+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e6d3e3968fa2",
+          "name": "移动机器人点云环境感知",
+          "desc": "室内外移动机器人基于三维点云的环境感知",
+          "evidence": [
+            {
+              "quote": "随着三维传感技术的快速发展与相关传感器的逐渐低成本化，三维点云成为移动机器人获取环境信息的重要来源，基于三维点云的环境感知技术也成为研究热点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2230,
+                "end_char": 2300
+              },
+              "version": "861532795231fd2094a0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-55c9a487b208",
+          "name": "点云深度学习落后于图像",
+          "desc": "点云非结构性、无序性和稀疏性使CNN无法直接应用",
+          "evidence": [
+            {
+              "quote": "由于三维点云具有非结构性、无序性和稀疏性的特点，二维图像中常用的卷积神经网络无法直接应用于三维点云，基于三维点云的深度学习技术明显落后于二维图像。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2331,
+                "end_char": 2403
+              },
+              "version": "861532795231fd2094a0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cb9351b98978",
+          "name": "细分编码网络特征学习",
+          "desc": "保留原始点云信息并实现较高效计算的特征学习",
+          "evidence": [
+            {
+              "quote": "项目提出了一种基于细分编码网络的点云特征学习方法，在保留更多原始点云信息的基础上实现了较为高效的计算",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2453,
+                "end_char": 2502
+              },
+              "version": "861532795231fd2094a0"
+            }
+          ]
+        },
+        {
+          "id": "item-5f18519bab99",
+          "name": "点云领域自适应",
+          "desc": "无监督多子类领域自适应网络与自监督目标检测迁移",
+          "evidence": [
+            {
+              "quote": "提出了一种基于无监督多子类领域自适应网络的模型迁移方法和一种基于自监督学习的点云领域自适应目标检测方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2575,
+                "end_char": 2626
+              },
+              "version": "861532795231fd2094a0"
+            }
+          ]
+        },
+        {
+          "id": "item-5f76af6ee9c1",
+          "name": "三维运动目标检测与分割",
+          "desc": "复眼运动检测器拓展与三维稀疏语义上下文分割",
+          "evidence": [
+            {
+              "quote": "实现了高效的运动点云检测，并在此基础上提出了一种高效鲁棒的三维运动目标检测方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2663,
+                "end_char": 2702
+              },
+              "version": "861532795231fd2094a0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-11bacfe27a3c",
+          "name": "越野道路检测数据集",
+          "desc": "构建开放大规模越野场景点云图像融合道路检测数据集",
+          "evidence": [
+            {
+              "quote": "构建了一个开放的大规模越野场景点云图像融合道路检测数据集并在该数据集上进行了算法验证和评价。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2811,
+                "end_char": 2856
+              },
+              "version": "861532795231fd2094a0"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-8375f3d8ddb4",
+          "name": "实车平台算法验证",
+          "desc": "系列新算法在数据集与实车测试平台验证",
+          "evidence": [
+            {
+              "quote": "提出了一系列新算法并在相关数据集和实车测试平台上进行了验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2883,
+                "end_char": 2911
+              },
+              "version": "861532795231fd2094a0"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e6d3e3968fa2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-55c9a487b208"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-55c9a487b208"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cb9351b98978"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-55c9a487b208"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5f18519bab99"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-55c9a487b208"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5f76af6ee9c1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cb9351b98978"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-11bacfe27a3c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5f18519bab99"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8375f3d8ddb4"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

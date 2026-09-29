@@ -1,0 +1,197 @@
+{
+  "doc_id": "b6b7fd91a8a9d865ae7a",
+  "version": "6fae32537da9685b3e44",
+  "source_hash": "4a38c4bd0062b2f2db921b5066456bf0329f49d4f2af5a871e2af22a39ae93ff",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:35.437881+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-eecf7761e608",
+          "name": "自动驾驶预测型运动控制",
+          "desc": "高动态交通场景的毫秒级车规运动控制",
+          "evidence": [
+            {
+              "quote": "针对自动驾驶汽车的高动态轨迹跟踪功能，项目设计了汽车预测型运动控制器的高实时求解算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2738,
+                "end_char": 2779
+              },
+              "version": "6fae32537da9685b3e44"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-33ba3709ff81",
+          "name": "在线求解实时性差",
+          "desc": "在线计算模式实时性差不满足毫秒级车规需求",
+          "evidence": [
+            {
+              "quote": "然而现有优化求解过程通常采用在线计算模式，实时性差，不能满足毫秒级的车规级需求，这是制约高级别智能汽车产业化进程的瓶颈难题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 736,
+                "end_char": 797
+              },
+              "version": "6fae32537da9685b3e44"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-133b4bcfcc07",
+          "name": "时域分解并行计算",
+          "desc": "跨节点共识机制减少MPC迭代步数67.1%",
+          "evidence": [
+            {
+              "quote": "提出了跨节点共识机制的时域分解方法，减少了MPC算法67.1%的迭代步数，提升了并行的迭代更新速度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2987,
+                "end_char": 3036
+              },
+              "version": "6fae32537da9685b3e44"
+            }
+          ]
+        },
+        {
+          "id": "item-c1823f0726ed",
+          "name": "时域分拆型HJB方程",
+          "desc": "首次建立全新HJB方程实现避撞策略准确求解",
+          "evidence": [
+            {
+              "quote": "首次建立了一种全新的时域分拆型 Hamilton-Jacobi-Bellman方程，实现了高实时避撞控制策略的准确求解与在线应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3119,
+                "end_char": 3183
+              },
+              "version": "6fae32537da9685b3e44"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e6c47b54c0f0",
+          "name": "RAD基准世界第一",
+          "desc": "适用于强化学习训练的RAD算法基准测试世界第一",
+          "evidence": [
+            {
+              "quote": "提出的适用于强化学习神经网络训练的RAD算法在基准测试中均展现出世界第一的性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3054,
+                "end_char": 3093
+              },
+              "version": "6fae32537da9685b3e44"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-b3fe7eb3a532",
+          "name": "仓储物流平台落地",
+          "desc": "极智嘉移动平台攻关支撑全无人移动平台商业化",
+          "evidence": [
+            {
+              "quote": "所开发的智能汽车运动控制技术，通过极智嘉移动平台关键技术攻关，为新一代仓储物流全无人移动平台的产品开发与商业化应用提供了技术保障。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3184,
+                "end_char": 3248
+              },
+              "version": "6fae32537da9685b3e44"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-eecf7761e608"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-33ba3709ff81"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-33ba3709ff81"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-133b4bcfcc07"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-33ba3709ff81"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c1823f0726ed"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-133b4bcfcc07"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e6c47b54c0f0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c1823f0726ed"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b3fe7eb3a532"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

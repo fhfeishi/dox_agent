@@ -1,0 +1,197 @@
+{
+  "doc_id": "df85c7b3eac5a25de56c",
+  "version": "c72ab50337c4b26c02fe",
+  "source_hash": "7d39cdc1fc2dcba5825a5f2df4c5e9b7228274c23cc05308ecd1064fbab42227",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:56.996143+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1dca0ab91dbd",
+          "name": "自动驾驶强化学习决策",
+          "desc": "自动驾驶汽车面临驾驶环境随机性，强化学习通过试错学习适应环境特征",
+          "evidence": [
+            {
+              "quote": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 637,
+                "end_char": 687
+              },
+              "version": "c72ab50337c4b26c02fe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-60b677a6ff54",
+          "name": "决策黑盒失效难追溯",
+          "desc": "强化学习黑盒属性导致决策失效难以追溯应对，与车辆高可靠性需求矛盾",
+          "evidence": [
+            {
+              "quote": "但其黑盒属性导致决策失效难以追溯应对，这与车辆的高可靠性需求相矛盾",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 689,
+                "end_char": 721
+              },
+              "version": "c72ab50337c4b26c02fe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b31ef98fe16b",
+          "name": "驾驶一致性约束方法",
+          "desc": "考虑感知、预测等多AI模块耦合风险的约束方法",
+          "evidence": [
+            {
+              "quote": "设计了考虑感知、预测等多AI模块耦合风险的驾驶一致性约束方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2941,
+                "end_char": 2970
+              },
+              "version": "c72ab50337c4b26c02fe"
+            }
+          ]
+        },
+        {
+          "id": "item-39df116c3bb4",
+          "name": "可信持续在线进化技术",
+          "desc": "车辆遇到未设定场景时自主学习应对并保证性能单调持续提升",
+          "evidence": [
+            {
+              "quote": "提出了自动驾驶汽车可信持续在线进化技术。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3013,
+                "end_char": 3032
+              },
+              "version": "c72ab50337c4b26c02fe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0e7b0b71dd44",
+          "name": "危险驾驶行为规避",
+          "desc": "雨雪夜等复杂天气及预测不准确情况下避免超过30%的危险驾驶行为",
+          "evidence": [
+            {
+              "quote": "实现了在雨雪夜等复杂天气、以及预测不准确等情况下能够避免超过30%的危险驾驶行为",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2972,
+                "end_char": 3011
+              },
+              "version": "c72ab50337c4b26c02fe"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-ea86b8d301ca",
+          "name": "科技冬奥项目应用",
+          "desc": "技术成功应用于2022北京市科技冬奥首钢园区示范项目",
+          "evidence": [
+            {
+              "quote": "本项目提出的自动驾驶可信决策技术成功应用于2022北京市科技冬奥项目“全天候多车型自动驾驶技术开发及首钢园区功能示范”",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3080,
+                "end_char": 3138
+              },
+              "version": "c72ab50337c4b26c02fe"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1dca0ab91dbd"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-60b677a6ff54"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-60b677a6ff54"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b31ef98fe16b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b31ef98fe16b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0e7b0b71dd44"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1dca0ab91dbd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-39df116c3bb4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-39df116c3bb4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ea86b8d301ca"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

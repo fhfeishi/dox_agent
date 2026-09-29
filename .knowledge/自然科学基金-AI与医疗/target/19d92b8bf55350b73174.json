@@ -1,0 +1,142 @@
+{
+  "doc_id": "19d92b8bf55350b73174",
+  "version": "3e221f71a4f42316a758",
+  "source_hash": "7f4ed49837157670c85678ec46a3d1655f999ac7a22a6d2995e30e9505b76c5f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:34.894679+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-23457790f897",
+          "name": "宫颈癌近距离放疗实时精准导航",
+          "desc": "面向宫颈癌近距离放疗，研究基于多模态影像融合的实时精准导航与剂量计算系统。",
+          "evidence": [
+            {
+              "quote": "宫颈癌是发展中国家女性癌症死亡的第二大原因，近年来发病率有年轻化的趋势",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "16074dba042c699ef2e5187da23e01dbf0350a15"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-da47f3998c96",
+          "name": "超声图像质量较差",
+          "desc": "超声引导近距离放疗虽不增加额外辐射剂量，但超声图像质量较差，需解决跨模态分割与弹性配准难题。",
+          "evidence": [
+            {
+              "quote": "本项目针对超声图像质量较差的问题",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "16074dba042c699ef2e5187da23e01dbf0350a15"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2e87b9436f5f",
+          "name": "注意力对抗网络跨模态分割与弹性配准",
+          "desc": "提出基于注意力机制对抗网络的跨模态自适应分割算法实现宫颈癌计划靶区自动勾画，并以深度残差U型卷积神经网络解决经直肠超声与CT/MRI间不连续、大变形、跨模态的弹性配准问题。",
+          "evidence": [
+            {
+              "quote": "提出了一种基于注意力机制对抗网络的跨模态自适应分割算法，能够有机融合不同模态影像的特征和形状信息，提高多模态集成的影像分割精度，实现宫颈癌计划靶区的自动勾画",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "16074dba042c699ef2e5187da23e01dbf0350a15"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6358c56c08ac",
+          "name": "构建两个高质量宫颈癌放疗影像数据库",
+          "desc": "突破传统算法局限，构建2个互不重叠、互为补充的高质量宫颈癌放疗影像数据库（覆盖175位患者完整放疗周期数据），研发多模态融合治疗计划与导航质控一体化系统；发表论文17篇，申请发明专利11项（授权4项），获2024年吴文俊人工智能技术发明二等奖。",
+          "evidence": [
+            {
+              "quote": "构建2个互不重叠、互为补充的高质量宫颈癌放疗影像数据库（覆盖175位患者完整放疗周期数据）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "f0cb83ef66c3433d39a40f3a6f0d9b4f4d46a327"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-23457790f897"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-da47f3998c96"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-da47f3998c96"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2e87b9436f5f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2e87b9436f5f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6358c56c08ac"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

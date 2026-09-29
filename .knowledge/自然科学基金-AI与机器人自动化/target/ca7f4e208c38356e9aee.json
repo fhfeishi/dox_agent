@@ -1,0 +1,180 @@
+{
+  "doc_id": "ca7f4e208c38356e9aee",
+  "version": "6e7147c4f3b61da4faa4",
+  "source_hash": "b8a80b9910a6e9f1c342dd407ba3d95e4ab1f89cbf62bb6fd2e7e9584a2035c6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:45.336767+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-353d68a0a1ea",
+          "name": "上肢康复外骨骼柔顺控制",
+          "desc": "神经功能损伤患者上肢康复机器人训练",
+          "evidence": [
+            {
+              "quote": "本课题针对基于人机协同信息融合的运动意图识别与自适应柔顺控制方法，重点研究了上肢康复外骨骼机器人设计、运动意图识别和人机协同控制策略等内容。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3070,
+                "end_char": 3139
+              },
+              "version": "6e7147c4f3b61da4faa4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-886421869b08",
+          "name": "意图识别灵敏度不足",
+          "desc": "运动意图识别灵敏度不足及人机协同控制顺应性差",
+          "evidence": [
+            {
+              "quote": "但上肢康复机器人仍存在着运动意图识别灵敏度不足及人机协同运动控制顺应性差等难题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3030,
+                "end_char": 3069
+              },
+              "version": "6e7147c4f3b61da4faa4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-091e42bbc2c8",
+          "name": "PSO-BPNN力矩估计",
+          "desc": "sEMG与肘关节角度训练主动力矩估计一致性99%",
+          "evidence": [
+            {
+              "quote": "采用改进的PSO-BPNN神经网络算法训练出了连续运动中的肘关节主动力矩估计模型，其主动力矩估计一致性达99%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3221,
+                "end_char": 3275
+              },
+              "version": "6e7147c4f3b61da4faa4"
+            }
+          ]
+        },
+        {
+          "id": "item-f16ff75b9ce4",
+          "name": "闭环意图反馈控制",
+          "desc": "估计力矩为主动反馈结合角度设计闭环控制策略",
+          "evidence": [
+            {
+              "quote": "并以肘关节的估计力矩为主动反馈，集合角度信息设计出基于运动意图的闭环反馈控制策略，在康复机器人嵌入式控制平台中实现，为患者康复训练提供自适应助力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3277,
+                "end_char": 3349
+              },
+              "version": "6e7147c4f3b61da4faa4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f2feb17a7a2f",
+          "name": "低延时高柔顺控制",
+          "desc": "高准确率与几十毫秒控制延时提高人机交互柔顺性",
+          "evidence": [
+            {
+              "quote": "该控制策略具有高准确率和低至几十毫秒的控制延时，大大提高了人机交互时的柔顺性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3350,
+                "end_char": 3387
+              },
+              "version": "6e7147c4f3b61da4faa4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-353d68a0a1ea"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-886421869b08"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-886421869b08"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-091e42bbc2c8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-886421869b08"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f16ff75b9ce4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-091e42bbc2c8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f2feb17a7a2f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f16ff75b9ce4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f2feb17a7a2f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

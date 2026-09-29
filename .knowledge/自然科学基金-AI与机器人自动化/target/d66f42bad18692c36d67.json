@@ -1,0 +1,180 @@
+{
+  "doc_id": "d66f42bad18692c36d67",
+  "version": "67419af463b68c3cf08f",
+  "source_hash": "39bc195536510454ab8b7f029a0b80a0258083bfb0a950e0bd25d52e3a19bbbd",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:02:29.407673+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cd2b85661eb2",
+          "name": "多机器人协作控制",
+          "desc": "复杂环境下多机器人系统自主协作",
+          "evidence": [
+            {
+              "quote": "然而深度强化学习算法在处理实际场景中的机器人控制任务时仍然面临着观测干扰和物理干扰、优化目标冲突、任务奖励稀疏、复杂安全约束等多种挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2877,
+                "end_char": 2944
+              },
+              "version": "67419af463b68c3cf08f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b20569c2cb20",
+          "name": "干扰冲突稀疏安全挑战",
+          "desc": "观测物理干扰、目标冲突、奖励稀疏与安全约束",
+          "evidence": [
+            {
+              "quote": "然而深度强化学习算法在处理实际场景中的机器人控制任务时仍然面临着观测干扰和物理干扰、优化目标冲突、任务奖励稀疏、复杂安全约束等多种挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2877,
+                "end_char": 2944
+              },
+              "version": "67419af463b68c3cf08f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-35a438d212d9",
+          "name": "鲁棒对抗强化学习",
+          "desc": "积分补偿策略梯度与时序耦合对抗干扰算法",
+          "evidence": [
+            {
+              "quote": "提出了基于积分补偿确定性策略梯度算法的鲁棒强化学习控制算法和考虑时序耦合干扰的对抗性鲁棒强化学习控制算法，并在无人艇轨迹跟踪控制、无人机-无人艇协同控制以及多关节机器人控制等场景中进行了仿真和实验验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3048,
+                "end_char": 3147
+              },
+              "version": "67419af463b68c3cf08f"
+            }
+          ]
+        },
+        {
+          "id": "item-c7d84ef00a52",
+          "name": "动作映射安全约束",
+          "desc": "状态依赖动作约束机制与数值计算方法",
+          "evidence": [
+            {
+              "quote": "提出了一种处理状态依赖动作约束的动作映射机制，并对动作映射的存在性、算法的收敛性以及策略的最优性进行了理论研究，进一步针对一般的非线性约束提出了动作映射函数的数值计算方法，并在考虑轮胎-路面摩擦力约束的赛车自动驾驶场景下进行了仿真验证。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3269,
+                "end_char": 3386
+              },
+              "version": "67419af463b68c3cf08f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a07009f6a4d9",
+          "name": "包络值更新多目标框架",
+          "desc": "多目标深度强化学习与双流分层多智能体框架",
+          "evidence": [
+            {
+              "quote": "提出了基于包络值更新的多目标深度强化学习框架和具有双流结构的多智能体分层强化学习框架，并在密集人群环境下的机器人导航和多机器人协同导航任务中进行了仿真验证。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3173,
+                "end_char": 3250
+              },
+              "version": "67419af463b68c3cf08f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-cd2b85661eb2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b20569c2cb20"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b20569c2cb20"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-35a438d212d9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b20569c2cb20"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c7d84ef00a52"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c7d84ef00a52"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a07009f6a4d9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-35a438d212d9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a07009f6a4d9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

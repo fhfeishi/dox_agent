@@ -1,0 +1,180 @@
+{
+  "doc_id": "9b4c82ec9f213af92220",
+  "version": "d719b6fd507334d5b01f",
+  "source_hash": "887e3f400f16ccec3f69e84e8e1106077c4e6dafed0aa3b1965a8aa7302d8783",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:36.663883+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-67a3fdb11804",
+          "name": "多智能体复杂社会困境",
+          "desc": "移动边缘计算、智慧交通、无人机集群等协同场景",
+          "evidence": [
+            {
+              "quote": "随着大语言模型、移动计算、无人机集群等国家重要设施系统日益发展，这些系统也越来越依赖多智能体的协同作业。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2522,
+                "end_char": 2573
+              },
+              "version": "d719b6fd507334d5b01f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a7919e9c0733",
+          "name": "自利竞争与动态低效",
+          "desc": "自利倾向致竞争对抗、策略动态变化致分布式决策低效",
+          "evidence": [
+            {
+              "quote": "首先，智能体往往具有自利倾向，易导致竞争对抗而非合作；其次，多智能体策略可能动态变化，导致分布式决策效率低下；此外，在线交互可能危害系统安全",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2612,
+                "end_char": 2681
+              },
+              "version": "d719b6fd507334d5b01f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-262687a5bc11",
+          "name": "Coord-Q领导者框架",
+          "desc": "结构化通信最大化互信息解决层级分布式协同",
+          "evidence": [
+            {
+              "quote": "本项目设计了基于领导者-跟随者的Coord-Q框架，通过结构化多智能体之间的关系，并设计了结构化通信的策略，通过最大化策略与广播信息的互信息，解决层级结构中的分布式协同难题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2749,
+                "end_char": 2835
+              },
+              "version": "d719b6fd507334d5b01f"
+            }
+          ]
+        },
+        {
+          "id": "item-f4c5f9b3a623",
+          "name": "MOAN与AOTO机制",
+          "desc": "对抗训练保守约束与平均场机制解决计算爆炸",
+          "evidence": [
+            {
+              "quote": "提出基于对抗训练的 MOAN 框架与双重验证的 SDV 模型，通过判别式网络引入保守性约束，实现了低资源环境下的策略提升，并引入平均场机制（AOTO 算法）解决大规模异步交互的计算爆炸问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2934,
+                "end_char": 3028
+              },
+              "version": "d719b6fd507334d5b01f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a3578d122d31",
+          "name": "论文14篇代码开源",
+          "desc": "期刊会议论文14篇、专利4项、核心代码GitHub开源",
+          "evidence": [
+            {
+              "quote": "基于本项目的研究结果，发表国内外重要期刊及会议论文14篇。其中SCI一区及CCF-B类以上高水平成果占比显著，完全达到并超过预定目标。申请国家发明专利4项，培养研究生5名，多项核心代码已在GitHub开源。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3034,
+                "end_char": 3136
+              },
+              "version": "d719b6fd507334d5b01f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-67a3fdb11804"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a7919e9c0733"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a7919e9c0733"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-262687a5bc11"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a7919e9c0733"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f4c5f9b3a623"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-262687a5bc11"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a3578d122d31"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f4c5f9b3a623"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a3578d122d31"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

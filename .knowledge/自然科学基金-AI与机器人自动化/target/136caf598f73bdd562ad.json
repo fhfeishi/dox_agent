@@ -1,0 +1,197 @@
+{
+  "doc_id": "136caf598f73bdd562ad",
+  "version": "5ba34d1edf256ca18eda",
+  "source_hash": "67fc222e1f4cf01cfef214f2ff32496f3f8e8bd257c3e5bbc750dd91cdd95d50",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:57.021503+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6e590e6fcdf2",
+          "name": "软体机器人驱动传感一体化",
+          "desc": "软体机器人需兼具柔顺性与驱动传感功能的新结构",
+          "evidence": [
+            {
+              "quote": "急需研制一种尽可能柔顺，且同时具备驱动与传感功能的新结构，推动软体机器人进一步发展",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 744,
+                "end_char": 784
+              },
+              "version": "5ba34d1edf256ca18eda"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1f4858ccb5b9",
+          "name": "附加组件限制独立驱动传感",
+          "desc": "已有方案需附加大量组件，软体机器人难以独立完成驱动与传感",
+          "evidence": [
+            {
+              "quote": "已有的解决方案，往往需要附加大量组件从而导致软体机器人难以独立的完成驱动与传感",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 701,
+                "end_char": 739
+              },
+              "version": "5ba34d1edf256ca18eda"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-88612d140a97",
+          "name": "导电捻曲纤维混合驱动",
+          "desc": "焦耳加热驱动特性结合减速电机设计混合驱动软体手指",
+          "evidence": [
+            {
+              "quote": "结合减速电机设计混合驱动的软体手指",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2371,
+                "end_char": 2387
+              },
+              "version": "5ba34d1edf256ca18eda"
+            }
+          ]
+        },
+        {
+          "id": "item-5fcfbd8a1147",
+          "name": "形变-阻值本体感知映射",
+          "desc": "理论推导软体结构形变与捻曲纤维阻值变化的映射关系",
+          "evidence": [
+            {
+              "quote": "理论推导了软体结构形变与捻曲纤维阻值变化之间的映射关系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2513,
+                "end_char": 2539
+              },
+              "version": "5ba34d1edf256ca18eda"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-298e8cb6e60a",
+          "name": "本体感知软体抓手",
+          "desc": "具备双向弯曲和传感功能，可依电阻变化区分不同物体",
+          "evidence": [
+            {
+              "quote": "基于捻曲纤维执行器本体感知软体模块研制了一款软体抓手，具备双向弯曲和传感功能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2608,
+                "end_char": 2645
+              },
+              "version": "5ba34d1edf256ca18eda"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-d67c778c3967",
+          "name": "变刚度软体机械臂",
+          "desc": "捻曲纤维与形状记忆合金拮抗配置，闭环验证重复定位精度优越性",
+          "evidence": [
+            {
+              "quote": "设计了基于捻曲纤维和形状记忆合金拮抗配置的变刚度软体机械臂，通过闭环控制系统验证了其在重复定位精度上的优越性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2700,
+                "end_char": 2753
+              },
+              "version": "5ba34d1edf256ca18eda"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6e590e6fcdf2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-1f4858ccb5b9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1f4858ccb5b9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-88612d140a97"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-88612d140a97"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d67c778c3967"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6e590e6fcdf2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5fcfbd8a1147"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5fcfbd8a1147"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-298e8cb6e60a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

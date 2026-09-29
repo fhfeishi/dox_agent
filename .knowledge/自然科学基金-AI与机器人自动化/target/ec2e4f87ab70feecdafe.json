@@ -1,0 +1,180 @@
+{
+  "doc_id": "ec2e4f87ab70feecdafe",
+  "version": "369daa14018446eb3a12",
+  "source_hash": "a2030e51f86fc7638bd67be2938cb1a0a3ce59a2c79985f0efe6daac419456ae",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:08.210776+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a2e0fc4868f3",
+          "name": "自动驾驶多视认目标感知",
+          "desc": "模仿驾驶人视觉搜索机制的环境感知",
+          "evidence": [
+            {
+              "quote": "项目面向自动驾驶车辆环境感知的准确性和实时性需求，针对常规多视认目标感知方法检测精度较低和时空复杂度较高的问题，研究模仿驾驶人视觉搜索机制的多视认目标驾驶环境感知方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2895,
+                "end_char": 2978
+              },
+              "version": "369daa14018446eb3a12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c9cea74d4ab9",
+          "name": "检测精度低时空复杂度高",
+          "desc": "多视认目标感知方法精度与速度需求难满足",
+          "evidence": [
+            {
+              "quote": "针对常规多视认目标感知方法检测精度较低和时空复杂度较高的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2920,
+                "end_char": 2949
+              },
+              "version": "369daa14018446eb3a12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-68d874d837d4",
+          "name": "视觉搜索机理揭示",
+          "desc": "心理学与概率图模型揭示驾驶人视觉搜索机理",
+          "evidence": [
+            {
+              "quote": "基于心理学、认知科学、概率图模型等学科理论揭示了驾驶人视觉搜索机理，提出了基于双目视觉的车用障碍物检测方法，实现了对真伪障碍物的准确判别",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3003,
+                "end_char": 3070
+              },
+              "version": "369daa14018446eb3a12"
+            }
+          ]
+        },
+        {
+          "id": "item-542ebe58140f",
+          "name": "搜索区域子模型构建",
+          "desc": "不同类型单视认与多目标环境的搜索区域子模型",
+          "evidence": [
+            {
+              "quote": "构建了面向不同类型单视认目标及多目标驾驶环境感知的视觉搜索区域子模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3281,
+                "end_char": 3314
+              },
+              "version": "369daa14018446eb3a12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9cbca0c6a91c",
+          "name": "自动驾驶巡逻车研发",
+          "desc": "AEB/ISA/自动转向集成完成自动驾驶巡逻车",
+          "evidence": [
+            {
+              "quote": "进行制动、加速、转向功能的集成，完成自动驾驶巡逻车的研发。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3473,
+                "end_char": 3501
+              },
+              "version": "369daa14018446eb3a12"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a2e0fc4868f3"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c9cea74d4ab9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c9cea74d4ab9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-68d874d837d4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c9cea74d4ab9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-542ebe58140f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-68d874d837d4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9cbca0c6a91c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-542ebe58140f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9cbca0c6a91c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

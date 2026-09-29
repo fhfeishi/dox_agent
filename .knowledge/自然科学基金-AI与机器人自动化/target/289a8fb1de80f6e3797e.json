@@ -1,0 +1,180 @@
+{
+  "doc_id": "289a8fb1de80f6e3797e",
+  "version": "5492ea1d822b6539cefc",
+  "source_hash": "bcbb9f982edf8bfe502f4e2a0aab397915f19ab8223ccbdc57a22f3574f7a727",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:02:30.742020+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4fe9fa2e98f8",
+          "name": "水下无线光通信组网",
+          "desc": "海洋信息探测采集与传输的水下光通信网络",
+          "evidence": [
+            {
+              "quote": "无线光通信是实现水下高速数据传输的核心技术。能否在水下不确定性环境中动态维护网络拓扑，实时协调有限资源，搭建具有自组织、自愈能力的水下无线光通信网络，是支撑海洋信息探测、采集与传输的关键技术。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 758
+              },
+              "version": "5492ea1d822b6539cefc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-33141eda02d4",
+          "name": "拓扑动态协同复杂",
+          "desc": "定向传输与水下不确定环境使拓扑动态强协同复杂",
+          "evidence": [
+            {
+              "quote": "由于光的定向传输特点，加之受到水下不确定性环境影响 ，无线光通信网络节点拓扑动态性强，分布式环境下节点之间协同行为复杂，使得现有技术无法直接应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3176,
+                "end_char": 3248
+              },
+              "version": "5492ea1d822b6539cefc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7ef0ffd92103",
+          "name": "柔性测度网络评价",
+          "desc": "不确定性环境下稳定网络拓扑构建方法",
+          "evidence": [
+            {
+              "quote": "本项目首先提出了基于柔性测度的网络结构评价模型，在不确定性环境下稳定网络拓扑构建方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3325,
+                "end_char": 3366
+              },
+              "version": "5492ea1d822b6539cefc"
+            }
+          ]
+        },
+        {
+          "id": "item-b450b1a3f30d",
+          "name": "主动式光通信智能体",
+          "desc": "多智能体强化学习的分布式部署与资源调度",
+          "evidence": [
+            {
+              "quote": "然后，提出了基于多智能体强化学习的主动式光通信智能体，提出分布式环境下网络部署与动态节点接入方法，以及不确定性环境下资源调度策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3368,
+                "end_char": 3431
+              },
+              "version": "5492ea1d822b6539cefc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-718bb3b81538",
+          "name": "浅海自组网原型",
+          "desc": "开发水下无线光通信自组网原型并浅海验证",
+          "evidence": [
+            {
+              "quote": "最后，融合研究成果开发水下无 线光通信自组网原型，在实际浅海环境进行了有效性验证。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3433,
+                "end_char": 3473
+              },
+              "version": "5492ea1d822b6539cefc"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4fe9fa2e98f8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-33141eda02d4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-33141eda02d4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7ef0ffd92103"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-33141eda02d4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b450b1a3f30d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b450b1a3f30d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-718bb3b81538"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7ef0ffd92103"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-718bb3b81538"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "doc_id": "d06901a35e60c773d183",
+  "version": "5301a956fd5ede62a2ea",
+  "source_hash": "572039bfb4512ab7c29f6675d9d2e18a8c70c27315a3ebfc849a5f73b57a22ff",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:54.255842+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-66f0de03fb9d",
+          "name": "异构多水下机器人协同作业",
+          "desc": "功能互补、灵活多样、工作效率高的海洋协同作业",
+          "evidence": [
+            {
+              "quote": "与单一或同构的水下机器人相比，异构多水下机器人系统协同作业具有功能互补、灵活多样、工作效率高等突出优点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2974,
+                "end_char": 3024
+              },
+              "version": "5301a956fd5ede62a2ea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4c87a5e3e323",
+          "name": "海洋环境强未知性",
+          "desc": "海洋环境强未知性、强分布式任务规划需求及强耦合性",
+          "evidence": [
+            {
+              "quote": "针对海洋环境的强未知性、强分布式任务规划需求及强耦合性等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3048,
+                "end_char": 3077
+              },
+              "version": "5301a956fd5ede62a2ea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b3b0bad3705a",
+          "name": "分布式任务规划博弈模型",
+          "desc": "分布式鲁棒拍卖与多任务捆绑拍卖算法对抗不确定性",
+          "evidence": [
+            {
+              "quote": "考虑水下环境的不确定因素、异构系统等多约束条件，提出了分布式任务规划博弈模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3122,
+                "end_char": 3159
+              },
+              "version": "5301a956fd5ede62a2ea"
+            }
+          ]
+        },
+        {
+          "id": "item-9df4c1562448",
+          "name": "在线轻量化任务规划",
+          "desc": "自组织神经网络与神经动力学结合，降低计算负荷实现混合任务一致性求解",
+          "evidence": [
+            {
+              "quote": "结合自组织神经网络和神经动力学理论提出了一系列在线轻量化任务规划算法，有效降低了计算负荷",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3509,
+                "end_char": 3552
+              },
+              "version": "5301a956fd5ede62a2ea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-835f6037b2a1",
+          "name": "理论依据与技术保障",
+          "desc": "为协同分布式任务规划提供理论依据，为海洋可持续开发提供技术保障",
+          "evidence": [
+            {
+              "quote": "本项目的研究成果可为异构多水下机器人系统协同分布式任务规划提供理论依据，并为我国海洋的可持续开发提供技术保障",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3694,
+                "end_char": 3747
+              },
+              "version": "5301a956fd5ede62a2ea"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-66f0de03fb9d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4c87a5e3e323"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4c87a5e3e323"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b3b0bad3705a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4c87a5e3e323"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9df4c1562448"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9df4c1562448"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-835f6037b2a1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b3b0bad3705a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-835f6037b2a1"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

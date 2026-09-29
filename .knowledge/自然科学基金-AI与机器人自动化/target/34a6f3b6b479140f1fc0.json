@@ -1,0 +1,180 @@
+{
+  "doc_id": "34a6f3b6b479140f1fc0",
+  "version": "dc3f92d1f62c3d5c5419",
+  "source_hash": "6d49922ce7ad8037a204c85249241f2db662fe5f73257516449da576a9a98ee7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:45.434628+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-36a3eff50c68",
+          "name": "复杂阵地米波雷达测高",
+          "desc": "复杂阵地条件下米波雷达低仰角目标测高",
+          "evidence": [
+            {
+              "quote": "针对复杂阵地环境下米波雷达低仰角测高问题，该项目利用深度学习及其非线性映射与特征挖掘等特性，通过阵列接收信号的增强，提高对低仰角目标的探测和测量性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2795,
+                "end_char": 2869
+              },
+              "version": "dc3f92d1f62c3d5c5419"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-581ef5c3e0c8",
+          "name": "回波模型失配测高失效",
+          "desc": "传统回波模型与复杂阵地多径回波信号失配",
+          "evidence": [
+            {
+              "quote": "米波雷达低空目标的高度测量是雷达技术领域的经典难题，特别在复杂阵地条件下，现有测高算法效果较差甚至失效，其主要原因是传统的回波模型与复杂阵地下实际多径回波信号的失配",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 669,
+                "end_char": 750
+              },
+              "version": "dc3f92d1f62c3d5c5419"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3a5a412372fc",
+          "name": "有监督相位增强DOA",
+          "desc": "深度学习增强直达信号幅相特征提高估计精度",
+          "evidence": [
+            {
+              "quote": "将有监督学习模型与DOA估计问题相结合，提高了直达信号的相位特征的显著性，进而提高了低仰角目标的DOA估计精度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3121,
+                "end_char": 3176
+              },
+              "version": "dc3f92d1f62c3d5c5419"
+            }
+          ]
+        },
+        {
+          "id": "item-87f3ff685f64",
+          "name": "自步相位增强",
+          "desc": "自步学习与相位增强模型结合提高泛化性",
+          "evidence": [
+            {
+              "quote": "为提高相位增强模型的泛化性，将自步学习算法与相位增强模型相结合，进一步提高了低仰角测高精度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3206,
+                "end_char": 3251
+              },
+              "version": "dc3f92d1f62c3d5c5419"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-258ddd5c54ef",
+          "name": "论文21篇专利授权6项",
+          "desc": "期刊15篇（SCI 9、EI 12）、会议6篇、专利授权6项",
+          "evidence": [
+            {
+              "quote": "发表期刊论文 15 篇，其中 SCI 检索 9 篇，EI 12 篇；发表会议论文 6 篇，参加国际会议 6 人次，作墙报展示6次。申请发明专利 7 项，已授权6 项。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2908,
+                "end_char": 2990
+              },
+              "version": "dc3f92d1f62c3d5c5419"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-36a3eff50c68"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-581ef5c3e0c8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-581ef5c3e0c8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3a5a412372fc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-581ef5c3e0c8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-87f3ff685f64"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3a5a412372fc"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-258ddd5c54ef"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-87f3ff685f64"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-258ddd5c54ef"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

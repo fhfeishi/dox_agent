@@ -1,0 +1,197 @@
+{
+  "doc_id": "b8c4dae247f9ff5ae6c4",
+  "version": "5baa63f812eb45f03670",
+  "source_hash": "1f74d17ad9804fa4df86104fe06a334ea089e9714dfb29b6505c4bfb12df6475",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:06.712880+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-42db0a24af37",
+          "name": "变负载绳悬吊搬运作业",
+          "desc": "物流搬运与大尺度增材制造中的绳悬吊机器人",
+          "evidence": [
+            {
+              "quote": "目前绳悬吊并联机器人基于动平台动力学参数不变假设的建模和控制方式，限制了其在物流搬运和大尺度增材制造等变负载工况下的应用和发展。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 726
+              },
+              "version": "5baa63f812eb45f03670"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c9179ab33203",
+          "name": "变负载致绳索松弛失稳",
+          "desc": "负载改变动力学特性导致快速运动绳索松弛",
+          "evidence": [
+            {
+              "quote": "在绳索的单边张力约束下，负载质量大小和惯性的改变将直接改变机器人的动力学特性和工作空间等性能指标，进而导致机器人在快速动态运动中的绳索松弛等稳定性问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 727,
+                "end_char": 802
+              },
+              "version": "5baa63f812eb45f03670"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d2a1ef2af1be",
+          "name": "平行绳索冗余约束设计",
+          "desc": "变负载绳悬吊并联机器人设计方法",
+          "evidence": [
+            {
+              "quote": "提出了基于平行绳索冗余约束的变负载绳悬吊并联机器人设计方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2828,
+                "end_char": 2856
+              },
+              "version": "5baa63f812eb45f03670"
+            }
+          ]
+        },
+        {
+          "id": "item-367673bacacd",
+          "name": "变负载鲁棒运动控制",
+          "desc": "构型设计、动力学轨迹规划与鲁棒控制",
+          "evidence": [
+            {
+              "quote": "研究了变负载工况下构型设计和尺度优化、高速动态变负载工况下动力学轨迹规划算法和变负载工况鲁棒的运动控制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2776,
+                "end_char": 2826
+              },
+              "version": "5baa63f812eb45f03670"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d1bcb5688433",
+          "name": "绳长误差指标达成",
+          "desc": "最大绳长误差小于2.81×10-4m，样机实验验证",
+          "evidence": [
+            {
+              "quote": "实验验证得到最大绳长误差小于2.81×10-4m，平均误差小于3.51×10-5m及均方根误差小于5.27×10-5m，取得了满意的研究成果。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2932,
+                "end_char": 3002
+              },
+              "version": "5baa63f812eb45f03670"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-30abfac83ba3",
+          "name": "论文5篇与发明专利",
+          "desc": "论文5篇，申报专利9项，授权中国发明专利2项、国际专利1项",
+          "evidence": [
+            {
+              "quote": "共发表了论文5篇,申报发明专利9项，授权中国发明专利2项，国际发明专利1项。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3050,
+                "end_char": 3087
+              },
+              "version": "5baa63f812eb45f03670"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-42db0a24af37"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c9179ab33203"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c9179ab33203"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d2a1ef2af1be"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c9179ab33203"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-367673bacacd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-367673bacacd"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d1bcb5688433"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d2a1ef2af1be"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-30abfac83ba3"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

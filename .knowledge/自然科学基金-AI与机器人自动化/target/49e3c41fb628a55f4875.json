@@ -1,0 +1,180 @@
+{
+  "doc_id": "49e3c41fb628a55f4875",
+  "version": "609e9db1a3b2f1ca2cb1",
+  "source_hash": "975cb5c1d0c0fd3b6c9345a9e79b39935ea27015a2db9d409afb3da3869f88cd",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:11:49.038701+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-998acbd1b882",
+          "name": "四旋翼无人机移动回收",
+          "desc": "野外移动回收的跟踪与柔顺控制",
+          "evidence": [
+            {
+              "quote": "本项目以解决无人机在野外移动回收技术所面临的关键科学问题和技术挑战为目标，开展了面向四旋翼无人机移动回收的跟踪与柔顺控制研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2485,
+                "end_char": 2547
+              },
+              "version": "609e9db1a3b2f1ca2cb1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f5003d1a1faa",
+          "name": "定位不准跟不上接不稳",
+          "desc": "无人机定位不准、无人车跟不上、降落接不稳",
+          "evidence": [
+            {
+              "quote": "针对无人机“定位不准”的问题，研究基于伺服转台的激光雷达点云信息和图像信息融合的目标识别与追踪算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 751,
+                "end_char": 799
+              },
+              "version": "609e9db1a3b2f1ca2cb1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e70db93be3c3",
+          "name": "Stewart柔性承接方案",
+          "desc": "机器人主动柔性承接平台与动态对接控制",
+          "evidence": [
+            {
+              "quote": "创制了一套基于Steward型四旋翼无人机移动回收的机器人主动柔性承接方案，为无人机系统的发展提供新思路新方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2548,
+                "end_char": 2602
+              },
+              "version": "609e9db1a3b2f1ca2cb1"
+            }
+          ]
+        },
+        {
+          "id": "item-2fe8116eed27",
+          "name": "变阶切比雪夫-KAN网络",
+          "desc": "提高云边协作SLAM传输延迟容忍度",
+          "evidence": [
+            {
+              "quote": "提出了一种基于切比雪夫多项式阶数变化特性的变阶切比雪夫-KAN网络，提高了对传输延迟的容忍度并增强实时性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2741,
+                "end_char": 2793
+              },
+              "version": "609e9db1a3b2f1ca2cb1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e2ffa6046f2a",
+          "name": "SCI论文7篇与最佳论文奖",
+          "desc": "SCI 7篇、ICRA等会议3篇、专利2件、ICUS2023最佳论文奖",
+          "evidence": [
+            {
+              "quote": "发表SCI论文7篇，IEEE ICRA等机器人国际会议3篇，授权发明专利2件，曾获IEEE ICUS2023无人系统国际会议最佳论文奖",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2958,
+                "end_char": 3024
+              },
+              "version": "609e9db1a3b2f1ca2cb1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-998acbd1b882"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f5003d1a1faa"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f5003d1a1faa"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e70db93be3c3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f5003d1a1faa"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2fe8116eed27"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e70db93be3c3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e2ffa6046f2a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2fe8116eed27"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e2ffa6046f2a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

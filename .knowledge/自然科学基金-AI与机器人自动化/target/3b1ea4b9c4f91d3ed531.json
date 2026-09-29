@@ -1,0 +1,197 @@
+{
+  "doc_id": "3b1ea4b9c4f91d3ed531",
+  "version": "b354ff71454692258d82",
+  "source_hash": "f10a053816a9f0a021c6341a50cb79779c0c1367b67d22fa3768f0f5ce62c67c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:19:59.425886+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-36dcb58c9527",
+          "name": "软体机器人自适应抓取",
+          "desc": "智能抓取中的抓取力与滑动精确传感",
+          "evidence": [
+            {
+              "quote": "触觉传感器是机器人与外界环境直接接触获取信息的主要媒介，是实现机器人智能化的核心技术之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2775,
+                "end_char": 2819
+              },
+              "version": "b354ff71454692258d82"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b0748629ec85",
+          "name": "滑觉缺失与传感模态单一",
+          "desc": "人工皮肤滑觉缺失、电容传感器柔性差灵敏度低模态单一",
+          "evidence": [
+            {
+              "quote": "拟开发一种柔性、高性能的多模态电容式触滑觉传感器阵列，实现同时对软体机器人抓取力与滑动的精确传感。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 783,
+                "end_char": 831
+              },
+              "version": "b354ff71454692258d82"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-58d4e13abb47",
+          "name": "褶皱微结构压力传感器",
+          "desc": "复合材料自发褶皱实现超高灵敏度与高线性度",
+          "evidence": [
+            {
+              "quote": "利用复合材料自发形成的褶皱微结构，成功制备出了具有超高灵敏度和高线性度的压力传感器，能够在宽测量范围内有效工作。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2868,
+                "end_char": 2923
+              },
+              "version": "b354ff71454692258d82"
+            }
+          ]
+        },
+        {
+          "id": "item-e094ea609627",
+          "name": "柱状微结构剪切传感器",
+          "desc": "可调几何结构各向异性敏感覆盖90度方向",
+          "evidence": [
+            {
+              "quote": "利用微纳制造工艺制造了基于可调几何结构（纵横比和间隔）的柱状微结构剪切力传感器，该传感器具有各向异性的方向敏感性，单个传感器可覆盖90度的剪切力作用方向。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3017,
+                "end_char": 3093
+              },
+              "version": "b354ff71454692258d82"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3476d85b57f4",
+          "name": "材料硬度线性识别",
+          "desc": "压力传感器结合软体手指首次实现硬度线性识别",
+          "evidence": [
+            {
+              "quote": "我们还将压力传感器与软体机器人手指结合，首次实现了对材料硬度的线性识别",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2927,
+                "end_char": 2961
+              },
+              "version": "b354ff71454692258d82"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-2341218f2aba",
+          "name": "360度滑动监测",
+          "desc": "正交阵列扩展剪切测量至360度实现实时滑动监测",
+          "evidence": [
+            {
+              "quote": "通过设计与制造传感器正交阵列结构，将剪切力角度测量范围扩展到了360度。此外，我们还将剪切力传感器与机器爪结合，实现了对抓握物体滑动的实时监测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3094,
+                "end_char": 3165
+              },
+              "version": "b354ff71454692258d82"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-36dcb58c9527"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b0748629ec85"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b0748629ec85"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-58d4e13abb47"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b0748629ec85"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e094ea609627"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-58d4e13abb47"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3476d85b57f4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e094ea609627"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-2341218f2aba"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

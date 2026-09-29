@@ -1,0 +1,142 @@
+{
+  "doc_id": "b6805b07cc10971e8601",
+  "version": "4608a7a7d9bd7934b6a0",
+  "source_hash": "198a4d254b30577a1255c5f10df8ace647804364c476549d8a7107f28321ddc4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:50.444147+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-20ed4d9ce1c7",
+          "name": "NSCLC演进可视化与精准诊疗",
+          "desc": "面向可手术I-III期非小细胞肺癌，建立基于多维异构信息的演进可视化与精准诊疗体系。",
+          "evidence": [
+            {
+              "quote": "非小细胞肺癌(NSCLC)是严重危害国人健康的最常见恶性肿瘤，精准诊疗水平低是总体疗效差和医疗负担重的主要原因之一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 715
+              },
+              "version": "4608a7a7d9bd7934b6a0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a65512bababd",
+          "name": "NSCLC演进异质性致生物学表征难以可视化",
+          "desc": "NSCLC演进过程中存在显著异质性，其生物学表征无法被较好可视化，使精准诊疗水平降低。",
+          "evidence": [
+            {
+              "quote": "NSCLC演进过程中存在显著异质性，其生物学表征无法被较好可视化使其精准诊疗水平降低",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 717,
+                "end_char": 758
+              },
+              "version": "4608a7a7d9bd7934b6a0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2160ddac1f2c",
+          "name": "多维异构信息融合与决策可视化模型",
+          "desc": "整合临床、影像组学、病理组学与生物组学信息，通过多维异构信息融合、决策可视化和前瞻性队列验证提升NSCLC演进可视化和精准诊疗水平。",
+          "evidence": [
+            {
+              "quote": "本研究将整合上海交大医工科优势建立多种图像可视化NSCLC演进的方法，通过多维异构信息融合、决策可视化和前瞻性队列验证来提升可手术I-III期NSCLC演进可视化和精准诊疗水平",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 936,
+                "end_char": 1023
+              },
+              "version": "4608a7a7d9bd7934b6a0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-098f96aed970",
+          "name": "多维异构预测模型SPN风险判断AUC 0.978",
+          "desc": "基于临床、CT和病理的多维异构预测模型使周围型肺结节高低风险判断AUC提升至0.978；3D-CNN模型预测隐匿性淋巴结转移AUC 0.921，联合模型使20.9%患者避免不必要手术。",
+          "evidence": [
+            {
+              "quote": "基于临床、CT和病理的多维异构预测模型显著提高了对周围型肺结节（SPN）高/低风险判断效力，AUC提升至0.978",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3378,
+                "end_char": 3434
+              },
+              "version": "4608a7a7d9bd7934b6a0"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-20ed4d9ce1c7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a65512bababd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a65512bababd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2160ddac1f2c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2160ddac1f2c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-098f96aed970"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

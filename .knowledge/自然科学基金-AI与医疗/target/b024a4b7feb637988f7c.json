@@ -1,0 +1,142 @@
+{
+  "doc_id": "b024a4b7feb637988f7c",
+  "version": "c54ebfeba8d3d02c4ca8",
+  "source_hash": "7ade9725314565d255045998bf4d7843f5bb0ba59d1148f2e37dbe893e74d4cc",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:12.555606+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-77a2e6f0c273",
+          "name": "脑胶质瘤分子分型与预后的MRI深度学习预测",
+          "desc": "基于术前多模态MRI影像，构建胶质瘤分子分型预测模型与个体化预后评估模型并探究其生物学可解释性。",
+          "evidence": [
+            {
+              "quote": "基于术前影像和深度学习的脑胶质瘤分子分型和预后预测，是目前研究前沿",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 695
+              },
+              "version": "c54ebfeba8d3d02c4ca8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-18fac31de018",
+          "name": "深度学习模型缺乏生物学解释致临床受阻",
+          "desc": "深度学习模型缺乏生物学解释，导致其在脑胶质瘤精准诊疗中的临床应用受阻。",
+          "evidence": [
+            {
+              "quote": "但深度学习模型尚缺乏生物学解释，导致其临床应用受阻",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 697,
+                "end_char": 721
+              },
+              "version": "c54ebfeba8d3d02c4ca8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bf00dc886df1",
+          "name": "迁移学习CNN分子分型与影像基因组学图谱",
+          "desc": "采用迁移学习和卷积神经网络分别构建分子分型预测模型与个性化预后评估模型，并基于影像与转录组数据构建影像基因组学图谱，揭示深度影像特征与驱动基因及关键分子通路的内在联系。",
+          "evidence": [
+            {
+              "quote": "采用迁移学习和卷积神经网络分别构建胶质瘤的分子分型预测模型和个性化预后评估模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 886,
+                "end_char": 924
+              },
+              "version": "c54ebfeba8d3d02c4ca8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f3048b4f7867",
+          "name": "CNN预测LGG 1p/19q共缺失AUC 0.983",
+          "desc": "基于常规多参数MRI的CNN模型实现LGG 1p/19q共缺失状态精准预测（AUC=0.983）；联合DWI与DSC-PWI的影像组学模型进一步提升分子分型预测效能；并取得GBM深度预后模型的生物学解释。",
+          "evidence": [
+            {
+              "quote": "开发CNN模型，实现LGG 1p/19q共缺失状态的精准预测（AUC=0.983）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3114,
+                "end_char": 3154
+              },
+              "version": "c54ebfeba8d3d02c4ca8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-77a2e6f0c273"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-18fac31de018"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-18fac31de018"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bf00dc886df1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bf00dc886df1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f3048b4f7867"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

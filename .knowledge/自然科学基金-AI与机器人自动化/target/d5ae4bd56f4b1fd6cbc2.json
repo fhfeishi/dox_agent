@@ -1,0 +1,169 @@
+{
+  "doc_id": "d5ae4bd56f4b1fd6cbc2",
+  "version": "e3db2244eed1c22650f9",
+  "source_hash": "a534fdec2bbb0f0658caae97745d271539646aa59b5e02778a4bc12f3b8e36b5",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:58:24.425405+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bc087a450b0e",
+          "name": "狭窄空间蛇形臂作业",
+          "desc": "核电维护、航空制造、船舶焊接、电气检修等狭小作业场景",
+          "evidence": [
+            {
+              "quote": "具备狭窄空间作业能力的蛇形臂机器人系统在航空制造、核电维护、船舶焊接、电气检修等领域有着广泛的应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 712
+              },
+              "version": "e3db2244eed1c22650f9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-133ee3149a09",
+          "name": "狭窄空间灵活性精度不足",
+          "desc": "需解决复合运动机构、空间避障规划、运动轨迹控制问题",
+          "evidence": [
+            {
+              "quote": "本项目以提高狭窄作业空间中机器人的运动灵活性和运动轨迹精度为出发点，主要解决复合运动机构、空间避障规划、运动轨迹控制等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2742,
+                "end_char": 2802
+              },
+              "version": "e3db2244eed1c22650f9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4137852bf6ee",
+          "name": "旋转伸缩复合关节设计",
+          "desc": "旋转和伸缩相结合的运动方式关节设计方法",
+          "evidence": [
+            {
+              "quote": "研究具有旋转和伸缩相结合的运动方式的关节设计方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2804,
+                "end_char": 2827
+              },
+              "version": "e3db2244eed1c22650f9"
+            }
+          ]
+        },
+        {
+          "id": "item-2f3af0ed8663",
+          "name": "多约束关节空间轨迹规划",
+          "desc": "钢丝张力、避障、关节限制多约束下解决张力奇异与避障",
+          "evidence": [
+            {
+              "quote": "研究带有钢丝张力、空间避障、关节限制等多约束条件的关节空间轨迹规划方法，解决冗余度机械臂动态过程的钢丝张力奇异问题和复杂环境的避障问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2868,
+                "end_char": 2935
+              },
+              "version": "e3db2244eed1c22650f9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ac88c5959457",
+          "name": "新型蛇形臂设计框架",
+          "desc": "多冗余度机器人设计优化与控制创新成果及样机集成测试",
+          "evidence": [
+            {
+              "quote": "在多冗余度机器人的设计优化与控制方法上得到了创新成果，形成了新型蛇形臂系统设计框架，为复杂狭窄环境中的机器人作业提供了理论基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2978,
+                "end_char": 3041
+              },
+              "version": "e3db2244eed1c22650f9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-bc087a450b0e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-133ee3149a09"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-133ee3149a09"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4137852bf6ee"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-133ee3149a09"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2f3af0ed8663"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2f3af0ed8663"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ac88c5959457"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

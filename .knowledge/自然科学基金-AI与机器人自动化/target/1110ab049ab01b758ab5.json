@@ -1,0 +1,180 @@
+{
+  "doc_id": "1110ab049ab01b758ab5",
+  "version": "ac78fbd424b40219c3c2",
+  "source_hash": "42f1c08dc574f40212f2f6918498b2eccd805688d6d54624b638314f327a606b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:19:58.136919+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-71657f4767c6",
+          "name": "上肢康复外骨骼训练",
+          "desc": "脑卒中等上肢功能障碍患者的康复训练",
+          "evidence": [
+            {
+              "quote": "针对现有上肢康复机器人结构固定、柔顺性不足的问题，本研究面向脑卒中等具有上肢功能障碍患者的康复需求，提出并实现了一种基于多传感器的可重构模块化柔性上肢外骨骼康复机器人。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3064,
+                "end_char": 3147
+              },
+              "version": "ac78fbd424b40219c3c2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d108697c5dfd",
+          "name": "结构固定柔顺性不足",
+          "desc": "现有机器人缺乏可重构性、柔顺性与便携穿戴性差",
+          "evidence": [
+            {
+              "quote": "然而现有上肢外骨骼康复机器人缺乏灵活的可重构性，难以满足多样化的患者对象与康复需求，且存在动作柔顺性不足、便携性与穿戴舒适性较差等问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 707,
+                "end_char": 774
+              },
+              "version": "ac78fbd424b40219c3c2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bc9716ab5be9",
+          "name": "肩肘腕协同构型",
+          "desc": "气动肌腱并联肩关节与纤维约束柔性腕驱动",
+          "evidence": [
+            {
+              "quote": "创新设计了肩-肘与肘-腕两套康复机器人构型。肩关节采用并联气动肌腱驱动，以人体手臂为支撑主体，简化结构并提升穿戴相容性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3218,
+                "end_char": 3276
+              },
+              "version": "ac78fbd424b40219c3c2"
+            }
+          ]
+        },
+        {
+          "id": "item-c1490dbdd4f8",
+          "name": "模型前馈PID控制",
+          "desc": "联合仿真验证正弦斜坡跟踪误差小于1.5°与1°",
+          "evidence": [
+            {
+              "quote": "建立了系统运动学与动力学模型，提出了基于模型前馈的PID闭环控制策略，并通过Adams-Simulink联合仿真验证了其轨迹跟踪的有效性，正弦与斜坡跟踪误差分别小于1.5°与1°。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3408,
+                "end_char": 3497
+              },
+              "version": "ac78fbd424b40219c3c2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ac0ab46c99ed",
+          "name": "关节精度5°以内",
+          "desc": "康复动作完成良好，肌电证实康复有效性",
+          "evidence": [
+            {
+              "quote": "所设计系统能够较好地完成预期康复动作，关节控制精度保持在5°以内，肌电信号分析显示患者相关肌群激活显著，证实了其康复有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3630,
+                "end_char": 3691
+              },
+              "version": "ac78fbd424b40219c3c2"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-71657f4767c6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d108697c5dfd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d108697c5dfd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bc9716ab5be9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d108697c5dfd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c1490dbdd4f8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c1490dbdd4f8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ac0ab46c99ed"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bc9716ab5be9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ac0ab46c99ed"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

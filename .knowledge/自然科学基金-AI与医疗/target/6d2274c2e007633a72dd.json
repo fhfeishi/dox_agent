@@ -1,0 +1,142 @@
+{
+  "doc_id": "6d2274c2e007633a72dd",
+  "version": "eb56ef5e67661291d329",
+  "source_hash": "a363bfbacbc56b42a78acb299dc47101216c14609ea3b7853a9a4347f39ed9ad",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:16.729507+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-22ba31207fd2",
+          "name": "多结节型肝癌肝移植适应证筛选",
+          "desc": "面向多结节型肝细胞癌患者，通过术前精准判定肿瘤起源方式优化肝移植适应证选择并优化上海复旦标准。",
+          "evidence": [
+            {
+              "quote": "IM相对于MO具有明显的早期复发特点，如能在术前即对其进行精准评价，则对于肝移植适应证的选择将有着重大的意义",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 753,
+                "end_char": 806
+              },
+              "version": "eb56ef5e67661291d329"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d818c9b0c323",
+          "name": "术前难以判定多结节型肝癌起源方式",
+          "desc": "多结节型肝癌可分为多中心起源（MO）与肝内转移（IM）两种形式，二者的复发风险差异显著，术前缺乏精准鉴别手段。",
+          "evidence": [
+            {
+              "quote": "多结节型肝癌可分为多中心起源（MO）及肝内转移（IM）两种形式",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 721,
+                "end_char": 751
+              },
+              "version": "eb56ef5e67661291d329"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-563038b548d6",
+          "name": "影像组学相似度树状图起源方式判别模型",
+          "desc": "对多结节型肝癌肝移植术前行多模态MR扫描，以病理及基因测序为金标准，利用相似度树状图和影像组学判定多结节相似度并建模。",
+          "evidence": [
+            {
+              "quote": "利用“相似度”树状图和影像组学判定多个结节的相似度，建立术前诊断多结节型肝癌起源方式的临床影像组学模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 895,
+                "end_char": 945
+              },
+              "version": "eb56ef5e67661291d329"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5965166c2213",
+          "name": "构建并验证多结节型HCC微血管侵犯预测模型",
+          "desc": "利用术前临床影像学变量在多结节型HCC患者中构建并验证了MVI预测模型，并进一步建立术后RFS与OS预测模型。",
+          "evidence": [
+            {
+              "quote": "利用术前临床影像学变量在多结节型HCC患者中构建并验证了MVI预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2912,
+                "end_char": 2946
+              },
+              "version": "eb56ef5e67661291d329"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-22ba31207fd2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d818c9b0c323"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d818c9b0c323"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-563038b548d6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-563038b548d6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5965166c2213"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

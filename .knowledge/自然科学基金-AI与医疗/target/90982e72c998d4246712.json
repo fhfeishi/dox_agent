@@ -1,0 +1,142 @@
+{
+  "doc_id": "90982e72c998d4246712",
+  "version": "c242a1b487ada5b20860",
+  "source_hash": "699c93a62b164201bdbc478dbc07ba386433432235eb2b3089872d4eb2e212b3",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:04.894168+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9b3ad584036d",
+          "name": "局部晚期非小细胞肺癌个体化放疗",
+          "desc": "面向不可手术局部晚期NSCLC的放射治疗，基于影像与基因组学特征谱实现量体裁衣式的个体化放疗。",
+          "evidence": [
+            {
+              "quote": "放射治疗是不可手术局部晚期非小细胞肺癌最主要的局部治疗手段，但疗效和毒副反应个体差异很大",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 671,
+                "end_char": 714
+              },
+              "version": "c242a1b487ada5b20860"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ceea7ec69ccf",
+          "name": "放疗疗效与毒副作用难以个体化预测",
+          "desc": "如何个体化预测标准治疗下局部晚期NSCLC的放疗疗效和毒副作用，以及如何突破常规剂量分割与射线选择筛选最优放疗模式，是实现个体化放疗的两大难题。",
+          "evidence": [
+            {
+              "quote": "如何个体化预测标准治疗下局部晚期NSCLC的放疗疗效和毒副作用？",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 750,
+                "end_char": 781
+              },
+              "version": "c242a1b487ada5b20860"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d5942bc5ea13",
+          "name": "PET影像组学与二代测序结合类器官模型的个体化放疗",
+          "desc": "构建局部晚期NSCLC影像与基因资源库，采用PET影像组学与二代基因测序预测疗效与毒副作用，并借人源肿瘤与肺组织类器官库筛选最优剂量、分割与射线模式。",
+          "evidence": [
+            {
+              "quote": "PET影像组学和二代基因测序是潜在解决方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 782,
+                "end_char": 802
+              },
+              "version": "c242a1b487ada5b20860"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-60d2d21d66e1",
+          "name": "构建影像与基因组学放化疗疗效毒副作用综合预测模型",
+          "desc": "构建标准治疗条件下影像与基因组学的局部晚期NSCLC放化疗疗效和毒副作用综合预测模型，发现多组学模型优于单一组学模型，并揭示放化疗毒性与疗效的新型预测生物标志物。",
+          "evidence": [
+            {
+              "quote": "构建了标准治疗条件下影像和基因组学的局部晚期NSCLC放化疗疗效和毒副作用的综合预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2747,
+                "end_char": 2790
+              },
+              "version": "c242a1b487ada5b20860"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9b3ad584036d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ceea7ec69ccf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ceea7ec69ccf"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d5942bc5ea13"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d5942bc5ea13"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-60d2d21d66e1"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

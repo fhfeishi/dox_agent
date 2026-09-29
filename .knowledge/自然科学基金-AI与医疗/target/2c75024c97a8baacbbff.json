@@ -1,0 +1,142 @@
+{
+  "doc_id": "2c75024c97a8baacbbff",
+  "version": "1fc07cfb948680cebf4a",
+  "source_hash": "cfefbc3dde8b76219a38eec795be3ff173263818c050a6e980418262c90b66b7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:45.804907+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f8c6b4f3ab95",
+          "name": "核医学影像一体化智能诊疗",
+          "desc": "面向癌症个体化诊疗需求，构建基于PET的核医学影像一体化智能诊疗基础模型与关键技术。",
+          "evidence": [
+            {
+              "quote": "PET成像对癌症患者体内代谢活动显像效果明显，是早期临床诊断的金标准之一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 649,
+                "end_char": 684
+              },
+              "version": "1fc07cfb948680cebf4a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6a8a4130dbb6",
+          "name": "PET智能诊疗临床实用性不足",
+          "desc": "基于PET的智能诊疗研究虽已成为热点，但受诸多现实挑战限制，其临床实用性仍有很大不足。",
+          "evidence": [
+            {
+              "quote": "基于PET的智能诊疗研究已成为领域热点，但受限于诸多现实挑战，其临床实用性仍有很大不足",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 686,
+                "end_char": 728
+              },
+              "version": "1fc07cfb948680cebf4a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f13b98c1cc51",
+          "name": "视觉基础模型驱动的多模态核医学影像智能分析",
+          "desc": "构建基于视觉基础模型的多模态核医学影像智能分析理论与方法，并配套跨模态多核素全身PET药代动力学定量成像与一体化肿瘤智能诊疗技术。",
+          "evidence": [
+            {
+              "quote": "构建基于视觉基础模型的多模态核医学影像智能分析理论与方法，为智能诊疗的泛化能力提升奠定通用模型与理论方法基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 781,
+                "end_char": 834
+              },
+              "version": "1fc07cfb948680cebf4a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b9e8b333707b",
+          "name": "构建PET-Bench数据集与8000余例多中心PET数据库",
+          "desc": "构建涵盖近十万问答对的基准数据集PET-Bench及8000余例多中心PET数据库；发表SCI论文15篇（含Nature Communications 1篇）及国际顶级会议论文10篇。",
+          "evidence": [
+            {
+              "quote": "构建了涵盖近十万问答对的大规模基准数据集PET-Bench及拥有8000余例的多中心PET数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3105,
+                "end_char": 3152
+              },
+              "version": "1fc07cfb948680cebf4a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f8c6b4f3ab95"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6a8a4130dbb6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6a8a4130dbb6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f13b98c1cc51"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f13b98c1cc51"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b9e8b333707b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "doc_id": "e977ce569e4a6b682996",
+  "version": "c926636ede04bfabe9ed",
+  "source_hash": "d929b64ff0b075978850b6bad67dc3a5f11ee245be00cc368f3a7bfd0f3af305",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:30.798343+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2b01c52aa014",
+          "name": "肿瘤免疫治疗可视化评估",
+          "desc": "基于乳酸-乏氧机制，采用功能可视化方法开展肿瘤免疫治疗机制成像、功能MR与影像组学融合研究。",
+          "evidence": [
+            {
+              "quote": "恶性肿瘤是全世界引起死亡最主要的原因之一，PD-1/PD-L1免疫治疗是目前最有望治愈的方法，但其有效率仅10-30%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 647,
+                "end_char": 705
+              },
+              "version": "c926636ede04bfabe9ed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7fba857fad63",
+          "name": "免疫治疗疗效判断滞后且筛选困难",
+          "desc": "基于irRECIST标准一般需3个月以上才能确定疗效，尚不包括假性进展、超进展与延迟反应，需早期筛选适合免疫治疗的患者。",
+          "evidence": [
+            {
+              "quote": "如何提取肿瘤演进过程中的关键分子信息、确定其特征、筛选适合免疫治疗患者并早期判断疗效是亟待解决的科学问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 763,
+                "end_char": 814
+              },
+              "version": "c926636ede04bfabe9ed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-71a6c3a58225",
+          "name": "pH响应纳米粒成像与功能MR融合组学",
+          "desc": "开展可视化免疫机制成像（pH值响应纳米粒MR靶向显像及T细胞成像）、功能MR（乳酸-CEST、MRS、DWI和K-trans等）与融合多模态影像的影像组学分析。",
+          "evidence": [
+            {
+              "quote": "1、可视化免疫机制成像：包括pH值响应的纳米粒MR靶向显像及T细胞成像，明确免疫治疗关键性机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 865,
+                "end_char": 911
+              },
+              "version": "c926636ede04bfabe9ed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-982d0f29b07e",
+          "name": "功能MR序列明确肾肿瘤结构与代谢变化",
+          "desc": "利用CEST、T2 mapping、3D ASL及多b值DWI模型等功能磁共振序列明确肿瘤主要结构、功能和代谢变化，开展肾肿瘤术前良恶性评估、病理分级与分期分析及预后预测建模。",
+          "evidence": [
+            {
+              "quote": "利用CEST、T2 mapping、3D ASL、多b值DWI模型（包括单指数模型、IVIM、DKI、SEM、FROC及CTRW）等功能磁共振序列",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3032,
+                "end_char": 3104
+              },
+              "version": "c926636ede04bfabe9ed"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2b01c52aa014"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-7fba857fad63"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7fba857fad63"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-71a6c3a58225"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-71a6c3a58225"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-982d0f29b07e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

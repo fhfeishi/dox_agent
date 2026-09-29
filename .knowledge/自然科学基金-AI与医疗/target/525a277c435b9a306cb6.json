@@ -1,0 +1,142 @@
+{
+  "doc_id": "525a277c435b9a306cb6",
+  "version": "5844a673fc02d37cd5ef",
+  "source_hash": "ba9492b3302148a6eb33d81457ce1b3f57c626db40aca1bf37141a93c045e5f6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:34.948556+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-83f04eb80c45",
+          "name": "SCA3/MJD修饰基因鉴定与疾病预警",
+          "desc": "基于全基因组测序和人工智能鉴定SCA3/MJD修饰基因并建立疾病风险预警平台。",
+          "evidence": [
+            {
+              "quote": "遗传性脊髓小脑型共济失调3型/马查多-约瑟夫病（SCA3/MJD）是一种具有高度临床和遗传异质性的神经退行性疾病，致死率和致残率高，发病机制未完全阐明，尚无有效治疗方法",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "881410a2c1832e87038f609cd3f119ea764b7f18"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4f4a00cb66ef",
+          "name": "缺乏全基因组水平修饰基因研究",
+          "desc": "迄今尚无在全基因组水平从常见、低频和罕见变异角度开展SCA3/MJD修饰基因的研究，具有较大局限性。",
+          "evidence": [
+            {
+              "quote": "尚无在全基因组水平，常见、低频和罕见变异角度，开展SCA3/MJD修饰基因的研究，具有较大的局限性",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "881410a2c1832e87038f609cd3f119ea764b7f18"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dafbde9cd318",
+          "name": "全基因组测序关联分析与AI预测建模",
+          "desc": "应用生物信息学与AI方法，基于全基因组测序的全基因组关联分析策略，在全球最大样本量的SCA3/MJD队列中鉴定新的修饰位点与基因，构建临床预测模型和风险预警平台。",
+          "evidence": [
+            {
+              "quote": "本项目拟进一步应用生物信息学、AI等方法，基于全基因组测序的全基因组关联分析（WGS-GWAS）研究策略，在全球最大样本量的SCA3/MJD队列中，鉴定新的修饰位点、基因",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "881410a2c1832e87038f609cd3f119ea764b7f18"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-24762bcdc3a9",
+          "name": "鉴定两个全基因组显著修饰位点",
+          "desc": "在1248例发现队列中鉴定出两个全基因组显著修饰位点（rs28801081、rs142932360）及FBXO33、NDUFB1、SULF2三个关键修饰基因，并从罕见变异与候选基因角度解析修饰机制，为干预靶点与风险预测提供遗传学线索。",
+          "evidence": [
+            {
+              "quote": "鉴定出两个达到全基因组显著水平的修饰位点（rs28801081，rs142932360）以及FBX033、NDUFB1、SULF2三个关键修饰基因",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-83f04eb80c45"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4f4a00cb66ef"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4f4a00cb66ef"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-dafbde9cd318"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-dafbde9cd318"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-24762bcdc3a9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

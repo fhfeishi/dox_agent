@@ -1,0 +1,142 @@
+{
+  "doc_id": "cba9639367b54dd902ab",
+  "version": "70a5b5d69110ae6cc7fe",
+  "source_hash": "1b7e5b96f3124f8939e636641b6f20ae4209fd9d9aa76ced3f51464357c0cde2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:36.068361+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3969cfa7e34f",
+          "name": "慢性偏头痛针刺疗效差异与适宜人群筛选",
+          "desc": "以脑-肠轴为切入点，研究针刺治疗慢性偏头痛的疗效差异机制并筛选适宜针刺治疗的人群。",
+          "evidence": [
+            {
+              "quote": "本项目以慢性偏头痛为研究对象，结合课题组发现的偏头痛针刺治疗具有显著个体疗效差异",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 675,
+                "end_char": 714
+              },
+              "version": "70a5b5d69110ae6cc7fe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e2886972aabb",
+          "name": "针刺疗效个体差异显著的机制不明",
+          "desc": "偏头痛针刺治疗存在显著个体疗效差异，需从临床行为学、大脑结构与功能网络、肠道菌群等多维度刻画差异来源。",
+          "evidence": [
+            {
+              "quote": "通过分析针刺疗效不同的慢性偏头痛患者的临床行为学，大脑结构与功能网络个体化神经影像特征，肠道菌群结构和生物多样性等的区别",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 904,
+                "end_char": 963
+              },
+              "version": "70a5b5d69110ae6cc7fe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-20e4c5029cc8",
+          "name": "脑-肠-菌影像组学与机器学习疗效预测建模",
+          "desc": "以针刺、安慰针刺与阳性药物对照，融合影像学特征与肠道菌群特征，采用偏最小二乘相关分析、整合链接ICA及机器学习构建针刺疗效预测模型。",
+          "evidence": [
+            {
+              "quote": "并结合机器学习等分析技术，构建基于脑-肠-菌特征的针刺疗效预测模型，筛选适宜针刺治疗的偏头痛患者",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3051,
+                "end_char": 3098
+              },
+              "version": "70a5b5d69110ae6cc7fe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c5e108facb5a",
+          "name": "构建脑-肠-菌针刺疗效预测模型",
+          "desc": "融合影像学特征与肠道菌群特征构建针刺疗效预测模型，发现大脑灰质体积改变、度中心性变化与粪杆菌属α多样性变化均与针刺后疗效密切相关，头痛频率高但抑郁分数低的患者更适宜针刺治疗。",
+          "evidence": [
+            {
+              "quote": "融合影像学特征和肠道菌群特征，构建了针刺疗效预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3689,
+                "end_char": 3714
+              },
+              "version": "70a5b5d69110ae6cc7fe"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3969cfa7e34f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e2886972aabb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e2886972aabb"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-20e4c5029cc8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-20e4c5029cc8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c5e108facb5a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

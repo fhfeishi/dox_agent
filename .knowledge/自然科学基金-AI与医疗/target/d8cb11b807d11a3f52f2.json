@@ -1,0 +1,142 @@
+{
+  "doc_id": "d8cb11b807d11a3f52f2",
+  "version": "eedacf1fdd2cbd9da7df",
+  "source_hash": "2353bda9e171e8d41cdc839aac6d8dac05b7e5ef007757e82f8615c28e17c656",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:50.547162+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-90e9820061fb",
+          "name": "NSCLC免疫治疗的免疫PET/CT评估",
+          "desc": "基于靶向PD-L1免疫PET/CT与影像组学，筛选NSCLC抗PD-1/PD-L1免疫治疗获益人群。",
+          "evidence": [
+            {
+              "quote": "借助影像组学参数特征优于常规PET图像定量指标预测的优势，从免疫PET/CT影像数据中提炼出反映PD-L1表达程度的定量参数和特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 892,
+                "end_char": 956
+              },
+              "version": "eedacf1fdd2cbd9da7df"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dbef19677505",
+          "name": "免疫治疗获益人群筛选缺乏精准手段",
+          "desc": "需要精准筛选NSCLC抗PD-1/PD-L1免疫治疗获益的患者并精准指导免疫治疗，同时揭示PD-L1在肿瘤演进与免疫逃逸中的作用。",
+          "evidence": [
+            {
+              "quote": "筛选NSCLC抗PD-1/PD-L1免疫治疗获益的患者，精准指导NSCLC的免疫治疗",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 985,
+                "end_char": 1026
+              },
+              "version": "eedacf1fdd2cbd9da7df"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-74be0ec21616",
+          "name": "68Ga标记PD-L1探针与FDG PET/CT影像组学",
+          "desc": "优化68Ga标记的靶向PD-L1探针68Ga-NODAGA-A并验证其靶向特异性与安全性，同时利用18F-FDG PET/CT影像组学评估肿瘤微环境免疫类型分型。",
+          "evidence": [
+            {
+              "quote": "本项目采用双功能螯合剂（BFC）马来酰亚胺-DODA-GA对68Ga标记的ADX_5322_A02进行了优化，制备的PET探针68Ga-NODAGA-A的放射化学纯度在99%以上",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 5102,
+                "end_char": 5190
+              },
+              "version": "eedacf1fdd2cbd9da7df"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bb79746b6b72",
+          "name": "PD-L1探针肿瘤/肌肉比达9.15±1.10",
+          "desc": "68Ga-NODAGA-A探针注射后120min肿瘤/肌肉比达9.15±1.10，NHPs全身有效剂量6.34E-03 mSv/MBq；FDG PET/CT影像组学模型可预测NSCLC免疫分型尤其是TMIT-I肿瘤。",
+          "evidence": [
+            {
+              "quote": "体外生物分布研究与PET显像结果一致，注射探针1h和120min后肿瘤/肌肉比分别为7.28±0.63和9.15±1.10",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 5359,
+                "end_char": 5419
+              },
+              "version": "eedacf1fdd2cbd9da7df"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-90e9820061fb"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-dbef19677505"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-dbef19677505"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-74be0ec21616"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-74be0ec21616"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bb79746b6b72"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

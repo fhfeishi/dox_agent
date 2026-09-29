@@ -1,0 +1,197 @@
+{
+  "doc_id": "53355c4ab0df001c6f40",
+  "version": "0619ea4f0e957861d455",
+  "source_hash": "16fa6fc88eb00f6fff5df6a497d9bae4d9482343fdc4b9880c3dbfb4f8197c3b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:20.314042+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-58840a84b466",
+          "name": "多机器人协同场景建图",
+          "desc": "智慧物流、智能交通领域的多机器人未知环境建图",
+          "evidence": [
+            {
+              "quote": "多机器人系统在智慧物流、智能交通等领域中拥有广泛的应用。而多机器人未知环境建图是其一项基础且重要的技能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2557,
+                "end_char": 2608
+              },
+              "version": "0619ea4f0e957861d455"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2e23be878a5d",
+          "name": "感知弱交互效率低规划难",
+          "desc": "多机器人定位感知能力弱、信息交互效率低、行为规划建模难",
+          "evidence": [
+            {
+              "quote": "然而也面临着多机器人定位感知能力弱、信息交互效率低以及行为规划建模难等问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 750,
+                "end_char": 787
+              },
+              "version": "0619ea4f0e957861d455"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-277e16818ff9",
+          "name": "分布式协同感知方法",
+          "desc": "两阶段融合传感器级观测与智能体级信息，深度强化学习策略",
+          "evidence": [
+            {
+              "quote": "提出了一种分布式多机器人协同感知方法，在第一阶段，该方法融合传感器级别的观测以获得更好的环境感知",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2690,
+                "end_char": 2737
+              },
+              "version": "0619ea4f0e957861d455"
+            }
+          ]
+        },
+        {
+          "id": "item-f19b6cdae542",
+          "name": "层次化图神经网络探索",
+          "desc": "H2GNN提取环境拓扑特征结合多智能体强化学习",
+          "evidence": [
+            {
+              "quote": "提出了一种基于层次化图神经网络的多机器人未知环境探索方法，采用层次化图神经网络有注意性地提取环境拓扑图中的特征信息，并利用多智能体强化学习框架进行策略学习",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2818,
+                "end_char": 2894
+              },
+              "version": "0619ea4f0e957861d455"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a032ab007892",
+          "name": "两阶段强化学习模型",
+          "desc": "高层引导规划未被覆盖区域，通信融合丰富局部感知",
+          "evidence": [
+            {
+              "quote": "提出了一种两阶段的强化学习模型，在较为高层的角度引导机器人规划至未被覆盖区域，另外，基于通信交换和融合邻居的观测丰富机器人的局部感知信息，能够有效提升机器人任务执行的效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2923,
+                "end_char": 3007
+              },
+              "version": "0619ea4f0e957861d455"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-d7501f9b4db5",
+          "name": "协同决策基线与指标",
+          "desc": "新基线算法与评价指标突出机器人与环境协同",
+          "evidence": [
+            {
+              "quote": "提出了多机器人协同决策新的基线算法，以及相应的评价指标。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3012,
+                "end_char": 3039
+              },
+              "version": "0619ea4f0e957861d455"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-58840a84b466"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2e23be878a5d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2e23be878a5d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-277e16818ff9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2e23be878a5d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f19b6cdae542"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-277e16818ff9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a032ab007892"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f19b6cdae542"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d7501f9b4db5"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "doc_id": "f0362ec87e393f578bea",
+  "version": "3a509f6369151a942dee",
+  "source_hash": "22c86eee9d1a92876b4ee531ae6d9974899bc76d0099713626e79b3f35ad9699",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:50.468962+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-07e45d3ce575",
+          "name": "面向肿瘤精准诊断的病理图像定量分析",
+          "desc": "针对肿瘤精准诊断对病理学的定量分析需求，基于乳腺癌、肺癌和胃癌数据开展跨学科研究。",
+          "evidence": [
+            {
+              "quote": "在医学领域，病理诊断是迄今癌症诊断的金标准",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 641,
+                "end_char": 661
+              },
+              "version": "3a509f6369151a942dee"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-aa41b7e19e7d",
+          "name": "人工定量分析精准度不高且可重复性差",
+          "desc": "人工定量分析几乎都面临精准度不高和可重复性差的问题，给病理诊断带来巨大风险。",
+          "evidence": [
+            {
+              "quote": "然而大量证据表明，人工定量分析几乎都面临着精准度不高和可重复性差的问题，给诊断带来巨大风险",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 724,
+                "end_char": 768
+              },
+              "version": "3a509f6369151a942dee"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-96ef4933034a",
+          "name": "跨癌种跨染色分析与多尺度配准方法",
+          "desc": "研究高通用性的跨癌种跨染色细胞分析、典型免疫组化指标定量判读、基于多尺度结构与深度光流网络的相邻切片配准，以及基于深度表示学习的以图搜图检索方法。",
+          "evidence": [
+            {
+              "quote": "研究高通用性的跨癌种跨染色细胞分析方法，准确快速的典型免疫组化指标定量判读方法，基于多尺度结构和深度光流网络的异质染色相邻切片图像配准方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 867,
+                "end_char": 935
+              },
+              "version": "3a509f6369151a942dee"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0b5d00498ca0",
+          "name": "累计发表学术论文40篇含SCI 23篇",
+          "desc": "累计发表学术论文40篇（SCI期刊23篇，含CCF A类1篇、中科院一区8篇、二区9篇；EI 17篇），获湖南省优秀硕士学位论文奖2项；提出病理图像配准、细胞核分割、腺体分割与全切片诊断等算法。",
+          "evidence": [
+            {
+              "quote": "课题组在国内外学术期刊和会议上累计发表学术论文40篇，其中SCI期刊论文23篇（包括CCF A类期刊论文1篇、中科院一区论文8篇、二区论文9篇）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3543,
+                "end_char": 3614
+              },
+              "version": "3a509f6369151a942dee"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-07e45d3ce575"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-aa41b7e19e7d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-aa41b7e19e7d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-96ef4933034a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-96ef4933034a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0b5d00498ca0"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

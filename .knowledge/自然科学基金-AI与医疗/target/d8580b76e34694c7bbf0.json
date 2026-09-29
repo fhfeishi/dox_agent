@@ -1,0 +1,142 @@
+{
+  "doc_id": "d8580b76e34694c7bbf0",
+  "version": "270c990f38cf9da87c57",
+  "source_hash": "dc2eae93b14431767b7e0daa3a283a14cecb25ff934d98780cd405e71dbcc85a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:30.786075+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-02c4078f9fb0",
+          "name": "鼻咽癌乏氧微环境影像组学评估",
+          "desc": "以MRI影像组学定量评价鼻咽癌乏氧微环境并改善乏氧的分子机制研究。",
+          "evidence": [
+            {
+              "quote": "乏氧微环境是肿瘤细胞的基本特征及增殖条件",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 686
+              },
+              "version": "270c990f38cf9da87c57"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-67421474be74",
+          "name": "鼻咽癌治疗后复发转移率高",
+          "desc": "局部晚期鼻咽癌患者有20-30%在治疗后出现复发转移，成为治疗失败的主要原因，需精准评估乏氧微环境以指导放疗增敏。",
+          "evidence": [
+            {
+              "quote": "目前局部晚期鼻咽癌患者有20-30%在治疗后会出现复发转移，成为治疗失败的主要原因",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2464,
+                "end_char": 2504
+              },
+              "version": "270c990f38cf9da87c57"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-db5152efae05",
+          "name": "BOLD MRI与IVIM DWI乏氧影像组学模型",
+          "desc": "首次以MRI影像组学为方法分类解析鼻咽癌细胞灌注缺氧和弥散缺氧的微观体系，融合定量功能影像参数与HIF-1α、VEGF等蛋白基因指标构建乏氧微环境影像组学可视化评估体系。",
+          "evidence": [
+            {
+              "quote": "本项目首次以MRI影像组学为研究方法，分类解析鼻咽癌细胞灌注缺氧和弥散缺氧的微观体系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 688,
+                "end_char": 729
+              },
+              "version": "270c990f38cf9da87c57"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1b3b17def1e6",
+          "name": "实现鼻咽癌治疗抵抗定量评估与智能诊疗",
+          "desc": "基于影像组学实现鼻咽癌治疗抵抗定量评估与精准预测，基于分子影像实现乏氧治疗抵抗在体精准评估，构建全链条智能诊疗模型；成果被CSCO和ASCO鼻咽癌联合国际指南引用，获广东省科技进步奖一等奖。",
+          "evidence": [
+            {
+              "quote": "①基于影像组学技术实现鼻咽癌治疗抵抗定量评估及精准预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2621,
+                "end_char": 2647
+              },
+              "version": "270c990f38cf9da87c57"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-02c4078f9fb0"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-67421474be74"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-67421474be74"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-db5152efae05"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-db5152efae05"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1b3b17def1e6"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

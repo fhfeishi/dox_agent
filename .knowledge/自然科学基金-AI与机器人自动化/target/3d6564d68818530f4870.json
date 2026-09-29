@@ -1,0 +1,207 @@
+{
+  "doc_id": "3d6564d68818530f4870",
+  "version": "f44cd3c50eab609a9cf4",
+  "source_hash": "076e9470391e72c8407766def9186edf49eadede1691571478a641d6ea49599f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:06.699365+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-184352f4adad",
+          "name": "康复助力外骨骼人机交互",
+          "desc": "肌骨系统疾病患者康复助力外骨骼应用",
+          "evidence": [
+            {
+              "quote": "康复助力外骨骼机器人成为解决这个问题的重要方法。近30年来，康复助力外骨骼研究快速发展",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3065,
+                "end_char": 3107
+              },
+              "version": "f44cd3c50eab609a9cf4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-739665571d18",
+          "name": "人机交互性能不达标",
+          "desc": "外骨骼效果适应性有限，交互性能达不到要求",
+          "evidence": [
+            {
+              "quote": "实际的诊所应用调研结果显示，其效果和适应性十分有限，主要原因在于人机交互性能不能达到病人和医护人员的要求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3168,
+                "end_char": 3220
+              },
+              "version": "f44cd3c50eab609a9cf4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bebae4e9026c",
+          "name": "自适应阻抗交互控制",
+          "desc": "力/位置自适应阻抗感知残余肌力调整步态",
+          "evidence": [
+            {
+              "quote": "基于力/位置的自适应阻抗控制策略，让外骨骼通过感知病人的残余肌力和人机交互力调整训练步态",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3388,
+                "end_char": 3431
+              },
+              "version": "f44cd3c50eab609a9cf4"
+            }
+          ]
+        },
+        {
+          "id": "item-79b8f653537a",
+          "name": "并联结构髋关节外骨骼",
+          "desc": "4-UPUR+RR并联结构提供良好顺应性",
+          "evidence": [
+            {
+              "quote": "4-UPUR+RR并联结构髋关节外骨骼为康复训练提供了良好的顺应性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3536,
+                "end_char": 3568
+              },
+              "version": "f44cd3c50eab609a9cf4"
+            }
+          ]
+        },
+        {
+          "id": "item-f4f76e9d6ae3",
+          "name": "康复进程分阶段策略",
+          "desc": "4种控制策略适应病人6个康复进程",
+          "evidence": [
+            {
+              "quote": "以脑卒中病人为对象，提出了4种控制策略适应病人的6个康复进程。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3678,
+                "end_char": 3708
+              },
+              "version": "f44cd3c50eab609a9cf4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ff6a66e21d9c",
+          "name": "模糊PI步态自适应跟随",
+          "desc": "模糊PI较传统PI更好实现步态自适应跟随",
+          "evidence": [
+            {
+              "quote": "采用模糊PI的改进驱动控制策略，仿真结果表明，模糊PI较传统PI能更好的实现步态自适应跟随。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3570,
+                "end_char": 3615
+              },
+              "version": "f44cd3c50eab609a9cf4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-184352f4adad"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-739665571d18"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-739665571d18"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bebae4e9026c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-739665571d18"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-79b8f653537a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-739665571d18"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f4f76e9d6ae3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bebae4e9026c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ff6a66e21d9c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-79b8f653537a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ff6a66e21d9c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

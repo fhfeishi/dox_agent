@@ -1,0 +1,142 @@
+{
+  "doc_id": "549b017da2e0f16578e4",
+  "version": "65251890657c3d3655f4",
+  "source_hash": "632a7855afc04c37255e7381fe01402eb59f587904e8b0f006109011aa8106c6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:03.567053+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2610c2bdc782",
+          "name": "微生物组单细胞功能解析",
+          "desc": "面向微生物组功能探测与利用，在单细胞层面关联表型与基因型，跨越难培养微生物的功能解析瓶颈。",
+          "evidence": [
+            {
+              "quote": "拉曼分选/测序能在单细胞层面关联其表型和基因型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 745,
+                "end_char": 767
+              },
+              "version": "65251890657c3d3655f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ec577bd5ca63",
+          "name": "拉曼分选通量低难以满足菌群解析需求",
+          "desc": "传统拉曼激活细胞分选依赖手动操作，通量仅1-2细胞/分钟，难以满足高通量筛选与菌群单细胞功能解析需求。",
+          "evidence": [
+            {
+              "quote": "传统拉曼激活细胞分选(RACS)技术虽能实现代谢表型识别，但依赖手动操作，通量低(1-2细胞/分钟)，难以满足高通量筛选需求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3154,
+                "end_char": 3215
+              },
+              "version": "65251890657c3d3655f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-76690b73c751",
+          "name": "AI辅助自动定位与自动化拉曼分选-测序耦合技术",
+          "desc": "首次提出人工智能预测细菌泳动范围来辅助自动定位，配合“先近后远、应分尽分、有序导出、选择接收”的自动分选策略，并发展自动拉曼光镊采集与单细胞液滴打印分选。",
+          "evidence": [
+            {
+              "quote": "首次提出人工智能预测细菌泳动范围来辅助自动定位",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 872,
+                "end_char": 894
+              },
+              "version": "65251890657c3d3655f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a46481f24e75",
+          "name": "RAMS系统通量提升10倍且分选纯度>99.7%",
+          "desc": "RAMS系统实现从手动1-2细胞/分钟到自动化10-20细胞/分钟的10倍通量跨越，分选纯度>99.7%；已从红壤分选出13株强耐铝菌株，并与企业完成产业转化。",
+          "evidence": [
+            {
+              "quote": "RAMS系统实现从手动1-2细胞/分钟到自动化10-20细胞/分钟的10倍通量跨越，分选纯度>99.7%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3666,
+                "end_char": 3717
+              },
+              "version": "65251890657c3d3655f4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2610c2bdc782"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ec577bd5ca63"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ec577bd5ca63"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-76690b73c751"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-76690b73c751"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a46481f24e75"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "doc_id": "f1c1f136af16ab96bf22",
+  "version": "6cf893b21c81153ad539",
+  "source_hash": "37730f451e5bcea5b22bbb50df9394bdfc81159cbfb62f073045ade7f4fc6794",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:49.236222+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-48cb4c8f1fd6",
+          "name": "高度近视ICL手术人工智能预测",
+          "desc": "面向高度近视ICL植入手术，用人工智能开展眼底并发症、拱高与屈光度预测研究。",
+          "evidence": [
+            {
+              "quote": "近视是全球性的健康问题，中国高度近视患病率高，亟待防治",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 648,
+                "end_char": 674
+              },
+              "version": "6cf893b21c81153ad539"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-98441d2c9cb5",
+          "name": "ICL拱高预测与眼底并发症风险评估不足",
+          "desc": "需探讨人工智能高度近视眼底并发症的机器学习特点及ICL拱高预测规律，以改善拱高、提高手术安全性并降低并发症。",
+          "evidence": [
+            {
+              "quote": "本课题将在申请人前期研究及已建立的高度近视ICL信息库基础上，旨在探讨人工智能高度近视眼底并发症的机器学习特点及ICL拱高预测规律",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 676,
+                "end_char": 740
+              },
+              "version": "6cf893b21c81153ad539"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4888df0b59cb",
+          "name": "万眼大数据多模态机器学习ICL预测模型",
+          "desc": "完善1万眼高度近视眼大数据库，在眼底OCT与眼前节数据上进行机器学习，探讨ICL尺寸选择、拱高预测与屈光度预测的优化特征。",
+          "evidence": [
+            {
+              "quote": "通过完善1万眼高度近视眼大数据库,利用多模态机器学习的人工智能模型，探讨ICL尺寸选择、拱高预测与屈光度预测的优化特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2372,
+                "end_char": 2430
+              },
+              "version": "6cf893b21c81153ad539"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1d0a395fe353",
+          "name": "STS优化ICL拱高预测软件投入临床应用",
+          "desc": "基于5873眼构建随机森林回归与分类模型，开发的STS优化ICL直径及拱高预测软件投入临床应用；屈光度预测研究发表于E&V，拱高与屈光误差研究发表于JCRS。",
+          "evidence": [
+            {
+              "quote": "开发的STS优化的ICL直径及拱高预测软件投入临床应用，可为手术设计提供参考",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2841,
+                "end_char": 2878
+              },
+              "version": "6cf893b21c81153ad539"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-48cb4c8f1fd6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-98441d2c9cb5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-98441d2c9cb5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4888df0b59cb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4888df0b59cb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1d0a395fe353"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

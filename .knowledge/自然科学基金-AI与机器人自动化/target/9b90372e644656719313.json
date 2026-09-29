@@ -1,0 +1,180 @@
+{
+  "doc_id": "9b90372e644656719313",
+  "version": "4afb1ae1220104d9386d",
+  "source_hash": "039d6cd1ad71af4fbdeb383ee1377627b91b8c39a4b7d027564df95f39ee2b8b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:02:29.354446+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e33f9ec07502",
+          "name": "低空无人机目标检测",
+          "desc": "无人机视觉数据中小目标占比多的检测任务",
+          "evidence": [
+            {
+              "quote": "在低空无人机视觉数据中，小目标占比更多，平均分辨率更低，绝对和相对尺度更小，检测难度更大。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2880,
+                "end_char": 2924
+              },
+              "version": "4afb1ae1220104d9386d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-31265b7a1594",
+          "name": "小目标检测适配差",
+          "desc": "尺度缩放、特征提取、锚点匹配与分类难适配小目标",
+          "evidence": [
+            {
+              "quote": "深度学习在通用目标检测领域已取得卓著成效，但是，由于在图像尺度缩放、卷积特征提取、锚点匹配和目标分类等方面不能较好适配小目标，无人机视觉目标检测面临严峻挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2925,
+                "end_char": 3003
+              },
+              "version": "4afb1ae1220104d9386d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d05c6cd10af5",
+          "name": "物距感知图像缩放",
+          "desc": "划分物距等级缩放裁剪缓解虚警与漏检",
+          "evidence": [
+            {
+              "quote": "提出物距感知模型。划分物距等级进行图像缩放和裁剪，缓解目标尺度多样性引发的计算开销庞大、虚警过多等问题；基于尺度感知插值算法放大小目标，减少目标漏检。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3167,
+                "end_char": 3241
+              },
+              "version": "4afb1ae1220104d9386d"
+            }
+          ]
+        },
+        {
+          "id": "item-f20e34d3017c",
+          "name": "解耦动态滤波器DDF",
+          "desc": "解耦空间与通道动态滤波器减少参数提升性能",
+          "evidence": [
+            {
+              "quote": "提出解耦动态滤波器(DDF)缓解CNN两大缺陷并显著提升网络性能。将深度动态滤波器解耦为空间动态滤波器和通道动态滤波器，模型参数量减少，且用DDF替换分类网络中的标准卷积，网络性能显著提升。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3600,
+                "end_char": 3694
+              },
+              "version": "4afb1ae1220104d9386d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9ae9a76cfd9d",
+          "name": "论文19篇专利9件",
+          "desc": "顶刊会议论文19篇、发明专利9件、软著1个",
+          "evidence": [
+            {
+              "quote": "目前在国内外顶级期刊和会议发表高水平学术论文19篇、获得国内发明专利9件，软件著作权1个。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3072,
+                "end_char": 3116
+              },
+              "version": "4afb1ae1220104d9386d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e33f9ec07502"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-31265b7a1594"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-31265b7a1594"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d05c6cd10af5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-31265b7a1594"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f20e34d3017c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d05c6cd10af5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9ae9a76cfd9d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f20e34d3017c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9ae9a76cfd9d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

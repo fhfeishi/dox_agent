@@ -1,0 +1,142 @@
+{
+  "doc_id": "6efb7eaa8c25c97aee06",
+  "version": "cc6b3c58188322c2bade",
+  "source_hash": "46fdb2f26e421b015578b1d6d915b231e7ab3bd8373c1393b41f1ae2de8c1bf1",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:11.266309+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-85b1c38f60a5",
+          "name": "多中心乳腺病理图像细胞核分割与识别",
+          "desc": "面向乳腺癌HE染色病理图像的定量化分析，研究多中心条件下的细胞核分割与识别方法。",
+          "evidence": [
+            {
+              "quote": "HE染色组织病理图像细胞核分割与识别是医学图像分析领域的研究热点和前沿",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 675,
+                "end_char": 709
+              },
+              "version": "cc6b3c58188322c2bade"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4975687a97d4",
+          "name": "细胞核形态不一且多中心标注成本高",
+          "desc": "细胞核尺寸大小不一、常呈轮廓断裂模糊，易漏检和误分割；病理图像标注成本高、不同中心差异大，单中心模型泛化能力不佳。",
+          "evidence": [
+            {
+              "quote": "但细胞核尺寸大小不一，常呈现轮廓断裂、模糊的现象，容易导致细胞核漏检测和误分割",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 711,
+                "end_char": 749
+              },
+              "version": "cc6b3c58188322c2bade"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8ea42636df61",
+          "name": "形状先验嵌入网络与多中心深度元学习",
+          "desc": "将细胞核初始形状集转化为卷积核作为可学习组件嵌入深度网络并构建形状先验项与相似度量项；提出面向多中心分割的深度元学习方法，以多尺度全卷积网络为基学习器、元学习器指导初始化与参数更新。",
+          "evidence": [
+            {
+              "quote": "将细胞核的初始形状集转化为卷积核，作为可学习组件嵌入深度网络中，构建形状先验项和形状相似度量项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 829,
+                "end_char": 875
+              },
+              "version": "cc6b3c58188322c2bade"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-702f6ac546ea",
+          "name": "减少40%标注下实现细胞核精准分割",
+          "desc": "提出深度元学习的小样本细胞核分割算法，在减少40%标注情况下实现H&E染色病理图像细胞核精准分割；并提出FoCasNet有丝分裂检测与DB-block深度-宽度学习模块。",
+          "evidence": [
+            {
+              "quote": "提出了一种深度元学习的小样本细胞核分割算法，在减少40%的标注情况下实现了H&E染色病理图像的细胞核精准分割",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3084,
+                "end_char": 3137
+              },
+              "version": "cc6b3c58188322c2bade"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-85b1c38f60a5"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4975687a97d4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4975687a97d4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8ea42636df61"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8ea42636df61"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-702f6ac546ea"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

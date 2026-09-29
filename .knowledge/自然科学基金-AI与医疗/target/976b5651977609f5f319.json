@@ -1,0 +1,142 @@
+{
+  "doc_id": "976b5651977609f5f319",
+  "version": "bcb3876d814262a9f8c0",
+  "source_hash": "c0e29d2fb529e42fd50dd7303e0ec1412e06c18a6c4f9b082137c91239422309",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:29.362816+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-469dfd5ae02c",
+          "name": "肺癌EGFR-TKI疗效精准预测",
+          "desc": "面向肺癌EGFR-TKI一线靶向治疗，构建KRAS突变靶向PET探针实现疗效精准预测。",
+          "evidence": [
+            {
+              "quote": "EGFR-TKI靶向药物已成为肺癌一线治疗方法，但单纯依靠EGFR突变的筛选，难以准确评价和预测肺癌EGFR-TKI的治疗效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 693,
+                "end_char": 755
+              },
+              "version": "bcb3876d814262a9f8c0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-77f3badccaca",
+          "name": "缺乏KRAS突变可视化检测方法",
+          "desc": "KRAS突变会显著降低甚至完全消除肺癌对EGFR-TKI的治疗响应，但目前尚无KRAS突变的可视化检测方法以克服传统手段在异质性和灵敏度上的短板。",
+          "evidence": [
+            {
+              "quote": "然而，目前尚无KRAS突变的可视化检测方法，以克服传统手段在异质性和灵敏度上的短板",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 832,
+                "end_char": 872
+              },
+              "version": "bcb3876d814262a9f8c0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7fc130700670",
+          "name": "KRAS G12C靶向PET探针与影像组学算法",
+          "desc": "以KRAS突变抑制剂AMG510和ARS1620为基础构建并筛选KRAS突变靶向PET探针，并基于KRAS PET/CT辅以基因检测、肿瘤标志物信息建立预测EGFR-TKI疗效的影像组学算法。",
+          "evidence": [
+            {
+              "quote": "以新问世的KRAS突变抑制剂AMG510和ARS1620为基础，构建并筛选KRAS突变靶向PET探针，为KRAS突变可视化提供新的分子影像手段",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 907,
+                "end_char": 977
+              },
+              "version": "bcb3876d814262a9f8c0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0fc4c5294a7c",
+          "name": "国际首次人体KRAS G12C突变PET显像",
+          "desc": "首次实现KRAS G12C突变蛋白在体可视化并国际首次实现人体临床PET显像，突变肿瘤摄取显著高于非突变肿瘤（SUVmax 3.73±0.58 vs 2.39±0.22，P<0.01）；肿瘤SUV值与EGFR-TKI疗效成反比。",
+          "evidence": [
+            {
+              "quote": "KRAS G12C突变肿瘤的摄取显著高于非KRAS G12C突变肿瘤的摄取（SUVmax：3.73 ± 0.58 vs. 2.39 ± 0.22，P < 0.01）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3014,
+                "end_char": 3095
+              },
+              "version": "bcb3876d814262a9f8c0"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-469dfd5ae02c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-77f3badccaca"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-77f3badccaca"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7fc130700670"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7fc130700670"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0fc4c5294a7c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

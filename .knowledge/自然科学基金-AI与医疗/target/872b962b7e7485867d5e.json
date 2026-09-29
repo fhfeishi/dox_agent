@@ -1,0 +1,142 @@
+{
+  "doc_id": "872b962b7e7485867d5e",
+  "version": "78b76bf7093b8706a164",
+  "source_hash": "5a8a5029f37b666330f8d74e638f051d1f59504639384f8489c5b072d08718b2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:34.764150+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7711a2b8a75e",
+          "name": "视网膜病变筛查可解释影像组学",
+          "desc": "面向糖网病与年龄相关黄斑变性等眼底病变筛查，构建可解释的影像组学智能诊断原型框架。",
+          "evidence": [
+            {
+              "quote": "项目开展面向视网膜病变筛查的可解释影像组学关键技术研究，探索影像学病变特征提取新方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 649,
+                "end_char": 690
+              },
+              "version": "78b76bf7093b8706a164"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8954c6eace30",
+          "name": "病变筛查精度与效率亟待提升",
+          "desc": "眼底影像存在多源特点、诊断决策存在不一致性，病变筛查的精度与效率问题尚未解决。",
+          "evidence": [
+            {
+              "quote": "解决病变筛查的精度与效率问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 716,
+                "end_char": 729
+              },
+              "version": "78b76bf7093b8706a164"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4d884b419439",
+          "name": "多尺度病理描述符与增强型多特征融合网络",
+          "desc": "提出多尺度病理描述符为分级建立可判别病变特征；针对眼底影像多源特点提出增强型多特征融合网络，将多特征融合与多尺度融合相结合；并以多尺度生成器合成病理性视网膜图像形成诊断证据。",
+          "evidence": [
+            {
+              "quote": "针对眼底影像多源特点，提出增强型多特征融合网络，将多特征融合与多尺度融合相结合，捕获眼底影像多模态特征以获得更好分类性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 768,
+                "end_char": 827
+              },
+              "version": "78b76bf7093b8706a164"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ec796534d995",
+          "name": "提出MGRNet实现视盘视杯联合分割",
+          "desc": "提出一阶段框架多图推理网络（MGRNet）用于分割OD与OC，并基于杯盘比测量实现青光眼早期发现与辅助诊断。",
+          "evidence": [
+            {
+              "quote": "提出了一种新的一阶段框架，称为多图推理网络（MGRNet），用于分割OD和OC",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3077,
+                "end_char": 3115
+              },
+              "version": "78b76bf7093b8706a164"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-7711a2b8a75e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8954c6eace30"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8954c6eace30"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4d884b419439"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4d884b419439"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ec796534d995"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

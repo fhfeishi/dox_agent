@@ -1,0 +1,142 @@
+{
+  "doc_id": "4085fe09270076afade3",
+  "version": "d6c3bdc5fdb37fd94970",
+  "source_hash": "0cfda3a6e36543826e4572abf7a910da40ec9a5d045cdced85b4c5dfe62f694c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:34.826267+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bde79f5f25bd",
+          "name": "不可切除III期NSCLC免疫治疗疗效预测",
+          "desc": "面向根治性同步放化疗后巩固免疫治疗路径，构建多中心影像组学模型以精准筛选免疫治疗获益人群。",
+          "evidence": [
+            {
+              "quote": "对于不可切除III期非小细胞肺癌（NSCLC），NCCN指南推荐根治性同步放化疗后予以巩固性免疫治疗，但目前临床中仍缺乏有效预测免疫治疗疗效的方法，无法准确筛选出获益人群",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 687,
+                "end_char": 771
+              },
+              "version": "d6c3bdc5fdb37fd94970"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2a4758fa089d",
+          "name": "影像组学模型泛化性差致临床落地困难",
+          "desc": "影像组学可量化肿瘤异质性，但模型泛化性差导致临床落地困难，原因包括训练数据缺乏标准化、缺乏动态量化分析与样本量多样性不足。",
+          "evidence": [
+            {
+              "quote": "但当前影像组学模型的泛化性差导致临床落地困难",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 816,
+                "end_char": 837
+              },
+              "version": "d6c3bdc5fdb37fd94970"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fd2a0bddc94d",
+          "name": "FAIR标准化+多时序CT影像组学+联邦学习",
+          "desc": "应用FAIR数据准则标准化临床与影像数据，基于多时序CT影像组学动态量化肿瘤时空异质性，并利用联邦学习连接多中心数据构建预测模型。",
+          "evidence": [
+            {
+              "quote": "基于多时序CT影像组学动态量化肿瘤的时空异质性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 944,
+                "end_char": 966
+              },
+              "version": "d6c3bdc5fdb37fd94970"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7c8991740b37",
+          "name": "构建III期NSCLC免疫治疗疗效预测模型",
+          "desc": "构建NSCLC新辅助免疫治疗疗效预测模型，精准识别潜在受益患者群体，为临床决策提供依据。",
+          "evidence": [
+            {
+              "quote": "构建NSCLC新辅助免疫治疗疗效预测模型，精准识别潜在受益患者群体",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3347,
+                "end_char": 3379
+              },
+              "version": "d6c3bdc5fdb37fd94970"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-bde79f5f25bd"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2a4758fa089d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2a4758fa089d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fd2a0bddc94d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fd2a0bddc94d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7c8991740b37"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

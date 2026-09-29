@@ -1,0 +1,197 @@
+{
+  "doc_id": "896b9ea5e6ed2a9e8451",
+  "version": "a6a830ea80f83274397c",
+  "source_hash": "c7ee067dec150f1374e0fc723d8a84c48342cecd700d764b5fde27a20ae6bd28",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:44.016937+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-da5ea8234a84",
+          "name": "多模式人机协作康复",
+          "desc": "上肢康复机器人多康复模式下的变阻抗控制",
+          "evidence": [
+            {
+              "quote": "本项目旨在提高机器人辅助康复的安全性和舒适性，提出了面向多康复模式下人机协作的上肢康复机器人变阻抗控制策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3066,
+                "end_char": 3118
+              },
+              "version": "a6a830ea80f83274397c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-84ffd4aa4800",
+          "name": "意图估计不足切换抖振",
+          "desc": "意图估计精度不足与康复模式切换引起控制不连续抖振",
+          "evidence": [
+            {
+              "quote": "已有阻抗控制是在被动或主动康复模式下设计，康复模式切换会导致控制的不连续性易引起抖振问题，影响控制的精度且易造成系统振荡或失稳。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 809,
+                "end_char": 872
+              },
+              "version": "a6a830ea80f83274397c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-baf8e9529934",
+          "name": "高斯过程意图预测",
+          "desc": "多源信息融合与时域卷积网络提升意图预测精度",
+          "evidence": [
+            {
+              "quote": "提出了基于高斯过程的多源信息融合意图预测以及基于时域卷积网络的信息融合意图预测方法，对生机电信息进行了多层次、多空间信息互补，提高了连续运动意图预测精度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3126,
+                "end_char": 3201
+              },
+              "version": "a6a830ea80f83274397c"
+            }
+          ]
+        },
+        {
+          "id": "item-e307ec64d9df",
+          "name": "时空域阻抗参数学习",
+          "desc": "时间域空间域阻抗参数学习提高人机阻抗匹配",
+          "evidence": [
+            {
+              "quote": "建立了时间域（空间域）阻抗参数学习策略，提高了人机阻抗匹配性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3206,
+                "end_char": 3235
+              },
+              "version": "a6a830ea80f83274397c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-aa83acd10160",
+          "name": "模式无缝切换控制",
+          "desc": "多康复模式任务完成与模式间无缝切换",
+          "evidence": [
+            {
+              "quote": "设计了多康复模式下人机交互控制，保证了各康复模式下任务的完成以及康复模式间的无缝切换。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3240,
+                "end_char": 3282
+              },
+              "version": "a6a830ea80f83274397c"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-a00261009952",
+          "name": "论文13篇",
+          "desc": "SCI 7篇、EI 6篇、发明专利3项",
+          "evidence": [
+            {
+              "quote": "项目执行期间，发表SCI检索论文7篇、EI检索论文6篇，申请发明专利 3项。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3283,
+                "end_char": 3320
+              },
+              "version": "a6a830ea80f83274397c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-da5ea8234a84"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-84ffd4aa4800"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-84ffd4aa4800"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-baf8e9529934"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-84ffd4aa4800"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e307ec64d9df"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-baf8e9529934"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-aa83acd10160"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e307ec64d9df"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a00261009952"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

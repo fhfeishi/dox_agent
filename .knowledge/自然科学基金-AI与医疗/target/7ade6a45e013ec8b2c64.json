@@ -1,0 +1,142 @@
+{
+  "doc_id": "7ade6a45e013ec8b2c64",
+  "version": "2c7c1b90a278698000ea",
+  "source_hash": "68afe9d2462f669e1a02301e297d023b6fe7b377301da734f6f6af94ba587874",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:45.792445+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f0fb86c95936",
+          "name": "癌症免疫分子亚型分析与预测",
+          "desc": "面向癌症免疫治疗，基于体细胞突变数据划分癌症免疫分子亚型并构建预测模型与查询平台。",
+          "evidence": [
+            {
+              "quote": "癌症是一种在分子水平上具有高度异质性的疾病，可以划分为不同的免疫分子亚型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 694
+              },
+              "version": "2c7c1b90a278698000ea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-95e4e3b2ff66",
+          "name": "癌症免疫分子亚型划分的准确性需求",
+          "desc": "准确划分癌症患者的免疫分子亚型可为其免疫治疗提供精准的理论指导与实践基础，但体细胞突变数据的高维稀疏特征给准确分型带来困难。",
+          "evidence": [
+            {
+              "quote": "准确地将癌症患者分到不同的免疫分子亚型能够为癌症患者的免疫治疗提供精准的理论指导和实践基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 696,
+                "end_char": 740
+              },
+              "version": "2c7c1b90a278698000ea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b57391aa81a2",
+          "name": "网络扩散模型驱动的突变谱平滑与亚型建模",
+          "desc": "利用网络扩散模型将体细胞突变影响通过蛋白质相互作用网络传播，得到平滑且含网络信息的突变谱数据，进而计算免疫细胞浸润水平并以聚类算法建立免疫分子亚型。",
+          "evidence": [
+            {
+              "quote": "利用网络扩散模型，将体细胞突变的影响通过蛋白质相互作用网络传播出去，得到平滑且包含蛋白质相互作用网络信息的突变谱数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 763,
+                "end_char": 820
+              },
+              "version": "2c7c1b90a278698000ea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-186433118755",
+          "name": "构建XGBoost癌症免疫分子亚型预测模型",
+          "desc": "构建基于XGBoost算法的癌症免疫分子亚型预测模型并系统验证取得良好预测效果，同时评估了各亚型的预后、差异基因与免疫治疗获益情况。",
+          "evidence": [
+            {
+              "quote": "构建基于XGBoost算法的癌症免疫分子亚型的预测模型，并对模型进行系统的验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 916,
+                "end_char": 954
+              },
+              "version": "2c7c1b90a278698000ea"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f0fb86c95936"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-95e4e3b2ff66"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-95e4e3b2ff66"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b57391aa81a2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b57391aa81a2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-186433118755"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

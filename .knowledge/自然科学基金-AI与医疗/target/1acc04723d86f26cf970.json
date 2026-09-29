@@ -1,0 +1,142 @@
+{
+  "doc_id": "1acc04723d86f26cf970",
+  "version": "313ace1ed89f2eb5003d",
+  "source_hash": "da2946cbf1aa909e66cc93747185fabd91239788a78c495555b5d093e544db1e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:49.283206+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-02fff9aa962e",
+          "name": "局部进展期胃癌新辅助化疗疗效预测",
+          "desc": "面向局部进展期胃癌新辅助化疗，联合影像组学与病理组学预测疗效以指导个体化治疗。",
+          "evidence": [
+            {
+              "quote": "新辅助化疗可提高局部进展期胃癌（LAGC）患者R0切除率和总生存期，但对部分患者无效",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 704
+              },
+              "version": "313ace1ed89f2eb5003d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9a473edab36b",
+          "name": "部分患者无效致手术时机延误与毒性负担",
+          "desc": "新辅助化疗对部分患者无效，耽搁手术时机并造成不必要的化疗毒性和经济负担，提前预测疗效极为重要。",
+          "evidence": [
+            {
+              "quote": "但对部分患者无效，耽搁了手术时机，并造成不必要的化疗毒性和经济负担，提前预测其疗效极为重要",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 697,
+                "end_char": 741
+              },
+              "version": "313ace1ed89f2eb5003d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bd98815eccc9",
+          "name": "影像-病理组学标签融合疗效预测模型",
+          "desc": "采用传统方法与卷积神经网络提取CT影像组学手工与深度特征，用CellProfiler提取病理细胞与微环境特征，经mRMR筛选并以XGBoost构建影像-病理组学标签后融合建模并外部验证。",
+          "evidence": [
+            {
+              "quote": "融合影像-病理组学标签、临床病理信息及分子标志物，建立LAGC新辅助化疗疗效预测模型并对其进行外部验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3233,
+                "end_char": 3283
+              },
+              "version": "313ace1ed89f2eb5003d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-04b12f9ea2b8",
+          "name": "发表课题相关文章24篇含SCI 18篇",
+          "desc": "发表课题相关文章24篇，其中SCI文章18篇，获国家发明专利1项；负责人获云南省应用基础研究优秀青年基金及“兴滇英才”青年拔尖人才等支持。",
+          "evidence": [
+            {
+              "quote": "本项目组发表课题相关文章24篇，其中SCI文章18篇，国家发明专利1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3366,
+                "end_char": 3400
+              },
+              "version": "313ace1ed89f2eb5003d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-02fff9aa962e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9a473edab36b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9a473edab36b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bd98815eccc9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bd98815eccc9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-04b12f9ea2b8"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

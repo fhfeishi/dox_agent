@@ -1,0 +1,142 @@
+{
+  "doc_id": "216fe761e7c90b2ac2ee",
+  "version": "d96053b2a5b926e4f8d0",
+  "source_hash": "57985aba985c55fc793a84d9710886a9eb9de2549bcb33d803796583a646269d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:50.518034+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5e2dd1225a5e",
+          "name": "视网膜色素变性AI诊断及临床应用",
+          "desc": "面向眼科罕见病视网膜色素变性，研制自动化诊断与分析系统开展早期预警与病情评估。",
+          "evidence": [
+            {
+              "quote": "视网膜色素变性（RP）是常见的致盲性遗传性眼病，也是影响范围最广的眼科罕见病",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 696
+              },
+              "version": "d96053b2a5b926e4f8d0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2056db9b5415",
+          "name": "基层缺设备专家致RP难以早诊与随访",
+          "desc": "RP诊断治疗依赖医生经验，基层医院缺少先进设备和资深专家，导致大部分患者无法得到早期诊断、及时治疗、准确遗传咨询与长期随访。",
+          "evidence": [
+            {
+              "quote": "而基层医院缺少先进设备和资深专家，导致大部分RP患者无法得到早期诊断和及时治疗，无法得到准确的遗传咨询，无法对病情的进展做长期的随访",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 800,
+                "end_char": 865
+              },
+              "version": "d96053b2a5b926e4f8d0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e06732b0e1e4",
+          "name": "多模影像组学与深度学习融合的RP分析",
+          "desc": "采用多模影像组学、深度学习与大数据分析技术，融合不同模态、时间点与维度的RP临床影像、功能检查和遗传基因数据，攻关诊断识别、病灶分割、进展跟踪与预测等关键问题。",
+          "evidence": [
+            {
+              "quote": "本项目拟采用多模影像组学、深度学习等人工智能技术、以及大数据分析技术，充分融合不同模态、不同时间点、不同维度的RP临床影像、功能检查和遗传基因数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 867,
+                "end_char": 939
+              },
+              "version": "d96053b2a5b926e4f8d0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4b8541d32624",
+          "name": "研制RP自动化诊断与分析系统",
+          "desc": "结题摘要与立项摘要内容一致，未给出量化结果，仅说明研制自动化诊断与分析系统对RP进行早期预警与病情评估并开展临床示范应用。",
+          "evidence": [
+            {
+              "quote": "攻关RP诊断识别、病灶定位分割、病情进展跟踪与发生发展预测等关键问题，研制开发自动化诊断与分析系统对RP进行早期预警与病情评估",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 941,
+                "end_char": 1003
+              },
+              "version": "d96053b2a5b926e4f8d0"
+            }
+          ],
+          "status": "原文未明确"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5e2dd1225a5e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2056db9b5415"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2056db9b5415"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e06732b0e1e4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e06732b0e1e4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4b8541d32624"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

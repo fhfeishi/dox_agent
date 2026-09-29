@@ -1,0 +1,197 @@
+{
+  "doc_id": "734538e4a3b8c2e09dcb",
+  "version": "b7205d900b0f83857720",
+  "source_hash": "d067d3beebd5262fb2a3051aae98971f17abd7d1aa0bd289f43550dec0f3bde2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:02:29.341843+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3a66746a5016",
+          "name": "煤矿煤岩界面识别",
+          "desc": "综采工作面智能截割与无人化作业",
+          "evidence": [
+            {
+              "quote": "煤矿综采工作面推进智能截割与无人化作业，核心在于煤岩界面的稳定识别，但井下低照度、粉尘水雾、截割冲击与温度扰动等因素叠加，容易导致识别信号波动、判别不稳等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2743,
+                "end_char": 2821
+              },
+              "version": "b7205d900b0f83857720"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-486fb5784814",
+          "name": "低照度多扰识别不稳",
+          "desc": "低照度粉尘水雾截割冲击温度扰动致判别不稳",
+          "evidence": [
+            {
+              "quote": "但井下低照度、粉尘水雾、截割冲击与温度扰动等因素叠加，容易导致识别信号波动、判别不稳等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2777,
+                "end_char": 2821
+              },
+              "version": "b7205d900b0f83857720"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b42cd51e2491",
+          "name": "氢键红外敏感区段",
+          "desc": "216组光谱数据MSC-SPA-PLS建模确定敏感区段",
+          "evidence": [
+            {
+              "quote": "采用MSC预处理、SPA选波长、PLS建模并结合蒙特卡罗交叉验证剔除异常样品，校正集与预测集按2:1划分，确定氢键相关红外敏感区段并建立判别准则",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2993,
+                "end_char": 3064
+              },
+              "version": "b7205d900b0f83857720"
+            }
+          ]
+        },
+        {
+          "id": "item-26c78c9ca5e2",
+          "name": "LL-LSD界面拾取",
+          "desc": "自动拾取界面位置且检测速度约为原LSD方法10%",
+          "evidence": [
+            {
+              "quote": "界面识别方面提出LL-LSD自动拾取方法，在准确提取界面位置的同时，检测速度约为原LSD方法的10%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3217,
+                "end_char": 3266
+              },
+              "version": "b7205d900b0f83857720"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4013ffb97cdf",
+          "name": "反射光谱库建立",
+          "desc": "9种典型煤系岩石400~3000nm反射光谱库",
+          "evidence": [
+            {
+              "quote": "进一步建立9种典型煤系岩石400~3000 nm反射光谱库，开展灰岩与煤1:1、1:2、1:3、1:4配比截割试验，获取不同配比条件下红外光谱随截割过程演化的规律性特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3086,
+                "end_char": 3169
+              },
+              "version": "b7205d900b0f83857720"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-4470711d4372",
+          "name": "粗糙界面追踪定位",
+          "desc": "一维高斯粗糙表面模型实现波组自动追踪与界面定位",
+          "evidence": [
+            {
+              "quote": "针对粗糙界面建立一维高斯粗糙表面模型，以均方根高度与相关长度表征粗糙程度，实现波组自动追踪与界面定位。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3303,
+                "end_char": 3353
+              },
+              "version": "b7205d900b0f83857720"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3a66746a5016"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-486fb5784814"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-486fb5784814"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b42cd51e2491"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-486fb5784814"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-26c78c9ca5e2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b42cd51e2491"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4013ffb97cdf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-26c78c9ca5e2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4470711d4372"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

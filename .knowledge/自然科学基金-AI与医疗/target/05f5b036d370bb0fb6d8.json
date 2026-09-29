@@ -1,0 +1,142 @@
+{
+  "doc_id": "05f5b036d370bb0fb6d8",
+  "version": "51328923c96b9a4794cb",
+  "source_hash": "e26eda768e0a471429b37aabf423f2ea7c47e422534e8bc002f774a93a4e8dcf",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:33.553023+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5f2714eb19c7",
+          "name": "肝癌演进超声造影智能诊断与消融决策",
+          "desc": "面向肝癌精准诊疗，建立覆盖诊断、演进监测、消融决策与预后评估的CEUS智能诊疗一体化技术。",
+          "evidence": [
+            {
+              "quote": "超声造影（CEUS）是肝癌诊断、消融引导和疗效评估的主要影像，具有实时动态、安全便捷优势",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "1fb91f571119606b857bf58798c4ac97757d5bd5"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0ce2587b6163",
+          "name": "高年资与低年资医生诊断准确率差20-30%",
+          "desc": "超声诊断肝占位高低年资医生诊断准确率相差20-30%，超声难以判识肝癌分子侵袭特征，消融方案套餐化导致复发结局差异。",
+          "evidence": [
+            {
+              "quote": "超声诊断肝占位高低年资医生诊断准确率相差20-30%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "54a02834c87e4de2cc29e37db46b3e0fb0fd7c99"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f291932ae2a4",
+          "name": "时空特征增强深度网络与消融智能决策",
+          "desc": "创建以多尺度分析和注意力机制为基础的时空特征增强表示深度网络模型实现肝癌与消融残癌的CEUS智能诊断与可视监测，并构建肝癌CEUS特征与最优消融参数关联的智能决策系统。",
+          "evidence": [
+            {
+              "quote": "创建以多尺度分析和注意力机制为基础的时空特征增强表示深度网络模型，实现不同演进肝癌和消融残癌的CEUS智能诊断和可视监测",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "1fb91f571119606b857bf58798c4ac97757d5bd5"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dd2f5220e8c2",
+          "name": "CEUS六分类诊断平均AUC 0.91",
+          "desc": "建立超5000例肝占位超声数据库与2644例消融数据库；CEUS肝脏结节六分类平均AUC 0.91；灰阶超声智能诊断≤3cm肝癌AUC 0.899；MVI模型外部验证AUC 0.835-0.858；发表SCI论文35篇。",
+          "evidence": [
+            {
+              "quote": "超声造影对肝脏结节六分类诊断的平均AUC为0.91，显著优于低年资医生",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "693fca1e8decde66b6e0b2aadfed085b6303d7d0"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5f2714eb19c7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0ce2587b6163"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0ce2587b6163"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f291932ae2a4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f291932ae2a4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dd2f5220e8c2"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

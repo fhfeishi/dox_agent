@@ -1,0 +1,197 @@
+{
+  "doc_id": "f1d55b927494d84f2cde",
+  "version": "c6e02283aa027c3d2a18",
+  "source_hash": "cc6084dc7f42bb59c4e003040bd7489b6bcc413f50b8baa54ed8de6d1f821b9f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:45.349171+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8506368dc507",
+          "name": "高海拔管道焊接作业",
+          "desc": "高寒缺氧条件下管道焊接机器人自主作业",
+          "evidence": [
+            {
+              "quote": "高海拔地区气压低空气中含氧量低，导致电弧燃烧不充分降低了线能量值和电弧稳定性，导致管道焊接作业难以实现稳定的质量控制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3139,
+                "end_char": 3196
+              },
+              "version": "c6e02283aa027c3d2a18"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d0dccf12d174",
+          "name": "工艺动态变化缺陷难测",
+          "desc": "工艺环境动态变化、焊缝缺陷难以实时预测控制",
+          "evidence": [
+            {
+              "quote": "针对高海拔地区极限环境下管道焊接工艺动态变化、焊缝缺陷状态难以实时预测和控制的问题，本项目通过同步采集焊缝能量场红外图像、熔池红外图像和电参数工艺时序数据，进行多模态数据融合，建立时空关联模型，探索不同外界条件及工艺参数下焊接过程热电耦合机制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3534,
+                "end_char": 3655
+              },
+              "version": "c6e02283aa027c3d2a18"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8ee4b9b3339f",
+          "name": "多模态焊接监测",
+          "desc": "图像与电信号联合特征提取实时监测焊接过程",
+          "evidence": [
+            {
+              "quote": "焊接过程中利用多模态数据融合技术对图像与电信号联合特征提取，通过多传感器数据融合对焊接过程实时监测，实现焊接过程实时监测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3235,
+                "end_char": 3295
+              },
+              "version": "c6e02283aa027c3d2a18"
+            }
+          ]
+        },
+        {
+          "id": "item-8dd19de8c403",
+          "name": "多层特征金字塔3D检测",
+          "desc": "纯点云3D物体检测实现环境与目标建模",
+          "evidence": [
+            {
+              "quote": "提出基于多层特征金字塔的点云3D物体检测方法，通过三维点云数据实现了周围环境与目标物体建模，为焊接机器人自主作业智能化控制提供数据支撑",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3711,
+                "end_char": 3777
+              },
+              "version": "c6e02283aa027c3d2a18"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-aa4eb689b425",
+          "name": "轻量化边缘部署",
+          "desc": "轻量化模型参数与速度领先并部署多种边缘设备",
+          "evidence": [
+            {
+              "quote": "本项目在焊接质量检测模型高准确率的前提下，在轻量化部署方面开展了大量研究，并通过大量对比实验证明提出的轻量化模型在模型参数与计算速度方面领先同类型算法，通过在多种边缘设备上部署应用，验证了本项目提出的轻量级算法在边缘设备上的适用性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3418,
+                "end_char": 3533
+              },
+              "version": "c6e02283aa027c3d2a18"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-184825b2fbcb",
+          "name": "缺陷检测精度达标",
+          "desc": "多种视觉检测方法准确识别小目标多尺度缺陷",
+          "evidence": [
+            {
+              "quote": "实验证明提出的多种视觉缺陷检测方法精度满足实际应用场景要求，能够准确识别小目标、多尺度、多种类的焊缝缺陷。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3343,
+                "end_char": 3395
+              },
+              "version": "c6e02283aa027c3d2a18"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-8506368dc507"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d0dccf12d174"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d0dccf12d174"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8ee4b9b3339f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d0dccf12d174"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8dd19de8c403"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8ee4b9b3339f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-aa4eb689b425"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8dd19de8c403"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-184825b2fbcb"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

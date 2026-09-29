@@ -1,0 +1,207 @@
+{
+  "doc_id": "54413725a7c742725f89",
+  "version": "18b0987299b57541c94b",
+  "source_hash": "a40d881b7c265f1e93160671a94363d9d6dd23479133d0c82b8eaf222422d11f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:11:48.948899+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-66223378a881",
+          "name": "自动驾驶轨迹行为预测",
+          "desc": "保障行车安全与智能决策的轨迹与行为预测",
+          "evidence": [
+            {
+              "quote": "自动驾驶中的车辆轨迹与行为预测是保障行车安全、实现智能决策的核心技术，其发展趋势正从单一轨迹建模走向融合高精地图、多车交互与自车意图的多模态协同预测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2731,
+                "end_char": 2805
+              },
+              "version": "18b0987299b57541c94b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-de2ed6873cc4",
+          "name": "精度不足交互建模难",
+          "desc": "预测精度不足、交互建模困难及长尾场景泛化能力弱",
+          "evidence": [
+            {
+              "quote": "旨在解决复杂交通场景下预测精度不足、交互建模困难及长尾场景泛化能力弱等关键挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2846,
+                "end_char": 2885
+              },
+              "version": "18b0987299b57541c94b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-43bba4a08ee6",
+          "name": "分层多级图表征",
+          "desc": "高精地图厘米级车道拓扑编码为全局局部两级图",
+          "evidence": [
+            {
+              "quote": "提出了分层多级图表征学习方法，将高精地图的厘米级车道拓扑编码为全局与局部相结合的两级图结构，实现了对复杂道路环境的高效、结构化表征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2927,
+                "end_char": 2991
+              },
+              "version": "18b0987299b57541c94b"
+            }
+          ]
+        },
+        {
+          "id": "item-832e497ccbaf",
+          "name": "Behavior-Pred对比孪生预训练",
+          "desc": "区分场景行为一致性提升长尾鲁棒性",
+          "evidence": [
+            {
+              "quote": "并创新性地提出了Behavior-Pred对比孪生预训练框架，通过区分不同场景下的行为一致性，显著提升了模型在复杂长尾场景下的鲁棒性与预测能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3082,
+                "end_char": 3153
+              },
+              "version": "18b0987299b57541c94b"
+            }
+          ]
+        },
+        {
+          "id": "item-2b974446ee27",
+          "name": "隐式规划感知内化",
+          "desc": "DECAMP框架在预训练阶段内化交互语义",
+          "evidence": [
+            {
+              "quote": "再通过 DECAMP 框架在预训练阶段内化交互语义，使模型具备“隐式规划感知”能力，实现了预测模型从被动推演到主动协同的范式转变。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3245,
+                "end_char": 3309
+              },
+              "version": "18b0987299b57541c94b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-71ac47fb2055",
+          "name": "顶会顶刊论文近10篇",
+          "desc": "WWW、TKDE、WSDM等发表论文近10篇，CCF-A类3篇，专利1项",
+          "evidence": [
+            {
+              "quote": "在WWW、TKDE、WSDM等国际顶级会议与期刊上发表论文近10篇，其中CCF-A类论文3篇，申请专利1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3334,
+                "end_char": 3386
+              },
+              "version": "18b0987299b57541c94b"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-66223378a881"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-de2ed6873cc4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-de2ed6873cc4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-43bba4a08ee6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-de2ed6873cc4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-832e497ccbaf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-de2ed6873cc4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2b974446ee27"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-832e497ccbaf"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-71ac47fb2055"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-43bba4a08ee6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-71ac47fb2055"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

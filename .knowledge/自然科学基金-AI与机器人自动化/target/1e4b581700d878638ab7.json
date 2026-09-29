@@ -1,0 +1,180 @@
+{
+  "doc_id": "1e4b581700d878638ab7",
+  "version": "2151d63e55714b701cf2",
+  "source_hash": "37c9a9c37f31b6b91a797cc0903f67166e518c2d5c6127330c823d132b39f01e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:11:19.655241+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dbb1790dc942",
+          "name": "空间站双臂机器人任务操作",
+          "desc": "面向空间站建设运营维护的双臂机器人辅助或代替航天员作业",
+          "evidence": [
+            {
+              "quote": "空间站作为人类探索太空的桥头堡，其建设、运营与维护任务复杂繁重，采用机器人辅助或代替航天员执行任务，已成为各航天大国的发展方向",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2901,
+                "end_char": 2963
+              },
+              "version": "2151d63e55714b701cf2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c2ffe19c4d69",
+          "name": "空间光照干扰与天地差异",
+          "desc": "空间复杂非均匀光照干扰目标特征，微重力强耦合与柔顺特性天地差异",
+          "evidence": [
+            {
+              "quote": "空间复杂非均匀光照会严重干扰目标特征信息，影响目标识别，重尾、轻尾等复杂的非高斯噪声，对目标的准确定位和追踪带来挑战；空间站内空间狭小，微重力环境导致机械臂各部件运动存在强耦合",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2982,
+                "end_char": 3069
+              },
+              "version": "2151d63e55714b701cf2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5957092c8b3f",
+          "name": "自适应图像增强与多尺度定位",
+          "desc": "强适应性图像增强、关键参数多尺度获取与非高斯噪声融合目标追踪",
+          "evidence": [
+            {
+              "quote": "研究提出具有强适应性的图像增强算法，实现目标图像本质特征信息增强；研究操作目标图像关键参数多尺度获取方法，基于特征点参数匹配实现操作目标的准确定位",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3224,
+                "end_char": 3296
+              },
+              "version": "2151d63e55714b701cf2"
+            }
+          ]
+        },
+        {
+          "id": "item-e8132583a47b",
+          "name": "分层二次规划避障控制",
+          "desc": "双层二次规划实现轨迹跟踪、避障与物理约束，规定性能控制保障跟踪性能",
+          "evidence": [
+            {
+              "quote": "研究提出一种基于分层二次规划规定性能控制的机器人避障控制策略。第一层二次规划用于实现轨迹跟踪、避障和物理约束；第二层二次规划用于引导避障方向，产生更平滑的规划路径",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3368,
+                "end_char": 3448
+              },
+              "version": "2151d63e55714b701cf2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ae0bde2be376",
+          "name": "拟人化柔顺操作",
+          "desc": "刚度椭球实时调节与等效阻抗参数自适应学习，实现空间机器人拟人化柔顺操作",
+          "evidence": [
+            {
+              "quote": "基于性能评价函数对等效阻抗模型的刚度阻尼参数进行自适应学习，实现空间机器人拟人化柔顺操作。为空间机器人辅助或替代航天员开展空间任务操作提供技术基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3612,
+                "end_char": 3684
+              },
+              "version": "2151d63e55714b701cf2"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-dbb1790dc942"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c2ffe19c4d69"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c2ffe19c4d69"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5957092c8b3f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c2ffe19c4d69"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e8132583a47b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e8132583a47b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ae0bde2be376"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5957092c8b3f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ae0bde2be376"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

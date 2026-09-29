@@ -1,0 +1,180 @@
+{
+  "doc_id": "6fe7572d993a73c1128d",
+  "version": "73e8ba654cdbeaf80f49",
+  "source_hash": "1bee5c326e33f6192870140042c91514b03b062299c533634b163381b0f6e7bf",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:08:00.349696+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6d1ed6d34bb4",
+          "name": "煤矿井下煤矸石分拣",
+          "desc": "矸石不升井、拣矸不用人，井下多机械臂协同智能分拣",
+          "evidence": [
+            {
+              "quote": "本项目提出了“矸石不升井，拣矸不用人”的新理念，针对煤矿井下皮带输送速度快，煤矸石被煤泥严重包裹、大小不一、随机分布等特点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2722,
+                "end_char": 2782
+              },
+              "version": "73e8ba654cdbeaf80f49"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ccafda7bf908",
+          "name": "煤泥包裹识别与抓取难",
+          "desc": "煤矸石被煤泥严重包裹导致识别和抓取特征提取困难",
+          "evidence": [
+            {
+              "quote": "深入研究了煤矸石被煤泥严重包裹导致识别和抓取特征提取问题，提出了“X射线+视觉”煤矸石识别与抓取特征提取方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2849,
+                "end_char": 2902
+              },
+              "version": "73e8ba654cdbeaf80f49"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ae864ef359c5",
+          "name": "X射线+视觉抓取特征提取",
+          "desc": "X射线识别煤矸石并融合视觉点云图像得到最优抓取立方体",
+          "evidence": [
+            {
+              "quote": "该方法利用X射线识别煤矸石，并融合视觉点云图像得到最优抓取立方体，实现煤矸石抓取特征提取",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2904,
+                "end_char": 2947
+              },
+              "version": "73e8ba654cdbeaf80f49"
+            }
+          ]
+        },
+        {
+          "id": "item-885fc3d7fb4d",
+          "name": "免疫机理多机械臂协同",
+          "desc": "基于免疫机理的动态工作空间多机械臂协同控制与改进匈牙利算法任务分配",
+          "evidence": [
+            {
+              "quote": "提出了基于改进匈牙利算法的多机械臂多任务分配方法，保证了任务分配的合理性和高效性；提出了基于免疫机理的动态工作空间多机械臂协同控制方法，实现了多机械臂智能协同控制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3298,
+                "end_char": 3378
+              },
+              "version": "73e8ba654cdbeaf80f49"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4d5a5f23be28",
+          "name": "井下双机械臂分拣系统",
+          "desc": "集识别、跟踪、抓取和协同分拣于一体，识别率98%、拣取率98%、误拣率1%",
+          "evidence": [
+            {
+              "quote": "开发了集煤矸石准确识别、精准跟踪、可靠抓取和智能协同分拣于一体的井下双机械臂煤矸石分拣机器人系统，煤矸石识别率为98%，煤矸石拣取率为98%，误拣率为1%，机械手可拣选最大重量为40kg，粒度级为50-300mm",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3440,
+                "end_char": 3545
+              },
+              "version": "73e8ba654cdbeaf80f49"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6d1ed6d34bb4"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ccafda7bf908"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ccafda7bf908"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ae864ef359c5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ccafda7bf908"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-885fc3d7fb4d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ae864ef359c5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4d5a5f23be28"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-885fc3d7fb4d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4d5a5f23be28"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "doc_id": "a87bbb7c1dd6fc3c463d",
+  "version": "cd63875fef479988e465",
+  "source_hash": "a1b93f88db007cbae1c18ce3c923e3aae914180cd9cd083b7e74598b4a01e02d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:04.908512+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-917fd01c06ea",
+          "name": "医学影像可解释性建模",
+          "desc": "面向智慧精准医疗，在深度学习框架下从特征计算与模型分析两个层面提升医学影像分析的可解释性。",
+          "evidence": [
+            {
+              "quote": "随着智慧精准医疗的纵深推进，智能分析的结果已不再是唯一的关注点，分析过程与结果的可解释性越来越受到重视",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 645,
+                "end_char": 695
+              },
+              "version": "cd63875fef479988e465"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6aa7c02a9b7b",
+          "name": "多模不平衡小样本下模型可解释性不足",
+          "desc": "多模、不平衡、小样本的医学影像数据使深度学习模型结果难以理解，可解释性成为智慧精准医疗的核心诉求。",
+          "evidence": [
+            {
+              "quote": "本课题针对多模、不平衡、小样本下的医学影像数据，从特征计算可解释性到模型分析可解释性两个层面出发",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 697,
+                "end_char": 744
+              },
+              "version": "cd63875fef479988e465"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e34eca355552",
+          "name": "融合循证医疗知识的知识图谱与可解释深度建模",
+          "desc": "引入循证医疗知识研究特征图谱构建（特征实体选择、特征关系建模），结合临床风险约束的配准建模、注意力与路由融合分割网络，以及知识指导下的对抗生成迁移网络。",
+          "evidence": [
+            {
+              "quote": "在各类特征学习基础上，引入循证医疗知识，研究特征图谱构建，如特征实体的选择机制、特征关系建模等",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 790,
+                "end_char": 836
+              },
+              "version": "cd63875fef479988e465"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c09cd5d3b42e",
+          "name": "眼科图像分割配准与分析达SOTA",
+          "desc": "开展知识图谱抽取、链接及推理补全研究，并将事前模型可解释、事中特征可解释、事后可视化可解释的一系列模型应用于眼科图像分割、配准与分析，效果达到SOTA水平。",
+          "evidence": [
+            {
+              "quote": "并将模型在眼科图像的分割、配准及分析等任务中开展落地应用，效果达到SOTA水平",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3151,
+                "end_char": 3189
+              },
+              "version": "cd63875fef479988e465"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-917fd01c06ea"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6aa7c02a9b7b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6aa7c02a9b7b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e34eca355552"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e34eca355552"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c09cd5d3b42e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

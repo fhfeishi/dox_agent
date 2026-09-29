@@ -1,0 +1,208 @@
+{
+  "doc_id": "a1703cc638559da2a7eb",
+  "version": "63e4bbbadf042bab6b13",
+  "source_hash": "0c78533531d61e5226baf1cc9d82140ceb40de191468f341f5111ca6afbc6a04",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:56.948685+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-349cfcfde86c",
+          "name": "城轨列车无人驾驶前向感知",
+          "desc": "高精度前向环境感知技术可提前感知前向障碍物，支撑应急决策、优化控制及动态调度",
+          "evidence": [
+            {
+              "quote": "作为城轨列车无人驾驶系统的核心功能之一，高精度前向环境感知技术可提前感知前向障碍物，有效支撑应急决策、优化控制及动态调度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2903,
+                "end_char": 2962
+              },
+              "version": "63e4bbbadf042bab6b13"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6e1e0021ca1f",
+          "name": "高相似环境定位难",
+          "desc": "城轨列车行驶线路固定，需实现隧道等高相似环境下的高精度定位",
+          "evidence": [
+            {
+              "quote": "首先需要实现隧道等高相似环境下的高精度定位，为感知提供位置先验信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2995,
+                "end_char": 3027
+              },
+              "version": "63e4bbbadf042bab6b13"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2e4c87e90f3c",
+          "name": "视觉回环与毫米波里程计融合定位",
+          "desc": "基于全局特征与局部特征的回环检测，融合毫米波里程计实现自主定位",
+          "evidence": [
+            {
+              "quote": "提出视觉回环检测与毫米波里程计融合的自主定位架构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3198,
+                "end_char": 3221
+              },
+              "version": "63e4bbbadf042bab6b13"
+            }
+          ]
+        },
+        {
+          "id": "item-0c695a5e0f98",
+          "name": "视觉与点云轨道识别融合",
+          "desc": "视觉语义分割与点云分割结果融合，实现轨道区域高精度识别",
+          "evidence": [
+            {
+              "quote": "将视觉的轨道识别结果与点云的轨道识别结果进行融合，实现列车对运行线路中轨道区域的高精度识别",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3295,
+                "end_char": 3339
+              },
+              "version": "63e4bbbadf042bab6b13"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-afea2c25e8a2",
+          "name": "多条地铁线路部署应用",
+          "desc": "智能感知算法已在香港地铁荃湾线、北京地铁多条线路部署",
+          "evidence": [
+            {
+              "quote": "项目开发的城轨列车智能感知算法已在香港地铁荃湾线、北京地铁3号线、12号线、15号线、17号线等多条地铁线路中进行部署与应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3534,
+                "end_char": 3595
+              },
+              "version": "63e4bbbadf042bab6b13"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-7305469d9eeb",
+          "name": "论文与发明专利",
+          "desc": "发表学术论文10篇（含7篇TOP），申请发明专利4项",
+          "evidence": [
+            {
+              "quote": "相关研究内容已发表学术论文10篇，其中包含七篇TOP论文，申请发明专利4项，基金申请人获得省部级科研奖励2项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3613,
+                "end_char": 3666
+              },
+              "version": "63e4bbbadf042bab6b13"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-349cfcfde86c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6e1e0021ca1f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6e1e0021ca1f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2e4c87e90f3c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2e4c87e90f3c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-afea2c25e8a2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-349cfcfde86c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0c695a5e0f98"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0c695a5e0f98"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-afea2c25e8a2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-349cfcfde86c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7305469d9eeb"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

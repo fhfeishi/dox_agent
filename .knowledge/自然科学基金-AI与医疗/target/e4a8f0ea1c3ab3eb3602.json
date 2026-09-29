@@ -1,0 +1,202 @@
+{
+  "doc_id": "e4a8f0ea1c3ab3eb3602",
+  "version": "5cbd109b4fe91e26d654",
+  "source_hash": "c09bfa8e64141553c58bfcdc33780c762025202cbe8435b691e40e861f7e9361",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:21:31.998791+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-82fdc27ac369",
+          "name": "表皮肿瘤病理良恶性识别",
+          "desc": "四种高发表皮肿瘤发病部位与临床特点相近，易混淆误诊，需组织病理检查识别良恶性。",
+          "evidence": [
+            {
+              "quote": "需要组织病理检查进行良恶性识别和恶性程度分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 768,
+                "end_char": 789
+              },
+              "version": "5cbd109b4fe91e26d654"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0b8618921ebc",
+          "name": "皮肤病理缺乏标准化诊断方法",
+          "desc": "皮肤病理强调模式识别，国内外尚未形成数字化、标准化且一致性高的诊断方法。",
+          "evidence": [
+            {
+              "quote": "在国内外均未形成数字化、标准化、且一致性高的数字病理诊断方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 803,
+                "end_char": 832
+              },
+              "version": "5cbd109b4fe91e26d654"
+            }
+          ]
+        },
+        {
+          "id": "item-4c18b8ee9373",
+          "name": "皮肤病理医生稀缺",
+          "desc": "国内皮肤病理医生数量不足，制约诊断效率。",
+          "evidence": [
+            {
+              "quote": "另外我国皮肤病理医生稀缺",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 834,
+                "end_char": 845
+              },
+              "version": "5cbd109b4fe91e26d654"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7172f453cf10",
+          "name": "细胞核细粒度分割框架MSA-SAM",
+          "desc": "开发专门用于细胞核分割的MSA-SAM高效微调框架，实现细粒度特征提取。",
+          "evidence": [
+            {
+              "quote": "我们开发了细胞核细粒度特征分割方法—MSA-SAM，这是一种专门用于细胞核分割的高效微调框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3218,
+                "end_char": 3263
+              },
+              "version": "5cbd109b4fe91e26d654"
+            }
+          ]
+        },
+        {
+          "id": "item-5ceceff0be05",
+          "name": "多实例良恶性智能识别方法",
+          "desc": "结合结构型式分析法，构建基于多实例方法的表皮肿瘤良恶性智能识别方法。",
+          "evidence": [
+            {
+              "quote": "构建了基于多实例方法的表皮肿瘤良恶性智能识别方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3367,
+                "end_char": 3390
+              },
+              "version": "5cbd109b4fe91e26d654"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4102be30cc8e",
+          "name": "表皮肿瘤病理图像数据集",
+          "desc": "由多位不同年资病理医生筛选、扫描与精细标注，建立四种高发良恶性表皮肿瘤皮肤病理图像数据集。",
+          "evidence": [
+            {
+              "quote": "建立了这四种高发的良恶性表皮肿瘤皮肤病理图像数据集",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3160,
+                "end_char": 3184
+              },
+              "version": "5cbd109b4fe91e26d654"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-db1fb018fa7b",
+          "name": "MSA-SAM 分割指标领先",
+          "desc": "仅微调少量参数即在多个评估指标上取得领先性能，验证相对现有方法的有效性。",
+          "evidence": [
+            {
+              "quote": "实现了在仅微调少量参数的情况下，在多个评估指标上均取得了领先性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3265,
+                "end_char": 3296
+              },
+              "version": "5cbd109b4fe91e26d654"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-82fdc27ac369"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0b8618921ebc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0b8618921ebc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7172f453cf10"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7172f453cf10"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-db1fb018fa7b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5ceceff0be05"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4102be30cc8e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

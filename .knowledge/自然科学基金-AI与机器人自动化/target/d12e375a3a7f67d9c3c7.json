@@ -1,0 +1,180 @@
+{
+  "doc_id": "d12e375a3a7f67d9c3c7",
+  "version": "03cb0280f65dc3a90072",
+  "source_hash": "57c0cad4b40383a479d205f538861e9768e2b12ffca7d0a3b378e7830c7be621",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:48:15.173413+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e57e3858ac25",
+          "name": "ICF微靶机器人微装配",
+          "desc": "以ICF微靶装配为应用原型的微零件机器人装配",
+          "evidence": [
+            {
+              "quote": "针对微零件机器人装配效率和成品率较低的问题，本项目将人工智能相关理论引入微装配机器人领域，以ICF微靶装配为应用原型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 657,
+                "end_char": 714
+              },
+              "version": "03cb0280f65dc3a90072"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-476be2ea3b6a",
+          "name": "微装配感知测量与自适应控制",
+          "desc": "机器人微装配中的感知测量和自适应控制两大科学问题",
+          "evidence": [
+            {
+              "quote": "围绕机器人微装配中的感知测量和自适应控制两大科学问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 716,
+                "end_char": 741
+              },
+              "version": "03cb0280f65dc3a90072"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-17fb86ccb7b9",
+          "name": "显微视觉识别与位姿测量",
+          "desc": "显微视觉场景下微零件的快速识别和位姿测量方法",
+          "evidence": [
+            {
+              "quote": "深入研究跨尺度微零件的快速识别定位与位姿测量、基于演示示教的机器人装配技能模仿学习、微装配机器人自适应控制与优化等关键技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 743,
+                "end_char": 803
+              },
+              "version": "03cb0280f65dc3a90072"
+            }
+          ]
+        },
+        {
+          "id": "item-7d78685771e2",
+          "name": "示教技能模仿学习",
+          "desc": "基于演示示教的机器人装配技能描述与重构方法",
+          "evidence": [
+            {
+              "quote": "提出显微视觉场景下微零件的快速识别和微装配机器人示教技能的描述与重构方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 805,
+                "end_char": 840
+              },
+              "version": "03cb0280f65dc3a90072"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-07d0178383a2",
+          "name": "装配效率与成品率提升",
+          "desc": "结题摘要与立项摘要一致，未给出量化成果，预期提升微零件装配效率和成品率",
+          "evidence": [
+            {
+              "quote": "本项目的成功实施将有效地提升微零件的机器人装配效率和成品率，同时也为智能机器人应用提供新理论和新方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 870,
+                "end_char": 920
+              },
+              "version": "03cb0280f65dc3a90072"
+            }
+          ],
+          "status": "原文未明确"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e57e3858ac25"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-476be2ea3b6a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-476be2ea3b6a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-17fb86ccb7b9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-476be2ea3b6a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7d78685771e2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-17fb86ccb7b9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-07d0178383a2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7d78685771e2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-07d0178383a2"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

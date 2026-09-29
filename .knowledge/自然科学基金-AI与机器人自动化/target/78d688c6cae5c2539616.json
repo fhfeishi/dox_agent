@@ -1,0 +1,180 @@
+{
+  "doc_id": "78d688c6cae5c2539616",
+  "version": "a7a10169aaeda9d293e4",
+  "source_hash": "a4e825ef0aa47e2b065229530a40f26336519cee50fe434f81d39812893c62e2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:19:59.321636+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-74976711fb4d",
+          "name": "小行星探测器运动控制",
+          "desc": "小行星复杂引力场下探测器的轨道设计与控制",
+          "evidence": [
+            {
+              "quote": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下研究成果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2748,
+                "end_char": 2811
+              },
+              "version": "a7a10169aaeda9d293e4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-637596cbd278",
+          "name": "引力场复杂不规则",
+          "desc": "引力场复杂不规则且多摄动力，动力学环境复杂",
+          "evidence": [
+            {
+              "quote": "首先，小行星附近引力场复杂而不规则，同时受到太阳光压等多种摄动力影响，动力学环境十分复杂，因此，针对规则形状天体的开普勒轨道设计理论以及摄动理论不适用于小行星附近的轨道精确设计",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 702,
+                "end_char": 789
+              },
+              "version": "a7a10169aaeda9d293e4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e0fd109ffb40",
+          "name": "神经网络引力场拟合",
+          "desc": "拟合精度99.5%以上，计算效率提升三个数量级",
+          "evidence": [
+            {
+              "quote": "利用深度神经网络拟合小行星复杂引力场，通过对深度神经网络的训练和测试，引力场拟合精度达到了99.5%以上，计算效率相比同等精度的多面体模型提高了三个数量级。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2821,
+                "end_char": 2898
+              },
+              "version": "a7a10169aaeda9d293e4"
+            }
+          ]
+        },
+        {
+          "id": "item-9efa5a05df52",
+          "name": "双同伦最优控制求解",
+          "desc": "模型-性能指标双同伦快速求解燃料最优着陆",
+          "evidence": [
+            {
+              "quote": "针对小行星着陆燃料最优控制，提出了模型-性能指标双同伦快速求解小行星着陆燃料最优控制问题的方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2943,
+                "end_char": 2990
+              },
+              "version": "a7a10169aaeda9d293e4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e16f46aeb027",
+          "name": "着陆规划收敛率近100%",
+          "desc": "神经网络拟合协态使着陆轨迹快速规划收敛率接近100%",
+          "evidence": [
+            {
+              "quote": "采用神经网络拟合小行星着陆问题的协态，小行星着陆轨迹快速规划的求解收敛率接近100%.",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2899,
+                "end_char": 2941
+              },
+              "version": "a7a10169aaeda9d293e4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-74976711fb4d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-637596cbd278"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-637596cbd278"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e0fd109ffb40"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-637596cbd278"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9efa5a05df52"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e0fd109ffb40"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e16f46aeb027"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9efa5a05df52"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e16f46aeb027"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

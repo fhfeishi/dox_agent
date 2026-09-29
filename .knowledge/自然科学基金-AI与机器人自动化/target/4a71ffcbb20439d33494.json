@@ -1,0 +1,180 @@
+{
+  "doc_id": "4a71ffcbb20439d33494",
+  "version": "117222a45507b39539ba",
+  "source_hash": "4536d76f52958e616452d7187def194daa07ebc716d14d46de103db48e572b3e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:19:59.400999+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0670f1c3f4c8",
+          "name": "血管介入机器人主从操作",
+          "desc": "提高医师手术临场感与安全性的介入机器人主从控制",
+          "evidence": [
+            {
+              "quote": "医生操作血管介入手术机器人时缺乏有效的力/触觉反馈机制，可能会增加介入手术风险，同时由于无法应用传统介入手术的操作技巧，医生需要较长时间适应机器人操作，影响效率。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2782,
+                "end_char": 2862
+              },
+              "version": "117222a45507b39539ba"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9c07d43307ea",
+          "name": "力触觉反馈缺失",
+          "desc": "缺乏力/触觉反馈机制增加手术风险降低效率",
+          "evidence": [
+            {
+              "quote": "医生操作血管介入手术机器人时缺乏有效的力/触觉反馈机制，可能会增加介入手术风险",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2782,
+                "end_char": 2820
+              },
+              "version": "117222a45507b39539ba"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e71c50c99d7f",
+          "name": "磁流变主端操作器",
+          "desc": "再现轴向径向被动力触觉反馈解决固有惯性",
+          "evidence": [
+            {
+              "quote": "在此基础上结合磁流变液技术，再现了基于操作导管的轴向和径向被动力/触觉反馈，解决了基于传统电机驱动力反馈装置存在固有惯性的问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2909,
+                "end_char": 2972
+              },
+              "version": "117222a45507b39539ba"
+            }
+          ]
+        },
+        {
+          "id": "item-26992318c41b",
+          "name": "电流-阻力关系建模",
+          "desc": "无外加力觉传感器实现递送阻力实时检测",
+          "evidence": [
+            {
+              "quote": "构建了基于驱动电机的电流与递送阻力关系数学模型，在无外加力觉传感器的情况下，实现了导管递送阻力的实时检测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3024,
+                "end_char": 3076
+              },
+              "version": "117222a45507b39539ba"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a7a451f60bbb",
+          "name": "仿人管脉系统验证",
+          "desc": "高度还原人体血管环境验证系统与策略可行性",
+          "evidence": [
+            {
+              "quote": "通过利用仿人管脉系统模型高度还原的人体血管环境，验证了所设计开发的血管介入手术机器人系统和所提控制策略的可行性和有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3327,
+                "end_char": 3386
+              },
+              "version": "117222a45507b39539ba"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0670f1c3f4c8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9c07d43307ea"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9c07d43307ea"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e71c50c99d7f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9c07d43307ea"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-26992318c41b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e71c50c99d7f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a7a451f60bbb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-26992318c41b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a7a451f60bbb"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

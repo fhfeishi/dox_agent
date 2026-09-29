@@ -1,0 +1,142 @@
+{
+  "doc_id": "b20c5d23d8f11a2d84be",
+  "version": "516421e3fbd012e89719",
+  "source_hash": "647f670e8d9f300e6952f0fa9dfeecc8c8689155fa9c0fd3ea2fe1e7ef9788b6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:49.166419+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b0badd0238ce",
+          "name": "ADHD多模态神经影像辅助诊断",
+          "desc": "面向注意缺陷多动障碍的客观诊断需求，基于EEG-MRI多模态特征构建深度学习辅助诊断模型。",
+          "evidence": [
+            {
+              "quote": "注意缺陷多动障碍（ADHD）是高发的儿童神经发育障碍性疾病，其社会影响大、疾病负担重",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 704
+              },
+              "version": "516421e3fbd012e89719"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cc61a2c94ca0",
+          "name": "异质性强致单一指标无法诊断",
+          "desc": "ADHD异质性强，单一指标并不能用于诊断，需要建立多维度指标体系并发展客观诊断方法。",
+          "evidence": [
+            {
+              "quote": "由于该病的异质性强，单一指标并不能用于诊断，因此需要建立多维度的指标体系，发展客观诊断方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 771,
+                "end_char": 815
+              },
+              "version": "516421e3fbd012e89719"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2906ae92e1c2",
+          "name": "深度学习整合EEG-MRI多模态特征诊断建模",
+          "desc": "整合EEG-MRI多模态影像特征及认知功能建立并优化ADHD深度学习诊断模型，解析不同类型患者各维度突出特征并探索不同表型ADHD划分标准。",
+          "evidence": [
+            {
+              "quote": "本项目拟将深度学习技术用于ADHD的辅助诊断，整合EEG-MRI多模态影像特征及认知功能，建立并优化ADHD深度学习诊断模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 817,
+                "end_char": 878
+              },
+              "version": "516421e3fbd012e89719"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d758964e3a69",
+          "name": "脑电熵值三频段分类准确率最高达94.7%",
+          "desc": "基于静息态脑电熵值在alpha、beta、gamma三频段分类准确率分别达91.3%、94.7%、90.7%；基于大尺度脑网络功率的卷积网络准确率90.3%；脑影像特征对药物响应者分类最高达94.23%。",
+          "evidence": [
+            {
+              "quote": "基于静息态脑电熵值，在alpha、beta和gamma三个频段的分类准确率分别达到了91.3%、94.7%和90.7%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2920,
+                "end_char": 2978
+              },
+              "version": "516421e3fbd012e89719"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b0badd0238ce"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-cc61a2c94ca0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cc61a2c94ca0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2906ae92e1c2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2906ae92e1c2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d758964e3a69"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

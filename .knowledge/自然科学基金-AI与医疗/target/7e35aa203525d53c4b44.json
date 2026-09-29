@@ -1,0 +1,142 @@
+{
+  "doc_id": "7e35aa203525d53c4b44",
+  "version": "d66ed2cfe44b331e7065",
+  "source_hash": "ee93f81f36ffdcdffbcaefa2b74ab7bfa434102dd1cb561a4a315576f47dcca8",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:36.155172+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b536499bbc9e",
+          "name": "激酶药物发现与多重药理学分析",
+          "desc": "面向激酶多靶标选择性药物设计，研发人工智能驱动的激酶谱建模与多药理学分析技术体系。",
+          "evidence": [
+            {
+              "quote": "激酶靶向药物仍面临同质化竞争、获得性耐药和毒副作用导致的研发失败",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 670,
+                "end_char": 701
+              },
+              "version": "d66ed2cfe44b331e7065"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2d4f66153514",
+          "name": "缺乏高精度多重药理学方法与易用筛选软件",
+          "desc": "激酶多靶标选择性药物设计缺乏高精度的系统性评价多重药理学的药物设计方法，也缺乏兼具可定制化和高易用性的激酶多靶标活性筛选软件。",
+          "evidence": [
+            {
+              "quote": "围绕激酶多靶标选择性药物设计中的两个关键问题，即缺乏高精度的系统性评价激酶多重药理学的药物设计方法，缺乏兼具可定制化和高易用性的激酶多靶标活性筛选软件",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 760,
+                "end_char": 834
+              },
+              "version": "d66ed2cfe44b331e7065"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7928705f87f3",
+          "name": "图神经网络激酶活性预测与元学习激酶谱分析平台",
+          "desc": "发展基于图神经网络的高可信度小分子激酶活性预测方法，构建基于元学习的大规模激酶谱分析流程，并搭建可定制化小分子激酶谱多重药理学预测分析云平台。",
+          "evidence": [
+            {
+              "quote": "发展基于图神经网络的高可信度小分子激酶活性预测方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 898,
+                "end_char": 922
+              },
+              "version": "d66ed2cfe44b331e7065"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-95044326b69c",
+          "name": "KinomeMETA覆盖661种激酶并支撑1.7万余次建模",
+          "desc": "搭建云计算驱动的定制化预测平台KinomeMETA，覆盖661种野生型及临床相关突变激酶，已支撑全球1.7万余次建模任务；暗激酶PKMYT1筛选Top20命中率较传统方法提升约3倍；发表论文15篇，申请专利2项、软著1项。",
+          "evidence": [
+            {
+              "quote": "并搭建了云计算驱动的定制化预测平台KinomeMETA，覆盖661种野生型及临床相关突变激酶",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2866,
+                "end_char": 2911
+              },
+              "version": "d66ed2cfe44b331e7065"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b536499bbc9e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2d4f66153514"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2d4f66153514"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7928705f87f3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7928705f87f3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-95044326b69c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

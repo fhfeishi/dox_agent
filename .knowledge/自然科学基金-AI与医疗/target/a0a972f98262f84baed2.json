@@ -1,0 +1,142 @@
+{
+  "doc_id": "a0a972f98262f84baed2",
+  "version": "50134e266aa86d7c6e4b",
+  "source_hash": "785da1a6e2cc32dec8ee31c413e3481dbfec81650efe0a283eeceedc3821bc1f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:33.513842+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a61e53090f1f",
+          "name": "代谢影像组学预测肺癌靶向耐药",
+          "desc": "面向肺癌靶向治疗，以代谢影像组学等多维数据构建智能预测模型以提升疗效评价精准性。",
+          "evidence": [
+            {
+              "quote": "分子靶向治疗已成为肺癌临床标准治疗的重要内容",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 654,
+                "end_char": 675
+              },
+              "version": "50134e266aa86d7c6e4b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dff70217b05a",
+          "name": "靶向药物疗效预测亟需及时无创精准",
+          "desc": "靶向治疗中及时、无创、便捷、精准地预测靶向药物疗效是亟需解决的关键问题。",
+          "evidence": [
+            {
+              "quote": "但及时、无创、便捷、精准地预测靶向药物疗效是亟需解决的关键问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 677,
+                "end_char": 707
+              },
+              "version": "50134e266aa86d7c6e4b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a40ea9c3d56f",
+          "name": "自编码器与深度迁移学习的代谢组学分析",
+          "desc": "基于自编码器模型和深度迁移学习框架，研究代谢影像组学数据互动的特征提取与分析方法、高通量数据比对与并行算法等关键技术。",
+          "evidence": [
+            {
+              "quote": "基于自编码器模型和深度迁移学习框架，研究基于代谢影像组学数据互动的特征提取和分析方法、高通量数据比对与并行算法等关键技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 935,
+                "end_char": 994
+              },
+              "version": "50134e266aa86d7c6e4b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9d3e3772597b",
+          "name": "开发肺癌靶向疗效动态量化分析系统",
+          "desc": "对高维复杂医学数据从影像分析、特征提取、组学比对、数据降维与机器学习系统研究，开发基于定量代谢影像组学及多组学的肺癌靶向疗效智能预测动态量化分析系统，并经多中心大样本临床验证。",
+          "evidence": [
+            {
+              "quote": "开发了基于定量代谢影像组学及多组学智能预测肺癌靶向治疗效果的动态量化分析系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2761,
+                "end_char": 2798
+              },
+              "version": "50134e266aa86d7c6e4b"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a61e53090f1f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-dff70217b05a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-dff70217b05a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a40ea9c3d56f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a40ea9c3d56f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9d3e3772597b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

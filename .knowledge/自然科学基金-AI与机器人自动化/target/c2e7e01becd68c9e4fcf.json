@@ -1,0 +1,197 @@
+{
+  "doc_id": "c2e7e01becd68c9e4fcf",
+  "version": "072fdb90c7cbbc1ce22b",
+  "source_hash": "e909c71a691b3d665965ce997b0937e08dfe01aa380b1e7d8f8325610b8b424c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T17:01:43.536052+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-85906ace518f",
+          "name": "电力运维机器人视觉伺服",
+          "desc": "电力运维、复杂制造及高风险作业中机器人精细操作与自主交互",
+          "evidence": [
+            {
+              "quote": "随着机器人在电力运维、复杂制造及高风险作业等领域的广泛应用，视觉伺服作为实现机器人精细操作与自主交互的关键技术，正面临不确定环境下性能与安全难以兼顾的挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2793,
+                "end_char": 2869
+              },
+              "version": "072fdb90c7cbbc1ce22b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5b452de90557",
+          "name": "不确定性环境多约束",
+          "desc": "未知深度、模型不确定、测量时延、多速率采样及视野与执行器约束",
+          "evidence": [
+            {
+              "quote": "实际应用中，视觉伺服系统普遍存在未知深度、模型不确定、测量时延、多速率采样以及视野与执行器约束等问题，传统方法难以在复杂动态环境中同时保证稳定性、安全性与实时性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2871,
+                "end_char": 2950
+              },
+              "version": "072fdb90c7cbbc1ce22b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-141df36977f4",
+          "name": "多速率变时域鲁棒MPC",
+          "desc": "变时域优化与逐次线性化降低在线求解复杂度，实现高精度与实时性统一",
+          "evidence": [
+            {
+              "quote": "提出了多速率变时域鲁棒模型预测控制方法，通过变时域优化与逐次线性化策略降低在线求解复杂度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3120,
+                "end_char": 3163
+              },
+              "version": "072fdb90c7cbbc1ce22b"
+            }
+          ]
+        },
+        {
+          "id": "item-e3c4d0336264",
+          "name": "控制障碍函数安全避障",
+          "desc": "安全机制与模型预测控制结合，实现复杂约束下的安全视觉伺服与动态避障",
+          "evidence": [
+            {
+              "quote": "项目将控制障碍函数等安全机制与模型预测控制相结合，实现了复杂约束条件下的安全视觉伺服与动态避障控制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3231,
+                "end_char": 3279
+              },
+              "version": "072fdb90c7cbbc1ce22b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-946cb68c79a6",
+          "name": "机器人系统实验验证",
+          "desc": "动态目标、扰动及障碍条件下轨迹跟踪精度、响应速度和安全性显著优于传统方法",
+          "evidence": [
+            {
+              "quote": "实验结果表明，在动态目标、外部扰动及障碍干扰条件下，所提出方法在轨迹跟踪精度、响应速度和安全性方面均显著优于传统视觉伺服策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3346,
+                "end_char": 3407
+              },
+              "version": "072fdb90c7cbbc1ce22b"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-409b30450790",
+          "name": "论文专利与成果转化",
+          "desc": "发表SCI论文9篇等，授权发明专利2项，成果转化经费55万元",
+          "evidence": [
+            {
+              "quote": "项目执行期间共发表 SCI 论文9篇、EI 期刊论文2篇、EI 会议论文4篇，授权发明专利2项、受理发明专利3项，实现成果转化经费55万元",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3409,
+                "end_char": 3477
+              },
+              "version": "072fdb90c7cbbc1ce22b"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-85906ace518f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5b452de90557"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5b452de90557"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-141df36977f4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5b452de90557"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e3c4d0336264"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-141df36977f4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-946cb68c79a6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e3c4d0336264"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-409b30450790"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

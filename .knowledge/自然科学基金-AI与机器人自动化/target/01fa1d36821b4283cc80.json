@@ -1,0 +1,180 @@
+{
+  "doc_id": "01fa1d36821b4283cc80",
+  "version": "a601bcabbea76b8cfd41",
+  "source_hash": "668bd678fdeed0ebde4c5686f5353419f4c31c90d5debdbfa3cee46f53113adb",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:25.227424+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-56523664c7e8",
+          "name": "外骨骼助行脑机接口",
+          "desc": "助老助残场景下行走与步态调整意图的fNIRS解码",
+          "evidence": [
+            {
+              "quote": "面向助老助残的社会需求，迫切需要助力助行机器人充分调动患者自主控制运动的能力，其中自发运动意图的动态识别是要解决的关键问题之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 664,
+                "end_char": 727
+              },
+              "version": "a601bcabbea76b8cfd41"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0b98d232673b",
+          "name": "意图识别连续实时性挑战",
+          "desc": "下肢运动意图识别面临真实场景连续性与实时性挑战",
+          "evidence": [
+            {
+              "quote": "然而，下肢运动意图识别仍然面临着真实运动场景应用的连续性和实时性挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 728,
+                "end_char": 762
+              },
+              "version": "a601bcabbea76b8cfd41"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-16d73bee23c5",
+          "name": "AdaBoost行走意图识别",
+          "desc": "TKE算子与脑网络特征平均超前0.506秒识别",
+          "evidence": [
+            {
+              "quote": "基于大脑血氧的TKE算子和脑网络属性特征，应用AdaBoostClassifier算法建立行走意图识别模型，平均超前0.506秒可识别行走意图，准确率可达96.875%。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3250,
+                "end_char": 3334
+              },
+              "version": "a601bcabbea76b8cfd41"
+            }
+          ]
+        },
+        {
+          "id": "item-bb19a89f2284",
+          "name": "Bi-LSTM步态参数拟合",
+          "desc": "注意力机制与Bi-LSTM建立膝关节角度与步频拟合",
+          "evidence": [
+            {
+              "quote": "通过采用LassoCV算法筛选特征，基于注意力机制与Bi-LSTM算法建立膝关节角度与步频参数拟合模型。膝关节角度和步频拟合的平均绝对百分比误差（MAPE）分别为2.54%和2.88%。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3499,
+                "end_char": 3591
+              },
+              "version": "a601bcabbea76b8cfd41"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9aeb805247b0",
+          "name": "外骨骼实时通信延时150ms",
+          "desc": "REX平台UDP实时传输解码指令延时控制在150ms以内",
+          "evidence": [
+            {
+              "quote": "搭建REX下肢外骨骼助行系统平台，通过UDP通讯方式实时传输脑血氧解码的行走运动指令，延时可以控制在150ms以内",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3596,
+                "end_char": 3652
+              },
+              "version": "a601bcabbea76b8cfd41"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-56523664c7e8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0b98d232673b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0b98d232673b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-16d73bee23c5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0b98d232673b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bb19a89f2284"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-16d73bee23c5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9aeb805247b0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bb19a89f2284"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9aeb805247b0"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

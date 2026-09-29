@@ -1,0 +1,142 @@
+{
+  "doc_id": "381914f4920740ac9c6f",
+  "version": "5d151bef399cf0cef18a",
+  "source_hash": "428ec8624833bb77e86181e1b2b934d41bb09317aaecd135bf76f8f8ff88d42b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:49.151938+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c43fcea1cadc",
+          "name": "肝细胞癌分子影像学早期诊断",
+          "desc": "面向肝细胞癌早期诊治，构建靶向肿瘤微环境的MRI-荧光双增强分子影像探针实现早诊早治。",
+          "evidence": [
+            {
+              "quote": "肝细胞癌(HCC)具有发病隐匿、进展迅速、恶性程度高、死亡率高的特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 695,
+                "end_char": 728
+              },
+              "version": "5d151bef399cf0cef18a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f0d6a3115ab4",
+          "name": "HCC癌变早期缺乏分子影像学诊断方法",
+          "desc": "若能在癌变早期建立分子影像学诊断方法，可为患者争取更早的治疗时间，对HCC治疗与预后具有重要意义。",
+          "evidence": [
+            {
+              "quote": "若能够在癌变早期建立分子影像学诊断方法，为患者争取更早的治疗时间，对HCC治疗与预后具有重要意义",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 730,
+                "end_char": 777
+              },
+              "version": "5d151bef399cf0cef18a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ce9dd2be6c94",
+          "name": "酶响应型自组装MRI-荧光双增强探针",
+          "desc": "构建肝癌微环境响应的自组装MRI-荧光双增强探针，兼具GPC-3抗体靶向、MMP-9酶切诱导自组装增强MRI效应与酶切响应荧光成像功能。",
+          "evidence": [
+            {
+              "quote": "本项目拟构建肝癌微环境响应的自组装MRI-荧光双增强探针",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 779,
+                "end_char": 806
+              },
+              "version": "5d151bef399cf0cef18a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ee77c4a1ea31",
+          "name": "制备MMP-9酶切响应磁共振-荧光双模探针",
+          "desc": "以肝癌微环境高表达的MMP-9为响应靶点制备酶切响应型多肽自组装双模成像增强探针，在不同转移能力的人肝癌细胞及动物模型上验证特异性与灵敏度；发表SCI论文18篇，申请发明专利12项（授权2项）。",
+          "evidence": [
+            {
+              "quote": "以肝癌微环境特异性高表达的基质金属蛋白酶-9(MMP-9)为响应靶点，制备出酶切响应型多肽自组装诱导的磁共振-荧光双模成像增强探针",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3259,
+                "end_char": 3323
+              },
+              "version": "5d151bef399cf0cef18a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c43fcea1cadc"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f0d6a3115ab4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f0d6a3115ab4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ce9dd2be6c94"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ce9dd2be6c94"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ee77c4a1ea31"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

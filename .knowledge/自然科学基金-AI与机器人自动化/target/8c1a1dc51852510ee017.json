@@ -1,0 +1,142 @@
+{
+  "doc_id": "8c1a1dc51852510ee017",
+  "version": "b4de33f82b3124038517",
+  "source_hash": "62136c1e5b696bfb41ae68ef36d9e70d3ffa384e8ab2cec4a1cb48e9fc332645",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:52:47.523268+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5ac9e3b1e6bb",
+          "name": "空间非合作目标在轨服务",
+          "desc": "故障卫星、失效航天器及轨道垃圾的接近观测与3D建模",
+          "evidence": [
+            {
+              "quote": "对故障卫星、失效航天器及轨道垃圾等空间非合作目标的在轨服务需求变得越来越迫切。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 719,
+                "end_char": 757
+              },
+              "version": "b4de33f82b3124038517"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f1101e0ed00c",
+          "name": "非合作目标动态性与环境剧变",
+          "desc": "高动态性、大实体性和空间环境剧烈变化制约接近观测和3D建模",
+          "evidence": [
+            {
+              "quote": "而非合作目标的高动态性、大实体性和空间环境剧烈变化成为制约接近观测和3D建模发展的重要瓶颈。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 788,
+                "end_char": 833
+              },
+              "version": "b4de33f82b3124038517"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7e4afb0908c4",
+          "name": "避障接近观测多任务协同规划",
+          "desc": "快速避障和接近观测多任务协同三维运动规划",
+          "evidence": [
+            {
+              "quote": "重点围绕空间非合作目标的快速避障和接近观测多任务协同三维运动规划、局部观测的激光和图像多点云融合高效3D建模和非合作目标的绕飞观测与3D建模全流程闭环演示三方面开展深入研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 859,
+                "end_char": 944
+              },
+              "version": "b4de33f82b3124038517"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ff3d5494f037",
+          "name": "运动规划与3D建模基础理论",
+          "desc": "结题摘要与立项摘要一致，未给出量化成果，预期突破传统方法性能限制",
+          "evidence": [
+            {
+              "quote": "突破传统运动规划和3D建模方法性能受目标特性和空间环境剧烈变化的限制，为空间非合作目标在轨接近观测和3D建模的实现提供基础理论和关键技术支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 946,
+                "end_char": 1016
+              },
+              "version": "b4de33f82b3124038517"
+            }
+          ],
+          "status": "原文未明确"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5ac9e3b1e6bb"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f1101e0ed00c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f1101e0ed00c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7e4afb0908c4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7e4afb0908c4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ff3d5494f037"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "doc_id": "36faa3bced589e2f1754",
+  "version": "46ae3c10545e1701ae2c",
+  "source_hash": "79668c6e5125c8aa98d7b563461cf641283741b671d3385620c4753f65a1fea1",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:18.095589+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-75a72cf5c0b8",
+          "name": "复杂交通无人车运动控制",
+          "desc": "动态障碍物驾驶行为预测与无人车运动规划",
+          "evidence": [
+            {
+              "quote": "动态障碍物驾驶行为预测与无人车运动规划是实现完全自动驾驶的核心模块。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2864,
+                "end_char": 2897
+              },
+              "version": "46ae3c10545e1701ae2c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5da4f85d995b",
+          "name": "预测规划兼顾安全效率难",
+          "desc": "交通场景多样、多智能体博弈与行为不确定性带来挑战",
+          "evidence": [
+            {
+              "quote": "受交通场景多样性、多智能体动态博弈以及交通参与者行为不确定性等因素影响，兼顾安全与效率的驾驶行为预测和运动规划比特定环境下的移动机器人系统更富有挑战性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 692,
+                "end_char": 767
+              },
+              "version": "46ae3c10545e1701ae2c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3295276e0925",
+          "name": "图卷积轨迹预测",
+          "desc": "单目3D检测与融合周围信息的图卷积网络实时轨迹预测",
+          "evidence": [
+            {
+              "quote": "提出了融合周围信息的图卷积网络，实现了动态目标实时轨迹预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3063,
+                "end_char": 3091
+              },
+              "version": "46ae3c10545e1701ae2c"
+            }
+          ]
+        },
+        {
+          "id": "item-043a7b0119f5",
+          "name": "轮廓控制集成规划",
+          "desc": "纵向侧向运动集成规划一体化与显式求解器代码生成",
+          "evidence": [
+            {
+              "quote": "提出了基于轮廓控制的车辆纵向/侧向运动集成规划一体化方法，实现了优化问题显式求解器的自动代码生成，提升了车辆规划与控制的实时性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3200,
+                "end_char": 3262
+              },
+              "version": "46ae3c10545e1701ae2c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-283e9c6f39cc",
+          "name": "侧向误差小于0.5m",
+          "desc": "3s预测时长下侧向轨迹预测误差小于0.5m，实车求解时间小于20ms",
+          "evidence": [
+            {
+              "quote": "项目所提出的方法能够实现在3s预测时长要求下，侧向轨迹预测误差小于0.5m",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3126,
+                "end_char": 3162
+              },
+              "version": "46ae3c10545e1701ae2c"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-afc1928b143f",
+          "name": "论文10篇与专著",
+          "desc": "SCI 4篇、EI 6篇，学术专著1部，培养研究生6人",
+          "evidence": [
+            {
+              "quote": "相继在Journal of Mechanical Science and Technology、兵工学报等领域高水平期刊上发表SCI论文4篇，EI论文6篇，出版学术专著1部。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3458,
+                "end_char": 3544
+              },
+              "version": "46ae3c10545e1701ae2c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-75a72cf5c0b8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5da4f85d995b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5da4f85d995b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3295276e0925"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5da4f85d995b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-043a7b0119f5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3295276e0925"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-283e9c6f39cc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-043a7b0119f5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-afc1928b143f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

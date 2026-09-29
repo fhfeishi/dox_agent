@@ -1,0 +1,180 @@
+{
+  "doc_id": "8f342844130855dc0394",
+  "version": "fec33b4653b1c961f8d5",
+  "source_hash": "f0e47be5b62e48c99e848b68d29b44f6ca928b7920cccc6badecacbb7fc4f60e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:36.689863+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b7a5d573432a",
+          "name": "推力矢量无人机接触作业",
+          "desc": "全向运动推力矢量多旋翼无人机的接触式作业",
+          "evidence": [
+            {
+              "quote": "该项目围绕推力矢量多旋翼无人机的运动控制、控制分配和接触力控制方法展开研究，旨在推动全向运动推力矢量多旋翼无人机在接触式作业中的应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3011,
+                "end_char": 3077
+              },
+              "version": "fec33b4653b1c961f8d5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-347be073ce43",
+          "name": "耦合效应与多源扰动",
+          "desc": "平转动耦合、科氏力不确定、动态极限及多源扰动影响交互品质",
+          "evidence": [
+            {
+              "quote": "然而，其作业过程中存在的平转动耦合效应、科氏力不确定性、执行机构动态极限及多源外界扰动影响了系统动态响应性能和主动交互品质。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 781,
+                "end_char": 842
+              },
+              "version": "fec33b4653b1c961f8d5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bc55b0bb9104",
+          "name": "对偶四元数一体化控制",
+          "desc": "六自由度跟踪机理与全局无奇异位姿耦合控制",
+          "evidence": [
+            {
+              "quote": "项目基于对偶四元数方法一体化建模无人机位姿运动，探索其六自由度跟踪控制机理，建立全局无奇异且唯一的位姿耦合控制算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 844,
+                "end_char": 900
+              },
+              "version": "fec33b4653b1c961f8d5"
+            }
+          ]
+        },
+        {
+          "id": "item-799f33fa629e",
+          "name": "闭环动态控制分配",
+          "desc": "动态寻优实现简洁计算实时反馈动态分配",
+          "evidence": [
+            {
+              "quote": "进而利用动态寻优方法探究闭环控制分配方案，实现简洁计算、实时反馈、动态分配的求解机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 902,
+                "end_char": 943
+              },
+              "version": "fec33b4653b1c961f8d5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4d171ce096ba",
+          "name": "样机与最佳论文奖",
+          "desc": "研制样机验证有效性，获IEEE ICUS最佳论文奖",
+          "evidence": [
+            {
+              "quote": "项目成功研制了全向运动推力矢量多旋翼无人机样机，并通过实验验证了所提出控制方法的有效性和优越性。项目成果包括发表SCI论文5篇、EI论文4篇，授权国家发明/实用新型专利4项，并获得IEEE International Conference on Unmanned Systems最佳论文奖。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3157,
+                "end_char": 3301
+              },
+              "version": "fec33b4653b1c961f8d5"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b7a5d573432a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-347be073ce43"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-347be073ce43"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bc55b0bb9104"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-347be073ce43"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-799f33fa629e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bc55b0bb9104"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4d171ce096ba"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-799f33fa629e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4d171ce096ba"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

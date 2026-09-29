@@ -1,0 +1,235 @@
+{
+  "doc_id": "1f2af59752fad16b28b5",
+  "version": "8ca0cc4d87bf3d9dfa21",
+  "source_hash": "d9ab44bd908ded263b22605a4fc9c63096b30f083349fb8a672c5b5892c96634",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:52:32.502812+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ca338da8eefc",
+          "name": "脑动静脉畸形破裂风险预测",
+          "desc": "破裂是导致脑动静脉畸形患者严重神经功能障碍甚至死亡的首要因素，精准评估破裂风险、筛查高危患者是亟待解决的重要问题。",
+          "evidence": [
+            {
+              "quote": "破裂是导致脑动静脉畸形（BAVM）患者严重神经功能障碍甚至死亡的首要因素，精准评估破裂风险、筛查高危患者是目前BAVM研究领域中亟待解决的重要问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 673,
+                "end_char": 745
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ]
+        },
+        {
+          "id": "item-af4372d4febf",
+          "name": "为个体化诊疗提供工具",
+          "desc": "构建可解释的BAVM破裂风险预测模型，为个体化诊疗提供工具，并为医工结合及AI技术在临床决策的应用提供典型实例。",
+          "evidence": [
+            {
+              "quote": "旨在通过定量血流动力学与人工智能技术，构建可解释的BAVM破裂风险预测模型，为个体化诊疗提供工具",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2832,
+                "end_char": 2879
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b753546525e6",
+          "name": "既往模型存在回顾性偏倚与变量维度少",
+          "desc": "既往传统预测模型多因回顾性/横断面设计而具有严重偏倚，加之纳入变量维度较少，导致预测效能较低。",
+          "evidence": [
+            {
+              "quote": "既往传统预测模型研究多因回顾性/横断面设计而具有严重偏倚，加之纳入变量维度较少，导致预测效能较低，难以支撑临床需求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 747,
+                "end_char": 803
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ]
+        },
+        {
+          "id": "item-8c9fe6c3da3a",
+          "name": "现有模型依赖形态学特征局限明显",
+          "desc": "现有预测模型多依赖人口学与血管构筑学特征，存在回顾性偏倚、变量维度少、预测效能低等局限。",
+          "evidence": [
+            {
+              "quote": "现有预测模型多依赖人口学与血管构筑学特征，存在回顾性偏倚、变量维度少、预测效能低等局限",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2760,
+                "end_char": 2802
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f4dc6f942b95",
+          "name": "定量血流动力学与机器学习融合",
+          "desc": "通过定量血流动力学与人工智能技术构建可解释的BAVM破裂风险预测模型，依托全国多中心MATCH队列开展研究。",
+          "evidence": [
+            {
+              "quote": "研究依托全国多中心MATCH队列，纳入2018-2021年未干预、经DSA确诊的857例BAVM患者",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2882,
+                "end_char": 2931
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ]
+        },
+        {
+          "id": "item-9fd798a1b776",
+          "name": "DSA-iFlow血流动力学参数提取",
+          "desc": "基于DSA-iFlow技术在ICA侧位图像勾画5个感兴趣区，提取63项血流动力学参数并经多重筛选确定10项核心参数。",
+          "evidence": [
+            {
+              "quote": "基于DSA-iFlow技术，在ICA侧位图像勾画5个感兴趣区，提取63项血流动力学参数，经单变量筛选（P<0.20）、多重共线性分析（VIF<10）及LASSO、Ridge、XGBoost特征排序，确定10项核心参数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2992,
+                "end_char": 3099
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-375f3b17e2a7",
+          "name": "857例多中心前瞻队列",
+          "desc": "纳入2018-2021年未干预、经DSA确诊的857例BAVM患者，分为训练集、外部验证集及纵向随访集。",
+          "evidence": [
+            {
+              "quote": "纳入2018-2021年未干预、经DSA确诊的857例BAVM患者，分为训练集（523例，含418例训练、105例内部验证）、外部验证集（140例）及纵向随访集（194例保守治疗患者）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2899,
+                "end_char": 2990
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e71ce7e65897",
+          "name": "XGBoost模型外部验证AUC 0.748",
+          "desc": "构建13种机器学习模型，XGBoost表现最优，训练集交叉验证AUC 0.754、内部验证0.750、外部验证0.748，SHAP分析明确N-Area为最关键预测参数。",
+          "evidence": [
+            {
+              "quote": "构建13种机器学习模型，XGBoost模型表现最优：训练集交叉验证AUC=0.754，内部验证集AUC=0.750，外部验证集AUC=0.748",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3139,
+                "end_char": 3210
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-4c22c801bb28",
+          "name": "高危组10年破裂率17.9%",
+          "desc": "纵向队列中模型将患者分为高/低危组，10年破裂率分别为17.9%、4.2%，可有效指导保守治疗决策。",
+          "evidence": [
+            {
+              "quote": "在纵向队列中，模型将患者分为高/低危组，10年破裂率分别为17.9%、4.2%（P=0.028，HR=0.33，95%CI：0.12-0.93），可有效指导保守治疗决策",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3250,
+                "end_char": 3333
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ca338da8eefc"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b753546525e6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b753546525e6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f4dc6f942b95"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f4dc6f942b95"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e71ce7e65897"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9fd798a1b776"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4c22c801bb28"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

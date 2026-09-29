@@ -1,0 +1,180 @@
+{
+  "doc_id": "18332936842fb6d18910",
+  "version": "c916ec358b8adf17711a",
+  "source_hash": "19532d9066b20d9448b9b2a16ad183e0fac193787c353983a634576094eee113",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:16:40.553786+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-980e115ddd6d",
+          "name": "Markov跳变系统分布式控制",
+          "desc": "通信、光伏能控系统和微电网等领域的Markov跳变系统应用",
+          "evidence": [
+            {
+              "quote": "MJSs因其随机性、不连续性和复杂动态特性，已成为系统与控制科学中的关键领域，且在通信、光伏能控系统和微电网等领域具有广泛的实际应用价值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3069,
+                "end_char": 3136
+              },
+              "version": "c916ec358b8adf17711a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b291dfbe6c45",
+          "name": "跳变参数与转移概率未知",
+          "desc": "系统参数跳变、通信拓扑跃迁转移概率未知给分布式协同控制带来挑战",
+          "evidence": [
+            {
+              "quote": "本项目的研究方向聚焦于跳变参数未知（包括动力学和转移概率）、网络环境下的拓扑跃迁、强化学习中的数据稀缺性及工程实现中的挑战，突破了MJSs在分布式控制框架下的理论与应用瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3138,
+                "end_char": 3223
+              },
+              "version": "c916ec358b8adf17711a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e3f948a4b70c",
+          "name": "时序差分与Q学习设计",
+          "desc": "时序差分法、Q学习、Actor-Critic学习网络实现分布式控制与一致性设计",
+          "evidence": [
+            {
+              "quote": "结合强化学习方法，如时序差分法、Q学习，Actor-Critic学习网络，提出了基于分布式架构的控制与一致性设计",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3275,
+                "end_char": 3330
+              },
+              "version": "c916ec358b8adf17711a"
+            }
+          ]
+        },
+        {
+          "id": "item-d00920001120",
+          "name": "自触发机制能耗优化",
+          "desc": "自触发机制研究GMJSs在随机环境中的通信能耗与回报最优化",
+          "evidence": [
+            {
+              "quote": "针对网络环境下的能控性和学习效率，引入自触发机制，研究GMJSs在随机环境中的通信能耗与回报最优化问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3335,
+                "end_char": 3385
+              },
+              "version": "c916ec358b8adf17711a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d64a46aa39ee",
+          "name": "五项重要理论结果",
+          "desc": "半Markov切换滤波、自触发一致性滤波、H∞控制、最优跟踪与博弈Q学习预测控制",
+          "evidence": [
+            {
+              "quote": "项目的重要结果包括：(1) 半Markov切换通信拓扑下GMJSs的分布式滤波；(2) 异步传输网络下GMJS的自触发一致性滤波；(3) 基于时序差分学习的半MJSs H∞控制；(4) 基于非零和博弈的MJSs自适应最优跟踪策略；(5) 基于博弈Q学习的非线性GMJSs约束预测控制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3438,
+                "end_char": 3578
+              },
+              "version": "c916ec358b8adf17711a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-980e115ddd6d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b291dfbe6c45"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b291dfbe6c45"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e3f948a4b70c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b291dfbe6c45"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d00920001120"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e3f948a4b70c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d64a46aa39ee"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d00920001120"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d64a46aa39ee"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

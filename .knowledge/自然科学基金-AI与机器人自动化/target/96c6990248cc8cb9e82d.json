@@ -1,0 +1,197 @@
+{
+  "doc_id": "96c6990248cc8cb9e82d",
+  "version": "57b0cb8175cc8d7dd610",
+  "source_hash": "861cc2c23aa283dbcda5dd5c273b4e63d22f8b150e220be33042f9adb18caeae",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:20.300883+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3c4b6ae674db",
+          "name": "拒止环境多机器人协同",
+          "desc": "通信受限、不确定环境及网络攻击下的机器人编队",
+          "evidence": [
+            {
+              "quote": "本项目面向通信资源受限、环境动态不确定及存在网络攻击的复杂拒止环境下多机器人系统协同作业的重大需求，系统开展了分布式自适应编队控制的理论与方法研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2735,
+                "end_char": 2808
+              },
+              "version": "57b0cb8175cc8d7dd610"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6d08e2131d15",
+          "name": "通信不确定攻击三大挑战",
+          "desc": "通信受限、不确定环境感知及网络安全核心挑战",
+          "evidence": [
+            {
+              "quote": "针对通信受限、不确定环境感知及网络安全三大核心挑战，构建了一套完整的技术体系。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2819,
+                "end_char": 2857
+              },
+              "version": "57b0cb8175cc8d7dd610"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0d296b82e76c",
+          "name": "双模态自触发编队控制",
+          "desc": "编队保持与实时避障统一调控，优化通信计算资源",
+          "evidence": [
+            {
+              "quote": "提出了基于双模态自适应控制器与双通道自触发机制的编队控制方法，实现了编队保持与实时避障的统一调控与通信计算资源优化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2888,
+                "end_char": 2945
+              },
+              "version": "57b0cb8175cc8d7dd610"
+            }
+          ]
+        },
+        {
+          "id": "item-d8f404e6cf43",
+          "name": "T-S模糊弹性控制",
+          "desc": "积分滑模应对虚假数据注入攻击",
+          "evidence": [
+            {
+              "quote": "设计了基于T-S模糊模型与积分滑模控制的弹性控制策略，有效应对虚假数据注入攻击，保障了系统安全。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3035,
+                "end_char": 3082
+              },
+              "version": "57b0cb8175cc8d7dd610"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d930088038bc",
+          "name": "30台机器人稳定成队",
+          "desc": "12至30台机器人集群稳定收敛且最小距离大于0.5米",
+          "evidence": [
+            {
+              "quote": "所提编队控制方法能使12至30台凸多边形机器人集群在复杂障碍环境下稳定收敛至预设队形，机器人间最小距离始终大于0.5米，有效避免了碰撞。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3113,
+                "end_char": 3180
+              },
+              "version": "57b0cb8175cc8d7dd610"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-49a5368dc6f1",
+          "name": "避障成功率100%",
+          "desc": "4台六轮机器人实物实验避障成功率100%、跟踪偏差小于0.1米",
+          "evidence": [
+            {
+              "quote": "实物实验基于4台六轮移动机器人平台，在模拟灾后非结构化的室内外场景中，成功实现了对静态与动态障碍的协同规避，避障成功率达100%，路径跟踪偏差小于0.1米。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3221,
+                "end_char": 3298
+              },
+              "version": "57b0cb8175cc8d7dd610"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3c4b6ae674db"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6d08e2131d15"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6d08e2131d15"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0d296b82e76c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6d08e2131d15"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d8f404e6cf43"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0d296b82e76c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d930088038bc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d8f404e6cf43"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-49a5368dc6f1"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

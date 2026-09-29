@@ -1,0 +1,142 @@
+{
+  "doc_id": "17222f296c5ad0f330fe",
+  "version": "c6fa5b1dc3473e805afc",
+  "source_hash": "d91456f1711187d34d7082d7d03434a80fd4cc7b777d2c5bae2ed868c497a86e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:34.856171+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9d1a1dde08a8",
+          "name": "亚临床冠状动脉粥样硬化斑块进展早期预警",
+          "desc": "面向心血管不良事件前的可修改窗口期，利用跨尺度影像组学早期预警亚临床冠脉斑块进展并评估预后。",
+          "evidence": [
+            {
+              "quote": "亚临床冠状动脉动脉粥样硬化斑块进展是大部分心血管不良事件发生前必经但可被修改的过程",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 675,
+                "end_char": 715
+              },
+              "version": "c6fa5b1dc3473e805afc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c96fac8eabf6",
+          "name": "斑块形态变化作为进展表征较滞后",
+          "desc": "斑块负荷和脂质核心增大是斑块进展后发生不良事件的关键，而斑块形态变化作为进展表征较滞后，亟需影像组学早期检测手段。",
+          "evidence": [
+            {
+              "quote": "斑块形态变化作为斑块进展的表征较滞后，利用影像组学特征早期检测斑块负荷和脂质核心进展，指导临床干预可望改善患者的预后",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 790,
+                "end_char": 847
+              },
+              "version": "c6fa5b1dc3473e805afc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-165dcf4c81c2",
+          "name": "CCTA影像组学检测斑块负荷与脂质核心进展",
+          "desc": "基于冠状动脉及斑块全自动化提取，利用影像组学精准检测斑块负荷及脂质核心进展，并研究其预后价值与指导临床干预的作用。",
+          "evidence": [
+            {
+              "quote": "利用影像组学精准检测斑块负荷及脂质核心进展",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 909,
+                "end_char": 929
+              },
+              "version": "c6fa5b1dc3473e805afc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3bac47d0840d",
+          "name": "XGBoost影像组学模型预测斑块快速进展优于形态学参数",
+          "desc": "构建并验证基于XGBoost的影像组学模型预测斑块快速进展，开发组与验证组AUC（0.82、0.81）均显著优于传统形态学参数；发表SCI论文18篇，培养硕博研究生4名。",
+          "evidence": [
+            {
+              "quote": "构建并验证基于XGBoost的影像组学模型用于预测斑块快速进展",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3530,
+                "end_char": 3560
+              },
+              "version": "c6fa5b1dc3473e805afc"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9d1a1dde08a8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c96fac8eabf6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c96fac8eabf6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-165dcf4c81c2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-165dcf4c81c2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3bac47d0840d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

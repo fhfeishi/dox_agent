@@ -1,0 +1,180 @@
+{
+  "doc_id": "af9841bf3afb3319308c",
+  "version": "96483ae3263a0a5f8acb",
+  "source_hash": "e7f162f4820668a75eb4817f5fd0907733ab1af91005ffe08d26d4d17930086b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:58:25.798292+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3dd7c6fe8f7a",
+          "name": "辅助生殖细胞手术机器人",
+          "desc": "辅助生殖治疗中末端执行器精准定位控制",
+          "evidence": [
+            {
+              "quote": "精准控制末端执行器位姿是细胞手术成功的前提",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2569,
+                "end_char": 2589
+              },
+              "version": "96483ae3263a0a5f8acb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fe113e27a075",
+          "name": "定位精度速度安全性不足",
+          "desc": "现有定位技术难以满足临床精度、速度、安全性要求",
+          "evidence": [
+            {
+              "quote": "然而，现有的定位技术难以满足临床应用中的精度、速度、安全性要求，限制了机器人细胞手术的应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2591,
+                "end_char": 2636
+              },
+              "version": "96483ae3263a0a5f8acb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-aaf375a307ce",
+          "name": "显微操作手旋转自由度",
+          "desc": "设计构建旋转自由度使能末端执行器角度调整",
+          "evidence": [
+            {
+              "quote": "本项目设计并构建了显微操作手上的旋转自由度，使能末端执行器的角度调整",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2779,
+                "end_char": 2812
+              },
+              "version": "96483ae3263a0a5f8acb"
+            }
+          ]
+        },
+        {
+          "id": "item-bf01fb3c225b",
+          "name": "深度估计与遮挡跟踪",
+          "desc": "细粒度分类深度估计、重尾噪声优化器、遮挡感知跟踪",
+          "evidence": [
+            {
+              "quote": "提出了基于细粒度分类的深度估计方法、重尾噪声分布下优化器训练方法、遮挡感知的视觉跟踪方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2814,
+                "end_char": 2857
+              },
+              "version": "96483ae3263a0a5f8acb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f54196093007",
+          "name": "三维位姿估计与精准控制",
+          "desc": "实现三维位姿估计、鲁棒跟踪与旋转自由度精准控制",
+          "evidence": [
+            {
+              "quote": "成功实现了末端执行器的三维位姿估计与鲁棒跟踪，实现了在显微镜小视野、浅景深约束下末端执行器旋转自由度的精准控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2898,
+                "end_char": 2953
+              },
+              "version": "96483ae3263a0a5f8acb"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3dd7c6fe8f7a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-fe113e27a075"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fe113e27a075"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-aaf375a307ce"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fe113e27a075"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bf01fb3c225b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-aaf375a307ce"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f54196093007"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bf01fb3c225b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f54196093007"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

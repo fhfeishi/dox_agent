@@ -1,0 +1,142 @@
+{
+  "doc_id": "d3c1aa7603a8fd6bd61b",
+  "version": "13822716ecd6588a98e9",
+  "source_hash": "fa23e4967f4796cb52a044cf914a2c15a56c43cf86001878047cf2520e9b6058",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:34.787956+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0a88eef2a992",
+          "name": "阿尔茨海默病早期预测与筛查",
+          "desc": "面向AD一旦确诊即无有效治疗的特点，在MCI阶段开展早期预测，为早期筛查与干预提供保障。",
+          "evidence": [
+            {
+              "quote": "阿尔茨海默病（AD）是一种致残率和致死率极高的进行性发展的神经系统变性疾病，一旦确诊则无有效治疗与缓解的方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 712
+              },
+              "version": "13822716ecd6588a98e9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f71252faffd4",
+          "name": "AD早期无特异性症状致预测困难",
+          "desc": "AD早期没有特异性症状，临床上难以早期预测，错失在MCI阶段干预的机会。",
+          "evidence": [
+            {
+              "quote": "但因AD早期没有特异性症状，故临床早期预测困难",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 757,
+                "end_char": 779
+              },
+              "version": "13822716ecd6588a98e9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a4e2121875c9",
+          "name": "影像基因多模特征与贝叶斯深度信念预测模型",
+          "desc": "在深度学习框架下结合人工先验知识挖掘影像与组学内在信息，用树形结构稀疏模型研究影像与基因相关性，并以加权特征贝叶斯深度信念模型配合变量消元与期望最大化预测MCI转换概率。",
+          "evidence": [
+            {
+              "quote": "本项目采用影像与组学特征结合，在深度学习的框架下，解决AD早期预测的难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 788,
+                "end_char": 823
+              },
+              "version": "13822716ecd6588a98e9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-eb64d31fface",
+          "name": "MCI转换概率预测准确率87.96%-88.36%",
+          "desc": "多特征压缩激励空洞残差网络进行AD纵向预测，五折验证下12月、24月、36月转换概率预测准确率分别为87.96%、85.52%、88.36%；改进型Tabnet二分类与三分类准确率分别为93.80%、88.27%。",
+          "evidence": [
+            {
+              "quote": "转换概率的预测准确率12月、24月、36月分别为：87.96%、85.52%、88.36%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2872,
+                "end_char": 2916
+              },
+              "version": "13822716ecd6588a98e9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0a88eef2a992"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f71252faffd4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f71252faffd4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a4e2121875c9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a4e2121875c9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-eb64d31fface"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

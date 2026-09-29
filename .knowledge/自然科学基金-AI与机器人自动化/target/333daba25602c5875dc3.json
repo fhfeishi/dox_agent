@@ -1,0 +1,180 @@
+{
+  "doc_id": "333daba25602c5875dc3",
+  "version": "e6059f3c92e804256003",
+  "source_hash": "8d6e4d1ae638112f8fe51462c149ccf66798771b840cc0b4b739519d66b02c2e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:19.504756+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a58b6e31d992",
+          "name": "康复助行外骨骼人机共融",
+          "desc": "脑卒中患者康复训练与老年人辅助行走",
+          "evidence": [
+            {
+              "quote": "下肢外骨骼机器人可有效辅助脑卒中、脊髓损伤患者实现早期的物理康复训练，也可以帮助老年人辅助行走延缓肌力衰退。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2916,
+                "end_char": 2969
+              },
+              "version": "e6059f3c92e804256003"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5fe18d8cb9af",
+          "name": "意图检测交互理论欠缺",
+          "desc": "运动意图检测、步态规划与力位控制理论研究欠缺",
+          "evidence": [
+            {
+              "quote": "然而，在人体运动意图检测、步态规划与外骨骼力、位置控制方面存在着相关理论研究欠缺，人机物理交互和感知交互有待提升。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2970,
+                "end_char": 3026
+              },
+              "version": "e6059f3c92e804256003"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c8cc7fc10741",
+          "name": "组合足底压力平衡步态",
+          "desc": "迈步落脚点计算模型规划平衡步态",
+          "evidence": [
+            {
+              "quote": "前者利用基于组合足底压力中心算法，通过迈步落脚点计算模型合理规划了平衡步态，实现了综合人机状态的平衡步行",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3160,
+                "end_char": 3211
+              },
+              "version": "e6059f3c92e804256003"
+            }
+          ]
+        },
+        {
+          "id": "item-9c57d83ee2a4",
+          "name": "混合振荡器步态相位识别",
+          "desc": "穿戴式传感与混合振荡器模型连续精准识别相位",
+          "evidence": [
+            {
+              "quote": "借助本研究提出的混合振荡器模型对步态相位进行了连续精准识别，并作为助力矩生成的输入信号，最终实现对人体自由步行的良好适应和合理助力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3300,
+                "end_char": 3364
+              },
+              "version": "e6059f3c92e804256003"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-81255c753db8",
+          "name": "共融感知决策理论",
+          "desc": "形成外骨骼生命机械体共融感知与决策理论方法",
+          "evidence": [
+            {
+              "quote": "本项目上述研究成果验证了所提出的人机共融理论研究的可行性和有效性，形成了项目预期计划的外骨骼生命机械体共融感知和决策的理论和具体实现方法，推动了康复训练外骨骼在实际的应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3392,
+                "end_char": 3477
+              },
+              "version": "e6059f3c92e804256003"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a58b6e31d992"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5fe18d8cb9af"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5fe18d8cb9af"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c8cc7fc10741"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5fe18d8cb9af"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9c57d83ee2a4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9c57d83ee2a4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-81255c753db8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c8cc7fc10741"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-81255c753db8"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

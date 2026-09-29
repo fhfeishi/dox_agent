@@ -1,0 +1,180 @@
+{
+  "doc_id": "b0d6ce178eb30618f732",
+  "version": "c9d8693bde374df48045",
+  "source_hash": "10cde5bfb054a7145cefe8d28ba863154e11693b70eb4b3a3e8d07643a5308a0",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:22:27.734656+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9eca4352134a",
+          "name": "服务机器人多模态交互",
+          "desc": "医院、展馆等真实场景的多模态机器人自然交互",
+          "evidence": [
+            {
+              "quote": "本项目成功研制了智能医疗导诊机器人、智能安防巡逻机器人和智能教育导览机器人三类机器人实验平台，并开发了一套多模态融合机器人自然交互软件系统。相关成果在医院、展馆等真实场景中得到应用验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3057,
+                "end_char": 3148
+              },
+              "version": "c9d8693bde374df48045"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5ee236bca7b4",
+          "name": "单语音模态意图偏差",
+          "desc": "交互主要依赖语音模态，缺乏表情动作协同处理导致意图理解偏差",
+          "evidence": [
+            {
+              "quote": "目前人机自然交互主要以语音交互为主，缺乏表情、动作信息与语音信息的协同处理，无法生成情感化和个性化的多模态交互反馈，与人类的多模态交互方式存在根本性差距",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 743,
+                "end_char": 818
+              },
+              "version": "c9d8693bde374df48045"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2c4c3c76d70c",
+          "name": "多模态意图理解与情感识别",
+          "desc": "多模态动态融合的交互意图理解与情感识别算法提升服务机器人性能",
+          "evidence": [
+            {
+              "quote": "创新性的提出了多项多模态意图理解、情感识别以及交互反馈生成算法以提升服务机器人的性能，同时设计了多项知识蒸馏的策略以实现相关算法的轻量化、高性能部署",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2979,
+                "end_char": 3052
+              },
+              "version": "c9d8693bde374df48045"
+            }
+          ]
+        },
+        {
+          "id": "item-3d68ce4085e5",
+          "name": "知识蒸馏轻量化部署",
+          "desc": "多项知识蒸馏策略实现算法轻量化高性能部署",
+          "evidence": [
+            {
+              "quote": "同时设计了多项知识蒸馏的策略以实现相关算法的轻量化、高性能部署",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3022,
+                "end_char": 3052
+              },
+              "version": "c9d8693bde374df48045"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-361f437a4289",
+          "name": "三类机器人平台验证",
+          "desc": "医疗导诊、安防巡逻、教育导览三类平台在真实场景应用验证自然交互能力",
+          "evidence": [
+            {
+              "quote": "相关成果在医院、展馆等真实场景中得到应用验证，有效提升了机器人在复杂环境下的自然交互能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3127,
+                "end_char": 3170
+              },
+              "version": "c9d8693bde374df48045"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9eca4352134a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5ee236bca7b4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5ee236bca7b4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2c4c3c76d70c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5ee236bca7b4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3d68ce4085e5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2c4c3c76d70c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-361f437a4289"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3d68ce4085e5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-361f437a4289"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

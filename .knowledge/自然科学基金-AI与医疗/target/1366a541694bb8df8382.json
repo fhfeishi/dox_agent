@@ -1,0 +1,142 @@
+{
+  "doc_id": "1366a541694bb8df8382",
+  "version": "f09cc5e920d5fe2b3e06",
+  "source_hash": "1a5bdf49b0a454b7b3667ff39880da2bf1f5a889382f69bcc0a9db81ed506107",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:16.704868+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e0771a29a2f9",
+          "name": "非转移性肾透明细胞癌预后评估",
+          "desc": "针对非转移性ccRCC患者，利用多模态磁共振影像组学在术前进行复发转移风险的定量预后评估。",
+          "evidence": [
+            {
+              "quote": "如何准确地对非转移性ccRCC患者的预后做出预测是当前研究的热点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 780,
+                "end_char": 811
+              },
+              "version": "f09cc5e920d5fe2b3e06"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fbde2ed0a33a",
+          "name": "非转移性ccRCC术后复发转移率高且缺乏预测手段",
+          "desc": "初诊未转移的ccRCC患者术后约30%发生复发转移，临床上缺乏准确、早期的预后预测方法。",
+          "evidence": [
+            {
+              "quote": "初诊时未发生转移的ccRCC患者（即非转移性ccRCC）术后约30%发生复发转移",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 739,
+                "end_char": 778
+              },
+              "version": "f09cc5e920d5fe2b3e06"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9eb5450b02c7",
+          "name": "多模态MRI影像组学预后评估模型",
+          "desc": "利用多模态磁共振成像影像组学新技术提取术前MR影像组学特征，筛选与预后高度相关的特征并与临床、病理指标联合建模。",
+          "evidence": [
+            {
+              "quote": "利用基于多模态磁共振成像的影像组学新技术，回顾性提取非转移性ccRCC病变术前MR图像的影像组学特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 833,
+                "end_char": 882
+              },
+              "version": "f09cc5e920d5fe2b3e06"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e9a17c09cbd4",
+          "name": "影像组学联合模型多中心预测效能AUC 0.816–0.914",
+          "desc": "结合年龄、区域淋巴结、假包膜及影像组学评分的联合模型在训练集、内部验证集与外部验证集AUC分别为0.914、0.854、0.816。",
+          "evidence": [
+            {
+              "quote": "结合年龄、区域淋巴结、假包膜及影像组学评分构建的影像组学联合模型在不同数据集中均获得良好的预测效能（训练集，AUC=0.914；内部验证集，AUC=0.854；外部验证集，AUC=0.816）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3035,
+                "end_char": 3130
+              },
+              "version": "f09cc5e920d5fe2b3e06"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e0771a29a2f9"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-fbde2ed0a33a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fbde2ed0a33a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9eb5450b02c7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9eb5450b02c7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e9a17c09cbd4"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

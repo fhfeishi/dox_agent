@@ -1,0 +1,197 @@
+{
+  "doc_id": "697ca30a50e1a35dde57",
+  "version": "50e50432aea082d279f3",
+  "source_hash": "44f601964d947db8245e6ec92dc03ec42dce57c0584b1fdace75139ab973bc0e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:11:19.594857+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0a2f8ccd681a",
+          "name": "深海潜器热液区自主作业",
+          "desc": "热液区环境复杂多变与潜器-机械手运动冗余性下的自主作业",
+          "evidence": [
+            {
+              "quote": "水下自主作业是深海潜器应用中的关键技术难题。由于水下环境的复杂多变性以及深海潜器-机械手系统的运动冗余性，自主作业面临诸多挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3166,
+                "end_char": 3228
+              },
+              "version": "50e50432aea082d279f3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e6ea510deeed",
+          "name": "浑浊海水目标识别定位",
+          "desc": "浑浊海水环境下热液喷口识别、定位与轨迹规划难题",
+          "evidence": [
+            {
+              "quote": "针对浑浊海水环境，提出基于物理光照模型和深度学习的图像增强方法，设计自监督深度估计框架，构建改进的YOLOv5目标识别模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3362,
+                "end_char": 3422
+              },
+              "version": "50e50432aea082d279f3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-abec8bf78dce",
+          "name": "多目标进化轨迹规划",
+          "desc": "结合高斯伪谱法的多目标进化优化算法与深度强化学习运动协调规划框架",
+          "evidence": [
+            {
+              "quote": "提出结合高斯伪谱法的多目标进化优化算法；基于深度强化学习建立潜器-机械手运动协调规划框架，实现复杂环境下的最优路径规划",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3438,
+                "end_char": 3496
+              },
+              "version": "50e50432aea082d279f3"
+            }
+          ]
+        },
+        {
+          "id": "item-273f6db7c065",
+          "name": "自适应神经预测控制",
+          "desc": "融合视觉信息的近底定位方法与自适应神经预测控制框架抑制不确定性干扰",
+          "evidence": [
+            {
+              "quote": "提出融合视觉信息的近底定位方法，构建自适应神经预测控制框架，有效抑制深海环境中的不确定性干扰",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3507,
+                "end_char": 3552
+              },
+              "version": "50e50432aea082d279f3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5a8dede7195d",
+          "name": "水池与水下模拟验证",
+          "desc": "搭建遥控潜器-机械手实验平台，开展水池实验与水下模拟验证证实关键技术有效性",
+          "evidence": [
+            {
+              "quote": "通过搭建遥控潜器-机械手实验平台，开展水池实验与水下模拟验证，证实了各项关键技术的有效性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3554,
+                "end_char": 3597
+              },
+              "version": "50e50432aea082d279f3"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-98369d99d867",
+          "name": "论文专利与专著",
+          "desc": "发表SCI/EI论文21篇，申请发明专利12项（授权7项），出版专著1部",
+          "evidence": [
+            {
+              "quote": "研究期间在国内外重要期刊发表SCI/EI论文21篇，申请国家发明专利12项，授权7项，出版学术专著1部",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3599,
+                "end_char": 3649
+              },
+              "version": "50e50432aea082d279f3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0a2f8ccd681a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e6ea510deeed"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e6ea510deeed"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-abec8bf78dce"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e6ea510deeed"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-273f6db7c065"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-abec8bf78dce"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5a8dede7195d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-273f6db7c065"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-98369d99d867"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

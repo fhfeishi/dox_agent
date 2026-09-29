@@ -1,0 +1,142 @@
+{
+  "doc_id": "56096e9510e4018fcdf8",
+  "version": "5347d6bdd4db7bed8fbf",
+  "source_hash": "8a221ae14ace996f5df362bec3250e380ef2ff070a5f3f447ea65a97dfaf3562",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:34.813184+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f75587aae090",
+          "name": "机器学习驱动的多模态医学数据处理",
+          "desc": "面向疾病预测、医学影像分类与分割等困难问题，研究可临床部署应用的安全机器学习方法。",
+          "evidence": [
+            {
+              "quote": "机器学习已被用于解决如疾病预测、医学影像分类和分割等困难问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 680
+              },
+              "version": "5347d6bdd4db7bed8fbf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-41e4c0a574ae",
+          "name": "现有方法缺临床导向且难应对不完整与隐私问题",
+          "desc": "已有方法在设计上缺少临床需求和先验知识导向，难以解决临床数据不完整、数据安全保护以及多模态等问题，无法体现机器学习优势。",
+          "evidence": [
+            {
+              "quote": "然而，已有方法在设计上缺少临床需求和先验知识的导向，且难以解决临床数据不完整和数据安全保护以及多模态等问题，无法体现机器学习的优势",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 794,
+                "end_char": 858
+              },
+              "version": "5347d6bdd4db7bed8fbf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e7d4b137d5b7",
+          "name": "多模态协同感知与隐私计算安全机器学习",
+          "desc": "构建视觉语言大模型引导的小样本跨模态学习框架，提出通用多器官联合分割框架UniMOS与非对称分层3D异常检测网络，并建立基于扩散模型的差分隐私生成体系与抗压缩身份保护机制。",
+          "evidence": [
+            {
+              "quote": "为此，项目拟研究可临床部署应用的安全机器学习方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 860,
+                "end_char": 883
+              },
+              "version": "5347d6bdd4db7bed8fbf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c997b7b5c6ce",
+          "name": "发表高水平学术论文26篇",
+          "desc": "累计发表高水平学术论文26篇，涵盖USENIX Security、NDSS、NeurIPS、ICCV、AAAI等顶级会议及IEEE TDSC、TGRS等权威期刊；构建并开源含71万样本的医疗多模态对抗防御基准数据库。",
+          "evidence": [
+            {
+              "quote": "本项目累计发表高水平学术论文 26 篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3334,
+                "end_char": 3352
+              },
+              "version": "5347d6bdd4db7bed8fbf"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f75587aae090"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-41e4c0a574ae"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-41e4c0a574ae"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e7d4b137d5b7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e7d4b137d5b7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c997b7b5c6ce"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "doc_id": "48aeb9e4d51f740694d9",
+  "version": "7ded60a834fb51cc93dd",
+  "source_hash": "70fb803428f33eab83fc018a11c9159797ad9f7fa708e82f816667cc8c6109cc",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:23.887760+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-04fcdc741ac0",
+          "name": "水下目标感知与追踪",
+          "desc": "多仿生机器海豚协同目标感知和追踪控制",
+          "evidence": [
+            {
+              "quote": "本项目针对一种面向多仿生机器海豚系统的协同目标感知和追踪控制问题展开研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 706,
+                "end_char": 742
+              },
+              "version": "7ded60a834fb51cc93dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b8b5e3bbcbff",
+          "name": "感知控制协作机理待探求",
+          "desc": "水下感知机理、路径优化、运动控制、协作机制是前沿课题",
+          "evidence": [
+            {
+              "quote": "其背后蕴含的感知机理、路径优化、运动控制、协作机制是有待深入探求的前沿课题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 668,
+                "end_char": 705
+              },
+              "version": "7ded60a834fb51cc93dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-56ddb56df919",
+          "name": "虎鲸仿生机器海豚平台",
+          "desc": "CPG底层运动控制器实现多模态运动",
+          "evidence": [
+            {
+              "quote": "以自然界虎鲸为仿生对象设计、加工机动型仿生机器海豚系统，同时开展了基于CPG (Central Pattern Generator)的底层运动控制器设计实现其多模态运动",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2645,
+                "end_char": 2728
+              },
+              "version": "7ded60a834fb51cc93dd"
+            }
+          ]
+        },
+        {
+          "id": "item-782db8a0e510",
+          "name": "YOLO-V5双目目标定位",
+          "desc": "注意力机制检测与半全局立体匹配获取目标坐标",
+          "evidence": [
+            {
+              "quote": "通过融合双目视觉立体匹配算法与深度学习目标检测算法，获取目标物的中心坐标，实现对目标的识别与定位",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2859,
+                "end_char": 2906
+              },
+              "version": "7ded60a834fb51cc93dd"
+            }
+          ]
+        },
+        {
+          "id": "item-f7c9da595494",
+          "name": "三维路径规划与跟踪",
+          "desc": "RRT与基于图规划融合、解耦控制强化学习跟踪",
+          "evidence": [
+            {
+              "quote": "提出了一种融合快速探索随机树和基于图的路径规划算法，同时采用两条二维杜宾曲线通过插值得到三维杜宾曲线的方法解决机器海豚运动约束问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2954,
+                "end_char": 3018
+              },
+              "version": "7ded60a834fb51cc93dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b2bfcf9e2106",
+          "name": "多机编队实现",
+          "desc": "基于复合规则集群模型实现环形编队与同向游荡编队",
+          "evidence": [
+            {
+              "quote": "提出了一种基于复合规则的集群模型，设定多种运动规则实现多个智能体从无序状态趋向于有序状态，最终实现多个机器人的环形编队与同向游荡编队。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3135,
+                "end_char": 3201
+              },
+              "version": "7ded60a834fb51cc93dd"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-04fcdc741ac0"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b8b5e3bbcbff"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b8b5e3bbcbff"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-56ddb56df919"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b8b5e3bbcbff"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-782db8a0e510"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b8b5e3bbcbff"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f7c9da595494"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f7c9da595494"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b2bfcf9e2106"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-56ddb56df919"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b2bfcf9e2106"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

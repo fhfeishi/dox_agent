@@ -1,0 +1,142 @@
+{
+  "doc_id": "58cef808cabe2ba98580",
+  "version": "d12720e6fb1d70bbee93",
+  "source_hash": "9e70cb3d7e842c46f77ad2b24b97acffb35e8ac4f50112152e7aa447a32cf6c9",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:34.776318+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-65de58512f67",
+          "name": "基于IVUS的冠脉狭窄精准诊疗",
+          "desc": "面向冠脉PCI精准诊疗，用人工智能分析血管内超声影像并虚拟仿真支架释放以指导支架选型与术后评估。",
+          "evidence": [
+            {
+              "quote": "采用人工智能的方法对冠状动脉血管内超声（IVUS)影像数据进行训练",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 652,
+                "end_char": 684
+              },
+              "version": "d12720e6fb1d70bbee93"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0443bd485325",
+          "name": "传统IVUS定量依赖人工且一致性差",
+          "desc": "冠脉PCI术后远期事件与支架扩张充分性、贴壁性密切相关，而传统IVUS定量依赖人工测量，效率低且一致性受操作者影响。",
+          "evidence": [
+            {
+              "quote": "而传统IVUS定量依赖人工测量、效率低且一致性受操作者影响",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2700,
+                "end_char": 2728
+              },
+              "version": "d12720e6fb1d70bbee93"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4644df5d34fb",
+          "name": "IVUS智能定量-虚拟支架释放-术后评估闭环体系",
+          "desc": "以“IVUS智能定量分析—有限元虚拟支架释放—术后支架评估”为主线，完成内腔与EEM自动分割、斑块性质识别体积分割，并建立支架虚拟释放计算链路与膨胀力—斑块特征—扩张效果定量映射。",
+          "evidence": [
+            {
+              "quote": "以“IVUS智能定量分析—有限元虚拟支架释放—术后支架评估”为主线，构建面向精准PCI的可复现闭环技术体系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2733,
+                "end_char": 2785
+              },
+              "version": "d12720e6fb1d70bbee93"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a83968da6037",
+          "name": "内腔与EEM分割Dice达0.958与0.975",
+          "desc": "完成内腔与EEM自动分割模型，测试集Dice分别为0.958±0.035与0.975±0.023；关键定量指标与专家一致性ICC为0.955–0.986；纳入100例随访数据完成三维重建，IVUS-FFR与有创FFR相关r=0.86、AUC=0.98。",
+          "evidence": [
+            {
+              "quote": "测试集Dice分别为0.958±0.035与0.975±0.023",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2888,
+                "end_char": 2920
+              },
+              "version": "d12720e6fb1d70bbee93"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-65de58512f67"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0443bd485325"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0443bd485325"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4644df5d34fb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4644df5d34fb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a83968da6037"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

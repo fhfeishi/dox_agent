@@ -1,0 +1,235 @@
+{
+  "doc_id": "c9af8c0ee206b4027470",
+  "version": "a0a1010deaf13e099c77",
+  "source_hash": "1351fa36a3e463745735e6fe1d2bef90fbe34ea65ccd9327d4f835cd784c1b75",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:52:31.176723+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-75150d33e79a",
+          "name": "可切除NSCLC新辅助免疫治疗疗效预测",
+          "desc": "可切除NSCLC术前应用新辅助免疫治疗可降低复发率，术前早期预测疗效具有重要临床意义。",
+          "evidence": [
+            {
+              "quote": "可切除NSCLC术前应用新辅助免疫治疗可降低复发率，术前早期预测新辅助免疫治疗的疗效具有重要临床意义",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 682,
+                "end_char": 731
+              },
+              "version": "a0a1010deaf13e099c77"
+            }
+          ]
+        },
+        {
+          "id": "item-d0792ad29fe6",
+          "name": "辅助筛选获益人群与预警进展",
+          "desc": "辅助临床医师早期筛选获益人群并预警治疗中的疾病进展，为新辅助免疫治疗策略制定与优化提供理论支持。",
+          "evidence": [
+            {
+              "quote": "从而辅助临床医师早期筛选获益人群，并预警治疗中的疾病进展，为新辅助免疫治疗策略的制定与优化提供理论支持",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1028,
+                "end_char": 1078
+              },
+              "version": "a0a1010deaf13e099c77"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f6bc9319fc15",
+          "name": "新辅助免疫治疗无明确疗效标志物",
+          "desc": "目前新辅助免疫治疗没有明确的疗效标志物，常用iRECIST标准可能低估疗效且具有滞后性。",
+          "evidence": [
+            {
+              "quote": "然而目前新辅助免疫治疗没有明确的疗效标志物，常用的iRECIST标准可能会低估免疫治疗疗效，且具有滞后性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 733,
+                "end_char": 784
+              },
+              "version": "a0a1010deaf13e099c77"
+            }
+          ]
+        },
+        {
+          "id": "item-674570be71f7",
+          "name": "普通影像组学标签预测价值中等",
+          "desc": "基于治疗前后CT的影像组学标签预测MPR的综合模型预测价值中等，未达临床所需高效能要求。",
+          "evidence": [
+            {
+              "quote": "在三个数据集中，综合模型的AUC值分别为0.742、0.726、0.694，其预测价值中等，并没有达到临床所需的高效能要求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3132,
+                "end_char": 3192
+              },
+              "version": "a0a1010deaf13e099c77"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-33aa45631d15",
+          "name": "治疗前后CT影像组学标签建模",
+          "desc": "基于治疗前后CT影像，通过影像组学分析肿瘤瘤体及瘤周信息并融合临床病理信息，构建并验证预测病理学与临床疗效的综合模型。",
+          "evidence": [
+            {
+              "quote": "本项目聚焦于新辅助免疫治疗的疗效预测，拟基于治疗前后的CT影像，通过影像组学分析肿瘤瘤体及瘤周信息，融合临床病理信息，构建并验证预测新辅助免疫治疗病理学疗效与临床疗效的综合模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 939,
+                "end_char": 1026
+              },
+              "version": "a0a1010deaf13e099c77"
+            }
+          ]
+        },
+        {
+          "id": "item-bf54f5fa91c0",
+          "name": "差分影像组学标签与模型构建",
+          "desc": "构建预测MPR的差分影像组学标签与模型，并构建预警疾病进展的影像组学与差分影像组学模型。",
+          "evidence": [
+            {
+              "quote": "构建预测可切除NSCLC新辅助免疫治疗MPR的差分影像组学标签与模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3197,
+                "end_char": 3230
+              },
+              "version": "a0a1010deaf13e099c77"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ba0b1f4e866f",
+          "name": "PTVpostRS标签AUC表现",
+          "desc": "构建6种影像组学标签，其中PTVpostRS在训练集、内部及外部验证集AUC分别为0.680、0.717、0.669，不存在过拟合风险。",
+          "evidence": [
+            {
+              "quote": "本研究构建了6种影像组学标签，其中PTVpostRS在训练集、内部及外部验证集中的AUC值分别为0.680、0.717、0.669，不存在过拟合风险",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3040,
+                "end_char": 3113
+              },
+              "version": "a0a1010deaf13e099c77"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-1dc2284517a0",
+          "name": "差分影像组学标签PTVdeltaRSt",
+          "desc": "构建6种差分影像组学标签，其中PTVdeltaRSt在三个数据集AUC分别为0.958、0.831、0.672，其综合模型具良好预测价值。",
+          "evidence": [
+            {
+              "quote": "本研究构建了6种差分影像组学标签，其中PTVdeltaRSt在三个数据集中的AUC值分别为0.958、0.831、0.672，其在两个验证集中的总体效能最佳",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3232,
+                "end_char": 3309
+              },
+              "version": "a0a1010deaf13e099c77"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e98249ddd595",
+          "name": "PD预警模型AUC 0.894",
+          "desc": "基于GTVpostRS构建的疾病进展预警综合模型在三个数据集中AUC分别为0.894、0.771和0.778，具有良好的预测价值和多中心泛化能力。",
+          "evidence": [
+            {
+              "quote": "在三个数据集中，综合模型的AUC值分别为0.894、0.771和0.778，具有良好的预测价值和多中心泛化能力，有望用以提前预警新辅助免疫治疗PD",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3569,
+                "end_char": 3641
+              },
+              "version": "a0a1010deaf13e099c77"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-75150d33e79a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f6bc9319fc15"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f6bc9319fc15"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-33aa45631d15"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-33aa45631d15"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ba0b1f4e866f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bf54f5fa91c0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e98249ddd595"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

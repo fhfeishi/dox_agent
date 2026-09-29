@@ -1,0 +1,142 @@
+{
+  "doc_id": "b776e91faec214fcd21b",
+  "version": "bba5a4b74a5b483351bd",
+  "source_hash": "4cf28759170af1ce9e984ed4606b98528c187b89835acda02a638c55e13b0c96",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:30.749544+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ff311783085e",
+          "name": "肝癌智能影像诊断新技术",
+          "desc": "面向我国肝癌早诊率低、分期评价不足的问题，研发AI影像算法构建覆盖全病程的智能诊疗体系。",
+          "evidence": [
+            {
+              "quote": "我国肝癌发病率约占全球50%，复发率和病死率居高不下",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 633,
+                "end_char": 658
+              },
+              "version": "bba5a4b74a5b483351bd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-696376fd42a6",
+          "name": "肝癌影像早诊敏感性与分期评价不足",
+          "desc": "肝癌影像诊断存在早期检出率低、诊断敏感性不足、术前分级分期缺乏个性化系统化、疗效综合量化评价不足等挑战。",
+          "evidence": [
+            {
+              "quote": "影像诊断方面存在早期检出率低、诊断敏感性不足、术前分级分期缺乏个性化系统化、疗效综合量化评价不足等挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2922,
+                "end_char": 2972
+              },
+              "version": "bba5a4b74a5b483351bd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1e9c61a12eb3",
+          "name": "病灶三维自动分割与影像基因组学模型",
+          "desc": "构建肝癌病灶三维自动分割新技术与临床大数据库，建立微血管侵犯及病理分级的影像组学特征模型、影像基因组学模型与云端智能影像组学辅助诊断系统。",
+          "evidence": [
+            {
+              "quote": "项目关注肝脏病灶的自动分割和三维可视化定位方法，通过构建影像组学运算平台建立了肝癌临床大数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3017,
+                "end_char": 3063
+              },
+              "version": "bba5a4b74a5b483351bd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-43f26a89e836",
+          "name": "全球肝癌病灶分割挑战赛两项指标世界第一",
+          "desc": "完成多病种多中心多模态数据库构建与全病程肝脏整体分割；合作单位腾讯优图实验室在全球肝癌病灶分割挑战赛获肝分割与肝肿瘤分割两项技术指标世界第一；发表33篇SCI论文。",
+          "evidence": [
+            {
+              "quote": "项目合作单位腾讯优图实验室在全球肝癌病灶分割挑战赛中获得了肝分割和肝肿瘤分割两项技术指标的世界第一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3264,
+                "end_char": 3312
+              },
+              "version": "bba5a4b74a5b483351bd"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ff311783085e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-696376fd42a6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-696376fd42a6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1e9c61a12eb3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1e9c61a12eb3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-43f26a89e836"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

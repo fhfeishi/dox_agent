@@ -1,0 +1,197 @@
+{
+  "doc_id": "b8ce7368a0050632f575",
+  "version": "0fc19be6b90472f4e30c",
+  "source_hash": "de160ad1513b9c9f72b49fe187edb9e8312a51945c75e93449f28108d2a5815e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:11:23.149437+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cc02ed14a771",
+          "name": "服务机器人感知与自主运动",
+          "desc": "非结构化高动态环境下的服务机器人环境感知与自主运动技术",
+          "evidence": [
+            {
+              "quote": "针对在非结构化、高动态环境下，服务机器人存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目开展面向服务机器人的环境感知与自主运动技术研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2678,
+                "end_char": 2749
+              },
+              "version": "0fc19be6b90472f4e30c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a174c0880b27",
+          "name": "语义地图鲁棒性差",
+          "desc": "地图构建效率低、精度差、抗扰能力弱，路径规划环境适应性弱",
+          "evidence": [
+            {
+              "quote": "针对非结构化、高动态环境中地图构建效率低、精度差、抗扰能力弱等问题，本项目提出了一种改进的集中式协同单目SLAM方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2754,
+                "end_char": 2811
+              },
+              "version": "0fc19be6b90472f4e30c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-43f908c361fb",
+          "name": "协同单目SLAM与自主建图",
+          "desc": "改进集中式协同单目SLAM，自主探索与深度学习语义地图构建结合",
+          "evidence": [
+            {
+              "quote": "提出了一种移动机器人自主语义地图构建方法，该方法将机器人自主探索算法和基于深度学习的语义地图构建算法相结合，能够在移动机器人自主探索过程中构建目标场景的高精度3D语义地图",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2906,
+                "end_char": 2990
+              },
+              "version": "0fc19be6b90472f4e30c"
+            }
+          ]
+        },
+        {
+          "id": "item-93191d0c9786",
+          "name": "语义驱动自主导航",
+          "desc": "环境信息重构为高效状态描述，生成高通用性运动决策解决目标泛化问题",
+          "evidence": [
+            {
+              "quote": "提出一种语义驱动的机器人自主导航方法，该方法根据将当前的环境信息重构为一种更高效状态描述，并根据记忆的状态描述结果生成高通用性的运动决策",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3035,
+                "end_char": 3102
+              },
+              "version": "0fc19be6b90472f4e30c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1b4dcf1b25e3",
+          "name": "多场景有效性验证",
+          "desc": "经模拟环境测试与现实场景实现验证有效性，可应用于智能巡检、建筑装修、应急救援",
+          "evidence": [
+            {
+              "quote": "同时已将上述研究成果通过模拟环境测试、现实场景实现等方法验证了其有效性，可进一步应用于智能巡检、建筑装修、应急救援等",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3206,
+                "end_char": 3263
+              },
+              "version": "0fc19be6b90472f4e30c"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-7305469d9eeb",
+          "name": "论文与发明专利",
+          "desc": "发表论文23篇（SCI 6篇、EI 21篇），申请发明专利13项（授权2项）",
+          "evidence": [
+            {
+              "quote": "项目共计发表论文23篇，其中，SCI检索论文6篇、 EI检索论文21篇；共计申请发明专利13项，其中授权2项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3265,
+                "end_char": 3318
+              },
+              "version": "0fc19be6b90472f4e30c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-cc02ed14a771"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a174c0880b27"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a174c0880b27"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-43f908c361fb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a174c0880b27"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-93191d0c9786"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-43f908c361fb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1b4dcf1b25e3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-93191d0c9786"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7305469d9eeb"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

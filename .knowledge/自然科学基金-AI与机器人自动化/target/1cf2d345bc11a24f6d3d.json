@@ -1,0 +1,180 @@
+{
+  "doc_id": "1cf2d345bc11a24f6d3d",
+  "version": "3df97437fd268a1f66c5",
+  "source_hash": "3b8b1941e66a1378f2ee259d957578b2aa4b39b70088349f03a3bf3d4b38bb1e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:20.286343+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-69ee41a7fc42",
+          "name": "移动机器人SLAM定位建图",
+          "desc": "将鼠类脑细胞导航机制引入SLAM研究",
+          "evidence": [
+            {
+              "quote": "针对同步定位与地图构建（SLAM）问题中传统概率算法存在计算量大、复杂度高、易陷于局部最优解等问题，本项目将鼠类脑细胞中边界细胞（Border cells）、局部场景细胞（View cells）、网格细胞（Grid cells）、速度细胞（Speed cells）、位姿细胞（Pose cells）等具有定位导航功能的细胞应用于SLAM研究中",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 831
+              },
+              "version": "3df97437fd268a1f66c5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f4e12ac39403",
+          "name": "传统概率算法计算量复杂度高",
+          "desc": "概率SLAM算法计算量大、易陷于局部最优",
+          "evidence": [
+            {
+              "quote": "针对同步定位与地图构建（SLAM）问题中传统概率算法存在计算量大、复杂度高、易陷于局部最优解等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 709
+              },
+              "version": "3df97437fd268a1f66c5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-159da444ddc1",
+          "name": "BVGSP-SLAM多细胞模型",
+          "desc": "基于多细胞导航机制的仿生SLAM模型",
+          "evidence": [
+            {
+              "quote": "构建一种基于多细胞导航机制的BVGSP-SLAM模型，并通过多种新型传感器进行实验平台的搭建与实现，验证提出算法的可行性和有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2354,
+                "end_char": 2418
+              },
+              "version": "3df97437fd268a1f66c5"
+            }
+          ]
+        },
+        {
+          "id": "item-f65964df42d8",
+          "name": "实时关键帧闭环检测",
+          "desc": "避免光线变化与移动障碍物对SLAM的影响",
+          "evidence": [
+            {
+              "quote": "结合具有实时关键帧匹配的闭环检测算法以避免光线变化对SLAM的影响；融入速度细胞和边界细胞以避免移动障碍物对SLAM的影响",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 899,
+                "end_char": 959
+              },
+              "version": "3df97437fd268a1f66c5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dc76e8e9db9c",
+          "name": "论文专著专利成果",
+          "desc": "期刊论文11篇、专著1部、发明专利8件、标准1项、软著4件",
+          "evidence": [
+            {
+              "quote": "发表高水平期刊论文11篇（其中SCI、EI论文9篇、CSCD核心2篇），国家一级出版社出版学术专著1部，以第一发明人授权国家发明专利8件",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2592,
+                "end_char": 2659
+              },
+              "version": "3df97437fd268a1f66c5"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-69ee41a7fc42"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f4e12ac39403"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f4e12ac39403"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-159da444ddc1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f4e12ac39403"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f65964df42d8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-159da444ddc1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dc76e8e9db9c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f65964df42d8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dc76e8e9db9c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

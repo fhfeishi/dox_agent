@@ -1,0 +1,185 @@
+{
+  "doc_id": "2e698dc62c3e637bbcd9",
+  "version": "0754b865deae05f959d9",
+  "source_hash": "1a3a00cd6161c223bc5617cc91a8558ff0da271fecfb8f321453398a0b7797d2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:00.396407+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-849688a53ee6",
+          "name": "人机协作装配机器人",
+          "desc": "非结构工况环境下的人机高效、自然协作装配",
+          "evidence": [
+            {
+              "quote": "装配是产品制造的关键环节，实现非结构工况环境下的人机高效、自然协作装配，对促进装配制造向智能化发展具有重要意义",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 717
+              },
+              "version": "0754b865deae05f959d9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e5be22cc932e",
+          "name": "接触力与环境信息获取难",
+          "desc": "动态非结构环境下人机接触力和装配环境信息需要准确获取",
+          "evidence": [
+            {
+              "quote": "实现了动态非结构环境下人机接触力和装配环境信息准确获取",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3268,
+                "end_char": 3294
+              },
+              "version": "0754b865deae05f959d9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-22e67bda8f52",
+          "name": "外力检测与位姿估计",
+          "desc": "基于动力学建模与不确定性补偿的外力检测、椭圆检测位姿估计",
+          "evidence": [
+            {
+              "quote": "研究了基于动力学建模和模型不确定性补偿的机器人外力检测方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3192,
+                "end_char": 3220
+              },
+              "version": "0754b865deae05f959d9"
+            }
+          ]
+        },
+        {
+          "id": "item-325f4facc6f7",
+          "name": "意图识别与耦合建模",
+          "desc": "基于脉冲神经网络的工序状态预测与上下文感知的人员作业意图识别",
+          "evidence": [
+            {
+              "quote": "提出了基于脉冲神经网络的工序状态转换早期预测方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3312,
+                "end_char": 3335
+              },
+              "version": "0754b865deae05f959d9"
+            }
+          ]
+        },
+        {
+          "id": "item-603c320d62cf",
+          "name": "知识引导与强化学习装配机制",
+          "desc": "揭示机器人与环境耦合关系的高效柔顺装配机制",
+          "evidence": [
+            {
+              "quote": "提出了基于知识引导和强化学习的机器人高效、柔顺装配机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3389,
+                "end_char": 3415
+              },
+              "version": "0754b865deae05f959d9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d8f05046575e",
+          "name": "主从角色动态转换控制",
+          "desc": "基于强化学习的主从作业控制方法，提高人机协作平顺性与自然性",
+          "evidence": [
+            {
+              "quote": "提出了基于强化学习的人机协作装配机器人主从作业控制方法，实现了人机协作过程中机器人主从角色的动态转换，提高了人机协作的平顺性和自然性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3447,
+                "end_char": 3512
+              },
+              "version": "0754b865deae05f959d9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-849688a53ee6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e5be22cc932e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e5be22cc932e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-22e67bda8f52"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-325f4facc6f7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d8f05046575e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-603c320d62cf"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d8f05046575e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

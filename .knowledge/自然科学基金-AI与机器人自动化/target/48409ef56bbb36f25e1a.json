@@ -1,0 +1,207 @@
+{
+  "doc_id": "48409ef56bbb36f25e1a",
+  "version": "a90ae4952c2543ffae61",
+  "source_hash": "7942c37e0bbf8202dad2cf965f0c3c78452835ef38dca8484275f830cec0aab7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:08.130147+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5b418efc891f",
+          "name": "高速铁路入侵目标识别",
+          "desc": "自主驾驶智能高铁环境状态智能感知",
+          "evidence": [
+            {
+              "quote": "研发自主驾驶高速列车是世界铁路智能化的重要方向，也是落实我国交通强国战略的重要举措",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 695
+              },
+              "version": "a90ae4952c2543ffae61"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-08a315b59b9a",
+          "name": "入侵样本少获取难检不准",
+          "desc": "高铁复杂环境入侵样本数量少、获取难、检不准",
+          "evidence": [
+            {
+              "quote": "本项目针对高速铁路复杂运行环境下入侵样本数量少、获取难、检不准的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2697,
+                "end_char": 2730
+              },
+              "version": "a90ae4952c2543ffae61"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-34b718766b09",
+          "name": "多源特征配准融合检测",
+          "desc": "红外、可见光与激光雷达配准及多层级特征融合",
+          "evidence": [
+            {
+              "quote": "从而实现红外、可见光与激光雷达等多源特征信息配准，并基于配准信息多层级特征融合实现可靠目标检测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2880,
+                "end_char": 2926
+              },
+              "version": "a90ae4952c2543ffae61"
+            }
+          ]
+        },
+        {
+          "id": "item-3802f18c565d",
+          "name": "生成对抗样本增强",
+          "desc": "改进生成对抗网络与姿态迁移生成入侵样本",
+          "evidence": [
+            {
+              "quote": "提出了基于改进生成对抗网络的铁路入侵目标生成模型，特别针对入侵行人样本增强问题，提出了基于姿态迁移的铁路场景入侵行人生成模型，丰富了铁路场景入侵样本。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2949,
+                "end_char": 3023
+              },
+              "version": "a90ae4952c2543ffae61"
+            }
+          ]
+        },
+        {
+          "id": "item-7f2036e942d2",
+          "name": "度量元学习小样本识别",
+          "desc": "通道注意力特征提取与类中心微调损失",
+          "evidence": [
+            {
+              "quote": "提出了基于度量元学习的小样本目标识别模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3046,
+                "end_char": 3065
+              },
+              "version": "a90ae4952c2543ffae61"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e4751f5b53aa",
+          "name": "边缘端实时检测部署",
+          "desc": "算法部署NVIDIA AGX Xavier并经TensorRT加速实现现场实时处理",
+          "evidence": [
+            {
+              "quote": "通过将识别算法部署到NVIDIA AGX jetson Xavier上，利用TensorRT模型推理加速库对算法模型进行推理层面的加速，实现了现场边缘端实时处理。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3434,
+                "end_char": 3514
+              },
+              "version": "a90ae4952c2543ffae61"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5b418efc891f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-08a315b59b9a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-08a315b59b9a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-34b718766b09"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-08a315b59b9a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3802f18c565d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-08a315b59b9a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7f2036e942d2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7f2036e942d2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e4751f5b53aa"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-34b718766b09"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e4751f5b53aa"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

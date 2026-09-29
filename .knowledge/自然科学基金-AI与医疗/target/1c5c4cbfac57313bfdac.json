@@ -1,0 +1,142 @@
+{
+  "doc_id": "1c5c4cbfac57313bfdac",
+  "version": "e9adfb93c82f326158df",
+  "source_hash": "fd9c7b18bddb601aa03a0360fa62410686f70f4253df21e9f2ffcd0e18c149a4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:04.808397+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-885c8c3d7bb7",
+          "name": "COPD早期功能小气道评价与预测",
+          "desc": "面向慢性阻塞性肺疾病的发生发展，评价功能小气道与小气道阻力并预测COPD风险。",
+          "evidence": [
+            {
+              "quote": "小气道评价在慢性阻塞性肺疾病的发生发展中具有重要的意义",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 683,
+                "end_char": 709
+              },
+              "version": "e9adfb93c82f326158df"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-48872c020204",
+          "name": "功能小气道异常难以早期精准发现",
+          "desc": "功能小气道病变具有可逆性，但早期精准发现功能小气道异常困难；现有密度评价需呼吸双相CT扫描，辐射剂量高。",
+          "evidence": [
+            {
+              "quote": "如何早期、精准发现功能小气道的异常，是小气道评价的重中之重",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 728,
+                "end_char": 756
+              },
+              "version": "e9adfb93c82f326158df"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e41f067e1f49",
+          "name": "深度学习与气流动力学驱动的功能小气道定量可视化",
+          "desc": "依托深度学习和流体力学技术，构建单一吸气相CT预测功能小气道及肺功能的模型，并实现小气道阻力的区域性定量可视化评价。",
+          "evidence": [
+            {
+              "quote": "本项目拟依托深度学习和流体力学技术，聚焦小气道功能和阻力的定量可视化研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 967,
+                "end_char": 1002
+              },
+              "version": "e9adfb93c82f326158df"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1ce67f0249af",
+          "name": "单呼吸相CT生成模型检测功能小气道病变AUC 0.86",
+          "desc": "生成模型检测功能性小气道病变性能显著优于传统预测模型（敏感度86.3% vs 38.9%，AUC 0.86 vs 0.70），并在多个内部及外部测试集中保持稳定。",
+          "evidence": [
+            {
+              "quote": "生成模型在功能性小气道病变检测中的性能显著优于传统预测模型（敏感度86.3% vs 38.9%，AUC 0.86 vs 0.70）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2878,
+                "end_char": 2942
+              },
+              "version": "e9adfb93c82f326158df"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-885c8c3d7bb7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-48872c020204"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-48872c020204"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e41f067e1f49"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e41f067e1f49"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1ce67f0249af"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

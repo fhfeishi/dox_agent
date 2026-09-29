@@ -1,0 +1,142 @@
+{
+  "doc_id": "e426bf1924ad7a173808",
+  "version": "4dc5d30108bc2947ffa8",
+  "source_hash": "c6a5c0003b81430d6f79630e3a812bdeb35350798b2ac7425ba69155e22b0b63",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:17.936045+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fda75ecf472a",
+          "name": "单细胞与空间转录组融合数据细胞分化分析",
+          "desc": "面向多细胞生物基因调控研究，利用单细胞与空间转录组融合数据开展细胞分类、高分辨率空间重构与分化轨迹推断。",
+          "evidence": [
+            {
+              "quote": "空间转录组学和单细胞转录组学是生物医学研究的前沿热点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 680
+              },
+              "version": "4dc5d30108bc2947ffa8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ca7f1e595043",
+          "name": "融合数据异质高噪导致传统分化算法误差大",
+          "desc": "融合数据具有大规模、异质性和高噪声等特性，传统细胞分化算法面临误差大、复杂轨迹预测能力不足的问题。",
+          "evidence": [
+            {
+              "quote": "由于融合数据具有大规模、异质性和高噪声等特性，传统细胞分化算法面临着误差大和复杂轨迹预测能力不足等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 767,
+                "end_char": 817
+              },
+              "version": "4dc5d30108bc2947ffa8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e32bbdbad7c0",
+          "name": "深度学习与知识图谱双视角表示的细胞分化算法",
+          "desc": "以深度学习和知识图谱双视角表示融合数据，提出认知图谱半监督分类、空间数据单细胞分辨率反演与基于迁移学习和图神经网络的轨迹推断算法。",
+          "evidence": [
+            {
+              "quote": "本项目提出以深度学习和知识图谱双视角表示的融合数据为基础，开展高效准确细胞分化算法设计的前沿研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 822,
+                "end_char": 869
+              },
+              "version": "4dc5d30108bc2947ffa8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-14545a769bab",
+          "name": "发表论文20篇并申请国家发明专利3项",
+          "desc": "在Nature Methods、IEEE TKDE、BIB等权威期刊及KDD、WWW等CCF A类会议发表论文20篇，申请国家发明专利3项（已授权1项），培养博士3名、硕士9名。",
+          "evidence": [
+            {
+              "quote": "发表论文20篇；申请国家发明专利3项，其中已获授权1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3249,
+                "end_char": 3275
+              },
+              "version": "4dc5d30108bc2947ffa8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-fda75ecf472a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ca7f1e595043"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ca7f1e595043"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e32bbdbad7c0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e32bbdbad7c0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-14545a769bab"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

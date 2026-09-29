@@ -1,0 +1,180 @@
+{
+  "doc_id": "72601e3fd2f7d8845933",
+  "version": "befc4fd08d43f2a94111",
+  "source_hash": "aef4ff32fc375686558ffa4f94ebf95abeafcbcbe62d439af9dd5fcf3948aff0",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T17:01:43.582547+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-287b64df9c82",
+          "name": "AUV集群博弈对抗",
+          "desc": "面向海洋强国战略的AUV集群智能对抗研究",
+          "evidence": [
+            {
+              "quote": "自主水下航行器（AUV）集群对抗是我国亟待发展的重要研究课题之一，对建设海洋强国等重大战略有着积极的促进作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 649,
+                "end_char": 702
+              },
+              "version": "befc4fd08d43f2a94111"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e4459bcc0753",
+          "name": "弱联通约束收益不确定",
+          "desc": "水下弱联通约束与复杂动态环境使集群博弈收益不确定、决策效率低",
+          "evidence": [
+            {
+              "quote": "然而水下弱联通约束与复杂动态环境使AUV集群博弈具有收益不确定、决策效率低等问题，研究难度较大",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 759,
+                "end_char": 805
+              },
+              "version": "befc4fd08d43f2a94111"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f441221fd511",
+          "name": "弱联通约束博弈对抗模型",
+          "desc": "直觉模糊映射转换博弈条件，建立多阶段动态对抗非合作零和收益模型",
+          "evidence": [
+            {
+              "quote": "建立了弱联通约束下的 AUV 集群博弈对抗模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2843,
+                "end_char": 2865
+              },
+              "version": "befc4fd08d43f2a94111"
+            }
+          ]
+        },
+        {
+          "id": "item-f09327abd4e4",
+          "name": "直觉模糊博弈对抗算法",
+          "desc": "直觉模糊规则与模糊收益模型建立模糊支付矩阵与对抗决策指标",
+          "evidence": [
+            {
+              "quote": "建立了具有水下约束的直觉模糊规则，给出了不同对抗策略收益的直觉模糊排序",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3344,
+                "end_char": 3378
+              },
+              "version": "befc4fd08d43f2a94111"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a4d876f9cebd",
+          "name": "纳什均衡最优策略求解",
+          "desc": "借助智能算法得到AUV集群博弈纳什均衡最优策略并经半实物仿真验证",
+          "evidence": [
+            {
+              "quote": "结合AUV博弈对抗模型建立与直觉模糊收益等，借助智能算法得到了AUV集群博弈纳什均衡最优策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3547,
+                "end_char": 3592
+              },
+              "version": "befc4fd08d43f2a94111"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-287b64df9c82"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e4459bcc0753"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e4459bcc0753"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f441221fd511"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e4459bcc0753"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f09327abd4e4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f09327abd4e4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a4d876f9cebd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f441221fd511"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a4d876f9cebd"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

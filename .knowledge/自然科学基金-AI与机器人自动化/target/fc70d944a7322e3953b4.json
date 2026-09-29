@@ -1,0 +1,180 @@
+{
+  "doc_id": "fc70d944a7322e3953b4",
+  "version": "2e91eea43631d9e94c7b",
+  "source_hash": "d1c6725e385253fcaea3e7783ccb73380fdf09cbf935b8c59bd543502cb544e6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:02:30.715070+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e476118a8fb2",
+          "name": "固定翼无人机紧密编队",
+          "desc": "通过尾流感知实现减阻节能的紧密编队飞行",
+          "evidence": [
+            {
+              "quote": "本课题从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计可靠的尾流在线感知和估计方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2657,
+                "end_char": 2726
+              },
+              "version": "2e91eea43631d9e94c7b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a6af345e1034",
+          "name": "尾流感知估计方案匮乏",
+          "desc": "尾流非线性强噪声大，模型控制难兼顾鲁棒与精确",
+          "evidence": [
+            {
+              "quote": "1) 应对无人机尾流非线性强，测量噪声大，易受环境影响等问题的在线尾流感知和估计技术方案匮乏；2) 无人机之间复杂的空气动力学耦合特性增大了无人机系统的不确定性，基于模型的控制方法难以同时满足鲁棒性和精确性要求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 728,
+                "end_char": 833
+              },
+              "version": "2e91eea43631d9e94c7b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-41a1315782ac",
+          "name": "大涡模拟尾流建模",
+          "desc": "大涡模拟仿真与集合卡尔曼滤波尾流估计",
+          "evidence": [
+            {
+              "quote": "本课题发展了基于大涡模拟的无人机尾流建模与仿真，进而开发了基于集合卡尔曼滤波技术的无人机尾流估计算法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2873,
+                "end_char": 2923
+              },
+              "version": "2e91eea43631d9e94c7b"
+            }
+          ]
+        },
+        {
+          "id": "item-5ac44e296ea2",
+          "name": "分层RL多机协同",
+          "desc": "RL与干扰抑制器、分层强化学习的多机协同算法",
+          "evidence": [
+            {
+              "quote": "本课题发展了融合强化学习与干扰抑制器的新型鲁棒控制策略、综合运动规划与协同控制的一体化紧密编队控制架构、融合强化学习与传统人工势场法的多机协同控制方法、基于分层强化学习的多机协同控制算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2930,
+                "end_char": 3022
+              },
+              "version": "2e91eea43631d9e94c7b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-92c3781b64f0",
+          "name": "ROS-Pybullet测试系统",
+          "desc": "支持纯实物、纯数字与半实物多种验证模式",
+          "evidence": [
+            {
+              "quote": "本课题还基于ROS系统、Pybullet物理引擎及Unity3D三维渲染引擎开发了一套面向多机协同控制算法验证的测试系统，支持纯实物试验的数据收发与存储、纯数字仿真测试及半实物半数字验证评估等多种模式",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3192,
+                "end_char": 3291
+              },
+              "version": "2e91eea43631d9e94c7b"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e476118a8fb2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a6af345e1034"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a6af345e1034"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-41a1315782ac"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a6af345e1034"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5ac44e296ea2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5ac44e296ea2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-92c3781b64f0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-41a1315782ac"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-92c3781b64f0"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

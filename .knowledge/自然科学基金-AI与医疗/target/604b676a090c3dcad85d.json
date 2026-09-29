@@ -1,0 +1,142 @@
+{
+  "doc_id": "604b676a090c3dcad85d",
+  "version": "533baf7590830ed4836c",
+  "source_hash": "442dce34586c0429aad15f3651ec3ddb06922d4b5b10d3d01f55d38b0c141c42",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:16.787783+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2e65b4cfe5c5",
+          "name": "结直肠癌肿瘤出芽智能量化与预后评估",
+          "desc": "面向结直肠癌病理诊断，对癌灶浸润前沿的肿瘤出芽进行智能量化、分级并评估其预后效能。",
+          "evidence": [
+            {
+              "quote": "结直肠癌肿瘤出芽（tumor budding，TB）指在癌灶浸润前沿区域内，单个癌细胞或由小于5个癌细胞构成的细胞簇，其分级与预后显著相关",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 657,
+                "end_char": 725
+              },
+              "version": "533baf7590830ed4836c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-454e6adaa0a5",
+          "name": "HE切片上肿瘤出芽识别量化困难且一致性差",
+          "desc": "肿瘤出芽结构微小、形态复杂，HE染色切片上识别和量化困难，病理医生间评估一致性差，限制了其临床应用。",
+          "evidence": [
+            {
+              "quote": "目前评估肿瘤出芽存在以下挑战，包括：（1）HE染色切片上识别和量化困难；（2）病理医生间评估一致性差，限制了其临床应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 763,
+                "end_char": 821
+              },
+              "version": "533baf7590830ed4836c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3959656e9556",
+          "name": "HE-CK配准与主动学习多尺度分割量化方法",
+          "desc": "基于HE-CK复染全视野数字切片归一化梯度场逐步配准获得金标准，用图像信息熵主动学习减少标注量，结合多尺度分割精准量化肿瘤出芽。",
+          "evidence": [
+            {
+              "quote": "基于图像信息熵的主动学习算法选取待标注区域，减少所需标注样本量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 933,
+                "end_char": 963
+              },
+              "version": "533baf7590830ed4836c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d9e2c1a67267",
+          "name": "AI量化肿瘤出芽与患者总体生存显著相关",
+          "desc": "在大样本多中心结直肠癌随访数据中验证AI量化肿瘤出芽指标与患者总体生存显著相关，并具备稳定的风险分层能力。",
+          "evidence": [
+            {
+              "quote": "验证了其与患者总体生存显著相关，并具备稳定的风险分层能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3123,
+                "end_char": 3150
+              },
+              "version": "533baf7590830ed4836c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2e65b4cfe5c5"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-454e6adaa0a5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-454e6adaa0a5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3959656e9556"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3959656e9556"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d9e2c1a67267"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

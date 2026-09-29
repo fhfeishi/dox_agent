@@ -1,0 +1,180 @@
+{
+  "doc_id": "e4732fbb3d97c636a250",
+  "version": "0c909eca194bf0301980",
+  "source_hash": "c522b0b9147f762740d7ce770a44549a7aa70678938f93caf07d37d6bcd550ed",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:55.670010+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-57d17fa8b906",
+          "name": "非结构路面空地协同",
+          "desc": "UAV与UGV协同执行非结构路面下特殊障碍物识别与动态目标跟踪任务",
+          "evidence": [
+            {
+              "quote": "本课题通过构建空地协同系统，实现在非结构路面条件下，对特殊障碍物的有效识别，以及动态目标跟踪",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2842,
+                "end_char": 2887
+              },
+              "version": "0c909eca194bf0301980"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-93b5353ea472",
+          "name": "室外通信覆盖不足",
+          "desc": "室外大场景下通信网络在智能装备中无法全面覆盖",
+          "evidence": [
+            {
+              "quote": "以解决室外通信网络在智能装备中无法全面覆盖的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3005,
+                "end_char": 3028
+              },
+              "version": "0c909eca194bf0301980"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6b5e571860eb",
+          "name": "视觉语义地图协同导航",
+          "desc": "UAV构建非结构场景视觉语义地图辅助UGV自动导航与精准路径规划",
+          "evidence": [
+            {
+              "quote": "UAV构建非结构场景的视觉语义地图辅助UGV完成自动导航",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3141,
+                "end_char": 3168
+              },
+              "version": "0c909eca194bf0301980"
+            }
+          ]
+        },
+        {
+          "id": "item-66b13cb87551",
+          "name": "自注意力特征相关目标跟踪",
+          "desc": "结合搜索区域和模板全局特征，提升跟踪算法精度与鲁棒性",
+          "evidence": [
+            {
+              "quote": "创新性地提出了一种基于自注意力机制的特征相关网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3224,
+                "end_char": 3247
+              },
+              "version": "0c909eca194bf0301980"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ea55037c8990",
+          "name": "UAV/UGV协同实验平台",
+          "desc": "搭建协同系统实验平台，在实验室与真实环境中验证方案有效性",
+          "evidence": [
+            {
+              "quote": "通过搭建一套UAV/UGV协同系统实验平台，在实验室环境与真实环境中开展实验",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3350,
+                "end_char": 3387
+              },
+              "version": "0c909eca194bf0301980"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-57d17fa8b906"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-93b5353ea472"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-93b5353ea472"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6b5e571860eb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6b5e571860eb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ea55037c8990"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-57d17fa8b906"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-66b13cb87551"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-66b13cb87551"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ea55037c8990"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

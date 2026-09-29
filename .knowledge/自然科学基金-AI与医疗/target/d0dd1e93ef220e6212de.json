@@ -1,0 +1,142 @@
+{
+  "doc_id": "d0dd1e93ef220e6212de",
+  "version": "0c3e0bcc92dd34f8b0a7",
+  "source_hash": "ee4578e9d0d597cd117612431a547d6323452900bd498ed0961fd4c38a166b29",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:50.506376+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-84b50a3a4fa5",
+          "name": "医疗健康大数据驱动的临床误诊研判",
+          "desc": "面向千万级诊疗病例，研究大数据与人工智能驱动的全景式临床误诊研判理论与技术。",
+          "evidence": [
+            {
+              "quote": "因为临床误诊的偶然性、复杂性和社会性等原因，研判的影响因素众多，使得误诊研判也具有“高维”特性，误诊相关研究进展缓慢",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 698,
+                "end_char": 755
+              },
+              "version": "0c3e0bcc92dd34f8b0a7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-149ba4a9928a",
+          "name": "医疗大数据超高维使常规分析难以处理",
+          "desc": "医疗健康大数据具有高度多源、异构、多模态、超高维等特征，常规的大数据分析技术很难处理，误诊研判存在“维数灾难”难题。",
+          "evidence": [
+            {
+              "quote": "医疗健康大数据具有高度多源、异构、多模态、超高维等特征，常规的大数据分析技术很难以处理",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 693
+              },
+              "version": "0c3e0bcc92dd34f8b0a7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-56cd58d78396",
+          "name": "知识智能体降维降噪与全景式误诊研判",
+          "desc": "创新大数据分析与人工智能技术，研究知识智能体降维降噪及实时决策处理技术，设计时空智能识别码与自主触发器，挖掘误诊像素与像素块并构建误诊画像、误诊事理图谱与知识图谱。",
+          "evidence": [
+            {
+              "quote": "项目创新大数据分析与人工智能技术，研究知识智能体降维降噪及实时决策处理技术解决上述共性的“高维”难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 757,
+                "end_char": 806
+              },
+              "version": "0c3e0bcc92dd34f8b0a7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7639d496ab46",
+          "name": "研发误诊智能自主研判平台并发表39篇论文",
+          "desc": "研发高维精准全景式误诊智能自主研判平台，可对千万级病例进行结构化处理、跨病种误诊规律挖掘与智能化呈现；发表学术论文39篇（SCI/SSCI 35篇），登记软件著作权2项，培养博士生11人、硕士26人。",
+          "evidence": [
+            {
+              "quote": "项目研发了“高维精准全景式误诊智能自主研判平台”，集成误诊挖掘、知识图谱构建、决策分析、可视化展示等功能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3730,
+                "end_char": 3781
+              },
+              "version": "0c3e0bcc92dd34f8b0a7"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-84b50a3a4fa5"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-149ba4a9928a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-149ba4a9928a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-56cd58d78396"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-56cd58d78396"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7639d496ab46"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

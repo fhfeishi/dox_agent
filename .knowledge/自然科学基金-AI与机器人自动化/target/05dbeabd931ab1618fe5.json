@@ -1,0 +1,197 @@
+{
+  "doc_id": "05dbeabd931ab1618fe5",
+  "version": "3692f8832d854cf425e4",
+  "source_hash": "5257f63634cd09d22ab5fcfc68510dacdc71acf814adf89f0d565d4a096361df",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T17:01:44.942922+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2ee0479a455b",
+          "name": "水下AUV自主导航SLAM",
+          "desc": "海洋强国战略下水下装备远程自主导航核心关键技术",
+          "evidence": [
+            {
+              "quote": "水下同时定位与地图构建（SLAM，Simultaneous Localization and Mapping）技术作为支撑水下自主导航的核心关键技术，其性能优劣直接决定了水下装备的作业范围、任务可靠性与生存能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2731,
+                "end_char": 2835
+              },
+              "version": "3692f8832d854cf425e4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d94f03a93d7e",
+          "name": "回环检测实时可靠性不足",
+          "desc": "定位误差累积发散、相似场景误判，回环检测实时性可靠性与容错性难保障",
+          "evidence": [
+            {
+              "quote": "当前水下SLAM技术受严苛环境制约：定位误差累积易发散，相似地形场景增加回环检测误判风险，致使回环检测的实时性、可靠性与容错性难以满足需求，成为技术落地瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2864,
+                "end_char": 2941
+              },
+              "version": "3692f8832d854cf425e4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-87771d05675d",
+          "name": "姿态参数快速响应机制",
+          "desc": "明确影响回环形成的主导物理量，阐明姿态参数调控下的快速响应机制",
+          "evidence": [
+            {
+              "quote": "系统阐明姿态参数调控下的回环检测快速响应机制，为提升检测效率奠定理论基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3062,
+                "end_char": 3097
+              },
+              "version": "3692f8832d854cf425e4"
+            }
+          ]
+        },
+        {
+          "id": "item-5bc5fe4faf86",
+          "name": "变结构因子图容错优化",
+          "desc": "探究虚假回环约束影响规律，提出变结构因子图模型容错优化框架",
+          "evidence": [
+            {
+              "quote": "深入探究虚假回环约束对全局定位精度的影响规律，创新性提出变结构因子图模型容错优化框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3164,
+                "end_char": 3205
+              },
+              "version": "3692f8832d854cf425e4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6291c4da5755",
+          "name": "SCI论文与专利体系",
+          "desc": "第一/通信作者发表SCI论文19篇，形成5项受理/授权发明专利",
+          "evidence": [
+            {
+              "quote": "主持人以第一作者/通信作者发表SCI论文19篇，相关成果获国际同行认可；形成5项受理/授权发明专利，构建完整知识产权体系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3268,
+                "end_char": 3327
+              },
+              "version": "3692f8832d854cf425e4"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-5468903f913b",
+          "name": "多工况实验验证",
+          "desc": "搭建不同水文条件实验平台完成多工况综合实验验证，明确导航定位边界条件",
+          "evidence": [
+            {
+              "quote": "四是搭建涵盖不同水文条件的实验平台，完成多工况综合实验验证，精准明确导航定位边界条件",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3207,
+                "end_char": 3248
+              },
+              "version": "3692f8832d854cf425e4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2ee0479a455b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d94f03a93d7e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d94f03a93d7e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-87771d05675d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d94f03a93d7e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5bc5fe4faf86"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5bc5fe4faf86"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5468903f913b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-87771d05675d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6291c4da5755"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "doc_id": "e32f1c6b0704496728b9",
+  "version": "639801060374f988bdac",
+  "source_hash": "1055b38c5a88be98ea6d31a0d1da787b13337316579242f1912a0308446f5722",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:18.004864+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-24979a79d61d",
+          "name": "胎儿及婴幼儿脑早期MR图像非刚性配准",
+          "desc": "面向脑早期MR图像，通过配准计算个体发育差异、寻找发育规律，并及早发现发展性障碍疾病。",
+          "evidence": [
+            {
+              "quote": "通过脑早期MR图像配准可计算个体发育差异、寻找发育规律，及早发现各种发展性障碍疾病",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 688,
+                "end_char": 728
+              },
+              "version": "639801060374f988bdac"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cce6252fee74",
+          "name": "脑早期MR图像纵向形态与灰度差异显著",
+          "desc": "脑早期MR图像在时间纵向上形态和灰度存在显著差异，且深度学习配准方法忽视语义一致性，导致配准精度与应用拓展受限。",
+          "evidence": [
+            {
+              "quote": "针对脑早期MR图像时间纵向上形态和灰度存在显著差异问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 825,
+                "end_char": 851
+              },
+              "version": "639801060374f988bdac"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b08d8d4ba51d",
+          "name": "发育轨迹约束下深度对抗网络非刚性配准模型",
+          "desc": "研究发育轨迹约束下基于深度对抗网络的非刚性配准模型，融合变分自编码器形变场学习、级联条件对抗灰度映射与堆叠自编码器残余形变估计。",
+          "evidence": [
+            {
+              "quote": "研究发育轨迹约束下基于深度对抗网络的非刚性配准模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 756,
+                "end_char": 780
+              },
+              "version": "639801060374f988bdac"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-164aadfa286c",
+          "name": "实现脑发育轨迹约束的微分同胚群组配准",
+          "desc": "在层次联合配准基础上设计基于脑发育轨迹约束的微分同胚群组图像配准，为自闭症谱系障碍和注意缺陷多动障碍等儿童发展性障碍疾病提供新技术新方法。",
+          "evidence": [
+            {
+              "quote": "设计基于脑发育轨迹约束的微分同胚群组图像配准",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 976,
+                "end_char": 997
+              },
+              "version": "639801060374f988bdac"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-24979a79d61d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-cce6252fee74"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cce6252fee74"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b08d8d4ba51d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b08d8d4ba51d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-164aadfa286c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

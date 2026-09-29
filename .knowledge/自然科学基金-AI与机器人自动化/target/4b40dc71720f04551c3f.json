@@ -1,0 +1,180 @@
+{
+  "doc_id": "4b40dc71720f04551c3f",
+  "version": "2310fbb75b3d6492d747",
+  "source_hash": "ee98245a930a2e5f0a10060eb195a79d095dfb0a42bac4105c7502554e6173d9",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:11.387322+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ab9b481bbdf0",
+          "name": "口腔微创手术机器人",
+          "desc": "口腔颌面外科与头颈肿瘤外科狭小空间手术",
+          "evidence": [
+            {
+              "quote": "口腔微创手术机器人可以解决空间狭小、精细操作困难，入路创伤大、面部形态及功能破坏严重等问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2424,
+                "end_char": 2469
+              },
+              "version": "2310fbb75b3d6492d747"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d6aa5c9da5c9",
+          "name": "操作空间狭小易疲劳",
+          "desc": "操作空间狭小、手术时间长、医生易疲劳、切除不彻底",
+          "evidence": [
+            {
+              "quote": "本研究针对手术时间长、术中病变切除不彻底、术后恢复时间长以及医生长期手术易疲劳的问题，将机器人融入到外科手术，构建可在狭小空间精细工作的连续体微创手术机器人",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2470,
+                "end_char": 2547
+              },
+              "version": "2310fbb75b3d6492d747"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b4edc2559971",
+          "name": "刚柔可控连续体器械",
+          "desc": "力-位耦合建模与力学行为解析技术突破",
+          "evidence": [
+            {
+              "quote": "突破了刚-柔可控微器械力-位耦合建模及力学行为解析技术及刚-柔可控微器械刚度控制技术。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2692,
+                "end_char": 2734
+              },
+              "version": "2310fbb75b3d6492d747"
+            }
+          ]
+        },
+        {
+          "id": "item-0b2e28673807",
+          "name": "自学习变刚度操控",
+          "desc": "迟滞非线性模型与混合自适应控制及实时主从算法",
+          "evidence": [
+            {
+              "quote": "对所提出的连续体手术机器人的迟滞非线性模型、形变反馈模型进行了研究、并开展了连续体机械臂混合自适应控制的算法和基于自学习的变刚度操控技术及术中实时主从控制算法的研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2609,
+                "end_char": 2690
+              },
+              "version": "2310fbb75b3d6492d747"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2e5befcbd539",
+          "name": "论文20篇与专利10项",
+          "desc": "论文20篇（SCI 12含IEEE-ASME TMech TOP）、专利10项",
+          "evidence": [
+            {
+              "quote": "课题共发表学术论文20篇，其中SCI论文12篇（包括工程技术类TOP期刊IEEE-ASME TRANSACTIONS ON MECHATRONICS），EI会议8篇；申请国家发明专利10项；培养博士研究生4人，硕士研究生6人。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2736,
+                "end_char": 2848
+              },
+              "version": "2310fbb75b3d6492d747"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ab9b481bbdf0"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d6aa5c9da5c9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d6aa5c9da5c9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b4edc2559971"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d6aa5c9da5c9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0b2e28673807"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0b2e28673807"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-2e5befcbd539"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b4edc2559971"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-2e5befcbd539"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "doc_id": "2a7f7b37626d857b7842",
+  "version": "caee0dac1fcfd9e0d0d5",
+  "source_hash": "66152d53a0aee574b9f31dc3a886ec59deadcb1255558d1fc3954e9a55d42b9b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:17.947603+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0b710dc2b83e",
+          "name": "医学影像病灶精准分割",
+          "desc": "面向医学影像病灶分割任务，针对“大数据、小任务”范式下精度与泛化不足、落地困难的问题开展研究。",
+          "evidence": [
+            {
+              "quote": "医学影像病灶分割是一项具有挑战性的任务",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 673
+              },
+              "version": "caee0dac1fcfd9e0d0d5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b1ef82b12cd6",
+          "name": "病灶形态多变与数据不均衡导致模型泛化受限",
+          "desc": "病灶数据变化性大、样本不均衡、多中心分布以及成像质量差，数据驱动的深度学习模型难以有效应对，标注依赖强、跨域泛化能力受限。",
+          "evidence": [
+            {
+              "quote": "其难点来源于病灶数据的变化性大、样本不均衡、多中心分布以及成像质量差等",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 675,
+                "end_char": 709
+              },
+              "version": "caee0dac1fcfd9e0d0d5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-af6b38def263",
+          "name": "伪健康图像生成与知识嵌入分割框架",
+          "desc": "挖掘健康图像、器官、区域与像素中蕴藏的知识，提出生成与分割任务对抗、解耦健康与病灶特征生成等方案，将伪健康图像嵌入分割模型输入、输出与中间特征层。",
+          "evidence": [
+            {
+              "quote": "项目通过挖掘健康图像、器官、区域和像素中蕴藏的知识，提出生成任务与分割任务对抗",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 781,
+                "end_char": 819
+              },
+              "version": "caee0dac1fcfd9e0d0d5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dfc410995df3",
+          "name": "发表学术论文20篇含IEEE Trans 5篇与CCF-A会议6篇",
+          "desc": "项目期间共发表学术论文20篇，其中IEEE Trans期刊论文5篇、CCF推荐A类国际会议论文6篇，形成可复现可推广的算法方法与实验结论。",
+          "evidence": [
+            {
+              "quote": "项目期间共发表学术论文20篇，其中IEEE Trans期刊论文5篇、CCF推荐A类国际会议论文6篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3153,
+                "end_char": 3201
+              },
+              "version": "caee0dac1fcfd9e0d0d5"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0b710dc2b83e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b1ef82b12cd6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b1ef82b12cd6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-af6b38def263"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-af6b38def263"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dfc410995df3"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

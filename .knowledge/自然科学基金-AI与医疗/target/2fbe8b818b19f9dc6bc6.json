@@ -1,0 +1,142 @@
+{
+  "doc_id": "2fbe8b818b19f9dc6bc6",
+  "version": "a25347a956ef8f1f0a8d",
+  "source_hash": "abe09871309e8c65a8e96aa2178047c1feaaa4339243666090ce8e33ceff8b64",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:04.844907+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2cea15485c58",
+          "name": "下咽癌预后评估",
+          "desc": "面向下咽鳞癌术后复发率高、总体生存率低的临床难题，构建影像-基因组学预后评估模型。",
+          "evidence": [
+            {
+              "quote": "下咽鳞癌(Hypopharyngeal squamous cell carcinoma, HSCC)是头颈部常见的恶性肿瘤，存在术后复发率高和总体生存率低的临床难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 679,
+                "end_char": 760
+              },
+              "version": "a25347a956ef8f1f0a8d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0e1814df1138",
+          "name": "下咽癌发病隐匿预后极差",
+          "desc": "下咽癌发病隐匿，早期诊断困难、进展迅速、预后极差，亟需挖掘早期诊断及预后的标志物。",
+          "evidence": [
+            {
+              "quote": "下咽癌发病隐匿，早期诊断困难、进展迅速，预后极差",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2663,
+                "end_char": 2686
+              },
+              "version": "a25347a956ef8f1f0a8d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d92444f5c876",
+          "name": "CT影像组学预测circMATR3表达并构建影像-基因组学模型",
+          "desc": "筛选下咽癌CT图像中与预后相关的影像组学特征，探讨CT影像组学预测circMATR3基因表达的临床价值，构建并验证基于影像-基因组学的下咽癌预后评估模型。",
+          "evidence": [
+            {
+              "quote": "筛选下咽癌CT图像中与预后相关的影像组学特征，探讨CT影像组学预测下咽癌circMATR3基因表达的临床价值，构建基于影像-基因组学的下咽癌预后评估模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 942,
+                "end_char": 1017
+              },
+              "version": "a25347a956ef8f1f0a8d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-91abda54b968",
+          "name": "验证circMATR3/TRIM47/TP53等下咽癌预后标志物",
+          "desc": "挖掘并验证circMATR3、TRIM47、TP53等基因作为反映下咽癌预后的肿瘤标志物，并用机器学习与深度学习构建早期复发、隐匿性淋巴结转移等CT预测模型。",
+          "evidence": [
+            {
+              "quote": "挖掘并验证circMATR3、TRIM47、TP53等基因是否能够作为反映下咽癌预后的肿瘤标志物",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2749,
+                "end_char": 2796
+              },
+              "version": "a25347a956ef8f1f0a8d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2cea15485c58"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0e1814df1138"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0e1814df1138"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d92444f5c876"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d92444f5c876"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-91abda54b968"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

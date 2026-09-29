@@ -1,0 +1,224 @@
+{
+  "doc_id": "2929820ffa32a546ec5a",
+  "version": "8419834cbb2b57b0a280",
+  "source_hash": "657c0a3ef8bd35aed57270ea90f6f1b79d5e0832ec3579eb0048448dc870c3f6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:52:48.900978+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-55eecd28e2a8",
+          "name": "空间机械臂地面遥操作",
+          "desc": "具有时滞的空间柔性机械臂遥操作系统",
+          "evidence": [
+            {
+              "quote": "时滞问题是空间机械臂实现地面遥操作面临的主要问题，对遥操作系统的稳定性和透明性造成了严重的影响。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 676,
+                "end_char": 723
+              },
+              "version": "8419834cbb2b57b0a280"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e5bd3c00d8e3",
+          "name": "动力学建模与操作员负担",
+          "desc": "需建立准确描述动力学特性且易在线辨识的模型，大时滞影响操作员人素特性",
+          "evidence": [
+            {
+              "quote": "建立一种能够准确描述空间机械臂及其环境接触的动力学特性、又易于参数在线辨识的动力学模型有着至关重要的作用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 768,
+                "end_char": 820
+              },
+              "version": "8419834cbb2b57b0a280"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bfc3491fcdd6",
+          "name": "自适应模糊神经网络建模",
+          "desc": "基于输入输出数据的数据驱动动力学建模与多项式系数辨识",
+          "evidence": [
+            {
+              "quote": "首先利用自适应模糊神经网络建立遥操作系统数据驱动动力学模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 943,
+                "end_char": 971
+              },
+              "version": "8419834cbb2b57b0a280"
+            }
+          ]
+        },
+        {
+          "id": "item-868fcf012551",
+          "name": "Lyapunov双边控制器",
+          "desc": "主从端双边控制器设计与闭环稳定性分析",
+          "evidence": [
+            {
+              "quote": "分别在主从端设计相应的双边控制器，并采用Lyapunov稳定性理论进行闭环控制系统的稳定性分析。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2988,
+                "end_char": 3035
+              },
+              "version": "8419834cbb2b57b0a280"
+            }
+          ]
+        },
+        {
+          "id": "item-935397074f01",
+          "name": "胞映射多目标优化",
+          "desc": "基于胞映射的多目标优化得到Pareto最优控制增益",
+          "evidence": [
+            {
+              "quote": "利用基于胞映射的多目标优化方法进行优化控制设计，得到同时满足多个不同目标的控制增益的Pareto最优解集。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3120,
+                "end_char": 3172
+              },
+              "version": "8419834cbb2b57b0a280"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c9e1b70e555f",
+          "name": "主从端信号跟踪实现",
+          "desc": "控制增益有效实现信号跟踪且操作者及时感受从端变化",
+          "evidence": [
+            {
+              "quote": "仿真结果表明所获得的控制增益能够有效实现遥操作系统的主从端信号跟踪，并且操作者能够及时感受到从端环境的变化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3173,
+                "end_char": 3226
+              },
+              "version": "8419834cbb2b57b0a280"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-15f464dd33b8",
+          "name": "时滞系统稳定域分析",
+          "desc": "定积分方法分析稳定域并得到最大收敛速度最优解",
+          "evidence": [
+            {
+              "quote": "得到在给定范围内闭环控制系统的稳定域，并且根据最大跟踪收敛速度得到该稳定域内的最优解。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3477,
+                "end_char": 3519
+              },
+              "version": "8419834cbb2b57b0a280"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-55eecd28e2a8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e5bd3c00d8e3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e5bd3c00d8e3"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bfc3491fcdd6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e5bd3c00d8e3"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-868fcf012551"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e5bd3c00d8e3"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-935397074f01"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-935397074f01"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c9e1b70e555f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-868fcf012551"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-15f464dd33b8"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

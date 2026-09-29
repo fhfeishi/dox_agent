@@ -1,0 +1,142 @@
+{
+  "doc_id": "ffce1deb269395796229",
+  "version": "393887c758e1c6abdbb4",
+  "source_hash": "1c96feb32e17354bdc75abc3c96adfc145d5563b68561adcfeb66ddc9b38642f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:45.854517+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b992593ce413",
+          "name": "胶质母细胞瘤TERT启动子突变预测",
+          "desc": "面向胶质母细胞瘤术前分子遗传学评估，构建TERT启动子突变的影像组学预测模型以支撑个体化精准治疗。",
+          "evidence": [
+            {
+              "quote": "近年新发现TERT启动子突变是GBM始祖基因突变，与GBM患者预后及治疗方案的选择密切相关",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 766,
+                "end_char": 810
+              },
+              "version": "393887c758e1c6abdbb4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9305a2a95044",
+          "name": "手工分割耗时且功能成像未纳入影像组学",
+          "desc": "脑肿瘤影像组学面临手工分割肿瘤耗时、可重复性差，以及MR灌注等功能成像尚未被纳入影像组学分析两大挑战。",
+          "evidence": [
+            {
+              "quote": "但脑肿瘤影像组学面临以下挑战：①手工分割肿瘤耗时、可重复性差；②MR灌注等功能成像尚未被加入到影像组学分析中",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 844,
+                "end_char": 897
+              },
+              "version": "393887c758e1c6abdbb4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-df39914aa3ca",
+          "name": "深度学习自动提取与多时序灌注融合的影像组学",
+          "desc": "利用深度学习自动提取GBM影像组学特征，并将MR灌注成像序列融入影像组学，开发映射GBM微循环改变与分子遗传学的多时序影像组学。",
+          "evidence": [
+            {
+              "quote": "将MR灌注成像序列融入影像组学中，开发能映射GBM的微循环改变与分子遗传学的多时序影像组学",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 969,
+                "end_char": 1013
+              },
+              "version": "393887c758e1c6abdbb4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-47171503ae9d",
+          "name": "构建高精确性与可重复性的TERT突变预测流程",
+          "desc": "构建基于影像组学的TERT启动子突变预测模型，创立具有高度精确性和可重复性的GBM患者TERT启动子突变影像组学研究流程，实现术前分子学预测目标。",
+          "evidence": [
+            {
+              "quote": "构建了基于影像组学的TERT启动子突变预测模型，创立了具有高度的精确性和可重复性的GBM患者TERT启动子突变影像组学研究流程",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2814,
+                "end_char": 2876
+              },
+              "version": "393887c758e1c6abdbb4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b992593ce413"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9305a2a95044"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9305a2a95044"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-df39914aa3ca"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-df39914aa3ca"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-47171503ae9d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

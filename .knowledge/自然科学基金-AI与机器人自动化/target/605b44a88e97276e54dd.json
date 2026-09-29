@@ -1,0 +1,197 @@
+{
+  "doc_id": "605b44a88e97276e54dd",
+  "version": "c65cc2df9353e4123de5",
+  "source_hash": "3ff2560864e6fc4d66edb14514191830b0b1e923e9110ba454ed79b3d3ea7fc0",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:16:41.852408+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d584651d2505",
+          "name": "血管介入手术机器人复杂病变",
+          "desc": "复杂病变下机器人辅助介入手术提高精度同时降低难度",
+          "evidence": [
+            {
+              "quote": "本项目针对血管介入手术机器人“在辅助医生实施包括复杂病变在内的手术时如何在提高手术精度的同时降低手术难度”这一问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2581,
+                "end_char": 2637
+              },
+              "version": "c65cc2df9353e4123de5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-10a4d48c62b4",
+          "name": "现有机器人仅适用简单病变",
+          "desc": "Corpath GRX仅能辅助完成30%简单病变，缺乏力觉感知与手术引导",
+          "evidence": [
+            {
+              "quote": "2019年美国心脏协会杂志刊文指出其仅能辅助完成只占临床病例的30%的简单病变手术操作，此外缺乏力觉感知与手术引导功能，导致不能应用于临床高发的复杂病变、不能有效降低手术难度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 772,
+                "end_char": 858
+              },
+              "version": "c65cc2df9353e4123de5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b60883af47dd",
+          "name": "导丝近端阻力状态判别",
+          "desc": "新的导丝近端阻力计算方法与基于神经网络的递送状态判别算法提取时序特征",
+          "evidence": [
+            {
+              "quote": "项目提出了一种新的导丝近端阻力计算方法，使得手术机器人能够精确控制导丝的递送力，保障了手术过程中的安全性。此外，构建了一个基于神经网络的导丝递送状态判别算法，提取导丝近端阻力和递送速度的时间序列特征，用于判断导丝的递送状态是否异常",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2814,
+                "end_char": 2928
+              },
+              "version": "c65cc2df9353e4123de5"
+            }
+          ]
+        },
+        {
+          "id": "item-fa4782385a59",
+          "name": "2D-3D影像配准导航",
+          "desc": "多模态影像融合颅内动脉介入导航，2D-DSA与3D-DSA配准实现三维动态导航",
+          "evidence": [
+            {
+              "quote": "开发了基于多模态影像信息融合的颅内动脉介入手术导航系统。首先对2D-DSA影像中的脑血管血管进行精准分割，并对三维影像中的脑血管血管进行快速精准分割",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2983,
+                "end_char": 3056
+              },
+              "version": "c65cc2df9353e4123de5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a6af7a0112cf",
+          "name": "动物实验100%成功",
+          "desc": "完成动物实验9例（近程5例远程4例），手术成功率100%，器械相关并发症0%",
+          "evidence": [
+            {
+              "quote": "完成动物实验9例。在实验动物中完成了左主干分叉支架植入，分别进行了近程动物实验5例、远程动物实验4例。相关实验的手术成功率100%，器械相关并发症0%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3309,
+                "end_char": 3383
+              },
+              "version": "c65cc2df9353e4123de5"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-168220a7b2a7",
+          "name": "多导丝端点定位",
+          "desc": "SA-hourglass模型单导丝端点定位平均误差仅2.20±0.15像素，显著优于已有方法",
+          "evidence": [
+            {
+              "quote": "实验结果显示，SA-hourglass模型在单导丝端点定位任务上的平均定位误差仅为2.20±0.15像素，显著优于目前已有方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3227,
+                "end_char": 3289
+              },
+              "version": "c65cc2df9353e4123de5"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d584651d2505"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-10a4d48c62b4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-10a4d48c62b4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b60883af47dd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-10a4d48c62b4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fa4782385a59"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b60883af47dd"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a6af7a0112cf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fa4782385a59"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-168220a7b2a7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

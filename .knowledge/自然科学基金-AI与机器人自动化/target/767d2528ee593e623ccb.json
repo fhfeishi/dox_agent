@@ -1,0 +1,197 @@
+{
+  "doc_id": "767d2528ee593e623ccb",
+  "version": "461e1251f6290582a47d",
+  "source_hash": "e0ea5830a2ed17d87939cb2a4f0282d8a699a7f0e5d4f491c948c6dab20c09a4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:11:23.161144+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-998753dbc5f6",
+          "name": "机电产品智能装配",
+          "desc": "以空心杯电机/永磁同步电机为对象的认知视域机器人装配",
+          "evidence": [
+            {
+              "quote": "面向机电产品装配知识分散、装配方案依赖人工经验以及机器人装配智能性与灵活性不足等问题，本项目以空心杯电机/永磁同步电机为对象，开展认知视域下机器人装配行为关键技术研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2720,
+                "end_char": 2802
+              },
+              "version": "461e1251f6290582a47d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1fd5ac426278",
+          "name": "装配知识分散智能性不足",
+          "desc": "装配知识分散、方案依赖人工经验、机器人装配智能性与灵活性不足",
+          "evidence": [
+            {
+              "quote": "面向机电产品装配知识分散、装配方案依赖人工经验以及机器人装配智能性与灵活性不足等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2720,
+                "end_char": 2761
+              },
+              "version": "461e1251f6290582a47d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4ef0762af594",
+          "name": "装配知识图谱与大模型推理",
+          "desc": "构建电机装配知识图谱（Neo4j），结合装配约束规则与大语言模型推理生成装配序列",
+          "evidence": [
+            {
+              "quote": "构建并存储电机装配知识图谱（Neo4j），在此基础上结合装配约束、装配规则与大语言模型推理机制，实现装配关系理解、装配步骤推理与装配序列生成",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2954,
+                "end_char": 3023
+              },
+              "version": "461e1251f6290582a47d"
+            }
+          ]
+        },
+        {
+          "id": "item-916e4ca1dc4e",
+          "name": "多维感知融合两阶段抓取",
+          "desc": "改进Mask R-CNN检测分割、6D抓取姿态检测与MR-GPD优化实现自适应抓取",
+          "evidence": [
+            {
+              "quote": "提出改进Mask R-CNN目标检测与分割方法，建立基于RGB-D点云的6D抓取姿态检测模型与MR-GPD抓取优化方法，设计多维感知融合驱动的两阶段抓取策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3063,
+                "end_char": 3140
+              },
+              "version": "461e1251f6290582a47d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8096a3dd20f3",
+          "name": "交互式强化学习技能进化",
+          "desc": "含模糊逻辑奖励与混合探索策略的交互式强化学习，推动装配技能持续学习进化",
+          "evidence": [
+            {
+              "quote": "提出交互式强化学习方法（含模糊逻辑奖励与混合探索策略），推动机器人装配技能持续学习与能力进化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3307,
+                "end_char": 3352
+              },
+              "version": "461e1251f6290582a47d"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-9ac8215ec72d",
+          "name": "企业场景验证与论文专利",
+          "desc": "原型系统在企业场景完成验证，发表论文25篇（SCI 14篇），申请专利12项",
+          "evidence": [
+            {
+              "quote": "项目圆满完成任务书指标：发表论文25篇（SCI 14篇、EI 4篇），申请专利12项（授权发明6项），软件著作权4项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3354,
+                "end_char": 3411
+              },
+              "version": "461e1251f6290582a47d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-998753dbc5f6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-1fd5ac426278"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1fd5ac426278"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4ef0762af594"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1fd5ac426278"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-916e4ca1dc4e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4ef0762af594"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9ac8215ec72d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-916e4ca1dc4e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8096a3dd20f3"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

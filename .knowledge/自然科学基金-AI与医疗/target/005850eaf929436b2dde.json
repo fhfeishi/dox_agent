@@ -1,0 +1,142 @@
+{
+  "doc_id": "005850eaf929436b2dde",
+  "version": "2b738271ac10d03dc611",
+  "source_hash": "14aa08aa924198130cccb1bb800a35793928cf6cce44b323985182e2513d9bec",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:33.592049+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a9d0d6ab8723",
+          "name": "泌尿系统肿瘤AI诊疗平台",
+          "desc": "面向以膀胱癌为代表的泌尿系统恶性肿瘤，研发全链条覆盖诊疗过程的AI一体化精准诊疗平台。",
+          "evidence": [
+            {
+              "quote": "在临床实践中，以膀胱癌为代表的泌尿系统恶性肿瘤诊疗存在着诸多亟待解决的临床痛点、难点",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "2205693c8d395dad4e55c16581fde505629112d6"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d4f010e19363",
+          "name": "泌尿肿瘤诊疗存在诊断治疗不精准问题",
+          "desc": "泌尿系统恶性肿瘤诊疗过程中存在诸多亟待解决的诊断与治疗不精准问题，需引入AI技术辅助诊疗决策。",
+          "evidence": [
+            {
+              "quote": "在临床实践中，以膀胱癌为代表的泌尿系统恶性肿瘤诊疗过程中存在着诸多亟待解决的诊断与治疗不精准问题",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "cbae6f55c79b6c0286170812015306401039dc96"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ac95bb4d46fc",
+          "name": "卷积神经网络与知识图谱驱动诊疗平台",
+          "desc": "基于卷积神经网络、深度迁移学习、渐进自动化增量学习、知识图谱技术等最新AI技术，研发全链条覆盖泌尿系统常见恶性肿瘤诊疗过程的一体化AI精准诊疗平台。",
+          "evidence": [
+            {
+              "quote": "基于卷积神经网络、深度迁移学习、渐进自动化增量学习、知识图谱技术等最新发展的AI技术，研发全链条覆盖泌尿系统常见恶性肿瘤诊疗过程的一体化AI精准诊疗平台",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "cbae6f55c79b6c0286170812015306401039dc96"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a995ad75e5a0",
+          "name": "AI诊疗平台全国多中心试用推广",
+          "desc": "研发尿液细胞学、膀胱镜检、膀胱癌T/N分期、前列腺癌与肾癌等系列AI精准诊断系统，性能媲美甚至超越资深医师；AI一体化精准诊疗平台已在全国多中心试用推广；发表SCI论文17篇，获批国家发明专利7项。",
+          "evidence": [
+            {
+              "quote": "研发了泌尿系统常见恶性肿瘤AI一体化精准诊疗平台，已在全国多中心试用推广",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "2205693c8d395dad4e55c16581fde505629112d6"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a9d0d6ab8723"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d4f010e19363"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d4f010e19363"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ac95bb4d46fc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ac95bb4d46fc"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a995ad75e5a0"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

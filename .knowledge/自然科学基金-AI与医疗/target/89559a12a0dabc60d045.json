@@ -1,0 +1,142 @@
+{
+  "doc_id": "89559a12a0dabc60d045",
+  "version": "778bb942ad2d1bd0acb8",
+  "source_hash": "fa2ded769830fe032a718b9ae90b7cb4f90d43b86025573a572ad0114e32d11a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:47.162157+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9ad17e2b11f7",
+          "name": "跟腱损伤超声诊断与预后预测",
+          "desc": "面向跟腱损伤的超声诊断与预后预测，利用跨领域跨组织器官迁移学习提升小样本条件下的分析性能。",
+          "evidence": [
+            {
+              "quote": "超声成像对于跟腱损伤(ATI)诊断与预后预测具有重要临床意义",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 657,
+                "end_char": 686
+              },
+              "version": "778bb942ad2d1bd0acb8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b3ad6a76501a",
+          "name": "小样本ATI超声数据存在过拟合",
+          "desc": "深度学习在ATI评价上颇具潜力，但其性能强烈依赖大样本训练集，在小样本ATI超声数据上存在过拟合问题。",
+          "evidence": [
+            {
+              "quote": "然而其性能强烈依赖于大样本训练集，在小样本ATI超声数据上存在过拟合问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 704,
+                "end_char": 739
+              },
+              "version": "778bb942ad2d1bd0acb8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3b8787ff65dc",
+          "name": "跨领域跨组织器官深度迁移学习DTL",
+          "desc": "利用丰富的自然图像与多源非跟腱组织器官（如肝、乳腺等）超声图像，将其多层次语义信息迁移到跟腱图像，形成跨领域跨组织器官的深度迁移学习新方法。",
+          "evidence": [
+            {
+              "quote": "将其蕴含的多层次语义信息迁移到跟腱图像，由此形成跨领域跨组织器官的深度迁移学习(DTL)新方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 778,
+                "end_char": 824
+              },
+              "version": "778bb942ad2d1bd0acb8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7121a91e3ff9",
+          "name": "跟腱分割Dice提高至87.49%、腱病诊断准确率85.3%",
+          "desc": "基于跨领域跨组织器官DTL的方法将跟腱分割Dice系数提高至87.49%、平均对称表面距离降至5.64像素（p<0.001），并将跟腱腱病诊断准确率提高至85.3%。",
+          "evidence": [
+            {
+              "quote": "基于跨领域跨组织器官DTL的特征表示与图像分割方法将跟腱分割的Dice系数提高至87.49%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3149,
+                "end_char": 3194
+              },
+              "version": "778bb942ad2d1bd0acb8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9ad17e2b11f7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b3ad6a76501a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b3ad6a76501a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3b8787ff65dc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3b8787ff65dc"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7121a91e3ff9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

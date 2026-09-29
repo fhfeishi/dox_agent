@@ -1,0 +1,142 @@
+{
+  "doc_id": "c9019b398f62ad52bf64",
+  "version": "762a70e4e936d50131f7",
+  "source_hash": "6462ad05bdb23809010f19aff21f3b913f63de10350fec76aabd3bc3e03af34e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:03.543966+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-35281ce6eabc",
+          "name": "脊髓型颈椎病智能辅助诊断",
+          "desc": "面向脊髓型颈椎病（CSM）的影像学智能辅助诊断，覆盖配准、分割、识别与康复预测四个环节。",
+          "evidence": [
+            {
+              "quote": "本课题结合脊髓型颈椎病(CSM)辅助诊断在以下四个方面展开研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 767,
+                "end_char": 797
+              },
+              "version": "762a70e4e936d50131f7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2e056203413e",
+          "name": "高质量医学标注图像缺乏",
+          "desc": "高质量医学标注图像的缺乏使智能辅助诊断的发展面临挑战和瓶颈。",
+          "evidence": [
+            {
+              "quote": "然而，高质量医学标注图像的缺乏也使其发展面巨大临挑战和瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 733,
+                "end_char": 761
+              },
+              "version": "762a70e4e936d50131f7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0e256f468ea6",
+          "name": "弱监督学习与生成对抗网络的CSM分割识别模型",
+          "desc": "提出基于弱监督学习和生成对抗网络的分割模型，利用少量全标注与较多弱标注样本实现CSM图像精准分割；并构建融合Capsule机制的多通道生成对抗网络实现精准识别。",
+          "evidence": [
+            {
+              "quote": "提出基于弱监督学习和生成对抗网络的分割模型，利用少量全标注样本和较多的弱标注样本，实现CSM图像的精准分割",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 859,
+                "end_char": 911
+              },
+              "version": "762a70e4e936d50131f7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-14eafbc53a3c",
+          "name": "发表SCI/EI论文18篇并申请中美发明专利",
+          "desc": "申请美国发明专利1项、中国发明专利11项（授权2项），发表SCI/EI论文18篇。",
+          "evidence": [
+            {
+              "quote": "申请美国发明专利1项，中国发明专利11项，其中授权2项。发表SCI/EI论文18篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3310,
+                "end_char": 3350
+              },
+              "version": "762a70e4e936d50131f7"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-35281ce6eabc"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2e056203413e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2e056203413e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0e256f468ea6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0e256f468ea6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-14eafbc53a3c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "doc_id": "8991d6f5cbdcc3c2e386",
+  "version": "c30d8aa7572663966f8e",
+  "source_hash": "24f784e4c3f727413cc961b332d57c2495069e5c093485814d2308563c3b51a9",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:07:58.728949+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6a6ffb417b51",
+          "name": "全周期下肢康复训练",
+          "desc": "下肢康复机器人辅助脑卒中等患者康复训练，减轻治疗师负担",
+          "evidence": [
+            {
+              "quote": "下肢康复机器人辅助患者进行康复训练能够减轻治疗师体力负担，使得治疗师可以将更多精力放在康复处方的个性化制定和调整中，可有效提升康复效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2512,
+                "end_char": 2578
+              },
+              "version": "c30d8aa7572663966f8e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c9903e5624bc",
+          "name": "人机交互柔顺性与适应性不足",
+          "desc": "需提高下肢康复机器人的主动柔顺性与被试适应性",
+          "evidence": [
+            {
+              "quote": "本项目研究了下肢康复机器人人机混合系统中人体运动意图识别、人机交互控制方法、主动康复训练策略等内容，并进行了相应的仿真与实验验证，以提高下肢康复机器人的主动柔顺性与被试适应性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2593,
+                "end_char": 2679
+              },
+              "version": "c30d8aa7572663966f8e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-59fd4d835a47",
+          "name": "人机混合系统动力学辨识",
+          "desc": "综合考虑关节耦合与粘滞力的摩擦力模型，改进粒子群与最小二乘辨识并估计主动力矩",
+          "evidence": [
+            {
+              "quote": "提出了一种综合考虑关节耦合因素与粘滞力的摩擦力模型，利用改进的粒子群优化算法和最小二乘法对动力学模型参数进行辨识，进而估计出了康复训练过程中人体下肢主动力矩",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2719,
+                "end_char": 2796
+              },
+              "version": "c30d8aa7572663966f8e"
+            }
+          ]
+        },
+        {
+          "id": "item-e76b43f1925d",
+          "name": "模糊变阻抗主动柔顺交互",
+          "desc": "基于模糊变阻抗调节器的主动柔顺交互控制方法",
+          "evidence": [
+            {
+              "quote": "提出了一种基于模糊变阻抗调节器的下肢康复机器人主动柔顺交互控制方法，构建了自然舒适的康复训练环境",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2821,
+                "end_char": 2868
+              },
+              "version": "c30d8aa7572663966f8e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5dbe2820300c",
+          "name": "速度自适应主动康复策略",
+          "desc": "基于人机交互力和阻尼控制的速度自适应方法，最大化激励患者主动参与",
+          "evidence": [
+            {
+              "quote": "提出了一种基于人机交互力和阻尼控制的下肢康复机器人速度自适应方法及相应的主动康复训练策略，最大化激励了患者的主动参与，提高了康复训练效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2870,
+                "end_char": 2937
+              },
+              "version": "c30d8aa7572663966f8e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6a6ffb417b51"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c9903e5624bc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c9903e5624bc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-59fd4d835a47"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c9903e5624bc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e76b43f1925d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e76b43f1925d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5dbe2820300c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-59fd4d835a47"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5dbe2820300c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

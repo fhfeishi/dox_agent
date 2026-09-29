@@ -1,0 +1,197 @@
+{
+  "doc_id": "f9fea7c6430f3c0503b9",
+  "version": "d1e16b54764ace03c45e",
+  "source_hash": "5eef4e0d38092a0b41d4272352f6da3fb740c693cd2f477f304449090d549a59",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:01.846285+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4578f7250fa1",
+          "name": "移动式下肢外骨骼康复训练",
+          "desc": "偏瘫、中风患者借助康复装备进行康复训练与日常生活自理",
+          "evidence": [
+            {
+              "quote": "针对我国偏瘫、中风患者需要借助康复装备提供康复服务以及提高日常生活自理能力的背景下",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3225,
+                "end_char": 3265
+              },
+              "version": "d1e16b54764ace03c45e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3bb6948ad0d1",
+          "name": "固定式康复机器人局限",
+          "desc": "传统外骨骼结合跑台固定式机器人训练环境单一、体积庞大、价格昂贵",
+          "evidence": [
+            {
+              "quote": "传统的康复机器人大多以外骨骼结合跑台的固定式为主，存在着训练环境单一、设备体积庞大、价格昂贵、操作复杂等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 748,
+                "end_char": 801
+              },
+              "version": "d1e16b54764ace03c45e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6d2bda80b614",
+          "name": "sEMG膝关节角度映射",
+          "desc": "神经网络构建sEMG与膝关节角度映射，实现连续预测",
+          "evidence": [
+            {
+              "quote": "利用神经网络等方法构建了sEMG与膝关节角度映射的关系，实现了膝关节变化的连续预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3539,
+                "end_char": 3579
+              },
+              "version": "d1e16b54764ace03c45e"
+            }
+          ]
+        },
+        {
+          "id": "item-bfa25177bc09",
+          "name": "多传感信息融合闭环控制",
+          "desc": "基于减重拉力、足底压力、交互力等传感信息的融合算法与主/被动模式判断",
+          "evidence": [
+            {
+              "quote": "基于减重拉力、足底压力、人-机交互力、外骨骼关节力力矩等传感信息，开展了多传感信息融合算法研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3697,
+                "end_char": 3743
+              },
+              "version": "d1e16b54764ace03c45e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-20a297984c8f",
+          "name": "双侧独立减重装置",
+          "desc": "减重装置实现双侧独立减重，体积减少48%",
+          "evidence": [
+            {
+              "quote": "该减重装置实现了双侧独立减重，体积减少了48%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3458,
+                "end_char": 3480
+              },
+              "version": "d1e16b54764ace03c45e"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-3f04dcd9c051",
+          "name": "医疗器械注册与临床应用",
+          "desc": "获批国家二类医疗器械注册证和生产许可证，为120余名患者提供康复训练",
+          "evidence": [
+            {
+              "quote": "康复机器人获批国家二类医疗器械注册证和生产许可证，临床应用效果确切、有效",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4039,
+                "end_char": 4074
+              },
+              "version": "d1e16b54764ace03c45e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4578f7250fa1"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-3bb6948ad0d1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-3bb6948ad0d1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6d2bda80b614"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-3bb6948ad0d1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bfa25177bc09"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bfa25177bc09"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-20a297984c8f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6d2bda80b614"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3f04dcd9c051"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

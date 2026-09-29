@@ -1,0 +1,180 @@
+{
+  "doc_id": "cd36cca1e88a47647cd4",
+  "version": "90c849b78e8a7abee826",
+  "source_hash": "9965102abde54c292893c74cf7144e7a300bf93195c8673c291c43c6176a8fbf",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:54.170252+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-18a4f7c0898b",
+          "name": "足式机器人柔顺控制",
+          "desc": "基于超级电容能量缓冲特性的足式机器人高性能柔顺控制",
+          "evidence": [
+            {
+              "quote": "以解决足式机器人柔顺控制面临的关键科学问题与技术挑战为目标，提出基于超级电容的足式机器人高性能柔顺控制解决思路",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 715
+              },
+              "version": "90c849b78e8a7abee826"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d5986d7b4442",
+          "name": "被动柔顺结构复杂增重",
+          "desc": "传统弹簧阻尼被动柔顺结构设计复杂且增加足端重量",
+          "evidence": [
+            {
+              "quote": "利用超级电容能量缓冲特性取代传统弹簧阻尼被动柔顺机构，在回收能量的同时实现被动柔顺效果，解决传统被动柔顺结构设计复杂，增加足端重量的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 742,
+                "end_char": 809
+              },
+              "version": "90c849b78e8a7abee826"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-930efa0590b0",
+          "name": "混合能量管理与运动控制体系",
+          "desc": "锂电池-超级电容混合能量管理与运动控制相结合的控制体系结构",
+          "evidence": [
+            {
+              "quote": "设计了新的锂电池-超级电容混合能量管理与运动控制相结合的控制体系结构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3025,
+                "end_char": 3058
+              },
+              "version": "90c849b78e8a7abee826"
+            }
+          ]
+        },
+        {
+          "id": "item-e4770251c82f",
+          "name": "AI无扰切换控制",
+          "desc": "近端策略优化非线性自抗扰控制器与深度神经网络无扰切换策略",
+          "evidence": [
+            {
+              "quote": "设计了基于人工智能的无扰切换控制策略，该策略由基于近端策略优化的非线性自抗扰控制器和基于深度神经网络的无扰切换策略组成",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3271,
+                "end_char": 3329
+              },
+              "version": "90c849b78e8a7abee826"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-865dfcb966b4",
+          "name": "论文专利与软著",
+          "desc": "发表标注论文10篇（SCI 6篇），授权发明专利6项、受理9项、软著2项",
+          "evidence": [
+            {
+              "quote": "共发表第一、第二标注论文10篇，其中SCI收录论文6篇，EI收录会议论文4篇。已获授权发明专利6项，受理发明专利9项，授权软件著作权2项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3445,
+                "end_char": 3512
+              },
+              "version": "90c849b78e8a7abee826"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-18a4f7c0898b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d5986d7b4442"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d5986d7b4442"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-930efa0590b0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d5986d7b4442"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e4770251c82f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-930efa0590b0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-865dfcb966b4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e4770251c82f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-865dfcb966b4"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

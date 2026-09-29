@@ -1,0 +1,180 @@
+{
+  "doc_id": "de2c0888776cad61b732",
+  "version": "1cc0935384de4d73c6d3",
+  "source_hash": "21ec4253fe7e7092d5b279a9aebd794ffcf589b1ea10b401d9705094ac7f15e6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:10.098949+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2bac1a4e2a6c",
+          "name": "经皮穿刺手术机器人",
+          "desc": "微创诊疗手术的透明性精准性安全性提升",
+          "evidence": [
+            {
+              "quote": "本项目以“机理建模，透明感知，精准穿刺，安全保障”为目标，探索呼吸运动与穿刺作用下的生理运动关联交互机理",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 784,
+                "end_char": 835
+              },
+              "version": "1cc0935384de4d73c6d3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-24cd2143b4a2",
+          "name": "穿刺不可视辐射伤害",
+          "desc": "组织结构复杂、运动影响精度、过程不可视、辐射伤害",
+          "evidence": [
+            {
+              "quote": "经皮穿刺是临床上量大面广的一种微创诊疗手术，传统方式存在内部组织结构复杂、生理运动影响精度、穿刺过程不可视、遭受辐射伤害等问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 681,
+                "end_char": 744
+              },
+              "version": "1cc0935384de4d73c6d3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dabbf7bc17ad",
+          "name": "多模时空数据融合",
+          "desc": "医学影像动态规律与形状感知的时空数据融合机制",
+          "evidence": [
+            {
+              "quote": "研究基于医学影像下的肿瘤、器官、组织的动态变化规律，并融合形状感知技术建立多模影像及多传感信息的时空数据融合机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 837,
+                "end_char": 892
+              },
+              "version": "1cc0935384de4d73c6d3"
+            }
+          ]
+        },
+        {
+          "id": "item-5e111499bee5",
+          "name": "多目标穿刺路径规划",
+          "desc": "主被动结合安全控制与主从信息共享精准穿刺",
+          "evidence": [
+            {
+              "quote": "突破多目标优化穿刺路径规划、主被动结合的安全控制策略以及机器人主从信息共享和精准穿刺控制等瓶颈技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 894,
+                "end_char": 942
+              },
+              "version": "1cc0935384de4d73c6d3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-059f5f70224c",
+          "name": "机器智能降低操作难度",
+          "desc": "手术机器人具备智能特征弥补安全性精准性依赖",
+          "evidence": [
+            {
+              "quote": "使得手术机器人具有一定的智能特征，用机器智能来弥补安全性精准性对医生的全部依赖，在一定程度上降低医生的操作难度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 975,
+                "end_char": 1030
+              },
+              "version": "1cc0935384de4d73c6d3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2bac1a4e2a6c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-24cd2143b4a2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-24cd2143b4a2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-dabbf7bc17ad"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-24cd2143b4a2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5e111499bee5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5e111499bee5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-059f5f70224c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-dabbf7bc17ad"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-059f5f70224c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

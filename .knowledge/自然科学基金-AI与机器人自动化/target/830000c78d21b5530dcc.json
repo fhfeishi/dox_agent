@@ -1,0 +1,197 @@
+{
+  "doc_id": "830000c78d21b5530dcc",
+  "version": "ef2fc81d3beb0bd24ff8",
+  "source_hash": "5e44a584668216c4bac383e0fd8822719115e86dc654e69b9464996ca94260f8",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:35.327645+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c3e4ddb9a459",
+          "name": "自动驾驶安全可靠性评价",
+          "desc": "智能车辆连续尺度安全可靠性评价",
+          "evidence": [
+            {
+              "quote": "自动驾驶系统安全可靠性连续尺度评价是智能车辆规模化应用的关键基础问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2938,
+                "end_char": 2972
+              },
+              "version": "ef2fc81d3beb0bd24ff8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4adca0bc0349",
+          "name": "场景多尺度演化难度量",
+          "desc": "场景激励多尺度多形态演化难以统一度量安全边界",
+          "evidence": [
+            {
+              "quote": "针对复杂交通环境中场景激励多尺度、多形态演化而难以统一度量安全边界的挑战，本项目围绕“类力学谱表征的自动驾驶可靠性评价理论”，以渐变载荷谱、突变载荷谱和动态交通流载荷谱三类典型安全挑战场景为主线，系统开展理论建模、控制方法与实验验证研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2973,
+                "end_char": 3091
+              },
+              "version": "ef2fc81d3beb0bd24ff8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cb04e4511236",
+          "name": "场景载荷谱建模",
+          "desc": "物理模型与残差学习融合及在线稀疏增量学习",
+          "evidence": [
+            {
+              "quote": "提出物理模型与残差学习融合的建模框架及在线稀疏增量学习方法，实现复杂工况下控制模型的实时更新与性能优化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3139,
+                "end_char": 3190
+              },
+              "version": "ef2fc81d3beb0bd24ff8"
+            }
+          ]
+        },
+        {
+          "id": "item-ed487ad9e7ad",
+          "name": "爆胎最小风险稳定控制",
+          "desc": "揭示爆胎动力学机理提出最小风险稳定策略",
+          "evidence": [
+            {
+              "quote": "系统揭示高速爆胎引发轮胎力突降与横摆力矩失衡的动力学机理，提出最小风险稳定控制策略。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3272,
+                "end_char": 3313
+              },
+              "version": "ef2fc81d3beb0bd24ff8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-25d8a56b5e48",
+          "name": "单圈时间提升10.1%",
+          "desc": "赛车场景单圈109.35s降至98.6s，在线更新小于0.2ms",
+          "evidence": [
+            {
+              "quote": "赛车场景验证结果表明，单圈时间由109.35 s降低至98.6 s，性能提升约10.1%，在线更新计算时间小于0.2 ms，满足车载实时约束。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3191,
+                "end_char": 3261
+              },
+              "version": "ef2fc81d3beb0bd24ff8"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-df2b88a5f5db",
+          "name": "爆胎横向偏差减半",
+          "desc": "四种轮位爆胎最大横向偏差由0.69m降至0.27m",
+          "evidence": [
+            {
+              "quote": "弯道爆胎场景下，四种轮位爆胎的最大横向偏差由0.69 m降低至0.27 m，横摆角速度与横向加速度峰值显著下降",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3314,
+                "end_char": 3368
+              },
+              "version": "ef2fc81d3beb0bd24ff8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c3e4ddb9a459"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4adca0bc0349"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4adca0bc0349"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cb04e4511236"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4adca0bc0349"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ed487ad9e7ad"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cb04e4511236"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-25d8a56b5e48"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ed487ad9e7ad"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-df2b88a5f5db"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "doc_id": "5cb6f763e6f02dae3584",
+  "version": "5674642314a8322d66f4",
+  "source_hash": "96a280591cf07c4f9c570d5fbc20b4ad79c65494c59adb58a802aadb23be550c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:44:38.121150+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a0caa611c06c",
+          "name": "糖尿病视网膜病变自动分析",
+          "desc": "糖尿病视网膜病变发病率高，对视力损伤具有不可逆性，已成为致盲重要病因之一。",
+          "evidence": [
+            {
+              "quote": "糖尿病视网膜病变发病率高，对视力损伤具有不可逆性，已经成为致盲的重要病因之一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 698
+              },
+              "version": "5674642314a8322d66f4"
+            }
+          ]
+        },
+        {
+          "id": "item-0e5ab17d45ac",
+          "name": "眼科大规模DR筛查自动化工具",
+          "desc": "为眼科糖尿病视网膜病变诊断提供新方法和依据，为大规模筛查提供自动化分析工具。",
+          "evidence": [
+            {
+              "quote": "并可望为眼科大规模糖尿病视网膜病变筛查提供自动化分析工具",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 940,
+                "end_char": 967
+              },
+              "version": "5674642314a8322d66f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fc2c3b0e3687",
+          "name": "需挖掘眼底图像蕴含病变信息",
+          "desc": "需通过研究挖掘彩色眼底图像中蕴含的糖尿病视网膜病变信息，建立相应分析模型。",
+          "evidence": [
+            {
+              "quote": "通过本项目的研究挖掘彩色眼底图像中蕴含的糖尿病视网膜病变信息，建立相应的分析模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 847,
+                "end_char": 886
+              },
+              "version": "5674642314a8322d66f4"
+            }
+          ]
+        },
+        {
+          "id": "item-e83bb974932d",
+          "name": "眼底图像质量影响分析准确性",
+          "desc": "彩色眼底图像存在模糊与噪声问题，需建立图像增强与预处理工具支撑。",
+          "evidence": [
+            {
+              "quote": "（2）彩色眼底图像的有效增强，建立了基于分叉点和SURF算法的图像配准模型、基于卷积神经网络的图像配准模型、基于多尺度融合的图像去模糊网络模型、基于多尺度和残差学习的图像去噪网络模型等",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2123,
+                "end_char": 2214
+              },
+              "version": "5674642314a8322d66f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e2bdcd419b24",
+          "name": "分层循环卷积网络HR-Net血管分割",
+          "desc": "建立基于U-Net的分层循环卷积网络用于彩色眼底图像视网膜血管分割。",
+          "evidence": [
+            {
+              "quote": "建立了基于 U-Net 的分层循环卷积网络（HR-Net）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2031,
+                "end_char": 2059
+              },
+              "version": "5674642314a8322d66f4"
+            }
+          ]
+        },
+        {
+          "id": "item-15212c1eb9bd",
+          "name": "多尺度融合去模糊与残差去噪网络",
+          "desc": "建立基于分叉点与SURF、卷积网络配准、多尺度融合去模糊及多尺度残差学习去噪等图像增强模型。",
+          "evidence": [
+            {
+              "quote": "建立了基于分叉点和SURF算法的图像配准模型、基于卷积神经网络的图像配准模型、基于多尺度融合的图像去模糊网络模型、基于多尺度和残差学习的图像去噪网络模型等",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2138,
+                "end_char": 2214
+              },
+              "version": "5674642314a8322d66f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5928ca9aad95",
+          "name": "血管分割精度提升至96.21%至97.15%",
+          "desc": "在DRIVE、CHASE_DB1和STARE三个数据集中血管分割精度分别提升至96.21%、97.02%和97.15%。",
+          "evidence": [
+            {
+              "quote": "将DRIVE、CHASE_DB1和STARE彩色眼底数据集中血管分割精度分别提升至96.21%、97.02%和97.15%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2061,
+                "end_char": 2121
+              },
+              "version": "5674642314a8322d66f4"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-7a921270c56b",
+          "name": "微动脉瘤与出血点检测分类",
+          "desc": "设计基于卷积神经网络的检测、分类模型，实现微动脉瘤、出血点、病变等级等的检测或分类。",
+          "evidence": [
+            {
+              "quote": "设计出基于卷积神经网络的检测、分类模型，实现了彩色眼底图像中微动脉瘤、出血点、病变等级等的检测或分类",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2257,
+                "end_char": 2306
+              },
+              "version": "5674642314a8322d66f4"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-83b159eebd62",
+          "name": "多尺度分割分类网络检测微动脉瘤",
+          "desc": "提出面向眼底图像微小动脉瘤检测的多尺度分割到分类网络。",
+          "evidence": [
+            {
+              "quote": "A multi-scale segmentation-to-classification network for tiny microaneurysm detection in fundus images",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4317,
+                "end_char": 4418
+              },
+              "version": "5674642314a8322d66f4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a0caa611c06c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-fc2c3b0e3687"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fc2c3b0e3687"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e2bdcd419b24"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e2bdcd419b24"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5928ca9aad95"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-15212c1eb9bd"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7a921270c56b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

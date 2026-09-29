@@ -1,0 +1,169 @@
+{
+  "doc_id": "7de1664b94045b3cfeba",
+  "version": "72ee6c194f1789818d3e",
+  "source_hash": "8db8f2fe7581865f245c7c63f6d432bde140f10614b1eea05cf4065cbd1f5c62",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:01.770941+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-53969be18c30",
+          "name": "高对抗环境无人机集群感知",
+          "desc": "高对抗环境下信息感知受通信质量限制，信息流不稳定",
+          "evidence": [
+            {
+              "quote": "高对抗环境下的信息感知受通信质量的限制，其间歇交互过程造成信息流不稳定",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 712,
+                "end_char": 746
+              },
+              "version": "72ee6c194f1789818d3e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9394cd27901a",
+          "name": "不稳定信息流在线学习难",
+          "desc": "传统人工智能方法难以适应不稳定信息流的在线学习需求",
+          "evidence": [
+            {
+              "quote": "普遍应用于不确定性建模的传统人工智能方法难以适应不稳定信息流的在线学习需求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2892,
+                "end_char": 2928
+              },
+              "version": "72ee6c194f1789818d3e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-450285e6d216",
+          "name": "在线进化模糊建模",
+          "desc": "面向快时变特性的模型结构自主配置准则与新型在线进化模糊建模方法",
+          "evidence": [
+            {
+              "quote": "建立了面向快时变特性的模型结构自主配置准则，提出了一系列新型在线进化模糊建模方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3066,
+                "end_char": 3105
+              },
+              "version": "72ee6c194f1789818d3e"
+            }
+          ]
+        },
+        {
+          "id": "item-e6715132d72d",
+          "name": "分布式自适应Backstepping编队控制",
+          "desc": "面向不确定模型的编队控制算法与投影约束策略",
+          "evidence": [
+            {
+              "quote": "构建了面向不确定模型的分布式自适应Backstepping 编队控制算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3136,
+                "end_char": 3171
+              },
+              "version": "72ee6c194f1789818d3e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-98369d99d867",
+          "name": "论文专利与专著",
+          "desc": "发表论文14篇+国际会议2篇，申请发明专利6项（授权3项），撰写专著1册",
+          "evidence": [
+            {
+              "quote": "在信息领域著名国际期刊和国内期刊发表会议论文14篇，国际会议论文2篇，申请6项国家发明专利，其中授权3项，以及撰写专著1册",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3251,
+                "end_char": 3311
+              },
+              "version": "72ee6c194f1789818d3e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-53969be18c30"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9394cd27901a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9394cd27901a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-450285e6d216"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e6715132d72d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-98369d99d867"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-450285e6d216"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-98369d99d867"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

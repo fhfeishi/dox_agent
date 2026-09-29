@@ -1,0 +1,235 @@
+{
+  "doc_id": "a837a682134430449473",
+  "version": "7427dda9dda7bf456fe8",
+  "source_hash": "1bedf4b0542609b472217f600618dde69f8364c9a7af7c34efb6773fedfba40b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:52:32.468705+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9c8db0cd001f",
+          "name": "cN1-2期乳腺癌ALN pCR预测",
+          "desc": "cN1-2期乳腺癌约占我国乳腺癌50%，首选新辅助治疗，NAT后腋窝淋巴结达pCR可免除ALN清扫。",
+          "evidence": [
+            {
+              "quote": "cN1-2期乳腺癌约占我国乳腺癌50%，其首选新辅助治疗（NAT），NAT后腋窝淋巴结（ALN）达到病理完全缓解（pCR）可免除ALN清扫",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 694,
+                "end_char": 762
+              },
+              "version": "7427dda9dda7bf456fe8"
+            }
+          ]
+        },
+        {
+          "id": "item-780efa39e9af",
+          "name": "辅助临床决策提供精准化工具",
+          "desc": "研究结果将为预测NAT后ALN的pCR提供精准化工具，辅助临床决策。",
+          "evidence": [
+            {
+              "quote": "本研究结果将为预测NAT后ALN的pCR提供精准化工具，辅助临床决策",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1059,
+                "end_char": 1092
+              },
+              "version": "7427dda9dda7bf456fe8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4e198b766e2e",
+          "name": "无创检查预测准确性不达指南要求",
+          "desc": "目前无创性检查预测准确性达不到NCCN指南要求（假阴性率<10%）。",
+          "evidence": [
+            {
+              "quote": "但目前无创性检查预测准确性达不到NCCN指南要求（假阴性率<10%）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 764,
+                "end_char": 797
+              },
+              "version": "7427dda9dda7bf456fe8"
+            }
+          ]
+        },
+        {
+          "id": "item-ea0d7a107cbe",
+          "name": "单次单部位MRI信息不全且融合困难",
+          "desc": "存在单次、单部位MRI特征提取信息不全面、不同维度特征融合困难等挑战，导致预测准确性低。",
+          "evidence": [
+            {
+              "quote": "但存在单次、单部位MRI特征提取信息不全面、不同维度特征融合困难等挑战导致预测准确性低",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 866,
+                "end_char": 908
+              },
+              "version": "7427dda9dda7bf456fe8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7d435921bbe3",
+          "name": "多时序MRI深度学习特征提取",
+          "desc": "基于按时序输入GRU网络的多时序原发灶及ALN MRI深度学习进行特征提取，采用Lasso回归进行特征筛选。",
+          "evidence": [
+            {
+              "quote": "基于按时序输入GRU网络的多时序原发灶及ALN MRI深度学习进行特征提取，采用Lasso回归模型进行特征筛选",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 920,
+                "end_char": 974
+              },
+              "version": "7427dda9dda7bf456fe8"
+            }
+          ]
+        },
+        {
+          "id": "item-2e276ce73a71",
+          "name": "Kronecker积多维特征融合",
+          "desc": "采用Kronecker积对MRI关键特征与临床病理分子特征进行多维特征融合与预测，并利用内外部数据验证。",
+          "evidence": [
+            {
+              "quote": "采用Kronecker积对MRI关键特征、临床病理分子特征进行多维特征融合、预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 979,
+                "end_char": 1018
+              },
+              "version": "7427dda9dda7bf456fe8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a8bf62044156",
+          "name": "多中心标准化数据库建立",
+          "desc": "建立包含NAT全周期多时点MRI影像及临床病理信息的多中心标准化数据库（N>1000）。",
+          "evidence": [
+            {
+              "quote": "建立了包含NAT全周期（治疗前、早期、后期）多时点MRI影像及临床病理信息的多中心标准化数据库（N>1000）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3068,
+                "end_char": 3122
+              },
+              "version": "7427dda9dda7bf456fe8"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e559b03408e3",
+          "name": "时空交互STI深度学习模型",
+          "desc": "提出基于时空交互的深度学习模型，利用Transformer和孪生网络架构有效捕捉肿瘤治疗过程中的时序动态变化与空间异质性。",
+          "evidence": [
+            {
+              "quote": "创新性地提出了基于时空交互（STI）的深度学习模型，利用Transformer和孪生网络架构，有效捕捉了肿瘤在治疗过程中的时序动态变化与空间异质性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3127,
+                "end_char": 3199
+              },
+              "version": "7427dda9dda7bf456fe8"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-3508e4eb44b4",
+          "name": "BCAM-pCR评分AUC提升至0.90以上",
+          "desc": "开发基于MRI的肿瘤内异质性量化指标及多模态融合评分系统，显著提升pCR预测准确性，AUC提升至0.90以上，并揭示影像特征与免疫微环境的生物学关联。",
+          "evidence": [
+            {
+              "quote": "开发了基于MRI的肿瘤内异质性（ITH）量化指标及多模态融合评分系统（BCAM-pCR Score），显著提升了pCR预测的准确性（AUC提升至0.90以上）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3204,
+                "end_char": 3282
+              },
+              "version": "7427dda9dda7bf456fe8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9c8db0cd001f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4e198b766e2e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4e198b766e2e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7d435921bbe3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7d435921bbe3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e559b03408e3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2e276ce73a71"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3508e4eb44b4"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "doc_id": "f02f3cf29b8f7bbfa7fc",
+  "version": "8b3e034f3d43fdda8027",
+  "source_hash": "e2317b292dda7d6ebce32174d1daa0655f4f67fe3446fff58287f99d02d0e666",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:07:58.769326+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0b5bfa5ddd28",
+          "name": "机器人腹腔镜自主运镜",
+          "desc": "机器人辅助智能腹腔镜手术，模仿专家持镜助手行为模式",
+          "evidence": [
+            {
+              "quote": "本项目旨在通过揭示专家级持镜助手的“感知-理解-执行”行为模式，建立机器人自主运镜机制，以解决传统手术中视野不稳定、协作效率低及助手易疲劳等痛点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2737,
+                "end_char": 2808
+              },
+              "version": "8b3e034f3d43fdda8027"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-896937c95c4d",
+          "name": "运镜偏好与意图领会缺失",
+          "desc": "现有方法无法根据手术流程调整运镜偏好、领会医生意图确立运镜时机",
+          "evidence": [
+            {
+              "quote": "然而当前研究存在以下问题：无法根据手术流程调整运镜偏好、无法领会医生意图确立运镜时机、腹腔镜视角不符合医生操作习惯",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 689,
+                "end_char": 745
+              },
+              "version": "8b3e034f3d43fdda8027"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fda911c3ce25",
+          "name": "APR-GMM意图解析预测",
+          "desc": "自适应模式识别实时捕获运动基元并动态修正参数，实现超1秒长期轨迹预测",
+          "evidence": [
+            {
+              "quote": "提出APR-GMM算法。通过自适应模式识别实时捕获主刀医生的运动基元并动态修正参数，实现了超过1秒的长期轨迹准确预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2861,
+                "end_char": 2918
+              },
+              "version": "8b3e034f3d43fdda8027"
+            }
+          ]
+        },
+        {
+          "id": "item-28acc96bc836",
+          "name": "强化学习自适应接触控制",
+          "desc": "RLAC框架解决柔性组织形变雅可比矩阵估计难问题",
+          "evidence": [
+            {
+              "quote": "开发了强化学习引导的自适应控制（RLAC）框架，解决了柔性组织形变雅可比矩阵估计难的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3040,
+                "end_char": 3083
+              },
+              "version": "8b3e034f3d43fdda8027"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-29fa2808489f",
+          "name": "自主运镜效率验证",
+          "desc": "经体外仿真、动物实验及人因评估验证，显著缩短手术任务时间并增强遥操作透明度",
+          "evidence": [
+            {
+              "quote": "项目通过体外仿真、动物实验及人因评估验证了所提机制的有效性。结果显示，自主运镜算法显著缩短了手术任务时间，并大幅增强了遥操作透明度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3210,
+                "end_char": 3274
+              },
+              "version": "8b3e034f3d43fdda8027"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0b5bfa5ddd28"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-896937c95c4d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-896937c95c4d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fda911c3ce25"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-896937c95c4d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-28acc96bc836"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fda911c3ce25"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-29fa2808489f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-28acc96bc836"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-29fa2808489f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

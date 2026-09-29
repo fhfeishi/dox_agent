@@ -1,0 +1,142 @@
+{
+  "doc_id": "44c4917eb9e6bd6b9249",
+  "version": "ceb3998c6d626cf26473",
+  "source_hash": "6d532616f562de29201bac2f75f5784ffe7f32ecdc02753293d770f81930cd49",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:30.854077+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4c65f3760f04",
+          "name": "白内障患者辅助决策智能问答系统",
+          "desc": "面向白内障等常见眼病患者，基于知识图谱建立具有推断解释能力的辅助决策智能对话系统。",
+          "evidence": [
+            {
+              "quote": "白内障患者往往由于医学知识不足，难以参与治疗决策，而临床上缺乏具有推断解释能力的AI智能问答系统来辅助患者进行决策",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "c2e7ef8003f8df2418a9d4fdebf64f67983108ac"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a4e2aaacedd2",
+          "name": "患者医学知识不足且缺乏推断型问答系统",
+          "desc": "白内障患者因医学知识不足难以参与治疗决策，而临床上缺乏具有推断和解释能力的智能问答系统辅助决策。",
+          "evidence": [
+            {
+              "quote": "而临床上缺乏具有推断解释能力的AI智能问答系统来辅助患者进行决策",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "c2e7ef8003f8df2418a9d4fdebf64f67983108ac"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c4ff6c8bede2",
+          "name": "推断型知识图谱与检索增强生成结合",
+          "desc": "扩增“推断型”知识图谱增强自监督预训练模型的推断能力，将知识图谱与检索增强生成技术结合构建眼科医学问答框架Med-RISE与面向患者健康教育的RISE框架。",
+          "evidence": [
+            {
+              "quote": "本项目围绕“如何利用知识图谱来建立白内障患者辅助决策智能对话系统”这一关键科学问题，将知识图谱与检索增强生成技术相结合",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "9805e9390aef4debe13a60fdd2ea4537f56e47d2"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-796c1856ad4b",
+          "name": "RISE系统提升患者知识水平与决策能力",
+          "desc": "Med-RISE框架显著提升预训练模型在眼科问答中的准确性与安全性并降低幻觉；RISE系统在临床研究中显著提高患者知识水平和决策能力、降低决策冲突与焦虑；发表SCI论文3篇。",
+          "evidence": [
+            {
+              "quote": "RISE系统在常见眼病患者健康教育中显著提升了回答的准确性、全面性和可理解性",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "9805e9390aef4debe13a60fdd2ea4537f56e47d2"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4c65f3760f04"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a4e2aaacedd2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a4e2aaacedd2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c4ff6c8bede2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c4ff6c8bede2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-796c1856ad4b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

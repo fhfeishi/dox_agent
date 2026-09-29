@@ -1,0 +1,142 @@
+{
+  "doc_id": "fa8c26b736c20dbf8187",
+  "version": "ad0ae5cbe98fd1d12afa",
+  "source_hash": "1924b69fe4c9b3587b459f844faf4f541ba814df28216793dc1a89169c1549ac",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:03.518799+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5f7e7ed8279e",
+          "name": "耳鸣声治疗疗效预测",
+          "desc": "面向我国约2亿耳鸣患者的声治疗，在治疗前预测疗效以指导临床决策。",
+          "evidence": [
+            {
+              "quote": "我国耳鸣患病人数约2亿，严重影响病人身心健康",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 657,
+                "end_char": 678
+              },
+              "version": "ad0ae5cbe98fd1d12afa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7c33c656e4ae",
+          "name": "声治疗疗效差异大且缺乏治疗前预测手段",
+          "desc": "声治疗虽常用但疗效差异大，亟需治疗前即可预测疗效的有力手段；既有预测模型存在特征挖掘不全与架构缺陷问题。",
+          "evidence": [
+            {
+              "quote": "声治疗常用、但疗效差异大，亟需治疗前即可预测疗效的有力手段",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 680,
+                "end_char": 708
+              },
+              "version": "ad0ae5cbe98fd1d12afa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-45ff3b5fca2b",
+          "name": "多模态脑影像拓扑特征与贝叶斯可加回归树预测模型",
+          "desc": "基于多层网络建模构建治疗前后动态功能与结构网络，用拓扑特征分析与组稀疏典型相关分析确立去中枢化关键影像表征，再以贝叶斯可加回归树建立疗效预测模型。",
+          "evidence": [
+            {
+              "quote": "基于贝叶斯可加回归树的预测模型构建方法，利用关键影像表征在治疗前的特征，建立特发性耳鸣声治疗效果预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 968,
+                "end_char": 1019
+              },
+              "version": "ad0ae5cbe98fd1d12afa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a04796602fde",
+          "name": "耳鸣声治疗疗效预测模型AUC 0.811",
+          "desc": "搭建特发性耳鸣声治疗效果预测模型AUC 0.811；发表SCI 8篇（含柳叶刀子刊1篇、中科院一区TOP 3篇），申请并获批专利2项。",
+          "evidence": [
+            {
+              "quote": "最终搭建特发性耳鸣声治疗效果预测模型（AUC 0.811）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3430,
+                "end_char": 3458
+              },
+              "version": "ad0ae5cbe98fd1d12afa"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5f7e7ed8279e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-7c33c656e4ae"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7c33c656e4ae"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-45ff3b5fca2b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-45ff3b5fca2b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a04796602fde"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

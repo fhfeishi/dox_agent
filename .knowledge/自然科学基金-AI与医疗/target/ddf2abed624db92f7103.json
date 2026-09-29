@@ -1,0 +1,142 @@
+{
+  "doc_id": "ddf2abed624db92f7103",
+  "version": "0e90afbc387cc548a31a",
+  "source_hash": "599f273546ccde9f6003ea323103138bb633737a271d639a3a9a96f47db7241e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:29.389117+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5db428b45de1",
+          "name": "早期肺癌影像病理多组学融合诊断",
+          "desc": "面向早期肺癌精准手术策略与术中规划，开展影像、病理与多组学融合的智能诊断与预后判断。",
+          "evidence": [
+            {
+              "quote": "本课题申请内容对应重点资助研究方向（四）肿瘤影像、病理与多组学融合的智能诊断与疗效评估",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 649,
+                "end_char": 691
+              },
+              "version": "0e90afbc387cc548a31a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b7cbb16b25f1",
+          "name": "精准手术与术中规划面临技术瓶颈",
+          "desc": "早期肺癌预后判断体系缺失、术前与术中肿瘤评价手段缺乏，使肺癌外科精准治疗面临技术瓶颈。",
+          "evidence": [
+            {
+              "quote": "传统肺癌外科向精准治疗的发展是未来方向，但面临着精准手术策略及精准术中规划的技术瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 693,
+                "end_char": 734
+              },
+              "version": "0e90afbc387cc548a31a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-be20350047e0",
+          "name": "AI辅助影像组学预测与双靶双模荧光成像",
+          "desc": "探索AI辅助影像组学预测肺腺癌病理亚型、基因突变异质性与免疫微环境特征，融合临床、影像、病理及多组学信息建立预后模型，并完成肺腺癌动物模型的双靶双模分子荧光成像。",
+          "evidence": [
+            {
+              "quote": "本研究将探索人工智能辅助影像组学预测肺腺癌病理亚型、基因突变及异质性、和免疫微环境特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 838,
+                "end_char": 880
+              },
+              "version": "0e90afbc387cc548a31a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-da22d714b56d",
+          "name": "千人队列建立早期肺腺癌预后模型与TNMB分期",
+          "desc": "开展全国首项千人多点取材肿瘤演化队列研究，以AI深度学习融合临床、影像、病理等多组学信息建立早期肺腺癌预后模型，结合液体活检首创TNMB预后分期系统，相关成果发表于Cancer Cell。",
+          "evidence": [
+            {
+              "quote": "开展全国首项千人多点取材肿瘤演化队列研究，通过人工智能深度学习将临床、影像、病理等多组学信息充分融合，建立早期肺腺癌预后模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3484,
+                "end_char": 3545
+              },
+              "version": "0e90afbc387cc548a31a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5db428b45de1"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b7cbb16b25f1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b7cbb16b25f1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-be20350047e0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-be20350047e0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-da22d714b56d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

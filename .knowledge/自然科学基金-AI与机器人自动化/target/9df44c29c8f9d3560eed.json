@@ -1,0 +1,180 @@
+{
+  "doc_id": "9df44c29c8f9d3560eed",
+  "version": "97d966f717c1864c73aa",
+  "source_hash": "fa48b2727e80b225c66a56e810271786c68d4abe21ec219cc95ad6961877053f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:07:58.842199+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7e3fe1b03338",
+          "name": "内河无人驾驶船舶",
+          "desc": "基于人工智能模拟船长驾驶决策过程，实现安全驾驶策略优化",
+          "evidence": [
+            {
+              "quote": "本项目基于人工智能方法，从环境感知、安全策略和经验学习三个方面展开研究，以实现无人驾驶船舶的安全驾驶策略优化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2756,
+                "end_char": 2809
+              },
+              "version": "97d966f717c1864c73aa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-189f8c6f3c2d",
+          "name": "无人船安全策略研究薄弱",
+          "desc": "无人驾驶船舶安全问题是研究相对较弱但又非常重要的方向",
+          "evidence": [
+            {
+              "quote": "无人驾驶船舶的安全问题是当今研究相对较弱，但又非常重要的发展方向之一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2721,
+                "end_char": 2754
+              },
+              "version": "97d966f717c1864c73aa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-72f15c1522a7",
+          "name": "模糊贝叶斯安全指数模型",
+          "desc": "基于事故致因构建内河无人驾驶船舶安全指数模型",
+          "evidence": [
+            {
+              "quote": "构建了基于模糊贝叶斯网安全指数模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3164,
+                "end_char": 3180
+              },
+              "version": "97d966f717c1864c73aa"
+            }
+          ]
+        },
+        {
+          "id": "item-67265e3c3d8e",
+          "name": "TD3自主驾驶策略优化",
+          "desc": "基于内河避碰规则与船舶会遇态势制定避碰策略，TD3算法优化",
+          "evidence": [
+            {
+              "quote": "基于TD3算法进行优化设计，针对内河航运最常见的对驶、交叉相遇及追越三种会遇场景进行仿真试验，实现自主驾驶策略优化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3384,
+                "end_char": 3440
+              },
+              "version": "97d966f717c1864c73aa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-797a3cc2c669",
+          "name": "环境感知与场景分类",
+          "desc": "图像增强、船舶图像分类识别、航行场景聚类与安全策略库构建",
+          "evidence": [
+            {
+              "quote": "研究了典型视觉不利场景的图像增强技术，实现了白天与夜晚图像去雾和去雨；研究了船舶图像分类识别方法，提高了复杂环境下目标的检测识别与跟踪能力，构建了船舶环境安全状态参数集",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3050,
+                "end_char": 3133
+              },
+              "version": "97d966f717c1864c73aa"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-7e3fe1b03338"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-189f8c6f3c2d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-189f8c6f3c2d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-72f15c1522a7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-189f8c6f3c2d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-67265e3c3d8e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-67265e3c3d8e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-797a3cc2c669"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-72f15c1522a7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-797a3cc2c669"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

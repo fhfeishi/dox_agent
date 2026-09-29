@@ -1,0 +1,142 @@
+{
+  "doc_id": "d6b8b749cd1c4aaecdaf",
+  "version": "9d4c0d492e4128b613ce",
+  "source_hash": "0a8072b786db7c714af6c3f7b438dcdf8ce4c44134268be25a5fc39ee26e94d7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:03.581165+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0f805815b4bf",
+          "name": "儿童骨科影像学智能辅助诊断",
+          "desc": "面向髋关节脱位、膝内翻/外翻和骨龄异常等儿童骨科常见先天发育性疾病，构建影像学智能辅助诊断框架服务基层医疗。",
+          "evidence": [
+            {
+              "quote": "我国儿童骨科现有人工诊断的模式远不能满足3亿多儿童健康成长的需求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 652,
+                "end_char": 683
+              },
+              "version": "9d4c0d492e4128b613ce"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a39432b98ca8",
+          "name": "儿童骨科影像发育中组织干扰与病情信息繁杂",
+          "desc": "儿童骨科影像存在发育中组织相互干扰、关键区域多变复杂、病情信息繁杂三大挑战，导致漏误诊风险高。",
+          "evidence": [
+            {
+              "quote": "面对儿童骨科影像中发育中组织相互干扰、关键区域多变复杂、病情信息繁杂的挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2848,
+                "end_char": 2884
+              },
+              "version": "9d4c0d492e4128b613ce"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-df509d1fa594",
+          "name": "影像内容增强-兴趣区域识别-细粒度分级诊断框架",
+          "desc": "从儿童骨科医学影像内容增强、兴趣区域识别、病情细粒度分级精准诊断三方面展开研究，提出广义混合去噪扩散模型合成、空间依赖关系分割等创新技术。",
+          "evidence": [
+            {
+              "quote": "本项目从儿童骨科医学影像内容增强、兴趣区域识别、病情细粒度分级精准诊断三方面展开研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2886,
+                "end_char": 2927
+              },
+              "version": "9d4c0d492e4128b613ce"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3bba5898826f",
+          "name": "发表论文21篇、授权发明专利7项并在10家医院试用",
+          "desc": "发表论文21篇（IEEE/ACM汇刊7篇、CCF-A类会议长文4篇等），授权发明专利7项；研发的辅助诊断系统在安徽省10家医院临床试行应用。",
+          "evidence": [
+            {
+              "quote": "在IEEE-TMI、IEEE-TMM、PAIN、Bone&Joint Journal、MICCAI、CVPR等医学影像智能分析、人工智能和临床医学领域国际重要期刊会议发表论文21篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3000,
+                "end_char": 3089
+              },
+              "version": "9d4c0d492e4128b613ce"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0f805815b4bf"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a39432b98ca8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a39432b98ca8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-df509d1fa594"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-df509d1fa594"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3bba5898826f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

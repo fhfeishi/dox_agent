@@ -1,0 +1,197 @@
+{
+  "doc_id": "93cb5d2631f5b33ee6cf",
+  "version": "5530cd32e6831ff02516",
+  "source_hash": "f750f58ad03dc2ba2d54bbbf42a01b4a9f61ab3d05fa24d32aeca3119d282e6f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:44.118806+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-47e9f45cda4b",
+          "name": "远程遥操作手术机器人",
+          "desc": "远程手术中主从轨迹跟踪与力反馈",
+          "evidence": [
+            {
+              "quote": "项目按照原定计划围绕基于虚拟仿真预测的遥操作手术机器人快速精准、鲁棒的主从轨迹跟踪及高逼真度力反馈问题开展机械臂、遥操作控制算法、虚拟手术等相关研究，并搭建了基于虚拟仿真预测的遥操作手术机器人平台，实现了基于虚拟现实预测的遥操作手术操作。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2502,
+                "end_char": 2620
+              },
+              "version": "5530cd32e6831ff02516"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b85b46643261",
+          "name": "滞后力反馈致不稳定",
+          "desc": "主从距离增加滞后力反馈导致遥操作系统不稳定",
+          "evidence": [
+            {
+              "quote": "但随着主从间距离增加，滞后力反馈将导致遥操作手术机器人系统不稳定。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 741,
+                "end_char": 773
+              },
+              "version": "5530cd32e6831ff02516"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-719e8a6806ae",
+          "name": "加幂积分有限时间控制",
+          "desc": "快速加幂积分有限时间收敛遥操作控制器",
+          "evidence": [
+            {
+              "quote": "开展了基于快速加幂积分有限时间收敛的遥操作控制器。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2646,
+                "end_char": 2670
+              },
+              "version": "5530cd32e6831ff02516"
+            }
+          ]
+        },
+        {
+          "id": "item-bb448c9da619",
+          "name": "DOS攻击切换控制",
+          "desc": "切换控制与PD+d-like弹性控制实现全局有限时间",
+          "evidence": [
+            {
+              "quote": "考虑到遥操作系统中网络传输过程中可能存在DOS攻击，进一步针对DOS攻击下的遥操作系统，提出了基于切换控制、结合PD+d-like和切换弹性控制的全局有限时间遥操作控制算法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2671,
+                "end_char": 2757
+              },
+              "version": "5530cd32e6831ff02516"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0a8c20f5a3e1",
+          "name": "虚拟手术仿真平台",
+          "desc": "搭建虚拟仿真预测遥操作手术平台实现VR预测操作",
+          "evidence": [
+            {
+              "quote": "并搭建了基于虚拟仿真预测的遥操作手术机器人平台，实现了基于虚拟现实预测的遥操作手术操作。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2577,
+                "end_char": 2620
+              },
+              "version": "5530cd32e6831ff02516"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-a385f5e5c901",
+          "name": "脑机接口康复拓展",
+          "desc": "拓展脑机接口遥操作康复机器人控制研究",
+          "evidence": [
+            {
+              "quote": "开展了脑机接口遥操作下的康复机器人控制研究。将遥操作的主端命令发送拓展成脑机接口发送命令",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3069,
+                "end_char": 3112
+              },
+              "version": "5530cd32e6831ff02516"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-47e9f45cda4b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b85b46643261"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b85b46643261"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-719e8a6806ae"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b85b46643261"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bb448c9da619"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-719e8a6806ae"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0a8c20f5a3e1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bb448c9da619"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a385f5e5c901"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

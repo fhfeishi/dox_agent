@@ -1,0 +1,142 @@
+{
+  "doc_id": "cb9b9c7cd7a484526509",
+  "version": "9060ad86472f2b82ec78",
+  "source_hash": "8967121fa1effa451b3e3bec34bb2aaee50b967da470316958a65c206b45f19c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:47.150345+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-21ded74db2b3",
+          "name": "下一代病理图像分析鲁棒模型",
+          "desc": "面向病理诊断从数字化向智能化转型的需求，构建高精度、鲁棒、可解释、低成本的人工智能病理模型。",
+          "evidence": [
+            {
+              "quote": "病理检查是癌症诊断的金标准，早筛早诊能有效预防并控制癌症进展",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 638,
+                "end_char": 667
+              },
+              "version": "9060ad86472f2b82ec78"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d57c01146a90",
+          "name": "病理AI模型精度鲁棒性与可解释性不足",
+          "desc": "现有AI模型精度不足、鲁棒性差、不可解释、构建成本高等挑战阻碍其实际临床应用；同时还面临决策黑盒、多源异构偏差与超长序列特征建模困难三大瓶颈。",
+          "evidence": [
+            {
+              "quote": "然而现有AI模型的精度不足、鲁棒性差、不可解释、构建成本高等挑战阻碍实际临床上的应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 746,
+                "end_char": 787
+              },
+              "version": "9060ad86472f2b82ec78"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8798b3590b27",
+          "name": "因果理论驱动的数据与建模双维度鲁棒建模",
+          "desc": "以因果理论、度量学习、表征归纳与主动学习为理论支撑，从数据侧研究数据增强、混杂因素消除与样本选择策略，从建模侧研究不变性学习、对比学习与异常检测等鲁棒建模策略。",
+          "evidence": [
+            {
+              "quote": "本项目以因果理论、度量学习理论、表征归纳以及主动学习理论为主要研究理论支撑，从数据和建模维度进行研究与探索",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 833,
+                "end_char": 885
+              },
+              "version": "9060ad86472f2b82ec78"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5ab10c67b9d3",
+          "name": "构建PathGen-1.6M病理图文数据集与CPath-Omni大模型",
+          "desc": "构建含160万对高质量专家级病理图文配对的PathGen-1.6M数据集，研发参数规模150亿的统一视觉-语义表征通用大模型CPath-Omni，并建立病理大模型评测体系PathBench。",
+          "evidence": [
+            {
+              "quote": "构建了国际领先的超大规模病理图文数据集PathGen-1.6M，包含160万对高质量专家级病理图文配对数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3218,
+                "end_char": 3270
+              },
+              "version": "9060ad86472f2b82ec78"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-21ded74db2b3"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d57c01146a90"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d57c01146a90"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8798b3590b27"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8798b3590b27"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5ab10c67b9d3"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

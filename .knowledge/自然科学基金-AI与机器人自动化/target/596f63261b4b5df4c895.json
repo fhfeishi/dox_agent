@@ -1,0 +1,207 @@
+{
+  "doc_id": "596f63261b4b5df4c895",
+  "version": "119d784522979784172e",
+  "source_hash": "27ad567caa8f1b0ed9ac47c7ff7ace62db60d3bee05a3b0d592079d305c14e53",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:08.168451+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d4ce0ad9e14a",
+          "name": "行走障碍者助行机器人",
+          "desc": "膝关节机器人助力效能改善",
+          "evidence": [
+            {
+              "quote": "本项目针对目前为行走障碍者提供高效助力的助行机器人，其膝关节设计存在与人体关节相比，结构功能差异大、力学驱动不等效的不足，无法满足降低穿戴者代谢能耗、高效助力的需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2850,
+                "end_char": 2932
+              },
+              "version": "119d784522979784172e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8766f08e83ca",
+          "name": "膝关节设计力学不等效",
+          "desc": "结构功能差异大、驱动不等效致代谢能耗高助力低",
+          "evidence": [
+            {
+              "quote": "其膝关节设计存在与人体关节相比，结构功能差异大、力学驱动不等效的不足，无法满足降低穿戴者代谢能耗、高效助力的需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2876,
+                "end_char": 2932
+              },
+              "version": "119d784522979784172e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-935ae43a9ea9",
+          "name": "膝关节数据采集与建模",
+          "desc": "医学影像与电生理采集获取骨骼运动肌群形态信息",
+          "evidence": [
+            {
+              "quote": "利用医学影像设备与体表电生理采集系统，获取了高精度人体膝关节实时骨骼运动、肌群形态、神经肌肉电生理等信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3003,
+                "end_char": 3054
+              },
+              "version": "119d784522979784172e"
+            }
+          ]
+        },
+        {
+          "id": "item-835e549663b6",
+          "name": "肌群协同量化识别",
+          "desc": "识别关键肌群及组件并量化协同作用",
+          "evidence": [
+            {
+              "quote": "识别出对行走步态起关键作用的肌群及组件，量化了靶向肌群间的协同作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3088,
+                "end_char": 3120
+              },
+              "version": "119d784522979784172e"
+            }
+          ]
+        },
+        {
+          "id": "item-c2c2940ff1d7",
+          "name": "力-位设计优化驱动",
+          "desc": "优化关节驱动单元重现膝关节生物力学特性",
+          "evidence": [
+            {
+              "quote": "优化了机器人关节驱动单元的力-位设计，使助行机器人关节重现人体膝关节的生物力学运动特性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3122,
+                "end_char": 3164
+              },
+              "version": "119d784522979784172e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6bfe2243f89f",
+          "name": "仿生代偿理论依据",
+          "desc": "为肌群自调节机制关节设计提供理论依据",
+          "evidence": [
+            {
+              "quote": "本项目的实施为基于人体关节肌群自调节机制的助行机器人关节设计提供理论依据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3184,
+                "end_char": 3219
+              },
+              "version": "119d784522979784172e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d4ce0ad9e14a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8766f08e83ca"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8766f08e83ca"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-935ae43a9ea9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8766f08e83ca"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-835e549663b6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8766f08e83ca"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c2c2940ff1d7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-835e549663b6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6bfe2243f89f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c2c2940ff1d7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6bfe2243f89f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

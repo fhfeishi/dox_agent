@@ -1,0 +1,180 @@
+{
+  "doc_id": "24277ec76bad0504f5a5",
+  "version": "20e7ae2573b601ac42be",
+  "source_hash": "b0080cc4383fdf71342c1b4f22b3b57c463f6ef5a4fd0f507c1f8207fc6694b4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:20.356544+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0a674b5a01e2",
+          "name": "脑卒中上肢康复训练",
+          "desc": "患者主动参与的个性化上肢康复机器人训练",
+          "evidence": [
+            {
+              "quote": "脑卒中患者主动参与的个性化的上肢训练具有更好的康复效果。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 668,
+                "end_char": 695
+              },
+              "version": "20e7ae2573b601ac42be"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4c1da6ad063f",
+          "name": "主动参与不足模式单一",
+          "desc": "康复机器人主动参与性不足、训练模式单一、交互不柔顺",
+          "evidence": [
+            {
+              "quote": "但目前上肢康复机器人多存在人的主动参与性不足、康复训练模式较单一、人机交互不够自然柔顺的问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2834,
+                "end_char": 2880
+              },
+              "version": "20e7ae2573b601ac42be"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-43fd8b3f648c",
+          "name": "力-速度耦合主动控制",
+          "desc": "以人的主动力为控制源实现主动参与与速度连续调节",
+          "evidence": [
+            {
+              "quote": "建立柔顺的变阻尼被动控制方法，提高人机交互性能，并建立柔顺的力-速度耦合主动控制方法，提高受试者的主动参与度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3081,
+                "end_char": 3134
+              },
+              "version": "20e7ae2573b601ac42be"
+            }
+          ]
+        },
+        {
+          "id": "item-cf453649aeb5",
+          "name": "多模态自适应控制",
+          "desc": "满足不同康复需求的多模态自适应切换",
+          "evidence": [
+            {
+              "quote": "最后，研究多模态自适应控制方法，满足不同的康复需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3136,
+                "end_char": 3161
+              },
+              "version": "20e7ae2573b601ac42be"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ee6c30652d5f",
+          "name": "上肢康复机器人系统",
+          "desc": "交互自然柔顺、参与度高、多模式自适应切换的康复系统",
+          "evidence": [
+            {
+              "quote": "研究成果是建立了一套人机交互自然柔顺、受试者主动参与度高、多种训练模式自适应切换的上肢康复机器人系统。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3222,
+                "end_char": 3272
+              },
+              "version": "20e7ae2573b601ac42be"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0a674b5a01e2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4c1da6ad063f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4c1da6ad063f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-43fd8b3f648c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4c1da6ad063f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cf453649aeb5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-43fd8b3f648c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ee6c30652d5f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cf453649aeb5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ee6c30652d5f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

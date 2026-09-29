@@ -1,0 +1,180 @@
+{
+  "doc_id": "9ce3b682e090153fe24d",
+  "version": "0b5ad7c200959a46fe17",
+  "source_hash": "1f236d3ca5d4a3d02a40631238e78a416a664904d0da1fe3a99756c8939bc6b8",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:11.496707+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3853b17c58bb",
+          "name": "足内外翻畸形矫正",
+          "desc": "骨科疾病足内外翻畸形矫正的肌骨一体化治疗",
+          "evidence": [
+            {
+              "quote": "目前，我国有残疾人8500多万，其中肢体残疾患者接近3000万。肢体畸形作为常见的骨科疾病，对于患者的日常生活影响极大。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3271,
+                "end_char": 3330
+              },
+              "version": "0b5ad7c200959a46fe17"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-beddfd49c717",
+          "name": "软硬组织矫形不平衡",
+          "desc": "伴随性软组织畸形同步干预不足影响生理功能重建",
+          "evidence": [
+            {
+              "quote": "但目前对于伴随性软组织畸形的同步干预不足，存在软硬组织矫形不平衡等问题，影响生理功能重建。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 720,
+                "end_char": 764
+              },
+              "version": "0b5ad7c200959a46fe17"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f078d5adbfa7",
+          "name": "变刚度多孔矫形器",
+          "desc": "融合Taylor外固定器与多孔变刚度矫形器设计",
+          "evidence": [
+            {
+              "quote": "融合Taylor外固定器与多孔变刚度矫形器的特点，设计了变刚度畸形矫正机器人及TPMS多孔矫形鞋垫，旨在解决肌骨畸形矫正不协同的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3586,
+                "end_char": 3651
+              },
+              "version": "0b5ad7c200959a46fe17"
+            }
+          ]
+        },
+        {
+          "id": "item-c7be41d63a94",
+          "name": "柯西反向学习鲸鱼优化",
+          "desc": "差分进化柯西反向学习鲸鱼算法补偿位姿误差",
+          "evidence": [
+            {
+              "quote": "引入柯西反向学习和差分进化算法，提出了基于差分进化的柯西反向学习鲸鱼优化算法，提高寻优速度和优化精度，补偿机器人位姿误差，旨在解决畸形矫正控制精度的问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3903,
+                "end_char": 3979
+              },
+              "version": "0b5ad7c200959a46fe17"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dcf252d05495",
+          "name": "Ilizarov肌骨对比验证",
+          "desc": "对比Ilizarov骨骼与肌骨系统证明软组织矫正重要性",
+          "evidence": [
+            {
+              "quote": "在同等仿真条件下，对比了Ilizarov骨骼系统和Ilizarov肌骨系统的应力、应变等变化状态，证明了肌肉等软组织在畸形矫正过程中的重要性，探究了肌骨一体化畸形矫正机理",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3485,
+                "end_char": 3569
+              },
+              "version": "0b5ad7c200959a46fe17"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3853b17c58bb"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-beddfd49c717"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-beddfd49c717"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f078d5adbfa7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-beddfd49c717"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c7be41d63a94"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f078d5adbfa7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dcf252d05495"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c7be41d63a94"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dcf252d05495"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

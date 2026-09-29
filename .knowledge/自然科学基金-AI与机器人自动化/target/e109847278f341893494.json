@@ -1,0 +1,207 @@
+{
+  "doc_id": "e109847278f341893494",
+  "version": "6cf4a4310c7ce30eca69",
+  "source_hash": "30205b8453cf3acec2a186191fa0b34688aaee49fcb709c34a621e19d893b504",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:11:52.370548+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d092b541882c",
+          "name": "应急救援异构无人机群覆盖",
+          "desc": "应急救援中无人机群侦察与通信覆盖",
+          "evidence": [
+            {
+              "quote": "本项目组针对应急救援场景中异构无人机群自组织覆盖难题，系统研究了静态覆盖优化、动态目标搜索及编队动态覆盖控制策略，形成完整的理论方法体系，为应急救援环境下的无人机群应用提供技术支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2850,
+                "end_char": 2940
+              },
+              "version": "6cf4a4310c7ce30eca69"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a6b451fc8166",
+          "name": "建模不准自主化程度低",
+          "desc": "现有研究无法用于异构无人机群、建模不准确、自主化程度低",
+          "evidence": [
+            {
+              "quote": "针对现有研究无法用于异构无人机群、建模不准确、自主化程度较低等不足之处，围绕无人机群的部署和轨迹控制问题，研究面向应急救援的异构无人机群自组织覆盖策略。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 694,
+                "end_char": 769
+              },
+              "version": "6cf4a4310c7ce30eca69"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-132e15bb6b8f",
+          "name": "改进分子力静态覆盖",
+          "desc": "位移因子动态调节与质心导向部署优化覆盖",
+          "evidence": [
+            {
+              "quote": "提出改进分子力算法，通过位移因子动态调节与质心导向部署策略，优化异构无人机群空间分布，显著提升覆盖效率并降低能耗",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2957,
+                "end_char": 3012
+              },
+              "version": "6cf4a4310c7ce30eca69"
+            }
+          ]
+        },
+        {
+          "id": "item-d9f457a6cac0",
+          "name": "内螺旋动态搜索",
+          "desc": "地形坡度分析与置信区域机制的IISCA算法",
+          "evidence": [
+            {
+              "quote": "结合地形坡度分析与置信区域机制，设计内螺旋覆盖算法（IISCA），划定重点搜索区域并优化多无人机并行路径规划，实现复杂山地环境下动态目标的全覆盖搜索。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3037,
+                "end_char": 3111
+              },
+              "version": "6cf4a4310c7ce30eca69"
+            }
+          ]
+        },
+        {
+          "id": "item-5c9f293299f7",
+          "name": "LSTM-KF编队预测控制",
+          "desc": "三维Dubins路径与弹性编队控制提升跟踪精度",
+          "evidence": [
+            {
+              "quote": "构建LSTM-KF混合预测框架，融合三维Dubins路径规划与弹性编队控制策略，提升动态目标跟踪精度与编队协同效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3121,
+                "end_char": 3177
+              },
+              "version": "6cf4a4310c7ce30eca69"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b9f64d044304",
+          "name": "论文7篇与专利2项",
+          "desc": "期刊论文6篇、国际会议1篇，授权发明专利2项，培养硕士7名",
+          "evidence": [
+            {
+              "quote": "项目执行期间发表期刊论文6篇（含SCI/EI等）、国际会议论文1篇，授权发明专利2项，培养硕士研究生7名。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3368,
+                "end_char": 3420
+              },
+              "version": "6cf4a4310c7ce30eca69"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d092b541882c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a6b451fc8166"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a6b451fc8166"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-132e15bb6b8f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a6b451fc8166"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d9f457a6cac0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a6b451fc8166"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5c9f293299f7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d9f457a6cac0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b9f64d044304"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-132e15bb6b8f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b9f64d044304"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "doc_id": "a2e0db1068dddb9a22fd",
+  "version": "3dc09240d01e7b56c8c3",
+  "source_hash": "9003443fe9fa96cdf17b8a72e810ec6f6311d4f2af0ab9fee894ed0cd3915690",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:37:24.362195+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e01751b8d912",
+          "name": "T4期鼻咽癌局部复发风险预测",
+          "desc": "局部复发是T4期鼻咽癌治疗失败的关键原因，需筛选高复发风险病例并予以个体化治疗。",
+          "evidence": [
+            {
+              "quote": "局部复发是T4期鼻咽癌治疗失败的关键原因，但目前缺乏有效的预测方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 680,
+                "end_char": 712
+              },
+              "version": "3dc09240d01e7b56c8c3"
+            }
+          ]
+        },
+        {
+          "id": "item-b42b104691ac",
+          "name": "鼻咽癌个体化治疗指导",
+          "desc": "多尺度影像特征对T4期鼻咽癌局部复发预测具有补充价值，有助于鼻咽癌个体化治疗。",
+          "evidence": [
+            {
+              "quote": "多尺度影像特征对T4期鼻咽癌局部复发预测具有补充价值，有助于鼻咽癌个体化治疗",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2956,
+                "end_char": 2993
+              },
+              "version": "3dc09240d01e7b56c8c3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8c7cb1297948",
+          "name": "缺乏有效的局部复发预测方法",
+          "desc": "目前缺乏有效的预测方法，如何筛选高复发风险病例是降低局部复发面临的挑战。",
+          "evidence": [
+            {
+              "quote": "但目前缺乏有效的预测方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 701,
+                "end_char": 712
+              },
+              "version": "3dc09240d01e7b56c8c3"
+            }
+          ]
+        },
+        {
+          "id": "item-cadd6f78739e",
+          "name": "需构建精准量化复发预测模型",
+          "desc": "需融合MRI影像组学标签、临床指标与分子指标，构建并验证局部复发预测模型。",
+          "evidence": [
+            {
+              "quote": "融合MRI影像组学标签、预后相关的临床指标和分子指标，构建并验证局部复发预测模型，实现T4期鼻咽癌局部复发的精准化预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 895,
+                "end_char": 953
+              },
+              "version": "3dc09240d01e7b56c8c3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1f32a7e23329",
+          "name": "多序列MRI影像组学与病理组学融合",
+          "desc": "从预处理MRI中提取放射组特征并集成，使用端到端深度学习方法从活检标本全切片图像提取组织病理学特征。",
+          "evidence": [
+            {
+              "quote": "从预处理MRI中提取放射组特征，并选择并集成到放射组特征中。使用端到端深度学习方法从活检标本的整个切片图像中提取组织病理学特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2519,
+                "end_char": 2581
+              },
+              "version": "3dc09240d01e7b56c8c3"
+            }
+          ]
+        },
+        {
+          "id": "item-2ea579671a95",
+          "name": "多尺度nomogram构建与验证",
+          "desc": "结合放射学特征、组织病理学特征与独立临床因素构建多尺度nomogram，并在独立队列测试影像特征与遗传改变的相关性。",
+          "evidence": [
+            {
+              "quote": "结合两种特征和独立的临床因素，构建了一个多尺度nomogram",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2583,
+                "end_char": 2613
+              },
+              "version": "3dc09240d01e7b56c8c3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f9e4824c5f7e",
+          "name": "三个队列c指数0.689-0.779",
+          "desc": "在三个队列中，放射学和组织病理学特征均与治疗失败显著相关。",
+          "evidence": [
+            {
+              "quote": "在三个队列中，放射学和组织病理学特征均与治疗失败显著相关(c指数:0.689-0.779,p均< 0.050)",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2666,
+                "end_char": 2720
+              },
+              "version": "3dc09240d01e7b56c8c3"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-f4451179d1b8",
+          "name": "多尺度nomogram优于临床模型",
+          "desc": "多尺度nomogram在训练组、内测组和外测组中预测治疗失败的效果较临床模型有显著改善，并成功将患者分为预后可区分的两组。",
+          "evidence": [
+            {
+              "quote": "在训练组(c -指数:0.817比0.730,p < 0.050)、内测组(c -指数:0.828比0.602,p < 0.050)和外测组(c -指数:0.834比0.679,p < 0.050)中，多尺度nomogram预测治疗失败的效果与临床模型相比具有一致的显著改善",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2722,
+                "end_char": 2858
+              },
+              "version": "3dc09240d01e7b56c8c3"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-812836bbe67c",
+          "name": "纹理特征与染色质重塑通路相关",
+          "desc": "在另一独立队列中发现两种纹理特征与染色质重塑途径的遗传改变有关。",
+          "evidence": [
+            {
+              "quote": "我们还发现，在另一个独立队列中，两种纹理特征与染色质重塑途径的遗传改变有关",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2912,
+                "end_char": 2948
+              },
+              "version": "3dc09240d01e7b56c8c3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e01751b8d912"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8c7cb1297948"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8c7cb1297948"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1f32a7e23329"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1f32a7e23329"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f9e4824c5f7e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2ea579671a95"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f4451179d1b8"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

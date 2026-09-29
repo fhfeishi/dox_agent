@@ -1,0 +1,186 @@
+{
+  "doc_id": "da0f53e8e9884f831219",
+  "version": "4811d8b6bf6ef914f191",
+  "source_hash": "cecfbe1d34cbb1b3dacd50155d23e55e12acc1e92647e04a9ecec06b2f7666c8",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:00.331205+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-93b9effdf4ab",
+          "name": "移动机器人集群目标环绕编队",
+          "desc": "面向军事和工业应用场景的集群编队分布式控制",
+          "evidence": [
+            {
+              "quote": "移动机器人集群目标环绕编队控制对拓展移动机器人集群编队在军事和工业领域的应用场景具有重要的意义",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2953,
+                "end_char": 2999
+              },
+              "version": "4811d8b6bf6ef914f191"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ccecc0f4f3cd",
+          "name": "全局信息与拓扑限制",
+          "desc": "现有工作通常需要所有机器人得到目标状态、使用全局坐标系测量信息、限制网络拓扑",
+          "evidence": [
+            {
+              "quote": "现有的研究工作通常需要所有机器人得到目标状态，使用全局坐标系下的测量信息，限制网络的拓扑结构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3001,
+                "end_char": 3046
+              },
+              "version": "4811d8b6bf6ef914f191"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f5ebf4110141",
+          "name": "输出调节理论稳定性分析",
+          "desc": "分析速度扰动影响，建立受扰情况下集群闭环系统全局稳定性条件",
+          "evidence": [
+            {
+              "quote": "利用输出调节理论思想，建立了受速度扰动情况下移动机器人集群闭环系统的全局稳定性成立条件",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3211,
+                "end_char": 3253
+              },
+              "version": "4811d8b6bf6ef914f191"
+            }
+          ]
+        },
+        {
+          "id": "item-370744f76440",
+          "name": "输入-状态稳定非完全信息设计",
+          "desc": "面向方位信息、丢包、带宽受限等非完全局部信息的分布式编队控制",
+          "evidence": [
+            {
+              "quote": "基于非线性系统输入-状态稳定的分析，建立闭环系统的全局稳定性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3447,
+                "end_char": 3476
+              },
+              "version": "4811d8b6bf6ef914f191"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-52e4b001379b",
+          "name": "多机器人协同控制实验平台",
+          "desc": "搭建实验平台并完成部分理论成果的实验验证",
+          "evidence": [
+            {
+              "quote": "最后，完成多机器人协同控制实验平台的搭建，并完成部分理论成果的实验验证工作",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3478,
+                "end_char": 3514
+              },
+              "version": "4811d8b6bf6ef914f191"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-f634012ede97",
+          "name": "稳定性分析方法创新",
+          "desc": "提出基于非线性摄动系统和稳定集合退减理论的稳定性分析方法",
+          "evidence": [
+            {
+              "quote": "在稳定性分析中提出了基于非线性摄动系统和稳定集合退减理论的稳定性分析方法，补充了非线性系统稳定性理论",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3550,
+                "end_char": 3599
+              },
+              "version": "4811d8b6bf6ef914f191"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-93b9effdf4ab"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ccecc0f4f3cd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ccecc0f4f3cd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f5ebf4110141"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-370744f76440"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-52e4b001379b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f5ebf4110141"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f634012ede97"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

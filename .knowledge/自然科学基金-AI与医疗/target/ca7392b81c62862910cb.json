@@ -1,0 +1,142 @@
+{
+  "doc_id": "ca7392b81c62862910cb",
+  "version": "fc198a2e0bc6c73d6415",
+  "source_hash": "4105805531795ce8a95ba1e4606812c3957ca18140143baa15907bb22fd4c873",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:12.568270+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5f4c019833a6",
+          "name": "基于深度学习的质子CT成像",
+          "desc": "面向质子放疗精度的核心制约因素，研究从X光子CT生成临床可用合成质子CT图像的深度学习方法。",
+          "evidence": [
+            {
+              "quote": "质子束射程不确定性是制约质子放疗精度和疗效最重要的原因",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 639,
+                "end_char": 665
+              },
+              "version": "fc198a2e0bc6c73d6415"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-347490ac5549",
+          "name": "质子CT系统技术与工程挑战大尚未临床应用",
+          "desc": "质子CT可从根本解决射程预测难题，但开发PCT系统面临技术和工程的巨大挑战，至今尚未应用于临床治疗。",
+          "evidence": [
+            {
+              "quote": "然而开发PCT系统面临着技术和工程上的巨大挑战，到目前为止PCT尚未应用于临床治疗",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 749,
+                "end_char": 789
+              },
+              "version": "fc198a2e0bc6c73d6415"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-274136d8bc49",
+          "name": "X光子CT到质子CT的跨模态非线性映射模型",
+          "desc": "在蒙特卡罗模拟基础上，用深度学习方法构造并训练从X光子CT到PCT的非线性映射神经网络，研究从线性衰减系数到相对阻止本领的跨模态变换，并进行降噪与图像合成。",
+          "evidence": [
+            {
+              "quote": "通过深度学习方法，构造和训练从X光子CT到PCT两个模态之间的非线性映射神经网络模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 806,
+                "end_char": 847
+              },
+              "version": "fc198a2e0bc6c73d6415"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-78064b75ec56",
+          "name": "合成质子CT将RSP误差由3.57%降至2.47%",
+          "desc": "基于深度学习的合成质子CT图像将RSP平均百分比相对误差由传统化学计量校准法的3.57%降低至2.47%；1%/1 mm Gamma通过率由87%提升至91%，剂量分布更接近理论最优。",
+          "evidence": [
+            {
+              "quote": "基于深度学习的合成质子CT图像将RSP平均百分比相对误差由传统化学计量校准法的3.57%降低至2.47%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3350,
+                "end_char": 3401
+              },
+              "version": "fc198a2e0bc6c73d6415"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5f4c019833a6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-347490ac5549"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-347490ac5549"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-274136d8bc49"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-274136d8bc49"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-78064b75ec56"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

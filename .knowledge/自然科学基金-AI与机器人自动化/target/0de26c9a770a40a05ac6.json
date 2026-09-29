@@ -1,0 +1,180 @@
+{
+  "doc_id": "0de26c9a770a40a05ac6",
+  "version": "7dca406ffcd707797f5a",
+  "source_hash": "d0d1d8ec5a67a37dcf3a9a0a2bf4e9b8980924f7aae6e95a7dd0063d8cc26b70",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:25.354539+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6f8748f7d101",
+          "name": "无人机集群目标搜索跟踪",
+          "desc": "规模化无人机集群协同的目标搜索与跟踪",
+          "evidence": [
+            {
+              "quote": "最后，面向目标搜索和跟踪典型场景，构建规模化无人机集群虚实结合仿真实验平台，验证所提出的方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2840,
+                "end_char": 2886
+              },
+              "version": "7dca406ffcd707797f5a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8d55f2c3dc5f",
+          "name": "信息冗余协同固化",
+          "desc": "全连接或预设通信造成信息冗余与协同关系固化",
+          "evidence": [
+            {
+              "quote": "目前，无人机集群的信息共享通常以全连接通信或预设通信机制，易造成信息冗余和协同关系固化等缺陷。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2739,
+                "end_char": 2785
+              },
+              "version": "7dca406ffcd707797f5a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c10d55ab1b51",
+          "name": "自适应信息共享模型",
+          "desc": "部分可观测马尔科夫模型与门控预通信拓扑",
+          "evidence": [
+            {
+              "quote": "建立了包括无人集群环境的部分可观测的马尔科夫模型，自适应控制通信模块和自适应构建通信拓扑模块在内的无人机集群自适应信息共享的模型。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2901,
+                "end_char": 2965
+              },
+              "version": "7dca406ffcd707797f5a"
+            }
+          ]
+        },
+        {
+          "id": "item-ba2fdbc842d5",
+          "name": "虚实结合仿真平台",
+          "desc": "Gazebo结合DJI M100与自组网模块构建平台",
+          "evidence": [
+            {
+              "quote": "基于Gazebo仿真平台，结合DJI M100无人机，NexFi MF5800自组网模块，构建了虚实结合仿真实验平台",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3090,
+                "end_char": 3147
+              },
+              "version": "7dca406ffcd707797f5a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5788d861ba45",
+          "name": "通信冗余降30-60%",
+          "desc": "通信冗余降低30%-60%，协同效率提升56%-70%",
+          "evidence": [
+            {
+              "quote": "实验结果表明无人机集群通信冗余降低30%-60%，协同效率提升56%-70%，协同成果率提升17%-31%。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3179,
+                "end_char": 3232
+              },
+              "version": "7dca406ffcd707797f5a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6f8748f7d101"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8d55f2c3dc5f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8d55f2c3dc5f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c10d55ab1b51"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8d55f2c3dc5f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ba2fdbc842d5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c10d55ab1b51"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5788d861ba45"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ba2fdbc842d5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5788d861ba45"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

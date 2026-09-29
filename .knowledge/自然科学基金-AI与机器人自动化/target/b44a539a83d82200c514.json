@@ -1,0 +1,197 @@
+{
+  "doc_id": "b44a539a83d82200c514",
+  "version": "628bb99b3cb90ca9b1e9",
+  "source_hash": "77fa3c045ad586da2ef30b10ebadd183c2dc2262ccfba14f537d142af3292b98",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T17:01:44.925197+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ee9566112cdc",
+          "name": "果实采摘机器人",
+          "desc": "复杂自然条件下果实采摘机械化自动化智能化",
+          "evidence": [
+            {
+              "quote": "本项目以自主研发的果实采摘机器人为研究对象，围绕复杂自然条件下采摘机器人的果实成熟自动视觉检测与避障导航、机械臂的协调控制等关键问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2914,
+                "end_char": 2979
+              },
+              "version": "628bb99b3cb90ca9b1e9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-55e779dd9594",
+          "name": "复杂环境果实检测困难",
+          "desc": "复杂干扰环境下果实检测困难，光照及遮挡环境影响识别",
+          "evidence": [
+            {
+              "quote": "针对复杂干扰环境下果实检测困难的问题，提出了基于深度学习方法有效的面向果园真实环境的果实检测与识别算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3046,
+                "end_char": 3096
+              },
+              "version": "628bb99b3cb90ca9b1e9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-185c9624d7b0",
+          "name": "Mu-PSPNet果园场景解析",
+          "desc": "改进金字塔场景解析网络用于果园道路环境图像分割",
+          "evidence": [
+            {
+              "quote": "设计了改进的金字塔场景解析网络Mu-PSP Net，用于果园道路环境的图像分割",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3190,
+                "end_char": 3228
+              },
+              "version": "628bb99b3cb90ca9b1e9"
+            }
+          ]
+        },
+        {
+          "id": "item-b1977d882bca",
+          "name": "分数阶积分滑模控制",
+          "desc": "机械臂轨迹跟踪快速收敛、抗干扰并有效削弱抖振",
+          "evidence": [
+            {
+              "quote": "提出了一种分数阶积分滑模控制算法，实现算法快速收敛，具有较强的抗干扰能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3516,
+                "end_char": 3551
+              },
+              "version": "628bb99b3cb90ca9b1e9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f722640922f1",
+          "name": "群机器人路径规划",
+          "desc": "基于地图服务器的群采摘机器人A*路径规划，多点遍历无相互干扰",
+          "evidence": [
+            {
+              "quote": "提出一种基于地图服务器的群采摘机器人的A＊路径规划算法，通过地图服务器的区域采摘地图划分、合成、分配的基础下，完成多点遍历、无相互干扰的群采摘机器人的路径规划",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3370,
+                "end_char": 3448
+              },
+              "version": "628bb99b3cb90ca9b1e9"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-f403a8bb9f8c",
+          "name": "RGB-D SLAM三维建图",
+          "desc": "改进四叉树ORB特征与RGB-D SLAM构建全局一致3D地图减少累积误差",
+          "evidence": [
+            {
+              "quote": "设计包含前后端及地图构建的机器人RGB-D SLAM算法，构建全局一致的3D地图，达到减少累积误差的目的",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3280,
+                "end_char": 3331
+              },
+              "version": "628bb99b3cb90ca9b1e9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ee9566112cdc"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-55e779dd9594"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-55e779dd9594"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-185c9624d7b0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-55e779dd9594"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b1977d882bca"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-185c9624d7b0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f722640922f1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b1977d882bca"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f403a8bb9f8c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

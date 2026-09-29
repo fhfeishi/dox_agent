@@ -1,0 +1,197 @@
+{
+  "doc_id": "d2e644c73febec6509b6",
+  "version": "94fce73cdb0fba97d9ce",
+  "source_hash": "e9f6ccc6559c2df9eeddfb0e9e888d5ada1078d0d74cbc9abd7994e4ea068402",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:01.807899+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0cab710fab8f",
+          "name": "铁路巡检无人机毫米波通信",
+          "desc": "无人机自动化高密度铁路巡检，回传高清监测视频",
+          "evidence": [
+            {
+              "quote": "无人机可在不影响铁路正常运营前提下，进行自动化、高密度巡检，且不易受复杂环境限制；能够回传高清监测视频，支持隐患高效排查",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3249,
+                "end_char": 3308
+              },
+              "version": "94fce73cdb0fba97d9ce"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5a8cf27c9ca7",
+          "name": "铁路场景信道特性复杂",
+          "desc": "复杂传播环境与特殊结构体导致信道时空特性复杂，现有模型难以精确刻画",
+          "evidence": [
+            {
+              "quote": "铁路场景中复杂传播环境与特殊结构体导致信道时空特性复杂，现有模型难以精确刻画，成为系统设计的瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3388,
+                "end_char": 3435
+              },
+              "version": "94fce73cdb0fba97d9ce"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-470a0466870d",
+          "name": "序列二次规划SAGE参数估计",
+          "desc": "单快拍低信噪比条件下传播参数高效估计方法",
+          "evidence": [
+            {
+              "quote": "提出了基于序列二次规划优化的SAGE算法，时延估计误差小于0.2 ns，角度误差小于2°",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3534,
+                "end_char": 3577
+              },
+              "version": "94fce73cdb0fba97d9ce"
+            }
+          ]
+        },
+        {
+          "id": "item-d3e9f63767fa",
+          "name": "结构体多径深度学习轻量模型",
+          "desc": "深度神经网络建模与结构化剪枝，支持无人机边缘部署",
+          "evidence": [
+            {
+              "quote": "建立了基于深度神经网络的结构体作用多径的轻量化模型，结合结构化剪枝技术，实测验证平均误差1.8 dB，硬件资源占用降低60%，支持无人机边缘部署",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3658,
+                "end_char": 3729
+              },
+              "version": "94fce73cdb0fba97d9ce"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ad812e241768",
+          "name": "信道测量系统与数据库",
+          "desc": "26、38 GHz毫米波频段1 GHz超宽带信道测量系统与铁路空地信道数据库",
+          "evidence": [
+            {
+              "quote": "设计了无人机可搭载的26、38 GHz毫米波频段1 GHz超宽带信道测量系统，构建了铁路空地场景信道数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3480,
+                "end_char": 3532
+              },
+              "version": "94fce73cdb0fba97d9ce"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-7305469d9eeb",
+          "name": "论文与发明专利",
+          "desc": "发表期刊会议论文10篇，申请国家发明专利5项",
+          "evidence": [
+            {
+              "quote": "共发表国内外期刊和会议论文10篇，其中国际期刊论文4篇，国内通信领域顶级期刊4篇，会议论文2篇；申请国家发明专利5项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3817,
+                "end_char": 3874
+              },
+              "version": "94fce73cdb0fba97d9ce"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0cab710fab8f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5a8cf27c9ca7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5a8cf27c9ca7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-470a0466870d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5a8cf27c9ca7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d3e9f63767fa"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d3e9f63767fa"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7305469d9eeb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-470a0466870d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ad812e241768"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

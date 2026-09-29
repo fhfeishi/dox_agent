@@ -1,0 +1,180 @@
+{
+  "doc_id": "50efd22117d75c526634",
+  "version": "66c0b815c21da5e202f1",
+  "source_hash": "cfa6d2eee1b23485c4a0bd9aeeca59bcf9333da100b475f11fa6e515ad598cb0",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:25.294043+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b7bde48cd7db",
+          "name": "狭小空间软体机械臂作业",
+          "desc": "狭小空间检测、介入式微创手术等受限非结构环境",
+          "evidence": [
+            {
+              "quote": "为面向狭小空间检测、介入式微创手术等空间受限非结构环境作业的机器人发展提供了理论基础和技术储备。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2679,
+                "end_char": 2726
+              },
+              "version": "66c0b815c21da5e202f1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0183f8c8bd8a",
+          "name": "大变形与负载感知矛盾",
+          "desc": "需大变形驱动同时具备负载与感知能力",
+          "evidence": [
+            {
+              "quote": "利用离子凝胶实现驱动与感知，利用形状记忆聚合物作为机器人变刚度主体，使机械臂实现大变形驱动的同时具有较好的负载与感知能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 714,
+                "end_char": 774
+              },
+              "version": "66c0b815c21da5e202f1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a5cc713eaef0",
+          "name": "多物理场变刚度建模",
+          "desc": "耦合作用下变刚度软体机械臂非线性动力学模型",
+          "evidence": [
+            {
+              "quote": "构建了多物理场耦合作用下变刚度软体机械臂非线性动力学模型，研究了适用于机器人的柔性触觉感知方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2343,
+                "end_char": 2389
+              },
+              "version": "66c0b815c21da5e202f1"
+            }
+          ]
+        },
+        {
+          "id": "item-29a3c2c438dd",
+          "name": "电子皮肤柔顺控制",
+          "desc": "基于电子皮肤建立机械臂柔顺控制方法",
+          "evidence": [
+            {
+              "quote": "提出了软体机器人自主运动规划策略，建立了基于电子皮肤的机械臂柔顺控制方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2391,
+                "end_char": 2427
+              },
+              "version": "66c0b815c21da5e202f1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6e0b04873fec",
+          "name": "SAIL之星奖",
+          "desc": "论文17篇、专利5项，获2023世界人工智能大会SAIL之星奖",
+          "evidence": [
+            {
+              "quote": "团队依托本项目发表高水平论文17篇，包括IEEE RAL（同步发表于2022 IEEE ICRA）、IEEE TIE、IEEE TIM、IEEE TCDS、International Journal of Mechanical Sciences、Neurocomputing等，申请国内发明专利3项，授权国内发明专利2项，相关技术获得2023世界人工智能大会SAIL之星奖",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2464,
+                "end_char": 2649
+              },
+              "version": "66c0b815c21da5e202f1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b7bde48cd7db"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0183f8c8bd8a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0183f8c8bd8a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a5cc713eaef0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0183f8c8bd8a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-29a3c2c438dd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-29a3c2c438dd"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6e0b04873fec"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a5cc713eaef0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6e0b04873fec"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "doc_id": "e855d73546a20f40e06a",
+  "version": "c5010bc595a332c16a2a",
+  "source_hash": "98abb33df3dfeafd5ecdf12ff0a4f9dd94c21a874b77cdd857493352ff9fb4af",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:19:58.081743+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-02524f9532b3",
+          "name": "空间机器人在轨柔顺操作",
+          "desc": "在轨捕获、加注等精细操作的柔顺交互控制",
+          "evidence": [
+            {
+              "quote": "本项目围绕上述在轨维护和服务等重大需求，研究了捕获、插拔等典型的面向动态交互过程的机械臂类人阻抗学习自适应柔顺控制策略。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3065,
+                "end_char": 3124
+              },
+              "version": "c5010bc595a332c16a2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-15af09684364",
+          "name": "自适应柔顺控制成瓶颈",
+          "desc": "未知动态复杂交互任务的自适应柔顺控制制约在轨服务能力",
+          "evidence": [
+            {
+              "quote": "面向未知、动态、复杂交互任务的自适应柔顺控制已成为机器人在轨服务能力提升和功能扩展的瓶颈。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3016,
+                "end_char": 3060
+              },
+              "version": "c5010bc595a332c16a2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3c90fdc41470",
+          "name": "解剖学柔顺交互力学模型",
+          "desc": "考虑臂部解剖学结构建立柔顺交互力学模型",
+          "evidence": [
+            {
+              "quote": "建立了一种考虑臂部解剖学结构的柔顺交互力学模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3125,
+                "end_char": 3147
+              },
+              "version": "c5010bc595a332c16a2a"
+            }
+          ]
+        },
+        {
+          "id": "item-a62c66872401",
+          "name": "空间周期性阻抗学习",
+          "desc": "关节刚度阻尼与前馈力协调控制的阻抗参数学习",
+          "evidence": [
+            {
+              "quote": "研究了关节刚度、阻尼及前馈作用力的协调控制策略；针对类人臂构型的串联机械臂，设计了一种基于空间周期性的阻抗参数学习算法，并开展了算例仿真验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3180,
+                "end_char": 3249
+              },
+              "version": "c5010bc595a332c16a2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-15f1d31b2b05",
+          "name": "双轴孔插拔实验验证",
+          "desc": "搭建主被动地面加注平台验证控制策略有效性",
+          "evidence": [
+            {
+              "quote": "以在轨加注的双轴孔插拔操作为例，搭建了主、被动端地面加注平台，对控制策略的有效性开展了实验验证。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3251,
+                "end_char": 3298
+              },
+              "version": "c5010bc595a332c16a2a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-02524f9532b3"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-15af09684364"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-15af09684364"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3c90fdc41470"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-15af09684364"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a62c66872401"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a62c66872401"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-15f1d31b2b05"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3c90fdc41470"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-15f1d31b2b05"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

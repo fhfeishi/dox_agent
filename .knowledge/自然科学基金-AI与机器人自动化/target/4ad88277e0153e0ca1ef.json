@@ -1,0 +1,197 @@
+{
+  "doc_id": "4ad88277e0153e0ca1ef",
+  "version": "35411fef3759310b874a",
+  "source_hash": "78c47801f1648c9e12edc631b7c38deabb8112b2137c5b2fba40a4710e7773fc",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:11:23.173947+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-85ad684ceb5d",
+          "name": "电子元器件智能装配",
+          "desc": "复杂场景装配工位单元群电子元器件自主识别、定位与柔顺控制",
+          "evidence": [
+            {
+              "quote": "本项目探索复杂场景装配工位单元群的电子元器件智能装配问题，主要研究复杂场景机器人视觉电子元器件对象的自主识别、强耦合机器人视觉控制的电子元器件对象高精度定位、电子元器件机器人视觉导向的变刚度柔顺控制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2859,
+                "end_char": 2957
+              },
+              "version": "35411fef3759310b874a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c39bc8b40f98",
+          "name": "混叠场景识别与刚柔耦合误差",
+          "desc": "元器件与背景混叠场景识别难、刚柔耦合位姿误差建模难",
+          "evidence": [
+            {
+              "quote": "构建了机器人多自由度刚柔耦合位姿误差预测模型和固有频率预测模型，解决了刚柔耦合位姿误差建模问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3294,
+                "end_char": 3340
+              },
+              "version": "35411fef3759310b874a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3fc573b09768",
+          "name": "场景理解图目标检测",
+          "desc": "神经架构搜索与深度可分离卷积轻量化主干网，检测mAP达98.83%",
+          "evidence": [
+            {
+              "quote": "构建了场景理解图目标检测模型，设计了神经架构搜索和深度可分离卷积轻量化主干网，提高了网络训练速度和参数效率，并显著提升了检测准确率，mAP达到了98.83%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3049,
+                "end_char": 3126
+              },
+              "version": "35411fef3759310b874a"
+            }
+          ]
+        },
+        {
+          "id": "item-c9f08734b649",
+          "name": "千分位定位与变刚度柔顺控制",
+          "desc": "基于数字微镜的千分位定位、PCB点云重建配准低于0.01mm与变刚度柔顺控制",
+          "evidence": [
+            {
+              "quote": "构建了电子元器件位置、位姿、位态的快速、准确三维重建方法，实现了PCB点云三维重建，配准结果低于0.01mm，达到了千分位精度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3344,
+                "end_char": 3406
+              },
+              "version": "35411fef3759310b874a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e2bd1d1f4b72",
+          "name": "自学习预测控制",
+          "desc": "构建自学习预测控制模型实现视觉导向变刚度柔顺控制，FPC插装实现",
+          "evidence": [
+            {
+              "quote": "构建了面向机器人电子元器件装配的自学习预测控制模型，实现了电子元器件机器人视觉导向的变刚度柔顺控制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3524,
+                "end_char": 3572
+              },
+              "version": "35411fef3759310b874a"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-12f18136ccda",
+          "name": "知识图谱色环判读",
+          "desc": "基于知识图谱的电阻色环检测及判读方法实现复杂场景理解",
+          "evidence": [
+            {
+              "quote": "提出了基于知识图谱的电阻色环检测及判读方法，实现了机器人视觉识别复杂场景理解",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3130,
+                "end_char": 3167
+              },
+              "version": "35411fef3759310b874a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-85ad684ceb5d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c39bc8b40f98"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c39bc8b40f98"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3fc573b09768"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c39bc8b40f98"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c9f08734b649"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c9f08734b649"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e2bd1d1f4b72"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3fc573b09768"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-12f18136ccda"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "doc_id": "288364981d85b2c2e9a6",
+  "version": "d922e513320db9baa340",
+  "source_hash": "a4525aee74645ea41b3748f3c32731717c25764ba606728f67cafb10115205fd",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:18.120991+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-697b383596a7",
+          "name": "机器人辅助自主康复训练",
+          "desc": "运动障碍患者依据运动意图的自主康复",
+          "evidence": [
+            {
+              "quote": "机器人辅助患者自主康复训练是最有效的康复手段。本项目从人体运动和康复机理出发，采集人体sEMG、加速度信号、阵列触觉信号",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 668,
+                "end_char": 727
+              },
+              "version": "d922e513320db9baa340"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bfb061bd9bd8",
+          "name": "康复训练依赖患者意图",
+          "desc": "需解码人体运动意图实现人机同步康复训练",
+          "evidence": [
+            {
+              "quote": "完全根据患者的运动意图进行康复训练。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 892,
+                "end_char": 909
+              },
+              "version": "d922e513320db9baa340"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9231d7661c51",
+          "name": "改进Hill肌肉运动估计",
+          "desc": "多信号特征融合与闭环预测估计关节连续运动",
+          "evidence": [
+            {
+              "quote": "结合改进的Hill肌肉模型关节连续运动估计，通过闭环预测算法对人体关节连续运动进行估计，解码人体ADLs和多关节的连续运动角度、速度、加速度等信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2626,
+                "end_char": 2698
+              },
+              "version": "d922e513320db9baa340"
+            }
+          ]
+        },
+        {
+          "id": "item-7bc47f10f0f1",
+          "name": "模糊神经网络人机闭环",
+          "desc": "多生物信号与视觉触觉反馈重构人体闭环控制",
+          "evidence": [
+            {
+              "quote": "将自主康复训练机器人与人体关节两个原本相互独立的控制系统通过人体多生物运动信息解码和视觉触觉反馈构建了人体闭环控制系统，实现了人体多关节-康复机器人的人机交互。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2782,
+                "end_char": 2861
+              },
+              "version": "d922e513320db9baa340"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-98845f5df926",
+          "name": "人机交互康复系统实现",
+          "desc": "实现人体多关节-康复机器人的人机交互自主康复",
+          "evidence": [
+            {
+              "quote": "实现了人体多关节-康复机器人的人机交互。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2842,
+                "end_char": 2861
+              },
+              "version": "d922e513320db9baa340"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-697b383596a7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-bfb061bd9bd8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-bfb061bd9bd8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9231d7661c51"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-bfb061bd9bd8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7bc47f10f0f1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7bc47f10f0f1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-98845f5df926"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9231d7661c51"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-98845f5df926"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

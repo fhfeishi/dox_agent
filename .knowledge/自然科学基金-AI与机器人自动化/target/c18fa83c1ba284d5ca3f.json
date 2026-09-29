@@ -1,0 +1,196 @@
+{
+  "doc_id": "c18fa83c1ba284d5ca3f",
+  "version": "985df2639030287fb542",
+  "source_hash": "d607f0c6f2f33671f43f160e29dee821e3520a753d38d5963bf2ed6088c23814",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:00.344008+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c76e464de32e",
+          "name": "船舶主动干扰下无人艇脱逃",
+          "desc": "船舶主动干扰时无人艇难以有效避碰与脱逃，限制全自主航行",
+          "evidence": [
+            {
+              "quote": "避碰能力是无人艇执行任务的基础，现有研究多考虑船舶按规则航行，而在船舶主动干扰时，无人艇难以开展有效的避碰与脱逃",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 645,
+                "end_char": 700
+              },
+              "version": "985df2639030287fb542"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a49bb5659d00",
+          "name": "干扰方式难以辨识",
+          "desc": "船舶主动干扰方式难以有效辨识，无法制定针对性避碰策略",
+          "evidence": [
+            {
+              "quote": "船舶的主动干扰方式难以有效辨识，导致无人艇无法制定针对性的避碰策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 752,
+                "end_char": 784
+              },
+              "version": "985df2639030287fb542"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7e09cf292457",
+          "name": "PCA+SVM干扰类型分类",
+          "desc": "对高维运动特征降维并分类，识别主动干扰与非主动干扰",
+          "evidence": [
+            {
+              "quote": "提出了一种结合主成分分析（Principal Component Analysis，PCA）和支持向量机（Support Vector Machine，SVM）的分类算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2962,
+                "end_char": 3046
+              },
+              "version": "985df2639030287fb542"
+            }
+          ]
+        },
+        {
+          "id": "item-5e977792be0d",
+          "name": "GMM+CHMM干扰意图识别",
+          "desc": "基于速度障碍模型构造运动特征参数，Baum-Welch训练意图识别模型",
+          "evidence": [
+            {
+              "quote": "提出了基于高斯混合模型（Gaussian mixture model，GMM）和连续隐马尔科夫模型（Continuous Hidden Markov Model，CHMM）的船舶干扰意图识别模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3198,
+                "end_char": 3294
+              },
+              "version": "985df2639030287fb542"
+            }
+          ]
+        },
+        {
+          "id": "item-1cd3c13ee501",
+          "name": "基于DQN的协同围捕脱逃",
+          "desc": "面向多船协同干扰的脱逃算法训练与仿真试验验证",
+          "evidence": [
+            {
+              "quote": "提出了基于DQN的无人艇在协同围捕下的脱逃算法并进行训练和仿真、试验验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3469,
+                "end_char": 3504
+              },
+              "version": "985df2639030287fb542"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-365e9c610c62",
+          "name": "避碰与脱逃能力提升",
+          "desc": "差异化处理提升无人艇运动安全性，助力全自主航行",
+          "evidence": [
+            {
+              "quote": "研究成果有助于提升无人艇在船舶复杂干扰下的避碰与脱逃能力，推动无人艇全自主航行的发展",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3506,
+                "end_char": 3547
+              },
+              "version": "985df2639030287fb542"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c76e464de32e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a49bb5659d00"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a49bb5659d00"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7e09cf292457"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a49bb5659d00"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5e977792be0d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1cd3c13ee501"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-365e9c610c62"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7e09cf292457"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-365e9c610c62"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

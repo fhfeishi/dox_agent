@@ -1,0 +1,142 @@
+{
+  "doc_id": "0107608b0da378e81259",
+  "version": "a0f4f8d46099e9d3cd9f",
+  "source_hash": "52c7cd879f452234614dc8ead85379b732df4b3e6d43ef6176ecc717b4849f9d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:33.610267+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d0e999daaa95",
+          "name": "肝癌肝移植关键分子智能可视化",
+          "desc": "面向肝癌肝移植术后复发率高的难题，实现杭州标准与关键分子的智能可视化及复发预测。",
+          "evidence": [
+            {
+              "quote": "肝移植是治疗肝细胞癌（以下简称肝癌）的有效手段之一，然而术后肿瘤复发率高达20%，严重影响移植受者预后",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e36a50c39961ee4f912b18582d30d8d2a20889fc"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-20070d0c8e6c",
+          "name": "肝移植术后肿瘤复发率高达20%",
+          "desc": "肝细胞癌肝移植术后肿瘤复发率高达20%，严重影响移植受者预后，需实现受者精细化选择与复发风险预测。",
+          "evidence": [
+            {
+              "quote": "术后肿瘤复发率高达20%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e36a50c39961ee4f912b18582d30d8d2a20889fc"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f655a227a23d",
+          "name": "AI影像预测组织学分级与关键分子可视化",
+          "desc": "采用人工智能辅助医学影像智能预测肝癌组织学分级及HIF1α、USP22和CK19组织表达水平，实现对杭州标准与诊疗关键分子智能可视化，并通过深度学习整合跨尺度多模态信息建立复发预测模型。",
+          "evidence": [
+            {
+              "quote": "本研究将采用人工智能辅助医学影像智能预测肝癌组织学分级，HIF1α、USP22和CK19组织表达水平，实现对“杭州标准”与肝癌诊疗关键分子智能可视化，指导受者精细化选择",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e36a50c39961ee4f912b18582d30d8d2a20889fc"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-904436677cd6",
+          "name": "发表论文49篇并申请发明专利20项",
+          "desc": "建立含回顾性（n=517）与前瞻性（n=211）肝癌肝移植队列的跨尺度多模态数据库，提出MCDA分割框架与TNFR2联合杭州标准的肺转移风险分层策略；累计发表论文49篇，申请发明专利20项（授权5项），获2025年中国抗癌协会科技奖一等奖。",
+          "evidence": [
+            {
+              "quote": "项目组累计发表论文49篇（含Hepatology、Am J Transplant等），申请发明专利20项（授权5项）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "7d7f0ca912b9137fc276eb2b8afd75fb9f87c218"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d0e999daaa95"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-20070d0c8e6c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-20070d0c8e6c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f655a227a23d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f655a227a23d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-904436677cd6"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

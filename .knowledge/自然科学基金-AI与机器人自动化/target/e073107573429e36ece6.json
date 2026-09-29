@@ -1,0 +1,180 @@
+{
+  "doc_id": "e073107573429e36ece6",
+  "version": "9fdd0f5e6e7f53a1d41d",
+  "source_hash": "4a9172e3c4ada6c2d559a9b8a2946f733b9e76a5b2ebf6034caedbe21242e3b6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:44.102348+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cf96812a2c15",
+          "name": "人机合作协同技能获取",
+          "desc": "机器人学习人类个人偏好并自主适应",
+          "evidence": [
+            {
+              "quote": "源于巨大的市场需求和前景，人机协作近年来成为机器人领域的前沿和热点。机器人如何学习到人类个体完成任务的个人偏好并自主适应，是亟待解决的问题也是本项目研究的主要内容。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2948,
+                "end_char": 3029
+              },
+              "version": "9fdd0f5e6e7f53a1d41d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cf79235ee9fc",
+          "name": "个人偏好学习适应难",
+          "desc": "机器人学习人类任务偏好并自主适应亟待解决",
+          "evidence": [
+            {
+              "quote": "机器人如何学习到人类个体完成任务的个人偏好并自主适应，是亟待解决的问题也是本项目研究的主要内容。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2982,
+                "end_char": 3029
+              },
+              "version": "9fdd0f5e6e7f53a1d41d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b2786cc1d047",
+          "name": "双空间交替学习iLWR-PI2-AL",
+          "desc": "策略表达、模仿学习与策略提升滚动优化",
+          "evidence": [
+            {
+              "quote": "提出双空间交替学习的思路和途径。它将当前机器人运动技能获取的 LfDRL 三阶段统一考虑，提出iLWR-PI2-AL算法实现了策略表达、模仿学习、策略提升的滚动优化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3101,
+                "end_char": 3183
+              },
+              "version": "9fdd0f5e6e7f53a1d41d"
+            }
+          ]
+        },
+        {
+          "id": "item-93c9d9bd5bfe",
+          "name": "MTiProMP多任务交互",
+          "desc": "面向行为意图的多任务人机自适应交互切换协同",
+          "evidence": [
+            {
+              "quote": "我们提出面向多任务人机交互的MTiProMP模型，并结合解构和迭代策略实现了面向行为意图的多任务人机自适应交互、切换和协同",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3266,
+                "end_char": 3326
+              },
+              "version": "9fdd0f5e6e7f53a1d41d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d3bc4b14ddf7",
+          "name": "协作行为基元框架",
+          "desc": "构建协作行为基元结合模仿与强化学习实现技能传递",
+          "evidence": [
+            {
+              "quote": "通过构建协作行为基元，并结合模仿学习和强化学习实现运动技能传递（策略表达、模仿学习和策略提升）和人机交互协同（时间索引协作框架、状态索引协作框架），在机器人运动技能获取研究上做出有益的探索",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3615,
+                "end_char": 3708
+              },
+              "version": "9fdd0f5e6e7f53a1d41d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-cf96812a2c15"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-cf79235ee9fc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cf79235ee9fc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b2786cc1d047"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cf79235ee9fc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-93c9d9bd5bfe"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b2786cc1d047"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d3bc4b14ddf7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-93c9d9bd5bfe"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d3bc4b14ddf7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

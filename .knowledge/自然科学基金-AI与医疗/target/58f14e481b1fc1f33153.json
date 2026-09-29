@@ -1,0 +1,235 @@
+{
+  "doc_id": "58f14e481b1fc1f33153",
+  "version": "65aaf7b8eeec08fb66d3",
+  "source_hash": "3832e205848cdbd2da1f0ee61ee94a8f5cc22dcfe630a43f75d12c2fa7fe2bb1",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:25:56.206355+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0c61d0247424",
+          "name": "肺腺癌EGFR基因突变无创预测",
+          "desc": "EGFR基因突变是肺腺癌最常见突变类型，精准识别突变状态对选择治疗方案至关重要。",
+          "evidence": [
+            {
+              "quote": "表皮生长因子受体（EGFR）基因突变是肺腺癌最常见的突变类型，精准识别其突变状态对选择治疗方案至关重要",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 666,
+                "end_char": 716
+              },
+              "version": "65aaf7b8eeec08fb66d3"
+            }
+          ]
+        },
+        {
+          "id": "item-15e1256697c5",
+          "name": "肺腺癌治疗方案选择支持",
+          "desc": "开发联合临床特征与多模态影像组学特征的预测模型，为肺腺癌治疗方案选择提供支持。",
+          "evidence": [
+            {
+              "quote": "开发新的联合临床特征与多模态影像组学特征的肺腺癌EGFR基因突变预测模型，为肺腺癌的治疗方案选择提供重要支持",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1003,
+                "end_char": 1056
+              },
+              "version": "65aaf7b8eeec08fb66d3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bd2202613e61",
+          "name": "活检有创且难反映肿瘤全貌",
+          "desc": "组织学活检为有创检查，且因肿瘤异质性活检标本难以准确反映整个肿瘤的突变状况。",
+          "evidence": [
+            {
+              "quote": "组织学活检是目前检测EGFR基因突变状态的最主要方法，但其为有创检查；而且由于肿瘤的异质性，活检组织标本难以准确反映整个肿瘤的突变状况",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 718,
+                "end_char": 784
+              },
+              "version": "65aaf7b8eeec08fb66d3"
+            }
+          ]
+        },
+        {
+          "id": "item-88e0b2020065",
+          "name": "现有研究模态单一准确度受限",
+          "desc": "现有研究影像模态单一、影像特征描述简单、特征与基因关联分析方法简单，限制预测准确度。",
+          "evidence": [
+            {
+              "quote": "但现有研究由于影像模态单一，影像特征描述简单，特征与基因关联分析方法简单，限制了预测结果的准确度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 832,
+                "end_char": 879
+              },
+              "version": "65aaf7b8eeec08fb66d3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0897f31a7907",
+          "name": "深度卷积自编码器特征自提取",
+          "desc": "研究多模态影像组学实验设计、基于深度卷积自编码器的影像组学特征自提取模型及多任务多视角双边多变量关联分析模型。",
+          "evidence": [
+            {
+              "quote": "重点研究多模态影像组学实验设计、基于深度卷积自编码器的影像组学特征自提取模型和多任务多视角双边多变量关联分析模型等核心技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 941,
+                "end_char": 1001
+              },
+              "version": "65aaf7b8eeec08fb66d3"
+            }
+          ]
+        },
+        {
+          "id": "item-d5f06cd28fe4",
+          "name": "CT与PET影像组学特征提取",
+          "desc": "提取肿瘤感兴趣区域的GLCM、GLRLM、GLSZM、NGTDM、GLDM纹理特征及小波变换等图像变换特征。",
+          "evidence": [
+            {
+              "quote": "提取肿瘤感兴趣区域的影像组学特征如灰度共生矩阵（GLCM）、灰度游程矩阵（GLRLM）、灰度区域大小矩阵（GLSZM）、邻域灰度差异矩阵（NGTDM）、灰度依赖矩阵（GLDM）纹理特征以及图像变换特征（小波变换和拉普拉斯变换特征）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2909,
+                "end_char": 3023
+              },
+              "version": "65aaf7b8eeec08fb66d3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ec10a1828857",
+          "name": "CT征象可无创评价突变状态",
+          "desc": "胸腔积液、肿瘤最大直径和肺气肿在突变型与野生型间有统计学差异，CT征象可作为无创评价指标。",
+          "evidence": [
+            {
+              "quote": "CT征象可作为无创评价肺腺癌EGFR基因突变状态的指标，有助于肺腺癌EGFR基因突变状态的鉴别诊断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3218,
+                "end_char": 3266
+              },
+              "version": "65aaf7b8eeec08fb66d3"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-480efa0113ed",
+          "name": "多模态影像组学与突变状态相关",
+          "desc": "CT、PET与PET-CT影像组学特征均与肺腺癌EGFR基因突变状态具有相关性，具有较高诊断价值。",
+          "evidence": [
+            {
+              "quote": "CT影像组学特征、PET影像组学特征和PET-CT影像组学特征均与肺腺癌EGFR基因突变状态具有相关性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3323,
+                "end_char": 3373
+              },
+              "version": "65aaf7b8eeec08fb66d3"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-220cf3c35d7a",
+          "name": "多模态影像组学实验数据集",
+          "desc": "收集经手术病理证实并完善EGFR基因检测的肺腺癌患者CT 320例、PET-CT 118例。",
+          "evidence": [
+            {
+              "quote": "其中CT扫描320例（EGFR突变型234例，EGFR野生型86例），PET-CT扫描118例（EGFR突变型71例，EGFR野生型47例）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2708,
+                "end_char": 2777
+              },
+              "version": "65aaf7b8eeec08fb66d3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0c61d0247424"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-bd2202613e61"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-bd2202613e61"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0897f31a7907"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0897f31a7907"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-480efa0113ed"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d5f06cd28fe4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-220cf3c35d7a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

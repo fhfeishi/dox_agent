@@ -1,0 +1,207 @@
+{
+  "doc_id": "054354f6cbdf40cb363e",
+  "version": "7cd843a675a7c7df3c00",
+  "source_hash": "5c95a64d1a9077eb6dfb8b5be32ec911f2a206e17c28a4eebdeddfb11292725f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:06.649493+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f896d5b17da2",
+          "name": "工业机器人三维目标抓取",
+          "desc": "复杂工业场景下三维目标分类与位姿估计",
+          "evidence": [
+            {
+              "quote": "基于视觉传感器实现工业机器人对三维目标的分类与位姿估计是进行目标抓取任务的基础研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 648,
+                "end_char": 689
+              },
+              "version": "7cd843a675a7c7df3c00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1d217c008e9b",
+          "name": "精度低实时性差数据缺",
+          "desc": "传统方法精度低、数据处理困难、实时性差，样本与标注制约",
+          "evidence": [
+            {
+              "quote": "传统三维目标分类与位姿估计技术存在精度低、数据处理困难和实时性较差的问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 690,
+                "end_char": 726
+              },
+              "version": "7cd843a675a7c7df3c00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9d672bec6e0a",
+          "name": "Isaac Sim合成数据标注",
+          "desc": "脚本化动态生成大规模精确标注数据",
+          "evidence": [
+            {
+              "quote": "提出了基于Isaac Sim的合成数据集自动标注算法，实现脚本化动态生成大规模精确标注数据，并通过遮挡关系建模与样本筛选提升标注有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3144,
+                "end_char": 3211
+              },
+              "version": "7cd843a675a7c7df3c00"
+            }
+          ]
+        },
+        {
+          "id": "item-8cfcb0773b2a",
+          "name": "点云6D姿态估计网络",
+          "desc": "以几何结构建模为核心的目标特征提取网络",
+          "evidence": [
+            {
+              "quote": "研究了基于三维点云几何表达的工业零件6D姿态估计目标特征提取网络，形成以几何结构建模为核心的技术路线。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3474,
+                "end_char": 3524
+              },
+              "version": "7cd843a675a7c7df3c00"
+            }
+          ]
+        },
+        {
+          "id": "item-fbc83d88a867",
+          "name": "多层残差感知位姿估计",
+          "desc": "编-解码器结构与多尺度特征融合",
+          "evidence": [
+            {
+              "quote": "提出了基于多层残差感知的点云6D姿态估计方法，采用编-解码器结构与多尺度特征融合策略，实现更高精度与更快推理速度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3546,
+                "end_char": 3602
+              },
+              "version": "7cd843a675a7c7df3c00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b53fcf45b390",
+          "name": "论文4篇与发明专利2项",
+          "desc": "二区期刊1篇、会议3篇，发明专利2项授权",
+          "evidence": [
+            {
+              "quote": "本项目当前已发表论文4篇（中科院二区期刊论文1篇，发表期刊为IEEE Transactions on Intelligent Transportation Systems；会议论文3篇）。本项目共申请并受理中国发明专利2项，其中授权2项。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3765,
+                "end_char": 3883
+              },
+              "version": "7cd843a675a7c7df3c00"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f896d5b17da2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-1d217c008e9b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1d217c008e9b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9d672bec6e0a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1d217c008e9b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8cfcb0773b2a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1d217c008e9b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fbc83d88a867"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fbc83d88a867"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b53fcf45b390"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9d672bec6e0a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b53fcf45b390"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

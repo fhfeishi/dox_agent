@@ -1,0 +1,180 @@
+{
+  "doc_id": "21068d73647e9bf78756",
+  "version": "f3bb688ba71a36c58f5d",
+  "source_hash": "7aa893e3e1447537a30b03b208e7766a32af60d9ddd005fdcc1de6c63134bcc8",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:06.742665+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-81712107523d",
+          "name": "血管介入机器人遥操作",
+          "desc": "血管介入手术机器人力触觉反馈",
+          "evidence": [
+            {
+              "quote": "在心血管疾病治疗中，血管介入机器人辅助手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病等。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2989,
+                "end_char": 3037
+              },
+              "version": "f3bb688ba71a36c58f5d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c44b810975cb",
+          "name": "力触觉反馈缺乏",
+          "desc": "人机交互力触觉反馈缺乏影响操作精度与透明度",
+          "evidence": [
+            {
+              "quote": "本项目针对当前手术机器人人机交互力触觉反馈缺乏的问题，通过研究导管弯曲扭转模型配准和位姿预测问题，提升血管介入机器人透明度，进而提高医生的操作精度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3038,
+                "end_char": 3111
+              },
+              "version": "f3bb688ba71a36c58f5d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-818dab078be2",
+          "name": "导管弯曲扭转模型配准",
+          "desc": "无监督学习随机梯度下降实现模型配准",
+          "evidence": [
+            {
+              "quote": "基于无监督学习的随机梯度下降法，以力触觉再现准确性为目标实现导管弯曲扭转模型配准。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3254,
+                "end_char": 3294
+              },
+              "version": "f3bb688ba71a36c58f5d"
+            }
+          ]
+        },
+        {
+          "id": "item-a3d766a5fa15",
+          "name": "Fitts定律时延位姿预测",
+          "desc": "时延估算与医学经验模糊融合预测导管位姿",
+          "evidence": [
+            {
+              "quote": "实现了基于Fitts定律的两自由度协同操作时延估算和医学经验多元信息模糊融合与导管位姿预测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3348,
+                "end_char": 3393
+              },
+              "version": "f3bb688ba71a36c58f5d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c34ceb65e573",
+          "name": "力触觉手术操作系统",
+          "desc": "建立血管介入机器人实验系统与安全性提醒操作系统",
+          "evidence": [
+            {
+              "quote": "本课题组建立了血管介入手术机器人实验系统，实现具有力触觉反馈手术安全性提醒效果的手术操作系统。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3112,
+                "end_char": 3158
+              },
+              "version": "f3bb688ba71a36c58f5d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-81712107523d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c44b810975cb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c44b810975cb"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-818dab078be2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c44b810975cb"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a3d766a5fa15"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-818dab078be2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c34ceb65e573"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a3d766a5fa15"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c34ceb65e573"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

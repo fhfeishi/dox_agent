@@ -1,0 +1,142 @@
+{
+  "doc_id": "0f733124b322393f260e",
+  "version": "bd2200e5481f92eb476f",
+  "source_hash": "f980f8b1bdd3b5af1eaec53876a716ec5d5bf72ee4fc6e4955febe8259885f63",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:11.187253+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1b9c874ffa10",
+          "name": "脑卒中运动想象脑电康复",
+          "desc": "面向脑卒中运动功能障碍康复，结合运动想象脑机接口与虚拟现实构建可视化闭环康复系统。",
+          "evidence": [
+            {
+              "quote": "运动想象脑机交互（Brain-Computer Interaction，BCI）结合虚拟现实(Virtual Reality，VR)是脑卒中患者运动功能障碍康复新方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 743
+              },
+              "version": "bd2200e5481f92eb476f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-431cc9d18bb5",
+          "name": "每次使用需长时训练建模致患者难以接受",
+          "desc": "运动想象BCI最大缺陷是每个患者每次使用均需长时训练建模，患者容易疲劳甚至不能接受，制约康复推广。",
+          "evidence": [
+            {
+              "quote": "运动想象BCI最大缺陷是每个患者每次使用均需长时训练建模，患者容易疲劳甚至不能接受",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 745,
+                "end_char": 785
+              },
+              "version": "bd2200e5481f92eb476f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6ea0bd5487b5",
+          "name": "主动迁移学习建模与VR闭环康复系统",
+          "desc": "用乘法递归神经网络提取历史样本特征，基于散度指标选择最相似历史患者，通过样本熵主动学习筛选高贡献样本迁移到目标域建立新患者分类器，并将解码结果传递给VR场景形成闭环。",
+          "evidence": [
+            {
+              "quote": "基于散度指标度量两个域特征分布相似性，选择与新患者最相似的若干历史患者",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 881,
+                "end_char": 915
+              },
+              "version": "bd2200e5481f92eb476f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c8363f1d06ba",
+          "name": "构建MI-BCI与VR可视化训练系统",
+          "desc": "结合MI-BCI与VR构建了一套可视化训练系统，通过跨个体跨时间迁移学习提升康复效果，使患者能够在沉浸式虚拟环境中进行康复训练。",
+          "evidence": [
+            {
+              "quote": "构建了一套可视化训练系统，为康复治疗提供了新的思路和方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2847,
+                "end_char": 2874
+              },
+              "version": "bd2200e5481f92eb476f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1b9c874ffa10"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-431cc9d18bb5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-431cc9d18bb5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6ea0bd5487b5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6ea0bd5487b5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c8363f1d06ba"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

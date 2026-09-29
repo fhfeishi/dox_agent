@@ -1,0 +1,180 @@
+{
+  "doc_id": "f5b46a03d3e31bb88097",
+  "version": "a3888dc61213dd21e4c8",
+  "source_hash": "d1cb29bc57311ea05cba166cef88451157bf7f7b6638775a9c7c0aca1a840fc7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:55.694149+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f87e04310f76",
+          "name": "突发事件大规模人群疏散",
+          "desc": "以大规模人群疏散仿真为背景，基于知识的人群疏散路径导航",
+          "evidence": [
+            {
+              "quote": "本项目以大规模人群疏散仿真作为应用背景，围绕突发事件下人群疏散的需求，开展了基于知识的人群疏散路径导航及仿真研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2817,
+                "end_char": 2872
+              },
+              "version": "a3888dc61213dd21e4c8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d0ee9f48d1c7",
+          "name": "出口拥堵与人员踩踏",
+          "desc": "人群恐慌情绪与从众心理易造成出口拥堵及人员踩踏",
+          "evidence": [
+            {
+              "quote": "由于对环境不熟悉产生的从众心理，容易造成出口拥堵及人员踩踏",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2725,
+                "end_char": 2753
+              },
+              "version": "a3888dc61213dd21e4c8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b388f12a576c",
+          "name": "多蜂群出口选择方法",
+          "desc": "兼顾出口拥挤度与距离的动态平衡，进行人群分组与出口选择",
+          "evidence": [
+            {
+              "quote": "提出了一种多蜂群出口选择方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2957,
+                "end_char": 2970
+              },
+              "version": "a3888dc61213dd21e4c8"
+            }
+          ]
+        },
+        {
+          "id": "item-8f71ae04c228",
+          "name": "经验共享多Agent深度强化学习",
+          "desc": "动态抽取、优化并更新路径规划知识",
+          "evidence": [
+            {
+              "quote": "设计了经验共享方式的多Agent深度强化学习方法，动态抽取、优化、并更新路径规划知识",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2975,
+                "end_char": 3016
+              },
+              "version": "a3888dc61213dd21e4c8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-233a27f256d2",
+          "name": "疏散导航论文与专利",
+          "desc": "发表论文19篇（SCI 14篇、EI 5篇），授权发明专利2项",
+          "evidence": [
+            {
+              "quote": "项目已经在国内外期刊及国际会议上发表论文19篇，其中SCI检索的期刊论文14篇，EI检索的国际会议论文5篇。授权发明专利2项。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3160,
+                "end_char": 3222
+              },
+              "version": "a3888dc61213dd21e4c8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f87e04310f76"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d0ee9f48d1c7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d0ee9f48d1c7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b388f12a576c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b388f12a576c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-233a27f256d2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f87e04310f76"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8f71ae04c228"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8f71ae04c228"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-233a27f256d2"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

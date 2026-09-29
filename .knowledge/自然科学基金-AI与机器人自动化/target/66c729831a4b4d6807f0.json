@@ -1,0 +1,224 @@
+{
+  "doc_id": "66c729831a4b4d6807f0",
+  "version": "1590a300df13ee236221",
+  "source_hash": "a8b14da224cae04f8e0e8b52d85e0669961eebd17cc8408c93be2f2cbf1a5655",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:44.005158+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b3658d0794e2",
+          "name": "多无人机协同探索",
+          "desc": "自然资源勘查、灾害监测等广域信息支撑",
+          "evidence": [
+            {
+              "quote": "多无人机协同探索可为自然资源勘查、灾害监测与评估、边境安全巡查等应用提供三维、广域的信息支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3202,
+                "end_char": 3248
+              },
+              "version": "1590a300df13ee236221"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f3f16b0a788a",
+          "name": "非平稳局部观测训练难",
+          "desc": "框架构建、全局探索能力与训练平稳化三关键问题",
+          "evidence": [
+            {
+              "quote": "重点解决强化学习的框架构建、局部观测下的全局探索能力、训练平稳化这三个关键问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3373,
+                "end_char": 3411
+              },
+              "version": "1590a300df13ee236221"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5a694292b6a0",
+          "name": "Dec-POMDP决策建模",
+          "desc": "动力学约束、航迹冲突与重复探索的决策模型",
+          "evidence": [
+            {
+              "quote": "考虑固定翼无人机（和部分多旋翼无人机）的飞行动力学约束、多机协同下的航迹冲突与重复探索问题，建立多机探索航迹规划的Dec-POMDP模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3424,
+                "end_char": 3491
+              },
+              "version": "1590a300df13ee236221"
+            }
+          ]
+        },
+        {
+          "id": "item-1935972be12b",
+          "name": "幕内记忆强化学习方法",
+          "desc": "小计算代价提升局部观测下全局探索能力",
+          "evidence": [
+            {
+              "quote": "针对局部观测下，小计算代价的全局探索能力提升问题，提出含有幕内记忆机制的一系列强化学习航迹规划方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3546,
+                "end_char": 3594
+              },
+              "version": "1590a300df13ee236221"
+            }
+          ]
+        },
+        {
+          "id": "item-35309cea1aff",
+          "name": "中心化评论平稳化",
+          "desc": "去中心化行动中心化评论框架与策略迭代平稳化",
+          "evidence": [
+            {
+              "quote": "提出去中心化行动与中心化评论融合的强化学习框架及基于策略迭代的平稳化方法，提出了解决多机协同的信息共享与冲突消解问题的全局性奖励函数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3630,
+                "end_char": 3695
+              },
+              "version": "1590a300df13ee236221"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-52845ea57e05",
+          "name": "仿真训练平台开发",
+          "desc": "山地环境随机生成、多机并行仿真与三维切片",
+          "evidence": [
+            {
+              "quote": "设计开发了一系列的非结构化环境仿真训练平台，解决了山地环境快速随机生成、多机并行仿真、三维切片等多个问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3493,
+                "end_char": 3544
+              },
+              "version": "1590a300df13ee236221"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-cce892510be1",
+          "name": "分层切片训练方法",
+          "desc": "解决三维多机训练计算复杂度和收敛难问题",
+          "evidence": [
+            {
+              "quote": "针对三维多机训练的计算复杂度和训练收敛难问题，提出了分层切片的训练方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3714,
+                "end_char": 3749
+              },
+              "version": "1590a300df13ee236221"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b3658d0794e2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f3f16b0a788a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f3f16b0a788a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5a694292b6a0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f3f16b0a788a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1935972be12b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f3f16b0a788a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-35309cea1aff"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5a694292b6a0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-52845ea57e05"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1935972be12b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cce892510be1"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

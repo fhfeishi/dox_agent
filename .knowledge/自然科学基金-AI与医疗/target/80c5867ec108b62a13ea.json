@@ -1,0 +1,142 @@
+{
+  "doc_id": "80c5867ec108b62a13ea",
+  "version": "7106ec6185cef35c372e",
+  "source_hash": "a07f4609a2037727c7caf8a2e459880f83c008a3f7a39bf34c2e2c917854de9d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:34.882418+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c37c24df2fc5",
+          "name": "肺癌快速演进分子可视化与智能诊断",
+          "desc": "面向肺癌快速演进识别与早期干预，开展关键分子功能可视化与智能诊断策略研究。",
+          "evidence": [
+            {
+              "quote": "肺癌是我国发病率和死亡率最高的恶性肿瘤，早期识别其快速演进类型并实现精准干预是改善预后的关键",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3ef042cd6244",
+          "name": "部分肺癌快速进展机制不清",
+          "desc": "部分原位癌及早期肺癌可长期稳定，但部分快速进展至晚期且机制不清，识别快速演进并及时干预是临床难点。",
+          "evidence": [
+            {
+              "quote": "部分原位癌及早期肺癌可长期稳定，但部分快速进展至晚期，机制不清",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e0c70c14b6e8670a98b6dd200186bc886e02dd27"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-70a1cacc3c0d",
+          "name": "肺结节队列生物标志物挖掘与分子探针",
+          "desc": "基于肺结节临床队列挖掘稳定、缓慢进展与快速进展型肺癌的生物标志物，利用空间与单细胞转录组确定关键分子，并采用分子探针和靶向示踪技术实现活体可视化。",
+          "evidence": [
+            {
+              "quote": "本课题将基于已建立的肺结节临床队列，挖掘稳定型肺结节、缓慢进展型肺癌及快速进展型肺癌的生物标志物",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e0c70c14b6e8670a98b6dd200186bc886e02dd27"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-37f6f3d62336",
+          "name": "演进风险模型AUC 0.83并研制C-Lung-RADS",
+          "desc": "建立含43326例肺结节的临床队列；深度学习肺结节恶性风险模型区分快速与缓慢进展型肺癌AUC达0.83、≤1cm小结节预测准确率90%；创新研发中国版肺结节分级标准C-Lung-RADS，四维整合体系诊断效能提升至92%。",
+          "evidence": [
+            {
+              "quote": "该模型在区分快速与缓慢进展型肺癌方面AUC达0.83，对≤1 cm小结节预测准确率达90%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c37c24df2fc5"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-3ef042cd6244"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-3ef042cd6244"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-70a1cacc3c0d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-70a1cacc3c0d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-37f6f3d62336"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

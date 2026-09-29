@@ -1,0 +1,142 @@
+{
+  "doc_id": "04f796cabadba4c18637",
+  "version": "212d53a52e0c02087ded",
+  "source_hash": "68aed44a57a0d920ececdb6adf18bce70659db1ae7db9c64bfcd159351d0354e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:03.532247+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4329450e7d0c",
+          "name": "胃癌抗HER2靶向治疗疗效与耐药预测",
+          "desc": "面向HER2阳性晚期胃癌的曲妥珠单抗治疗，融合病理、影像与多组学数据预测疗效与耐药，辅助临床决策。",
+          "evidence": [
+            {
+              "quote": "抗人表皮生长因子受体2（HER2）曲妥珠单抗是目前晚期胃癌一线治疗唯一获批的靶向药物",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 684,
+                "end_char": 725
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8b8301d1a89c",
+          "name": "胃癌时空异质性致HER2评估不足与耐药",
+          "desc": "胃癌存在时间与空间异质性，单次单部位活检往往不能充分评估HER2表达状态；曲妥珠单抗联合化疗后可能出现原发或继发耐药。",
+          "evidence": [
+            {
+              "quote": "胃癌存在时间异质性与空间异质性，单次单部位活检往往不能充分评估肿瘤的HER2表达状态",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 754,
+                "end_char": 795
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f57d6b2e2e70",
+          "name": "多组学融合的AI疗效与耐药预测模型",
+          "desc": "基于抗HER2治疗临床资源库与生物样本库，融合病理学与影像组学，采用动态液体活检多组学测序，经人工智能方法融合多学科海量数据构建预测模型。",
+          "evidence": [
+            {
+              "quote": "融合病理学及影像组学，采用动态液体活检多组学测序技术，最终经人工智能方法融合多学科海量数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 942,
+                "end_char": 986
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-116dcf614240",
+          "name": "融合CT与病理的多模态胃癌预后模型验证集AUC 0.809",
+          "desc": "融合基线CT数据与病理切片信息建立精准预后模型，验证集AUC 0.809；项目共发表16篇文章、申请及获得7项专利、获2项科技奖项，并完成1000万元成果转化。",
+          "evidence": [
+            {
+              "quote": "融合了基线CT数据和病理切片信息，取得了验证集上AUC为0.809的优异效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2876,
+                "end_char": 2913
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4329450e7d0c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8b8301d1a89c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8b8301d1a89c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f57d6b2e2e70"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f57d6b2e2e70"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-116dcf614240"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

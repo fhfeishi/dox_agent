@@ -1,0 +1,142 @@
+{
+  "doc_id": "43772dfe9cefc8bb1ac6",
+  "version": "19ebeae99bfb2dece55a",
+  "source_hash": "6e0745b143175aa86b9cb141035ff43b5ca9098397d64b6011bc20a4b8dde88d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:36.172123+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a648ecd8a998",
+          "name": "药物成瘾神经机制与影像标记研究",
+          "desc": "以多模态磁共振成像为手段，从微观到宏观解析药物成瘾神经机制并提取影像标记。",
+          "evidence": [
+            {
+              "quote": "药物成瘾是以戒断、复吸往复循环为特征的一种慢性功能性脑疾病",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 647,
+                "end_char": 675
+              },
+              "version": "19ebeae99bfb2dece55a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4a77908ea110",
+          "name": "成瘾脑结构与功能异常机理尚不明确",
+          "desc": "药物成瘾患者普遍存在脑功能连接和形态结构异常，但其潜在机理尚不明确，需从脑铁沉积与脱髓鞘等微观指标切入解释。",
+          "evidence": [
+            {
+              "quote": "在药物成瘾患者中普遍存在脑功能连接和形态结构异常，但其潜在机理尚不明确",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 696,
+                "end_char": 730
+              },
+              "version": "19ebeae99bfb2dece55a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d3794ff42f48",
+          "name": "深度学习QSM重建与扩散微结构估计及多模态对齐",
+          "desc": "基于深度学习研究定量磁敏感成像精准重建以量化脑铁沉积，结合扩散成像与深度学习模型估计脑神经纤维微结构，并实现多模态信息对齐与多尺度影像标记提取。",
+          "evidence": [
+            {
+              "quote": "研究定量磁敏感成像的精准重建方法，进而利用磁化率准确量化药物成瘾患者的脑铁沉积",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 787,
+                "end_char": 825
+              },
+              "version": "19ebeae99bfb2dece55a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dbf3e61c3fcb",
+          "name": "发现岛叶海马额中回平均扩散峰度可作成瘾标志物",
+          "desc": "提出2种脑铁沉积估计模型并建立完整的脑微观结构估计方法体系，发现岛叶、海马和额中回的平均扩散峰度变化可作为药物成瘾的微观结构标志物。",
+          "evidence": [
+            {
+              "quote": "研究发现岛叶、海马和额中回的平均扩散峰度变化可作为药物成瘾的微观结构标志物",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3194,
+                "end_char": 3230
+              },
+              "version": "19ebeae99bfb2dece55a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a648ecd8a998"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4a77908ea110"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4a77908ea110"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d3794ff42f48"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d3794ff42f48"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dbf3e61c3fcb"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

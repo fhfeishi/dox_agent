@@ -1,0 +1,180 @@
+{
+  "doc_id": "f1ec213bf2094c493244",
+  "version": "b5c373379bb9b9ed6c28",
+  "source_hash": "eac16305f37abd3716b13400f49a6ea9f27c5764e99b6668e8e9bb82eaab4482",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:45.405761+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e56bcd8d663e",
+          "name": "重载六足容错控制",
+          "desc": "非结构环境重载六足机器人腿部故障容错",
+          "evidence": [
+            {
+              "quote": "如何确保重载六足机器人在运动机能不完全、自主智能水平受制约情况下对环境仍具有鲁棒自适应性，是其保持续航能力的关键。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2770,
+                "end_char": 2826
+              },
+              "version": "b5c373379bb9b9ed6c28"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5607fd43a5f0",
+          "name": "运动机能缺失易倾翻",
+          "desc": "腿部故障与重载惯量加剧失稳倾翻可能",
+          "evidence": [
+            {
+              "quote": "非结构环境下重载六足机器人易发生腿部故障，也易因局部障碍导致部分腿足运动机能暂时缺失，且重载机器人运动惯量大，加剧了失稳顷翻的可能性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 733
+              },
+              "version": "b5c373379bb9b9ed6c28"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e7ae1a199e74",
+          "name": "阻抗闭环CPG步态生成",
+          "desc": "足端接触力阻抗控制闭环集成至步态生成器",
+          "evidence": [
+            {
+              "quote": "本课题首次将机器人驱动腿足端接触力的阻抗控制闭环集成至六足机器人的步态生成器中，从而建立机器人的足端位置与各足间阻抗参数的实时联系，为应用二次规划模型进行机器人各足的阻抗参数优化提供了理论基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2940,
+                "end_char": 3035
+              },
+              "version": "b5c373379bb9b9ed6c28"
+            }
+          ]
+        },
+        {
+          "id": "item-ea5382e2f42f",
+          "name": "调整腿在线选择",
+          "desc": "考虑随机腿部故障及倾翻方向的有效调整腿选择",
+          "evidence": [
+            {
+              "quote": "将机器人倾翻时的支撑轴线分为中轴倾翻边线和非中轴倾翻边线，提出了一种考虑随机性腿部故障及倾翻方向影响的有效调整腿在线选择方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3106,
+                "end_char": 3167
+              },
+              "version": "b5c373379bb9b9ed6c28"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0cfb5c8a759a",
+          "name": "失稳快速恢复",
+          "desc": "调整腿轨迹自适应调整使机器人迅速恢复稳定",
+          "evidence": [
+            {
+              "quote": "结果表明课题所提出的基于调整腿轨迹自适应调整失稳恢复方法，可以在随机性腿部故障后六足机器人发生倾翻失稳时，通过调整腿轨迹的合理调整，可使其迅速恢复至稳定状态",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3301,
+                "end_char": 3378
+              },
+              "version": "b5c373379bb9b9ed6c28"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e56bcd8d663e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5607fd43a5f0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5607fd43a5f0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e7ae1a199e74"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5607fd43a5f0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ea5382e2f42f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e7ae1a199e74"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0cfb5c8a759a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ea5382e2f42f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0cfb5c8a759a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

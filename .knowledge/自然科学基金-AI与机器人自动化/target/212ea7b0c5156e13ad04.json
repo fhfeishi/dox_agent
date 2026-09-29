@@ -1,0 +1,207 @@
+{
+  "doc_id": "212ea7b0c5156e13ad04",
+  "version": "cc16cfe9caa9781b159f",
+  "source_hash": "88e54b563a456a5481a675e9003157c50461fef1b45213351b3c838901dd1a39",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:06.637808+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c5880f706750",
+          "name": "水声通信网络传输",
+          "desc": "海洋资源开发与监测中的水声通信网络长期节能",
+          "evidence": [
+            {
+              "quote": "水声通信网络在海洋资源开发与监测等直接影响国民经济与国家安全的领域有广阔应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 658,
+                "end_char": 698
+              },
+              "version": "cc16cfe9caa9781b159f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-33e3fe5df6dd",
+          "name": "供能受限能耗成瓶颈",
+          "desc": "部署水域偏远供能有限，能耗制约长期服役",
+          "evidence": [
+            {
+              "quote": "水声通信网由于部署水域偏远，供能方式有限，其能耗是制约其长期服役的瓶颈问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 699,
+                "end_char": 736
+              },
+              "version": "cc16cfe9caa9781b159f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-06febfdbc171",
+          "name": "多时隙跨层传输机制",
+          "desc": "跨层调节物理层与MAC层传输参数，提升可用资源",
+          "evidence": [
+            {
+              "quote": "提出了适应大尺度信道变化的多时隙跨层机制，充分考虑非整数倍传播时延引发的跨时隙干扰，通过跨层传输机制提升网络传输可用资源。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2857,
+                "end_char": 2917
+              },
+              "version": "cc16cfe9caa9781b159f"
+            }
+          ]
+        },
+        {
+          "id": "item-504a0f0aa533",
+          "name": "多智能体分布式在线决策",
+          "desc": "各链路分布式学习在线决策MAC层与物理层参数",
+          "evidence": [
+            {
+              "quote": "以提升通信资源利用率和降低端到端时延为目标，各链路在分布式学习框架下在线决策MAC层与物理层传输参数。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2953,
+                "end_char": 3003
+              },
+              "version": "cc16cfe9caa9781b159f"
+            }
+          ]
+        },
+        {
+          "id": "item-0da238def450",
+          "name": "图注意力时空状态建模",
+          "desc": "图注意力网络优化链路依赖特征提取",
+          "evidence": [
+            {
+              "quote": "构建了可描述网络传输与干扰的时空状态建模方法，利用图注意力网络优化链路间依赖关系的自适应特征提取，增强了系统状态表征能力与智能体策略决策水平。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3007,
+                "end_char": 3077
+              },
+              "version": "cc16cfe9caa9781b159f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fd1f0fca38f3",
+          "name": "能效时延公平性提升",
+          "desc": "传输能效、时延、公平性及安全性能提升，验证有效性与可扩展性",
+          "evidence": [
+            {
+              "quote": "本项目可使水声网络传输在能效、时延、公平性及安全性能等方面取得提升，验证了多智能体方法在多链路水声网络跨层协同优化中的有效性与可扩展性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3143,
+                "end_char": 3209
+              },
+              "version": "cc16cfe9caa9781b159f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c5880f706750"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-33e3fe5df6dd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-33e3fe5df6dd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-06febfdbc171"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-33e3fe5df6dd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-504a0f0aa533"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-33e3fe5df6dd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0da238def450"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-504a0f0aa533"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-fd1f0fca38f3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-06febfdbc171"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-fd1f0fca38f3"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

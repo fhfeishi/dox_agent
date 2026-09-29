@@ -1,0 +1,142 @@
+{
+  "doc_id": "8d4f9b5d3911355ff1a0",
+  "version": "3c2ced22810450bcab2c",
+  "source_hash": "d361e005acdf247e633c0558302495de79b968a01c46b65a42c4c003b0d50313",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:30.811845+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-14611a2fe3cc",
+          "name": "多民族妇女乳腺癌全周期智能诊疗",
+          "desc": "面向汉族、羌族、彝族和藏族等多民族妇女，开展乳腺癌全周期智能诊疗方法研究。",
+          "evidence": [
+            {
+              "quote": "乳腺癌是全球女性发病率最高、死亡人数最多的肿瘤，通过引入人工智能方法，提升乳腺癌诊疗水平是国际上的热点研究问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 721
+              },
+              "version": "3c2ced22810450bcab2c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-485f872a8918",
+          "name": "民族间异质性挑战现行智能诊疗方法",
+          "desc": "乳腺癌在不同民族间具有高度异质性，给国内现行以汉族妇女为对象的智能诊疗方法带来很大挑战和临床应用局限。",
+          "evidence": [
+            {
+              "quote": "由于乳腺癌在不同民族间具有高度异质性，给国内现行以汉族妇女为对象的智能诊疗方法带来很大的挑战和临床应用局限性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 723,
+                "end_char": 776
+              },
+              "version": "3c2ced22810450bcab2c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d7ecf5c95b3a",
+          "name": "多民族肿瘤异质性解析与多模态建模",
+          "desc": "综合利用多模态影像、临床病理和分子信息等多维数据，系统研究多民族乳腺肿瘤异质性信息解析方法，建立基于多民族多维数据的全周期智能诊疗模型并进行多中心评估。",
+          "evidence": [
+            {
+              "quote": "通过综合利用多模态影像、临床病理和分子信息等多维数据，系统研究多民族乳腺肿瘤异质性的信息解析方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 867,
+                "end_char": 914
+              },
+              "version": "3c2ced22810450bcab2c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-db26dc6c8b55",
+          "name": "发表学术论文57篇并授权发明专利4项",
+          "desc": "共发表学术论文57篇（43篇SCI、10篇EI会议、4篇中文一级学报），授权国家发明专利4项；建立面向藏族、彝族等少数民族的专用模型并完成多中心外部验证。",
+          "evidence": [
+            {
+              "quote": "团队共发表学术论文57篇（其中43篇SCI论文、10篇EI会议论文、4 篇中文一级学报论文），授权国家发明专利4项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3202,
+                "end_char": 3258
+              },
+              "version": "3c2ced22810450bcab2c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-14611a2fe3cc"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-485f872a8918"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-485f872a8918"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d7ecf5c95b3a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d7ecf5c95b3a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-db26dc6c8b55"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

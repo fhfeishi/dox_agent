@@ -1,0 +1,142 @@
+{
+  "doc_id": "127a34c9a08ce5e29d35",
+  "version": "50e62b5fa000a799641d",
+  "source_hash": "1220f43b760359303d7d270bba91d79f67aaf511e5c90f59d2e1560d82360d7b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:50.456807+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e3ef3a2a904b",
+          "name": "三维颅内动脉瘤自动检测",
+          "desc": "面向颅内动脉瘤破裂导致的严重脑中风防治，研究跨模态通用的三维动脉瘤自动检测算法。",
+          "evidence": [
+            {
+              "quote": "颅内动脉瘤(IAs)破裂会导致严重脑中风",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 686
+              },
+              "version": "50e62b5fa000a799641d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7d85136c4b7e",
+          "name": "传统检测受成像方式与样本分布限制不通用",
+          "desc": "传统IAs检测方法囿于数据成像方式不同、样本分布不均衡且训练集合较小，在临床与筛查中不通用。",
+          "evidence": [
+            {
+              "quote": "传统IAs检测方法囿于数据成像方式不同，样本分布不均衡且训练集合较小，使其在临床与筛查不通用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 688,
+                "end_char": 733
+              },
+              "version": "50e62b5fa000a799641d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9b59529d0cab",
+          "name": "球B样条与空间图深度学习的形状分析检测",
+          "desc": "将IAs检测视为形状分析问题，在脑血管三维几何模型上实现检测，研究形质互嵌卷积核与子结构塌缩归约策略，并通过球B样条拟合变形求交生成大规模合成样本集。",
+          "evidence": [
+            {
+              "quote": "本项目创新地将IAs检测视为形状分析问题，将脑血管分割重构成三维模型后，在几何模型上实现IAs检测，打破数据成像方式与分布屏障",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 735,
+                "end_char": 797
+              },
+              "version": "50e62b5fa000a799641d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-108f5befdec2",
+          "name": "建立首个脑血管黎曼流形表达数据库2000例",
+          "desc": "建立首个包含2000例标注案例的脑血管黎曼流形表达数据库，提出几何深度学习模型攻克微小动脉瘤检测难题；相关算法在SIGGRAPH和TOG上实现SOTA性能。",
+          "evidence": [
+            {
+              "quote": "建立首个脑血管黎曼流形脑血管表达数据库：包含2000例标注案例",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3362,
+                "end_char": 3392
+              },
+              "version": "50e62b5fa000a799641d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e3ef3a2a904b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-7d85136c4b7e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7d85136c4b7e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9b59529d0cab"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9b59529d0cab"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-108f5befdec2"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

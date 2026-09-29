@@ -1,0 +1,196 @@
+{
+  "doc_id": "f8b870b6b7323135a775",
+  "version": "7d02fc7ab14da1871350",
+  "source_hash": "fce55583c9610d088975348ed038047c043cbe42242510762c4ccc1edde65127",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:28:42.502357+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a6a0eaff6bc9",
+          "name": "多无人机柔性吊挂运输",
+          "desc": "边防物资运输、应急救援及物资输送等应用场景的多机协同吊挂",
+          "evidence": [
+            {
+              "quote": "多无人机通过柔性缆绳协同吊挂运输作业，在一定程度上可以弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围，在边防物资运输、应急救援及物资输送等应用场景具有特别的优势",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2628,
+                "end_char": 2713
+              },
+              "version": "7d02fc7ab14da1871350"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5b5427352051",
+          "name": "多约束强非线性耦合系统",
+          "desc": "多约束、多变量、动态耦合、强非线性复杂系统带来的协同稳定控制挑战",
+          "evidence": [
+            {
+              "quote": "多无人机柔性吊挂是一个多约束、多变量、动态耦合、强非线性的复杂系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2718,
+                "end_char": 2750
+              },
+              "version": "7d02fc7ab14da1871350"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7242fd390a34",
+          "name": "Udwadia-Kalaba耦合建模",
+          "desc": "基于牛顿-欧拉法与拉格朗日法建立耦合动力学关系，引入Udwadia-Kalaba方程建立多约束耦合动力学模型",
+          "evidence": [
+            {
+              "quote": "进一步面向多机协同吊挂场景，引入Udwadia-Kalaba方程建立可体现多机吊挂系统多约束特性的耦合动力学模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3025,
+                "end_char": 3080
+              },
+              "version": "7d02fc7ab14da1871350"
+            }
+          ]
+        },
+        {
+          "id": "item-48e14ba74bf7",
+          "name": "微分平坦多项式轨迹规划",
+          "desc": "生成满足避碰、载荷摆角约束与动力学可行等多重约束的高平滑可行轨迹",
+          "evidence": [
+            {
+              "quote": "采用基于微分平坦特性的多项式轨迹规划方法生成满足障碍物避碰、载荷摆角约束与动力学可行等多重约束条件的高平滑可行轨迹",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3085,
+                "end_char": 3141
+              },
+              "version": "7d02fc7ab14da1871350"
+            }
+          ]
+        },
+        {
+          "id": "item-af3f4744aa3d",
+          "name": "力反馈分段能量非线性控制",
+          "desc": "基于力反馈建立无人机与负载的协同运动控制方法",
+          "evidence": [
+            {
+              "quote": "基于力反馈建立无人机与负载的协同运动控制方法，设计基于分段能量的非线性控制器",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3189,
+                "end_char": 3226
+              },
+              "version": "7d02fc7ab14da1871350"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a6ec4a23978f",
+          "name": "稳定飞行理论与实验验证",
+          "desc": "通过理论和实验验证达到稳定飞行的目的，支撑多无人机协同控制理论探索与实际应用",
+          "evidence": [
+            {
+              "quote": "以此通过理论和实验验证达到稳定飞行的目的。本项目不仅是对多无人机协同控制理论的一次有益探索，也为实际应用提供了技术支撑",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3266,
+                "end_char": 3324
+              },
+              "version": "7d02fc7ab14da1871350"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a6a0eaff6bc9"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5b5427352051"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5b5427352051"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7242fd390a34"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5b5427352051"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-48e14ba74bf7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5b5427352051"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-af3f4744aa3d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-af3f4744aa3d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a6ec4a23978f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

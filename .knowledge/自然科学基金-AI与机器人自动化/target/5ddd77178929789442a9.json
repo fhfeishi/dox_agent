@@ -1,0 +1,197 @@
+{
+  "doc_id": "5ddd77178929789442a9",
+  "version": "4806bc2347c2e4f93766",
+  "source_hash": "657e49445f3e71d32b7fe2bf090909249871f43939573926c361570ff50dd22b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:52:47.546457+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0c48f53b2c4f",
+          "name": "AUV水下导航与环境感知",
+          "desc": "自主水下航行器远程深海应用与成功回收",
+          "evidence": [
+            {
+              "quote": "高精度水下导航和水下环境感知是自主水下航行器（AUV）远程、深海有效应用和成功回收的关键技术之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 699
+              },
+              "version": "4806bc2347c2e4f93766"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e8019fff69ce",
+          "name": "导航误差随时间距离发散",
+          "desc": "AUV导航误差发散且水下环境非结构化",
+          "evidence": [
+            {
+              "quote": "本项目针对AUV导航误差随航行时间和距离的增加而发散的问题以及水下环境非结构化特点，开展基于新型图像声呐的AUV同时定位与地图创建（SLAM）算法研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 700,
+                "end_char": 775
+              },
+              "version": "4806bc2347c2e4f93766"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-39ea96f3de4d",
+          "name": "改进ORB-SLAM3图像声呐算法",
+          "desc": "前端特征提取匹配改进与后端滤波重新设计",
+          "evidence": [
+            {
+              "quote": "①提出基于相机和新型图像声呐的改进ORB-SLAM3算法模型，包括对算法框架前端特征提取及匹配的改进和后端滤波算法重新设计两个部分。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2372,
+                "end_char": 2437
+              },
+              "version": "4806bc2347c2e4f93766"
+            }
+          ]
+        },
+        {
+          "id": "item-ee2055a16ebc",
+          "name": "水下多源数据采集平台",
+          "desc": "小型ROV实验平台与高性能嵌入式导航系统硬件",
+          "evidence": [
+            {
+              "quote": "③设计并搭建了水下多源数据采集实验平台——小型水下缆控机器人（ROV），设计并实现了高性能嵌入式导航系统硬件。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2462,
+                "end_char": 2516
+              },
+              "version": "4806bc2347c2e4f93766"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f4777daaad90",
+          "name": "多数据集算法验证",
+          "desc": "利用西班牙、以色列及抚仙湖等多组水下数据集验证有效性与鲁棒性",
+          "evidence": [
+            {
+              "quote": "利用西班牙布拉瓦海岸水下洞穴数据集，以色列境内地中海和红海水下数据集，项目组研制的ROV在云南玉溪澄江抚仙湖和云南民族大学雨花湖采集的水下光学及声呐图像实验数据，充分验证了算法有效性和鲁棒性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2518,
+                "end_char": 2613
+              },
+              "version": "4806bc2347c2e4f93766"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-57e8c7702b3a",
+          "name": "水下定位精度大幅提高",
+          "desc": "突破SLAM水下约束与应用瓶颈，为工程应用提供技术基础",
+          "evidence": [
+            {
+              "quote": "项目组突破了SLAM算法水下多种约束和应用瓶颈，大幅度提高SLAM算法水下定位的精度和鲁棒性，为AUV水下SLAM算法工程应用提供技术基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2624,
+                "end_char": 2692
+              },
+              "version": "4806bc2347c2e4f93766"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0c48f53b2c4f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e8019fff69ce"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e8019fff69ce"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-39ea96f3de4d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e8019fff69ce"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ee2055a16ebc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-39ea96f3de4d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f4777daaad90"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ee2055a16ebc"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-57e8c7702b3a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

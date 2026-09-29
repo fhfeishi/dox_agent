@@ -1,0 +1,180 @@
+{
+  "doc_id": "3feba03e46c94d9d2798",
+  "version": "a9f91999d4617ef8565c",
+  "source_hash": "3f2ab79b469a8bb95f38036d7d89730db4b02318b04427488e1a7876e33fdefc",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T17:01:44.856802+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-59fb4324f67c",
+          "name": "半导体智能制造调度优化",
+          "desc": "多企业协作下半导体智能制造系统异构分布式调度",
+          "evidence": [
+            {
+              "quote": "在半导体智能制造领域，传统的集中式调度优化方法面临数据孤岛、隐私安全与系统异构性三大挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3060,
+                "end_char": 3103
+              },
+              "version": "a9f91999d4617ef8565c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-23bf3fd31dcc",
+          "name": "数据孤岛与隐私安全",
+          "desc": "不同工厂产线设备数据因商业机密难以共享，硬件架构协议与算力差异显著",
+          "evidence": [
+            {
+              "quote": "不同工厂、产线及设备间的数据因商业机密和竞争关系难以共享，同时，其硬件架构、通信协议与计算能力存在显著差异，导致全局优化难度极大",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3105,
+                "end_char": 3168
+              },
+              "version": "a9f91999d4617ef8565c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-998d8eca5411",
+          "name": "联邦学习异构分布式调度框架",
+          "desc": "本地私有数据训练、模型参数安全聚合，保护隐私前提下跨异构知识协同",
+          "evidence": [
+            {
+              "quote": "该框架不要求各参与方上传原始生产数据，而是在本地利用私有数据训练本地调度模型，仅定期上传模型参数（如梯度或权重）至一个中央服务器进行安全聚合，生成优化的全局调度模型后再分发至各节点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3210,
+                "end_char": 3299
+              },
+              "version": "a9f91999d4617ef8565c"
+            }
+          ]
+        },
+        {
+          "id": "item-3b638cd58a02",
+          "name": "自适应聚合与模型压缩",
+          "desc": "自适应客户端选择、异步聚合策略及轻量级模型压缩提升异构环境性能",
+          "evidence": [
+            {
+              "quote": "通过引入自适应客户端选择、异步聚合策略及轻量级模型压缩技术，有效提升了系统在异构环境下的整体性能与鲁棒性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3465,
+                "end_char": 3516
+              },
+              "version": "a9f91999d4617ef8565c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ea473faf2fd3",
+          "name": "关键绩效指标提升",
+          "desc": "作业完成时间、设备利用率、准时交付率分别提升约15.2%、8.7%、12.4%，通信开销降低30%",
+          "evidence": [
+            {
+              "quote": "本系统在平均作业完成时间、设备利用率及订单准时交付率等关键绩效指标上分别提升了约15.2%、8.7%和12.4%。同时，系统成功将跨节点通信开销降低了约30%，并确保了各参与方敏感数据全程零泄露",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3546,
+                "end_char": 3642
+              },
+              "version": "a9f91999d4617ef8565c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-59fb4324f67c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-23bf3fd31dcc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-23bf3fd31dcc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-998d8eca5411"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-23bf3fd31dcc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3b638cd58a02"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-998d8eca5411"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ea473faf2fd3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3b638cd58a02"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ea473faf2fd3"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

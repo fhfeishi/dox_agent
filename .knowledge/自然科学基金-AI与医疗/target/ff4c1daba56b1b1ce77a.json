@@ -1,0 +1,142 @@
+{
+  "doc_id": "ff4c1daba56b1b1ce77a",
+  "version": "83c72b908778d47138ef",
+  "source_hash": "325a00236c781468ad3f5457e0ac2a76fbb2eb888cc0f9df74cb5c4dc805ab59",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:04.921694+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-501394cc7651",
+          "name": "眼科OCT多模态影像智能分析",
+          "desc": "面向白内障与年龄相关性黄斑变性（AMD）两大致盲眼病，建立基于OCT多模态数据的智能化IOL度数计算与AMD分析评估系统。",
+          "evidence": [
+            {
+              "quote": "白内障与年龄相关性黄斑变性（AMD）为眼科两大致盲眼病",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 673,
+                "end_char": 699
+              },
+              "version": "83c72b908778d47138ef"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a6b83594e417",
+          "name": "IOL度数计算准确度不足且AMD诊断水平参差",
+          "desc": "眼科临床常用人工晶状体球镜度数计算公式准确度约80%仍有提升空间，且不同级别医院医生对AMD的OCT影像诊断水平参差不齐。",
+          "evidence": [
+            {
+              "quote": "目前，眼科临床常用人工晶状体（IOL）球镜度数计算公式准确度约为80%，仍存在可提升空间",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2760,
+                "end_char": 2803
+              },
+              "version": "83c72b908778d47138ef"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-02b2606a6bad",
+          "name": "深度学习结合OCT多模态数据的IOL计算与AMD诊断系统",
+          "desc": "将深度学习分别与眼前后节OCT影像学数据整合挖掘，建立基于OCT多模态数据的智能化IOL度数计算和AMD分析评估方法，解决稳定性、低质量图像判断准确性与训练样本量等基础问题。",
+          "evidence": [
+            {
+              "quote": "建立基于OCT多模态数据下的智能化IOL度数计算和AMD分析评估方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2936,
+                "end_char": 2969
+              },
+              "version": "83c72b908778d47138ef"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ddfd3f86464c",
+          "name": "径向基函数IOL度数代理模型达到国际同等准确度",
+          "desc": "提出径向基函数拟合与眼部生物结构参数结合形成人工晶状体度数代理模型，达到与现有国际计算公式同等准确度；并实现OCT血管成像模式下AMD疾病的正确分类与量化分析。",
+          "evidence": [
+            {
+              "quote": "提出了各种径向基函数拟合与眼部生物结构参数数据结合形成人工晶状体度数代理模型的基础理论和方法，不同程度的达到与现有国际计算公式同等准确度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3128,
+                "end_char": 3195
+              },
+              "version": "83c72b908778d47138ef"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-501394cc7651"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a6b83594e417"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a6b83594e417"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-02b2606a6bad"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-02b2606a6bad"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ddfd3f86464c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

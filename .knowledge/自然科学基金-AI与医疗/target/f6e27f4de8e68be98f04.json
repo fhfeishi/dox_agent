@@ -1,0 +1,142 @@
+{
+  "doc_id": "f6e27f4de8e68be98f04",
+  "version": "8d9e0a215f4d09205830",
+  "source_hash": "5a41f38fb91ad80284d9fb107bba09ca057ecace21a1b25204c872220f835c03",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:12.670246+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8e313764b565",
+          "name": "肝细胞癌免疫治疗耐药的影像学预测",
+          "desc": "面向进展期肝细胞癌免疫治疗耐药率高的难题，构建反映肿瘤免疫微环境的无创风险分层体系。",
+          "evidence": [
+            {
+              "quote": "免疫治疗已成进展期肝细胞癌（HCC）综合治疗的重要手段，但仍存在耐药率高的显著问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 693
+              },
+              "version": "8d9e0a215f4d09205830"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ffa8901a486d",
+          "name": "HCC免疫治疗个体疗效差异大且有效率低",
+          "desc": "免疫治疗是HCC综合治疗的重要手段，但受限于个体间疗效差异大、治疗有效率较低，亟需精准预测手段。",
+          "evidence": [
+            {
+              "quote": "免疫治疗是HCC综合治疗的重要手段，但受限于个体间疗效差异大、治疗有效率较低",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2846,
+                "end_char": 2883
+              },
+              "version": "8d9e0a215f4d09205830"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3ece12b79b9d",
+          "name": "多参数功能MRI融合影像组学的无创分层体系",
+          "desc": "融合多参数功能MRI、影像组学与人工智能技术，构建反映肿瘤免疫微环境、预测免疫治疗耐药的无创风险分层体系，并基于病理学分析探索病理-影像-临床核心关联机制。",
+          "evidence": [
+            {
+              "quote": "融合多参数功能 MRI、影像组学及人工智能技术，构建能反映肿瘤免疫微环境、预测HCC免疫治疗耐药的无创风险分层体系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 945,
+                "end_char": 1001
+              },
+              "version": "8d9e0a215f4d09205830"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a083389f58b1",
+          "name": "标注SCI论文22篇含Radiology 4项原始研究",
+          "desc": "共标注SCI论文22篇，其中4项原始研究发表于影像学顶刊Radiology、1项发表于外科学顶刊Int J Surg、1项获2023年European Radiology ESGAR Silver Award；负责人授权国家发明专利1项、参编2项HCC指南共识。",
+          "evidence": [
+            {
+              "quote": "本项目共标注SCI论文22篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2993,
+                "end_char": 3006
+              },
+              "version": "8d9e0a215f4d09205830"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-8e313764b565"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ffa8901a486d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ffa8901a486d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3ece12b79b9d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3ece12b79b9d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a083389f58b1"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

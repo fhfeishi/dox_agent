@@ -1,0 +1,142 @@
+{
+  "doc_id": "55e9b6a046f1f234eec8",
+  "version": "640436719ccb8d99a9a2",
+  "source_hash": "2ff48dda641ff108a6d7b46d2c467dddca43ea6bd6bdb367774b9e3d767f362b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:29.428937+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cb6575723343",
+          "name": "肝细胞癌免疫基因表型MRI预测",
+          "desc": "面向肝细胞癌免疫治疗人群筛选，建立基于MRI的免疫基因表型无创预测模型。",
+          "evidence": [
+            {
+              "quote": "肝细胞癌（HCC）是我国最常见的恶性肿瘤之一，预后差",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 688
+              },
+              "version": "640436719ccb8d99a9a2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-04fb0a342e1c",
+          "name": "免疫基因表型异质且活检难以准确反映",
+          "desc": "并非所有HCC患者均能发生免疫应答；免疫基因表型是疗效特异预测因子，但存在高度异质性与动态变化，活检难以准确反映。",
+          "evidence": [
+            {
+              "quote": "HCC的免疫基因表型是免疫治疗疗效的特异预测因子，存在高度异质性和动态变化的特点，活检难以准确反映",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 775,
+                "end_char": 823
+              },
+              "version": "640436719ccb8d99a9a2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d319ee7af005",
+          "name": "计算机深度迁移学习免疫基因表型预测",
+          "desc": "利用计算机深度迁移学习建立HCC免疫基因表型的MRI预测模型，围绕多参数MRI数据特征的网络结构设计与训练策略，并前瞻性进行模型验证。",
+          "evidence": [
+            {
+              "quote": "本项目拟利用计算机深度迁移学习的方法建立HCC免疫基因表型的MRI预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 841,
+                "end_char": 877
+              },
+              "version": "640436719ccb8d99a9a2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2ac5d8ee43ef",
+          "name": "GEP影像组学模型训练与验证AUC 0.824/0.827",
+          "desc": "建立基于CT影像组学评估T细胞炎性基因表达谱（GEP）的模型，训练组与验证组AUC分别为0.824和0.827；GEP高表达组病灶治疗后6个月客观缓解率显著高于低表达组。",
+          "evidence": [
+            {
+              "quote": "该模型在训练组和验证组中的AUC分别为0.824和0.827",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3127,
+                "end_char": 3156
+              },
+              "version": "640436719ccb8d99a9a2"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-cb6575723343"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-04fb0a342e1c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-04fb0a342e1c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d319ee7af005"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d319ee7af005"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-2ac5d8ee43ef"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

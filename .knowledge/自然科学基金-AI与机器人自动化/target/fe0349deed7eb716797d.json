@@ -1,0 +1,197 @@
+{
+  "doc_id": "fe0349deed7eb716797d",
+  "version": "52875e5678315b33d804",
+  "source_hash": "5695577b74795a619015f294f72926138457b2a8a291df8d129f38ecc60e565e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:57.053167+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7789323fb6c3",
+          "name": "工业机器人可靠运行运维",
+          "desc": "工业机器人在高负载、强振动、强噪声与多工况切换条件下的可靠运行需求",
+          "evidence": [
+            {
+              "quote": "本项目面向工业机器人在高负载、强振动、强噪声与多工况切换条件下的可靠运行需求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2887,
+                "end_char": 2924
+              },
+              "version": "52875e5678315b33d804"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6d004f5105c1",
+          "name": "故障样本稀缺长尾",
+          "desc": "真实故障发生概率低、样本获取成本高、类别分布呈长尾特征",
+          "evidence": [
+            {
+              "quote": "由于工业现场真实故障发生概率低、故障样本获取成本高且类别分布呈长尾特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2978,
+                "end_char": 3012
+              },
+              "version": "52875e5678315b33d804"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5ca018242a9e",
+          "name": "信号图像化深度网络诊断",
+          "desc": "多通道振动时序信号转化为二维图像表征，结合深度网络特征学习",
+          "evidence": [
+            {
+              "quote": "将多通道振动等时序信号转化为二维图像表征，并结合深度网络进行特征学习",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3140,
+                "end_char": 3173
+              },
+              "version": "52875e5678315b33d804"
+            }
+          ]
+        },
+        {
+          "id": "item-1b533b57d14a",
+          "name": "自编码器增强原型度量诊断",
+          "desc": "正常数据预训练提纯表征，原型聚类判别提升稀缺故障敏感性",
+          "evidence": [
+            {
+              "quote": "提出自编码器增强的原型度量诊断方法，通过正常数据预训练实现表征提纯",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3384,
+                "end_char": 3416
+              },
+              "version": "52875e5678315b33d804"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-06257d7dd7df",
+          "name": "论文与国家标准",
+          "desc": "发表高水平学术论文15篇，参编国家标准1项",
+          "evidence": [
+            {
+              "quote": "相关成果已发表高水平学术论文 15篇，参编国家标准1项，形成了系统的算法体系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3459,
+                "end_char": 3496
+              },
+              "version": "52875e5678315b33d804"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-75ac5b2c3dbc",
+          "name": "可迁移鲁棒诊断框架",
+          "desc": "构建可迁移的鲁棒诊断方法框架，支撑预测性维护与智能运维",
+          "evidence": [
+            {
+              "quote": "构建了可迁移的鲁棒诊断方法框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3551,
+                "end_char": 3565
+              },
+              "version": "52875e5678315b33d804"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-7789323fb6c3"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6d004f5105c1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6d004f5105c1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5ca018242a9e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5ca018242a9e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-75ac5b2c3dbc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-7789323fb6c3"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1b533b57d14a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1b533b57d14a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-06257d7dd7df"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

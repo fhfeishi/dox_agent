@@ -1,0 +1,207 @@
+{
+  "doc_id": "90dc89acd071b1627d86",
+  "version": "28aac708820b4caddfd5",
+  "source_hash": "3b3c2cd652f074d6eb39e8c2e97ce5c81cf51c50d34789590a7874f7c6826dec",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:26.818008+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e53755e37c31",
+          "name": "空地协同机器人系统",
+          "desc": "无人机智能化与多智能体强化学习应用",
+          "evidence": [
+            {
+              "quote": "围绕提高无人机的智能化研究，本项目按照既定目标做了如下方面的探索",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3261,
+                "end_char": 3292
+              },
+              "version": "28aac708820b4caddfd5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-07e9e7e1a5ae",
+          "name": "无GPS定位与任务复杂",
+          "desc": "作业环境复杂、无GPS环境下定位与自主性需求",
+          "evidence": [
+            {
+              "quote": "然而，无人机的作业环境一般比较复杂，仅靠人类操作员进行控制很容易发生碰撞或坠机等意外情况，因此，无人机需要具备一定的自主性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3199,
+                "end_char": 3260
+              },
+              "version": "28aac708820b4caddfd5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9a4d1bf41295",
+          "name": "正交基系统辨识",
+          "desc": "正交基理论降低辨识参数数量改善数值条件",
+          "evidence": [
+            {
+              "quote": "将正交基理论应用于小型无人机的系统辨识，降低了需要辨识的参数的数量，改善了辨识过程中的数值条件。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3317,
+                "end_char": 3364
+              },
+              "version": "28aac708820b4caddfd5"
+            }
+          ]
+        },
+        {
+          "id": "item-6e863944265c",
+          "name": "DrQ自主导航",
+          "desc": "数据正则化Q算法提高训练稳定性与任务成功率",
+          "evidence": [
+            {
+              "quote": "将新颖的深度强化学习算法Data-regularized Q (DrQ) 应用于无人机的自主导航应用，并取得了一些进展。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3436,
+                "end_char": 3495
+              },
+              "version": "28aac708820b4caddfd5"
+            }
+          ]
+        },
+        {
+          "id": "item-e4f2226a9292",
+          "name": "VIO-SLAM无GPS定位",
+          "desc": "点线特征VIO-SLAM与激光SLAM保证定位精度",
+          "evidence": [
+            {
+              "quote": "研发了基于点线特征的VIO-SLAM定位方法和基于激光SLAM定位方法，有效地保证了无GPS-环境下无人机的定位精度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3586,
+                "end_char": 3643
+              },
+              "version": "28aac708820b4caddfd5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bf93d339b128",
+          "name": "核电站检测应用",
+          "desc": "成果应用于核电站安全壳全自动检测场景",
+          "evidence": [
+            {
+              "quote": "项目组的相关研究成果被应用于无人机对核电站安全壳的全自动检测场景，提升空中机器人对复杂任务的执行效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3666,
+                "end_char": 3715
+              },
+              "version": "28aac708820b4caddfd5"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e53755e37c31"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-07e9e7e1a5ae"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-07e9e7e1a5ae"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9a4d1bf41295"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-07e9e7e1a5ae"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6e863944265c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-07e9e7e1a5ae"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e4f2226a9292"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6e863944265c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bf93d339b128"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e4f2226a9292"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bf93d339b128"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

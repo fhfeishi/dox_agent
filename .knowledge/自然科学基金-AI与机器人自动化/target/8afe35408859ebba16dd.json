@@ -1,0 +1,207 @@
+{
+  "doc_id": "8afe35408859ebba16dd",
+  "version": "5ee25d73972a85c326a8",
+  "source_hash": "e1a932a011aed56c3fb7f1eeea897e9aae5ed75b15ad4821accee39c7d21797b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:11:49.025632+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-97ee3c357fa3",
+          "name": "六足机器人人在环操控",
+          "desc": "野外救援等场景的六足机器人远程操控",
+          "evidence": [
+            {
+              "quote": "能否对多足机器人进行有效的人在环操控（远程控制）则直接关系到相关科研及工程任务的成功。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3048,
+                "end_char": 3090
+              },
+              "version": "5ee25d73972a85c326a8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a1cac31f6d88",
+          "name": "操控稳定性透明性不足",
+          "desc": "野外环境带来操控稳定性和透明性问题",
+          "evidence": [
+            {
+              "quote": "围绕由野外环境带来的六足机器人操控环节中的稳定性和透明性问题，本项目以系统无源性理论为研究视角",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3092,
+                "end_char": 3138
+              },
+              "version": "5ee25d73972a85c326a8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5904da2ca0d5",
+          "name": "波变换无源性补偿",
+          "desc": "波变换与时域无源性控制补偿时延与外扰",
+          "evidence": [
+            {
+              "quote": "设计了波变换和时域无源性控制相结合算法进行补偿",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3282,
+                "end_char": 3304
+              },
+              "version": "5ee25d73972a85c326a8"
+            }
+          ]
+        },
+        {
+          "id": "item-d56073e86b85",
+          "name": "多边协同共享操控",
+          "desc": "增益动态更新与模式柔顺切换的控制器设计",
+          "evidence": [
+            {
+              "quote": "创建了“增益动态更新”+“模式柔顺切换”的控制器设计形式，借鉴端口网络理论调整控制率参数选取空间，保证了系统稳定性及透明性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3450,
+                "end_char": 3511
+              },
+              "version": "5ee25d73972a85c326a8"
+            }
+          ]
+        },
+        {
+          "id": "item-5bb1d6d087de",
+          "name": "足力优化分配",
+          "desc": "半自主操控模式规划足力优化分配提升局部自主",
+          "evidence": [
+            {
+              "quote": "通过引入半自主操控模式以规划足力优化分配算法提升六足机器人局部自主的控制能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3335,
+                "end_char": 3373
+              },
+              "version": "5ee25d73972a85c326a8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fca275ad57cd",
+          "name": "崎岖地形操控改善",
+          "desc": "远程操控理论解决崎岖松软地形运动作业难题",
+          "evidence": [
+            {
+              "quote": "本项目所提出的远程操控理论及方法较好地解决了六足机器人在崎岖松软地形下的运动作业难题，同时改善了系统操控性能（指令跟踪性、地形通过性以及感知透明性等）。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3521,
+                "end_char": 3596
+              },
+              "version": "5ee25d73972a85c326a8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-97ee3c357fa3"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a1cac31f6d88"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a1cac31f6d88"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5904da2ca0d5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a1cac31f6d88"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d56073e86b85"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a1cac31f6d88"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5bb1d6d087de"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d56073e86b85"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-fca275ad57cd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5bb1d6d087de"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-fca275ad57cd"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

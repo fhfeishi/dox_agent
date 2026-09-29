@@ -1,0 +1,142 @@
+{
+  "doc_id": "289c69d9deb331e27ba3",
+  "version": "d42093cc3538a05b9ee9",
+  "source_hash": "48b9448f2aaf63e25c4d3e2d9cbb429d05d014766d9783b940746d3c63026598",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:03.611580+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8b561b3fe1dc",
+          "name": "乳腺癌复发转移风险预测",
+          "desc": "面向乳腺癌术后复发转移这一主要致死原因，基于多源异构数据开展复发与远端转移风险预测。",
+          "evidence": [
+            {
+              "quote": "精准预测局部复发及远端转移是当前乳腺癌相关研究的关键问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 705,
+                "end_char": 732
+              },
+              "version": "d42093cc3538a05b9ee9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fbde2d5a33be",
+          "name": "单一数据源难以解析肿瘤异质性",
+          "desc": "传统预测方法依赖单一数据源，难以全面解析肿瘤高度异质性，导致复发转移预测准确率受限。",
+          "evidence": [
+            {
+              "quote": "针对传统方法依赖单一数据源、难以全面解析肿瘤高度异质性的局限",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2825,
+                "end_char": 2854
+              },
+              "version": "d42093cc3538a05b9ee9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b72d34c80526",
+          "name": "组学与病理图像多源异构融合深度学习预测算法",
+          "desc": "筛选正则化模型并构建缺失数据矩阵填充，通过跨源一致性选择共享特征子集，用条件对抗生成网络平衡样本，混合DenseNet与ResNet提取病理底层形态与高层语义特征后融合建模。",
+          "evidence": [
+            {
+              "quote": "研究流行的DenseNet和ResNet网络模型混合方法，提取病理图像的底层形态特征和高层语义特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 897,
+                "end_char": 945
+              },
+              "version": "d42093cc3538a05b9ee9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6e5897bfa827",
+          "name": "PCGMMF模型乳腺癌预后准确率90.3%、分层AUC 0.924",
+          "desc": "PCGMMF模型在乳腺癌预后预测中准确率90.3%、风险分层AUC 0.924；项目共发表SCI论文19篇，申请发明专利1项，获软件著作权1项。",
+          "evidence": [
+            {
+              "quote": "PCGMMF模型通过双向-自注意力融合模块，在乳腺癌预后预测中取得准确率90.3%、其风险分层的AUC达到0.924的优异性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3215,
+                "end_char": 3277
+              },
+              "version": "d42093cc3538a05b9ee9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-8b561b3fe1dc"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-fbde2d5a33be"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fbde2d5a33be"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b72d34c80526"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b72d34c80526"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6e5897bfa827"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

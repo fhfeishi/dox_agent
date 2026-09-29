@@ -1,0 +1,180 @@
+{
+  "doc_id": "50985939556aff0c1c71",
+  "version": "74c1917530bcfb0de0cb",
+  "source_hash": "8d2aa2e134137bf5951dc9aede16419762081c502ec7c62681935fe7d6339b91",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:11:52.429137+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e7eaccff6ce6",
+          "name": "空间站大型机械臂作业",
+          "desc": "空间站在轨组装维护与航天员辅助出舱操作",
+          "evidence": [
+            {
+              "quote": "空间大型机械臂是空间站在轨组装、维护维修、载荷照料和航天员辅助出舱操作等的重要工具，它有助于延长空间站及载荷的使用寿命，获得更多的科研和经济回报。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 731
+              },
+              "version": "74c1917530bcfb0de0cb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b080bed30890",
+          "name": "柔性行为致振荡精度降低",
+          "desc": "关节臂杆柔性导致系统振荡、精度降低和性能退化",
+          "evidence": [
+            {
+              "quote": "然而，由于空间大型机械臂关节和臂杆的柔性行为，易导致机械臂系统振荡、精度降低和性能退化等问题，无法满足快速、稳定、精细操作的需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 732,
+                "end_char": 796
+              },
+              "version": "74c1917530bcfb0de0cb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4daa3dcb81db",
+          "name": "多传感器融合柔性控制",
+          "desc": "12D传感器（六维力矩+六维加速度）信息融合控制",
+          "evidence": [
+            {
+              "quote": "基于研制的12D传感器（包含六维力矩和六维加速度传感器），开展了多传感器信息融合、柔性抓捕、残余振动抑制等控制策略研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2904,
+                "end_char": 2962
+              },
+              "version": "74c1917530bcfb0de0cb"
+            }
+          ]
+        },
+        {
+          "id": "item-eda3cd565515",
+          "name": "基座反作用力矩协调控制",
+          "desc": "合理规划机械臂运动使基座姿态扰动最小",
+          "evidence": [
+            {
+              "quote": "提出了基于基座反作用力矩估计的协调控制方法，合理规划了机械臂运动，使其对基座姿态扰动最小。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2964,
+                "end_char": 3008
+              },
+              "version": "74c1917530bcfb0de0cb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-911289a6c936",
+          "name": "问天舱机械臂在轨应用",
+          "desc": "完成扩展泵组安装、全景相机抬升等任务获航天员赞誉",
+          "evidence": [
+            {
+              "quote": "提出的方法已应用在空间站问天舱机械臂中，其先后完成了问天舱扩展泵组安装、全景相机抬升、舱外自主应急返回验证，舱外助力手柄安装、载荷回路扩展泵组安装等任务，全部任务圆满完成，同时验证了与航天员协同工作的能力，获得了航天员刘洋“定位精准，无需微调”的赞誉。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3009,
+                "end_char": 3134
+              },
+              "version": "74c1917530bcfb0de0cb"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e7eaccff6ce6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b080bed30890"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b080bed30890"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4daa3dcb81db"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b080bed30890"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-eda3cd565515"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-eda3cd565515"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-911289a6c936"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4daa3dcb81db"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-911289a6c936"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

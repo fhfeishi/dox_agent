@@ -1,0 +1,142 @@
+{
+  "doc_id": "aeb59e82319358aed408",
+  "version": "b23b9278591a234779ab",
+  "source_hash": "c1c84a03ce3d04aabed842a89beba1a3354951310bc04ed93249c0c8231e385a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:50.532787+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f2ffc7b7887b",
+          "name": "卵巢癌卡铂化疗敏感性预测",
+          "desc": "面向卵巢癌铂类化疗耐药问题，研究Sirtuin信号通路中Sirt5和SDHA蛋白的预测价值与机制。",
+          "evidence": [
+            {
+              "quote": "卵巢癌在妇科恶性肿瘤中5年生存率最低，铂类化疗耐药是影响该疾病生存一个极其重要的原因",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 699,
+                "end_char": 740
+              },
+              "version": "b23b9278591a234779ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dd9e7272269a",
+          "name": "铂类化疗反应缺乏有效预测策略",
+          "desc": "铂类化疗耐药严重影响卵巢癌患者生存，迫切需要寻找切实有效的策略来预测铂类化疗反应。",
+          "evidence": [
+            {
+              "quote": "因此迫切需要寻找切实有效的策略来预测铂类化疗反应",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 742,
+                "end_char": 765
+              },
+              "version": "b23b9278591a234779ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-289896f0cf6a",
+          "name": "Sirt5/SDHA机制研究与机器学习预测模型",
+          "desc": "运用分子、细胞、动物模型以及预后队列和机器学习等手段，阐明Sirt5和SDHA在卵巢癌卡铂耐药中的作用与分子调控机制，并构建蛋白表达与暴露因素结合的敏感性预测模型。",
+          "evidence": [
+            {
+              "quote": "拟运用分子、细胞、动物模型以及预后队列和机器学习等多种研究手段相结合，阐明Sirtuin信号通路中Sirt5和SDHA蛋白在卵巢癌卡铂耐药中的作用及分子调控机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 909,
+                "end_char": 988
+              },
+              "version": "b23b9278591a234779ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-513405dc9f3e",
+          "name": "揭示Sirt5结合SDHA调控卡铂敏感性机制",
+          "desc": "通过CRISPR-Cas9敲除Sirt5证实其逆转耐药、抑制增殖迁移侵袭并诱导凋亡；机制上Sirt5直接结合SDHA调控其乙酰化水平影响卡铂敏感性，动物实验验证联合治疗的抑瘤作用。",
+          "evidence": [
+            {
+              "quote": "进一步的机制研究表明，Sirt5通过与琥珀酸脱氢酶复合物黄素蛋白亚基A（SDHA）蛋白直接结合，调控其乙酰化水平，进而影响卵巢癌细胞对卡铂的敏感性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3230,
+                "end_char": 3302
+              },
+              "version": "b23b9278591a234779ab"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f2ffc7b7887b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-dd9e7272269a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-dd9e7272269a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-289896f0cf6a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-289896f0cf6a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-513405dc9f3e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

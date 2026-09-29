@@ -1,0 +1,180 @@
+{
+  "doc_id": "fafaabc47307203ce42f",
+  "version": "4837a01bfc0a425b2353",
+  "source_hash": "401a30f03db643a808194051ebdf95ac16f0549b2c5a8f1b93a40400a1caa1e7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:22:24.387656+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d2ecdf01a6a0",
+          "name": "车身焊渣机器人磨抛",
+          "desc": "视觉引导下车身点焊焊渣的精准检测与自适应磨抛加工",
+          "evidence": [
+            {
+              "quote": "机器人磨抛车身点焊焊渣主要面临随机焊渣的位姿与几何信息难以精准检测、缺乏基于测量数据的加工及质量评估手段等难题，从而限制机器人磨抛技术的应用推广",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2905,
+                "end_char": 2976
+              },
+              "version": "4837a01bfc0a425b2353"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dcd1e487771b",
+          "name": "随机焊渣位姿检测难",
+          "desc": "传统方法难以精准检测随机焊渣的位姿与几何信息",
+          "evidence": [
+            {
+              "quote": "突破传统方法难以精准检测随机焊渣的位姿与几何信息（难题1）所引起的焊渣特征区域定位不准确、磨抛去除不充分等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 812,
+                "end_char": 866
+              },
+              "version": "4837a01bfc0a425b2353"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e115b16b2867",
+          "name": "Tool0手眼标定与点云匹配",
+          "desc": "基于{Tool0}的手眼标定方法与WPMAVM大型车身工件标定，匹配0.332s精度0.479mm",
+          "evidence": [
+            {
+              "quote": "该方法中所提WPMAVM算法对负余量测点和异常余量测点均具有很强的鲁棒性，可有效克服传统ICP、VMM算法易出现的匹配倾斜现象，匹配时间为0.332s且匹配精度达到0.479mm",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3181,
+                "end_char": 3269
+              },
+              "version": "4837a01bfc0a425b2353"
+            }
+          ]
+        },
+        {
+          "id": "item-c525b9bb87ba",
+          "name": "改进YOLOv3焊渣检测",
+          "desc": "改进YOLOv3网络的焊渣缺陷检测算法，召回率准确率F1提升显著",
+          "evidence": [
+            {
+              "quote": "提出了基于改进YOLOv3网络的焊渣缺陷检测算法，解决了原有算法在检测微小焊渣精确度和召回率都比较低的问题。相比原有算法，召回率、准确率和F1_Score分别提升了13.27%、13.05%和0.0859",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3273,
+                "end_char": 3374
+              },
+              "version": "4837a01bfc0a425b2353"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bfcb3067c520",
+          "name": "测量加工一体化",
+          "desc": "Dijkstra磨抛路径自主决策与工艺智能数据库，实现车身焊渣视觉检测-磨抛加工一体化",
+          "evidence": [
+            {
+              "quote": "提出了基于Dijkstra算法的车身焊渣机器人磨抛路径自主决策方法，解决了检测定位焊渣之后无法局部磨抛车身的难题，开发出车身焊渣机器人磨抛加工路径自主决策软件，实现了车身焊渣“视觉检测-磨抛加工”一体化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3394,
+                "end_char": 3494
+              },
+              "version": "4837a01bfc0a425b2353"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d2ecdf01a6a0"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-dcd1e487771b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-dcd1e487771b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e115b16b2867"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-dcd1e487771b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c525b9bb87ba"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c525b9bb87ba"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bfcb3067c520"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e115b16b2867"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bfcb3067c520"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

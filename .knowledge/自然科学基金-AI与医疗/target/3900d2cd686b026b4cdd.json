@@ -1,0 +1,142 @@
+{
+  "doc_id": "3900d2cd686b026b4cdd",
+  "version": "519663d5d91335aea880",
+  "source_hash": "5cec00e4c27c91ac9c2b02d0857a765aa10845f46c059c65ea6cdebf25a5dca6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:49.222969+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c5f3a18ded1d",
+          "name": "乳腺癌非前哨淋巴结转移预测",
+          "desc": "面向前哨淋巴结1~2枚阳性乳腺癌患者的腋窝处理决策，预测非前哨淋巴结转移风险。",
+          "evidence": [
+            {
+              "quote": "前哨淋巴结1～2个阳性的乳腺癌患者中，约2/3其非前哨淋巴结未发生转移，可采用局部放疗代替腋窝淋巴结清扫",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 669,
+                "end_char": 720
+              },
+              "version": "519663d5d91335aea880"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-42a37be7c7fc",
+          "name": "缺乏准确预测非前哨淋巴结转移的方法",
+          "desc": "目前尚无准确预测非前哨淋巴结转移的方法，临床难以个体化制定腋窝处理方案。",
+          "evidence": [
+            {
+              "quote": "但目前尚无准确预测非前哨淋巴转移的方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 722,
+                "end_char": 740
+              },
+              "version": "519663d5d91335aea880"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7a5fa3d07bff",
+          "name": "DCE-MRI影像组学与DenseNet-201+LSTM模型",
+          "desc": "提取包含动态信息的影像组学特征并融合临床病理信息构建多维度模型，通过DenseNet-201提取深度特征输入LSTM构建基于时间序列的深度学习模型并独立验证。",
+          "evidence": [
+            {
+              "quote": "通过深度学习网络DenseNet-201提取深度特征，输入长短时程记忆（long-short term memory，LSTM）网络构建基于时间序列的深度学习模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 922,
+                "end_char": 1002
+              },
+              "version": "519663d5d91335aea880"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8c5b6873814c",
+          "name": "DCE-MRI深度学习模型预测效能良好",
+          "desc": "基于DCE-MRI的深度学习模型在预测前哨淋巴结1~2枚阳性患者的非前哨淋巴结转移方面具有良好的效能；发表课题相关文章19篇（SCI 14篇，累计IF 70.4），申请国家发明专利3项。",
+          "evidence": [
+            {
+              "quote": "研究结果表明，基于DCE-MRI的深度学习模型在预测腋窝前哨淋巴结1~2枚阳性乳腺癌患者的非前哨淋巴结转移方面具有良好的效能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2672,
+                "end_char": 2733
+              },
+              "version": "519663d5d91335aea880"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c5f3a18ded1d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-42a37be7c7fc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-42a37be7c7fc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7a5fa3d07bff"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7a5fa3d07bff"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8c5b6873814c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

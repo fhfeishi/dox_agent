@@ -1,0 +1,197 @@
+{
+  "doc_id": "919423695d147f56c685",
+  "version": "ded29f9b46d52432c120",
+  "source_hash": "94db17b019e6de14bba1114f24c397da1013f75ee1b7631a860a1d5f8bf15176",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:26.836418+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4695239de6bb",
+          "name": "无人机编队快速容错",
+          "desc": "任务约束下故障无人机编队自主任务能力",
+          "evidence": [
+            {
+              "quote": "考虑预设任务要求、环境干扰及故障等问题，研究安全稳定的无人机控制策略具有重要意义。基于此，本项目综合观测器设计技术、任务规划技术和鲁棒控制技术对无人机快速容错方法开展研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2804,
+                "end_char": 2888
+              },
+              "version": "ded29f9b46d52432c120"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cafac55c49dc",
+          "name": "缺乏任务导向快速容错",
+          "desc": "现有研究侧重单项技术缺乏面向任务的快速自主容错",
+          "evidence": [
+            {
+              "quote": "而现有研究多侧重于对单项技术的研究，使系统缺乏面向任务的快速自主容错能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 687,
+                "end_char": 723
+              },
+              "version": "ded29f9b46d52432c120"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-098a229acbec",
+          "name": "固定时间观测器与控制器",
+          "desc": "超螺旋等观测器快速估计故障与固定时间协同控制",
+          "evidence": [
+            {
+              "quote": "提出了固定时间超螺旋观测器/扩张状态观测器/未知输入观测器设计方法，降低了设计保守性，实现了对故障/干扰的快速估计；完成了无人机编队的位置环/姿态环固定时间控制器设计及系统综合稳定性分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2911,
+                "end_char": 3003
+              },
+              "version": "ded29f9b46d52432c120"
+            }
+          ]
+        },
+        {
+          "id": "item-157f66bc26a1",
+          "name": "容错轨迹规划",
+          "desc": "改进粒子群、伪谱法与多项式的快速轨迹规划",
+          "evidence": [
+            {
+              "quote": "提出了基于改进粒子群优化算法的无人机协同航线规划方法、基于改进伪谱法/数值法的无人机轨迹规划方法、基于多项式的快速轨迹规划方法以及考虑故障的无人机容错轨迹生成方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3082,
+                "end_char": 3162
+              },
+              "version": "ded29f9b46d52432c120"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e21e17845bb6",
+          "name": "论文23篇与飞行实验",
+          "desc": "论文23篇（SCI 8），四旋翼平台多机自主飞行实验",
+          "evidence": [
+            {
+              "quote": "项目执行至今，共录用/发表学术论文23篇，其中SCI检索期刊论文8篇，EI检索期刊论文2篇，EI检索会议论文5篇；申请发明专利1项。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3281,
+                "end_char": 3346
+              },
+              "version": "ded29f9b46d52432c120"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e6963b9a8de9",
+          "name": "多机协同容错探索",
+          "desc": "基于目标重分配探索严重故障下多机协同容错",
+          "evidence": [
+            {
+              "quote": "并基于目标重分配，对严重故障下多机协同容错进行了探索。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3205,
+                "end_char": 3231
+              },
+              "version": "ded29f9b46d52432c120"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4695239de6bb"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-cafac55c49dc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cafac55c49dc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-098a229acbec"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cafac55c49dc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-157f66bc26a1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-098a229acbec"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e21e17845bb6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-157f66bc26a1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e6963b9a8de9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

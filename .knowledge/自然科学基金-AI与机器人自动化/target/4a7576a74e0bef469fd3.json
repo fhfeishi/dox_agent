@@ -1,0 +1,169 @@
+{
+  "doc_id": "4a7576a74e0bef469fd3",
+  "version": "18e5ea4c5cfe34f0b69a",
+  "source_hash": "00bf8df505b65e10895cc9be2d112e7a25fa5c90ab453596b049f04cf308d742",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:23.794618+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a6b9ffc9ef25",
+          "name": "DNA材料软体机器人",
+          "desc": "DNA凝胶为软体机器人发展提供新路径",
+          "evidence": [
+            {
+              "quote": "DNA凝胶兼具多孔结构与DNA分子的独特功能，为软体机器人发展提供新路径",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2610,
+                "end_char": 2645
+              },
+              "version": "18e5ea4c5cfe34f0b69a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-deaff1d2e7e5",
+          "name": "DNA水凝胶疏水与机械弱",
+          "desc": "传统DNA水凝胶疏水性不足、机械性能薄弱",
+          "evidence": [
+            {
+              "quote": "但传统DNA水凝胶存在明显局限，基于此，DNA有机凝胶以有机相为介质，通过引入多元构建元素，可有效弥补传统DNA水凝胶疏水性不足、机械性能薄弱的短板。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2647,
+                "end_char": 2721
+              },
+              "version": "18e5ea4c5cfe34f0b69a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-242192a1204a",
+          "name": "有机相DNA杂化规律",
+          "desc": "表面活性剂与介电常数对杂化过程的调控规律",
+          "evidence": [
+            {
+              "quote": "发现表面活性剂烷基链长度与数量对DNA双链热稳定性呈正向调控作用，且较高介电常数环境可显著加速DNA杂化进程",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2804,
+                "end_char": 2857
+              },
+              "version": "18e5ea4c5cfe34f0b69a"
+            }
+          ]
+        },
+        {
+          "id": "item-06803bef5f2b",
+          "name": "原位杂化液晶有机凝胶",
+          "desc": "DNA液晶有机凝胶制备与动态性能调控策略",
+          "evidence": [
+            {
+              "quote": "设计并制备了原位杂化型DNA液晶有机凝胶，在优化其制备条件并完成系统结构表征后，发现表面活性剂对凝胶自愈合等动态性能起主导调控作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3013,
+                "end_char": 3077
+              },
+              "version": "18e5ea4c5cfe34f0b69a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-96298e538943",
+          "name": "脂质-DNA细胞功能化",
+          "desc": "兼具细胞修饰与可编程性，应用于生物成像传感",
+          "evidence": [
+            {
+              "quote": "可作为分子识别单元或功能接头用于细胞的精准功能化修饰，在生物医学成像、生物传感等光电子学领域展现出广阔的应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3223,
+                "end_char": 3279
+              },
+              "version": "18e5ea4c5cfe34f0b69a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a6b9ffc9ef25"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-deaff1d2e7e5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-deaff1d2e7e5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-242192a1204a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-deaff1d2e7e5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-06803bef5f2b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-06803bef5f2b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-96298e538943"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

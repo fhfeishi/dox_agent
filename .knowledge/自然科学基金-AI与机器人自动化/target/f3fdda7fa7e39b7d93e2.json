@@ -1,0 +1,197 @@
+{
+  "doc_id": "f3fdda7fa7e39b7d93e2",
+  "version": "4bb0699126daafb671e6",
+  "source_hash": "52a3877e0a1fb44ec5b3c097840235d2318e0737938bc0d383153ddcd4a0b8d0",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:36.676898+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-88e9cbea32f2",
+          "name": "水空跨介质航行器",
+          "desc": "自由穿梭水空之间的高机动高隐蔽飞行器",
+          "evidence": [
+            {
+              "quote": "水/空跨介质航行器是一种可以自由穿梭于水空之间的飞行器，其具有在水下运动的隐蔽性和空中运动的快速性两大特点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2686,
+                "end_char": 2739
+              },
+              "version": "4bb0699126daafb671e6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-306ea89da2e8",
+          "name": "推进器无法重复出入水",
+          "desc": "推进性能不佳无法连续可重复从水下起飞",
+          "evidence": [
+            {
+              "quote": "然而，目前水/空跨介质航行器的推进器运动性能普遍不佳，推进器无法帮助样机连续、可重复的从水下起飞。因而航行器始终无法完成完整的水-空-水连续穿梭运动。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2740,
+                "end_char": 2814
+              },
+              "version": "4bb0699126daafb671e6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-11c58d78464a",
+          "name": "双组元燃料爆炸推进",
+          "desc": "化学双组元混合爆炸组件与射流推进系统",
+          "evidence": [
+            {
+              "quote": "本文研究了可重复推进的水/空跨介质推进器，形成了化学双组元燃料混合爆炸组件，研究喷水推进的压力源产生、射流形成、推进过程的全流程仿真设计并搭建了爆炸喷水推进系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2823,
+                "end_char": 2902
+              },
+              "version": "4bb0699126daafb671e6"
+            }
+          ]
+        },
+        {
+          "id": "item-167769ea690e",
+          "name": "柔性折扇机翼",
+          "desc": "柔性翼仿生变结构设计与快速致动软体材料",
+          "evidence": [
+            {
+              "quote": "通过探索柔性机翼的仿生变结构设计和快速致动软体材料的驱动性能，形成柔性的可折叠机翼",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2904,
+                "end_char": 2944
+              },
+              "version": "4bb0699126daafb671e6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-df1735d48018",
+          "name": "样机快速水空发射",
+          "desc": "集成样机实验测定实现快速水空发射",
+          "evidence": [
+            {
+              "quote": "集成了航行器样机，通过实验测定，样机可实现快速的水空发射。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3113,
+                "end_char": 3141
+              },
+              "version": "4bb0699126daafb671e6"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-529bf3a0989e",
+          "name": "轻量化设计难题解决",
+          "desc": "微型给料模块与无传感精确控制提升推重比",
+          "evidence": [
+            {
+              "quote": "研制了双组元燃料爆炸的小型集成组件，自主设计了双组元燃料的微小型给料模块、通过实验探究获得了无传感的给料精确控制模型，减小了跨介质飞行样机的自重及体积，提升了样机的推重比。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3027,
+                "end_char": 3112
+              },
+              "version": "4bb0699126daafb671e6"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-88e9cbea32f2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-306ea89da2e8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-306ea89da2e8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-11c58d78464a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-306ea89da2e8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-167769ea690e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-11c58d78464a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-df1735d48018"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-167769ea690e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-529bf3a0989e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

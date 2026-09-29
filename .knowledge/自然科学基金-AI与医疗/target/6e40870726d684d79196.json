@@ -1,0 +1,142 @@
+{
+  "doc_id": "6e40870726d684d79196",
+  "version": "ced281d433e369f77ce8",
+  "source_hash": "e21b6c5c36ad1544a0642f21e43760b7c413861e87921ef7919253d58854df11",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:04.832569+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ecc8570cec42",
+          "name": "儿童单基因糖尿病及相关综合征精准诊断",
+          "desc": "面向儿童单基因糖尿病及糖尿病相关综合征发病率与遗传学诊断不清的问题，构建精准诊断模型。",
+          "evidence": [
+            {
+              "quote": "儿童糖尿病发病率迅速增加，儿童单基因糖尿病及糖尿病相关综合征发病率及遗传学诊断均不清",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 693,
+                "end_char": 734
+              },
+              "version": "ced281d433e369f77ce8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-44259aa53062",
+          "name": "WES阴性患儿基因诊断不明",
+          "desc": "全外显子组测序虽已诊断多种单基因突变病例，但仍有近80%疑诊为遗传性糖尿病的患儿基因诊断不明。",
+          "evidence": [
+            {
+              "quote": "但仍有近80%疑诊为遗传性糖尿病患儿的基因诊断不明",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 774,
+                "end_char": 798
+              },
+              "version": "ced281d433e369f77ce8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1c9df24a11ff",
+          "name": "转录组学结合聚类机器学习的多组学精准诊断模型",
+          "desc": "对WES阴性病例开展转录组测序识别异常剪接与异常表达量，结合大家系数据与eQTL/sQTL关联分析，利用多组学相似性与互补性相互验证并构建分类模型。",
+          "evidence": [
+            {
+              "quote": "本研究拟在进一步扩大前期队列基础上，对WES阴性病例进行转录组测序，以识别异常剪接和异常表达量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 800,
+                "end_char": 846
+              },
+              "version": "ced281d433e369f77ce8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-802a1e28de2c",
+          "name": "深度学习单基因糖尿病诊断模型准确率92.3%",
+          "desc": "开发基于深度学习的单基因糖尿病诊断模型整体准确率达92.3%；对70例WES阴性患儿完成RNA测序，建立包含120例患者的中国儿童单基因糖尿病转录组数据库。",
+          "evidence": [
+            {
+              "quote": "项目开发了基于深度学习的单基因糖尿病诊断模型，整体准确率达92.3%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3304,
+                "end_char": 3337
+              },
+              "version": "ced281d433e369f77ce8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ecc8570cec42"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-44259aa53062"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-44259aa53062"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1c9df24a11ff"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1c9df24a11ff"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-802a1e28de2c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

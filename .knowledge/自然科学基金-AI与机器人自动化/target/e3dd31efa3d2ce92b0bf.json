@@ -1,0 +1,142 @@
+{
+  "doc_id": "e3dd31efa3d2ce92b0bf",
+  "version": "bbca08e29e82886182ba",
+  "source_hash": "15736179c552c4f4bea3c8e499573470740ced48ade7cd16071d953d8119e5f4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:52:48.890104+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a43cb1c0df5b",
+          "name": "动态开放环境无人车行驶",
+          "desc": "小样本、交互及未知场景下无人车安全平稳行驶",
+          "evidence": [
+            {
+              "quote": "动态开放环境下存在大量小样本、交互及未知场景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 676,
+                "end_char": 698
+              },
+              "version": "bbca08e29e82886182ba"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bfe5da39d12d",
+          "name": "决策系统鲁棒性与扩展性差",
+          "desc": "小样本事件难建模，不确定性导致决策失效与错误",
+          "evidence": [
+            {
+              "quote": "由于小样本事件难建模，交互及未知场景中的交通参与者、道路存在较大不确定性因素，导致无人车决策系统鲁棒性弱、可扩展性差，容易出现决策方法失效和决策结果错误的情况",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 699,
+                "end_char": 777
+              },
+              "version": "bbca08e29e82886182ba"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b440e758dca5",
+          "name": "意图建模与语义图谱决策",
+          "desc": "概率表征交互行为建模、小样本意图预测与语义图谱自主决策",
+          "evidence": [
+            {
+              "quote": "研究了基于概率表征的动态车辆交互行为建模、小样本情况下的动态车辆意图预测方法和基于语义图谱的自主驾驶决策方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2600,
+                "end_char": 2654
+              },
+              "version": "bbca08e29e82886182ba"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-eb4cf6e5d72f",
+          "name": "论文6篇与专利软著",
+          "desc": "SCI 2篇、EI 4篇，发明专利2项（授权1项），软著2项",
+          "evidence": [
+            {
+              "quote": "相关研究成果共发表学术论文6篇（SCI检索2篇，EI检索4篇）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2655,
+                "end_char": 2685
+              },
+              "version": "bbca08e29e82886182ba"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a43cb1c0df5b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-bfe5da39d12d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-bfe5da39d12d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b440e758dca5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b440e758dca5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-eb4cf6e5d72f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

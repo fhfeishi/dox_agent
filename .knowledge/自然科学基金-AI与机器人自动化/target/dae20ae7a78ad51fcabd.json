@@ -1,0 +1,197 @@
+{
+  "doc_id": "dae20ae7a78ad51fcabd",
+  "version": "02a96e040eb7da486b63",
+  "source_hash": "4815d19af1c35203a01e392219e3b2478bf07907e02aa54af6a4b14a10b9b0c4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:55.682297+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ecbc1784c4bf",
+          "name": "航天器编队飞行协同控制",
+          "desc": "多航天器编队飞行轨迹自主规划与预设时间协同控制",
+          "evidence": [
+            {
+              "quote": "本项目针对航天器集群在轨运行面临的时空约束避碰、大规模规划实时性、复杂扰动可靠协同等核心技术难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2968,
+                "end_char": 3015
+              },
+              "version": "02a96e040eb7da486b63"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-229fd0c5dec4",
+          "name": "空间约束与系统不确定性",
+          "desc": "轨迹规划存在路径、边界等空间约束，动力学系统强非线性、多不确定性",
+          "evidence": [
+            {
+              "quote": "其轨迹规划存在路径、边界等多种空间约束问题，同时其动力学系统存在强非线性、多种不确定性等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 721,
+                "end_char": 766
+              },
+              "version": "02a96e040eb7da486b63"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6fb5fd51b35a",
+          "name": "避碰最优轨迹规划模型",
+          "desc": "近似修正可达集建模与序列凸规划融合，神经网络规划架构实现状态到控制指令映射",
+          "evidence": [
+            {
+              "quote": "提出了近似修正可达集建模与序列凸规划融合方案，构建了时空约束下的避碰最优轨迹规划模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3052,
+                "end_char": 3093
+              },
+              "version": "02a96e040eb7da486b63"
+            }
+          ]
+        },
+        {
+          "id": "item-c9a8d89dd464",
+          "name": "预设时间智能协同控制",
+          "desc": "非光滑协同观测与控制一体化、非奇异预设时间滑模控制等方法",
+          "evidence": [
+            {
+              "quote": "提出了非光滑协同观测与控制一体化、非奇异预设时间滑模控制、预设时间智能协同控制等方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3224,
+                "end_char": 3265
+              },
+              "version": "02a96e040eb7da486b63"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-16037ce5f3d2",
+          "name": "引力波探测任务应用",
+          "desc": "成果服务于空间引力波探测任务三星编队无拖曳航天器系统",
+          "evidence": [
+            {
+              "quote": "部分研究成果服务于面向空间引力波探测任务的三星编队无拖曳航天器系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3321,
+                "end_char": 3353
+              },
+              "version": "02a96e040eb7da486b63"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-8fed24334593",
+          "name": "论文专著与发明专利",
+          "desc": "发表论文15篇，出版专著2部，申请国家发明专利3项",
+          "evidence": [
+            {
+              "quote": "项目负责人以第一/通讯作者发表论文15篇，其中Automatica、IEEE汇刊、中文核心期刊10篇；出版专著2部；申请国家发明专利3项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3435,
+                "end_char": 3502
+              },
+              "version": "02a96e040eb7da486b63"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ecbc1784c4bf"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-229fd0c5dec4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-229fd0c5dec4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6fb5fd51b35a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6fb5fd51b35a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-16037ce5f3d2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ecbc1784c4bf"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c9a8d89dd464"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c9a8d89dd464"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8fed24334593"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

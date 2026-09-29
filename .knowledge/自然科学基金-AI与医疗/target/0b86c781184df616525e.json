@@ -1,0 +1,142 @@
+{
+  "doc_id": "0b86c781184df616525e",
+  "version": "fb065d192f280a14470d",
+  "source_hash": "1b554af48cc232877eb0b45e06d43c01b865db5a960b4d9f5ddc72413b0d6c2b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:34.934483+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ed3b1ffeed1f",
+          "name": "法医体液斑精准组织溯源",
+          "desc": "面向犯罪现场体液（斑）检材的精准组织溯源需求，探索多源组学结合AI的系统研究。",
+          "evidence": [
+            {
+              "quote": "遗留在犯罪现场的体液（斑）检材是最重要的法医生物物证之一",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "6fe8233942c08f32bd048d8d5e913cdc155899c9"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-24d945bb773a",
+          "name": "体液斑精准溯源是关键科学问题",
+          "desc": "体液（斑）物证的精准溯源有助于案件现场重建与性质判断，是亟待解决的关键科学问题。",
+          "evidence": [
+            {
+              "quote": "对这些生物物证的精准溯源是亟待解决的关键科学问题",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "6fe8233942c08f32bd048d8d5e913cdc155899c9"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-81bc11ca065f",
+          "name": "五类分子标记甄选与AI预测模型",
+          "desc": "探索多源组学技术系统甄选不同类型体液间差异表达的五类分子标记，通过RT-qPCR验证评估并构建人工智能预测模型，最终建立法医体液（斑）精准溯源智能分析系统。",
+          "evidence": [
+            {
+              "quote": "本研究拟探索多源组学技术系统甄选不同类型体液间差异表达的五类分子标记",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "6fe8233942c08f32bd048d8d5e913cdc155899c9"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b5071b87258f",
+          "name": "疑难检材检测灵敏度达0.0625ng",
+          "desc": "面向微量降解检材研发基于特征工程算法的分子标记甄选新策略，扩增子长度小于200bp、灵敏度达0.0625ng，实现疑难检材个体识别、复杂亲缘鉴定与生物地理溯源技术突破；发表SCI论文35篇，申请发明专利4项。",
+          "evidence": [
+            {
+              "quote": "扩增子长度小于200bp，灵敏度达到0.0625ng，实现了法医疑难检材个体识别、复杂亲缘鉴定和生物地理溯源的技术突破",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "4951cdcee96f8ff1abc666e052ce3e6bb19634aa"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ed3b1ffeed1f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-24d945bb773a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-24d945bb773a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-81bc11ca065f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-81bc11ca065f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b5071b87258f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

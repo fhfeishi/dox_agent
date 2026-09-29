@@ -1,0 +1,180 @@
+{
+  "doc_id": "7a50d4e2d82b70c557b5",
+  "version": "12e5d496a3d147faad7d",
+  "source_hash": "3423cf8fd48f7b1c52ebb03501b0c973e6980d4d1d2ff28d55e4dca39b922ff6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:18.146671+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9398c2ca25e0",
+          "name": "水下环境监测仿乌贼机器人",
+          "desc": "喷射推进式水下机器人的快速机动与姿态稳定",
+          "evidence": [
+            {
+              "quote": "本项目面向水下环境监测、探索需求，针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题，以乌贼为仿生原型，深入开展管状折纸鳃腔驱动仿乌贼机器人的仿生设计、水动力性能分析及智能控制策略研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2849,
+                "end_char": 2951
+              },
+              "version": "12e5d496a3d147faad7d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-29656f8a52fd",
+          "name": "推力不足响应慢转向呆板",
+          "desc": "喷射推进水下机器人推力不足、响应慢、转向不灵活",
+          "evidence": [
+            {
+              "quote": "针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2866,
+                "end_char": 2900
+              },
+              "version": "12e5d496a3d147faad7d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5ecef6af7f16",
+          "name": "水弹折纸喷射驱动",
+          "desc": "电机驱动柔性折展机构实现腔体快速收缩回弹",
+          "evidence": [
+            {
+              "quote": "提出一种由电机驱动的\"水弹折纸\"柔性折展机构作为腔体喷射驱动单元，通过柔性结构的径向大变形实现腔体快速收缩与回弹充水，解决了传统刚性腔体难以实现大收缩比与高频驱动的技术瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2952,
+                "end_char": 3037
+              },
+              "version": "12e5d496a3d147faad7d"
+            }
+          ]
+        },
+        {
+          "id": "item-5eed3c8fde7f",
+          "name": "DDPG+ADRC分层控制",
+          "desc": "分层强化学习控制框架提升响应与抗扰",
+          "evidence": [
+            {
+              "quote": "提出了基于深度确定性策略梯度算法（DDPG）与自抗扰控制（ADRC）的分层强化学习控制框架，提升了机器人姿态控制的响应速度与抗扰能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3188,
+                "end_char": 3254
+              },
+              "version": "12e5d496a3d147faad7d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8b92d60a48ef",
+          "name": "样机与论文专利",
+          "desc": "研制原理样机，论文5篇、专利8项、软著1项、研究生7名",
+          "evidence": [
+            {
+              "quote": "研制了管状折纸鳃腔驱动仿乌贼机器人原理样机，完成了柔性喷射腔体运动测试及水下推进实验。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3255,
+                "end_char": 3297
+              },
+              "version": "12e5d496a3d147faad7d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9398c2ca25e0"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-29656f8a52fd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-29656f8a52fd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5ecef6af7f16"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-29656f8a52fd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5eed3c8fde7f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5ecef6af7f16"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8b92d60a48ef"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5eed3c8fde7f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8b92d60a48ef"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "doc_id": "24f51addb4f372a6af50",
+  "version": "b6b83d0492a3510f69fa",
+  "source_hash": "6655326f5ea1e78c745f52b3dc846c6413cf3b15a0b384aa278fb1b4f2ff60de",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:18.211080+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-882ed22700e5",
+          "name": "脑卒中康复痉挛防护",
+          "desc": "下肢外骨骼康复机器人痉挛防护训练",
+          "evidence": [
+            {
+              "quote": "我国脑卒中患者人数高达1300万，其中大量的患者愈后康复训练中会出现肌肉痉挛。针对这类患者，若在康复训练中不加以防护，极易对人体造成二次伤害。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2631,
+                "end_char": 2701
+              },
+              "version": "b6b83d0492a3510f69fa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-86643372cb18",
+          "name": "痉挛检测不准防护缺失",
+          "desc": "检测不准确、缺乏临床认可运动模式与性能保证策略",
+          "evidence": [
+            {
+              "quote": "但当前下肢外骨骼康复机器人在痉挛检测和痉挛防护方面的研究仍存在检测不准确、缺乏临床认可的机器人运动模式和保证机器人性能的控制策略等问题，严重制约了外骨骼机器人的实用性和有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 717,
+                "end_char": 804
+              },
+              "version": "b6b83d0492a3510f69fa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9248e949ea7d",
+          "name": "膝关节痉挛生物力学建模",
+          "desc": "人体下肢膝关节痉挛模型与虚拟弹性预设性能控制",
+          "evidence": [
+            {
+              "quote": "本项目围绕人体膝关节痉挛的生物力学建模、预设性能控制方法和人机交互策略三个方面，开展了以下研究内容，具体包括：外骨骼平台搭建、人体下肢膝关节生物力学建模、人体膝关节痉挛模型、具有虚拟弹性的预设性能控制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2797,
+                "end_char": 2896
+              },
+              "version": "b6b83d0492a3510f69fa"
+            }
+          ]
+        },
+        {
+          "id": "item-16abb90833c7",
+          "name": "可变预设性能变阻抗",
+          "desc": "基于肌骨模型的可变预设性能泄露自适应变阻抗控制",
+          "evidence": [
+            {
+              "quote": "自适应位置约束的按需辅助控制和基于肌骨模型的具有可变预设性能的泄露自适应变阻抗控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2918,
+                "end_char": 2959
+              },
+              "version": "b6b83d0492a3510f69fa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2d18840fc8e7",
+          "name": "论文11篇与专利",
+          "desc": "SCI 7篇（一区5篇、IEEE汇刊4篇），发明专利1项",
+          "evidence": [
+            {
+              "quote": "发表学术论文11篇（第一标注5篇，第二标注5篇，第四标注1篇），其中SCI检索论文7篇（中科院一区5篇，中科院二区2篇，IEEE汇刊4篇）；申请发明专利1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2968,
+                "end_char": 3045
+              },
+              "version": "b6b83d0492a3510f69fa"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-882ed22700e5"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-86643372cb18"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-86643372cb18"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9248e949ea7d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-86643372cb18"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-16abb90833c7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-16abb90833c7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-2d18840fc8e7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9248e949ea7d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-2d18840fc8e7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

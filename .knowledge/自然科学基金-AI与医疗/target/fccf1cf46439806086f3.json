@@ -1,0 +1,235 @@
+{
+  "doc_id": "fccf1cf46439806086f3",
+  "version": "3ab72fc660290bcd1e4e",
+  "source_hash": "c2ab6b8e77229feeb465792e17d15057a2b4ee940b9046209a179547b9811595",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:32:58.212302+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-64ec4da55b43",
+          "name": "IDH野生TERT突变型较低级别胶质瘤鉴别",
+          "desc": "存在IDH野生和TERT启动子突变的较低级别胶质瘤具有类似胶质母细胞瘤的分子特征且预后极差。",
+          "evidence": [
+            {
+              "quote": "存在IDH野生和TERT启动子突变的较低级别胶质瘤(IDHWT-TERTpMut LoG)具有类似胶质母细胞瘤的分子特征且预后极差",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 690,
+                "end_char": 754
+              },
+              "version": "3ab72fc660290bcd1e4e"
+            }
+          ]
+        },
+        {
+          "id": "item-05f2d5388440",
+          "name": "胶质瘤精准治疗策略制定",
+          "desc": "对该亚型的早期预测将有助于制定精准治疗策略。",
+          "evidence": [
+            {
+              "quote": "对该亚型的早期预测将有助于制定精准治疗策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2562,
+                "end_char": 2582
+              },
+              "version": "3ab72fc660290bcd1e4e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-90647e9f02bb",
+          "name": "非增强GBM难与低级别星形细胞瘤鉴别",
+          "desc": "此类分子诊断GBM在术前MRI上常表现为非增强形式，使之难以同低级别星形细胞瘤鉴别。",
+          "evidence": [
+            {
+              "quote": "此类“分子诊断”的GBM在术前MRI上经常表现为非增强形式（NE-GBM），使之难以同低级别星形细胞瘤（LGA）鉴别",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2503,
+                "end_char": 2560
+              },
+              "version": "3ab72fc660290bcd1e4e"
+            }
+          ]
+        },
+        {
+          "id": "item-8b25698f5448",
+          "name": "需无创诊断NE-GBM",
+          "desc": "需通过对MRI数据行影像组学分析来实现NE-GBM无创性诊断。",
+          "evidence": [
+            {
+              "quote": "本课题紧随指南更新，通过对MRI数据行影像组学分析来实现NE-GBM无创性诊断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2584,
+                "end_char": 2622
+              },
+              "version": "3ab72fc660290bcd1e4e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d89abf4d983b",
+          "name": "多模态MRI影像组学建模",
+          "desc": "对T1、T2、FLAIR和ADC成像MRI数据进行影像组学分析，应用Scikit-Learn进行数据预处理和模型训练以鉴别NE-GBM。",
+          "evidence": [
+            {
+              "quote": "对T1、T2、FLAIR和ADC成像MRI数据进行影像组学分析，应用Python中的Scikit-Learn模块进行数据预处理和模型训练以鉴别NE-GBM",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2776,
+                "end_char": 2852
+              },
+              "version": "3ab72fc660290bcd1e4e"
+            }
+          ]
+        },
+        {
+          "id": "item-8ffb4d23de71",
+          "name": "LASSO特征选择与多分类器比较",
+          "desc": "比较不同特征选择方法，其中LASSO回归表现最优，筛选出54个影像组学特征和年龄用于模型构建。",
+          "evidence": [
+            {
+              "quote": "将特征选择方法在不同的分类器下进行比较，其中LASSO回归方法表现最优，其筛选出54个影像组学特征和年龄用于模型构建",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3034,
+                "end_char": 3091
+              },
+              "version": "3ab72fc660290bcd1e4e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f1c8b2834b0a",
+          "name": "训练集AUC 1.000与准确率1.000",
+          "desc": "训练集中5个分类器平均曲线下面积和准确率分别为1.000和1.000，验证集中分别为0.998和0.980。",
+          "evidence": [
+            {
+              "quote": "在训练集中，5个分类器的平均曲线下面积和准确率分别为1.000和1.000；在验证集中分别为0.998和0.980",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3174,
+                "end_char": 3230
+              },
+              "version": "3ab72fc660290bcd1e4e"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-cf8634f977c9",
+          "name": "天坛与三博测试集表现",
+          "desc": "模型在天坛测试集上达到0.935和0.910，在三博测试集中分别为0.969和0.900。",
+          "evidence": [
+            {
+              "quote": "在天坛测试集上分别达到0.935和0.910；在三博测试集中分别为0.969和0.900",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3232,
+                "end_char": 3275
+              },
+              "version": "3ab72fc660290bcd1e4e"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-77ac67496e72",
+          "name": "NE-GBM与LGA临床影像差异",
+          "desc": "NE-GBM比LGA更容易发生在老年患者，且体积显著大于LGA，两者主要累及左侧额叶、岛叶和颞叶。",
+          "evidence": [
+            {
+              "quote": "NE-GBM比LGA更容易发生在老年患者（模型训练集，p<0.001；天坛测试集，p=0.005）。NE-GBM的体积显著大于LGA（模型训练集，p=0.015）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2861,
+                "end_char": 2941
+              },
+              "version": "3ab72fc660290bcd1e4e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-64ec4da55b43"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-90647e9f02bb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-90647e9f02bb"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d89abf4d983b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d89abf4d983b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f1c8b2834b0a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8ffb4d23de71"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cf8634f977c9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

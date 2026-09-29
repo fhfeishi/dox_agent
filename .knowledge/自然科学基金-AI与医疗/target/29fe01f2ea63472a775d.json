@@ -1,0 +1,142 @@
+{
+  "doc_id": "29fe01f2ea63472a775d",
+  "version": "fc9384665ae144a8ba8c",
+  "source_hash": "fa9854283c95cc3499482814e7dae000ecfc132b3a42004e871539c2f4943ddc",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:16.754108+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-63db12570b61",
+          "name": "局部进展期直肠癌新辅助放化疗疗效预测",
+          "desc": "针对局部进展期直肠癌新辅助放化疗这一标准治疗路径，探索放化疗抵抗与预后的无创预测方法。",
+          "evidence": [
+            {
+              "quote": "新辅助放化疗是局部进展期直肠癌标准治疗方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 668,
+                "end_char": 688
+              },
+              "version": "fc9384665ae144a8ba8c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e2f252509fa2",
+          "name": "缺乏预测直肠癌放化疗抵抗与预后的简便有效方法",
+          "desc": "放化疗抵抗可致肿瘤未控或转移，而上皮间质转化EMT与放化疗抵抗及预后密切相关，目前缺乏简便有效的预测手段。",
+          "evidence": [
+            {
+              "quote": "目前缺乏预测放化疗抵抗及预后的简便有效方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 750,
+                "end_char": 770
+              },
+              "version": "fc9384665ae144a8ba8c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d6f73a7ceaf6",
+          "name": "多参数MRI影像组学融合预测模型",
+          "desc": "基于肿瘤与瘤周区域的DKI、DCE-MRI等多参数MRI影像组学特征监测肿瘤EMT，融合临床病理及EMT标记物构建融合模型。",
+          "evidence": [
+            {
+              "quote": "基于肿瘤和瘤周区域的DKI和DCE-MRI等多参数MRI影像组学特征监测肿瘤EMT的价值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 883,
+                "end_char": 926
+              },
+              "version": "fc9384665ae144a8ba8c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-534aab5df917",
+          "name": "DKI直方图%D均值预测疗效AUC达0.939",
+          "desc": "DKI直方图参数尤其是%D均值可有效预测LARC新辅助放化疗疗效，AUC达0.939；融合模型预测DFS的C-index训练组0.780、验证组0.803。",
+          "evidence": [
+            {
+              "quote": "DKI直方图参数，尤其是%D均值，可有效预测LARC新辅助放化疗疗效，AUC面积达0.939",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3287,
+                "end_char": 3332
+              },
+              "version": "fc9384665ae144a8ba8c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-63db12570b61"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e2f252509fa2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e2f252509fa2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d6f73a7ceaf6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d6f73a7ceaf6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-534aab5df917"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

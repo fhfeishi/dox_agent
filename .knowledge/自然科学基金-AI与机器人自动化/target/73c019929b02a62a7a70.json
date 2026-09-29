@@ -1,0 +1,197 @@
+{
+  "doc_id": "73c019929b02a62a7a70",
+  "version": "22458b4d72bbc61354f4",
+  "source_hash": "4f4f63f18c24eeb7723e1662196b3c6c2f2270df853eb59edd691cca04064372",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:52.895215+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e3149ef2933e",
+          "name": "果蔬采摘机器人视觉",
+          "desc": "劳动力成本高背景下采摘机器人视觉识别与定位追踪",
+          "evidence": [
+            {
+              "quote": "采摘是果蔬生产中最重要的环节之一，由于劳动力成本高，因此研究采摘机器人具有重要的意义",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 692
+              },
+              "version": "22458b4d72bbc61354f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f72f4557c189",
+          "name": "复杂环境目标识别困难",
+          "desc": "颠簸振动、恶劣天气及采摘不确定性干扰引起识别困难、定位不准与图像模糊",
+          "evidence": [
+            {
+              "quote": "采摘机器人视觉系统在复杂环境下的颠簸振动、恶劣天气以及采摘不确定性等外部干扰下，容易引起目标识别困难、定位追踪不准确和图像模糊的现象",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2950,
+                "end_char": 3015
+              },
+              "version": "22458b4d72bbc61354f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8fbd08c90990",
+          "name": "类人眼多运动协调控制",
+          "desc": "研究眼球扫视、平滑追踪、视动反射与前庭动眼反射机理并建立控制模型",
+          "evidence": [
+            {
+              "quote": "建立了双目眼球运动控制模型和电子回路",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3183,
+                "end_char": 3200
+              },
+              "version": "22458b4d72bbc61354f4"
+            }
+          ]
+        },
+        {
+          "id": "item-c488f7d9396c",
+          "name": "改进Cam-Shift目标追踪",
+          "desc": "基于卡尔曼滤波的改进Cam-Shift算法识别追踪采摘目标",
+          "evidence": [
+            {
+              "quote": "采用基于卡尔曼滤波的改进Cam-Shift算法对采摘目标进行识别与追踪",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3318,
+                "end_char": 3352
+              },
+              "version": "22458b4d72bbc61354f4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4a27cdf4d802",
+          "name": "识别准确率96%",
+          "desc": "对有遮挡目标精确捕捉，平均识别准确率达96%",
+          "evidence": [
+            {
+              "quote": "对有遮挡的目标能更精确的捕捉，平均识别准确率达到96%，实时性和鲁棒性更好",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3354,
+                "end_char": 3390
+              },
+              "version": "22458b4d72bbc61354f4"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-7440a8d33b5b",
+          "name": "草莓采摘机器人移植",
+          "desc": "识别平均准确率95%，检测速度40-47 FPS满足实时性要求",
+          "evidence": [
+            {
+              "quote": "最后将该系统移植到草莓采摘机器人，识别平均准确率达到95%，检测速度范围在40 FPS 到47 FPS 之间，满足采摘任务的实时性要求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3513,
+                "end_char": 3579
+              },
+              "version": "22458b4d72bbc61354f4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e3149ef2933e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f72f4557c189"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f72f4557c189"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8fbd08c90990"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f72f4557c189"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c488f7d9396c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c488f7d9396c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4a27cdf4d802"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8fbd08c90990"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7440a8d33b5b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

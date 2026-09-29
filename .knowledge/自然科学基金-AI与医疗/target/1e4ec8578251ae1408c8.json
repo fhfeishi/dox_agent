@@ -1,0 +1,268 @@
+{
+  "doc_id": "1e4ec8578251ae1408c8",
+  "version": "f3e38346af75305683c1",
+  "source_hash": "5aee825ac9b8f62b928debd298f37588e5479fbd60c6d1f00739f97c236f966a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:30:10.466072+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bac56fe05e04",
+          "name": "LAGC新辅助治疗疗效早期评估",
+          "desc": "新辅助治疗是局部进展期胃癌的推荐治疗方案，但并非所有患者均获益，建议早期评估疗效。",
+          "evidence": [
+            {
+              "quote": "新辅助治疗是局部进展期胃癌（LAGC）的推荐治疗方案，然而并非所有患者均能从治疗中受益，故建议早期评估治疗疗效，以便及时调整治疗方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 676,
+                "end_char": 741
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ]
+        },
+        {
+          "id": "item-9491c39396ba",
+          "name": "胃癌精准医疗无创工具转化",
+          "desc": "研究突破LAGC新辅助治疗早期评估技术瓶颈，为个体化诊疗提供无创工具，推动医学AI临床转化。",
+          "evidence": [
+            {
+              "quote": "研究突破了LAGC新辅助治疗早期评估的技术瓶颈，为个体化诊疗提供无创工具，推动医学AI在胃癌精准医疗中的临床转化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3473,
+                "end_char": 3528
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-64846956e184",
+          "name": "缺乏早期精准评估疗效手段",
+          "desc": "目前缺乏早期精准评估疗效的手段，无法及时调整治疗方案。",
+          "evidence": [
+            {
+              "quote": "但目前缺乏早期精准评估疗效的手段",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 743,
+                "end_char": 758
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ]
+        },
+        {
+          "id": "item-548b9016025a",
+          "name": "预测模型泛化性差与数据不足",
+          "desc": "尚无早期及多期相评估且预测模型泛化性较差，主要因缺乏高质量标注数据集、缺乏动态变化量化分析方法与训练数据多样性不足。",
+          "evidence": [
+            {
+              "quote": "但目前尚无早期及多期相评估，且预测模型泛化性较差，主要原因有：1）缺乏高质量标注的数据集；2）缺乏表征肿瘤动态变化的量化分析方法；3）训练数据多样性不足",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 796,
+                "end_char": 871
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ae941c15953a",
+          "name": "双向循环神经网络时序建模",
+          "desc": "利用双向循环神经网络从多时序多期相CT影像挖掘肿瘤变化动态信息，表征肿瘤时空异质性。",
+          "evidence": [
+            {
+              "quote": "利用双向循环神经网络从多时序多期相CT影像中充分挖掘肿瘤变化的动态信息，表征肿瘤的时空异质性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 913,
+                "end_char": 958
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ]
+        },
+        {
+          "id": "item-bc303521403f",
+          "name": "联邦学习跨中心部署与GUI",
+          "desc": "部署联邦学习至多中心保护数据隐私并提升泛化性，同时设计GUI交互系统提高易用性。",
+          "evidence": [
+            {
+              "quote": "部署联邦学习至多中心，保护数据隐私，同时提升模型的泛化性，并设计GUI交互系统，提高模型的易用性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 962,
+                "end_char": 1009
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ]
+        },
+        {
+          "id": "item-81f2d8104106",
+          "name": "深度分割与特征提取模型",
+          "desc": "利用深度学习方法构建LAGC病灶自动分割和特征提取模型。",
+          "evidence": [
+            {
+              "quote": "利用深度学习方法构建LAGC病灶自动分割和特征提取模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 883,
+                "end_char": 909
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-79fff78b5c3d",
+          "name": "AdaptNet解决部分标注问题",
+          "desc": "创新提出AdaptNet自适应学习网络，有效解决部分标注问题，相关成果发表于MICCAI 2023 Challenge并做口头报告。",
+          "evidence": [
+            {
+              "quote": "在分割任务中，创新提出AdaptNet自适应学习网络，有效解决“部分标注”问题，相关成果发表于MICCAI 2023 Challenge并做口头报告",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2850,
+                "end_char": 2923
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-fcc6317206a2",
+          "name": "CTSMamba时序多任务模型",
+          "desc": "创新CTSMamba时序多任务模型，融合治疗前后影像动态特征，淋巴结转移预测AUC 0.803-0.848、生存预后C指数0.661-0.710。",
+          "evidence": [
+            {
+              "quote": "创新CTSMamba时序多任务模型，融合治疗前后影像动态特征，淋巴结转移预测AUC 0.803-0.848、生存预后C指数0.661-0.710",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3091,
+                "end_char": 3162
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-55f662377beb",
+          "name": "FedDMIL联邦学习方法",
+          "desc": "提出FedDMIL联邦学习方法解决跨中心数据隐私问题，并建立影像-病理多模态整合框架。",
+          "evidence": [
+            {
+              "quote": "提出FedDMIL联邦学习方法解决跨中心数据隐私问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3295,
+                "end_char": 3320
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-011ab3708e64",
+          "name": "专利软著与人才培养",
+          "desc": "项目申请发明专利2项、软件著作权1项，协助培养博士和硕士研究生各1名。",
+          "evidence": [
+            {
+              "quote": "项目申请发明专利2项、软件著作权1项，协助培养博士和硕士研究生各1名",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3438,
+                "end_char": 3471
+              },
+              "version": "f3e38346af75305683c1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-bac56fe05e04"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-64846956e184"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-548b9016025a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bc303521403f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ae941c15953a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-fcc6317206a2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-81f2d8104106"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-79fff78b5c3d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

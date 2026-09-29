@@ -1,0 +1,208 @@
+{
+  "doc_id": "e26336a4c76b2cb8d546",
+  "version": "ad4fc6662350fa9afcec",
+  "source_hash": "940d28e00530c6db67d9a8635927ba7ca4231b6c0299df0cf02cc09bb771b6d4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:44.058294+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5de866276200",
+          "name": "无人车在线学习MPC",
+          "desc": "无人车控制的模型预测控制优化",
+          "evidence": [
+            {
+              "quote": "本项目针对不确定系统的模型预测控制方法展开深入研究，致力解决模型预测控制方法依赖精确数学模型与无人系统难以精确建模之间的矛盾。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2826,
+                "end_char": 2888
+              },
+              "version": "ad4fc6662350fa9afcec"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-57f05af79f17",
+          "name": "依赖精确数学模型",
+          "desc": "设计条件保守且依赖精确数学模型",
+          "evidence": [
+            {
+              "quote": "传统模型预测控制还存在以下问题难以解决：设计条件保守性强，并且依赖于系统精确的数学模型。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 708,
+                "end_char": 751
+              },
+              "version": "ad4fc6662350fa9afcec"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1b7675d5dcb0",
+          "name": "强化学习MPC",
+          "desc": "策略迭代学习最优终端代价降低在线优化复杂度",
+          "evidence": [
+            {
+              "quote": "提出了强化学习模型预测控制方法，利用策略迭代学习最优终端代价函数，一方面避免了过于保守的设计条件，另一方面通过自由选择预测时域降低了在线优化问题复杂度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2948,
+                "end_char": 3022
+              },
+              "version": "ad4fc6662350fa9afcec"
+            }
+          ]
+        },
+        {
+          "id": "item-11111e140b3a",
+          "name": "高斯回归补偿未建模",
+          "desc": "高斯回归模型补偿未建模动态提高预测精度",
+          "evidence": [
+            {
+              "quote": "提出了高斯回归模型预测控制方法，利用高斯回归模型补偿系统中的未建模动态，提高预测精度，降低了模型预测控制对精确模型的依赖程度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3041,
+                "end_char": 3102
+              },
+              "version": "ad4fc6662350fa9afcec"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-422d28f94f44",
+          "name": "论文12篇与两系统应用",
+          "desc": "论文12篇、专利5项，应用于无人车极限测试与车流诱导",
+          "evidence": [
+            {
+              "quote": "以上成果共发表学术论文12篇；授权发明专利5项；支撑获得国防进步三等奖1项、自动化学会自然科学一等奖1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3152,
+                "end_char": 3203
+              },
+              "version": "ad4fc6662350fa9afcec"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-0273245f10d8",
+          "name": "数据驱动MPC",
+          "desc": "系统模型完全未知时实现满足约束的优化控制",
+          "evidence": [
+            {
+              "quote": "最后，在系统模型完全未知的情况下，提出了数据驱动模型预测控制方法，实现了满足系统约束的优化控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3104,
+                "end_char": 3151
+              },
+              "version": "ad4fc6662350fa9afcec"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5de866276200"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-57f05af79f17"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-57f05af79f17"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1b7675d5dcb0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-57f05af79f17"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-11111e140b3a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-57f05af79f17"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0273245f10d8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1b7675d5dcb0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-422d28f94f44"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-11111e140b3a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0273245f10d8"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

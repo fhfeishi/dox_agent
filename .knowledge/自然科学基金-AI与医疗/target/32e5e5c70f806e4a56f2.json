@@ -1,0 +1,142 @@
+{
+  "doc_id": "32e5e5c70f806e4a56f2",
+  "version": "8452e3324b2697d42adc",
+  "source_hash": "14dca2fc3bcabbff50aae9f01bb24adc4edf5a65311d87336a3764d1fb5d8f4d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:33.526206+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fad4ac14deaf",
+          "name": "AI辅助抗阿尔茨海默病药物设计",
+          "desc": "基于网络药理学与人工智能，开展抗阿尔茨海默病靶标组合与药物组合的设计研究。",
+          "evidence": [
+            {
+              "quote": "阿尔茨海默病（AD）是严重危害人们健康的重大疾病，但目前还缺乏有效治疗药物",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "4deae521d3a79e64fcc556a3c19a932d133d868a"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-630743c35485",
+          "name": "致病机制复杂致单靶点药物疗效有限",
+          "desc": "AD致病机制过于复杂尚未完全弄清，针对单个靶标的药物难以达到治疗目的，需采用多药物-多靶标网络模式开发药物。",
+          "evidence": [
+            {
+              "quote": "其原因就是其致病机制过于复杂，目前尚未完全弄清",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "4deae521d3a79e64fcc556a3c19a932d133d868a"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8df3da74ef0c",
+          "name": "蛋白-基因-通路-疾病关联网络预测方法",
+          "desc": "构建蛋白-基因-通路-疾病关联网络并发展方法预测潜在靶标与靶标组合，基于靶标组合开展药物重定位与虚拟筛选，并结合结构优化与实验验证。",
+          "evidence": [
+            {
+              "quote": "首先基于已有数据，构建蛋白-基因-通路-疾病关联网络，进而发展方法预测潜在靶标和靶标组合",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "4deae521d3a79e64fcc556a3c19a932d133d868a"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cf649829e919",
+          "name": "实验验证3个靶标与10个抗AD老药",
+          "desc": "实验验证了3个AD潜在靶标、2对靶标组合、10个抗AD老药及6个活性化合物，牛磺酸-多奈哌齐组合在细胞模型中显示显著协同抗炎效果；发表SCI论文12篇，申请发明专利1项、软著2项。",
+          "evidence": [
+            {
+              "quote": "实验验证了3个AD潜在靶标、2对靶标组合、10个抗AD老药及6个活性化合物",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "020828dfbbfbcad0255a7b776f11503a0fa3fbbd"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-fad4ac14deaf"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-630743c35485"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-630743c35485"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8df3da74ef0c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8df3da74ef0c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cf649829e919"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

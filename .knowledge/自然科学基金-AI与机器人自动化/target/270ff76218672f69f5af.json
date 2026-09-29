@@ -1,0 +1,180 @@
+{
+  "doc_id": "270ff76218672f69f5af",
+  "version": "e1122a5fc6553737d988",
+  "source_hash": "25180a293f9a4a59a7e405320e13c368eeaa66f00480fe4478b224b72746ed6a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:06.662065+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7474afa48b4b",
+          "name": "野外六足机器人作业",
+          "desc": "野外救援、山地运输、星球探测等足式机器人应用",
+          "evidence": [
+            {
+              "quote": "六足机器人在地面移动机器人研究范畴内，其技术挑战性及应用扩展性占有重要席位，在野外救援、山地运输、星球探测及军事作战等领域蕴含丰富的潜力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2936,
+                "end_char": 3004
+              },
+              "version": "e1122a5fc6553737d988"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4f96c0297ba4",
+          "name": "地表理解片面滞后",
+          "desc": "地表环境理解片面性滞后性限制运动规划与适应能力",
+          "evidence": [
+            {
+              "quote": "然而，现阶段六足机器人对于地表环境理解的片面性及滞后性，限制了其在野外环境中的运动规划与运动控制表现，导致机器人野外环境适应能力不足、现实应用性受限。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3005,
+                "end_char": 3079
+              },
+              "version": "e1122a5fc6553737d988"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8d05de36e4fd",
+          "name": "几何-物理双维度融合地图",
+          "desc": "全局大尺度、局部高分辨率的地表融合地图",
+          "evidence": [
+            {
+              "quote": "创建了全局大尺度、局部高分辨率的地表几何-物理双维度融合地图，提高了机器人对外部地表环境变化的感知能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3253,
+                "end_char": 3304
+              },
+              "version": "e1122a5fc6553737d988"
+            }
+          ]
+        },
+        {
+          "id": "item-fc4916264b46",
+          "name": "运动稳定性落足点补偿",
+          "desc": "以稳定性为目标的落足点修正策略",
+          "evidence": [
+            {
+              "quote": "创建了基于运动稳定性优化的六足机器人落足点补偿策略，通过落足点修正提高机器人在原始步态模式下运动时可能发生的运动稳定性下降问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3474,
+                "end_char": 3537
+              },
+              "version": "e1122a5fc6553737d988"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0db638b1ab6e",
+          "name": "崎岖地形适应性解决",
+          "desc": "多维感知与适应性规划解决环境适应性与稳定性问题",
+          "evidence": [
+            {
+              "quote": "本项目所提出的多维环境感知方法及适应性运动规划方法较好地解决了六足机器人在崎岖地形下的环境适应性不足及运动稳定性降低问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3547,
+                "end_char": 3607
+              },
+              "version": "e1122a5fc6553737d988"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-7474afa48b4b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4f96c0297ba4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4f96c0297ba4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8d05de36e4fd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4f96c0297ba4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fc4916264b46"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8d05de36e4fd"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0db638b1ab6e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fc4916264b46"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0db638b1ab6e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

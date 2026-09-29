@@ -1,0 +1,180 @@
+{
+  "doc_id": "5c0554d2138cd16b8cc8",
+  "version": "e87cc5cc8dbd59a1a9e5",
+  "source_hash": "9c195e331ff464c829813c46cc01b5b598d61372654048bd6d26dbd34be2559a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:19.491781+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-947a02a23360",
+          "name": "卫星拒止无人机导航",
+          "desc": "复杂电磁环境下无人机仿生自主导航",
+          "evidence": [
+            {
+              "quote": "本项目借鉴信鸽自主导航机理，凝练了一种基于“航向约束+环境感知+学习推断”架构的无人机仿生导航模式",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2564,
+                "end_char": 2612
+              },
+              "version": "e87cc5cc8dbd59a1a9e5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a7c39e38e3f8",
+          "name": "卫星拒止导航受限",
+          "desc": "卫星拒止条件下自主导航成为制约无人机发展的难点",
+          "evidence": [
+            {
+              "quote": "现在大多数无人机主要依赖于卫星导航实现高精度定位。卫星拒止条件下的自主导航已成为制约无人机发展的难点之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2511,
+                "end_char": 2563
+              },
+              "version": "e87cc5cc8dbd59a1a9e5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9d2666473705",
+          "name": "光磁电复合罗盘",
+          "desc": "偏振光/地磁复合定向实现0.3°定向精度",
+          "evidence": [
+            {
+              "quote": "设计并实现了一种基于微惯性的偏振光/地磁复合定向方法，研制了小型化光磁电复合罗盘样机，在典型环境下开展了无人机飞行搭载、车载实验，在晴天、多云等天气条件下定向精度0.3°",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2645,
+                "end_char": 2729
+              },
+              "version": "e87cc5cc8dbd59a1a9e5"
+            }
+          ]
+        },
+        {
+          "id": "item-9216200d53b2",
+          "name": "仿生导航算法体系",
+          "desc": "航向约束+环境感知+学习推断架构导航算法",
+          "evidence": [
+            {
+              "quote": "深入研究了基于“航向约束+环境感知+学习推断”架构的无人机仿生导航算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2731,
+                "end_char": 2765
+              },
+              "version": "e87cc5cc8dbd59a1a9e5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-27ae3d2b0008",
+          "name": "拒止条件定位精度",
+          "desc": "长航时优于100米、小型无人机城市环境优于10米",
+          "evidence": [
+            {
+              "quote": "针对长航时无人机应用，在2000米-3000米飞行高度典型飞行条件下自主定位精度优于100米；针对小型无人机应用，典型城市条件下自主定位精度优于10米，可满足卫星拒止条件下无人机自主导航要求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2767,
+                "end_char": 2862
+              },
+              "version": "e87cc5cc8dbd59a1a9e5"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-947a02a23360"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a7c39e38e3f8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a7c39e38e3f8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9d2666473705"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a7c39e38e3f8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9216200d53b2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9216200d53b2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-27ae3d2b0008"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9d2666473705"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-27ae3d2b0008"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

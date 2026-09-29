@@ -1,0 +1,180 @@
+{
+  "doc_id": "86a8a34357c50995fb06",
+  "version": "42dd4df61c0ba83f5f0c",
+  "source_hash": "55d775f149fd580f39fe141a4052469f30771f1798e16227b1769edf6acab68c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:35.396779+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c33641e088c6",
+          "name": "水下机器人目标跟踪",
+          "desc": "海洋科考、情报侦测中低可见度环境的水下跟踪",
+          "evidence": [
+            {
+              "quote": "水下机器人在海洋科考、情报侦测等领域具有重要的应用价值，其低可见度的晃动工作环境如模糊、海雪、光照不均导致水下跟踪不稳定、易漂移。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 717
+              },
+              "version": "42dd4df61c0ba83f5f0c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b26f4ff95167",
+          "name": "短时跟踪易漂移",
+          "desc": "仅考虑局部帧短时跟踪缺乏全局长时预测与场景交互",
+          "evidence": [
+            {
+              "quote": "原因之一是当前水下跟踪器仅考虑局部帧、短时跟踪，缺乏全局长时跟踪预测，与场景交互不足。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 718,
+                "end_char": 760
+              },
+              "version": "42dd4df61c0ba83f5f0c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-19389165f611",
+          "name": "元多任务跟踪决策",
+          "desc": "特征决策、元跟踪动作决策与多视角评判纠漂",
+          "evidence": [
+            {
+              "quote": "提出了多任务目标跟踪特征决策网络，孪生元多任务跟踪决策策略，多任务目标跟踪模板更新时机和策略机制选择，基于空间注意力机制相关滤波跟踪决策网络、可变形注意力机制的Transformer决策网络等跟踪决策模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3525,
+                "end_char": 3626
+              },
+              "version": "42dd4df61c0ba83f5f0c"
+            }
+          ]
+        },
+        {
+          "id": "item-3c712c180447",
+          "name": "弱小目标数据集构建",
+          "desc": "构建水下弱小目标跟踪与检测真实图像数据集",
+          "evidence": [
+            {
+              "quote": "首先构建了水下弱小目标跟踪与检测真实图像数据集",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3497,
+                "end_char": 3519
+              },
+              "version": "42dd4df61c0ba83f5f0c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-53704766eec7",
+          "name": "顶刊会议论文10余篇",
+          "desc": "IEEE TIP、TMM、TCSVT、RAL、ECCV、ICRA等10余篇，专利8项",
+          "evidence": [
+            {
+              "quote": "项目组在机器人领域及图像视频领域顶级期刊及会议如IEEE TIP、TMM、TCSVT、RAL、PR、ECCV、ICRA等发表高水平学术论文10余篇，申请授权国家发明专利8项，培养研究生7名。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3710,
+                "end_char": 3804
+              },
+              "version": "42dd4df61c0ba83f5f0c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c33641e088c6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b26f4ff95167"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b26f4ff95167"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-19389165f611"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b26f4ff95167"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3c712c180447"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-19389165f611"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-53704766eec7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3c712c180447"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-53704766eec7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

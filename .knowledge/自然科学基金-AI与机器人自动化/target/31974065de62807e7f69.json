@@ -1,0 +1,197 @@
+{
+  "doc_id": "31974065de62807e7f69",
+  "version": "4fb0d81d4994b7535870",
+  "source_hash": "f806d8bf43663c0dd4b2965664f1fd0f438cc07c6d69b0a71fe57a1fc79bb364",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:19.517923+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3eea077cfb0f",
+          "name": "重载铣削机器人加工",
+          "desc": "大尺度复杂构件重载铣削振动抑制",
+          "evidence": [
+            {
+              "quote": "机器人铣削振动制约了加工效率与精度，精准分析结构动力学特性是解决该问题的核心。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2617,
+                "end_char": 2655
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1dc2c2b85737",
+          "name": "多维因素耦合振动",
+          "desc": "关节速度、位姿及铣削激励多维度耦合影响动力学特性",
+          "evidence": [
+            {
+              "quote": "针对大尺度复杂构件重载铣削中，机器人动力学特性受关节速度、位姿及铣削激励多维度耦合影响的难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2656,
+                "end_char": 2701
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3bef9d168bbe",
+          "name": "电流信号模态辨识",
+          "desc": "关节随机自激励与多参考点最小二乘复指数法",
+          "evidence": [
+            {
+              "quote": "提出关节随机加减速自激励策略，构建三类随机激励规律；建立伺服驱动与振动信号关联机制，形成融合倒谱编辑与随机减量法的特征提取方法，基于多参考点最小二乘复指数法实现模态参数精准辨识",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2803,
+                "end_char": 2890
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ]
+        },
+        {
+          "id": "item-dd6b9e202fa2",
+          "name": "半监督图卷积预测",
+          "desc": "半监督图卷积神经网络解决数据量有限预测精度",
+          "evidence": [
+            {
+              "quote": "提出半监督图卷积神经网络模型，解决数据量有限导致的预测精度问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3057,
+                "end_char": 3087
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-40581de7231f",
+          "name": "辨识精度提升15%",
+          "desc": "模态参数辨识精度提升15%以上",
+          "evidence": [
+            {
+              "quote": "基于多参考点最小二乘复指数法实现模态参数精准辨识，制定标准化流程，辨识精度提升15%以上，解决多因素耦合下辨识难题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2867,
+                "end_char": 2924
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-5bbf7d6729e7",
+          "name": "振动幅值降低30%",
+          "desc": "多目标优化使振动幅值降低30%以上",
+          "evidence": [
+            {
+              "quote": "以临界切深和振动幅值为指标，实现工艺参数与位姿、速度多目标优化，振动幅值降低30%以上，提升加工稳定性与精度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3104,
+                "end_char": 3158
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3eea077cfb0f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-1dc2c2b85737"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1dc2c2b85737"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3bef9d168bbe"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1dc2c2b85737"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-dd6b9e202fa2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3bef9d168bbe"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-40581de7231f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-dd6b9e202fa2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5bbf7d6729e7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

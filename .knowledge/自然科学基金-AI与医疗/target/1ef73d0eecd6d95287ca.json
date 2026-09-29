@@ -1,0 +1,142 @@
+{
+  "doc_id": "1ef73d0eecd6d95287ca",
+  "version": "eff11f96b89b7bee289a",
+  "source_hash": "4197df5472c71ee8c351eb545177ca9e5b7aa42ca71d72801fdeabd8dd939c42",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:12.633052+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ed0d65755188",
+          "name": "脊柱转移瘤原发灶与分子标记物预测",
+          "desc": "面向脊柱转移瘤穿刺活检需求，用多参数MRI影像组学无创预测原发灶与分子生物标记物表达状态。",
+          "evidence": [
+            {
+              "quote": "脊柱是全身转移性肿瘤最常见的骨转移部位，其组织来源和病理类型丰富",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 683,
+                "end_char": 714
+              },
+              "version": "eff11f96b89b7bee289a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-465fb921ff5f",
+          "name": "免疫组化检测有创耗时且成本高",
+          "desc": "临床常通过有创、耗时、高成本的免疫组化检测分子标记物，亟需简便、无创、可重复的早期精准预测方法。",
+          "evidence": [
+            {
+              "quote": "临床常通过有创、耗时、高成本的免疫组化进行检测，因此，亟需一种简便、无创、可重复的早期精准预测原发灶并识别其分子生物标记物表达状态的方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 784,
+                "end_char": 851
+              },
+              "version": "eff11f96b89b7bee289a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6b9936a5b330",
+          "name": "多参数MRI影像组学与ResNet-50深度学习模型",
+          "desc": "基于多参数MRI影像组学挖掘与病灶来源、病理类型及分子标记物相关的定量影像特征，并构建ResNet-50卷积神经网络深入分析病灶与非病灶区域。",
+          "evidence": [
+            {
+              "quote": "通过深度学习技术构建ResNet-50卷积神经网络，对脊柱转移瘤的病灶区域和非病灶区域进行深入分析，成功鉴别了脊柱转移瘤的原发灶来源",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3007,
+                "end_char": 3072
+              },
+              "version": "eff11f96b89b7bee289a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-308ac2bace56",
+          "name": "深度学习五分类AUC-ROC 0.77、Top-1准确率52.97%",
+          "desc": "深度学习模型对原发肿瘤部位五分类取得AUC-ROC 0.77、Top-1准确率52.97%；影像组学联合模型在溶骨性与成骨性转移瘤鉴别中AUC分别为0.82和0.79；VEGF影像组学模型AUC 0.88。",
+          "evidence": [
+            {
+              "quote": "深度学习模型在预测脊柱转移瘤的原发肿瘤部位方面，对五类别的分类取得了AUC-ROC为0.77和Top-1准确度为52.97%的显著成绩",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3242,
+                "end_char": 3308
+              },
+              "version": "eff11f96b89b7bee289a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ed0d65755188"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-465fb921ff5f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-465fb921ff5f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6b9936a5b330"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6b9936a5b330"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-308ac2bace56"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "doc_id": "3d77d566a49a3816a063",
+  "version": "cf5f0c436ed5558d6918",
+  "source_hash": "860474dea57376fbbdfda59198f75a69abb51607c158fa0bd1a963af1b6907f4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:25.259487+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b890a8f25366",
+          "name": "综采工作面环境感知",
+          "desc": "煤矿井下综采工作面复杂作业场景感知",
+          "evidence": [
+            {
+              "quote": "采煤装备难以实现对其作业场景的高效可靠感知是制约其智能化水平的关键因素，已成为综采工作面智能化建设领域亟待解决的技术难题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 713
+              },
+              "version": "cf5f0c436ed5558d6918"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-247fa0eb3691",
+          "name": "场景复杂干扰繁杂",
+          "desc": "综采工作面场景复杂、干扰因素繁杂影响感知",
+          "evidence": [
+            {
+              "quote": "针对综采工作面场景复杂、干扰因素繁杂等环境特点，本研究提出了基于无参考图像质量评价的自适应图像优化策略，有效提升综采工作面场景图像质量。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2900,
+                "end_char": 2967
+              },
+              "version": "cf5f0c436ed5558d6918"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-369ac6409546",
+          "name": "自适应图像增强",
+          "desc": "无参考质量评价与改进麻雀搜索的参数自适应优化",
+          "evidence": [
+            {
+              "quote": "设计了基于改进麻雀搜索算的图像增强算法参数自适应优化算法，实现了综采工作面二维传感信息的有效增强。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3149,
+                "end_char": 3197
+              },
+              "version": "cf5f0c436ed5558d6918"
+            }
+          ]
+        },
+        {
+          "id": "item-0d10cc0da5a7",
+          "name": "红外可见光融合网络",
+          "desc": "Swin-Transformer与可变形注意力实现高效融合",
+          "evidence": [
+            {
+              "quote": "设计了一种红外与可见光图像融合网络，采用Swin-Transformer作为特征提取网络，通过改进的不同环境自适应损失函数和可变形注意力机制，实现了不同模态图像的高效融合。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3252,
+                "end_char": 3337
+              },
+              "version": "cf5f0c436ed5558d6918"
+            }
+          ]
+        },
+        {
+          "id": "item-23bbc404a4a8",
+          "name": "点云融合三维检测",
+          "desc": "MVX-net优化框架与可学习多源融合权重",
+          "evidence": [
+            {
+              "quote": "设计了一种基于MVX-net框架优化的三维目标检测方法，采用ResNet和多尺度特征金字塔实现图像多层次信息的提取，通过引入了来自激光雷达点云的深度信息，增强场景特征信息的层次性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3359,
+                "end_char": 3447
+              },
+              "version": "cf5f0c436ed5558d6918"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f236043abec2",
+          "name": "感知准确性鲁棒性提升",
+          "desc": "图像增强与融合检测提高整体感知系统性能",
+          "evidence": [
+            {
+              "quote": "进一步丰富了空间信息，提高了整体感知系统的准确性与鲁棒性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3058,
+                "end_char": 3086
+              },
+              "version": "cf5f0c436ed5558d6918"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b890a8f25366"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-247fa0eb3691"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-247fa0eb3691"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-369ac6409546"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-247fa0eb3691"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0d10cc0da5a7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-247fa0eb3691"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-23bbc404a4a8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0d10cc0da5a7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f236043abec2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-23bbc404a4a8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f236043abec2"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

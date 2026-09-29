@@ -1,0 +1,180 @@
+{
+  "doc_id": "6fdbd7c9cf307ca7ad23",
+  "version": "7e3a36d14d2e4a99563f",
+  "source_hash": "49ba7bad91437e05d7c6e9d6affcb056efac818ac4c2686b0f50d9065e816088",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:22:24.402030+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a5c2095a8c40",
+          "name": "机器人视觉受污应急",
+          "desc": "泥地滩涂及跨介质战场环境中视觉传感器光学窗口受污",
+          "evidence": [
+            {
+              "quote": "自主机器人在复杂环境如泥地滩涂等场合，尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和安全影响至重",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2768,
+                "end_char": 2833
+              },
+              "version": "7e3a36d14d2e4a99563f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-25b6ff11101d",
+          "name": "受污案例多样策略协调",
+          "desc": "机器人视觉受污案例多样和应急策略优化协调问题",
+          "evidence": [
+            {
+              "quote": "本项目针对机器人视觉受污案例多样和机器人应急策略优化协调问题，提出了多场景多环境的识别策略，针对水中和陆上的视觉受污问题采取不同的规划策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2883,
+                "end_char": 2951
+              },
+              "version": "7e3a36d14d2e4a99563f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e63c297f0feb",
+          "name": "自省CBR偶然性规划",
+          "desc": "自省CBR方法获得具有自我评估、自我更新能力的自动规划器",
+          "evidence": [
+            {
+              "quote": "采用自省CBR偶然性规划方法，得到具有自我评估、自我更新能力的自动规划器",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 805,
+                "end_char": 840
+              },
+              "version": "7e3a36d14d2e4a99563f"
+            }
+          ]
+        },
+        {
+          "id": "item-e0abcc12b47c",
+          "name": "仿生眼睑泪器清洁设计",
+          "desc": "BioTRIZ与可拓学设计清洁执行部分，变刚度眼睑-泪器多元仿生优化模型",
+          "evidence": [
+            {
+              "quote": "提出BioTRIZ与可拓学分析的设计学方法设计相关清洁执行部分；以此仿生学设计为基础，基于水下适应性提出自带环境识别和自我位置解算的水下软体机器人平台",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2997,
+                "end_char": 3071
+              },
+              "version": "7e3a36d14d2e4a99563f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ed89f616cc88",
+          "name": "多模态应急行为策略",
+          "desc": "多模态感知补偿信息与代价函数优化得到机器人应急行为策略，支撑应急自救",
+          "evidence": [
+            {
+              "quote": "针对机器人保持持续运动功能问题，采用多模态感知补偿信息和代价函数优化，得到机器人应急行为策略。本项目研究成果将为自主作业机器人、移动作战平台提供应急自救的理论和技术基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 974,
+                "end_char": 1057
+              },
+              "version": "7e3a36d14d2e4a99563f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a5c2095a8c40"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-25b6ff11101d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-25b6ff11101d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e63c297f0feb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-25b6ff11101d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e0abcc12b47c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e63c297f0feb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ed89f616cc88"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e0abcc12b47c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ed89f616cc88"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

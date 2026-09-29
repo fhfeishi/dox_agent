@@ -1,0 +1,180 @@
+{
+  "doc_id": "423ca0c2786326f5c2e5",
+  "version": "f1598224e417fce9feba",
+  "source_hash": "cdc35a90f4a02fb96f666ed0e4a059328e51eb3684fd2babe4bde424cb9cb777",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T17:01:43.549138+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b056b4e08620",
+          "name": "全海深AUV事故漂移预测",
+          "desc": "AUV发生灾难性事故后漂移航迹预测与打捞回收",
+          "evidence": [
+            {
+              "quote": "本项目研究全海深AUV发生灾难性事故后的漂移航迹预测问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 894,
+                "end_char": 921
+              },
+              "version": "f1598224e417fce9feba"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ba88a21b4df3",
+          "name": "海洋状态方程处理海况单一",
+          "desc": "失事AUV漂移跨越复杂高盐高温海况，现有海洋状态方程处理海况单一",
+          "evidence": [
+            {
+              "quote": "提出综合海洋状态方程，解决海洋状态方程处理海况单一的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2162,
+                "end_char": 2189
+              },
+              "version": "f1598224e417fce9feba"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6ad71e5b2ad1",
+          "name": "DBASformer温跃层预测",
+          "desc": "双分支自适应注意力模型最大限度保留有用信息并抑制噪声",
+          "evidence": [
+            {
+              "quote": "提出一种基于双分支自适应注意力的DBASformer模型，最大限度的保留有用信息，同时抑制不相关或噪声信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2213,
+                "end_char": 2265
+              },
+              "version": "f1598224e417fce9feba"
+            }
+          ]
+        },
+        {
+          "id": "item-ce0305f4cf46",
+          "name": "GLoSyformer与BiFMNet",
+          "desc": "全局-局部协同增强与时变相关性学习、自适应双频率建模预测",
+          "evidence": [
+            {
+              "quote": "提出全局-局部协同增强模型GLoSyformer和时变相关性学习增强模型TVCorNet",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2317,
+                "end_char": 2360
+              },
+              "version": "f1598224e417fce9feba"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ee85e2ce6610",
+          "name": "预测精度达最好水平",
+          "desc": "预测精度实现项目目标，达到目前研究方法中的最好水平",
+          "evidence": [
+            {
+              "quote": "通过实验和仿真结果验证，本项目方法的预测精度实现了项目提出的目标，到达目前研究方法中的最好水平",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2418,
+                "end_char": 2464
+              },
+              "version": "f1598224e417fce9feba"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b056b4e08620"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ba88a21b4df3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ba88a21b4df3"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6ad71e5b2ad1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ba88a21b4df3"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ce0305f4cf46"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ce0305f4cf46"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ee85e2ce6610"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6ad71e5b2ad1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ee85e2ce6610"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

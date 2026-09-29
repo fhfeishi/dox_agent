@@ -1,0 +1,235 @@
+{
+  "doc_id": "8e7dbf5c7ad694816efd",
+  "version": "83c31973dbaea511a49e",
+  "source_hash": "d26e6d03101cf5602a09fcf58d79d35897c5e6ebdea2a38280e49488109ad5af",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:25:56.130632+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1bce7dc2dd10",
+          "name": "颈动脉症状性狭窄预测",
+          "desc": "动脉粥样硬化发病中血管周围脂肪组织免疫微环境受影响，需预测颈动脉症状性狭窄。",
+          "evidence": [
+            {
+              "quote": "在动脉粥样硬化发病过程中，血管周围脂肪组织（perivascular adipose tissue,PVAT）的免疫细胞与其分泌的细胞因子相互作用构成的免疫微环境受到影响",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 688,
+                "end_char": 772
+              },
+              "version": "83c31973dbaea511a49e"
+            }
+          ]
+        },
+        {
+          "id": "item-f724e376a22a",
+          "name": "脑血管病变风险预测指标",
+          "desc": "未来有望建立新的脑血管病变风险预测生物学指标及预测模型。",
+          "evidence": [
+            {
+              "quote": "未来有望对PCaFRP进行深入研究，建立新的脑血管病变风险预测的生物学指标及预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3003,
+                "end_char": 3044
+              },
+              "version": "83c31973dbaea511a49e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-28bc3d65e56b",
+          "name": "PVAT影像组学与免疫微环境关系不明",
+          "desc": "PVAT影像组学特征与免疫微环境的关系及在颈动脉症状性狭窄中的作用机制尚不明确。",
+          "evidence": [
+            {
+              "quote": "然而，PVAT的影像组学特征与PVAT免疫微环境的关系，以及在颈动脉症状性狭窄中的作用机制尚不明确",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 875,
+                "end_char": 923
+              },
+              "version": "83c31973dbaea511a49e"
+            }
+          ]
+        },
+        {
+          "id": "item-bfeec9f55368",
+          "name": "症状与无症状狭窄难以区分",
+          "desc": "有症状组颈动脉周围脂肪密度显著高于无症状组，需影像组学特征辅助区分。",
+          "evidence": [
+            {
+              "quote": "对于颈动脉中重度狭窄的患者，有症状组的颈动脉周围脂肪密度显著高于无症状组（-66.2±19.2 vs-77.1±20.4，P=0.009）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 781,
+                "end_char": 849
+              },
+              "version": "83c31973dbaea511a49e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-270f9e988c93",
+          "name": "PCaFRP特征提取与LASSO选优",
+          "desc": "回顾性分析颈动脉狭窄头颈CTA图像，提取颈动脉周围脂肪影像组学特征，用LASSO进行特征选择建立影像组学分数。",
+          "evidence": [
+            {
+              "quote": "本研究回顾性分析颈动脉狭窄的头颈CTA图像，并且提取颈动脉周围脂肪影像组学特征（PCaFRP），使用最小绝对收缩和选择算子（LASSO）方法进行特征选择，建立影像组学分数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2399,
+                "end_char": 2483
+              },
+              "version": "83c31973dbaea511a49e"
+            }
+          ]
+        },
+        {
+          "id": "item-e39acb12dcb0",
+          "name": "深度学习重建优化CTA图像质量",
+          "desc": "采用深度学习重建技术优化头颈CTA扫描图像质量，提高脑血管小分支显示。",
+          "evidence": [
+            {
+              "quote": "课题组开展前瞻性研究，采用深度学习重建（DLR）技术优化头颈CTA扫描的图像质量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3049,
+                "end_char": 3088
+              },
+              "version": "83c31973dbaea511a49e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4057af7415b2",
+          "name": "影像组学分数模型AUC 0.921与0.801",
+          "desc": "影像组学分数模型在验证队列AUC为0.921、测试队列AUC为0.801，优于仅基于临床特征或PFD的模型。",
+          "evidence": [
+            {
+              "quote": "影像组学分数模型在验证队列中的表现（AUC为0.921）和测试队列（AUC为0.801）优于仅基于临床特征或PFD的模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2554,
+                "end_char": 2613
+              },
+              "version": "83c31973dbaea511a49e"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-979374711726",
+          "name": "GLCM与PSV呈负相关",
+          "desc": "在颈内动脉起始部有症状患者中，灰度共生矩阵对比度平方根与狭窄侧收缩期最大流速呈负相关。",
+          "evidence": [
+            {
+              "quote": "GLCM（灰度共生矩阵对比度的平方根）与狭窄侧的PSV呈负相关",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2739,
+                "end_char": 2769
+              },
+              "version": "83c31973dbaea511a49e"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-07ff57939f7b",
+          "name": "DLR降低噪声提高小分支显示",
+          "desc": "与混合迭代重建相比，DLR在常规及低辐射剂量条件下可降低图像噪声、提高脑血管小分支显示。",
+          "evidence": [
+            {
+              "quote": "与临床常用的混合迭代重建（HIR）相比，DLR在常规及低辐射剂量扫描条件下，可以降低图像噪声，提高脑血管小分支的显示",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3095,
+                "end_char": 3152
+              },
+              "version": "83c31973dbaea511a49e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1bce7dc2dd10"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-28bc3d65e56b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-28bc3d65e56b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-270f9e988c93"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-270f9e988c93"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4057af7415b2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e39acb12dcb0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-07ff57939f7b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

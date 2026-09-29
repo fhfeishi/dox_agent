@@ -1,0 +1,207 @@
+{
+  "doc_id": "36b9a7fb5afa115f89e3",
+  "version": "df207cc6961f0a4d926a",
+  "source_hash": "4976825e1698d20e78c403d2cf855da0b1ab80f2d5f352a16e6e8a090d62e43f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:08.103874+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ec6a3d9d7b9e",
+          "name": "机械臂控制通用性提升",
+          "desc": "应用环境变化时机械臂控制算法通用性不足",
+          "evidence": [
+            {
+              "quote": "大多数机械臂控制算法在某个固定应用环境中能有效实施，当应用环境发生变化时很难继续有效控制，即在通用性方面存在不足。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 674,
+                "end_char": 730
+              },
+              "version": "df207cc6961f0a4d926a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cfc2010a71f2",
+          "name": "固定环境算法通用性差",
+          "desc": "需统一构建实时跟踪、关节故障、物理极限约束等问题",
+          "evidence": [
+            {
+              "quote": "分析机械臂应用环境中的实时跟踪、关节故障、关节物理极限约束等一系列问题，将它们统一构建成具有多层结构的不同层时变问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 832,
+                "end_char": 889
+              },
+              "version": "df207cc6961f0a4d926a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f93b9149768d",
+          "name": "零化神经网络求解",
+          "desc": "连续与离散零化神经网络模型求解混合时变方程组",
+          "evidence": [
+            {
+              "quote": "提出连续零化神经网络模型，使用一种高精度五点型离散公式，提出离散零化神经网络模型混合不同层时变线性方程组。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2942,
+                "end_char": 2994
+              },
+              "version": "df207cc6961f0a4d926a"
+            }
+          ]
+        },
+        {
+          "id": "item-668b11e9a7a5",
+          "name": "多任务单层鲁棒控制",
+          "desc": "冗余度机械臂多任务控制建模为双层混合时变问题",
+          "evidence": [
+            {
+              "quote": "将冗余度机械臂的多任务控制建模为双层混合时变问题，分析不同层之间的等价性关系，并在推导过程中引入积分，提出多任务单层鲁棒控制算法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3081,
+                "end_char": 3145
+              },
+              "version": "df207cc6961f0a4d926a"
+            }
+          ]
+        },
+        {
+          "id": "item-3a41a248ca55",
+          "name": "关节极限等价转化克服",
+          "desc": "等式不等式与不同层等价转化实现极限克服",
+          "evidence": [
+            {
+              "quote": "使用等式不等式等价转化，以及不同层之间等价转化，实现机械臂角度极限克服和机械臂角度/角速度克服的机械臂控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3249,
+                "end_char": 3302
+              },
+              "version": "df207cc6961f0a4d926a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f458d23a8ed5",
+          "name": "不同层时变神经动力学方法",
+          "desc": "面向机械臂跟踪、多任务鲁棒控制与极限克服的控制算法体系",
+          "evidence": [
+            {
+              "quote": "本项目面向机械臂控制研究不同层时变问题求解，主要研究内容包括以下五个方面",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2860,
+                "end_char": 2895
+              },
+              "version": "df207cc6961f0a4d926a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ec6a3d9d7b9e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-cfc2010a71f2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cfc2010a71f2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f93b9149768d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cfc2010a71f2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-668b11e9a7a5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cfc2010a71f2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3a41a248ca55"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f93b9149768d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f458d23a8ed5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-668b11e9a7a5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f458d23a8ed5"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

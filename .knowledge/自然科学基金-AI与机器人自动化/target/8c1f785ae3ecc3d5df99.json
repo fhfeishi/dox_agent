@@ -1,0 +1,197 @@
+{
+  "doc_id": "8c1f785ae3ecc3d5df99",
+  "version": "08c1696d4cae97ca994d",
+  "source_hash": "4540ddbf7b143927daed30087d828bfb1ea9b46141118503abff54d1c5f808f1",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:22:24.444180+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2ffb0e62743d",
+          "name": "WSN复杂场景节点定位",
+          "desc": "覆盖空洞与边界效应影响下无线传感器网络节点定位",
+          "evidence": [
+            {
+              "quote": "然而，WSN中受到覆盖空洞和边界效应的影响，针对复杂场景的大型WSN网络还缺乏可靠和准确的定位方案。特别是如何提高边界节点的定位精度和定位可靠性的难题至今未得到有效解决",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 740,
+                "end_char": 823
+              },
+              "version": "08c1696d4cae97ca994d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-10a9b0b06815",
+          "name": "恶意锚节点虚假消息",
+          "desc": "锚节点受攻击或环境变化被捕获为恶意锚节点发送虚假消息影响定位",
+          "evidence": [
+            {
+              "quote": "当WSN中的锚节点可能会因为受到攻击或者环境变化而被捕获为恶意锚节点，从而发送虚假消息，影响定位过程。对WSN节点安全定位问题进行了研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2877,
+                "end_char": 2944
+              },
+              "version": "08c1696d4cae97ca994d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5458466cd96e",
+          "name": "非测距定位与跳数恢复",
+          "desc": "LAPCD、RF-LAAS、LRAQS等非测距定位与朴素贝叶斯/矩阵补全跳数恢复",
+          "evidence": [
+            {
+              "quote": "提出了基于锚节点对条件判决的非测距定位算法(LAPCD)和基于锚节点自适应选择的非测距定位算法(RF-LAAS)来提高算法的定位精度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2361,
+                "end_char": 2426
+              },
+              "version": "08c1696d4cae97ca994d"
+            }
+          ]
+        },
+        {
+          "id": "item-291e2c0720d2",
+          "name": "恶意锚检测与安全定位",
+          "desc": "基于孤立森林的恶意锚节点检测与抗攻击加权最小二乘ARWLS及梯度投影GPB算法",
+          "evidence": [
+            {
+              "quote": "提出了基于孤立森林的恶意锚节点检测算法以及一种抵抗攻击的加权最小二乘算法(ARWLS)对目标节点定位；另外还提出了一种基于梯度投影恢复稀疏项的安全定位算法(GPB)",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2946,
+                "end_char": 3027
+              },
+              "version": "08c1696d4cae97ca994d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ab41f415033f",
+          "name": "多空洞形状验证",
+          "desc": "仿真验证所提算法在不同形状覆盖空洞网络中的定位精度性能均有提高",
+          "evidence": [
+            {
+              "quote": "并通过仿真实验验证了所提算法在不同形状覆盖空洞网络中的定位精度性能均有提高",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2530,
+                "end_char": 2566
+              },
+              "version": "08c1696d4cae97ca994d"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-3a041d19e735",
+          "name": "WiFi室内定位深化",
+          "desc": "提出基于深度学习的WiFi室内定位算法提升定位精度，研究灰狼智能优化算法",
+          "evidence": [
+            {
+              "quote": "另外，对室内WiFi定位进行了研究，提出了基于深度学习的WiFi室内定位算法，提升定位精度；当定位问题难以求解时，研究了灰狼智能优化算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2761,
+                "end_char": 2828
+              },
+              "version": "08c1696d4cae97ca994d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2ffb0e62743d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-10a9b0b06815"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-10a9b0b06815"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5458466cd96e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-10a9b0b06815"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-291e2c0720d2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-291e2c0720d2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ab41f415033f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5458466cd96e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3a041d19e735"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

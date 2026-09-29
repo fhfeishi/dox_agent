@@ -1,0 +1,197 @@
+{
+  "doc_id": "252704b0e91349a3f8bc",
+  "version": "41219eb7cbba2b135288",
+  "source_hash": "ff41b7410d87f97cc33ff53f11e4facbcb99571db94b6e9aa8444e0cdb2ae987",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:11.481082+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f92a5ae5814d",
+          "name": "大型装备深腔探测",
+          "desc": "大型精密设备复杂深腔探测与精准操作",
+          "evidence": [
+            {
+              "quote": "本项目面向大型精密装备狭小非结构复杂环境深腔探测与精准操作任务需求，围绕超冗余蛇形机械臂机构设计、运动建模与运动控制展开研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2761,
+                "end_char": 2822
+              },
+              "version": "41219eb7cbba2b135288"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-065d5ffe147b",
+          "name": "构型单一控制难度大",
+          "desc": "蛇形臂构型单一模型精度低控制难柔顺能力不强",
+          "evidence": [
+            {
+              "quote": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 709
+              },
+              "version": "41219eb7cbba2b135288"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4d4e87259589",
+          "name": "RRT+A*多目标规划",
+          "desc": "快速拓展与代价寻优的多目标点全局路径规划",
+          "evidence": [
+            {
+              "quote": "提出基于RRT+A*和相似度分析的“快速拓展+代价寻优”的多目标点全局路径规划策略，研究基于动态安全包络的极窄腔体局部路径规划算法，提出基于改进 FABRIK 的逆运动学求解算法，实现了多障碍物场景下蛇形机械臂自主路径规划和精准跟踪",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2936,
+                "end_char": 3051
+              },
+              "version": "41219eb7cbba2b135288"
+            }
+          ]
+        },
+        {
+          "id": "item-8871734fa626",
+          "name": "孪生系统分层控制",
+          "desc": "数字样机-物理样机孪生与感知-规划-执行分层框架",
+          "evidence": [
+            {
+              "quote": "研制了17自由度蛇形机械臂物理样机，建立了数字样机-物理样机孪生系统，构建了“环境感知-规划控制-运动执行”分层控制框架，在桁架、多障碍物、多孔板、环形腔体等典型场景完成自主运动和实际大型装备深腔探测试验。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3054,
+                "end_char": 3156
+              },
+              "version": "41219eb7cbba2b135288"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bb4290dc03e4",
+          "name": "17自由度物理样机",
+          "desc": "研制17自由度蛇形机械臂并完成深腔探测试验",
+          "evidence": [
+            {
+              "quote": "研制了17自由度蛇形机械臂物理样机，建立了数字样机-物理样机孪生系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3054,
+                "end_char": 3087
+              },
+              "version": "41219eb7cbba2b135288"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-0b89a0524507",
+          "name": "论文8篇与竞赛一等奖",
+          "desc": "TMECH等论文8篇、专利授权3项、研究生机器人创新设计大赛一等奖2项",
+          "evidence": [
+            {
+              "quote": "在IEEE TMECH (Top, IF: 6.1)、Robotica(IF: 1.9)、JMR (IF: 2.576)等发表论文8篇，申请国家发明专利4项（授权3项），授权软著5项。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3237,
+                "end_char": 3328
+              },
+              "version": "41219eb7cbba2b135288"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f92a5ae5814d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-065d5ffe147b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-065d5ffe147b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4d4e87259589"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-065d5ffe147b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8871734fa626"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4d4e87259589"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bb4290dc03e4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8871734fa626"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0b89a0524507"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

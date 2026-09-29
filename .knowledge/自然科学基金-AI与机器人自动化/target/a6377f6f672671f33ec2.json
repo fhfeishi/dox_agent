@@ -1,0 +1,196 @@
+{
+  "doc_id": "a6377f6f672671f33ec2",
+  "version": "78398b8d874e40ae6159",
+  "source_hash": "2aea6d23faf791d8925a510a87828ef57d26b52b75b2cb3a4a3ea5e8327fa458",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:58:25.784463+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ba6933ff92c2",
+          "name": "农用无人空气动力船作业",
+          "desc": "水田除草和施肥作业的智能农机",
+          "evidence": [
+            {
+              "quote": "农用无人空气动力船等智能农机可以代替人力完成水田除草和施肥作业。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2743,
+                "end_char": 2774
+              },
+              "version": "78398b8d874e40ae6159"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0fe03251db3e",
+          "name": "GPS不稳与未知障碍避障缺失",
+          "desc": "GPS收信不稳定或未知障碍物时导航系统无法避障",
+          "evidence": [
+            {
+              "quote": "然而，当GPS收信不稳定或出现未知障碍物时，该导航系统无法进行避障控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 778,
+                "end_char": 813
+              },
+              "version": "78398b8d874e40ae6159"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c2b54de75913",
+          "name": "非线性运动模型与自动控制",
+          "desc": "无人空气动力船非线性运动模型和自动控制方法",
+          "evidence": [
+            {
+              "quote": "研究了无人空气动力船的非线性运动模型和自动控制方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2880,
+                "end_char": 2904
+              },
+              "version": "78398b8d874e40ae6159"
+            }
+          ]
+        },
+        {
+          "id": "item-b42a1a2bb947",
+          "name": "Yolo+Deep SORT障碍感知",
+          "desc": "非结构化复杂水田环境障碍物快速在线感知识别定位",
+          "evidence": [
+            {
+              "quote": "基于Yolo算法和Deep SORT算法在非结构化复杂水田环境中实现了障碍物的快速在线感知、识别与定位，并构建了田间障碍物（农人、家畜）分类模型。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2917,
+                "end_char": 2989
+              },
+              "version": "78398b8d874e40ae6159"
+            }
+          ]
+        },
+        {
+          "id": "item-727425004a8e",
+          "name": "Double-DQN智能避障",
+          "desc": "基于会遇态势的强化学习避障模型",
+          "evidence": [
+            {
+              "quote": "建立了基于Double-DQN强化学习算法的农机智能避障模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3007,
+                "end_char": 3036
+              },
+              "version": "78398b8d874e40ae6159"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a4ff701b3d34",
+          "name": "自动导航安全性提升",
+          "desc": "智能避障模型提高自动导航安全性",
+          "evidence": [
+            {
+              "quote": "根据无人船与障碍物的不同会遇态势，建立了基于Double-DQN强化学习算法的农机智能避障模型，以提高自动导航的安全性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2990,
+                "end_char": 3049
+              },
+              "version": "78398b8d874e40ae6159"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ba6933ff92c2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0fe03251db3e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0fe03251db3e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c2b54de75913"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0fe03251db3e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b42a1a2bb947"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0fe03251db3e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-727425004a8e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-727425004a8e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a4ff701b3d34"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

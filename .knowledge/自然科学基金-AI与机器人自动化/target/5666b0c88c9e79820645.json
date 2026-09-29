@@ -1,0 +1,180 @@
+{
+  "doc_id": "5666b0c88c9e79820645",
+  "version": "85d9238165dfc0b20fca",
+  "source_hash": "179f102f87ca0893bc554cad58ba9611f2a12848c5e9b5d696692103a5d18ab3",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:26.737952+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9ca0adfe03b1",
+          "name": "遥操作机器人多约束作业",
+          "desc": "水下作业、灾难救援和远程医疗等遥操作场景",
+          "evidence": [
+            {
+              "quote": "建模不确定性与多物理约束是实现遥操作机器人高性能作业的制约因素。鉴于此，本项目系统性地研究了遥操作机器人规划与控制一体化理论方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3049,
+                "end_char": 3113
+              },
+              "version": "85d9238165dfc0b20fca"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0c9bea5c8060",
+          "name": "命令轨迹违反物理约束",
+          "desc": "主端命令轨迹可能违反速度加速度力矩约束致跟踪恶化失稳",
+          "evidence": [
+            {
+              "quote": "主端操作者为从端在线生成的命令轨迹可能违反上述各类约束，进而引起从端控制器饱和，跟踪精度恶化，甚至系统失稳，最终影响遥操作系统的透明性、稳定性及安全性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 735,
+                "end_char": 810
+              },
+              "version": "85d9238165dfc0b20fca"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f73e1a0070b1",
+          "name": "规划控制一体化方法",
+          "desc": "在线时间最优规划与饱和非线性自适应鲁棒控制融合",
+          "evidence": [
+            {
+              "quote": "本项目提出了融合在线时间最优轨迹规划与饱和非线性自适应鲁棒控制的规划控制一体化方法，从理论上严格证明了规划与控制一体化框架的稳定性，同时实现了快速瞬态与高精稳态的跟踪性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3177,
+                "end_char": 3262
+              },
+              "version": "85d9238165dfc0b20fca"
+            }
+          ]
+        },
+        {
+          "id": "item-8eafac741e93",
+          "name": "偏离轨迹最短时间复原",
+          "desc": "基于轨迹重规划实现瞬时大干扰下最短时间复原",
+          "evidence": [
+            {
+              "quote": "本项目提出了基于轨迹重规划的偏离轨迹最短时间复原方法，实现了瞬时大干扰下机器人偏离轨迹的最短时间复原。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3490,
+                "end_char": 3540
+              },
+              "version": "85d9238165dfc0b20fca"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-70287e83edb6",
+          "name": "高原与南极场景应用",
+          "desc": "青藏高原科考站值守与遥操作南极中山站巡检应用",
+          "evidence": [
+            {
+              "quote": "此外，本项目还研制了主从式移动遥操作机器人样机，并开展了青藏高原藏东南科考站站内机器人值守、天津遥操作南极中山站机器人巡检等场景应用研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3541,
+                "end_char": 3609
+              },
+              "version": "85d9238165dfc0b20fca"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9ca0adfe03b1"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0c9bea5c8060"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0c9bea5c8060"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f73e1a0070b1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0c9bea5c8060"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8eafac741e93"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f73e1a0070b1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-70287e83edb6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8eafac741e93"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-70287e83edb6"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "doc_id": "2ee72d8dea0e2d620c63",
+  "version": "af5df1bbb4d5b13bc88c",
+  "source_hash": "c2c16dea47f9fb5977b1b44f88e11b8b6586104ba0365944e9acf3c0eec00eb2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:23.873309+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f67df024d0b9",
+          "name": "协作机器人智能辅助作业",
+          "desc": "智能制造、康复医疗、家庭服务等领域人机协同",
+          "evidence": [
+            {
+              "quote": "机器人辅助人类协同作业是提升作业智能化水平、减轻人体劳动强度的前沿方向，在智能制造、康复医疗、家庭服务等领域具有重要应用价值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2783,
+                "end_char": 2844
+              },
+              "version": "af5df1bbb4d5b13bc88c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6200e6051759",
+          "name": "感知识别规划三大难点",
+          "desc": "人体感知不足、动作识别精度低、安全运动规划适应性低",
+          "evidence": [
+            {
+              "quote": "但现有技术仍面临许多难点：大范围协作场景下人体运动精准感知不足，人体动作识别边界判定精度低，机器人安全作业运动规划准确性与动态适应性低等。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2846,
+                "end_char": 2914
+              },
+              "version": "af5df1bbb4d5b13bc88c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-14c1bec2adc1",
+          "name": "多模态运动感知",
+          "desc": "融合惯性、视觉与足底压力的高精度人体状态感知",
+          "evidence": [
+            {
+              "quote": "提出融合惯性、视觉及足底压力信息的捕捉建模方法，通过自适应目标跨越检测与零速度区间动态调整策略，实现高精度人体运动状态感知。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2974,
+                "end_char": 3035
+              },
+              "version": "af5df1bbb4d5b13bc88c"
+            }
+          ]
+        },
+        {
+          "id": "item-f2f5956b9c4e",
+          "name": "对比学习动作识别",
+          "desc": "深度卷积与注意力机制结合自适应门控逐帧推理",
+          "evidence": [
+            {
+              "quote": "采用对比学习框架融合深度卷积与注意力机制提取深层动作特征，结合物理先验与递归推理设计自适应门控机制，实现实时逐帧行为推理",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3048,
+                "end_char": 3107
+              },
+              "version": "af5df1bbb4d5b13bc88c"
+            }
+          ]
+        },
+        {
+          "id": "item-25a66ea53395",
+          "name": "分层强化学习作业规划",
+          "desc": "大语言模型辅助高层指导实现自主作业运动规划",
+          "evidence": [
+            {
+              "quote": "构建了基于分层强化学习的机器人作业技能学习模型，引入大语言模型辅助高层动作指导，实现机器人自主作业运动规划。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3156,
+                "end_char": 3209
+              },
+              "version": "af5df1bbb4d5b13bc88c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cd98c2413c9a",
+          "name": "仿真物理实验验证",
+          "desc": "多平台结合公开与自建数据集充分验证有效性",
+          "evidence": [
+            {
+              "quote": "项目通过搭建多模态运动感知平台、人机协同作业实验平台，结合公开数据集与自建数据集，经仿真与物理实验充分验证了所提理论方法的有效性、实用性与可靠性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3210,
+                "end_char": 3282
+              },
+              "version": "af5df1bbb4d5b13bc88c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f67df024d0b9"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6200e6051759"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6200e6051759"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-14c1bec2adc1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6200e6051759"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f2f5956b9c4e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6200e6051759"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-25a66ea53395"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-25a66ea53395"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cd98c2413c9a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-14c1bec2adc1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cd98c2413c9a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

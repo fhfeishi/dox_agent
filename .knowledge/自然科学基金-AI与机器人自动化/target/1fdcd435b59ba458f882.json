@@ -1,0 +1,180 @@
+{
+  "doc_id": "1fdcd435b59ba458f882",
+  "version": "5a6548ab4ef4260b97cf",
+  "source_hash": "b3c4645553e8a3592515a1f327fe973cd1fce387334cd254fe47134e361f5528",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:22:27.783746+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1bdddd17cd39",
+          "name": "机器人时变优化控制",
+          "desc": "机器人优化控制可描述为含多类约束的动态时变最优化问题",
+          "evidence": [
+            {
+              "quote": "时变问题广泛存在于科学研究与工程实践中，如机器人的优化控制问题在数学上可表征为含多类约束的时变优化问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2792,
+                "end_char": 2842
+              },
+              "version": "5a6548ab4ef4260b97cf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9012521c2d2a",
+          "name": "不等式约束与鲁棒性",
+          "desc": "现有递归神经网络难处理不等式约束、缺乏性能保障、鲁棒性不足",
+          "evidence": [
+            {
+              "quote": "传统递归神经网络（RNN）在处理此类问题时，需依赖短时不变性假设，通过迭代计算求解各时刻的静态问题，导致存在滞后残差、精度受限及鲁棒性能不足等缺陷",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2844,
+                "end_char": 2916
+              },
+              "version": "5a6548ab4ef4260b97cf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b4bbcd1a41fc",
+          "name": "NCP-ZNN统一形式",
+          "desc": "非线性互补问题函数设计建立统一NCP-ZNN数学形式，固定时间收敛与噪声抑制",
+          "evidence": [
+            {
+              "quote": "探讨了非线性互补问题（NCP）函数的设计方法，建立了统一的NCP-ZNN数学形式，揭示了NCP函数与求解性能的潜在关系。为提升模型鲁棒性，通过综合演化法则、非线性激活函数和时变参数，构建了具备固定时间收敛及噪声抑制能力的模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3099,
+                "end_char": 3210
+              },
+              "version": "5a6548ab4ef4260b97cf"
+            }
+          ]
+        },
+        {
+          "id": "item-95ccbc407b42",
+          "name": "Dini导数模式切换",
+          "desc": "引入Dini导数作为模式切换器设计Dini-ZNN模型并推广至其他RNN非迭代改进",
+          "evidence": [
+            {
+              "quote": "针对要求模型元素处处可导的限制，引入Dini导数作为模式切换器，设计了一种Dini-ZNN模型，并将其成功推广至其他RNN模型的非迭代改进中",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3237,
+                "end_char": 3306
+              },
+              "version": "5a6548ab4ef4260b97cf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bfd27cbd2ab3",
+          "name": "多类机器人应用拓展",
+          "desc": "应用于冗余机器人障碍躲避、位姿控制、视觉伺服、移动机器人导航及并联机器人",
+          "evidence": [
+            {
+              "quote": "针对冗余机器人，提出了涵盖速度层与位置层的障碍物躲避方案，有效处理了关节极限与重复运动规划问题。在位姿控制任务中，通过引入中间变量和一阶最优性条件，构建了一种维度更低的NCP-ZNN模型，实现了精确的控制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3371,
+                "end_char": 3472
+              },
+              "version": "5a6548ab4ef4260b97cf"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1bdddd17cd39"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9012521c2d2a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9012521c2d2a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b4bbcd1a41fc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9012521c2d2a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-95ccbc407b42"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b4bbcd1a41fc"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bfd27cbd2ab3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-95ccbc407b42"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bfd27cbd2ab3"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

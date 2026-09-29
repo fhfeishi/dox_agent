@@ -1,0 +1,224 @@
+{
+  "doc_id": "59a94b5ccae824ba4227",
+  "version": "8a9ec7011808fa9421d1",
+  "source_hash": "e32f12763b222150384f16facb0cb7886aae90eaa52d0e035fc79467a4d3b455",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:58:25.865973+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3faee64658de",
+          "name": "脊髓损伤辅助排痰",
+          "desc": "咳嗽无力患者的无创高效辅助咳嗽",
+          "evidence": [
+            {
+              "quote": "全球每年有50万例脊髓损伤发生，且呈逐年上升趋势。咳嗽功能受损导致呼吸系统并发症是主要死因之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 642,
+                "end_char": 689
+              },
+              "version": "8a9ec7011808fa9421d1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-018ad0479bff",
+          "name": "现有排痰技术非生理低效",
+          "desc": "人工吸痰、振动排痰等非生理、有创、复杂、效率低",
+          "evidence": [
+            {
+              "quote": "现有辅助咳嗽技术如人工吸痰、振动排痰和腹部冲击排痰等存在非生理、有创、复杂、专业性强、排痰效率低及不能提高咳嗽能力等问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 690,
+                "end_char": 750
+              },
+              "version": "8a9ec7011808fa9421d1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a0df446b85a1",
+          "name": "软体外骨骼呼吸辅助",
+          "desc": "吸气模块真空提拉胸廓、呼气模块折纸气囊推腹升膈",
+          "evidence": [
+            {
+              "quote": "开发可穿戴软体外骨骼——吸气模块以-30 kPa真空提拉胸廓，呼气模块用400 N折纸气囊推腹升膈，同步无线IMU实时监测胸壁运动",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3189,
+                "end_char": 3253
+              },
+              "version": "8a9ec7011808fa9421d1"
+            }
+          ]
+        },
+        {
+          "id": "item-12a91b50265a",
+          "name": "膈肌超声反馈",
+          "desc": "膈肌位移与潮气量预测误差小于7%",
+          "evidence": [
+            {
+              "quote": "创新引入膈肌超声成像，实现机器人辅助下膈肌位移与潮气量预测误差<7%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3258,
+                "end_char": 3291
+              },
+              "version": "8a9ec7011808fa9421d1"
+            }
+          ]
+        },
+        {
+          "id": "item-2961c09e5faf",
+          "name": "EEG呼吸意识识别",
+          "desc": "EEG低频功率、PLV与样本熵在线识别自主呼吸意识",
+          "evidence": [
+            {
+              "quote": "在线识别率≥90%，使系统可按患者意图即时调整辅助水平。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3369,
+                "end_char": 3396
+              },
+              "version": "8a9ec7011808fa9421d1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3bffdcd18703",
+          "name": "膈肌冲程潮气量提升",
+          "desc": "健康人膈肌冲程提升1.95倍、潮气量提升2.14倍",
+          "evidence": [
+            {
+              "quote": "验证健康人膈肌冲程提升1.95倍、潮气量提升2.14倍。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3293,
+                "end_char": 3320
+              },
+              "version": "8a9ec7011808fa9421d1"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-6edd821e82ac",
+          "name": "临床受试者通气改善",
+          "desc": "20名受试者吸气量增276.6%、呼气量增306.0%，无不良事件",
+          "evidence": [
+            {
+              "quote": "结果显示患者吸气量增加276.6%，呼气量增加306.0%，PaCO₂平均下降3.1 mmHg，PaO₂上升8.7 mmHg，无不良事件。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3433,
+                "end_char": 3501
+              },
+              "version": "8a9ec7011808fa9421d1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3faee64658de"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-018ad0479bff"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-018ad0479bff"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a0df446b85a1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-018ad0479bff"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-12a91b50265a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-018ad0479bff"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2961c09e5faf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-12a91b50265a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3bffdcd18703"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2961c09e5faf"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6edd821e82ac"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

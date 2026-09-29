@@ -1,0 +1,235 @@
+{
+  "doc_id": "9c7dc08bcf4bdcb2d625",
+  "version": "ecf6dd78cc2ff97cc6a8",
+  "source_hash": "f4f47145b215d3d0915d105ca3ceedf5213b2a457bea3f75d35191f97e68f6bf",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:49:46.420744+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1d8f8ad330a8",
+          "name": "乳腺癌新辅助治疗疗效早期评价",
+          "desc": "新辅助治疗是乳腺癌系统治疗的重要组成部分，早期评价是否达到pCR对及时调整治疗方案和改善预后至关重要。",
+          "evidence": [
+            {
+              "quote": "新辅助治疗是乳腺癌系统治疗的重要组成部分。早期评价乳腺癌新辅助治疗是否达到病理学完全缓解（pCR），对临床及时调整治疗方案和改善预后至关重要",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 676,
+                "end_char": 745
+              },
+              "version": "ecf6dd78cc2ff97cc6a8"
+            }
+          ]
+        },
+        {
+          "id": "item-b79cde543a62",
+          "name": "为个体化临床实践提供依据",
+          "desc": "研究有望为乳腺癌新辅助治疗个体化的临床实践提供依据和指导。",
+          "evidence": [
+            {
+              "quote": "本研究有望为乳腺癌新辅助治疗个体化的临床实践提供依据和指导",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1029,
+                "end_char": 1057
+              },
+              "version": "ecf6dd78cc2ff97cc6a8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5bc5ff06dc97",
+          "name": "缺乏早期精准评估pCR的可靠方法",
+          "desc": "目前缺乏早期精准评估pCR的可靠方法。",
+          "evidence": [
+            {
+              "quote": "但目前缺乏早期精准评估pCR的可靠方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 747,
+                "end_char": 765
+              },
+              "version": "ecf6dd78cc2ff97cc6a8"
+            }
+          ]
+        },
+        {
+          "id": "item-5ebe953650b1",
+          "name": "单时序影像未表征肿瘤时序异质性",
+          "desc": "单时序影像定量特征能从宏观层面量化空间异质性，但未表征肿瘤时序异质性。",
+          "evidence": [
+            {
+              "quote": "申请人前期研究证实，单时序影像定量特征能从宏观层面量化乳腺癌空间异质性，但未表征肿瘤时序异质性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 767,
+                "end_char": 813
+              },
+              "version": "ecf6dd78cc2ff97cc6a8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-88c301d425d1",
+          "name": "双向LSTM挖掘多时序MR影像特征",
+          "desc": "采用治疗前与新辅助治疗第2疗程后的MR影像，利用双向LSTM网络提取多时间点时序信息反映肿瘤时序异质性。",
+          "evidence": [
+            {
+              "quote": "采用治疗前、新辅助治疗第2疗程后的MR影像，利用双向LSTM网络提取多时间点的时序信息，反映肿瘤的时序异质性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3191,
+                "end_char": 3244
+              },
+              "version": "ecf6dd78cc2ff97cc6a8"
+            }
+          ]
+        },
+        {
+          "id": "item-06a7b1d3ceae",
+          "name": "活检病理免疫细胞空间分布量化",
+          "desc": "利用活检病理代替手术病理，定量描述组织免疫细胞的空间分布以及运动强度，全面表征肿瘤空间异质性。",
+          "evidence": [
+            {
+              "quote": "利用活检病理代替手术病理，定量描述组织免疫细胞的空间分布以及运动强度，全面表征肿瘤的空间异质性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3248,
+                "end_char": 3294
+              },
+              "version": "ecf6dd78cc2ff97cc6a8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6e2c4971d759",
+          "name": "多尺度融合预测模型",
+          "desc": "结合临床病理信息融合不同维度信息，充分表征肿瘤时空异质性，构建融合模型以实现新辅助治疗疗效的早期评价。",
+          "evidence": [
+            {
+              "quote": "结合临床病理信息，融合不同维度的信息，优势互补，充分表征肿瘤时空异质性，构建融合模型，有望实现乳腺癌新辅助治疗疗效的早期评价",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3308,
+                "end_char": 3369
+              },
+              "version": "ecf6dd78cc2ff97cc6a8"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-427ac73a7e49",
+          "name": "解决时序与空间异质性量化难题",
+          "desc": "解决多时序影像动态信息挖掘不充分导致难以表征时序异质性以及难以从微观空间层面量化空间异质性的问题。",
+          "evidence": [
+            {
+              "quote": "解决了：1）多时序影像动态信息挖掘不充分导致难以表征肿瘤时序异质性的问题；2）难以从微观空间层面量化肿瘤空间异质性问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3100,
+                "end_char": 3158
+              },
+              "version": "ecf6dd78cc2ff97cc6a8"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-0f8d7bd7417f",
+          "name": "串行超声深度学习模型预测pCR",
+          "desc": "构建整合深度学习模型，利用连续超声图像预测乳腺癌新辅助化疗病理完全缓解。",
+          "evidence": [
+            {
+              "quote": "An integrated deep learning model for the prediction of pathological complete response to neoadjuvant chemotherapy with serial ultrasonography in breast cancer patients: a multicentre, retrospective study",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4560,
+                "end_char": 4763
+              },
+              "version": "ecf6dd78cc2ff97cc6a8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1d8f8ad330a8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5bc5ff06dc97"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5bc5ff06dc97"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-88c301d425d1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-88c301d425d1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-427ac73a7e49"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-06a7b1d3ceae"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6e2c4971d759"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

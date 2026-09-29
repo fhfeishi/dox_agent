@@ -1,0 +1,197 @@
+{
+  "doc_id": "d8a22fd3d083e3a2b3f4",
+  "version": "e3e2d56a299a3c407c30",
+  "source_hash": "5b7a198cfe009d2a1a45e8137a20da8227e33ed7d5284735831d896f2e0cac80",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:57.036918+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-80d28ae53fd5",
+          "name": "能源互联网能量管控",
+          "desc": "“双碳”目标下能源产业改革与能源信息化、智能化转型",
+          "evidence": [
+            {
+              "quote": "能源互联网是我国“双碳”目标下实现能源产业改革以及能源信息化、智能化转型的关键举措",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 693
+              },
+              "version": "e3e2d56a299a3c407c30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2a6251c103de",
+          "name": "传统机理建模难以满足调度诉求",
+          "desc": "集中式方法难以满足能源大数据深度利用及自主、高效、实时、灵活的能量调度诉求",
+          "evidence": [
+            {
+              "quote": "传统的机理建模能流分析和集中式能量管控方法难以满足能源互联网对能源大数据深度利用以及自主、高效、实时、灵活的能量调度诉求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 695,
+                "end_char": 754
+              },
+              "version": "e3e2d56a299a3c407c30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-979126fb6d37",
+          "name": "元学习耦合特性表征",
+          "desc": "元学习方法实现未知环境中新场景多能耦合特性实时表征建模",
+          "evidence": [
+            {
+              "quote": "采用元学习方法，研究未知环境中新场景的耦合特性实时表征建模",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 827,
+                "end_char": 855
+              },
+              "version": "e3e2d56a299a3c407c30"
+            }
+          ]
+        },
+        {
+          "id": "item-bbf0b158ff83",
+          "name": "多智能体强化学习分布式管控",
+          "desc": "基于双向拍卖的分布式能量管控体系与最优均衡选择的多智能体强化学习",
+          "evidence": [
+            {
+              "quote": "构建了基于双向拍卖的分布式能量管控体系，并提出最优均衡选择的多智能体强化学习方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 985,
+                "end_char": 1024
+              },
+              "version": "e3e2d56a299a3c407c30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f381d65dc9f3",
+          "name": "异构能源网络调度模型",
+          "desc": "考虑混氢天然气的优化调度模型与多微网经济调度方法",
+          "evidence": [
+            {
+              "quote": "提出了考虑混氢天然气的异构能源网络优化调度模型，构建了基于分布式事件触发一致性的多微网经济调度方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3334,
+                "end_char": 3382
+              },
+              "version": "e3e2d56a299a3c407c30"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-474442b9cea4",
+          "name": "非侵入式负荷监测新方法",
+          "desc": "基于生成对抗网络与多长度动态Shapelets，显著提升负荷辨识精度",
+          "evidence": [
+            {
+              "quote": "创新性地提出了基于生成对抗网络与多长度动态Shapelets的非侵入式负荷监测新方法，显著提升了负荷辨识精度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3420,
+                "end_char": 3473
+              },
+              "version": "e3e2d56a299a3c407c30"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-80d28ae53fd5"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2a6251c103de"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2a6251c103de"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-979126fb6d37"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-979126fb6d37"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f381d65dc9f3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-80d28ae53fd5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bbf0b158ff83"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bbf0b158ff83"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-474442b9cea4"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

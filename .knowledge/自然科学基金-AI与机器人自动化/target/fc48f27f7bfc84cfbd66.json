@@ -1,0 +1,180 @@
+{
+  "doc_id": "fc48f27f7bfc84cfbd66",
+  "version": "8e5fecda42c4171fbaa0",
+  "source_hash": "019c5b0e44e5a2dfde5d26d18c157874e37edf60c45278b01259ece64c661d64",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:25.388518+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f15146c4bfed",
+          "name": "3级自动驾驶人机共驾",
+          "desc": "3级驾驶自动化系统ODD边界与接管",
+          "evidence": [
+            {
+              "quote": "3级驾驶自动化系统在临近设计运行范围（Operational Design Domain, ODD）边界时，能否准确预判场景适应能力并精准发起控制权移交，是保障人机共驾安全的核心机制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2986,
+                "end_char": 3077
+              },
+              "version": "8e5fecda42c4171fbaa0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-747196564c35",
+          "name": "ODD量化界定缺失",
+          "desc": "分级标准缺乏ODD量化界定与动态判据难自评估",
+          "evidence": [
+            {
+              "quote": "然而，现有分级标准多侧重于人机任务角色的静态划分，缺乏对ODD的量化界定与动态判据，导致系统难以自评估场景适应度，进而无法制定精准的接管策略，这已成为影响3级驾驶自动化安全性的关键问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3078,
+                "end_char": 3170
+              },
+              "version": "8e5fecda42c4171fbaa0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-61bff7eba92c",
+          "name": "场景要素演化分析",
+          "desc": "支撑ODD边界识别校准验证的建模评估框架",
+          "evidence": [
+            {
+              "quote": "提出了场景要素表征与演化分析方法，建立了能够支撑ODD边界识别、校准与验证的建模与评估框架，为设计运行范围的界定提供科学依据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3281,
+                "end_char": 3342
+              },
+              "version": "8e5fecda42c4171fbaa0"
+            }
+          ]
+        },
+        {
+          "id": "item-a7c33842652a",
+          "name": "NDRT增强辨识",
+          "desc": "多模态融合非驾驶相关任务辨识连续监测驾驶状态",
+          "evidence": [
+            {
+              "quote": "提出了多模态信息融合的非驾驶相关任务（Non-Driving Related Tasks, NDRT）增强辨识方法，实现了自动驾驶模式下驾驶人行为与状态的精细化、连续化监测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3359,
+                "end_char": 3444
+              },
+              "version": "8e5fecda42c4171fbaa0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-aed58d191faa",
+          "name": "闭环技术路线形成",
+          "desc": "风险场景构建到接管策略优化的闭环方法体系",
+          "evidence": [
+            {
+              "quote": "本项目最终形成了“风险场景构建-ODD边界界定与校准-场景适应度预测-驾驶人状态识别-接管策略优化”的闭环技术路线，为3级驾驶自动化系统在复杂交通环境中的安全运行边界管理与人机协同接管提供了可验证的方法体系与理论支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3567,
+                "end_char": 3675
+              },
+              "version": "8e5fecda42c4171fbaa0"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f15146c4bfed"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-747196564c35"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-747196564c35"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-61bff7eba92c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-747196564c35"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a7c33842652a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a7c33842652a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-aed58d191faa"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-61bff7eba92c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-aed58d191faa"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

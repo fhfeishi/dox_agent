@@ -1,0 +1,142 @@
+{
+  "doc_id": "45973ba9bf11345c676d",
+  "version": "9999d122a419ecf03311",
+  "source_hash": "6fa31ddee28b4079306c554fed1305a838013229bce2f7e67369180f2f1ab240",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:47.187819+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1a9ba7abd011",
+          "name": "年龄相关性视网膜疾病OCT图像分析",
+          "desc": "以视网膜OCT图像为对象，开展视网膜分层、AMD病变异常分割及多种生物标记检测与定位研究。",
+          "evidence": [
+            {
+              "quote": "视网膜中的年龄相关性黄斑变性AMD是仅次于糖尿病视网膜病变的第二位致盲眼病",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2535,
+                "end_char": 2571
+              },
+              "version": "9999d122a419ecf03311"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5521c4a234a3",
+          "name": "大量OCT图像亟待自动检视与分析",
+          "desc": "随着人口老龄化，致盲性AMD患病上升趋势明显，大量OCT图像需要检视与分析，亟需自动图像处理技术。",
+          "evidence": [
+            {
+              "quote": "针对我国逐步步入老年化，致盲性AMD患病上升趋势明显，大量的OCT图像需要检视与分析的现状",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 754,
+                "end_char": 798
+              },
+              "version": "9999d122a419ecf03311"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-66cda29fa78e",
+          "name": "弱监督与半监督OCT分割及生物标记检测算法",
+          "desc": "提出保持层间拓扑内外顺序的分层算法、大幅降低手工标记工作量的脉络膜新生血管与地图样萎缩半监督分割方法，以及图像级弱标注下的生物标记自动检测与定位算法。",
+          "evidence": [
+            {
+              "quote": "提出能大幅降低手工标记样本工作量的脉络膜新生血管与地图样萎缩的半监督分割方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 900,
+                "end_char": 937
+              },
+              "version": "9999d122a419ecf03311"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-261af5427ebb",
+          "name": "提出仅依赖笔画监督的层分割算法",
+          "desc": "在层分割中探索仅依赖笔画监督的分割算法，提出基于不确定性原型和边界回归的弱监督分割方法，并在三个数据集上验证其合理性与优越性。",
+          "evidence": [
+            {
+              "quote": "在层分割中，为减少深度学习层分割中的标记成本，探索了仅依赖笔画监督的分割算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2647,
+                "end_char": 2684
+              },
+              "version": "9999d122a419ecf03311"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1a9ba7abd011"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5521c4a234a3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5521c4a234a3"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-66cda29fa78e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-66cda29fa78e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-261af5427ebb"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

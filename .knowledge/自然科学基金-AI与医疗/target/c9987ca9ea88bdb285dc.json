@@ -1,0 +1,142 @@
+{
+  "doc_id": "c9987ca9ea88bdb285dc",
+  "version": "9b98a919a35d29f83f25",
+  "source_hash": "e0f07aa9d247310b2936d71eae02d49e745c9565675cae4bf54de4d580f30406",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:03.628100+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a65636f5cc14",
+          "name": "亚实性肺结节良恶性预测",
+          "desc": "面向肺癌CT影像筛查，对亚实性肺结节进行良恶性鉴别诊断，为临床提供定量信息。",
+          "evidence": [
+            {
+              "quote": "亚实性肺结节的良恶性诊断在肺癌CT影像筛查中具有重要作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 657,
+                "end_char": 684
+              },
+              "version": "9b98a919a35d29f83f25"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dd9b4d1aec22",
+          "name": "亚实性肺结节边界模糊致主观诊断困难",
+          "desc": "亚实性肺结节边界模糊、大小形状不固定、内部密度不均匀，依靠主观征象进行良恶性诊断难度较大。",
+          "evidence": [
+            {
+              "quote": "由于亚实性肺结节具有边界模糊、大小形状不固定和内部密度不均匀的特点，依靠主观征象进行良恶性诊断时难度较大",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 688,
+                "end_char": 739
+              },
+              "version": "9b98a919a35d29f83f25"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bbd2e417fb37",
+          "name": "深度学习与传统机器学习结合的ROI分割与预测优化",
+          "desc": "从感兴趣区（ROI）分割、亚实性肺结节识别、良恶性预测模型构建三方面优化算法，建立小波能量与后验概率活动轮廓模型、特征级联与在线困难样本挖掘、稀疏贝叶斯学习与极限学习机。",
+          "evidence": [
+            {
+              "quote": "本项目将深度学习和传统机器学习相结合，从感兴趣区（ROI）分割、亚实性肺结节识别、良恶性预测模型构建三个方面开展算法优化工作",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 741,
+                "end_char": 802
+              },
+              "version": "9b98a919a35d29f83f25"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-152322cc2a45",
+          "name": "发表学术论文17篇含Nature Communications 1篇",
+          "desc": "项目组发表学术论文17篇，其中SCI期刊论文12篇（含一篇发表于Nature Communications）、EI期刊论文5篇。",
+          "evidence": [
+            {
+              "quote": "项目组共计在国内外权威学术期刊发表学术论文17篇，其中SCI期刊论文12篇（其中一篇发表在“Nature Communications”期刊上）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3250,
+                "end_char": 3321
+              },
+              "version": "9b98a919a35d29f83f25"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a65636f5cc14"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-dd9b4d1aec22"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-dd9b4d1aec22"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bbd2e417fb37"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bbd2e417fb37"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-152322cc2a45"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

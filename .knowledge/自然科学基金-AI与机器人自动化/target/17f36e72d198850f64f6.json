@@ -1,0 +1,180 @@
+{
+  "doc_id": "17f36e72d198850f64f6",
+  "version": "dbd0f840324008b3058e",
+  "source_hash": "c9027ae05a4a53f230ff57f3ddfab490d1cab8baba7983e3f728619192d8c7ec",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:19:58.054491+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1f6195ae4006",
+          "name": "环境响应型智能软体机器人",
+          "desc": "无缆化、自主化的环境响应软体机器人设计",
+          "evidence": [
+            {
+              "quote": "本项目提出了一种集双稳态特性、相变式驱动、负反馈逻辑于一体的组合型软材料腔体结构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3169,
+                "end_char": 3208
+              },
+              "version": "dbd0f840324008b3058e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ef02a863c88b",
+          "name": "驱动源制约无缆化",
+          "desc": "驱动源是软体机器人发展与应用的主要瓶颈",
+          "evidence": [
+            {
+              "quote": "但驱动源问题一直是制约软体机器人发展和应用的主要瓶颈之一，这显然不符合软体机器人无缆化的核心需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 726,
+                "end_char": 774
+              },
+              "version": "dbd0f840324008b3058e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6b4b79408e3b",
+          "name": "双稳态负反馈结构设计",
+          "desc": "力学建模给出双稳态与负反馈逻辑的充分条件",
+          "evidence": [
+            {
+              "quote": "通过力学建模和理论分析，给出了确保组合结构具备双稳态特性及负反馈逻辑的一个充分条件，可为结构设计提供必要的理论指导",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3261,
+                "end_char": 3317
+              },
+              "version": "dbd0f840324008b3058e"
+            }
+          ]
+        },
+        {
+          "id": "item-b722d78668d8",
+          "name": "软材料导热改性",
+          "desc": "保持柔韧前提下大幅提升导热性能提高相变驱动效率",
+          "evidence": [
+            {
+              "quote": "对软材料进行了导热改性研究，实现了在保持软材料柔韧性的前提下大幅提升其导热性能，可有效提升相变式驱动的效率。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3366,
+                "end_char": 3419
+              },
+              "version": "dbd0f840324008b3058e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7528284f707d",
+          "name": "切换能垒降低",
+          "desc": "匹配设计优化降低双稳态切换能垒提高响应灵敏度",
+          "evidence": [
+            {
+              "quote": "通过匹配设计与优化，大大降低了组合结构在双稳态间切换的能垒，可有效提高其环境响应灵敏度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3319,
+                "end_char": 3361
+              },
+              "version": "dbd0f840324008b3058e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1f6195ae4006"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ef02a863c88b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ef02a863c88b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6b4b79408e3b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ef02a863c88b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b722d78668d8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6b4b79408e3b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7528284f707d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b722d78668d8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7528284f707d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "doc_id": "69c9e74ad7531bdd89cc",
+  "version": "e7ceef2e0c7812d5d3e7",
+  "source_hash": "99c7d0a1ca0b1bde779cf7857a0b88367e3a4f717fe02bc8602ce4b778feb959",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:10.113578+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2cfe15984c83",
+          "name": "室内环境场全域感知",
+          "desc": "人员健康保障与建筑节能的室内环境感知",
+          "evidence": [
+            {
+              "quote": "室内环境感知对保障人员健康和实现建筑节能具有重大意义。传统基于有限数量、单一类型传感器的环境感知方法，不仅难以实现建筑空间全域的细粒度环境数据采集与特征认知，更难以通过整合多源数据进行环境问题的快速溯源与精准诊断。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2933,
+                "end_char": 3039
+              },
+              "version": "e7ceef2e0c7812d5d3e7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2ad090c4c2e9",
+          "name": "固定点式监测难全覆盖",
+          "desc": "有限固定点式监测难以空间全覆盖制约认知诊断",
+          "evidence": [
+            {
+              "quote": "现有研究大多采用有限数量的固定点式监测方法，难以实现空间全覆盖，制约了环境认知和诊断的科学性、全面性和精准性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 685,
+                "end_char": 739
+              },
+              "version": "e7ceef2e0c7812d5d3e7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9adeabd198ff",
+          "name": "移动-固定协同感知",
+          "desc": "移动感知指导固定测点部署结合图聚类挖掘时空规律",
+          "evidence": [
+            {
+              "quote": "提出了移动-固定感知协同的新模式，利用移动感知指导固定测点优化部署，并结合图聚类算法深度挖掘环境场的时空演变规律，最终实现对室内环境细粒度、全时空的精准认知",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3196,
+                "end_char": 3273
+              },
+              "version": "e7ceef2e0c7812d5d3e7"
+            }
+          ]
+        },
+        {
+          "id": "item-937677b0eb70",
+          "name": "多源数据智能分析",
+          "desc": "视频-环境参数-时空标签融合实现溯源诊断",
+          "evidence": [
+            {
+              "quote": "建立了基于视频图像-环境参数-时空标签多源数据融合的建筑环境问题智能分析技术，并通过赋予移动机器人实时分析决策与自主路径规划能力，实现了对环境问题的快速溯源与精准诊断。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3278,
+                "end_char": 3361
+              },
+              "version": "e7ceef2e0c7812d5d3e7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7a381243ef33",
+          "name": "重点工程智慧运维",
+          "desc": "支撑大兴机场等工程，诊断成功率高于84%提升37%",
+          "evidence": [
+            {
+              "quote": "项目成果有效支撑了北京大兴国际机场航站楼、郑州大河村仰韶文化博物馆、中国建筑设计研究院创新科研示范中心等重点工程的建筑环境智慧运维，环境参数空间认知分辨率达米级，测量误差<5%，环境问题诊断成功率高于84%，与仅使用固定传感器的传统方式相比提升了37%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3362,
+                "end_char": 3487
+              },
+              "version": "e7ceef2e0c7812d5d3e7"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2cfe15984c83"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2ad090c4c2e9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2ad090c4c2e9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9adeabd198ff"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2ad090c4c2e9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-937677b0eb70"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-937677b0eb70"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7a381243ef33"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9adeabd198ff"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7a381243ef33"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "doc_id": "2ba6794cf08a2950607d",
+  "version": "d71b501fcd15050ae449",
+  "source_hash": "275970ed7045826b17258ab6c909c114eb4e9d86203d9469362f7ad11fea3b2e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:12.593365+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4955a8705745",
+          "name": "人工智能角膜病辅助诊断",
+          "desc": "面向我国首位不可逆致盲性眼病角膜病，研发知识引导与数据驱动融合的AI辅助诊断体系。",
+          "evidence": [
+            {
+              "quote": "角膜疾病是我国首位不可逆致盲性眼病,其诊治水平的规范和提高与我国防盲治盲工作直接相关",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 704
+              },
+              "version": "d71b501fcd15050ae449"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6a52de1f9223",
+          "name": "角膜病诊断水平参差且AI辅助诊治缺失",
+          "desc": "我国角膜病临床诊断水平存在差异、诊疗规范不完善、人工智能辅助诊治尚未涉及，亟需研发辅助诊断体系。",
+          "evidence": [
+            {
+              "quote": "针对目前我国角膜病临床诊断水平存在差异、诊疗规范不完善、人工智能辅助诊治尚未涉及等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 757,
+                "end_char": 799
+              },
+              "version": "d71b501fcd15050ae449"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-de211e8ed650",
+          "name": "知识引导与多模态数据融合的角膜病诊断算法",
+          "desc": "构建大规模角膜病多模态数据库，研究融合专业知识和多模态临床数据的新型人工智能诊断算法，构建基于因果关系的诊断推理模型，并设计云/边智能诊断体系。",
+          "evidence": [
+            {
+              "quote": "研发人工智能角膜病辅助诊断体系；构建大规模角膜病多模态数据库，研究融合专业知识和多模态临床数据的新型人工智能诊断算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 817,
+                "end_char": 874
+              },
+              "version": "d71b501fcd15050ae449"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7ee6c330a57b",
+          "name": "实现涵盖13种眼前节疾病的可视化诊断",
+          "desc": "构建基于图像尺度、结构尺度和病灶尺度的眼前节疾病智能筛查与病灶识别系统，实现涵盖13种眼前节疾病的可视化诊断；建立角膜炎病原学诊断分类框架与眼前节OCT分割重建模型。",
+          "evidence": [
+            {
+              "quote": "构建基于图像尺度、结构尺度和病灶尺度的眼前节疾病智能筛查和病灶识别系统，实现涵盖13种眼前节疾病的可视化诊断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3032,
+                "end_char": 3085
+              },
+              "version": "d71b501fcd15050ae449"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4955a8705745"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6a52de1f9223"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6a52de1f9223"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-de211e8ed650"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-de211e8ed650"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7ee6c330a57b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

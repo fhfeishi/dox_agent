@@ -1,0 +1,180 @@
+{
+  "doc_id": "3211761abce416d709e4",
+  "version": "a54129bf8d43d14fbac1",
+  "source_hash": "6f3865b96c84f79c6339632824eb1ec3e02156bffa725555484e4e72ac063d8d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:10.068783+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4664d10e3329",
+          "name": "海洋弱小目标检测",
+          "desc": "海事监管、航道巡检、应急救援的无人艇感知",
+          "evidence": [
+            {
+              "quote": "无人艇作为海上智能感知与自主作业的重要装备，在海事监管、航道巡检和应急救援等领域的应用需求不断增长。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2839,
+                "end_char": 2888
+              },
+              "version": "a54129bf8d43d14fbac1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-34b664ac01c2",
+          "name": "弱小目标成像退化",
+          "desc": "目标尺度小对比度低伴随雾霾低光浪涌反射退化",
+          "evidence": [
+            {
+              "quote": "但在实际海洋环境中，目标尺度小、对比度低，且常伴随雾霾、低光照、浪涌反射等复杂成像退化，导致感知可靠性和识别稳定性显著下降。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2918,
+                "end_char": 2979
+              },
+              "version": "a54129bf8d43d14fbac1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a5b77eda4ee8",
+          "name": "去雾与低光照增强",
+          "desc": "成像机理与视觉感知结合注意力机制提升可视性",
+          "evidence": [
+            {
+              "quote": "聚焦去雾与低光照增强等典型退化场景，从成像机理建模与人类视觉感知出发，结合多尺度特征提取与注意力机制，提升退化图像的可视性与信息可用性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3023,
+                "end_char": 3089
+              },
+              "version": "a54129bf8d43d14fbac1"
+            }
+          ]
+        },
+        {
+          "id": "item-45b90e10460b",
+          "name": "跨域频域特征迁移",
+          "desc": "不确定性约束的跨场景泛化方法提升适应能力",
+          "evidence": [
+            {
+              "quote": "引入跨域模式识别与领域自适应理论，探索基于频域特征迁移与不确定性约束的跨场景泛化方法，提升模型在不同海域、海况和成像条件下的适应能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3152,
+                "end_char": 3218
+              },
+              "version": "a54129bf8d43d14fbac1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ec39ee48c428",
+          "name": "多尺度注意力检测",
+          "desc": "多尺度特征融合与注意力引导增强小目标判别表达",
+          "evidence": [
+            {
+              "quote": "另一方面，面向弱小目标特征不足和背景干扰强的问题，研究多尺度特征融合与注意力引导的检测方法，增强小目标的判别性表达。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3091,
+                "end_char": 3148
+              },
+              "version": "a54129bf8d43d14fbac1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4664d10e3329"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-34b664ac01c2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-34b664ac01c2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a5b77eda4ee8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-34b664ac01c2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-45b90e10460b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a5b77eda4ee8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ec39ee48c428"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-45b90e10460b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ec39ee48c428"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

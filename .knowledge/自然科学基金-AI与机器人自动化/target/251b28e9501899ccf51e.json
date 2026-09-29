@@ -1,0 +1,180 @@
+{
+  "doc_id": "251b28e9501899ccf51e",
+  "version": "16d94c37815fa49b00b3",
+  "source_hash": "fad239699d1175dce8550717efbb0e02f251307236c379dc1173f1124f06c1a4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:11:52.472318+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9ec9818e7dd7",
+          "name": "介电弹性体软体机器人",
+          "desc": "基于介电弹性体驱动器的软体机器人运动控制",
+          "evidence": [
+            {
+              "quote": "本项目以基于介电弹性体驱动器的软体机器人为对象，研究其动力学建模与运动控制器设计问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 709
+              },
+              "version": "16d94c37815fa49b00b3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0c0b5dcba4c9",
+          "name": "迟滞蠕变复合非线性",
+          "desc": "频率-应力耦合动态迟滞与迟滞-蠕变复合非线性特性",
+          "evidence": [
+            {
+              "quote": "在分析介电弹性体材料频率-应力耦合相关动态迟滞特性及迟滞-蠕变复合非线性特性的基础上，建立介电弹性体材料的迟滞-蠕变复合非线性模型并构造该模型的逆解析表达式。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2637,
+                "end_char": 2715
+              },
+              "version": "16d94c37815fa49b00b3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-17e4b4d9eb8e",
+          "name": "两步参数辨识建模",
+          "desc": "群体智能优化或非线性最小二乘的两步辨识",
+          "evidence": [
+            {
+              "quote": "提出基于介电弹性体驱动器的软体机器人的动力学模型框架，并利用基于群体智能优化算法或非线性最小二乘算法的两步参数辨识方法对模型参数进行辨识",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2716,
+                "end_char": 2783
+              },
+              "version": "16d94c37815fa49b00b3"
+            }
+          ]
+        },
+        {
+          "id": "item-94329287ded0",
+          "name": "逆补偿前馈+反馈控制",
+          "desc": "逆补偿前馈消除非线性、反馈消除误差与扰动",
+          "evidence": [
+            {
+              "quote": "对基于介电弹性体驱动器的软体机器人动力学模型求逆，设计逆补偿前馈控制器补偿其迟滞-蠕变复合非线性；此外，设计反馈控制器消除逆补偿控制误差和系统不确定因素（参数摄动和外界扰动等）对系统控制精度的不利影响",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2842,
+                "end_char": 2941
+              },
+              "version": "16d94c37815fa49b00b3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-96a25a23cf5d",
+          "name": "高精度运动控制实现",
+          "desc": "运动控制策略实现高精度运动控制目标",
+          "evidence": [
+            {
+              "quote": "结合逆补偿前馈控制方法和反馈控制方法，提出基于介电弹性体驱动器的软体机器人的运动控制策略实现其高精度运动控制目标。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2943,
+                "end_char": 2999
+              },
+              "version": "16d94c37815fa49b00b3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9ec9818e7dd7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0c0b5dcba4c9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0c0b5dcba4c9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-17e4b4d9eb8e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0c0b5dcba4c9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-94329287ded0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-94329287ded0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-96a25a23cf5d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-17e4b4d9eb8e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-96a25a23cf5d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

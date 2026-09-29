@@ -1,0 +1,142 @@
+{
+  "doc_id": "bfe964141a6811b5e99a",
+  "version": "e640ad9f54a4b9ba7e0f",
+  "source_hash": "473e9fa2b877270bad3efc0a19d0aee781d5320b3663dc6579ace1739251984c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:16.802406+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-02fff9aa962e",
+          "name": "局部进展期胃癌新辅助化疗疗效预测",
+          "desc": "面向胃癌新辅助化疗反应差异大的临床问题，开展疗效早期精准预测与生物学可解释性研究。",
+          "evidence": [
+            {
+              "quote": "胃癌对新辅助化疗（NAC）的反应差异很大，早期精准预测NAC后病理学反应对指导个体化治疗和预测预后很重要",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 683,
+                "end_char": 734
+              },
+              "version": "e640ad9f54a4b9ba7e0f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-584df719308c",
+          "name": "胃癌新辅助化疗疗效难以早期精准预测",
+          "desc": "胃癌对NAC反应差异大，早期精准预测病理学反应对个体化治疗至关重要，但现有手段预测效能不足且缺乏生物学可解释性。",
+          "evidence": [
+            {
+              "quote": "本项目针对胃癌新辅助化疗疗效难以早期精准预测的关键临床问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2735,
+                "end_char": 2763
+              },
+              "version": "e640ad9f54a4b9ba7e0f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-02f552e42368",
+          "name": "能谱CT定量影像组学与影像-病理多尺度模型",
+          "desc": "基于治疗前能谱CT多能级图像与碘图建立定量影像组学模型，并从WSI提取病理特征评估肿瘤间质比，建立影像-病理多尺度融合模型。",
+          "evidence": [
+            {
+              "quote": "基于治疗前能谱CT多能级图像和碘图建立定量影像组学模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 867,
+                "end_char": 893
+              },
+              "version": "e640ad9f54a4b9ba7e0f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9fa161f35f98",
+          "name": "能谱CT定量诺模图预测病理缓解不良AUC 0.797/0.741",
+          "desc": "基于222例前瞻性能谱CT数据构建定量影像诺模图，训练集与验证集预测病理缓解不良AUC分别为0.797和0.741，且验证集中与DFS相关。",
+          "evidence": [
+            {
+              "quote": "其在训练集及验证集预测病理缓解不良的AUC分别为0.797和0.741",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2980,
+                "end_char": 3014
+              },
+              "version": "e640ad9f54a4b9ba7e0f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-02fff9aa962e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-584df719308c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-584df719308c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-02f552e42368"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-02f552e42368"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9fa161f35f98"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "doc_id": "22b9471041b5eee58fa2",
+  "version": "c6e21356e83632ccdfa1",
+  "source_hash": "098fe4ecf3fed0b4ead3491587cc04dbe015c2c2fbfc630f80c022b64cdf30b8",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:48:15.214082+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-698b1e2e6aab",
+          "name": "自主无人系统多智能体协作",
+          "desc": "深度强化学习融合感知与决策，支撑各类无人系统自主协作",
+          "evidence": [
+            {
+              "quote": "深度强化学习作为关键理论的组成部分，通过融合感知能力与决策能力，赋予智能体自主协作完成复杂任务的能力，广泛应用于各类无人系统。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 673,
+                "end_char": 735
+              },
+              "version": "c6e21356e83632ccdfa1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a94a62cda45c",
+          "name": "消息表示固化且控制粗放",
+          "desc": "消息表示方法固化、格式单一，通信与传输控制缺乏精准机制",
+          "evidence": [
+            {
+              "quote": "针对消息表示方法固化、格式单一的问题，提出观测和意图双通道多层次消息表示方法，细化消息颗粒度，提升通信效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 835,
+                "end_char": 887
+              },
+              "version": "c6e21356e83632ccdfa1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-69f62d2b22c3",
+          "name": "观测-意图双通道消息表示",
+          "desc": "综合考虑消息共享与动作意图的消息表示机制及CAVDN、CADTC算法",
+          "evidence": [
+            {
+              "quote": "提出了综合考虑消息共享与动作意图的消息表示机制，用于在多智能体之间进行消息共享，并基于此提出通信辅助的值分解网络算法（CAVDN）和通信辅助的多无人机轨迹控制算法（CADTC），提升了强化学习方法的收敛效率和性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2450,
+                "end_char": 2556
+              },
+              "version": "c6e21356e83632ccdfa1"
+            }
+          ]
+        },
+        {
+          "id": "item-af2ea63ac142",
+          "name": "收发双向评估消息控制",
+          "desc": "ATOM效用评估模型与FARM双向控制机制",
+          "evidence": [
+            {
+              "quote": "提出基于本地观测的智能体效用评估模型（ATOM），并在此基础上提出收发双向评估的消息控制机制（FARM），实现基于评估的双向控制机制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2568,
+                "end_char": 2634
+              },
+              "version": "c6e21356e83632ccdfa1"
+            }
+          ]
+        },
+        {
+          "id": "item-8b4701b649c4",
+          "name": "信道感知跨层控制",
+          "desc": "面向集中式与分布式训练的两种跨层控制机制，实现关键消息可靠传输",
+          "evidence": [
+            {
+              "quote": "提出了面向集中式训练（DCAS）和分布式训练（CCAS）的两种跨层控制机制，能够综合考虑不同链路通信支撑能力和潜在通信效用，实现关键消息可靠传输。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2648,
+                "end_char": 2720
+              },
+              "version": "c6e21356e83632ccdfa1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c3a8cba1405a",
+          "name": "CAVDN/CADTC算法性能提升",
+          "desc": "强化学习方法收敛效率与性能提升",
+          "evidence": [
+            {
+              "quote": "提升了强化学习方法的收敛效率和性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2539,
+                "end_char": 2556
+              },
+              "version": "c6e21356e83632ccdfa1"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-ecf9fcf832f5",
+          "name": "FARM双向控制机制",
+          "desc": "实现基于评估的双向消息控制",
+          "evidence": [
+            {
+              "quote": "实现基于评估的双向控制机制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2621,
+                "end_char": 2634
+              },
+              "version": "c6e21356e83632ccdfa1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-698b1e2e6aab"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a94a62cda45c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a94a62cda45c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-69f62d2b22c3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a94a62cda45c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-af2ea63ac142"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a94a62cda45c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8b4701b649c4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-69f62d2b22c3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c3a8cba1405a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-af2ea63ac142"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ecf9fcf832f5"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

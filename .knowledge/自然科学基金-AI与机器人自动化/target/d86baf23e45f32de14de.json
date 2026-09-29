@@ -1,0 +1,197 @@
+{
+  "doc_id": "d86baf23e45f32de14de",
+  "version": "a79c68c06bae5a0375bc",
+  "source_hash": "04eb41db7bd60f48f359c97e724bad75743f9fb3a0e341fa21fee6d781e47735",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:16:40.589070+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-197f66d33ebf",
+          "name": "高速混行汇流自动驾驶",
+          "desc": "高速公路自动驾驶的环境认知、态势感知与在线决策规划",
+          "evidence": [
+            {
+              "quote": "本项目针对高速混行汇流场景中自动驾驶面临的环境认知与理解、驾驶行为态势感知与评估、在线决策规划的实时性与鲁棒性等挑战性问题，从复杂动态环境认知及人类驾驶行为特性出发，开展高速混行汇流环境下自动驾驶多模型态势感知及仿人化鲁棒决策规划研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3343,
+                "end_char": 3459
+              },
+              "version": "a79c68c06bae5a0375bc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-06939697daf8",
+          "name": "周围车辆意图轨迹不明",
+          "desc": "异质车辆混行汇流环境下周围车辆驾驶意图及运动轨迹不明",
+          "evidence": [
+            {
+              "quote": "针对异质车辆高速混行汇流环境下周围车辆驾驶意图及其运动轨迹不明的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3612,
+                "end_char": 3645
+              },
+              "version": "a79c68c06bae5a0375bc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a21ad65bd04d",
+          "name": "级联YOLOv7三维检测",
+          "desc": "融合RGB图像与点云信息级联YOLOv7的三维目标检测及场景语义理解模型",
+          "evidence": [
+            {
+              "quote": "提出了融合自动驾驶周围场景RGB图像信息与点云信息的级联YOLOv7的三维目标检测算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3464,
+                "end_char": 3506
+              },
+              "version": "a79c68c06bae5a0375bc"
+            }
+          ]
+        },
+        {
+          "id": "item-775d1fd93dde",
+          "name": "GraphSAGE意图识别",
+          "desc": "基于交互博弈的GraphSAGE驾驶意图识别与GRU+注意力机制轨迹预测",
+          "evidence": [
+            {
+              "quote": "提出了基于交互博弈的GraphSAGE图神经网络周围车辆驾驶意图识别及基于GRU和注意力机制(Attention Mechanism)的轨迹预测算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3647,
+                "end_char": 3720
+              },
+              "version": "a79c68c06bae5a0375bc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3d1f9fcfe1a7",
+          "name": "态势感知风险评估模型",
+          "desc": "集运动预测、状态预估、碰撞风险预判于一体的态势感知及风险评估模型",
+          "evidence": [
+            {
+              "quote": "运用人工势场理论，建立了混行汇流环境下集“周围车辆运动预测、自主车辆状态预估、障碍碰撞风险预判”于一体的自动驾驶态势感知及风险评估模型，实现高速混行汇流环境下自动驾驶碰撞风险准确预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3723,
+                "end_char": 3813
+              },
+              "version": "a79c68c06bae5a0375bc"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-871d4085f2f7",
+          "name": "仿人化决策与实车验证",
+          "desc": "BiLSTM-Attention仿人决策模型与轨迹容错监控滚动优化，经仿真和实车验证",
+          "evidence": [
+            {
+              "quote": "设计了基于轨迹容错监控和显式模型预测滚动优化的自动驾驶运动规划方法，并通过高性能自动驾驶仿真环境及实车测试平台进行仿真和实车验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3946,
+                "end_char": 4009
+              },
+              "version": "a79c68c06bae5a0375bc"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-197f66d33ebf"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-06939697daf8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-06939697daf8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a21ad65bd04d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-06939697daf8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-775d1fd93dde"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-775d1fd93dde"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3d1f9fcfe1a7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a21ad65bd04d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-871d4085f2f7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

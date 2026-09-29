@@ -1,0 +1,197 @@
+{
+  "doc_id": "b68c4f106917862d1c69",
+  "version": "3805b707b2479117321c",
+  "source_hash": "174b7c3e7e3205eb3d3e64118b92adbac07fef861e15e88ff65309026451ee85",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:52.909097+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c3b32ccc3189",
+          "name": "柔性机械臂容错控制",
+          "desc": "面向航空航天、微创医疗、智能制造领域的柔性机械臂",
+          "evidence": [
+            {
+              "quote": "柔性机械臂作为先进机器人系统的关键组成部分，在航空航天、微创医疗、智能制造等领域具有广泛应用前景",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2690,
+                "end_char": 2737
+              },
+              "version": "3805b707b2479117321c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9bb33c4de271",
+          "name": "驱动器故障引发失效",
+          "desc": "高性能运行依赖驱动系统可靠性，驱动器故障易引发控制失效甚至系统崩溃",
+          "evidence": [
+            {
+              "quote": "其高性能运行高度依赖于驱动系统的可靠性，一旦发生驱动器故障，极易引发控制失效甚至系统崩溃",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2742,
+                "end_char": 2785
+              },
+              "version": "3805b707b2479117321c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dbe67b67fcd8",
+          "name": "多类容错控制策略",
+          "desc": "基于神经网络、滑模控制、扩展状态观测器等的针对性补偿与容错控制",
+          "evidence": [
+            {
+              "quote": "提出了多种针对性补偿与容错控制策略，并构建了仿真平台与多套实验装置",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2937,
+                "end_char": 2969
+              },
+              "version": "3805b707b2479117321c"
+            }
+          ]
+        },
+        {
+          "id": "item-9a94feb06c0e",
+          "name": "多驱动柔性臂实验平台",
+          "desc": "常规电机、气动软体与PVDF压电驱动实验平台及硬件在环故障测试系统",
+          "evidence": [
+            {
+              "quote": "分别研制了采用常规电机驱动、新型气动软体驱动以及PVDF压电驱动的柔性机械臂实验平台，并开发硬件在环驱动器故障测试系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3206,
+                "end_char": 3264
+              },
+              "version": "3805b707b2479117321c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-865dfcb966b4",
+          "name": "论文专利与软著",
+          "desc": "发表学术论文19篇，申请发明专利6项（授权3项），登记软著4项",
+          "evidence": [
+            {
+              "quote": "项目共发表标注本项目资助的学术论文19篇（其中期刊论文16篇），申请国家发明专利6项（已授权3项），登记软件著作权4项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3330,
+                "end_char": 3388
+              },
+              "version": "3805b707b2479117321c"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-dc224c770ba4",
+          "name": "柔性机器人原型系统",
+          "desc": "搭建面向实际场景的柔性机器人原型系统，验证应用潜力",
+          "evidence": [
+            {
+              "quote": "成功搭建了面向实际场景的柔性机器人原型系统，展示了研究成果的应用潜力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3287,
+                "end_char": 3320
+              },
+              "version": "3805b707b2479117321c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c3b32ccc3189"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9bb33c4de271"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9bb33c4de271"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-dbe67b67fcd8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9bb33c4de271"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9a94feb06c0e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-dbe67b67fcd8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-865dfcb966b4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9a94feb06c0e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dc224c770ba4"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

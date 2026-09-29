@@ -1,0 +1,207 @@
+{
+  "doc_id": "a83717b8563a5af76c00",
+  "version": "64327cfb83a209ef070f",
+  "source_hash": "c7201a73491520caa1773cac148ef4d0bdcc599735a31419353949718c6906f7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:19:59.414066+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d5d44c367fc2",
+          "name": "六足机器人重度崎岖地形",
+          "desc": "灾后现场等复杂环境的六足机器人运动",
+          "evidence": [
+            {
+              "quote": "六足机器人拥有冗余的肢体结构、采用离散的运动方式，因而理论上具有出色的崎岖地形运动能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2855,
+                "end_char": 2898
+              },
+              "version": "64327cfb83a209ef070f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-52a6b3fd8f12",
+          "name": "重度崎岖地形适应难",
+          "desc": "起伏较大或落足点稀疏地形是亟待解决的关键问题",
+          "evidence": [
+            {
+              "quote": "其中，如何应对起伏较大或落足点稀疏的重度崎岖地形是六足机器人亟待解决的关键问题之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2984,
+                "end_char": 3025
+              },
+              "version": "64327cfb83a209ef070f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-91133bb1128a",
+          "name": "CMA-ES全局优化",
+          "desc": "协方差矩阵自适应进化策略优化躯腿机构参数",
+          "evidence": [
+            {
+              "quote": "提出了基于协方差矩阵自适应进化策略的全局优化方法，全面探究并充分挖掘了六足机器人机构参数配置的合理性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3110,
+                "end_char": 3160
+              },
+              "version": "64327cfb83a209ef070f"
+            }
+          ]
+        },
+        {
+          "id": "item-e1d4db35c9fe",
+          "name": "贝叶斯阻抗调优",
+          "desc": "腿部高效自适应阻抗控制实现稳定足地交互",
+          "evidence": [
+            {
+              "quote": "开展了基于贝叶斯优化的机器人腿部高效自适应阻抗控制研究，实现了六足机器人在重度崎岖地形下的稳定、安全的足-地交互。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3315,
+                "end_char": 3371
+              },
+              "version": "64327cfb83a209ef070f"
+            }
+          ]
+        },
+        {
+          "id": "item-ab36a5d8bfb5",
+          "name": "地形诱导落足点评估",
+          "desc": "地形特征提取与摆动运动规划生成平滑腿部运动",
+          "evidence": [
+            {
+              "quote": "本项目建立了地形特征提取和落足点评估方法，研究了重度崎岖地形下六足机器人腿部摆动运动规划方法，以生成与地面形貌相匹配的平滑腿部运动。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3209,
+                "end_char": 3274
+              },
+              "version": "64327cfb83a209ef070f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cdbcbb6f0d72",
+          "name": "原理样机实验验证",
+          "desc": "研制刚柔耦合六足机器人样机并实验研究",
+          "evidence": [
+            {
+              "quote": "最后，研制了六足机器人原理样机，并进行了实验研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3372,
+                "end_char": 3396
+              },
+              "version": "64327cfb83a209ef070f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d5d44c367fc2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-52a6b3fd8f12"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-52a6b3fd8f12"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-91133bb1128a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-52a6b3fd8f12"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e1d4db35c9fe"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-52a6b3fd8f12"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ab36a5d8bfb5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e1d4db35c9fe"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cdbcbb6f0d72"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ab36a5d8bfb5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cdbcbb6f0d72"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "doc_id": "352aaa4e2279a4ee704d",
+  "version": "872c0bde12c57aa76702",
+  "source_hash": "79136beb4dc45b403cdfe806f6b5b0a0fab0eaf97d468eb3280913533f63c9eb",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:16:40.577497+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c587aabf4e8f",
+          "name": "架空输电线路巡检",
+          "desc": "飞爬结合两栖式巡检机器人对线路、杆塔、走廊的巡检",
+          "evidence": [
+            {
+              "quote": "本项目基于仿生学原理，研制了具有飞行、爬行混合结构的巡检机器人，通过飞、爬结合的方式实现对线路、杆塔、走廊的巡检",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2825,
+                "end_char": 2880
+              },
+              "version": "872c0bde12c57aa76702"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7ad3b964017c",
+          "name": "巡检精度速度续航不足",
+          "desc": "现有架空输电线路巡检在精度、速度、续航、防护及自主性方面存在不足",
+          "evidence": [
+            {
+              "quote": "目前的架空输电线路巡检手段在巡检精度、速度、续航能力、防护能力及自主性方面均存在不足之处，亟需一种新型巡检方式和智能化巡检技术，提升架空线路巡检智能化水平",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2746,
+                "end_char": 2822
+              },
+              "version": "872c0bde12c57aa76702"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-83e3656946b6",
+          "name": "GAN多尺度目标感知",
+          "desc": "基于GAN网络实现线路典型目标的多尺度快速发现及环境精确感知",
+          "evidence": [
+            {
+              "quote": "基于GAN网络，实现了线路典型目标的多尺度快速发现及环境精确感知",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3137,
+                "end_char": 3168
+              },
+              "version": "872c0bde12c57aa76702"
+            }
+          ]
+        },
+        {
+          "id": "item-93b4a434b54b",
+          "name": "条件GAN绝缘子缺陷检测",
+          "desc": "条件生成对抗网络复杂电力环境绝缘子分割与多尺度特征融合小目标缺陷检测",
+          "evidence": [
+            {
+              "quote": "基于条件生成对抗网络，进行了复杂电力环境下的绝缘子分割，具备高准确率和高速度的特点；基于多尺度特征融合的神经网路框架，实现了架空线环境下的小目标绝缘子及其缺陷检测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3305,
+                "end_char": 3385
+              },
+              "version": "872c0bde12c57aa76702"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1c64c51b02cc",
+          "name": "两栖式巡检机器人产业化",
+          "desc": "完成两代样机研发，形成巡检系统样机，成果已成功产业化并与国家电网签订采购合同",
+          "evidence": [
+            {
+              "quote": "该项目成果已成功产业化并与国家电网签订采购合同",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3538,
+                "end_char": 3560
+              },
+              "version": "872c0bde12c57aa76702"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-6e01048b43c7",
+          "name": "Lidar+IMU高精定位",
+          "desc": "改进扩展卡尔曼滤波融合Lidar+IMU数据实现高精定位与稳定控制及模仿学习轨迹规划",
+          "evidence": [
+            {
+              "quote": "基于改进的扩展卡尔曼滤波方法，通过Lidar+IMU数据融合实现机器人的高精定位和稳定控制；基于模仿学习方法，进行了机器人全线路运动轨迹规划，有效降低功耗，提升续航能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3170,
+                "end_char": 3253
+              },
+              "version": "872c0bde12c57aa76702"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c587aabf4e8f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-7ad3b964017c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7ad3b964017c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-83e3656946b6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7ad3b964017c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-93b4a434b54b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-93b4a434b54b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1c64c51b02cc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-83e3656946b6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6e01048b43c7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

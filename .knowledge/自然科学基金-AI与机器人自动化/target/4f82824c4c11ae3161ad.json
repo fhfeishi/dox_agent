@@ -1,0 +1,180 @@
+{
+  "doc_id": "4f82824c4c11ae3161ad",
+  "version": "328e104d79d9bd7c9514",
+  "source_hash": "fd2b4ac690420e87d07237e852ee026628b9199bcfbc701d1b34f79d11b1562c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:45.374427+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6d77aa4eb283",
+          "name": "上肢外骨骼康复训练",
+          "desc": "痉挛等不确定因素下上肢康复机器人智慧辅助训练",
+          "evidence": [
+            {
+              "quote": "针对上肢康复机器人的安全性的问题，本项目研究了基于阻抗控制模型的人机交互力矩安全控制算法，结合了自适应算法解决了使用者上肢关节阻抗参数的不确定问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2559,
+                "end_char": 2632
+              },
+              "version": "328e104d79d9bd7c9514"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1be2f6cdcbbf",
+          "name": "痉挛扰动安全舒适难保证",
+          "desc": "痉挛不确定项与非线性扰动影响稳定性舒适性与安全性",
+          "evidence": [
+            {
+              "quote": "在康复训练过程中，上肢外骨骼式康复机器人易受到患肢痉挛等不确定项和非线性扰动等因素的影响，其稳定性、舒适性和安全性等问题难以保证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 714
+              },
+              "version": "328e104d79d9bd7c9514"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bd40ff6a5ec9",
+          "name": "阻抗安全控制与切换",
+          "desc": "多模式切换机制与平均滑动滤波平滑关节运动",
+          "evidence": [
+            {
+              "quote": "针对上肢康复机器人的多种训练模式，为了保证训练轨迹连续，建立了切换控制机制，在关节执行器之前设计了平均滑动滤波器以平滑关节运动曲线。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2689,
+                "end_char": 2754
+              },
+              "version": "328e104d79d9bd7c9514"
+            }
+          ]
+        },
+        {
+          "id": "item-46b75f56ca14",
+          "name": "柔性气垫接触力传感",
+          "desc": "柔性气垫式接触力传感器降低使用者痛感",
+          "evidence": [
+            {
+              "quote": "并针对上肢康复机器人的舒适性的问题，研究了人机交互接口处的柔顺性并试制了柔性气垫式接触力传感器以降低使用者痛感。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2633,
+                "end_char": 2688
+              },
+              "version": "328e104d79d9bd7c9514"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ab41b6dc8a67",
+          "name": "智慧辅助训练系统",
+          "desc": "康复训练系统完成智慧辅助训练减轻理疗师负担",
+          "evidence": [
+            {
+              "quote": "外骨骼式上肢康复机器人康复训练系统能够针对患者患肢的具体情况完成智慧辅助训练，达到减轻康复理疗师的任务负担，甚至在一定程度上取代康复理疗师的训练。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2976,
+                "end_char": 3048
+              },
+              "version": "328e104d79d9bd7c9514"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6d77aa4eb283"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-1be2f6cdcbbf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1be2f6cdcbbf"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bd40ff6a5ec9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1be2f6cdcbbf"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-46b75f56ca14"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bd40ff6a5ec9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ab41b6dc8a67"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-46b75f56ca14"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ab41b6dc8a67"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

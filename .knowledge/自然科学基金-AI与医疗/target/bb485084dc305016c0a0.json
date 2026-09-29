@@ -1,0 +1,235 @@
+{
+  "doc_id": "bb485084dc305016c0a0",
+  "version": "065edd4f8d760e44ae93",
+  "source_hash": "d5890051cfbeace0b341ef9a892b3b0604ade82828f50ac3d5fefb889a884419",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:23:27.883710+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-41242bce0c34",
+          "name": "早期胃癌淋巴结转移术前预测",
+          "desc": "术前精准预测早期胃癌是否存在淋巴结转移是临床治疗决策选择的前提。",
+          "evidence": [
+            {
+              "quote": "术前精准预测早期胃癌是否存在淋巴结转移是临床治疗决策选择的前提",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 654,
+                "end_char": 684
+              },
+              "version": "065edd4f8d760e44ae93"
+            }
+          ]
+        },
+        {
+          "id": "item-7ef3f4442bc7",
+          "name": "胃癌根治手术预后评估",
+          "desc": "术前准确预测胃癌淋巴结转移有助于临床医生对治疗决策的选择和患者预后的评估。",
+          "evidence": [
+            {
+              "quote": "术前准确地预测胃癌是否存在淋巴结转移有助于临床医生对治疗决策的选择和患者预后的评估",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2728,
+                "end_char": 2768
+              },
+              "version": "065edd4f8d760e44ae93"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cc42362fe30d",
+          "name": "现有预测方式无法术前精准预测",
+          "desc": "当前以影像学检查和病理特征为基础的预测方式无法术前精准预测淋巴结转移。",
+          "evidence": [
+            {
+              "quote": "然而当前以影像学检查和病理特征为基础的预测方式无法术前精准预测淋巴结转移",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 686,
+                "end_char": 721
+              },
+              "version": "065edd4f8d760e44ae93"
+            }
+          ]
+        },
+        {
+          "id": "item-fc4fcda14199",
+          "name": "现有评价方法预测准确性有限",
+          "desc": "基于影像学检查及临床病理特征的评价方法对术前胃癌淋巴结转移的预测准确性有限。",
+          "evidence": [
+            {
+              "quote": "目前基于影像学检查及临床病理特征的评价方法对术前胃癌淋巴结转移的预测准确性有限",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2773,
+                "end_char": 2811
+              },
+              "version": "065edd4f8d760e44ae93"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a76b72116ccb",
+          "name": "数字病理指数构建与验证",
+          "desc": "通过数字病理分析提取248个定量图像特征变量，LASSO回归筛选构建数字病理指数。",
+          "evidence": [
+            {
+              "quote": "通过数字病理分析提取248个定量的数字病理图像特征变量并通过LASSO回归筛选与淋巴结转移相关的变量并构建数字病理指数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3009,
+                "end_char": 3067
+              },
+              "version": "065edd4f8d760e44ae93"
+            }
+          ]
+        },
+        {
+          "id": "item-0676d53cd225",
+          "name": "数字病理与临床病理联合建模",
+          "desc": "建立并验证基于数字病理指数联合术前临床病理危险因素的淋巴结转移术前预测模型，并开展前瞻性临床试验验证。",
+          "evidence": [
+            {
+              "quote": "建立和验证基于数字病理指数联合术前临床病理相关危险因素的早期胃癌淋巴结转移的术前预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 893,
+                "end_char": 936
+              },
+              "version": "065edd4f8d760e44ae93"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4b862d5a32e9",
+          "name": "数字病理指数显著区分转移",
+          "desc": "训练队列中数字病理指数在有无淋巴结转移患者间有显著差异，验证队列结果相似。",
+          "evidence": [
+            {
+              "quote": "在训练队列中，数字病理指数在有发生淋巴结转移与无淋巴结转移者的胃癌患者中有显著差异（中位值差值：0.403; 95% CI: 0.274-0.526; P<0.001）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3069,
+                "end_char": 3152
+              },
+              "version": "065edd4f8d760e44ae93"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e8c756a09cd4",
+          "name": "预测模型AUROC 0.851与0.846",
+          "desc": "基于CT分期、分化程度、CEA、CA19-9与数字病理指数的模型在训练与验证队列AUROC分别为0.851和0.846。",
+          "evidence": [
+            {
+              "quote": "由此构建的预测模型在训练队列和验证队列的AUROC分别为0.851（95% CI：0.796-0.907）和0.846（95% CI：0.794-0.897）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3290,
+                "end_char": 3368
+              },
+              "version": "065edd4f8d760e44ae93"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e812a3681a3f",
+          "name": "新模型显著提高预测效能",
+          "desc": "与基于5个临床病理特征的预测模型相比，新模型显著提高术前预测淋巴结转移风险效能。",
+          "evidence": [
+            {
+              "quote": "与基于上述5个临床病理特征的预测模型相比，新的模型显著地提高了术前预测淋巴结转移风险的效能（AUROC：0.846 vs. 0.812；P=0.002）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3432,
+                "end_char": 3507
+              },
+              "version": "065edd4f8d760e44ae93"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-41242bce0c34"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-cc42362fe30d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cc42362fe30d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a76b72116ccb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a76b72116ccb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4b862d5a32e9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0676d53cd225"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e8c756a09cd4"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

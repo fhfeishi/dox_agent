@@ -1,0 +1,142 @@
+{
+  "doc_id": "d3e677e0b7001d8ba09c",
+  "version": "18dbee80c4debf01a32d",
+  "source_hash": "7fcc6a646e61f82e96d96f4ab61e1804832cc63c5b962d1f35bad25dd5f5c88a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:11.163555+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9920c8df6ec6",
+          "name": "早期NSCLC立体定向质子放疗精准计划",
+          "desc": "面向早期非小细胞肺癌的质子SBRT治疗，基于影像组学引导制定量体裁衣的放疗计划。",
+          "evidence": [
+            {
+              "quote": "立体定向放射治疗（SBRT）对治愈早期恶性肿瘤疗效显著",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 669,
+                "end_char": 695
+              },
+              "version": "18dbee80c4debf01a32d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3e2ccc7eb0c6",
+          "name": "质子生物效应剂量现行换算方式受质疑",
+          "desc": "长期沿用的“质子生物效应剂量≈光子剂量×1.1”估算方式受到越来越多质疑，且更高生物效应使肿瘤内部生物异质性变化更复杂。",
+          "evidence": [
+            {
+              "quote": "然而，长期沿用的“质子生物效应剂量（BED）≈光子BED×1.1”估算方式受到越来越多质疑",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 732,
+                "end_char": 776
+              },
+              "version": "18dbee80c4debf01a32d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-69585436fb38",
+          "name": "影像组学引导的质子SBRT生物功能亚区预测",
+          "desc": "先在细胞水平建立质子SBRT离体生物效应剂量换算模型，再以荷瘤鼠影像组学特征修正在体换算模型，并基于影像组学与有监督机器学习建立疗程中肿瘤生物功能亚区域变化预测模型。",
+          "evidence": [
+            {
+              "quote": "基于影像组学特征和有监督的机器学习，建立质子SBRT疗程中肿瘤生物功能亚区域变化预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 979,
+                "end_char": 1022
+              },
+              "version": "18dbee80c4debf01a32d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-910ec0cf8a65",
+          "name": "建立质子SBRT在体生物效应剂量换算模型",
+          "desc": "结题摘要与立项摘要内容一致，未给出量化结果，仅说明拟以荷瘤鼠影像组学特征修正得到质子SBRT在体生物效应剂量换算模型并引导个体化放疗计划。",
+          "evidence": [
+            {
+              "quote": "然后以荷瘤鼠照射后肿瘤影像组学特征修正，得到质子SBRT在体生物效应剂量换算模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 924,
+                "end_char": 963
+              },
+              "version": "18dbee80c4debf01a32d"
+            }
+          ],
+          "status": "原文未明确"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9920c8df6ec6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-3e2ccc7eb0c6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-3e2ccc7eb0c6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-69585436fb38"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-69585436fb38"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-910ec0cf8a65"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

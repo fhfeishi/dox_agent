@@ -1,0 +1,235 @@
+{
+  "doc_id": "ddb47ce6b322484837b2",
+  "version": "56c560bc0704f99892f5",
+  "source_hash": "0c772261f5b727de55c1d27d3ab22bd5be1d5c9707f6ecc32f7fd850302a0876",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:37:22.797347+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-76d1b61202db",
+          "name": "早期口腔鳞癌隐匿性淋巴结转移预测",
+          "desc": "口腔鳞癌侵袭转移能力强，区域性淋巴结转移是最明确的预后因素，早期隐匿性转移是颈部手术方式争议根源。",
+          "evidence": [
+            {
+              "quote": "口腔鳞癌（OSCC）侵袭转移能力强，区域性淋巴结转移是最明确的预后因素",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 690,
+                "end_char": 724
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ]
+        },
+        {
+          "id": "item-594cf7f11736",
+          "name": "术前淋巴结状态无创评估",
+          "desc": "临床亟需更准确的术前评估淋巴结状态新方法，为个体化诊疗提供支持。",
+          "evidence": [
+            {
+              "quote": "临床亟需更准确的术前评估淋巴结状态的新方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 786,
+                "end_char": 806
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e18259c84ed0",
+          "name": "常规影像对早期隐匿性转移漏诊率高",
+          "desc": "目前常规影像对早期OSCC隐匿性转移漏诊率高。",
+          "evidence": [
+            {
+              "quote": "目前常规影像对早期（cT1-2N0）OSCC隐匿性转移漏诊率高",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2667,
+                "end_char": 2697
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ]
+        },
+        {
+          "id": "item-87b5cf994be9",
+          "name": "早期隐匿性颈淋巴结转移率高",
+          "desc": "早期OSCC约20～40%存在无法由常规影像学检出的隐匿性颈淋巴结转移。",
+          "evidence": [
+            {
+              "quote": "早期OSCC（cT1-2N0）约20～40%存在无法由常规影像学检出的隐匿性颈淋巴结转移，是导致颈部手术方式争议的根源",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 726,
+                "end_char": 784
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b21bc37fab9b",
+          "name": "多序列MRI影像组学与深度学习建模",
+          "desc": "结合深度学习卷积神经网络并增加对功能MRI（弥散加权和动态增强MRI）的分析，提升模型预测效能。",
+          "evidence": [
+            {
+              "quote": "本研究拟结合深度学习卷积神经网络、增加对功能MRI（弥散加权和动态增强MRI）的分析，提升模型预测效能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 848,
+                "end_char": 898
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ]
+        },
+        {
+          "id": "item-51831dd7bb7e",
+          "name": "YOLOv8与ViT全自动深度学习框架",
+          "desc": "基于YOLOv8结合ViT网络的全自动深度学习框架构建列线图模型，实现从影像获取到风险预测的全流程自动化。",
+          "evidence": [
+            {
+              "quote": "基于全自动深度学习框架（YOLOv8结合ViT网络）构建的列线图模型，在内部及外部测试中均表现出优异性能（AUC最高达0.909），实现了从影像获取到风险预测的全流程自动化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2908,
+                "end_char": 2993
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-17599d6d1521",
+          "name": "T2WI与T1WI模型AUC 0.83与0.78",
+          "desc": "采用常规T2WI和增强T1WI影像组学特征的模型，训练集AUC 0.83、验证集0.78，显著优于传统淋巴结短径测量。",
+          "evidence": [
+            {
+              "quote": "其预测效能（AUC：训练集0.83，验证集0.78）显著优于传统淋巴结短径测量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2825,
+                "end_char": 2863
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-81c2d4ab53b2",
+          "name": "融合DWI与DCE模型AUC提升至0.87",
+          "desc": "进一步融合DWI和DCE-MRI参数图直方图特征的组合模型，预测AUC提升至0.87。",
+          "evidence": [
+            {
+              "quote": "进一步融合DWI和DCE-MRI参数图直方图特征的组合模型，预测AUC提升至0.87",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2865,
+                "end_char": 2906
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e699feaa940b",
+          "name": "TILs预测模型AUC 0.846",
+          "desc": "基于T2WI和增强T1WI影像组学特征构建预测肿瘤浸润淋巴细胞水平的模型，逻辑回归性能最佳，AUC 0.846、准确率80.9%。",
+          "evidence": [
+            {
+              "quote": "采用逻辑回归构建的模型预测性能最佳，AUC为0.846，准确率达80.9%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3061,
+                "end_char": 3097
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-76d1b61202db"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e18259c84ed0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e18259c84ed0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b21bc37fab9b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b21bc37fab9b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-81c2d4ab53b2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-51831dd7bb7e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e699feaa940b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

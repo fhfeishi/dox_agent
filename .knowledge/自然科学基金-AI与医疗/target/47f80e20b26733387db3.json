@@ -1,0 +1,202 @@
+{
+  "doc_id": "47f80e20b26733387db3",
+  "version": "924a2f573fc48277ac97",
+  "source_hash": "51af08a85f771d1c2499ccfb877ec008175fcb50b3c5c8d0e553cf9154607d95",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:21:33.311258+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6ce1722b6d48",
+          "name": "甲状腺良性结节热消融治疗",
+          "desc": "超声引导下微波消融等热消融技术已成为甲状腺良性结节手术治疗的替代方法。",
+          "evidence": [
+            {
+              "quote": "超声引导下微波消融等热消融技术已成为甲状腺良性结节手术治疗的替代治疗方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 666,
+                "end_char": 701
+              },
+              "version": "924a2f573fc48277ac97"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-900416b00582",
+          "name": "大体积结节再次消融指征不统一",
+          "desc": "大体积结节（≥10ml）二次或多次消融率达20～58%，但再次消融治疗指征尚无统一共识。",
+          "evidence": [
+            {
+              "quote": "目前，大体积结节（≥10ml）二次或多次消融率为20～58%，但再次消融治疗指征尚无统一共识",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 771,
+                "end_char": 816
+              },
+              "version": "924a2f573fc48277ac97"
+            }
+          ]
+        },
+        {
+          "id": "item-0ac83b695b08",
+          "name": "缺乏精准预测消融疗效手段",
+          "desc": "结节体积越大越易不完全消融，未消融区具有生长能力，是术后结节再生的重要原因。",
+          "evidence": [
+            {
+              "quote": "结节体积越大，单次治疗越易造成不完全消融，未消融区仍具有生长能力，是术后结节再生的重要原因",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2846,
+                "end_char": 2890
+              },
+              "version": "924a2f573fc48277ac97"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cf5b09c6ee04",
+          "name": "深度学习与多模态超声预测模型",
+          "desc": "应用深度学习模型提取多模态超声图像特征，构建消融疗效预测模型并验证，预测Vv生长概率。",
+          "evidence": [
+            {
+              "quote": "建立基于人工智能深度学习和多模态超声的甲状腺良性结节消融疗效预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2957,
+                "end_char": 2990
+              },
+              "version": "924a2f573fc48277ac97"
+            }
+          ]
+        },
+        {
+          "id": "item-1ff25362a86d",
+          "name": "Vv生长作为再次消融指征",
+          "desc": "前期发现Vv生长早于结节再生，提出Vv生长可作为再次消融治疗指征。",
+          "evidence": [
+            {
+              "quote": "申请人提出Vv生长可作为再次消融治疗指征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 891,
+                "end_char": 910
+              },
+              "version": "924a2f573fc48277ac97"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e6caad32c592",
+          "name": "预测模型训练内外测试均有效",
+          "desc": "消融疗效预测模型在训练集、内部测试集和外部测试集均取得较好预测效能。",
+          "evidence": [
+            {
+              "quote": "在训练集、内部测试集和外部测试集均取得了较好的预测效能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2992,
+                "end_char": 3018
+              },
+              "version": "924a2f573fc48277ac97"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-6eaa84dc687b",
+          "name": "Vv生长早于总体积增大",
+          "desc": "前期研究发现术后Vv增大早于总体积增大，Vv生长早于结节再生。",
+          "evidence": [
+            {
+              "quote": "申请人前期研究发现，术后Vv增大早于总体积增大，Vv生长早于结节再生",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 818,
+                "end_char": 851
+              },
+              "version": "924a2f573fc48277ac97"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6ce1722b6d48"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-900416b00582"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-900416b00582"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cf5b09c6ee04"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cf5b09c6ee04"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e6caad32c592"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1ff25362a86d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6eaa84dc687b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

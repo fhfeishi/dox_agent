@@ -1,0 +1,180 @@
+{
+  "doc_id": "25dc6f6fd3db64d03921",
+  "version": "3afb79f455863e698785",
+  "source_hash": "6b72303a0c8e34315b5f4e91670ceaa3a4b9a515cd82cb3b3a2769d28829bc5a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:55.705990+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3f5ffc3b0c27",
+          "name": "人机交互机器人轨迹规划",
+          "desc": "机器人需理解、预测人的运动并实时规划自身运动，实现安全友好人机交互",
+          "evidence": [
+            {
+              "quote": "实现高效、高质的人机交互的前提是机器人能够理解、预测人的运动并实时规划自身运动",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 728,
+                "end_char": 766
+              },
+              "version": "3afb79f455863e698785"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c48969650050",
+          "name": "人臂运动预测效率低",
+          "desc": "现有人机交互研究存在人臂运动预测效率低、准确性不高及拟人机械臂规划缺失问题",
+          "evidence": [
+            {
+              "quote": "现有人机交互的研究仍然存在人臂运动预测效率低且准确性不高、缺乏人机动态交互中拟人机械臂高效运动规划等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 768,
+                "end_char": 819
+              },
+              "version": "3afb79f455863e698785"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1d570400da33",
+          "name": "人臂动作基元基元库",
+          "desc": "新人臂动作基元建模方法，包含十六种动作基元，解耦人臂冗余度",
+          "evidence": [
+            {
+              "quote": "提出了一种新的人臂动作基元建模方法，并基于此方法建模了包含有十六种人臂动作基元的基元库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3116,
+                "end_char": 3158
+              },
+              "version": "3afb79f455863e698785"
+            }
+          ]
+        },
+        {
+          "id": "item-2715dc11a490",
+          "name": "基于动作基元的人臂运动预测",
+          "desc": "基于人臂运动模型和智能学习算法，建立人臂达点运动数据库与修正最小阶跃模型",
+          "evidence": [
+            {
+              "quote": "提出了一种新的基于人臂运动模型和智能学习算法的人臂运动预测方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3251,
+                "end_char": 3281
+              },
+              "version": "3afb79f455863e698785"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-73129816734c",
+          "name": "角色动态分配人机协作控制策略",
+          "desc": "机械臂根据目标预测与模糊推理结果自主制定运动方式",
+          "evidence": [
+            {
+              "quote": "提出了一种基于目标预测和模糊推理的角色动态分配人-机协作运动控制策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3351,
+                "end_char": 3384
+              },
+              "version": "3afb79f455863e698785"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3f5ffc3b0c27"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c48969650050"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c48969650050"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1d570400da33"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1d570400da33"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-73129816734c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3f5ffc3b0c27"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2715dc11a490"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2715dc11a490"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-73129816734c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

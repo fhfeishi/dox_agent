@@ -1,0 +1,235 @@
+{
+  "doc_id": "64d6bae0a138b13fee2b",
+  "version": "75784513389822a1898a",
+  "source_hash": "609ef751bae37770e8b2ea0ab17fdd5ca937969d9e6705da0b61dddc5c3a9fd3",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:30:10.395959+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f4a15aa4fb49",
+          "name": "胃食管结合部腺癌新辅助化疗评估",
+          "desc": "Siewert II/III型胃食管结合部腺癌是我国高发癌肿，5年生存率低，术前新辅助化疗有助于改善预后。",
+          "evidence": [
+            {
+              "quote": "SiewertII/III型胃食管结合部腺癌是我国高发癌肿，5年生存率低",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 690,
+                "end_char": 725
+              },
+              "version": "75784513389822a1898a"
+            }
+          ]
+        },
+        {
+          "id": "item-50c768944e46",
+          "name": "新辅助化疗决策信息支持",
+          "desc": "构建的模型对新辅助化疗决策提供更多信息，实现个性化TRG分级概率输出。",
+          "evidence": [
+            {
+              "quote": "本研究构建的模型将对新辅助化疗决策提供更多信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1066,
+                "end_char": 1088
+              },
+              "version": "75784513389822a1898a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-060ff606ad22",
+          "name": "化疗疗效存在显著个体差异",
+          "desc": "由于肿瘤异质性，化疗疗效存在显著个体差异，如何术前精准评估疗效是极具挑战的临床难题。",
+          "evidence": [
+            {
+              "quote": "但由于肿瘤异质性，化疗疗效存在显著个体差异。如何实现术前精准评估化疗疗效是极具挑战的临床难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 755,
+                "end_char": 800
+              },
+              "version": "75784513389822a1898a"
+            }
+          ]
+        },
+        {
+          "id": "item-55491ea1fa17",
+          "name": "需筛选获益人群避免无效治疗",
+          "desc": "治疗前早期预测疗效、筛选治疗获益人群，同时避免化疗无效患者接受治疗，是胃癌个性化治疗的核心问题。",
+          "evidence": [
+            {
+              "quote": "治疗前早期预测疗效，筛选治疗获益人群，同时避免化疗无效患者接受治疗，是胃癌个性化治疗的核心问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2914,
+                "end_char": 2960
+              },
+              "version": "75784513389822a1898a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d3b7fd3c654a",
+          "name": "多时序影像组学动态评估模型",
+          "desc": "纳入单时间点影像组学特征并计算治疗前后特征变化量，构建多时序疗效预测模型。",
+          "evidence": [
+            {
+              "quote": "构建了一个多时序影像组学疗效预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3131,
+                "end_char": 3148
+              },
+              "version": "75784513389822a1898a"
+            }
+          ]
+        },
+        {
+          "id": "item-0cac2e3dca91",
+          "name": "融合肿瘤间质比TSR的建模",
+          "desc": "融合代表肿瘤微环境整体形态特征的肿瘤间质比、临床病理指标与关键影像学表型，构建多时间点多维度动态评估模型。",
+          "evidence": [
+            {
+              "quote": "融合代表肿瘤微环境整体形态特征的肿瘤间质比(TSR)及其他临床病理指标、关键影像学表型特征，构建多时间点、多维度疗效动态评估模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 943,
+                "end_char": 1006
+              },
+              "version": "75784513389822a1898a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-38cfe19d3259",
+          "name": "Merge模型训练集AUC 0.908",
+          "desc": "融合影像组学特征建立的Merge模型训练集AUC为0.908，优于各单时间点与变化量模型。",
+          "evidence": [
+            {
+              "quote": "在训练集中5个影像组学模型 Pre、Pos、Ratio、Delta、 DeltaABS及融合影像组学特征建立的Merge模型的AUC值分别为0.712 (95%CI 0.606-0.818)、0.813 (95%CI 0.733-0.893)、0.793 (95%CI 0.700-0.886)、0.797 (95%CI 0.706-0.888)、0.671 (95%CI 0.557-0.785)及0.908 (0.853-0.963)",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3343,
+                "end_char": 3561
+              },
+              "version": "75784513389822a1898a"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-5d0409ea0410",
+          "name": "TSR融合模型AUC 0.927与0.903",
+          "desc": "Merge评分联合临床风险因子及TSR建立的融合模型预测能力最优，训练集AUC 0.927、验证集0.903，敏感性达0.959。",
+          "evidence": [
+            {
+              "quote": "基于Merge 影像组学评分联合筛选出的临床风险因子及TSR 建立的融合模型显示出最优的预测能力，在训练集及验证集的AUC值分别为0.927 (0.872-0.982) 、0.903(0.815-0.990)，敏感性高达0.959 (0.753-1.000)",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3589,
+                "end_char": 3717
+              },
+              "version": "75784513389822a1898a"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-1c3657ad29b1",
+          "name": "多时序优于单时间点模型",
+          "desc": "证明多时序CT影像组学特征较单一时间点模型具有更好的疗效预测能力，组学特征与肿瘤微环境信息具有互补作用。",
+          "evidence": [
+            {
+              "quote": "证明了多时序CT影像组学特征较单一时间点模型具有更好的疗效预测能力，影像组学特征与肿瘤微环境信息在预测胃癌NAC反应方面具有信息互补作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3750,
+                "end_char": 3817
+              },
+              "version": "75784513389822a1898a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f4a15aa4fb49"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-060ff606ad22"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-060ff606ad22"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d3b7fd3c654a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d3b7fd3c654a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1c3657ad29b1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0cac2e3dca91"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5d0409ea0410"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

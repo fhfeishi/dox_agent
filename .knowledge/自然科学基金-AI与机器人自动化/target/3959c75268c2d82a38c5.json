@@ -1,0 +1,197 @@
+{
+  "doc_id": "3959c75268c2d82a38c5",
+  "version": "af7495077f26a6fad012",
+  "source_hash": "7162b74892dd634a37a6d5cd28b380a4c8ebccbd05c9e60566ae46d69c20cc9c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:00.381454+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-30f41d96dbba",
+          "name": "搬运作业腰部助力外骨骼",
+          "desc": "航空航天装配、军事等领域人工搬运作业助力",
+          "evidence": [
+            {
+              "quote": "腰部助力外骨骼机器人已广泛应用于航空航天装配、军事等领域的人工搬运作业中，有效提高了人体机能与作业效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2766,
+                "end_char": 2816
+              },
+              "version": "af7495077f26a6fad012"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1f1de02af5b0",
+          "name": "人机运动不相容与自适应差",
+          "desc": "现有人机运动不相容、感知控制精度实时性不足、策略自适应性差",
+          "evidence": [
+            {
+              "quote": "针对现有机器人在人机运动不相容、感知控制精准度与实时性不足、控制策略自适应性差等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2841,
+                "end_char": 2882
+              },
+              "version": "af7495077f26a6fad012"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-13293f75cf62",
+          "name": "超冗余混联腰部机构设计",
+          "desc": "基于人体腰髋关节运动机理的外骨骼机构设计，达到100%人体运动范围",
+          "evidence": [
+            {
+              "quote": "设计了外骨骼腰部超冗余度混联机构与髋关节欠驱动串联机构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3014,
+                "end_char": 3040
+              },
+              "version": "af7495077f26a6fad012"
+            }
+          ]
+        },
+        {
+          "id": "item-ba817e5ac2d5",
+          "name": "随动与自适应助力控制",
+          "desc": "两种控制模式的轨迹生成与模式切换方法",
+          "evidence": [
+            {
+              "quote": "设计了随动控制模式与自适应助力控制模式的轨迹生成方法和模式切换方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3281,
+                "end_char": 3313
+              },
+              "version": "af7495077f26a6fad012"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-808528f64c49",
+          "name": "搬运动作识别精度96%以上",
+          "desc": "三种人体搬运动作分阶段分任务识别算法准确性均达96%以上",
+          "evidence": [
+            {
+              "quote": "算法的准确性均达到96%以上",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3211,
+                "end_char": 3224
+              },
+              "version": "af7495077f26a6fad012"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-4121e398689c",
+          "name": "肌肉负荷降低60%以上",
+          "desc": "穿戴外骨骼后搬运重物引起的肌肉负荷降低60%以上",
+          "evidence": [
+            {
+              "quote": "穿戴外骨骼前后搬运重物引起的肌肉负荷可降低60%以上",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3479,
+                "end_char": 3504
+              },
+              "version": "af7495077f26a6fad012"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-30f41d96dbba"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-1f1de02af5b0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1f1de02af5b0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-13293f75cf62"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1f1de02af5b0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ba817e5ac2d5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ba817e5ac2d5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4121e398689c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-13293f75cf62"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-808528f64c49"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

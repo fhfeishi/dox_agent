@@ -1,0 +1,142 @@
+{
+  "doc_id": "462024b11096fc97b2bd",
+  "version": "617321a998a50a8efd31",
+  "source_hash": "6a402005f4a8b64f216f233573f31b6c226f1acb614a93acd0b4cf3f323193eb",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:36.103476+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ad143114cca3",
+          "name": "婴幼儿弥散磁共振成像数据复原",
+          "desc": "面向婴幼儿脑白质研究，改善婴幼儿dMRI数据质量以支撑脑发育研究与早期脑疾病诊断。",
+          "evidence": [
+            {
+              "quote": "弥散磁共振成像（diffusion MRI，dMRI）是婴幼儿大脑白质研究的主要技术手段，但一系列数据质量问题严重影响了婴幼儿dMRI数据的定量分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 741,
+                "end_char": 814
+              },
+              "version": "617321a998a50a8efd31"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1eff9ee8b006",
+          "name": "dMRI数据质量问题影响定量分析",
+          "desc": "婴幼儿dMRI存在噪声、分辨率不足与运动伪影等一系列数据质量问题，严重影响后续定量分析的可靠性。",
+          "evidence": [
+            {
+              "quote": "但一系列数据质量问题严重影响了婴幼儿dMRI数据的定量分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 786,
+                "end_char": 814
+              },
+              "version": "617321a998a50a8efd31"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4837b24413d1",
+          "name": "纵向时间信息引导的图神经网络复原框架",
+          "desc": "从去噪、超分辨率和运动伪影矫正三个核心任务出发，以图神经网络技术为基础，构建基于纵向时间信息引导的图神经网络深度学习框架用于婴幼儿dMRI数据复原。",
+          "evidence": [
+            {
+              "quote": "以图神经网络技术为基础，构建一套基于纵向时间信息引导的图神经网络深度学习框架用于婴幼儿dMRI数据复原",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 875,
+                "end_char": 925
+              },
+              "version": "617321a998a50a8efd31"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8dd76455a263",
+          "name": "发表高水平学术论文29篇并申请发明专利2项",
+          "desc": "以第一或通信作者发表高水平论文29篇（SCI 8篇、EI 21篇），申请国家发明专利2项；荣获ISBI最佳论文提名奖、陕西高等学校科学技术研究优秀成果一等奖，并在2项MICCAI竞赛中获冠亚军。",
+          "evidence": [
+            {
+              "quote": "以第一作者或通信作者发表高水平学术论文29篇到IEEE-TMI、IEEE-TNNLS、IPMI、MICCAI等领域知名期刊和会议",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2598,
+                "end_char": 2661
+              },
+              "version": "617321a998a50a8efd31"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ad143114cca3"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-1eff9ee8b006"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1eff9ee8b006"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4837b24413d1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4837b24413d1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8dd76455a263"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

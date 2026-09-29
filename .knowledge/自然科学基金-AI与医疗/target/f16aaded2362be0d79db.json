@@ -1,0 +1,142 @@
+{
+  "doc_id": "f16aaded2362be0d79db",
+  "version": "54b31cba1c0746dad80c",
+  "source_hash": "d5023ffb92196634115704e742b37e10cb81e61c7120e1e5fe7ed6086a7e93ff",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:47.257058+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ae18311650d8",
+          "name": "急性脑梗死后脑出血风险预测",
+          "desc": "面向急性脑梗死常见并发症脑出血的早期防治，构建适合中国人群的高准确度风险预测模型。",
+          "evidence": [
+            {
+              "quote": "脑出血是急性脑梗死常见并发症，致死率高",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 665,
+                "end_char": 683
+              },
+              "version": "54b31cba1c0746dad80c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c4f5e906ba8e",
+          "name": "国外模型对中国人群预测能力低且国内空白",
+          "desc": "国外脑出血预测模型对中国人群预测能力低至53%左右且未被中国指南采纳，国内尚无脑出血预测模型；评分模型纳入因子少，难以处理非线性与交互作用。",
+          "evidence": [
+            {
+              "quote": "目前国外脑出血预测模型对中国人群预测能力低至53%左右，未被中国指南采纳，国内尚无脑出血预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 685,
+                "end_char": 732
+              },
+              "version": "54b31cba1c0746dad80c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fe271608ee22",
+          "name": "多特征融合与机器学习高准确度预测模型",
+          "desc": "基于中国急性脑梗死患者数据库挖掘出血转化与不良预后预测因子，用多特征融合与机器学习构建并外部验证预测模型，并以SHAP实现可解释性。",
+          "evidence": [
+            {
+              "quote": "本项目拟在前期基础上，进一步寻找和发现中国急性脑梗死患者脑出血的有价值预测因子，并基于机器学习算法构建适合我国人群的高准确度预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 968,
+                "end_char": 1033
+              },
+              "version": "54b31cba1c0746dad80c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5c2c39185a04",
+          "name": "深度神经网络预测脑出血后不良结局AUC 0.905",
+          "desc": "建立含3160例患者的数据库并构建XGBoost、随机森林等5个模型，其中脑出血后不良结局深度神经网络AUC达0.905，介入治疗后动态预测模型出院时准确度0.945，显著优于传统HIAT、THRIVE评分。",
+          "evidence": [
+            {
+              "quote": "其中用于预测脑出血后不良结局的深度神经网络模型AUC达0.905，脑梗死介入治疗后动态预测模型在出院时的预测准确度达0.945",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3331,
+                "end_char": 3393
+              },
+              "version": "54b31cba1c0746dad80c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ae18311650d8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c4f5e906ba8e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c4f5e906ba8e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fe271608ee22"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fe271608ee22"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5c2c39185a04"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

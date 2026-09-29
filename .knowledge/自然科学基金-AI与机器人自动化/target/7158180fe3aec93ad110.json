@@ -1,0 +1,197 @@
+{
+  "doc_id": "7158180fe3aec93ad110",
+  "version": "42a260eb375e9d99e297",
+  "source_hash": "fa962745406b28a7e399edd7585a489310631dab063b1df166903d6d329600a7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:25.243326+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-60d441fd2370",
+          "name": "空间机器人自旋目标捕获",
+          "desc": "太空垃圾与失效航天器在轨捕获任务",
+          "evidence": [
+            {
+              "quote": "所需要捕获的太空垃圾可能处于自旋运动状态，这对目标捕获提出了巨大挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2264,
+                "end_char": 2298
+              },
+              "version": "42a260eb375e9d99e297"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e086d4097d0f",
+          "name": "自旋捕获复合体失稳",
+          "desc": "末端负载剧变与碰撞力累积导致基座偏转系统失稳",
+          "evidence": [
+            {
+              "quote": "提出一种复合体系统稳定的协调规划方法，解决末端负载发生极大变化、目标存在初始运动及碰撞力累积作用下，基座姿态偏转，复合体系统失稳的问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2528,
+                "end_char": 2595
+              },
+              "version": "42a260eb375e9d99e297"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2c2812b1a60e",
+          "name": "多阶段耦合动力学建模",
+          "desc": "抓捕前、接触碰撞、抓捕后各阶段运动学与动力学模型",
+          "evidence": [
+            {
+              "quote": "建立了多臂空间机器人系统捕获自旋目标中各阶段的运动学方程和耦合动力学模型，为后续的规划和控制奠定基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2424,
+                "end_char": 2473
+              },
+              "version": "42a260eb375e9d99e297"
+            }
+          ]
+        },
+        {
+          "id": "item-db979bd8e6df",
+          "name": "平衡臂无奇异协调规划",
+          "desc": "利用平衡臂抵消任务臂干扰保持基座稳定",
+          "evidence": [
+            {
+              "quote": "提出一种保持基座稳定的无奇异多臂协调运动规划方法，利用平衡臂抵消任务臂运动对基座产生的干扰，保持基座稳定",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2475,
+                "end_char": 2526
+              },
+              "version": "42a260eb375e9d99e297"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-59d63c75ffc6",
+          "name": "实践二十一号卫星应用",
+          "desc": "成果部分应用于实践二十一号空间碎片减缓项目",
+          "evidence": [
+            {
+              "quote": "所形成的研究成果部分应用到了我国“实践二十一号卫星”项目。实践二十一号卫星项目于2021年10月24日发射成功，主要用于空间碎片减缓技术试验验证。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2661,
+                "end_char": 2733
+              },
+              "version": "42a260eb375e9d99e297"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-5e12eb7b4759",
+          "name": "论文12篇与专利6项",
+          "desc": "SCI 5篇、EI会议7篇、授权发明专利6项",
+          "evidence": [
+            {
+              "quote": "包括发表SCI收录期刊5篇，EI收录国际会议7篇，授权发明专利6项，培养硕士研究生6名。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2617,
+                "end_char": 2660
+              },
+              "version": "42a260eb375e9d99e297"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-60d441fd2370"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e086d4097d0f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e086d4097d0f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2c2812b1a60e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e086d4097d0f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-db979bd8e6df"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-db979bd8e6df"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-59d63c75ffc6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2c2812b1a60e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5e12eb7b4759"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

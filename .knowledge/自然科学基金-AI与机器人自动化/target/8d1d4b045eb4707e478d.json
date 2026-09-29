@@ -1,0 +1,207 @@
+{
+  "doc_id": "8d1d4b045eb4707e478d",
+  "version": "172aeee971f3f8659f5e",
+  "source_hash": "92e4daf1183342637f4c1d4508af588b60deaee1dc9cf68b8769c88822b4b73e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:11.449195+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4323220e974e",
+          "name": "六足仿生机器人步态规划",
+          "desc": "非结构环境下六足机器人步态与协调控制",
+          "evidence": [
+            {
+              "quote": "本项目基于语义地图与稳定性评估研究三自由度单足机体椭圆布置的仿生六足机器人步态规划与协调控制，探索其特定地形下多位姿动稳定性分析方法、步态自适应策略、高效多足协调控制方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3602,
+                "end_char": 3687
+              },
+              "version": "172aeee971f3f8659f5e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-32c81dcd03fe",
+          "name": "步态轨迹稳定性割裂",
+          "desc": "非结构环境单一讨论步态轨迹或稳定性难获理想结果",
+          "evidence": [
+            {
+              "quote": "而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难以获得理想的结果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 692,
+                "end_char": 728
+              },
+              "version": "172aeee971f3f8659f5e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-85f3a7a44e51",
+          "name": "语义辅助激光SLAM",
+          "desc": "点云实时语义分割融合激光SLAM构建语义地图",
+          "evidence": [
+            {
+              "quote": "为提高机器人位姿估计的准确性，在前期激光点云实时语义分割方法基础上融合现有激光SLAM系统，构建语义辅助的激光SLAM系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4104,
+                "end_char": 4164
+              },
+              "version": "172aeee971f3f8659f5e"
+            }
+          ]
+        },
+        {
+          "id": "item-84f66ce17ffc",
+          "name": "虚拟模型控制与导纳",
+          "desc": "3+3构型测试台架与虚拟机构驱动机器人运动控制",
+          "evidence": [
+            {
+              "quote": "为研究机器人机身与单腿之间的作用原理，设计了“3+3”构型测试台架，并提出了一种导纳控制策略，实现测试平台对单腿的力载荷功能，模拟出真实机身对单腿的力作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3699,
+                "end_char": 3775
+              },
+              "version": "172aeee971f3f8659f5e"
+            }
+          ]
+        },
+        {
+          "id": "item-871981835d7f",
+          "name": "地形语义步态切换",
+          "desc": "依据地形语义信息切换至最优步态参数运动",
+          "evidence": [
+            {
+              "quote": "同时根据环境所获得的地形语义信息，使机器人在不同地形时切换至最优步态参数进行运动。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3930,
+                "end_char": 3970
+              },
+              "version": "172aeee971f3f8659f5e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b4fbee2a9e2e",
+          "name": "改进双目VI-SLAM",
+          "desc": "非线性优化改进双目VI-SLAM解决惯性参数估计",
+          "evidence": [
+            {
+              "quote": "提出一种基于非线性优化的改进双目VI-SLAM算法，解决原有算法初始化阶段惯性参数估计不准确的问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4054,
+                "end_char": 4103
+              },
+              "version": "172aeee971f3f8659f5e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4323220e974e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-32c81dcd03fe"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-32c81dcd03fe"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-85f3a7a44e51"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-32c81dcd03fe"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-84f66ce17ffc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-32c81dcd03fe"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-871981835d7f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-85f3a7a44e51"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b4fbee2a9e2e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-84f66ce17ffc"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b4fbee2a9e2e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

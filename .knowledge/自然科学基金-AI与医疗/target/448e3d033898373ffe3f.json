@@ -1,0 +1,142 @@
+{
+  "doc_id": "448e3d033898373ffe3f",
+  "version": "bfe716d27ecd35fd7cf2",
+  "source_hash": "f5716338b14804a52df22f771e32d5151ba1337021402617f92b5c691d478dbc",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:45.883471+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c35e738e4a97",
+          "name": "结直肠癌肝转移共识分子分型与靶向治疗预后预测",
+          "desc": "面向CRLM靶向治疗个体差异大的问题，借助多参数MRI无创监测共识分子分型并预测靶向治疗预后。",
+          "evidence": [
+            {
+              "quote": "结直肠癌肝转移（CRLM）靶向治疗效果个体差异较大，共识分子分型（CMS）是指导靶向治疗的重要指标，与其预后显著相关",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 685,
+                "end_char": 742
+              },
+              "version": "bfe716d27ecd35fd7cf2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-089a3a5359e0",
+          "name": "基因检测有创且忽略肿瘤空间异质性",
+          "desc": "现有基因检测方法有创且不能动态反映肿瘤整体基因状态；预后研究多采用单一时间点靶转移灶影像特征，忽略了肿瘤空间异质性及其变化。",
+          "evidence": [
+            {
+              "quote": "但现有的基因检测方法存在有创且不能动态反映肿瘤整体基因状态的局限性，预后研究则多采用单一时间点靶转移灶的影像特征，忽略了肿瘤的空间异质性及其变化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 826,
+                "end_char": 897
+              },
+              "version": "bfe716d27ecd35fd7cf2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ac1ac5de12a9",
+          "name": "多参数MRI深度影像组学无创CMS影像标记物",
+          "desc": "借助多参数MRI与深度影像组学方法提出无创监测CMS的影像标记物，并融合全肝转移灶亚区域空间异质性特征与治疗早期变化特征构建预后融合模型。",
+          "evidence": [
+            {
+              "quote": "本项目拟借助多参数MRI，采用深度影像组学方法，提出一种无创性监测CMS的影像标记物",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 902,
+                "end_char": 943
+              },
+              "version": "bfe716d27ecd35fd7cf2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e028c3be7d49",
+          "name": "发表SCI论文13篇与中文核心5篇",
+          "desc": "依托项目以第一或通讯作者（含共同）发表高水平SCI论文13篇、中文核心期刊5篇，并获山西省科技进步二等奖2项。",
+          "evidence": [
+            {
+              "quote": "以第一或通讯作者（含共同）发表在本领域高水平SCI论文13篇，中文核心期刊5篇，申报并成功获得山西省科技进步二等奖2项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3402,
+                "end_char": 3460
+              },
+              "version": "bfe716d27ecd35fd7cf2"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c35e738e4a97"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-089a3a5359e0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-089a3a5359e0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ac1ac5de12a9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ac1ac5de12a9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e028c3be7d49"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

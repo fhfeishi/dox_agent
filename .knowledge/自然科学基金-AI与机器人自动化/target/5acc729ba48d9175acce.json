@@ -1,0 +1,180 @@
+{
+  "doc_id": "5acc729ba48d9175acce",
+  "version": "a26baf15f99b78f2902a",
+  "source_hash": "eb8dedfa38a50a5bd2f5f797ca060e6ad32d04e295d78a829d1a7d72ca033667",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:35.352073+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-58a79dd555f2",
+          "name": "无人机载穿墙雷达探测",
+          "desc": "空中穿透墙壁对建筑内人体目标三维成像探测",
+          "evidence": [
+            {
+              "quote": "课题以无人机载超宽带三维穿墙雷达（Three-Dimensional Through-the-Wall Radar，3D TWR）人体目标姿态估计为研究对象",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2582,
+                "end_char": 2659
+              },
+              "version": "a26baf15f99b78f2902a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d208b261daec",
+          "name": "低信杂噪比与虚假像",
+          "desc": "发射功率低阵列稀疏抖动多径复杂致信杂噪比低",
+          "evidence": [
+            {
+              "quote": "工作频段低、发射功率低、阵列稀疏、无人机抖动、多径环境复杂且目标运动状态多变，使得雷达接收的回波信号具有信杂噪比低、多径干扰强、空间采样不足等特点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 691,
+                "end_char": 764
+              },
+              "version": "a26baf15f99b78f2902a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e10c1fec2a20",
+          "name": "栅瓣抑制方法",
+          "desc": "基于子孔径子频带相干因子加权抑制稀疏阵列栅瓣",
+          "evidence": [
+            {
+              "quote": "提出了基于子孔径子频带相干因子加权的栅瓣抑制方法，有效抑制了稀疏阵列产生的栅瓣。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2877,
+                "end_char": 2916
+              },
+              "version": "a26baf15f99b78f2902a"
+            }
+          ]
+        },
+        {
+          "id": "item-70c8fcfcacc0",
+          "name": "多任务姿态识别网络",
+          "desc": "深度学习多任务探测姿态识别并模型剪枝压缩部署",
+          "evidence": [
+            {
+              "quote": "提出了一种新的基于深度学习的多任务人体目标探测及姿态识别方法，实现了对墙后人体目标数量、位置及其姿态信息的可靠同步提取。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2957,
+                "end_char": 3016
+              },
+              "version": "a26baf15f99b78f2902a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0ac18c683540",
+          "name": "数据集与可靠提取",
+          "desc": "构建3D TWR图像数据集实现可靠同步提取",
+          "evidence": [
+            {
+              "quote": "构建了3D TWR图像数据集，提出了一种新的基于深度学习的多任务人体目标探测及姿态识别方法，实现了对墙后人体目标数量、位置及其姿态信息的可靠同步提取。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2942,
+                "end_char": 3016
+              },
+              "version": "a26baf15f99b78f2902a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-58a79dd555f2"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d208b261daec"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d208b261daec"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e10c1fec2a20"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d208b261daec"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-70c8fcfcacc0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-70c8fcfcacc0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0ac18c683540"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e10c1fec2a20"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0ac18c683540"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

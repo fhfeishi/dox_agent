@@ -1,0 +1,180 @@
+{
+  "doc_id": "fee42fda68c8d6bd8170",
+  "version": "b7467c68aefc8e9223bd",
+  "source_hash": "d5a53e39a5c8eef19ac822b6527e9a07dc19b4535d3ebef70f01b328fdec1f38",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:45.361323+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b5074b5b5915",
+          "name": "水声通信网络资源分配",
+          "desc": "多发射器-接收器对共存水声网络的自适应分配",
+          "evidence": [
+            {
+              "quote": "针对水下复杂环境中多发射器-接收器对共存的水声通信网络所面临的挑战，本项目采用了分布式学习机制，旨在深入研究基于多智能体强化学习的水声通信网络自适应资源分配与优化方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2935,
+                "end_char": 3018
+              },
+              "version": "b7467c68aefc8e9223bd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fb98194d9e00",
+          "name": "RL应用于水下网络困难",
+          "desc": "学习模型、计算复杂度和算法适应性困难",
+          "evidence": [
+            {
+              "quote": "但是将已有多智能体强化学习算法应用于水下网络资源分配却面临着学习模型、计算复杂度和算法适应性等困难。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 776,
+                "end_char": 825
+              },
+              "version": "b7467c68aefc8e9223bd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a5da8c1d89e3",
+          "name": "马尔科夫决策建模",
+          "desc": "联合资源分配问题转化为多状态马尔科夫决策模型",
+          "evidence": [
+            {
+              "quote": "系统研究了将联合资源分配问题转化为多状态马尔可夫决策的建模过程，为状态信息已知和未知情况下多发射器-接收器对共存场景下的资源分配方法奠定了基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3115,
+                "end_char": 3186
+              },
+              "version": "b7467c68aefc8e9223bd"
+            }
+          ]
+        },
+        {
+          "id": "item-43f7d092ce6e",
+          "name": "分层博弈学习",
+          "desc": "自适应探索利用机制利用历史奖励信息",
+          "evidence": [
+            {
+              "quote": "项目基于博弈均衡的特点，系统地研究了自适应调整探索与利用的概率机制，并充分利用历史奖励信息，提出了信道信息未知条件下的多智能体分层博弈学习方案。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3254,
+                "end_char": 3325
+              },
+              "version": "b7467c68aefc8e9223bd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f1476afb587b",
+          "name": "分布式学习资源优化",
+          "desc": "协作竞争机制实现资源有效分配提升网络性能",
+          "evidence": [
+            {
+              "quote": "通过协作与竞争机制，实现了资源的更有效分配，提高整个水声通信网络的性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3367,
+                "end_char": 3402
+              },
+              "version": "b7467c68aefc8e9223bd"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-b5074b5b5915"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-fb98194d9e00"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fb98194d9e00"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a5da8c1d89e3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fb98194d9e00"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-43f7d092ce6e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-43f7d092ce6e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f1476afb587b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a5da8c1d89e3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f1476afb587b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

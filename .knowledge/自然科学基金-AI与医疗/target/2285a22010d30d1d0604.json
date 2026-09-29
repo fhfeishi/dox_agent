@@ -1,0 +1,142 @@
+{
+  "doc_id": "2285a22010d30d1d0604",
+  "version": "3babd27f7c1dbba87222",
+  "source_hash": "88fad0f9357d85c312634bde32a65bf35d77be6f3ed7e7e4c7ebb727df22e01a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:47.230995+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-719a555ad199",
+          "name": "青少年儿童近视控制效果预测与预警",
+          "desc": "面向我国青少年儿童近视高发的公共卫生问题，构建集生理性眼轴预测、控制效果评估与高危预警于一体的智能模型体系。",
+          "evidence": [
+            {
+              "quote": "我国的青少年儿童近视发病率逐年增高，是我国面临的一项重要的社会公共卫生问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 695
+              },
+              "version": "3babd27f7c1dbba87222"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7977829ee61a",
+          "name": "缺乏对照组且难以提前预测控制效果",
+          "desc": "由于青少年儿童近视高发，难以找到对照组长期随访生理性眼轴增长速度；临床中也难以提前预测不同控制方式的近视控制效果。",
+          "evidence": [
+            {
+              "quote": "由于我国青少年儿童近视的高发病率，难以找到对照组长期随访其正常的生理性眼轴增长速度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 740,
+                "end_char": 780
+              },
+              "version": "3babd27f7c1dbba87222"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1fcb14fbae27",
+          "name": "多AI算法模型预测眼轴增长与控制效果预警",
+          "desc": "基于大数据采用多种人工智能算法，完善中国青少年儿童生理性眼轴增长预测模型，并构建近视控制效果预测模型与近视快速进展高危预警模型。",
+          "evidence": [
+            {
+              "quote": "基于大数据采用不同的人工智能算法，完善用于预测中国青少年儿童近视患者生理性眼轴增长的算法模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 874,
+                "end_char": 919
+              },
+              "version": "3babd27f7c1dbba87222"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b92c00870b28",
+          "name": "注意力混合模型近视进展分级准确率85.2%",
+          "desc": "构建基于注意力机制的混合模型（HAM）实现近视进展风险分级预警，准确率达85.2%；高斯回归模型预测生理性眼轴增长R²达0.85，AL/CRC比值识别低远视储备AUC 0.861。",
+          "evidence": [
+            {
+              "quote": "构建了基于注意力机制的混合模型（HAM），实现近视进展风险分级预警，模型准确率达85.2%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2754,
+                "end_char": 2798
+              },
+              "version": "3babd27f7c1dbba87222"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-719a555ad199"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-7977829ee61a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7977829ee61a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1fcb14fbae27"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1fcb14fbae27"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b92c00870b28"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

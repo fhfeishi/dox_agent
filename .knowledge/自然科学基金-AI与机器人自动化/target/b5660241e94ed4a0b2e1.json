@@ -1,0 +1,197 @@
+{
+  "doc_id": "b5660241e94ed4a0b2e1",
+  "version": "f2521ab77056929d0db3",
+  "source_hash": "42e04f2951988b78db13062673ce25b1545b0e16571da616d9238d4650a4e13e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:11:19.704874+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c0085e5e45be",
+          "name": "飞机电缆线束自动化安装",
+          "desc": "飞机总装关键环节，从人工安装转向机器人自动化安装",
+          "evidence": [
+            {
+              "quote": "电缆线束的安装是飞机总装的关键环节之一，直接影响了飞机制造质量。目前主要依靠人工安装完成，其安装效率和质量严重制约了我国飞机批量生产的进度和质量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 724
+              },
+              "version": "f2521ab77056929d0db3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-49cfbaf0ae4f",
+          "name": "可变形线性物体操作难",
+          "desc": "可变形线性物体机器人操作的感知、规划与控制基础理论待解决",
+          "evidence": [
+            {
+              "quote": "重点研究可变形线性物体机器人自动化操作中感知、规划与控制所亟待解决的基础理论与关键技术，旨在实现飞机电缆线束机器人自动化安装",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 738,
+                "end_char": 799
+              },
+              "version": "f2521ab77056929d0db3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e3586d191846",
+          "name": "结构光边界误差补偿",
+          "desc": "揭示结构光三维测量边界误差机理，建立误差模型与补偿方法，精度提升一个数量级",
+          "evidence": [
+            {
+              "quote": "揭示了结构光三维测量中边界误差的产生机理，建立了精确的误差模型，提出了有效的补偿方法，边界测量精度提升一个数量级",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2235,
+                "end_char": 2290
+              },
+              "version": "f2521ab77056929d0db3"
+            }
+          ]
+        },
+        {
+          "id": "item-d8fae6499bd2",
+          "name": "视触觉融合模型预测控制",
+          "desc": "高维视触觉信息融合的机器人模型预测控制理论，实现40um配合间隙零样本Sim2Real迁移",
+          "evidence": [
+            {
+              "quote": "提出了高维视触觉信息融合的机器人模型预测控制理论，实现了40um配合间隙装配操作的零样本仿真到现实迁移",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2370,
+                "end_char": 2420
+              },
+              "version": "f2521ab77056929d0db3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cdf5f9e44265",
+          "name": "电缆线束自动操作系统",
+          "desc": "实现飞机电缆线束机器人自动化操作系统，三维测量成果在航空制造业应用",
+          "evidence": [
+            {
+              "quote": "成功实现了对飞机电缆线束这类“可变形线性物体”的机器人自动化操作系统，项目三维测量等成果已在航空制造业取得了应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2422,
+                "end_char": 2477
+              },
+              "version": "f2521ab77056929d0db3"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-105cf4d89aca",
+          "name": "奖励与国家标准",
+          "desc": "获北京市技术发明一等奖、日内瓦银奖等，参编国家标准1项",
+          "evidence": [
+            {
+              "quote": "以第一完成人获得北京市技术发明一等奖、中国智能制造十大科技进展、中国仪器仪表学会技术发明一等奖、北京市发明创新大赛特等奖、日内瓦国际发明展银奖",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2697,
+                "end_char": 2767
+              },
+              "version": "f2521ab77056929d0db3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c0085e5e45be"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-49cfbaf0ae4f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-49cfbaf0ae4f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e3586d191846"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-49cfbaf0ae4f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d8fae6499bd2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d8fae6499bd2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cdf5f9e44265"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e3586d191846"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-105cf4d89aca"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

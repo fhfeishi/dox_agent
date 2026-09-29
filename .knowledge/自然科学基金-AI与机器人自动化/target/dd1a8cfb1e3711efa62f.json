@@ -1,0 +1,197 @@
+{
+  "doc_id": "dd1a8cfb1e3711efa62f",
+  "version": "ffe55884f475f6f22a94",
+  "source_hash": "e554cad42b7095f16fcc42fe1b38c218cdccc9b1c59dca99ec4124ec219dd40c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:00.367729+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f97b8f6c0c0f",
+          "name": "开颅手术机器人人机协同",
+          "desc": "开颅手术占神经外科手术80%以上、风险最高且最费时费力",
+          "evidence": [
+            {
+              "quote": "开颅手术是神经外科最常用的治疗手段，占总手术量的80%以上，也是神经外科手术中风险最高，最费时费力的手术之一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2585,
+                "end_char": 2638
+              },
+              "version": "ffe55884f475f6f22a94"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5bf992fee316",
+          "name": "人工开颅失稳失速风险",
+          "desc": "人工钻孔开颅难以精确稳定把握钻头铣刀力度，易出现危险",
+          "evidence": [
+            {
+              "quote": "人工钻孔开颅难以精确稳定地把握钻头、铣刀的力度，极易出现失稳失速等危险情况",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2742,
+                "end_char": 2778
+              },
+              "version": "ffe55884f475f6f22a94"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1e60d8428cda",
+          "name": "虚拟约束与医生意图共享控制",
+          "desc": "虚拟约束与医生意图融合的共享控制方法",
+          "evidence": [
+            {
+              "quote": "提出了虚拟约束与医生意图融合的共享控制方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3028,
+                "end_char": 3048
+              },
+              "version": "ffe55884f475f6f22a94"
+            }
+          ]
+        },
+        {
+          "id": "item-655c4275b063",
+          "name": "外环导纳内环阻抗交互控制",
+          "desc": "人机环交互控制方法，实现医生在环的信息共享与智能化控制",
+          "evidence": [
+            {
+              "quote": "提出了外环导纳内环阻抗的人机环交互控制方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3050,
+                "end_char": 3070
+              },
+              "version": "ffe55884f475f6f22a94"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-037aff28003f",
+          "name": "铣削侧向跟踪精度",
+          "desc": "铣削操作侧向位置跟踪实现0.3毫米精度",
+          "evidence": [
+            {
+              "quote": "基于机器人的铣削操作在侧向位置跟踪任务中已经实现了0.3毫米的精度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3302,
+                "end_char": 3334
+              },
+              "version": "ffe55884f475f6f22a94"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-51b48f63ddc5",
+          "name": "仿体运动跟踪验证",
+          "desc": "周期性仿体运动实验最大误差0.7毫米，优于传统与自由手方法",
+          "evidence": [
+            {
+              "quote": "包括具有1Hz频率和5mm振幅的周期性仿体运动的实验验证显示，最大误差为0.7毫米，优于传统控制方法（高达2.0毫米）和自由手操作方法（5.0毫米）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3336,
+                "end_char": 3409
+              },
+              "version": "ffe55884f475f6f22a94"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f97b8f6c0c0f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5bf992fee316"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5bf992fee316"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1e60d8428cda"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5bf992fee316"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-655c4275b063"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1e60d8428cda"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-037aff28003f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-655c4275b063"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-51b48f63ddc5"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

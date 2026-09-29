@@ -1,0 +1,235 @@
+{
+  "doc_id": "55be40ed306672da909a",
+  "version": "9325276665e2849e5ca9",
+  "source_hash": "a578610551377b0d8c62d8117cbe85dec534dc6654babbe9788c145a5510d73e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:52:31.140510+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-07b8bcb4005d",
+          "name": "抗菌药物合理选择与耐药遏制",
+          "desc": "针对患者个体特征个性化选择抗菌药物是应对细菌耐药威胁的必要策略，常规电子健康数据为应用机器学习提供契机。",
+          "evidence": [
+            {
+              "quote": "针对患者个体特征个性化地选择抗菌药物是应对细菌耐药威胁的必要策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 686
+              },
+              "version": "9325276665e2849e5ca9"
+            }
+          ]
+        },
+        {
+          "id": "item-17a8d25b0331",
+          "name": "细菌耐药公共卫生威胁应对",
+          "desc": "细菌耐药是全球最重要的公共卫生威胁之一，个体化选择抗菌药物是遏制耐药的重要策略。",
+          "evidence": [
+            {
+              "quote": "细菌耐药是全球最重要的公共卫生威胁之一。根据患者个体特征及其对抗菌药物的敏感性，个体化选择抗菌药物是促进抗菌药物合理使用、遏制细菌耐药的重要策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2823,
+                "end_char": 2894
+              },
+              "version": "9325276665e2849e5ca9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-19d1589489f3",
+          "name": "经验用药缺少模型训练标签",
+          "desc": "实践中抗菌药物使用多为无细菌培养和药敏试验结果的经验用药，造成ML应用于EHR时缺少模型训练标签。",
+          "evidence": [
+            {
+              "quote": "实践中抗菌药物使用多为无细菌培养和药敏试验结果的经验用药，造成ML应用于EHR时缺少模型训练的标签",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 733,
+                "end_char": 781
+              },
+              "version": "9325276665e2849e5ca9"
+            }
+          ]
+        },
+        {
+          "id": "item-e86fe7899f83",
+          "name": "半监督ML尚未应用于相关研究",
+          "desc": "现有少量利用ML和EHR探索抗菌药使用的研究均为有监督ML，半监督ML尚未被应用到基于EHR的抗菌药相关研究。",
+          "evidence": [
+            {
+              "quote": "现有少量利用ML和EHR探索抗菌药使用的研究均为有监督ML（SML），半监督ML（SSML）能够利用无标签数据提升模型效果，但尚未被应用到基于EHR的抗菌药相关研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 783,
+                "end_char": 864
+              },
+              "version": "9325276665e2849e5ca9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-222fbffc202d",
+          "name": "SML与SSML模型判断感染与耐药",
+          "desc": "建立判断细菌感染的SML和SSML模型以确定患者是否应使用抗菌药，并建立预测抗菌药物耐药性的模型以合理选药。",
+          "evidence": [
+            {
+              "quote": "建立判断细菌感染的SML和SSML模型，探索最优模型，确定特定患者是否应该使用抗菌药；②建立预测抗菌药物耐药性的SML和SSML模型，探索最优模型，针对特定患者合理选择抗菌药",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 878,
+                "end_char": 964
+              },
+              "version": "9325276665e2849e5ca9"
+            }
+          ]
+        },
+        {
+          "id": "item-5311bb9329b0",
+          "name": "多准则决策框架选择最佳模型",
+          "desc": "针对34种常用抗菌药物分别为每种药物构建7种机器学习模型，利用多准则决策框架确定最佳耐药性预测模型。",
+          "evidence": [
+            {
+              "quote": "针对34种常用抗菌药物，为每种药物分别构建7种机器学习模型，并利用多准则决策框架为每种药物确定了最佳的耐药性预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3106,
+                "end_char": 3163
+              },
+              "version": "9325276665e2849e5ca9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c4bf9b504b1b",
+          "name": "随机森林模型血流感染预测AUC 0.891",
+          "desc": "通过两阶段特征选择筛选关键预测因子并对比12种机器学习模型，选择随机森林模型，测试集AUC达0.891并具可解释性。",
+          "evidence": [
+            {
+              "quote": "选择了综合性能最佳的随机森林模型，其在测试集上的AUC达0.891，且通过SHAP分析增强了模型的可解释性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3043,
+                "end_char": 3095
+              },
+              "version": "9325276665e2849e5ca9"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-5dc25f3f2155",
+          "name": "Access类药物比例提升至98.2%",
+          "desc": "综合策略显著优化药物选择，将Access类药物使用比例从19.9%提升至98.2%，药物与药敏不符比例从15.1%降至8.7%。",
+          "evidence": [
+            {
+              "quote": "将Access类药物使用比例从19.9%提升至98.2%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3325,
+                "end_char": 3352
+              },
+              "version": "9325276665e2849e5ca9"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-9d35c609ad64",
+          "name": "两阶段模型与临床决策支持框架",
+          "desc": "构建性能良好、可解释性强的两阶段机器学习模型用于感染判断与耐药预测，并设计验证可整合疗效、管理与安全考量的临床决策支持框架。",
+          "evidence": [
+            {
+              "quote": "本研究不仅成功构建了一套性能良好、可解释性强的两阶段机器学习模型用于感染判断与耐药预测，而且设计并初步验证了一个能整合疗效、管理与安全考量的临床决策支持框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3477,
+                "end_char": 3554
+              },
+              "version": "9325276665e2849e5ca9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-07b8bcb4005d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-19d1589489f3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-19d1589489f3"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-222fbffc202d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5311bb9329b0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5dc25f3f2155"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-222fbffc202d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9d35c609ad64"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

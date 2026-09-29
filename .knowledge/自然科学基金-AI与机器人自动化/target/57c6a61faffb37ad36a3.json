@@ -1,0 +1,180 @@
+{
+  "doc_id": "57c6a61faffb37ad36a3",
+  "version": "74e889966823428ca4a6",
+  "source_hash": "23a5e90cb6c05de46e37a9bfa374463f29a8c8b1c22b6d52a01d5d39046f628e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:19.541677+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7763eaf04bf4",
+          "name": "慢性病致病因素检测",
+          "desc": "以电子病历为基础的慢性病精准防控",
+          "evidence": [
+            {
+              "quote": "慢性疾病已经成为影响我国居民健康的重大公共卫生问题，精准有效的防控措施与方法亟待研究。本项目以慢性病致病因素检测和干预为目标，以电子病历医疗数据为基础，采用深度神经网络技术，构建了一套慢性病致病因素检测模型。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2752,
+                "end_char": 2855
+              },
+              "version": "74e889966823428ca4a6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-95a22f3258d9",
+          "name": "致病因素精准检测难",
+          "desc": "慢性病致病因素检测与个性化干预方案需求迫切",
+          "evidence": [
+            {
+              "quote": "项目研究成果可以应用于慢性病防控医疗云服务平台，为慢性病高危人群提供个性化的解决方案。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3025,
+                "end_char": 3067
+              },
+              "version": "74e889966823428ca4a6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6e104386aa00",
+          "name": "医疗实体识别模型",
+          "desc": "字词融合、半监督与多头注意力中文医疗实体识别",
+          "evidence": [
+            {
+              "quote": "构建基于字词融合、半监督学习以及结合多头注意力机制和字词联合的中文医疗实体识别模型，对中文电子病历命名实体进行识别",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2870,
+                "end_char": 2926
+              },
+              "version": "74e889966823428ca4a6"
+            }
+          ]
+        },
+        {
+          "id": "item-d6efe2ef5b5c",
+          "name": "图卷积关系抽取",
+          "desc": "图卷积与指针网络融合关系注意力的实体关系抽取",
+          "evidence": [
+            {
+              "quote": "构建基于图卷积神经网络和指针网络、融合关系注意力和文本差异特征的中文医学实体关系抽取模型，对中文医学实体关系进行抽取",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2931,
+                "end_char": 2988
+              },
+              "version": "74e889966823428ca4a6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b1eeaa09bc60",
+          "name": "胶囊网络致病检测",
+          "desc": "基于胶囊网络的检测与文本分类模型实现致病因素检测",
+          "evidence": [
+            {
+              "quote": "构建基于胶囊网络的检测和文本分类模型，对慢性病致病因素进行检测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2993,
+                "end_char": 3024
+              },
+              "version": "74e889966823428ca4a6"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-7763eaf04bf4"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-95a22f3258d9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-95a22f3258d9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6e104386aa00"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-95a22f3258d9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d6efe2ef5b5c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d6efe2ef5b5c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b1eeaa09bc60"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6e104386aa00"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b1eeaa09bc60"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

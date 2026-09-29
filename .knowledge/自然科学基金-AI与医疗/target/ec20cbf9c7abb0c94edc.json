@@ -1,0 +1,142 @@
+{
+  "doc_id": "ec20cbf9c7abb0c94edc",
+  "version": "9bb81921b828867beec8",
+  "source_hash": "84c50c4f12f86519ae0513fe68e7644d114e41ece48ef32e52fc090832a10ede",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:17.960982+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5ed38b8f7722",
+          "name": "晚期非小细胞肺癌免疫治疗预后评估",
+          "desc": "面向接受抗PD-1/PD-L1免疫治疗的晚期非小细胞肺癌患者，基于PET/CT量化解析分子标志物与临床事件进行预后评估。",
+          "evidence": [
+            {
+              "quote": "PD-1/PD-L1抑制剂因特异性强、肿瘤控制时间长等优点成为晚期非小细胞肺癌患者的I类推荐治疗方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 677,
+                "end_char": 726
+              },
+              "version": "9bb81921b828867beec8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9bbd9d10dee4",
+          "name": "免疫治疗不良事件早期症状不明显难以诊断",
+          "desc": "临床治疗过程可能发生超进展、免疫治疗相关性肺炎或恶病质等不良事件，早期症状不明显、特异性不强，易错过最佳干预时机。",
+          "evidence": [
+            {
+              "quote": "然而临床治疗过程可能发生超进展、免疫治疗相关性肺炎（ICI-肺炎）或恶病质等临床不良事件",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 728,
+                "end_char": 771
+              },
+              "version": "9bb81921b828867beec8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e3c7abc07925",
+          "name": "多模态AI影像组学PET/CT预后预测体系",
+          "desc": "采用多模态人工智能影像组学方法，基于国际多中心回顾与前瞻PET/CT数据构建任务驱动双判别器生成对抗网络及各类风险预测模型。",
+          "evidence": [
+            {
+              "quote": "本项目采用多模态人工智能影像组学方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3004,
+                "end_char": 3021
+              },
+              "version": "9bb81921b828867beec8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-80810e3bdfde",
+          "name": "双判别器GAN实现PD-L1表达预测AUC 0.88",
+          "desc": "双判别器生成对抗网络模型实现PD-L1表达准确预测AUC=0.88；超进展、ICI严重不良反应预测AUC分别达0.8与0.88，全身PET/CT原发耐药预测AUC达0.88–0.89。",
+          "evidence": [
+            {
+              "quote": "双判别器生成对抗网络模型实现PD-L1表达准确预测（AUC=0.88）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3235,
+                "end_char": 3269
+              },
+              "version": "9bb81921b828867beec8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5ed38b8f7722"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9bbd9d10dee4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9bbd9d10dee4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e3c7abc07925"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e3c7abc07925"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-80810e3bdfde"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

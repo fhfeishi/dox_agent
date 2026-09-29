@@ -1,0 +1,207 @@
+{
+  "doc_id": "3e8c42b022409d160eed",
+  "version": "db6950b978dc661a78bd",
+  "source_hash": "1b17deee3c94e4095ab45c42a89ade9f28cf408ca83ee24eade0169e9639733f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:44.030662+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-517fa83aa8ee",
+          "name": "侦察机器人手势遥操作",
+          "desc": "全天时复杂背景下地面侦察机器人遥操作",
+          "evidence": [
+            {
+              "quote": "视觉手势遥操作控制技术对降低侦察机器人的操作复杂度，提升人机协作执行军事任务的效率，实现更自然的人机共融和人机协作具有重要意义。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2771,
+                "end_char": 2834
+              },
+              "version": "db6950b978dc661a78bd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f8d8ae88578c",
+          "name": "全天时复杂背景检测难",
+          "desc": "光照变化、颜色相似、遮挡纹理干扰下手势检测难",
+          "evidence": [
+            {
+              "quote": "首先研究可适应全天时复杂背景的视觉手势的实时鲁棒检测方法和手势姿态的最优估计方法，实现在光照变化、颜色相似、附着物遮挡和纹理干扰下的手势检测与位姿估计",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 760,
+                "end_char": 834
+              },
+              "version": "db6950b978dc661a78bd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1e1efb114d7b",
+          "name": "错觉轮廓特征筛选",
+          "desc": "极度梯度提升分类器筛选最大区分度特征抗干扰",
+          "evidence": [
+            {
+              "quote": "然后基于极度梯度提升分类器设计了一种视觉手势最大区分度特征筛选方法，抑制了复杂背景中无关纹理对手势检测造成的干扰，解决了全天时复杂环境下的手势检测问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2910,
+                "end_char": 2985
+              },
+              "version": "db6950b978dc661a78bd"
+            }
+          ]
+        },
+        {
+          "id": "item-fe64fb3e5e17",
+          "name": "双视角3D姿态估计",
+          "desc": "端到端深度集成学习从2D图像估计3D手势姿态",
+          "evidence": [
+            {
+              "quote": "提出了一种端到端学习基于双视角RGB图像和贝叶斯优化的深度集成学习算法实现了从2D视觉图像估计3D手势姿态",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3113,
+                "end_char": 3165
+              },
+              "version": "db6950b978dc661a78bd"
+            }
+          ]
+        },
+        {
+          "id": "item-b650ce19cc52",
+          "name": "自抗扰滑模遥操瞄",
+          "desc": "多模型观测器克服非均匀牵引颤振实现快速瞄准",
+          "evidence": [
+            {
+              "quote": "研究并设计了基于多模型观测器的自抗扰滑模控制器，能够使操作人员使用视觉手势快速控制侦察机器人实现对带有随机突变运动特性的机动目标的快速瞄准与跟踪",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3240,
+                "end_char": 3311
+              },
+              "version": "db6950b978dc661a78bd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d9c97670b66d",
+          "name": "瞬时大残差遥操瞄实现",
+          "desc": "实现惯性冲击干扰瞬时大残差下的快速遥操瞄控制",
+          "evidence": [
+            {
+              "quote": "实现惯性冲击力干扰导致的瞬时大残差情况下的快速遥操瞄控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3366,
+                "end_char": 3394
+              },
+              "version": "db6950b978dc661a78bd"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-517fa83aa8ee"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f8d8ae88578c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f8d8ae88578c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1e1efb114d7b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f8d8ae88578c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fe64fb3e5e17"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f8d8ae88578c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b650ce19cc52"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b650ce19cc52"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d9c97670b66d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fe64fb3e5e17"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d9c97670b66d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

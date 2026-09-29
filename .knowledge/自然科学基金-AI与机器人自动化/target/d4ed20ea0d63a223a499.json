@@ -1,0 +1,197 @@
+{
+  "doc_id": "d4ed20ea0d63a223a499",
+  "version": "e45eae354c9d3c2570db",
+  "source_hash": "9f0b203ab8e21706893c3fd22b2f3a69fc3366290883b0d43ecc2c024cf9eae2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:54.182480+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f1060f112502",
+          "name": "分布式能源系统协同控制",
+          "desc": "高比例可再生能源接入下多主体强耦合、模型不完备的分布式系统",
+          "evidence": [
+            {
+              "quote": "随着高比例可再生能源接入，分布式能源系统呈现多主体强耦合、模型不完备、不确定扰动频繁、通信资源受限及工程约束并存等特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2741,
+                "end_char": 2799
+              },
+              "version": "e45eae354c9d3c2570db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b994b8967165",
+          "name": "集中式控制难以兼顾",
+          "desc": "传统集中式或强模型依赖型控制难以兼顾安全性、协同性与工程可实现性",
+          "evidence": [
+            {
+              "quote": "传统集中式或强模型依赖型控制方法难以兼顾安全性、协同性与工程可实现性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2801,
+                "end_char": 2834
+              },
+              "version": "e45eae354c9d3c2570db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b01730102297",
+          "name": "多微电网统一协同建模",
+          "desc": "电气网络-控制网络-信息网络统一协同建模与包含型协同控制目标体系",
+          "evidence": [
+            {
+              "quote": "构建多微电网“电气网络-控制网络-信息网络” 统一协同建模框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2912,
+                "end_char": 2942
+              },
+              "version": "e45eae354c9d3c2570db"
+            }
+          ]
+        },
+        {
+          "id": "item-02871ac2000a",
+          "name": "事件触发协同控制机制",
+          "desc": "具有严格正最小触发间隔，降低通信与计算负担",
+          "evidence": [
+            {
+              "quote": "提出具有严格正最小触发间隔的事件触发协同控制机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3113,
+                "end_char": 3136
+              },
+              "version": "e45eae354c9d3c2570db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b51e8202c655",
+          "name": "多微电网协同恢复",
+          "desc": "执行器故障、有向通信与负荷扰动并存下完成电压频率与有功功率协同恢复",
+          "evidence": [
+            {
+              "quote": "在执行器故障、有向通信与负荷扰动并存下，完成电压、频率与有功功率协同恢复",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3202,
+                "end_char": 3237
+              },
+              "version": "e45eae354c9d3c2570db"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-4a9f94299081",
+          "name": "储能能量管理优化",
+          "desc": "动态能量平衡点概念与Q学习分布式自适应优化，抑制过充过放",
+          "evidence": [
+            {
+              "quote": "提出“动态能量平衡点”概念与基于但评判网络Q学习的分布式自适应优化方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3246,
+                "end_char": 3280
+              },
+              "version": "e45eae354c9d3c2570db"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f1060f112502"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b994b8967165"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b994b8967165"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b01730102297"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b994b8967165"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-02871ac2000a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b01730102297"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b51e8202c655"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-02871ac2000a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4a9f94299081"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

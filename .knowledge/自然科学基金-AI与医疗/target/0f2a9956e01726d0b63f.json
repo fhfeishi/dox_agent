@@ -1,0 +1,142 @@
+{
+  "doc_id": "0f2a9956e01726d0b63f",
+  "version": "71d116f3c4f0a216caa7",
+  "source_hash": "ede5ccd05fd61a5b132f9a58cdb83f265d4185a5ba159f35517bc69cbcdc1c75",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:50.493755+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e72eb9e06990",
+          "name": "阿尔茨海默病早期诊断",
+          "desc": "基于多中心多模态MRI影像组学构建AD早期识别系统，实现高危人群的个体化定量预测。",
+          "evidence": [
+            {
+              "quote": "阿尔茨海默病(AD)是最常见的老年期认知障碍疾病，给家庭以及整个社会带来沉重的负担",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 703
+              },
+              "version": "71d116f3c4f0a216caa7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2f3566337efb",
+          "name": "需从群组差异转向个体化定量预测",
+          "desc": "AD及aMCI研究长期停留在群组差异层面，需实现向个体化定量预测的转变，为临床早期识别提供客观生物学标记。",
+          "evidence": [
+            {
+              "quote": "从而实现AD/aMCI的研究从寻找群组差异到个体化定量预测的转变，为临床AD早期识别提供客观生物学标记",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 880,
+                "end_char": 930
+              },
+              "version": "71d116f3c4f0a216caa7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6999f3cb7bc7",
+          "name": "多中心多模态MRI影像组学早期识别系统",
+          "desc": "利用机器学习方法，基于多中心多模态MRI构建基于影像组学特征的AD早期识别系统，利用aMCI横向与纵向数据明确重要脑区影像组学特征与认知能力的关系。",
+          "evidence": [
+            {
+              "quote": "本研究拟利用机器学习方法，基于多中心多模态MRI构建基于影像组学特征的AD早期识别系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 776,
+                "end_char": 818
+              },
+              "version": "71d116f3c4f0a216caa7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-be1072161970",
+          "name": "建立入库超3000例多中心影像数据库",
+          "desc": "建立多中心多模态AD及高危人群影像学数据库（入库超3000例），形成多中心特征库并完成全国大规模竞赛；发表论文25篇（SCI 17篇），获批专利2项、软著3项，开源Brainnetome fMRI Toolkit。",
+          "evidence": [
+            {
+              "quote": "研究团队建立了一个多中心多模态AD及高危人群的影像学数据库，入库数据超过3000例",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2791,
+                "end_char": 2831
+              },
+              "version": "71d116f3c4f0a216caa7"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e72eb9e06990"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2f3566337efb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2f3566337efb"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6999f3cb7bc7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6999f3cb7bc7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-be1072161970"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

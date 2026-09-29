@@ -1,0 +1,180 @@
+{
+  "doc_id": "2669d3801bc4cf90418b",
+  "version": "e76625b8f6698d68cf5a",
+  "source_hash": "157eff4b17b60d4829705de68385fa800277d480c6476e55385c4d1d010fc565",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:11.513959+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8546154f3114",
+          "name": "双足机器人高速奔越",
+          "desc": "城市环境复杂地形快速通过的奔越运动",
+          "evidence": [
+            {
+              "quote": "作为最接近人类运动形态的足式机器人类型，双足机器人在城市环境、复杂地形快速通过等任务中具有不可替代的优势。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2783,
+                "end_char": 2835
+              },
+              "version": "e76625b8f6698d68cf5a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-342613a373a9",
+          "name": "奔越稳定差能耗高",
+          "desc": "奔越状态高度耦合动作致稳定性差、能耗高、可靠性不足",
+          "evidence": [
+            {
+              "quote": "然而，在高速奔跑、跳跃和跨越障碍等“奔越”运动状态下，双足机器人需要在极短时间内完成腿部支撑、足部触地以及身体姿态调整等一系列高度耦合的动作，这使其运动控制长期面临稳定性差、能耗高和可靠性不足等难题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2836,
+                "end_char": 2935
+              },
+              "version": "e76625b8f6698d68cf5a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dc369b724301",
+          "name": "腿-足刚度协同调控",
+          "desc": "低维归约模型揭示刚度匹配对稳定性与能效的影响",
+          "evidence": [
+            {
+              "quote": "通过对足类生物腿足结构与运动方式的抽象建模，本项目将复杂的高速奔越动力学问题归约为可分析、可优化的低维运动模型，揭示了腿—足刚度匹配对机器人运动稳定性、地面作用力导向以及能量利用效率的关键影响机制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3086,
+                "end_char": 3184
+              },
+              "version": "e76625b8f6698d68cf5a"
+            }
+          ]
+        },
+        {
+          "id": "item-284c7ed0896c",
+          "name": "任务空间复合优先级控制",
+          "desc": "归约化奔越控制保证稳定性的同时实现高效奔越",
+          "evidence": [
+            {
+              "quote": "构建了面向高速奔越的运动生成与控制策略，使双足机器人能够在保证稳定性的同时实现高效奔越运动。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3185,
+                "end_char": 3230
+              },
+              "version": "e76625b8f6698d68cf5a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-444ee0269083",
+          "name": "奔越原理样机验证",
+          "desc": "双足奔越机器人样机研制与高速运动实验系统验证",
+          "evidence": [
+            {
+              "quote": "本项目通过双足奔越机器人原理样机研制与高速运动实验，对相关理论与方法进行了系统验证。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3231,
+                "end_char": 3272
+              },
+              "version": "e76625b8f6698d68cf5a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-8546154f3114"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-342613a373a9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-342613a373a9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-dc369b724301"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-342613a373a9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-284c7ed0896c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-dc369b724301"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-444ee0269083"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-284c7ed0896c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-444ee0269083"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

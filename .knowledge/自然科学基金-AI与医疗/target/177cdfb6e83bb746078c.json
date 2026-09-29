@@ -1,0 +1,142 @@
+{
+  "doc_id": "177cdfb6e83bb746078c",
+  "version": "760b1e35c9475efada75",
+  "source_hash": "70c3ea55d47f789b6389609cd17f9f83b612adaa99a9f4b8cfdee6fce25371f7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:16.741675+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3e509ce6b345",
+          "name": "纵向医学影像个体化疾病预测",
+          "desc": "基于医学影像随访序列预测个体疾病类型与未来发展，以阿尔兹海默病为验证场景支撑个性化医疗。",
+          "evidence": [
+            {
+              "quote": "基于医学影像随访序列准确预测个体疾病类型和未来发展是个性化医疗的基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 633,
+                "end_char": 666
+              },
+              "version": "760b1e35c9475efada75"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2c9c413d67ac",
+          "name": "纵向影像回归受群体趋势干扰且缺乏几何敏感性",
+          "desc": "现有纵向影像回归方法停留于原影像空间，受群体趋势干扰难以捕捉个体疾病时空影像表现；深度学习模型缺乏几何敏感性导致精度与泛化受限。",
+          "evidence": [
+            {
+              "quote": "但现有纵向影像回归方法停留于原影像空间，因受群体趋势干扰而难以准确捕捉个体疾病的时空影像表现",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 749,
+                "end_char": 794
+              },
+              "version": "760b1e35c9475efada75"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a846c9d015b5",
+          "name": "知识与数据双驱动的两阶段影像动态回归模型",
+          "desc": "在群体与个体两个层面开展回归分析提取去除群体趋势的个性化表征，融合微分同胚影像演化微分方程与数据驱动深度神经网络。",
+          "evidence": [
+            {
+              "quote": "本课题提出基于知识和数据双驱动的两阶段影像动态回归模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 860,
+                "end_char": 886
+              },
+              "version": "760b1e35c9475efada75"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-74ec8e605696",
+          "name": "发表期刊论文4篇与会议论文15篇",
+          "desc": "项目执行期间发表期刊论文4篇（含IEEE TMI、Medical Image Analysis等顶级期刊）及国际会议论文15篇，核心模型与算法已开源并在真实临床数据验证。",
+          "evidence": [
+            {
+              "quote": "项目执行期间共发表期刊论文4篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3406,
+                "end_char": 3420
+              },
+              "version": "760b1e35c9475efada75"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3e509ce6b345"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2c9c413d67ac"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2c9c413d67ac"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a846c9d015b5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a846c9d015b5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-74ec8e605696"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

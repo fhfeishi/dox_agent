@@ -1,0 +1,142 @@
+{
+  "doc_id": "6e8750e8991ff23147f1",
+  "version": "38544fd64428b7835f01",
+  "source_hash": "c7ca6f76e966eabb51bb802bb36bc1c3c43a8d17eb79893918d23d8f6034d73a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:12.607156+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-96827c30b545",
+          "name": "PET/CT医学图像语义特征分析与辅助诊断",
+          "desc": "面向基于PET/CT的恶性肿瘤预测、诊断与分期，研究跨模态语义特征学习与辅助诊断模型。",
+          "evidence": [
+            {
+              "quote": "基于医学影像PET/CT的恶性肿瘤预测、诊断和分期在临床中具有越来越重要的作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 679,
+                "end_char": 717
+              },
+              "version": "38544fd64428b7835f01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-97f35eb272e6",
+          "name": "小样本弱标签与样本分布不均衡问题",
+          "desc": "PET/CT辅助诊断存在小样本、弱标签、样本分布不均衡以及训练样本与测试样本分布不一致等问题。",
+          "evidence": [
+            {
+              "quote": "但是存在小样本、弱标签，样本分布不均衡、训练样本和测试样本分布不一致等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 719,
+                "end_char": 755
+              },
+              "version": "38544fd64428b7835f01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-06eb643e4bfa",
+          "name": "稀疏表示与跨域自适应残差神经网络模型",
+          "desc": "纵向搭建像素-低级特征-对象部分-对象的层次特征结构，横向搭建断层间与模态间底层及稀疏特征表达，提出结构化字典学习的稀疏表示与跨域自适应残差神经网络模型。",
+          "evidence": [
+            {
+              "quote": "提出基于结构化字典学习的图像稀疏表示、结合迁移学习理论的小样本量、弱标签，跨域自适应的残差神经网络模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 981,
+                "end_char": 1031
+              },
+              "version": "38544fd64428b7835f01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9295d28ab1de",
+          "name": "提出M3 Res-Transformer等系列辅助诊断模型",
+          "desc": "提出M3 Res-Transformer、多分辨率注意力密集网络MADenseNet、密集重参轻量化Transformer、重参邻域增强双流网络及“灵眸AI医疗”肺部肿瘤辅助诊断系统等系列模型。",
+          "evidence": [
+            {
+              "quote": "提出了M3 Res-Transformer计算机辅助诊断模型、多分辨率注意力密集网络MADenseNet的计算机辅助诊断模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3218,
+                "end_char": 3279
+              },
+              "version": "38544fd64428b7835f01"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-96827c30b545"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-97f35eb272e6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-97f35eb272e6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-06eb643e4bfa"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-06eb643e4bfa"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9295d28ab1de"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

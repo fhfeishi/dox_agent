@@ -1,0 +1,197 @@
+{
+  "doc_id": "01c5504cf160363bf67f",
+  "version": "e39bfcca50acf347cfd9",
+  "source_hash": "e901021c638bc09f2f1b446b806febd9811486d781124204b868233a3a4ae4d9",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:45.421008+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4d11df5ed580",
+          "name": "模块化N足拼接机器人",
+          "desc": "山地运输、边境巡检、震后救援的变足式机器人",
+          "evidence": [
+            {
+              "quote": "本项目针对当前足式机器人混杂不平整地形适应能力不足、负载能力有限等问题，研究可拼拆重组的模块化双足机器人设计、双足鲁棒运动控制、2N足自主拼接及协同运动控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2853,
+                "end_char": 2931
+              },
+              "version": "e39bfcca50acf347cfd9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-114a9ff95739",
+          "name": "地形适应负载不足",
+          "desc": "足式机器人混杂地形适应能力不足、负载有限",
+          "evidence": [
+            {
+              "quote": "本项目针对当前足式机器人混杂不平整地形适应能力不足、负载能力有限等问题，研究可拼拆重组的模块化双足机器人设计、双足鲁棒运动控制、2N足自主拼接及协同运动控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2853,
+                "end_char": 2931
+              },
+              "version": "e39bfcca50acf347cfd9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-045845b0b2fe",
+          "name": "鸵鸟仿生模块单体",
+          "desc": "三自由度轻量腿足与电磁吸附躯干自主拼接",
+          "evidence": [
+            {
+              "quote": "使用自研本体感知驱动器驱动，借鉴鸵鸟的身体结构及运动方式，设计了三自由度轻量化腿足机构，并基于应变力分析和拓扑优化结果对腿部结构进行了二次优化，同时集成了电磁吸附对接装置设计了可控自主拼接的躯干",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2946,
+                "end_char": 3042
+              },
+              "version": "e39bfcca50acf347cfd9"
+            }
+          ]
+        },
+        {
+          "id": "item-b10d23bc934a",
+          "name": "QP足底力全身控制",
+          "desc": "弹簧阻尼二次规划与多任务优先级全身控制器",
+          "evidence": [
+            {
+              "quote": "使用弹簧阻尼模型构建了二次规划问题(QP)求解欠驱动条件下满足摩擦约束的最优足底力，提出了基于多任务优先级的全身控制器对虚拟模型计算结果进行二次优化，实现双足约 1.8 m/s 高速奔跑、 上下 15°的斜坡、 以及抗冲击自恢复等测试",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3091,
+                "end_char": 3207
+              },
+              "version": "e39bfcca50acf347cfd9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-11de5be96ebf",
+          "name": "20秒全自主对接",
+          "desc": "YOLO识别与大模型推理实现20s内全自主对接",
+          "evidence": [
+            {
+              "quote": "针对2N足拼接体协同运动，基于yolo目标识别与大模型自主推理，设计了足式自主可控对接策略，实现20s内机器人全自主对接",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3209,
+                "end_char": 3268
+              },
+              "version": "e39bfcca50acf347cfd9"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-7a1fb6fb2d36",
+          "name": "拼接四足多步态验证",
+          "desc": "拼接四足实现多步态行走、上下斜坡、动态对接等功能",
+          "evidence": [
+            {
+              "quote": "以拼接四足机器人为例，成功实现了拼接四足机器人多步态行走、上下斜坡、 动态对接、负载运输以及协同转向等功能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3391,
+                "end_char": 3444
+              },
+              "version": "e39bfcca50acf347cfd9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4d11df5ed580"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-114a9ff95739"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-114a9ff95739"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-045845b0b2fe"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-114a9ff95739"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b10d23bc934a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-045845b0b2fe"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-11de5be96ebf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b10d23bc934a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7a1fb6fb2d36"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

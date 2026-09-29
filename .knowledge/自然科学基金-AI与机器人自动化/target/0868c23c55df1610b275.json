@@ -1,0 +1,197 @@
+{
+  "doc_id": "0868c23c55df1610b275",
+  "version": "27c760d9833bea4a88a1",
+  "source_hash": "5e9247e05dd47564007232d92fc772454718134112093c6ab5b86b1f2825bd14",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:02:30.727504+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e085da54cae9",
+          "name": "大规模集群在线轨迹规划",
+          "desc": "非理想条件下无人机集群军民实用性推广",
+          "evidence": [
+            {
+              "quote": "非理想条件下大规模集群在线轨迹规划是实现无人机集群军民实用性推广的关键技术之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 706
+              },
+              "version": "27c760d9833bea4a88a1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fbd7c95c40cf",
+          "name": "误差通信耦合致收敛差",
+          "desc": "位置误差、非完备通信与高维强耦合致收敛性差时效低",
+          "evidence": [
+            {
+              "quote": "针对位置误差、非完备通信与集群规划高维强耦合特性导致的收敛性差、结果不可行及时效性低等难题，基于解耦规划框架，开展非理想条件下学习增强的集群在线轨迹规划研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 707,
+                "end_char": 785
+              },
+              "version": "27c760d9833bea4a88a1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-092f37d31fd7",
+          "name": "安全通道序列凸规划",
+          "desc": "非凸避障约束转线性不等式实现亚秒级计算",
+          "evidence": [
+            {
+              "quote": "提出了一种安全飞行通道约束的序列凸规划算法，所设计的安全通道能够将大量的具有不确定性的非凸避障约束转化为少量的线性不等式约束，从而降低了问题的复杂性，轨迹计算耗时为亚秒级",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3264,
+                "end_char": 3348
+              },
+              "version": "27c760d9833bea4a88a1"
+            }
+          ]
+        },
+        {
+          "id": "item-6f7b32549da9",
+          "name": "时域滚动触发通信",
+          "desc": "稀疏图连接实现100架在线编队与5机实物飞行",
+          "evidence": [
+            {
+              "quote": "针对非理想通信下集群编队规划，引入稀疏图描述连接关系，构建“时域滚动-触发通信”集群轨迹规划框架，在仿真中实现了100架无人机的在线编队规划，并完成了5机实物编队飞行试验",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3351,
+                "end_char": 3435
+              },
+              "version": "27c760d9833bea4a88a1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c66a2412c54e",
+          "name": "端到端Sim2Real迁移",
+          "desc": "集中训练分布执行实现不依赖外部定位的实物飞行",
+          "evidence": [
+            {
+              "quote": "基于深度强化学习，构建了“集中训练-分布执行”学习架构，实现了不依赖外部定位的端到端飞行控制方法，并实现了仿真到现实的迁移，完成了实物飞行试验。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3438,
+                "end_char": 3509
+              },
+              "version": "27c760d9833bea4a88a1"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-351dd3cb96aa",
+          "name": "论文12篇与ICRA提名",
+          "desc": "SCI/EI期刊7篇EI会议5篇，获ICRA最佳论文提名",
+          "evidence": [
+            {
+              "quote": "经项目研究，在本领域重要期刊和会议上发表论文12篇，其中SCI/EI期刊论文7篇，EI会议论文5篇。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3629,
+                "end_char": 3678
+              },
+              "version": "27c760d9833bea4a88a1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e085da54cae9"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-fbd7c95c40cf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fbd7c95c40cf"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-092f37d31fd7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fbd7c95c40cf"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6f7b32549da9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-092f37d31fd7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c66a2412c54e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6f7b32549da9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-351dd3cb96aa"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

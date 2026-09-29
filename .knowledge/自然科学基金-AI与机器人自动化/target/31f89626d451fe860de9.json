@@ -1,0 +1,186 @@
+{
+  "doc_id": "31f89626d451fe860de9",
+  "version": "d49ee590c57bc53312c3",
+  "source_hash": "e2ce26492cd4fea241d96611a284944860eedc4409ff8884fb98f2a56efdcb9b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:52.881711+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-83c203e2d0e7",
+          "name": "轮足复合特种机器人",
+          "desc": "无人作战、抢险救灾、资源勘探和残障服务等领域高性能移动需求",
+          "evidence": [
+            {
+              "quote": "无人作战、抢险救灾、资源勘探和残障服务等特定领域对机器人的运动性能提出了极高要求，这为具有轮足复合运动功能的特种机器人提供了很好的发展契机",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 719
+              },
+              "version": "d49ee590c57bc53312c3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-91b1c394a6a8",
+          "name": "串联式足关节不足",
+          "desc": "通过Stewart并联平台解决串联式足关节的不足",
+          "evidence": [
+            {
+              "quote": "通过Stewart并联平台解决了串联式足关节的不足",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 828,
+                "end_char": 852
+              },
+              "version": "d49ee590c57bc53312c3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cf6efede42eb",
+          "name": "Stewart并联轮足机构设计",
+          "desc": "创新设计基于Stewart并联机构的轮足式机器人并研究驱动与稳定控制",
+          "evidence": [
+            {
+              "quote": "创新性设计了基于Stewart并联机构的轮足式机器人，研究其在大负载和复杂地形下的运动驱动与稳定控制方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2775,
+                "end_char": 2826
+              },
+              "version": "d49ee590c57bc53312c3"
+            }
+          ]
+        },
+        {
+          "id": "item-bf8464446784",
+          "name": "足式轮足协同控制框架",
+          "desc": "足关节驱动、足式稳定行走、轮足协同控制与自主决策规划框架",
+          "evidence": [
+            {
+              "quote": "设计了多种的Stewart型足关节驱动与控制方法、足式行走稳定控制框架与控制方法、轮式及轮足协同稳定控制框架与控制方法、机器人自主决策与规划框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3000,
+                "end_char": 3071
+              },
+              "version": "d49ee590c57bc53312c3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4fab4c570c98",
+          "name": "两代北理哪吒样机",
+          "desc": "研制两代Stewart型电动并联式轮足机器人并多次参加竞赛展示",
+          "evidence": [
+            {
+              "quote": "成功研制了两代Stewart型电动并联式轮足机器人，分别命名为“北理哪吒”一代和二代",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2917,
+                "end_char": 2958
+              },
+              "version": "d49ee590c57bc53312c3"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-1cb933858a47",
+          "name": "论文与授权专利",
+          "desc": "发表学术论文27篇（SCI 14篇），申报发明专利12项、授权9项",
+          "evidence": [
+            {
+              "quote": "共发表学术论文27篇，其中SCI论文14篇（高被引论文1篇，一区论文2篇，二区论文5篇），EI论文13篇，会议论文4篇；申报国家发明专利12项，已经授权9项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3126,
+                "end_char": 3203
+              },
+              "version": "d49ee590c57bc53312c3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-83c203e2d0e7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-91b1c394a6a8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-91b1c394a6a8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cf6efede42eb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bf8464446784"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4fab4c570c98"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cf6efede42eb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1cb933858a47"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

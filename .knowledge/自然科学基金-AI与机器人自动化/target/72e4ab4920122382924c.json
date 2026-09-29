@@ -1,0 +1,197 @@
+{
+  "doc_id": "72e4ab4920122382924c",
+  "version": "0ac78cd895f01d1e18f6",
+  "source_hash": "9135be2ea6ad1e6de7561a78b795231de900afff88fa0403b272fe395f2f18d5",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:02:29.378687+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8ab244e528fe",
+          "name": "深空探测空间机械臂",
+          "desc": "深空探测任务的机械臂在轨标定",
+          "evidence": [
+            {
+              "quote": "深空探测空间机械臂由于具有高负载自重比，且功耗低、结构紧凑、操作灵活等特点，在深空探测任务中扮演了重要角色，但是其柔性较大易导致末端位姿误差，严重影响机械臂操作精度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2064,
+                "end_char": 2146
+              },
+              "version": "0ac78cd895f01d1e18f6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5a7740d0b6b9",
+          "name": "柔性变形致位姿误差",
+          "desc": "发射条件、冲击碰撞与服役变形影响末端操作精度",
+          "evidence": [
+            {
+              "quote": "受到发射力学条件、意外冲击或碰撞以及长期服役引起的变形、磨损等多重因素的影响，深空探测空间机械臂在降落后运动学参数会发生变化，严重影响其末端操作精度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 647,
+                "end_char": 721
+              },
+              "version": "0ac78cd895f01d1e18f6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2f0d1d7cb1d2",
+          "name": "相对位姿误差模型",
+          "desc": "考虑位置与转角距离误差的建模及冗余参数判断",
+          "evidence": [
+            {
+              "quote": "建立考虑位置距离误差和转角距离误差的相对位姿误差模型，提出基于辨识矩阵列相关性的相对位姿误差模型冗余参数判断准则",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2258,
+                "end_char": 2313
+              },
+              "version": "0ac78cd895f01d1e18f6"
+            }
+          ]
+        },
+        {
+          "id": "item-00c87a5e5006",
+          "name": "强化学习构型优选",
+          "desc": "引入强化学习优化标定测量构型集合实现在线辨识",
+          "evidence": [
+            {
+              "quote": "提出了深空探测空间机械臂智能构型优选与参数辨识方法；建立了一套能够模拟深空探测机械臂自标定的地面实验平台。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2315,
+                "end_char": 2367
+              },
+              "version": "0ac78cd895f01d1e18f6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-87f6dbec8151",
+          "name": "空间站与嫦娥五号应用",
+          "desc": "应用于空间站核心舱机械臂地面验证与嫦娥五号采样",
+          "evidence": [
+            {
+              "quote": "并已成功应用于我国空间站核心舱机械臂的地面实验验证系统和嫦娥五号表取采样机械臂月表采样任务中。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2505,
+                "end_char": 2551
+              },
+              "version": "0ac78cd895f01d1e18f6"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-34c0438300f2",
+          "name": "论文16篇与专利8项",
+          "desc": "论文16篇（SCI 11、EI 4）、专利8项授权4项、软著6项",
+          "evidence": [
+            {
+              "quote": "在本项目资助下，课题组在国内外期刊上共计发表学术论文16篇，其中包括SCI检索11篇和EI检索4篇；申请相关研究的发明专利8项，其中4项已授权；申请软件著作权6项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2556,
+                "end_char": 2636
+              },
+              "version": "0ac78cd895f01d1e18f6"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-8ab244e528fe"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5a7740d0b6b9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5a7740d0b6b9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2f0d1d7cb1d2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5a7740d0b6b9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-00c87a5e5006"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-00c87a5e5006"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-87f6dbec8151"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2f0d1d7cb1d2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-34c0438300f2"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

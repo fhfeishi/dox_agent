@@ -1,0 +1,180 @@
+{
+  "doc_id": "1bc238c58eb6c89b0b64",
+  "version": "b1bf7c760f8c56c5b4c8",
+  "source_hash": "c5fdb53dcfc656d065fb41b85275505668104d9cb19131b543039d49e8241d43",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:08.116779+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2cdcfacc33a4",
+          "name": "自动驾驶非结构化路面感知",
+          "desc": "语义环境感知支撑运动规划、避障与自主导航",
+          "evidence": [
+            {
+              "quote": "语义环境感知是实现自动驾驶的核心技术之一，其结果为自动驾驶的下游任务，例如运动规划、避障、自主导航提供了必要的基础信息。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2533,
+                "end_char": 2592
+              },
+              "version": "b1bf7c760f8c56c5b4c8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b1d522945780",
+          "name": "负障碍与运动障碍检测缺失",
+          "desc": "非结构化路面负障碍物与运动障碍物检测少受关注",
+          "evidence": [
+            {
+              "quote": "然而，非结构化路面环境负障碍物检测以及运动障碍物检测却较少受到关注，相关方法的检测性能仍然难以满足实际应用的需求，存在许多问题与挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2647,
+                "end_char": 2713
+              },
+              "version": "b1bf7c760f8c56c5b4c8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-310cd65dc70f",
+          "name": "残差引导负障碍分割",
+          "desc": "多模态视觉语义分割路面负障碍物",
+          "evidence": [
+            {
+              "quote": "包括基于残差引导的路面负障碍物分割，以及基于稀疏张量的点云运动障碍物分割等。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2774,
+                "end_char": 2811
+              },
+              "version": "b1bf7c760f8c56c5b4c8"
+            }
+          ]
+        },
+        {
+          "id": "item-e8927de6c205",
+          "name": "稀疏张量运动障碍分割",
+          "desc": "三维激光点云端到端运动障碍物分割",
+          "evidence": [
+            {
+              "quote": "以及基于稀疏张量的点云运动障碍物分割等。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2792,
+                "end_char": 2811
+              },
+              "version": "b1bf7c760f8c56c5b4c8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1d7c09d341d7",
+          "name": "创新性分割研究工作",
+          "desc": "围绕多模态语义分割与点云语义分割提出创新性工作",
+          "evidence": [
+            {
+              "quote": "本项目围绕多模态视觉语义分割以及点云语义分割，针对路面负障碍物分割和点云运动障碍物分割，提出了一些具有创新性的研究工作",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2714,
+                "end_char": 2772
+              },
+              "version": "b1bf7c760f8c56c5b4c8"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2cdcfacc33a4"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b1d522945780"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b1d522945780"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-310cd65dc70f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b1d522945780"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e8927de6c205"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-310cd65dc70f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1d7c09d341d7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e8927de6c205"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1d7c09d341d7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

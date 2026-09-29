@@ -1,0 +1,235 @@
+{
+  "doc_id": "9b35f976c0a615c55991",
+  "version": "0fdfca6bc6fa1d439bbb",
+  "source_hash": "a83ae9f2162e2cc918d65a80fc4e332b5dbfa57c13b59580cebd1c1b0240ef9d",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:32:58.141876+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4df2baf83f47",
+          "name": "先心病相关肺动脉高压机器辅助诊断",
+          "desc": "云南为先心病高发区，约20%未及时救治患者会发展到肺动脉高压，严重时可致右心衰竭、致残甚至死亡。",
+          "evidence": [
+            {
+              "quote": "云南为先心病（CHD）高发区,先心病是出生首要先天性缺陷，而其中20%未得到及时救治的患者会发展到肺动脉高压（PAH），严重时可导致右心衰竭、致残，甚至死亡，及早干预十分重要",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 669,
+                "end_char": 755
+              },
+              "version": "0fdfca6bc6fa1d439bbb"
+            }
+          ]
+        },
+        {
+          "id": "item-e5418d86d05f",
+          "name": "CHD-PAH新筛查方法探索",
+          "desc": "研究并实现基于人工智能的先心病相关肺动脉高压机器辅助诊断算法与检测技术，为CHD-PAH寻找新的筛查方法。",
+          "evidence": [
+            {
+              "quote": "研究并实现基于人工智能的先心病相关肺动脉高压机器辅助诊断算法和检测技术，为CHD-PAH寻找新的筛查方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 961,
+                "end_char": 1012
+              },
+              "version": "0fdfca6bc6fa1d439bbb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-23866d98dd4a",
+          "name": "确诊方法不便早期筛查",
+          "desc": "目前仅在发现先心病后行超声或右心导管检查诊断肺动脉高压，不便在排查和筛查中早期发现PAH患者。",
+          "evidence": [
+            {
+              "quote": "目前仅在发现先心病后，行超声检查或行右心导管检查来诊断肺动脉高压，此确诊方法不便在排查和筛查中早期发现PAH患者",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 757,
+                "end_char": 812
+              },
+              "version": "0fdfca6bc6fa1d439bbb"
+            }
+          ]
+        },
+        {
+          "id": "item-d86aae4045c0",
+          "name": "肺高压心音特征需机器识别",
+          "desc": "预实验证实先心病相关肺动脉高压患者肺动脉瓣区心音图有明显特征，需通过AI识别。",
+          "evidence": [
+            {
+              "quote": "在预实验中证实先心病相关肺动脉高压患者肺动脉瓣区心音图有明显特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 854,
+                "end_char": 885
+              },
+              "version": "0fdfca6bc6fa1d439bbb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-27f4bee3e98e",
+          "name": "心音AI学习与CHD-PAH数据库",
+          "desc": "通过提取心音进行人工智能学习实现CHD机器辅助诊断，并建立CHD-PAH病例数据库。",
+          "evidence": [
+            {
+              "quote": "课题组通过提取心音进行人工智能学习，可以对CHD实现机器辅助诊断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 821,
+                "end_char": 852
+              },
+              "version": "0fdfca6bc6fa1d439bbb"
+            }
+          ]
+        },
+        {
+          "id": "item-37234f3b5ed9",
+          "name": "时频与深度融合特征分类",
+          "desc": "使用混合时频域特征和深度学习特征的融合特征，并采用v-SVM、KNN、AdaBoost及XGBoost等方法进行分类。",
+          "evidence": [
+            {
+              "quote": "通过使用混合了时频域特征和深度学习特征的融合特征，显示了能够反映不同方法性能的受试者工作特征曲线(ROC曲线)，其中显示了本研究的关于v-SVM、KNN、AdaBoost及XGBoost方法的ROC曲线",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3012,
+                "end_char": 3112
+              },
+              "version": "0fdfca6bc6fa1d439bbb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b02d8d5db05d",
+          "name": "XGBoost分类性能最优",
+          "desc": "XGBoost方案ROC曲线比KNN和AdaBoost更接近左上角，说明该方法分类性能更好。",
+          "evidence": [
+            {
+              "quote": "XGBoost方案的ROC曲线比KNN和AdaBoost更接近左上角，说明该方法的分类性能比其他方法更好",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3114,
+                "end_char": 3165
+              },
+              "version": "0fdfca6bc6fa1d439bbb"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-cf52aa073a15",
+          "name": "二分法准确率87.80%三分法88.61%",
+          "desc": "该算法在二分法测试集准确率为87.80%，在三分法测试集准确率为88.61%，证明可实现无创初步分类诊断。",
+          "evidence": [
+            {
+              "quote": "该算法在二分法测试集上的准确率为87.80%，在三分法测试集上的准确率为88.61%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3184,
+                "end_char": 3225
+              },
+              "version": "0fdfca6bc6fa1d439bbb"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-b5d79b24ad20",
+          "name": "心音分割与分类算法系列成果",
+          "desc": "提出多特征输入与注意力机制神经网络的心音分割算法等系列成果。",
+          "evidence": [
+            {
+              "quote": "A novel heart sound segmentation algorithm via multi-feature input and neural network with attention mechanism",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4235,
+                "end_char": 4344
+              },
+              "version": "0fdfca6bc6fa1d439bbb"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4df2baf83f47"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-23866d98dd4a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-23866d98dd4a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-27f4bee3e98e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-37234f3b5ed9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b02d8d5db05d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-27f4bee3e98e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-cf52aa073a15"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

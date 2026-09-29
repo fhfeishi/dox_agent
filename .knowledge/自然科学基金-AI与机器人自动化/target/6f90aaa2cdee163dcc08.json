@@ -1,0 +1,180 @@
+{
+  "doc_id": "6f90aaa2cdee163dcc08",
+  "version": "a847c9de9e0d0eb7adec",
+  "source_hash": "77efdd43d443228ac4a5ced403e681d72a51dae25ccbf1fc2dd703dabfc90884",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:52.869118+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-894859cd8d5b",
+          "name": "月面巡视机器人协同控制",
+          "desc": "基于深度强化学习理论的月面巡视机器人协同运动控制",
+          "evidence": [
+            {
+              "quote": "本项目以月面巡视机器人作为研究对象，基于深度强化学习理论对月面巡视机器人协同运动控制策略开展研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2902,
+                "end_char": 2949
+              },
+              "version": "a847c9de9e0d0eb7adec"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-209b5f32015f",
+          "name": "航天任务不确定性强",
+          "desc": "航天环境和任务不确定性强、机器人学习适应能力弱、智能系统智力不足",
+          "evidence": [
+            {
+              "quote": "航天环境和任务不确定性强、机器人学习和适应能力较弱、智能系统普遍存在着“能力有余，智力不足”等一些问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3603,
+                "end_char": 3653
+              },
+              "version": "a847c9de9e0d0eb7adec"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1a7942a8a41a",
+          "name": "深度学习感知与解译",
+          "desc": "搭建深度学习感知模型，实现不同场景环境及障碍条件下的自主感知与解译",
+          "evidence": [
+            {
+              "quote": "开展了深度学习感知模型的搭建，实现了机器人对不同场景环境及不同障碍条件下的自主感知与解译",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3087,
+                "end_char": 3130
+              },
+              "version": "a847c9de9e0d0eb7adec"
+            }
+          ]
+        },
+        {
+          "id": "item-a2954d0d63c5",
+          "name": "数字模拟-迁移学习-实景训练",
+          "desc": "小样本、泛化、高效学习方法完成强化学习模型迁移与样机移植",
+          "evidence": [
+            {
+              "quote": "通过“数字模拟-迁移学习-实景训练”相结合的方式训练策略，完成了月面巡视机器人深度强化学习模型的迁移和样机移植",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3288,
+                "end_char": 3342
+              },
+              "version": "a847c9de9e0d0eb7adec"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-157976328104",
+          "name": "地面验证与应用示范",
+          "desc": "完成天地协同下月面巡视机器人任务规划、自主抓取、步态迁移等全链路验证",
+          "evidence": [
+            {
+              "quote": "完成了天地协同下月面巡视机器人任务规划、机器人自主抓取、强化学习步态迁移等的地面实验平台关键技术验证与应用示范，完成了从算法设计、仿真训练、算法移植到机器人实物运行的全部验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3494,
+                "end_char": 3580
+              },
+              "version": "a847c9de9e0d0eb7adec"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-894859cd8d5b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-209b5f32015f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-209b5f32015f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1a7942a8a41a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-209b5f32015f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a2954d0d63c5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a2954d0d63c5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-157976328104"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1a7942a8a41a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-157976328104"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

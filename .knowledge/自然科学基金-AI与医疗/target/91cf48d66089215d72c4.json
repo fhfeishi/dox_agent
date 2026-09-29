@@ -1,0 +1,142 @@
+{
+  "doc_id": "91cf48d66089215d72c4",
+  "version": "a464e91d9f479983caf3",
+  "source_hash": "9403f3232e13a98f730b4169d8783fddcbd4813416326ebcf00e662dad6c2133",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:34.919201+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-51e341ac8c8c",
+          "name": "儿童喘息症状可解释AI辅助诊断",
+          "desc": "面向儿童喘息症状诊断，研究可解释性人工智能辅助诊断技术以提升儿科诊断水平。",
+          "evidence": [
+            {
+              "quote": "儿童喘息发病率极高且持续上升",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "f0af87fc2cb0f392070e5d243f208d47ca0cc486"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f33c272d7171",
+          "name": "病因复杂致诊断严重依赖专家经验",
+          "desc": "儿童喘息病因复杂，诊断过程严重依赖临床经验丰富的儿科专家，而我国儿科医生极度缺乏且缺少规范培训。",
+          "evidence": [
+            {
+              "quote": "因其病因复杂，诊断过程严重依赖临床经验丰富的儿科专家",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "f0af87fc2cb0f392070e5d243f208d47ca0cc486"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-07975ce680f8",
+          "name": "症状级-病灶级-全局三级可解释性框架",
+          "desc": "从症状级可解释性、病灶级可解释性和全局可解释性三个角度入手，以临床病历文本和影像为基础建立可解释模型，实现儿童喘息诊断的全局可解释性框架。",
+          "evidence": [
+            {
+              "quote": "本课题拟以儿童喘息症状诊断为出发点，以可解释AI辅助诊断技术为手段，从“症状级可解释性”、“病灶级可解释性”和“全局可解释性”三个角度入手",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "f0af87fc2cb0f392070e5d243f208d47ca0cc486"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-81160a47780d",
+          "name": "Trans-DLF预警模型AUC 0.89-0.90",
+          "desc": "构建覆盖2000余例患儿的多模态数据库，基于Transformer的全自动端到端预警模型Trans-DLF在内外测试集AUC达0.89-0.90；因果森林识别的获益亚群经支气管镜治疗后发热时长平均缩短1.16天。",
+          "evidence": [
+            {
+              "quote": "所构建的Trans-DLF模型在内外测试集上均表现稳健（曲线下面积[AUC]达0.89-0.90）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "76c1068187c87eaedfbde4308c2f972a7e5dad4d"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-51e341ac8c8c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f33c272d7171"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f33c272d7171"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-07975ce680f8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-07975ce680f8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-81160a47780d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

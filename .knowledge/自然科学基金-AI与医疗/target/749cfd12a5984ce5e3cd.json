@@ -1,0 +1,142 @@
+{
+  "doc_id": "749cfd12a5984ce5e3cd",
+  "version": "c4e0641e2ad1c33fff01",
+  "source_hash": "f3e409eb29e91180aa1396a0526d9620ace2777bef9ee79b53e988fdbff70017",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:30.826154+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bf073a96be2a",
+          "name": "胃癌新辅助化疗疗效影像组学预测",
+          "desc": "面向进展期胃癌新辅助化疗决策，基于多模态影像组学与AI构建治疗前疗效预测模型。",
+          "evidence": [
+            {
+              "quote": "胃癌是我国发病率和死亡率都非常高的恶性肿瘤，给我国带来了巨大的经济和社会负担",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 698
+              },
+              "version": "c4e0641e2ad1c33fff01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8dc8df55d0a6",
+          "name": "新辅助化疗并非对所有患者有效",
+          "desc": "新辅助化疗并不是对所有患者都有效，如何在治疗前有效预判其疗效是挑战性临床问题。",
+          "evidence": [
+            {
+              "quote": "但临床实践中发现新辅助化疗并不是对所有的患者都有效，如何在治疗前有效预判新辅助化疗的疗效是一个挑战性临床问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2426,
+                "end_char": 2479
+              },
+              "version": "c4e0641e2ad1c33fff01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-85a605f150a6",
+          "name": "多期CT影像组学与AI融合预测模型",
+          "desc": "从CT、内镜超声影像提取与新辅助化疗疗效高度相关的影像组学特征，结合病理与临床信息，利用半监督学习、弱监督关键区域筛选与多类别特征提取构建融合预测模型。",
+          "evidence": [
+            {
+              "quote": "通过新兴的影像组学方法从CT、内镜超声影像中提取与胃癌新辅助化疗疗效高度相关的关键影像组学特征，并结合病理、临床等信息，利用人工智能技术构建胃癌的新辅助化疗疗效预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 851,
+                "end_char": 934
+              },
+              "version": "c4e0641e2ad1c33fff01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6388c2072e2d",
+          "name": "融合模型预测TRG 0/1的AUC达0.819",
+          "desc": "基于近1000例回顾性与100例前瞻性数据构建融合模型，独立测试集预测新辅助化疗良好反应（TRG 0或1）AUC达0.819；淋巴结转移预测模型诊断精度较临床方法提高17%以上，工作发表于Annals of Oncology。",
+          "evidence": [
+            {
+              "quote": "该融合模型在独立测试集上预测新辅助化疗良好反应患者（TRG为0或1）的AUC达0.819，优于RECIST评分、临床模型和影像组学模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2962,
+                "end_char": 3028
+              },
+              "version": "c4e0641e2ad1c33fff01"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-bf073a96be2a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8dc8df55d0a6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8dc8df55d0a6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-85a605f150a6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-85a605f150a6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6388c2072e2d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

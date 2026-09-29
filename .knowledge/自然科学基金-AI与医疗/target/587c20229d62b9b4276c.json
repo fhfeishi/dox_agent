@@ -1,0 +1,142 @@
+{
+  "doc_id": "587c20229d62b9b4276c",
+  "version": "63ef81869b3160b6df02",
+  "source_hash": "960564a41be0416b13abcd2a025f2b8d296583ac40afecc4585545eb8c250101",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:11.217388+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6d3e6fbca981",
+          "name": "阿尔茨海默病认知分析与辅助诊断",
+          "desc": "面向AD病理复杂、长潜伏期的特点，用多模态脑影像与异构数据分析支撑AD认知与辅助诊断。",
+          "evidence": [
+            {
+              "quote": "阿尔茨海默病（AD）具有病理复杂、长潜伏期等特点，在临床诊断中存在病情发展变化规律不清楚、早期诊断不及时等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 697,
+                "end_char": 751
+              },
+              "version": "63ef81869b3160b6df02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-10b909a49170",
+          "name": "AD病情发展规律不清与早期诊断不及时",
+          "desc": "AD临床诊断中存在病情发展变化规律不清楚、早期诊断不及时等问题，且脑影像常存在缺失。",
+          "evidence": [
+            {
+              "quote": "在临床诊断中存在病情发展变化规律不清楚、早期诊断不及时等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 722,
+                "end_char": 751
+              },
+              "version": "63ef81869b3160b6df02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3e435d7a1200",
+          "name": "多流形多深度神经网络协同-对抗建模",
+          "desc": "采用流形学习与深度学习分析多模态脑影像及异构数据，研究多流形轨迹模型、双向多生成多对抗网络、端到端诊断报告生成及多深度神经网络协同的疾病分型与症状评估方法。",
+          "evidence": [
+            {
+              "quote": "采用流形学习、深度学习分析多模态脑影像及相关异构数据,研究多模态数据的多流形多深度神经网络的协同-对抗建模与优化算法,为AD认知和辅助诊断提供解决方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 753,
+                "end_char": 827
+              },
+              "version": "63ef81869b3160b6df02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bb57ff3bc26c",
+          "name": "发表学术论文32篇并受理授权发明专利10项",
+          "desc": "发表学术论文32篇（SCI期刊论文27篇），受理/授权国家发明专利10项，登记软件著作权3件，实现以阿尔茨海默病为代表的多种疾病辅助诊断与预测。",
+          "evidence": [
+            {
+              "quote": "发表学术论文32篇（其中SCI期刊论文27篇），受理/授权国家发明专利10项，登记软件著作权3件",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3650,
+                "end_char": 3697
+              },
+              "version": "63ef81869b3160b6df02"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6d3e6fbca981"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-10b909a49170"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-10b909a49170"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3e435d7a1200"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3e435d7a1200"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bb57ff3bc26c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

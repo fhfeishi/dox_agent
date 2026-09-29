@@ -1,0 +1,197 @@
+{
+  "doc_id": "a02e07cb4f2012a57297",
+  "version": "264feb4886169761ab48",
+  "source_hash": "3be8a41d27d687d87f4bfa2deccf32949bca0bfa967736aa69620ca058587803",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:02:30.690268+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cef78ad4edc7",
+          "name": "蔬果采摘机器人示教",
+          "desc": "温室番茄等开放农业场景的采摘作业",
+          "evidence": [
+            {
+              "quote": "开放动态、多扰动的农业场景对蔬果采摘机器人自主作业提出了挑战，传统依赖预编程范式开发的系统成功率和可靠性差，而深度强化学习与大模型方法虽具潜力，但过度依赖高成本真实数据。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3272,
+                "end_char": 3356
+              },
+              "version": "264feb4886169761ab48"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-58a7f7a48ccd",
+          "name": "预编程成功率低",
+          "desc": "预编程机器人难应对开放场景自主采收成功率低",
+          "evidence": [
+            {
+              "quote": "高温高湿高强度的农业生产环境对蔬果采摘机器换人提出强烈需求,但预编程的机器人难以应对开放场景下灵巧作业技术挑战,自主采收成功率低、现场部署困难。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 726
+              },
+              "version": "264feb4886169761ab48"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5d2238d290db",
+          "name": "自然示教策略学习",
+          "desc": "人机自然示教与策略学习方法结构化表达经验",
+          "evidence": [
+            {
+              "quote": "设计并提出了一套面向采摘任务的人机自然示教与策略学习方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3672,
+                "end_char": 3699
+              },
+              "version": "264feb4886169761ab48"
+            }
+          ]
+        },
+        {
+          "id": "item-1419471d660e",
+          "name": "安全可解释逆强化学习",
+          "desc": "同时刻画任务目标、安全约束与人类经验",
+          "evidence": [
+            {
+              "quote": "针对复杂农业采摘任务中奖励函数难以同时刻画任务目标、安全约束与人类经验的问题，设计了面向采摘作业的安全、可解释的逆强化学习算法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3706,
+                "end_char": 3769
+              },
+              "version": "264feb4886169761ab48"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1b65f3006a0f",
+          "name": "采摘成功率89.4%",
+          "desc": "温室番茄单果平均9.2s，50次任务碰撞0.28次",
+          "evidence": [
+            {
+              "quote": "实验结果表明逆强化策略在温室栽培番茄采收场景下实现89.4%的采摘成功率，单果采摘时间达到平均9.2s，平均50次任务与障碍物发生碰撞0.28次。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3834,
+                "end_char": 3906
+              },
+              "version": "264feb4886169761ab48"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-d922deae3622",
+          "name": "两台机器人样机",
+          "desc": "开发类人型、协作双臂型蔬果采摘机器人2台套",
+          "evidence": [
+            {
+              "quote": "开发了类人型、协作双臂型蔬果采摘机器人2台套，建立了支持人机交互与强化学习的农业机器人强化学习仿真环境。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3776,
+                "end_char": 3827
+              },
+              "version": "264feb4886169761ab48"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-cef78ad4edc7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-58a7f7a48ccd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-58a7f7a48ccd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5d2238d290db"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-58a7f7a48ccd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1419471d660e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1419471d660e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1b65f3006a0f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5d2238d290db"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d922deae3622"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

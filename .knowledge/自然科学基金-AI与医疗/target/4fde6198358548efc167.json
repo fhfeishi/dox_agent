@@ -1,0 +1,142 @@
+{
+  "doc_id": "4fde6198358548efc167",
+  "version": "22a49ba89e78bb37114b",
+  "source_hash": "d40e92da2e81da7fab373f6237371cfb38a33d5139b7c3dbc117da6c8b3ef005",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:17.975896+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fa6b301a6f5d",
+          "name": "肝细胞肝癌精准放疗",
+          "desc": "面向肝细胞肝癌综合治疗中的放射治疗，解析放疗敏感性分子机制并建立敏感性预测模型以支撑精准放疗。",
+          "evidence": [
+            {
+              "quote": "放疗已成为肝细胞肝癌综合治疗不可或缺的重要手段之一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 646,
+                "end_char": 670
+              },
+              "version": "22a49ba89e78bb37114b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cb4d71832a91",
+          "name": "肝癌细胞异质性与耐受剂量限制导致放疗疗效不佳",
+          "desc": "受肝癌细胞异质性以及肝脏和周围器官耐受剂量限制，部分肝细胞肝癌患者放疗后疗效不佳，放疗响应异质性成因尚不明确。",
+          "evidence": [
+            {
+              "quote": "然而由于肝癌细胞异质性及肝脏和周围器官耐受剂量的限制，部分患者疗效不佳",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 672,
+                "end_char": 706
+              },
+              "version": "22a49ba89e78bb37114b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-295b99a4f7d8",
+          "name": "CRISPR文库筛选结合分子细胞生物学解析线粒体自噬机制",
+          "desc": "从分子、细胞、动物多层次运用分子和细胞生物学手段，通过CRISPR全基因组敲除文库筛选放疗抵抗相关基因，明确线粒体自噬影响放疗敏感性的机制。",
+          "evidence": [
+            {
+              "quote": "通过CRISPR全基因组敲除文库系统地筛选了与肝癌放疗抵抗相关的基因",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3215,
+                "end_char": 3248
+              },
+              "version": "22a49ba89e78bb37114b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8a616dc297ce",
+          "name": "鉴定放疗抵抗关键基因并发表SCI论文8篇",
+          "desc": "鉴定线粒体自噬影响放疗敏感性的关键基因、确认线粒体自噬抑制剂放疗增敏作用，建立基于临床与影像组特征的放疗敏感性预测模型，在Cancer Cell等期刊发表SCI论文8篇。",
+          "evidence": [
+            {
+              "quote": "本项目在Cancer Cell、JAMA Surgery、Radiotherapy and Oncology等期刊发表SCI论文8篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3582,
+                "end_char": 3647
+              },
+              "version": "22a49ba89e78bb37114b"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-fa6b301a6f5d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-cb4d71832a91"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cb4d71832a91"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-295b99a4f7d8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-295b99a4f7d8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8a616dc297ce"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

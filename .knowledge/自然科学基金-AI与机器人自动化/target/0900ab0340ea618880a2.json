@@ -1,0 +1,180 @@
+{
+  "doc_id": "0900ab0340ea618880a2",
+  "version": "ce6a9021e195b4aa9592",
+  "source_hash": "385c8b44c27fc2d6bd6cb64b2e46ec4c9609d84d09796b2f44478814af3f49b0",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:19:59.372820+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c8aa27af20ee",
+          "name": "足式机器人步态优化控制",
+          "desc": "双足四足机器人简化步态模型的混杂系统控制",
+          "evidence": [
+            {
+              "quote": "项目组重点关注足式机器人简化模型控制这个关键问题，研究了混杂系统在足式机器人步态优化与控制中的应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2789,
+                "end_char": 2838
+              },
+              "version": "ce6a9021e195b4aa9592"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-31366f53bd4a",
+          "name": "复杂动力学简化难",
+          "desc": "复杂动力学特性下简化步态模型系统性优化控制难",
+          "evidence": [
+            {
+              "quote": "由于足式机器人的复杂动力学特性，如何系统性地进行简化步态模型的优化与控制是足式机器人领域亟待解决的难点问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 741,
+                "end_char": 794
+              },
+              "version": "ce6a9021e195b4aa9592"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4982a7947ac0",
+          "name": "SLIP模型高动态动作",
+          "desc": "弹簧负载倒立摆模型实现双足跳跃双点足奔跑",
+          "evidence": [
+            {
+              "quote": "项目组开展了基于弹簧负载倒立摆模型的双足机器人系统运动规划与控制研究，成功实现了四足机器人双足跳跃、双轮足机器人跳跃、双点足机器人奔跑等高动态动作。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2860,
+                "end_char": 2933
+              },
+              "version": "ce6a9021e195b4aa9592"
+            }
+          ]
+        },
+        {
+          "id": "item-b63f9d071745",
+          "name": "可达性平衡判定",
+          "desc": "基于可达性分析的扰动平衡恢复判定条件与控制框架",
+          "evidence": [
+            {
+              "quote": "提出了一套基于可达性分析的平衡恢复判定条件；并基于该判定条件，给出了系统化设计足式机器人扰动回复的控制理论和算法框架，并成功应用于多种足式机器人平台。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2994,
+                "end_char": 3068
+              },
+              "version": "ce6a9021e195b4aa9592"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1733abc84760",
+          "name": "T-RO等论文发表",
+          "desc": "SCI论文4篇含T-RO 1篇、RAL 2篇，EI会议6篇、专利3项",
+          "evidence": [
+            {
+              "quote": "共发表SCI检索论文4篇，其中在机器人领域旗舰期刊IEEE Transactions on Robotics上发表论文1篇，机器人领域顶级期刊IEEE Robotics and Automation Letters上发表论文2篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3189,
+                "end_char": 3302
+              },
+              "version": "ce6a9021e195b4aa9592"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-c8aa27af20ee"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-31366f53bd4a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-31366f53bd4a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4982a7947ac0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-31366f53bd4a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b63f9d071745"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4982a7947ac0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1733abc84760"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b63f9d071745"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1733abc84760"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

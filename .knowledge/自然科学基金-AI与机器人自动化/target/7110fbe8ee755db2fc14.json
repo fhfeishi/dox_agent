@@ -1,0 +1,197 @@
+{
+  "doc_id": "7110fbe8ee755db2fc14",
+  "version": "91faf937201ae0192de1",
+  "source_hash": "ca85c8574bfa40976ab266670f58312eb14f98df92d81911567bdbd360f8d4b2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:18.228185+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-86e5e76c7804",
+          "name": "电子鼻气体安全检测",
+          "desc": "复杂工业环境危险气体检测与工业安全监测",
+          "evidence": [
+            {
+              "quote": "本研究为电子鼻系统在工业安全监测、医疗与健康检测及复杂气体感知等实际场景中的实时应用与长期稳定运行奠定了可行的技术基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3634,
+                "end_char": 3693
+              },
+              "version": "91faf937201ae0192de1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8b270f523fb6",
+          "name": "动态信号难利用漂移退化",
+          "desc": "依赖稳态特征、实时性鲁棒性不足、传感器漂移致性能退化",
+          "evidence": [
+            {
+              "quote": "针对传统方法主要依赖稳态特征、难以充分挖掘传感器动态响应信号、实时性与鲁棒性不足的局限，系统开展了基于原始动态响应信号的建模与智能分析方法研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2980,
+                "end_char": 3051
+              },
+              "version": "91faf937201ae0192de1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d8cbb1df24a8",
+          "name": "DWCM-AAN识别模型",
+          "desc": "动态小波系数映射与轴向注意力实现接近100%识别",
+          "evidence": [
+            {
+              "quote": "提出了基于动态小波系数映射与轴向注意力机制的 DWCM-AAN 气体识别模型，实现了接近 100% 的气体识别准确率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3065,
+                "end_char": 3122
+              },
+              "version": "91faf937201ae0192de1"
+            }
+          ]
+        },
+        {
+          "id": "item-1648f15a2d84",
+          "name": "AMDS-PFFA漂移补偿",
+          "desc": "无监督注意力多源域自适应补偿传感器漂移",
+          "evidence": [
+            {
+              "quote": "提出了一种无监督注意力驱动的多源域自适应漂移补偿方法（AMDS-PFFA）。该方法通过共享–私有特征融合机制，协同建模跨域共享特征与域特有特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3404,
+                "end_char": 3474
+              },
+              "version": "91faf937201ae0192de1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f57f11a094b3",
+          "name": "R2超0.95浓度估计",
+          "desc": "WDRS-Cosformer浓度预测决定系数R2超0.95",
+          "evidence": [
+            {
+              "quote": "构建了基于加权动态响应信号与高效注意力机制的 WDRS-Cosformer 浓度估计模型，实现了对单一气体及混合气体成分与浓度的高精度估计，浓度预测决定系数R2超过 0.95",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3126,
+                "end_char": 3212
+              },
+              "version": "91faf937201ae0192de1"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-dfa0a0d23fc8",
+          "name": "长期漂移识别93.96%",
+          "desc": "30个月自研数据识别准确率93.96%优于现有方法",
+          "evidence": [
+            {
+              "quote": "在自研电子鼻系统采集的长期漂移数据（30 个月）上，实现了 93.96% 的气体识别准确率，均显著优于现有漂移补偿方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3574,
+                "end_char": 3633
+              },
+              "version": "91faf937201ae0192de1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-86e5e76c7804"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8b270f523fb6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8b270f523fb6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d8cbb1df24a8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8b270f523fb6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1648f15a2d84"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d8cbb1df24a8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f57f11a094b3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1648f15a2d84"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dfa0a0d23fc8"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

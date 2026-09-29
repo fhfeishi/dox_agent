@@ -1,0 +1,251 @@
+{
+  "doc_id": "ccbde387657e0cbbe731",
+  "version": "d1a8c220e08b7ef19e83",
+  "source_hash": "0cefd8270471feaa88d9df3074bd0e034a66d79913c2c2c849172c64bb033891",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:37:24.322414+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bca6063c852f",
+          "name": "NSCLC免疫治疗疗效预测TME图谱",
+          "desc": "免疫治疗为NSCLC患者带来长期生存可能，但有效率不足20%，获益人群筛选至关重要。",
+          "evidence": [
+            {
+              "quote": "免疫治疗为非小细胞肺癌（NSCLC）患者带来长期生存的可能，但有效率不足20%，获益人群的筛选至关重要",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 682,
+                "end_char": 732
+              },
+              "version": "d1a8c220e08b7ef19e83"
+            }
+          ]
+        },
+        {
+          "id": "item-da5f105ac0b9",
+          "name": "指导免疫治疗个体化临床实践",
+          "desc": "期待提供具有生物学可解释性的新型智能预后工具，指导免疫治疗的个体化临床实践。",
+          "evidence": [
+            {
+              "quote": "并提供具有生物学可解释性的新型智能预后工具指导免疫治疗的个体化临床实践，改善NSCLC患者生存",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1028,
+                "end_char": 1074
+              },
+              "version": "d1a8c220e08b7ef19e83"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ad4157891f7c",
+          "name": "TME分析数据来源单一无法量化",
+          "desc": "目前肿瘤微环境分析存在数据来源单一、无法量化且不能反映空间特征等问题。",
+          "evidence": [
+            {
+              "quote": "目前TME分析存在数据来源单一、无法量化且不能反映空间特征等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 785,
+                "end_char": 816
+              },
+              "version": "d1a8c220e08b7ef19e83"
+            }
+          ]
+        },
+        {
+          "id": "item-12e098a07f7a",
+          "name": "单一特征疗效预测性能欠佳",
+          "desc": "单独依靠肿瘤组织PD-L1表达及TMB水平等单一特征疗效预测性能欠佳，亟需更可靠标志物。",
+          "evidence": [
+            {
+              "quote": "然而单独依靠肿瘤组织PD-L1表达及TMB水平等单一特征疗效预测性能欠佳，亟需寻找更为可靠的疗效预测标志物",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2988,
+                "end_char": 3040
+              },
+              "version": "d1a8c220e08b7ef19e83"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fda8b825316f",
+          "name": "Mask-RCNN识别TME细胞组分",
+          "desc": "应用Mask-RCNN算法自动识别TME细胞组分并解析空间特征，定量描绘TME生态图谱。",
+          "evidence": [
+            {
+              "quote": "应用Mask-RCNN算法自动识别TME细胞组分，并解析其空间特征，定量描绘TME生态图谱",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 860,
+                "end_char": 904
+              },
+              "version": "d1a8c220e08b7ef19e83"
+            }
+          ]
+        },
+        {
+          "id": "item-5c1f448ffd13",
+          "name": "ViT算法病理组学模型",
+          "desc": "利用H&E染色组织标本构建基于Vision Transformer算法的病理组学模型，在补丁层面与患者层面分别训练并验证。",
+          "evidence": [
+            {
+              "quote": "本研究利用NSCLC患者H&E染色的组织标本，构建基于Vision Transformer（ViT）算法的病理组学模型精准预测免疫治疗疗效",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3146,
+                "end_char": 3214
+              },
+              "version": "d1a8c220e08b7ef19e83"
+            }
+          ]
+        },
+        {
+          "id": "item-d370fef74e69",
+          "name": "生成式自监督病理组学基础模型",
+          "desc": "收集多中心4405名肿瘤患者10539张病理图像，利用生成式自监督算法构建病理组学基础模型并进行下游任务训练。",
+          "evidence": [
+            {
+              "quote": "本课题组收集多中心的4405名肿瘤患者的10539张病理图像，利用生成式自监督算法构建病理组学基础模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3474,
+                "end_char": 3524
+              },
+              "version": "d1a8c220e08b7ef19e83"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dc1663d79ad1",
+          "name": "ViT-RNN模型内外验证准确率",
+          "desc": "ViT-RNN模型在内部验证队列准确率88.6%、外部验证队列准确率81%，并可独立预测接受免疫治疗患者的生存。",
+          "evidence": [
+            {
+              "quote": "该模型在内部验证队列中的准确率为 88.6%，在外部验证队列中的准确率为 81%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3311,
+                "end_char": 3350
+              },
+              "version": "d1a8c220e08b7ef19e83"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-89b92c1f0572",
+          "name": "自监督病理组学模型外部测试AUC",
+          "desc": "自监督病理组学模型在独立外部测试集准确率0.681、AUC 0.692，显著优于利用初始权重的模型（AUC 0.426）。",
+          "evidence": [
+            {
+              "quote": "在独立的外部测试集中，预测准确率为0.681，AUC为0.692",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3614,
+                "end_char": 3645
+              },
+              "version": "d1a8c220e08b7ef19e83"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-6b09131be6bf",
+          "name": "明确H1.2阳性CD8 Teff细胞关键作用",
+          "desc": "结合单细胞转录组测序分析明确模型的生物学解释及H1.2+CD8+Teff细胞群的关键作用。",
+          "evidence": [
+            {
+              "quote": "结合单细胞转录组测序分析明确了模型的生物学解释及H1.2+CD8+Teff细胞群的关键作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3707,
+                "end_char": 3751
+              },
+              "version": "d1a8c220e08b7ef19e83"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-bca6063c852f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ad4157891f7c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ad4157891f7c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fda8b825316f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5c1f448ffd13"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dc1663d79ad1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d370fef74e69"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-89b92c1f0572"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

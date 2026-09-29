@@ -1,0 +1,142 @@
+{
+  "doc_id": "98b1e6cd1f752a551fd3",
+  "version": "d16236582d2bc35b9381",
+  "source_hash": "5e3f3ef805df4b6d5357cb804aadbb8b05c783c9a12bc368e670e1dfd689f471",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:16.679565+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-16fa49987cdf",
+          "name": "神经退行性疾病多模态辅助诊断",
+          "desc": "面向帕金森氏病等神经退行性疾病，基于患者的步态、手部动作与语音临床表现开展辅助诊断与严重程度量化评估。",
+          "evidence": [
+            {
+              "quote": "本项目聚焦神经退行性疾病的辅助诊断，拟建立一种基于深度学习的多模态异构数据融合和建模新方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 857,
+                "end_char": 901
+              },
+              "version": "d16236582d2bc35b9381"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f3f9c5175aaa",
+          "name": "单模态研究导致误诊漏诊与评估片面",
+          "desc": "现有AI辅助诊断方法局限于对疾病数据的单模态研究，忽略多元特征与表现形式，导致误诊漏诊；建模方法单一也无法追踪疾病动态变化。",
+          "evidence": [
+            {
+              "quote": "现今大部分人工智能辅助诊断方法局限于对疾病数据的单模态研究，忽略了其多元特征和表现形式，而导致误诊和漏诊",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 718,
+                "end_char": 769
+              },
+              "version": "d16236582d2bc35b9381"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f6be66693e2c",
+          "name": "多模态异构数据融合与深度学习建模方法",
+          "desc": "围绕步态、手部动作、语音等多症状采集图像、力信号、声音数据，构建多模态多症状异构数据融合算法框架，融合Transformer、卷积神经网络与时序网络。",
+          "evidence": [
+            {
+              "quote": "针对患者的步态、手部动作和语音的临床表现，提取多模态数据（图像、力信号、声音等）中的有价值特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 903,
+                "end_char": 949
+              },
+              "version": "d16236582d2bc35b9381"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7710353884f7",
+          "name": "多症状多模态融合诊断性能达99.68%",
+          "desc": "在融合多症状数据集上，三种症状融合数据性能最高达到99.68%，显著优于单模态与单症状结果。",
+          "evidence": [
+            {
+              "quote": "针对三种症状融合数据的性能最高可达到99.68%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3341,
+                "end_char": 3364
+              },
+              "version": "d16236582d2bc35b9381"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-16fa49987cdf"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f3f9c5175aaa"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f3f9c5175aaa"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f6be66693e2c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f6be66693e2c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7710353884f7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

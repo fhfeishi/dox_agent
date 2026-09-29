@@ -1,0 +1,197 @@
+{
+  "doc_id": "a4718738d689e877eeb3",
+  "version": "cb0cd62f99316112e105",
+  "source_hash": "4888f719a024b1138762c7e8b7c13a6d1ee6c2c5cba4b83c6fbc6243a5a25f38",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:16:40.530185+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a2e9aee289a9",
+          "name": "稠密人群动态环境导航",
+          "desc": "机器人在稠密人群动态环境下的自主导航实际应用问题",
+          "evidence": [
+            {
+              "quote": "机器人在稠密人群动态环境下的自主导航，是机器人在实际应用中需要解决的重要问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 692
+              },
+              "version": "cb0cd62f99316112e105"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5fc47d31d868",
+          "name": "稠密人群路径规划失败",
+          "desc": "现有人群稠密动态环境中短时间内找不到可行路径或规划失败",
+          "evidence": [
+            {
+              "quote": "目前，大多数机器人导航算法可以在静态环境或人群稀疏环境中表现良好，但在人群稠密动态环境中面临无法在短时间内找到可行路径、或者路径规划失败的情况",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 694,
+                "end_char": 764
+              },
+              "version": "cb0cd62f99316112e105"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bcd2deac5a8d",
+          "name": "神经启发式多向搜索",
+          "desc": "神经网络可行域预测引导启发式采样，自适应调节启发式区域与采样率",
+          "evidence": [
+            {
+              "quote": "本项目通过基于神经网络可行域预测引导机器人进行启发式采样，通过自适应调节启发式区域和采样率，提出了基于神经启发式的多向搜索方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2817,
+                "end_char": 2879
+              },
+              "version": "cb0cd62f99316112e105"
+            }
+          ]
+        },
+        {
+          "id": "item-af05a9575acb",
+          "name": "LSTM伦理决策轨迹预测",
+          "desc": "基于LSTM的导航伦理决策与轨迹预测优化，风险伦理与效用原则评估",
+          "evidence": [
+            {
+              "quote": "提出了一种基于LSTM的机器人导航伦理决策与轨迹预测优化方法，运用风险伦理和效用原则评估决策",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2674,
+                "end_char": 2719
+              },
+              "version": "cb0cd62f99316112e105"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-53e7b584574a",
+          "name": "可行域预测精度90%以上",
+          "desc": "动态环境可行域预测精度达90%以上，导航成功率显著提升",
+          "evidence": [
+            {
+              "quote": "解决了移动机器人不同场景自适应导航的路径规划问题及稠密人群动态环境下机器人自主导航成功率低的问题，在动态环境中的可行域预测精度达到90%以上",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2881,
+                "end_char": 2950
+              },
+              "version": "cb0cd62f99316112e105"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-74f0f616c767",
+          "name": "神经风险感知规划框架",
+          "desc": "将非凸障碍物概率不确定性转化为确定性风险轮廓映射，解决不确定非凸环境路径规划",
+          "evidence": [
+            {
+              "quote": "提出了一种创新的神经风险感知路径规划框架，通过将非凸障碍物的概率不确定性转化为确定性风险轮廓映射，有效解决了不确定非凸环境中的路径规划问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2995,
+                "end_char": 3063
+              },
+              "version": "cb0cd62f99316112e105"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a2e9aee289a9"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5fc47d31d868"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5fc47d31d868"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bcd2deac5a8d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5fc47d31d868"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-af05a9575acb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-bcd2deac5a8d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-53e7b584574a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-af05a9575acb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-74f0f616c767"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

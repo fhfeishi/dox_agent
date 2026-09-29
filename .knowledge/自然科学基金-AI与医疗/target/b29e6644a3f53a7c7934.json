@@ -1,0 +1,235 @@
+{
+  "doc_id": "b29e6644a3f53a7c7934",
+  "version": "8ed38fbe32633a7d128b",
+  "source_hash": "aa501d035e2fcc51b845d405904ba01a2e115e38eeab54d2360c37bb75b041ab",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:28:05.047161+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5bf4ae61eec7",
+          "name": "无对比剂冠脉MRA冠心病分级诊断",
+          "desc": "早期诊断与干预是降低冠心病患病率和死亡率的重要策略，冠脉MRA是唯一无创无辐射可不依赖对比剂的冠脉成像方法。",
+          "evidence": [
+            {
+              "quote": "早期诊断与干预是降低冠心病患病率和死亡率的重要策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 680,
+                "end_char": 704
+              },
+              "version": "8ed38fbe32633a7d128b"
+            }
+          ]
+        },
+        {
+          "id": "item-25ce48f40113",
+          "name": "冠心病诊疗路径中MRA临床价值",
+          "desc": "提升无对比剂冠脉MRA诊断准确性及其在冠心病诊疗路径中的临床应用价值。",
+          "evidence": [
+            {
+              "quote": "提升其诊断准确性及在冠心病诊疗路径中的临床应用价值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1042,
+                "end_char": 1066
+              },
+              "version": "8ed38fbe32633a7d128b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-13397e4ce053",
+          "name": "后处理复杂耗时自动化程度低",
+          "desc": "冠脉MRA临床应用存在图像后处理复杂耗时、自动化程度低的主要限制。",
+          "evidence": [
+            {
+              "quote": "但其在临床应用中存在如下主要限制：1）图像后处理复杂耗时、自动化程度低；2）对狭窄病变缺乏标准化的客观分级诊断方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 780,
+                "end_char": 836
+              },
+              "version": "8ed38fbe32633a7d128b"
+            }
+          ]
+        },
+        {
+          "id": "item-741679d49be6",
+          "name": "狭窄分级诊断依赖医师经验",
+          "desc": "对狭窄病变缺乏标准化的客观分级诊断方法，诊断准确性高度依赖影像医师个人临床经验。",
+          "evidence": [
+            {
+              "quote": "对狭窄病变缺乏标准化的客观分级诊断方法，诊断准确性高度依赖影像医师个人临床经验",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 818,
+                "end_char": 856
+              },
+              "version": "8ed38fbe32633a7d128b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7f91db58fe87",
+          "name": "迁移学习3D U-net血管树分割",
+          "desc": "基于迁移学习策略完成AI模型对冠脉MRA血管树的智能分割提取与拓扑结构分析。",
+          "evidence": [
+            {
+              "quote": "开创性的基于迁移学习策略完成了AI模型对冠脉MRA血管树的智能分割提取、拓扑结构分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2842,
+                "end_char": 2883
+              },
+              "version": "8ed38fbe32633a7d128b"
+            }
+          ]
+        },
+        {
+          "id": "item-ecea9a679948",
+          "name": "管腔狭窄自动检测与分级评估",
+          "desc": "基于深度学习实现冠脉MRA管腔狭窄自动检测及狭窄程度分级评估，建立标准化临床影像数据库。",
+          "evidence": [
+            {
+              "quote": "建立标准化的无对比剂冠脉MRA临床影像数据库，基于AI深度学习研究实现冠脉MRA血管树的智能分割提取、拓扑结构分析、管腔狭窄自动检测及狭窄程度分级评估",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 931,
+                "end_char": 1005
+              },
+              "version": "8ed38fbe32633a7d128b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8d5dc7755f76",
+          "name": "血管分割Dice 0.944与0.952",
+          "desc": "104例数据训练集与验证集Dice指数分别为0.944和0.952，召回率分别为0.923和0.936。",
+          "evidence": [
+            {
+              "quote": "合计104例数据的训练集和验证集中Dice指数分别为0.944和0.952，召回率（recall）分别为0.923和0.936",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2885,
+                "end_char": 2947
+              },
+              "version": "8ed38fbe32633a7d128b"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-0a07b9b36c7e",
+          "name": "后处理时间缩短约88%",
+          "desc": "AI自动后处理显著缩短后处理时间约88%，重建图像质量评分与人工重建无显著差异。",
+          "evidence": [
+            {
+              "quote": "AI自动后处理显著缩短后处理时间约88%，重建图像质量的评分与人工重建无显著差异",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2970,
+                "end_char": 3009
+              },
+              "version": "8ed38fbe32633a7d128b"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-a0ced5e371b5",
+          "name": "冠心病诊断敏感度94%准确度88%",
+          "desc": "与介入造影对照，基于AI处理冠脉MRA图像的冠心病诊断敏感度94%、特异度71%、准确度88%。",
+          "evidence": [
+            {
+              "quote": "与介入造影对照，基于AI处理冠脉MRA图像的冠心病诊断敏感度94%，特异度71%，准确度88%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3011,
+                "end_char": 3057
+              },
+              "version": "8ed38fbe32633a7d128b"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5bf4ae61eec7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-13397e4ce053"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-13397e4ce053"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7f91db58fe87"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7f91db58fe87"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-8d5dc7755f76"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ecea9a679948"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a0ced5e371b5"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

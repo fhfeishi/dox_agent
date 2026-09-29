@@ -1,0 +1,142 @@
+{
+  "doc_id": "f2d5c21f11095870e5d2",
+  "version": "459226b5bf04c33c68dd",
+  "source_hash": "ba87637cda98600db3c5b0f8bc39088d0d1fc7d24fbb5df81420bfd2ab0ace48",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:49.210446+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-978005abf47d",
+          "name": "颅内动脉瘤自动化检测与风险预测",
+          "desc": "面向颅内动脉瘤精准检测、破裂风险与术后复发风险预测，构建机器学习模型并临床应用。",
+          "evidence": [
+            {
+              "quote": "颅内动脉瘤是严重影响人类健康的重大疾病，其致残率和致死率高达25-50%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 673,
+                "end_char": 708
+              },
+              "version": "459226b5bf04c33c68dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ebf03684d85b",
+          "name": "影像重组解读耗时且破裂复发风险预测难",
+          "desc": "临床实际中影像重组和解读耗时耗力，基于常规影像预测动脉瘤破裂和术后复发难度大，迫切需要新技术新方法。",
+          "evidence": [
+            {
+              "quote": "但临床实际中影像重组和解读耗时耗力，基于常规影像预测动脉瘤破裂和术后复发难度大，迫切需要引入新技术、新方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 751,
+                "end_char": 803
+              },
+              "version": "459226b5bf04c33c68dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fc89c1ffb814",
+          "name": "三维卷积神经网络动脉瘤辅助诊断与风险建模",
+          "desc": "采用三维卷积神经网络建立颅内动脉瘤高精准计算机辅助诊断系统，并综合影像组学、血流动力学与瘤壁信息用递归神经网络建立破裂及复发风险预测模型。",
+          "evidence": [
+            {
+              "quote": "采用三维卷积神经网络对有金标准对照的CTA和MRA数据建立颅内动脉瘤高精准计算机辅助诊断系统并验证其效能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 868,
+                "end_char": 919
+              },
+              "version": "459226b5bf04c33c68dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6f7155477966",
+          "name": "深度学习检测动脉瘤敏感性97.3%",
+          "desc": "构建43000例全国多中心CTA/MRA数据库；深度学习模型检测敏感性97.3%、假阳性率0.29个/例，急性缺血性卒中场景阴性预测值99.0%；AI辅助阅片研究发表于Lancet Digital Health，医生接受度92.6%。",
+          "evidence": [
+            {
+              "quote": "该模型对动脉瘤的检测敏感性高达97.3%，假阳性率低至0.29个动脉瘤/例",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3453,
+                "end_char": 3489
+              },
+              "version": "459226b5bf04c33c68dd"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-978005abf47d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ebf03684d85b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ebf03684d85b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fc89c1ffb814"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fc89c1ffb814"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6f7155477966"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

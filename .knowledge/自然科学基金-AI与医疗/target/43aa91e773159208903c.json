@@ -1,0 +1,142 @@
+{
+  "doc_id": "43aa91e773159208903c",
+  "version": "784959bc275c75ed6848",
+  "source_hash": "fb316630f513dfc69bba099ddc6b76b84215734f53b7f50f0a3579cf486eb9e2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:45.829142+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0634dd5f95f6",
+          "name": "心房纤颤整合管理",
+          "desc": "面向房颤患者，基于可穿戴设备与移动医疗平台实现实时数据驱动的风险预警与整合管理。",
+          "evidence": [
+            {
+              "quote": "心房纤颤增加脑卒中、心力衰竭及死亡",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 672,
+                "end_char": 688
+              },
+              "version": "784959bc275c75ed6848"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ff61cb65ef0f",
+          "name": "房颤风险评估不足与治疗不规范",
+          "desc": "房颤风险评估不足、治疗不规范是当前房颤管理的关键问题，导致卒中等并发症风险居高不下。",
+          "evidence": [
+            {
+              "quote": "房颤风险评估不足，治疗不规范是当前房颤管理的关键问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 690,
+                "end_char": 715
+              },
+              "version": "784959bc275c75ed6848"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-86545dfcaf11",
+          "name": "实时数据驱动的人工智能风险预警决策支持系统",
+          "desc": "自研大数据算法实现实时长程跟踪房性事件变化，为患者构建“风险表型画像”，并依托mAFA房颤整合管理平台结合指南推荐路径实现AI驱动的优化管理与个性化干预。",
+          "evidence": [
+            {
+              "quote": "构建实时数据驱动的人工智能风险预警指导下决策支持系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 880,
+                "end_char": 905
+              },
+              "version": "784959bc275c75ed6848"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f94e9049da7d",
+          "name": "五维度房颤负荷AI模型灵敏度91.5%、特异度97.2%",
+          "desc": "基于智能手表PPG建立涵盖发作时长、频率、密度、昼夜节律与快速心室率五个维度的房颤负荷AI模型，测试队列灵敏度91.5%、特异度97.2%，并与24小时动态心电图良好一致。",
+          "evidence": [
+            {
+              "quote": "该模型在测试队列中表现出高灵敏度（91.5%）与高特异度（97.2%），并与24小时动态心电图具有良好一致性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2393,
+                "end_char": 2446
+              },
+              "version": "784959bc275c75ed6848"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0634dd5f95f6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ff61cb65ef0f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ff61cb65ef0f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-86545dfcaf11"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-86545dfcaf11"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f94e9049da7d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

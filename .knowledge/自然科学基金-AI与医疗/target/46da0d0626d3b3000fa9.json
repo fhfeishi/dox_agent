@@ -1,0 +1,142 @@
+{
+  "doc_id": "46da0d0626d3b3000fa9",
+  "version": "a9abfc2dbb0f803cae4c",
+  "source_hash": "7a4b3ec477dafa58fe6f3b9e7d74f951cc53c7e8c001786a98421634e134d611",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:33.625709+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-efb8b572917f",
+          "name": "骨关节精准三维量化智慧诊疗",
+          "desc": "面向东北地区骨关节病变和地方骨病高发问题，构建全栈式骨关节精准三维量化智慧诊疗体系。",
+          "evidence": [
+            {
+              "quote": "东北地区因寒冷气候和地质因素导致骨关节病变和地方骨病高发，是区域致残、致贫返贫的重要原因",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "1aed81546271034e096a1efdfd29a8cc773aefc2"
+              },
+              "version": "a9abfc2dbb0f803cae4c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a44f2869fef8",
+          "name": "病灶评估缺三维量化且配准融合困难",
+          "desc": "骨关节疾病致病要素权重不清、病灶评估缺乏三维量化手段、多模态影像配准融合困难、人-智协同诊疗机制尚未建立。",
+          "evidence": [
+            {
+              "quote": "目前，骨关节疾病致病要素权重不清、病灶评估缺乏三维量化手段、多模态影像配准融合困难、人-智协同诊疗机制尚未建立，是实现早期预防和同质化诊疗的主要难点",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "4cc42d34749fe02167c909e6eb590b35dbd6b9af"
+              },
+              "version": "a9abfc2dbb0f803cae4c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-112b12262d31",
+          "name": "弱监督2D-3D共嵌入与Transformer分割",
+          "desc": "提出弱监督2D-3D特征共嵌入网络、双注意力引导Transformer及多尺度特征精炼网络等方法，实现骨关节多模态影像多组织精准分割，支撑病灶识别与量化分析。",
+          "evidence": [
+            {
+              "quote": "提出弱监督2D-3D特征共嵌入网络、双注意力引导Transformer及多尺度特征精炼网络等方法，实现了骨关节多模态影像多组织精准分割",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "4cc42d34749fe02167c909e6eb590b35dbd6b9af"
+              },
+              "version": "a9abfc2dbb0f803cae4c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-efa2e799e3f9",
+          "name": "构建跨部位多病种全栈式智能诊疗体系",
+          "desc": "围绕髋、膝、肩、脊柱等构建涵盖早期诊断、智能分型分级、病灶三维量化与预后评估的全栈式智能诊疗体系，多中心验证诊断性能与高年资医师相当；发表SCI论文13篇，授权发明专利1项、软著4项，获吉林省科技进步一等奖。",
+          "evidence": [
+            {
+              "quote": "构建了跨部位多病种的全栈式智能诊疗体系",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "4cc42d34749fe02167c909e6eb590b35dbd6b9af"
+              },
+              "version": "a9abfc2dbb0f803cae4c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-efb8b572917f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a44f2869fef8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a44f2869fef8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-112b12262d31"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-112b12262d31"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-efa2e799e3f9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

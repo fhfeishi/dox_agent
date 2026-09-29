@@ -1,0 +1,142 @@
+{
+  "doc_id": "3064869cac2ad05599bd",
+  "version": "f3d15eeeadd983d3f76d",
+  "source_hash": "788594e9fa0ca49053e2357369b39893e943d0270920955db00d6dfd6e96112f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:17.912872+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-be1f0495ff8a",
+          "name": "肝癌放疗呼吸运动管理与靶区勾画",
+          "desc": "面向肝癌放疗中呼吸运动管理的核心难题，开发四维定量影像以提升靶区勾画与运动管理效率。",
+          "evidence": [
+            {
+              "quote": "因此在肝癌放疗中，肿瘤的呼吸运动管理是至关重要的",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 712,
+                "end_char": 735
+              },
+              "version": "f3d15eeeadd983d3f76d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cc0cb28bde70",
+          "name": "现有四维核磁共振成像质量不稳定",
+          "desc": "现有四维核磁共振技术存在肿瘤对比度不一致、呼吸运动伪影严重、时空分辨率低与重建耗时过长等问题，难以广泛临床应用。",
+          "evidence": [
+            {
+              "quote": "现有的四维核磁共振技术因为不一致的肿瘤对比度、呼吸运动引起的伪影和较低的时空分辨率等原因使其仍然不能提供优质的和稳定的图像质量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 795,
+                "end_char": 857
+              },
+              "version": "f3d15eeeadd983d3f76d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-565c7cbb796d",
+          "name": "磁共振指纹结合AI的四维定量成像与DeepMocor重建",
+          "desc": "结合核磁共振指纹与人工智能开展四维磁共振指纹成像方法学与临床验证，提出分三阶段的深度学习运动补偿加速重建方法DeepMocor。",
+          "evidence": [
+            {
+              "quote": "提出基于深度学习的运动补偿加速重建方法 DeepMocor",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2808,
+                "end_char": 2836
+              },
+              "version": "f3d15eeeadd983d3f76d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-aa0e6f574380",
+          "name": "四维核磁共振重建提速约24倍至约40秒",
+          "desc": "该方法将单层四维核磁共振成像重建时间由约17分钟缩短至约40秒，实现约24倍加速，同时保持定量精度与影像可靠性。",
+          "evidence": [
+            {
+              "quote": "该方法将单层四维核磁共振成像重建时间由约17分钟显著缩短至约40秒，实现约24倍加速",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3016,
+                "end_char": 3057
+              },
+              "version": "f3d15eeeadd983d3f76d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-be1f0495ff8a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-cc0cb28bde70"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cc0cb28bde70"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-565c7cbb796d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-565c7cbb796d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-aa0e6f574380"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

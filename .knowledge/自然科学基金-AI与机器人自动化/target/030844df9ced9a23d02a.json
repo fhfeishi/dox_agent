@@ -1,0 +1,180 @@
+{
+  "doc_id": "030844df9ced9a23d02a",
+  "version": "04a32b1f73f4069f734c",
+  "source_hash": "d59dafbc3281e7d0bfb4c317ca43e2221262d1f8ad014daeb516197f19899271",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:26.783807+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-239be681c582",
+          "name": "手功能康复训练",
+          "desc": "高强度重复性手部康复训练的可穿戴软体机器人",
+          "evidence": [
+            {
+              "quote": "本项目基于生物结构仿生映射和机构综合，针对制约手功能康复机器人发展的轻量化高契合度外骨骼结构设计、耦合运动机理和多模态感知智能控制方法开展了深入研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2837,
+                "end_char": 2911
+              },
+              "version": "04a32b1f73f4069f734c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f6a854b2cef7",
+          "name": "SMA丝应变不足",
+          "desc": "形状记忆合金丝应变不足制约康复外骨骼设计",
+          "evidence": [
+            {
+              "quote": "针对SMA丝应变不足的问题，创新性提出了基于滑轮组的应变放大增程机构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3083,
+                "end_char": 3116
+              },
+              "version": "04a32b1f73f4069f734c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d4bebcd8b9cc",
+          "name": "滑轮组应变放大增程",
+          "desc": "仿生排布与增程机构解决SMA应变不足",
+          "evidence": [
+            {
+              "quote": "创新性提出了基于滑轮组的应变放大增程机构，总结了人工肌肉的仿生排布规律，通过理论分析和实验研究手段，阐明了SMA丝人工肌肉驱动器的动力学特性和致动机理",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3097,
+                "end_char": 3171
+              },
+              "version": "04a32b1f73f4069f734c"
+            }
+          ]
+        },
+        {
+          "id": "item-0128d1e25650",
+          "name": "PSO-BP-PID轨迹控制",
+          "desc": "SMA电阻自反馈与肌电位姿信号融合控制",
+          "evidence": [
+            {
+              "quote": "提出了基于SMA电阻自反馈的PSO-BP-PID轨迹跟踪控制方法，探索了基于肌电信号和位姿信号反馈与SMA人工肌肉自感知信号融合的软体外骨骼精确控制策略。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3358,
+                "end_char": 3434
+              },
+              "version": "04a32b1f73f4069f734c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c3e609bf5fcc",
+          "name": "样机与数字孪生系统",
+          "desc": "研制样机并开展虚实结合手功能数字孪生康复系统研究",
+          "evidence": [
+            {
+              "quote": "研制出SMA丝驱动的可穿戴式软体手功能康复机器人样机系统，并系统的对样机开展了功能验证，基于人工智能技术开展了虚实结合手功能数字孪生康复系统研究，初步完成了系统搭建，为后续成果转化为康复医疗装备产品奠定了良好基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3435,
+                "end_char": 3541
+              },
+              "version": "04a32b1f73f4069f734c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-239be681c582"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f6a854b2cef7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f6a854b2cef7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d4bebcd8b9cc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-f6a854b2cef7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0128d1e25650"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d4bebcd8b9cc"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c3e609bf5fcc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0128d1e25650"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c3e609bf5fcc"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

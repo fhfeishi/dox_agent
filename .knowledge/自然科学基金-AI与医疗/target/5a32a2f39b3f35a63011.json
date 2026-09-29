@@ -1,0 +1,142 @@
+{
+  "doc_id": "5a32a2f39b3f35a63011",
+  "version": "4b025d4f3dde9b26815c",
+  "source_hash": "1ca700a6a8eebb53127948b7a0732e89e94a6982029a4e917af1f3afdedab8b2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:36.056771+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3dec45ba6e73",
+          "name": "产前先天性心脏病影像导航与细化分型",
+          "desc": "面向产前先心病筛查诊断准确率偏低的现状，建立结构影像获取标准与多粒度综合诊断能力。",
+          "evidence": [
+            {
+              "quote": "先天性心脏病居出生缺陷之首，发病率约1%，致残致死率高，但国际平均诊断准确率仅为43%，远低于其他疾病",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 691,
+                "end_char": 741
+              },
+              "version": "4b025d4f3dde9b26815c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-efb62e9e0194",
+          "name": "胎儿心脏数据与母胎医学知识双重不确定性",
+          "desc": "胎儿心脏数据获取不确定性及母胎医学知识不确定性，导致临床干预决策及妊娠结局的不确定性，难以将现有知识表达与推理方法融入临床过程。",
+          "evidence": [
+            {
+              "quote": "究其原因是胎儿心脏数据获取不确定性及母胎医学知识不确定性导致了临床干预决策及妊娠结局的不确定性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 743,
+                "end_char": 789
+              },
+              "version": "4b025d4f3dde9b26815c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e2ec5621cfd0",
+          "name": "数据标准+2D-3D跨模态配准导航+多粒度诊断模型",
+          "desc": "建立胎儿心脏人工智能研究数据标准，建立胎儿心脏2D-3D跨模态双向时空配准的切面导航推理模型，并建立融合多源多粒度特征的胎儿心脏病诊断模型与双重评估验证体系。",
+          "evidence": [
+            {
+              "quote": "基于切面获取不确定性建立胎儿心脏2D-3D跨模态双向时空配准的切面导航推理模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 917,
+                "end_char": 955
+              },
+              "version": "4b025d4f3dde9b26815c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2fdc25364748",
+          "name": "建立国际首个胎儿心脏三维高清解剖金标准",
+          "desc": "利用铸型与CT成像技术建立国际首个胎儿心脏三维高清解剖金标准及3D数字化模型，构建覆盖近300种细化病理分型的知识图谱与含10万余例数据的多模态大数据库；发表高水平论文30篇，申请发明专利4项。",
+          "evidence": [
+            {
+              "quote": "建立了国际首个胎儿心脏三维高清解剖金标准及3D数字化模型，填补了该领域解剖的空白",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2920,
+                "end_char": 2959
+              },
+              "version": "4b025d4f3dde9b26815c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3dec45ba6e73"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-efb62e9e0194"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-efb62e9e0194"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e2ec5621cfd0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e2ec5621cfd0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-2fdc25364748"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

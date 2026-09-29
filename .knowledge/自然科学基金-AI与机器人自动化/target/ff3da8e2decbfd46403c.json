@@ -1,0 +1,180 @@
+{
+  "doc_id": "ff3da8e2decbfd46403c",
+  "version": "32ce0311ac4c8bf0444a",
+  "source_hash": "ba27e9ebef6910a79c41a0f9280d1afd1b558ae7c4ceaf546969c88bf6e6f3ee",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:11:48.973610+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-62a2d2da9b3d",
+          "name": "CSCNT术后全上肢康复",
+          "desc": "健侧颈7神经移位术后患者的全上肢外骨骼康复",
+          "evidence": [
+            {
+              "quote": "为实现线驱动外骨骼机器人在中风患者经健侧颈7神经移位(CSCNT)术后康复中涉及的机构设计、变刚度控制、康复训练与康复评价等重要的基础和迫切解决的关键理论与技术问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3015,
+                "end_char": 3097
+              },
+              "version": "32ce0311ac4c8bf0444a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ac1f06fe1b98",
+          "name": "柔顺与刚度平衡难题",
+          "desc": "机构设计、柔顺控制、训练与评价存在较大改进空间",
+          "evidence": [
+            {
+              "quote": "基于sEMG构建人机共融刚度模型,设计变刚度柔顺控制策略,解决柔顺性和刚度之间的平衡问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 822,
+                "end_char": 865
+              },
+              "version": "32ce0311ac4c8bf0444a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5ec701aaa855",
+          "name": "可互换全上肢外骨骼",
+          "desc": "并-串联-线驱动结构与被动补偿机构设计",
+          "evidence": [
+            {
+              "quote": "进行了上肢康复外骨骼全线驱动设计，开展了可互换的全上肢康复外骨骼机构设计研究，结合并-串联-线驱动结构与被动补偿机构保证上肢外骨骼辅助康复性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3174,
+                "end_char": 3245
+              },
+              "version": "32ce0311ac4c8bf0444a"
+            }
+          ]
+        },
+        {
+          "id": "item-38219b038f68",
+          "name": "健患侧协同训练",
+          "desc": "变刚度驱动器设计与改进DMP算法协同训练",
+          "evidence": [
+            {
+              "quote": "进行了全上肢康复外骨骼变刚度驱动器设计，开展了肌肉刚度与痉挛模型研究，完成了基于改进DMP算法的健患侧协同训练方法研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3257,
+                "end_char": 3316
+              },
+              "version": "32ce0311ac4c8bf0444a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b2a5d22e59f9",
+          "name": "康复平台实验验证",
+          "desc": "搭建康复平台验证变刚度控制与协同训练方法效果",
+          "evidence": [
+            {
+              "quote": "进行了上肢康复外骨骼康复平台搭建，通过实验对变刚度控制与协同训练方法效果进行验证。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3395,
+                "end_char": 3435
+              },
+              "version": "32ce0311ac4c8bf0444a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-62a2d2da9b3d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ac1f06fe1b98"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ac1f06fe1b98"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5ec701aaa855"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-ac1f06fe1b98"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-38219b038f68"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5ec701aaa855"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b2a5d22e59f9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-38219b038f68"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b2a5d22e59f9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "doc_id": "4c367507f1e5901fb4e7",
+  "version": "0c24ec20fcb84b443e6c",
+  "source_hash": "3e04e3dddb42f3ae1f01c079538553cba2f3434398c740d047ec78d089d9de78",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T17:01:43.560988+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-99f6ef8714af",
+          "name": "微创手术机器人导航跟踪",
+          "desc": "位姿跟踪是微创手术机器人导航基础并决定手术效果",
+          "evidence": [
+            {
+              "quote": "手术器械及病人标记点的位姿跟踪（定位定向）是微创手术机器人导航的基础并决定手术效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 683,
+                "end_char": 723
+              },
+              "version": "0c24ec20fcb84b443e6c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8ce84125f380",
+          "name": "光磁跟踪多次切换低效",
+          "desc": "光学与电磁跟踪多次切换或混合跟踪，导航配准效率和精度不高",
+          "evidence": [
+            {
+              "quote": "目前在进行微创手术操作时需要对光学和电磁跟踪装置进行多次切换或者混合跟踪，导致了导航配准效率（精度和实时性）不高的难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 725,
+                "end_char": 783
+              },
+              "version": "0c24ec20fcb84b443e6c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4785b8847bb6",
+          "name": "多模态光磁融合跟踪",
+          "desc": "光学、永磁体和交变电磁跟踪误差机理先验下的多级多层次融合",
+          "evidence": [
+            {
+              "quote": "系统性开展基于光学、永磁体和交变电磁的跟踪位姿误差产生与传递机理研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 886,
+                "end_char": 919
+              },
+              "version": "0c24ec20fcb84b443e6c"
+            }
+          ]
+        },
+        {
+          "id": "item-da59a5a3a643",
+          "name": "自主四目光学与电磁跟踪装置",
+          "desc": "自主研发四目光学跟踪装置和交变电磁跟踪装置，打破NDI垄断",
+          "evidence": [
+            {
+              "quote": "通过项目的实施，自主研发四目光学跟踪装置和交变电磁跟踪装置，进而实现光磁融合算法研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3247,
+                "end_char": 3288
+              },
+              "version": "0c24ec20fcb84b443e6c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ecdeec1754c2",
+          "name": "医工协同关键技术研究",
+          "desc": "与微创电生理、卡本医疗、博仕康等企业开展磁定位标测与光磁导航合作",
+          "evidence": [
+            {
+              "quote": "并同上海微创电生理医疗科技股份有限公司（688351.SH）、卡本(深圳)医疗科技有限公司、重庆博仕康科技有限公司分别开展了磁定位功能心脏3D标测、电子输尿管肾盂内窥镜导管磁定位、光磁一体脊柱外科手术导航系统等关键技术研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3134,
+                "end_char": 3244
+              },
+              "version": "0c24ec20fcb84b443e6c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-99f6ef8714af"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8ce84125f380"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8ce84125f380"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4785b8847bb6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8ce84125f380"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-da59a5a3a643"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-da59a5a3a643"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ecdeec1754c2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4785b8847bb6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ecdeec1754c2"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

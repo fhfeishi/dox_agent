@@ -1,0 +1,196 @@
+{
+  "doc_id": "8111c40f624868b5f584",
+  "version": "23a231bd00d21bcd73a3",
+  "source_hash": "c139efdf19fabc0a538e0684ff28a1a3687e7078c6e02c7d19d988f65900190f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:23.782133+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-074e0bac5c91",
+          "name": "地外天体巡视器探测",
+          "desc": "地外天体表面巡视探测的自主环境感知",
+          "evidence": [
+            {
+              "quote": "在地外天体表面巡视探测任务中，复杂未知的环境、与地球间遥远的距离，决定了巡视器必须具有自主环境感知能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 718
+              },
+              "version": "23a231bd00d21bcd73a3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4cae42b2e70d",
+          "name": "遥操作缺乏自主理解",
+          "desc": "地面遥操作缺乏环境自主理解，难满足实时性安全性要求",
+          "evidence": [
+            {
+              "quote": "而目前主要通过地面遥操作控制巡视器的活动，缺乏对环境的自主理解，难以满足巡视器的实时性和安全性要求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 719,
+                "end_char": 768
+              },
+              "version": "23a231bd00d21bcd73a3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-53e9be26bdd5",
+          "name": "半全局快速立体匹配",
+          "desc": "3D平面拟合、自适应惩罚系数、由粗到精视差约束",
+          "evidence": [
+            {
+              "quote": "研究了一种高效的半全局快速立体匹配方法，该方法提出了了基于3D平面拟合、自适应惩罚系数、从粗到精的视差约束等策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2834,
+                "end_char": 2889
+              },
+              "version": "23a231bd00d21bcd73a3"
+            }
+          ]
+        },
+        {
+          "id": "item-38efc4781afa",
+          "name": "超像素区域分割匹配",
+          "desc": "弱纹理区域立体匹配获得较好效果",
+          "evidence": [
+            {
+              "quote": "提出了基于超像素区域分割的立体匹配方法，该方法对于弱纹理区域的立体匹配也能够得到较好的效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2894,
+                "end_char": 2938
+              },
+              "version": "23a231bd00d21bcd73a3"
+            }
+          ]
+        },
+        {
+          "id": "item-1ec2a6e372da",
+          "name": "迁移学习与小样本模型",
+          "desc": "中远距离障碍检测与天体表面地形识别分类",
+          "evidence": [
+            {
+              "quote": "建立了基于火星数据的样本库、第一套基于嫦娥三号数据的样本库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2987,
+                "end_char": 3015
+              },
+              "version": "23a231bd00d21bcd73a3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6293ca21e397",
+          "name": "自主感知有效途径",
+          "desc": "提出巡视器自主环境感知途径支撑深空探测",
+          "evidence": [
+            {
+              "quote": "通过本课题的组织和实施，提出地外天体巡视器自主环境感知的有效途径，可为未来深空探测研究计划提供关键技术支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3109,
+                "end_char": 3162
+              },
+              "version": "23a231bd00d21bcd73a3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-074e0bac5c91"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4cae42b2e70d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4cae42b2e70d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-53e9be26bdd5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4cae42b2e70d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-38efc4781afa"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4cae42b2e70d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1ec2a6e372da"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1ec2a6e372da"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6293ca21e397"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

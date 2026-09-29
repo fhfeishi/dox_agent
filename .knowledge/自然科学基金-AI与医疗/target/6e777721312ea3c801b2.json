@@ -1,0 +1,142 @@
+{
+  "doc_id": "6e777721312ea3c801b2",
+  "version": "966f2290a31dcff7ea86",
+  "source_hash": "3a3d1adb3dad9adb69d9f64ce152021ce37320e46fa68ad98cca1e1a44ef6c69",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:11.246844+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5894da667de7",
+          "name": "多组学融合AI辅助乳腺癌精准诊疗",
+          "desc": "基于多组学多模态影像、病理与基因数据，建设人工智能辅助乳腺癌精准诊疗系统并开展应用模式研究。",
+          "evidence": [
+            {
+              "quote": "乳腺癌是当前危害女性健康最主要的恶性肿瘤，近年来发病率不断攀升",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 665,
+                "end_char": 695
+              },
+              "version": "966f2290a31dcff7ea86"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-02c20cb502d1",
+          "name": "多组学信息尚未充分转化为诊疗效果提升",
+          "desc": "依托多组学信息的精准诊疗模式为乳腺癌诊疗效果提升带来希望，但需进一步建立诊疗决策新理论、新模式、新技术、新标准。",
+          "evidence": [
+            {
+              "quote": "近年来，依托于多组学信息的肿瘤精准诊疗模式的创立，为乳腺癌诊疗效果的进一步提升带来了新的希望",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 697,
+                "end_char": 742
+              },
+              "version": "966f2290a31dcff7ea86"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-969b4d6e66c9",
+          "name": "多组学融合的AI辅助诊断与风险评估系统",
+          "desc": "基于多组学多模态乳腺癌影像、病理与基因数据深度挖掘图像信息，筛选关键组学靶点，建立AI辅助的精准临床诊断系统、病理诊断系统与风险评估和疗效评估系统。",
+          "evidence": [
+            {
+              "quote": "建立人工智能辅助的精准临床诊断系统和病理诊断系统、精准风险评估和疗效评估系统，从而实现肿瘤病理、风险和疗效的可视化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 827,
+                "end_char": 883
+              },
+              "version": "966f2290a31dcff7ea86"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b9fab1561c29",
+          "name": "超声-钼靶融合模型鉴别乳腺结节AUC 0.969",
+          "desc": "基于超声模型AUC 0.927、钼靶模型AUC 0.951、融合模型AUC 0.969；基于数字病理鉴别三阴性乳腺癌四分型AUC分别达0.84、0.85、0.93和0.73；发表论文31篇。",
+          "evidence": [
+            {
+              "quote": "基于超声模型AUC：0.927；基于钼靶模型AUC：0.951；融合模型AUC：0.969",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3061,
+                "end_char": 3105
+              },
+              "version": "966f2290a31dcff7ea86"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5894da667de7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-02c20cb502d1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-02c20cb502d1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-969b4d6e66c9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-969b4d6e66c9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b9fab1561c29"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

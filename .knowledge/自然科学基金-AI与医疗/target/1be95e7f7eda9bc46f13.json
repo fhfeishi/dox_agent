@@ -1,0 +1,142 @@
+{
+  "doc_id": "1be95e7f7eda9bc46f13",
+  "version": "935d8c3802e10113b0eb",
+  "source_hash": "44ad0d33e90060f300219bb58af77c3d641a33275edbd46dbb6628d6ffba4bd8",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:17.924729+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4b850cfa6ea7",
+          "name": "三阴性乳腺癌免疫治疗早期疗效评估",
+          "desc": "面向三阴性乳腺癌患者，在免疫治疗早期无创评估疗效，为个体化精准治疗与方案及时调整提供依据。",
+          "evidence": [
+            {
+              "quote": "准确评估免疫治疗早期疗效是实现三阴性乳腺癌（TNBC）患者个体化精准治疗的关键",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 678,
+                "end_char": 716
+              },
+              "version": "935d8c3802e10113b0eb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b9d5772fe147",
+          "name": "免疫治疗费用高且总体有效率低",
+          "desc": "TNBC恶性程度高、侵袭性强，免疫检查点抑制剂虽前景良好但费用昂贵，总体有效率较低，仅在不到30%的患者中发挥作用。",
+          "evidence": [
+            {
+              "quote": "但免疫治疗费用昂贵，且总体有效率仍较低，只能在不到30%的TNBC患者中发挥作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3061,
+                "end_char": 3100
+              },
+              "version": "935d8c3802e10113b0eb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b36c63c80387",
+          "name": "多模态超声组学驱动的孪生神经网络模型",
+          "desc": "挖掘治疗后反应早期的多模态超声组学作为通道注意力引入孪生神经网络模型，对比时序信息揭示免疫响应，实现早期疗效预测。",
+          "evidence": [
+            {
+              "quote": "接着作为通道“注意力”引入于孪生神经网络模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 944,
+                "end_char": 965
+              },
+              "version": "935d8c3802e10113b0eb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-99638b652ed5",
+          "name": "建立多参数临床-超声组学Signature与双核驱动模型Dc-HR",
+          "desc": "建立多参数临床-超声组学Signature（优于常规临床-超声模型）、基于超声视频的深度学习3D模型及双核驱动超声组学模型Dc-HR，并开展联邦学习MAUNet病灶自动分割。",
+          "evidence": [
+            {
+              "quote": "建立了一种多参数临床-超声组学Signature，预测任务效果优于常规的临床-超声模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3394,
+                "end_char": 3436
+              },
+              "version": "935d8c3802e10113b0eb"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4b850cfa6ea7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b9d5772fe147"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b9d5772fe147"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b36c63c80387"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b36c63c80387"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-99638b652ed5"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

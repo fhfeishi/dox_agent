@@ -1,0 +1,142 @@
+{
+  "doc_id": "5ab31792dbd9ed4c9e14",
+  "version": "5639735411d4a05edaab",
+  "source_hash": "47429754eb58a90acdd09322475f271eac33dd8bd4d6b538804b33ee3cf276aa",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:45.767917+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-96738e97eabf",
+          "name": "鼻咽癌诱导化疗早期反应疗效评价",
+          "desc": "面向鼻咽癌诱导化疗的早期疗效评估，构建三维空间+时间+肿瘤内部特征的多维度疗效评价模型。",
+          "evidence": [
+            {
+              "quote": "如何实现鼻咽癌精准疗效评估是一重大临床科学问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 671,
+                "end_char": 693
+              },
+              "version": "5639735411d4a05edaab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7bee77d0989c",
+          "name": "RECIST标准仅用径线测量不反映肿瘤内部变化",
+          "desc": "疗效评价RECIST标准仅采用径线测量，未考虑个体间头颅形状与大小差异，也不反映治疗后肿瘤内部特征变化；传统影像组学缺乏三维空间位置信息。",
+          "evidence": [
+            {
+              "quote": "疗效评价RECIST标准仅采用径线测量，没考虑到个体间头颅形状和大小的差异，不反映后肿瘤内部特征变化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 695,
+                "end_char": 744
+              },
+              "version": "5639735411d4a05edaab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c110c952e2a1",
+          "name": "三维标化头颈部肿瘤影像定量分析方法",
+          "desc": "基于自建标准三维坐标系与自动分割配准，研发三维标化的头颈部肿瘤影像定量分析方法，获取化疗前后三维标化定量参数与影像组学参数。",
+          "evidence": [
+            {
+              "quote": "研发基于三维标化的头颈部肿瘤影像定量分析方法，获取化疗前后三维标化定量参数和影像组学参数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 894,
+                "end_char": 937
+              },
+              "version": "5639735411d4a05edaab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bb27c20b50dc",
+          "name": "三维标化方法20个解剖结构平均准确率81.1%",
+          "desc": "三维标化方法在20个解剖结构上平均准确率81.1%、整体AUC 0.791；构建PITE三元分类模型并确定IC后肿瘤退缩最优截断值20%。成果发表SCI论文10篇、申请发明专利1项。",
+          "evidence": [
+            {
+              "quote": "该三维标化方法在20个解剖结构上的平均准确率为81.1%，整体AUC为0.791",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3258,
+                "end_char": 3297
+              },
+              "version": "5639735411d4a05edaab"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-96738e97eabf"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-7bee77d0989c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7bee77d0989c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c110c952e2a1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c110c952e2a1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bb27c20b50dc"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "doc_id": "c347226091e0974075e4",
+  "version": "ab89ae09af9d7db35619",
+  "source_hash": "25303b09ab83d480488aac652b52815a323b1e4920b392c4b3090a0066de5cbf",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:52.857575+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2d4855894a5c",
+          "name": "遥操作机器人精细力控",
+          "desc": "精细化作业遥操作对力触觉感知精度、动态刚度识别与时延处理要求苛刻",
+          "evidence": [
+            {
+              "quote": "精细化作业下的遥操作控制对末端交互力触觉的感知精度、被操作对象的动态刚度精准识别、系统时延的处理等方面有着苛刻要求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2850,
+                "end_char": 2906
+              },
+              "version": "ab89ae09af9d7db35619"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e9ff4a5b5256",
+          "name": "力感知与力控稳定性不足",
+          "desc": "现有遥操作机器人无法满足精细化作业需求",
+          "evidence": [
+            {
+              "quote": "针对目前遥操作机器人的力感知精度及力控制稳定性无法满足精细化作业需求的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 724,
+                "end_char": 760
+              },
+              "version": "ab89ae09af9d7db35619"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7c7bedf954af",
+          "name": "FBG多维微小力感知模型",
+          "desc": "具有温度补偿效果的力感知通用模型与多维力维间解耦方法",
+          "evidence": [
+            {
+              "quote": "以FBG作为传感载体构建了可测量多维微小力应变且具有温度补偿效果的力感知通用模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3086,
+                "end_char": 3125
+              },
+              "version": "ab89ae09af9d7db35619"
+            }
+          ]
+        },
+        {
+          "id": "item-7165fb84ac32",
+          "name": "主从机器人力分配机制",
+          "desc": "保证遥操作系统稳定性前提下提高系统透明度",
+          "evidence": [
+            {
+              "quote": "提出人机交互下遥操作控制系统的主从机器人力分配机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3284,
+                "end_char": 3308
+              },
+              "version": "ab89ae09af9d7db35619"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f9567c62a374",
+          "name": "多模态感知抓取力控",
+          "desc": "实现机器人多模态感知，解决环境干扰下抓取力精确控制",
+          "evidence": [
+            {
+              "quote": "实现了机器人多模态感知，提升了机器人的感知能力，解决了机器人抓取时环境干扰下抓取力的精确力控制问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3232,
+                "end_char": 3280
+              },
+              "version": "ab89ae09af9d7db35619"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-1cb933858a47",
+          "name": "论文与授权专利",
+          "desc": "发表学术论文20篇，授权发明专利3项",
+          "evidence": [
+            {
+              "quote": "在IEEE TII、SCIS、IEEE TMech、IEEE TIM、中国科学:信息科学等国内外高水平期刊和国际会议发表学术论文20篇，授权发明专利3项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2983,
+                "end_char": 3058
+              },
+              "version": "ab89ae09af9d7db35619"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2d4855894a5c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e9ff4a5b5256"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e9ff4a5b5256"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7c7bedf954af"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e9ff4a5b5256"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7165fb84ac32"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7c7bedf954af"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f9567c62a374"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7165fb84ac32"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1cb933858a47"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

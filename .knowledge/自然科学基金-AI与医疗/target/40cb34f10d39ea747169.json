@@ -1,0 +1,142 @@
+{
+  "doc_id": "40cb34f10d39ea747169",
+  "version": "ba11e2b88a903feb9abe",
+  "source_hash": "cc1f2c3ad15c5aabca3f0a804ef1918d9fab1bc5c403b0345afc0614a0a75220",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:36.115401+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8f99a9c4a9ee",
+          "name": "空间转录组学与多模态深度学习疾病诊断",
+          "desc": "将空间位置信息与转录组分析结合，引入病理图像信息构建多模态深度学习疾病预测模型。",
+          "evidence": [
+            {
+              "quote": "空间转录组学（Spatial transcriptomics）的提出将空间位置信息和转录组分析相结合，为研究细胞功能、表型和组织微环境中位置的关系提供了重要依据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 709,
+                "end_char": 788
+              },
+              "version": "ba11e2b88a903feb9abe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-34506ba23b8e",
+          "name": "空间转录组成本高分辨率有限且多模态整合困难",
+          "desc": "空间转录组测序成本高、分辨率有限，且缺少与组织形态之间的定量联系，多模态数据整合困难，制约其大规模应用。",
+          "evidence": [
+            {
+              "quote": "针对空间转录组测序成本高、分辨率有限以及多模态数据整合困难等科学问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2582,
+                "end_char": 2615
+              },
+              "version": "ba11e2b88a903feb9abe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-55aa1410c01a",
+          "name": "病理图像到基因表达的跨模态翻译深度学习模型",
+          "desc": "建立基于多模态深度学习的疾病预测模型，将病理组织图像信息引入基因表达数据训练细胞类型与疾病分期预测网络，并用迁移学习实现多源异构任务间参数共享。",
+          "evidence": [
+            {
+              "quote": "建立一个基于多模态深度学习的疾病预测模型，将病理组织的图像信息引入基因表达数据，用于训练预测细胞类型和疾病分期的神经网络模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 839,
+                "end_char": 900
+              },
+              "version": "ba11e2b88a903feb9abe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-886f1e9220a9",
+          "name": "构建HE2Gene实现H&E图像直接预测空间表达谱",
+          "desc": "构建基于多任务学习的深度学习模型HE2Gene，在人类乳腺癌与阿尔兹海默症数据集上实现从H&E图像直接预测全基因组空间表达谱，关键基因空间相关性显著优于同类算法；项目期间发表论文20余篇。",
+          "evidence": [
+            {
+              "quote": "成功构建了基于多任务学习的深度学习模型HE2Gene",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2843,
+                "end_char": 2868
+              },
+              "version": "ba11e2b88a903feb9abe"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-8f99a9c4a9ee"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-34506ba23b8e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-34506ba23b8e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-55aa1410c01a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-55aa1410c01a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-886f1e9220a9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "doc_id": "a7095795b29d0f37746a",
+  "version": "94ae9681a19da0f1acc1",
+  "source_hash": "4f39988de7098b92b718850583727f618cf2909e50b1a43c8f81ccab07d1bd98",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:22:27.720241+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-053540f8651d",
+          "name": "网络空间认知引导文本生成",
+          "desc": "面向网络空间用户情感认知个性化动态化隐匿化特点的文本生成",
+          "evidence": [
+            {
+              "quote": "围绕网络空间认知引导需求，充分考虑网络空间用户情感认知个性化、动态化、隐匿化等特点，重点研究网络空间用户情感认知分析、知识增强的可控内容生成等关键技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2326,
+                "end_char": 2400
+              },
+              "version": "94ae9681a19da0f1acc1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d83797739c76",
+          "name": "通用回复与知识匮乏",
+          "desc": "端到端模型易生成千篇一律通用回复缺乏情绪感知，对话系统知识匮乏",
+          "evidence": [
+            {
+              "quote": "端到端结构的模型容易生成诸如“好的”、“我不知道”等千篇一律的通用回复，缺乏情绪感知能力。其次，对话系统面临知识匮乏的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 750,
+                "end_char": 810
+              },
+              "version": "94ae9681a19da0f1acc1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f129c4a40533",
+          "name": "个性化情感认知测绘",
+          "desc": "多用户社交常识交互情绪分析框架实现个性化动态化情绪检测和溯因",
+          "evidence": [
+            {
+              "quote": "提出基于多用户社交常识交互的情绪分析框架，实现了个性化、动态化的情绪检测和溯因，有效解决了复杂舆论环境下的精准情绪感知问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2546,
+                "end_char": 2606
+              },
+              "version": "94ae9681a19da0f1acc1"
+            }
+          ]
+        },
+        {
+          "id": "item-5ede4e5e0bcb",
+          "name": "多维可控内容生成",
+          "desc": "主题可控、风格可控、情感可控的内容生成技术降低生成式模型内容风险",
+          "evidence": [
+            {
+              "quote": "分别从主题可控、风格可控、情感可控等多维度，提出基于主题先验知识的主题可控内容生成、语义和风格特征解耦的风格可控内容生成、常识图谱增强的情感可控内容生成技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2709,
+                "end_char": 2786
+              },
+              "version": "94ae9681a19da0f1acc1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4eaa1318956e",
+          "name": "大模型轻量化压缩",
+          "desc": "融合剪枝矩阵分解知识蒸馏，情感分析推断计算量减少至5%内，训练提速约3倍",
+          "evidence": [
+            {
+              "quote": "提出融合剪枝、矩阵分解和知识蒸馏的综合压缩方法，在情感分析任务上将模型推断计算量减少至5%内，从千亿浮点运算降低至十亿量级；同时，针对模型训练开销大的问题，发现了知识蒸馏中的边际效益递减现象，指导训练时利用1%的隐藏状态蒸馏达到了全量蒸馏的效果，相近精度下训练提速约3倍",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2874,
+                "end_char": 3008
+              },
+              "version": "94ae9681a19da0f1acc1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-053540f8651d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d83797739c76"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d83797739c76"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f129c4a40533"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d83797739c76"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5ede4e5e0bcb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5ede4e5e0bcb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4eaa1318956e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f129c4a40533"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4eaa1318956e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

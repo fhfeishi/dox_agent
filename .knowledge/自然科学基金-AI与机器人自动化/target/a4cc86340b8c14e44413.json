@@ -1,0 +1,180 @@
+{
+  "doc_id": "a4cc86340b8c14e44413",
+  "version": "13d18882821bff0fe2de",
+  "source_hash": "62baa66d6181f785caa6cccb05dd8bdb5afd6b9039fbcb62793344bb69be3777",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:18.178120+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f760b12bca0d",
+          "name": "自动驾驶场景语义分割",
+          "desc": "行车环境感知的图像视频实时语义分割",
+          "evidence": [
+            {
+              "quote": "本项目以自动驾驶场景为应用背景，以深度学习的场景语义分割技术为研究对象，主要研究并提出了多种高清晰度的图像和视频的实时分割，提高实算法的预测精度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2562,
+                "end_char": 2633
+              },
+              "version": "13d18882821bff0fe2de"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8ace6fd66fa2",
+          "name": "小样本场景动态变化难",
+          "desc": "季节更迭、光照与天气变化引起的小样本场景难处理",
+          "evidence": [
+            {
+              "quote": "在骨干网络之外添加持续记忆单元对因季节更迭、早晚光照和天气变化引起的小样本场景进行记忆并动态更新以辅助决策的图像场景语义分割方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 888,
+                "end_char": 952
+              },
+              "version": "13d18882821bff0fe2de"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dc732123e8f9",
+          "name": "实时分割与蒸馏",
+          "desc": "轻量级计算、知识蒸馏与协同学习自适应度量蒸馏",
+          "evidence": [
+            {
+              "quote": "主要研究并提出了多种高清晰度的图像和视频的实时分割，提高实算法的预测精度；提出了协同学习的自适应度量蒸馏方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2598,
+                "end_char": 2652
+              },
+              "version": "13d18882821bff0fe2de"
+            }
+          ]
+        },
+        {
+          "id": "item-3d56058455d5",
+          "name": "跨模态感知方法体系",
+          "desc": "视觉-红外检索、视觉问答与3D车辆检测等拓展",
+          "evidence": [
+            {
+              "quote": "提出了模态协同互补的视觉-红外图像的人员检索方法；提出了单阶段无锚框的3D车辆检测方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2730,
+                "end_char": 2772
+              },
+              "version": "13d18882821bff0fe2de"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a39dbaf7ca32",
+          "name": "国际领先方法验证",
+          "desc": "代码实现与对比实验证明同期国际领先水平",
+          "evidence": [
+            {
+              "quote": "本项目对所提出的解决方法进行了代码实现、实验分析、和同类先进方法对比，结果证明本项目所提出的方法在该领域同时期具有国际领先水平",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2832,
+                "end_char": 2894
+              },
+              "version": "13d18882821bff0fe2de"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f760b12bca0d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8ace6fd66fa2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8ace6fd66fa2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-dc732123e8f9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8ace6fd66fa2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3d56058455d5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-dc732123e8f9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a39dbaf7ca32"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3d56058455d5"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a39dbaf7ca32"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

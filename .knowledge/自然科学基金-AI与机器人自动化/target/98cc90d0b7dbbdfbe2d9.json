@@ -1,0 +1,197 @@
+{
+  "doc_id": "98cc90d0b7dbbdfbe2d9",
+  "version": "ab5849b3bdea485aab2a",
+  "source_hash": "f65a7a29791924e4eb51babf97d382ba6c177399d420b522888aca1ac7e1a99a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:57.007965+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-06a5151b197b",
+          "name": "微创手术软体机器人",
+          "desc": "微创外科与机器人领域科学前沿，对提升微创手术水平至关重要",
+          "evidence": [
+            {
+              "quote": "微创手术软体机器人是微创外科和机器人领域的科学前沿，也是当前研究的热点和难点，对提升微创手术水平至关重要",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 712
+              },
+              "version": "ab5849b3bdea485aab2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4ac0421a6e97",
+          "name": "软体机器人状态测量缺失",
+          "desc": "现有视觉、电子和光电等传感方法尚未解决软体机器人状态精确测量问题",
+          "evidence": [
+            {
+              "quote": "现有视觉、电子和光电等传感方法尚未解决软体机器人的状态精确测量问题，限制了其手术应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2818,
+                "end_char": 2859
+              },
+              "version": "ab5849b3bdea485aab2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6fb873aaf94b",
+          "name": "螺旋型多芯光纤光栅解耦",
+          "desc": "基于超弹性软体机器人形状位姿参数表征的传感参数解耦方法",
+          "evidence": [
+            {
+              "quote": "重点解决了基于超弹性软体机器人形状位姿参数表征的螺旋型多芯光纤光栅解耦方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2901,
+                "end_char": 2937
+              },
+              "version": "ab5849b3bdea485aab2a"
+            }
+          ]
+        },
+        {
+          "id": "item-73f84dc49469",
+          "name": "扩展卡尔曼滤波形状重构",
+          "desc": "融合机器人运动学模型，实现软体手术机器人形状重构与状态感知",
+          "evidence": [
+            {
+              "quote": "利用扩展卡尔曼滤波算法，融合机器人的运动学模型，实现了软体手术机器人的形状重构和状态感知",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3123,
+                "end_char": 3166
+              },
+              "version": "ab5849b3bdea485aab2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-46809c26bb31",
+          "name": "传感灵敏度指标",
+          "desc": "螺旋光纤光栅传感灵敏度达12.55 pm/°，偏差指数小于9.71%",
+          "evidence": [
+            {
+              "quote": "实验测得螺旋光纤光栅传感灵敏度可以达到12.55 pm/°，且偏差指数小于9.71%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3232,
+                "end_char": 3273
+              },
+              "version": "ab5849b3bdea485aab2a"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-813aa43b9a33",
+          "name": "形状重构误差指标",
+          "desc": "形状重构与理论结果最大误差不超过9%，平均误差小于5%",
+          "evidence": [
+            {
+              "quote": "软体机器人形状重构与理论结果最大误差不超过9%，平均误差小于5%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3275,
+                "end_char": 3306
+              },
+              "version": "ab5849b3bdea485aab2a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-06a5151b197b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4ac0421a6e97"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4ac0421a6e97"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6fb873aaf94b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6fb873aaf94b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-46809c26bb31"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-06a5151b197b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-73f84dc49469"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-73f84dc49469"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-813aa43b9a33"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "doc_id": "cfe88197ed4ea86ccff1",
+  "version": "cb08de94c9d0f20648df",
+  "source_hash": "c4507ec246d15f3c2968241afd252358c00e1907b76037f3bbd81acc0f8e2a63",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:54.205686+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a7ace53b0a8b",
+          "name": "无人机海上变化检测",
+          "desc": "复杂海域外部干扰与图像数据匮乏下的无人机视觉感知",
+          "evidence": [
+            {
+              "quote": "复杂海域的外部干扰以及图像数据的匮乏，给无人机在海上执行变化检测任务带来了极大的挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2633,
+                "end_char": 2674
+              },
+              "version": "cb08de94c9d0f20648df"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5c6bebb54a92",
+          "name": "海浪光照噪声视觉干扰",
+          "desc": "海浪背景、光照变化、噪声等视觉干扰与图像数据不足",
+          "evidence": [
+            {
+              "quote": "为了解决视觉干扰，例如海浪背景、光照变化、噪声等",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 723,
+                "end_char": 746
+              },
+              "version": "cb08de94c9d0f20648df"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-04e84869cfc9",
+          "name": "仿鹰眼视觉变化检测",
+          "desc": "利用鹰眼视觉敏感度和侧抑制特性构建时空分布一致的变化检测算法",
+          "evidence": [
+            {
+              "quote": "本项目利用鹰眼视觉敏感度和侧抑制特性以仿生视觉计算方式构建变化检测算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2701,
+                "end_char": 2735
+              },
+              "version": "cb08de94c9d0f20648df"
+            }
+          ]
+        },
+        {
+          "id": "item-7b0b779a14ce",
+          "name": "虚拟仿真与GAN数据增强",
+          "desc": "虚拟仿真平台像素级自动标注与生成式对抗网络生成逼真合成图像",
+          "evidence": [
+            {
+              "quote": "首先采用虚拟仿真平台以真实场景为基准还原海上场景，并实现精确的像素级自动标注功能，获得多样性虚拟视频序列",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 835,
+                "end_char": 886
+              },
+              "version": "cb08de94c9d0f20648df"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1db6b9496aa2",
+          "name": "仿鹰眼模型能力阐明",
+          "desc": "阐明仿鹰眼模型拟合动态目标特征的能力，促进海上领域应用",
+          "evidence": [
+            {
+              "quote": "项目阐明了仿鹰眼模型拟合动态目标特征的能力，揭示海上视觉挑战对模型定量分析和测试的重要意义，研究促进了无人机变化检测方法在海上领域的应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2914,
+                "end_char": 2981
+              },
+              "version": "cb08de94c9d0f20648df"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-315ad95953f3",
+          "name": "海上感知科学问题解决",
+          "desc": "突破仿鹰眼视觉认知与智能感知理论，建立混合图像数据库闭环机制",
+          "evidence": [
+            {
+              "quote": "该研究突破仿鹰眼视觉认知与智能感知相关理论，结合虚拟仿真平台和生成式对抗网络等技术，解决了无人机海上感知核心科学问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3057,
+                "end_char": 3114
+              },
+              "version": "cb08de94c9d0f20648df"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a7ace53b0a8b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5c6bebb54a92"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5c6bebb54a92"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-04e84869cfc9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5c6bebb54a92"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7b0b779a14ce"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-04e84869cfc9"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-1db6b9496aa2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7b0b779a14ce"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-315ad95953f3"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

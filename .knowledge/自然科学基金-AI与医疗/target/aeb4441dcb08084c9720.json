@@ -1,0 +1,142 @@
+{
+  "doc_id": "aeb4441dcb08084c9720",
+  "version": "f2f2b1982903402e3f20",
+  "source_hash": "454529b63a8dda02679063d331a0974b89018c427b5fe1cf8a1f4d6371120d32",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:03.597541+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6cabb7586310",
+          "name": "视觉辅助的雷达人体三维姿态与体素估计",
+          "desc": "面向居家医疗健康监测，利用视觉语义信息辅助雷达实现人体三维姿态与体素估计。",
+          "evidence": [
+            {
+              "quote": "雷达人体智能感知技术逐渐成为居家医疗健康监测的重要组成部分",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 647,
+                "end_char": 675
+              },
+              "version": "f2f2b1982903402e3f20"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c1179d2628d5",
+          "name": "室内雷达三维语义感知能力不足",
+          "desc": "室内雷达探测精度受限，对人体三维语义感知能力不足，感知方法的可解释性与泛化性缺失，难以适用于动态开放世界。",
+          "evidence": [
+            {
+              "quote": "其本质原因在于室内雷达探测精度受限，对人体三维语义感知能力不足，感知方法的可解释性与泛化性缺失",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 715,
+                "end_char": 761
+              },
+              "version": "f2f2b1982903402e3f20"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-23e586ef4244",
+          "name": "数据与物理模型混合驱动的雷达三维感知框架",
+          "desc": "提出数据与物理模型混合驱动的理论框架，通过数据驱动的单射性网络架构约束与雷达物理模型的可解释因果约束开展建模。",
+          "evidence": [
+            {
+              "quote": "提出数据与物理模型混合驱动的理论框架，通过数据驱动的单射性网络架构约束与雷达物理模型的可解释因果约束",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 837,
+                "end_char": 886
+              },
+              "version": "f2f2b1982903402e3f20"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b5e98b8f9e2e",
+          "name": "发表12篇期刊论文、6篇会议论文并申请3项发明专利",
+          "desc": "项目总计发表12篇期刊论文、6篇会议论文，申请3项国家发明专利，并收集了首次囊括高分辨率雷达阵列、动捕与音频的多模态人体3D感知数据集。",
+          "evidence": [
+            {
+              "quote": "总计发表了12篇期刊论文，6篇会议论文，申请了3篇国家发明专利",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2685,
+                "end_char": 2715
+              },
+              "version": "f2f2b1982903402e3f20"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6cabb7586310"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c1179d2628d5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c1179d2628d5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-23e586ef4244"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-23e586ef4244"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b5e98b8f9e2e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

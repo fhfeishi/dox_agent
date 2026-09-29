@@ -1,0 +1,186 @@
+{
+  "doc_id": "d8cd2f906e0747bbd659",
+  "version": "f3c753a05d5e7c201d53",
+  "source_hash": "b5b4bf6a0d2cd7b46f3dffdf719542a5cf204a73a86e592b06413828564b6d75",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:00.318187+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cf84ce4f3349",
+          "name": "踝关节康复机器人柔顺训练",
+          "desc": "以主动康复训练为核心、主/被动柔顺训练相结合的踝康复机器人研究",
+          "evidence": [
+            {
+              "quote": "设计和研发以主动康复训练功能为核心，主/被动柔顺康复训练相结合的踝康复训练技术，并在2-UPS/RRR踝康复机器人上进行功能实现与康复训练的试验研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3096,
+                "end_char": 3169
+              },
+              "version": "f3c753a05d5e7c201d53"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9e68ac0c4c88",
+          "name": "踝康复机器人柔顺性不足",
+          "desc": "现有踝康复机器人柔顺性不足、康复训练方式单一",
+          "evidence": [
+            {
+              "quote": "针对现有踝康复机器人柔顺性不足、康复训练方式单一的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 693
+              },
+              "version": "f3c753a05d5e7c201d53"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-79e1eec2ad3e",
+          "name": "力位信息意图识别与导纳控制",
+          "desc": "基于力位信息的运动意图识别算法与导纳控制系统框架，实现柔顺交互",
+          "evidence": [
+            {
+              "quote": "探究基于力位信息的运动意图识别算法，并搭建导纳控制系统框架，实现了基于导纳模型的柔顺交互",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3295,
+                "end_char": 3338
+              },
+              "version": "f3c753a05d5e7c201d53"
+            }
+          ]
+        },
+        {
+          "id": "item-1c4296e65b10",
+          "name": "样本熵肌肉激活评估",
+          "desc": "将样本熵引入传统肌肉激活模型并修正，评估康复训练效果",
+          "evidence": [
+            {
+              "quote": "提出了一种基于样本熵估计肌肉激活状态的方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3418,
+                "end_char": 3438
+              },
+              "version": "f3c753a05d5e7c201d53"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-58c954b63e80",
+          "name": "运动学标定与轨迹规划",
+          "desc": "完成关节空间映射及位置解析，建立运动学标定算法并实现被动训练轨迹规划",
+          "evidence": [
+            {
+              "quote": "完成了并联踝康复机器人的关节空间映射及位置解析，建立了该机构的运动学标定算法，并实现了被动康复训练轨迹的规划设计",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3210,
+                "end_char": 3265
+              },
+              "version": "f3c753a05d5e7c201d53"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-834d8fbd7eb3",
+          "name": "训练效果评估方法",
+          "desc": "实现对机器人辅助踝康复训练效果的评估",
+          "evidence": [
+            {
+              "quote": "将样本熵引入传统的肌肉激活模型，并对其进行修正，实现对机器人辅助踝康复训练效果的评估",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3440,
+                "end_char": 3481
+              },
+              "version": "f3c753a05d5e7c201d53"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-cf84ce4f3349"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9e68ac0c4c88"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9e68ac0c4c88"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-79e1eec2ad3e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-79e1eec2ad3e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-58c954b63e80"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1c4296e65b10"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-834d8fbd7eb3"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

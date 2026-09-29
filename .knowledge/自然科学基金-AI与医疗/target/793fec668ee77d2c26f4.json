@@ -1,0 +1,142 @@
+{
+  "doc_id": "793fec668ee77d2c26f4",
+  "version": "44220b04e36df5292d00",
+  "source_hash": "77de32c706b4c5ad5437ebb31a0ddb0f439999eb9cdac6b02e6c76ca803fa022",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:47.244303+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fd5e4beffa43",
+          "name": "中晚期非小细胞肺癌靶向治疗疗效与预后评估",
+          "desc": "面向中晚期NSCLC靶向治疗，基于影像病理组学构建疗效评价与预后评估的风险量化模型。",
+          "evidence": [
+            {
+              "quote": "中晚期非小细胞肺癌占全部肺癌的25%，靶向治疗是首选治疗方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 671,
+                "end_char": 700
+              },
+              "version": "44220b04e36df5292d00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4d58b85a5f3f",
+          "name": "耐药缺乏精准量化预测方法",
+          "desc": "25-30%的靶向治疗患者会出现耐药，临床缺乏精准量化的耐药预测方法，难以准确识别靶向治疗获益个体。",
+          "evidence": [
+            {
+              "quote": "但25-30%患者会出现耐药，并且临床缺乏精准量化的耐药预测方法，难以准确识别靶向治疗的获益个体",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 702,
+                "end_char": 749
+              },
+              "version": "44220b04e36df5292d00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0a0c20a35182",
+          "name": "CT与病理WSI异构影像病理组学融合建模",
+          "desc": "基于非同源异构的CT图像与穿刺活检病理全光镜扫描图像，用深度学习提取与靶向治疗耐药高度相关的特征，并结合动态演变连续CT图像与临床模型构建融合风险量化模型。",
+          "evidence": [
+            {
+              "quote": "基于非同源异构的CT图像和穿刺活检病理全光镜扫描图像，深度学习提取和筛选与非小细胞肺癌靶向治疗耐药高度相关的特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 834,
+                "end_char": 889
+              },
+              "version": "44220b04e36df5292d00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ae6089d60397",
+          "name": "DL-MFIF内外验证集AUC 0.856与0.817",
+          "desc": "多模态融合模型DL-MFIF在内部验证集与外部验证集AUC分别达0.856和0.817，实现影像CT宏观特征与病理WSI微观特征的互补融合。",
+          "evidence": [
+            {
+              "quote": "DL-MFIF在内部验证集和外部验证集AUC分别达到0.856和0.817",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3265,
+                "end_char": 3301
+              },
+              "version": "44220b04e36df5292d00"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-fd5e4beffa43"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4d58b85a5f3f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4d58b85a5f3f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0a0c20a35182"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0a0c20a35182"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ae6089d60397"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

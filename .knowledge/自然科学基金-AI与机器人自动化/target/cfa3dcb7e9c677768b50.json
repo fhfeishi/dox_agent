@@ -1,0 +1,180 @@
+{
+  "doc_id": "cfa3dcb7e9c677768b50",
+  "version": "161835114ce6aafff140",
+  "source_hash": "9b9d1c27cf3da541a890381afb67f4ed13a980b52a850e6e54a7b8ace3b5db8f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:08:00.373051+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3089512275f0",
+          "name": "开放式多智能体对抗决策",
+          "desc": "部分可观测随机博弈中未知的未知竞争对手建模与推理",
+          "evidence": [
+            {
+              "quote": "目前，大多多智能体决策研究都是集中处理已知的已知、已知的未知竞争对手问题，少有针对未知的未知竞争对手的相关研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2613,
+                "end_char": 2667
+              },
+              "version": "161835114ce6aafff140"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a143e63035a7",
+          "name": "竞争对手真实模型识别",
+          "desc": "需生成竞争对手可能模型空间并识别其真实模型以优化规划",
+          "evidence": [
+            {
+              "quote": "深入研究可控、可量的多智能体动态规划模型，创造性地生成竞争对手的可能模型空间，从而识别竞争对手真实模型，达到优化规划的目的",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 879,
+                "end_char": 939
+              },
+              "version": "161835114ce6aafff140"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9d5ab7b81443",
+          "name": "有限理性交互式动态影响图",
+          "desc": "定义有限理性IDID模型，每个规划阶段实时优化主体智能体短期规划",
+          "evidence": [
+            {
+              "quote": "项目组定义了一个有限理性的 交互式动态影响图模型，在每一个规划阶段，不同的有限理性模型可以实时优化主体智能体的短期规划",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2845,
+                "end_char": 2903
+              },
+              "version": "161835114ce6aafff140"
+            }
+          ]
+        },
+        {
+          "id": "item-3404f2ff3975",
+          "name": "想象力机制模型拓展",
+          "desc": "想象力机制拓展竞争对手模型空间，设计基于遗传算法的演化行为机制",
+          "evidence": [
+            {
+              "quote": "通过想象力机制拓展竞争对手的模型空间，对已知的竞争对手可能模型进行有创造性的改编，比如设计了基于遗传算法的演化行为机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2994,
+                "end_char": 3052
+              },
+              "version": "161835114ce6aafff140"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4c2f51770bfb",
+          "name": "动态交互信息推断",
+          "desc": "利用多智能体交互历史信息推断竞争对手真实模型，主动获取信息提升模型质量",
+          "evidence": [
+            {
+              "quote": "充分利用多智能体交互的历史信息来推断竞争对手真实模型，通过动态交互主动获取竞争对手的信息从而提高交互式动态影响图模型的质量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2905,
+                "end_char": 2965
+              },
+              "version": "161835114ce6aafff140"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3089512275f0"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a143e63035a7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a143e63035a7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9d5ab7b81443"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a143e63035a7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3404f2ff3975"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9d5ab7b81443"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4c2f51770bfb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3404f2ff3975"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4c2f51770bfb"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

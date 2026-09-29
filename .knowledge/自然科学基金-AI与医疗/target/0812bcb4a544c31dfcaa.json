@@ -1,0 +1,142 @@
+{
+  "doc_id": "0812bcb4a544c31dfcaa",
+  "version": "343342f92933d44ae08f",
+  "source_hash": "f8a90cd3d0c833cb95ff64c93ae9e164b8c5b85b8d0380a70ac92e7e49aa7cce",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:34.800192+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3f5ac6f5d363",
+          "name": "泌尿系统肿瘤AI一体化精准诊疗",
+          "desc": "面向以膀胱癌为代表的泌尿系统恶性肿瘤诊疗流程，研发全链条覆盖的一体化AI精准诊疗平台。",
+          "evidence": [
+            {
+              "quote": "在临床实践中，以膀胱癌为代表的泌尿系统恶性肿瘤诊疗过程中存在着诸多亟待解决的诊断与治疗不精准问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 778,
+                "end_char": 825
+              },
+              "version": "343342f92933d44ae08f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-db2cdd160335",
+          "name": "泌尿系统肿瘤诊疗存在诸多临床痛点",
+          "desc": "以膀胱癌为代表的泌尿系统恶性肿瘤诊疗存在诸多亟待解决的临床痛点与难点，传统人工诊疗模式难以满足精准诊疗需求。",
+          "evidence": [
+            {
+              "quote": "在临床实践中，以膀胱癌为代表的泌尿系统恶性肿瘤诊疗存在着诸多亟待解决的临床痛点、难点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2705,
+                "end_char": 2746
+              },
+              "version": "343342f92933d44ae08f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5226eb93b86c",
+          "name": "CNN与迁移学习知识图谱驱动的一体化AI诊疗平台",
+          "desc": "基于卷积神经网络、深度迁移学习、渐进自动化增量学习与知识图谱等技术，研发涵盖早期筛查与诊断分期全流程的系列AI精准诊断系统并集成智能数据治理与云平台。",
+          "evidence": [
+            {
+              "quote": "进一步基于卷积神经网络、深度迁移学习、渐进自动化增量学习、知识图谱技术等最新发展的AI技术，研发全链条覆盖泌尿系统常见恶性肿瘤诊疗过程的一体化AI精准诊疗平台",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 933,
+                "end_char": 1011
+              },
+              "version": "343342f92933d44ae08f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ce8885e13dc5",
+          "name": "发表SCI论文17篇并获批国家发明专利7项",
+          "desc": "团队发表SCI论文17篇（另有1篇已录用），获批国家发明专利7项；培养1名青年长江学者、2名国家优青等，完成培养博士15人、硕士14人。",
+          "evidence": [
+            {
+              "quote": "团队已发表SCI论文17篇（另有1篇文章已录用，暂未见刊），获批国家发明专利7项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3187,
+                "end_char": 3226
+              },
+              "version": "343342f92933d44ae08f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3f5ac6f5d363"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-db2cdd160335"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-db2cdd160335"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5226eb93b86c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5226eb93b86c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ce8885e13dc5"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

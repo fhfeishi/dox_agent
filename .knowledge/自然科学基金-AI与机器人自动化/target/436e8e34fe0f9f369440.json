@@ -1,0 +1,180 @@
+{
+  "doc_id": "436e8e34fe0f9f369440",
+  "version": "2d4686e69ac4aff55679",
+  "source_hash": "01f124caa43ccc7bbc550504d23d19ea94af3ac1747ab16fffdd15770afa05ab",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:10.041120+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-30f638e70bc0",
+          "name": "灵巧手触觉感知",
+          "desc": "医学假肢和中高端机器人灵巧手的触觉操控",
+          "evidence": [
+            {
+              "quote": "在诸多核心要素中，触觉感知能力是灵巧手测量所操作物体属性与姿态、检测接触状态的必备能力之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2923,
+                "end_char": 2968
+              },
+              "version": "2d4686e69ac4aff55679"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b4799aa9dc96",
+          "name": "感知机理与融合不足",
+          "desc": "缺乏感知机理深入研究与深度仿生设计、信号处理精度待提高",
+          "evidence": [
+            {
+              "quote": "然而，目前尚缺乏对灵巧手触觉感知机理的深入研究和深度仿生的设计方法，其信号处理模型的精度也有待提高，极大限制了灵巧手从实验室走向市场应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2969,
+                "end_char": 3037
+              },
+              "version": "2d4686e69ac4aff55679"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f3f021b87ef3",
+          "name": "数值模型导引设计",
+          "desc": "接触动力学模型导引优化设计五敏感元件仿生手指",
+          "evidence": [
+            {
+              "quote": "提出了数值模型导引的优化设计方法；基于此方法设计出含有五个敏感元件的触觉仿生手指及触觉夹爪，在8种表面的智能识别中获得了93.64%的识别准确率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3138,
+                "end_char": 3209
+              },
+              "version": "2d4686e69ac4aff55679"
+            }
+          ]
+        },
+        {
+          "id": "item-3bcbd4a0c819",
+          "name": "接触状态自动分割",
+          "desc": "特征工程与迁移学习深度神经网络感知模型",
+          "evidence": [
+            {
+              "quote": "据此提出了不同接触状态自动分割的预处理算法，并分别提出了基于特征工程与迁移学习深度神经网络的感知模型，并通过机器人操作实验进行了验证，对12种材料和6种形状的触觉识别中达到了92.38%和99.72%的准确率。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3247,
+                "end_char": 3351
+              },
+              "version": "2d4686e69ac4aff55679"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b43c9d138772",
+          "name": "触觉对齐自动装配",
+          "desc": "两指夹爪实现U盘及电子插口姿态对齐与自动化装配",
+          "evidence": [
+            {
+              "quote": "基于该触觉手指开发的两指夹爪可以在实现不同物体抓取的同时，通过触觉感知实现U盘及不同电子插口的姿态对齐与自动化装配。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3460,
+                "end_char": 3517
+              },
+              "version": "2d4686e69ac4aff55679"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-30f638e70bc0"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b4799aa9dc96"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b4799aa9dc96"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f3f021b87ef3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b4799aa9dc96"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3bcbd4a0c819"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f3f021b87ef3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b43c9d138772"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3bcbd4a0c819"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b43c9d138772"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

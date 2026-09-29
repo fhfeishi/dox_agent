@@ -1,0 +1,180 @@
+{
+  "doc_id": "35c7eda29586ecf9882a",
+  "version": "7e21a3c687e93e7a646c",
+  "source_hash": "211dd82f0b6b7f01cb66afecb557ad52a5e555a2e0f1207399661b97d4e4e520",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:36.651938+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7bf69023aacb",
+          "name": "城市级监控行人接力跟踪",
+          "desc": "摄像机网络中特定行人运动轨迹推送与接力跟踪",
+          "evidence": [
+            {
+              "quote": "复杂动态场景下的视频目标持续跟踪问题受到环境复杂性、长期部分遮挡、跨摄像头运动以及目标姿势变化等多方面因素的影响。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2580,
+                "end_char": 2636
+              },
+              "version": "7e21a3c687e93e7a646c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-828e0eacca73",
+          "name": "时空断续跟踪失效",
+          "desc": "特征相似性跟踪算法难适应非结构化未知环境",
+          "evidence": [
+            {
+              "quote": "因此，传统的基于特征相似性的跟踪算法无法较好的应用于非结构化的未知环境，难以实现时空断续条件下对运动目标的持续跟踪。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2637,
+                "end_char": 2694
+              },
+              "version": "7e21a3c687e93e7a646c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c06ae40d789b",
+          "name": "四种跨域学习算法",
+          "desc": "流形保持、子空间对齐、注意力属性融合与子任务解耦",
+          "evidence": [
+            {
+              "quote": "本项目提出四种高效的跨域学习算法：基于流行结构保持的判别式迁移学习算法、基于子空间对齐的判别式迁移学习算法、基于注意力机制与属性融合的跨域行人重识别算法和子任务解耦的无监督分类算法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2895,
+                "end_char": 2985
+              },
+              "version": "7e21a3c687e93e7a646c"
+            }
+          ]
+        },
+        {
+          "id": "item-6f4427e14d05",
+          "name": "标签漫游PHD跟踪",
+          "desc": "标签漫游概率假设密度方法持续更新目标表观模型",
+          "evidence": [
+            {
+              "quote": "本项目引入特征迁移机制和领域自适应的算法，结合视频中层语义特征抽取、标签漫游概率假设密度方法，重点研究了多摄像机视频监控网络下的行人持续跟踪方法的深层次问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2702,
+                "end_char": 2780
+              },
+              "version": "7e21a3c687e93e7a646c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e743841aa0e3",
+          "name": "公开数据集与真实测试验证",
+          "desc": "多数据集仿真与真实跨城市监控测试验证有效",
+          "evidence": [
+            {
+              "quote": "通过在多个公开标准视频数据集上进行仿真实验，并在真实跨城市级监控视频数据上进行目标跟踪测试，其结果验证了所提算法的有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2986,
+                "end_char": 3046
+              },
+              "version": "7e21a3c687e93e7a646c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-7bf69023aacb"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-828e0eacca73"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-828e0eacca73"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c06ae40d789b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-828e0eacca73"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6f4427e14d05"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c06ae40d789b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e743841aa0e3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6f4427e14d05"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e743841aa0e3"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

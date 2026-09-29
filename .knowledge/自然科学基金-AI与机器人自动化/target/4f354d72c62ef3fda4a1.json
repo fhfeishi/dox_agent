@@ -1,0 +1,197 @@
+{
+  "doc_id": "4f354d72c62ef3fda4a1",
+  "version": "dd19b4e250a442e8a12f",
+  "source_hash": "f8a64afb8cb809175315e8f00c5e48854b9c92280008a96c1b03d1f524fe5e69",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:16:41.897508+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5ab1b31c8238",
+          "name": "复杂非结构化智能车规划",
+          "desc": "复杂非结构化自动驾驶场景的精确避障与最优轨迹规划",
+          "evidence": [
+            {
+              "quote": "智能车是汽车产业转型升级的重要载体，发展高效、可靠的运动规划方法对推动自动驾驶落地意义重大，尤其在有望更早落地的复杂非结构化自动驾驶场景更须精确避障与最优轨迹规划以便提升运载效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2735,
+                "end_char": 2823
+              },
+              "version": "dd19b4e250a442e8a12f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cc379749f78d",
+          "name": "NLP求解不透明不稳定",
+          "desc": "第三方通用NLP求解器求解过程不透明、不易掌控、不稳定且计算负担重",
+          "evidence": [
+            {
+              "quote": "目前学术界普遍使用第三方通用NLP求解器，这容易造成NLP求解过程不透明、不易掌控、不稳定以及计算负担繁重等不良后果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 742,
+                "end_char": 799
+              },
+              "version": "dd19b4e250a442e8a12f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4eb5c8fe009d",
+          "name": "轻量化迭代优化分解",
+          "desc": "将大规模非凸NLP问题分解为仅含盒约束的可行子问题",
+          "evidence": [
+            {
+              "quote": "本项目首先提出轻量化迭代优化方法，将大规模非凸NLP问题分解为仅含盒约束的可行子问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3052,
+                "end_char": 3093
+              },
+              "version": "dd19b4e250a442e8a12f"
+            }
+          ]
+        },
+        {
+          "id": "item-e17ba97d5de1",
+          "name": "收敛监测提前干预",
+          "desc": "多轮时序数据收敛监测与提前干预机制，实时识别迭代停滞并切换备用方案",
+          "evidence": [
+            {
+              "quote": "并配套研发多轮时序数据收敛监测与提前干预机制，能够实时识别迭代停滞苗头并快速切换至备用方案，包括平行缝合算法和自适应纯跟踪规划算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3095,
+                "end_char": 3159
+              },
+              "version": "dd19b4e250a442e8a12f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6e4a2ef1e6cb",
+          "name": "收敛成功率100%耗时0.9s",
+          "desc": "非结构化场景测试收敛成功率100%，平均耗时0.909s，99%分位耗时3.138s",
+          "evidence": [
+            {
+              "quote": "在大量非结构化场景轨迹规划算例集测试中，本项目算法收敛成功率达100%，平均耗时仅0.909s，且99%分位耗时为3.138s",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3216,
+                "end_char": 3278
+              },
+              "version": "dd19b4e250a442e8a12f"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-02067b4d5469",
+          "name": "平行缝合最优性损失19.72%",
+          "desc": "平行缝合算法最优性损失率仅19.72%，自适应纯跟踪平均规划耗时仅51ms",
+          "evidence": [
+            {
+              "quote": "通过大量随机算例对平行缝合算法进行测试，其最优性损失率仅19.72%，显著优于经典缝合方案；另经大量算例评估验证了自适应纯跟踪规划对极端狭窄大曲率非结构化道路环境的高适应性，平均规划耗时仅51ms",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3330,
+                "end_char": 3427
+              },
+              "version": "dd19b4e250a442e8a12f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-5ab1b31c8238"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-cc379749f78d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cc379749f78d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4eb5c8fe009d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-cc379749f78d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e17ba97d5de1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e17ba97d5de1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6e4a2ef1e6cb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4eb5c8fe009d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-02067b4d5469"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "doc_id": "f67f8c93b011ecaf07ac",
+  "version": "8f7d9743255f7da60bd9",
+  "source_hash": "0bf40064a364eacf3c83c25b68416417e196b65680c173eb5c3d8778b75f1942",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:43:11.060526+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-763f6cd4e040",
+          "name": "柔性手术机器人控制",
+          "desc": "柔性手术机器人在体内与软组织交互环境中的自主智能作业",
+          "evidence": [
+            {
+              "quote": "本项目针对当前柔性手术机器人在体内与软组织交互环境中自主智能作业的重点难点问题，开展基于建模-感知-控制框架的系统研究，研发面向手术任务的自主控制算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 745,
+                "end_char": 819
+              },
+              "version": "8f7d9743255f7da60bd9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-412498f5dce9",
+          "name": "体内交互建模误差大",
+          "desc": "复杂结构特性和体内交互环境下的约束条件使传统建模和控制算法存在很大误差",
+          "evidence": [
+            {
+              "quote": "然而其复杂结构特性和体内交互环境下的约束条件使得传统的建模和控制算法存在很大误差，限制了其应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 697,
+                "end_char": 743
+              },
+              "version": "8f7d9743255f7da60bd9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fac9879cafe1",
+          "name": "体内精确建模",
+          "desc": "考虑体内交互约束环境影响，构建精确系统运动学和动力学模型",
+          "evidence": [
+            {
+              "quote": "项目拟考虑体内交互约束环境影响，构建精确系统运动学和动力学模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 821,
+                "end_char": 851
+              },
+              "version": "8f7d9743255f7da60bd9"
+            }
+          ]
+        },
+        {
+          "id": "item-a800c4b2b51f",
+          "name": "智能感知力反馈",
+          "desc": "结合智能感知技术实现实时复杂形状、接触力反馈",
+          "evidence": [
+            {
+              "quote": "结合智能感知技术，实现实时复杂形状、接触力反馈，保证崎岖路径的甬道环境中交互任务的顺利进行",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 853,
+                "end_char": 897
+              },
+              "version": "8f7d9743255f7da60bd9"
+            }
+          ]
+        },
+        {
+          "id": "item-19821ffb3638",
+          "name": "软组织交互控制",
+          "desc": "针对不同作业任务研发复杂受限环境中与目标软组织的交互控制算法",
+          "evidence": [
+            {
+              "quote": "针对不同作业任务，研发复杂受限环境中与目标软组织的交互控制算法，最后通过临床试验验证其实用性及有效性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 899,
+                "end_char": 948
+              },
+              "version": "8f7d9743255f7da60bd9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f2427fa6391b",
+          "name": "论文48篇与专利7项",
+          "desc": "发表SCI检索论文48篇（IEEE Trans 46篇），EI论文28篇，申请国家发明专利7项",
+          "evidence": [
+            {
+              "quote": "已申请国家发明专利7项。发表（含录用）SCI 检索论文 48 篇（项目负责人作为第一/通讯作者论文48 篇），其中 IEEE TRANSACTIONS 论文46 篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3207,
+                "end_char": 3288
+              },
+              "version": "8f7d9743255f7da60bd9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-763f6cd4e040"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-412498f5dce9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-412498f5dce9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fac9879cafe1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-412498f5dce9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a800c4b2b51f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-412498f5dce9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-19821ffb3638"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-19821ffb3638"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f2427fa6391b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a800c4b2b51f"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f2427fa6391b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

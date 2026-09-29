@@ -1,0 +1,207 @@
+{
+  "doc_id": "e0e7b20693063a8cdaf9",
+  "version": "a1bee6fca84c2d30ff2a",
+  "source_hash": "7fa937719c8f267ae76da72d75d5b168c98f39be64f7f488dd3ec2db979347bf",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:25.313776+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a934a6ee043e",
+          "name": "复杂海洋AUV智能控制",
+          "desc": "复杂海洋环境下海洋航行器高效安全运行",
+          "evidence": [
+            {
+              "quote": "海洋航行器于复杂海洋环境中实现高效、安全运行，对海洋资源开发、海洋科学研究等关键领域起着举足轻重的作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2860,
+                "end_char": 2910
+              },
+              "version": "a1bee6fca84c2d30ff2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-634427f8de78",
+          "name": "建模跟踪安全三大短板",
+          "desc": "模型构建、跟踪控制与安全保障环节存在短板",
+          "evidence": [
+            {
+              "quote": "具体体现为：难以构建出能够精准适配复杂动态海洋环境的模型，致使对航行器运动状态以及其与海洋环境交互关系的描述存在偏差；在复杂海况条件下，跟踪控制的精度与稳定性难以满足要求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2980,
+                "end_char": 3064
+              },
+              "version": "a1bee6fca84c2d30ff2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2348b8cecc50",
+          "name": "高斯符号表征模型",
+          "desc": "状态模型与高斯过程混合的符号化精准表达",
+          "evidence": [
+            {
+              "quote": "精心设计主部为状态模型、不确定性部分由高斯过程模型描述的混合模型，充分发挥状态模型在描述航行器主体运动方面的优势，以及高斯过程模型对不确定性的强大表征能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3273,
+                "end_char": 3349
+              },
+              "version": "a1bee6fca84c2d30ff2a"
+            }
+          ]
+        },
+        {
+          "id": "item-f082f2afebd5",
+          "name": "矢量场轨迹引导",
+          "desc": "航点曲线最近点优化逼近强化轨迹引导",
+          "evidence": [
+            {
+              "quote": "提出航点曲线最近点优化逼近方法，将期望轨迹的直线或转弯转化为多种矢量场，强化对航行器的引导作用，大幅提升复杂海况下跟踪控制的精度与稳定性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3525,
+                "end_char": 3592
+              },
+              "version": "a1bee6fca84c2d30ff2a"
+            }
+          ]
+        },
+        {
+          "id": "item-0375652c6bc4",
+          "name": "RL与MPC融合安全保障",
+          "desc": "模型预测控制约束机制规避强化学习航行风险",
+          "evidence": [
+            {
+              "quote": "将强化学习与模型预测控制有机融合，借助模型预测控制的约束机制，有效避免强化学习不受约束而引发的航行风险，切实保障海洋航行器的安全运行。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3620,
+                "end_char": 3686
+              },
+              "version": "a1bee6fca84c2d30ff2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-995264052b68",
+          "name": "三重环境验证",
+          "desc": "模拟环境、真实户外试验与公开数据集充分验证",
+          "evidence": [
+            {
+              "quote": "本项目所建立的控制体系在模拟海洋环境、真实户外试验以及公开的海洋航行器数据集中均得到了充分验证。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3739,
+                "end_char": 3786
+              },
+              "version": "a1bee6fca84c2d30ff2a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a934a6ee043e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-634427f8de78"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-634427f8de78"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2348b8cecc50"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-634427f8de78"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f082f2afebd5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-634427f8de78"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-0375652c6bc4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0375652c6bc4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-995264052b68"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2348b8cecc50"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-995264052b68"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

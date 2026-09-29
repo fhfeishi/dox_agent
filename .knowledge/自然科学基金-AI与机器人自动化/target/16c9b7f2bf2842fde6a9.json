@@ -1,0 +1,180 @@
+{
+  "doc_id": "16c9b7f2bf2842fde6a9",
+  "version": "3e7ee7b474d9ea5d6cc5",
+  "source_hash": "f516be71aade59774ed560fbb030997f2f04001e776942554c7acc048c4d8649",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:26.857360+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-df5cb54b7e27",
+          "name": "无人集群边缘联邦学习",
+          "desc": "高机动弱连接资源受限强对抗环境的无人集群",
+          "evidence": [
+            {
+              "quote": "本项目围绕“面向无人集群系统的边缘联邦学习安全机制”这一核心目标，针对无人集群在高机动、弱连接、资源受限和强对抗环境下的智能化需求，系统开展了体系架构构建、安全接入与认证、模型安全机制以及隐私保护技术等研究工作。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2799,
+                "end_char": 2904
+              },
+              "version": "3e7ee7b474d9ea5d6cc5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9d1dc698b71f",
+          "name": "数据不均算力受限",
+          "desc": "数据分布不均衡、无人设备计算能力有限等问题",
+          "evidence": [
+            {
+              "quote": "由于无人集群系统所处环境具有高机动和弱连接等特点，传统的网络体系架构和智能学习模型应用于无人集群系统时会面临数据分布不均衡、无人设备计算能力有限等诸多问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 696,
+                "end_char": 773
+              },
+              "version": "3e7ee7b474d9ea5d6cc5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fe35774de3c2",
+          "name": "云边端联邦架构",
+          "desc": "多模态融合与微服务可靠性部署实现弱连接稳定训练",
+          "evidence": [
+            {
+              "quote": "构建了云–边–端协同的边缘联邦学习框架，提出多模态数据融合方法、微服务可靠性增强部署策略以及端–边–云协同决策机制，实现弱连接条件下的稳定训练与高效智能决策。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2913,
+                "end_char": 2991
+              },
+              "version": "3e7ee7b474d9ea5d6cc5"
+            }
+          ]
+        },
+        {
+          "id": "item-ba821492c8e8",
+          "name": "区块链aSVC轻量认证",
+          "desc": "区块链与PUF双向认证降低资源受限设备认证开销",
+          "evidence": [
+            {
+              "quote": "提出基于区块链与 aSVC 的轻量级动态认证方案和基于 PUF 的双向认证协议，构建跨域可信身份体系，显著降低资源受限设备的认证开销并提升系统安全性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3000,
+                "end_char": 3074
+              },
+              "version": "3e7ee7b474d9ea5d6cc5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3a1119613883",
+          "name": "论文11篇与专利7项",
+          "desc": "论文11篇（SCI 7）、授权发明专利7项，博士3名硕士5名",
+          "evidence": [
+            {
+              "quote": "项目共发表论文 11篇（其中 SCI 期刊 7 篇），授权发明专利 7 项，培养博士研究生 3 名、硕士研究生 5 名。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3322,
+                "end_char": 3381
+              },
+              "version": "3e7ee7b474d9ea5d6cc5"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-df5cb54b7e27"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9d1dc698b71f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9d1dc698b71f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fe35774de3c2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9d1dc698b71f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ba821492c8e8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fe35774de3c2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3a1119613883"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ba821492c8e8"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3a1119613883"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

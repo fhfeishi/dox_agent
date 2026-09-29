@@ -1,0 +1,180 @@
+{
+  "doc_id": "0cf4fa026badd1875eab",
+  "version": "55ec281ee6a432266f4f",
+  "source_hash": "6ad38b55ba6061ce09f6ce139a5caadee48f56b69231f0d10cb9cb31f87fa9de",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:11:48.986232+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dad83a6101ed",
+          "name": "中药制药过程质量控制",
+          "desc": "中药喷雾干燥过程的质量控制智能化",
+          "evidence": [
+            {
+              "quote": "研究建立了适合中药复杂体系和喷雾干燥工艺与设备的“机理+大数据”数字孪生模型，可以大大提升中药制药过程质量控制的智能化程度，最终实现中药制药过程质量的精准调控问题，推动中药传统产业的技术升级转型，具有较大的推广应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3167,
+                "end_char": 3276
+              },
+              "version": "55ec281ee6a432266f4f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8affffa644dd",
+          "name": "质量规律不清控制不精",
+          "desc": "传统中药制药产品质量形成与传递规律不清楚、控制不精准",
+          "evidence": [
+            {
+              "quote": "项目针对传统中药制药过程中产品质量形成与传递规律不清楚、控制不精准的难题，提出一种基于数字孪生和深度学习技术的中药制药过程质量控制智能化方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 668,
+                "end_char": 738
+              },
+              "version": "55ec281ee6a432266f4f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-29646a3a7f3d",
+          "name": "CFD机理孪生模型",
+          "desc": "计算流体力学与物理驱动的机理模型描述液滴干燥",
+          "evidence": [
+            {
+              "quote": "构建基于计算流体力学和物理驱动的机理模型来解决过程建模、仿真、预测等问题，从而准确描述中药物料在喷雾干燥设备中的液滴干燥过程。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2907,
+                "end_char": 2969
+              },
+              "version": "55ec281ee6a432266f4f"
+            }
+          ]
+        },
+        {
+          "id": "item-51730ec5af83",
+          "name": "深度强化学习工艺优化",
+          "desc": "大数据联合深度强化学习获取最佳生产模式",
+          "evidence": [
+            {
+              "quote": "以条件参数和工艺参数作为模型输入，通过大数据联合深度强化学习模型获取最佳生产模式，并结合期望产品指标设定目标工艺。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3001,
+                "end_char": 3057
+              },
+              "version": "55ec281ee6a432266f4f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e8510c8c288e",
+          "name": "论文30余篇与标准4项",
+          "desc": "发表论文30余篇，发布团体标准4项，硕博毕业14人",
+          "evidence": [
+            {
+              "quote": "共发表论文30余篇，发布团体标准4项，硕士研究生毕业11人，博士研究生毕业3人。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3127,
+                "end_char": 3166
+              },
+              "version": "55ec281ee6a432266f4f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-dad83a6101ed"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8affffa644dd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8affffa644dd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-29646a3a7f3d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8affffa644dd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-51730ec5af83"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-51730ec5af83"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e8510c8c288e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-29646a3a7f3d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e8510c8c288e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

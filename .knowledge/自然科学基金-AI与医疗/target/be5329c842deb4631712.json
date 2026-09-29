@@ -1,0 +1,142 @@
+{
+  "doc_id": "be5329c842deb4631712",
+  "version": "8bf4e02ba3c3cd6adbd9",
+  "source_hash": "4e91fd0fc88af14343054125ee12d023a2503cab4363781858e3b497190b5a0a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:47.137034+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f49b5ca3a959",
+          "name": "移动网络化ACT干预PTSD",
+          "desc": "面向疫情后PTSD干预需求，研发并验证基于接纳承诺疗法的移动网络化心理干预程序及其心理与神经机制。",
+          "evidence": [
+            {
+              "quote": "COVID-19增加了公众罹患创伤后应激障碍(PTSD)的风险，尤其是重灾区武汉",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 675,
+                "end_char": 714
+              },
+              "version": "8bf4e02ba3c3cd6adbd9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4f4bc5d8a915",
+          "name": "国内未实证检验网络化ACT干预PTSD效果",
+          "desc": "基于接纳承诺疗法的移动网络化干预是疫情后PTSD干预的重要方式，但国内尚未实证检验其效果及作用机制。",
+          "evidence": [
+            {
+              "quote": "但目前国内还未实证检验网络化ACT干预PTSD的效果及作用机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 753,
+                "end_char": 783
+              },
+              "version": "8bf4e02ba3c3cd6adbd9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-891271511b11",
+          "name": "移动网络化ACT程序结合fMRI与机器学习匹配建模",
+          "desc": "整合临床与咨询心理学、神经科学与计算机科学方法，研发移动网络化ACT程序，用多点瞬时评价探究心理机制、fMRI探索神经机制，并以SMART与有监督机器学习做患者特征与治疗匹配建模。",
+          "evidence": [
+            {
+              "quote": "研发国内首个ACT干预PTSD的移动网络化程序并考察其效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 821,
+                "end_char": 849
+              },
+              "version": "8bf4e02ba3c3cd6adbd9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-03680ca556ad",
+          "name": "移动网络化ACT显著改善PTSD核心症状",
+          "desc": "随机对照试验表明移动网络化ACT能显著改善PTSD核心症状，并在隐性情绪调节相关行为与脑功能指标上诱发可测量变化；心理灵活性发挥重要中介作用。",
+          "evidence": [
+            {
+              "quote": "结果表明，移动网络化ACT能够显著改善PTSD核心症状，并在隐性情绪调节相关行为与脑功能指标上诱发可测量的变化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3651,
+                "end_char": 3705
+              },
+              "version": "8bf4e02ba3c3cd6adbd9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f49b5ca3a959"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4f4bc5d8a915"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4f4bc5d8a915"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-891271511b11"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-891271511b11"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-03680ca556ad"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

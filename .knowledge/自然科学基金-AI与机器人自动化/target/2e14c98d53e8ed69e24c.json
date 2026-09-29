@@ -1,0 +1,196 @@
+{
+  "doc_id": "2e14c98d53e8ed69e24c",
+  "version": "1e1b4305364984a38212",
+  "source_hash": "2a1709dccac4451b8662438657499c5bddda7bd2c3dac9908027291e04b26f2c",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:28:42.553497+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f8fd43cf0148",
+          "name": "多智能体强化学习群体智能",
+          "desc": "研究群体智能学习的多智能体深度强化学习理论与方法",
+          "evidence": [
+            {
+              "quote": "多智能体深度强化学习是研究群体智能学习的新一代重要理论与方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 645,
+                "end_char": 674
+              },
+              "version": "1e1b4305364984a38212"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-03dfa01b4b67",
+          "name": "样本效率低下",
+          "desc": "策略性能提升依赖庞大训练数据，环境建模能力差、策略拟合不精确",
+          "evidence": [
+            {
+              "quote": "尽管多智能体深度强化学习技术在近年来有诸多发展，但其样本效率仍然很低下，策略的性能提升依赖庞大的训练数据，导致其适用范围受到极大限制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 735,
+                "end_char": 800
+              },
+              "version": "1e1b4305364984a38212"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6def537295fb",
+          "name": "AORPO模型基方法",
+          "desc": "基于模型的多智能体强化学习方法，具有与Nash Q-Learning相似的收敛性质",
+          "evidence": [
+            {
+              "quote": "提出了高效的基于模型的多智能体强化学习方法AORPO，并证明了使用环境模型和对手策略模型，并基于所预测的对手动作进行决策的情况下，所提出的算法能和Nash Q-Learning具有相似的收敛性质",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2750,
+                "end_char": 2846
+              },
+              "version": "1e1b4305364984a38212"
+            }
+          ]
+        },
+        {
+          "id": "item-e7441046fc78",
+          "name": "MAT序列建模架构",
+          "desc": "将协作MARL问题转化为序列模型问题的新型多智能体模型架构",
+          "evidence": [
+            {
+              "quote": "研究团队提出一种新型多智能体模型MAT架构，该架构可以有效地将协作 MARL 问题转化为序列模型问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2871,
+                "end_char": 2920
+              },
+              "version": "1e1b4305364984a38212"
+            }
+          ]
+        },
+        {
+          "id": "item-519f584925e8",
+          "name": "扩散模型强化学习",
+          "desc": "基于扩散模型的非自回归性质优化强化学习复合误差问题，提升样本利用率",
+          "evidence": [
+            {
+              "quote": "研究了基于扩散模型的（多智能体）强化学习方法，旨在基于扩散模型的非自回归性质进一步优化强化学习中的复合误差问题，提升其样本利用率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3017,
+                "end_char": 3080
+              },
+              "version": "1e1b4305364984a38212"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-54763e826095",
+          "name": "CCF-A论文与开源平台",
+          "desc": "发表CCF-A类论文32篇，开源腾讯王者荣耀MARL平台、网易PerfectDou平台等",
+          "evidence": [
+            {
+              "quote": "项目团队发表CCF-A类论文32篇，其中第一作者2篇，通讯作者22篇；申请国家发明专利4项，其中3项已获授权；开源工程代码4项以上到Github",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3089,
+                "end_char": 3160
+              },
+              "version": "1e1b4305364984a38212"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f8fd43cf0148"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-03dfa01b4b67"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-03dfa01b4b67"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6def537295fb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-03dfa01b4b67"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e7441046fc78"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-03dfa01b4b67"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-519f584925e8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e7441046fc78"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-54763e826095"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

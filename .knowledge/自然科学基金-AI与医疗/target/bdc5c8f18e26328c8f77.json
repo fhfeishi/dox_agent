@@ -1,0 +1,142 @@
+{
+  "doc_id": "bdc5c8f18e26328c8f77",
+  "version": "8abc63e24fdcb0a50e60",
+  "source_hash": "f5a55f718913d93e01f0ddc80276fd744bb696e73746e95686a33d5fa1599e08",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:11.176512+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d723187e1245",
+          "name": "基于全切片图像的病理辅助诊断",
+          "desc": "面向乳腺、消化系统与妇产科等癌症，基于数字全切片图像开展计算机辅助诊断方法研究。",
+          "evidence": [
+            {
+              "quote": "随着数字病理和机器学习技术的深入发展，基于数字全切片图像（WSI）的癌症辅助诊断方法成为计算机辅助诊断领域的研究热点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 647,
+                "end_char": 704
+              },
+              "version": "8abc63e24fdcb0a50e60"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a5d96c7db1b5",
+          "name": "切片特异性致辅助诊断模型泛化能力差",
+          "desc": "病理图像数据的切片特异性造成辅助诊断模型泛化能力差，同时存在分辨率高尺寸大、专家标注难以获得等困难。",
+          "evidence": [
+            {
+              "quote": "针对病理图像数据的切片特异性造成的辅助诊断模型泛化能力差的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2536,
+                "end_char": 2566
+              },
+              "version": "8abc63e24fdcb0a50e60"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a526f6318b99",
+          "name": "病理图像颜色归一化与弱监督全切片分析方法",
+          "desc": "提出基于自适应颜色反卷积和动态路由机制的病理图像标准化模块，研究多尺度诊断相关区域提取与级联U-Net全切片分割，并提出对比学习与动态聚类的弱监督全切片分析方法。",
+          "evidence": [
+            {
+              "quote": "突破了病理图像颜色归一化、病理图像底层特征学习、多倍率信息融合、全切片图像弱监督学习方面的多个关键技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2401,
+                "end_char": 2451
+              },
+              "version": "8abc63e24fdcb0a50e60"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-17f3607c085b",
+          "name": "肿瘤良恶性分类精度达95%以上",
+          "desc": "在乳腺、消化道、妇产科数据集上肿瘤良恶性分类精度达到95%以上；病理图像标准化模块可提升下游算法精度3.6%~6.7%。",
+          "evidence": [
+            {
+              "quote": "在乳腺、消化道、妇产科数据集上肿瘤良恶性的分类精度达到95%以上",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 925,
+                "end_char": 956
+              },
+              "version": "8abc63e24fdcb0a50e60"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d723187e1245"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a5d96c7db1b5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a5d96c7db1b5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a526f6318b99"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a526f6318b99"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-17f3607c085b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "doc_id": "1350628680b390503060",
+  "version": "946daa79ef0cbdee5767",
+  "source_hash": "763bda5d05860eeb389b9aa3fd6c69db81c501b0699f549647bb383867a3397b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T17:01:43.625200+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-68d88054bda8",
+          "name": "机器人柔性物体抓传交互",
+          "desc": "服务机器人人机协作场景中的柔性物体抓物-传人任务",
+          "evidence": [
+            {
+              "quote": "柔性物体抓传任务是服务机器人在人机协作场景中的关键操作能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2732,
+                "end_char": 2760
+              },
+              "version": "946daa79ef0cbdee5767"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-91ce7f151520",
+          "name": "协同感知与在线优化难",
+          "desc": "柔性物体抓取点、人体姿态及抓传目标位置的准确感知与在线优化是核心",
+          "evidence": [
+            {
+              "quote": "实现对柔性物体抓取点、人体姿态及抓传目标位置的准确感知与在线优化，是提升机器人在复杂交互环境下操作可靠性与安全性的核心",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2762,
+                "end_char": 2820
+              },
+              "version": "946daa79ef0cbdee5767"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a842aefa1442",
+          "name": "多模态视觉抓取感知",
+          "desc": "复杂光照、易形变及遮挡条件下抓取点与关键区域稳定识别",
+          "evidence": [
+            {
+              "quote": "研究并建立了多模态视觉感知方法，在复杂光照、易形变及遮挡条件下实现了对抓取点与关键区域的稳定识别",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2889,
+                "end_char": 2936
+              },
+              "version": "946daa79ef0cbdee5767"
+            }
+          ]
+        },
+        {
+          "id": "item-123a123d0c28",
+          "name": "三维人体姿态时序建模",
+          "desc": "面向三维人体姿态的时序建模与鲁棒感知方法",
+          "evidence": [
+            {
+              "quote": "提出了面向三维人体姿态的时序建模与鲁棒感知方法，显著提升了人体姿态估计的准确性与稳定性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2947,
+                "end_char": 2989
+              },
+              "version": "946daa79ef0cbdee5767"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d7af5340495c",
+          "name": "抓传目标位置在线优化",
+          "desc": "目标位姿在线自适应修正与轻量化嵌入式验证",
+          "evidence": [
+            {
+              "quote": "进一步研究了基于协同感知的抓传目标位置实时优化方法，实现了目标位姿的在线自适应修正，并结合平台算力约束完成了轻量化设计与嵌入式验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3002,
+                "end_char": 3066
+              },
+              "version": "946daa79ef0cbdee5767"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-2ddbb690a8d9",
+          "name": "高水平论文与人才计划",
+          "desc": "发表论文15篇（CCF A 6篇），入选中国科协青年人才托举工程",
+          "evidence": [
+            {
+              "quote": "课题组累计发表学术论文15篇，其中中国计算机学会CCF A类论文6篇，中科院1区论文3篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3076,
+                "end_char": 3119
+              },
+              "version": "946daa79ef0cbdee5767"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-68d88054bda8"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-91ce7f151520"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-91ce7f151520"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a842aefa1442"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-91ce7f151520"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-123a123d0c28"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-123a123d0c28"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d7af5340495c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a842aefa1442"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-2ddbb690a8d9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

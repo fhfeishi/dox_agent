@@ -1,0 +1,251 @@
+{
+  "doc_id": "9e9e8751aadddee31e08",
+  "version": "2d6db80b43414a3903f0",
+  "source_hash": "68c24468c479e9ef25c9520e7e7ffc5c36f5ea7a0daf1f7b44a9153e0b2cdb3a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:28:03.719385+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-15d155acd01a",
+          "name": "缺失MRI模态脑肿瘤分割与复发预测",
+          "desc": "脑肿瘤致死率高、复发性高，多模态MRI已成为临床诊断标准方法。",
+          "evidence": [
+            {
+              "quote": "脑肿瘤因其致死率高、复发性高而严重危害全球居民的健康，多模态核磁共振图像（MRI）已经成为临床脑肿瘤诊断的标准方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 673,
+                "end_char": 729
+              },
+              "version": "2d6db80b43414a3903f0"
+            }
+          ]
+        },
+        {
+          "id": "item-b011aca1409c",
+          "name": "脑肿瘤快速勾画与治疗计划指导",
+          "desc": "研究成果可帮助医生实现脑肿瘤快速勾画及未来复发位置预测，指导后续治疗计划制定。",
+          "evidence": [
+            {
+              "quote": "本项目的研究成果能够帮助医生实现对脑肿瘤的快速勾画及未来脑肿瘤复发位置的预测，指导后续治疗计划的制定",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 969,
+                "end_char": 1018
+              },
+              "version": "2d6db80b43414a3903f0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5360070c22ea",
+          "name": "临床难获完整多模态图像",
+          "desc": "临床实践中很难获得完整的多模态图像集，将降低医生对脑肿瘤诊断的准确性。",
+          "evidence": [
+            {
+              "quote": "然而，在临床实践中很难获得完整的多模态图像集，这将降低医生对脑肿瘤诊断的准确性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 731,
+                "end_char": 769
+              },
+              "version": "2d6db80b43414a3903f0"
+            }
+          ]
+        },
+        {
+          "id": "item-be87dfb21848",
+          "name": "信息融合不足与复发预测复杂",
+          "desc": "面临多模态信息融合不足、缺失模态有效补全困难以及复发位置预测需挖掘时空关系三大挑战。",
+          "evidence": [
+            {
+              "quote": "（1）多模态信息融合不足，跨模态特征利用效率低；（2）缺失模态的有效补全与重建困难，影响后续分割任务；（3）脑肿瘤复发位置预测复杂，需要挖掘多时间序列图像的潜在时空关系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2622,
+                "end_char": 2705
+              },
+              "version": "2d6db80b43414a3903f0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-311c86ac1a01",
+          "name": "多模态图像相关性融合模块",
+          "desc": "构建多模态图像相关性模块，实现高效的多模态信息融合。",
+          "evidence": [
+            {
+              "quote": "构建多模态图像相关性模块，实现高效的多模态信息融合",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2729,
+                "end_char": 2753
+              },
+              "version": "2d6db80b43414a3903f0"
+            }
+          ]
+        },
+        {
+          "id": "item-b0a52b5d469c",
+          "name": "缺失图像生成与补全方法",
+          "desc": "设计缺失图像生成方法补全缺失数据，为脑肿瘤分割提供完整图像集。",
+          "evidence": [
+            {
+              "quote": "设计缺失图像生成方法，补全缺失数据，为脑肿瘤分割提供完整图像集",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2758,
+                "end_char": 2788
+              },
+              "version": "2d6db80b43414a3903f0"
+            }
+          ]
+        },
+        {
+          "id": "item-9ee190372170",
+          "name": "多时间序列时空关系建模",
+          "desc": "建立基于多时间序列图像的潜在时空关系建模方法，实现脑肿瘤复发位置预测。",
+          "evidence": [
+            {
+              "quote": "建立基于多时间序列图像的潜在时空关系建模方法，实现脑肿瘤复发位置预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2793,
+                "end_char": 2826
+              },
+              "version": "2d6db80b43414a3903f0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b47e3cbbff68",
+          "name": "SCI论文10篇与专利8项",
+          "desc": "在Medical Image Analysis等期刊发表SCI论文10篇，申请专利8项其中授权3项，培养硕士2名。",
+          "evidence": [
+            {
+              "quote": "在 Medical Image Analysis、IEEE TIP、Pattern Recognition、Information Fusion、Neurocomputing等期刊发表 SCI 论文 10 篇；申请专利 8 项，其中已授权 3 项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2844,
+                "end_char": 2966
+              },
+              "version": "2d6db80b43414a3903f0"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-46a5b474b1ab",
+          "name": "边界感知跨模态融合分割网络",
+          "desc": "提出边界感知与跨模态融合网络用于增强多模态脑肿瘤分割。",
+          "evidence": [
+            {
+              "quote": "Boundary-aware and cross-modal fusion network for enhanced multi-modal brain tumor segmentation",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3005,
+                "end_char": 3099
+              },
+              "version": "2d6db80b43414a3903f0"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-90f74d2f9cf1",
+          "name": "不确定性量化与注意力融合分割",
+          "desc": "提出不确定性量化与注意力感知融合引导的多模态MRI脑肿瘤分割方法。",
+          "evidence": [
+            {
+              "quote": "Uncertainty quantification and attention-aware fusion guided multi-modal MR brain tumor segmentation",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3892,
+                "end_char": 3991
+              },
+              "version": "2d6db80b43414a3903f0"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-15d155acd01a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5360070c22ea"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5360070c22ea"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b0a52b5d469c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-311c86ac1a01"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-46a5b474b1ab"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9ee190372170"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b47e3cbbff68"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

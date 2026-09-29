@@ -1,0 +1,180 @@
+{
+  "doc_id": "e48a4adfc13b178f90ba",
+  "version": "080134339d72d672972a",
+  "source_hash": "4c0580314496d4c16e9f29a84da377b22563342338ab30040af4dba0d95a3c01",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:02:29.436600+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9aa1a90be4d6",
+          "name": "水下复杂环境感知",
+          "desc": "海洋信息获取中目标探测与识别",
+          "evidence": [
+            {
+              "quote": "海洋信息的获取、传输、处理和融合是当前信息科学研究的热点之一。复杂水下环境及目标的感知，即通过技术手段实现对目标的探测与识别，是对海洋信息处理的重要基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2753,
+                "end_char": 2829
+              },
+              "version": "080134339d72d672972a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6955f873d245",
+          "name": "传统探测识别受挑战",
+          "desc": "环境复杂性与目标减震降噪进步使传统方法失效",
+          "evidence": [
+            {
+              "quote": "由于海洋环境的复杂性，以及目标减震降噪技术的不断进步，传统目标探测与识别方法正面临极大的挑战，无法应对当前应用的需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2830,
+                "end_char": 2888
+              },
+              "version": "080134339d72d672972a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9e49de96608b",
+          "name": "远程监督关系抽取",
+          "desc": "句子选择交互表示与强化学习噪音标签去除",
+          "evidence": [
+            {
+              "quote": "提出一种基于加权概率神经网络与要素匹配的实体抽取方法、一种基于句子选择和交互表示的远程监督关系抽取方法、一种基于强化学习的远程监督关系抽取噪音标签去除方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3131,
+                "end_char": 3208
+              },
+              "version": "080134339d72d672972a"
+            }
+          ]
+        },
+        {
+          "id": "item-b285123cf559",
+          "name": "水下目标识别网络",
+          "desc": "注意力CNN与负相关增量集成识别方法",
+          "evidence": [
+            {
+              "quote": "在目标识别方面，提出一种基于注意力的水下目标识别卷积神经网络，一种基于负相关增量的水下目标集成识别方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3239,
+                "end_char": 3290
+              },
+              "version": "080134339d72d672972a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-899740be8b64",
+          "name": "水声测试数据集",
+          "desc": "多处水域与静默水池采集水声样本构建数据集",
+          "evidence": [
+            {
+              "quote": "为验证本项目提出的上述方法的有效性，本项目在多处水域以及静默水池中采集了大量水声样本构建了测试数据集。实验结果表明本项目提出的方法及模型的有效性和可行性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3340,
+                "end_char": 3416
+              },
+              "version": "080134339d72d672972a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9aa1a90be4d6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6955f873d245"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6955f873d245"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9e49de96608b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6955f873d245"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b285123cf559"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b285123cf559"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-899740be8b64"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9e49de96608b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-899740be8b64"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

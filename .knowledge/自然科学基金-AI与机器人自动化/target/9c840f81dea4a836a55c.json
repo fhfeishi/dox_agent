@@ -1,0 +1,197 @@
+{
+  "doc_id": "9c840f81dea4a836a55c",
+  "version": "8cd93c6097f5cb81639e",
+  "source_hash": "82c4294e6eeb64d4a03eaf220e96669cf317e5e60a895a4efc32a9b429088575",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:02:29.316003+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-56e11aa80a23",
+          "name": "四足仿生机器人跳跃",
+          "desc": "星球探测、军事领域的高机动跳跃运动",
+          "evidence": [
+            {
+              "quote": "四足仿生机器人在星球探测、军事等领域具有广阔应用前景，四足机器人远未达到四足生物的高机动性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2999,
+                "end_char": 3044
+              },
+              "version": "8cd93c6097f5cb81639e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d37d73a72dcf",
+          "name": "机动性远逊于生物",
+          "desc": "四足机器人未达四足生物高机动性",
+          "evidence": [
+            {
+              "quote": "四足仿生机器人在星球探测、军事等领域具有广阔应用前景，四足机器人远未达到四足生物的高机动性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2999,
+                "end_char": 3044
+              },
+              "version": "8cd93c6097f5cb81639e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-82b025a0b6da",
+          "name": "气动肌纤维仿生机体",
+          "desc": "气动肌纤维束驱动多向灵活弯曲仿生机体",
+          "evidence": [
+            {
+              "quote": "开展了气动肌纤维和肌纤维束特性分析，采用气动肌纤维束驱动设计了四足机器人的多向灵活弯曲仿生机体。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3213,
+                "end_char": 3260
+              },
+              "version": "8cd93c6097f5cb81639e"
+            }
+          ]
+        },
+        {
+          "id": "item-c653bee79631",
+          "name": "类生物刚度规划",
+          "desc": "足端弹性势能分析获得足端与关节刚度映射模型",
+          "evidence": [
+            {
+              "quote": "提出基于仿生腿足端弹性势能分析的关节类生物刚度规划方法，获得仿生跳跃的足端刚度模型，并由雅克比矩阵建立了关节与足端刚度模型的映射关系。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3462,
+                "end_char": 3528
+              },
+              "version": "8cd93c6097f5cb81639e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f5ab4cd1057b",
+          "name": "跳跃300mm距离400mm",
+          "desc": "多自由度仿生腿柔顺跳跃实验验证机理正确性",
+          "evidence": [
+            {
+              "quote": "完成了多自由度仿生腿的柔顺跳跃实验，跳跃高度达300mm，跳跃距离达400mm，验证四足生物仿生躯体动态弯曲和仿生腿变刚度跳跃机理分析的正确性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3624,
+                "end_char": 3695
+              },
+              "version": "8cd93c6097f5cb81639e"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e3ecf960e897",
+          "name": "改进Maxwell迟滞模型",
+          "desc": "迟滞模型实验验证构建气动人工肌肉精确力模型",
+          "evidence": [
+            {
+              "quote": "提出了改进的Maxwell迟滞模型，通过实验验证模型的准确性，构建气动人工肌肉的精确力模型，基于此建立仿生腿的刚柔耦合动力学模型。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3369,
+                "end_char": 3433
+              },
+              "version": "8cd93c6097f5cb81639e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-56e11aa80a23"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d37d73a72dcf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d37d73a72dcf"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-82b025a0b6da"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d37d73a72dcf"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c653bee79631"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c653bee79631"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f5ab4cd1057b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-82b025a0b6da"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e3ecf960e897"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

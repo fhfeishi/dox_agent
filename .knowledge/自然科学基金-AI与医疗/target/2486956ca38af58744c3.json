@@ -1,0 +1,142 @@
+{
+  "doc_id": "2486956ca38af58744c3",
+  "version": "d6f32b6ee827116e7518",
+  "source_hash": "72b98efa12f440fead0f022974987bf0f95239237a03db5ffa557e0fe4affd5e",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:03.641964+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6c029f9817fb",
+          "name": "海洛因成瘾复吸预测",
+          "desc": "面向海洛因成瘾这一慢性复发性脑疾病，利用影像组学预测强戒后的复吸风险。",
+          "evidence": [
+            {
+              "quote": "海洛因成瘾为慢性复发性脑疾病，已成为重大社会问题，临床表现核心特征为复吸率高，高达90%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 641,
+                "end_char": 684
+              },
+              "version": "d6f32b6ee827116e7518"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-26f5afca4f90",
+          "name": "复吸机制不明且缺乏预测手段",
+          "desc": "海洛因成瘾复吸率高达90%，其潜在神经机制亟待深入研究，临床上缺乏有效的复吸预测手段。",
+          "evidence": [
+            {
+              "quote": "其潜在机制亟待深入研究，影像组学为复吸预测提供新思路",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 686,
+                "end_char": 711
+              },
+              "version": "d6f32b6ee827116e7518"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-84ab94fe6120",
+          "name": "多模态MRI影像组学与连接度组学复吸预测模型",
+          "desc": "对强戒患者多时点纵向跟踪，融合多模态磁共振影像构建基于全脑体素的预测模型，并借助连接度组学与高分辨率图谱在大尺度脑网络水平挖掘复吸相关神经影像靶点。",
+          "evidence": [
+            {
+              "quote": "进一步借助连接度组学的研究方法，采用高空间分辨率的图谱，在大尺度复杂脑网络水平上，更加精确地挖掘出与海洛因依赖复吸行为密切相关的神经影像学靶点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 859,
+                "end_char": 929
+              },
+              "version": "d6f32b6ee827116e7518"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a1f396143dd9",
+          "name": "CPM模型可个体化预测强戒后复吸风险",
+          "desc": "CPM模型有望基于基线fMRI数据预测强戒后个体复吸风险，识别高风险人群并筛选强戒疗效不佳者。",
+          "evidence": [
+            {
+              "quote": "CPM模型有望预测海洛因成瘾患者强戒后个体复吸风险情况，以识别戒断后复吸可能性大的高风险人群",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3120,
+                "end_char": 3165
+              },
+              "version": "d6f32b6ee827116e7518"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6c029f9817fb"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-26f5afca4f90"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-26f5afca4f90"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-84ab94fe6120"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-84ab94fe6120"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a1f396143dd9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

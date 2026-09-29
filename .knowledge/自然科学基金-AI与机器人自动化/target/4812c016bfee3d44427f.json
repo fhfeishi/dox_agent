@@ -1,0 +1,180 @@
+{
+  "doc_id": "4812c016bfee3d44427f",
+  "version": "573797d9c14980d6d571",
+  "source_hash": "6f567da1d108e3280770054245a3921ea0c201d016e08ceafe2a0ec0152bc627",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T17:01:44.894813+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fed53e66860b",
+          "name": "无/弱卫星信号人机共融定位",
+          "desc": "面向无/弱卫星信号环境，人机协作利用环境泛在信号高精度定位",
+          "evidence": [
+            {
+              "quote": "本项目面向无/弱卫星信号条件下的人机共融环境，重点研究了如何通过人机协作，充分利用环境中广泛存在的泛在信号，实现目标的稳定、高精度定位",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3167,
+                "end_char": 3233
+              },
+              "version": "573797d9c14980d6d571"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-157d09ce1912",
+          "name": "多模态数据不完整不均衡",
+          "desc": "环境信号数据存在不完整、不均衡等多模态问题",
+          "evidence": [
+            {
+              "quote": "a) 多模态数据质量提升与融合，针对环境信号数据存在不完整、不均衡等多模态问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3251,
+                "end_char": 3289
+              },
+              "version": "573797d9c14980d6d571"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cfedce36064a",
+          "name": "稀疏恢复与深度典型相关融合",
+          "desc": "基于稀疏恢复模型的数据恢复与深度典型相关分析多源融合",
+          "evidence": [
+            {
+              "quote": "研究了基于稀疏恢复模型的数据恢复方法，并结合深度典型相关分析进行多源数据深度融合，构建更鲁棒的环境感知表征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3291,
+                "end_char": 3343
+              },
+              "version": "573797d9c14980d6d571"
+            }
+          ]
+        },
+        {
+          "id": "item-c86fb72e27cc",
+          "name": "机器人基准增强定位系统",
+          "desc": "机器人视角深度信息推算人机相对距离，信息年龄指标与迁移学习动态更新",
+          "evidence": [
+            {
+              "quote": "通过提取机器人视角的深度信息推算人机相对距离，融合视觉信息与模型输出以校正定位结果，并引入信息年龄指标评估模型时效性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3481,
+                "end_char": 3538
+              },
+              "version": "573797d9c14980d6d571"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6d6a238096e9",
+          "name": "人机协同高精度定位框架",
+          "desc": "建立适用于无/弱卫星信号环境下的人机协同高精度定位框架",
+          "evidence": [
+            {
+              "quote": "本项目建立了一套适用于无/弱卫星信号环境下的人机协同高精度定位框架，为推动该场景下基于位置的服务走向大规模实际应用提供了理论支撑与技术基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3592,
+                "end_char": 3660
+              },
+              "version": "573797d9c14980d6d571"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-fed53e66860b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-157d09ce1912"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-157d09ce1912"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cfedce36064a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-157d09ce1912"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c86fb72e27cc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c86fb72e27cc"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6d6a238096e9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cfedce36064a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-6d6a238096e9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "doc_id": "56b08b741e60191fe2be",
+  "version": "684e3ca0ae4fc2e30e70",
+  "source_hash": "92901a9e3c507297dbecbf95de854a2daeb31a26e62c6021ba8b4e18c92cf6e9",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:23:26.525356+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4fd86de54dfa",
+          "name": "肥厚型心肌病辅助诊断与分层",
+          "desc": "肥厚型心肌病是具有高度异质性的遗传性心肌病，准确诊断和危险分层有助于精准化管理。",
+          "evidence": [
+            {
+              "quote": "肥厚型心肌病（HCM）是具有高度异质性的遗传性心肌病，HCM的准确诊断和危险分层有助于患者的精准化管理",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 696,
+                "end_char": 746
+              },
+              "version": "684e3ca0ae4fc2e30e70"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a581910ac8c5",
+          "name": "CMR后处理繁琐且主观偏差大",
+          "desc": "CMR图像后处理繁琐耗时，海量数据与人工处理导致不同程度主观性偏差，限制临床应用推广。",
+          "evidence": [
+            {
+              "quote": "但CMR图像后处理繁琐耗时，海量数据与人工处理导致不同程度主观性偏差，限制了其在HCM临床的应用和推广",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 784,
+                "end_char": 834
+              },
+              "version": "684e3ca0ae4fc2e30e70"
+            }
+          ]
+        },
+        {
+          "id": "item-9256c15cd007",
+          "name": "对比剂存在肾功能潜在影响",
+          "desc": "延迟强化需使用对比剂，对比剂对肾功能存在潜在影响。",
+          "evidence": [
+            {
+              "quote": "由于对比剂对肾功能的潜在影响，本研究的成果可以减少减少对比剂肾病的发生",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3540,
+                "end_char": 3574
+              },
+              "version": "684e3ca0ae4fc2e30e70"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6c7d3ff0b83e",
+          "name": "多分类CNN智能化CMR处理",
+          "desc": "构建多分类CNN算法模型，研发智能化CMR处理技术实现HCM辅助智能诊断。",
+          "evidence": [
+            {
+              "quote": "本研究拟进一步构建多分类CNN算法模型，研发智能化CMR处理技术，实现HCM辅助智能诊断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 970,
+                "end_char": 1013
+              },
+              "version": "684e3ca0ae4fc2e30e70"
+            }
+          ]
+        },
+        {
+          "id": "item-f9d08f022d29",
+          "name": "CMR影像组学鉴别诊断建模",
+          "desc": "使用基于CMR的影像组学技术提高HCM与高血压心脏病的鉴别诊断准确性。",
+          "evidence": [
+            {
+              "quote": "使用基于CMR的影像组学技术提高了HCM与高血压心脏病（hypertensive heart disease, HHD)的鉴别诊断准确性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2861,
+                "end_char": 2928
+              },
+              "version": "684e3ca0ae4fc2e30e70"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-05d2470c27c4",
+          "name": "HCM与HHD鉴别AUC 0.979与0.981",
+          "desc": "联合预测模型在训练集与验证集AUC分别为0.979与0.981，较仅用CMR参数模型显著提升。",
+          "evidence": [
+            {
+              "quote": "联合预测模型操作者特征曲线（receiver operating characteristics, ROC）下面积（area under the curve, AUC）在训练集和验证集中分别为0.979（0.968，0.990）和0.981（0.967，0.995）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2971,
+                "end_char": 3103
+              },
+              "version": "684e3ca0ae4fc2e30e70"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e4601c943f5d",
+          "name": "平扫电影图像预测延迟强化",
+          "desc": "利用CMR平扫电影图像影像组学预测延迟强化有无，训练集AUC为0.795、验证集0.765。",
+          "evidence": [
+            {
+              "quote": "基于影像组学技术利用CMR平扫电影图像预测HCM患者延迟强化（late gadolinium enhancement, LGE)的有无，AUC在训练集中为0.795（0.735，0.855）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3150,
+                "end_char": 3244
+              },
+              "version": "684e3ca0ae4fc2e30e70"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e1e80800118d",
+          "name": "Radscore为心衰事件最强预测因子",
+          "desc": "单变量与多变量Cox回归中Radscore均为心衰事件的最强预测因子，高风险组风险增加6倍以上。",
+          "evidence": [
+            {
+              "quote": "在单变量（HR，10.368；p<0.001）和多变量（HR，10.248；p<0.001）Cox回归分析中，Radscore是心衰事件的最强预测因子",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3308,
+                "end_char": 3382
+              },
+              "version": "684e3ca0ae4fc2e30e70"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4fd86de54dfa"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a581910ac8c5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a581910ac8c5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6c7d3ff0b83e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6c7d3ff0b83e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-05d2470c27c4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f9d08f022d29"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e4601c943f5d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

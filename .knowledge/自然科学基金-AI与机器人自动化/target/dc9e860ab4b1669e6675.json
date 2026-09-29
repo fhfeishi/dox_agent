@@ -1,0 +1,158 @@
+{
+  "doc_id": "dc9e860ab4b1669e6675",
+  "version": "e973dc6bdd413a6e931a",
+  "source_hash": "0e7ab10e266e7b401db09ee48ebac3e5fdb401a4b45aed6636033f97224a56ea",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:58:52.832476+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-975b9b0d4ff7",
+          "name": "高能效仿生双足机器人",
+          "desc": "以鸵鸟为仿生对象研究高能效腿足式机器人",
+          "evidence": [
+            {
+              "quote": "鸵鸟是除人类以外陆地上最大的双足步行动物，身体质量集中、腿足细长的独特身体结构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 691
+              },
+              "version": "e973dc6bdd413a6e931a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d6a4691fe51e",
+          "name": "腿足式机器人低运动能效",
+          "desc": "运动能效较低、续航时间受限、动态稳定性差限制推广应用",
+          "evidence": [
+            {
+              "quote": "现有腿足式机器人平台在运动能效方面面临瓶颈，主要表现在运动能效较低、续航时间受限、动态稳定性差等方面",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2816,
+                "end_char": 2865
+              },
+              "version": "e973dc6bdd413a6e931a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7bac30e84760",
+          "name": "能量吸收-储存-释放再利用机构",
+          "desc": "高功率密度柔性驱动与高效仿生机构设计及能效优化方法",
+          "evidence": [
+            {
+              "quote": "研究了具有生物肌肉-肌腱特性的高功率密度柔性驱动与高效仿生机构设计、具有能量吸收-储存-释放再利用机制的能效优化方法和基于虚拟模型的高能效动态稳定全身运动控制方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3162,
+                "end_char": 3242
+              },
+              "version": "e973dc6bdd413a6e931a"
+            }
+          ]
+        },
+        {
+          "id": "item-cefcb87f9e6d",
+          "name": "关键技术突破",
+          "desc": "高功率密度关节一体化设计、仿生机构设计与复杂地形鲁棒控制",
+          "evidence": [
+            {
+              "quote": "突破了高功率密度关节一体化设计、高动态-高能效仿生机构设计和复杂地形下高动态运动鲁棒控制等关键技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3244,
+                "end_char": 3292
+              },
+              "version": "e973dc6bdd413a6e931a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7542bb5cfe68",
+          "name": "仿生双足物理样机",
+          "desc": "实现高能效奔跑、多地形鲁棒行走和上下斜坡运动",
+          "evidence": [
+            {
+              "quote": "研发出高能效仿生双足物理样机，实现了高能效奔跑、多地形环境下的鲁棒行走和上下斜坡等运动",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3318,
+                "end_char": 3360
+              },
+              "version": "e973dc6bdd413a6e931a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-975b9b0d4ff7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d6a4691fe51e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-d6a4691fe51e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7bac30e84760"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cefcb87f9e6d"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7542bb5cfe68"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "doc_id": "86b7c913022e21cc6678",
+  "version": "0082b1fc31e7744037c0",
+  "source_hash": "f36068b82815bc34e8918e437a7bc73cf6e49b98859afddc20298ede3b573028",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:23.806937+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4132c70c5c28",
+          "name": "膝上截肢者助力行走",
+          "desc": "融合智能下肢假肢的外骨骼机器人",
+          "evidence": [
+            {
+              "quote": "外骨骼机器人在单兵作战、背负重物及帮助残疾人等方面应用广泛，但现有外骨骼机器人均适用于双腿健在的人群。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 664,
+                "end_char": 714
+              },
+              "version": "0082b1fc31e7744037c0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1242da7c51bb",
+          "name": "外骨骼不适用截肢患者",
+          "desc": "针对膝上截肢患者助力行走需求融合假肢与外骨骼",
+          "evidence": [
+            {
+              "quote": "针对膝上截肢患者实现助力行走功能的需求，将外骨骼机器人与智能下肢假肢的研究结合起来",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 715,
+                "end_char": 755
+              },
+              "version": "0082b1fc31e7744037c0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-41a8a634b9f5",
+          "name": "人机耦合动力学建模",
+          "desc": "动力学模型与人机耦合模型、磁流变阻尼器实验建模",
+          "evidence": [
+            {
+              "quote": "建立了新型外骨骼机器人动力学模型与人机耦合模型，设计了磁流变阻尼器并进行了实验建模。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2872,
+                "end_char": 2913
+              },
+              "version": "0082b1fc31e7744037c0"
+            }
+          ]
+        },
+        {
+          "id": "item-35c7b1540183",
+          "name": "多类阻抗控制方法",
+          "desc": "基于位置、修正位置与改进阻抗关系的阻抗控制",
+          "evidence": [
+            {
+              "quote": "进行了新型外骨骼机器人人机交互控制方法研究，包括基于位置的阻抗控制方法、基于修正位置的自适应阻抗控制方法以及基于改进阻抗关系的阻抗控制方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3079,
+                "end_char": 3148
+              },
+              "version": "0082b1fc31e7744037c0"
+            }
+          ]
+        },
+        {
+          "id": "item-3c89009d5bde",
+          "name": "步态感知意图识别",
+          "desc": "步态数据测量、步态规划与运动意图模式识别",
+          "evidence": [
+            {
+              "quote": "搭建了人体步态数据测量系统并进行了步态规划与运动意图模式识别研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2985,
+                "end_char": 3017
+              },
+              "version": "0082b1fc31e7744037c0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-38ba44cb9fbe",
+          "name": "论文7篇",
+          "desc": "基于项目研究成果发表学术论文7篇",
+          "evidence": [
+            {
+              "quote": "基于项目研究成果，发表学术论文7篇。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3178,
+                "end_char": 3195
+              },
+              "version": "0082b1fc31e7744037c0"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4132c70c5c28"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-1242da7c51bb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1242da7c51bb"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-41a8a634b9f5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1242da7c51bb"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-35c7b1540183"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1242da7c51bb"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3c89009d5bde"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-35c7b1540183"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-38ba44cb9fbe"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3c89009d5bde"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-38ba44cb9fbe"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

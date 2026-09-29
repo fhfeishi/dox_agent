@@ -1,0 +1,267 @@
+{
+  "doc_id": "2af4baa5357ffb15104d",
+  "version": "f23cde4c18a9cfcce7de",
+  "source_hash": "afaef03dfd17c2c027d8b25ae32a267df7640db9642fdc8fa9463ec9a195b103",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:28:03.749291+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fa8caddbd866",
+          "name": "多中心肝脏病灶检测与分割",
+          "desc": "医学图像检测与分割是计算机辅助诊断系统的基础，需在多中心间协作提升模型稳健性。",
+          "evidence": [
+            {
+              "quote": "医学图像的检测与分割是医学图像计算机辅助诊断系统的基础",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 784,
+                "end_char": 810
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ]
+        },
+        {
+          "id": "item-5d00f589e26a",
+          "name": "隐私保护下的跨中心协同建模",
+          "desc": "通过中心之间协作和数据共享解决AI模型训练公共数据不足问题，并支持临床部署。",
+          "evidence": [
+            {
+              "quote": "通过中心之间的协作和数据共享来解决人工智能模型训练公共数据的不足问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 944,
+                "end_char": 977
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bf41daec77fb",
+          "name": "数据隐私与异质性阻碍数据共享",
+          "desc": "医疗数据隐私法规与数据异质性使AI训练和评估数据集可用性受阻，患者敏感信息无法在机构外传播。",
+          "evidence": [
+            {
+              "quote": "但由于医疗数据隐私法规和数据异质性，人工智能训练和评估数据集的可用性受到阻碍",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 979,
+                "end_char": 1016
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ]
+        },
+        {
+          "id": "item-9e000355cd98",
+          "name": "大规模标注获得耗时需专业经验",
+          "desc": "训练模型所需的大规模CT图像和标注数据获得非常耗时且需要专业经验。",
+          "evidence": [
+            {
+              "quote": "因为训练模型需要的大规模CT图像和标注数据的获得是非常耗时和需要专业的经验的",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 838,
+                "end_char": 875
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ]
+        },
+        {
+          "id": "item-40712a1fb3f2",
+          "name": "医院间存在显著域偏移",
+          "desc": "多中心落地面临域偏移、标注资源分布不均以及多期CT融合建模复杂等困难。",
+          "evidence": [
+            {
+              "quote": "医院之间存在显著域偏移（设备、协议、人群差异），标注资源分布不均",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3106,
+                "end_char": 3137
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c33c377d0998",
+          "name": "域感知联邦学习框架DAFed",
+          "desc": "构建域感知联邦学习框架，通过潜空间分布对齐与域相似性驱动的聚合/个性化机制提升非IID多中心泛化稳定性。",
+          "evidence": [
+            {
+              "quote": "构建域感知联邦学习框架DAFed，通过潜空间分布对齐与域相似性驱动的聚合/个性化机制，提升非IID多中心条件下的泛化稳定性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3227,
+                "end_char": 3287
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ]
+        },
+        {
+          "id": "item-af033f21f13c",
+          "name": "多尺度相位注意力模型MSPA-DLA++",
+          "desc": "面向多期CT显式刻画相位增强模式与尺度变化，提高小病灶与复杂增强表现的检测敏感性。",
+          "evidence": [
+            {
+              "quote": "提出多尺度相位注意力模型MSPA-DLA++，面向多期CT显式刻画相位增强模式与尺度变化，提高对小病灶与复杂增强表现的检测敏感性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3321,
+                "end_char": 3384
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ]
+        },
+        {
+          "id": "item-0190b3ce24ae",
+          "name": "鲁棒知识迁移与高效压缩方案",
+          "desc": "形成KDRL与HIMS_KD两条鲁棒知识迁移与高效压缩方案，将教师模型转化为轻量学生模型。",
+          "evidence": [
+            {
+              "quote": "形成KDRL与HIMS_KD两条鲁棒知识迁移与高效压缩方案，用于将高性能教师模型转化为轻量学生模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3392,
+                "end_char": 3440
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-95c543c2068a",
+          "name": "联邦学习提升跨中心鲁棒性",
+          "desc": "研究结果表明面向域偏移的联邦学习与结构化多期建模能够显著提升跨中心鲁棒性与临床任务性能。",
+          "evidence": [
+            {
+              "quote": "面向域偏移的联邦学习与结构化多期建模能够显著提升跨中心鲁棒性与临床任务性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3569,
+                "end_char": 3605
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-db699861a025",
+          "name": "多中心与公开基准系统实验",
+          "desc": "在5家医院548例多中心COVID-19 CT、121例多期腹部CT肝肿瘤分割数据及LiTS2017等公开基准上完成实验验证。",
+          "evidence": [
+            {
+              "quote": "包括5家医院共548例患者的多中心COVID-19 CT设置、121例多期腹部CT肝肿瘤分割数据以及LiTS2017等公开基准",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3483,
+                "end_char": 3545
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-fec713a81c30",
+          "name": "多尺度相位注意力会议论文",
+          "desc": "提出面向多期CT病灶检测的多尺度相位注意力深度层聚合方法。",
+          "evidence": [
+            {
+              "quote": "MSPA-DLA++: A Multi-Scale Phase Attention Deep Layer Aggregation for Lesion Detection in Multi-Phase CT Images",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3830,
+                "end_char": 3939
+              },
+              "version": "f23cde4c18a9cfcce7de"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-fa8caddbd866"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-bf41daec77fb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-bf41daec77fb"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c33c377d0998"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-af033f21f13c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-fec713a81c30"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0190b3ce24ae"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-95c543c2068a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

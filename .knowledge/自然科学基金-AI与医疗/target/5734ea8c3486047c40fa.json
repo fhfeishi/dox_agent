@@ -1,0 +1,142 @@
+{
+  "doc_id": "5734ea8c3486047c40fa",
+  "version": "35e6620ef9aead842aa0",
+  "source_hash": "6b5f3ca600ce22641fa0c1d22f6f679b5087027b1d50f41c7fad015fefbc5f84",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:16.771779+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-54c55741bc11",
+          "name": "阿尔茨海默症早期诊断与生物标志物挖掘",
+          "desc": "结合微观测序与宏观脑影像构建结构脑网络，利用多模态脑影像与SNP数据开展AD早期诊断与关键遗传变异位点挖掘。",
+          "evidence": [
+            {
+              "quote": "微观测序技术及宏观成像技术的高速发展为阿尔茨海默症（AD）的早期诊断提供不同维度全景式观测信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 707
+              },
+              "version": "35e6620ef9aead842aa0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0330b1e98dfe",
+          "name": "欧氏空间脑网络分析破坏拓扑结构",
+          "desc": "在欧式空间中分析脑网络容易破坏内在拓扑结构信息，导致无法准确提取无偏差的脑网络参照物；多源异构数据间关联关系微弱、共表达模式浅显。",
+          "evidence": [
+            {
+              "quote": "在欧式空间中分析脑网络容易破坏内在拓扑结构信息，导致无法准确提取无偏差的脑网络参照物",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 798,
+                "end_char": 839
+              },
+              "version": "35e6620ef9aead842aa0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-22d3f8f19819",
+          "name": "脑网络谐波流形学习与影像基因组学融合分析",
+          "desc": "建立基于脑网络谐波的流形学习模型识别全局脑网络公共谐波基，发展局部谐波基与谐波基-SNP融合分析算法。",
+          "evidence": [
+            {
+              "quote": "本项目拟建立基于脑网络谐波的流形学习模型识别全局脑网络公共谐波基",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 885,
+                "end_char": 916
+              },
+              "version": "35e6620ef9aead842aa0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-efac0e3828b6",
+          "name": "发表高水平SCI/EI论文19篇并申请发明专利2项",
+          "desc": "共发表高水平SCI/EI论文19篇（中科院1区论文9篇，最高影响因子20.8），申请发明专利2项，培养硕博研究生6名。",
+          "evidence": [
+            {
+              "quote": "共发表高水平SCI/EI论文19篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3442,
+                "end_char": 3458
+              },
+              "version": "35e6620ef9aead842aa0"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-54c55741bc11"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0330b1e98dfe"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0330b1e98dfe"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-22d3f8f19819"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-22d3f8f19819"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-efac0e3828b6"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

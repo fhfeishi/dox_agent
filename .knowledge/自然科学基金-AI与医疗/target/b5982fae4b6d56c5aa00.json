@@ -1,0 +1,142 @@
+{
+  "doc_id": "b5982fae4b6d56c5aa00",
+  "version": "07ee2e7108c38387e15a",
+  "source_hash": "797a92b5fde53d1ee8fa40fd946c20db94307642316cfe73701f203f2fb7fd6f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:03.555850+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a5005e90776b",
+          "name": "肺结节持续监测与肺癌早期预警",
+          "desc": "采用电阻抗层析成像（EIT）对肺结节进行持续监测，实现肺癌的早发现、早治疗。",
+          "evidence": [
+            {
+              "quote": "肺结节为肺癌的早期表现形态，短期内快速增长会大概率转变为肺癌，对此过程目前尚无有效的持续监测方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 698
+              },
+              "version": "07ee2e7108c38387e15a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6c195a8611b0",
+          "name": "EIT图像重建空间分辨率低",
+          "desc": "受强噪声、弱信号影响，电阻抗层析成像的图像重建空间分辨率不足，难以支撑肺结节的持续监测。",
+          "evidence": [
+            {
+              "quote": "主要难点是提高图像重建的空间分辨率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 731,
+                "end_char": 747
+              },
+              "version": "07ee2e7108c38387e15a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-562a38126567",
+          "name": "基于贝叶斯学习的大样本EIT图像重建模型",
+          "desc": "利用人体内噪声与肺结节生长的先验知识，基于统计学习提出大样本图像重建模型，用贝叶斯公式将后验概率转化为似然函数与先验概率求解。",
+          "evidence": [
+            {
+              "quote": "本项目利用人体内噪声和肺结节生长的先验知识，基于统计学习提出了大样本图像重建模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 764,
+                "end_char": 803
+              },
+              "version": "07ee2e7108c38387e15a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e43a06e4e127",
+          "name": "发表学术论文20篇并申请发明专利5项",
+          "desc": "发表学术论文20篇（期刊论文15篇、会议论文5篇），申请发明专利5项（授权1项），培养毕业博士1人、硕士8人。",
+          "evidence": [
+            {
+              "quote": "发表学术论文20篇，其中期刊论文15篇，会议论文5篇；申请发明专利5项，其中获得授权1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3450,
+                "end_char": 3493
+              },
+              "version": "07ee2e7108c38387e15a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a5005e90776b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6c195a8611b0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6c195a8611b0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-562a38126567"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-562a38126567"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e43a06e4e127"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

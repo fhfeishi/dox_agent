@@ -1,0 +1,197 @@
+{
+  "doc_id": "14724c499c8131fef43c",
+  "version": "9ad912b1be278ad5ccfe",
+  "source_hash": "22d24bb823a480d566c541a7cbefec0e4df1a83a17673f9f6d1b1c0022aa24bd",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:00.356011+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1ed7846d6bb1",
+          "name": "手功能康复机器人",
+          "desc": "需要训练与辅助一体化、柔性轻巧、可穿戴便携的手功能康复机器人",
+          "evidence": [
+            {
+              "quote": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠手功能康复机器人",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2942,
+                "end_char": 2998
+              },
+              "version": "9ad912b1be278ad5ccfe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1e215a4e2b11",
+          "name": "外骨骼仿生便携交互不足",
+          "desc": "外骨骼机器人在仿生性、便携性及人机交互性上存在问题",
+          "evidence": [
+            {
+              "quote": "针对外骨骼机器人在仿生性、便携性及人机交互性上的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3527,
+                "end_char": 3552
+              },
+              "version": "9ad912b1be278ad5ccfe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d098a37ba829",
+          "name": "变截面柔性仿生关节设计",
+          "desc": "基于最小变形能量原理的柔性仿生关节设计方法与人机耦合模型",
+          "evidence": [
+            {
+              "quote": "提出了基于刚度和应力特性的变截面圆弧型柔性仿生关节和变刚度柔性仿生关节设计方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3093,
+                "end_char": 3131
+              },
+              "version": "9ad912b1be278ad5ccfe"
+            }
+          ]
+        },
+        {
+          "id": "item-17e191c61f58",
+          "name": "有限状态机协同控制",
+          "desc": "集成多运动信号与意图信息融合的康复机器人协同控制策略",
+          "evidence": [
+            {
+              "quote": "提出基于有限状态机的柔性外骨骼手功能康复机器人协同控制方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3325,
+                "end_char": 3353
+              },
+              "version": "9ad912b1be278ad5ccfe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9d585323cdd4",
+          "name": "四型原理样机与实验平台",
+          "desc": "研制四种柔性外骨骼手康复机器人原理样机及上肢外骨骼、柔性假手样机",
+          "evidence": [
+            {
+              "quote": "研制了四种新型线驱动柔性外骨骼手功能康复机器人原理样机和一种重力平衡式上肢外骨骼和自适应抓握柔性假手样机",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3435,
+                "end_char": 3486
+              },
+              "version": "9ad912b1be278ad5ccfe"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-c797daebba9e",
+          "name": "SMA驱动轻质方案",
+          "desc": "基于形状记忆合金驱动模块的外骨骼轻质便携解决方案",
+          "evidence": [
+            {
+              "quote": "提出了一种基于形状记忆合金（SMA）驱动模块用于柔性外骨骼外骨骼手、腕外骨骼及肘外骨骼",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3554,
+                "end_char": 3596
+              },
+              "version": "9ad912b1be278ad5ccfe"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1ed7846d6bb1"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-1e215a4e2b11"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1e215a4e2b11"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d098a37ba829"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d098a37ba829"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9d585323cdd4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-17e191c61f58"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9d585323cdd4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d098a37ba829"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c797daebba9e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

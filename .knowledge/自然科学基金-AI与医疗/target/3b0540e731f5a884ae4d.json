@@ -1,0 +1,142 @@
+{
+  "doc_id": "3b0540e731f5a884ae4d",
+  "version": "66cfd20cdc1bd2e86306",
+  "source_hash": "b04413a3b976363a7e8bdaab051c03ec248a4a1d8999abb73002dcf2b936fa44",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:36.080901+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ec5ae4195165",
+          "name": "全身淋巴瘤PET/CT影像组学智能诊断",
+          "desc": "面向全身性、多变性淋巴瘤的早期诊断，基于PET/CT影像组学与人工智能构建智能诊断新技术。",
+          "evidence": [
+            {
+              "quote": "PET/CT图像既能从分子水平反映淋巴瘤与正常组织的代谢活性差异又能显示解剖结构等信息，为全身性、多变性的淋巴瘤早期诊断提供了新手段",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 686,
+                "end_char": 751
+              },
+              "version": "66cfd20cdc1bd2e86306"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-11647748660a",
+          "name": "淋巴瘤代谢指标特异性与早期癌灶敏感性低",
+          "desc": "淋巴瘤代谢指标特异性偏低、早期癌灶敏感性较低，同时存在无标注条件下自动检测与小样本不平衡分割等问题。",
+          "evidence": [
+            {
+              "quote": "提出了基于健康人体全身SUV标准化和增强微小癌灶的细胞代谢活性定量化新方法，以解决淋巴瘤代谢指标特异性和早期癌灶敏感性较低的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 804,
+                "end_char": 867
+              },
+              "version": "66cfd20cdc1bd2e86306"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d20345dd01c6",
+          "name": "无监督检测与多网络协同分割及完全迁移学习",
+          "desc": "提出无监督淋巴瘤检测模型解决无标注自动检测，提出多种深度神经网络协同的分割方法解决小样本不平衡分割，并提出异质性表达与完全迁移学习特征提取方法。",
+          "evidence": [
+            {
+              "quote": "提出了构建无监督检测淋巴瘤模型的新方法，以解决无标注条件下淋巴瘤的自动检测问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 869,
+                "end_char": 907
+              },
+              "version": "66cfd20cdc1bd2e86306"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-59a045009d4a",
+          "name": "申请5项发明专利3项授权及5项软件著作权",
+          "desc": "申请5项国家发明专利（3项授权）及5项软件著作权，发表20篇学术论文（SCI收录15篇、EI收录2篇），开发了淋巴瘤智能CAD模型与软件；培养17名研究生。",
+          "evidence": [
+            {
+              "quote": "申请了5项国家发明专利(3项授权)及5项软件著作权。发表了20篇学术论文，其中SCI收录15篇，EI收录2篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3539,
+                "end_char": 3592
+              },
+              "version": "66cfd20cdc1bd2e86306"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ec5ae4195165"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-11647748660a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-11647748660a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d20345dd01c6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d20345dd01c6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-59a045009d4a"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "doc_id": "98df29107e8280f1c429",
+  "version": "06e8f6ef75533e89fcd1",
+  "source_hash": "10327993f52c801a2e51bc0934a50dc555e60cd3e801cc50229ddd8114a491a4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:19:59.386783+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-57d25148dcad",
+          "name": "自动驾驶乘员晕动症缓解",
+          "desc": "自动驾驶汽车舒适性控制与晕动症减缓",
+          "evidence": [
+            {
+              "quote": "本项目采用仿真与实车试验相结合的方式，基于晕动症发生机理的感觉冲突理论与主观垂直冲突理论，建立以人体头部运动为输入的前庭系统及其感觉器官的动力学模型，以输出人体晕动症发生率。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3016,
+                "end_char": 3102
+              },
+              "version": "06e8f6ef75533e89fcd1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-531b8dfeb20c",
+          "name": "机理分析不清缺乏主动控制",
+          "desc": "单纯悬架垂向分析与主观评价致机理不清、缺乏主动规避",
+          "evidence": [
+            {
+              "quote": "针对现有晕动症研究单纯分析悬架垂向振动且主要通过实车试验进行主观评价带来的机理分析不清、缺乏精准分析与主动规避控制的问题，拟建立仿人生理结构的前庭系统动力学模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 754,
+                "end_char": 833
+              },
+              "version": "06e8f6ef75533e89fcd1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-07fdcd69fed6",
+          "name": "晕动度机理模型",
+          "desc": "簧载质量-上半身-头部线性链构建晕动度模型",
+          "evidence": [
+            {
+              "quote": "建立了基于晕动症发生机理的汽车乘员晕动症晕动度模型，并通过仿真验证与实车实验验证的方式，证明模型可以有效预测乘员晕动症发生率。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3148,
+                "end_char": 3210
+              },
+              "version": "06e8f6ef75533e89fcd1"
+            }
+          ]
+        },
+        {
+          "id": "item-79601dd28374",
+          "name": "HSRL两阶段控制框架",
+          "desc": "行为克隆初始化与强化学习TD3迭代优化",
+          "evidence": [
+            {
+              "quote": "提出了一种创新性的混合监督-强化学习(HSRL)框架，该框架采用两阶段优化机制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3284,
+                "end_char": 3323
+              },
+              "version": "06e8f6ef75533e89fcd1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0165c0d039c9",
+          "name": "晕动剂量降低15.7%",
+          "desc": "MSDV降低15.7%且保持轨迹跟踪性能",
+          "evidence": [
+            {
+              "quote": "多场景测试验证结果表明，该 HSRL方法不仅展现出优异的轨迹跟踪性能与泛化能力，还能将自动驾驶过程中的乘员累积晕动剂量值(MSDV)降低15.7%。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3479,
+                "end_char": 3552
+              },
+              "version": "06e8f6ef75533e89fcd1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-57d25148dcad"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-531b8dfeb20c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-531b8dfeb20c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-07fdcd69fed6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-531b8dfeb20c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-79601dd28374"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-79601dd28374"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0165c0d039c9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-07fdcd69fed6"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0165c0d039c9"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

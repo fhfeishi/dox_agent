@@ -1,0 +1,142 @@
+{
+  "doc_id": "b6ff0705772ccaa37c8a",
+  "version": "2ae94f9528c3d3366cb2",
+  "source_hash": "347a9ba6583a688e8a5d6efb3388e7202d6f4af5a64b9961aba6ef4f0b7e12eb",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:12.653398+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-db55ae3d2786",
+          "name": "视网膜图像分割与辅助诊断",
+          "desc": "面向眼科疾病早期诊断，研究视网膜血管、视盘、视杯与病灶区域的深度学习分割与辅助诊断系统。",
+          "evidence": [
+            {
+              "quote": "视网膜图像分析在眼科疾病的早期诊断中发挥着越来越重要的作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2761,
+                "end_char": 2789
+              },
+              "version": "2ae94f9528c3d3366cb2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-eddd780af1d1",
+          "name": "视网膜结构复杂致手动分析耗时易错",
+          "desc": "视网膜结构的复杂性和病变的多样性使手动分析和诊断既耗时又易出错，亟需自动分割与诊断技术。",
+          "evidence": [
+            {
+              "quote": "然而，视网膜结构的复杂性和病变的多样性使得手动分析和诊断既耗时又易出错",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2791,
+                "end_char": 2825
+              },
+              "version": "2ae94f9528c3d3366cb2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1516a68c7ecf",
+          "name": "多尺度注意力残差与生成对抗分割网络",
+          "desc": "研究深度学习相关算法与视网膜图像分割技术，设计残差模块、注意力模块与空间池化金字塔等结构提升复杂结构与微小病变识别能力，并研究训练策略与优化器选择。",
+          "evidence": [
+            {
+              "quote": "研究深度学习相关算法与基于深度学习的视网膜图像分割技术，并设计实现计算机辅助诊断系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 729,
+                "end_char": 770
+              },
+              "version": "2ae94f9528c3d3366cb2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4549a4389404",
+          "name": "GL-Net视盘分割F1达97.12%",
+          "desc": "基于生成对抗网络的GL-Net在DRISGTI-GS1数据集上视盘分割F1达97.12%、视杯F1达90.58%；M3FN在DRIVE上F1达83.21%；MRA-UNet在CHASE上F1达81.29%；MCPANet在STARE上F1达85.05%。",
+          "evidence": [
+            {
+              "quote": "基于生成对抗网络的GL-Net在DRISGTI-GS1数据集上对视盘的分割F1分数达到97.12%，对视杯的分割F1分数达到90.58%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3112,
+                "end_char": 3179
+              },
+              "version": "2ae94f9528c3d3366cb2"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-db55ae3d2786"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-eddd780af1d1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-eddd780af1d1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1516a68c7ecf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1516a68c7ecf"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4549a4389404"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

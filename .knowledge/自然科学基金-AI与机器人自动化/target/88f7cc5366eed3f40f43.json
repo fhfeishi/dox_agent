@@ -1,0 +1,180 @@
+{
+  "doc_id": "88f7cc5366eed3f40f43",
+  "version": "544fd96e27d61cdc4758",
+  "source_hash": "da6981371953ba6b248d85d6e2b2f7d32b6a5865721684eb82d8d5936c855961",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:11:19.684900+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d384398d725f",
+          "name": "多智能体分布式强化学习",
+          "desc": "无人机编队、避障、协同搜索等多智能体协同任务",
+          "evidence": [
+            {
+              "quote": "很多实际应用涉及多个智能体协同完成一个任务，如无人机编队、避障、协同搜索等，针对多智能体强化学习理论与方法的研究仍不足",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 695,
+                "end_char": 753
+              },
+              "version": "544fd96e27d61cdc4758"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e6294051f3e7",
+          "name": "收敛慢鲁棒性差",
+          "desc": "现有多智能体强化学习无并行线性加速、收敛慢、干扰对抗环境鲁棒性差",
+          "evidence": [
+            {
+              "quote": "现有多智能体强化学习算法无并行线性加速，收敛慢，在干扰对抗环境下鲁棒性差，理论上缺乏有限时间性能分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 755,
+                "end_char": 804
+              },
+              "version": "544fd96e27d61cdc4758"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fc005ace0377",
+          "name": "分布式策略评估并行加速",
+          "desc": "分布式策略评估线性加速与分布式策略优化动量加速算法设计",
+          "evidence": [
+            {
+              "quote": "研究了分布式策略评估算法设计与并行加速方法、分布式策略优化算法设计与收敛加速策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3196,
+                "end_char": 3235
+              },
+              "version": "544fd96e27d61cdc4758"
+            }
+          ]
+        },
+        {
+          "id": "item-a45b335b8d57",
+          "name": "分布式鲁棒强化学习",
+          "desc": "干扰对抗环境下分布式鲁棒强化学习算法设计与有限时间性能分析",
+          "evidence": [
+            {
+              "quote": "复杂未知环境下分布式强化学习算法的鲁棒性及有限时间性能分析方法，提出了一套针对干扰对抗环境下多智能体分布式强化学习的算法设计与策略训练方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3237,
+                "end_char": 3305
+              },
+              "version": "544fd96e27d61cdc4758"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7305469d9eeb",
+          "name": "论文与发明专利",
+          "desc": "发表顶刊论文20篇、旗舰会议12篇，申请发明专利17项",
+          "evidence": [
+            {
+              "quote": "在国内外顶级学术期刊上发表高水平论文20篇，在国内外控制和人工智能旗舰学术会议上发表学术论文12篇，申请发明专利17项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3307,
+                "end_char": 3365
+              },
+              "version": "544fd96e27d61cdc4758"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d384398d725f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e6294051f3e7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e6294051f3e7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fc005ace0377"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e6294051f3e7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-a45b335b8d57"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a45b335b8d57"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7305469d9eeb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fc005ace0377"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-7305469d9eeb"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

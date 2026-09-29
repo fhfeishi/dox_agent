@@ -1,0 +1,235 @@
+{
+  "doc_id": "143ba5766f717c24d1d9",
+  "version": "e034989632ee030dd8e0",
+  "source_hash": "cf2331ea143b3802da40820aa0178f83191ed571dda73ed531da3aac5fb7db22",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:25:54.802855+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7c3985ef5456",
+          "name": "HCC消融术后复发风险预测",
+          "desc": "消融是早期HCC治愈性治疗手段之一，但多达49%-85%的患者在消融术后5年内复发。",
+          "evidence": [
+            {
+              "quote": "消融为早期肝细胞癌（HCC）的治愈性治疗手段之一，但多达49%-85%的患者在消融术后5年内复发",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 668,
+                "end_char": 715
+              },
+              "version": "e034989632ee030dd8e0"
+            }
+          ]
+        },
+        {
+          "id": "item-6ade151d15d7",
+          "name": "晚期HCC肝动脉灌注化疗",
+          "desc": "HAIC是晚期HCC重要局部治疗手段，但疗效个体差异大且缺乏术前预测工具。",
+          "evidence": [
+            {
+              "quote": "肝动脉灌注化疗（HAIC）是重要的局部治疗手段，但疗效个体差异大，缺乏有效的术前预测工具",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2825,
+                "end_char": 2868
+              },
+              "version": "e034989632ee030dd8e0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2d74c0ced532",
+          "name": "缺乏精准预测消融后复发方法",
+          "desc": "准确预测消融后复发风险可指导临床决策与个体化随访策略，但目前缺乏精准预测方法。",
+          "evidence": [
+            {
+              "quote": "准确预测消融后复发风险可指导临床决策及制定个体化随访策略，但目前缺乏精准预测的方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 717,
+                "end_char": 757
+              },
+              "version": "e034989632ee030dd8e0"
+            }
+          ]
+        },
+        {
+          "id": "item-1b91c4a4bc77",
+          "name": "Vp4癌栓患者现有方案疗效不佳",
+          "desc": "伴门静脉主干癌栓的极端高危患者现有方案疗效不佳，生存期极短。",
+          "evidence": [
+            {
+              "quote": "尤其对于伴门静脉主干癌栓（Vp4型）的极端高危患者，现有方案疗效不佳，生存期极短",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2870,
+                "end_char": 2909
+              },
+              "version": "e034989632ee030dd8e0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dae6b560e672",
+          "name": "MRI与WSI特征融合复发建模",
+          "desc": "挖掘消融前MRI影像特征与活检病理WSI特征，融合常规临床指标构建复发预测模型并验证。",
+          "evidence": [
+            {
+              "quote": "融合MRI特征、病理图像特征和常规临床指标，构建消融术后复发预测模型并验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 981,
+                "end_char": 1017
+              },
+              "version": "e034989632ee030dd8e0"
+            }
+          ]
+        },
+        {
+          "id": "item-37a0362fcafe",
+          "name": "HAIC疗效预测模型DLRN",
+          "desc": "利用多中心CT数据开发基于nnU-Net自动分割并融合深度学习特征、放射组学特征与临床信息，建立深度学习放射组学列线图。",
+          "evidence": [
+            {
+              "quote": "融合深度学习特征、放射组学特征及临床信息，建立深度学习放射组学列线图（DLRN）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3005,
+                "end_char": 3044
+              },
+              "version": "e034989632ee030dd8e0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-12fc252a7734",
+          "name": "DLRN预测客观缓解AUC",
+          "desc": "DLRN在训练集、内部及外部验证集预测客观缓解的AUC分别达0.988、0.915和0.896。",
+          "evidence": [
+            {
+              "quote": "DLRN模型显示出卓越的预测性能，在训练集、内部及外部验证集中预测客观缓解的AUC分别达0.988、0.915和0.896",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3210,
+                "end_char": 3270
+              },
+              "version": "e034989632ee030dd8e0"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-4f32e9790931",
+          "name": "三联疗法显著延长生存",
+          "desc": "对伴Vp4癌栓患者，三联疗法对比HAIC单药显著延长中位总生存期与无进展生存期，并提高缓解率。",
+          "evidence": [
+            {
+              "quote": "三联疗法对比HAIC单药可显著延长中位总生存期（23.2 vs 6.9个月，HR=0.333）及无进展生存期（6.6 vs 2.4个月，HR=0.403）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3345,
+                "end_char": 3421
+              },
+              "version": "e034989632ee030dd8e0"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e8d1fb04b0d2",
+          "name": "泛晚期HCC联合治疗增效",
+          "desc": "联合治疗对比单药显著延长泛晚期HCC中位总生存期与无进展生存期，客观缓解率显著提升。",
+          "evidence": [
+            {
+              "quote": "在泛晚期HCC中，联合治疗对比单药显著延长中位总生存期（25.6 vs 12.3个月，HR=0.38）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3504,
+                "end_char": 3554
+              },
+              "version": "e034989632ee030dd8e0"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-7c3985ef5456"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2d74c0ced532"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-2d74c0ced532"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-dae6b560e672"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-37a0362fcafe"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-12fc252a7734"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-dae6b560e672"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-4f32e9790931"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

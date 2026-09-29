@@ -1,0 +1,224 @@
+{
+  "doc_id": "84f2abcf00e82b424161",
+  "version": "e3322325379c09e0a00e",
+  "source_hash": "75037b80876cb20923a13a7148d34ce33ba3af575e094e6310db820e36ad4fd8",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:08:06.676079+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2418fa61ae7d",
+          "name": "可穿戴外骨骼康复辅助",
+          "desc": "为运动功能障碍患者和运动辅助人员提供自适应控制",
+          "evidence": [
+            {
+              "quote": "本项目的背景是为运动功能障碍的患者和需要运动辅助的人员提供一种可穿戴外骨骼机器人的学习控制算法，以自动适应千差万别的外骨骼使用者。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2544,
+                "end_char": 2608
+              },
+              "version": "e3322325379c09e0a00e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0357ac891864",
+          "name": "患者差异自适应难",
+          "desc": "需自动适应千差万别的使用者",
+          "evidence": [
+            {
+              "quote": "以自动适应千差万别的外骨骼使用者。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2592,
+                "end_char": 2608
+              },
+              "version": "e3322325379c09e0a00e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7ddc0b155c2a",
+          "name": "步态迭代学习控制",
+          "desc": "迭代学习修正控制参数实现步态高精度跟踪",
+          "evidence": [
+            {
+              "quote": "通过不断的学习和修正控制参数实现步态的高精度跟踪控制（RMS误差低至1.37度），相比传统的PID控制算法提升了91.1%。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2668,
+                "end_char": 2729
+              },
+              "version": "e3322325379c09e0a00e"
+            }
+          ]
+        },
+        {
+          "id": "item-83f2060ec0ed",
+          "name": "行走能量回收技术",
+          "desc": "膝关节外骨骼回收能量存储于超级电容",
+          "evidence": [
+            {
+              "quote": "设计的膝关节外骨骼可以在人体行走运动时回收3.2W的能量，并存储于超级电容内。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2847,
+                "end_char": 2885
+              },
+              "version": "e3322325379c09e0a00e"
+            }
+          ]
+        },
+        {
+          "id": "item-b49b0219f80f",
+          "name": "踝关节弹簧储能助力",
+          "desc": "机械式弹簧储能机构负功回收正功释放",
+          "evidence": [
+            {
+              "quote": "设计的踝关节外骨骼采用机械式弹簧储能机构，通过类似圆珠笔按钮机构的设计，把负功阶段回收的行走动能巧妙地在正功阶段进行释放，实现了在水平路面行走时降低新陈代谢率达6.4%。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2935,
+                "end_char": 3019
+              },
+              "version": "e3322325379c09e0a00e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f5102a6e5ed4",
+          "name": "RMS误差1.37度",
+          "desc": "步态跟踪相比PID控制提升91.1%",
+          "evidence": [
+            {
+              "quote": "相比传统的PID控制算法提升了91.1%。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2709,
+                "end_char": 2729
+              },
+              "version": "e3322325379c09e0a00e"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-83dcd979841d",
+          "name": "肌肉活动缓解7.91%",
+          "desc": "膝关节外骨骼缓解大腿肌肉活动缓解疲劳",
+          "evidence": [
+            {
+              "quote": "膝关节外骨骼还能够缓解7.91%的人体大腿肌肉活动，帮助穿戴者缓解腿部肌肉疲劳。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2895,
+                "end_char": 2934
+              },
+              "version": "e3322325379c09e0a00e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2418fa61ae7d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0357ac891864"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0357ac891864"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7ddc0b155c2a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0357ac891864"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-83f2060ec0ed"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0357ac891864"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b49b0219f80f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7ddc0b155c2a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f5102a6e5ed4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-83f2060ec0ed"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-83dcd979841d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

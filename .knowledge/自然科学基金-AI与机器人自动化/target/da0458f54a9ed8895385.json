@@ -1,0 +1,207 @@
+{
+  "doc_id": "da0458f54a9ed8895385",
+  "version": "558b3ba080b38251338c",
+  "source_hash": "02fba6c12a17dc7875761f03804b2602e903cddf88791b7dfd19023654be71b6",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:19:58.096258+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d9c89a168e2a",
+          "name": "机械臂多任务模式控制",
+          "desc": "多任务模式下动态模式学习与控制器自主切换",
+          "evidence": [
+            {
+              "quote": "本项目主要解决了，机械臂系统在多任务模式下，能够实现动态模式的学习和多任务控制器下的自主切换。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3068,
+                "end_char": 3114
+              },
+              "version": "558b3ba080b38251338c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7267debf71c9",
+          "name": "任务突变破坏控制性能",
+          "desc": "任务无法人为告知突然改变破坏系统控制性能",
+          "evidence": [
+            {
+              "quote": "当任务在无法人为告知的情况下突然发生改变，将会破坏系统的控制性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 678,
+                "end_char": 710
+              },
+              "version": "558b3ba080b38251338c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e05b7ed7f857",
+          "name": "神经网络未知动态建模",
+          "desc": "神经网络解决非线性大尺度高阶与不确定性",
+          "evidence": [
+            {
+              "quote": "机械臂模型具有非线性，大尺度，高阶特性，同时也需要考虑动态不确定性，随机扰动和时间延迟影响。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3283,
+                "end_char": 3328
+              },
+              "version": "558b3ba080b38251338c"
+            }
+          ]
+        },
+        {
+          "id": "item-3ca5a8a03d71",
+          "name": "预设性能与有限时间控制",
+          "desc": "保证暂态稳态性能并使误差固定时间收敛",
+          "evidence": [
+            {
+              "quote": "预设性能控制的研究保证了暂态和稳态性能。有限时间也可以使得机械臂跟踪误差在固定时间内收敛到零域。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3397,
+                "end_char": 3444
+              },
+              "version": "558b3ba080b38251338c"
+            }
+          ]
+        },
+        {
+          "id": "item-671b2a6c4289",
+          "name": "障碍Lyapunov受限控制",
+          "desc": "输出受限、输入饱和与全状态约束的可行性处理",
+          "evidence": [
+            {
+              "quote": "研究了输出受限，输入非线性饱和、全状态受限问题。因为安全考虑，机械臂运动需要受限在固定空间，研究了障碍李雅普诺夫函数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3449,
+                "end_char": 3506
+              },
+              "version": "558b3ba080b38251338c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ff341f587462",
+          "name": "论文9篇",
+          "desc": "科研论文9篇（SCI 7篇、EI 2篇）",
+          "evidence": [
+            {
+              "quote": "项目组发表基金标注科研论文9篇，其中SCI论文7篇，中文EI期刊论文2篇。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3662,
+                "end_char": 3698
+              },
+              "version": "558b3ba080b38251338c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d9c89a168e2a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-7267debf71c9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7267debf71c9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e05b7ed7f857"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7267debf71c9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3ca5a8a03d71"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7267debf71c9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-671b2a6c4289"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3ca5a8a03d71"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ff341f587462"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-671b2a6c4289"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ff341f587462"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "doc_id": "b1e1c73c5f6381819f46",
+  "version": "23675c5f87ee65e1f6c9",
+  "source_hash": "6c7e2b85722a6b68aba42853e5e8e7e7155e6b67ace62b4112a719fda5a00c52",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:21:33.287503+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-640c0e85fe45",
+          "name": "肝细胞结节病理诊断",
+          "desc": "肝细胞结节是一组异质性疾病，组织形态多样且临床差异大，肝癌早期诊断是临床病理重点难点。",
+          "evidence": [
+            {
+              "quote": "肝细胞结节包含一组异质性疾病，组织形态多样且临床差异大",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 668,
+                "end_char": 694
+              },
+              "version": "23675c5f87ee65e1f6c9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-092478a655aa",
+          "name": "病理模型依赖细标注且不可解释",
+          "desc": "前期第一代AI病理模型HnAIM外部验证准确率达93.5%，但需大量精细标注且模型不可解释。",
+          "evidence": [
+            {
+              "quote": "前期已成功构建第一代AI病理模型(HnAIM)，外部验证准确率高达93.5%，但需大量精细标注且模型具有不可解释性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 770,
+                "end_char": 826
+              },
+              "version": "23675c5f87ee65e1f6c9"
+            }
+          ]
+        },
+        {
+          "id": "item-85c560a44cda",
+          "name": "诊断重复率低漏误诊率高",
+          "desc": "诊断标准复杂、活检标本局限及病理医师主观性，导致诊断重复率低、漏误诊率高且耗时费力。",
+          "evidence": [
+            {
+              "quote": "诊断标准复杂多样、活检标本局限性以及病理医师主观性，导致诊断重复率低，漏诊、误诊率高且耗时费力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 722,
+                "end_char": 768
+              },
+              "version": "23675c5f87ee65e1f6c9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f16b46211ee7",
+          "name": "自监督与弱监督结合诊断框架",
+          "desc": "采用自监督学习进行病理图像特征预训练，并引入多示例学习实现切片级标签建模。",
+          "evidence": [
+            {
+              "quote": "构建了一套基于自监督学习与弱监督学习相结合的肝细胞结节AI病理诊断框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3522,
+                "end_char": 3556
+              },
+              "version": "23675c5f87ee65e1f6c9"
+            }
+          ]
+        },
+        {
+          "id": "item-3257ef849f2b",
+          "name": "分层树状诊断策略",
+          "desc": "结合病理诊断流程构建分层式、树状结构诊断策略，并在低置信度时引入重判机制。",
+          "evidence": [
+            {
+              "quote": "项目结合病理诊断流程构建了分层式、树状结构的诊断策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3628,
+                "end_char": 3653
+              },
+              "version": "23675c5f87ee65e1f6c9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-633ee4762fbb",
+          "name": "约3000例多中心数据与模型验证",
+          "desc": "纳入7类肝细胞结节病变与2类背景肝组织，累计约3000例，完成训练与多中心验证。",
+          "evidence": [
+            {
+              "quote": "纳入7类肝细胞结节性病变和2类背景肝组织，累计病例约3000例，完成模型训练及多中心验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3858,
+                "end_char": 3901
+              },
+              "version": "23675c5f87ee65e1f6c9"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-a908ddbebb2f",
+          "name": "诊断软件Demo与人机对比",
+          "desc": "构建诊断软件Demo并在真实临床环境开展前瞻性应用探索及人机对比分析。",
+          "evidence": [
+            {
+              "quote": "构建诊断软件Demo，在真实临床环境中开展前瞻性应用探索及人机对比分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3904,
+                "end_char": 3938
+              },
+              "version": "23675c5f87ee65e1f6c9"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-f6058f2e6bd4",
+          "name": "关注区域与病理特征一致",
+          "desc": "模型关注区域与肿瘤细胞排列、细胞核形态、核浆比及细胞密度等关键病理特征具有较好一致性。",
+          "evidence": [
+            {
+              "quote": "发现模型关注区域与肿瘤细胞排列、细胞核形态、核浆比及细胞密度等关键病理特征具有较好一致性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3770,
+                "end_char": 3813
+              },
+              "version": "23675c5f87ee65e1f6c9"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-640c0e85fe45"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-092478a655aa"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-092478a655aa"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f16b46211ee7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f16b46211ee7"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-633ee4762fbb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3257ef849f2b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a908ddbebb2f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

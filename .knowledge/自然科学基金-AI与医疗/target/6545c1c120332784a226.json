@@ -1,0 +1,142 @@
+{
+  "doc_id": "6545c1c120332784a226",
+  "version": "80ca24915a77fadfc1b4",
+  "source_hash": "66f3dfbe72955d84ed8bbde796506cfa8b9e0eba12de3ee9d640d1e70054a93b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:29.401479+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-122e5b3d5154",
+          "name": "甲状腺微小癌淋巴结转移AI预警",
+          "desc": "面向甲状腺微小乳头状癌中央区淋巴结转移，建立AI辅助多模态超声预警系统指导手术方式选择。",
+          "evidence": [
+            {
+              "quote": "甲状腺癌是近年来全球发病率增长最快的恶性肿瘤，已上升为我国女性恶性肿瘤发病率第五位",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 677,
+                "end_char": 717
+              },
+              "version": "80ca24915a77fadfc1b4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-118da0aa84cc",
+          "name": "中央区淋巴结转移超声敏感度仅10.9%-36.2%",
+          "desc": "甲状腺癌术后颈部淋巴结转移发生率高达35%，而超声对中央区淋巴结转移敏感度仅10.9%~36.2%，预防性清扫会增加并发症。",
+          "evidence": [
+            {
+              "quote": "超声检查对中央区淋巴结转移的敏感度较低，仅为10.9%~36.2%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2746,
+                "end_char": 2778
+              },
+              "version": "80ca24915a77fadfc1b4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c8e76353c43c",
+          "name": "多模态超声AI诊断与淋巴结转移预测模型",
+          "desc": "建立甲状腺结节多模态超声特征数据库及AI辅助超声诊断系统，构建淋巴结转移影像数据库、标注软件与图像语义分割网络并训练验证预测模型。",
+          "evidence": [
+            {
+              "quote": "建立甲状腺癌淋巴结转移超声影像数据库并构建标注软件和图像语义分割网络，最终构建预测模型并对其诊断效能进行训练和验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2986,
+                "end_char": 3042
+              },
+              "version": "80ca24915a77fadfc1b4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5fbe4ba67fa6",
+          "name": "AI超声诊断系统内部AUC 0.911外部0.881",
+          "desc": "甲状腺结节AI辅助超声诊断系统内部测试集AUC 0.911、外部0.881，效能不亚于高年资医生；中央区淋巴结转移预测模型AUC 0.794，准确率0.80、敏感度0.76、特异度0.83。",
+          "evidence": [
+            {
+              "quote": "甲状腺结节人工智能辅助超声诊断系统诊断甲状腺癌表现良好，内部测试集中曲线下面积（AUC）值为0.911，外部测试集AUC值为0.881",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3091,
+                "end_char": 3157
+              },
+              "version": "80ca24915a77fadfc1b4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-122e5b3d5154"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-118da0aa84cc"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-118da0aa84cc"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c8e76353c43c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c8e76353c43c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-5fbe4ba67fa6"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "doc_id": "9e75f5c261c4e0ce1551",
+  "version": "68218910b1da8274557f",
+  "source_hash": "8c965d7fe1ba34989ed13a36e286d007ba294dd0e0f8be68312ae54d38a3b397",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:11.230755+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6bbf40d9cff9",
+          "name": "NSCLC免疫治疗疗效与PD-L1表达预测",
+          "desc": "面向进展期非小细胞肺癌免疫治疗，用多模态影像组学预测PD-1/PD-L1表达及免疫治疗疗效。",
+          "evidence": [
+            {
+              "quote": "免疫治疗已成为非小细胞肺癌（NSCLC）重要治疗方法，现行疗效评价标准因存在非常规缓解模式而不能实现准确评价",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 683,
+                "end_char": 736
+              },
+              "version": "68218910b1da8274557f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5e364dab1eaa",
+          "name": "现行疗效评价标准存在非常规缓解模式",
+          "desc": "现行疗效评价标准因存在非常规缓解模式而不能实现准确评价，需建立影像学新方法预测疗效。",
+          "evidence": [
+            {
+              "quote": "现行疗效评价标准因存在非常规缓解模式而不能实现准确评价",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 710,
+                "end_char": 736
+              },
+              "version": "68218910b1da8274557f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d0aa2bac52e3",
+          "name": "三维多模态影像融合的影像组学预测模型",
+          "desc": "基于增强CT、动态增强MRI参数图与IVIM参数图经三维多模态影像融合，以时间编码神经网络分割病灶、影像组学提取特征并用LASSO回归筛选，联合生物标记物与临床指标构建临床-影像组学模型与nomogram。",
+          "evidence": [
+            {
+              "quote": "经三维多模态影像融合，并以时间编码的神经网络法分割病灶，用影像组学方法提取特征，采用LASSO回归筛选特征参数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 789,
+                "end_char": 843
+              },
+              "version": "68218910b1da8274557f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bf80dc4e6152",
+          "name": "多任务学习肿瘤演进预测模型AUC 0.89",
+          "desc": "基于多任务学习的可视化肿瘤演进预测模型预测肿瘤进展的分类效能AUC达0.89；双增量免疫治疗疗效评价模型外部验证AUC 0.85，STAS跨中心验证AUC分别为0.844和0.840。",
+          "evidence": [
+            {
+              "quote": "该模型在预测肿瘤进展与否的分类效能上表现出色，AUC值高达0.89",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4411,
+                "end_char": 4443
+              },
+              "version": "68218910b1da8274557f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6bbf40d9cff9"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5e364dab1eaa"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5e364dab1eaa"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d0aa2bac52e3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d0aa2bac52e3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bf80dc4e6152"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

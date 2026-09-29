@@ -1,0 +1,142 @@
+{
+  "doc_id": "de78f68c6729280b36a2",
+  "version": "606e71187e6d4554880f",
+  "source_hash": "c519f9bdbfac6fe2f69c3c3e17619231857eed38bdb64b93043ed497353e5536",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:36.127757+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-97521494c49d",
+          "name": "急性基底动脉闭塞血运重建预后预测",
+          "desc": "面向致死致残率极高的急性基底动脉闭塞，构建影像组学与临床因素联合的预后评估筛选工具。",
+          "evidence": [
+            {
+              "quote": "急性基底动脉闭塞（ABAO）是一种致命性卒中",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 683,
+                "end_char": 704
+              },
+              "version": "606e71187e6d4554880f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8de19dc91e1c",
+          "name": "缺乏针对ABAO的预后精准预测模型",
+          "desc": "ABAO血运重建良好预后比例明显低于前循环大血管病变，缺乏针对ABAO血运重建预后的精准预测模型是现有治疗效果不佳的重要原因。",
+          "evidence": [
+            {
+              "quote": "高度提示缺乏针对ABAO血运重建预后精准预测的模型是导致现有治疗效果不佳的重要原因",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 809,
+                "end_char": 849
+              },
+              "version": "606e71187e6d4554880f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-58716e6a2c44",
+          "name": "影像组学与临床危险因素联合综合预测模型",
+          "desc": "依托BASILAR数据库，基于影像组学特征与血运重建治疗主要传统危险因素构建综合预测模型，并基于全球高质量数据平台开展外部验证。",
+          "evidence": [
+            {
+              "quote": "基于影像组学和血运重建治疗主要传统危险因素，构建更合理的影像组学特征-临床综合预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1002,
+                "end_char": 1044
+              },
+              "version": "606e71187e6d4554880f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f64a424cdca6",
+          "name": "综合预测模型准确率77.4%敏感性78.9%特异性75%",
+          "desc": "影像组学综合预测模型预测良好预后的准确率为77.4%、敏感性78.9%、特异性75%，并通过国际多中心后循环数据库开展外部验证。",
+          "evidence": [
+            {
+              "quote": "组学模型预测的准确率为77.4%，敏感性为78.9%，特异性为75%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3257,
+                "end_char": 3290
+              },
+              "version": "606e71187e6d4554880f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-97521494c49d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8de19dc91e1c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8de19dc91e1c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-58716e6a2c44"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-58716e6a2c44"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f64a424cdca6"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

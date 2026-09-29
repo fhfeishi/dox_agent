@@ -1,0 +1,142 @@
+{
+  "doc_id": "e0e6abf484cf864ea292",
+  "version": "7e2c0d80b7b39947ae60",
+  "source_hash": "1f4571538217d0c62c1954aab65c093ed55181ed3f40924ac93e781c6b3f13fb",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:59:17.888913+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4612932ac742",
+          "name": "脑胶质瘤复发的早期无创预测",
+          "desc": "针对术后放化疗早期MRI首发强化病灶，鉴别肿瘤复发与假性进展，为患者个体化诊疗方案制定提供依据。",
+          "evidence": [
+            {
+              "quote": "针对术后放化疗早期MRI首发强化病灶，明确肿瘤是否复发有利于患者个体化诊疗方案制定",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 694,
+                "end_char": 734
+              },
+              "version": "7e2c0d80b7b39947ae60"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e5a71d75393c",
+          "name": "脑胶质瘤复发缺乏有效早期诊断方法",
+          "desc": "脑胶质瘤易复发、预后差，现有方法难以早期鉴别肿瘤复发与治疗相关性改变，缺乏有效的早期诊断手段。",
+          "evidence": [
+            {
+              "quote": "然而目前缺乏有效的早期诊断方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 736,
+                "end_char": 750
+              },
+              "version": "7e2c0d80b7b39947ae60"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9ee483c6bdc3",
+          "name": "多模态MRI影像组学融合分子分型预测模型",
+          "desc": "动态分析术前与术后多模态MRI，提取肿瘤区与水肿区多维度影像组学特征量化肿瘤微环境，融合IDH和MGMT关键分子信息构建机器学习与深度学习预测模型。",
+          "evidence": [
+            {
+              "quote": "采用影像组学方法动态分析术前和术后多模态MRI图像，提取肿瘤区和水肿区多层次、多维度的影像组学特征来量化肿瘤微环境",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 899,
+                "end_char": 955
+              },
+              "version": "7e2c0d80b7b39947ae60"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-bc83c8880f12",
+          "name": "DKI与DSC联合诊断效能AUC提高到0.924",
+          "desc": "rMK和rCBV联合应用使复发与假性进展鉴别的AUC提高到0.924，诊断准确率提高到88.24%；影像组学联合模型预测IDH合并MGMT亚型AUC达0.930。",
+          "evidence": [
+            {
+              "quote": "rMK和rCBV联合应用使得AUC提高到0.924",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3029,
+                "end_char": 3053
+              },
+              "version": "7e2c0d80b7b39947ae60"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4612932ac742"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e5a71d75393c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e5a71d75393c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9ee483c6bdc3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9ee483c6bdc3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-bc83c8880f12"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

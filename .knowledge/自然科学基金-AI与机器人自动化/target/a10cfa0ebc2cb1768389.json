@@ -1,0 +1,180 @@
+{
+  "doc_id": "a10cfa0ebc2cb1768389",
+  "version": "3d6c48c49047b7bbc8dd",
+  "source_hash": "df92dddd8e7abb277b0bff9fa0352dc16dfef990c40dcaf6e9a7333a1ceb5888",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:51:44.044660+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f5572589069d",
+          "name": "不确定海域无人艇协同",
+          "desc": "巡逻、搜救、反潜中的无人艇集群协同",
+          "evidence": [
+            {
+              "quote": "受海洋环境日益复杂、作业任务日渐多样、活动范围日趋扩大的影响，无人艇集群技术在环境感知与自主决策方面还面临诸多挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2622,
+                "end_char": 2679
+              },
+              "version": "3d6c48c49047b7bbc8dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b8ac80709608",
+          "name": "感知决策一体化难题",
+          "desc": "单艇感知不完备、多艇认知交互与高效协同困难",
+          "evidence": [
+            {
+              "quote": "本项目针对不确定海域下多无人艇感知决策一体化难题开展研究，遵循基于单艇自主完备感知-多艇灵活交互认知-多艇实时高效协同的主体思路。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2680,
+                "end_char": 2744
+              },
+              "version": "3d6c48c49047b7bbc8dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e8ecd1304705",
+          "name": "单艇目标跟踪识别",
+          "desc": "最优子模式分配距离分析与航海雷达目标跟踪",
+          "evidence": [
+            {
+              "quote": "分析了最优子模式分配距离的局限性，提出了适于多艇的航海雷达目标跟踪算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2788,
+                "end_char": 2822
+              },
+              "version": "3d6c48c49047b7bbc8dd"
+            }
+          ]
+        },
+        {
+          "id": "item-4d724693c462",
+          "name": "图神经网络意图识别",
+          "desc": "威胁评估模型与典型意图识别方法",
+          "evidence": [
+            {
+              "quote": "建立了一套考虑目标瞬时和历史状态的威胁评估模型，提出了基于图神经网络的目标典型意图识别方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2886,
+                "end_char": 2930
+              },
+              "version": "3d6c48c49047b7bbc8dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dcf5452ab7b6",
+          "name": "红外对比学习识别框架",
+          "desc": "多视角红外图像对比学习满足实际识别需求",
+          "evidence": [
+            {
+              "quote": "建立了多视角红外图像的对比学习目标识别框架，能够满足多艇视角红外图像目标识别的实际应用需求，提高了下游目标识别任务的准确率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2824,
+                "end_char": 2884
+              },
+              "version": "3d6c48c49047b7bbc8dd"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f5572589069d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b8ac80709608"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b8ac80709608"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e8ecd1304705"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-b8ac80709608"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4d724693c462"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4d724693c462"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dcf5452ab7b6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e8ecd1304705"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dcf5452ab7b6"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

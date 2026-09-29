@@ -1,0 +1,142 @@
+{
+  "doc_id": "17d1ab630c50b6e5cd0e",
+  "version": "084aec8d692ecff86133",
+  "source_hash": "86a08fd6cdd8e5af1f96d7d73e1ea735ae9f7cb582463a3a4d847588789cf1f5",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:30.761407+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2eba0975a0b0",
+          "name": "智能化肺结节辅助诊断",
+          "desc": "基于胸部CT影像研究肺结节检测、分割与恶性度预测的AI技术，支撑肺癌早期诊断与筛查。",
+          "evidence": [
+            {
+              "quote": "无论在中国，还是在全世界，肺癌都是发病人数和死亡人数最多的恶性癌症",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 645,
+                "end_char": 677
+              },
+              "version": "084aec8d692ecff86133"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-40b73d03da29",
+          "name": "肺结节对比度低形态复杂难以准确诊断",
+          "desc": "CT影像中肺结节与周围组织对比度很低，形态复杂且多粘附于气管、血管和胸膜，难以准确检测、描述和诊断，可用研究数据有限。",
+          "evidence": [
+            {
+              "quote": "由于CT影像中肺结节与周围组织的对比度很低，且肺结节形态复杂，又大多粘附于气管、血管和胸膜上，难以准确检测、描述和诊断，再加上可供研究的数据非常有限",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4142,
+                "end_char": 4215
+              },
+              "version": "084aec8d692ecff86133"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-faf79ef9edd3",
+          "name": "迁移注意分割与知识图谱小样本学习",
+          "desc": "提出基于迁移注意机制的深度语义分割网络用于肺结节检测、基于对抗样本与弱模型结构迁移的深度自主学习模型用于良恶性分类、基于知识图谱的小样本深度学习模型用于恶性度预测及深度持续学习模型。",
+          "evidence": [
+            {
+              "quote": "包括用于肺结节检测的基于迁移注意机制的深度语义分割网络、用于良恶性分类的基于对抗样本和弱模型结构迁移的深度自主学习模型、用于恶性度预测的基于知识图谱的小样本深度学习模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 879,
+                "end_char": 962
+              },
+              "version": "084aec8d692ecff86133"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d61ba37b7278",
+          "name": "LIDC-IDRI良恶性分类取得最优性能",
+          "desc": "肺结节检测在LUNA16数据集上取得与排名第三方法相当的性能，良恶性分类在最大数据集LIDC-IDRI上取得当时最优性能；获授权发明专利6项、发表论文68篇（含顶级期刊/会议50余篇）。",
+          "evidence": [
+            {
+              "quote": "针对肺结节检测任务，在LUNA16数据集上取得了与目前排名第三的方法相当的性能；针对良恶性分类任务，在最大的数据集LIDC-IDRI上取得了目前最好的性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4497,
+                "end_char": 4573
+              },
+              "version": "084aec8d692ecff86133"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2eba0975a0b0"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-40b73d03da29"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-40b73d03da29"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-faf79ef9edd3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-faf79ef9edd3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d61ba37b7278"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

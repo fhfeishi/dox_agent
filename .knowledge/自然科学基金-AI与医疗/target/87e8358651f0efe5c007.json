@@ -1,0 +1,142 @@
+{
+  "doc_id": "87e8358651f0efe5c007",
+  "version": "71d50f9165a63c31aab3",
+  "source_hash": "9045ba2ee5f5545862c86bb874dafc4668504a44e6f4675e004a8b081537e8f1",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:12.620358+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-750556110591",
+          "name": "儿童脑发育障碍性疾病智能诊疗",
+          "desc": "面向儿童癫痫与自闭症的早期识别和诊断，构建多源异构信息整合的儿童脑发育障碍智能诊疗系统。",
+          "evidence": [
+            {
+              "quote": "儿童癫痫、自闭症的早期识别和诊断对患儿的治疗及预后十分重要",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 683
+              },
+              "version": "71d50f9165a63c31aab3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3ab324a00c74",
+          "name": "儿童EEG研究较少且方法不成熟",
+          "desc": "国内外研究主要面向成人EEG，对于儿童EEG的研究较少且方法不成熟；儿童EEG随成长变化且个体差异大，亟需新模型与算法。",
+          "evidence": [
+            {
+              "quote": "目前国内外研究主要致力于对成人脑电图（EEG）的自动识别和诊断分类，对于儿童EEG的研究较少且方法不成熟",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 685,
+                "end_char": 736
+              },
+              "version": "71d50f9165a63c31aab3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8c9c03f9b33a",
+          "name": "多尺度统计检验与模型驱动深度学习神经机制建模",
+          "desc": "结合EEG等电生理数据与基因、影像、临床多源异构数据，用统计学与模型驱动深度学习方法建立微观、介观、宏观多尺度大脑皮层电生理变化规律的神经机制模型。",
+          "evidence": [
+            {
+              "quote": "通过使用统计学与模型驱动的深度学习方法建立微观、介观、宏观不同尺度下大脑皮层的电生理变化规律的神经机制模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 886,
+                "end_char": 938
+              },
+              "version": "71d50f9165a63c31aab3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dd476566dfce",
+          "name": "突破复杂癫痫波识别与定位实现自动标注溯源",
+          "desc": "突破复杂癫痫波识别和定位难点，实现癫痫信号自动标注和病灶溯源；所提算法融合临床知识与领域泛化技术，兼具领先精度与良好可解释性，并产出癫痫间期脑电异常信号定位、脑电溯源定位等专利。",
+          "evidence": [
+            {
+              "quote": "本论文突破了复杂癫痫波的识别和定位难点，实现了癫痫信号的自动标注和病灶溯源",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3473,
+                "end_char": 3509
+              },
+              "version": "71d50f9165a63c31aab3"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-750556110591"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-3ab324a00c74"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-3ab324a00c74"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8c9c03f9b33a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8c9c03f9b33a"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dd476566dfce"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

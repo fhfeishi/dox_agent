@@ -1,0 +1,142 @@
+{
+  "doc_id": "17127525d9e557a3cdb9",
+  "version": "3c94644423f95c1f1cca",
+  "source_hash": "dbc3f8bd5715b7e8ec181d5f599190ae94ad0c0fd5f6d4a9d55fa30b15d49714",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:04.881430+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a0c1c0883113",
+          "name": "类风湿性关节炎复发预测",
+          "desc": "面向RA治疗缓解后高复发率问题，基于新型光声/超声多模态成像预测复发风险并指导临床诊疗路径。",
+          "evidence": [
+            {
+              "quote": "RA治疗缓解后复发率高达50%-75%，而现有临床及影像学检查无法精确预测RA复发风险",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 764,
+                "end_char": 806
+              },
+              "version": "3c94644423f95c1f1cca"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-331cc041aa8e",
+          "name": "现有检查无法精确预测RA复发风险",
+          "desc": "现有临床及影像学检查无法精确预测RA复发风险，亟需探索新型精准评估方法。",
+          "evidence": [
+            {
+              "quote": "而现有临床及影像学检查无法精确预测RA复发风险，因此亟需探索新型精准评估方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 784,
+                "end_char": 821
+              },
+              "version": "3c94644423f95c1f1cca"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1b469953b291",
+          "name": "光声-超声多模态影像组学与迁移学习图卷积模型",
+          "desc": "研究迁移学习和图卷积神经网络的深度学习方法分析多模态图像数据，挖掘多模态图像特异性特征，并分析流形图结构与复发风险的相关性后建模。",
+          "evidence": [
+            {
+              "quote": "通过研究迁移学习和图卷积神经网络的深度学习方法分析多模态图像数据，有望实现多模态图像特异性特征的深度挖掘",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 866,
+                "end_char": 917
+              },
+              "version": "3c94644423f95c1f1cca"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c0978a01273c",
+          "name": "筛选出滑膜血流与血氧特征影像学标志物",
+          "desc": "筛选出RA诊疗和预测的滑膜血流、血氧特征影像学标志物，实现光声成像对RA炎性活动度的实时无创评估，并转化应用于银屑病关节炎。",
+          "evidence": [
+            {
+              "quote": "筛选出了RA 诊疗和预测的滑膜血流、血氧特征影像学标志物",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3178,
+                "end_char": 3205
+              },
+              "version": "3c94644423f95c1f1cca"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a0c1c0883113"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-331cc041aa8e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-331cc041aa8e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1b469953b291"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1b469953b291"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c0978a01273c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

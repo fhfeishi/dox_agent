@@ -1,0 +1,142 @@
+{
+  "doc_id": "9107b08f22a57195b225",
+  "version": "97ac81bdb4b2d7f5522d",
+  "source_hash": "776dbeeaf58c8f9cf8631f272bf72b01094522f6f6666ee59f9e51382c427cd0",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:07:34.742835+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-646f125e65f7",
+          "name": "心脏疾病心音大数据辅助诊断",
+          "desc": "以心音听诊为切入点，构建基于心音大数据深度学习的心脏疾病计算机辅助诊断理论与方法。",
+          "evidence": [
+            {
+              "quote": "心音听诊作为一种非侵入、方便且廉价的手段，可有效地用于心脏疾病的辅助诊断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 690,
+                "end_char": 725
+              },
+              "version": "97ac81bdb4b2d7f5522d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a32c19af28d6",
+          "name": "医疗资源分布不均且心音听诊准确度待提高",
+          "desc": "我国医疗资源分布不均，心音听诊准确度亟待提高，需挖掘心脏疾病与心音信号之间的本征联系。",
+          "evidence": [
+            {
+              "quote": "针对我国医疗资源分布不均的现状和心音听诊准确度亟待提高的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 727,
+                "end_char": 756
+              },
+              "version": "97ac81bdb4b2d7f5522d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-193cd3214b1c",
+          "name": "心音大数据深度学习与决策模型",
+          "desc": "构建大规模成人-婴幼儿心音数据库及多模态数据库，研发基于回环残差U型CNN与隐半马尔可夫模型的心音分割，以及基于CNN与RNN串并联、因果卷积与残差注意力的深度学习决策模型。",
+          "evidence": [
+            {
+              "quote": "基于CNN与RNN串并联、因果卷积神经网络和残差注意力机制的心音大数据深度学习与决策模型及其可解释性机理",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 889,
+                "end_char": 940
+              },
+              "version": "97ac81bdb4b2d7f5522d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ea4b466213e0",
+          "name": "拟建立公开心音数据库与心脏疾病辅助诊断系统",
+          "desc": "结题摘要与立项摘要内容一致，未给出量化结果，仅说明有望建立完善公开的心音数据库并构建心脏疾病辅助诊断系统。",
+          "evidence": [
+            {
+              "quote": "通过本项目的研究有望建立完善公开的心音数据库，构建基于心音大数据深度学习的心脏疾病辅助诊断系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 970,
+                "end_char": 1016
+              },
+              "version": "97ac81bdb4b2d7f5522d"
+            }
+          ],
+          "status": "原文未明确"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-646f125e65f7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a32c19af28d6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a32c19af28d6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-193cd3214b1c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-193cd3214b1c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ea4b466213e0"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

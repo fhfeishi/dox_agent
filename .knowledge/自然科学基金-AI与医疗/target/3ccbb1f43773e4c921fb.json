@@ -1,0 +1,142 @@
+{
+  "doc_id": "3ccbb1f43773e4c921fb",
+  "version": "6853d00ee66e5ee7f5ae",
+  "source_hash": "f8cbe8132ff0693d47a1c85828b98d27bfc493d6ead9c585627ff13759bb0f2a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:29.444284+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1628b948440c",
+          "name": "小肝癌演进预测与诊疗决策系统",
+          "desc": "面向肝硬化相关结节与小肝癌的个体化精准诊疗，建立精准诊断、演进预测与智能消融平台。",
+          "evidence": [
+            {
+              "quote": "本研究对应“肿瘤影像、病理与多组学融合的智能诊断与疗效评估”",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 657,
+                "end_char": 686
+              },
+              "version": "6853d00ee66e5ee7f5ae"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-43f69b4275ac",
+          "name": "小肝癌诊疗差异大且缺乏个体化建议",
+          "desc": "肝硬化相关结节和小肝癌检出明显增多且诊疗差异巨大，但指南对肝内结节监测和小肝癌诊疗策略未提供个体化建议。",
+          "evidence": [
+            {
+              "quote": "随着影像技术进步，肝硬化相关结节和小肝癌检出明显增多，且小肝癌间诊疗差异巨大，但指南对肝内结节监测和小肝癌诊疗策略未有个体化建议",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 688,
+                "end_char": 751
+              },
+              "version": "6853d00ee66e5ee7f5ae"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-25a4ce1e62ee",
+          "name": "多模态影像组学精准诊断与智能消融平台",
+          "desc": "基于多模态影像与病理临床资料建立小肝癌精准诊断模型、演进预测模型与个体化治疗决策模型，结合融合导航技术构建标准化流程的智能消融平台。",
+          "evidence": [
+            {
+              "quote": "采用肝硬化相关结节和小肝癌多模态影像数据、病理临床资料，建立小肝癌精准诊断模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 799,
+                "end_char": 837
+              },
+              "version": "6853d00ee66e5ee7f5ae"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-54f6228a5bc7",
+          "name": "BTS-Net肝结节自动分割并构建分级诊断模型",
+          "desc": "构建动态超声造影肝结节自动分割模型BTS-Net（内外测试集Dice 0.79/0.75）；超声影像组学RF模型鉴别硬化结节、不典型增生结节和小肝癌AUC分别为0.91、0.91、0.98；MVI与肿瘤分化预测模型AUC分别为0.869和0.819。",
+          "evidence": [
+            {
+              "quote": "构建了基于深度学习的BTS-Net模型，用于动态超声造影图像中肝结节的自动分割",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3196,
+                "end_char": 3234
+              },
+              "version": "6853d00ee66e5ee7f5ae"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1628b948440c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-43f69b4275ac"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-43f69b4275ac"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-25a4ce1e62ee"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-25a4ce1e62ee"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-54f6228a5bc7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "doc_id": "5f36d35ea97ff317092a",
+  "version": "9c9e8510a22689da5ac1",
+  "source_hash": "70d8eb4f77a318ea3851075bfab94545cd3f630556acf95db06fa4ef5f141287",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:58:24.530534+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-acf1afa19281",
+          "name": "建筑机器人定位与建图",
+          "desc": "建筑施工场景中移动机器人智能导航",
+          "evidence": [
+            {
+              "quote": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 664,
+                "end_char": 717
+              },
+              "version": "9c9e8510a22689da5ac1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6a6716c080b1",
+          "name": "定位鲁棒性与地图准确性不足",
+          "desc": "常规SLAM融合算法难以满足复杂建筑场景需求",
+          "evidence": [
+            {
+              "quote": "而定位的低鲁棒性与地图的不准确性问题仍是移动式建筑机器人目前亟需攻克的技术难题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 719,
+                "end_char": 758
+              },
+              "version": "9c9e8510a22689da5ac1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-31c3055f8bd7",
+          "name": "LIE多源数据集",
+          "desc": "激光-惯性-事件数据集提供可重复实验条件",
+          "evidence": [
+            {
+              "quote": "构建了激光-惯性-事件（LIE）数据集，为多源融合算法研究提供了可重复实验条件与测试数据。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3197,
+                "end_char": 3241
+              },
+              "version": "9c9e8510a22689da5ac1"
+            }
+          ]
+        },
+        {
+          "id": "item-188762851d6c",
+          "name": "FAST-LIEO融合里程计",
+          "desc": "四种传感器紧耦合的快速实时多传感器融合里程计",
+          "evidence": [
+            {
+              "quote": "提出了快速实时多传感器融合里程计（FAST-LIEO）算法，实现了四种传感器的紧耦合",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3257,
+                "end_char": 3298
+              },
+              "version": "9c9e8510a22689da5ac1"
+            }
+          ]
+        },
+        {
+          "id": "item-3f5cb305535c",
+          "name": "点线特征回环检测",
+          "desc": "结合点线特性、基于图像外观的回环检测方法",
+          "evidence": [
+            {
+              "quote": "基于多特征回环检测，提出一种结合点线特性、基于图像外观的回环检测方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3422,
+                "end_char": 3456
+              },
+              "version": "9c9e8510a22689da5ac1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-06da8a806aaf",
+          "name": "复杂条件鲁棒性验证",
+          "desc": "公开数据集与LIE数据集测试在雷达退化、弱光照下鲁棒性良好",
+          "evidence": [
+            {
+              "quote": "经公开数据集与LIE数据集测试，该方法在雷达退化、弱光照等复杂条件下鲁棒性良好。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3350,
+                "end_char": 3389
+              },
+              "version": "9c9e8510a22689da5ac1"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-b303c09114e4",
+          "name": "昼夜视角变化回环有效",
+          "desc": "多数据集测试验证视觉回环场景有效性",
+          "evidence": [
+            {
+              "quote": "经多数据集测试，表明了本方法在昼夜、视角变化等视觉回环场景下的有效性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3500,
+                "end_char": 3533
+              },
+              "version": "9c9e8510a22689da5ac1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-acf1afa19281"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6a6716c080b1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6a6716c080b1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-31c3055f8bd7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6a6716c080b1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-188762851d6c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6a6716c080b1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3f5cb305535c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-188762851d6c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-06da8a806aaf"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3f5cb305535c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b303c09114e4"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

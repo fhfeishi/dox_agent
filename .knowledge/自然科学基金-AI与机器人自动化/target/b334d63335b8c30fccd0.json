@@ -1,0 +1,180 @@
+{
+  "doc_id": "b334d63335b8c30fccd0",
+  "version": "11a9ad79abc620f4bef2",
+  "source_hash": "681a682409a991cb9475c068c78abc9a56d28c46ea302c5908864157c6be877f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:07:58.900917+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-73e785e9422f",
+          "name": "人机混合增强智能运动规划",
+          "desc": "未知开放时变复杂场景下的机器人自主运动规划",
+          "evidence": [
+            {
+              "quote": "在未知、开放和时变的复杂作业场景下，机器人自主运动规划系统的安全性和有效性受到越来越多的新挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 707
+              },
+              "version": "11a9ad79abc620f4bef2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c73aafe0b8f7",
+          "name": "状态空间节点动态变化",
+          "desc": "外界条件变化导致状态空间节点与路径安全性频繁变化，任务要求难实时反映",
+          "evidence": [
+            {
+              "quote": "外界条件的变化会造成问题求解状态空间节点和路径安全性的频繁变化；复杂多样的规划任务要求难以实时地反映到状态空间节点搜索和路径优化的过程中",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 709,
+                "end_char": 776
+              },
+              "version": "11a9ad79abc620f4bef2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4f8aec2b1c1c",
+          "name": "深度人体感知复合位姿优化",
+          "desc": "单目深度感知与3D人体感知结合，多模态特征融合联合建模",
+          "evidence": [
+            {
+              "quote": "提出一种基于深度人体感知驱动的复合位姿优化算法，结合单目深度感知和3D人体感知技术，构建复合位姿空间",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3043,
+                "end_char": 3092
+              },
+              "version": "11a9ad79abc620f4bef2"
+            }
+          ]
+        },
+        {
+          "id": "item-6808400be775",
+          "name": "视觉惯导融合位姿估计",
+          "desc": "深度学习与运动学检测结合的动态物体检测与移除，提升定位精度",
+          "evidence": [
+            {
+              "quote": "提出一种基于视觉惯导融合的位姿估计方法，结合深度学习与运动学检测的动态物体检测与移除方法，提升位姿估计和定位精度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3263,
+                "end_char": 3318
+              },
+              "version": "11a9ad79abc620f4bef2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dd4e00ae4c5c",
+          "name": "移动平台运动规划系统",
+          "desc": "搭建集成于移动平台的运动规划系统及真实场景实验平台",
+          "evidence": [
+            {
+              "quote": "本项目搭建了集成于移动平台的运动规划系统及真实场景实验平台，通过多传感器融合、虚拟仿真与现实环境结合等手段，全面提升机器人的路径规划、环境理解与任务执行能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3321,
+                "end_char": 3398
+              },
+              "version": "11a9ad79abc620f4bef2"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-73e785e9422f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c73aafe0b8f7"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c73aafe0b8f7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4f8aec2b1c1c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c73aafe0b8f7"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6808400be775"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6808400be775"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dd4e00ae4c5c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4f8aec2b1c1c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dd4e00ae4c5c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

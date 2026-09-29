@@ -1,0 +1,208 @@
+{
+  "doc_id": "e42010242bc184edb9c8",
+  "version": "d49fb4a86ae0b719c130",
+  "source_hash": "3a6028750aee57fc68c755620ec808d67fc48531cc3124732f2937de9e3ac8c1",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:55.737284+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-794095f7593a",
+          "name": "野外复杂地形重载四足行走",
+          "desc": "足式机器人对崎岖地形适应能力强，重载四足机器人面临野外行走可靠性问题",
+          "evidence": [
+            {
+              "quote": "足式机器人凭借其对崎岖地形的卓越适应能力，在野外运输、救援及探测等任务中展现出重要应用价值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2840,
+                "end_char": 2884
+              },
+              "version": "d49fb4a86ae0b719c130"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fb69d71650db",
+          "name": "足端滑移与支撑失稳",
+          "desc": "重载四足机器人在野外复杂地形中行走时普遍面临足端滑移、支撑失稳与姿态波动",
+          "evidence": [
+            {
+              "quote": "重载四足机器人在野外复杂地形中行走时，普遍面临足端滑移、支撑失稳与姿态波动的突出问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2889,
+                "end_char": 2930
+              },
+              "version": "d49fb4a86ae0b719c130"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d72c69fc5c94",
+          "name": "足-地非线性接触力学统一建模",
+          "desc": "兼顾软/硬地形与滑移效应的接触力学统一建模与参数辨识方法",
+          "evidence": [
+            {
+              "quote": "首先构建兼顾软/硬地形与滑移效应的足-地非线性接触力学统一建模与参数辨识方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3031,
+                "end_char": 3068
+              },
+              "version": "d49fb4a86ae0b719c130"
+            }
+          ]
+        },
+        {
+          "id": "item-e71a37416cd2",
+          "name": "卡尔曼滤波在线状态估计",
+          "desc": "融合IMU、编码器与足端接触信息，实时判别滑移趋势与地形接触特征",
+          "evidence": [
+            {
+              "quote": "融合IMU、编码器与足端接触信息，建立以卡尔曼滤波为核心的在线状态估计框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3106,
+                "end_char": 3142
+              },
+              "version": "d49fb4a86ae0b719c130"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e5b0bf31acdd",
+          "name": "滑移抑制控制框架",
+          "desc": "基于状态估计与自适应优化的滑移抑制控制框架",
+          "evidence": [
+            {
+              "quote": "提出了基于状态估计与自适应优化的滑移抑制控制框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3384,
+                "end_char": 3407
+              },
+              "version": "d49fb4a86ae0b719c130"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-da0965a17d5f",
+          "name": "复杂地形适应能力提升",
+          "desc": "显著提升机器人在低附着路面、坡面及松软地形中的抗滑移能力与运动稳定性",
+          "evidence": [
+            {
+              "quote": "显著提升了机器人在低附着路面、坡面及松软地形中的抗滑移能力、运动稳定性与地形适应性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3426,
+                "end_char": 3466
+              },
+              "version": "d49fb4a86ae0b719c130"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-794095f7593a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-fb69d71650db"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fb69d71650db"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d72c69fc5c94"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d72c69fc5c94"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e5b0bf31acdd"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-794095f7593a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-fb69d71650db"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-fb69d71650db"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e71a37416cd2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e71a37416cd2"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-da0965a17d5f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "doc_id": "56a623f0be4e2c961b8f",
+  "version": "8c4b9aa752c9e3821187",
+  "source_hash": "cd30a87f86ee1fd3cf2c8d3809c61a2aa397327cbd554958335fde4f853014ed",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:47:26.769351+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6ab63d54699a",
+          "name": "约束非线性系统控制",
+          "desc": "状态约束复杂动态系统的有限时间稳定控制",
+          "evidence": [
+            {
+              "quote": "实际工程中，需要在有限时间内实现预期控制目标，常见的基于李雅普诺夫渐近稳定性定理提出的无限时间控制方案会导致较长的瞬态响应。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2589,
+                "end_char": 2650
+              },
+              "version": "8c4b9aa752c9e3821187"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6b038863b3c2",
+          "name": "无限时间瞬态响应长",
+          "desc": "渐近稳定控制瞬态响应长且须保证状态约束",
+          "evidence": [
+            {
+              "quote": "同时应当指出，由于安全要求和物理结构等因素的限制，实际系统输出或状态应受到约束，所提出的控制算法须确保系统关键指标始终处于给定的约束范围内。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2651,
+                "end_char": 2720
+              },
+              "version": "8c4b9aa752c9e3821187"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-60816f24f404",
+          "name": "时变非对称BLF有限时间控制",
+          "desc": "障碍李雅普诺夫函数自适应有限时间神经控制",
+          "evidence": [
+            {
+              "quote": "Time-varying asymmetrical BLFs based adaptive finite-time neural control of nonlinear systems with full state constraints",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3399,
+                "end_char": 3519
+              },
+              "version": "8c4b9aa752c9e3821187"
+            }
+          ]
+        },
+        {
+          "id": "item-c15efa0514f4",
+          "name": "事件触发与容错控制",
+          "desc": "相对阈值事件触发控制应用于机翼摇摆运动",
+          "evidence": [
+            {
+              "quote": "Relative Threshold-Based Event-Triggered Control for Nonlinear Constrained Systems with Application to Aircraft Wing Rock Motion",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3581,
+                "end_char": 3708
+              },
+              "version": "8c4b9aa752c9e3821187"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ac6e1884ec2c",
+          "name": "三大论文奖",
+          "desc": "Andrew P. Sage最佳论文奖、百篇最具影响论文、钱学森论文奖",
+          "evidence": [
+            {
+              "quote": "受项目资助的一篇论文获2021年度IEEE Systems, Man and Cybernetics Society (SMCS) 的Andrew P. Sage最佳论文奖、一篇论文获2019年度中国百篇最具影响国际学术论文、一篇论文获2020年度IEEE/CAA Journal of Automatica Sinica钱学森论文奖。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2823,
+                "end_char": 2990
+              },
+              "version": "8c4b9aa752c9e3821187"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-29eee1c6c681",
+          "name": "省自然科学二等奖",
+          "desc": "获2021年度辽宁省自然科学二等奖及多项人才计划",
+          "evidence": [
+            {
+              "quote": "课题负责人入选“兴辽英才计划”青年拔尖人才、入选辽宁省百千万人才工程千人层次，获2021年度辽宁省自然科学二等奖",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2991,
+                "end_char": 3046
+              },
+              "version": "8c4b9aa752c9e3821187"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-6ab63d54699a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6b038863b3c2"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6b038863b3c2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-60816f24f404"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6b038863b3c2"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c15efa0514f4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-60816f24f404"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ac6e1884ec2c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c15efa0514f4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-29eee1c6c681"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

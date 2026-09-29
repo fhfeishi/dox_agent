@@ -1,0 +1,219 @@
+{
+  "doc_id": "54541acd57495b27718d",
+  "version": "01ee9171cc1a3096ee2c",
+  "source_hash": "a6272b8f7455e9625506e7ad4244d5425bd6fe28310b86fd4d9efb2216f22441",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:21:33.298897+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d749387f0ab9",
+          "name": "弥漫大B细胞淋巴瘤预后预测",
+          "desc": "弥漫大B细胞淋巴瘤是最常见的恶性淋巴瘤，分子生物学高度异质，预后表现复杂。",
+          "evidence": [
+            {
+              "quote": "弥漫大B细胞淋巴瘤（DLBCL）是最常见的恶性淋巴瘤，且在分子生物学上具有高度异质性，预后表现十分复杂",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 680,
+                "end_char": 730
+              },
+              "version": "01ee9171cc1a3096ee2c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-45bfd972f0e6",
+          "name": "单一组学难以精准预测疗效",
+          "desc": "IPI评分、IHC分型及单组学信息评估预后的方法无法精准预测治疗效果，是临床试验失败的重要原因。",
+          "evidence": [
+            {
+              "quote": "目前使用的IPI评分、IHC分型，以及通过转录组、基因组等单组学信息评估患者预后的方法，无法精准预测患者的治疗效果，是近期临床试验失败的重要原因之一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 757,
+                "end_char": 830
+              },
+              "version": "01ee9171cc1a3096ee2c"
+            }
+          ]
+        },
+        {
+          "id": "item-8955fac9475c",
+          "name": "预后异质性缺乏可解释模型",
+          "desc": "现有分型体系难以实现精准预后预测，需整合多组学信息构建更精准、可解释的模型。",
+          "evidence": [
+            {
+              "quote": "现有IPI评分、IHC分型以及单组学分型体系难以实现精准预后预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2711,
+                "end_char": 2742
+              },
+              "version": "01ee9171cc1a3096ee2c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-616802d3cbaa",
+          "name": "多任务学习Trinity预测模型",
+          "desc": "基于多任务学习策略提出Trinity DLBCL预测模型，联合训练生存预测与三类分子分型任务。",
+          "evidence": [
+            {
+              "quote": "本研究提出基于多任务学习策略的Trinity DLBCL预测模型，通过联合训练生存预测与三类分子分型任务，实现多维信息协同学习",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2846,
+                "end_char": 2908
+              },
+              "version": "01ee9171cc1a3096ee2c"
+            }
+          ]
+        },
+        {
+          "id": "item-633eda93f260",
+          "name": "Weibull时间模型输出生存概率",
+          "desc": "引入Weibull时间模型输出任意时间点个体化生存概率，并模拟不同治疗方案下的生存曲线。",
+          "evidence": [
+            {
+              "quote": "本研究引入Weibull时间模型，可输出任意时间点个体化生存概率，并模拟不同治疗方案下的生存曲线",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2913,
+                "end_char": 2960
+              },
+              "version": "01ee9171cc1a3096ee2c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-beee03a85ced",
+          "name": "5年生存预测AUC达0.76",
+          "desc": "模型在验证队列中5年生存预测AUC达0.76，显著优于现有方法。",
+          "evidence": [
+            {
+              "quote": "模型在验证队列中5年生存预测AUC达到0.76，显著优于现有方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2976,
+                "end_char": 3007
+              },
+              "version": "01ee9171cc1a3096ee2c"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-2ee6609a5fe7",
+          "name": "单模型同步输出多型与生存预测",
+          "desc": "实现单一模型同步输出细胞起源分型、基因组分型、免疫微环境分型及个体化生存预测结果。",
+          "evidence": [
+            {
+              "quote": "实现单一模型同步输出细胞起源分型、基因组分型、免疫微环境分型及个体化生存预测结果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3018,
+                "end_char": 3057
+              },
+              "version": "01ee9171cc1a3096ee2c"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-76628c0ee023",
+          "name": "SCI论文与AAAI会议论文",
+          "desc": "相关研究成果发表3篇SCI学术论文和1篇AAAI（CCF-A）会议论文。",
+          "evidence": [
+            {
+              "quote": "相关研究成果发表3篇SCI学术论文和1篇AAAI （CCF-A）会议论文",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3225,
+                "end_char": 3260
+              },
+              "version": "01ee9171cc1a3096ee2c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-d749387f0ab9"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-45bfd972f0e6"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-45bfd972f0e6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-616802d3cbaa"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-616802d3cbaa"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-beee03a85ced"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-633eda93f260"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-2ee6609a5fe7"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

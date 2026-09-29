@@ -1,0 +1,180 @@
+{
+  "doc_id": "c59e5cd001d07d40bbf8",
+  "version": "75affdfef94128e2964d",
+  "source_hash": "5196bac04c52a473dd952e26b21ebaa338cf21da552e5f9d757e70f5331f14ce",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T17:01:43.513086+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-55847e15a312",
+          "name": "智能无线网络频谱接入",
+          "desc": "无线数据量急剧增加，通信系统面临频带拥挤与频谱干扰问题",
+          "evidence": [
+            {
+              "quote": "随着无线数据量的急剧增加，通信系统将面临越来越拥挤的频带以及频谱干扰问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2900,
+                "end_char": 2935
+              },
+              "version": "75affdfef94128e2964d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5c04bf75449f",
+          "name": "主用户隐藏与自干扰",
+          "desc": "信道衰落和噪声影响性能下降，静态感知与残余自干扰问题",
+          "evidence": [
+            {
+              "quote": "研究了增强性能的盲源分离方法用于频谱检测，解决了由信道衰落和噪声影响的性能下降问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3122,
+                "end_char": 3162
+              },
+              "version": "75affdfef94128e2964d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3b18ee880ef4",
+          "name": "盲源分离频谱感知",
+          "desc": "融入通信性能指标到盲源分离代价函数，增强频谱干扰消除有效性",
+          "evidence": [
+            {
+              "quote": "融入通信性能指标到盲源分离的代价函数中，增强频谱干扰消除的有效性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3164,
+                "end_char": 3195
+              },
+              "version": "75affdfef94128e2964d"
+            }
+          ]
+        },
+        {
+          "id": "item-1f3ada41011b",
+          "name": "全双工盲源分离频谱感知",
+          "desc": "解决静态感知和残余自干扰影响，提升频谱感知性能与频谱效率",
+          "evidence": [
+            {
+              "quote": "研究了基于盲源分离的全双工频谱感知方法，解决了静态感知和残余自干扰影响问题，增加了系统的频谱感知性能和频谱效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3197,
+                "end_char": 3251
+              },
+              "version": "75affdfef94128e2964d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c7afda87ca63",
+          "name": "RFID防碰撞吞吐量翻倍",
+          "desc": "欠定模型接收条件下分离算法使系统吞吐量提升2倍",
+          "evidence": [
+            {
+              "quote": "提出了一种欠定模型接收条件下的分离算法，可以使系统的吞吐量提升2倍",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3347,
+                "end_char": 3379
+              },
+              "version": "75affdfef94128e2964d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-55847e15a312"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5c04bf75449f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5c04bf75449f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3b18ee880ef4"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5c04bf75449f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1f3ada41011b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3b18ee880ef4"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c7afda87ca63"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1f3ada41011b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c7afda87ca63"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

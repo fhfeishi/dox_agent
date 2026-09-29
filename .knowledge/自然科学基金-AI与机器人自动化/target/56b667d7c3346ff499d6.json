@@ -1,0 +1,224 @@
+{
+  "doc_id": "56b667d7c3346ff499d6",
+  "version": "c0512e26783b750e25f2",
+  "source_hash": "47fde1fa88a8c62ebca313a2065b46e36bef20e391e40cd44420f1fa38608fa7",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:58:24.462477+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-05919d17b2fc",
+          "name": "狭小空间微装配多机械手",
+          "desc": "微米级精密装配中多机械手智能协作",
+          "evidence": [
+            {
+              "quote": "微装配机器人代替人工进行微米级别的精密装配，能够显著提升装配精度和效率，在电子、生物工程、ICF等领域具有重要应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 674,
+                "end_char": 733
+              },
+              "version": "c0512e26783b750e25f2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7c34b9c557c0",
+          "name": "通用性差自动化程度低",
+          "desc": "微装配系统通用性差、多机械手复杂装配自动化程度低",
+          "evidence": [
+            {
+              "quote": "目前存在微装配机器人系统与关键技术的通用性差、多机械手复杂微装配机器人自动化程度低的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 734,
+                "end_char": 777
+              },
+              "version": "c0512e26783b750e25f2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-54b44d35489d",
+          "name": "栅格法-Q学习避碰趋近",
+          "desc": "基于栅格法与Q学习的多机械手避碰趋近控制方法",
+          "evidence": [
+            {
+              "quote": "1）建立了基于栅格法与Q学习的多机械手避碰趋近控制方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2822,
+                "end_char": 2848
+              },
+              "version": "c0512e26783b750e25f2"
+            }
+          ]
+        },
+        {
+          "id": "item-55c0df733d65",
+          "name": "GMM-强化学习对准协作",
+          "desc": "GMM建模生成示教数据，基于TD3在线学习实现姿态推断",
+          "evidence": [
+            {
+              "quote": "2）建立了基于GMM建模与强化学习的多机械手对准协作控制方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2911,
+                "end_char": 2940
+              },
+              "version": "c0512e26783b750e25f2"
+            }
+          ]
+        },
+        {
+          "id": "item-275cce8a2e4e",
+          "name": "力/位柔顺装入技能学习",
+          "desc": "GMM模型预训练样本与DDPG在线学习实现柔顺装入",
+          "evidence": [
+            {
+              "quote": "3) 建立了基于力/位的机械手柔顺装入技能学习方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3068,
+                "end_char": 3092
+              },
+              "version": "c0512e26783b750e25f2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9aa9a51becc9",
+          "name": "三微零件智能对准",
+          "desc": "实验验证完成三个微零件空间位置智能随动对准控制",
+          "evidence": [
+            {
+              "quote": "实验验证完成了三个微零件空间位置的智能随动对准控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3042,
+                "end_char": 3067
+              },
+              "version": "c0512e26783b750e25f2"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-e1cf2afe5fc5",
+          "name": "力控精度与装配效率提升",
+          "desc": "微零件装入力控制精度与装配效率较传统方式提升",
+          "evidence": [
+            {
+              "quote": "对比实验结果表明微零件装入过程中力控制精度与装配效率较传统方式均有所提升。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3178,
+                "end_char": 3214
+              },
+              "version": "c0512e26783b750e25f2"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-05919d17b2fc"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-7c34b9c557c0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7c34b9c557c0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-54b44d35489d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7c34b9c557c0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-55c0df733d65"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7c34b9c557c0"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-275cce8a2e4e"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-55c0df733d65"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9aa9a51becc9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-275cce8a2e4e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-e1cf2afe5fc5"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

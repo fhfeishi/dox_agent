@@ -1,0 +1,235 @@
+{
+  "doc_id": "0bf92de27f2cfc536695",
+  "version": "7c5f780540e3338e9971",
+  "source_hash": "8b482484bc5e61bdebdbb484931e6d1c231cd77342739cbf938138cad3f3d674",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:42:15.276820+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-00d1e95af09a",
+          "name": "跨域脑电情感识别",
+          "desc": "脑电情感识别是情感计算与脑机接口的重要基础，但受个体、设备、时空环境差异影响，模型在真实应用中性能显著下降。",
+          "evidence": [
+            {
+              "quote": "脑电（EEG）情感识别是情感计算与脑机接口的重要基础，但受个体差异、设备差异、采集时空环境变化等“跨域/跨数据集”分布偏移影响，模型在真实应用中往往出现性能显著下降",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2842,
+                "end_char": 2923
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ]
+        },
+        {
+          "id": "item-6d94e6b5e884",
+          "name": "跨域脑电情感识别准确性提升",
+          "desc": "通过项目研究显著提升跨域脑电情感识别的准确性。",
+          "evidence": [
+            {
+              "quote": "通过本项目的研究，将显著提升跨域脑电情感识别的准确性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1015,
+                "end_char": 1040
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0b9fe27460a9",
+          "name": "跨域数据分布偏移与性能下降",
+          "desc": "不同设备、个体或时间段采集的脑电数据存在潜在分布偏移，传统机器学习独立同分布假设在跨域任务中难以成立。",
+          "evidence": [
+            {
+              "quote": "不同设备、个体或时间段采集的脑电情感数据之间会存在潜在数据分布偏移。而传统的机器学习算法建立在训练数据和测试数据独立同分布的假设之上，这对跨域脑电情感识别任务往往难以成立",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 671,
+                "end_char": 755
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ]
+        },
+        {
+          "id": "item-47bbd1f5526a",
+          "name": "被试分类器迁移到新被试性能骤降",
+          "desc": "将之前被试的分类器用于新被试时性能会急剧下降，难以在实际中推广应用。",
+          "evidence": [
+            {
+              "quote": "此外，将之前被试的分类器用于新被试时，其性能会急剧下降，因此难以在实际中进行应用及推广",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 757,
+                "end_char": 799
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-14a70418edfb",
+          "name": "双图卷积与分层时空特征提取",
+          "desc": "从图模型和递归学习角度建模不规则脑电电极拓扑结构和时域变化规律，进行双图卷积空域特征提取及局部到全脑的分层时空特征提取。",
+          "evidence": [
+            {
+              "quote": "本项目首先从图模型和递归学习角度出发建模不规则脑电电极拓扑结构和时域变化规律，有效提升深度网络的跨域情感脑电特征提取能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 804,
+                "end_char": 863
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ]
+        },
+        {
+          "id": "item-0fda9f8cae56",
+          "name": "域对抗与可迁移注意力网络",
+          "desc": "利用域对抗和可迁移性学习策略减小个体间差异并强化正性脑电样本，构建双半球域对抗神经网络与可迁移注意力神经网络。",
+          "evidence": [
+            {
+              "quote": "（3）基于双半球域对抗神经网络的跨域脑电情感识别；（4）基于可迁移注意力神经网络的跨域脑电情感识别",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 965,
+                "end_char": 1013
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-af28e74f4f86",
+          "name": "SCDAN跨被试解码显著提升",
+          "desc": "跨被试运动想象解码在两数据集上分别较基线提升5.70%/12.43%，leave-one-out协议下提升8.60%/15.84%。",
+          "evidence": [
+            {
+              "quote": "跨被试运动想象解码在两数据集上分别较基线提升5.70%/12.43%，在leave-one-out协议下提升8.60%/15.84%，验证了对分布偏移的鲁棒性提升（SCDAN）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3079,
+                "end_char": 3166
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-0e5abb4a4825",
+          "name": "E2STN跨数据集情感识别SOTA",
+          "desc": "提出情绪脑电风格迁移网络E2STN，将情绪内容信息与域风格特征解耦并重构生成风格化情绪表征，取得跨数据集情感识别SOTA并首次给出实验协议与基准。",
+          "evidence": [
+            {
+              "quote": "提出情绪脑电风格迁移网络E2STN，将“情绪内容信息”与“域风格特征”解耦并重构生成风格化情绪表征，取得跨数据集情感识别SOTA",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3264,
+                "end_char": 3327
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-411ae191c6c6",
+          "name": "跨设备任务超越基线",
+          "desc": "提出样本重加权策略与紧凑网络SRENet，在三种跨设备任务上分别超过基线6.88%、5.90%与3.49%。",
+          "evidence": [
+            {
+              "quote": "提出样本重加权策略与紧凑网络SRENet，在三种跨设备任务上分别超过基线6.88%、5.90%与3.49%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3184,
+                "end_char": 3236
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-00d1e95af09a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0b9fe27460a9"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0b9fe27460a9"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-14a70418edfb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0fda9f8cae56"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-af28e74f4f86"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-0fda9f8cae56"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-0e5abb4a4825"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

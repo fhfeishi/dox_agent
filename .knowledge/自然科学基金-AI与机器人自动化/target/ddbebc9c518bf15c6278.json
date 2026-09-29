@@ -1,0 +1,180 @@
+{
+  "doc_id": "ddbebc9c518bf15c6278",
+  "version": "eb6b077f7ec7e33d6a94",
+  "source_hash": "ac1fbc5691e3f0d1cd62005947d210178546fc9c363817757b758b64c58f5806",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:55:11.424131+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-24f679dff5ad",
+          "name": "桥隧作业特种机器人",
+          "desc": "川藏铁路、渤海湾通道等重大工程检测修护",
+          "evidence": [
+            {
+              "quote": "目前桥梁和隧道检测作业面临的重大挑战是：工作环境危险恶劣，有些区域人员难以甚至无法到达；环境变化因素多不确定，且难以进行估计和预防；检测和作业任务多样，病害细小难以寻找，作业对象容易变化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2988,
+                "end_char": 3081
+              },
+              "version": "eb6b077f7ec7e33d6a94"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1f501ea22ef5",
+          "name": "高动态大扰动控制难",
+          "desc": "复杂环境作业规划与液压机械臂末端抗扰动稳定性",
+          "evidence": [
+            {
+              "quote": "面对危险复杂环境对机器人作业规划与控制技术带来的巨大挑战，突破高动态、不确定、大扰动等复杂环境下机器人作业规划与安全优化和长臂展高柔性液压机械臂的末端抗扰动控制稳定性两大关键科学技术问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 731,
+                "end_char": 823
+              },
+              "version": "eb6b077f7ec7e33d6a94"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-94d339127fbe",
+          "name": "D-H参数与逆运动学",
+          "desc": "液压机械臂与末端机械手逆运动学理论及工程简化",
+          "evidence": [
+            {
+              "quote": "本项目开展了桥梁检测工程特种机器人运动学D-H参数分析，并推导液压机械臂和末端机械手逆运动学理论公式和工程简化公式",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3411,
+                "end_char": 3467
+              },
+              "version": "eb6b077f7ec7e33d6a94"
+            }
+          ]
+        },
+        {
+          "id": "item-e725f46c74a0",
+          "name": "位置动力学滑模控制",
+          "desc": "动态规划与实际位置融合实现末端轨迹跟踪",
+          "evidence": [
+            {
+              "quote": "融合动态规划与实际位置数据，设计基于位置动力学模型的滑模控制方法，实现机器手末端轨迹跟踪控制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3507,
+                "end_char": 3552
+              },
+              "version": "eb6b077f7ec7e33d6a94"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-df5e5f61975d",
+          "name": "多关节液压臂精准作业",
+          "desc": "解决大惯量多冗余强非线性难题实现精细化作业",
+          "evidence": [
+            {
+              "quote": "提出复杂环境下施工装备多关节液压机械臂安全轨迹规划与自适应精准运动控制算法，解决多关节液压机械臂及复杂工具大惯量、多冗余度、强非线性等控制难题，实现施工装备在复杂环境下的精细化作业，提高施工效率与施工质量。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3633,
+                "end_char": 3735
+              },
+              "version": "eb6b077f7ec7e33d6a94"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-24f679dff5ad"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-1f501ea22ef5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1f501ea22ef5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-94d339127fbe"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-1f501ea22ef5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-e725f46c74a0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e725f46c74a0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-df5e5f61975d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-94d339127fbe"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-df5e5f61975d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "doc_id": "80c0e8a3791016d73a07",
+  "version": "1814f42430568597921a",
+  "source_hash": "ccdbe68fbe06f80ee67c28fc8f6290aa9371959ea1df630e834985568a16b928",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:55:01.833354+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1ff11e952d0b",
+          "name": "软体机器人高性能驱动",
+          "desc": "围绕能量储存–释放机制提升软体执行器响应与负载能力",
+          "evidence": [
+            {
+              "quote": "本项目围绕能量储存–释放机制，构建了从单稳态到双稳态、从二维结构到三维结构的软体执行器研究架构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2818,
+                "end_char": 2864
+              },
+              "version": "1814f42430568597921a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0cf1b1915dc3",
+          "name": "响应慢输出力小负载弱",
+          "desc": "软体机器人普遍存在的响应速度慢、输出力小及负载能力弱瓶颈",
+          "evidence": [
+            {
+              "quote": "针对软体机器人普遍存在的响应速度慢、输出力小及负载能力弱等关键瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2784,
+                "end_char": 2816
+              },
+              "version": "1814f42430568597921a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c4e24e09c269",
+          "name": "链式复合力学模型",
+          "desc": "适用于大变形分析，突破传统小挠度假设局限",
+          "evidence": [
+            {
+              "quote": "建立了适用于大变形分析的链式复合力学模型，突破了传统小挠度假设的局限",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2971,
+                "end_char": 3004
+              },
+              "version": "1814f42430568597921a"
+            }
+          ]
+        },
+        {
+          "id": "item-496576cfaa12",
+          "name": "双稳态失稳机制建模",
+          "desc": "非线性力学解析模型揭示驱动压力与稳态跳变阈值的耦合关系",
+          "evidence": [
+            {
+              "quote": "通过构建非线性力学解析模型，揭示了驱动压力与稳态跳变阈值之间的耦合关系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3213,
+                "end_char": 3247
+              },
+              "version": "1814f42430568597921a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ad987348691d",
+          "name": "软体爬行机器人性能",
+          "desc": "实现3.02 BL/s运动速度和22.32倍自重负载能力",
+          "evidence": [
+            {
+              "quote": "基于该模型设计的软体爬行机器人实现了 3.02 BL/s 的运动速度和 22.32 倍自重的负载能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3093,
+                "end_char": 3142
+              },
+              "version": "1814f42430568597921a"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-dd81f00eaf78",
+          "name": "双稳态软体抓手快速响应",
+          "desc": "实现小于0.17 s的快速闭合响应",
+          "evidence": [
+            {
+              "quote": "研制的双稳态软体抓手实现了小于 0.17 s 的快速闭合响应",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3319,
+                "end_char": 3348
+              },
+              "version": "1814f42430568597921a"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1ff11e952d0b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-0cf1b1915dc3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0cf1b1915dc3"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c4e24e09c269"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-0cf1b1915dc3"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-496576cfaa12"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c4e24e09c269"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ad987348691d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-496576cfaa12"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-dd81f00eaf78"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

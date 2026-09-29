@@ -1,0 +1,142 @@
+{
+  "doc_id": "d5a4b784afb9790314ee",
+  "version": "e50ff4f919e87ebc038b",
+  "source_hash": "883e7ee9f0ee72fa49bb2dc177bc8115b74a898525527117ee70245c76f62af2",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:26:12.580001+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0233231074f3",
+          "name": "CBCT影像处理与根管结构智能识别",
+          "desc": "面向牙髓根尖周病诊疗决策，融合Micro-CT提升CBCT影像质量并实现根管结构精准识别。",
+          "evidence": [
+            {
+              "quote": "牙髓根尖周病是口腔科最常见疾病之一，影像学检查对根管结构的呈现会直接影响该类疾病的诊疗决策",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 677,
+                "end_char": 721
+              },
+              "version": "e50ff4f919e87ebc038b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4ab654cf7b6d",
+          "name": "CBCT分辨率低与伪影限制根管结构诊断",
+          "desc": "CBCT较低的分辨率和多因素形成的伪影，限制了临床医师对侧副管、根裂等根管复杂结构的诊断。",
+          "evidence": [
+            {
+              "quote": "但较低的分辨率和多因素形成的伪影，限制了临床医师根据CBCT对侧副管、根裂等根管复杂结构的诊断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 757,
+                "end_char": 803
+              },
+              "version": "e50ff4f919e87ebc038b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-819c45e7644c",
+          "name": "Micro-CT融合的CBCT超分辨率与跨模态学习",
+          "desc": "融合Micro-CT，通过深度学习使CBCT达到超分辨率成像并同步校正伪影，再构建跨模态学习模型纳入Micro-CT分析方法识别根管结构并提取形态属性。",
+          "evidence": [
+            {
+              "quote": "通过深度学习使CBCT达到超分辨率成像的同时进行图像伪影校正，再构建跨模态学习模型纳入Micro-CT分析方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 924,
+                "end_char": 978
+              },
+              "version": "e50ff4f919e87ebc038b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9111011f494e",
+          "name": "Edge-SRGAN将CBCT重建至接近Micro-CT质量",
+          "desc": "提出Edge-SRGAN，通过融合边缘检测算子的新型损失函数与精简网络结构，将离体牙CBCT影像重建至接近Micro-CT质量；跨模态迁移模型对根管形态识别准确率显著高于住院医师，nnU-Net分割DSC达0.9195。",
+          "evidence": [
+            {
+              "quote": "通过设计融合边缘检测算子的新型损失函数，并精简网络结构，成功将离体牙的CBCT影像重建至接近Micro-CT的影像质量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3195,
+                "end_char": 3253
+              },
+              "version": "e50ff4f919e87ebc038b"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0233231074f3"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4ab654cf7b6d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4ab654cf7b6d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-819c45e7644c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-819c45e7644c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-9111011f494e"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

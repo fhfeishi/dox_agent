@@ -1,0 +1,142 @@
+{
+  "doc_id": "4ae3b605a1ffa1e24dcb",
+  "version": "8199715612fc12ae37da",
+  "source_hash": "d017617feb25a93e6a1fff8640cb4e6c94b8edc11cfa15a716479552fd12bc03",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:29.461861+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-93c4b6f4d20e",
+          "name": "难治性乳腺癌精准诊断与风险预测",
+          "desc": "以三阴性、曲妥珠单抗耐药HER-2阳性及Luminal B型等难治性乳腺癌为对象，融合MRI组学与基因组学建模。",
+          "evidence": [
+            {
+              "quote": "乳腺癌是我国女性最常见的恶性肿瘤，近年来发病率持续上升",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 675,
+                "end_char": 701
+              },
+              "version": "8199715612fc12ae37da"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9fad6a75e658",
+          "name": "难治性乳腺癌亚型内预后不一致",
+          "desc": "三阴性、HER-2阳性耐药及Luminal B型乳腺癌构成一组难治性乳腺癌，治疗棘手且亚型内预后存在不一致性。",
+          "evidence": [
+            {
+              "quote": "三阴性乳腺癌、曲妥珠单抗耐药的HER-2阳性乳腺癌以及远期复发转移高的Luminal B型乳腺癌被认为是一组“难治性乳腺癌”，对这类乳腺癌的治疗较为棘手",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 732,
+                "end_char": 807
+              },
+              "version": "8199715612fc12ae37da"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f1de6019d057",
+          "name": "MRI影像组学与内在差异基因融合建模",
+          "desc": "在基因组学数据库筛选关键靶点基础上，探索多序列MRI组学与病理、分子、基因等内在表观的关联，运用数理学习方法融合多基因表型与MRI组学信息建模。",
+          "evidence": [
+            {
+              "quote": "探索多序列MRI组学与病理、分子、基因等肿瘤内在表观的关联，运用数理学习方法融合多基因表型信息与MRI组学信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 963,
+                "end_char": 1017
+              },
+              "version": "8199715612fc12ae37da"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b94201056e0b",
+          "name": "跨尺度影像-基因融合提升预测价值",
+          "desc": "发现MR影像组学可识别肿瘤内异质性、精准分子分型并无创预测HRD与TILs水平；影像组学模型具有显著疗效及预后预测价值，跨尺度融合影像-基因多组学特征可提升模型预测价值。",
+          "evidence": [
+            {
+              "quote": "跨尺度融合影像-基因多组学特征能够提升模型的预测价值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2941,
+                "end_char": 2966
+              },
+              "version": "8199715612fc12ae37da"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-93c4b6f4d20e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9fad6a75e658"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9fad6a75e658"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f1de6019d057"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f1de6019d057"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-b94201056e0b"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

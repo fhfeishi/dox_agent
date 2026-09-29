@@ -1,0 +1,180 @@
+{
+  "doc_id": "6e06594d311d1460f074",
+  "version": "a6dba569efd5b99f094f",
+  "source_hash": "dfcb97f8b7d4226dca9b928f36e3c8d67c93614eed63475747e3aa9e0f0a6fc8",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:03:23.832306+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-341ac01c4b37",
+          "name": "微创手术机器人组织夹持",
+          "desc": "手术机器人夹持器械与生物组织界面交互",
+          "evidence": [
+            {
+              "quote": "作为视觉外科的典型代表，微创手术机器人是当前外科手术领域的研究热点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 652,
+                "end_char": 685
+              },
+              "version": "a6dba569efd5b99f094f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7fd48e713a42",
+          "name": "缺乏力反馈致组织损伤",
+          "desc": "夹持力无负反馈调控导致异常力学接触、损伤或滑脱",
+          "evidence": [
+            {
+              "quote": "由于机器人手术操作缺乏力反馈，医生对器官组织受力状态的感知完全依靠视觉反馈，无法对器械夹持力形成精确负反馈调控，导致器械-生物组织界面出现异常力学接触，出现组织损伤或者滑脱。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 686,
+                "end_char": 772
+              },
+              "version": "a6dba569efd5b99f094f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6ee7a51c78d3",
+          "name": "组织损伤阈值量化",
+          "desc": "肠道组织夹持试验获得损伤压力与时间阈值",
+          "evidence": [
+            {
+              "quote": "通过对小型动物猪肠道组织进行夹持，夹持后对损伤进行量化，得到组织损伤的压力阈值和时间阈值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2926,
+                "end_char": 2969
+              },
+              "version": "a6dba569efd5b99f094f"
+            }
+          ]
+        },
+        {
+          "id": "item-cd4cfbf630cb",
+          "name": "树蛙微结构界面优化",
+          "desc": "借鉴湿粘附微结构设计5种微棱柱界面并评价生物相容性",
+          "evidence": [
+            {
+              "quote": "本研究通过借鉴湿粘附动物树蛙脚掌的微结构，设计了5种形状的微棱柱界面，采用浸提液法对界面进行了生物相容性评价，对器械界面进行优化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2976,
+                "end_char": 3040
+              },
+              "version": "a6dba569efd5b99f094f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-08ae7beca5b5",
+          "name": "界面设计评估理论体系",
+          "desc": "构建满足临床服役性能需求的器械界面设计及评估体系",
+          "evidence": [
+            {
+              "quote": "构建满足临床服役性能需求的手术机器人器械界面设计及评估理论体系。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 926,
+                "end_char": 957
+              },
+              "version": "a6dba569efd5b99f094f"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-341ac01c4b37"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-7fd48e713a42"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7fd48e713a42"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6ee7a51c78d3"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-7fd48e713a42"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cd4cfbf630cb"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cd4cfbf630cb"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-08ae7beca5b5"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6ee7a51c78d3"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-08ae7beca5b5"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

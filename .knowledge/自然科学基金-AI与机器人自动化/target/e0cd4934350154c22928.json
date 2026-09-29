@@ -1,0 +1,180 @@
+{
+  "doc_id": "e0cd4934350154c22928",
+  "version": "6a8a627501fd35a979a4",
+  "source_hash": "3e898fd74c667ac664c3fc4a57338f19e908d2024847f06216ae661c1bb25984",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-29T00:16:41.819022+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-17256082ecc3",
+          "name": "特种无人机视觉自主导航",
+          "desc": "无线定位数据链中断情况下融合惯性导航与时空视觉信号的自主导航",
+          "evidence": [
+            {
+              "quote": "基于计算机视觉的无人机自主导航力图在无线定位导航系统（如北斗、GPS、伽利略等）通信数据链中断情况下，融合惯性导航反馈与捕获的时空视觉信号，实现无人机的自主导航",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2856,
+                "end_char": 2935
+              },
+              "version": "6a8a627501fd35a979a4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c56dff451c79",
+          "name": "无线数据链易受干扰",
+          "desc": "传统基于无线数据链的定位系统在特殊情况下极易受干扰甚至完全失效",
+          "evidence": [
+            {
+              "quote": "传统上基于无线数据链的定位系统在特殊情况下极易受到干扰，甚至完全失效",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2937,
+                "end_char": 2970
+              },
+              "version": "6a8a627501fd35a979a4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-819b86afadec",
+          "name": "先验4D轨迹视觉解读",
+          "desc": "制定满足任务需求的4D轨迹，构建典型时空特征库用于视觉信号解读判定",
+          "evidence": [
+            {
+              "quote": "收集整理无人机自主导航范围内显著视觉特征的先验知识，并根据导航需求制定无人机自主飞行的时空4D轨迹计划，用作后续视觉信号解读判定的先验依据特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3143,
+                "end_char": 3213
+              },
+              "version": "6a8a627501fd35a979a4"
+            }
+          ]
+        },
+        {
+          "id": "item-6c6ec2789637",
+          "name": "时空贝叶斯轨迹连续性",
+          "desc": "时空贝叶斯模型分析四维轨迹相邻点序列连续性，避免局部视觉分析错误实现鲁棒导航",
+          "evidence": [
+            {
+              "quote": "联合局部点分析与上下文轨迹分析，利用时空贝叶斯模型分析时空四维轨迹相邻点序列的连续性，避免局部视觉分析所导致的错误，实现无人机的鲁棒自主导航",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3404,
+                "end_char": 3473
+              },
+              "version": "6a8a627501fd35a979a4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-88e5cd46cc98",
+          "name": "自适应解算综合体系",
+          "desc": "精确度与计算复杂性随导航需求动态可调，VPU/GPU低功耗并行计算平台",
+          "evidence": [
+            {
+              "quote": "研究联合时空视觉特征语义解析与惯性导航数据自适应解算的综合体系，建立精确度与计算复杂性随导航需求动态可调的理论与方法，充分利用各种低功耗并行计算平台如VPU/GPU等",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3477,
+                "end_char": 3559
+              },
+              "version": "6a8a627501fd35a979a4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-17256082ecc3"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c56dff451c79"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c56dff451c79"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-819b86afadec"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-c56dff451c79"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6c6ec2789637"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6c6ec2789637"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-88e5cd46cc98"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-819b86afadec"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-88e5cd46cc98"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

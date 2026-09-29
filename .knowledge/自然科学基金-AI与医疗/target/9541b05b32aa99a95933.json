@@ -1,0 +1,142 @@
+{
+  "doc_id": "9541b05b32aa99a95933",
+  "version": "009be1f623a24d687cae",
+  "source_hash": "97e267981224291f168141c279ec18cd8b9a1d84cf720b1faef569b6fb7be809",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:04:04.856542+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0dfc176fca69",
+          "name": "肿瘤标志物识别与肿瘤分类",
+          "desc": "综合临床医学、蛋白质组学与基因组学等多源数据，开展肿瘤分类、标志物挖掘与预后分析。",
+          "evidence": [
+            {
+              "quote": "肿瘤是人类健康的重大威胁，也是世界范围内主要死亡原因之一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 649,
+                "end_char": 676
+              },
+              "version": "009be1f623a24d687cae"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-20fa4dc9d253",
+          "name": "传统实验与临床方法代价高且风险大",
+          "desc": "传统生物实验和临床医学方法耗费大量时间、精力和资金，并伴随较高的临床风险，难以满足肿瘤机制研究需求。",
+          "evidence": [
+            {
+              "quote": "传统的生物实验和临床医学方法需要耗费大量的时间、精力和资金，并伴随着较高的临床风险",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 703,
+                "end_char": 743
+              },
+              "version": "009be1f623a24d687cae"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-01b284b4f3a1",
+          "name": "多源信息融合的采样算法与分类器集成算法",
+          "desc": "在研究生物信息学特征提取与智能计算方法改进基础上，提出基于多源信息融合的采样算法和分类器集成算法，并整合多组学数据用于肿瘤分类与标志物挖掘。",
+          "evidence": [
+            {
+              "quote": "提出基于多源信息融合的采样算法和分类器集成算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 896,
+                "end_char": 918
+              },
+              "version": "009be1f623a24d687cae"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f79b755b03ad",
+          "name": "iCancer-Pred七种癌症平均准确率超97%",
+          "desc": "iCancer-Pred在7种癌症类型预测中平均准确率超过97%；发表学术论文30余篇，申请中国发明专利1项，培养硕士研究生10名。",
+          "evidence": [
+            {
+              "quote": "iCancer-Pred在7种癌症类型预测中平均准确率超过97%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3254,
+                "end_char": 3285
+              },
+              "version": "009be1f623a24d687cae"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0dfc176fca69"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-20fa4dc9d253"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-20fa4dc9d253"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-01b284b4f3a1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-01b284b4f3a1"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f79b755b03ad"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

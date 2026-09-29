@@ -1,0 +1,142 @@
+{
+  "doc_id": "d66971b7c930c40c27cc",
+  "version": "69396d247c9a8d5e036c",
+  "source_hash": "ba2decaaa340185b70da259c91155acb69363feefbfa85a7b331cab8875846dd",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:29.376242+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-53d457a6ef9a",
+          "name": "AI驱动的结构疫苗设计平台",
+          "desc": "面向致病原基因序列的疫苗快速设计，搭建结合AlphaFold2与Rosetta的嵌入式AI疫苗设计平台。",
+          "evidence": [
+            {
+              "quote": "传统疫苗开发耗时久、高风险、高投入、低成功率，更糟糕的是致病原的高变异性会导致疫苗效果大幅下降",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 721,
+                "end_char": 767
+              },
+              "version": "69396d247c9a8d5e036c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a4f1df41fe60",
+          "name": "疫苗研发周期长且难以应对病原变异",
+          "desc": "传统疫苗研发周期长、成本高且难以应对病原体快速变异等挑战，亟需智能化疫苗设计方法。",
+          "evidence": [
+            {
+              "quote": "针对传统疫苗研发周期长、成本高且难以应对病原体快速变异等挑战，本项目围绕“基于人工智能的疫苗设计平台构建”目标",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2737,
+                "end_char": 2791
+              },
+              "version": "69396d247c9a8d5e036c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cf830c210eb0",
+          "name": "深度学习结合AlphaFold2与Rosetta设计框架",
+          "desc": "搭建基于多种AI技术的策略框架，结合AlphaFold2蛋白质结构预测框架与Rosetta疫苗设计模组，利用深度学习及新开发的嵌入式互相学习算法实现从基因序列直接输出疫苗设计结果。",
+          "evidence": [
+            {
+              "quote": "搭建基于多种AI技术的策略框架，结合强大蛋白质结构预测的AlphaFold2框架和精准疫苗设计功能的Rosetta模组，开发以结构为基础的嵌入式AI技术高效疫苗设计平台",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 865,
+                "end_char": 948
+              },
+              "version": "69396d247c9a8d5e036c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a60a53a7a854",
+          "name": "PALM-H3抗体对变异株具纳摩尔级亲和力",
+          "desc": "开发PALM-H3抗体设计系统并经体外实验证实对SARS-CoV-2多种变异株具纳摩尔级结合亲和力；发表SCI论文46篇，构建全世界最大的中医药数据库TCMBank。",
+          "evidence": [
+            {
+              "quote": "开发了PALM-H3抗体设计系统，并通过体外实验证实，其生成的抗体对SARS-CoV-2多种变异株具有纳摩尔级的结合亲和力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3022,
+                "end_char": 3082
+              },
+              "version": "69396d247c9a8d5e036c"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-53d457a6ef9a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a4f1df41fe60"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-a4f1df41fe60"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cf830c210eb0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cf830c210eb0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a60a53a7a854"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

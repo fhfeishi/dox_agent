@@ -1,0 +1,207 @@
+{
+  "doc_id": "ef8afd41722a4a8ebc10",
+  "version": "e247e00e714d29380841",
+  "source_hash": "23dfb3ea877bd8ef2c88264da880975881f76b343d43352fcfdaa7b894580dfe",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:11:52.417162+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4f2fdd63c78b",
+          "name": "移动机器人视觉伺服",
+          "desc": "非结构化环境下机载图像反馈的大范围视觉伺服",
+          "evidence": [
+            {
+              "quote": "针对该问题，本项目重点围绕基于机载图像反馈的移动机器人视觉伺服展开了深入研究，系统解决了复杂环境下的移动机器人大范围鲁棒视觉伺服问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3179,
+                "end_char": 3245
+              },
+              "version": "e247e00e714d29380841"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5e068b04a5a1",
+          "name": "约束缺失小范围受限",
+          "desc": "未考虑避碰视野饱和约束、需期望图像、工作空间小",
+          "evidence": [
+            {
+              "quote": "现有方法大部分未考虑避碰、相机视野与输入饱和约束，通常需事先拍摄期望图像且大多只适于工作空间较小的场合，应用范围受限。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3120,
+                "end_char": 3178
+              },
+              "version": "e247e00e714d29380841"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-11aa541ebd93",
+          "name": "无标定饱和视觉伺服",
+          "desc": "深度比自适应律解决控制输入饱和完全无标定问题",
+          "evidence": [
+            {
+              "quote": "设计了无需光流的深度比自适应律以及无标定饱和图像视觉伺服方法，解决了控制输入饱和下仅依靠纯图像位置反馈的移动机器人完全无标定视觉伺服问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3266,
+                "end_char": 3334
+              },
+              "version": "e247e00e714d29380841"
+            }
+          ]
+        },
+        {
+          "id": "item-8f241c184a83",
+          "name": "主动照明观测系统",
+          "desc": "基于图像质量评估提高恶劣环境感知精度",
+          "evidence": [
+            {
+              "quote": "设计了基于图像质量评估的主动照明观测系统，可提高恶劣环境下视觉感知、控制的鲁棒性和精度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3491,
+                "end_char": 3534
+              },
+              "version": "e247e00e714d29380841"
+            }
+          ]
+        },
+        {
+          "id": "item-7bdc5315ea49",
+          "name": "抓取检测与意图识别",
+          "desc": "RGB-D抓取检测全卷积网络与稀疏Transformer意图分类",
+          "evidence": [
+            {
+              "quote": "提出了基于RGB-D的抓取检测高效全卷积网络和优化算法以及融合注意力机制与多任务学习的抓取检测算法，解决了未知场景下机器人抓取的高效、鲁棒检测问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3662,
+                "end_char": 3735
+              },
+              "version": "e247e00e714d29380841"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-16ee647a951c",
+          "name": "多领域应用前景",
+          "desc": "拓展视觉伺服技术应用于自动驾驶、火星探测等领域",
+          "evidence": [
+            {
+              "quote": "本项目研究成果拓展了视觉伺服技术，有望应用于自动驾驶与自主泊车、火星探测、意图识别与机器人自主操作等领域。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3834,
+                "end_char": 3886
+              },
+              "version": "e247e00e714d29380841"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4f2fdd63c78b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5e068b04a5a1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5e068b04a5a1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-11aa541ebd93"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5e068b04a5a1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-8f241c184a83"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-5e068b04a5a1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7bdc5315ea49"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-11aa541ebd93"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-16ee647a951c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8f241c184a83"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-16ee647a951c"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

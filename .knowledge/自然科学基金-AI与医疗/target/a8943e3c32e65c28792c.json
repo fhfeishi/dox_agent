@@ -1,0 +1,142 @@
+{
+  "doc_id": "a8943e3c32e65c28792c",
+  "version": "b67e802b48846d8d8304",
+  "source_hash": "4aab401670139af8cc3caa5341ede9030f327a42ff708c278e168fad621f0fc4",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:34.856531+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4b49e16ac870",
+          "name": "冠状动脉微血管疾病超声影像组学诊断",
+          "desc": "面向冠状动脉微血管疾病的无创早期精准诊断，基于超快成像构建多模态超声影像组学模型。",
+          "evidence": [
+            {
+              "quote": "冠状动脉微血管疾病(CMVD)可显著增加不良心血管事件的发生风险",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "5fe5488e3ae9b12b92922de1b95c2ea0905b9dbd"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3e58514f8783",
+          "name": "心肌微血流成像困难且单一影像效能低",
+          "desc": "CMVD面临心肌微血流成像困难的问题，且单一影像方法效能低，亟需多模态超声组学新模型提高诊断效能。",
+          "evidence": [
+            {
+              "quote": "但CMVD面临心肌微血流成像困难的问题，且单一影像方法效能低",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "5fe5488e3ae9b12b92922de1b95c2ea0905b9dbd"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-38865d125813",
+          "name": "超快心肌微血流成像UF-MFI关键技术",
+          "desc": "在超快超声平台上开展基于数字通道信号的超快心肌微血流成像关键技术研究，实现超快图像采集、多普勒与组织信号有效分离及全视野多普勒参数计算。",
+          "evidence": [
+            {
+              "quote": "首先在超快超声平台上开展基于数字通道信号的超快心肌微血流成像(UF-MFI)关键技术研究",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "a7ee0d05308c5ac94ad7f6b1c15ea193413c80bc"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f11f8d99bda6",
+          "name": "多模态超声组学模型诊断准确率超90%",
+          "desc": "攻克UF-MFI关键技术，建立不依赖增强剂的心肌微血流超声成像新方法，构建诊断准确率超过90%的CMVD多模态超声影像组学模型并研发诊断软件系统；发表SCI论文10篇、授权专利4项，获辽宁省科技进步二等奖。",
+          "evidence": [
+            {
+              "quote": "构建了诊断准确率超过90%的C MVD多模态超声影像组学模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4b49e16ac870"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-3e58514f8783"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-3e58514f8783"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-38865d125813"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-38865d125813"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-f11f8d99bda6"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

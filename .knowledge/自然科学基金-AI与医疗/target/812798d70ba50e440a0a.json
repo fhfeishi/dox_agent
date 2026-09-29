@@ -1,0 +1,142 @@
+{
+  "doc_id": "812798d70ba50e440a0a",
+  "version": "95e05eaeda9d8137af05",
+  "source_hash": "1eef3111b9adbe30228aa4210136029501e0626aa4c10ec5fca11dddb4fa2e4a",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:45.780226+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ffa9bb4da9ad",
+          "name": "非小细胞肺癌术后精准预后预测",
+          "desc": "面向NSCLC术后预后评估，挖掘病理全数字切片中肿瘤微环境信息以指导诊疗决策。",
+          "evidence": [
+            {
+              "quote": "非小细胞肺癌（NSCLC）约占肺癌的85%，评估预后可指导诊疗决策，但目前缺乏精准预后预测的方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 714
+              },
+              "version": "95e05eaeda9d8137af05"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9698e93831a8",
+          "name": "现有研究未深度挖掘肿瘤微环境",
+          "desc": "现有研究主要通过简单分析肿瘤细胞图像特征，未考虑深度挖掘组织、细胞间空间分布所反映的肿瘤微环境，预后预测精度受限。",
+          "evidence": [
+            {
+              "quote": "现有研究主要通过简单分析肿瘤细胞图像特征，未考虑深度挖掘肿瘤微环境，如组织、细胞间的空间分布",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 755,
+                "end_char": 800
+              },
+              "version": "95e05eaeda9d8137af05"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-584fbb055001",
+          "name": "组织细胞拓扑结构量化的深度学习预后预测方案",
+          "desc": "对WSI分别进行组织与细胞核分割识别，分析组织、细胞间拓扑结构量化肿瘤微环境，并提出弱监督组织分割、多任务元学习细胞核分割与图卷积预后预测三项创新算法。",
+          "evidence": [
+            {
+              "quote": "首先对WSI分别进行组织和细胞核分割及识别；然后分析组织、细胞间的拓扑结构量化肿瘤微环境；最后实现NSCLC预后预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 839,
+                "end_char": 896
+              },
+              "version": "95e05eaeda9d8137af05"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3a491c19debc",
+          "name": "发表学术论文18篇并获杰青项目资助",
+          "desc": "发表学术论文18篇（第一作者及通讯作者含共同10篇），项目负责人获2023年度广东省自然科学基金杰出青年项目资助，相关临床转化项目获全国数字健康应用大赛特等奖。",
+          "evidence": [
+            {
+              "quote": "发表学术论文18篇，其中第一作者及通讯作者（含共同）论文10篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2927,
+                "end_char": 2957
+              },
+              "version": "95e05eaeda9d8137af05"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-ffa9bb4da9ad"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9698e93831a8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-9698e93831a8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-584fbb055001"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-584fbb055001"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3a491c19debc"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

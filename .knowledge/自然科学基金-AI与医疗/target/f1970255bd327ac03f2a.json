@@ -1,0 +1,142 @@
+{
+  "doc_id": "f1970255bd327ac03f2a",
+  "version": "470c64ddb2eabf37b30e",
+  "source_hash": "7d6e3af420a4e6edbfafbe2fd1886f8b30f04a643d5044f048ee3fa906b8f94f",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:31:49.194216+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4a71f272e164",
+          "name": "数字病理自监督学习与癌症辅助诊断",
+          "desc": "基于数字病理远程诊断与质量控制平台大数据，研究自监督与弱监督学习驱动的癌症辅助诊断框架。",
+          "evidence": [
+            {
+              "quote": "基于深度学习的数字病理全切片图像分析是癌症病理计算机辅助诊断领域的热点研究方向",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 689
+              },
+              "version": "470c64ddb2eabf37b30e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-11d693fc5680",
+          "name": "全切片精细标注困难制约监督学习发展",
+          "desc": "数字病理全切片图像精细标注工作困难且繁重，制约了现有基于监督学习的癌症辅助诊断发展；同时现有辅助模式信息量有限。",
+          "evidence": [
+            {
+              "quote": "数字病理全切片图像精细标注工作困难且繁重，制约了现有基于监督学习的癌症辅助诊断的发展",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 691,
+                "end_char": 732
+              },
+              "version": "470c64ddb2eabf37b30e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-75f6fcfef221",
+          "name": "自监督特征提取与跨模态检索辅助诊断体系",
+          "desc": "研究基于自监督学习的全切片图像特征提取、层级诊断信息挖掘与跨模态信息检索，重点解决跨时域地域诊断知识融合、百亿像素弱监督信息提取与异构数据跨模态相似性学习。",
+          "evidence": [
+            {
+              "quote": "具体研究基于自监督学习的全切片图像特征提取、层级诊断信息挖掘、跨模态信息检索等方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 881,
+                "end_char": 921
+              },
+              "version": "470c64ddb2eabf37b30e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d909a1761c8f",
+          "name": "提出位置感知掩码自编码器泛癌种预训练",
+          "desc": "提出基于位置感知掩码自编码器的泛癌种WSI级自监督预训练方法，学习稳定可迁移的全切片表征；同时提出核注意力分析框架、偏标签对比学习与病理报告自动生成方法。",
+          "evidence": [
+            {
+              "quote": "提出了基于位置感知掩码自编码器的泛癌种WSI级自监督预训练方法，通过显式建模组织空间结构学习稳定、可迁移的全切片表征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2892,
+                "end_char": 2949
+              },
+              "version": "470c64ddb2eabf37b30e"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4a71f272e164"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-11d693fc5680"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-11d693fc5680"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-75f6fcfef221"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-75f6fcfef221"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-d909a1761c8f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

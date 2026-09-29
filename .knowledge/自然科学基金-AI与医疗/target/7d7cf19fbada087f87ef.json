@@ -1,0 +1,142 @@
+{
+  "doc_id": "7d7cf19fbada087f87ef",
+  "version": "a372c182e1472b2fc3d6",
+  "source_hash": "b10477f709249cf1c687936ee9ef35e360ac8003a6fc2bfe7429de222d356e56",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:37:29.414119+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2b14b614683a",
+          "name": "EGFR突变肺癌脑转移动态演进预测",
+          "desc": "面向EGFR突变NSCLC脑转移的精准诊治，构建脑转移发生与TKI耐药的动态演进预测模型。",
+          "evidence": [
+            {
+              "quote": "EGFR突变NSCLC脑转移发生率高，对TKI治疗反应的异质性大，如何实现精准诊治是亟待解决的临床难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 713
+              },
+              "version": "a372c182e1472b2fc3d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-617f4848d0f1",
+          "name": "脑转移精准诊治亟待解决",
+          "desc": "EGFR突变NSCLC脑转移发生率高、疗效异质性大，需要利用多维异构信息精准预测疾病转归并在关键节点前干预。",
+          "evidence": [
+            {
+              "quote": "如何实现精准诊治是亟待解决的临床难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 696,
+                "end_char": 713
+              },
+              "version": "a372c182e1472b2fc3d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-fdb4ef61a820",
+          "name": "智能组学融合的脑转移动态预测模型",
+          "desc": "应用神经网络与机器学习深度融合NGS检测和影像组学等多维纵向异构信息，构建脑转移发生风险、局部和/或全身耐药的动态预测模型并建立PDX动物模型验证。",
+          "evidence": [
+            {
+              "quote": "应用神经网络、机器学习等智能组学技术深度融合NGS检测和影像组学等多维纵向异构信息，构建脑转移发生风险、局部和/或全身耐药的动态预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 899,
+                "end_char": 966
+              },
+              "version": "a372c182e1472b2fc3d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-162cd6ce0826",
+          "name": "MRI影像组学有效预测EGFR-TKI疗效",
+          "desc": "整合CT、PET/CT及MRI影像组学与临床基因数据构建脑转移风险、TKI疗效及颅内无进展生存期预测模型，融合模型预测性能优异；并证实三代TKI一线治疗优于序贯使用。",
+          "evidence": [
+            {
+              "quote": "融合模型预测性能优异，MRI影像组学可有效预测EGFR-TKI疗效",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3055,
+                "end_char": 3087
+              },
+              "version": "a372c182e1472b2fc3d6"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2b14b614683a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-617f4848d0f1"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-617f4848d0f1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fdb4ef61a820"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fdb4ef61a820"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-162cd6ce0826"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

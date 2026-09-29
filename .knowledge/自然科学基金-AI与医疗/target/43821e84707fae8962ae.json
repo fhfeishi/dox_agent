@@ -1,0 +1,235 @@
+{
+  "doc_id": "43821e84707fae8962ae",
+  "version": "b154eba74383f48500d7",
+  "source_hash": "6c85240cc81839d39d8f214622fcefd747a0ccd9346119563cf1099be0c8d36b",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:23:27.771867+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1a3c352de778",
+          "name": "肝泡型包虫病分型与活性评价",
+          "desc": "肝泡型包虫病是人畜共患寄生虫病，生长方式与恶性肿瘤相似，严重危害人类健康。",
+          "evidence": [
+            {
+              "quote": "肝泡型包虫病（HAE）是一种人畜共患的严重危害健康的寄生虫病",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 668,
+                "end_char": 697
+              },
+              "version": "b154eba74383f48500d7"
+            }
+          ]
+        },
+        {
+          "id": "item-16868e1d0b74",
+          "name": "根治性肝切除预后评估",
+          "desc": "为HAE根治性肝切除术前评估预后、指导个体化治疗提供依据。",
+          "evidence": [
+            {
+              "quote": "年龄越大、病灶侵犯血管和实验室检查PT值越高是HAE根治性肝切除预后不良的独立危险因素",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3069,
+                "end_char": 3111
+              },
+              "version": "b154eba74383f48500d7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4c0a77f63e0d",
+          "name": "尚无公认影像学分型方法",
+          "desc": "临床尚无公认的影像学分型，也缺乏监测药物疗效和预后评价的可靠方法。",
+          "evidence": [
+            {
+              "quote": "目前临床尚无公认的影像学分型，也缺乏监测药物疗效和预后评价的可靠方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 699,
+                "end_char": 732
+              },
+              "version": "b154eba74383f48500d7"
+            }
+          ]
+        },
+        {
+          "id": "item-109813896449",
+          "name": "常规术前诊断与预后评估价值有限",
+          "desc": "常规术前对HAE的诊断和预后评估价值有限。",
+          "evidence": [
+            {
+              "quote": "常规术前对HAE的诊断和预后评估价值有限",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2525,
+                "end_char": 2544
+              },
+              "version": "b154eba74383f48500d7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-db7f77e3c005",
+          "name": "深度学习病灶自动分割与影像组学建模",
+          "desc": "基于深度学习分割病变区域，提取图像强度、形状大小、纹理与小波等影像特征。",
+          "evidence": [
+            {
+              "quote": "基于人工智能的深度学习分割病变区域，对分割的病变组织，提取并挖掘HAE的影像特征，包括病灶的图像强度特征、形状和大小特征、纹理特征以及小波特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 801,
+                "end_char": 871
+              },
+              "version": "b154eba74383f48500d7"
+            }
+          ]
+        },
+        {
+          "id": "item-60df8969983b",
+          "name": "LASSO影像组学标签与诺模图",
+          "desc": "利用LASSO逻辑回归构造疗效影像组学标签Rad-score，结合临床信息构建诺模图个性化预测模型。",
+          "evidence": [
+            {
+              "quote": "利用LASSO逻辑回归（LLR）来构造泡型包虫病疗效的影像组学标签（Rad-score），并结合临床信息进行多元分析，构建诺模图个性化预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 873,
+                "end_char": 943
+              },
+              "version": "b154eba74383f48500d7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3d9893318e13",
+          "name": "HAE病灶分割Dice 0.901",
+          "desc": "基于深度学习方法对HAE病灶分割的Dice系数为0.901。",
+          "evidence": [
+            {
+              "quote": "本项目研究中基于深度学习方法对HAE病灶分割的Dice系数为0.901",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2696,
+                "end_char": 2730
+              },
+              "version": "b154eba74383f48500d7"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-9e4e8695b75c",
+          "name": "MRI预测生物活性AUC 0.96与0.89",
+          "desc": "基于MRI病灶感兴趣区构建的生物活性预测模型训练集与测试集AUC分别为0.96和0.89。",
+          "evidence": [
+            {
+              "quote": "通过MRI图像HAE病灶为感兴趣区构建的预测其生物活性模型的训练集和测试集曲线下面积（AUC）分别为为0.96和0.89",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2732,
+                "end_char": 2791
+              },
+              "version": "b154eba74383f48500d7"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-033b954b4253",
+          "name": "联合临床诺莫图提升预测效能",
+          "desc": "最佳影像组学模型联合临床特征构建诺莫图，训练集AUC 0.922、验证集AUC 0.849。",
+          "evidence": [
+            {
+              "quote": "最佳影像组学模型联合临床特征构建诺莫图，在训练集和验证集的AUC分别为0.922（95%CI，0.888～0.956）、0.849（95%CI，0.750～0.947）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2984,
+                "end_char": 3067
+              },
+              "version": "b154eba74383f48500d7"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1a3c352de778"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4c0a77f63e0d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-4c0a77f63e0d"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-db7f77e3c005"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-db7f77e3c005"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-3d9893318e13"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-60df8969983b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-033b954b4253"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

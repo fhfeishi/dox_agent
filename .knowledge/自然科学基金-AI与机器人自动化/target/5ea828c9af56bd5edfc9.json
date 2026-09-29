@@ -1,0 +1,180 @@
+{
+  "doc_id": "5ea828c9af56bd5edfc9",
+  "version": "6ee94e0142892b2747d1",
+  "source_hash": "76549302e9b5160deccfdecae01f0b4b8916f17db2329b8d518890bae3ca1f60",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:23:36.714329+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-797ad10379df",
+          "name": "中小型建筑温湿分控",
+          "desc": "中小型居住办公建筑室内环境控制",
+          "evidence": [
+            {
+              "quote": "长江中下游地区夏季高温高湿，全年湿度偏高。中小型居住办公建筑室内环境控制一直存在挑战。本项目基于双蒸发温度压缩机构建制冷系统，建立了适用于中小型居住办公建筑的双温位温湿分控系统，为中小型居住办公建筑室内环境控制提出新的解决方案。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3024,
+                "end_char": 3137
+              },
+              "version": "6ee94e0142892b2747d1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-72ed91c0aa80",
+          "name": "温湿耦合解耦分控难",
+          "desc": "蒸发器降温除湿耦合及湿负荷动态变化致解耦分控困难",
+          "evidence": [
+            {
+              "quote": "因传统直膨式空调系统蒸发器降温除湿耦合作用及室内新风需求变化引起湿负荷动态变化，导致室内温湿度解耦分控困难。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 676,
+                "end_char": 729
+              },
+              "version": "6ee94e0142892b2747d1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-00301a86068c",
+          "name": "双温位制冷系统",
+          "desc": "高温位控温低温位控湿的双蒸发温度机组",
+          "evidence": [
+            {
+              "quote": "在负荷特性分析基础上设计并建立了基于双蒸发温度压缩机的双温位温湿分控机组，并针对双蒸发温度压缩机及双温位冷热水机组进行了实验研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3257,
+                "end_char": 3321
+              },
+              "version": "6ee94e0142892b2747d1"
+            }
+          ]
+        },
+        {
+          "id": "item-b01d457b8f1b",
+          "name": "强化学习温湿调控",
+          "desc": "有限迭代步数实现干球湿球温度有效追踪",
+          "evidence": [
+            {
+              "quote": "研究采用强化学习算法，建立了室内温湿分控方法，模拟结果表明借助强化学习算法，在系统开机后，通过有限迭代步数，即可实现对室内干球温度和湿球温度的有效追踪，实现室内温湿分控。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3795,
+                "end_char": 3879
+              },
+              "version": "6ee94e0142892b2747d1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-775bb856905d",
+          "name": "冷量耦合规律揭示",
+          "desc": "实验揭示双蒸发温度机组冷量耦合与运行特性",
+          "evidence": [
+            {
+              "quote": "结果揭示了实验范围内双蒸发温度温湿分控机组高低温位冷量的耦合关系以及在系统可调参数变化下的运行特性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3507,
+                "end_char": 3556
+              },
+              "version": "6ee94e0142892b2747d1"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-797ad10379df"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-72ed91c0aa80"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-72ed91c0aa80"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-00301a86068c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-72ed91c0aa80"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-b01d457b8f1b"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-00301a86068c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-775bb856905d"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b01d457b8f1b"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-775bb856905d"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "doc_id": "cc32a183866f567b08cc",
+  "version": "63492984d2388e7f51a4",
+  "source_hash": "30db5bd736ddbb79e5536ab7ca997d1ad2f6113c1b7c1704685dddf266722565",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T15:15:18.108817+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a5752e0ed094",
+          "name": "小型侦察无人机感知控制",
+          "desc": "复杂环境下小型侦察无人机自主感知与敏捷控制",
+          "evidence": [
+            {
+              "quote": "本项目面向复杂环境下小型敏捷无人机的自主建模、感知与控制，开展了一系列创新性研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2726,
+                "end_char": 2766
+              },
+              "version": "63492984d2388e7f51a4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-508cda124e00",
+          "name": "单兵部署资源极受限",
+          "desc": "电池容量、存算资源、感知范围极其受限",
+          "evidence": [
+            {
+              "quote": "可单兵部署的设计导致无人机的电池容量、存算资源、感知范围极其受限，现有的方法和技术无法满足高效、精准态势感知的实战需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 674,
+                "end_char": 733
+              },
+              "version": "63492984d2388e7f51a4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-004d5018f924",
+          "name": "Hammerstein并联建模",
+          "desc": "深度神经网络与机理数据融合提升建模精度",
+          "evidence": [
+            {
+              "quote": "提出了基于深度神经网络的Hammerstein模型和并联型表征方法，通过物理机理模型与采样数据的深度融合显著提升了建模精度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2781,
+                "end_char": 2842
+              },
+              "version": "63492984d2388e7f51a4"
+            }
+          ]
+        },
+        {
+          "id": "item-623a62f597e0",
+          "name": "坐标下降快速MPC",
+          "desc": "嵌入式硬件实现小于67微秒计算延时",
+          "evidence": [
+            {
+              "quote": "提出基于坐标下降的快速优化算法，解决了模型预测控制在资源受限平台上的求解难题，在嵌入式硬件上实现了小于67微秒的计算延时",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2946,
+                "end_char": 3005
+              },
+              "version": "63492984d2388e7f51a4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-da2e0a3634ae",
+          "name": "建模精度提升一个数量级",
+          "desc": "动力学特性刻画精度较传统方法提升一个数量级",
+          "evidence": [
+            {
+              "quote": "实验结果显示，动力学特性刻画精度较传统方法提升了一个数量级，为复杂环境下的精准控制奠定了坚实基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2843,
+                "end_char": 2891
+              },
+              "version": "63492984d2388e7f51a4"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-14617ac3cbd8",
+          "name": "跟踪误差小于0.02厘米",
+          "desc": "卫星拒止环境等值线跟踪控制实际跟踪误差小于0.02厘米",
+          "evidence": [
+            {
+              "quote": "开发了适用于卫星拒止环境的等值线跟踪控制方法，在移动机器人上的实际跟踪误差小于0.02厘米",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2898,
+                "end_char": 2942
+              },
+              "version": "63492984d2388e7f51a4"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a5752e0ed094"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-508cda124e00"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-508cda124e00"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-004d5018f924"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-508cda124e00"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-623a62f597e0"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-004d5018f924"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-da2e0a3634ae"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-623a62f597e0"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-14617ac3cbd8"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

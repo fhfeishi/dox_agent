@@ -1,0 +1,142 @@
+{
+  "doc_id": "9dc796b32adf720112ee",
+  "version": "0401ff48366660e4a62d",
+  "source_hash": "7e3f127d5502c2522702ea7162e4387801702ff1af8aa296a64e493922ea2ee3",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T13:05:45.870695+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-373fbc0c5aeb",
+          "name": "非小细胞肺癌跨模态辅助诊断",
+          "desc": "面向肺癌诊断数据量大、早期漏诊率高的问题，基于收敛生成对抗网络分析多模态肺部图像及同构异构跨模态数据。",
+          "evidence": [
+            {
+              "quote": "针对肺癌诊断中存在数据量大、医生工作任务重及早期漏诊率高等问题，本项目基于收敛生成对抗网络，分析多模态肺部图像及其相关同构、异构跨模态数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 729,
+                "end_char": 797
+              },
+              "version": "0401ff48366660e4a62d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-61ae54eaf178",
+          "name": "海量医学图像需赋予计算机自动分析能力",
+          "desc": "面对临床诊断产生的海量图像数据，赋予计算机自动智能分析能力是医学图像临床应用系统的核心问题与关键技术之一。",
+          "evidence": [
+            {
+              "quote": "面对临床诊断中产生的海量图像数据，赋予计算机自动对图像进行智能分析能力是以医学图像作为输入的临床应用系统中的核心问题与关键技术之一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 727
+              },
+              "version": "0401ff48366660e4a62d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cb0254511c93",
+          "name": "收敛GAN驱动的跨模态哈希检索与报告生成",
+          "desc": "研究基于收敛GAN的跨模态连续哈希检索、基于收敛图GAN的跨模态诊断报告生成，以及基于收敛协同GAN的跨模态早期预测，并整合对抗学习与阈值投票策略。",
+          "evidence": [
+            {
+              "quote": "研究基于收敛GAN的非小细胞肺癌跨模态连续哈希检索方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 853,
+                "end_char": 879
+              },
+              "version": "0401ff48366660e4a62d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-19ee9186a1ac",
+          "name": "提出零中心Wasserstein距离保证模型收敛",
+          "desc": "提出零中心Wasserstein距离确保模型收敛到全局平衡状态、局部流形正则化确保同胚性流形映射、二阶优化梯度近似架构搜索实现更快收敛，并发展终身哈希等抗遗忘机制。",
+          "evidence": [
+            {
+              "quote": "提出零中心Wasserstein距离，确保模型收敛到全局平衡状态",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3414,
+                "end_char": 3445
+              },
+              "version": "0401ff48366660e4a62d"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-373fbc0c5aeb"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-61ae54eaf178"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-61ae54eaf178"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cb0254511c93"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cb0254511c93"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-19ee9186a1ac"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

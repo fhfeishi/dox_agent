@@ -1,0 +1,180 @@
+{
+  "doc_id": "b8b776a004dccaedced1",
+  "version": "c7cb0f7d3b9b34463ed8",
+  "source_hash": "65e671f4175554d3eef85e36d1266b0ef8e2547f8538ebc3b6b14a4f57910e23",
+  "schema_version": 1,
+  "prompt_version": 2,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T16:29:57.067479+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a0b15594411f",
+          "name": "柔性康复机器人驱动控制",
+          "desc": "针对传统刚性连杆康复机器人强迫性伤害及驱动能力不足，开展半主动柔性驱动与控制研究",
+          "evidence": [
+            {
+              "quote": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 713
+              },
+              "version": "c7cb0f7d3b9b34463ed8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6d7ea5e33c8a",
+          "name": "康复系统非线性与不确定性",
+          "desc": "柔性康复机器人系统存在非线性和模型不确定性",
+          "evidence": [
+            {
+              "quote": "针对柔性康复机器人系统存在的非线性和模型不确定性问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 922,
+                "end_char": 947
+              },
+              "version": "c7cb0f7d3b9b34463ed8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cf63fd370658",
+          "name": "磁流变多源混合驱动",
+          "desc": "磁流变执行器、电机与绳索多源混合驱动及刚柔耦合动力学建模",
+          "evidence": [
+            {
+              "quote": "探索磁流变执行器、电机与绳索多源混合驱动方法，并建立驱动系统的刚柔耦合动力学模型和逆动态模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 715,
+                "end_char": 760
+              },
+              "version": "c7cb0f7d3b9b34463ed8"
+            }
+          ]
+        },
+        {
+          "id": "item-86a0111d6c3c",
+          "name": "RBF神经网络自适应控制",
+          "desc": "基于径向基神经网络的不确定部分描述模型与患肢状态辨识自适应控制",
+          "evidence": [
+            {
+              "quote": "提出基于径向基神经网络的不确定部分描述模型和基于患肢状态辨识的自适应控制方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 949,
+                "end_char": 986
+              },
+              "version": "c7cb0f7d3b9b34463ed8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c91dc073814f",
+          "name": "磁流变缆索驱动康复手研究",
+          "desc": "磁流变缆索驱动可穿戴手部康复机器人（期刊论文成果）",
+          "evidence": [
+            {
+              "quote": "Adjustable Rigid-Soft Wearable Hand Robot With Magnetorheological Cable-Driven Mechanism for Grasping Assistance",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3163,
+                "end_char": 3274
+              },
+              "version": "c7cb0f7d3b9b34463ed8"
+            }
+          ],
+          "status": "原文未明确"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a0b15594411f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6d7ea5e33c8a"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-6d7ea5e33c8a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cf63fd370658"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cf63fd370658"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c91dc073814f"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a0b15594411f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-86a0111d6c3c"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-86a0111d6c3c"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-c91dc073814f"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

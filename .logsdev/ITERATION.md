@@ -2382,3 +2382,17 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 **成本**：本次全链总 tokens ≈ **451,096**（含 reasoning）；reasoning 占比高，单次全链审核成本不可忽略，生产使用需提示（DeepSeek 具体单价 [待核实：官方定价页]）。
 
 **验证边界**：后端 API 全链已通过 curl 实测；前端入口与工作台未实施（W8-B）；calculation 计算工具未补（W8-C）；浏览器链未跑；后端测试套件本次未重跑（此前基线 215 passed + 1 既有失败）。
+
+### 16.44 检索假无匹配修复：DF=0 查询词不再计入覆盖率分母（2026-09-29）
+
+**现象**：task1 对医疗库（517 份）提问「本库影像与病理 AI 辅助诊断有哪些项目？按疾病归类，并说明数据来源与任务类型的分布」返回「当前知识库中没有匹配的报告」。对照短查询（「影像与病理辅助诊断」「医学影像 人工智能 诊断」）均可命中，证明库与链路正常。
+
+**根因（实测证据）**：
+
+1. bigram 分词把长查询切成 30 个 terms，其中 8 个跨词边界垃圾 bigram（`库影/有哪/些项/按疾/病归/并说/明数/务类`）在 517 份文档中 DF=0；
+2. generic 泛词净化（DF≥0.35）只剔除 9 个常见词，剩 22 个 specific，多数不可回答；
+3. 候选报告 37 份已召回，但没有任何一份能覆盖 22 个 specific 的 30%（`min_term_cover=0.3`）→ 假 `no_reports`。
+
+**修复（`retrieval.py`，一处）**：`specific` 只保留候选集中 DF>0 的词项；全部实词 DF=0 时仍判 `no_reports`（保留「领域不存在」的诚实判定）；实词全为泛词时维持原 broad 行为。提交 `retrieval: drop corpus-absent query terms from the coverage denominator`。
+
+**验证**：原查询修复后 matched=True（specific 22→14），召回 2 份影像辅助诊断报告（cover 0.357）；Q2/Q3 无回归。检索相关用例 51 passed；全量 214 passed + 2 failed + 1 skipped——`test_launch` 与 `test_mineru.py::test_changed_pdf_does_not_publish_old_parse_cache` 均为既有失败，与本次无关：前者已定位（launch.sh 环境选择断言），后者不引用 retrieval 且失败内容为「同尺寸 PDF 替换后旧正文仍可检索」，即 §16.32 已记录的"同尺寸替换可能漏检"缺口，未在本轮修复。

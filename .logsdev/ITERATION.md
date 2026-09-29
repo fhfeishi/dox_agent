@@ -1,6 +1,6 @@
 # ITERATION — dox_agent 当前工作
 
-- 更新时间：2026-09-29。四维集成与运行中提取见 §16.38；前端顶层方案交付见 §16.39；形式审查（W8）规划已采纳、待实施，见 §16.42。
+- 更新时间：2026-09-29。四维集成与运行中提取见 §16.38；前端顶层方案交付见 §16.39；形式审查后端已实施（§16.43）、前端入口已实现待验收（§16.44）。
 - **当前执行入口：§16.38。** 四维首批已集成，提取与质量验收仍需按该节收尾；前端优化方案在 PROJECT §11，仅为提案，未启动实现。§16.34–16.37 保留为历史依据。
 - 长期说明见 [`PROJECT.md`](PROJECT.md)；关键取舍见 [`DECISIONS.md`](DECISIONS.md)。
 
@@ -2396,3 +2396,45 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 **修复（`retrieval.py`，一处）**：`specific` 只保留候选集中 DF>0 的词项；全部实词 DF=0 时仍判 `no_reports`（保留「领域不存在」的诚实判定）；实词全为泛词时维持原 broad 行为。提交 `retrieval: drop corpus-absent query terms from the coverage denominator`。
 
 **验证**：原查询修复后 matched=True（specific 22→14），召回 2 份影像辅助诊断报告（cover 0.357）；Q2/Q3 无回归。检索相关用例 51 passed；全量 214 passed + 2 failed + 1 skipped——`test_launch` 与 `test_mineru.py::test_changed_pdf_does_not_publish_old_parse_cache` 均为既有失败，与本次无关：前者已定位（launch.sh 环境选择断言），后者不引用 retrieval 且失败内容为「同尺寸 PDF 替换后旧正文仍可检索」，即 §16.32 已记录的"同尺寸替换可能漏检"缺口，未在本轮修复。
+
+### 16.44 W8-B 形式审查前端入口与页面（2026-09-29，已实施，待构建与 e2e 验收）
+
+按 05 补充实施方案落地 W8-B，工作树未提交。
+
+**改动**：
+
+| 文件 | 内容 |
+|---|---|
+| `frontend/src/reviewApi.ts`（新增） | `/api/review/*` 对接层：类型、状态/性质/核查方式中文标签、统一错误文案、导出与原文 URL |
+| `frontend/src/components/ReviewViews.tsx`（新增） | `ReviewShell`（Outlet）、`ReviewWorkbench`（上传→元信息核对→选清单→发起审核→记录）、`ReviewGuidelines`（指南→清单草稿→核对启用）、`ReviewEvidence`（题录检索/人工录入）、`ReviewRunPage`（轮询进度 + reader_report + 导出 + 限制）、`ReviewRunPanel`（侧栏审核任务列表） |
+| `frontend/src/store.tsx:43,238-242` | `NavKey` 加 `review`；`navPaths` 加 `/review`；pathname 反推加 `/review` 分支 |
+| `frontend/src/components/IconRail.tsx:5-11` | NAV_ITEMS 插入「形式审查」，置于"成果"之后 |
+| `frontend/src/components/Icons.tsx` | `IconName` 加 `review` 并补自绘 SVG |
+| `frontend/src/router.tsx` | 加 `review` 路由与 4 个子路由（工作台/指南库/证据库/报告） |
+| `frontend/src/components/SidePanel.tsx` | 加 `review` 分支显示审核任务列表；review 下不再显示会话搜索与知识库分组 |
+| `pyproject.toml` | 直接声明 `pypdf`、`olefile`（此前仅随 mineru 传递依赖可用） |
+
+**保留的诚实性表现**：未配置模型时禁用开始按钮并提示；清单为草稿时阻止发起；运行中显示真实阶段标签；报告只展示服务端 `reader_report`（待核实独立成组、不冒充通过）；导出按钮仅在 completed 后出现；审核材料明确标注不进入知识库。
+
+**验证状态（如实记录）**：`tsc -b` 全量编译通过（3 处 Pill 色调已修正为项目 Tone 集）。**`vite build` 未执行成功**：Windows 侧 node 加载 `rollup/dist/native.js` 报 MODULE_NOT_FOUND（node_modules 为 WSL 平台安装），需在 WSL 内跑 `npm run build`。浏览器 e2e 主链尚未跑。
+
+**待办**：① WSL 内 `npm run build`；② 浏览器走通 上传→元信息→审核→报告→导出 主链与窄屏；③ W8-C 计算工具（5 个 calculation 项仍恒 pending）；④ 文档同步后按主题分批提交。
+
+### 16.45 检索判定层主题词化：标题最大匹配的查询主题抽取（2026-09-29）
+
+**问题**：在 §16.44 修复 DF=0 假无匹配后，4 个 Demo 查询虽能命中，但判定词项仍被 bigram 切碎（`径规/化学/助诊/像与` 等半词进入 specific，覆盖率被稀释、区分度差；「辅助诊断」「路径规划」等完整术语未被当作整体）。用户要求 task1–4 在 BM25 够用的前提下优化检索逻辑，不直接裸 query 进 BM25 判定。
+
+**方案（已实施，召回侧不动）**：Layer A/B 的 BM25 召回与 RRF 精排完全不变；只把**覆盖率/泛词/specific 的判定词项**从 bigram 换成 `_query_topics` 抽取的主题词——以候选库标题做最长匹配（≥2 字）+ 拉丁词保留（需出现在标题中），结尾助词（与/和/及/的/在/有/是/按/并/就/都/也/而）剥离，停用词剔除。主题的泛词判定与命中率均按「主题全部 bigram 同现于文档 token 集」计算；主题抽取为空时回退原 bigram 判定（已含 DF>0 净化）；主题全部 DF=0 时保持诚实 no_reports。
+
+**对比实测（4 Demo，修复前 → 后）**：
+
+| Demo | specific 前 | specific 后 | 结果 |
+|---|---|---|---|
+| task1 医疗长问 | 14 个半词 | ('ai','辅助诊断','任务','分布') | 召回 3 份（心音/阿尔茨海默/儿童喘息辅助诊断），cover 0.5–0.75 |
+| 对照「影像与病理辅助诊断」 | ('像与','与病','理辅','助诊') | ('影像','辅助诊断') | 3 份病理项目 cover 0.5→1.0 量级区分 |
+| task2 医疗+机器人 | ('学影','助诊') | ('医学影像','辅助诊断',…) | 双库融合正常，多份 cover 1.0 |
+| task3 机器人 | ('路径','径规','避障') | ('路径规划','避障') | 强相关 cover 1.0 vs 弱相关 0.5，区分度正确 |
+
+**回归**：检索相关 51 passed；全量 215 passed + 2 failed（`test_launch` 与 `test_mineru` 均为既有失败，§16.44 已记录归因）。提交 `retrieval: judge coverage by title-matched query topics instead of raw bigrams`。
+
+**边界**：召回排序仍由 BM25 决定，主题词只改判定；「数字病理」类项目在 Demo1 的 top3 位置受 BM25 分数约束，未强排——如需调整排序权重另议；dense/重排仍按计划不做。

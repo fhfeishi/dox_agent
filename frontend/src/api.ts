@@ -1,4 +1,4 @@
-export type Source = { title: string; url: string; snippet: string; page?: number; doc_id?: string; corpus_id?: string; version?: string; origin?: string; kind?: string; snapshot_id?: string; fetched_at?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean; citation?: number };
+export type Source = { locations?: { page?: number; heading: string; snippet: string; chunk_id: string }[]; title: string; url: string; snippet: string; page?: number; doc_id?: string; corpus_id?: string; version?: string; origin?: string; kind?: string; snapshot_id?: string; fetched_at?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean; citation?: number };
 export type Message = { role: "user" | "assistant"; content: string };
 export type Usage = { run_id?: string; input_tokens: number | null; output_tokens: number | null; total_tokens: number | null; reported_tokens: number | null; calls: number; reported_calls: number; complete: boolean; missing_reasons?: Record<string, number>; calls_by_phase?: Record<string, number> };
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string; duration_ms?: number };
@@ -9,9 +9,11 @@ export type RunContext = { visible_params?: Record<string, unknown>; param_sourc
 export type ChatRequestOptions = Options & { task_version?: number; session_key?: string; run_context?: RunContext };
 export class ApiError extends Error {
   readonly detail?: unknown;
-  constructor(message: string, detail?: unknown) {
+  readonly status?: number;
+  constructor(message: string, detail?: unknown, status?: number) {
     super(message);
     this.detail = detail;
+    this.status = status;
   }
 }
 export type TaskParameter = { key: string; label: string; type: "text" | "integer" | "enum" | "boolean" | "year_range"; help?: string; required?: boolean; options?: string[]; default?: unknown };
@@ -47,7 +49,8 @@ export type CorpusFileListing = { source_dir: string; files: CorpusFile[]; mispl
 
 async function jsonOrThrow(response: Response, fallback: string) {
   const payload = await response.json().catch(() => null);
-  if (!response.ok) throw new Error(typeof payload?.detail === "string" ? payload.detail : `${fallback}（${response.status}）`);
+  if (!response.ok) throw new ApiError(typeof payload?.detail === "string" ? payload.detail
+    : typeof payload?.detail?.message === "string" ? payload.detail.message : `${fallback}（${response.status}）`, payload?.detail, response.status);
   return payload;
 }
 
@@ -83,8 +86,8 @@ export async function deleteCorpus(corpusId: string, purgeSource = false): Promi
 }
 
 /** K7: source-file list / upload / rename / delete. */
-export async function fetchCorpusFiles(corpusId: string): Promise<CorpusFileListing> {
-  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`);
+export async function fetchCorpusFiles(corpusId: string, signal?: AbortSignal): Promise<CorpusFileListing> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { signal });
   const payload = await jsonOrThrow(response, "文件列表不可用");
   return payload as CorpusFileListing;
 }
@@ -106,7 +109,7 @@ export async function renameCorpusFile(corpusId: string, relPath: string, newNam
   const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rel_path: relPath, new_name: newName }) });
   await jsonOrThrow(response, "重命名文件失败");
 }
-export type ReportParams = { domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; purpose?: string; audience?: string; length?: string; illustrated?: boolean; report_mode?: "theme" | "review"; sources?: Record<string, string>; scope_fingerprint?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
+export type ReportParams = { visible_sources?: Source[]; domain?: string; year_from?: number; year_to?: number; template_id?: string; template_version?: number; fund_type?: string; focus?: string; purpose?: string; audience?: string; length?: string; illustrated?: boolean; report_mode?: "theme" | "review"; sources?: Record<string, string>; scope_fingerprint?: string; doc_ids?: string[]; session_key?: string; run_id?: string; parent_run_id?: string; task_id?: string; task_version?: number; task_params?: Record<string, unknown>; corpus_id?: string };
 export type ReportPreflight = { total: number; corpus_total: number; excluded: { period: number; year: number; category: number; stale?: number }; period_hits: number; category_hits: number; eligible_count: number; eligible: { doc_id: string; version: string; title: string; corpus_id: string; project_year_from: number; project_year_to: number }[]; fingerprint: string; reasons?: { doc_id: string; title: string; reason: string; period?: string }[]; observed_years?: number[]; hint?: string };
 export type WebPreview = { preview_id: string; expires_at: string; title: string; origin: string; pages: { number: number; text: string }[]; markdown?: string };
 export type WebSnapshot = { web_snapshot_id: string; url: string; title: string; fetched_at: string; version: string; content_hash: string; parse_status: string; markdown: string; search_query?: string; search_domains?: string[]; search_time_filter?: string; search_provider?: string };
@@ -123,9 +126,10 @@ export type TargetItem = {
 export type TargetFacet = { key: string; state: "has" | "未提及" | "异常"; items: TargetItem[] };
 export type TargetRelation = { from: { dimension: string; item_id: string }; to: { dimension: string; item_id: string }; basis: string };
 export type TargetReport = {
-  doc_id: string; title: string; source_name: string; index_status: string;
+  doc_id: string; version: string; schema_version: number; prompt_version: number;
+  title: string; source_name: string; index_status: string;
   process: { status: string; coverage: { processed: number; total: number } };
-  facets: Record<string, { state: "has" | "未提及" | "异常" }>;
+  facets: Record<string, { state: "has" | "未提及" | "异常" | "未处理"; items: Omit<TargetItem, "evidence">[] }>;
   stale: boolean; message: string;
 };
 export type TargetDocument = {
@@ -144,14 +148,14 @@ export type TargetDetail = {
   error?: string;
 };
 
-/** 库内四维报告单元列表（首批不做筛选，只读取当前可检索资料）。 */
-export async function fetchTargetReports(corpusId: string): Promise<TargetReport[]> {
-  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/reports`);
+/** Current corpus summaries for filtering; evidence is fetched only when opened. */
+export async function fetchTargetReports(corpusId: string, signal?: AbortSignal): Promise<TargetReport[]> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/reports`, { signal });
   return await jsonOrThrow(response, "四维列表不可用") as Promise<TargetReport[]>;
 }
 
-export async function fetchTargetDetail(corpusId: string, docId: string): Promise<TargetDetail> {
-  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/reports/${encodeURIComponent(docId)}/target`);
+export async function fetchTargetDetail(corpusId: string, docId: string, signal?: AbortSignal): Promise<TargetDetail> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/reports/${encodeURIComponent(docId)}/target`, { signal });
   return await jsonOrThrow(response, "四维信息不可用") as Promise<TargetDetail>;
 }
 
@@ -163,8 +167,8 @@ export async function extractTargets(corpusId: string, docIds: string[], force =
   return await jsonOrThrow(response, "生成四维信息失败") as Promise<TargetJob>;
 }
 
-export async function fetchTargetJob(corpusId: string, jobId: string): Promise<TargetJob> {
-  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/target/jobs/${encodeURIComponent(jobId)}`);
+export async function fetchTargetJob(corpusId: string, jobId: string, signal?: AbortSignal): Promise<TargetJob> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/target/jobs/${encodeURIComponent(jobId)}`, { signal });
   return await jsonOrThrow(response, "四维任务状态不可用") as Promise<TargetJob>;
 }
 
@@ -249,7 +253,7 @@ export type ArtifactSummary = {
   run_available?: boolean;
 };
 export type ArtifactInfo = ArtifactSummary & {
-  version: number; markdown: string; citations: ({ doc_id?: string; corpus_id?: string; version?: string; title?: string;
+  version: number; markdown: string; citations: ({ citation?: number; doc_id?: string; corpus_id?: string; version?: string; title?: string;
     page?: number | null; kind?: string; snapshot_id?: string; url?: string; fetched_at?: string })[];
   figures?: import("./components/ReportMarkdown").ReportFigure[];
 };

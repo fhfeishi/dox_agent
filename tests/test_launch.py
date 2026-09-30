@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 
-@pytest.mark.parametrize("mode", ["active", "parent", "new"])
+@pytest.mark.parametrize("mode", ["active", "explicit", "new"])
 def test_launch_selects_environment_with_uv(tmp_path, mode):
     project = tmp_path / "project"
     project.mkdir()
@@ -35,6 +35,8 @@ def test_launch_selects_environment_with_uv(tmp_path, mode):
         (selected / "bin/python").chmod(0o755)
         if mode == "active":
             env["VIRTUAL_ENV"] = str(selected)
+        else:
+            env["DOX_AGENT_VENV"] = str(selected)
     subprocess.run(["bash", str(project / "launch.sh")], env=env, check=True, capture_output=True)
     calls = log.read_text()
     assert f"pip install --python {selected}/bin/python" in calls

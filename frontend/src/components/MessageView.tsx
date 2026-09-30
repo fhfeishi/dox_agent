@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ComponentProps } from "react
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import { createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
+import { fetchArtifact, createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
 import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
@@ -196,22 +196,29 @@ function Metrics({ attempt, startedTick }: { attempt: Attempt; startedTick?: num
 
 function Sources({ attempt, onOpenSource }: { attempt: Attempt; onOpenSource?: (s: Source, n: number) => void }) {
   if (!attempt.sources.length) return null;
+  const documents = new Map<string, { source: Source; number: number; numbers: number[] }>();
+  attempt.sources.forEach((source, index) => {
+    const number = source.citation ?? index + 1;
+    const key = JSON.stringify([source.corpus_id, source.doc_id ?? source.snapshot_id ?? source.url, source.version]);
+    const existing = documents.get(key);
+    if (existing) existing.numbers.push(number);
+    else documents.set(key, { source, number, numbers: [number] });
+  });
   return (
     <div className="mt-[14px]">
       <div className="mb-[8px] flex items-center gap-[7px] text-[11.5px] font-semibold tracking-[0.4px] text-[var(--stone)] uppercase">
         <Icon name="library" size={12} strokeWidth={2} />
-        引用来源 {attempt.sources.length} 处
+        引用来源 {documents.size} 篇
       </div>
       <div className="flex flex-wrap gap-[7px]">
-        {attempt.sources.map((s, j) => {
-          const n = s.citation ?? j + 1;
+        {[...documents.values()].map(({ source: s, number: n, numbers }, j) => {
           const label = `${s.title}${s.page ? ` · 第${s.page}页` : ""}`;
           return onOpenSource ? (
             <button
               key={j}
               type="button"
               onClick={() => onOpenSource(s, n)}
-              title={s.snippet}
+              title={[`引用编号：${numbers.join("、")}`, ...(s.locations?.map((location) => `${location.heading}：${location.snippet}`) ?? [s.snippet])].join("\n")}
               className="font-app flex max-w-[320px] items-center gap-[7px] rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] px-[9px] py-[6px] text-left transition-colors hover:border-[var(--hairline-strong)] hover:bg-[var(--surface-soft)]"
             >
               <span className="grid size-[15px] shrink-0 place-items-center rounded-[4px] bg-[var(--primary)] text-[10px] font-bold text-white">
@@ -276,7 +283,7 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
 }
 
 function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (report: ReportInfo) => void }) {
-  const { corpora, workspace, activeTask } = useApp();
+  const { corpora, workspace, activeTask, showInspector, handleOpenSource } = useApp();
   const taskId = attempt.runInfo?.task_id ?? attempt.options.task_id;
   const taskVersion = attempt.runInfo?.task_version ?? attempt.options.task_version;
   const currentTaskMatches = activeTask?.id === taskId && activeTask?.version === taskVersion;
@@ -566,9 +573,15 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       {report ? (
         <div className="mt-[8px]">
           <div className="markdown max-h-[360px] overflow-auto rounded-[8px] border border-[var(--hairline-soft)] bg-[var(--canvas)] p-[10px]">
-            <ReportMarkdown markdown={report.markdown} figures={report.figures} reportId={report.report_id} />
+            <ReportMarkdown sources={report.params?.visible_sources} onOpenSource={handleOpenSource} markdown={report.markdown} figures={report.figures} reportId={report.report_id} />
           </div>
           <div className="mt-[6px] flex gap-[10px] text-[12px]">
+            <button type="button" onClick={() => {
+              void fetchArtifact(`report:${report.report_id}`).then(
+                (artifact) => showInspector({ kind: "artifact", artifactId: artifact.artifact_id }),
+                (error: Error) => setError(error.message));
+            }}
+              className="text-[var(--primary)] hover:underline">打开报告成果</button>
             <button type="button" onClick={() => void copyReport()} className="text-[var(--primary)] hover:underline">
               复制
             </button>
@@ -727,7 +740,7 @@ export function MessageView({
               </button>
             </>
           ) : null}
-          {onSaveArtifact && attempt.outcome === "completed" && attempt.answer ? (
+          {onSaveArtifact && attempt.policy?.stop_reason !== "report_pending" && attempt.outcome === "completed" && attempt.answer ? (
             <button
               type="button"
               aria-label="保存为成果"

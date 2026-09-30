@@ -50,7 +50,6 @@ export function Inspector() {
     options,
     setNav,
     drawerOpen,
-    openCorpusId,
     previewDoc,
     explorerOpen,
     inspectorTarget,
@@ -247,7 +246,7 @@ export function Inspector() {
   }, [inspectorTarget.kind, executionRunId]);
 
   useEffect(() => {
-    if (!inspectorOpen || drawerOpen || openCorpusId || previewDoc || explorerOpen) return;
+    if (!inspectorOpen || drawerOpen || previewDoc || explorerOpen) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -256,7 +255,7 @@ export function Inspector() {
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [inspectorOpen, drawerOpen, openCorpusId, previewDoc, explorerOpen, toggleInspector]);
+  }, [inspectorOpen, drawerOpen, previewDoc, explorerOpen, toggleInspector]);
 
   const latest = turns[turns.length - 1];
   const answered = turns.filter((t) => t.outcome === "completed").length;
@@ -603,7 +602,7 @@ export function Inspector() {
                     : <Button size="sm" variant="ghost" onClick={() => downloadText(report.markdown, `report-${report.report_id.slice(0, 8)}.md`)}>下载 .md</Button>}
                   <a href={`/api/reports/${encodeURIComponent(report.report_id)}/export?format=docx`}>导出 .docx</a>
                 </div>
-                <div className="markdown"><ReportMarkdown markdown={report.markdown} figures={report.figures} reportId={report.report_id} /></div>
+                <div className="markdown"><ReportMarkdown sources={report.params?.visible_sources} onOpenSource={handleOpenSource} markdown={report.markdown} figures={report.figures} reportId={report.report_id} /></div>
               </Card>
             ) : null}
           </>
@@ -704,7 +703,7 @@ export function Inspector() {
                     <Button size="sm" variant="ghost" disabled={savingArtifact || !artifactDraft.trim()} onClick={() => void saveArtifactVersion("completed")}>完成新版本</Button>
                     <Button size="sm" variant="ghost" onClick={() => setEditingArtifact(false)}>取消</Button>
                   </div>
-                </div> : <div className="markdown mt-[12px]"><ReportMarkdown markdown={artifact.markdown} figures={artifact.figures} artifact={{ id: artifact.artifact_id, version: artifact.version }} /></div>}
+                </div> : <div className="markdown mt-[12px]"><ReportMarkdown sources={artifact.citations} onOpenSource={handleOpenSource} markdown={artifact.markdown} figures={artifact.figures} artifact={{ id: artifact.artifact_id, version: artifact.version }} /></div>}
               </Card>
             ) : null}
           </>

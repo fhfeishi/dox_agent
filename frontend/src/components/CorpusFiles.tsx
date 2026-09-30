@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { deleteCorpusFile, fetchCorpusFiles, renameCorpusFile, uploadCorpusFile, type CorpusFile, type CorpusFileListing } from "../api";
+import { useSearchParams } from "react-router";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRef, useState } from "react";
+import { deleteCorpusFile, fetchCorpusFiles, renameCorpusFile, uploadCorpusFile, type CorpusFile } from "../api";
 import type { DocumentInfo } from "../useDocuments";
 import { Icon } from "./Icons";
 
@@ -31,29 +33,29 @@ export function CorpusFiles({
 }) {
   type UploadState = "waiting" | "uploading" | "indexed" | "parse-error" | "upload-error" | "stopped";
   type UploadItem = { file: File; state: UploadState; detail?: string };
-  const [files, setFiles] = useState<CorpusFile[]>([]);
-  const [listing, setListing] = useState<CorpusFileListing | null>(null);
+  const client = useQueryClient();
+  const result = useQuery({ queryKey: ["library", corpusId, "files"],
+    queryFn: ({ signal }) => fetchCorpusFiles(corpusId, signal), enabled: connected });
+  const listing = result.data;
+  const files: CorpusFile[] = listing?.files ?? [];
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
   const [editing, setEditing] = useState<{ rel: string; name: string } | null>(null);
-  const [filter, setFilter] = useState<"all" | "pending" | "indexed" | "failed">("all");
-  const [search, setSearch] = useState("");
+  const [params, setParams] = useSearchParams();
+  const filter = params.get("status") ?? "all";
+  const search = params.get("q") ?? "";
+  function updateFilter(key: string, value: string) {
+    setParams((current) => { const next = new URLSearchParams(current);
+      if (value && value !== "all") next.set(key, value); else next.delete(key);
+      return next;
+    }, { replace: key === "q" });
+  }
   const [uploads, setUploads] = useState<UploadItem[]>([]);
   const stopAfterCurrent = useRef(false);
   const inputRef = useRef<HTMLInputElement>(null);
   async function load() {
-    try {
-      const result = await fetchCorpusFiles(corpusId);
-      setListing(result);
-      setFiles(result.files);
-      setNotice("");
-    } catch (e) {
-      setNotice((e as Error).message);
-    }
+    await client.invalidateQueries({ queryKey: ["library", corpusId] });
   }
-  useEffect(() => {
-    void load();
-  }, [corpusId]);
   async function run(action: () => Promise<void>) {
     setBusy(true);
     try {
@@ -190,12 +192,12 @@ export function CorpusFiles({
             <input
               aria-label="搜索资料"
               value={search}
-              onChange={(event) => setSearch(event.target.value)}
+              onChange={(event) => updateFilter("q", event.target.value)}
               placeholder="按文件名搜索"
               className="font-app w-full border-0 bg-transparent text-[11.5px] text-[var(--ink)] outline-none placeholder:text-[var(--stone)]"
             />
           </label>
-          {(["all", "pending", "indexed", "failed"] as const).map((key) => <button key={key} type="button" onClick={() => setFilter(key)} className={`rounded-full px-[9px] py-[4px] text-[11px] ${filter === key ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>
+          {(["all", "pending", "indexed", "failed"] as const).map((key) => <button key={key} type="button" onClick={() => updateFilter("status", key)} className={`rounded-full px-[9px] py-[4px] text-[11px] ${filter === key ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>
             {{ all: "全部", pending: "待处理", indexed: "已入库", failed: "失败" }[key]} {counts[key]}
           </button>)}
         </div>
@@ -277,9 +279,9 @@ export function CorpusFiles({
           ))}
           {!searchedRows.length ? <li className="text-[12px] text-[var(--stone)]">{needle ? "没有匹配的资料。" : "此筛选下没有文档。"}</li> : null}
         </ul>
-        {notice ? (
+        {notice || result.error ? (
           <p role="alert" className="text-[12px] text-[var(--red)]">
-            {notice}
+            {notice || result.error?.message}
           </p>
         ) : null}
       </div>

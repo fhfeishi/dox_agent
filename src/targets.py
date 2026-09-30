@@ -88,14 +88,17 @@ def _record_state(record: dict | None, error: str, doc: dict) -> tuple[str, str]
 
 
 def _empty_facets(state: str) -> dict:
-    return {key: {"state": state} for key in DIMENSIONS}
+    return {key: {"state": state, "items": []} for key in DIMENSIONS}
 
 
 def _summary(info, doc: dict) -> dict:
     record, error = _load(info, doc["doc_id"])
     state, message = _record_state(record, error, doc)
     if state == "current" and record is not None:
-        facets = {facet["key"]: {"state": facet["state"]} for facet in record["facets"]}
+        # The list carries names/descriptions for filtering, never all document evidence.
+        facets = {facet["key"]: {"state": facet["state"], "items": [
+            {key: item[key] for key in ("id", "name", "desc", "status") if key in item}
+            for item in facet.get("items", [])]} for facet in record["facets"]}
         process = record["process"]
     elif state == "invalid":
         facets = _empty_facets("异常")
@@ -105,6 +108,9 @@ def _summary(info, doc: dict) -> dict:
         process = {"status": "未处理", "coverage": {"processed": 0, "total": 0}}
     return {
         "doc_id": doc["doc_id"],
+        "version": doc["version"],
+        "schema_version": SCHEMA_VERSION,
+        "prompt_version": PROMPT_VERSION,
         "title": doc["title"],
         "source_name": Path(doc.get("origin", "")).name or doc["title"],
         "index_status": "indexed",

@@ -60,13 +60,19 @@ def test_api_counts_answer_and_resets_each_request(tmp_path):
     model = FakeMessagesListChatModel(responses=[
         AIMessage(content="answer", usage_metadata=usage),
         AIMessage(content="answer", usage_metadata=usage),
+        AIMessage(content="answer", usage_metadata=usage),
     ])
     app, store = setup(tmp_path, lambda store, settings: build_graph(store, settings, model))
     store.put(Document(title="fact", origin="fact", kind="text", parser="test",
                        pages=[Page(number=1, text="what is recursion " * 20)]))
     with TestClient(app) as client:
-        for _ in range(2):
-            response = client.post("/api/chat", json={"messages": [{"role": "user", "content": "what is recursion"}]})
+        corpus_id = client.get("/api/corpora").json()[0]["id"]
+        for scope in ({}, {"corpus_id": corpus_id}, {"corpus_ids": [corpus_id]}):
+            response = client.post("/api/chat", json={**scope, "messages": [{"role": "user", "content": "what is recursion"}]})
+            sources = next(json.loads(frame.split("data: ")[1]) for frame in response.text.split("\n\n")
+                           if frame.startswith("event: sources"))
+            assert len(sources) == 1 and sources[0]["corpus_id"] == corpus_id
+            assert client.get(sources[0]["url"]).status_code == 200
             frames = [json.loads(frame.split("data: ")[1]) for frame in response.text.split("\n\n") if frame.startswith("event: usage")]
             # L6: deterministic retrieval answers with exactly one model call per request.
             assert frames[-1]["total_tokens"] == 13

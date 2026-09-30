@@ -23,6 +23,7 @@ import {
   type Source,
   type TaskInfo,
 } from "./api";
+import { useLocation, useNavigate, useMatch } from "react-router";
 import type { Branch } from "./branches";
 import { copyToClipboard } from "./clipboard";
 import {
@@ -39,7 +40,7 @@ import { useCorpora } from "./useCorpora";
 import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocuments";
 import { useWorkspace } from "./workspace";
 
-export type NavKey = "chat" | "tasks" | "library" | "reports" | "prompts";
+export type NavKey = "chat" | "tasks" | "library" | "reports" | "prompts" | "review";
 export type InspectorTarget = { kind: "overview" } | { kind: "task"; taskId: string } |
   { kind: "template"; templateId: string } |
   { kind: "web"; snapshotId: string } |
@@ -111,6 +112,9 @@ export interface AppValue {
   ingestBusy: boolean;
   runCorpusIngest: (id: string) => Promise<void>;
   startCorpusChat: (id: string) => Promise<void>;
+  startResearch: (corpusId: string, docIds: string[], taskId: string, question: string) => Promise<void>;
+  targetJobs: Record<string, string>;
+  rememberTargetJob: (corpusId: string, jobId: string) => void;
 
   /* tasks */
   tasks: TaskInfo[];
@@ -176,8 +180,7 @@ export interface AppValue {
   setExplorerDoc: Dispatch<SetStateAction<ExplorerTarget>>;
 
   /* corpus detail drawer */
-  openCorpusId: string | null;
-  openCorpus: (id: string) => void;
+  openCorpus: (id: string, view?: "files" | "target") => void;
   corpusView: "files" | "target";
   setCorpusView: (view: "files" | "target") => void;
   closeCorpus: () => void;
@@ -229,7 +232,20 @@ export function useApp(): AppValue {
  * lives in the components. This mirrors the reference template's `store.tsx`.
  */
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [nav, setNav] = useState<NavKey>("chat");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
+  const navPaths: Record<NavKey, string> = { chat: "/chat", library: "/library", tasks: "/tasks", reports: "/artifacts", prompts: "/prompts", review: "/review" };
+  const nav: NavKey = location.pathname.startsWith("/library") ? "library"
+    : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/artifacts") ? "reports"
+      : location.pathname.startsWith("/prompts") ? "prompts" : location.pathname.startsWith("/review") ? "review" : "chat";
+  const setNav = (value: NavKey) => { void navigate(navPaths[value]); };
+  const corpusView = location.pathname.includes("/targets/") ? "target" : "files";
+  const setCorpusView = (view: "files" | "target") => {
+    if (routeParams.corpusId) openCorpus(routeParams.corpusId, view);
+  };
+  const [targetJobs, setTargetJobs] = useState<Record<string, string>>({});
+  const rememberTargetJob = (corpus: string, job: string) => setTargetJobs((current) => ({ ...current, [corpus]: job }));
   const [turns, setTurns] = useState<Turn[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
@@ -247,6 +263,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [inspectorOpen, setInspectorOpen] = useState(false);
   const [inspectorStack, setInspectorStack] = useState<InspectorTarget[]>([{ kind: "overview" }]);
+  const routeSearch = new URLSearchParams(location.search);
+  const routeDoc = corpusView === "target" ? routeSearch.get("doc") : null;
+  const routeFacet = Number(routeSearch.get("facet") ?? 0);
+  const routeTarget: InspectorTarget | null = routeDoc && routeParams.corpusId
+    ? { kind: "target", corpusId: routeParams.corpusId, docId: routeDoc,
+        index: Number.isInteger(routeFacet) && routeFacet >= 0 && routeFacet < 4 ? routeFacet : 0 } : null;
+  const routeTargetKey = routeTarget ? inspectorIdentity(routeTarget) : "";
+  const previousRouteTarget = useRef("");
+  useEffect(() => {
+    if (routeTargetKey || previousRouteTarget.current) setInspectorOpen(Boolean(routeTargetKey));
+    previousRouteTarget.current = routeTargetKey;
+  }, [routeTargetKey]);
+  function closeRouteTarget() {
+    const search = new URLSearchParams(location.search);
+    for (const key of ["doc", "facet", "version"]) search.delete(key);
+    void navigate({ pathname: location.pathname, search: search.toString() });
+  }
+
   const [inspectorPinned, setInspectorPinned] = useState(false);
   const [inspectorWidth, setInspectorWidth] = useState(() => {
     const saved = Number(localStorage.getItem("dox.inspector.width"));
@@ -264,13 +298,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [taskVersionError, setTaskVersionError] = useState("");
   const [tasksError, setTasksError] = useState("");
   const [previewDoc, setPreviewDoc] = useState<PreviewTarget>(null);
+  const evidenceTrigger = useRef<HTMLElement | null>(null);
   const [previewFocus, setPreviewFocus] = useState<string | null>(null);
   const [fullPreviewReturnsToInspector, setFullPreviewReturnsToInspector] = useState(false);
   const [explorerOpen, setExplorerOpen] = useState(false);
   const [explorerDoc, setExplorerDoc] = useState<ExplorerTarget>(null);
-  const [openCorpusId, setOpenCorpusId] = useState<string | null>(null);
   const [newCorpusOpen, setNewCorpusOpen] = useState(false);
-  const [corpusView, setCorpusView] = useState<"files" | "target">("files");
   const [corpusId, setCorpusId] = useState("");
   const [corpusConfirmed, setCorpusConfirmed] = useState(false);
   const [corpusIds, setCorpusIds] = useState<string[]>([]);
@@ -290,11 +323,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (inspectorNav.current !== nav) {
       inspectorNav.current = nav;
-      // 库内主区只在知识库入口下存在；离开该入口时收起，避免遗留半层。
-      if (nav !== "library") {
-        setOpenCorpusId(null);
-        setCorpusView("files");
-      }
       if (!inspectorPinned) setInspectorStack([{ kind: "overview" }]);
     }
   }, [nav, inspectorPinned]);
@@ -793,6 +821,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await switchSession(undefined, undefined, id);
   }
 
+  async function startResearch(corpus: string, docIds: string[], task: string, question: string) {
+    if (!docIds.length || !question.trim()) throw new Error("请选择资料并填写研究问题");
+    setSessionBusy(true);
+    try {
+      await settleActiveRun();
+      await workspace.saveNow(latestTurns.current, options);
+      await workspace.select(undefined, task, corpus);
+      await workspace.saveCorpusSelection(corpus, true, [corpus], { allowed_doc_ids: [...new Set(docIds)] });
+      setEditing(null);
+      setInput(question.trim());
+      setError("");
+      setStatus(`已新建研究会话，限定 ${new Set(docIds).size} 份资料；请确认问题后发送`);
+      setNav("chat");
+    } finally {
+      setSessionBusy(false);
+    }
+  }
+
   async function copyQuestion(question: string) {
     const ok = await copyToClipboard(question);
     if (ok) setStatus("问题已复制");
@@ -838,6 +884,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   /** 四维证据入口：放大预览承载正文定位，关闭后回到该报告的四维分区。 */
   function openEvidence(doc: DocumentInfo, page: number | null, corpusId: string, focus?: string) {
     // 证据（页码跳页或正文定位）一律走放大预览，不再分支到文件浏览器。
+    evidenceTrigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     openFullPreview(doc, page, corpusId, true, focus, true);
   }
 
@@ -846,18 +893,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setPreviewFocus(null);
     if (fullPreviewReturnsToInspector) setInspectorOpen(true);
     setFullPreviewReturnsToInspector(false);
+    requestAnimationFrame(() => evidenceTrigger.current?.focus());
   }
 
-  function openCorpus(id: string) {
+  function openCorpus(id: string, view: "files" | "target" = "files") {
     setInspectorOpen(false);
     setDrawerOpen(false);
     setPreviewDoc(null);
     setExplorerOpen(false);
-    setOpenCorpusId(id);
-    setCorpusView("files");
+    void navigate(`/library/${encodeURIComponent(id)}/${view === "target" ? "targets/four-facets" : "documents"}`);
   }
 
   function toggleInspector() {
+    if (inspectorOpen && routeTarget) { closeRouteTarget(); return; }
     if (!inspectorOpen) {
       // W1 migration: legacy document/corpus surfaces still exist. Close them before
       // showing the shared inspector so two right-side layers cannot conflict.
@@ -872,6 +920,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setDrawerOpen(false);
     setPreviewDoc(null);
     setExplorerOpen(false);
+    if (target.kind === "target") {
+      const search = new URLSearchParams(location.search);
+      search.set("doc", target.docId);
+      search.set("facet", String(target.index));
+      void navigate({ pathname: `/library/${encodeURIComponent(target.corpusId)}/targets/four-facets`, search: search.toString() });
+      setInspectorOpen(true);
+      return;
+    }
     setInspectorStack((stack) => {
       const current = stack[stack.length - 1];
       if (inspectorIdentity(current) === inspectorIdentity(target)) return stack;
@@ -881,12 +937,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   function backInspector() {
+    if (routeTarget) { closeRouteTarget(); return; }
     setInspectorStack((stack) => stack.length > 1 ? stack.slice(0, -1) : stack);
   }
 
   function closeCorpus() {
-    setOpenCorpusId(null);
-    setCorpusView("files");
+    void navigate("/library");
   }
 
   function openExplorer() {
@@ -895,7 +951,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setExplorerOpen(true);
   }
 
-  const handleOpenSource = (source: Source, n: number) => {
+  const handleOpenSource = async (source: Source, n: number) => {
     if (source.kind === "web" && source.snapshot_id) {
       showInspector({ kind: "web", snapshotId: source.snapshot_id });
       return;
@@ -904,28 +960,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setError(`引用 [${n}] 缺少文档定位信息，无法跳转`);
       return;
     }
-    const corpusId = source.corpus_id ?? effectiveCorpusId ?? "";
-    // S8: compare the citation version with the current list; never pre-probe `/file`.
-    const current = documents.find((item) => item.doc_id === source.doc_id);
-    if (current && source.version && current.version !== source.version) {
-      setError(`引用 [${n}] 对应的文档已更新，已停止打开；请重新提问或刷新文献库`);
-      return;
+    const corpusId = source.corpus_id || effectiveCorpusId || "";
+    try {
+      // Citation identity belongs to its source corpus; never infer kind or reuse another library's list.
+      const response = await fetch(`/api/documents?corpus=${encodeURIComponent(corpusId)}`);
+      if (!response.ok) throw new Error("无法读取引用所属知识库");
+      const items: DocumentInfo[] = await response.json();
+      const doc = items.find((item) => item.doc_id === source.doc_id);
+      if (!doc) throw new Error("引用文档已移除或尚未完成索引");
+      if (source.version && doc.version !== source.version) throw new Error("引用文档已更新，请重新提问");
+      openPreview(doc, source.page ?? null, corpusId);
+    } catch (error) {
+      setError(`引用 [${n}]：${(error as Error).message}`);
     }
-    if (current) {
-      openPreview(current, source.page ?? null, corpusId);
-      return;
-    }
-    // KB-4a: a citation from another corpus in the retrieval set; synthesize metadata so the
-    // preview loads through `/api/...?corpus=` (PDF/txt served per corpus).
-    if (source.corpus_id && source.corpus_id !== effectiveCorpusId) {
-      openPreview({
-        doc_id: source.doc_id, title: source.title, origin: source.origin ?? "",
-        version: source.version ?? "", captured_at: source.captured_at ?? "",
-        kind: source.kind ?? "pdf", parser: "", pages: 0,
-      }, source.page ?? null, source.corpus_id);
-      return;
-    }
-    openDocument(source.doc_id, source.page ?? undefined);
   };
 
   function selectCorpus(id: string) {
@@ -1115,6 +1162,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       ingestBusy,
       runCorpusIngest,
       startCorpusChat,
+      startResearch,
+      targetJobs,
+      rememberTargetJob,
       tasks,
       tasksError,
       taskId,
@@ -1166,7 +1216,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setExplorerOpen,
       explorerDoc,
       setExplorerDoc,
-      openCorpusId,
       openCorpus,
       closeCorpus,
       corpusView,
@@ -1177,8 +1226,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setDrawerOpen,
       inspectorOpen,
       toggleInspector,
-      inspectorTarget: inspectorStack[inspectorStack.length - 1],
-      inspectorCanGoBack: inspectorStack.length > 1,
+      inspectorTarget: routeTarget ?? inspectorStack[inspectorStack.length - 1],
+      inspectorCanGoBack: Boolean(routeTarget) || inspectorStack.length > 1,
       inspectorPinned,
       inspectorWidth,
       setInspectorWidth: (width) => setInspectorWidth(Math.max(400, Math.min(520, width))),
@@ -1242,9 +1291,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
       drawerOpen,
       inspectorOpen,
       sidebarCollapsed,
-      openCorpusId,
       newCorpusOpen,
       corpusView,
+      location,
+      targetJobs,
       workspace,
     ],
   );

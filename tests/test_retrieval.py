@@ -127,8 +127,8 @@ def test_user_gets_no_match_when_no_theme_term_overlaps():
 
 def test_user_only_sees_documents_inside_the_allowed_scope():
     # Given two matching reports
-    first = ReportDoc("a", "v", "癫痫网络研究")
-    second = ReportDoc("b", "v", "癫痫其他研究")
+    first = ReportDoc("a", "v", "癫痫网络研究", year_from=2010, year_to=2013)
+    second = ReportDoc("b", "v", "癫痫其他研究", year_from=2022, year_to=2025)
     chunks = {
         "a": [chunk_of("a", "癫痫致痫网络")],
         "b": [chunk_of("b", "癫痫致痫网络")],
@@ -137,6 +137,10 @@ def test_user_only_sees_documents_inside_the_allowed_scope():
     result = select_reports(chunks, [first, second], "癫痫致痫网络", allowed_doc_ids=["b"])
     # Then no result comes from outside the scope
     assert [report.doc.doc_id for report in result.reports] == ["b"]
+    windowed = select_reports(chunks, [first, second], "2018—2024 癫痫致痫网络")
+    assert [report.doc.doc_id for report in windowed.reports] == ["b"]
+    assert windowed.year_window == (2018, 2024)
+
 
 
 def test_user_gets_fund_project_metadata_from_filename():

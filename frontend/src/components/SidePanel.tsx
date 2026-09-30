@@ -3,6 +3,7 @@ import { useApp } from "../store";
 import { fetchReports, type ReportSummary } from "../api";
 import { BrandMark, Icon } from "./Icons";
 import { Button, GroupLabel, PanelRow, SearchField } from "./ui";
+import { ReviewRunPanel } from "./ReviewViews";
 import type { Saved, SessionData } from "../workspace";
 
 function sessionTime(session: Saved<SessionData>): string | undefined {
@@ -175,7 +176,7 @@ export function SidePanel() {
         </button>
       </div>
 
-      {nav !== "prompts" ? <SearchField
+      {nav !== "prompts" && nav !== "review" ? <SearchField
         value={query}
         onChange={setQuery}
         ariaLabel="搜索会话"
@@ -185,7 +186,7 @@ export function SidePanel() {
       {/* scrollable list */}
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[8px] pb-[12px]">
         {/* Corpus selection stays reachable from the chat view; the library view owns the full list. */}
-        {nav !== "library" && nav !== "prompts" && visibleKbs.length ? (
+        {nav !== "library" && nav !== "prompts" && nav !== "review" && visibleKbs.length ? (
           <>
             <GroupLabel className="pt-[2px]">知识库</GroupLabel>
             {visibleKbs.map((corpus) => (
@@ -265,6 +266,8 @@ export function SidePanel() {
             )}
           </>
         )}
+
+        {nav === "review" ? <ReviewRunPanel /> : null}
 
         {nav === "tasks" && (
           <>

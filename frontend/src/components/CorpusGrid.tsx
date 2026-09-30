@@ -289,7 +289,7 @@ export function CorpusGrid() {
                     className="rounded-[6px] bg-[var(--primary-soft)] px-[8px] py-[5px] text-[var(--primary-pressed)] hover:bg-[var(--primary-soft-2)] disabled:opacity-50">与此库对话</button>
                   <button type="button" disabled={Boolean(corpus.missing)} onClick={() => openCorpus(corpus.id)}
                     className="rounded-[6px] px-[8px] py-[5px] text-[var(--steel)] hover:bg-[var(--surface)] disabled:opacity-50">添加资料</button>
-                  <button type="button" disabled={Boolean(corpus.missing)} onClick={() => openCorpus(corpus.id)}
+                  <button type="button" disabled={Boolean(corpus.missing)} onClick={() => openCorpus(corpus.id, "target")}
                     className="rounded-[6px] px-[8px] py-[5px] text-[var(--steel)] hover:bg-[var(--surface)] disabled:opacity-50">四维浏览</button>
                   <button type="button" disabled={Boolean(corpus.missing) || ingestBusy} onClick={() => void runCorpusIngest(corpus.id)}
                     className="rounded-[6px] px-[8px] py-[5px] text-[var(--steel)] hover:bg-[var(--surface)] disabled:opacity-50">刷新</button>

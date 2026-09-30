@@ -19,7 +19,8 @@ class FakeGraph:
 
     async def astream(self, state, **kwargs):
         yield {"event": "sources", "data": [{"doc_id": "d1", "corpus_id": self.corpus_id,
-                                             "version": "v1", "title": "报告", "page": 2}]}
+                                             "version": "v1", "title": "报告", "page": 2,
+                                             "citation": 1, "locations": [{"page": 2}]}]}
         yield {"event": "telemetry", "data": {"run_id": "x", "path": "retrieve", "stages_ms": {},
                                               "chunks_retrieved": 1, "reports_selected": 1, "context_tokens": 10}}
         yield {"event": "token", "data": {"text": "回答"}}
@@ -61,7 +62,7 @@ def test_user_chat_run_persists_the_server_effective_scope(tmp_path):
     assert snapshot["params"] == {"task": "task1"}
     # A3: citations carry the corpus and title, not only locator fields.
     assert snapshot["citations"] == [{"doc_id": "d1", "corpus_id": cid, "version": "v1",
-                                      "title": "报告", "page": 2}]
+                                      "title": "报告", "page": 2, "citation": 1, "locations": [{"page": 2}]}]
     assert "usage" in snapshot["metrics"] and "telemetry" in snapshot["metrics"]
 
 
@@ -112,7 +113,8 @@ def test_failed_run_backfills_status_and_sources(tmp_path):
 
         async def astream(self, state, **kwargs):
             yield {"event": "sources", "data": [{"doc_id": "d2", "corpus_id": self.corpus_id,
-                                                 "version": "v2", "title": "报告2", "page": 3}]}
+                                                 "version": "v2", "title": "报告2", "page": 3,
+                                                 "citation": 1, "locations": [{"page": 3}]}]}
             raise RuntimeError("boom")
 
     app, cid = ready_app(tmp_path, lambda corpus_id: FailingGraph(corpus_id))
@@ -121,7 +123,7 @@ def test_failed_run_backfills_status_and_sources(tmp_path):
         snapshot = client.get("/api/runs/chat-run-fail").json()
     assert snapshot["status"] == "failed"
     assert snapshot["citations"] == [{"doc_id": "d2", "corpus_id": cid, "version": "v2",
-                                      "title": "报告2", "page": 3}]
+                                      "title": "报告2", "page": 3, "citation": 1, "locations": [{"page": 3}]}]
     assert "usage" in snapshot["metrics"]
 
 

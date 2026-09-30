@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
-import { fetchTargetDetail, type TargetDetail, type TargetEvidence } from "../api";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router";
+import { targetDetailQuery } from "../libraryQueries";
+import { type TargetDetail, type TargetEvidence } from "../api";
 import { useApp } from "../store";
 import { Pill } from "./ui";
 
@@ -7,20 +9,10 @@ import { Pill } from "./ui";
 export function TargetReportView({ corpusId, docId }: { corpusId: string; docId: string }) {
   const { inspectorTarget, showInspector, openEvidence } = useApp();
   const index = inspectorTarget.kind === "target" ? inspectorTarget.index : 0;
-  const [detail, setDetail] = useState<TargetDetail | null>(null);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    let cancelled = false;
-    setDetail(null);
-    setError("");
-    void fetchTargetDetail(corpusId, docId)
-      .then((value) => { if (!cancelled) setDetail(value); })
-      .catch(() => { if (!cancelled) setError("资料已更新或四维信息不可读"); });
-    return () => { cancelled = true; };
-  }, [corpusId, docId]);
-
-  if (error) return <p role="alert" className="text-[12.5px] text-[var(--red)]">{error}</p>;
+  const [search] = useSearchParams();
+  const result = useQuery(targetDetailQuery(corpusId, docId, search.get("version") ?? undefined));
+  const detail = result.data;
+  if (result.error) return <p role="alert" className="text-[12.5px] text-[var(--red)]">{result.error.message}</p>;
   if (!detail) return <p className="text-[12.5px] text-[var(--steel)]">正在读取四维信息…</p>;
 
   const active = detail.facets[index] ?? detail.facets[0];
@@ -54,7 +46,7 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
         <div className="mt-[6px] flex flex-wrap items-center gap-[6px]">
           <Pill tone={detail.process.status === "已完成" ? "mint" : "rose"}>{detail.process.status}</Pill>
           <span className="text-[11px] text-[var(--stone)]">
-            处理覆盖 {detail.process.coverage.processed}/{detail.process.coverage.total} 段 · 文档版本 {detail.version.slice(0, 8)}
+            方案 v{detail.schema_version} · 提示 v{detail.prompt_version} · 处理覆盖 {detail.process.coverage.processed}/{detail.process.coverage.total} 段 · 文档版本 {detail.version.slice(0, 8)}
           </span>
         </div>
       </div>
@@ -96,13 +88,13 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
             </ul>
           </li>
         ))}
-        {active.state === "未提及" ? <li className="text-[12px] text-[var(--stone)]">原文未提及该维度。</li> : null}
+        {active.state === "未提及" ? <li className="text-[12px] text-[var(--stone)]">{detail.process.coverage.processed === detail.process.coverage.total && detail.process.status === "已完成" ? "原文未提及该维度。" : "处理未完成，不能判断原文是否提及。"}</li> : null}
         {active.state === "has" && !active.items.length ? <li className="text-[12px] text-[var(--stone)]">没有条目。</li> : null}
       </ul>
 
       {relations.length ? (
         <div className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface-soft)] p-[10px]">
-          <p className="text-[11.5px] font-medium text-[var(--charcoal)]">原文明示关联（{active.key}）</p>
+          <p className="text-[11.5px] font-medium text-[var(--charcoal)]">提取记录的原文关联（{active.key}）</p>
           <ul className="mt-[4px] space-y-[3px] text-[11.5px] text-[var(--steel)]">
             {relations.map((relation, position) => (
               <li key={position}>

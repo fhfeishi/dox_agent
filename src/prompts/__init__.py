@@ -90,7 +90,10 @@ def task_instruction(task_id: str, *, phase: str = "chat") -> str:
     entry = _entry(task_id)
     if task_id == "task4" and phase == "chat":
         return base_prompt() + "\n\n" + _read(entry["intake_file"])
-    return base_prompt() + "\n\n" + _read(entry["file"])
+    parts = [base_prompt(), _read(entry["file"])]
+    if task_id in ("task2", "task3") or (task_id == "task4" and phase == "report"):
+        parts.append(_read("target_facet_guide.md"))
+    return "\n\n".join(parts)
 
 
 def list_tasks() -> list[dict]:

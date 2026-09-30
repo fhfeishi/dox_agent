@@ -1,24 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
-import { fetchCorpora, type CorpusInfo } from "./api";
+import { useCallback } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { fetchCorpora } from "./api";
 
-/**
- * H5: single owner of the corpus list (`GET /api/corpora`). Consumers refresh it after
- * ingest jobs or when reconnecting; the registry itself is a read-only disk scan.
- */
 export function useCorpora(enabled: boolean) {
-  const [corpora, setCorpora] = useState<CorpusInfo[]>([]);
-  const [error, setError] = useState("");
-  const [loaded, setLoaded] = useState(false);
-  const refresh = useCallback(async () => {
-    try {
-      setCorpora(await fetchCorpora());
-      setError("");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "知识库列表不可用");
-    } finally {
-      setLoaded(true);
-    }
-  }, []);
-  useEffect(() => { if (enabled) void refresh(); }, [enabled, refresh]);
-  return { corpora, error, loaded, refresh };
+  const client = useQueryClient();
+  const result = useQuery({ queryKey: ["corpora"], queryFn: ({ signal }) => fetchCorpora(signal), enabled });
+  const refresh = useCallback(() => client.invalidateQueries({ queryKey: ["corpora"] }), [client]);
+  return { corpora: result.data ?? [], error: result.error?.message ?? "", loaded: result.isFetched, refresh };
 }

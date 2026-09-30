@@ -59,6 +59,7 @@ def test_user_can_save_an_answer_as_an_artifact_linked_to_its_run(tmp_path):
         artifact_id = created.json()["artifact_id"]
         fetched = client.get(f"/api/artifacts/{artifact_id}").json()
         listing = client.get("/api/artifacts?session_key=sess-1").json()
+
     assert fetched["type"] == "answer_snapshot" and fetched["status"] == "completed"
     assert fetched["run_id"] == "chat-run-art-1" and fetched["current_version"] == 1
     assert fetched["markdown"] == "回答" and fetched["source_verification"] == "verified"
@@ -245,6 +246,11 @@ def test_report_generation_creates_a_linked_artifact(tmp_path, monkeypatch):
             "parent_run_id": "intake-run-1"})
         assert created.status_code == 201
         listing = client.get("/api/artifacts?session_key=sess-1").json()
+        preview = client.get("/api/artifacts/report:" + created.json()["report_id"]).json()
+        assert preview["markdown"] == "# 报告"
+        assert preview["type"] == "report"
+        assert not preview.get("legacy")
+
     reports = [item for item in listing if item["type"] == "report" and item["run_id"] == "report-run-art-1"]
     assert len(reports) == 1 and reports[0]["current_version"] == 1
     # The compatible legacy entry is suppressed because the run is already linked by an artifact.

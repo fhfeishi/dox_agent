@@ -53,6 +53,7 @@ def test_report_generation_uses_template_and_selected_reports(tmp_path):
     assert markdown.startswith("# 报告")
     assert "模板章节" in model.seen and "总体成果概述" in model.seen  # section structure injected
     assert "癫痫致痫网络" in model.seen  # selected report markdown injected
+    assert "四维信息阅读框架" in model.seen and "四维技术图谱" in model.seen
     assert "来源附录（系统记录）" in markdown and "[1]" in markdown
     assert model.seen.count("[1] 《双页报告》") == 1
     assert markdown.split("## 来源附录（系统记录）\n", 1)[1].count("双页报告") == 1

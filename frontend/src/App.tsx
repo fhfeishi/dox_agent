@@ -1,3 +1,4 @@
+import { Outlet } from "react-router";
 import { IconRail } from "./components/IconRail";
 import { StatusBanner, Toast } from "./components/Overlays";
 import { SidePanel } from "./components/SidePanel";
@@ -5,16 +6,10 @@ import { useApp } from "./store";
 import { lazy, Suspense } from "react";
 import type { CSSProperties } from "react";
 
-const ChatView = lazy(() => import("./components/ChatView").then((module) => ({ default: module.ChatView })));
-const CorpusDetail = lazy(() => import("./components/CorpusDetail").then((module) => ({ default: module.CorpusDetail })));
-const CorpusGrid = lazy(() => import("./components/CorpusGrid").then((module) => ({ default: module.CorpusGrid })));
 const DocumentExplorer = lazy(() => import("./components/DocumentExplorer").then((module) => ({ default: module.DocumentExplorer })));
 const DocumentPreview = lazy(() => import("./components/DocumentPreview").then((module) => ({ default: module.DocumentPreview })));
 const Inspector = lazy(() => import("./components/Inspector").then((module) => ({ default: module.Inspector })));
 const OpsDrawer = lazy(() => import("./components/OpsDrawer").then((module) => ({ default: module.OpsDrawer })));
-const TasksView = lazy(() => import("./components/ListingViews").then((module) => ({ default: module.TasksView })));
-const ReportsView = lazy(() => import("./components/ListingViews").then((module) => ({ default: module.ReportsView })));
-const PromptSkillView = lazy(() => import("./components/ListingViews").then((module) => ({ default: module.PromptSkillView })));
 
 /**
  * Layout composition only: rail → side panel → main view, plus the floating output
@@ -22,14 +17,11 @@ const PromptSkillView = lazy(() => import("./components/ListingViews").then((mod
  */
 export function App() {
   const {
-    nav,
     inspectorOpen,
     inspectorWidth,
     uiDocPanel,
     corpusReady,
     effectiveCorpusId,
-    openCorpusId,
-    closeCorpus,
     options,
     setOptions,
     previewDoc,
@@ -57,13 +49,7 @@ export function App() {
         }`}
       >
         <Suspense fallback={<div className="p-6 text-sm text-[var(--muted)]">正在加载…</div>}>
-          {nav === "chat" ? <ChatView /> : null}
-          {nav === "tasks" ? <TasksView /> : null}
-          {nav === "library" ? (openCorpusId
-            ? <CorpusDetail key={openCorpusId} corpusId={openCorpusId} onClose={closeCorpus} />
-            : <CorpusGrid />) : null}
-          {nav === "reports" ? <ReportsView /> : null}
-          {nav === "prompts" ? <PromptSkillView /> : null}
+          <Outlet />
         </Suspense>
       </div>
 

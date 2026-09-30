@@ -170,11 +170,24 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
 
     monkeypatch.setattr(targets, "model_for", lambda settings: TargetModel())
     app, store = setup(tmp_path)
+    from src import main as main_module
+    dist = tmp_path / "frontend" / "dist"
+    dist.mkdir(parents=True)
+    (dist / "index.html").write_text("research shell")
+    monkeypatch.setattr(main_module, "DOX_AGENT_ROOT", tmp_path)
     body = "# 报告\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。"
     saved = store.put(Document(title="示例报告", origin="report.md", kind="text", parser="markdown",
                                pages=[Page(number=1, text=body)], markdown=body))
     with TestClient(app) as client:
         corpus_id = client.get("/api/corpora").json()[0]["id"]
+        page = client.get(f"/library/{corpus_id}/targets/four-facets?scenario=临床诊疗")
+        assert page.status_code == 200 and page.text == "research shell"
+        assert "no-cache" in page.headers["cache-control"]
+        for route in ("/review", "/review/guidelines", "/review/evidence", "/review/runs/example"):
+            response = client.get(route)
+            assert response.status_code == 200 and response.text == "research shell"
+        for missing in ("/api/no-such-api", "/assets/missing.js", "/library/no-such-page"):
+            assert client.get(missing).status_code == 404
         started = client.post(f"/api/corpora/{corpus_id}/target", json={"doc_ids": [saved["doc_id"]]})
         assert started.status_code == 202
         job_id = started.json()["job_id"]
@@ -190,6 +203,9 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         assert job["status"] == "done" and job["completed"] == job["total"] == 1
         assert reports[0]["process"]["status"] == "已完成"
         assert all(value["state"] == "has" for value in reports[0]["facets"].values())
+        assert reports[0]["facets"]["场景"]["items"][0]["name"] == "临床诊疗"
+        assert "evidence" not in reports[0]["facets"]["场景"]["items"][0]
+        assert reports[0]["version"] == saved["version"]
         assert detail.status_code == 200
         assert detail.json()["facets"][3]["items"][0]["status"] == "已取得"
         assert detail.json()["relations"][0]["basis"] == "原文明示"
@@ -202,6 +218,8 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         assert stale.status_code == 409
         assert stale.json()["detail"]["stale"] is True
         assert stale.json()["detail"]["message"] == "资料已更新"
+        refreshed = client.get(f"/api/corpora/{corpus_id}/reports").json()[0]
+        assert refreshed["stale"] and not refreshed["facets"]["场景"]["items"]
 
 
 def test_user_target_extraction_refuses_to_publish_when_the_source_changes(tmp_path, monkeypatch):

@@ -23,7 +23,8 @@ class RecordingModel:
 def test_graph_retrieves_selected_reports_and_answers(tmp_path):
     store = Knowledge(tmp_path / "db")
     store.put(Document(title="南溪", origin="test", parser="text", kind="text",
-                       pages=[Page(number=1, text="南溪施工完成日期2025年10月22日")]))
+                       pages=[Page(number=1, text="南溪施工完成日期2025年10月22日" * 100),
+                              Page(number=2, text="南溪施工的验收记录")]))
     model = RecordingModel()
 
     async def run():
@@ -34,10 +35,12 @@ def test_graph_retrieves_selected_reports_and_answers(tmp_path):
     events = asyncio.run(run())
     sources = next(event["data"] for event in events if event["event"] == "sources")
     telemetry = [event["data"] for event in events if event["event"] == "telemetry"][-1]
-    assert sources and sources[0]["chunk_id"]
+    assert len(sources) == 1 and sources[0]["chunk_id"]
+    assert {location["page"] for location in sources[0]["locations"]} == {1, 2}
     assert sources[0]["version"] == store.all()[0]["version"]
     assert "2025年10月22日" in model.seen  # full report markdown reachable by the answer model
     assert telemetry["reports_selected"] == 1 and telemetry["chunks_retrieved"] >= 1
+    assert "四维信息阅读框架" in model.seen and "预期" in model.seen
     assert telemetry["path"] == "retrieve"
 
 

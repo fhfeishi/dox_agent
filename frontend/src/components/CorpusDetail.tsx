@@ -1,3 +1,4 @@
+import { useNavigate, useSearchParams } from "react-router";
 import { useEffect, useState } from "react";
 import { deleteCorpus, reassociateCorpus, renameCorpus, setCorpusDescription } from "../api";
 import { useApp } from "../store";
@@ -19,10 +20,11 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
     runCorpusIngest,
     ingestBusy,
     connected,
-    openPreview,
     corpusView,
     setCorpusView,
   } = useApp();
+  const navigate = useNavigate();
+  const [search] = useSearchParams();
   const corpus = corpora.find((c) => c.id === corpusId) ?? null;
   const { documents, error, refresh } = useDocuments(connected, corpusId);
   const [busy, setBusy] = useState(false);
@@ -41,7 +43,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
     setDescription(corpus?.description ?? "");
   }, [corpus?.description]);
 
-  if (!corpus) return null;
+  if (!corpus) return <p role="status" className="p-6">知识库正在读取或已不可用。<button onClick={onClose}>返回知识库列表</button></p>;
   const isActive = corpusIds.includes(corpus.id);
   const status =
     corpus.missing
@@ -228,7 +230,10 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
               corpusId={corpus.id}
               corpusName={corpus.rel_path}
               documents={documents}
-              onPreview={(document) => openPreview(document, null, corpus.id)}
+              onPreview={(document) => {
+                const next = new URLSearchParams(search); next.set("version", document.version);
+                void navigate(`/library/${encodeURIComponent(corpus.id)}/documents/${encodeURIComponent(document.doc_id)}?${next}`);
+              }}
               onChanged={() => refresh()}
               onRetryImport={() => runCorpusIngest(corpus.id)}
               connected={connected}

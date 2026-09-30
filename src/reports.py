@@ -301,7 +301,7 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     structure; variables already substituted by the caller.
     """
     template_id = params["template_id"]
-    # Focus guides writing but must not silently narrow the already confirmed document scope.
+    # Focus adds retrieval candidates inside the confirmed year/document scope; it is not a scope filter.
     query = params.get("domain", "")
     preflight = await asyncio.to_thread(preflight_report, knowledge, params)
     if params.get("scope_fingerprint") and params["scope_fingerprint"] != preflight["fingerprint"]:
@@ -358,7 +358,9 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
                               "summaries_in_model": len(visible_reports), "uncovered": 0,
                               "documents": coverage_docs}
     else:
-        result = await asyncio.to_thread(knowledge.retrieve, query, task_id="task4", allowed_doc_ids=eligible_ids)
+        result = await asyncio.to_thread(
+            knowledge.retrieve, query, task_id="task4", allowed_doc_ids=eligible_ids,
+            extra_queries=[params["focus"]] if params.get("focus") else None)
         if not result.matched:
             raise ValueError("没有匹配的报告，无法生成；可选择合格资料综述")
         try:
@@ -378,6 +380,7 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
         raise ValueError("所选报告在上下文预算内没有可读正文，请缩小资料范围")
     sources = [{"citation": index, "doc_id": report["doc"].doc_id,
                 "title": report["doc"].title, "version": report["doc"].version,
+                "corpus_id": params.get("corpus_id", ""),
                 "page": None,
                 "url": f"/api/documents/{report['doc'].doc_id}?version={report['doc'].version}"}
                for index, report in enumerate(visible_reports, 1)]
@@ -395,11 +398,13 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     brief = (f"写作目的：{params.get('purpose') or '研究进展梳理'}\n"
              f"目标读者：{params.get('audience') or '专业研究人员'}\n"
              f"预期篇幅：{params.get('length') or '标准篇幅'}\n"
-             f"已核定候选资料：{preflight['eligible_count']} 份；本次实际入模全文 {len(visible_reports)} 份。"
+             f"已核定候选资料：{preflight['eligible_count']} 份；本次实际入模资料 {len(visible_reports)} 份（正文可能按预算截断）。"
              "实际引用须来自下方编号原文；每个 [n] 指向一份文档，不代表检索片段编号。"
              "未入模候选不得推断为正文为空或无成果。")
     reports_text = "\n\n".join(
-        f"[{index}] {report['header']}\n<report>\n{report['markdown']}\n</report>"
+        f"[{index}] {report['header']}\n"
+        + ("正文因预算截断，不能把未显示内容说成原文缺失。\n" if report.get("truncated") else "")
+        + f"<report>\n{report['markdown']}\n</report>"
         for index, report in enumerate(visible_reports, 1))
     custom_instruction = ""
     if task_definition:

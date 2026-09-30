@@ -151,9 +151,13 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     corpusIdsRef.current = binding.corpusIds; setCorpusIds?.(binding.corpusIds);
     corpusConfirmedRef.current = binding.confirmed; setCorpusConfirmed?.(binding.confirmed);
     activeRef.current = next; setActive(next); localStorage.setItem("dox-agent-session", next);
-    setTurns(item ? restoreTurns(item.data.turns) : []);
-    setBranches(item?.data.branches ?? []);
-    if (item) setOptions(item.data.options);
+    // The caller may save the new scope before React effects run. Keep save refs
+    // on the selected session so it cannot inherit the previous conversation.
+    turnsRef.current = item ? restoreTurns(item.data.turns) : [];
+    branchesRef.current = item?.data.branches ?? [];
+    setTurns(turnsRef.current);
+    setBranches(branchesRef.current);
+    if (item) { optionsRef.current = item.data.options; setOptions(item.data.options); }
     else {
       const emptyOptions: Options = { allowed_doc_ids: null };
       optionsRef.current = emptyOptions; setOptions(emptyOptions);

@@ -7,6 +7,7 @@ const NAV_ITEMS: { key: NavKey; icon: IconName; label: string }[] = [
   { key: "library", icon: "library", label: "知识库" },
   { key: "tasks", icon: "tasks", label: "任务" },
   { key: "reports", icon: "reports", label: "成果" },
+  { key: "review", icon: "review", label: "形式审查" },
   { key: "prompts", icon: "checklist", label: "Prompt / Skill" },
 ];
 

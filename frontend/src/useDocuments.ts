@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback } from "react";
+import { useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
 import type { CorpusInfo } from "./api";
 
 export type DocumentInfo = {
@@ -9,57 +10,35 @@ export type DocumentInfo = {
   focus?: string;
 };
 
-/** Single owner of the document list. Other views consume it instead of fetching again.
- *  H3/H7: pass `corpus` to scope the list to one corpus; undefined = the default corpus. */
+export const documentsQuery = (corpus?: string) => ({
+  queryKey: ["library", corpus ?? "default", "documents"],
+  queryFn: async ({ signal }: { signal: AbortSignal }): Promise<DocumentInfo[]> => {
+    const response = await fetch(corpus ? `/api/documents?corpus=${encodeURIComponent(corpus)}` : "/api/documents", { signal });
+    if (!response.ok) throw new Error("无法读取文档列表");
+    return response.json();
+  },
+  staleTime: 15_000,
+});
+
 export function useDocuments(enabled: boolean, corpus?: string) {
-  const [documents, setDocuments] = useState<DocumentInfo[]>([]);
-  const [error, setError] = useState("");
-  const refresh = useCallback(async () => {
-    try {
-      const response = await fetch(corpus ? `/api/documents?corpus=${encodeURIComponent(corpus)}` : "/api/documents");
-      if (!response.ok) throw new Error("无法读取文档列表");
-      setDocuments(await response.json());
-      setError("");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "无法读取文档列表");
-    }
-  }, [corpus]);
-  useEffect(() => { if (enabled) void refresh(); }, [enabled, refresh]);
-  return { documents, error, refresh };
+  const client = useQueryClient();
+  const result = useQuery({ ...documentsQuery(corpus), enabled });
+  const refresh = useCallback(() => client.invalidateQueries({ queryKey: ["library", corpus ?? "default"] }), [client, corpus]);
+  return { documents: result.data ?? [], error: result.error?.message ?? "", refresh };
 }
 
-/** Aggregate the session's explicit retrieval set for document scoping. */
+/** Session scope shares the same corpus queries as library browsing. */
 export function useDocumentScope(enabled: boolean, corpusIds: string[], corpora: CorpusInfo[]) {
-  const [documents, setDocuments] = useState<DocumentInfo[]>([]);
-  const [error, setError] = useState("");
-  const requestSerial = useRef(0);
-  const key = corpusIds.join("\u0000");
+  const client = useQueryClient();
+  const results = useQueries({ queries: corpusIds.map((id) => ({ ...documentsQuery(id), enabled })) });
   const names = new Map(corpora.map((corpus) => [corpus.id, corpus.name]));
-  const nameKey = corpusIds.map((id) => `${id}:${names.get(id) ?? id}`).join("\u0000");
+  const error = results.find((result) => result.error)?.error?.message ?? "";
+  const documents = error ? [] : results.flatMap((result, index) => (result.data ?? []).map((doc) => ({
+    ...doc, corpus_id: corpusIds[index], corpus_name: names.get(corpusIds[index]) ?? corpusIds[index],
+  })));
+  const key = corpusIds.join("\u0000");
   const refresh = useCallback(async () => {
-    const serial = ++requestSerial.current;
-    if (!corpusIds.length) { setDocuments([]); setError(""); return; }
-    try {
-      const results = await Promise.all(corpusIds.map(async (corpusId) => {
-        const response = await fetch(`/api/documents?corpus=${encodeURIComponent(corpusId)}`);
-        if (!response.ok) throw new Error(`无法读取「${names.get(corpusId) ?? corpusId}」的文档列表`);
-        const items = await response.json() as DocumentInfo[];
-        return items.map((item) => ({ ...item, corpus_id: corpusId, corpus_name: names.get(corpusId) ?? corpusId }));
-      }));
-      if (serial === requestSerial.current) {
-        setDocuments(results.flat());
-        setError("");
-      }
-    } catch (e) {
-      if (serial === requestSerial.current) {
-        setDocuments([]);
-        setError(e instanceof Error ? e.message : "无法读取所选知识库的文档列表");
-      }
-    }
-  }, [key, nameKey]);
-  useEffect(() => {
-    if (enabled) void refresh();
-    return () => { requestSerial.current += 1; };
-  }, [enabled, refresh]);
+    await Promise.all(corpusIds.map((id) => client.invalidateQueries({ queryKey: ["library", id] })));
+  }, [client, key]);
   return { documents, error, refresh };
 }

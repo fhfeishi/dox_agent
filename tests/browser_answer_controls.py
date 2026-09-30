@@ -31,7 +31,13 @@ async def main():
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline-test"}))
             await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(json={"source_dir": "/tmp/c1/source", "files": [], "misplaced_files": []}))
             await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=[CORPUS]))
-            await page.route(re.compile(r".*/api/documents(\?.*)?$"), lambda r: r.fulfill(json=[]))
+            await page.route(re.compile(r".*/api/documents(\?.*)?$"), lambda r: r.fulfill(json=[{
+                "doc_id": "d1", "title": "引用资料", "version": "v1", "kind": "text",
+                "origin": "sample.md", "parser": "markdown", "pages": 1, "captured_at": "",
+            }]))
+            await page.route("**/api/documents/d1/markdown*", lambda r: r.fulfill(json={
+                "text": "# 引用正文", "doc_id": "d1", "version": "v1",
+            }))
             await page.route("**/api/workspace/*", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions/*", lambda r: r.fulfill(json={
                 **r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1],
@@ -54,6 +60,10 @@ async def main():
                             options.signal.addEventListener('abort', () => { timers.forEach(clearTimeout); controller.error(new DOMException('Aborted', 'AbortError')); }, {once: true});
                             send('status', {message: '测试研究中'});
                             send('token', {text: ''});
+                            send('sources', [1, 2].map(citation => ({
+                                citation, doc_id: 'd1', corpus_id: 'c1', version: 'v1',
+                                title: '引用资料', snippet: '引用正文', page: 1, url: ''
+                            })));
                             if (mode === 'cancel') return;
                             timers.push(setTimeout(() => send('token', {text}), 180));
                             timers.push(setTimeout(() => {
@@ -73,6 +83,11 @@ async def main():
             await expect(page.get_by_role("button", name="重新生成").last).to_be_enabled()
             article = page.locator("article").last
             await expect(article.get_by_text("答案版本1", exact=True)).to_be_visible()
+            await expect(article.get_by_role("button", name="1 引用资料 · 第1页", exact=True)).to_have_count(1)
+            await expect(article.get_by_text("引用来源 1 篇")).to_be_visible()
+            await article.get_by_role("button", name="1 引用资料 · 第1页", exact=True).click()
+            await expect(page.get_by_role("heading", name="引用正文", exact=True)).to_be_visible()
+            await page.get_by_role("button", name="关闭检查器", exact=True).click()
             await article.get_by_role("button", name="复制答案", exact=True).click()
             assert await page.evaluate("navigator.clipboard.readText()") == "**答案版本1**\n\n```python\nprint(1)\n```"
             await article.get_by_role("button", name="重新生成").click()

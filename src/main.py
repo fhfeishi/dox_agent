@@ -1658,8 +1658,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                               "message": "该知识库目录已缺失，请重新关联或解绑"})
                 selected.append((cid, info))
             selected_infos = selected
-            chat_knowledge = (knowledge_for(selected[0][1]) if len(selected) == 1
-                              else KnowledgeGroup([(cid, knowledge_for(info)) for cid, info in selected]))
+            chat_knowledge = KnowledgeGroup([(cid, knowledge_for(info)) for cid, info in selected])
             chat_preparation = "ready" if all(knowledge_for(info).current() for _, info in selected) else "empty"
             # A multi-corpus report intake must ask the user to name its domain;
             # the first selected corpus is only the browsing base, not an authority.
@@ -1683,6 +1682,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 chat_knowledge = knowledge_for(default_info)
                 if app.state.preparation == "ready":
                     chat_preparation = "ready" if chat_knowledge.current() else "empty"
+
+        # Single and multi-library requests share the same source identity contract.
+        # A bare Knowledge loses corpus_id, making persisted citations open the default library.
+        if selected_infos and not isinstance(chat_knowledge, KnowledgeGroup):
+            chat_knowledge = KnowledgeGroup([(cid, knowledge_for(info)) for cid, info in selected_infos])
 
         web_snapshots = []
         if (payload.web_snapshot_ids and task_definition and task_definition.get("skill_snapshot")
@@ -1787,7 +1791,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                             "version": source.get("version", ""), "title": source.get("title", "")}
                 citation = {"doc_id": source.get("doc_id", ""), "corpus_id": source.get("corpus_id", ""),
                             "version": source.get("version", ""), "title": source.get("title", ""),
-                            "page": source.get("page")}
+                            "page": source.get("page"), "citation": source.get("citation"),
+                            "locations": source.get("locations", [])}
                 digest = (frozen_knowledge.source_sha256(citation["doc_id"], citation["corpus_id"])
                           if frozen_knowledge is not None else "")
                 if digest:
@@ -2282,6 +2287,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 raise HTTPException(404, "成果不存在") from exc
             if version not in (None, 1):
                 raise HTTPException(404, "成果版本不存在")
+            # A report link resolves to its persisted artifact, including later user edits.
+            saved = await asyncio.to_thread(app.state.artifacts.report_artifact, report.get("run_id", ""))
+            if saved:
+                return await resolve_artifact(saved["artifact_id"], version)
             available = await asyncio.to_thread(app.state.runs.existing_ids, [report.get("run_id", "")])
             visible = (report.get("params") or {}).get("visible_sources") or []
             return {**artifact_from_report(report), "version": 1,
@@ -2336,6 +2345,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(422, "此入口只能保存问答运行的回答快照")
         if snapshot.get("status") != "completed":
             raise HTTPException(422, "运行尚未完成，不能保存原始回答快照")
+        if snapshot.get("metrics", {}).get("report_brief") is not None:
+            raise HTTPException(422, "报告需求说明不是报告正文，请生成报告后打开报告成果")
         expected_hash = snapshot.get("answer_sha256")
         if not expected_hash:
             raise HTTPException(422, "该运行没有可核验的输出；旧运行不能保存为原始回答快照")
@@ -2513,7 +2524,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         # Only known application routes use the SPA entry; missing APIs/assets stay 404.
         page_route = re.fullmatch(
             r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
-            r"|chat|tasks|artifacts|prompts)/?", asset_path)
+            r"|review(?:/(?:guidelines|evidence|runs/[^/.]+))?|chat|tasks|artifacts|prompts)/?", asset_path)
         if page_route:
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():

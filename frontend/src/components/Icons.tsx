@@ -5,6 +5,7 @@ export type IconName =
   | "library"
   | "tasks"
   | "reports"
+  | "review"
   | "panel"
   | "settings"
   | "plus"
@@ -55,6 +56,13 @@ const PATHS: Record<IconName, ReactNode> = {
     <>
       <path d="M13.5 3.5H7.2A1.7 1.7 0 005.5 5.2v13.6a1.7 1.7 0 001.7 1.7h9.6a1.7 1.7 0 001.7-1.7V8.5l-5-5z" />
       <path d="M13.5 3.5v5h5" />
+    </>
+  ),
+  review: (
+    <>
+      <path d="M13.5 3.5H7.2A1.7 1.7 0 005.5 5.2v13.6a1.7 1.7 0 001.7 1.7h9.6a1.7 1.7 0 001.7-1.7V8.5l-5-5z" />
+      <path d="M13.5 3.5v5h5" />
+      <path d="M9.2 14.4l1.9 1.9 3.7-4.2" />
     </>
   ),
   panel: (

@@ -85,8 +85,14 @@ def test_changed_pdf_does_not_publish_old_parse_cache(tmp_path):
     assert import_defaults(store, settings, root=root, parsed_root=parsed)["added"] == 1
     pdf.write_bytes(b"new body")
     assert import_defaults(store, settings, root=root, parsed_root=parsed)["updated"] == 1
-    assert store.search("old body") == []
-    assert store.search("new body")
+    # BM25 may match the shared word "body"; verify the published body/version,
+    # rather than assuming the query has exact-phrase or AND semantics.
+    current = store.current()[0]
+    assert "old body" not in store.read_markdown(current["doc_id"])
+    assert "new body" in store.read_markdown(current["doc_id"])
+    hits = store.search("new body")
+    assert hits and all(hit["version"] == current["version"] for hit in hits)
+    assert all("old body" not in hit["snippet"] for hit in hits)
 
 
 def test_parse_file_reports_missing_mineru_command(tmp_path):

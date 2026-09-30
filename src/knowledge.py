@@ -468,7 +468,7 @@ class Knowledge:
 class KnowledgeGroup:
     """KB-4a: a retrieval set of corpora; delegates retrieval/reading across members.
 
-    Used only when a session selects more than one corpus; single-corpus behavior is unchanged.
+    Carries corpus identity for every chat, including single-corpus requests.
     """
 
     def __init__(self, members: list[tuple[str, Knowledge]]):

@@ -11,8 +11,8 @@
 约定与边界：
 - 默认参数多为 uncalibrated（见 .logsdev/ITERATION.md §7.7）；只校准 4 项。
 - 本轮不含 dense / rerank / MMR / LLM 多查询（默认延后）；BM25-only 即可验收。
-- 本模块尚未接线：L1 存储分离、L3 持久化、L5 装配、L6 图替换未落地，
-  因此只提供可执行、可单测的检索核心，图与存储仍走既有路径。
+- Knowledge 持久化块经本模块检索，供对话图与报告生成装配正文；
+  引用按文档编号，匹配片段位置保存在 locations。
 """
 
 from __future__ import annotations
@@ -21,6 +21,7 @@ import hashlib
 import re
 from dataclasses import dataclass, field, replace
 from pathlib import Path
+from urllib.parse import urlencode
 
 from rank_bm25 import BM25Plus
 
@@ -37,6 +38,7 @@ _QUERY_STOP = frozenset({
     "或者", "因为", "所以", "进行", "相关", "情况", "问题", "方面", "领域", "一个", "一种", "当前",
     "目前", "主要", "可能", "需要", "通过", "对于", "关于", "基于", "研究", "分析", "报告", "项目",
     "成果", "进展", "趋势", "介绍", "说明", "总结",
+    "本库", "整体", "走向", "分布", "归类", "类型", "置信度", "推断",
 })
 
 
@@ -45,7 +47,6 @@ class RetrievalConfig:
     """集中检索参数（D-L6）。``~`` 标记未校准，须由评测校准后才能当结论使用。"""
 
     report_recall_m: int = 40  # ~ Layer A 报告级召回数（报告数少时近乎全覆盖）
-    kb_chunk_topk: int = 50  # ~ Layer B 每查询每报告候选 chunk 数
     per_doc_cand: int = 4  # 每报告保留的候选 chunk
     per_doc_top_m: int = 3  # ~ 报告评分取自身前 m 个 chunk
     rrf_k: int = 60
@@ -114,6 +115,7 @@ class RetrievalResult:
     reason: str = ""  # "" | "no_reports" | "direct"
     partial: bool = False  # 命中但不足该任务的 MIN_REPORTS（D-L4 coverage_partial 场景）
     candidates: int = 0
+    year_window: tuple[int, int] | None = None
     specific: tuple[str, ...] = ()  # D-L10 净化后的实词，供 L6 覆盖缺口判定
 
 
@@ -258,6 +260,10 @@ def _query_topics(query: str, docs: list[ReportDoc], *, min_len: int = 2, max_le
     topics: list[str] = []
     i, n = 0, len(query)
     while i < n:
+        stop = max((word for word in _QUERY_STOP if query.startswith(word, i)), key=len, default="")
+        if stop:
+            i += len(stop)
+            continue
         ch = query[i]
         if ch.isascii() and (ch.isalnum() or ch == "_"):
             j = i
@@ -276,7 +282,7 @@ def _query_topics(query: str, docs: list[ReportDoc], *, min_len: int = 2, max_le
                 break
         if best:
             raw = best
-            while len(best) > min_len and best[-1] in _TRAILING_AUX:
+            while best and best[-1] in _TRAILING_AUX:
                 best = best[:-1]
             if len(best) >= min_len and best not in _QUERY_STOP:
                 topics.append(best)
@@ -298,8 +304,15 @@ def select_reports(
 ) -> RetrievalResult:
     """两级检索主路径：报告级召回 → 报告内 chunk 精排 → 报告评分 → 去重 → 选报告。"""
     config = config or RetrievalConfig()
-    terms = _query_terms(query)
+    # Explicit project years constrain candidates before ranking; they are not topic terms.
+    period = re.search(r"(?<!\d)((?:19|20)\d{2})\s*[—–~～至到-]\s*((?:19|20)\d{2})(?!\d)", query)
+    search_query = query[:period.start()] + query[period.end():] if period else query
+    terms = _query_terms(search_query)
     docs = [doc for doc in reports if allowed_doc_ids is None or doc.doc_id in allowed_doc_ids]
+    if period:
+        start, end = map(int, period.groups())
+        docs = [doc for doc in docs if doc.year_from is not None and doc.year_to is not None
+                and doc.year_from <= end and doc.year_to >= start]
     if not terms:
         return RetrievalResult(reports=[], matched=False, reason="direct")
     if not docs:
@@ -316,11 +329,15 @@ def select_reports(
     # A weak title match must not hide a document whose evidence occurs only in its body.
     # Keep every lexical body candidate until the shared chunk ranking; an early top-k here
     # would recreate the same false negative at a different layer.
+    # Tokenize each current chunk once; reuse for body recall and BM25 ranking.
+    current_tokens = {chunk.chunk_id: tokens(chunk.text) or ["_empty_"]
+                      for doc in docs for chunk in chunks_by_doc.get(doc.doc_id, [])
+                      if chunk.version == doc.version}
     recalled_ids = {doc.doc_id for doc in recalled}
     query_terms = set(layer_a_terms)
     for doc in docs:
         if doc.doc_id not in recalled_ids and any(
-            chunk.version == doc.version and query_terms.intersection(tokens(chunk.text))
+            chunk.version == doc.version and query_terms.intersection(current_tokens[chunk.chunk_id])
             for chunk in chunks_by_doc.get(doc.doc_id, [])
         ):
             recalled.append(doc)
@@ -343,7 +360,7 @@ def select_reports(
     fused: dict[str, float] = {}
     pool_tokens: dict[str, list[str]] = {}
     if pool:
-        pool_tokens = {chunk.chunk_id: (tokens(chunk.text) or ["_empty_"]) for chunk in pool}
+        pool_tokens = {chunk.chunk_id: current_tokens[chunk.chunk_id] for chunk in pool}
         bm25 = BM25Plus([pool_tokens[chunk.chunk_id] for chunk in pool])
         for index, query_terms in enumerate(queries):
             weight = config.question_weight if index == 0 else config.keyword_weight
@@ -352,7 +369,9 @@ def select_reports(
             ranked = sorted(range(len(pool)), key=lambda i: (-values[i], i))
             # BM25Plus adds a delta, so non-matching chunks still score > 0; require real
             # token overlap (planner: no arbitrary 2-gram intersection).
-            hits = [i for i in ranked if query_set & set(pool_tokens[pool[i].chunk_id])][: config.kb_chunk_topk]
+            # A long report must not consume the global cutoff before other reports compete.
+            # Retain each report's best evidence; the final report limit bounds output.
+            hits = [i for i in ranked if query_set & set(pool_tokens[pool[i].chunk_id])]
             for rank, position in enumerate(hits, 1):
                 chunk_id = pool[position].chunk_id
                 fused[chunk_id] = fused.get(chunk_id, 0.0) + weight / (config.rrf_k + rank)
@@ -378,8 +397,8 @@ def select_reports(
                if count / total >= config.generic_df_ratio}
     # 候选集中 DF=0 的词项（bigram 分词跨词边界产生的垃圾词，或库中不存在的主题词）
     # 在任何候选文档里都不可回答，计入覆盖率分母会系统性压低 cover 并造成假无匹配。
-    present = {token for token in terms if document_frequency.get(token, 0) > 0}
-    topics = _query_topics(query, docs)
+    present = {token for token in layer_a_terms if document_frequency.get(token, 0) > 0}
+    topics = _query_topics(" ".join([search_query, *(extra_queries or [])]), docs)
     if topics:
         # 主题级判定：泛词与覆盖率都用完整主题词，主题的 DF 按「全部 bigram 同现」计。
         topic_freq = {
@@ -392,7 +411,7 @@ def select_reports(
         if not specific and not any(topic_freq.values()):
             return RetrievalResult(reports=[], matched=False, reason="no_reports", specific=())
     else:
-        specific = [token for token in terms if token not in generic and token in present]
+        specific = [token for token in layer_a_terms if token not in generic and token in present]
         if not specific and not present:
             # 全部实词在库中 DF=0：主题确实不存在，保持诚实的无匹配判定。
             return RetrievalResult(reports=[], matched=False, reason="no_reports", specific=())
@@ -449,8 +468,22 @@ def select_reports(
         kept.append(SelectedReport(doc=doc, score=score, term_cover=cover,
                                    chunks=[chunks_by_id[cid] for cid in ids]))
     limit = config.max_reports.get(task_id, config.max_reports.get("task1", 3))
-    return RetrievalResult(reports=kept[:limit], matched=True, partial=partial, candidates=len(scored),
-                           specific=tuple(specific))
+    # Select complementary evidence for multi-topic questions, instead of spending
+    # the entire report budget on several documents covering the same topic.
+    chosen: list[SelectedReport] = []
+    uncovered = set(specific)
+    def gain(item):
+        title_terms = set(tokens(item.doc.title))
+        return sum(set(tokens(topic)) <= title_terms for topic in uncovered), item.score
+
+    while kept and len(chosen) < limit:
+        best = max(kept, key=gain)
+        chosen.append(best)
+        kept.remove(best)
+        title_terms = set(tokens(best.doc.title))
+        uncovered -= {topic for topic in uncovered if set(tokens(topic)) <= title_terms}
+    return RetrievalResult(reports=chosen, matched=True, partial=partial, candidates=len(scored),
+                           year_window=tuple(map(int, period.groups())) if period else None, specific=tuple(specific))
 
 
 def estimate_tokens(text: str) -> int:
@@ -491,7 +524,16 @@ def chunk_source(chunk: Chunk, citation: int, corpus_id: str = "") -> dict:
     return {"citation": citation, "chunk_id": chunk.chunk_id, "doc_id": chunk.doc_id,
             "corpus_id": corpus_id, "version": chunk.version, "title": chunk.title, "page": chunk.page,
             "heading": chunk.heading, "snippet": chunk.text[:300],
-            "url": f"/api/documents/{chunk.doc_id}?page={chunk.page}&version={chunk.version}"}
+            "url": f"/api/documents/{chunk.doc_id}?" + urlencode({"page": chunk.page, "version": chunk.version, "corpus": corpus_id})}
+
+
+def report_source(report: SelectedReport, citation: int) -> dict:
+    """One document citation, retaining every matched location for evidence navigation."""
+    source = chunk_source(report.chunks[0], citation, report.corpus_id)
+    source["locations"] = [{"chunk_id": chunk.chunk_id, "page": chunk.page,
+                            "heading": chunk.heading, "snippet": chunk.text[:300]}
+                           for chunk in report.chunks]
+    return source
 
 
 def _clip_markdown(text: str, budget_tokens: int) -> str:
@@ -525,9 +567,10 @@ def assemble_reports(selected: list[SelectedReport], read_markdown, *, total_tok
     sources: list[dict] = []
     truncated: list[str] = []
     used = 0
-    for report in sorted(selected, key=lambda item: item.score, reverse=True):
+    ordered = sorted(selected, key=lambda item: item.score, reverse=True)
+    for index, report in enumerate(ordered):
         text = read_markdown(report.doc.doc_id, report.doc.version) or ""
-        allowance = min(report_tokens, total_tokens - used)
+        allowance = min(report_tokens, (total_tokens - used) // (len(ordered) - index))
         if not text.strip() or allowance <= 0:
             truncated.append(report.doc.title)
             continue
@@ -538,8 +581,10 @@ def assemble_reports(selected: list[SelectedReport], read_markdown, *, total_tok
         used += estimate_tokens(clipped)
         reports.append({"doc": report.doc, "header": report_header(report.doc), "markdown": clipped,
                         "chunks": report.chunks, "truncated": clipped_short})
-        for chunk in report.chunks:
-            sources.append(chunk_source(chunk, len(sources) + 1, report.corpus_id))
+        if report.chunks:
+            source = report_source(report, len(sources) + 1)
+            sources.append(source)
+            reports[-1]["header"] += f" [{source['citation']}]"
     return AssembledContext(reports=reports, sources=sources, truncated=truncated, tokens=used)
 
 
@@ -583,4 +628,5 @@ def retrieve_multi(sources, query: str, *, task_id: str = "task1", allowed_doc_i
     limit = config.max_reports.get(task_id, config.max_reports.get("task1", 3))
     partial = len(kept) < minimum or any(result.partial for _, result in results)
     return RetrievalResult(reports=kept[:limit], matched=True, partial=partial,
+                           year_window=results[0][1].year_window,
                            candidates=sum(result.candidates for _, result in results), specific=specific)

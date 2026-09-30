@@ -1,0 +1,235 @@
+{
+  "doc_id": "919631a6abbdc9e9755d",
+  "version": "12a56ac9fb7493ed2168",
+  "source_hash": "95e91c588943ce16f83af4fa46eab9593139bf98e20b543f640157864d2036f3",
+  "schema_version": 1,
+  "prompt_version": 1,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T12:28:05.098009+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cb9c8185b939",
+          "name": "低剂量CT肺癌筛查结节分级",
+          "desc": "Lung RADS是低剂量CT肺癌筛查的分级诊断及管理标准，需提高III类及以上结节良恶性与浸润性评估效能。",
+          "evidence": [
+            {
+              "quote": "Lung RADS是低剂量CT（LDCT）肺癌筛查的分级诊断及管理标准",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 650,
+                "end_char": 684
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ]
+        },
+        {
+          "id": "item-2eb0a3bef731",
+          "name": "真实世界肺结节诊断能力提升",
+          "desc": "改善影像组学泛化能力低对真实世界肺结节诊断能力的影响，开辟医工结合改进Lung RADS的新途径。",
+          "evidence": [
+            {
+              "quote": "并为改进Lung RADS标准开辟医工结合新途径",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1020,
+                "end_char": 1043
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8f4576bfab50",
+          "name": "组学特征高可变性致泛化能力低",
+          "desc": "受CT数据组学特征高可变性影响，影像组学泛化能力低并严重影响真实世界肺结节诊断能力。",
+          "evidence": [
+            {
+              "quote": "但因受到CT数据组学特征高可变性影响，致泛化能力低并严重影响其“真实世界”肺结节的诊断能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 759,
+                "end_char": 803
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ]
+        },
+        {
+          "id": "item-74cc90fcdcda",
+          "name": "多中心体素差异导致批次效应",
+          "desc": "体素大小等扫描与重建参数差异造成特征批次效应，影响多中心研究的可重复性。",
+          "evidence": [
+            {
+              "quote": "针对体素大小差异导致的特征批次效应，引入ComBat算法进行校正",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2769,
+                "end_char": 2800
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1cae0f286a44",
+          "name": "ComBat拟合与端到端特征迁移",
+          "desc": "建立全维度ComBat拟合模型及基于深度学习的端到端特征迁移学习方法，并与传统方法比较优化可变性的能力。",
+          "evidence": [
+            {
+              "quote": "建立全维度ComBat拟合模型及基于深度学习的端对端特征迁移学习方法，并与传统方法比较两者优化影像组学特征可变性能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 882,
+                "end_char": 939
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ]
+        },
+        {
+          "id": "item-df286719719e",
+          "name": "体模与临床CT重复性分析",
+          "desc": "结合体模及临床CT数据分析不同设备、扫描及重建参数下肺结节CT组学特征的重复性与再现性影响因素及变化规律。",
+          "evidence": [
+            {
+              "quote": "本研究拟通过体模及临床CT数据相结合的方法分析不同设备与制造商、不同扫描及重建参数肺结节CT组学特征的重复性及再现性影响因素及变化规律",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 805,
+                "end_char": 871
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a9a7762186f8",
+          "name": "ComBat将再现性特征比例提升至90.96%",
+          "desc": "经体模与临床数据验证，ComBat算法将临床数据中再现性优异特征比例从32.31%提升至90.96%。",
+          "evidence": [
+            {
+              "quote": "该算法将临床数据中再现性优异的特征比例从32.31%提升至90.96%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2813,
+                "end_char": 2847
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-ca33f070f0b4",
+          "name": "筛选466个稳定组学特征",
+          "desc": "明确层厚、视野、低剂量、CT间扫描为关键变异源，筛选出466个稳定组学特征，其模型外部验证性能显著优于预筛选模型。",
+          "evidence": [
+            {
+              "quote": "明确了层厚、视野、低剂量、CT间扫描为关键变异源，并筛选出466个稳定组学特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2912,
+                "end_char": 2950
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ],
+          "status": "已取得"
+        },
+        {
+          "id": "item-c64e1d1a3c52",
+          "name": "临床融合模型外部验证AUC 0.785",
+          "desc": "将稳定特征子集与Lung-RADS分级融合构建联合诊断模型，在高度异质性外部验证集上AUC为0.785。",
+          "evidence": [
+            {
+              "quote": "在良恶性肺结节鉴别中，该模型在高度异质性外部验证集上的效能（AUC=0.785）显著超越单一方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3095,
+                "end_char": 3142
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-cb9c8185b939"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8f4576bfab50"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-8f4576bfab50"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-1cae0f286a44"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1cae0f286a44"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-a9a7762186f8"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-df286719719e"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-ca33f070f0b4"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

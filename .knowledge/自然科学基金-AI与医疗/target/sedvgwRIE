@@ -1,0 +1,142 @@
+{
+  "doc_id": "4d4c2e48d53122c3dada",
+  "version": "99b530ec4c8b1ca2f1ee",
+  "source_hash": "81d89fa11c683c7629172ea0cec6d0c849624e9b7ae96dd4fae2e2bd86a470ad",
+  "schema_version": 1,
+  "prompt_version": 1,
+  "model": "session-extract",
+  "generated_at": "2026-09-28T14:41:33.539238+00:00",
+  "process": {
+    "status": "已完成",
+    "coverage": {
+      "processed": 1,
+      "total": 1
+    }
+  },
+  "facets": [
+    {
+      "key": "场景",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0ef31074dd50",
+          "name": "三阴性乳腺癌关键分子可视化与诊疗",
+          "desc": "面向三阴性乳腺癌精准分型治疗，通过影像和病理组学融合实现关键分子可视化并构建AI辅助决策系统。",
+          "evidence": [
+            {
+              "quote": "三阴性乳腺癌恶性程度高，缺乏针对性治疗手段，预后较差",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e7c25e8168e03a753a60256da061060554388b27"
+              },
+              "version": "99b530ec4c8b1ca2f1ee"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e6dec53ea333",
+          "name": "关键调控分子可视化可提供新诊疗策略",
+          "desc": "明确三阴性乳腺癌侵袭、转移和治疗抵抗等各演进阶段的关键调控分子并实现其可视化，有望提供新的诊疗策略。",
+          "evidence": [
+            {
+              "quote": "明确三阴性乳腺癌侵袭、转移和治疗抵抗等各演进阶段的关键调控分子并实现其可视化有望提供新的诊疗策略",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e7c25e8168e03a753a60256da061060554388b27"
+              },
+              "version": "99b530ec4c8b1ca2f1ee"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c33c7ea64028",
+          "name": "病理-影像融合AI模型与多模态决策系统",
+          "desc": "完成病理-影像融合人工智能模型构建实现关键分子可视化，并构建多组学多模态融合预测模型与一站式人工智能辅助决策系统。",
+          "evidence": [
+            {
+              "quote": "基于影像和病理多模态信息融合实现其可视化，并研发人工智能辅助的诊疗决策系统",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e7c25e8168e03a753a60256da061060554388b27"
+              },
+              "version": "99b530ec4c8b1ca2f1ee"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-182ac4482404",
+          "name": "AI可视化治疗靶点准确率超85%",
+          "desc": "利用人工智能系统可视化治疗靶点，显著缩短检测时间、降低检测成本，准确率超85%；复旦分型指导精准治疗显著提升客观缓解率并延长无进展生存期，系统已推广至全国100余家医院。",
+          "evidence": [
+            {
+              "quote": "利用人工智能系统可视化治疗靶点，显著缩短检测时间、降低检测成本，准确率超85%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "1380662793d9c076cf7a1558e39d9bae2e9134a6"
+              },
+              "version": "99b530ec4c8b1ca2f1ee"
+            }
+          ],
+          "status": "已取得"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0ef31074dd50"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e6dec53ea333"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "问题",
+        "item_id": "item-e6dec53ea333"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c33c7ea64028"
+      },
+      "basis": "原文明示"
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c33c7ea64028"
+      },
+      "to": {
+        "dimension": "成果",
+        "item_id": "item-182ac4482404"
+      },
+      "basis": "原文明示"
+    }
+  ]
+}

@@ -549,3 +549,9 @@
 - **采用：后端合并进单服务，API 统一挂 `/api/review/*`。** demo 后端移植为 `src/review/`；其 `/api/documents`、`/api/runs` 与既有接口语义冲突，必须加前缀。数据存 `$STATE_DIR/review/` 独立 SQLite（objects 单表）；模型默认复用 `MODEL_*`，`REVIEW_MODEL_*` 可覆盖，前置实测 JSON 输出兼容性；前端先按现有壳实现，与 PROJECT §11 前端重构正交；导出保留独立 python-docx 排版，不复用 G10e 管线。
 - **已知缺口**：动态清单 `method=calculation` 检查项无计算工具（恒 pending），列入 W8-C 必做。
 - **影响**：PROJECT §1 范围内与 §2 末节、ITERATION §16.42；详细分析与规划见 `.logsdev/archive/grant-review/`（01–04）。
+
+## 2026-09-30 交互与成果收敛
+
+来源：用户接受本轮设计审核并授权实施。对话 corpus_ids 是检索范围；浏览与上传不改变它；分组仅为单层单归属的展示关系。复用现有保存队列及 revision，失效范围通过一次有效替换修复。
+
+报告正文统一由 ArtifactStore 管理，旧报告地址仅解析身份；删除 ReportStore 运行时正文、列表合并和自动回补。成果删除保留七天，版本与图片一起受生命周期约束，永久删除保留最小身份标记；模板不进入成果回收站。生成中断必须收口为可处理状态。历史数据迁移须停写、成组备份和校验，不在读取列表时隐式迁移。

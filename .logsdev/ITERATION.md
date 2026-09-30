@@ -2464,3 +2464,53 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 **仍待实施/验收**：P2 第二种真实提取目的与 Profile、P3 技术文档结构导航、四维质量标注集及门槛、形式审查计算工具接入与完整浏览器链。当前检索样本分布不是全库统计。
 
 **分支与工作树**：维护 main；当前只有主工作树，无应用托管的其他 worktree。发布采用普通快进推送，不改写历史。源码与工程记录一并交付，运行数据库、环境密钥和构建产物不新增入库。
+
+
+### 16.47 成果管理与回收站实施指南（2026-09-30，文档完成，代码未实施）
+
+已核对 ArtifactStore、ReportStore、历史列表合并/回补、会话嵌入正文、模板依赖和共享图片。实施方案及按批次验收集中于 [成果管理与回收站实施指南](成果管理与回收站实施指南.md)，不在这里重复契约。
+
+核心前置是收敛成果正文来源，避免删除后通过历史报告或会话回读；首版采用 7 天回收期、还原和单项永久删除，运行中的后端负责期限检查与清理。模板整合管理入口与目录，保持现有固定版本/归档规则。
+
+本轮只编辑规划文档；没有业务代码、目录数据迁移、删除或自动清理，没有重复运行代码测试。用户及其他规划中的 query.md 和已有 PROJECT.md 改动保留。
+
+### 16.48 交互、分组与成果生命周期（2026-09-30，实施中）
+
+用户已授权按本轮审核实施。记录职责沿用 PROJECT / ITERATION / DECISIONS，对应用户所称 PROJECTION / INTERACTION / DECISION。
+
+基线已有未提交 PROJECT、ITERATION、query、两份方案及 launch.sh 权限变化，保留。顺序：①对话范围/上传/保存状态与导航；②分组持久化及界面；③成果存储迁移、生命周期与回收界面；④受影响旅程与集成验证。完成条件沿用方案，不因实施缩减。
+
+最小检查覆盖：A+B 对话浏览/上传 C 后保持范围；保存失败与空限定阻断、旧范围替换；分组移动/解散/重开不改变资料；报告生成中断恢复、删除/还原/到期、旧地址防回补、共享图片及回收版本预览。复用现有浏览器/API 旅程，隔离临时数据，不在真实资料上试删除。当前尚未执行检查。
+
+### 16.49 成果生命周期集成验证与历史迁移完成（2026-09-30）
+
+按 §16.48 顺序完成批次③④的验证收口。批次①②（范围保存/上传隔离/分组）与成果旅程共用同一浏览器链，一并运行。
+
+**历史迁移**：由用户在本机执行 `python -m src.artifact_migration --state-dir .knowledge/.state --backup-dir ~/dox_state_backup_20260930 --service-stopped`（备份含 backup.complete 标记）。迁移后只读核对：
+
+- 新旧成果库同为 10 成果 / 10 版本 / 8 图片；`current_version` 指针零错位。
+- 8 份历史报告全部在新成果库建立 `report_id` 关联；31 个会话记录无内嵌报告正文，仅保留 `report_id` 引用（1 个会话）。
+- `artifacts/migration.complete` 已写入，启动闸门放行；残留空目录 `.migration-stage` 已删除。
+
+**检查结果（全部在本轮代码上执行）**：
+
+| 检查 | 结果 |
+| --- | --- |
+| 后端全量 pytest | 220 passed（40.06s），含生命周期并发/到期/共享图片用例 |
+| 前端 node --test | 36 passed |
+| tsc --noEmit + vite build | 通过，最大 JS 包 465.65 kB |
+| launch.sh 真实启动 | /api/health ok；成果列表返回 revision/trashed_at/purge_after；view=trash 正常；旧 /api/reports/{id} 映射到同一成果 |
+| tests/browser_artifacts_live.py | PASS：保存→编辑版本→移入回收站→只读预览→还原→成组备份恢复重启；另验第二快照「取消确认不删除→确认彻底删除→API 410 purged→原聊天回答仍显示」 |
+
+**测试修正**：`browser_artifacts_live.py` 上传落盘断言由即时 assert 改为 10 秒轮询——上传队列先本地回显文件名、POST 落盘晚于回显，原断言是竞态（两次运行一成一败）；另补彻底删除浏览器段。
+
+**验收补齐（对照指南 §13 复核后的补充断言）**：还原后同 ID 继续 `POST versions` 编辑与 `GET export` 导出成功；回收期内同 run_id 重发报告请求被拒（410，lifecycle=trashed 且不重置期限）；purge 后同 run_id 重发 410 不可回补、新 run_id 仍可正常生成；迁移测试补无 run_id 历史报告分支（确定性 ID `report-<id>`、正文保留、generated_version=1）。补后全量 pytest 仍 220 passed；指南 §13 行 2/3 与无 run_id 迁移行从「实现存在但无断言」变为「有可定位证据」。
+
+**边界**：浏览器旅程用模型替身，不证明真实模型报告质量（沿用 demo-tasks-20260930 验收）；真实 7 天到期由 `test_report_trash_expiry_shared_images_and_restart` 注入时间覆盖，未等待真实期限。改动仍全部未提交，提交时机由用户决定。
+
+**文档同步**：README（成果能力行、目录布局、备份口径、升级迁移提示、接口行）；实施指南状态行改为已实施并指向本节；PROJECT §12 从「待实施」改为「已实施」。
+
+**全量浏览器旅程清点（2026-09-30 补充）**：以 committed 基线 `4f49593`（临时 worktree 构建）对比分类 17 个浏览器脚本后，修复 3 个本批引入的回归并重跑通过——`browser_status_power`、`browser_export`（侧栏新增"设置"入口后导航栏按钮选择器需限定 `navigation`）、`browser_target_facets`（"当前对话：…"文字按交互方案 §3.1 删除，改为断言对话库 chip）。清点后当前树状态：
+
+- 通过（9，本轮实测）：artifacts_live、custom_tasks_live、figures_live、prompt_skills_live（需 `python -m tests.browser_prompt_skills_live`，其 `from tests.…` 导入不支持直接文件执行）、refresh、answer_controls、status_power、export、target_facets。
+- 基线同样失败、属预存问题（10，已在基线 worktree 验证）：`browser_smoke`、`browser_ui_shell`、`browser_library`、`browser_legacy_scope`、`browser_session_branches`、`browser_tasks`（离线脚本，UI 演进后的断言漂移）、`browser_web_live`（等待发送按钮超时）、`browser_fund_preview`、`browser_document_preview`、`browser_markdown_preview`（元素不可见）。这些预存失败早于本批、不阻塞本批交付，列入待办由用户决定是否修复。

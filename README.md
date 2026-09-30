@@ -38,6 +38,8 @@ bash launch.sh
 
 从旧版本升级时，若 `.state` 下仍有旧的 `artifacts.sqlite3`、`reports.sqlite3` 或 `custom_templates.sqlite3`，服务会拒绝启动并提示迁移：停止服务后运行 `python -m src.artifact_migration --state-dir <STATE_DIR> --backup-dir <独立备份目录> --service-stopped` 完成一次性离线迁移（成组备份、迁移历史报告与会话引用、模板换路径）。
 
+uv 不读取 pip 的镜像配置。首次创建虚拟环境或安装依赖时需要 uv 能访问 PyPI；受限网络可为本此调用指定镜像，如 `UV_DEFAULT_INDEX=https://pypi.tuna.tsinghua.edu.cn/simple bash launch.sh`。新 clone 的语料库只有资料与解析缓存、没有检索数据库，启动后在库详情执行一次导入即可建库；官方文档自动导入需要网络。
+
 修改前端代码后需重新构建：
 
 ~~~bash

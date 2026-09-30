@@ -2514,3 +2514,9 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 
 - 通过（9，本轮实测）：artifacts_live、custom_tasks_live、figures_live、prompt_skills_live（需 `python -m tests.browser_prompt_skills_live`，其 `from tests.…` 导入不支持直接文件执行）、refresh、answer_controls、status_power、export、target_facets。
 - 基线同样失败、属预存问题（10，已在基线 worktree 验证）：`browser_smoke`、`browser_ui_shell`、`browser_library`、`browser_legacy_scope`、`browser_session_branches`、`browser_tasks`（离线脚本，UI 演进后的断言漂移）、`browser_web_live`（等待发送按钮超时）、`browser_fund_preview`、`browser_document_preview`、`browser_markdown_preview`（元素不可见）。这些预存失败早于本批、不阻塞本批交付，列入待办由用户决定是否修复。
+
+**Clone 就绪验证（2026-09-30，用户授权提交后执行）**：全部改动分三笔提交——`0487f22`（后端生命周期/分组/迁移 + 测试 + .gitignore + launch.cmd）、`fc2b068`（前端交互语义/分组/回收站视图）、`75b10bf`（文档记录）。提交前恢复被注释的 `.knowledge/*` 忽略规则（注释会使 11 个库的 datadb/vectordb 与 .state 运行数据暴露为未跟踪、存在误暂存风险；保留无害的 `.vscode/` 新增）；`launch.cmd`（Windows 启动器）入库；launch.sh 无内容差异（模式漂移是 Windows 侧 git 视图假象，WSL 侧本为 755）。
+
+以 committed 状态做真实 clone 测试（本地 clone 等价远端内容，PORT=8917）：launch.sh 全链启动成功——venv 创建、web 依赖安装、npm ci + 前端构建、uvicorn 启动；/api/health ok、UI HTML 正常服务、/api/artifacts 返回空列表（新布局，无迁移闸门）；对默认库执行导入后 docs 0→5、preparation ready（source 已入库，复用 tracked 的 mineru 解析缓存，未重跑解析）；以主仓库 venv 对 clone 代码跑全量 pytest 220 passed（clone 自身 dev 组安装因网络受阻改此路径，web 组离线缓存安装成功）。
+
+环境限制（如实记录）：uv 不读取 pip.conf，`uv venv --seed` 与依赖安装需 uv 可达 PyPI 或以 `UV_DEFAULT_INDEX` 指定镜像（README 已补说明）；本机 WSL 当前对 pypi/镜像的大文件下载不稳定（TLS eof/connection reset）；clone 内官方文档自动导入依赖网络，未在本轮触发成功。main 现领先 origin/main 三笔提交，推送由用户确认。

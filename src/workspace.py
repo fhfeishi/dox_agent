@@ -8,6 +8,7 @@ from uuid import uuid4
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
+from .artifact_migration import report_references
 from .knowledge import Document, Page
 
 router = APIRouter(prefix="/api")
@@ -34,6 +35,7 @@ class Workspace:
             return [json.loads(row[0]) for row in db.execute("SELECT payload FROM records WHERE kind=? ORDER BY rowid DESC", (kind,))]
 
     def put(self, kind, key, record):
+        if kind == "sessions": record.data = report_references(record.data)
         payload = {"id": key, **record.model_dump(), "revision": record.revision + 1,
                    "updated_at": datetime.now(UTC).isoformat()}
         serialized = json.dumps(payload, ensure_ascii=False)

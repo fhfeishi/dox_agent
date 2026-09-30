@@ -39,6 +39,14 @@ def ready_app(tmp_path):
     return create_app(settings, store, lambda *_: FakeGraph(cid)), cid
 
 
+def seed_report(store, report_id, params, markdown, *, session_key="", run_id="", corpus_id=""):
+    item=store.create("fixture-"+report_id,type="report",title=params.get("domain",""),markdown=markdown,session_key=session_key,run_id=run_id,corpus_ids=[corpus_id] if corpus_id else [])
+    import json
+    with store.connect() as db:
+        db.execute("UPDATE artifacts SET report_id=?,report_params=?,generated_version=1 WHERE id=?",(report_id,json.dumps(params),item["artifact_id"]))
+    return item
+
+
 def chat_body(cid, run_id):
     return {"run_id": run_id, "session_key": "sess-1", "messages": [{"role": "user", "content": "问题"}],
             "corpus_ids": [cid], "task_id": "task1"}
@@ -59,6 +67,29 @@ def test_user_can_save_an_answer_as_an_artifact_linked_to_its_run(tmp_path):
         artifact_id = created.json()["artifact_id"]
         fetched = client.get(f"/api/artifacts/{artifact_id}").json()
         listing = client.get("/api/artifacts?session_key=sess-1").json()
+        url=f"/api/artifacts/{artifact_id}"
+        etag=client.get(url).headers["etag"]
+        assert client.delete(url).status_code == 428
+        trashed=client.delete(url,headers={"If-Match":etag})
+        assert trashed.status_code == 200
+        assert client.get(url).status_code == 410
+        assert client.get(url+"/export").status_code == 410
+        assert client.get("/api/artifacts").json() == []
+        assert client.get(url+"?include_trashed=true").json()["markdown"] == "回答"
+        assert client.post(url+"/restore",headers={"If-Match":etag}).status_code == 412
+        restored=client.post(url+"/restore",headers={"If-Match":trashed.headers["etag"]})
+        assert restored.json()["artifact_id"] == artifact_id
+        assert restored.json()["markdown"] == "回答"
+        # Restoring must revive normal capabilities on the same ID: edit and export work again.
+        assert client.post(url+"/versions",json={"markdown":"还原后修订","status":"completed"},
+                           headers={"If-Match":restored.headers["etag"]}).status_code == 201
+        assert client.get(url+"/export").status_code == 200
+        current=client.get(url)  # the new version bumped the revision; re-read before re-trashing
+        again=client.delete(url,headers={"If-Match":current.headers["etag"]})
+        assert client.delete(url+"/purge",headers={"If-Match":again.headers["etag"]}).json()["lifecycle"] == "purged"
+        assert client.get(url+"?include_trashed=true").status_code == 410
+        assert app.state.runs.get("chat-run-art-1")["status"] == "completed"
+
 
     assert fetched["type"] == "answer_snapshot" and fetched["status"] == "completed"
     assert fetched["run_id"] == "chat-run-art-1" and fetched["current_version"] == 1
@@ -180,7 +211,7 @@ def test_user_edit_creates_a_persistent_revision_with_versioned_export(tmp_path)
         created = client.post("/api/artifacts", json={
             "run_id": "chat-run-version", "markdown": "回答"}).json()
         artifact_id = created["artifact_id"]
-        edited = client.post(f"/api/artifacts/{artifact_id}/versions", json={
+        edited = client.post(f"/api/artifacts/{artifact_id}/versions", headers={"If-Match": client.get(f"/api/artifacts/{artifact_id}").headers["etag"]}, json={
             "markdown": "# 用户修订\n\n补充说明", "status": "draft"})
         assert edited.status_code == 201
         assert edited.json()["version"] == 2 and edited.json()["status"] == "draft"
@@ -192,7 +223,7 @@ def test_user_edit_creates_a_persistent_revision_with_versioned_export(tmp_path)
         old_export = client.get(f"/api/artifacts/{artifact_id}/export?format=md&version=1")
         new_export = client.get(f"/api/artifacts/{artifact_id}/export?format=md&version=2")
         assert old_export.text == "回答" and new_export.text.startswith("# 用户修订")
-        assert client.post(f"/api/artifacts/{artifact_id}/versions", json={
+        assert client.post(f"/api/artifacts/{artifact_id}/versions", headers={"If-Match": client.get(f"/api/artifacts/{artifact_id}").headers["etag"]}, json={
             "markdown": "invalid", "status": "generating"}).status_code == 422
         assert client.get(f"/api/artifacts/{artifact_id}?version=99").status_code == 404
 
@@ -218,15 +249,15 @@ def test_artifact_list_distinguishes_omitted_and_empty_session_filters(tmp_path)
     assert {item["artifact_id"] for item in s1_items} == {"a-s1"}
 
 
-def test_legacy_report_is_readable_as_an_artifact_without_rewriting_it(tmp_path):
+def test_migrated_report_keeps_its_address_and_unrecorded_provenance(tmp_path):
     app, _ = ready_app(tmp_path)
     with TestClient(app) as client:
-        app.state.reports.save("legacy", {"template_id": "achievements", "domain": "旧领域"},
+        seed_report(app.state.artifacts, "legacy", {"template_id": "achievements", "domain": "旧领域"},
                                "# 旧报告", session_key="s1", run_id="", corpus_id="")
         listing = client.get("/api/artifacts?session_key=s1").json()
         detail = client.get("/api/artifacts/report:legacy").json()
-        still_there = app.state.reports.get("legacy")
-    assert any(item["artifact_id"] == "report:legacy" and item["legacy"] for item in listing)
+        still_there = app.state.artifacts.get_report("legacy")
+    assert any(item["artifact_id"] == "fixture-legacy" for item in listing)
     assert detail["markdown"] == "# 旧报告" and detail["type"] == "report"
     assert detail["run_id"] == "" and detail["corpus_ids"] == []  # "未记录", never inferred
     assert detail["run_available"] is False
@@ -257,31 +288,31 @@ def test_report_generation_creates_a_linked_artifact(tmp_path, monkeypatch):
     assert all(item["artifact_id"] != "report:" + created.json()["report_id"] for item in listing)
 
 
-def test_user_report_retry_repairs_a_failed_artifact_link(tmp_path, monkeypatch):
+def test_user_report_retry_finishes_the_same_failed_entity(tmp_path, monkeypatch):
     async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
         return "# 报告"
 
     monkeypatch.setattr("src.main.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
-        original = app.state.artifacts.ensure_report
+        original = app.state.artifacts.finish_report
         attempts = 0
 
-        def fail_once(report):
+        def fail_once(*args):
             nonlocal attempts
             attempts += 1
             if attempts == 1:
                 raise OSError("temporary artifact write error")
-            return original(report)
+            return original(*args)
 
-        monkeypatch.setattr(app.state.artifacts, "ensure_report", fail_once)
+        monkeypatch.setattr(app.state.artifacts, "finish_report", fail_once)
         request = {"domain": "医疗", "year_from": 2024, "year_to": 2025,
                    "template_id": "comprehensive", "corpus_id": cid,
                    "session_key": "sess-1", "run_id": "report-run-repair"}
         first = client.post("/api/reports", json=request)
-        assert first.status_code == 201
+        assert first.status_code == 500
         second = client.post("/api/reports", json=request)
-        assert second.status_code == 200 and second.json()["idempotent"] is True
+        assert second.status_code == 201 and second.json()["idempotent"] is False
         listing = client.get("/api/artifacts?session_key=sess-1").json()
     assert attempts == 2
     assert len([item for item in listing if item["type"] == "report"]) == 1
@@ -343,17 +374,15 @@ def test_user_sees_a_safe_failed_report_status_without_provider_details(tmp_path
 def test_user_global_report_list_keeps_older_legacy_reports_beyond_one_page(tmp_path):
     app, _ = ready_app(tmp_path)
     with TestClient(app) as client:
-        app.state.reports.save("legacy-old", {"domain": "历史报告"}, "# 旧", session_key="")
+        seed_report(app.state.artifacts, "legacy-old", {"domain": "历史报告"}, "# 旧", session_key="")
         for index in range(102):
             run_id = f"linked-run-{index}"
-            app.state.reports.save(f"report-{index}", {"domain": f"R{index}"}, "# 正文",
+            seed_report(app.state.artifacts, f"report-{index}", {"domain": f"R{index}"}, "# 正文",
                                    session_key="s1", run_id=run_id)
-            app.state.artifacts.create(f"artifact-{index}", type="report", title=f"R{index}",
-                                       markdown="# 正文", session_key="s1", run_id=run_id)
         listing = client.get("/api/artifacts?limit=150&type=report").json()
     assert len(listing) == 103
     assert len({item["run_id"] for item in listing if item["run_id"]}) == 102
-    assert len([item for item in listing if item["artifact_id"] == "report:legacy-old"]) == 1
+    assert len([item for item in listing if item["artifact_id"] == "fixture-legacy-old"]) == 1
 
 
 def test_docx_export_is_real_ooxml_with_headings_and_tables(tmp_path):
@@ -429,3 +458,102 @@ def test_saving_an_artifact_for_an_unknown_run_is_rejected(tmp_path):
         response = client.post("/api/artifacts", json={
             "type": "answer_snapshot", "run_id": "never-persisted", "markdown": "# x"})
     assert response.status_code == 422
+
+
+def test_report_trash_expiry_shared_images_and_restart(tmp_path, monkeypatch):
+    from datetime import datetime, timedelta, UTC
+    import hashlib
+    clock=datetime(2026,9,30,tzinfo=UTC)
+    monkeypatch.setattr("src.artifacts._now",lambda: clock.isoformat())
+    app,cid=ready_app(tmp_path)
+    digest=hashlib.sha256(b"image").hexdigest()
+    figure={"figure_id":"a"*20,"sha256":digest,"bytes":b"image","media_type":"image/png"}
+    with TestClient(app) as client:
+        store=app.state.artifacts
+        params={"corpus_id":cid,"session_key":"s","domain":"报告"}
+        for run in ("one","two"):
+            store.begin_report(run,params)
+            store.finish_report(run,params,"![图](figures/"+"a"*20+".png)",[figure])
+        one=store.report_artifact("one"); two=store.report_artifact("two")
+        store.add_version(two["artifact_id"],markdown="无图新版")
+        url=f"/api/artifacts/{one['artifact_id']}"
+        trashed=client.delete(url,headers={"If-Match":f'"{one["revision"]}"'})
+        assert trashed.status_code == 200
+        assert client.get(f"/api/reports/{one['report_id']}").status_code == 410
+        assert client.get(url+"/versions").status_code == 410
+        assert client.get(url+"/versions?include_trashed=true").json()[0]["version"] == 1
+        image=url+"/versions/1/figures/"+"a"*20
+        assert client.get(image).status_code == 410
+        assert client.get(image+"?include_trashed=true").content == b"image"
+        original_expiry=trashed.json()["purge_after"]
+        assert client.delete(url,headers={"If-Match":trashed.headers["etag"]}).json()["purge_after"] == original_expiry
+        from fastapi import HTTPException
+        with pytest.raises(HTTPException) as retry:  # a same-run retry must not revive a trashed report
+            store.begin_report("one",params)
+        assert retry.value.status_code == 410 and retry.value.detail["lifecycle"] == "trashed"
+        clock += timedelta(days=7)
+        assert client.post(url+"/restore",headers={"If-Match":trashed.headers["etag"]}).status_code == 410
+        assert client.get(image+"?include_trashed=true").status_code == 410
+        assert store.purge_expired() == 1
+        assert store.image(two["artifact_id"],1,"a"*20)[0] == b"image"
+        assert client.get(f"/api/reports/{one['report_id']}").status_code == 410
+        dangling=store.begin_report("interrupted",params)
+    with TestClient(app) as client:
+        assert client.get(f"/api/artifacts/{dangling['artifact_id']}").json()["status"] == "failed"
+        current=client.get(f"/api/artifacts/{two['artifact_id']}")
+        trash=client.delete(f"/api/artifacts/{two['artifact_id']}",headers={"If-Match":current.headers["etag"]})
+        assert client.delete(f"/api/artifacts/{two['artifact_id']}/purge",headers={"If-Match":trash.headers["etag"]}).status_code == 200
+        with app.state.artifacts.connect() as db: assert db.execute("SELECT COUNT(*) FROM artifact_images").fetchone()[0] == 0
+        with pytest.raises(HTTPException) as purged_retry:  # a purged run is unrecoverable, not regenerable
+            store.begin_report("one",params)
+        assert purged_retry.value.status_code == 410
+        assert store.begin_report("fresh-run",params)["status"] == "generating"  # a new run_id may still regenerate
+
+
+def test_offline_migration_preserves_edits_and_normalizes_all_session_branches(tmp_path):
+    import json
+    from src.artifact_migration import migrate
+    state=tmp_path/"state"; state.mkdir()
+    store=ArtifactStore(state/"artifacts.sqlite3")
+    store.create("edited",type="report",title="用户标题",markdown="# 旧初版",run_id="r1")
+    store.add_version("edited",markdown="# 用户修订")
+    with sqlite3.connect(state/"reports.sqlite3") as db:
+        db.execute("CREATE TABLE reports (id TEXT,created_at TEXT,params TEXT,markdown TEXT,session_key TEXT,run_id TEXT,corpus_id TEXT)")
+        db.execute("INSERT INTO reports VALUES ('old','2026-01-01','{}','# 生成原文','s','r1','c')")
+        db.execute("INSERT INTO reports VALUES ('old2','2026-01-02','{}','# 旧报告','s','','c')")  # legacy row without run_id
+    with sqlite3.connect(state/"workspace.sqlite3") as db:
+        db.execute("CREATE TABLE records(id TEXT,kind TEXT,revision INTEGER,payload TEXT)")
+        db.execute("INSERT INTO records VALUES ('s','sessions',1,?)",(json.dumps({"data":{"branches":[{"turns":[{"previousAttempts":[{"report":{"report_id":"old","markdown":"# 生成原文"}}]}]}]}}),))
+    migrate(state,tmp_path/"backup")
+    migrated=ArtifactStore(state/"artifacts"/"artifacts.sqlite3")
+    assert migrated.get("edited")["markdown"] == "# 用户修订"
+    assert migrated.get("edited")["current_version"] == 2
+    assert migrated.get_report("old")["markdown"] == "# 生成原文"
+    assert migrated.get_report("old")["generated_version"] == 3
+    assert migrated.get_report("old2")["artifact_id"] == "report-old2"  # no-run_id reports get a deterministic ID
+    assert migrated.get_report("old2")["markdown"] == "# 旧报告"
+    assert migrated.get_report("old2")["generated_version"] == 1
+    assert migrated.add_version("edited",markdown="# 新修订")["version"] == 4
+    with sqlite3.connect(state/"workspace.sqlite3") as db:
+        payload=db.execute("SELECT payload FROM records").fetchone()[0]
+        assert "markdown" not in payload and "old" in payload
+    assert (tmp_path/"backup"/"reports.sqlite3").is_file()
+    assert not (state/"reports.sqlite3").exists()
+
+
+def test_groups_move_atomically_reject_stale_pages_and_keep_corpora(tmp_path):
+    app,cid=ready_app(tmp_path)
+    with TestClient(app) as client:
+        state=client.get("/api/corpus-groups").json()
+        first=client.post("/api/corpus-groups",json={"revision":state["revision"],"action":"create","name":"第一组"}).json()
+        second=client.post("/api/corpus-groups",json={"revision":first["revision"],"action":"create","name":"第二组"}).json()
+        group1,group2=second["groups"]
+        moved=client.post("/api/corpus-groups",json={"revision":second["revision"],"action":"move","group_id":group1["id"],"corpus_id":cid}).json()
+        stale=client.post("/api/corpus-groups",json={"revision":second["revision"],"action":"move","group_id":group2["id"],"corpus_id":cid})
+        assert stale.status_code == 409
+        moved=client.post("/api/corpus-groups",json={"revision":moved["revision"],"action":"move","group_id":group2["id"],"corpus_id":cid}).json()
+        assert moved["groups"][0]["members"] == [] and moved["groups"][1]["members"] == [cid]
+        client.post("/api/corpus-groups",json={"revision":moved["revision"],"action":"dissolve","group_id":group2["id"]})
+        assert any(c["id"]==cid for c in client.get("/api/corpora").json())
+    with TestClient(app) as client:
+        assert client.get("/api/corpus-groups").json()["groups"][0]["id"] == group1["id"]

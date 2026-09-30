@@ -1,4 +1,4 @@
-"""User saves, revises and restores artifacts through a real local API and built UI.
+"""User saves, revises, restores and purges artifacts through a real local API and built UI.
 
 Only the model graph/report generator are deterministic test doubles. HTTP, SQLite,
 session persistence, artifact APIs, and the browser are real. All data is temporary.
@@ -69,6 +69,9 @@ async def main():
         doc = knowledge.put(Document(title="样本", origin="2021_2025_P1_张三_sample.md", kind="text", parser="text",
                                      pages=[Page(number=1, text="证据正文")],
                                      markdown="填表日期：2025年\n资助类别：面上项目\n证据正文"))
+        for name in ("zz-b", "zz-c"):
+            other=Knowledge(corpus_root/name/"datadb"/"knowledge.sqlite3",settings=settings)
+            other.put(Document(title=name,origin=f"2021_2025_P2_李四_{name}.md",kind="text",parser="text",pages=[Page(number=1,text="独立库资料")],markdown="独立库资料"))
         corpus_id = corpus_id_for("fixture")
         main_module.generate_markdown = offline_report
 
@@ -82,13 +85,49 @@ async def main():
                 browser = await playwright.chromium.launch(headless=True)
                 page = await browser.new_page(viewport={"width": 1440, "height": 950})
                 await page.goto(origin)
-                await expect(page.get_by_text(re.compile(r"当前对话：fixture（1/6）"))).to_be_visible()
+                await expect(page.get_by_role("button",name="✓ fixture",exact=True)).to_be_visible()
+                await page.get_by_role("button",name="＋管理知识库",exact=True).click()
+                async def fail_save(route):
+                    if route.request.method == "PUT": await route.fulfill(status=503,json={"detail":"受控保存失败"})
+                    else: await route.continue_()
+                await page.route("**/api/workspace/sessions/*",fail_save)
+                await page.get_by_role("checkbox",name="当前对话使用 zz-b",exact=True).check()
+                await expect(page.get_by_text("范围未保存",exact=False)).to_be_visible()
+                await page.get_by_role("textbox",name="问题",exact=True).fill("保存完成前不发送")
+                await expect(page.get_by_role("button",name="发送 ↑",exact=True)).to_be_disabled()
+                await page.unroute("**/api/workspace/sessions/*",fail_save)
+                await page.get_by_role("button",name="重试保存",exact=True).click()
+                await expect(page.get_by_role("button",name="发送 ↑",exact=True)).to_be_enabled()
+
+                await expect(page.get_by_role("button",name="✓ zz-b",exact=True)).to_be_visible()
+                await page.get_by_role("button",name="＋管理知识库",exact=True).click()
+                await page.get_by_title("任务 / 附件",exact=True).click()
+                await page.get_by_role("button",name="导入文件",exact=False).click()
+                await page.get_by_role("combobox",name="上传目标知识库").select_option(corpus_id_for("zz-c"))
+                await expect(page.get_by_text("此库未用于当前对话")).to_be_visible()
+                await page.get_by_role("button",name="前往添加资料").click()
+                await page.locator('input[type="file"]').set_input_files({"name":"uploaded.txt","mimeType":"text/plain","buffer":b"isolated upload"})
+                await expect(page.get_by_text("uploaded.txt",exact=True).first).to_be_visible()
+                # The upload queue echoes the name before the POST lands on disk; poll the file instead.
+                for _ in range(100):
+                    try:
+                        if (corpus_root/"zz-c"/"source"/"uploaded.txt").read_bytes()==b"isolated upload": break
+                    except OSError: pass
+                    await asyncio.sleep(0.1)
+                else: raise AssertionError("uploaded.txt 未在 10 秒内落盘")
+                await page.get_by_role("navigation").get_by_role("button",name="对话",exact=True).click()
+                await expect(page.get_by_role("button",name="✓ fixture",exact=True)).to_be_visible()
+                await expect(page.get_by_role("button",name="✓ zz-b",exact=True)).to_be_visible()
+                await expect(page.get_by_role("button",name="✓ zz-c",exact=True)).to_have_count(0)
                 await page.get_by_role("textbox", name="问题", exact=True).fill("查询样本")
                 await page.get_by_role("button", name="发送 ↑").click()
                 await expect(page.get_by_role("button", name="保存为成果")).to_be_visible()
                 await page.get_by_role("button", name="保存为成果").click()
                 await expect(page.get_by_text(re.compile("已保存为成果"))).to_be_visible()
 
+                sessions=await (await page.request.get(f"{origin}/api/workspace/sessions")).json()
+                active_scope=next(row["data"]["corpus_ids"] for row in sessions if row["data"].get("turns"))
+                assert active_scope == [corpus_id,corpus_id_for("zz-b")]
                 session_key = await page.evaluate("localStorage.getItem('dox-agent-session')")
                 template = await (await page.request.post(
                     f"{origin}/api/templates/custom",
@@ -125,10 +164,10 @@ async def main():
                 assert report.status == 201, await report.text()
 
 
-                await page.get_by_role("button", name="成果", exact=True).click()
-                await expect(page.get_by_role("button", name=re.compile("离线回答.*回答快照"))).to_be_visible()
-                await expect(page.get_by_role("button", name=re.compile("实测领域.*报告"))).to_be_visible()
-                await page.get_by_role("button", name=re.compile("离线回答.*回答快照")).click()
+                await page.get_by_role("navigation").get_by_role("button", name="成果", exact=True).click()
+                await expect(page.get_by_role("button", name="离线回答 [1]", exact=True)).to_be_visible()
+                await expect(page.get_by_role("button", name="实测领域", exact=True)).to_be_visible()
+                await page.get_by_role("button", name="离线回答 [1]", exact=True).click()
                 await expect(page.get_by_text("原始回答已核验").last).to_be_visible()
                 await page.get_by_role("button", name="编辑新版本").click()
                 await page.get_by_role("textbox", name="成果 Markdown").fill("# 人工修订\n\n保留来源 [1]")
@@ -137,9 +176,77 @@ async def main():
                 await expect(page.get_by_text("用户修订版本").last).to_be_visible()
                 await page.get_by_role("combobox", name="成果版本").select_option("1")
                 await expect(page.get_by_text("原始回答已核验").last).to_be_visible()
-                await page.get_by_role("button", name="新建对话").click()
-                await page.get_by_role("button", name="成果", exact=True).click()
-                await expect(page.get_by_role("button", name=re.compile("离线回答.*回答快照"))).to_be_visible()
+                await page.get_by_role("button", name="＋ 新的问答",exact=True).click()
+                await page.get_by_role("navigation").get_by_role("button", name="成果", exact=True).click()
+                await expect(page.get_by_role("button", name="离线回答 [1]", exact=True)).to_be_visible()
+                card=page.locator("article").filter(has=page.get_by_role("button",name="离线回答 [1]",exact=True))
+                await card.get_by_role("button",name="移入回收站",exact=True).click()
+                await page.get_by_role("button",name="回收站",exact=True).click()
+                await page.get_by_role("button",name="离线回答 [1]",exact=True).click()
+                await expect(page.get_by_text(re.compile("回收站只读"))).to_be_visible()
+                await page.get_by_role("combobox",name="成果版本").select_option("1")
+                await expect(page.get_by_text("原始回答已核验").last).to_be_visible()
+                await page.get_by_role("button",name="还原",exact=True).last.click()
+                await page.get_by_role("button",name="成果",exact=True).last.click()
+                await expect(page.get_by_role("button",name="离线回答 [1]",exact=True)).to_be_visible()
+                # P1: a second snapshot is purged through the browser confirm path; the chat answer survives.
+                await page.get_by_role("navigation").get_by_role("button",name="对话",exact=True).click()
+                await page.get_by_role("textbox",name="问题",exact=True).fill("第二次查询样本")
+                await page.get_by_role("button",name="发送 ↑",exact=True).click()
+                await expect(page.get_by_role("button",name="保存为成果",exact=True)).to_have_count(1)  # current turn only
+                await page.get_by_role("button",name="保存为成果",exact=True).click()
+                await expect(page.get_by_text(re.compile("已保存为成果")).last).to_be_visible()
+                snapshots=await (await page.request.get(f"{origin}/api/artifacts?type=answer_snapshot")).json()
+                assert len(snapshots)==2,snapshots
+                doomed=snapshots[0]["artifact_id"]  # active view sorts created_at DESC; card 0 is the newest snapshot
+                await page.get_by_role("navigation").get_by_role("button",name="成果",exact=True).click()
+                cards=page.locator("article").filter(has=page.get_by_role("button",name="离线回答 [1]",exact=True))
+                await expect(cards).to_have_count(2)
+                await cards.nth(0).get_by_role("button",name="移入回收站",exact=True).click()
+                trashed_list=await (await page.request.get(f"{origin}/api/artifacts?view=trash")).json()
+                assert [item["artifact_id"] for item in trashed_list]==[doomed],"卡片位置与最新快照不一致"
+                await page.get_by_role("button",name="回收站",exact=True).click()
+                trashed_card=page.locator("article").filter(has=page.get_by_role("button",name="离线回答 [1]",exact=True))
+                await expect(trashed_card).to_have_count(1)
+                page.once("dialog",lambda dialog: dialog.dismiss())
+                await trashed_card.get_by_role("button",name="彻底删除",exact=True).click()
+                await expect(trashed_card).to_have_count(1)  # dismissed confirmation must not purge
+                page.once("dialog",lambda dialog: dialog.accept())
+                await trashed_card.get_by_role("button",name="彻底删除",exact=True).click()
+                await expect(trashed_card).to_have_count(0)
+                purged=await page.request.get(f"{origin}/api/artifacts/{doomed}")
+                assert purged.status==410,(purged.status,await purged.text())
+                assert (await purged.json())["detail"]["lifecycle"]=="purged"
+                remaining=await (await page.request.get(f"{origin}/api/artifacts?type=answer_snapshot")).json()
+                assert [item["artifact_id"] for item in remaining]==[snapshots[1]["artifact_id"]]
+                await page.get_by_role("button",name="成果",exact=True).last.click()
+                await expect(cards).to_have_count(1)
+                await page.get_by_role("navigation").get_by_role("button",name="对话",exact=True).click()
+                await expect(page.get_by_text("离线回答 [1]").last).to_be_visible()  # the chat answer outlives its purged snapshot
+                await page.get_by_role("navigation").get_by_role("button",name="知识库",exact=True).click()
+                page.once("dialog",lambda dialog: dialog.accept("研究组"))
+                await page.get_by_role("button",name="＋新建分组",exact=True).click()
+                await expect(page.get_by_role("button",name="研究组 · 0 个库 · 展开",exact=True)).to_be_visible()
+                await page.get_by_role("combobox",name="fixture 移动到分组",exact=True).select_option(label="研究组")
+                await page.get_by_role("combobox",name="zz-b 移动到分组",exact=True).select_option(label="研究组")
+                await page.get_by_role("button",name="研究组 · 2 个库 · 展开",exact=True).click()
+                await expect(page.get_by_role("combobox",name="fixture 移动到分组",exact=True)).to_be_visible()
+                await page.reload()
+                await expect(page.get_by_role("button",name="研究组 · 2 个库 · 收起",exact=True)).to_be_visible()
+                await page.get_by_role("textbox",name="搜索知识库",exact=True).fill("zz-b")
+                await expect(page.get_by_role("combobox",name="fixture 移动到分组",exact=True)).to_have_count(0)
+                await expect(page.get_by_role("combobox",name="zz-b 移动到分组",exact=True)).to_be_visible()
+                await page.get_by_role("textbox",name="搜索知识库",exact=True).fill("")
+                await expect(page.get_by_role("combobox",name="fixture 移动到分组",exact=True)).to_be_visible()
+                await page.screenshot(path="/tmp/dox-groups.png",full_page=True)
+                page.once("dialog",lambda dialog: dialog.accept())
+                await page.get_by_role("button",name="解散分组",exact=True).click()
+                await expect(page.get_by_role("button",name="研究组 · 2 个库 · 收起",exact=True)).to_have_count(0)
+                assert len(await (await page.request.get(f"{origin}/api/corpora")).json()) == 3
+                await page.get_by_role("navigation").get_by_role("button",name="对话",exact=True).click()
+                await page.set_viewport_size({"width":720,"height":900})
+                await page.screenshot(path="/tmp/dox-chat-narrow.png",full_page=True)
+                await expect(page.get_by_role("button",name="＋管理知识库",exact=True)).to_be_visible()
                 await browser.close()
         finally:
             server.should_exit = True
@@ -150,24 +257,23 @@ async def main():
         # A7: restore the state databases as one set and prove the artifact/run links survive.
         backup = root / "backup"
         backup.mkdir()
-        assert {"workspace.sqlite3", "reports.sqlite3", "runs.sqlite3", "artifacts.sqlite3",
-                "custom_tasks.sqlite3", "custom_templates.sqlite3"} <= {
-            path.name for path in state_dir.glob("*.sqlite3")}
-
-        for source in state_dir.glob("*.sqlite3"):
-            shutil.copy2(source, backup / source.name)
+        assert {"artifacts.sqlite3", "templates.sqlite3"} <= {p.name for p in (state_dir/"artifacts").glob("*.sqlite3")}
+        for source in state_dir.rglob("*.sqlite3"):
+            dest=backup/source.relative_to(state_dir); dest.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copy2(source,dest)
             source.unlink()
-        for source in backup.glob("*.sqlite3"):
-            shutil.copy2(source, state_dir / source.name)
+        for source in backup.rglob("*.sqlite3"):
+            dest=state_dir/source.relative_to(backup); dest.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copy2(source,dest)
         origin, server, thread, listener = start_server(application())
         try:
             async with async_playwright() as playwright:
                 browser = await playwright.chromium.launch(headless=True)
                 page = await browser.new_page(viewport={"width": 1440, "height": 950})
                 await page.goto(origin)
-                await page.get_by_role("button", name="成果", exact=True).click()
-                await expect(page.get_by_role("button", name=re.compile("离线回答.*回答快照"))).to_be_visible()
-                await expect(page.get_by_role("button", name=re.compile("实测领域.*报告"))).to_be_visible()
+                await page.get_by_role("navigation").get_by_role("button", name="成果", exact=True).click()
+                await expect(page.get_by_role("button", name="离线回答 [1]", exact=True)).to_be_visible()
+                await expect(page.get_by_role("button", name="实测领域", exact=True)).to_be_visible()
                 items = await (await page.request.get(f"{origin}/api/artifacts")).json()
                 answer = next(item for item in items if item["type"] == "answer_snapshot")
                 report = next(item for item in items if item["type"] == "report")

@@ -228,7 +228,8 @@ async def main():
             await page.route(re.compile(r".*/api/documents/[^/]+/file.*$"), pdf_file)
 
             await page.goto(origin)
-            await expect(page.get_by_text("当前对话：演示库")).to_be_visible()
+            # 交互方案 §3.1：范围改为输入框上方对话库 chip，"当前对话：…"重复文字已删除。
+            await expect(page.get_by_role("button", name="✓ 演示库", exact=True)).to_be_visible()
 
             # ---- 进入库内的四维浏览 ------------------------------------------------
             await page.get_by_role("button", name="知识库", exact=True).click()

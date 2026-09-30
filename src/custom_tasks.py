@@ -199,7 +199,7 @@ class CustomTaskStore:
             if version != 0:
                 raise TaskInvalid("内置报告模板的 version 必须为 0")
             return
-        store = TemplateStore(self.path.parent / "custom_templates.sqlite3")
+        store = TemplateStore(self.path.parent / "artifacts" / "templates.sqlite3")
         try:
             if store.get(template_id)["archived"]:
                 raise TaskInvalid("已归档模板不能绑定到新任务")

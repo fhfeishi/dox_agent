@@ -15,7 +15,6 @@ from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from src.parsers import import_defaults, sha256_file
 from src.reports import (
-    ReportStore,
     generate_markdown,
     preflight_report,
     project_period,
@@ -23,6 +22,7 @@ from src.reports import (
     summarize_report_metadata,
 )
 from tests.test_app import setup
+from tests.test_artifacts import seed_report
 
 
 class FakeModel:
@@ -420,11 +420,11 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
         candidates = client.get(f"/api/artifacts/{artifact['artifact_id']}/figure-candidates").json()
         alternative_id = next(item["figure_id"] for item in candidates if item["page"] == 3)
         replaced = client.post(f"/api/artifacts/{artifact['artifact_id']}/figures/{figure_id}/replace",
-                               json={"figure_id": alternative_id})
+                               headers={"If-Match": client.get(f"/api/artifacts/{artifact['artifact_id']}").headers["etag"]}, json={"figure_id": alternative_id})
         assert replaced.status_code == 201 and replaced.json()["version"] == 2
         assert replaced.json()["figures"][0]["figure_id"] == alternative_id
         assert client.get(f"/api/artifacts/{artifact['artifact_id']}/versions/2/figures/{alternative_id}").status_code == 200
-        removed = client.delete(f"/api/artifacts/{artifact['artifact_id']}/figures/{alternative_id}")
+        removed = client.delete(f"/api/artifacts/{artifact['artifact_id']}/figures/{alternative_id}", headers={"If-Match": replaced.headers.get("etag", f'"{replaced.json()["revision"]}"')})
         assert removed.status_code == 201 and removed.json()["version"] == 3
         assert not removed.json()["figures"]
         assert client.get(f"/api/artifacts/{artifact['artifact_id']}?version=1").json()["figures"]
@@ -439,13 +439,12 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
         with monkeypatch.context() as patch:
             def fail_attachments(*args, **kwargs):
                 raise OSError("artifact database unavailable")
-            patch.setattr(app.state.artifacts, "ensure_report", fail_attachments)
+            patch.setattr(app.state.artifacts, "finish_report", fail_attachments)
             failed_attachment = client.post("/api/reports", json={"domain": "云边协同", "year_from": 2025,
                 "year_to": 2025, "template_id": "comprehensive", "corpus_id": corpus_id_for("fixture"),
                 "illustrated": True})
-        assert failed_attachment.status_code == 201 and failed_attachment.json()["figures"] == []
-        assert "figures/" not in failed_attachment.json()["markdown"]
-        assert client.get(f"/api/reports/{failed_attachment.json()['report_id']}").json()["markdown"] == failed_attachment.json()["markdown"]
+        assert failed_attachment.status_code == 500
+        assert any(item["status"] == "failed" for item in client.get("/api/artifacts").json())
         source.write_bytes(source.read_bytes() + b"changed")
         assert client.get(f"/api/artifacts/{artifact['artifact_id']}/figure-candidates").json() == []
         assert client.get(f"/api/reports/{report['report_id']}/figures/{figure_id}").content == image.content
@@ -453,18 +452,17 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
 
 def test_report_store_migrates_legacy_schema(tmp_path):
     import sqlite3
-    # Given a legacy reports table without session_key/run_id/corpus_id
-    path = tmp_path / "reports.sqlite3"
-    with sqlite3.connect(path) as db:
-        db.execute("CREATE TABLE reports (id TEXT PRIMARY KEY, created_at TEXT NOT NULL, "
-                   "params TEXT NOT NULL, markdown TEXT NOT NULL)")
-    # When the store opens it
-    store = ReportStore(path)
-    # Then the columns are migrated in place and idempotency still works
-    store.save("r1", {"template_id": "achievements", "domain": "x", "year_from": 2021, "year_to": 2025},
-               "# 报告", session_key="s1", run_id="run1")
-    assert store.find("s1", "run1")["report_id"] == "r1"
-    assert store.list(session_key="s1")[0]["template_id"] == "achievements"
+    from src.artifact_migration import migrate
+    from src.artifacts import ArtifactStore
+    state=tmp_path/"state"; state.mkdir()
+    with sqlite3.connect(state/"reports.sqlite3") as db:
+        db.execute("CREATE TABLE reports (id TEXT PRIMARY KEY, created_at TEXT,params TEXT,markdown TEXT)")
+        db.execute("INSERT INTO reports VALUES ('r1','2026-01-01','{}','# 原始报告')")
+    migrate(state,tmp_path/"backup")
+    store=ArtifactStore(state/"artifacts"/"artifacts.sqlite3")
+    assert store.get_report("r1")["markdown"] == "# 原始报告"
+    assert store.get_report("r1")["run_id"] == ""
+    assert migrate(state,tmp_path/"backup")["status"] == "already_migrated"
 
 
 def test_api_report_idempotency_and_listing(tmp_path, monkeypatch):
@@ -492,8 +490,8 @@ def test_user_report_list_distinguishes_omitted_and_empty_query_values(tmp_path)
     app, _ = setup(tmp_path)
     # When the report API is queried with omitted or explicitly empty filters
     with TestClient(app) as client:
-        app.state.reports.save("legacy", {}, "# legacy")
-        app.state.reports.save("current", {}, "# current", session_key="s1", run_id="r1")
+        seed_report(app.state.artifacts, "legacy", {}, "# legacy")
+        seed_report(app.state.artifacts, "current", {}, "# current", session_key="s1", run_id="r1")
         all_reports = client.get("/api/reports").json()
         empty_session = client.get("/api/reports?session_key=").json()
         empty_run = client.get("/api/reports?run_id=").json()
@@ -583,7 +581,8 @@ def test_report_artifact_keeps_the_sources_the_report_used(tmp_path):
                                               "version": "v1", "page": None,
                                               "url": "/api/documents/d1?version=v1"}]}}
 
-    artifact = store.ensure_report(report)
+    store.begin_report("run-1", {**report["params"], "corpus_id": "c1", "session_key": "s1"})
+    artifact = store.finish_report("run-1", {**report["params"], "corpus_id": "c1"}, report["markdown"], [])
 
     # Then the appendix can name every [n] instead of exporting an empty source list
     assert len(artifact["citations"]) == 1

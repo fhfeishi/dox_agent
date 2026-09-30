@@ -1,3 +1,4 @@
+import { scopeProblem } from "./scopeEligibility";
 import {
   createContext,
   useContext,
@@ -510,7 +511,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   function setTurnReport(index: number, report: import("./api").ReportInfo) {
     replaceTurns((current) => {
       const next = [...current];
-      if (next[index]) next[index] = { ...next[index], report };
+      if (next[index]) next[index] = { ...next[index], report: { report_id: report.report_id, artifact_id: report.artifact_id } };
       return next;
     });
     void workspace.saveNow(latestTurns.current, options);
@@ -529,29 +530,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   async function send(regenerate = false, override?: SendOverride) {
-    if (corporaError) {
-      setError(`知识库列表读取失败：${corporaError}。请刷新后再发送。`);
-      return;
-    }
     const history = override?.history ?? turns;
     const scope = override?.options ?? options;
     const requestTaskId = scope.task_id ?? taskId;
     const requestTaskVersion = scope.task_version ?? workspace.taskVersion;
     const requestCorpusIds = [...new Set(scope.corpus_ids ?? corpusIds)];
+    const problem = scopeProblem(requestCorpusIds, corpora, scope, corporaLoaded, corporaError, scopeDocumentsError);
+    if (problem || !workspace.isSaved()) { setError(problem || "范围尚未保存，请等待或重试保存"); return; }
     const corpusOptions = corpusRequestOptions(effectiveCorpusId ?? "", requestCorpusIds);
-    if (!corpusOptions) {
-      setError("请先选择 1 至 6 个知识库");
-      return;
-    }
-    const unavailable = requestCorpusIds.find((id) => {
-      const item = corpora.find((candidate) => candidate.id === id);
-      // A confirmed URL can answer while a selected local corpus is empty; its readiness stays unchanged.
-      return !item || item.missing || (item.preparation !== "ready" && !scope.web_snapshot_ids?.length);
-    });
-    if (unavailable) {
-      setError("会话中的知识库不可用或尚无已入库资料，请重新选择知识库");
-      return;
-    }
+    if (!corpusOptions) return;
     const listed = tasks.find((task) => task.id === requestTaskId);
     if (!listed && requestTaskId.startsWith("custom-")) {
       setError("此会话绑定的自定义任务已不可用。请从成组状态备份恢复，或新建最新版会话。");
@@ -576,7 +563,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       return;
     }
     // task_id is sent with chat; task4 goes through intake (parameter collection, no report body).
-    // Bind the turn to the corpus the user is browsing, so the answer scope matches the library.
+    // Requests use the explicit conversation scope, independently of browsing.
     const effectiveOptions: Options = {
       ...(uiFlags.tasks ? { ...scope, task_id: requestTaskId, task_version: requestTaskVersion } : { allowed_doc_ids: scope.allowed_doc_ids ?? null }),
       web_snapshot_ids: scope.web_snapshot_ids ?? [],
@@ -976,10 +963,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   };
 
   function selectCorpus(id: string) {
-    if (controller.current) {
-      setError("回答进行中，暂不能更改知识库范围");
-      return;
-    }
     setCorpusId(id);
   }
 
@@ -1007,10 +990,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
       ...options,
       allowed_doc_ids: options.allowed_doc_ids.filter((docId) => {
         const doc = scopeDocuments.find((item) => item.doc_id === docId);
-        return Boolean(doc?.corpus_id && selected.includes(doc.corpus_id) && !removed.includes(doc.corpus_id));
+        return !doc?.corpus_id || (selected.includes(doc.corpus_id) && !removed.includes(doc.corpus_id));
       }),
     };
     setOptions(nextOptions);
+    if (options.allowed_doc_ids && nextOptions.allowed_doc_ids) {
+      const count = options.allowed_doc_ids.length - nextOptions.allowed_doc_ids.length;
+      setStatus(count ? `已移除 ${count} 份指定资料，剩余 ${nextOptions.allowed_doc_ids.length} 份` : "下一次提问将使用新的知识库范围；限定模式不自动加入新资料");
+    }
     setCorpusConfirmed(true);
     void workspace.saveCorpusSelection(corpusId || selected[0], true, selected, nextOptions)
       .catch((error) => setError(`知识库范围保存失败：${(error as Error).message}`));

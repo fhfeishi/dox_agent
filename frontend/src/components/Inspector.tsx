@@ -3,7 +3,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { archiveCustomTemplate, archiveTask, artifactExportUrl, changeArtifactFigure, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchFigureCandidates, fetchPromptSkills, fetchReport, fetchRun, fetchTemplate, fetchTemplates, fetchWebSnapshot, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type PromptSkill, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary, type WebSnapshot } from "../api";
+import { changeArtifactLifecycle, archiveCustomTemplate, archiveTask, artifactExportUrl, changeArtifactFigure, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchFigureCandidates, fetchPromptSkills, fetchReport, fetchRun, fetchTemplate, fetchTemplates, fetchWebSnapshot, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type PromptSkill, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -103,6 +103,17 @@ export function Inspector() {
     return () => { active = false; };
   }, [inspectorTarget]);
 
+  const [artifactRefresh, setArtifactRefresh] = useState(0);
+  useEffect(() => {
+    const refresh = () => { setArtifact(null); setReport(null); setEditingArtifact(false); setArtifactRefresh(n => n+1); };
+    window.addEventListener("focus",refresh); window.addEventListener("dox-artifacts-changed",refresh);
+    return () => { window.removeEventListener("focus",refresh); window.removeEventListener("dox-artifacts-changed",refresh); };
+  }, []);
+  useEffect(() => {
+    if (!artifact?.purge_after) return;
+    const timer = setTimeout(() => { setArtifact(null); setArtifactError("成果已到期，不可恢复"); }, Math.max(0, Date.parse(artifact.purge_after)-Date.now()));
+    return () => clearTimeout(timer);
+  }, [artifact?.purge_after]);
   useEffect(() => {
     if (inspectorTarget.kind !== "report") {
       setReport(null);
@@ -117,7 +128,7 @@ export function Inspector() {
       (error) => { if (active) setReportError(error instanceof Error ? error.message : "报告读取失败"); },
     );
     return () => { active = false; };
-  }, [inspectorTarget.kind, inspectorTarget.kind === "report" ? inspectorTarget.reportId : ""]);
+  }, [inspectorTarget.kind, inspectorTarget.kind === "report" ? inspectorTarget.reportId : "", artifactRefresh]);
 
   useEffect(() => {
     if (inspectorTarget.kind !== "artifact") {
@@ -133,25 +144,25 @@ export function Inspector() {
     setArtifactVersions([]);
     setEditingArtifact(false);
     setArtifactSaveError("");
-    void fetchArtifact(inspectorTarget.artifactId).then(
+    void fetchArtifact(inspectorTarget.artifactId, undefined, true).then(
       (item) => { if (active) setArtifact(item); },
       (error) => { if (active) setArtifactError(error instanceof Error ? error.message : "成果读取失败"); },
     );
-    void fetchArtifactVersions(inspectorTarget.artifactId).then(
+    void fetchArtifactVersions(inspectorTarget.artifactId, true).then(
       (items) => { if (active) setArtifactVersions(items); },
       (error) => { if (active) setArtifactSaveError(error instanceof Error ? error.message : "版本列表读取失败"); },
     );
     return () => { active = false; };
-  }, [inspectorTarget.kind, inspectorTarget.kind === "artifact" ? inspectorTarget.artifactId : ""]);
+  }, [inspectorTarget.kind, inspectorTarget.kind === "artifact" ? inspectorTarget.artifactId : "", artifactRefresh]);
 
   async function saveArtifactVersion(status: "draft" | "completed") {
     if (inspectorTarget.kind !== "artifact" || !artifactDraft.trim()) return;
     setSavingArtifact(true);
     setArtifactSaveError("");
     try {
-      const updated = await createArtifactVersion(inspectorTarget.artifactId, artifactDraft, status);
+      const updated = await createArtifactVersion(inspectorTarget.artifactId, artifactDraft, status, artifact?.revision);
       setArtifact(updated);
-      setArtifactVersions(await fetchArtifactVersions(inspectorTarget.artifactId));
+      setArtifactVersions(await fetchArtifactVersions(inspectorTarget.artifactId, true));
       setEditingArtifact(false);
       window.dispatchEvent(new Event("dox-artifacts-changed"));
     } catch (error) {
@@ -166,9 +177,9 @@ export function Inspector() {
     setArtifactSaveError("");
     setSavingArtifact(true);
     try {
-      const updated = await changeArtifactFigure(inspectorTarget.artifactId, figureId, replacementId);
+      const updated = await changeArtifactFigure(inspectorTarget.artifactId, figureId, replacementId, artifact?.revision);
       setArtifact(updated);
-      setArtifactVersions(await fetchArtifactVersions(inspectorTarget.artifactId));
+      setArtifactVersions(await fetchArtifactVersions(inspectorTarget.artifactId, true));
       setEditingFigureId("");
       window.dispatchEvent(new Event("dox-artifacts-changed"));
     } catch (error) {
@@ -617,6 +628,9 @@ export function Inspector() {
             {!artifact && !artifactError ? <p className="text-[12px] text-[var(--steel)]">正在读取成果…</p> : null}
             {artifact?.artifact_id === inspectorTarget.artifactId ? (
               <Card>
+                <div className="mb-3 flex flex-wrap gap-2 text-sm">
+                  {artifact.lifecycle === "trashed" ? <><span>回收站只读 · 保留至 {artifact.purge_after ? new Date(artifact.purge_after).toLocaleString() : ""}</span><button onClick={() => void changeArtifactLifecycle(artifact,"restore").catch(e => setArtifactSaveError(e.message))}>还原</button><button onClick={() => { if (window.confirm("彻底删除全部版本与独占附件？此操作不可恢复。")) void changeArtifactLifecycle(artifact,"purge").catch(e => setArtifactSaveError(e.message)); }}>彻底删除</button></> : <button disabled={artifact.status === "generating"} onClick={() => void changeArtifactLifecycle(artifact,"trash").catch(e => setArtifactSaveError(e.message))}>移入回收站（保留7天）</button>}
+                </div>
                 <h2 className="text-[15px] font-semibold text-[var(--ink)]">{artifact.title}</h2>
                 <p className="mt-[6px] text-[11.5px] text-[var(--stone)]">
                   {ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type} · 版本 {artifact.version} · {artifact.status === "draft" ? "草稿" : artifact.status === "completed" ? "已完成" : artifact.status === "failed" ? "失败" : "生成中"}
@@ -641,7 +655,7 @@ export function Inspector() {
                     onChange={(event) => {
                       if (inspectorTarget.kind !== "artifact") return;
                       setArtifactSaveError("");
-                      void fetchArtifact(inspectorTarget.artifactId, Number(event.target.value)).then(setArtifact,
+                      void fetchArtifact(inspectorTarget.artifactId, Number(event.target.value), true).then(setArtifact,
                         (error) => setArtifactSaveError(error instanceof Error ? error.message : "版本读取失败"));
                     }}
                     className="rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] px-[7px] py-[4px]">
@@ -649,6 +663,7 @@ export function Inspector() {
                   </select>
                 </label> : null}
                 {artifactSaveError ? <p role="alert" className="mt-[7px] text-[12px] text-[var(--red)]">{artifactSaveError}</p> : null}
+                {artifact.lifecycle !== "trashed" && artifact.status !== "generating" ? <>
                 <div className="mt-[12px] flex flex-wrap gap-[8px]">
                   <Button size="sm" onClick={() => void navigator.clipboard.writeText(artifact.markdown)}>复制</Button>
                   {artifact.figures?.length ? <a href={artifactExportUrl(artifact.artifact_id, "zip", artifact.version)}>下载图文 ZIP</a>
@@ -666,7 +681,8 @@ export function Inspector() {
                     <Button size="sm" variant="ghost" onClick={() => showInspector({ kind: "execution", runId: artifact.run_id })}>查看来源运行</Button>
                   ) : null}
                 </div>
-                {artifact.figures?.length && !editingArtifact ? <div className="mt-[10px] space-y-[7px]">
+                </> : null}
+                {artifact.lifecycle !== "trashed" && artifact.figures?.length && !editingArtifact ? <div className="mt-[10px] space-y-[7px]">
                   {artifact.figures.map((figure) => <div key={figure.figure_id} className="rounded border border-[var(--hairline)] p-[7px] text-[12px]">
                     <span>{figure.caption} · 原 PDF 第 {figure.page} 页</span>
                     <div className="mt-[4px] flex gap-[8px]">
@@ -703,7 +719,7 @@ export function Inspector() {
                     <Button size="sm" variant="ghost" disabled={savingArtifact || !artifactDraft.trim()} onClick={() => void saveArtifactVersion("completed")}>完成新版本</Button>
                     <Button size="sm" variant="ghost" onClick={() => setEditingArtifact(false)}>取消</Button>
                   </div>
-                </div> : <div className="markdown mt-[12px]"><ReportMarkdown sources={artifact.citations} onOpenSource={handleOpenSource} markdown={artifact.markdown} figures={artifact.figures} artifact={{ id: artifact.artifact_id, version: artifact.version }} /></div>}
+                </div> : <div className="markdown mt-[12px]"><ReportMarkdown sources={artifact.citations} onOpenSource={handleOpenSource} markdown={artifact.markdown} figures={artifact.figures} artifact={{ id: artifact.artifact_id, version: artifact.version, trashed: artifact.lifecycle === "trashed" }} /></div>}
               </Card>
             ) : null}
           </>

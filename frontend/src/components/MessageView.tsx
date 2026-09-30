@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ComponentProps } from "react
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import { fetchArtifact, createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
+import { fetchReport, fetchArtifact, createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
 import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
@@ -301,7 +301,19 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   // The session may upgrade while an older intake remains visible; bind its report to that run's task version.
   const reportTask = currentTaskMatches ? activeTask : historicalTask?.id === taskId && historicalTask?.version === taskVersion ? historicalTask : undefined;
   const [local, setLocal] = useState<ReportInfo | null>(null);
-  const report = attempt.report ?? local;
+  const report = local;
+  const [reportState, setReportState] = useState("");
+  useEffect(() => {
+    const id = attempt.report?.report_id;
+    if (!id) return;
+    let active = true;
+    const refresh = () => {
+      setLocal(null);
+      void fetchReport(id).then(value => { if (active) { setLocal(value); setReportState(""); } }, cause => { if (active) setReportState((cause as Error).message); });
+    };
+    refresh(); window.addEventListener("focus", refresh); window.addEventListener("dox-artifacts-changed", refresh);
+    return () => { active=false; window.removeEventListener("focus",refresh); window.removeEventListener("dox-artifacts-changed",refresh); };
+  }, [attempt.report?.report_id]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [coverage, setCoverage] = useState<ReportMetadataCoverage | null>(null);
@@ -407,7 +419,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       if (!scope.eligible_count) throw new Error("当前范围没有符合条件的资料。请调整项目年份、类别或资料范围，并查看缺失元数据。");
       const key = JSON.stringify({ request, fingerprint: scope.fingerprint });
       // A changed scope starts a new child run; an unchanged failed request reuses its run id.
-      const reportRunId = report || (lastRequest.current && lastRequest.current.key !== key)
+      const reportRunId = attempt.report || report || (lastRequest.current && lastRequest.current.key !== key)
         ? crypto.randomUUID() : lastRequest.current?.runId ?? `${attempt.runId.slice(0, 72)}-report`;
       lastRequest.current = { key, runId: reportRunId };
       const result = await createReport({ ...request, scope_fingerprint: scope.fingerprint, run_id: reportRunId });
@@ -570,6 +582,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
           ) : null}
         </p>
       ) : null}
+      {reportState ? <p role="status">{reportState} · 请到成果回收站查看或还原。</p> : null}
       {report ? (
         <div className="mt-[8px]">
           <div className="markdown max-h-[360px] overflow-auto rounded-[8px] border border-[var(--hairline-soft)] bg-[var(--canvas)] p-[10px]">

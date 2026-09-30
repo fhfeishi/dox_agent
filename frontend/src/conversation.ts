@@ -16,7 +16,7 @@ export type Attempt = {
   firstTokenMs: number | null;
   totalMs: number | null;
   elapsedMs: number | null;
-  report?: ReportInfo;
+  report?: Pick<ReportInfo, "report_id" | "artifact_id">;
 };
 export type Turn = Attempt & {
   question: string;

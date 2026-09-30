@@ -1,3 +1,4 @@
+import { scopeProblem } from "../scopeEligibility";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useApp } from "../store";
 import { confirmWeb, previewSearchResult, previewWeb, searchWeb, webSearchCapability, type WebPreview, type WebSearch } from "../api";
@@ -58,11 +59,9 @@ export function Composer() {
     scopeDocuments,
     scopeDocumentsError,
     corpora,
-    effectiveCorpusId,
     corporaError,
     corporaLoaded,
     refreshCorpora,
-    selectCorpus,
     tasks,
     tasksError,
     taskId,
@@ -72,10 +71,10 @@ export function Composer() {
     upgradeTaskVersion,
     startTask,
     taskCapable,
-    currentCorpus,
     corpusIds,
     setSearchCorpusIds,
     setNewCorpusOpen,
+    setNav,
     openCorpus,
     runCorpusIngest,
     ingestBusy,
@@ -84,6 +83,9 @@ export function Composer() {
     model,
   } = useApp();
 
+  const [uploadOpen, setUploadOpen] = useState(false);
+  const [uploadTarget, setUploadTarget] = useState("");
+  const corpusButton = useRef<HTMLButtonElement>(null);
   const [popOpen, setPopOpen] = useState(false);
   const [corpusOpen, setCorpusOpen] = useState(false);
   const [scopeOpen, setScopeOpen] = useState(false);
@@ -125,13 +127,14 @@ export function Composer() {
     const onDown = (e: MouseEvent) => {
       const target = e.target as Node;
       if (popOpen && !popRef.current?.contains(target)) setPopOpen(false);
-      if (corpusOpen && !corpusRef.current?.contains(target)) setCorpusOpen(false);
+      if (corpusOpen && !corpusRef.current?.contains(target) && !corpusButton.current?.contains(target)) setCorpusOpen(false);
       if (scopeOpen && !scopeRef.current?.contains(target)) setScopeOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
       setPopOpen(false);
       setCorpusOpen(false);
+      if (corpusOpen) corpusButton.current?.focus();
       setScopeOpen(false);
     };
     document.addEventListener("mousedown", onDown);
@@ -142,8 +145,8 @@ export function Composer() {
     };
   }, [popOpen, corpusOpen, scopeOpen]);
 
-  const scopeReady = !corporaError && corpusIds.length > 0 && corpusIds.length <= 6 &&
-    corpusIds.every((id) => corpora.some((item) => item.id === id && !item.missing));
+  const problem = scopeProblem(corpusIds, corpora, options, corporaLoaded, corporaError, scopeDocumentsError);
+  const scopeReady = !problem && workspace.saveState === "saved";
   const emptyScopeCorpus = corpora.find((item) => corpusIds.includes(item.id) && item.preparation !== "ready");
   const repairScope = !corpusIds.length || corpusIds.length > 6 ||
     corpusIds.some((id) => !corpora.some((item) => item.id === id && !item.missing));
@@ -295,29 +298,13 @@ export function Composer() {
 
         {/* corpus + scope chips */}
         <div className="mb-[8px] flex flex-wrap items-center gap-[6px]">
-          {currentCorpus ? (
-            <span className="inline-flex max-w-[280px] items-center gap-[6px] rounded-full border border-[#d5cdf7] bg-[var(--primary-soft)] px-[9px] py-[4px] text-[12px] font-medium text-[var(--primary-pressed)]">
-              <Icon name="library" size={12} strokeWidth={2} />
-              <span className="truncate">上传目标：{currentCorpus.name}</span>
-              <span className="text-[var(--primary)]">{currentCorpus.docs_count}</span>
-            </span>
-          ) : (
-            <span className="text-[11.5px] text-[var(--stone)]">未选择知识库</span>
-          )}
-          <button
-            type="button"
-            disabled={busy}
-            onClick={() => setCorpusOpen((v) => !v)}
-            className="font-app inline-flex items-center gap-[6px] rounded-full border border-[var(--hairline)] bg-[var(--canvas)] px-[9px] py-[4px] text-[12px] text-[var(--slate)] hover:border-[var(--hairline-strong)] disabled:opacity-50"
-          >
-            <Icon name="plus" size={12} strokeWidth={2.2} />
-            管理知识库
-          </button>
-          <span className="max-w-[340px] truncate text-[11px] text-[var(--stone)]" title={corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")}>
-            当前对话：{corpusIds.length
-              ? corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")
-              : "未选择"}（{corpusIds.length}/6）
-          </span>
+          <span className="text-xs">对话知识库</span>
+          {corpusIds.map(id => <span key={id} className="inline-flex max-w-[280px] items-center rounded-full bg-[var(--primary-soft)] px-3 py-1 text-sm text-[var(--primary-pressed)]">
+            <button type="button" className="truncate" onClick={() => setCorpusOpen(true)} title={corpora.find(c => c.id === id)?.name ?? id}>✓ {corpora.find(c => c.id === id)?.name ?? `知识库不可用（${id}）`}</button>
+            <button type="button" className="ml-2 disabled:opacity-30" aria-label={`移除对话库 ${corpora.find(c => c.id === id)?.name ?? id}`} disabled={busy || corpusIds.length <= 1} onClick={() => { setSearchCorpusIds(corpusIds.filter(value => value !== id)); corpusButton.current?.focus(); }}>×</button>
+          </span>)}
+          <button ref={corpusButton} type="button" aria-expanded={corpusOpen} onClick={() => { setCorpusOpen(v => !v); setPopOpen(false); setScopeOpen(false); }} className="rounded-full border px-3 py-1 text-sm">＋管理知识库</button>
+          <span className="text-xs">{corpusIds.length}/6</span>
           {emptyScopeCorpus ? (
             <span className="flex items-center gap-[6px] text-[11px] text-[#9a6500]">
               「{emptyScopeCorpus.name}」暂无已入库文档
@@ -334,7 +321,7 @@ export function Composer() {
         <p aria-label="本次运行配置" className="mb-[7px] text-[11px] leading-[1.5] text-[var(--stone)]">
           本次配置：{activeTask?.name ?? taskId} · {corpusIds.length
             ? corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")
-            : "未选择知识库"} · {scoped ? `限定 ${scoped} 份资料` : "全部已入库资料"} · {options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"} · {model || "模型未记录"} · {taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}
+            : "未选择知识库"} · {options.allowed_doc_ids !== null ? `限定 ${scoped} 份资料` : "全部已入库资料"} · {options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"} · {model || "模型未记录"} · {taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}
         </p>
 
         {options.web_snapshot_ids?.length ? <div className="mb-[7px] flex items-center gap-[7px] text-[11px] text-[var(--steel)]">
@@ -394,15 +381,13 @@ export function Composer() {
           <div ref={corpusRef} className="mb-[8px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] shadow-[0_8px_24px_-12px_rgba(15,15,15,0.2)]">
             <CorpusPicker
               corpora={corpora}
-              current={effectiveCorpusId ?? ""}
               selectedIds={corpusIds}
               disabled={busy}
               onToggle={(id, selected) => setSearchCorpusIds(selected ? [...corpusIds, id] : corpusIds.filter((entry) => entry !== id))}
               onUseOnly={(id) => setSearchCorpusIds([id])}
-              onSelect={(id) => {
-                selectCorpus(id);
-              }}
+              onDetails={openCorpus}
             />
+            <div className="mt-2 flex gap-3"><button onClick={() => setNav("library")}>打开知识库管理</button><button onClick={() => { setNav("library"); setNewCorpusOpen(true); }}>新建知识库</button></div>
           </div>
         ) : null}
 
@@ -421,7 +406,7 @@ export function Composer() {
         {activeTask?.kind === "custom" ? (
           <div className="mb-[8px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-[12px] text-[var(--slate)]">
             <div className="flex flex-wrap items-center gap-[7px]">
-              <span>{versionUpdateAvailable ? `当前 v${workspace.taskVersion} / 最新 v${latestVersion}` : `任务 v${workspace.taskVersion ?? activeTask.version}`} · {corpusIds.length} 个知识库 · {scoped ? `${scoped} 份指定资料` : "全部资料"} · 网络关闭 · {activeTask.output_hint || "文本回答"}</span>
+              <span>{versionUpdateAvailable ? `当前 v${workspace.taskVersion} / 最新 v${latestVersion}` : `任务 v${workspace.taskVersion ?? activeTask.version}`} · {corpusIds.length} 个知识库 · {options.allowed_doc_ids !== null ? `${scoped} 份指定资料` : "全部资料"} · 网络关闭 · {activeTask.output_hint || "文本回答"}</span>
               {versionUpdateAvailable ? <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[2px] text-[11px]" onClick={() => {
                 if (window.confirm(`将此会话从任务 v${workspace.taskVersion} 升级到 v${latestVersion}？`)) void upgradeTaskVersion();
               }}>升级到最新版</button> : null}
@@ -457,6 +442,11 @@ export function Composer() {
           </div>
         ) : null}
 
+        {problem ? <p role="status" className="my-2 text-sm text-[var(--red)]">{problem}{options.allowed_doc_ids?.length === 0 && <button onClick={() => setOptions(o => ({ ...o, allowed_doc_ids: null }))}>使用所选库全部资料</button>}</p> : null}
+        {workspace.saveState !== "saved" ? <p role="status" className="my-2 text-sm">{workspace.saveState === "saving" ? "正在保存范围…" : "范围未保存"}{workspace.saveState === "failed" && <button onClick={() => void workspace.retrySave().catch(() => undefined)}>重试保存</button>}</p> : null}
+        {uploadOpen ? <div className="my-2 rounded border p-3"><label>保存到：<select aria-label="上传目标知识库" value={uploadTarget} onChange={e => setUploadTarget(e.target.value)}><option value="">请选择目标知识库</option>{corpora.filter(c => !c.missing).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
+          {uploadTarget && !corpusIds.includes(uploadTarget) && <p>此库未用于当前对话</p>}
+          <button disabled={!uploadTarget} onClick={() => { openCorpus(uploadTarget); setUploadOpen(false); }}>前往添加资料</button><button onClick={() => setUploadOpen(false)}>取消</button></div> : null}
         {/* input */}
         <div className="rounded-[12px] border border-[var(--hairline-strong)] bg-[var(--canvas)] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[border-color,box-shadow] focus-within:border-[var(--primary)] focus-within:shadow-[0_0_0_3px_var(--primary-soft)]">
           <textarea
@@ -540,7 +530,7 @@ export function Composer() {
                     icon={<Icon name="upload" size={14} strokeWidth={1.9} />}
                     onClick={() => {
                       setPopOpen(false);
-                      showToast("请在“设置与运维”中导入文件");
+                      setUploadTarget(corpusIds.length === 1 ? corpusIds[0] : ""); setUploadOpen(true);
                     }}
                   />
                   <PopItem title="指定网址" description="先预览，再选择本次运行或一个知识库" onClick={() => {
@@ -560,7 +550,7 @@ export function Composer() {
             >
               <Icon name="list" size={15} />
               资料范围：
-              <b className="font-semibold text-[var(--primary)]">{scoped ? `${scoped} 份` : "全部"}</b>
+              <b className="font-semibold text-[var(--primary)]">{options.allowed_doc_ids !== null ? `${scoped} 份` : "全部"}</b>
             </button>
 
             <span className="flex-1" />

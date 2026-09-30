@@ -1,5 +1,6 @@
+import { useSearchParams } from "react-router";
 import { useEffect, useState, type ReactNode } from "react";
-import { archivePromptSkill, copyTask, createPromptSkill, fetchArtifacts, fetchPromptSkills, publishPromptSkill, savePromptSkill, setPromptSkillEnabled, testPromptSkill, type ArtifactSummary, type PromptSkill } from "../api";
+import { changeArtifactLifecycle, fetchTemplates, type TemplateSummary, archivePromptSkill, copyTask, createPromptSkill, fetchArtifacts, fetchPromptSkills, publishPromptSkill, savePromptSkill, setPromptSkillEnabled, testPromptSkill, type ArtifactInfo, type ArtifactSummary, type PromptSkill } from "../api";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
@@ -127,6 +128,12 @@ const ARTIFACT_TYPE_LABEL: Record<string, string> = { answer_snapshot: "回答�
 
 export function ReportsView() {
   const { workspace, startTask, corpora, showInspector } = useApp();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const view = searchParams.get("view") ?? "active";
+  const [templates, setTemplates] = useState<TemplateSummary[]>([]);
+  const [lastTrash, setLastTrash] = useState<ArtifactInfo | null>(null);
+  const [pageCursor,setPageCursor] = useState("");
+  useEffect(() => { void fetchTemplates(undefined,true).then(setTemplates).catch(e => setError(e.message)); }, []);
   const [scope, setScope] = useState<"all" | "current">("all");
   const [artifactList, setArtifactList] = useState<{ key: string; items: ArtifactSummary[] } | null>(null);
   const [loading, setLoading] = useState(true);
@@ -135,8 +142,8 @@ export function ReportsView() {
 
   useEffect(() => {
     const refresh = () => setRevision((value) => value + 1);
-    window.addEventListener("dox-artifacts-changed", refresh);
-    return () => window.removeEventListener("dox-artifacts-changed", refresh);
+    window.addEventListener("dox-artifacts-changed", refresh); window.addEventListener("focus",refresh);
+    return () => { window.removeEventListener("dox-artifacts-changed", refresh); window.removeEventListener("focus",refresh); };
   }, []);
 
   useEffect(() => {
@@ -146,12 +153,12 @@ export function ReportsView() {
     setError("");
     setLoading(true);
     // An omitted query means global; the current-session filter always sends its exact key.
-    void fetchArtifacts(scope === "all" ? undefined : workspace.active ?? "").then(
+    void (view === "trash" ? fetch(`/api/artifacts?view=trash&limit=50${pageCursor ? `&cursor=${encodeURIComponent(pageCursor)}` : ""}`).then(async r => { if (!r.ok) throw new Error("回收站读取失败"); return await r.json() as ArtifactSummary[]; }) : fetchArtifacts(scope === "all" ? undefined : workspace.active ?? "")).then(
       (items) => { if (active) setArtifactList({ key, items }); },
       (cause) => { if (active) setError(cause instanceof Error ? cause.message : "成果列表读取失败"); },
     ).finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
-  }, [scope, workspace.active, revision]);
+  }, [scope, workspace.active, revision, view, pageCursor]);
 
   const key = scope === "all" ? "all" : `current:${workspace.active ?? ""}`;
   const artifacts = artifactList?.key === key ? artifactList.items : [];
@@ -162,6 +169,10 @@ export function ReportsView() {
       description="查看已保存的回答快照与专项报告。可切换全部成果或当前会话。"
       actions={<Button onClick={() => void startTask("task4")}>新建专项报告</Button>}
     >
+      <div className="col-span-full flex flex-wrap gap-3">{[["active","成果"],["templates","模板"],["trash","回收站"]].map(([id,label]) => <button key={id} aria-pressed={view===id} onClick={() => { setSearchParams(id === "active" ? {} : {view:id}); setPageCursor(""); }}>{label}</button>)}</div>
+      {view === "trash" && <p className="col-span-full text-sm">删除后保留7天；服务关闭期间将在下次启动时清理。到期不可恢复。{pageCursor && <button onClick={() => setPageCursor("")}>返回第一页</button>}</p>}
+      {lastTrash && <p className="col-span-full">已移入回收站 <button onClick={() => void changeArtifactLifecycle(lastTrash,"restore").then(() => setLastTrash(null)).catch(e => setError(e.message))}>撤销</button></p>}
+      {view === "templates" && templates.map(t => <button key={t.id} onClick={() => showInspector({kind:"template",templateId:t.id})} className="rounded border border-[var(--hairline)] p-4 text-left">{t.name} · {t.kind === "custom" ? "自定义" : "内置"} · {t.status}</button>)}
       <div className="col-span-full flex gap-[6px]">
         <button type="button" aria-pressed={scope === "all"} onClick={() => setScope("all")}
           className={`rounded-[7px] px-[11px] py-[6px] text-[12px] ${scope === "all" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>全部成果</button>
@@ -173,11 +184,10 @@ export function ReportsView() {
       {!loading && !error && !artifacts.length ? (
         <p className="col-span-full text-[13px] text-[var(--steel)]">{scope === "current" ? "本会话还没有成果。" : "还没有成果。"}可在回答操作条选择“保存为成果”。</p>
       ) : null}
-      {artifacts.map((item) => (
-        <button key={item.artifact_id} type="button"
-          onClick={() => showInspector({ kind: "artifact", artifactId: item.artifact_id })}
+      {view !== "templates" && artifacts.map((item) => (
+        <article key={item.artifact_id}
           className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-left hover:border-[var(--primary)]">
-          <span className="block text-[14px] font-semibold text-[var(--ink)]">{item.title || "未命名成果"}</span>
+          <button onClick={() => showInspector({ kind: "artifact", artifactId: item.artifact_id })} className="block text-[14px] font-semibold text-[var(--ink)]">{item.title || "未命名成果"}</button>
           <span className="mt-[5px] block text-[12px] text-[var(--steel)]">
             {ARTIFACT_TYPE_LABEL[item.type] ?? item.type} · 版本 {item.current_version} · {item.status === "completed" ? "已完成" : item.status === "draft" ? "草稿" : item.status === "failed" ? "失败" : "生成中"} ·{" "}
             {item.corpus_ids.length
@@ -191,8 +201,10 @@ export function ReportsView() {
           <span className="mt-[2px] block break-all text-[11px] text-[var(--stone)]">
             任务：{item.task_id || "未记录"} / {item.task_version ? `v${item.task_version}` : "未记录"} · 模板：{item.template_id || "未记录"} / {item.template_version != null ? `v${item.template_version}` : "未记录"}
           </span>
-        </button>
+          <div className="mt-3 flex flex-wrap gap-3 text-sm">{view === "trash" ? <><span>到期：{item.purge_after ? new Date(item.purge_after).toLocaleString() : ""}</span><button onClick={() => void changeArtifactLifecycle(item,"restore").catch(e => setError(e.message))}>还原</button><button onClick={() => { if (window.confirm("永久删除全部版本与独占附件，不可恢复？")) void changeArtifactLifecycle(item,"purge").catch(e => setError(e.message)); }}>彻底删除</button></> : <button disabled={item.status === "generating"} onClick={() => void changeArtifactLifecycle(item,"trash").then(setLastTrash).catch(e => setError(e.message))}>移入回收站</button>}</div>
+        </article>
       ))}
+      {view === "trash" && artifacts.length === 50 && <button onClick={() => setPageCursor(artifacts.at(-1)!.cursor ?? "")}>下一页</button>}
     </ViewShell>
   );
 }

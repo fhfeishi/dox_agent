@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router";
 import { Fragment, useEffect, useState } from "react";
 import { useApp } from "../store";
 import { fetchReports, type ReportSummary } from "../api";
@@ -45,6 +46,7 @@ export function SidePanel() {
     taskCapable,
     showInspector,
     corpora,
+    corpusIds,
     corporaError,
     effectiveCorpusId,
     selectCorpus,
@@ -60,7 +62,18 @@ export function SidePanel() {
     llmTone,
   } = useApp();
 
-  const [query, setQuery] = useState("");
+  const [localQuery, setLocalQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = nav === "library" ? searchParams.get("q") ?? "" : localQuery;
+  function setQuery(value: string) { if (nav === "library") setSearchParams(p => { if (value) p.set("q", value); else p.delete("q"); return p; }); else setLocalQuery(value); }
+  const [groups,setGroups] = useState<{id:string;name:string}[]>([]);
+  useEffect(() => {
+    if (nav !== "library") return;
+    let active = true;
+    const refresh = () => { void fetch("/api/corpus-groups").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => { if (active) setGroups(data.groups); }).catch(() => { if (active) setGroups([]); }); };
+    refresh(); window.addEventListener("dox-groups-changed",refresh); window.addEventListener("focus",refresh);
+    return () => { active=false; window.removeEventListener("dox-groups-changed",refresh); window.removeEventListener("focus",refresh); };
+  }, [nav]);
   const [sessionFilter, setSessionFilter] = useState<"all" | "pinned">("all");
   const [reports, setReports] = useState<ReportSummary[]>([]);
 
@@ -129,7 +142,7 @@ export function SidePanel() {
   );
 
   return (
-    <aside className="flex w-[276px] shrink-0 flex-col border-r border-[var(--hairline)] bg-[var(--surface-soft)]">
+    <aside className="flex w-[240px] hidden lg:flex shrink-0 flex-col border-r border-[var(--hairline)] bg-[var(--surface-soft)]">
       {/* header */}
       <div className="flex items-center gap-[8px] px-[14px] pt-[14px] pb-[10px]">
         <div className="flex min-w-0 flex-1 items-center gap-[9px]">
@@ -322,21 +335,9 @@ export function SidePanel() {
                 {corporaError}
               </p>
             )}
-            {visibleKbs.map((corpus) => (
-              <PanelRow
-                key={corpus.id}
-                dot={corpusDot(corpus.preparation, corpus.job?.status, corpus.missing)}
-                title={corpus.name}
-                meta={`${corpus.docs_count}`}
-                active={corpus.id === effectiveCorpusId}
-                onClick={() => showInspector({ kind: "corpus", corpusId: corpus.id })}
-              />
-            ))}
-            {!visibleKbs.length && (
-              <p className="px-[10px] py-3 text-[12.5px] text-[var(--stone)]">
-                {q ? "没有匹配的知识库。" : "还没有知识库。"}
-              </p>
-            )}
+            {[{id:"",name:"全部知识库"},...groups,{id:"ungrouped",name:"未分组"}].map(g => <PanelRow key={g.id} title={g.name} active={(searchParams.get("group") ?? "") === g.id} onClick={() => setSearchParams(p => { if (g.id) p.set("group",g.id); else p.delete("group"); return p; })} />)}
+            <GroupLabel>当前对话范围</GroupLabel>
+            <p className="px-3 text-sm">{corpusIds.map(id => corpora.find(c => c.id === id)?.name ?? id).join("、") || "未选择"}</p>
             <div className="px-[8px] pt-[10px]">
               <Button
                 variant="quiet"

@@ -32,6 +32,10 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
   const [sessions, setSessions] = useState<Saved<SessionData>[]>([]);
   const [active, setActive] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [saveState, setSaveState] = useState<"saved" | "saving" | "failed">("saved");
+  const saveStateRef = useRef<"saved" | "saving" | "failed">("saved");
+  const queued = useRef(0);
+  function savingState(value: "saved" | "saving" | "failed") { saveStateRef.current = value; setSaveState(value); }
   const [message, setMessage] = useState("正在恢复会话…");
   const [branches, setBranches] = useState<Branch[]>([]);
   const [taskVersion, setBoundTaskVersion] = useState<number | undefined>();
@@ -89,6 +93,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
   }, []);
 
   function enqueue(record: Saved<SessionData>) {
+    queued.current += 1; savingState("saving");
     chain.current = chain.current.catch(() => undefined).then(async () => {
       setMessage("正在保存…");
       const saved = await workspaceRequest(`/api/workspace/sessions/${record.id}`, {
@@ -97,10 +102,12 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
       revisions.current[record.id] = saved.revision;
       updateSessions([saved, ...sessionsRef.current.filter(item => item.id !== saved.id)]);
       setMessage("已保存到本地服务");
+      if (queued.current === 1) savingState("saved");
     }).catch(error => {
+      savingState("failed");
       setMessage((error as Error).message + "；当前内容仍保留，请重试或导出");
       throw error;
-    });
+    }).finally(() => { queued.current -= 1; });
     return chain.current;
   }
   function flush() { const snapshot = pending.current; pending.current = null; return snapshot ? enqueue(snapshot) : chain.current; }
@@ -225,5 +232,5 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     }
     await saveNow(turnsRef.current, optionsRef.current, branchesRef.current, taskIdRef.current, corpusIdRef.current, true);
   }
-  return { sessions, active, loaded, message, branches, taskVersion, setTaskVersion, select, flush, saveNow, saveCorpusSelection, branchInPlace, viewBranch, restoreBranch, rename, setArchived, setPinned, remove };
+  return { sessions, active, loaded, message, saveState, isSaved: () => saveStateRef.current === "saved", retrySave: () => saveNow(turnsRef.current, optionsRef.current, branchesRef.current, taskIdRef.current, corpusIdRef.current, true), branches, taskVersion, setTaskVersion, select, flush, saveNow, saveCorpusSelection, branchInPlace, viewBranch, restoreBranch, rename, setArchived, setPinned, remove };
 }

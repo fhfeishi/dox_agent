@@ -99,7 +99,7 @@ export function ChatView() {
     sessionBusy,
     activeTitle,
     activeTask,
-    currentCorpus,
+    corpusIds,
     corpora,
     taskCapable,
     setInput,
@@ -155,10 +155,10 @@ export function ChatView() {
             专业问答
           </span>
         )}
-        {currentCorpus ? (
+        {corpusIds.length ? (
           <span className="hidden shrink-0 items-center gap-[5px] text-[11.5px] text-[var(--stone)] md:inline-flex">
             <Icon name="library" size={12} strokeWidth={2} />
-            库：{currentCorpus.name} · {currentCorpus.docs_count} 份
+            对话库：{corpusIds.map(id => corpora.find(c => c.id === id)?.name ?? id).join("、")}
           </span>
         ) : null}
 
@@ -184,7 +184,7 @@ export function ChatView() {
                 onClick={() => {
                   setExportOpen(false);
                   downloadSessionMarkdown(
-                    { title: activeTitle, corpusName: currentCorpus?.name, taskName: taskCapable ? activeTask?.name : undefined },
+                    { title: activeTitle, corpusName: corpusIds.map(id => corpora.find(c => c.id === id)?.name ?? id).join("、"), taskName: taskCapable ? activeTask?.name : undefined },
                     turns,
                   );
                   showToast("已导出会话 Markdown");

@@ -1,89 +1,33 @@
 import { useState } from "react";
 import type { CorpusInfo } from "../api";
 
-function statusDot(corpus: CorpusInfo): { tone: string; label: string } {
-  if (corpus.missing) return { tone: "bg-[var(--red)]", label: "目录缺失" };
-  if (corpus.job?.status === "running") return { tone: "bg-[#e0a000] animate-pulse", label: "正在导入" };
-  if (corpus.job?.status === "error") return { tone: "bg-[var(--red)]", label: "导入失败" };
-  if (corpus.preparation === "ready") return { tone: "bg-[var(--green)]", label: "可检索" };
-  if (corpus.preparation === "empty") return { tone: "bg-[#e0a000]", label: "空库" };
-  return { tone: "bg-[#e0a000]", label: "空库" };
-}
-
-/**
- * Corpus selector rows, shared by the sidebar list and the composer popover.
- * Selecting a corpus never touches sessions; the document list and library count
- * simply re-scope.
- */
-export function CorpusPicker({
-  corpora,
-  current,
-  onSelect,
-  selectedIds,
-  onToggle,
-  onUseOnly,
-  disabled = false,
-}: {
-  corpora: CorpusInfo[];
-  current: string;
-  onSelect: (id: string) => void;
-  selectedIds: string[];
+/** Selection is the conversation scope; details never change it. */
+export function CorpusPicker({ corpora, selectedIds, onToggle, onUseOnly, onDetails, disabled = false }: {
+  corpora: CorpusInfo[]; selectedIds: string[];
   onToggle: (id: string, selected: boolean) => void;
-  onUseOnly: (id: string) => void;
-  disabled?: boolean;
+  onUseOnly: (id: string) => void; onDetails: (id: string) => void; disabled?: boolean;
 }) {
   const [query, setQuery] = useState("");
-  const visible = corpora.filter((corpus) => `${corpus.name} ${corpus.domain} ${corpus.kind}`.toLowerCase().includes(query.trim().toLowerCase()));
-  return (
-    <div>
-      <label className="mb-[7px] flex items-center gap-[7px] rounded-[7px] border border-[var(--hairline)] px-[8px] py-[5px] text-[var(--stone)]">
-        <span aria-hidden="true">⌕</span>
-        <input aria-label="搜索知识库范围" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索知识库" className="min-w-0 flex-1 bg-transparent text-[12px] text-[var(--ink)] outline-none" />
-        <span className="shrink-0 text-[10.5px]">最多 6 个</span>
-      </label>
-      <ul className="space-y-[4px]" aria-label="知识库">
-      {visible.map((corpus) => {
-        const dot = statusDot(corpus);
-        const active = corpus.id === current;
-        const inSearch = selectedIds.includes(corpus.id);
-        const canAdd = !corpus.missing;
-        return (
-          <li key={corpus.id} id={`corpus-${corpus.id}`} className="flex items-center gap-[6px]">
-            <button
-              type="button"
-              disabled={disabled}
-              onClick={() => onSelect(corpus.id)}
-              className={`flex min-w-0 flex-1 items-center gap-[10px] rounded-[8px] border px-[10px] py-[8px] text-left transition-colors ${
-                active
-                  ? "border-[#d5cdf7] bg-[var(--primary-soft)] text-[var(--primary-pressed)]"
-                  : "border-[var(--hairline)] bg-[var(--canvas)] text-[var(--charcoal)] hover:bg-[var(--surface-soft)]"
-              }`}
-            >
-              <span className={`size-[7px] shrink-0 rounded-full ${dot.tone}`} title={dot.label} />
-              <span className="min-w-0 flex-1">
-                <span className="block truncate text-[13px]">{corpus.name}</span>
-                <span className="block text-[11px] text-[var(--stone)]">
-                  {dot.label} · {corpus.docs_count} 份{corpus.kind === "fund" ? " · 基金报告" : ""}
-                </span>
-              </span>
-              {active ? <span className="shrink-0 text-[11px] text-[var(--primary)]">上传目标</span> : null}
-            </button>
-            <label className="flex shrink-0 items-center gap-[5px] px-[5px] text-[10.5px] text-[var(--steel)]" title="加入当前对话">
-              <input
-                type="checkbox"
-                aria-label={`当前对话使用 ${corpus.name}`}
-                checked={inSearch}
-                disabled={disabled || (!canAdd && !inSearch) || (!inSearch && selectedIds.length >= 6) || (inSearch && selectedIds.length <= 1)}
-                onChange={(event) => onToggle(corpus.id, event.target.checked)}
-              />
-              对话
-            </label>
-            {!inSearch && !corpus.missing ? <button type="button" disabled={disabled} onClick={() => onUseOnly(corpus.id)} className="shrink-0 rounded-[6px] px-[7px] py-[5px] text-[10.5px] text-[var(--primary)] hover:bg-[var(--primary-soft)] disabled:opacity-50">仅使用此库</button> : null}
-          </li>
-        );
+  const visible = corpora.filter(c => `${c.name} ${c.domain} ${c.kind}`.toLowerCase().includes(query.trim().toLowerCase()));
+  return <div>
+    <h3 className="font-semibold">管理对话知识库 · {selectedIds.length}/6</h3>
+    <p className="my-2 text-xs">修改对后续新提问生效；至少 1 个、最多 6 个。失效范围可用“仅使用此库”一次替换。</p>
+    <p className="my-2 text-xs">已选：{selectedIds.map(id => corpora.find(c => c.id === id)?.name ?? `知识库不可用（${id}）`).join("、") || "未选择"}</p>
+    <input aria-label="搜索知识库范围" value={query} onChange={e => setQuery(e.target.value)} placeholder="搜索知识库" className="mb-2 w-full rounded border p-2" />
+    <ul aria-label="知识库" className="max-h-64 space-y-2 overflow-auto">
+      {visible.map(c => {
+        const selected = selectedIds.includes(c.id);
+        const blocked = disabled || Boolean(c.missing) || (selected ? selectedIds.length <= 1 : selectedIds.length >= 6);
+        return <li key={c.id} className={`flex flex-wrap items-center gap-2 rounded-lg border p-2 ${selected ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : ""}`}>
+          <label className="flex min-w-0 flex-1 cursor-pointer items-center gap-2">
+            <input type="checkbox" aria-label={`当前对话使用 ${c.name}`} checked={selected} disabled={blocked} onChange={e => onToggle(c.id, e.target.checked)} />
+            <span className="min-w-0"><span className="block truncate" title={c.name}>{c.name}</span><span className="text-xs">{c.missing ? "目录缺失" : c.preparation === "ready" ? "可检索" : "暂无已入库资料"} · 已入库 {c.docs_count} 份</span></span>
+          </label>
+          <button type="button" onClick={() => onDetails(c.id)}>详情</button>
+          <button type="button" disabled={disabled || c.missing || (selected && selectedIds.length === 1)} onClick={() => onUseOnly(c.id)} className="text-xs disabled:opacity-40">仅使用此库</button>
+        </li>;
       })}
-        {!visible.length ? <li className="px-[8px] py-[12px] text-center text-[12px] text-[var(--stone)]">没有匹配的知识库</li> : null}
-      </ul>
-    </div>
-  );
+      {!visible.length && <li>没有匹配的知识库 <button onClick={() => setQuery("")}>清空搜索</button></li>}
+    </ul>
+  </div>;
 }

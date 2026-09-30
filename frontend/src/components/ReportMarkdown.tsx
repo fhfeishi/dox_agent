@@ -9,7 +9,7 @@ export type ReportFigure = {
 };
 
 export function ReportMarkdown({ markdown, figures = [], reportId, artifact, sources = [], onOpenSource }:
-  { markdown: string; figures?: ReportFigure[]; reportId?: string; artifact?: { id: string; version: number };
+  { markdown: string; figures?: ReportFigure[]; reportId?: string; artifact?: { id: string; version: number; trashed?: boolean };
     sources?: ArtifactInfo["citations"]; onOpenSource?: (source: Source, n: number) => void }) {
   const references: Source[] = sources.map((source, index) => ({
     ...source, title: source.title ?? "", url: source.url ?? "", snippet: "",
@@ -28,7 +28,7 @@ export function ReportMarkdown({ markdown, figures = [], reportId, artifact, sou
     const figure = figures.find((item) => item.figure_id === match?.[1]);
     if (!figure) return <span role="alert">报告图片不可用：{alt}</span>;
     const imageUrl = artifact
-      ? `/api/artifacts/${encodeURIComponent(artifact.id)}/versions/${artifact.version}/figures/${figure.figure_id}`
+      ? `/api/artifacts/${encodeURIComponent(artifact.id)}/versions/${artifact.version}/figures/${figure.figure_id}?include_trashed=${Boolean(artifact.trashed)}`
       : `/api/reports/${encodeURIComponent(reportId ?? "")}/figures/${figure.figure_id}`;
     const pdfUrl = `/api/documents/${encodeURIComponent(figure.doc_id)}/file?corpus=${encodeURIComponent(figure.corpus_id)}&version=${encodeURIComponent(figure.doc_version)}#page=${figure.page}`;
     return <a href={pdfUrl} target="_blank" rel="noreferrer" title={`查看原 PDF 第 ${figure.page} 页`}>

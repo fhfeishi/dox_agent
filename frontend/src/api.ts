@@ -205,7 +205,7 @@ export async function fetchWebSnapshot(snapshotId: string): Promise<WebSnapshot>
   return await jsonOrThrow(response, "网页快照读取失败") as WebSnapshot;
 }
 export type ReportSummary = { report_id: string; created_at?: string; session_key?: string; run_id?: string; corpus_id?: string; template_id?: string; domain?: string; year_from?: number; year_to?: number };
-export type ReportInfo = { report_id: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean; figures?: import("./components/ReportMarkdown").ReportFigure[] };
+export type ReportInfo = { report_id: string; artifact_id?: string; created_at?: string; params?: ReportParams; markdown: string; idempotent?: boolean; figures?: import("./components/ReportMarkdown").ReportFigure[] };
 export type ReportMetadataCoverage = {
   corpus_id: string; total: number;
   period: { hits: number; missing: number };
@@ -245,6 +245,7 @@ export async function fetchReport(reportId: string): Promise<ReportInfo> {
 }
 
 export type ArtifactSummary = {
+  cursor?: string; revision: number; lifecycle: "active" | "trashed"; trashed_at?: string; purge_after?: string;
   artifact_id: string; type: string; status: string; title: string; current_version: number;
   created_at: string; updated_at: string; session_key: string; run_id: string; corpus_ids: string[];
   task_id: string; task_version?: number | null; template_id: string; template_version?: number | null; export_format: string; export_status: string;
@@ -264,10 +265,10 @@ export async function fetchFigureCandidates(artifactId: string): Promise<import(
   return jsonOrThrow(response, "可替换图片读取失败") as Promise<import("./components/ReportMarkdown").ReportFigure[]>;
 }
 
-export async function changeArtifactFigure(artifactId: string, figureId: string, replacementId?: string): Promise<ArtifactInfo> {
+export async function changeArtifactFigure(artifactId: string, figureId: string, replacementId?: string, revision?: number): Promise<ArtifactInfo> {
   const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/figures/${encodeURIComponent(figureId)}${replacementId ? "/replace" : ""}`,
-    replacementId ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ figure_id: replacementId }) }
-      : { method: "DELETE" });
+    replacementId ? { method: "POST", headers: { "Content-Type": "application/json", "If-Match": `"${revision}"` }, body: JSON.stringify({ figure_id: replacementId }) }
+      : { method: "DELETE", headers: { "If-Match": `"${revision}"` } });
   return jsonOrThrow(response, "修改图片失败") as Promise<ArtifactInfo>;
 }
 
@@ -279,20 +280,20 @@ export async function fetchArtifacts(sessionKey?: string, signal?: AbortSignal):
   return response.json();
 }
 
-export async function fetchArtifact(artifactId: string, version?: number): Promise<ArtifactInfo> {
-  const suffix = version === undefined ? "" : `?version=${version}`;
+export async function fetchArtifact(artifactId: string, version?: number, includeTrashed = false): Promise<ArtifactInfo> {
+  const suffix = `?include_trashed=${includeTrashed}${version === undefined ? "" : `&version=${version}`}`;
   const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}${suffix}`);
   return jsonOrThrow(response, "成果不可用") as Promise<ArtifactInfo>;
 }
 
-export async function fetchArtifactVersions(artifactId: string): Promise<ArtifactVersion[]> {
-  const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/versions`);
+export async function fetchArtifactVersions(artifactId: string, includeTrashed = false): Promise<ArtifactVersion[]> {
+  const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/versions?include_trashed=${includeTrashed}`);
   return jsonOrThrow(response, "成果版本不可用") as Promise<ArtifactVersion[]>;
 }
 
-export async function createArtifactVersion(artifactId: string, markdown: string, status: "draft" | "completed"): Promise<ArtifactInfo> {
+export async function createArtifactVersion(artifactId: string, markdown: string, status: "draft" | "completed", revision?: number): Promise<ArtifactInfo> {
   const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/versions`, {
-    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ markdown, status }),
+    method: "POST", headers: { "Content-Type": "application/json", "If-Match": `"${revision}"` }, body: JSON.stringify({ markdown, status }),
   });
   return jsonOrThrow(response, "保存版本失败") as Promise<ArtifactInfo>;
 }
@@ -544,4 +545,11 @@ export async function streamChat(messages: Message[], runIdOrSignal: string | Ab
     await reader.cancel().catch(() => undefined);
     reader.releaseLock();
   }
+}
+
+export async function changeArtifactLifecycle(item: ArtifactSummary, action: "trash" | "restore" | "purge") {
+  const response = await fetch(`/api/artifacts/${encodeURIComponent(item.artifact_id)}${action === "trash" ? "" : `/${action}`}`, {method: action === "restore" ? "POST" : "DELETE", headers: {"If-Match": `"${item.revision}"`}});
+  const result = await jsonOrThrow(response, "成果状态修改失败");
+  window.dispatchEvent(new Event("dox-artifacts-changed"));
+  return result as ArtifactInfo;
 }

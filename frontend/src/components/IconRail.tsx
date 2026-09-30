@@ -29,16 +29,16 @@ function RailButton({
       aria-label={label}
       aria-current={active ? "page" : undefined}
       onClick={onClick}
-      className={`relative grid size-[36px] place-items-center rounded-[8px] transition-colors ${
+      className={`relative flex min-h-[60px] w-full flex-col items-center justify-center gap-1 rounded-[8px] transition-colors ${
         active
-          ? "bg-[#e6e3df] text-[var(--ink)]"
+          ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]"
           : "text-[var(--steel)] hover:bg-[#eceae7] hover:text-[var(--charcoal)]"
       }`}
     >
       {active ? (
         <span className="absolute top-[9px] -left-[10px] h-[18px] w-[3px] rounded-r-[3px] bg-[var(--navy)]" />
       ) : null}
-      <Icon name={icon} size={19} />
+      <Icon name={icon} size={22} /><span className="text-[12px] leading-tight">{label}</span>
     </button>
   );
 }
@@ -47,7 +47,6 @@ export function IconRail() {
   const {
     nav,
     setNav,
-    inspectorOpen,
     toggleInspector,
     setDrawerOpen,
     llmTone,
@@ -61,7 +60,7 @@ export function IconRail() {
   } = useApp();
 
   return (
-    <nav className="flex w-[56px] shrink-0 flex-col items-center gap-[4px] border-r border-[var(--hairline)] bg-[var(--surface)] py-[10px] pb-[12px]">
+    <nav className="flex w-[88px] shrink-0 flex-col items-center gap-[4px] overflow-y-auto px-1 border-r border-[var(--hairline)] bg-[var(--surface)] py-[10px] pb-[12px]">
       <div className="mb-[10px] grid size-[30px] place-items-center rounded-[8px] bg-[var(--navy)]">
         <BrandMark size={16} />
       </div>
@@ -76,6 +75,8 @@ export function IconRail() {
         />
       ))}
 
+      <span className="flex-1" />
+      <div className={sidebarCollapsed ? "w-full" : "w-full lg:hidden"}>
       <RailButton
         icon="plus"
         label="新建对话"
@@ -85,17 +86,13 @@ export function IconRail() {
         }}
       />
 
-      <span className="my-[8px] h-px w-[20px] bg-[var(--hairline)]" />
-
+      </div>
       <RailButton
         icon="panel"
         label="检查器"
-        active={inspectorOpen}
         onClick={toggleInspector}
       />
-      <RailButton icon="settings" label="检索设置" onClick={() => setDrawerOpen(true)} />
-
-      <span className="flex-1" />
+      <RailButton icon="settings" label="设置" onClick={() => setDrawerOpen(true)} />
 
       {sidebarCollapsed ? (
         <RailButton icon="chevronRight" label="展开侧栏" onClick={toggleSidebar} />
@@ -103,12 +100,12 @@ export function IconRail() {
 
       <button
         type="button"
-        title={`LLM：${model || "未知"} · ${llmText}`}
+        title={`模型：${model || "未知"} · ${llmText}`}
         onClick={() => setDrawerOpen(true)}
         className="relative grid size-[30px] place-items-center rounded-full border border-black/[0.04] bg-[var(--tint-gray)]"
       >
         <span className={`absolute -top-[1px] -right-[1px] size-[9px] rounded-full ring-2 ring-[var(--surface)] ${llmTone}`} />
-        <span className="text-[10px] font-semibold text-[var(--slate)]">LLM</span>
+        <span className="text-[10px] font-semibold text-[var(--slate)]">模型</span>
       </button>
     </nav>
   );

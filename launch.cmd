@@ -10,6 +10,11 @@ rem inside parenthesized blocks.
 cd /d "%~dp0"
 set "PROJECT_ROOT=%CD%"
 
+rem Set PORT/HOST before the preflight: launcher.py check reads the same
+rem variables, and its own fallback is 8000.
+if not defined PORT set "PORT=8000"
+if not defined HOST set "HOST=127.0.0.1"
+
 rem ------------------------------------------------------------
 rem Basic dependencies
 rem ------------------------------------------------------------
@@ -39,8 +44,14 @@ if not defined runtime if defined DOX_AGENT_VENV set "runtime=%DOX_AGENT_VENV%"
 if not defined runtime set "runtime=%PROJECT_ROOT%\.venv"
 
 rem Normalize forward slashes and relative paths against the project root.
+rem Drive-letter paths (D:\...) and UNC paths (\...) are already absolute;
+rem only bare relative paths get rooted under the project.
 set "runtime=%runtime:/=\%"
-if not "%runtime:~0,1%"=="\" set "runtime=%PROJECT_ROOT%\%runtime%"
+set "ABS_PATH="
+if "%runtime:~0,1%"=="\" set "ABS_PATH=1"
+if "%runtime:~1,1%"==":" set "ABS_PATH=1"
+if not defined ABS_PATH set "runtime=%PROJECT_ROOT%\%runtime%"
+set "ABS_PATH="
 
 if exist "%runtime%" (
   if not exist "%runtime%\Scripts\python.exe" (
@@ -90,8 +101,10 @@ rem ------------------------------------------------------------
 call "%python%" src\launcher.py web
 if errorlevel 1 exit /b 1
 
-set "embedding_enabled="
-for /f "delims=" %%E in ('""%python%" -c "from src.agent.config import get_settings; print(int(bool(get_settings().embedding_path.strip())))""') do set "embedding_enabled=%%E"
+rem for /f clauses choke on parentheses in inline Python; use the exit code instead.
+set "embedding_enabled=0"
+"%python%" -c "from src.agent.config import get_settings; import sys; sys.exit(0 if get_settings().embedding_path.strip() else 1)"
+if not errorlevel 1 set "embedding_enabled=1"
 
 if "%embedding_enabled%"=="1" (
   call "%python%" src\launcher.py embedding
@@ -116,9 +129,6 @@ if defined REBUILD_FRONTEND (
 rem ------------------------------------------------------------
 rem Main service
 rem ------------------------------------------------------------
-
-if not defined PORT set "PORT=8000"
-if not defined HOST set "HOST=127.0.0.1"
 
 echo Open http://%HOST%:%PORT%
 call "%python%" -m uvicorn src.main:app --loop asyncio --host "%HOST%" --port "%PORT%"

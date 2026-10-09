@@ -2,15 +2,20 @@
   "doc_id": "23b01b23f18cd3cfb023",
   "version": "f649d1210a2d12596fe0",
   "source_hash": "7cddc20709a7a98ec317012218ded4260fdd8bc053baf966a620fbfc2a603aa6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:42:28.162273+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:43:47.880270+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 6,
+      "total": 6,
+      "failed": []
     }
   },
   "facets": [
@@ -21,10 +26,10 @@
         {
           "id": "item-4ccf91192d4d",
           "name": "循证因果证据推断",
-          "desc": "在循证因果证据推断中，随机对照试验是内部有效因果证据金标准。",
+          "desc": "RCT是内部有效因果证据金标准但外部有效性差，两样本MR对异质总体偏倚巨大",
           "evidence": [
             {
-              "quote": "在循证因果证据推断中，RCT是内部有效因果证据金标准，但因试验样本非随机选择使其外部有效性及泛化外推力差",
+              "quote": "在循证因果证据推断中，RCT是内部有效因果证据金标准，但因试验样本非随机选择使其外部有效性及泛化外推力差；而同质总体两样本MR是获取观察性因果关联证据公认方法，但对异质总体其偏倚巨大",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,12 +40,12 @@
           ]
         },
         {
-          "id": "item-1435872b1b8a",
-          "name": "健康医疗大数据平台应用",
-          "desc": "依托山东省健康医疗大数据平台，融合多源异构数据构建专病纵向队列。",
+          "id": "item-82d9639dbbbd",
+          "name": "循证医学证据向真实世界转化",
+          "desc": "打通循证医学证据向真实世界转化的技术路径",
           "evidence": [
             {
-              "quote": "项目依托山东省健康医疗大数据平台，深度融合多源异构数据，构建了包括慢性乙型肝炎、主动脉夹层、脑卒中及胆囊结石等在内的8个高质量专病纵向队列。",
+              "quote": "成功打通了循证医学证据向真实世界转化的技术路径",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -57,12 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-af44d20120e1",
-          "name": "RCT外部有效性差",
-          "desc": "RCT因试验样本非随机选择导致外部有效性及泛化外推力差。",
+          "id": "item-ee0d62b48530",
+          "name": "RCT外部有效性推断困难",
+          "desc": "需评估或预估RCT外部有效性和外推泛化力",
           "evidence": [
             {
-              "quote": "但因试验样本非随机选择使其外部有效性及泛化外推力差",
+              "quote": "为评估或预估RCT外部有效性和外推泛化力提供新方法",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -73,12 +78,12 @@
           ]
         },
         {
-          "id": "item-b7b78325b831",
-          "name": "异质总体MR偏倚巨大",
-          "desc": "同质总体两样本孟德尔随机化是获取观察性因果关联证据的公认方法，但对异质总体偏倚巨大。",
+          "id": "item-fbc79b1406ee",
+          "name": "传统MR同质性假设瓶颈",
+          "desc": "传统MR在异质性人群中因果推断失效，需将其适用范围推广到异质人群",
           "evidence": [
             {
-              "quote": "而同质总体两样本MR是获取观察性因果关联证据公认方法，但对异质总体其偏倚巨大。",
+              "quote": "针对异质总体的两样本MR，创立因果关联效应的迁移统计模型，将其适用范围推广到异质人群情形",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -95,9 +100,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9ae805b130d5",
-          "name": "因果选择图理论框架",
-          "desc": "确立因果选择图理论框架，构建涵盖数据驱动与假设驱动的RCT因果迁移统计推断模型。",
+          "id": "item-2e956952081f",
+          "name": "因果选择图与RCT因果迁移模型",
+          "desc": "确立因果选择图理论框架，构建涵盖数据驱动与假设驱动的RCT因果迁移统计推断模型",
           "evidence": [
             {
               "quote": "项目组首先确立了因果选择图理论框架，构建了涵盖“数据驱动”与“假设驱动”的RCT因果迁移统计推断模型",
@@ -108,12 +113,13 @@
               },
               "version": "f649d1210a2d12596fe0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-269f50f6cbfe",
-          "name": "迁移学习两样本MR方法",
-          "desc": "突破传统MR同质性假设瓶颈，提出基于迁移学习的Two-Sample MR方法TLMR及跨种族联邦遗传相关桥接模型TEMR。",
+          "id": "item-f9ec65696ea0",
+          "name": "TLMR迁移学习Two-Sample MR",
+          "desc": "提出基于迁移学习的Two-Sample MR方法（TLMR）及跨种族联邦遗传相关桥接模型TEMR",
           "evidence": [
             {
               "quote": "创新性地提出了基于迁移学习的Two-Sample MR方法（TLMR）及跨种族联邦遗传相关桥接模型（TEMR）",
@@ -124,15 +130,16 @@
               },
               "version": "f649d1210a2d12596fe0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-22212bdf7861",
-          "name": "汇总数据因果网络重构",
-          "desc": "开发仅利用汇总数据即可重构复杂因果网络的结构学习算法MRSL与多中介分析方法PSE-MR。",
+          "id": "item-9024d822f41a",
+          "name": "MRSL与PSE-MR方法",
+          "desc": "开发仅用汇总数据重构因果网络的MRSL算法与多中介分析方法PSE-MR",
           "evidence": [
             {
-              "quote": "开发了仅利用汇总数据即可重构复杂因果网络的结构学习算法（MRSL）与多中介分析方法（PSE-MR）",
+              "quote": "进一步开发了仅利用汇总数据即可重构复杂因果网络的结构学习算法（MRSL）与多中介分析方法（PSE-MR）",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -140,7 +147,25 @@
               },
               "version": "f649d1210a2d12596fe0"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b0b85dfd4140",
+          "name": "8个高质量专病纵向队列",
+          "desc": "依托山东省健康医疗大数据平台构建含慢性乙型肝炎、主动脉夹层等8个专病队列",
+          "evidence": [
+            {
+              "quote": "项目依托山东省健康医疗大数据平台，深度融合多源异构数据，构建了包括慢性乙型肝炎、主动脉夹层、脑卒中及胆囊结石等在内的8个高质量专病纵向队列",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "453d0a445fde97555395d545aa7dd19a946efa11"
+              },
+              "version": "f649d1210a2d12596fe0"
+            }
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -149,12 +174,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4164358d6cb4",
-          "name": "八个高质量专病纵向队列",
-          "desc": "构建包括慢性乙型肝炎、主动脉夹层、脑卒中及胆囊结石等在内的8个高质量专病纵向队列。",
+          "id": "item-cedca2fb7229",
+          "name": "循证因果迁移学习统计方法体系",
+          "desc": "构建完善的方法体系并开展广泛实证研究",
           "evidence": [
             {
-              "quote": "构建了包括慢性乙型肝炎、主动脉夹层、脑卒中及胆囊结石等在内的8个高质量专病纵向队列",
+              "quote": "本项目旨在构建一套完善的“循证因果迁移学习统计方法体系”",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -163,15 +188,17 @@
               "version": "f649d1210a2d12596fe0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "构建了",
+          "self_reported": false
         },
         {
-          "id": "item-930c92724d66",
-          "name": "多层面实证因果发现",
-          "desc": "揭示绿色覆盖与癌症发病的因果关联，确证肺癌机会性筛查生存获益及内脏脂肪对肺部疾病的致病风险。",
+          "id": "item-2b58498b9650",
+          "name": "论文28篇与专利3项软著4项",
+          "desc": "发表学术论文28篇（SCI收录13篇），申请发明专利3项、软著4项",
           "evidence": [
             {
-              "quote": "不仅从宏观环境层面揭示了绿色覆盖与癌症发病的因果关联，还从临床诊疗层面确证了肺癌机会性筛查的生存获益及内脏脂肪对肺部疾病的致病风险",
+              "quote": "本项目圆满完成了既定科研任务，共发表学术论文28篇（其中SCI收录13篇），申请发明专利3项、软著4项",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -180,15 +207,17 @@
               "version": "f649d1210a2d12596fe0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "共发表学术论文28篇",
+          "self_reported": false
         },
         {
-          "id": "item-670cd0aaaf61",
-          "name": "28篇论文与知识产权",
-          "desc": "发表学术论文28篇（SCI收录13篇），申请发明专利3项、软著4项，培养博士后2名、博士7名、硕士15名。",
+          "id": "item-b9ccda39e3cf",
+          "name": "肺癌机会性筛查生存获益确证",
+          "desc": "确证肺癌机会性筛查的生存获益及内脏脂肪对肺部疾病的致病风险",
           "evidence": [
             {
-              "quote": "共发表学术论文28篇（其中SCI收录13篇），申请发明专利3项、软著4项，并培养了博士后2名、博士研究生7名、硕士研究生15名。",
+              "quote": "还从临床诊疗层面确证了肺癌机会性筛查的生存获益及内脏脂肪对肺部疾病的致病风险",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -197,7 +226,9 @@
               "version": "f649d1210a2d12596fe0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "确证了",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +236,186 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-2e956952081f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ee0d62b48530"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建了涵盖“数据驱动”与“假设驱动”的RCT因果迁移统计推断模型，有效解决了效应修饰干扰与数据缺失下的外部有效性推断问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "453d0a445fde97555395d545aa7dd19a946efa11"
+          },
+          "version": "f649d1210a2d12596fe0"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f9ec65696ea0"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-fbc79b1406ee"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对异质总体的两样本MR，创立因果关联效应的迁移统计模型，将其适用范围推广到异质人群情形",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "0bd24a4a92ad13193bf0107cae15e12c0245d5ad"
+          },
+          "version": "f649d1210a2d12596fe0"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-9024d822f41a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f9ec65696ea0"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "进一步开发了仅利用汇总数据即可重构复杂因果网络的结构学习算法（MRSL）与多中介分析方法（PSE-MR）",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "453d0a445fde97555395d545aa7dd19a946efa11"
+          },
+          "version": "f649d1210a2d12596fe0"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-b0b85dfd4140"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2e956952081f"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "基于该方法体系与数据库，项目组开展了广泛的实证研究",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "453d0a445fde97555395d545aa7dd19a946efa11"
+          },
+          "version": "f649d1210a2d12596fe0"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
         "item_id": "item-4ccf91192d4d"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-af44d20120e1"
+        "item_id": "item-fbc79b1406ee"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "而同质总体两样本MR是获取观察性因果关联证据公认方法，但对异质总体其偏倚巨大",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "0bd24a4a92ad13193bf0107cae15e12c0245d5ad"
+          },
+          "version": "f649d1210a2d12596fe0"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-b7b78325b831"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-269f50f6cbfe"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9ae805b130d5"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-4164358d6cb4"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-22212bdf7861"
+        "item_id": "item-b9ccda39e3cf"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-930c92724d66"
+        "dimension": "技术",
+        "item_id": "item-2e956952081f"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "还从临床诊疗层面确证了肺癌机会性筛查的生存获益及内脏脂肪对肺部疾病的致病风险",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "453d0a445fde97555395d545aa7dd19a946efa11"
+          },
+          "version": "f649d1210a2d12596fe0"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "8个高质量专病纵向队列",
+      "status_raw": "构建了",
+      "identifiers": {},
+      "id": "out-ba844baddef5",
+      "evidence": [
+        {
+          "quote": "构建了包括慢性乙型肝炎、主动脉夹层、脑卒中及胆囊结石等在内的8个高质量专病纵向队列",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "453d0a445fde97555395d545aa7dd19a946efa11"
+          },
+          "version": "f649d1210a2d12596fe0"
+        }
+      ]
+    },
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "循证因果迁移学习统计方法体系与软件包",
+      "status_raw": "构建了",
+      "identifiers": {},
+      "id": "out-099217f65b83",
+      "evidence": [
+        {
+          "quote": "由此，构建大数据背景下循证因果证据迁移学习的统计方法体系及软件包",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "0bd24a4a92ad13193bf0107cae15e12c0245d5ad"
+          },
+          "version": "f649d1210a2d12596fe0"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

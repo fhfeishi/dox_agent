@@ -2,15 +2,20 @@
   "doc_id": "607d047f5f93eebe51de",
   "version": "d88508bac0cf81f08e1f",
   "source_hash": "37bad96ed9bf509cdb8f159882dc3b27d14888d7a8a54187a9bbc6c64bac0e9e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:42:19.806154+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:43:47.909023+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b1a73ae86c31",
-          "name": "大数据时代的模型比较与推断",
-          "desc": "贝叶斯因子是模型比较、模型平均等统计推断的重要工具，大数据时代对其估计方法提出挑战。",
+          "id": "item-1e91e80cafb5",
+          "name": "大数据下的贝叶斯因子估计",
+          "desc": "贝叶斯因子是模型比较、模型平均等统计推断问题的重要工具",
           "evidence": [
             {
-              "quote": "贝叶斯因子是进行模型比较、模型平均等统计推断问题的重要工具。大数据时代的到来，给传统的贝叶斯因子估计方法带来了巨大的挑战。",
+              "quote": "贝叶斯因子是进行模型比较、模型平均等统计推断问题的重要工具",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,16 +40,16 @@
           ]
         },
         {
-          "id": "item-32fea26361e8",
-          "name": "金融大数据实证应用",
-          "desc": "面向金融大数据下的投资者决策、市场交易、政府监管与学术研究开展应用。",
+          "id": "item-b04cf1a46f0d",
+          "name": "金融大数据决策应用",
+          "desc": "贝叶斯分析方法对投资者决策、市场交易、政府监管、学术研究有参考价值",
           "evidence": [
             {
-              "quote": "本项目研究面向大数据的贝叶斯因子估计方法及其在金融中的应用",
+              "quote": "能够高效、稳健、及时地通过贝叶斯因子提炼出金融大数据中的有效信息，对投资者决策、市场交易、政府监管、学术研究等都有一定的参考和应用价值",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "ff298396ba6024bac5366a69e760da2da4d50b95"
+                "page": 3,
+                "chunk_id": "9a77d579820c8f9d9f273477bd1b27e1f8fe4cef"
               },
               "version": "d88508bac0cf81f08e1f"
             }
@@ -57,12 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bde17615d6b9",
-          "name": "大样本导致估计耗时过长",
-          "desc": "数据样本量急剧膨胀使传统估计方法耗时太长难以应用。",
+          "id": "item-89d57e5d5bcb",
+          "name": "大样本致传统估计耗时过长",
+          "desc": "数据样本量急剧膨胀使传统估计方法耗时太长难以应用",
           "evidence": [
             {
-              "quote": "首先，数据样本量急剧膨胀，传统的估计方法耗时太长，难以应用。",
+              "quote": "数据样本量急剧膨胀，传统的估计方法耗时太长，难以应用",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -75,10 +80,10 @@
         {
           "id": "item-de0b19b7d7a2",
           "name": "高维度引发维度诅咒",
-          "desc": "变量维度迅速攀升使传统估计方法陷入维度诅咒，估计不稳定甚至不可行。",
+          "desc": "变量维度迅速攀升使传统估计方法陷入维度诅咒，估计不稳定甚至不可行",
           "evidence": [
             {
-              "quote": "其次，变量维度迅速攀升，传统的估计方法陷入“维度诅咒”，估计变得不稳定，甚至不可行。",
+              "quote": "变量维度迅速攀升，传统的估计方法陷入“维度诅咒”，估计变得不稳定，甚至不可行",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -95,12 +100,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9baeb454844d",
-          "name": "多种边际似然计算方法",
-          "desc": "尝试泰勒展开、DAC分治法、高效重要性抽样EIS、变分贝叶斯推断、边际似然拆解、分布式与并行计算等技术。",
+          "id": "item-fa6356a0524a",
+          "name": "DAC与EIS等边际似然计算方法",
+          "desc": "尝试泰勒展开、DAC、EIS、变分贝叶斯推断、边际似然拆解、分布式与并行计算等技术",
           "evidence": [
             {
-              "quote": "尝试了泰勒展开、DAC（Divided and Conquer）、EIS（Efficient",
+              "quote": "我们系统性地探索了面向大数据的高效的贝叶斯因子计算方法，尝试了泰勒展开、DAC（Divided and Conquer）、EIS（Efficient",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -108,15 +113,16 @@
               },
               "version": "d88508bac0cf81f08e1f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-a9f749a0d780",
           "name": "基于统计量的新型贝叶斯因子",
-          "desc": "提出计算便利的基于统计量的新型贝叶斯因子，适用于大数据下的贝叶斯统计推断。",
+          "desc": "证明贝叶斯模型选择准则理论性质并提出计算便利的新型贝叶斯因子",
           "evidence": [
             {
-              "quote": "并提出了基于统计量的新型贝叶斯因子，其计算上的便利性使得它非常适用于大数据下的贝叶斯统计推断",
+              "quote": "我们证明了贝叶斯模型选择准则的理论性质和应用优势，并提出了基于统计量的新型贝叶斯因子，其计算上的便利性使得它非常适用于大数据下的贝叶斯统计推断",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -124,7 +130,25 @@
               },
               "version": "d88508bac0cf81f08e1f"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-37ec6959a78c",
+          "name": "金融实证应用研究",
+          "desc": "将方法应用于股票收益率预测、特征选择、模型比较与波动率建模等问题",
+          "evidence": [
+            {
+              "quote": "我们将相关方法应用于金融中的实际模型，进行了股票收益率预测、特征选择、模型估计和比较、模型平均、波动率建模预测等问题",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "9a77d579820c8f9d9f273477bd1b27e1f8fe4cef"
+              },
+              "version": "d88508bac0cf81f08e1f"
+            }
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -135,10 +159,10 @@
         {
           "id": "item-27ed1ffe8eb1",
           "name": "贝叶斯因子计算效率大幅提升",
-          "desc": "模拟与实证结果显示新方法可大幅提升贝叶斯因子计算效率。",
+          "desc": "新方法大幅提升贝叶斯因子的计算效率",
           "evidence": [
             {
-              "quote": "相关的模拟和实证结果发现，新方法可以大幅提升贝叶斯因子的计算效率",
+              "quote": "相关的模拟和实证结果发现，新方法可以大幅提升贝叶斯因子的计算效率，有助于大数据下的贝叶斯因子计算和统计推断应用",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -147,15 +171,17 @@
               "version": "d88508bac0cf81f08e1f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "大幅提升",
+          "self_reported": false
         },
         {
-          "id": "item-838f9384ac68",
-          "name": "金融实证应用效果",
-          "desc": "方法应用于股票收益率预测、特征选择、模型估计与比较、波动率建模预测等，展现计算与实证优势。",
+          "id": "item-4165f4f75ebf",
+          "name": "贝叶斯分析良好计算与实证优势",
+          "desc": "贝叶斯分析能高效稳健及时地提炼金融大数据中的有效信息",
           "evidence": [
             {
-              "quote": "进行了股票收益率预测、特征选择、模型估计和比较、模型平均、波动率建模预测等问题",
+              "quote": "发现贝叶斯分析方法具有良好的计算和实证优势，能够高效、稳健、及时地通过贝叶斯因子提炼出金融大数据中的有效信息",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -164,24 +190,9 @@
               "version": "d88508bac0cf81f08e1f"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b2114cf7beb5",
-          "name": "贝叶斯模型选择准则性质证明",
-          "desc": "证明贝叶斯模型选择准则的理论性质和应用优势。",
-          "evidence": [
-            {
-              "quote": "我们证明了贝叶斯模型选择准则的理论性质和应用优势",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "9a77d579820c8f9d9f273477bd1b27e1f8fe4cef"
-              },
-              "version": "d88508bac0cf81f08e1f"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "发现",
+          "self_reported": false
         }
       ]
     }
@@ -189,25 +200,26 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-b1a73ae86c31"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-bde17615d6b9"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-de0b19b7d7a2"
-      },
-      "to": {
         "dimension": "技术",
-        "item_id": "item-9baeb454844d"
+        "item_id": "item-fa6356a0524a"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-89d57e5d5bcb"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "数据样本量急剧膨胀，传统的估计方法耗时太长，难以应用",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "ff298396ba6024bac5366a69e760da2da4d50b95"
+          },
+          "version": "d88508bac0cf81f08e1f"
+        }
+      ]
     },
     {
       "from": {
@@ -215,21 +227,116 @@
         "item_id": "item-a9f749a0d780"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-27ed1ffe8eb1"
+        "dimension": "问题",
+        "item_id": "item-de0b19b7d7a2"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "提出了基于统计量的新型贝叶斯因子，其计算上的便利性使得它非常适用于大数据下的贝叶斯统计推断",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "9a77d579820c8f9d9f273477bd1b27e1f8fe4cef"
+          },
+          "version": "d88508bac0cf81f08e1f"
+        }
+      ]
     },
     {
       "from": {
         "dimension": "技术",
-        "item_id": "item-9baeb454844d"
+        "item_id": "item-37ec6959a78c"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-838f9384ac68"
+        "dimension": "技术",
+        "item_id": "item-a9f749a0d780"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "我们将相关方法应用于金融中的实际模型",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "9a77d579820c8f9d9f273477bd1b27e1f8fe4cef"
+          },
+          "version": "d88508bac0cf81f08e1f"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1e91e80cafb5"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-89d57e5d5bcb"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "数据样本量急剧膨胀，传统的估计方法耗时太长，难以应用",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "ff298396ba6024bac5366a69e760da2da4d50b95"
+          },
+          "version": "d88508bac0cf81f08e1f"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-27ed1ffe8eb1"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-fa6356a0524a"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "新方法可以大幅提升贝叶斯因子的计算效率",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "9a77d579820c8f9d9f273477bd1b27e1f8fe4cef"
+          },
+          "version": "d88508bac0cf81f08e1f"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "面向大数据的多种边际似然计算方法",
+      "status_raw": "开发了",
+      "identifiers": {},
+      "id": "out-cbba5392cf1c",
+      "evidence": [
+        {
+          "quote": "开发了多种针对于大数据的边际似然计算方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "9a77d579820c8f9d9f273477bd1b27e1f8fe4cef"
+          },
+          "version": "d88508bac0cf81f08e1f"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

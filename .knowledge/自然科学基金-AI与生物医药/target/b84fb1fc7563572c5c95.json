@@ -2,15 +2,20 @@
   "doc_id": "b84fb1fc7563572c5c95",
   "version": "5992cef217b642d09b5f",
   "source_hash": "1fe7a1022b69172e47c8b0a16a321db06d9948f0db167f4c44d08bdddd1b31b3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:14:20.140487+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:38:02.183581+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,30 @@
         {
           "id": "item-29a0967bb80e",
           "name": "肿瘤微环境实时监测",
-          "desc": "把荧光寿命成像技术用于活体小鼠肿瘤组织的肿瘤微环境实时监测。",
+          "desc": "肿瘤发生发展转移依赖微环境动态调控，需实时监测代谢、温度、pH等参数变化",
           "evidence": [
             {
-              "quote": "拟将所开发的荧光寿命成像技术应用于肿瘤微环境的实时监测，以活体小鼠肿瘤组织为研究对象",
+              "quote": "肿瘤发生、发展与转移依赖其微环境（代谢、pH、温度、缺氧等）的动态调控",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 946,
-                "end_char": 987
+                "start_char": 2732,
+                "end_char": 2766
               },
               "version": "5992cef217b642d09b5f"
             }
           ]
         },
         {
-          "id": "item-48d2e65592cb",
-          "name": "癌症诊断与治疗新策略",
-          "desc": "研究微环境影响肿瘤发展的机制，为癌症诊断和治疗提供新靶点新策略。",
+          "id": "item-5fc0e829a1b5",
+          "name": "荧光寿命成像FLIM",
+          "desc": "荧光寿命成像对微环境敏感且不受浓度与激发强度影响，是精确表征的重要手段",
           "evidence": [
             {
-              "quote": "深入研究肿瘤微环境影响肿瘤发展的机制，将为癌症诊断和治疗提供新靶点新策略。",
+              "quote": "荧光寿命成像（FLIM）对微环境敏感且不受浓度与激发强度影响，是精确表征的重要手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 684,
-                "end_char": 720
+                "start_char": 2768,
+                "end_char": 2808
               },
               "version": "5992cef217b642d09b5f"
             }
@@ -57,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5a3b01c77a27",
-          "name": "TCSPC 需长时间累积、难以活体实时监测",
-          "desc": "传统时间相关单光子计数在低光子数下需长时间累积与逐像素拟合，难以满足活体实时监测。",
+          "id": "item-efa5c9835ab2",
+          "name": "TCSPC成像速度不足",
+          "desc": "传统时间相关单光子计数在低光子数下需长时间累积与逐像素拟合，难以满足活体实时监测",
           "evidence": [
             {
-              "quote": "但传统时间相关单光子计数（TCSPC）在低光子数下需长时间累积与逐像素拟合，难以满足活体实时监测。",
+              "quote": "传统时间相关单光子计数（TCSPC）在低光子数下需长时间累积与逐像素拟合，难以满足活体实时监测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2810,
-                "end_char": 2858
+                "start_char": 2811,
+                "end_char": 2857
               },
               "version": "5992cef217b642d09b5f"
             }
@@ -75,14 +80,14 @@
         {
           "id": "item-83777e0b3ca6",
           "name": "光子探测效率限制成像速度",
-          "desc": "受光子探测效率限制，TCSPC 需对同一点重复千次以上脉冲激发与计数，严重制约成像速度。",
+          "desc": "受限于光子探测效率，TCSPC需重复千次以上脉冲激发和光子计数",
           "evidence": [
             {
-              "quote": "但受限于光子探测效率，目前应用最广泛的时间相关单光子计数法，需对同一个点重复千次以上的脉冲激发和光子计数，极大限制了荧光寿命成像速度，制约了它在活体实时监测中的应用。",
+              "quote": "受限于光子探测效率，目前应用最广泛的时间相关单光子计数法，需对同一个点重复千次以上的脉冲激发和光子计数，极大限制了荧光寿命成像速度",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 786,
-                "end_char": 868
+                "start_char": 787,
+                "end_char": 851
               },
               "version": "5992cef217b642d09b5f"
             }
@@ -95,9 +100,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7a96fdc3021a",
-          "name": "物理导向神经网络 PGNN",
-          "desc": "把 IRF 卷积、泊松采样等退化显式嵌入网络，实现解卷积、去噪与寿命估计一体化，在双染料样本上优于 MLE。",
+          "id": "item-f322dd2dc966",
+          "name": "物理导向神经网络PGNN",
+          "desc": "将IRF卷积、泊松采样等退化显式嵌入网络，实现解卷积-去噪-寿命估计一体化",
           "evidence": [
             {
               "quote": "物理导向神经网络PGNN将IRF卷积、泊松采样等退化显式嵌入网络，实现解卷积-去噪-寿命估计一体化",
@@ -108,44 +113,47 @@
               },
               "version": "5992cef217b642d09b5f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-89679ed1b3b0",
-          "name": "仪器噪声学习",
-          "desc": "在空间频率域学习并去除仪器固有噪声，实现多模态高光谱显微增强。",
+          "id": "item-9a30ea937042",
+          "name": "空间频率域仪器噪声学习",
+          "desc": "在空间频率域学习并去除仪器固有噪声，实现多模态高光谱显微增强",
           "evidence": [
             {
-              "quote": "仪器噪声学习在空间频率域学习并去除仪器固有噪声，实现多模态高光谱显微增强",
+              "quote": "仪器噪声学习在空间频率域学习并去除仪器固有噪声，实现多模态高光谱显微增强，平均SNR提升约10倍、MSE降低约150倍",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3013,
-                "end_char": 3048
+                "end_char": 3071
               },
               "version": "5992cef217b642d09b5f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ce79e835bf8b",
-          "name": "小型化 SS-Net 结合压缩采样",
-          "desc": "用小型化 SS-Net 结合压缩采样实现三维数据立方体快速恢复。",
+          "id": "item-54a545704c46",
+          "name": "小型化SS-Net压缩采样",
+          "desc": "结合压缩采样实现三维数据立方体快速恢复",
           "evidence": [
             {
-              "quote": "小型化SS-Net结合压缩采样实现三维数据立方体快速恢复",
+              "quote": "小型化SS-Net结合压缩采样实现三维数据立方体快速恢复，在高光谱成像中最高约261.6倍加速且保持高重建质量",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3098,
-                "end_char": 3125
+                "end_char": 3152
               },
               "version": "5992cef217b642d09b5f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-6f971b5c2d54",
-          "name": "物理辅助 Phasor U-Net",
-          "desc": "通过时域去噪与 IRF 校正双子网络，在低光子计数下实现快速精准寿命解析。",
+          "id": "item-2afbbfba84ef",
+          "name": "物理辅助Phasor U-Net",
+          "desc": "通过时域去噪与IRF校正双子网络在低光子计数下实现快速精准寿命解析",
           "evidence": [
             {
               "quote": "物理辅助Phasor U-Net通过时域去噪与IRF校正双子网络，在低光子计数下实现快速精准的寿命解析",
@@ -156,7 +164,8 @@
               },
               "version": "5992cef217b642d09b5f"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -165,60 +174,47 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9ce705919e70",
-          "name": "寿命解析约 4000 倍加速",
-          "desc": "PGNN 相较 MLE 获得更高解析精度，并实现约 4000 倍解析加速。",
+          "id": "item-71085c8cd01e",
+          "name": "解析加速约4000倍",
+          "desc": "PGNN相较MLE获得更高解析精度并实现约4000倍解析加速",
           "evidence": [
             {
-              "quote": "相较MLE获得更高解析精度，并实现约4000倍解析加速",
+              "quote": "在仿真与组织双染料（FITC/Sytox Green）样本上相较MLE获得更高解析精度，并实现约4000倍解析加速",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2983,
+                "start_char": 2953,
                 "end_char": 3009
               },
               "version": "5992cef217b642d09b5f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "约4000倍解析加速",
+          "self_reported": false
         },
         {
-          "id": "item-fb3414340826",
-          "name": "SNR 提升约 10 倍、MSE 降低约 150 倍",
-          "desc": "噪声学习实现高光谱显微增强，平均 SNR 提升约 10 倍、MSE 降低约 150 倍，激光功率可降低约 43 倍。",
+          "id": "item-37421b5fd432",
+          "name": "激光功率降低约43倍",
+          "desc": "将荧光时间序列成像所需激光功率降低约43倍",
           "evidence": [
             {
-              "quote": "平均SNR提升约10倍、MSE降低约150倍",
+              "quote": "可将荧光时间序列成像所需激光功率降低约43倍",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3050,
-                "end_char": 3071
+                "start_char": 3073,
+                "end_char": 3094
               },
               "version": "5992cef217b642d09b5f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "降低约43倍",
+          "self_reported": false
         },
         {
-          "id": "item-0378cb399931",
-          "name": "高光谱成像最高约 261.6 倍加速",
-          "desc": "SS-Net 结合压缩采样在高光谱成像中最高约 261.6 倍加速且保持高重建质量。",
-          "evidence": [
-            {
-              "quote": "在高光谱成像中最高约261.6倍加速且保持高重建质量",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3127,
-                "end_char": 3152
-              },
-              "version": "5992cef217b642d09b5f"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-420d22aa2b8e",
-          "name": "论文 5 篇、专利各 1 项与 FLIM 解析软件原型",
-          "desc": "项目资助下发表论文 5 篇，发明专利授权与申请各 1 项，并开发支持 .ptu/.bin 等格式的 FLIM 寿命解析软件原型。",
+          "id": "item-236b58a08ec7",
+          "name": "论文5篇与专利授权申请各1项",
+          "desc": "共计发表论文5篇，发明专利授权与申请各1项，并开发FLIM寿命解析软件原型",
           "evidence": [
             {
               "quote": "在本项目资助下共计发表论文5篇，发明专利授权与申请各1项，并开发支持.ptu/.bin等格式的FLIM寿命解析软件原型",
@@ -230,7 +226,9 @@
               "version": "5992cef217b642d09b5f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "共计发表论文5篇",
+          "self_reported": false
         }
       ]
     }
@@ -238,14 +236,195 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-f322dd2dc966"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-5a3b01c77a27"
+        "item_id": "item-efa5c9835ab2"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "物理导向神经网络PGNN将IRF卷积、泊松采样等退化显式嵌入网络",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2903,
+            "end_char": 2934
+          },
+          "version": "5992cef217b642d09b5f"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-54a545704c46"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-83777e0b3ca6"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "小型化SS-Net结合压缩采样实现三维数据立方体快速恢复",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3098,
+            "end_char": 3125
+          },
+          "version": "5992cef217b642d09b5f"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2afbbfba84ef"
       },
       "to": {
         "dimension": "技术",
-        "item_id": "item-7a96fdc3021a"
+        "item_id": "item-f322dd2dc966"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "物理辅助Phasor U-Net通过时域去噪与IRF校正双子网络",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3156,
+            "end_char": 3187
+          },
+          "version": "5992cef217b642d09b5f"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-29a0967bb80e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-efa5c9835ab2"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "传统时间相关单光子计数（TCSPC）在低光子数下需长时间累积与逐像素拟合，难以满足活体实时监测",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2811,
+            "end_char": 2857
+          },
+          "version": "5992cef217b642d09b5f"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-71085c8cd01e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f322dd2dc966"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "并实现约4000倍解析加速",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2997,
+            "end_char": 3009
+          },
+          "version": "5992cef217b642d09b5f"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noise learning of instruments for high-contrast, high-resolution and fast hyperspectral microscopy and nanoscopy",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Hao He;Maofeng Cao;Yun Gao;Peng Zheng;Sen Yan;Jin-Hui Zhong;Lei Wang;Dayong Jin;Bin Ren",
+      "id": "out-c37af7b33ef6",
+      "evidence": [
+        {
+          "quote": "3. [期刊论文] Noise learning of instruments for high-contrast, high-resolution and fast hyperspectral microscopy and nanoscopy — Hao He;Maofeng Cao;Yun Gao;Peng Zheng;Sen Yan;Jin-Hui Zhong;Lei Wang;Dayong Jin;Bin Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3670,
+            "end_char": 3881
+          },
+          "version": "5992cef217b642d09b5f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fast Nano-IR Hyperspectral Imaging Empowered by Large-Dataset-Free Miniaturized Spatial–Spectral Network",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Yun Gao;Peng Zheng;Zhao-Dong Meng;Hai-Long Wang;En-Ming You;Jin-Hui Zhong;Zhong-Qun Tian;Lei Wang;Hao He",
+      "id": "out-899040a5a3f1",
+      "evidence": [
+        {
+          "quote": "2. [期刊论文] Fast Nano-IR Hyperspectral Imaging Empowered by Large-Dataset-Free Miniaturized Spatial–Spectral Network — Yun Gao;Peng Zheng;Zhao-Dong Meng;Hai-Long Wang;En-Ming You;Jin-Hui Zhong;Zhong-Qun Tian;Lei Wang;Hao He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3448,
+            "end_char": 3668
+          },
+          "version": "5992cef217b642d09b5f"
+        }
+      ]
+    },
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "FLIM寿命解析软件原型",
+      "status_raw": "开发",
+      "identifiers": {},
+      "id": "out-13e9cec1ee46",
+      "evidence": [
+        {
+          "quote": "并开发支持.ptu/.bin等格式的FLIM寿命解析软件原型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3237,
+            "end_char": 3266
+          },
+          "version": "5992cef217b642d09b5f"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

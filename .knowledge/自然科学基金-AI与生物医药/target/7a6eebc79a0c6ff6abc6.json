@@ -2,15 +2,20 @@
   "doc_id": "7a6eebc79a0c6ff6abc6",
   "version": "742367764e2aa4a021a1",
   "source_hash": "44b22ab8802833d6be36f0d8fbe1be0b2a154ab93306b73c2844f47c4844b439",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:13:41.395274+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:38:02.175057+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7fd5cbca46fa",
-          "name": "临床联合用药",
-          "desc": "临床中患者常联合使用多种药物，药物之间可能产生药物-药物相互作用。",
+          "id": "item-bb563c9e61f7",
+          "name": "临床联合用药的药物相互作用预测",
+          "desc": "快速准确识别大规模候选联用药物中的药物相互作用及其类型并揭示机制",
           "evidence": [
             {
-              "quote": "在临床应用中患者经常会联合使用多种药物，药物之间可能会相互影响产生药物-药物相互作用（简称药物相互作用）。",
+              "quote": "如何快速及准确地在大规模的候选联用药物中识别出药物相互作用及其类型，并揭示其发生机制是亟待解决的关键问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 653,
-                "end_char": 705
+                "start_char": 2724,
+                "end_char": 2775
               },
               "version": "742367764e2aa4a021a1"
             }
           ]
         },
         {
-          "id": "item-d25d7800b4ec",
-          "name": "新药研发与临床用药决策",
-          "desc": "预测结果为患者临床联合用药策略提供理论依据。",
+          "id": "item-21afe59786b7",
+          "name": "新药研发与临床用药策略",
+          "desc": "为新药研发及患者临床联合用药的策略制定提供理论依据",
           "evidence": [
             {
-              "quote": "为新药研发及患者临床联合用药的策略制定提供理论依据。",
+              "quote": "计算模型的预测结果为新药研发及患者临床联合用药的策略制定提供理论依据",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 1025,
-                "end_char": 1050
+                "start_char": 3291,
+                "end_char": 3324
               },
               "version": "742367764e2aa4a021a1"
             }
@@ -57,25 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-46557a4619cb",
-          "name": "大规模识别药物相互作用及其机制",
-          "desc": "需要快速准确地在大量候选联用药物中识别相互作用类型并揭示发生机制。",
-          "evidence": [
-            {
-              "quote": "如何快速及准确地在大规模的候选联用药物中识别出药物相互作用及其类型，并揭示其发生机制是亟待解决的关键问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2724,
-                "end_char": 2776
-              },
-              "version": "742367764e2aa4a021a1"
-            }
-          ]
-        },
-        {
           "id": "item-ee94e7d5422b",
           "name": "药物对融合方式单一",
-          "desc": "已有模型的药物对融合方式单一，限制了预测能力。",
+          "desc": "药物对融合方式单一限制了模型的预测能力",
           "evidence": [
             {
               "quote": "药物对融合方式单一，限制了模型的预测能力",
@@ -89,16 +78,32 @@
           ]
         },
         {
-          "id": "item-b84869e2e765",
-          "name": "相似性特征引起信息泄漏",
-          "desc": "在全数据集上计算药物相似性特征会引入信息泄漏，使评价过于乐观。",
+          "id": "item-b2f652a6e440",
+          "name": "隐特征分布与相互作用类型不匹配",
+          "desc": "药物对隐特征分布与药物-药物相互作用类型不匹配，使模型预测困难",
           "evidence": [
             {
-              "quote": "在整个数据集上计算药物相似性特征引起信息泄漏，使得对模型的评价过于乐观。",
+              "quote": "药物对隐特征分布与药物-药物相互作用类型不匹配，使模型预测困难",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2843,
+                "end_char": 2873
+              },
+              "version": "742367764e2aa4a021a1"
+            }
+          ]
+        },
+        {
+          "id": "item-96031a721c89",
+          "name": "相似性特征计算引起信息泄漏",
+          "desc": "在整个数据集上计算药物相似性特征引起信息泄漏，使评价过于乐观",
+          "evidence": [
+            {
+              "quote": "在整个数据集上计算药物相似性特征引起信息泄漏，使得对模型的评价过于乐观",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2875,
-                "end_char": 2910
+                "end_char": 2909
               },
               "version": "742367764e2aa4a021a1"
             }
@@ -111,52 +116,72 @@
       "state": "has",
       "items": [
         {
-          "id": "item-382747165ed3",
-          "name": "MDF-SA-DDI（多源融合与自注意力）",
-          "desc": "基于多源药物融合和自注意力机制提出 MDF-SA-DDI 模型。",
+          "id": "item-bf26f5deebc5",
+          "name": "MDF-SA-DDI多源融合模型",
+          "desc": "基于多源药物融合和自注意力机制提出MDF-SA-DDI模型",
           "evidence": [
             {
-              "quote": "本项目基于多源药物融合和自注意力机制提出了MDF-SA-DDI模型",
+              "quote": "面向问题一，本项目基于多源药物融合和自注意力机制提出了MDF-SA-DDI模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2949,
+                "start_char": 2943,
                 "end_char": 2981
               },
               "version": "742367764e2aa4a021a1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bf678502f2f8",
-          "name": "MDDI-SCL（有监督对比学习）",
-          "desc": "基于有监督对比学习提出 MDDI-SCL 模型。",
+          "id": "item-90d04ab3caf1",
+          "name": "MDDI-SCL监督对比学习",
+          "desc": "基于有监督对比学习提出MDDI-SCL模型",
           "evidence": [
             {
-              "quote": "本项目基于有监督对比学习提出了MDDI-SCL模型",
+              "quote": "面向问题二，本项目基于有监督对比学习提出了MDDI-SCL模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2989,
+                "start_char": 2983,
                 "end_char": 3013
               },
               "version": "742367764e2aa4a021a1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d83fc0a6d6b2",
-          "name": "MATT-DDI（异构注意力）",
-          "desc": "基于药物对相似性和多种注意力机制提出 MATT-DDI 模型。",
+          "id": "item-f7d943adaf11",
+          "name": "MATT-DDI异构注意力",
+          "desc": "基于药物对相似性和多种注意力机制提出MATT-DDI模型",
           "evidence": [
             {
-              "quote": "本项目基于药物对相似性和多种注意力机制提出了MATT-DDI模型",
+              "quote": "面向问题三，本项目基于药物对相似性和多种注意力机制提出了MATT-DDI模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3021,
+                "start_char": 3015,
                 "end_char": 3052
               },
               "version": "742367764e2aa4a021a1"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f4d527b67ff6",
+          "name": "消融实验与案例研究",
+          "desc": "对三个模型不同模块进行消融实验并开展案例研究验证模块有效性",
+          "evidence": [
+            {
+              "quote": "此外，对三个模型的不同模块进行了消融实验，以验证相应模块的有效性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3204,
+                "end_char": 3235
+              },
+              "version": "742367764e2aa4a021a1"
+            }
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -165,55 +190,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3e121ab15347",
-          "name": "三个模型在公开数据集上优于先进模型",
-          "desc": "以相似性特征为输入时 MDF-SA-DDI 与 MDDI-SCL 优于其他先进模型；以药物二元特征向量为输入时 MATT-DDI 取得最优性能，并经消融实验与案例研究验证。",
+          "id": "item-d7ff3c595e19",
+          "name": "三个模型性能优于先进模型",
+          "desc": "相似性特征输入下MDF-SA-DDI与MDDI-SCL优于其他先进模型，二元特征输入下MATT-DDI最优",
           "evidence": [
             {
-              "quote": "在使用药物二元特征向量作为模型输入时，MATT-DDI模型取得了最优的性能。",
+              "quote": "在使用相似性特征作为模型的输入时，MDF-SA-DDI模型和MDDI-SCL模型性能优于其他先进模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3166,
-                "end_char": 3203
+                "start_char": 3115,
+                "end_char": 3164
               },
               "version": "742367764e2aa4a021a1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "性能优于其他先进模型",
+          "self_reported": false
         },
         {
           "id": "item-c57ab2e71fad",
           "name": "上海市生物信息学会青年新星奖",
-          "desc": "负责人熊毅获上海市生物信息学会 2023 年度青年新星奖。",
+          "desc": "获上海市生物信息学会2023年度青年新星奖",
           "evidence": [
             {
-              "quote": "[奖励] 上海市生物信息学会2023年度青年新星奖 — 熊毅",
+              "quote": "6. [奖励] 上海市生物信息学会2023年度青年新星奖 — 熊毅",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 4233,
+                "start_char": 4230,
                 "end_char": 4262
               },
               "version": "742367764e2aa4a021a1"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-c629c2d1cc8f",
-          "name": "8 项成果（期刊论文与奖励）",
-          "desc": "结题报告列出的成果清单，含 MATT-DDI、MDDI-SCL 等论文与一项学会奖励。",
-          "evidence": [
-            {
-              "quote": "## 成果列表（8）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3328,
-                "end_char": 3337
-              },
-              "version": "742367764e2aa4a021a1"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "获",
+          "self_reported": false
         }
       ]
     }
@@ -221,25 +233,223 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-bf26f5deebc5"
+      },
+      "to": {
         "dimension": "问题",
         "item_id": "item-ee94e7d5422b"
       },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-382747165ed3"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "面向问题一，本项目基于多源药物融合和自注意力机制提出了MDF-SA-DDI模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2943,
+            "end_char": 2981
+          },
+          "version": "742367764e2aa4a021a1"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-90d04ab3caf1"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-b84869e2e765"
+        "item_id": "item-b2f652a6e440"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "面向问题二，本项目基于有监督对比学习提出了MDDI-SCL模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2983,
+            "end_char": 3013
+          },
+          "version": "742367764e2aa4a021a1"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f7d943adaf11"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-96031a721c89"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "面向问题三，本项目基于药物对相似性和多种注意力机制提出了MATT-DDI模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3015,
+            "end_char": 3052
+          },
+          "version": "742367764e2aa4a021a1"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f4d527b67ff6"
       },
       "to": {
         "dimension": "技术",
-        "item_id": "item-d83fc0a6d6b2"
+        "item_id": "item-bf26f5deebc5"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "对三个模型的不同模块进行了消融实验，以验证相应模块的有效性",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3207,
+            "end_char": 3235
+          },
+          "version": "742367764e2aa4a021a1"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-bb563c9e61f7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ee94e7d5422b"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "如何快速及准确地在大规模的候选联用药物中识别出药物相互作用及其类型，并揭示其发生机制是亟待解决的关键问题",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2724,
+            "end_char": 2775
+          },
+          "version": "742367764e2aa4a021a1"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-d7ff3c595e19"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-bf26f5deebc5"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "MDF-SA-DDI模型和MDDI-SCL模型性能优于其他先进模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3132,
+            "end_char": 3164
+          },
+          "version": "742367764e2aa4a021a1"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MATT-DDI: Predicting multi-type drug-drug interactions via heterogeneous attention mechanisms",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Shenggeng Lin;Xueying Mao;Liang Hong;Shuangjun Lin;Dong-Qing Wei;Yi Xiong",
+      "id": "out-a9c6dd9fbbb0",
+      "evidence": [
+        {
+          "quote": "2. [期刊论文] MATT-DDI: Predicting multi-type drug-drug interactions via heterogeneous attention mechanisms — Shenggeng Lin;Xueying Mao;Liang Hong;Shuangjun Lin;Dong-Qing Wei;Yi Xiong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3521,
+            "end_char": 3699
+          },
+          "version": "742367764e2aa4a021a1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MDDI-SCL: predicting multi-type drug-drug interactions via supervised contrastive learning",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Shenggeng Lin;Weizhi Chen;Gengwang Chen;Songchi Zhou;Dong-Qing Wei;Yi Xiong",
+      "id": "out-b5851674f671",
+      "evidence": [
+        {
+          "quote": "5. [期刊论文] MDDI-SCL: predicting multi-type drug-drug interactions via supervised contrastive learning — Shenggeng Lin;Weizhi Chen;Gengwang Chen;Songchi Zhou;Dong-Qing Wei;Yi Xiong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4051,
+            "end_char": 4228
+          },
+          "version": "742367764e2aa4a021a1"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "上海市生物信息学会2023年度青年新星奖",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "熊毅",
+      "id": "out-4b90ee7caa46",
+      "evidence": [
+        {
+          "quote": "6. [奖励] 上海市生物信息学会2023年度青年新星奖 — 熊毅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4230,
+            "end_char": 4262
+          },
+          "version": "742367764e2aa4a021a1"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": false
+  }
 }

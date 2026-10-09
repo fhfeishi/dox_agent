@@ -2,15 +2,20 @@
   "doc_id": "e18f99bd129e40a62f97",
   "version": "96d01c3f56a8e4c42467",
   "source_hash": "a4a0be5683ca10c92c1c87cebd632999dcaf47a452a6ba2a0dc47bc9ab778d9b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:13:41.383683+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:38:02.170324+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,48 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-149ef64d862e",
-          "name": "细胞凋亡动态研究",
-          "desc": "建立人工智能驱动的快速拉曼成像方法，用于细胞凋亡过程的动态研究。",
+          "id": "item-11742d08cca3",
+          "name": "细胞凋亡过程的动态研究",
+          "desc": "建立人工智能驱动的快速拉曼成像方法，应用于细胞凋亡过程的动态研究",
           "evidence": [
             {
-              "quote": "本项目拟建立人工智能驱动的快速拉曼成像方法，应用于细胞凋亡过程的动态研究。",
+              "quote": "本项目针对拉曼成像在研究细胞生命动态过程中的挑战，基于人工智能驱动的快速显微拉曼成像技术展开研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 773,
-                "end_char": 809
+                "start_char": 2919,
+                "end_char": 2966
               },
               "version": "96d01c3f56a8e4c42467"
             }
           ]
         },
         {
-          "id": "item-feee539dfb86",
-          "name": "肿瘤细胞与抗癌药物机制",
-          "desc": "研究不同抗癌药物对癌细胞的凋亡作用过程和作用机理。",
+          "id": "item-85f45f8b6dcf",
+          "name": "抗癌药物作用机理研究",
+          "desc": "研究不同抗癌药物对癌细胞的凋亡作用过程和作用机理",
           "evidence": [
             {
-              "quote": "研究不同抗癌药物对癌细胞的凋亡作用过程和作用机理。",
+              "quote": "研究不同抗癌药物对癌细胞的凋亡作用过程和作用机理",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 1018,
-                "end_char": 1042
-              },
-              "version": "96d01c3f56a8e4c42467"
-            }
-          ]
-        },
-        {
-          "id": "item-c3c79d31b30c",
-          "name": "活体细胞长期原位监测",
-          "desc": "自主搭建活体细胞原位培养装置及控制系统，实现长时间原位培养、观察与检测。",
-          "evidence": [
-            {
-              "quote": "自主搭建了一套活体细胞原位培养装置及控制系统，实现了对细胞的长时间原位培养、观察、检测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2979,
-                "end_char": 3021
+                "end_char": 1041
               },
               "version": "96d01c3f56a8e4c42467"
             }
@@ -73,32 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-819edb6aed38",
-          "name": "拉曼信号弱、灵敏度低、采谱时间长",
-          "desc": "拉曼信号强度弱导致检测灵敏度低，需很长采谱时间与高激光功率，会造成细胞光损伤。",
+          "id": "item-238224c0c52e",
+          "name": "拉曼成像灵敏度低导致光损伤",
+          "desc": "需很长采谱时间和高激光功率保证信噪比，导致细胞受光损伤",
           "evidence": [
             {
-              "quote": "但是由于拉曼信号的强度弱，成像的检测灵敏度很低，需要很长的采谱时间和高激光功率来保证信噪比，这将导致细胞受到光损伤作用，影响对细胞进一步的生命现象研究。",
+              "quote": "由于拉曼信号的强度弱，成像的检测灵敏度很低，需要很长的采谱时间和高激光功率来保证信噪比，这将导致细胞受到光损伤作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2840,
-                "end_char": 2915
+                "start_char": 2842,
+                "end_char": 2898
               },
               "version": "96d01c3f56a8e4c42467"
             }
           ]
         },
         {
-          "id": "item-339bae77f2b3",
-          "name": "常规拉曼难以用于细胞动态研究",
-          "desc": "常规拉曼光谱检测灵敏度与成像速度较低，难以支撑细胞体系的动态研究。",
+          "id": "item-d62c3d90ab84",
+          "name": "成像速度制约活体实时监测",
+          "desc": "拉曼成像速度不足制约了在活体实时监测中的应用",
           "evidence": [
             {
-              "quote": "但其检测灵敏度和成像速度仍然较低，难以应用于细胞体系的动态研究。",
+              "quote": "将拉曼成像速度提高20-50倍，并发展成为集成形态学与化学成像的动态表征手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 741,
-                "end_char": 772
+                "start_char": 892,
+                "end_char": 929
               },
               "version": "96d01c3f56a8e4c42467"
             }
@@ -111,41 +100,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f4a145985ece",
-          "name": "噪声学习方法去噪",
-          "desc": "提出噪声学习方法准确去除仪器噪声。",
+          "id": "item-ba7c1187f350",
+          "name": "噪声学习方法降噪",
+          "desc": "提出噪声学习方法准确去除仪器噪声，拉曼显微镜信噪比提高约10倍",
           "evidence": [
             {
-              "quote": "提出了一种噪声学习方法，其可以准确地去除仪器噪声",
+              "quote": "提出了一种噪声学习方法，其可以准确地去除仪器噪声，在拉曼显微镜上的信噪比提高约10倍和荧光成像的激光通量显着降低43倍",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3025,
-                "end_char": 3048
+                "end_char": 3083
               },
               "version": "96d01c3f56a8e4c42467"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-37263332ee80",
-          "name": "SS-Net 网络结合压缩采样",
-          "desc": "用 SS-Net 网络结合压缩采样加速纳米红外成像。",
+          "id": "item-57e25c0c9e7b",
+          "name": "SS-Net与压缩采样加速成像",
+          "desc": "开发SS-Net网络结合压缩采样加速纳米红外成像",
           "evidence": [
             {
-              "quote": "开发了一种SS-Net网络并结合压缩采样来加速纳米红外成像",
+              "quote": "开发了一种SS-Net网络并结合压缩采样来加速纳米红外成像，实现了在受激拉曼散射显微镜上成像速度提高了10倍",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3109,
-                "end_char": 3137
+                "end_char": 3162
               },
               "version": "96d01c3f56a8e4c42467"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-16408a87d55d",
-          "name": "基于细胞色素 c 的光损伤表征",
-          "desc": "用细胞色素 c 指纹信息量化光损伤，发展光损伤超灵敏表征方法并优化长期原位无标记监测。",
+          "id": "item-7a6c6ef7a72c",
+          "name": "光损伤超灵敏表征方法",
+          "desc": "采用细胞色素c指纹信息量化光损伤并优化长期原位无标记监测",
           "evidence": [
             {
               "quote": "采用细胞色素c的指纹信息来量化光损伤，基于拉曼技术发展了一种光损伤超灵敏表征方法并优化活细胞的长期原位无标记监测方法",
@@ -156,23 +147,25 @@
               },
               "version": "96d01c3f56a8e4c42467"
             }
-          ]
+          ],
+          "role": "配套-验证"
         },
         {
           "id": "item-e3b5abbe3663",
           "name": "小区域扫描策略",
-          "desc": "基于激光照射剂量与光损伤水平的定量观察，提出仅选择感兴趣区域成像的小区域扫描策略。",
+          "desc": "仅选择感兴趣区域成像，将活细胞拉曼成像持续时间大幅增加3倍",
           "evidence": [
             {
-              "quote": "提出了一种仅选择感兴趣区域进行成像的小区域扫描策略",
+              "quote": "提出了一种仅选择感兴趣区域进行成像的小区域扫描策略，其将活细胞拉曼成像的持续时间大幅增加3倍",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3347,
-                "end_char": 3371
+                "end_char": 3392
               },
               "version": "96d01c3f56a8e4c42467"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -181,43 +174,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1a55f3b34705",
-          "name": "信噪比提高约 10 倍、激光通量降低 43 倍",
-          "desc": "噪声学习使拉曼显微镜信噪比提高约 10 倍，荧光成像激光通量显著降低 43 倍，纳米显微镜空间分辨率提高约 2.9 nm。",
+          "id": "item-a58972124eec",
+          "name": "SCI/EI论文2篇与专利3项",
+          "desc": "SCI/EI期刊收录2篇（Nature Communications、Analytical Chemistry），授权专利3项、申请1项",
           "evidence": [
             {
-              "quote": "在拉曼显微镜上的信噪比提高约10倍和荧光成像的激光通量显着降低43倍",
+              "quote": "获授权国家发明专利3项，申请1项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3050,
-                "end_char": 3083
+                "start_char": 3620,
+                "end_char": 3635
               },
               "version": "96d01c3f56a8e4c42467"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "获授权国家发明专利3项",
+          "self_reported": false
         },
         {
-          "id": "item-8322a7d84729",
-          "name": "多类显微成像速度提升 7–261.6 倍",
-          "desc": "受激拉曼散射显微镜成像速度提高 10 倍，原子力显微镜红外显微镜提高 7 倍，纳米级傅里叶变换红外显微镜提高 261.6 倍。",
-          "evidence": [
-            {
-              "quote": "实现了在受激拉曼散射显微镜上成像速度提高了10倍、原子力显微镜红外显微镜上成像速度提高了7倍、纳米级傅里叶变换红外显微镜上的成像速度提高了261.6倍",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3139,
-                "end_char": 3213
-              },
-              "version": "96d01c3f56a8e4c42467"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-63e682579e33",
-          "name": "光损伤表征灵敏度高 5 倍以上",
-          "desc": "可检测光损伤早期阶段的细微化学成分变化，灵敏度比传统形态学评估和线粒体荧光染色高 5 倍以上。",
+          "id": "item-03ba86b6a8e6",
+          "name": "光损伤表征灵敏度高于传统方法5倍",
+          "desc": "灵敏度比传统形态学评估和线粒体荧光染色高5倍以上",
           "evidence": [
             {
               "quote": "其灵敏度比传统形态学评估和线粒体荧光染色高5倍以上",
@@ -229,24 +207,28 @@
               "version": "96d01c3f56a8e4c42467"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "高5倍以上",
+          "self_reported": false
         },
         {
-          "id": "item-975613734f36",
-          "name": "SCI/EI 论文 2 篇、会议论文 4 篇、授权专利 3 项",
-          "desc": "成果发表于 Nature Communications、Analytical Chemistry，另有会议论文 4 篇、授权国家发明专利 3 项、申请 1 项。",
+          "id": "item-e6dc27151230",
+          "name": "活体细胞原位培养装置",
+          "desc": "自主搭建活体细胞原位培养装置及控制系统，实现长时间原位培养观察检测",
           "evidence": [
             {
-              "quote": "相关的研究成果以学术论文的方式发表，其中SCI/EI期刊收录2篇",
+              "quote": "自主搭建了一套活体细胞原位培养装置及控制系统，实现了对细胞的长时间原位培养、观察、检测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3484,
-                "end_char": 3515
+                "start_char": 2979,
+                "end_char": 3021
               },
               "version": "96d01c3f56a8e4c42467"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "自主搭建了",
+          "self_reported": false
         }
       ]
     }
@@ -254,25 +236,200 @@
   "relations": [
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-819edb6aed38"
+        "dimension": "技术",
+        "item_id": "item-ba7c1187f350"
       },
       "to": {
-        "dimension": "技术",
-        "item_id": "item-f4a145985ece"
+        "dimension": "问题",
+        "item_id": "item-238224c0c52e"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "提出了一种噪声学习方法，其可以准确地去除仪器噪声",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3025,
+            "end_char": 3048
+          },
+          "version": "96d01c3f56a8e4c42467"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-57e25c0c9e7b"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-339bae77f2b3"
+        "item_id": "item-d62c3d90ab84"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "开发了一种SS-Net网络并结合压缩采样来加速纳米红外成像",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3109,
+            "end_char": 3137
+          },
+          "version": "96d01c3f56a8e4c42467"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e3b5abbe3663"
       },
       "to": {
         "dimension": "技术",
-        "item_id": "item-37263332ee80"
+        "item_id": "item-ba7c1187f350"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "提出了一种仅选择感兴趣区域进行成像的小区域扫描策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3347,
+            "end_char": 3371
+          },
+          "version": "96d01c3f56a8e4c42467"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-11742d08cca3"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d62c3d90ab84"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目针对拉曼成像在研究细胞生命动态过程中的挑战",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2919,
+            "end_char": 2942
+          },
+          "version": "96d01c3f56a8e4c42467"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-03ba86b6a8e6"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7a6c6ef7a72c"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "其灵敏度比传统形态学评估和线粒体荧光染色高5倍以上",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3300,
+            "end_char": 3324
+          },
+          "version": "96d01c3f56a8e4c42467"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "显微光谱仪器噪音的分析、处理方法和降噪 模型",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "何浩;任斌;王磊;曹茂丰",
+      "id": "out-8a06bf4e9546",
+      "evidence": [
+        {
+          "quote": "6. [专利] 显微光谱仪器噪音的分析、处理方法和降噪 模型 — 何浩;任斌;王磊;曹茂丰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4210,
+            "end_char": 4254
+          },
+          "version": "96d01c3f56a8e4c42467"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "检测区域形成方法、晶粒表面检测方法和晶粒表面热点判断方法",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "王磊;陈剑锋;郑鹏;林春;贺珊",
+      "id": "out-8e6679b36d70",
+      "evidence": [
+        {
+          "quote": "3. [专利] 检测区域形成方法、晶粒表面检测方法和晶粒表面热点判断方法 — 王磊;陈剑锋;郑鹏;林春;贺珊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3960,
+            "end_char": 4013
+          },
+          "version": "96d01c3f56a8e4c42467"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Error Analysis and Reduction in 3D Reconstruction Based on Structured Light",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Yuan Ji;Jiyang Yu;Lei Wang;Qiwei Meng;Xinhua Qiu;Chun Lin",
+      "id": "out-4dfc5d074ba6",
+      "evidence": [
+        {
+          "quote": "1. [会议论文] Error Analysis and Reduction in 3D Reconstruction Based on Structured Light — Yuan Ji;Jiyang Yu;Lei Wang;Qiwei Meng;Xinhua Qiu;Chun Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3698,
+            "end_char": 3842
+          },
+          "version": "96d01c3f56a8e4c42467"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "会议论文": {
+        "listed": 3,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

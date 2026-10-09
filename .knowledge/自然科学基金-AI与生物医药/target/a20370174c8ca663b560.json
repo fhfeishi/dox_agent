@@ -2,15 +2,20 @@
   "doc_id": "a20370174c8ca663b560",
   "version": "20f61c04ffd777a9302b",
   "source_hash": "cf80fc9f04d1f47e1bf51623434cb05c15ab5d7164fc2757c038e50f940caaa5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:14:20.151852+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:38:02.189713+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,25 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-62f3bc074d36",
-          "name": "酰胺类化合物的酶法绿色合成",
-          "desc": "酰胺是化妆品、医药领域重要功能化学品，其高效绿色合成备受关注。",
-          "evidence": [
-            {
-              "quote": "酰胺是化妆品、医药等领域重要的功能化学品，其高效、绿色合成备受关注。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2982,
-                "end_char": 3015
-              },
-              "version": "20f61c04ffd777a9302b"
-            }
-          ]
-        },
-        {
-          "id": "item-f9c82f922d71",
-          "name": "制药领域 synthon 合成问题",
-          "desc": "酰胺类化合物合成是制药领域亟待解决的合成问题。",
+          "id": "item-e19d0364f101",
+          "name": "酰胺类化合物的绿色合成",
+          "desc": "酰胺类化合物的合成是制药领域亟待解决的合成问题，高效绿色合成备受关注",
           "evidence": [
             {
               "quote": "酰胺类化合物的合成是目前制药领域亟待解决的合成问题",
@@ -45,6 +34,22 @@
                 "basis": "parsed_text",
                 "start_char": 661,
                 "end_char": 685
+              },
+              "version": "20f61c04ffd777a9302b"
+            }
+          ]
+        },
+        {
+          "id": "item-b4e49f01f12f",
+          "name": "酶的人工进化与智能改造",
+          "desc": "为酰胺的酶法合成提供新方法，推动酶功能改造向自动化智能化发展",
+          "evidence": [
+            {
+              "quote": "本项目的实施将为酰胺的酶法合成提供新的方法，为酶的人工进化提供新的策略，推动酶功能改造向自动化、智能化方向的发展",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 986,
+                "end_char": 1041
               },
               "version": "20f61c04ffd777a9302b"
             }
@@ -57,48 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c61f76ae371d",
-          "name": "腈水解酶合成酰胺时底物转化率低",
-          "desc": "腈水解酶可生成酰胺副产物，但底物转化率低制约其在酰胺合成中的应用。",
+          "id": "item-196392aebd29",
+          "name": "腈水解酶底物转化率低",
+          "desc": "腈水解酶合成酰胺时底物转化率低制约其在酰胺合成中的应用",
           "evidence": [
             {
-              "quote": "但腈水解酶合成酰胺时底物转化率低制约腈水解酶在酰胺合成中的应用。",
+              "quote": "但腈水解酶合成酰胺时底物转化率低制约腈水解酶在酰胺合成中的应用",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 728,
-                "end_char": 759
+                "end_char": 758
               },
               "version": "20f61c04ffd777a9302b"
             }
           ]
         },
         {
-          "id": "item-2ffa70782d28",
-          "name": "提高酰胺产率同时保持高转化率",
-          "desc": "提高酰胺合成效率的同时保证高底物转化率，仍是该路径的瓶颈。",
+          "id": "item-16334d46745a",
+          "name": "活力与转化率难以兼顾",
+          "desc": "提高酰胺合成效率的同时保证高底子转化率仍是该路径瓶颈，传统酶进化耗时费力",
           "evidence": [
             {
-              "quote": "然而，提高酰胺合成效率的同时保证高底物转化率，仍是该路径的瓶颈。",
+              "quote": "然而，提高酰胺合成效率的同时保证高底物转化率，仍是该路径的瓶颈。传统酶进化方法耗时费力，限制了酶在制药等领域的应用",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3155,
-                "end_char": 3186
-              },
-              "version": "20f61c04ffd777a9302b"
-            }
-          ]
-        },
-        {
-          "id": "item-9579fee9edaf",
-          "name": "传统酶进化耗时费力",
-          "desc": "传统酶进化方法耗时费力，限制酶在制药等领域的应用。",
-          "evidence": [
-            {
-              "quote": "传统酶进化方法耗时费力，限制了酶在制药等领域的应用。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3187,
-                "end_char": 3212
+                "end_char": 3211
               },
               "version": "20f61c04ffd777a9302b"
             }
@@ -111,9 +100,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7d0a66797ac0",
-          "name": "AI 辅助平台 EnzySFC",
-          "desc": "开发 AI 辅助平台 EnzySFC，实现对酶催化杂泛性的催化活性与产物特异性多目标协同进化。",
+          "id": "item-5fbdaef5cdce",
+          "name": "EnzySFC酶筛选平台",
+          "desc": "AI辅助平台EnzySFC实现对酶催化杂泛性的催化活性与产物特异性多目标协同进化",
           "evidence": [
             {
               "quote": "我们开发了AI辅助平台EnzySFC，实现了对酶催化杂泛性的催化活性与产物特异性多目标协同进化",
@@ -124,39 +113,42 @@
               },
               "version": "20f61c04ffd777a9302b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-feb93fd7f5d3",
-          "name": "序列-功能表示与机器学习解析",
-          "desc": "采用信息表示、机器学习、深度学习与实验验证方法解析腈水解酶序列-功能数据关联，挖掘适用的描述符与算法机制。",
+          "id": "item-c58b5461ad04",
+          "name": "AI定向进化筛选",
+          "desc": "对底物转化率和酰胺比例最高的新酶实施AI定向进化，单轮预测即获阳性突变体",
           "evidence": [
             {
-              "quote": "采用信息表示、机器学习、深度学习、实验验证等理论与方法，解析腈水解酶序列-功能数据关联",
+              "quote": "随后对底物转化率和酰胺比例最高的新酶实施AI定向进化，仅通过单轮预测即获得16个经实验验证的阳性突变体",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 821,
+                "start_char": 3442,
+                "end_char": 3492
+              },
+              "version": "20f61c04ffd777a9302b"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d3fdb73620b5",
+          "name": "序列功能描述符挖掘与机器学习",
+          "desc": "基于高通量测实验获取序列功能数据，解析序列-功能关联并挖掘描述符与算法机制",
+          "evidence": [
+            {
+              "quote": "拟基于高通量测实验技术获取腈水解酶的大量序列功能数据，采用信息表示、机器学习、深度学习、实验验证等理论与方法，解析腈水解酶序列-功能数据关联",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 794,
                 "end_char": 863
               },
               "version": "20f61c04ffd777a9302b"
             }
-          ]
-        },
-        {
-          "id": "item-d65aac88e377",
-          "name": "酶突变体虚拟筛选技术",
-          "desc": "覆盖虚拟突变体自动生成、可溶性预测、稳定性预测、底物转化率预测与酰胺合成活力预测。",
-          "evidence": [
-            {
-              "quote": "从虚拟突变体自动生成、可溶性预测、稳定性预测、底物转化率预测、酰胺合成活力预测等方面，研发基于人工智能的自动化的酶突变体虚拟筛选技术",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 896,
-                "end_char": 961
-              },
-              "version": "20f61c04ffd777a9302b"
-            }
-          ]
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -165,55 +157,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-145c77b063d8",
-          "name": "新酶发现：90% 有催化活性、80% 具酰胺合成能力",
-          "desc": "在新酶发现环节，所获序列中 90% 对目标底物显示催化活性，其中 80% 具备酰胺合成能力。",
+          "id": "item-955df443f06b",
+          "name": "16个实验验证阳性突变体",
+          "desc": "单轮预测即获得16个阳性突变体，其中5个酰胺比例超80%、4个底物完全转化与100%酰胺产率",
           "evidence": [
             {
-              "quote": "所获序列中90%对目标底物显示催化活性，其中80%具备酰胺合成能力",
+              "quote": "仅通过单轮预测即获得16个经实验验证的阳性突变体。其中7个变体的酰胺比例相较野生型有所提升，包括5个酰胺比例超80%的突变体，更有4个突变体实现了底物完全转化与100%酰胺产率",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3408,
+                "start_char": 3469,
+                "end_char": 3556
+              },
+              "version": "20f61c04ffd777a9302b"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "仅通过单轮预测即获得16个经实验验证的阳性突变体",
+          "self_reported": false
+        },
+        {
+          "id": "item-8a5954cdc0c7",
+          "name": "新酶催化活性与酰胺合成能力",
+          "desc": "所获序列中90%对目标底物显示催化活性，其中80%具备酰胺合成能力",
+          "evidence": [
+            {
+              "quote": "在新酶发现环节，所获序列中90%对目标底物显示催化活性，其中80%具备酰胺合成能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3400,
                 "end_char": 3440
               },
               "version": "20f61c04ffd777a9302b"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2a06eefe24e7",
-          "name": "单轮预测获 16 个阳性突变体、4 个 100% 酰胺产率",
-          "desc": "仅通过单轮预测即获得 16 个经实验验证的阳性突变体，其中 5 个酰胺比例超 80%，4 个实现底物完全转化与 100% 酰胺产率。",
-          "evidence": [
-            {
-              "quote": "仅通过单轮预测即获得16个经实验验证的阳性突变体",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3469,
-                "end_char": 3492
-              },
-              "version": "20f61c04ffd777a9302b"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-087721d05b6a",
-          "name": "6 项成果（期刊论文与专利）",
-          "desc": "结题报告列出的成果清单，含 EnzySFC 平台论文与腈水解酶突变体等专利。",
-          "evidence": [
-            {
-              "quote": "## 成果列表（6）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3691,
-                "end_char": 3700
-              },
-              "version": "20f61c04ffd777a9302b"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "所获序列中90%",
+          "self_reported": false
         }
       ]
     }
@@ -221,14 +200,199 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-5fbdaef5cdce"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-c61f76ae371d"
+        "item_id": "item-196392aebd29"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "腈水解酶合成酰胺时底物转化率低制约腈水解酶在酰胺合成中的应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 729,
+            "end_char": 758
+          },
+          "version": "20f61c04ffd777a9302b"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-c58b5461ad04"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-16334d46745a"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "然而，提高酰胺合成效率的同时保证高底物转化率，仍是该路径的瓶颈",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3155,
+            "end_char": 3185
+          },
+          "version": "20f61c04ffd777a9302b"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d3fdb73620b5"
       },
       "to": {
         "dimension": "技术",
-        "item_id": "item-7d0a66797ac0"
+        "item_id": "item-5fbdaef5cdce"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "拟基于高通量测实验技术获取腈水解酶的大量序列功能数据",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 794,
+            "end_char": 819
+          },
+          "version": "20f61c04ffd777a9302b"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e19d0364f101"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-16334d46745a"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "然而，提高酰胺合成效率的同时保证高底物转化率，仍是该路径的瓶颈",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3155,
+            "end_char": 3185
+          },
+          "version": "20f61c04ffd777a9302b"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-955df443f06b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c58b5461ad04"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "仅通过单轮预测即获得16个经实验验证的阳性突变体",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3469,
+            "end_char": 3492
+          },
+          "version": "20f61c04ffd777a9302b"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial Intelligence Platform EnzySFC for Enzyme Screening and Functional Conversion",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "id": "out-baa7fb30abeb",
+      "evidence": [
+        {
+          "quote": "3. [期刊论文] Artificial Intelligence Platform EnzySFC for Enzyme Screening and Functional Conversion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3957,
+            "end_char": 4053
+          },
+          "version": "20f61c04ffd777a9302b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种腈水解酶突变体及其应用",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "奕栋;姜水琴;郑哲麟;董华;童琦",
+      "id": "out-3d0da63334a0",
+      "evidence": [
+        {
+          "quote": "6. [专利] 一种腈水解酶突变体及其应用 — 奕栋;姜水琴;郑哲麟;董华;童琦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4279,
+            "end_char": 4318
+          },
+          "version": "20f61c04ffd777a9302b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种酶法合成去氧胆酸的方法",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "奕栋;刘育;汤文;马潇;姜水琴;汤佳伟",
+      "id": "out-36c818467b36",
+      "evidence": [
+        {
+          "quote": "5. [专利] 一种酶法合成去氧胆酸的方法 — 奕栋;刘育;汤文;马潇;姜水琴;汤佳伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4235,
+            "end_char": 4277
+          },
+          "version": "20f61c04ffd777a9302b"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

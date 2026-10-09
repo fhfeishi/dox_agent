@@ -2,15 +2,20 @@
   "doc_id": "b8208d3ce4d523c4d5f3",
   "version": "fd546d904bca0b86189c",
   "source_hash": "049ebd7631a8662b7c1ec251c09e9f8dd9b6d38718f60c9ab52591f38ab862de",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:13:41.407053+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:38:02.179543+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,15 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7bed696c1d98",
-          "name": "新靶点与难成药靶点药物设计",
-          "desc": "面向新靶点、难成药靶点的先导化合物发现。",
+          "id": "item-9721dd10e4e6",
+          "name": "新靶点先导化合物发现",
+          "desc": "针对新靶点/难成药靶点药物设计，发展高亲和力高特异性先导化合物分子发现方法",
           "evidence": [
             {
-              "quote": "极大限制了其在新靶点/难成药靶点药物设计方面的应用",
+              "quote": "现有分子生成模型存在依赖已知活性分子、忽略靶点柔性及小分子结合特异性等不足，极大限制了其在新靶点/难成药靶点药物设计方面的应用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 748,
+                "start_char": 710,
                 "end_char": 772
               },
               "version": "fd546d904bca0b86189c"
@@ -35,16 +40,16 @@
           ]
         },
         {
-          "id": "item-e15468090ffa",
-          "name": "胶质瘤 PGK1 靶点先导化合物开发",
-          "desc": "针对本课题组发现的胶质瘤靶点 PGK1 新机制开发具良好靶向活性的抑制剂。",
+          "id": "item-b89327dfc2c3",
+          "name": "胶质瘤靶点PGK1先导开发",
+          "desc": "针对课题组发现的胶质瘤靶点PGK1新机制开展先导化合物开发",
           "evidence": [
             {
-              "quote": "针对本课题组发现的胶质瘤靶点PGK1新机制开展先导化合物开发工作，以期得到具良好靶向活性的抑制剂",
+              "quote": "并针对本课题组发现的胶质瘤靶点PGK1新机制开展先导化合物开发工作",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 915,
-                "end_char": 962
+                "start_char": 914,
+                "end_char": 946
               },
               "version": "fd546d904bca0b86189c"
             }
@@ -57,15 +62,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cdb254b677ec",
-          "name": "分子生成模型依赖已知活性分子、忽略靶点柔性",
-          "desc": "现有分子生成模型依赖已知活性分子、忽略靶点柔性与小分子结合特异性，限制其在新靶点上的应用。",
+          "id": "item-cacff2ba2b9f",
+          "name": "分子生成模型依赖已知活性分子",
+          "desc": "现有模型依赖已知活性分子、忽略靶点柔性及结合特异性",
           "evidence": [
             {
-              "quote": "然而，现有分子生成模型存在依赖已知活性分子、忽略靶点柔性及小分子结合特异性等不足",
+              "quote": "现有分子生成模型存在依赖已知活性分子、忽略靶点柔性及小分子结合特异性等不足",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 707,
+                "start_char": 710,
                 "end_char": 746
               },
               "version": "fd546d904bca0b86189c"
@@ -73,16 +78,16 @@
           ]
         },
         {
-          "id": "item-fc441894a236",
-          "name": "需要高精度对接与动力学方法支撑",
-          "desc": "需要自主开发的高精度分子对接与分子动力学方法作为基础。",
+          "id": "item-f6a57ffec9b5",
+          "name": "新靶点药物设计缺乏有效工具",
+          "desc": "亟需为靶向新靶点的药物设计工作提供有力工具",
           "evidence": [
             {
-              "quote": "本项目立足于自主开发的高精度分子对接和分子动力学方法",
+              "quote": "为靶向新靶点的药物设计工作提供有力的工具，为重大疾病创新药物开发提供新的策略",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 780,
-                "end_char": 805
+                "start_char": 1020,
+                "end_char": 1057
               },
               "version": "fd546d904bca0b86189c"
             }
@@ -95,52 +100,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf61c5d28df3",
-          "name": "融合计算模拟数据的分子生成模型",
-          "desc": "融合计算模拟数据与深度学习技术，发展针对新靶点的高亲和力、高特异性先导化合物发现方法。",
+          "id": "item-42b22863f85a",
+          "name": "高精度分子对接与分子动力学方法",
+          "desc": "立足自主开发的高精度分子对接和分子动力学方法",
           "evidence": [
             {
-              "quote": "融合计算模拟数据与深度学习技术，拟发展一套针对新靶点的高亲和力、高特异性先导化合物分子发现方法",
+              "quote": "本项目立足于自主开发的高精度分子对接和分子动力学方法，充分考虑靶点蛋白的结构柔性和小分子的潜在脱靶效应",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 832,
-                "end_char": 878
+                "start_char": 780,
+                "end_char": 830
               },
               "version": "fd546d904bca0b86189c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-85d1a94968fc",
-          "name": "迁移学习与强化学习引导化学空间",
-          "desc": "引入迁移学习与强化学习策略，对目标靶点化学空间做有效引导。",
+          "id": "item-780f3926032e",
+          "name": "迁移学习与强化学习引导的分子生成",
+          "desc": "基于大规模类药性分子数据集构建分子生成模型并引入迁移学习与强化学习策略",
           "evidence": [
             {
-              "quote": "引入迁移学习与强化学习策略，实现了对目标靶点化学空间的有效引导",
+              "quote": "基于大规模类药性分子数据集构建了分子生成模型，并引入迁移学习与强化学习策略，实现了对目标靶点化学空间的有效引导",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2889,
+                "start_char": 2865,
                 "end_char": 2919
               },
               "version": "fd546d904bca0b86189c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b9eb1ae986cc",
-          "name": "反应性力场与模拟平台构建",
-          "desc": "在蛋白质建模与分子动力学模拟平台构建、反应性力场理论发展等方面形成系统性研究进展。",
+          "id": "item-8d262f41c494",
+          "name": "反应性力场理论",
+          "desc": "在反应性力场理论发展方面取得系统性研究进展",
           "evidence": [
             {
-              "quote": "本项目在分子生成方法学、蛋白质建模与分子动力学模拟平台构建、反应性力场理论发展以及重要生物医学体系分子机制解析等方面取得了系统性研究进展",
+              "quote": "在分子生成方法学、蛋白质建模与分子动力学模拟平台构建、反应性力场理论发展以及重要生物医学体系分子机制解析等方面取得了系统性研究进展",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2761,
+                "start_char": 2764,
                 "end_char": 2828
               },
               "version": "fd546d904bca0b86189c"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -149,55 +157,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a75456325e14",
-          "name": "靶向前导化合物快速精准生成的计算方案",
-          "desc": "为靶向先导化合物的快速、精准生成提供高效可行的计算方案，在药物筛选与设计方向展现应用前景。",
+          "id": "item-9cf3603461c5",
+          "name": "高效可行的先导化合物计算方案",
+          "desc": "实现对目标靶点化学空间的有效引导，为靶向先导化合物的快速精准生成提供方案",
           "evidence": [
             {
-              "quote": "为靶向先导化合物的快速、精准生成提供了一种高效且可行的计算方案",
+              "quote": "实现了对目标靶点化学空间的有效引导，为靶向先导化合物的快速、精准生成提供了一种高效且可行的计算方案",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2921,
+                "start_char": 2903,
                 "end_char": 2951
               },
               "version": "fd546d904bca0b86189c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "提供了",
+          "self_reported": false
         },
         {
-          "id": "item-ed1e8c051917",
-          "name": "发表论文 5 篇（含 JACS、JCTC）",
-          "desc": "项目执行期间共发表学术论文 5 篇，其中负责人为共同通讯作者的成果发表于 JACS 与 JCTC 等国际权威期刊。",
+          "id": "item-e8b1965fed98",
+          "name": "5篇论文含JACS与JCTC",
+          "desc": "共发表相关学术论文5篇，含JACS与JCTC国际权威期刊",
           "evidence": [
             {
-              "quote": "共发表相关学术论文 5 篇，其中以项目负责人为共同通讯作者的研究成果发表于 Journal of the American Chemical Society 和 Journal of Chemical Theory and Computation 等国际权威期刊。",
+              "quote": "项目执行期间，共发表相关学术论文 5 篇，其中以项目负责人为共同通讯作者的研究成果发表于 Journal of the American Chemical Society 和 Journal of Chemical Theory and Computation 等国际权威期刊",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2982,
-                "end_char": 3113
+                "start_char": 2975,
+                "end_char": 3112
               },
               "version": "fd546d904bca0b86189c"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-51d998c6d640",
-          "name": "3 项成果（期刊论文）",
-          "desc": "结题报告列出的成果清单，均为期刊论文。",
-          "evidence": [
-            {
-              "quote": "## 成果列表（3）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3116,
-                "end_char": 3125
-              },
-              "version": "fd546d904bca0b86189c"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "共发表相关学术论文 5 篇",
+          "self_reported": false
         }
       ]
     }
@@ -205,14 +200,174 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-42b22863f85a"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-cdb254b677ec"
+        "item_id": "item-cacff2ba2b9f"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "现有分子生成模型存在依赖已知活性分子、忽略靶点柔性及小分子结合特异性等不足",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 710,
+            "end_char": 746
+          },
+          "version": "fd546d904bca0b86189c"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-780f3926032e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f6a57ffec9b5"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "为靶向先导化合物的快速、精准生成提供了一种高效且可行的计算方案",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2921,
+            "end_char": 2951
+          },
+          "version": "fd546d904bca0b86189c"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8d262f41c494"
       },
       "to": {
         "dimension": "技术",
-        "item_id": "item-bf61c5d28df3"
+        "item_id": "item-42b22863f85a"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "在分子生成方法学、蛋白质建模与分子动力学模拟平台构建、反应性力场理论发展以及重要生物医学体系分子机制解析等方面取得了系统性研究进展",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2764,
+            "end_char": 2828
+          },
+          "version": "fd546d904bca0b86189c"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9721dd10e4e6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-cacff2ba2b9f"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "极大限制了其在新靶点/难成药靶点药物设计方面的应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 748,
+            "end_char": 772
+          },
+          "version": "fd546d904bca0b86189c"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-9cf3603461c5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-780f3926032e"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "实现了对目标靶点化学空间的有效引导",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2903,
+            "end_char": 2919
+          },
+          "version": "fd546d904bca0b86189c"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Multipole-Based Reactive Force Field for Hydrocarbons",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Junben Weng;Hongqiang Cui;Da Zheng;Zhenhao Zhou;Dinglin Zhang;Huiying Chu;Anhui Wang;Guohui Li",
+      "id": "out-d72a97ef8300",
+      "evidence": [
+        {
+          "quote": "2. [期刊论文] A Multipole-Based Reactive Force Field for Hydrocarbons — Junben Weng;Hongqiang Cui;Da Zheng;Zhenhao Zhou;Dinglin Zhang;Huiying Chu;Anhui Wang;Guohui Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3550,
+            "end_char": 3711
+          },
+          "version": "fd546d904bca0b86189c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decoding Arginine Dimethylation Isomers via pH-Tuned Reactivity with Methylglyoxal",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "id": "out-ed1af609a7a9",
+      "evidence": [
+        {
+          "quote": "3. [期刊论文] Decoding Arginine Dimethylation Isomers via pH-Tuned Reactivity with Methylglyoxal",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3713,
+            "end_char": 3804
+          },
+          "version": "fd546d904bca0b86189c"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "0329f89d0cbd3f510fb9",
   "version": "5d1e845ebbb4f9c87cc2",
   "source_hash": "45d1b1d7d49968b4d3c4839130e22da74ba2ce872457c0b449996cb4d41e724f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:42:20.977681+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:43:47.857861+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 4,
+      "total": 4,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-640f00619697",
-          "name": "煤矿采煤机健康状态监测",
-          "desc": "采煤机是实现煤矿生产机械化和现代化的主要装置，我国能源结构呈现富煤贫油少气的特点。",
+          "id": "item-483b12edc456",
+          "name": "采煤机健康状态监测",
+          "desc": "采煤机作为煤矿生产机械化主要装置，绝大部分健康状态监测仍依赖专家经验",
           "evidence": [
             {
-              "quote": "我国能源结构呈现出“富煤、贫油、少气”的特点，煤炭一直是国民经济的基础性产业。",
+              "quote": "然而，目前采煤机在健康状态监测方面与国际先进水平仍存在显著差距，绝大部分情况仍依赖专家经验知识",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,9 +40,9 @@
           ]
         },
         {
-          "id": "item-d53ea44d48b7",
-          "name": "智能化煤矿生产需求",
-          "desc": "为煤矿实现安全、高效、低成本的智能化生产提供核心技术支撑。",
+          "id": "item-c35431a6eb70",
+          "name": "煤矿智能化安全生产",
+          "desc": "为煤矿实现安全、高效、低成本的智能化生产提供核心技术支撑",
           "evidence": [
             {
               "quote": "为煤矿实现安全、高效、低成本的智能化生产提供核心技术支撑",
@@ -57,12 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4c3fb7a6529a",
-          "name": "健康监测依赖专家经验",
-          "desc": "采煤机健康状态监测绝大部分情况仍依赖专家经验知识，缺少对设备监测数据的挖掘和利用。",
+          "id": "item-4e987478189a",
+          "name": "监测数据未被挖掘利用",
+          "desc": "缺少对设备监测数据的挖掘和利用，难以及时维护保养，设备时常带病作业",
           "evidence": [
             {
-              "quote": "绝大部分情况仍依赖专家经验知识，缺少对设备监测数据的挖掘和利用，难以及时对设备进行维护和保养",
+              "quote": "缺少对设备监测数据的挖掘和利用，难以及时对设备进行维护和保养，使设备时常发生带病作业现象，造成煤炭生产的中断",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -73,12 +78,12 @@
           ]
         },
         {
-          "id": "item-471e2c6cd132",
-          "name": "带病作业造成生产中断",
-          "desc": "设备带病作业现象导致煤炭生产中断、巨大经济损失甚至危及工人安全。",
+          "id": "item-636ebbad5ad0",
+          "name": "传统被动运维依赖专家经验",
+          "desc": "突破传统依赖专家经验的被动运维模式",
           "evidence": [
             {
-              "quote": "使设备时常发生带病作业现象，造成煤炭生产的中断，产生巨大的经济损失，甚至危及工人的安全。",
+              "quote": "突破了传统依赖专家经验的被动运维模式",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -95,12 +100,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4dab851b8276",
-          "name": "边缘计算节点实时采集",
-          "desc": "在设备端部署边缘计算节点，实现振动、温度、电流、姿态等工况数据的实时采集与本地化预处理。",
+          "id": "item-7a09d1f4788d",
+          "name": "边缘计算实时采集与预处理",
+          "desc": "在设备端部署边缘计算节点采集振动、温度、电流、姿态等工况数据并本地化预处理",
           "evidence": [
             {
-              "quote": "通过在设备端部署边缘计算节点，实现振动、温度、电流、姿态等工况数据的实时采集与本地化预处理，保障了数据处理的低延迟与高可靠性。",
+              "quote": "通过在设备端部署边缘计算节点，实现振动、温度、电流、姿态等工况数据的实时采集与本地化预处理，保障了数据处理的低延迟与高可靠性",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -108,15 +113,16 @@
               },
               "version": "5d1e845ebbb4f9c87cc2"
             }
-          ]
+          ],
+          "role": "配套-数据"
         },
         {
           "id": "item-353a119c633a",
           "name": "高保真数字孪生模型",
-          "desc": "分析采煤机、刮板输送机与煤层底板的耦合关系，构建高保真数字孪生模型实现实时监测与仿真分析。",
+          "desc": "分析采煤机、刮板输送机与煤层底板连接耦合关系，构建高保真数字孪生模型",
           "evidence": [
             {
-              "quote": "分析了采煤机、刮板输送机和煤层底板之间的连接和耦合关系，构建了高保真数字孪生模型",
+              "quote": "分析了采煤机、刮板输送机和煤层底板之间的连接和耦合关系，构建了高保真数字孪生模型，实现了对采煤机运行状态的实时监测与仿真分析",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -124,15 +130,16 @@
               },
               "version": "5d1e845ebbb4f9c87cc2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-56d68e9caff3",
-          "name": "ECANet-TCN与迁移学习寿命预测",
-          "desc": "结合历史与实时孪生数据，利用改进ECANet-TCN和迁移学习实现关键零部件剩余寿命精准预测。",
+          "id": "item-5b2c69005a1e",
+          "name": "改进ECANet-TCN与迁移学习寿命预测",
+          "desc": "结合历史与实时孪生数据实现关键零部件剩余寿命精准预测",
           "evidence": [
             {
-              "quote": "利用改进ECANet-TCN和迁移学习实现采煤机关键零部件剩余寿命的精准预测，提前识别潜在故障",
+              "quote": "结合历史与实时孪生数据，利用改进ECANet-TCN和迁移学习实现采煤机关键零部件剩余寿命的精准预测，提前识别潜在故障",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -140,7 +147,8 @@
               },
               "version": "5d1e845ebbb4f9c87cc2"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,12 +157,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f838f6c1b6ef",
-          "name": "健康状态智能融合预测系统",
-          "desc": "开发大数据驱动的采煤机健康状态智能融合预测系统，能提前数小时至数天精准预警核心部件故障。",
+          "id": "item-bc4c6253954f",
+          "name": "采煤机健康状态智能融合预测系统",
+          "desc": "能提前数小时至数天精准预警核心部件故障，指导制定最优维修计划",
           "evidence": [
             {
-              "quote": "系统能提前数小时至数天精准预警核心部件故障，指导制定最优维修计划",
+              "quote": "开发了大数据驱动的采煤机健康状态智能融合预测系统，系统能提前数小时至数天精准预警核心部件故障，指导制定最优维修计划",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -163,15 +171,17 @@
               "version": "5d1e845ebbb4f9c87cc2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "开发了",
+          "self_reported": false
         },
         {
-          "id": "item-40408e623469",
-          "name": "论文与知识产权产出",
-          "desc": "发表高水平论文15篇，受理或授权国家发明专利5项、软件著作权5项，培养7名学生。",
+          "id": "item-725e7e837598",
+          "name": "论文15篇与专利5项软著5项",
+          "desc": "发表高水平论文15篇，受理或授权国家发明专利5项，获批软件著作权5项",
           "evidence": [
             {
-              "quote": "项目发表高水平论文15篇，培养学生7名，受理或授权国家发明专利5项，获批软件著作权5项。",
+              "quote": "项目发表高水平论文15篇，培养学生7名，受理或授权国家发明专利5项，获批软件著作权5项",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -180,24 +190,9 @@
               "version": "5d1e845ebbb4f9c87cc2"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-aa1e0b3e6879",
-          "name": "被动运维模式突破",
-          "desc": "揭示监测数据与设备健康状态间的非线性映射关系，突破依赖专家经验的被动运维模式。",
-          "evidence": [
-            {
-              "quote": "突破了传统依赖专家经验的被动运维模式",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "057201e3880f85cf16c9a9dad85ce4fb52120679"
-              },
-              "version": "5d1e845ebbb4f9c87cc2"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "发表高水平论文15篇",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +200,186 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-640f00619697"
+        "dimension": "技术",
+        "item_id": "item-5b2c69005a1e"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-4c3fb7a6529a"
+        "item_id": "item-4e987478189a"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "缺少对设备监测数据的挖掘和利用，难以及时对设备进行维护和保养",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "057201e3880f85cf16c9a9dad85ce4fb52120679"
+          },
+          "version": "5d1e845ebbb4f9c87cc2"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-7a09d1f4788d"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-471e2c6cd132"
+        "item_id": "item-636ebbad5ad0"
       },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4dab851b8276"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "突破了传统依赖专家经验的被动运维模式",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "057201e3880f85cf16c9a9dad85ce4fb52120679"
+          },
+          "version": "5d1e845ebbb4f9c87cc2"
+        }
+      ]
     },
     {
       "from": {
         "dimension": "技术",
-        "item_id": "item-56d68e9caff3"
+        "item_id": "item-5b2c69005a1e"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-f838f6c1b6ef"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
         "dimension": "技术",
         "item_id": "item-353a119c633a"
       },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-aa1e0b3e6879"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "结合历史与实时孪生数据，利用改进ECANet-TCN和迁移学习实现采煤机关键零部件剩余寿命的精准预测",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "057201e3880f85cf16c9a9dad85ce4fb52120679"
+          },
+          "version": "5d1e845ebbb4f9c87cc2"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-7a09d1f4788d"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-353a119c633a"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "通过在设备端部署边缘计算节点，实现振动、温度、电流、姿态等工况数据的实时采集与本地化预处理",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "057201e3880f85cf16c9a9dad85ce4fb52120679"
+          },
+          "version": "5d1e845ebbb4f9c87cc2"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-483b12edc456"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4e987478189a"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "缺少对设备监测数据的挖掘和利用",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "057201e3880f85cf16c9a9dad85ce4fb52120679"
+          },
+          "version": "5d1e845ebbb4f9c87cc2"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-bc4c6253954f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5b2c69005a1e"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "开发了大数据驱动的采煤机健康状态智能融合预测系统，系统能提前数小时至数天精准预警核心部件故障",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "057201e3880f85cf16c9a9dad85ce4fb52120679"
+          },
+          "version": "5d1e845ebbb4f9c87cc2"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "采煤机健康状态智能融合预测系统",
+      "status_raw": "开发了",
+      "identifiers": {},
+      "id": "out-bd047cfb0e9c",
+      "evidence": [
+        {
+          "quote": "开发了大数据驱动的采煤机健康状态智能融合预测系统",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "057201e3880f85cf16c9a9dad85ce4fb52120679"
+          },
+          "version": "5d1e845ebbb4f9c87cc2"
+        }
+      ]
+    },
+    {
+      "kind": "平台/基地",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "高保真采煤机数字孪生模型",
+      "status_raw": "构建了",
+      "identifiers": {},
+      "id": "out-d274dd5db2eb",
+      "evidence": [
+        {
+          "quote": "构建了高保真数字孪生模型，实现了对采煤机运行状态的实时监测与仿真分析",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "057201e3880f85cf16c9a9dad85ce4fb52120679"
+          },
+          "version": "5d1e845ebbb4f9c87cc2"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

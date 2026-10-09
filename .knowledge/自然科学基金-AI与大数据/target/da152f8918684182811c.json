@@ -2,15 +2,20 @@
   "doc_id": "da152f8918684182811c",
   "version": "c9ad07e022062e12b1a3",
   "source_hash": "3097fc728b66a5f7f7a50cfec145d71d04c6eb8d7998afb2d8a1ea06702864e5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:42:19.837888+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:43:47.915133+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 4,
+      "total": 4,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c4e57ae19b38",
-          "name": "精准体质辨识与中医治未病",
-          "desc": "精准体质辨识是普及中医治未病的关键途径，兼夹体质在人群中普遍存在难以精确识别。",
+          "id": "item-39f58e4bb672",
+          "name": "精准体质辨识与治未病",
+          "desc": "精准体质辨识是普及中医治未病的关键途径，兼夹体质难以精确识别",
           "evidence": [
             {
               "quote": "精准体质辨识是普及中医治未病的关键途径，兼夹体质在人群中普遍存在，难以精确识别和描述",
@@ -35,12 +40,12 @@
           ]
         },
         {
-          "id": "item-5eee91249227",
-          "name": "基层健康服务应用",
-          "desc": "智能治未病管理体系在浙江省磐安县落地实施示范项目，验证成果在基层卫生服务一线的应用价值。",
+          "id": "item-fb0a2fccfe45",
+          "name": "基层卫生服务落地示范",
+          "desc": "智能治未病管理体系在浙江省磐安县落地实施示范项目",
           "evidence": [
             {
-              "quote": "项目研发了智能治未病管理体系千人千方小程序，并在浙江省磐安县落地实施了示范项目。",
+              "quote": "项目研发了智能治未病管理体系千人千方小程序，并在浙江省磐安县落地实施了示范项目",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -57,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-40cd5848e25f",
-          "name": "体质测算依赖医师主观性",
-          "desc": "需减少中医体质实际测算过程中尚需医师参与的人为主观性并提升分类精准性。",
+          "id": "item-6d8c2f1114d2",
+          "name": "体质辨识依赖医师主观判断",
+          "desc": "需减少实际测算过程中尚需医师参与的人为主观性并提升分类算法精准性",
           "evidence": [
             {
               "quote": "以尝试减少其在实际测算过程中尚需医师参与的人为主观性，并提升其分类算法的精准性",
@@ -73,12 +78,12 @@
           ]
         },
         {
-          "id": "item-06d6d72f3fb7",
-          "name": "兼夹体质识别困难",
-          "desc": "兼夹体质在人群中普遍存在，其高复杂度导致难以精确识别和描述。",
+          "id": "item-098dd462554f",
+          "name": "兼夹体质高复杂度难精细辨识",
+          "desc": "需解决复杂兼夹体质的识别难题",
           "evidence": [
             {
-              "quote": "针对兼夹体质的高复杂度，项目采用无监督学习策略",
+              "quote": "旨在降低传统辨识对医师主观判断的依赖，并解决复杂兼夹体质的识别难题",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -97,10 +102,10 @@
         {
           "id": "item-d5e297643744",
           "name": "混合权重计算框架",
-          "desc": "构建整合统计学方法与机器学习模型的混合权重计算框架，通过集成排序确立更稳健的条目权重及各体质核心症状。",
+          "desc": "整合统计学方法与机器学习模型，通过集成排序确立更稳健的条目权重",
           "evidence": [
             {
-              "quote": "本项目首先构建了整合统计学方法与机器学习模型的混合权重计算框架，通过集成排序确立了更稳健的条目权重及各体质核心症状。",
+              "quote": "本项目首先构建了整合统计学方法与机器学习模型的混合权重计算框架，通过集成排序确立了更稳健的条目权重及各体质核心症状",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -108,15 +113,16 @@
               },
               "version": "c9ad07e022062e12b1a3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-d9f310e060c1",
           "name": "UMAP降维与高斯混合聚类",
-          "desc": "采用无监督学习策略，结合UMAP降维与高斯混合模型聚类技术识别临床亚群。",
+          "desc": "采用无监督学习结合UMAP降维与高斯混合模型聚类识别临床亚群",
           "evidence": [
             {
-              "quote": "结合UMAP降维与高斯混合模型聚类技术，成功识别出10个具有特征性症状模式的临床亚群",
+              "quote": "项目采用无监督学习策略，结合UMAP降维与高斯混合模型聚类技术，成功识别出10个具有特征性症状模式的临床亚群",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -124,23 +130,25 @@
               },
               "version": "c9ad07e022062e12b1a3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-21350423bb7a",
-          "name": "千人千方小程序",
-          "desc": "研发智能治未病管理体系千人千方小程序，形成精准辨识、动态评估与个性化干预的闭环模式。",
+          "id": "item-a8d1131a675c",
+          "name": "智能治未病调体方案框架",
+          "desc": "基于真实世界体质和临床数据构建动态演化的智能治未病调体方案",
           "evidence": [
             {
-              "quote": "研发了智能治未病管理体系千人千方小程序",
+              "quote": "基于真实世界体质和临床数据构建动态演化的智能治未病调体方案",
               "locator": {
                 "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "9eba7ae41e9f681de4c706b8a2adc1fef22f0b97"
+                "page": 1,
+                "chunk_id": "99f745c1ceface0514f799ca11d6e74d16f9804e"
               },
               "version": "c9ad07e022062e12b1a3"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -149,12 +157,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6b94d8dfb641",
-          "name": "模型预测效能AUC 0.819至0.936",
-          "desc": "相关模型受试者工作特征曲线下面积达0.819至0.936。",
+          "id": "item-f79c3247e3af",
+          "name": "AUC达0.819至0.936",
+          "desc": "受试者工作特征曲线下面积达0.819至0.936",
           "evidence": [
             {
-              "quote": "受试者工作特征曲线下面积达0.819至0.936",
+              "quote": "相关模型展现出卓越的预测效能，受试者工作特征曲线下面积达0.819至0.936",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -163,15 +171,17 @@
               "version": "c9ad07e022062e12b1a3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "达0.819至0.936",
+          "self_reported": false
         },
         {
-          "id": "item-432352db6279",
-          "name": "偏颇体质显著调节效应",
-          "desc": "示范项目对偏颇体质展现显著调节效应，气郁质改善率达20.13%、气虚质改善率达14.59%。",
+          "id": "item-bdb742c7db4d",
+          "name": "10个临床亚群识别",
+          "desc": "识别出10个具有特征性症状模式的临床亚群",
           "evidence": [
             {
-              "quote": "其中气郁质改善率达20.13%，气虚质改善率达14.59%",
+              "quote": "成功识别出10个具有特征性症状模式的临床亚群，为复杂体质的精细化辨识与个体化干预奠定了理论基础",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -180,15 +190,36 @@
               "version": "c9ad07e022062e12b1a3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "成功识别出10个",
+          "self_reported": false
         },
         {
-          "id": "item-2cbbab8fcc02",
-          "name": "论文与专利产出",
-          "desc": "累计产出中文核心论文2篇、SCI论文2篇，并申请中医体质智能辨识方法发明专利。",
+          "id": "item-78e8d24ff6b7",
+          "name": "磐安县示范项目与改善率",
+          "desc": "气郁质改善率20.13%、气虚质改善率14.59%",
           "evidence": [
             {
-              "quote": "累计产出中文核心论文2篇，SC I论文2篇",
+              "quote": "该体系对偏颇体质展现出显著的调节效应，其中气郁质改善率达20.13%，气虚质改善率达14.59%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "9eba7ae41e9f681de4c706b8a2adc1fef22f0b97"
+              },
+              "version": "c9ad07e022062e12b1a3"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "改善率达20.13%",
+          "self_reported": false
+        },
+        {
+          "id": "item-9fec5812c087",
+          "name": "中医体质智能辨识专利申请",
+          "desc": "申请发明专利：一种中医体质智能辨识方法系统存储介质及设备",
+          "evidence": [
+            {
+              "quote": "项目申请发明专利: 一种中医体质智能辨识方法系统存储介质及设备，专利申请号202511795989.4",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -197,7 +228,9 @@
               "version": "c9ad07e022062e12b1a3"
             }
           ],
-          "status": "已取得"
+          "status": "在研",
+          "status_raw": "专利申请号202511795989.4",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +238,186 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-c4e57ae19b38"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-40cd5848e25f"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-06d6d72f3fb7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d9f310e060c1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
         "dimension": "技术",
         "item_id": "item-d5e297643744"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-6b94d8dfb641"
+        "dimension": "问题",
+        "item_id": "item-6d8c2f1114d2"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "以尝试减少其在实际测算过程中尚需医师参与的人为主观性，并提升其分类算法的精准性",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "99f745c1ceface0514f799ca11d6e74d16f9804e"
+          },
+          "version": "c9ad07e022062e12b1a3"
+        }
+      ]
     },
     {
       "from": {
         "dimension": "技术",
-        "item_id": "item-21350423bb7a"
+        "item_id": "item-d9f310e060c1"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-432352db6279"
+        "dimension": "问题",
+        "item_id": "item-098dd462554f"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "结合UMAP降维与高斯混合模型聚类技术，成功识别出10个具有特征性症状模式的临床亚群",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "9eba7ae41e9f681de4c706b8a2adc1fef22f0b97"
+          },
+          "version": "c9ad07e022062e12b1a3"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-a8d1131a675c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d5e297643744"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "基于真实世界体质和临床数据构建动态演化的智能治未病调体方案",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "99f745c1ceface0514f799ca11d6e74d16f9804e"
+          },
+          "version": "c9ad07e022062e12b1a3"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-39f58e4bb672"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-098dd462554f"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "兼夹体质在人群中普遍存在，难以精确识别和描述",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "99f745c1ceface0514f799ca11d6e74d16f9804e"
+          },
+          "version": "c9ad07e022062e12b1a3"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-f79c3247e3af"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d5e297643744"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "相关模型展现出卓越的预测效能，受试者工作特征曲线下面积达0.819至0.936",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "9eba7ae41e9f681de4c706b8a2adc1fef22f0b97"
+          },
+          "version": "c9ad07e022062e12b1a3"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "智能治未病管理体系千人千方小程序",
+      "status_raw": "研发了",
+      "identifiers": {},
+      "id": "out-da196c353efb",
+      "evidence": [
+        {
+          "quote": "项目研发了智能治未病管理体系千人千方小程序",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "9eba7ae41e9f681de4c706b8a2adc1fef22f0b97"
+          },
+          "version": "c9ad07e022062e12b1a3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "申请",
+      "title": "一种中医体质智能辨识方法系统存储介质及设备",
+      "status_raw": "专利申请号202511795989.4",
+      "identifiers": {
+        "application_no": "202511795989.4"
+      },
+      "id": "out-b998c0215d2a",
+      "evidence": [
+        {
+          "quote": "项目申请发明专利: 一种中医体质智能辨识方法系统存储介质及设备，专利申请号202511795989.4",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "1a6675c92f06f53f50765660ba87694cbf1bfc94"
+          },
+          "version": "c9ad07e022062e12b1a3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "机器学习辅助体质快速判定研究（Chinese Medicine）",
+      "status_raw": "2025年接收",
+      "identifiers": {},
+      "venue": "Chinese Medicine",
+      "id": "out-47a4a7d969fc",
+      "evidence": [
+        {
+          "quote": "包括在国际期刊Chinese Medicine发表的机器学习辅助体质快速判定研究",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "1a6675c92f06f53f50765660ba87694cbf1bfc94"
+          },
+          "version": "c9ad07e022062e12b1a3"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

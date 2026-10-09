@@ -2,15 +2,20 @@
   "doc_id": "5822782042847b74f51d",
   "version": "3ea7384ebb92a52c9c57",
   "source_hash": "d13c227e798519033da4e1b0c93de89971069f252a2470ee1cf457bfabeb8e84",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:13:03.350303+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:38:02.166212+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-965e097e07bb",
-          "name": "抗癌药物机制分析",
-          "desc": "发展定量表面增强拉曼光谱阵列传感器，用于抗癌药物机制相关的细胞表面表型检测。",
+          "id": "item-0e22cd3bd374",
+          "name": "抗癌药物机制分析与精准用药",
+          "desc": "快速识别化疗药物作用机制对新药研发和精准医疗具有重要意义",
           "evidence": [
             {
-              "quote": "本项目拟发展一种定量表面增强拉曼光谱（SERS）阵列传感器，用于抗癌药物机制分析的相关细胞表面表型生物检测。",
+              "quote": "快速识别化疗药物作用机制对新药研发和精准医疗具有重要意义",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
-                "end_char": 710
+                "start_char": 2764,
+                "end_char": 2791
               },
               "version": "3ea7384ebb92a52c9c57"
             }
           ]
         },
         {
-          "id": "item-cab3c9eb2bf0",
-          "name": "新药研发与精准医疗",
-          "desc": "药物机制识别服务于新药研发与精准医疗。",
+          "id": "item-ab80a32143b5",
+          "name": "新疗法与药物鸡尾酒开发",
+          "desc": "为新疗法和药物“鸡尾酒”的开发提供研究工具",
           "evidence": [
             {
-              "quote": "快速识别化疗药物作用机制对新药研发和精准医疗具有重要意义。",
+              "quote": "为药物评价及多机制药物研发提供了新的技术支撑",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2764,
-                "end_char": 2792
+                "start_char": 3141,
+                "end_char": 3162
               },
               "version": "3ea7384ebb92a52c9c57"
             }
@@ -57,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bba91e342228",
-          "name": "非标记光谱重叠程度高",
-          "desc": "生物体系非标记式光谱重叠程度高，给检测结果解析带来限制。",
+          "id": "item-5316c2736c03",
+          "name": "非标记光谱重叠限制检测",
+          "desc": "需避开生物体系非标记式光谱重叠程度高引起的限制",
           "evidence": [
             {
               "quote": "以期避开生物体系非标记式光谱重叠程度高引起的限制",
@@ -73,9 +78,9 @@
           ]
         },
         {
-          "id": "item-d07936587d44",
-          "name": "相似作用机制药物难以区分",
-          "desc": "需要区分不同作用机制及相似作用机制药物诱导的细胞表面表型。",
+          "id": "item-26e17ff2c978",
+          "name": "SERS可靠性与灵敏度不足",
+          "desc": "需提高SERS光谱可靠性与灵敏度以精准区分不同作用机制药物",
           "evidence": [
             {
               "quote": "使得该检测平台能够对不同作用机制及相似作用机制药物诱导的细胞表面表型进行精准区分",
@@ -95,9 +100,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fe6d2375db80",
-          "name": "DNA 调控星状分形金纳米颗粒",
-          "desc": "用 DNA 调控策略合成平均尺寸约 60 nm 的星状分形金纳米颗粒，组装于 ITO 玻璃基底。",
+          "id": "item-b9ac45c57cb3",
+          "name": "星状分形金纳米颗粒SERS阵列",
+          "desc": "DNA调控合成约60nm星状分形金纳米颗粒并组装于ITO玻璃基底",
           "evidence": [
             {
               "quote": "利用DNA调控策略合成平均尺寸约60 nm的星状分形金纳米颗粒，并将其组装于氧化铟锡（ITO）玻璃基底上",
@@ -108,39 +113,42 @@
               },
               "version": "3ea7384ebb92a52c9c57"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7bedfcc46d49",
-          "name": "九通道人工鼻传感阵列",
-          "desc": "引入 8 种不同电荷、极性与链长的自组装单分子层，构建可调控细胞–基底界面相互作用的九通道传感阵列。",
+          "id": "item-2b8262203e7b",
+          "name": "九通道人工鼻SAM传感阵列",
+          "desc": "引入8种不同电荷极性链长的自组装单分子层构建可调控细胞–基底相互作用的九通道阵列",
           "evidence": [
             {
-              "quote": "构建可调控细胞–基底界面相互作用的九通道“人工鼻”传感阵列",
+              "quote": "进一步引入8种具有不同电荷、极性和链长的自组装单分子层（SAMs），构建可调控细胞–基底界面相互作用的九通道“人工鼻”传感阵列",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2930,
+                "start_char": 2896,
                 "end_char": 2958
               },
               "version": "3ea7384ebb92a52c9c57"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-1774db5ba23b",
-          "name": "CNN 智能解析高维光谱",
-          "desc": "用卷积神经网络实现对复杂光谱数据的智能解析。",
+          "id": "item-cfe52742833d",
+          "name": "卷积神经网络光谱解析",
+          "desc": "采集BT549细胞在20种化疗药物作用下的高维SERS指纹并用CNN智能解析",
           "evidence": [
             {
-              "quote": "并通过CNN实现对复杂光谱数据的智能解析",
+              "quote": "该平台采集了三阴性乳腺癌细胞（BT549）在20种化疗药物作用下的高维SERS指纹，并通过CNN实现对复杂光谱数据的智能解析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3002,
+                "start_char": 2960,
                 "end_char": 3021
               },
               "version": "3ea7384ebb92a52c9c57"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,55 +157,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf8e80ed67cd",
-          "name": "8 类化疗机制识别准确率 99%",
-          "desc": "在涵盖 DNA 烷基化、微管抑制等 8 类化疗机制的识别任务中判别准确率达 99%，显著优于传统一维分析的 81%。",
+          "id": "item-caa7a19bd8ce",
+          "name": "化疗机制识别准确率99%",
+          "desc": "8类化疗机制识别任务判别准确率99%，优于传统一维分析方法的81%",
           "evidence": [
             {
-              "quote": "在涵盖DNA烷基化、微管抑制等8类化疗机制的识别任务中，判别准确率达99%，显著优于传统一维分析方法（81%）。",
+              "quote": "在涵盖DNA烷基化、微管抑制等8类化疗机制的识别任务中，判别准确率达99%，显著优于传统一维分析方法（81%）",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3023,
-                "end_char": 3078
+                "end_char": 3077
               },
               "version": "3ea7384ebb92a52c9c57"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "判别准确率达99%",
+          "self_reported": false
         },
         {
-          "id": "item-382675ce3872",
-          "name": "信号相对标准偏差 5.3%",
-          "desc": "传感基底表现出良好的均匀性。",
+          "id": "item-b6797613a3ee",
+          "name": "传感基底高均匀性",
+          "desc": "信号相对标准偏差仅5.3%",
           "evidence": [
             {
-              "quote": "信号相对标准偏差仅为 5.3%",
+              "quote": "传感基底表现出良好的均匀性，信号相对标准偏差仅为 5.3%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3096,
+                "start_char": 3082,
                 "end_char": 3110
               },
               "version": "3ea7384ebb92a52c9c57"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-7ad86dfa0b39",
-          "name": "9 项成果（期刊论文）",
-          "desc": "结题报告列出的成果清单，均为期刊论文，涉及适配体模式识别、DNA 折纸、传感阵列等方向。",
-          "evidence": [
-            {
-              "quote": "## 成果列表（9）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3166,
-                "end_char": 3175
-              },
-              "version": "3ea7384ebb92a52c9c57"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "仅为 5.3%",
+          "self_reported": false
         }
       ]
     }
@@ -205,25 +200,194 @@
   "relations": [
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-bba91e342228"
+        "dimension": "技术",
+        "item_id": "item-b9ac45c57cb3"
       },
       "to": {
-        "dimension": "技术",
-        "item_id": "item-7bedfcc46d49"
+        "dimension": "问题",
+        "item_id": "item-26e17ff2c978"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "利用DNA调控策略合成平均尺寸约60 nm的星状分形金纳米颗粒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2843,
+            "end_char": 2873
+          },
+          "version": "3ea7384ebb92a52c9c57"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-cfe52742833d"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-d07936587d44"
+        "item_id": "item-5316c2736c03"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "以期避开生物体系非标记式光谱重叠程度高引起的限制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 918,
+            "end_char": 941
+          },
+          "version": "3ea7384ebb92a52c9c57"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2b8262203e7b"
       },
       "to": {
         "dimension": "技术",
-        "item_id": "item-1774db5ba23b"
+        "item_id": "item-b9ac45c57cb3"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "进一步引入8种具有不同电荷、极性和链长的自组装单分子层（SAMs），构建可调控细胞–基底界面相互作用的九通道“人工鼻”传感阵列",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2896,
+            "end_char": 2958
+          },
+          "version": "3ea7384ebb92a52c9c57"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-0e22cd3bd374"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5316c2736c03"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "快速识别化疗药物作用机制对新药研发和精准医疗具有重要意义",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2764,
+            "end_char": 2791
+          },
+          "version": "3ea7384ebb92a52c9c57"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-caa7a19bd8ce"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cfe52742833d"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "判别准确率达99%，显著优于传统一维分析方法（81%）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3051,
+            "end_char": 3077
+          },
+          "version": "3ea7384ebb92a52c9c57"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MoS2-Based Sensor Array for Accurate Identification of Cancer Cells with Ensemble-Modified Aptamers",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Xiang Ying;Liu Jingjing;Chen Jing;Xiao Mingshu;Pei Hao;Li Li",
+      "id": "out-537cf87671d3",
+      "evidence": [
+        {
+          "quote": "7. [期刊论文] MoS2-Based Sensor Array for Accurate Identification of Cancer Cells with Ensemble-Modified Aptamers — Xiang Ying;Liu Jingjing;Chen Jing;Xiao Mingshu;Pei Hao;Li Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4222,
+            "end_char": 4393
+          },
+          "version": "3ea7384ebb92a52c9c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Systematic Evolution of Pattern Recognition Aptamers for Bacterial Identiffcation",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "id": "out-fca7411a1ce5",
+      "evidence": [
+        {
+          "quote": "Systematic Evolution of Pattern Recognition Aptamers for Bacterial Identiffcation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4034,
+            "end_char": 4114
+          },
+          "version": "3ea7384ebb92a52c9c57"
+        }
+      ]
+    },
+    {
+      "kind": "平台/基地",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "SERS传感器阵列与CNN分析平台",
+      "status_raw": "构建了一种",
+      "identifiers": {},
+      "id": "out-50c20e5fd009",
+      "evidence": [
+        {
+          "quote": "本项目构建了一种融合多通道表面增强拉曼散射（SERS）传感器阵列与卷积神经网络（CNN）的分析平台",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2793,
+            "end_char": 2841
+          },
+          "version": "3ea7384ebb92a52c9c57"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "61de3fd872c99fead764",
   "version": "f47f67759e01a76206d4",
   "source_hash": "ebeec3b95485d3807f3e8d40edcadd51d51e83274f909fb4c37a21758069f080",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:11:51.668507+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:31:22.610843+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,48 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b91ddb75530a",
-          "name": "非遗产品协同设计",
-          "desc": "把人工智能作为时尚设计师的助手，协同完成非遗产品设计。",
+          "id": "item-4125241ac29e",
+          "name": "非遗产品创新设计",
+          "desc": "非遗产品款式雷同、功能单一，难以满足当今时代潮流和审美情趣",
           "evidence": [
             {
-              "quote": "提出人工智能与时尚设计师的非遗产品协同设计模式",
+              "quote": "但是许多非遗传承人缺乏创新，其非遗产品款式雷同、功能单一，难以满足当今时代潮流和审美情趣",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 858,
-                "end_char": 880
+                "start_char": 694,
+                "end_char": 737
               },
               "version": "f47f67759e01a76206d4"
             }
           ]
         },
         {
-          "id": "item-e8206cc4e905",
-          "name": "多类国家级非遗对象",
-          "desc": "覆盖景德镇陶瓷、瑞昌竹编、贵州蜡染、徽州木雕等国家级非遗产品。",
+          "id": "item-5c419e69c91c",
+          "name": "AI与设计师协同设计",
+          "desc": "人工智能协助完成大量简单重复的草图生成任务，设计师只需挑选代表性创意方案进行细化",
           "evidence": [
             {
-              "quote": "以景德镇陶瓷、瑞昌竹编、贵州蜡染、徽州木雕等国家级非遗产品设计为例",
+              "quote": "人工智能作为时尚设计师的助手将协助完成大量简单、重复的草图生成任务，为非遗产品设计提供宝贵的创意方案",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3153,
-                "end_char": 3185
-              },
-              "version": "f47f67759e01a76206d4"
-            }
-          ]
-        },
-        {
-          "id": "item-37e5810c40d4",
-          "name": "文化软实力提升",
-          "desc": "目标是提升我国文化软实力的整体水平。",
-          "evidence": [
-            {
-              "quote": "提升我国文化软实力的整体水平",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1038,
-                "end_char": 1051
+                "start_char": 882,
+                "end_char": 931
               },
               "version": "f47f67759e01a76206d4"
             }
@@ -73,25 +62,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d9608e76aec6",
-          "name": "非遗传承缺乏创新、产品雷同",
-          "desc": "非遗传承人老龄化与后继乏人，技艺传承缺乏创新，产品款式雷同、功能单一。",
+          "id": "item-232563bd6e08",
+          "name": "非遗传承人创新不足",
+          "desc": "许多非遗传承人面临老龄化和后继乏人的困境，导致非遗技艺的传承缺乏创新",
           "evidence": [
             {
-              "quote": "许多非遗传承人面临老龄化和后继乏人的困境，导致非遗技艺的传承缺乏创新，其制作的非遗产品款式雷同、功能单一，难以满足当今时代潮流和审美情趣",
+              "quote": "但是，许多非遗传承人面临老龄化和后继乏人的困境，导致非遗技艺的传承缺乏创新",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3036,
-                "end_char": 3103
+                "start_char": 3033,
+                "end_char": 3069
               },
               "version": "f47f67759e01a76206d4"
             }
           ]
         },
         {
-          "id": "item-b4fc04d24818",
-          "name": "过度依赖 AI 导致产品机械呆板",
-          "desc": "忽视时尚追求会让非遗产品过于机械呆板，无法掌握当下流行趋势。",
+          "id": "item-cf0ce6e9b142",
+          "name": "过度依赖AI致产品机械呆板",
+          "desc": "过度依赖人工智能容易导致非遗产品过于机械、呆板，无法掌握流行趋势",
           "evidence": [
             {
               "quote": "但过度依赖人工智能，忽视人们追求时尚和效仿时尚的生活态度，容易导致非遗产品过于机械、呆板，无法掌握当下的流行趋势",
@@ -111,25 +100,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bfb26915c8c2",
-          "name": "StyleGAN 与稳定扩散生成式设计",
-          "desc": "用生成式 AI 学习非遗纹样与形态规律，自动、大规模生成创新产品设计方案。",
-          "evidence": [
-            {
-              "quote": "运用StyleGAN和稳定扩散模型等生成式AI工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3226,
-                "end_char": 3250
-              },
-              "version": "f47f67759e01a76206d4"
-            }
-          ]
-        },
-        {
-          "id": "item-d0dd6a97054a",
-          "name": "田野调研与非遗图像数据库",
-          "desc": "在田野调研数据收集基础上建立研究对象的非遗图像数据库。",
+          "id": "item-d4f6af270863",
+          "name": "非遗图像数据库",
+          "desc": "在田野调研数据收集基础上建立相关研究对象的非遗图像数据库",
           "evidence": [
             {
               "quote": "在田野调研的数据收集的基础上，建立了相关研究对象的非遗图像数据库",
@@ -140,12 +113,30 @@
               },
               "version": "f47f67759e01a76206d4"
             }
-          ]
+          ],
+          "role": "配套-数据"
         },
         {
-          "id": "item-7154b02eb5c7",
-          "name": "感性工学与 Kano 模型主客观评价",
-          "desc": "用感性工学、Kano 模型、直觉模糊 VIKOR 与眼动仪计算评价指标，筛出满足顾客情感需求的创意设计。",
+          "id": "item-d76e747cc6e4",
+          "name": "StyleGAN与稳定扩散生成设计",
+          "desc": "用生成式AI学习非遗纹样或形态设计规律，自动大规模生成创新产品设计",
+          "evidence": [
+            {
+              "quote": "运用StyleGAN和稳定扩散模型等生成式AI工具，能够轻松学习非遗纹样或形态等设计规律，进而自动、大规模生成市面上未曾见过的非遗创新产品设计",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3226,
+                "end_char": 3296
+              },
+              "version": "f47f67759e01a76206d4"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0bd0fb525081",
+          "name": "主客观结合的评价体系",
+          "desc": "运用感性工学、Kano模型、直觉模糊VIKOR和眼动仪等方法计算评价指标",
           "evidence": [
             {
               "quote": "运用感性工学、Kano模型、直觉模糊VIKOR和眼动仪等主客观评价方法，从初选设计方案中进行评价指标的计算，得到最终满足顾客情感需求的创意设计",
@@ -156,7 +147,8 @@
               },
               "version": "f47f67759e01a76206d4"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -165,26 +157,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6e8e3a58945a",
-          "name": "非遗协同设计模式四阶段流程",
-          "desc": "形成田野调研建库、生成式 AI 大批量出方案、设计师初筛、主客观评价定案的闭环流程。",
+          "id": "item-5d4545eb241b",
+          "name": "非遗产品协同设计模式",
+          "desc": "提出人工智能与时尚设计师的非遗产品协同设计模式并以国家级非遗产品为例验证",
           "evidence": [
             {
-              "quote": "（3）在已有智能生成方案的基础上，时尚设计师结合审美观和主观能动性，吸取美感与时尚性兼备的创新产品样式或色彩，并适当修改后生成初筛的几款设计方案。",
+              "quote": "本项目融入时尚设计师的审美观和电脑智能的高效性，提出人工智能与时尚设计师的非遗产品协同设计模式",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3298,
-                "end_char": 3370
+                "start_char": 3105,
+                "end_char": 3151
               },
               "version": "f47f67759e01a76206d4"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "提出",
+          "self_reported": false
         },
         {
-          "id": "item-a41b3e3799c0",
-          "name": "节约研发上市时间、优化质量成本",
-          "desc": "设计模式可缩短非遗产品研发与上市周期，优化质量与成本管理策略。",
+          "id": "item-8b4bfc32297f",
+          "name": "节约研发时间与优化成本",
+          "desc": "节约非遗产品研发与上市时间，优化质量与成本管理策略",
           "evidence": [
             {
               "quote": "该设计模式可节约非遗产品研发与上市的时间，优化非遗产品的质量与成本管理策略，提升我国文化软实力的整体水平",
@@ -196,24 +190,9 @@
               "version": "f47f67759e01a76206d4"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1a0a38261fbf",
-          "name": "12 项成果（专利与期刊论文）",
-          "desc": "结题报告列出的成果清单，含汽车与新能源车造型设计等专利，以及竹编、木雕窗花、蜡染纹样的生成式设计论文。",
-          "evidence": [
-            {
-              "quote": "## 成果列表（12）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3501,
-                "end_char": 3511
-              },
-              "version": "f47f67759e01a76206d4"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "可节约",
+          "self_reported": false
         }
       ]
     }
@@ -221,25 +200,241 @@
   "relations": [
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-d9608e76aec6"
+        "dimension": "技术",
+        "item_id": "item-d76e747cc6e4"
       },
       "to": {
-        "dimension": "技术",
-        "item_id": "item-bfb26915c8c2"
+        "dimension": "问题",
+        "item_id": "item-232563bd6e08"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "运用StyleGAN和稳定扩散模型等生成式AI工具，能够轻松学习非遗纹样或形态等设计规律，进而自动、大规模生成市面上未曾见过的非遗创新产品设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3226,
+            "end_char": 3296
+          },
+          "version": "f47f67759e01a76206d4"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-b4fc04d24818"
+        "dimension": "技术",
+        "item_id": "item-0bd0fb525081"
       },
       "to": {
         "dimension": "技术",
-        "item_id": "item-7154b02eb5c7"
+        "item_id": "item-d76e747cc6e4"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "运用感性工学、Kano模型、直觉模糊VIKOR和眼动仪等主客观评价方法，从初选设计方案中进行评价指标的计算",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3374,
+            "end_char": 3426
+          },
+          "version": "f47f67759e01a76206d4"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-4125241ac29e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-232563bd6e08"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "但是许多非遗传承人缺乏创新，其非遗产品款式雷同、功能单一，难以满足当今时代潮流和审美情趣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 694,
+            "end_char": 737
+          },
+          "version": "f47f67759e01a76206d4"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d4f6af270863"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d76e747cc6e4"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "在田野调研的数据收集的基础上，建立了相关研究对象的非遗图像数据库",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3190,
+            "end_char": 3221
+          },
+          "version": "f47f67759e01a76206d4"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-5d4545eb241b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d76e747cc6e4"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "运用StyleGAN和稳定扩散模型等生成式AI工具",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3226,
+            "end_char": 3250
+          },
+          "version": "f47f67759e01a76206d4"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sustainable Design of Bamboo Weaving Products Based on Style Generative Adversarial Network and Grasshopper Technology",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "康信辉;王南轶",
+      "id": "out-a64f8daf5625",
+      "evidence": [
+        {
+          "quote": "3. [期刊论文] Sustainable Design of Bamboo Weaving Products Based on Style Generative Adversarial Network and Grasshopper Technology — 康信辉;王南轶",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3613,
+            "end_char": 3750
+          },
+          "version": "f47f67759e01a76206d4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Design optimization of wood-carved window grilles in historical architectures using stable diffusion model and intuitionistic Fuzzy VIKOR",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "康信辉;王娇",
+      "id": "out-81afcf20194d",
+      "evidence": [
+        {
+          "quote": "5. [期刊论文] Design optimization of wood-carved window grilles in historical architectures using stable diffusion model and intuitionistic Fuzzy VIKOR — 康信辉;王娇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3793,
+            "end_char": 3948
+          },
+          "version": "f47f67759e01a76206d4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Optimal Design of Ceramic Form Combining Stable Diffusion Model and GRU-Attention",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "康信辉;赵子腾",
+      "id": "out-abff5e7fdc71",
+      "evidence": [
+        {
+          "quote": "7. [期刊论文] Optimal Design of Ceramic Form Combining Stable Diffusion Model and GRU-Attention — 康信辉;赵子腾",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4084,
+            "end_char": 4184
+          },
+          "version": "f47f67759e01a76206d4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种古民居木雕窗花设计方法、系统、设备及介质",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "康信辉;王娇;王羽翔",
+      "id": "out-475073d8e21e",
+      "evidence": [
+        {
+          "quote": "10. [专利] 一种古民居木雕窗花设计方法、系统、设备及介质 — 康信辉;王娇;王羽翔",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4446,
+            "end_char": 4489
+          },
+          "version": "f47f67759e01a76206d4"
+        }
+      ]
+    },
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "非遗图像数据库",
+      "status_raw": "建立了",
+      "identifiers": {},
+      "id": "out-ca920286d788",
+      "evidence": [
+        {
+          "quote": "在田野调研的数据收集的基础上，建立了相关研究对象的非遗图像数据库",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3190,
+            "end_char": 3221
+          },
+          "version": "f47f67759e01a76206d4"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "专利": {
+        "listed": 4,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 3
+      }
+    },
+    "consistent": false
+  }
 }

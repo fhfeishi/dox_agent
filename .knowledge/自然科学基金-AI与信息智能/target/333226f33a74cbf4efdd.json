@@ -2,15 +2,20 @@
   "doc_id": "333226f33a74cbf4efdd",
   "version": "6d6c9e6f18c2ec327e98",
   "source_hash": "2417e7d8ede012ab9cf487664718df919afdae74d380c1076850d93537a8ad15",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:11:51.647577+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:31:22.597181+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,15 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b08a5dfc36e7",
-          "name": "传统中国画智能创作与鉴赏",
-          "desc": "面向传统中国画的人工智能绘画识别、生成与绘制，属计算机科学与艺术、美学的前沿交叉领域。",
+          "id": "item-9a622fa2da18",
+          "name": "传统中国画的AI分析与创作",
+          "desc": "面向传统中国画的识别、生成与绘制，建立分析与创作方法体系",
           "evidence": [
             {
-              "quote": "针对这一跨学科挑战，本项目拟聚焦面向传统中国画的人工智能绘画识别、生成和绘制三个关键问题",
+              "quote": "本项目拟聚焦面向传统中国画的人工智能绘画识别、生成和绘制三个关键问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 758,
+                "start_char": 768,
                 "end_char": 801
               },
               "version": "6d6c9e6f18c2ec327e98"
@@ -35,16 +40,16 @@
           ]
         },
         {
-          "id": "item-457938f6b572",
-          "name": "数字艺术与智能美育应用",
-          "desc": "成果面向数字艺术创作、智能美育、文化遗产数字化与人机协同创作。",
+          "id": "item-646ee3128195",
+          "name": "数字艺术与智能美育",
+          "desc": "对数字艺术创作、智能美育、文化遗产数字化及人机协同创作具有应用价值",
           "evidence": [
             {
-              "quote": "对数字艺术创作、智能美育、文化遗产数字化及人机协同创作等领域具有重要的科学意义与应用价值。",
+              "quote": "对数字艺术创作、智能美育、文化遗产数字化及人机协同创作等领域具有重要的科学意义与应用价值",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3761,
-                "end_char": 3805
+                "end_char": 3804
               },
               "version": "6d6c9e6f18c2ec327e98"
             }
@@ -57,32 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-642cc4bf1a91",
-          "name": "绘画审美知识难以定量化",
-          "desc": "绘画艺术知识高度隐性、经验化，难以有效定量描述，导致计算机难以分析处理。",
+          "id": "item-139dbec4beeb",
+          "name": "绘画艺术知识难以定量化",
+          "desc": "绘画艺术知识难以有效定量化描述，从而难以用人工智能技术进行分析处理",
           "evidence": [
             {
-              "quote": "然而，绘画艺术知识难以有效定量化描述，从而难以用人工智能技术进行分析处理。",
+              "quote": "然而，绘画艺术知识难以有效定量化描述，从而难以用人工智能技术进行分析处理",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 721,
-                "end_char": 757
+                "end_char": 756
               },
               "version": "6d6c9e6f18c2ec327e98"
             }
           ]
         },
         {
-          "id": "item-13eb58f6b0a9",
-          "name": "传统中国画难以定量建模",
-          "desc": "中国画在美学表达、笔墨结构与创作过程三个层面都难以定量建模。",
+          "id": "item-a9c914b95b24",
+          "name": "隐性经验化审美难转为可计算模型",
+          "desc": "如何将高度隐性、经验化的绘画审美知识转化为可计算、可验证的模型能力",
           "evidence": [
             {
-              "quote": "针对传统中国画在美学表达、笔墨结构与创作过程上难以定量建模的问题",
+              "quote": "其核心挑战在于如何将高度隐性、经验化的绘画审美知识转化为可计算、可验证的模型能力",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3083,
-                "end_char": 3114
+                "start_char": 3022,
+                "end_char": 3061
               },
               "version": "6d6c9e6f18c2ec327e98"
             }
@@ -95,52 +100,72 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fb4378f45c9a",
-          "name": "多模态视觉语言模型结合谢赫六法",
-          "desc": "融合多模态视觉语言模型与谢赫六法理论，通过美学微调、结构化提示与学术语义转化，实现六维度靶向分析与标准化评分。",
+          "id": "item-ba42bfc743b9",
+          "name": "多模态视觉语言模型美学微调",
+          "desc": "融合多模态视觉语言模型与谢赫六法理论，实现六维度靶向分析与标准化评分",
           "evidence": [
             {
-              "quote": "提出融合多模态视觉语言模型与谢赫六法理论的智能鉴赏方法",
+              "quote": "提出融合多模态视觉语言模型与谢赫六法理论的智能鉴赏方法，通过专用模型美学微调、结构化Prompt设计与学术语义转化机制，实现对气韵生动、骨法用笔等六个维度的靶向分析与标准化评分输出",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3233,
-                "end_char": 3259
+                "end_char": 3322
               },
               "version": "6d6c9e6f18c2ec327e98"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-08ac23cab493",
-          "name": "自注意力水墨风格迁移网络 Chip-SAGAN",
-          "desc": "基于自注意力机制的水墨风格迁移生成对抗网络，在结构保持、笔墨扩散与色调一致性上优于国际对比方法。",
+          "id": "item-2a803993cc63",
+          "name": "Chip-SAGAN水墨风格迁移网络",
+          "desc": "基于自注意力机制的水墨风格迁移生成对抗网络，结构保持与笔墨扩散优于国际对比方法",
           "evidence": [
             {
-              "quote": "提出基于自注意力机制的水墨风格迁移生成对抗网络Chip-SAGAN",
+              "quote": "提出基于自注意力机制的水墨风格迁移生成对抗网络Chip-SAGAN，在结构保持、笔墨扩散与色调一致性方面取得优于国际对比方法的主观与定量评价结果",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3388,
-                "end_char": 3420
+                "end_char": 3459
               },
               "version": "6d6c9e6f18c2ec327e98"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-caf5191a68b1",
-          "name": "强化学习绘画机器人控制链路",
-          "desc": "构建笔画解析、单笔建模到强化学习控制执行的完整链路，提出基于 SAC 策略网络的单笔笔触实体控制算法。",
+          "id": "item-bcffd438b115",
+          "name": "自适应特征融合任意风格迁移网络",
+          "desc": "基于自适应特征融合的任意艺术风格迁移，提升视觉稳定性与细节一致性",
           "evidence": [
             {
-              "quote": "构建了“笔画解析—单笔建模—强化学习控制执行”的完整技术链路",
+              "quote": "同时提出基于自适应特征融合的任意艺术风格迁移网络，在复杂风格迁移任务中显著提升了视觉稳定性与细节一致性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3461,
+                "end_char": 3511
+              },
+              "version": "6d6c9e6f18c2ec327e98"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-60a538144771",
+          "name": "SAC强化学习绘画机器人控制",
+          "desc": "笔画解析—单笔建模—强化学习控制执行的完整链路，基于SAC策略网络控制笔触",
+          "evidence": [
+            {
+              "quote": "构建了“笔画解析—单笔建模—强化学习控制执行”的完整技术链路，提出面向水墨绘画的笔画级图像解析与轨迹生成方法，以及基于SAC策略网络的单笔笔触实体控制算法",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3546,
-                "end_char": 3575
+                "end_char": 3622
               },
               "version": "6d6c9e6f18c2ec327e98"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,55 +174,61 @@
       "state": "has",
       "items": [
         {
-          "id": "item-de05a88a30d3",
-          "name": "中国画智能鉴赏与创作技术体系",
-          "desc": "建成贯通理解、生成与实体绘制的中国画智能创作与鉴赏技术体系。",
+          "id": "item-e24aad072f95",
+          "name": "中国画智能鉴赏系统",
+          "desc": "形成从图像输入到学术级鉴赏成果输出的端到端自动化系统，含水墨风格雷达图",
           "evidence": [
             {
-              "quote": "构建了贯通“理解—生成—实体绘制”的中国画智能创作与鉴赏技术体系",
+              "quote": "并以水墨风格雷达图实现评价结果的可视化表达，形成从图像输入到学术级鉴赏成果输出的端到端自动化系统",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3172,
-                "end_char": 3203
-              },
-              "version": "6d6c9e6f18c2ec327e98"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-056676c08999",
-          "name": "端到端学术级鉴赏自动化系统",
-          "desc": "构建大规模中国画数据集，实现从图像输入到学术级鉴赏成果输出的端到端自动化。",
-          "evidence": [
-            {
-              "quote": "形成从图像输入到学术级鉴赏成果输出的端到端自动化系统",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3346,
+                "start_char": 3324,
                 "end_char": 3371
               },
               "version": "6d6c9e6f18c2ec327e98"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "形成了",
+          "self_reported": false
         },
         {
-          "id": "item-cce6473a039f",
-          "name": "8 项学术成果（期刊与会议论文）",
-          "desc": "结题报告列出的成果清单，含 Chip-SAGAN 等会议论文与 AI 介入艺术创作、AIGC 计算艺术等主题期刊论文。",
+          "id": "item-57f3bce050e7",
+          "name": "Chip-SAGAN风格迁移模型",
+          "desc": "在结构保持、笔墨扩散与色调一致性上优于国际对比方法",
           "evidence": [
             {
-              "quote": "## 成果列表（8）",
+              "quote": "在结构保持、笔墨扩散与色调一致性方面取得优于国际对比方法的主观与定量评价结果",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3808,
-                "end_char": 3817
+                "start_char": 3422,
+                "end_char": 3459
               },
               "version": "6d6c9e6f18c2ec327e98"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "取得优于国际对比方法",
+          "self_reported": false
+        },
+        {
+          "id": "item-33754b05cd73",
+          "name": "绘画机器人多笔连续绘制",
+          "desc": "实现多笔连续绘制任务，在结构还原度、笔触连续性与艺术表现力之间取得良好平衡",
+          "evidence": [
+            {
+              "quote": "实现多笔连续绘制任务，在结构还原度、笔触连续性与艺术表现力之间取得良好平衡",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3624,
+                "end_char": 3660
+              },
+              "version": "6d6c9e6f18c2ec327e98"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "实现",
+          "self_reported": false
         }
       ]
     }
@@ -205,25 +236,226 @@
   "relations": [
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-642cc4bf1a91"
+        "dimension": "技术",
+        "item_id": "item-ba42bfc743b9"
       },
       "to": {
-        "dimension": "技术",
-        "item_id": "item-fb4378f45c9a"
+        "dimension": "问题",
+        "item_id": "item-a9c914b95b24"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "其核心挑战在于如何将高度隐性、经验化的绘画审美知识转化为可计算、可验证的模型能力",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3022,
+            "end_char": 3061
+          },
+          "version": "6d6c9e6f18c2ec327e98"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-60a538144771"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-13eb58f6b0a9"
+        "item_id": "item-a9c914b95b24"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建了“笔画解析—单笔建模—强化学习控制执行”的完整技术链路",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3546,
+            "end_char": 3575
+          },
+          "version": "6d6c9e6f18c2ec327e98"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-9a622fa2da18"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-139dbec4beeb"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "然而，绘画艺术知识难以有效定量化描述，从而难以用人工智能技术进行分析处理",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 721,
+            "end_char": 756
+          },
+          "version": "6d6c9e6f18c2ec327e98"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-e24aad072f95"
       },
       "to": {
         "dimension": "技术",
-        "item_id": "item-08ac23cab493"
+        "item_id": "item-ba42bfc743b9"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "形成从图像输入到学术级鉴赏成果输出的端到端自动化系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3346,
+            "end_char": 3371
+          },
+          "version": "6d6c9e6f18c2ec327e98"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chip-SAGAN: A Self-Attention Generative Adversarial Network for Chinese Ink Wash Painting Style Transfer",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Zhou Jiaoju;Gao Feng;Yang Xuebo;Lin Weiyang",
+      "id": "out-d7eb6f1c6a9a",
+      "evidence": [
+        {
+          "quote": "4. [会议论文] Chip-SAGAN: A Self-Attention Generative Adversarial Network for Chinese Ink Wash Painting Style Transfer — Zhou Jiaoju;Gao Feng;Yang Xuebo;Lin Weiyang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4037,
+            "end_char": 4196
+          },
+          "version": "6d6c9e6f18c2ec327e98"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive Information Fusion Network for Arbitrary Style Transfer",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Zhou·Jiaoju;Gao·Feng;Yang·Xuebo;Lin·Weiyang",
+      "id": "out-cf0e55e94d5a",
+      "evidence": [
+        {
+          "quote": "3. [会议论文] Adaptive Information Fusion Network for Arbitrary Style Transfer — Zhou·Jiaoju;Gao·Feng;Yang·Xuebo;Lin·Weiyang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3916,
+            "end_char": 4035
+          },
+          "version": "6d6c9e6f18c2ec327e98"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AIGC赋能计算艺术的实践路径研究——以中国传统文化的当代表达为例",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "高峰",
+      "id": "out-d2b12afbd216",
+      "evidence": [
+        {
+          "quote": "7. [期刊论文] AIGC赋能计算艺术的实践路径研究——以中国传统文化的当代表达为例 — 高峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4262,
+            "end_char": 4309
+          },
+          "version": "6d6c9e6f18c2ec327e98"
+        }
+      ]
+    },
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "大规模中国画数据集",
+      "status_raw": "构建了",
+      "identifiers": {},
+      "id": "out-17e1201f62bb",
+      "evidence": [
+        {
+          "quote": "构建了大规模中国画数据集",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3220,
+            "end_char": 3231
+          },
+          "version": "6d6c9e6f18c2ec327e98"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "论文发表",
+      "status": "已取得",
+      "date": "",
+      "precision": "未知",
+      "desc": "水墨风格迁移生成对抗网络Chip-SAGAN成果发表于会议并列入成果列表",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-1cc072ed009c",
+      "tech_ids": [
+        "item-2a803993cc63"
+      ],
+      "output_ids": [
+        "out-d7eb6f1c6a9a"
+      ],
+      "evidence": [
+        {
+          "quote": "4. [会议论文] Chip-SAGAN: A Self-Attention Generative Adversarial Network for Chinese Ink Wash Painting Style Transfer — Zhou Jiaoju;Gao Feng;Yang Xuebo;Lin Weiyang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4037,
+            "end_char": 4196
+          },
+          "version": "6d6c9e6f18c2ec327e98"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

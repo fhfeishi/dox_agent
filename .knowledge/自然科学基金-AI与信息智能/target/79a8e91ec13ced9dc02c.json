@@ -2,15 +2,20 @@
   "doc_id": "79a8e91ec13ced9dc02c",
   "version": "95198986a0f344417ce5",
   "source_hash": "8524af0ca8dae33ef0ecf5427cfc38e6e93e4f0ebc7bc9700be234eecff0e49e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:11:51.656360+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:31:22.607069+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,48 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0646ea18c094",
-          "name": "司法审判智能辅助",
-          "desc": "面向法治发展与司法改革需求，为司法关键环节提供决策辅助。",
+          "id": "item-3e1295246f18",
+          "name": "司法审判辅助决策",
+          "desc": "以构建司法关键环节决策辅助模型为目标，构建法律知识图谱支撑辅助决策",
           "evidence": [
             {
-              "quote": "研究人工智能驱动的司法审判辅助技术已经成为推动法治发展的重要内容",
+              "quote": "本课题以构建司法关键环节决策辅助模型为目标；以面向司法场景的法律概念关系挖掘、法律事件数据抽取、基于司法数据的迭代实体对齐为关键技术，构建法律知识图谱，进行辅助系统构建",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 671,
-                "end_char": 702
+                "start_char": 770,
+                "end_char": 853
               },
               "version": "95198986a0f344417ce5"
             }
           ]
         },
         {
-          "id": "item-0d81cddfede5",
-          "name": "数字法治建设与司法智能化转型",
-          "desc": "服务于数字法治建设与司法智能化转型中的核心需求。",
+          "id": "item-9bd90c9fb840",
+          "name": "法律教育测评与私有化部署",
+          "desc": "支撑社会公众使用政法机关私有化部署与高校内部测评",
           "evidence": [
             {
-              "quote": "本项目面向数字法治建设与司法智能化转型中的核心需求",
+              "quote": "支撑社会公众使用政法机关私有化部署与高校内部测评",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2833,
-                "end_char": 2857
-              },
-              "version": "95198986a0f344417ce5"
-            }
-          ]
-        },
-        {
-          "id": "item-3501048f18e5",
-          "name": "法律服务合规与法学教育测评",
-          "desc": "成果可支撑法律服务合规治理与法学教育智能测评。",
-          "evidence": [
-            {
-              "quote": "为司法实践中的实践分析与关联推理能力升级以及法律服务合规治理与法学教育智能测评提供了可推广的理论基础与工程路径",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3570,
-                "end_char": 3624
+                "start_char": 3434,
+                "end_char": 3457
               },
               "version": "95198986a0f344417ce5"
             }
@@ -73,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fb948afbcb60",
-          "name": "成熟知识图谱技术难以适配司法",
-          "desc": "司法 AI 底层技术以平移成熟知识图谱为主，在知识表示、事件抽取、图谱构建上不适配司法现实需求。",
+          "id": "item-d5667c102a6c",
+          "name": "知识图谱技术难以适配司法需求",
+          "desc": "目前司法人工智能辅助底层技术以平移成熟知识图谱技术为主，知识表示与事件抽取难以适配司法现实",
           "evidence": [
             {
               "quote": "目前的司法人工智能辅助底层技术主要以平移成熟知识图谱技术为主，导致在知识表示、事件抽取、图谱构建等方面难以适配司法现实需求",
@@ -89,9 +78,9 @@
           ]
         },
         {
-          "id": "item-740cbee14ec6",
-          "name": "法律文本非结构化与推理可追溯要求",
-          "desc": "法律文本语义要件复杂、高度非结构化，且推理链条需可追溯。",
+          "id": "item-ac2a10e37ff9",
+          "name": "法律文本非结构化与推理可追溯要求高",
+          "desc": "法律文本高度非结构化、语义要件复杂且推理链条可追溯要求强",
           "evidence": [
             {
               "quote": "聚焦法律文本高度非结构化语义要件复杂与推理链条可追溯要求强等关键难题",
@@ -99,6 +88,22 @@
                 "basis": "parsed_text",
                 "start_char": 2859,
                 "end_char": 2892
+              },
+              "version": "95198986a0f344417ce5"
+            }
+          ]
+        },
+        {
+          "id": "item-ec63d45e9488",
+          "name": "生成过程语义漂移与形式不合规",
+          "desc": "需抑制语义漂移、类型错配与形式不合规，提升生成结果可回答性与可审查性",
+          "evidence": [
+            {
+              "quote": "以结构化约束抑制语义漂移类型错配与形式不合规，提升生成结果的可回答性与可审查性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3193,
+                "end_char": 3231
               },
               "version": "95198986a0f344417ce5"
             }
@@ -111,68 +116,72 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5d84a29018e1",
-          "name": "不确定性法律百科知识图谱构建",
-          "desc": "基于多维自信度衡量构建低噪声法律知识表示，并对复杂异构原始法律数据做事件抽取与实体对齐多图融合。",
+          "id": "item-d022f509e9f9",
+          "name": "法律知识图谱结构化表达与质量控制",
+          "desc": "以知识图谱为结构底座，形成要素关系规范要件的一体化表示与一致性校验路径",
           "evidence": [
             {
-              "quote": "研究基于多维自信度衡量的不确定性法律百科知识图谱构建技术",
+              "quote": "项目以知识图谱为结构底座，构建法律知识结构化表达与质量控制机制，形成要素关系规范要件的一体化表示与一致性校验路径",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 859,
-                "end_char": 886
+                "start_char": 2947,
+                "end_char": 3002
               },
               "version": "95198986a0f344417ce5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-93dbb502fb66",
-          "name": "软模板与反事实推理的难度可控问题生成",
-          "desc": "在难度标签约束下保持语义一致与可解释变化，支撑测评题库与分层训练数据。",
+          "id": "item-e55c7e77db18",
+          "name": "软模板与反事实推理难度可控生成",
+          "desc": "难度可控问题生成机制，在难度标签约束下保持语义一致与可解释变化",
           "evidence": [
             {
-              "quote": "面向可控生成需求提出软模板与反事实推理结合的难度可控问题生成机制",
+              "quote": "提出软模板与反事实推理结合的难度可控问题生成机制，使生成过程不仅追求语言流畅而且能够在难度标签约束下保持语义一致与可解释变化",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3066,
-                "end_char": 3097
+                "start_char": 3074,
+                "end_char": 3135
               },
               "version": "95198986a0f344417ce5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c4a69fc8a139",
-          "name": "知识增强、类型约束与语法引导联合机制",
-          "desc": "以结构化约束抑制语义漂移、类型错配与形式不合规，提升生成结果的可回答性与可审查性。",
+          "id": "item-42115aa61895",
+          "name": "知识增强类型约束与语法引导生成",
+          "desc": "结构化约束抑制语义漂移与类型错配，提升可回答性与可审查性",
           "evidence": [
             {
-              "quote": "面向高可信生成需求构建知识增强类型约束与语法引导的联合机制",
+              "quote": "构建知识增强类型约束与语法引导的联合机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3163,
+                "start_char": 3172,
                 "end_char": 3191
               },
               "version": "95198986a0f344417ce5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-85ff74ac5126",
-          "name": "问答与生成模块化对偶协同学习",
-          "desc": "通过双向一致性与闭环互证实现生成、验证、再生成的持续改进，可迁移到多跳推理任务。",
+          "id": "item-d0f12188c199",
+          "name": "问答生成模块化对偶协同学习",
+          "desc": "通过双向一致性与闭环互证实现生成验证再生成的持续改进",
           "evidence": [
             {
-              "quote": "提出问答与生成的模块化对偶协同学习框架",
+              "quote": "提出问答与生成的模块化对偶协同学习框架，通过双向一致性与闭环互证实现生成验证再生成的持续改进",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3249,
-                "end_char": 3267
+                "end_char": 3294
               },
               "version": "95198986a0f344417ce5"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -183,24 +192,26 @@
         {
           "id": "item-cb8be8935fea",
           "name": "结构化知识约束下的生成式推理范式",
-          "desc": "提出并验证把法律规范性要求转化为可学习、可评测、可审计的技术机制。",
+          "desc": "将法律语境中的规范性要求转化为可学习可评测可审计的技术机制",
           "evidence": [
             {
-              "quote": "提出并验证了结构化知识约束下的生成式推理范式",
+              "quote": "本项目的科学意义在于提出并验证了结构化知识约束下的生成式推理范式",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3474,
+                "start_char": 3464,
                 "end_char": 3495
               },
               "version": "95198986a0f344417ce5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "提出并验证了",
+          "self_reported": false
         },
         {
           "id": "item-749bdb293228",
           "name": "法衡法律大语言模型落地与合规备案",
-          "desc": "关键方法在法律大模型中吸收落地，完成合规备案，支撑公众使用、政法机关私有化部署与高校内部测评。",
+          "desc": "关键方法在法衡法律大语言模型中实现吸收与落地并完成合规备案",
           "evidence": [
             {
               "quote": "关键方法在法衡法律大语言模型中实现吸收与落地并完成合规备案",
@@ -212,24 +223,28 @@
               "version": "95198986a0f344417ce5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "完成合规备案",
+          "self_reported": false
         },
         {
-          "id": "item-92e0f6d2a193",
-          "name": "7 项成果（期刊论文与专利）",
-          "desc": "结题报告列出的成果清单，含知识图谱问答与问题生成、难度可控问题生成、多跳常识生成等论文与专利。",
+          "id": "item-e51e822d2e70",
+          "name": "论文专利与平台化系统",
+          "desc": "形成论文、专利与平台化系统的协同产出",
           "evidence": [
             {
-              "quote": "## 成果列表（7）",
+              "quote": "项目形成论文专利与平台化系统的协同产出",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3628,
-                "end_char": 3637
+                "start_char": 3384,
+                "end_char": 3402
               },
               "version": "95198986a0f344417ce5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "形成",
+          "self_reported": false
         }
       ]
     }
@@ -237,25 +252,221 @@
   "relations": [
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-fb948afbcb60"
+        "dimension": "技术",
+        "item_id": "item-d022f509e9f9"
       },
       "to": {
-        "dimension": "技术",
-        "item_id": "item-5d84a29018e1"
+        "dimension": "问题",
+        "item_id": "item-d5667c102a6c"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "目前的司法人工智能辅助底层技术主要以平移成熟知识图谱技术为主，导致在知识表示、事件抽取、图谱构建等方面难以适配司法现实需求",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 704,
+            "end_char": 764
+          },
+          "version": "95198986a0f344417ce5"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-42115aa61895"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-740cbee14ec6"
+        "item_id": "item-ec63d45e9488"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "以结构化约束抑制语义漂移类型错配与形式不合规，提升生成结果的可回答性与可审查性",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3193,
+            "end_char": 3231
+          },
+          "version": "95198986a0f344417ce5"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-e55c7e77db18"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ac2a10e37ff9"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "提出软模板与反事实推理结合的难度可控问题生成机制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3074,
+            "end_char": 3097
+          },
+          "version": "95198986a0f344417ce5"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-3e1295246f18"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d5667c102a6c"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "导致在知识表示、事件抽取、图谱构建等方面难以适配司法现实需求",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 735,
+            "end_char": 764
+          },
+          "version": "95198986a0f344417ce5"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-749bdb293228"
       },
       "to": {
         "dimension": "技术",
-        "item_id": "item-c4a69fc8a139"
+        "item_id": "item-d022f509e9f9"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "关键方法在法衡法律大语言模型中实现吸收与落地并完成合规备案",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3404,
+            "end_char": 3432
+          },
+          "version": "95198986a0f344417ce5"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Modular Dual Learning for Improving Question Answering and Generation Over Knowledge Graphs",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Sheng Bi;Zeyi Miao;Qizhi Min",
+      "id": "out-b3c03c9071ba",
+      "evidence": [
+        {
+          "quote": "1. [期刊论文] A Modular Dual Learning for Improving Question Answering and Generation Over Knowledge Graphs — Sheng Bi;Zeyi Miao;Qizhi Min",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3640,
+            "end_char": 3773
+          },
+          "version": "95198986a0f344417ce5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LEMON: A Knowledge-enhanced, Type-constrained and Grammar-guided Model for Question Generation over Knowledge Graphs",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Sheng Bi;Zeyi Miao;Qizhi Min",
+      "id": "out-4fd4d0afeedc",
+      "evidence": [
+        {
+          "quote": "2. [期刊论文] LEMON: A Knowledge-enhanced, Type-constrained and Grammar-guided Model for Question Generation over Knowledge Graphs — Sheng Bi;Zeyi Miao;Qizhi Min",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3775,
+            "end_char": 3931
+          },
+          "version": "95198986a0f344417ce5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于模块化对偶学习的知识图谱问答和问题生成方法",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "苗泽一;毕胜",
+      "id": "out-4cbe7f6bb87d",
+      "evidence": [
+        {
+          "quote": "3. [专利] 一种基于模块化对偶学习的知识图谱问答和问题生成方法 — 苗泽一;毕胜",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3933,
+            "end_char": 3974
+          },
+          "version": "95198986a0f344417ce5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于软模板和反事实推理的难度可控问题生成方法",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "毕胜;苗泽一",
+      "id": "out-eef9983a58f9",
+      "evidence": [
+        {
+          "quote": "5. [专利] 一种基于软模板和反事实推理的难度可控问题生成方法 — 毕胜;苗泽一",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4131,
+            "end_char": 4171
+          },
+          "version": "95198986a0f344417ce5"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

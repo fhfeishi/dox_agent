@@ -2,15 +2,20 @@
   "doc_id": "9b3782f1c0107354c71f",
   "version": "28560e7c0529d44e535d",
   "source_hash": "4d42976900d07613b4502245ef9e47cb8b661a89af683944f231c231a37d6f6f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:46:20.993340+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.946163+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f86459577b81",
-          "name": "高层消防多无人机",
-          "desc": "面向高层建筑消防救援的多无人机协同作业",
+          "id": "item-59fe1fe172e0",
+          "name": "近年来，频发的高层建筑失火事故与时空受限的传统消防车救援模式之间的矛盾凸显，促使更高机动性的无人机急需应用于高层建筑消防",
+          "desc": "近年来，频发的高层建筑失火事故与时空受限的传统消防车救援模式之间的矛盾凸显，促使更高机动性的无人机急需应用于高层建筑消防领域。",
           "evidence": [
             {
-              "quote": "本项目聚焦消防多无人机协同作业，提出路径规划、抗扰容错、编队控制与管控平台开发技术，解决复杂消防场景协同难题，为高层及复杂环境消防救援提供理论与工程支撑",
+              "quote": "近年来，频发的高层建筑失火事故与时空受限的传统消防车救援模式之间的矛盾凸显，促使更高机动性的无人机急需应用于高层建筑消防领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3118,
-                "end_char": 3193
+                "start_char": 657,
+                "end_char": 719
+              },
+              "version": "28560e7c0529d44e535d"
+            }
+          ]
+        },
+        {
+          "id": "item-50ee68662af7",
+          "name": "本项目的研究能够极大地促进无人机在高层建筑消防领域的应用与推广，具有重要意义。",
+          "desc": "本项目的研究能够极大地促进无人机在高层建筑消防领域的应用与推广，具有重要意义。",
+          "evidence": [
+            {
+              "quote": "本项目的研究能够极大地促进无人机在高层建筑消防领域的应用与推广，具有重要意义。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1016,
+                "end_char": 1054
               },
               "version": "28560e7c0529d44e535d"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-65a1ae42958b",
-          "name": "消防协同救援难",
-          "desc": "救援时间紧迫、环境干扰复杂、任务需求多样等挑战难题",
+          "id": "item-542ac79049a5",
+          "name": "因此，本项目以“高层建筑消防安全”为鲜明的需求导向，针对救援时间紧迫、环境干扰复杂、任务需求多样等挑战难题，重点研究消防",
+          "desc": "因此，本项目以“高层建筑消防安全”为鲜明的需求导向，针对救援时间紧迫、环境干扰复杂、任务需求多样等挑战难题，重点研究消防多无人机协同路径规划、协同抗扰容错控制和协同编队控制，突破“消防多无人机协同控制”基础理论与关键技术瓶颈并进行实验验证，提升救援的快速性与可靠性。",
           "evidence": [
             {
-              "quote": "针对救援时间紧迫、环境干扰复杂、任务需求多样等挑战难题，重点研究消防多无人机协同路径规划、协同抗扰容错控制和协同编队控制",
+              "quote": "因此，本项目以“高层建筑消防安全”为鲜明的需求导向，针对救援时间紧迫、环境干扰复杂、任务需求多样等挑战难题，重点研究消防多无人机协同路径规划、协同抗扰容错控制和协同编队控制，突破“消防多无人机协同控制”基础理论与关键技术瓶颈并进行实验验证，提升救援的快速性与可靠性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 859,
-                "end_char": 918
+                "start_char": 833,
+                "end_char": 965
               },
               "version": "28560e7c0529d44e535d"
             }
@@ -63,68 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5f7b3293fdcc",
-          "name": "多跳点RRT路径规划",
-          "desc": "三维A*与粒子群优化融合算法及基于多跳点RRT算法、空间分割与环境骨架的路径规划方法",
+          "id": "item-0428ae27b5d2",
+          "name": "针对室内非凸约束环境，研发基于多跳点RRT算法、基于空间分割与环境骨架的路径规划方法，结合双重社区发现与Voronoi图",
+          "desc": "针对室内非凸约束环境，研发基于多跳点RRT算法、基于空间分割与环境骨架的路径规划方法，结合双重社区发现与Voronoi图技术，提升规划效率与可靠性。",
           "evidence": [
             {
-              "quote": "路径规划方面，针对城市街区三维环境，提出三维A*与粒子群优化融合算法；针对室内非凸约束环境，研发基于多跳点RRT算法、基于空间分割与环境骨架的路径规划方法",
+              "quote": "针对室内非凸约束环境，研发基于多跳点RRT算法、基于空间分割与环境骨架的路径规划方法，结合双重社区发现与Voronoi图技术，提升规划效率与可靠性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3195,
-                "end_char": 3271
+                "start_char": 3230,
+                "end_char": 3303
               },
               "version": "28560e7c0529d44e535d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-4f3b550c237e",
-          "name": "抗扰容错控制",
-          "desc": "基于估计器的强化学习协同控制、神经网络固定时间模糊协同容错控制与事件触发抗扰控制",
+          "id": "item-1498f76a0e01",
+          "name": "抗扰容错方面，针对多约束、扰动、故障及输出死区问题，构建系列优化策略：提出基于估计器的强化学习协同控制、自适应动态规划姿",
+          "desc": "抗扰容错方面，针对多约束、扰动、故障及输出死区问题，构建系列优化策略：提出基于估计器的强化学习协同控制、自适应动态规划姿态同步控制，解决最优控制难题；",
           "evidence": [
             {
-              "quote": "抗扰容错方面，针对多约束、扰动、故障及输出死区问题，构建系列优化策略：提出基于估计器的强化学习协同控制、自适应动态规划姿态同步控制",
+              "quote": "抗扰容错方面，针对多约束、扰动、故障及输出死区问题，构建系列优化策略：提出基于估计器的强化学习协同控制、自适应动态规划姿态同步控制，解决最优控制难题；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3304,
-                "end_char": 3368
+                "end_char": 3378
               },
               "version": "28560e7c0529d44e535d"
             }
-          ]
-        },
-        {
-          "id": "item-75d5817056a4",
-          "name": "人在环中编队控制",
-          "desc": "间歇性约束强化学习编队控制、稀疏攻击下安全事件触发控制与“人在环中”架构",
-          "evidence": [
-            {
-              "quote": "编队控制方面，针对受限条件、稀疏拓扑及结构重构场景，建立多维度体系：提出间歇性约束强化学习编队控制、不规则约束容错控制，适配火场动态环境",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3445,
-                "end_char": 3512
-              },
-              "version": "28560e7c0529d44e535d"
-            }
-          ]
-        },
-        {
-          "id": "item-29376be8bf6c",
-          "name": "数字孪生管控平台",
-          "desc": "基于SSM与Vue.js框架搭建监控系统并开发数字孪生仿真系统实现虚实同步",
-          "evidence": [
-            {
-              "quote": "管控平台与实验验证方面，基于SSM与Vue.js框架搭建监控系统，集成多核心功能；开发数字孪生仿真系统，结合三维重建实现虚实同步",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3624,
-                "end_char": 3687
-              },
-              "version": "28560e7c0529d44e535d"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,91 +124,1952 @@
       "state": "has",
       "items": [
         {
-          "id": "item-70ce590e61b8",
-          "name": "论文77篇与教育部一等奖",
-          "desc": "发表期刊论文77篇（SCI 66篇），获教育部自然科学一等奖1项、广东省自然科学二等奖2项等",
+          "id": "item-e446d4e928c3",
+          "name": "近年来，频发的高层建筑失火事故与时空受限的传统消防车救援模式之间的矛盾凸显，促使更高机动性的无人机急需应用于高层建筑消防",
+          "desc": "近年来，频发的高层建筑失火事故与时空受限的传统消防车救援模式之间的矛盾凸显，促使更高机动性的无人机急需应用于高层建筑消防领域。",
           "evidence": [
             {
-              "quote": "获教育部自然科学一等奖1项，广东省自然科学二等奖2项，广东省科技进步二等奖1项",
+              "quote": "近年来，频发的高层建筑失火事故与时空受限的传统消防车救援模式之间的矛盾凸显，促使更高机动性的无人机急需应用于高层建筑消防领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3907,
-                "end_char": 3945
+                "start_char": 657,
+                "end_char": 719
               },
               "version": "28560e7c0529d44e535d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-f691d1e31db0",
+          "name": "本项目聚焦消防多无人机协同作业，提出路径规划、抗扰容错、编队控制与管控平台开发技术，解决复杂消防场景协同难题，为高层及复",
+          "desc": "本项目聚焦消防多无人机协同作业，提出路径规划、抗扰容错、编队控制与管控平台开发技术，解决复杂消防场景协同难题，为高层及复杂环境消防救援提供理论与工程支撑。",
+          "evidence": [
+            {
+              "quote": "本项目聚焦消防多无人机协同作业，提出路径规划、抗扰容错、编队控制与管控平台开发技术，解决复杂消防场景协同难题，为高层及复杂环境消防救援提供理论与工程支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3118,
+                "end_char": 3194
+              },
+              "version": "28560e7c0529d44e535d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f86459577b81"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-65a1ae42958b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种适用于未知室内环境的移动机器人定位方法与系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c0795e0decc",
+      "evidence": [
+        {
+          "quote": "一种适用于未知室内环境的移动机器人定位方法与系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4110,
+            "end_char": 4133
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-65a1ae42958b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5f7b3293fdcc"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "未知扰动下的高层消防多无人机滑模跟踪控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24e61664bf13",
+      "evidence": [
+        {
+          "quote": "未知扰动下的高层消防多无人机滑模跟踪控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4168,
+            "end_char": 4192
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-65a1ae42958b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4f3b550c237e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Consensus Control and Optimization of Time-Delayed Multiagent Systems: Analysis on Different Order-Reduction Methods(高被引,热点)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d330a9b463e",
+      "evidence": [
+        {
+          "quote": "Consensus Control and Optimization of Time-Delayed Multiagent Systems: Analysis on Different Order-Reduction Methods(高被引,热点)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4225,
+            "end_char": 4348
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-65a1ae42958b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-75d5817056a4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于RRT森林算法的高层消防多无人机室内协同路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f7bc463a60da",
+      "evidence": [
+        {
+          "quote": "基于RRT森林算法的高层消防多无人机室内协同路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4408,
+            "end_char": 4433
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-29376be8bf6c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-70ce590e61b8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-Based Event-Triggered Iterative Learning Consensus for Locally Lipschitz Nonlinear MASs(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-25d3b7132979",
+      "evidence": [
+        {
+          "quote": "Observer-Based Event-Triggered Iterative Learning Consensus for Locally Lipschitz Nonlinear MASs(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4463,
+            "end_char": 4563
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4f3b550c237e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-70ce590e61b8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning-Based Consensus Control for MASs with Intermittent Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ab87fae9187",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning-Based Consensus Control for MASs with Intermittent Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4613,
+            "end_char": 4697
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mixed-Zero-Sum-Game-Based Memory Event-Triggered Cooperative Control of Heterogeneous MASs Against DoS Attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f02c408a36c3",
+      "evidence": [
+        {
+          "quote": "Mixed-Zero-Sum-Game-Based Memory Event-Triggered Cooperative Control of Heterogeneous MASs Against DoS Attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4755,
+            "end_char": 4864
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neuroadaptive Containment Control for Nonlinear Multiagent Systems with Input Saturation: An Event-Triggered Communication Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d982fdf82317",
+      "evidence": [
+        {
+          "quote": "Neuroadaptive Containment Control for Nonlinear Multiagent Systems with Input Saturation: An Event-Triggered Communication Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4921,
+            "end_char": 5051
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Optimal Attitude Synchronization Control of Multiple QUAVs via Adaptive Dynamic Programming",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-22c4d8edccf9",
+      "evidence": [
+        {
+          "quote": "Distributed Optimal Attitude Synchronization Control of Multiple QUAVs via Adaptive Dynamic Programming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5129,
+            "end_char": 5231
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Attitude Control of a Quadrotor Using Fast Nonsingular Terminal Sliding Mode(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5f5267a6180",
+      "evidence": [
+        {
+          "quote": "Adaptive Attitude Control of a Quadrotor Using Fast Nonsingular Terminal Sliding Mode(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5282,
+            "end_char": 5371
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂未知环境下非线性系统智能控制理论与方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e03122cb35e2",
+      "evidence": [
+        {
+          "quote": "复杂未知环境下非线性系统智能控制理论与方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5460,
+            "end_char": 5480
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "带有约束的复杂非线性系统自适应智能控制理论与方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1b13dd1f648",
+      "evidence": [
+        {
+          "quote": "带有约束的复杂非线性系统自适应智能控制理论与方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5504,
+            "end_char": 5527
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多无人机系统事件触发安全控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-656687eebc7e",
+      "evidence": [
+        {
+          "quote": "一种多无人机系统事件触发安全控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5554,
+            "end_char": 5574
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bipartite Consensus for Quantization Communication Multi-Agents Systems with Event-Triggered Random Delayed Impulse Control(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e100b902bed",
+      "evidence": [
+        {
+          "quote": "Bipartite Consensus for Quantization Communication Multi-Agents Systems with Event-Triggered Random Delayed Impulse Control(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5607,
+            "end_char": 5734
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Event-Triggered Switched Observers for Networked Distributed Multi-Agent Systems via Cloud Computing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e3f7b0767784",
+      "evidence": [
+        {
+          "quote": "Event-Triggered Switched Observers for Networked Distributed Multi-Agent Systems via Cloud Computing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5798,
+            "end_char": 5897
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Based Average Consensus of Disturbed MASs via Fully Distributed Sliding Mode Control(高被引,热点)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-438217079a17",
+      "evidence": [
+        {
+          "quote": "Event-Based Average Consensus of Disturbed MASs via Fully Distributed Sliding Mode Control(高被引,热点)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5949,
+            "end_char": 6046
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Iterative Learning Control with Termination Condition for MASs Performing Multiple Tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-adb373c6756e",
+      "evidence": [
+        {
+          "quote": "Adaptive Iterative Learning Control with Termination Condition for MASs Performing Multiple Tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6090,
+            "end_char": 6186
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "A Disturbance Observer Based Intelligent Control for Nonstrict-Feedback Nonlinear Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d48ddaeadb86",
+      "evidence": [
+        {
+          "quote": "A Disturbance Observer Based Intelligent Control for Nonstrict-Feedback Nonlinear Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6239,
+            "end_char": 6327
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-Time Optimal Bipartite Containment Control for Stochastic Nonlinear Multiagent Systems with Unknown Hysteresis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57d709ef15b4",
+      "evidence": [
+        {
+          "quote": "Fixed-Time Optimal Bipartite Containment Control for Stochastic Nonlinear Multiagent Systems with Unknown Hysteresis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6381,
+            "end_char": 6496
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Differentiator-Based Adaptive H∞ Tracking Control of Fully Actuated Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13fe28ef2ac4",
+      "evidence": [
+        {
+          "quote": "Differentiator-Based Adaptive H∞ Tracking Control of Fully Actuated Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6578,
+            "end_char": 6652
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于事件触发机制的多四旋翼无人机鲁棒自适应滑模姿态控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eacaea1df18d",
+      "evidence": [
+        {
+          "quote": "基于事件触发机制的多四旋翼无人机鲁棒自适应滑模姿态控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6721,
+            "end_char": 6747
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DTUAV: A Novel Cloud-Based Digital Twin System for Unmanned Aerial Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3592a98c16f8",
+      "evidence": [
+        {
+          "quote": "DTUAV: A Novel Cloud-Based Digital Twin System for Unmanned Aerial Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6780,
+            "end_char": 6854
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Based Adaptive NN Fixed-Time Cooperative Formation for Multiagent Systems(高被引,热点)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-caae142eb054",
+      "evidence": [
+        {
+          "quote": "Event-Based Adaptive NN Fixed-Time Cooperative Formation for Multiagent Systems(高被引,热点)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6924,
+            "end_char": 7010
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Triggered Guaranteed Cost Leader-Following Consensus Control of Second-Order Nonlinear Multiagent Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ca1ad5d0108",
+      "evidence": [
+        {
+          "quote": "Event-Triggered Guaranteed Cost Leader-Following Consensus Control of Second-Order Nonlinear Multiagent Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7068,
+            "end_char": 7178
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Fuzzy Fixed-Time Formation-Containment Control for Euler-Lagrange Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd5251c361ca",
+      "evidence": [
+        {
+          "quote": "Adaptive Fuzzy Fixed-Time Formation-Containment Control for Euler-Lagrange Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7233,
+            "end_char": 7314
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Moving-Target Circumnavigation Using Adaptive Neural Anti-Synchronization Control via Distance-Only Measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f270c8b18e36",
+      "evidence": [
+        {
+          "quote": "Moving-Target Circumnavigation Using Adaptive Neural Anti-Synchronization Control via Distance-Only Measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7367,
+            "end_char": 7478
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive-Critic-Based Event-Triggered Intelligent Cooperative Control for a Class of Second-Order Constrained Multiagent Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-539909b8d774",
+      "evidence": [
+        {
+          "quote": "Adaptive-Critic-Based Event-Triggered Intelligent Cooperative Control for a Class of Second-Order Constrained Multiagent Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7543,
+            "end_char": 7670
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Leader-Following Consensus of Stochastic Delayed Multiagent Systems with Input Saturation Under Self-Triggered Impulsive Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1f155a192596",
+      "evidence": [
+        {
+          "quote": "Leader-Following Consensus of Stochastic Delayed Multiagent Systems with Input Saturation Under Self-Triggered Impulsive Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7724,
+            "end_char": 7851
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Saturated Threshold Event-Triggered Control for Multiagent Systems Under Sensor Attacks and Its Application to UAVs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a3140dad5e3",
+      "evidence": [
+        {
+          "quote": "Saturated Threshold Event-Triggered Control for Multiagent Systems Under Sensor Attacks and Its Application to UAVs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7908,
+            "end_char": 8022
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Switched Control of HyTAQs: A Framework of Stochastic Hybrid Fuzzy Systems with Variable Dimensions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd40ac024cd9",
+      "evidence": [
+        {
+          "quote": "Switched Control of HyTAQs: A Framework of Stochastic Hybrid Fuzzy Systems with Variable Dimensions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8091,
+            "end_char": 8189
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "NN-Based Fixed-Time Attitude Tracking Control for Multiple Unmanned Aerial Vehicles with Nonlinear Faults(高被引,热点)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a5c236744e2",
+      "evidence": [
+        {
+          "quote": "NN-Based Fixed-Time Attitude Tracking Control for Multiple Unmanned Aerial Vehicles with Nonlinear Faults(高被引,热点)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8284,
+            "end_char": 8396
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast Unfolding-Based Indoor Space Partitioning and Rapid Complementary Search Planning for High-Rise Fire Rescue",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d522264c75c",
+      "evidence": [
+        {
+          "quote": "Fast Unfolding-Based Indoor Space Partitioning and Rapid Complementary Search Planning for High-Rise Fire Rescue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8459,
+            "end_char": 8570
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Full Attitude Control of a Quadrotor Using Fast Nonsingular Terminal Sliding Mode with Angular Velocity Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fab383706b2f",
+      "evidence": [
+        {
+          "quote": "Full Attitude Control of a Quadrotor Using Fast Nonsingular Terminal Sliding Mode with Angular Velocity Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8626,
+            "end_char": 8737
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Command Filtered Fixed-Time Control for a Class of Multi-Agent Systems with Sensor Faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-11dac630feb5",
+      "evidence": [
+        {
+          "quote": "Command Filtered Fixed-Time Control for a Class of Multi-Agent Systems with Sensor Faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8819,
+            "end_char": 8907
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Practically Fixed-Time Adaptive Consensus Control for Multiagent Systems with Prescribed Performance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0831bb89cdec",
+      "evidence": [
+        {
+          "quote": "Practically Fixed-Time Adaptive Consensus Control for Multiagent Systems with Prescribed Performance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8978,
+            "end_char": 9077
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于饱和阈值事件触发的高层消防无人机编队控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d3034cb222b0",
+      "evidence": [
+        {
+          "quote": "基于饱和阈值事件触发的高层消防无人机编队控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9134,
+            "end_char": 9160
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水空两栖双旋翼无人机的姿态控制方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-249825a74109",
+      "evidence": [
+        {
+          "quote": "一种水空两栖双旋翼无人机的姿态控制方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9192,
+            "end_char": 9213
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-Based Consensus Control for MASs with Prescribed Constraints via Reinforcement Learning Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8dffb015974e",
+      "evidence": [
+        {
+          "quote": "Observer-Based Consensus Control for MASs with Prescribed Constraints via Reinforcement Learning Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9254,
+            "end_char": 9359
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Optimal Consensus Learning Control for Nonlinear MASs with Output Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-995df497c08a",
+      "evidence": [
+        {
+          "quote": "Distributed Optimal Consensus Learning Control for Nonlinear MASs with Output Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9406,
+            "end_char": 9494
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-Driven Control for Nonlinear Multi-Agent Systems Using Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-397b94c1668a",
+      "evidence": [
+        {
+          "quote": "Data-Driven Control for Nonlinear Multi-Agent Systems Using Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9553,
+            "end_char": 9634
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Attitude Control for Multi-MUAV Systems with Output Dead-Zone and Actuator Fault",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b09a85a357c",
+      "evidence": [
+        {
+          "quote": "Adaptive Attitude Control for Multi-MUAV Systems with Output Dead-Zone and Actuator Fault",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9699,
+            "end_char": 9787
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Iterative Learning Control for Nonlinear Multiagent Systems with Initial Error Compensation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f722ce118db6",
+      "evidence": [
+        {
+          "quote": "Adaptive Iterative Learning Control for Nonlinear Multiagent Systems with Initial Error Compensation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9855,
+            "end_char": 9954
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Containment Control for Human-in-the-Loop MASs with Unknown Time-Varying Parameters",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a9d6bc6451b",
+      "evidence": [
+        {
+          "quote": "Distributed Containment Control for Human-in-the-Loop MASs with Unknown Time-Varying Parameters",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10019,
+            "end_char": 10113
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Fixed-Time Control of Nonlinear MASs with Actuator Faults(高被引,热点)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-988df2dddf86",
+      "evidence": [
+        {
+          "quote": "Adaptive Fixed-Time Control of Nonlinear MASs with Actuator Faults(高被引,热点)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10165,
+            "end_char": 10238
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pinning-Based Neural Control for Multiagent Systems with Self-Regulation Intermediate Event-Triggered Method(高被引,热点)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c806b200219",
+      "evidence": [
+        {
+          "quote": "Pinning-Based Neural Control for Multiagent Systems with Self-Regulation Intermediate Event-Triggered Method(高被引,热点)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10294,
+            "end_char": 10409
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Triggered Optimal Consensus Control for MASs with Multiple Constraints: A Flexible Performance Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8e8e0af6757f",
+      "evidence": [
+        {
+          "quote": "Event-Triggered Optimal Consensus Control for MASs with Multiple Constraints: A Flexible Performance Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10469,
+            "end_char": 10577
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "虚实交互驱动的无人机变负载智能飞行关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-67c4b32b576f",
+      "evidence": [
+        {
+          "quote": "虚实交互驱动的无人机变负载智能飞行关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10622,
+            "end_char": 10645
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Optimal Estimation Framework of Multi-agent Systems with Random Transport Protocol(高被引,热点)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eb6443506f82",
+      "evidence": [
+        {
+          "quote": "An Optimal Estimation Framework of Multi-agent Systems with Random Transport Protocol(高被引,热点)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10698,
+            "end_char": 10790
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Triggered Distributed Intelligent Learning Control of Six-Rotor UAVs Under FDI Attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f03e1f1b8c6",
+      "evidence": [
+        {
+          "quote": "Event-Triggered Distributed Intelligent Learning Control of Six-Rotor UAVs Under FDI Attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10843,
+            "end_char": 10934
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Command-Filter-Based Finite-Time Control for Human-in-the-Loop UAVs with Dead-Zone Inputs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6485fb2606b9",
+      "evidence": [
+        {
+          "quote": "Command-Filter-Based Finite-Time Control for Human-in-the-Loop UAVs with Dead-Zone Inputs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10992,
+            "end_char": 11080
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Partition and Planning: A Human-Like Motion Decision for UAV in Trap Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30a258192695",
+      "evidence": [
+        {
+          "quote": "Partition and Planning: A Human-Like Motion Decision for UAV in Trap Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11153,
+            "end_char": 11232
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prescribed Performance Consensus Fuzzy Control of Multiagent Systems with Nonaffine Nonlinear Faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-61983132437c",
+      "evidence": [
+        {
+          "quote": "Prescribed Performance Consensus Fuzzy Control of Multiagent Systems with Nonaffine Nonlinear Faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11288,
+            "end_char": 11387
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Adaptive Event-Triggered Control for a Class of Nonlinear Systems with Periodic Disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31bc0787b1e2",
+      "evidence": [
+        {
+          "quote": "Adaptive Event-Triggered Control for a Class of Nonlinear Systems with Periodic Disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11454,
+            "end_char": 11545
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于固定时间的多无人机系统自适应姿态控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-74137ce8b869",
+      "evidence": [
+        {
+          "quote": "基于固定时间的多无人机系统自适应姿态控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11602,
+            "end_char": 11621
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于有限时间命令滤波的多六旋翼无人机控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c9bd74ba50c",
+      "evidence": [
+        {
+          "quote": "基于有限时间命令滤波的多六旋翼无人机控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11650,
+            "end_char": 11674
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-Driven Event-Triggered Control for Nonlinear Multi-Agent Systems with Uniform Quantization(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ad74f559029",
+      "evidence": [
+        {
+          "quote": "Data-Driven Event-Triggered Control for Nonlinear Multi-Agent Systems with Uniform Quantization(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11708,
+            "end_char": 11807
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Triggered-Based Adaptive NN Cooperative Control of Six-Rotor UAVs with Finite-Time Prescribed Performance(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-579a54e0cbbf",
+      "evidence": [
+        {
+          "quote": "Event-Triggered-Based Adaptive NN Cooperative Control of Six-Rotor UAVs with Finite-Time Prescribed Performance(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11875,
+            "end_char": 11990
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural-Based Prescribed-Time Consensus Control for Multiagent Systems via Dynamic Memory Event-Triggered Mechanism(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d70b5cbed311",
+      "evidence": [
+        {
+          "quote": "Neural-Based Prescribed-Time Consensus Control for Multiagent Systems via Dynamic Memory Event-Triggered Mechanism(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12048,
+            "end_char": 12166
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Triggered State Estimation and Control for Networked Nonlinear Systems Under Dynamic Sparse Attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d81d605e1fa6",
+      "evidence": [
+        {
+          "quote": "Event-Triggered State Estimation and Control for Networked Nonlinear Systems Under Dynamic Sparse Attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12221,
+            "end_char": 12325
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-Based Finite-Time Fault-Tolerant Control for Nonstrict-Feedback Nonlinear Systems with Multiple Uncertainties",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2c9b406ff356",
+      "evidence": [
+        {
+          "quote": "Observer-Based Finite-Time Fault-Tolerant Control for Nonstrict-Feedback Nonlinear Systems with Multiple Uncertainties",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12396,
+            "end_char": 12513
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Time-Varying Formation H∞ Tracking Control and Optimization for Delayed Multi-Agent Systems with Exogenous Disturbances(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-82d7762f797b",
+      "evidence": [
+        {
+          "quote": "Time-Varying Formation H∞ Tracking Control and Optimization for Delayed Multi-Agent Systems with Exogenous Disturbances(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12577,
+            "end_char": 12700
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "Human-in-the-Loop Consensus Control for High-Rise Firefighting Multi-MUAV Systems with Unknown Disturbances and Actuator Failures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e7a6711c761",
+      "evidence": [
+        {
+          "quote": "Human-in-the-Loop Consensus Control for High-Rise Firefighting Multi-MUAV Systems with Unknown Disturbances and Actuator Failures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12765,
+            "end_char": 12893
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Intelligent Control of Nonlinear Systems and Nonlinear Multi-Agent Systems with Complex Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-529bf7569645",
+      "evidence": [
+        {
+          "quote": "Intelligent Control of Nonlinear Systems and Nonlinear Multi-Agent Systems with Complex Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12957,
+            "end_char": 13055
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多四旋翼无人机自适应滑模姿态跟踪控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eddcd888b69f",
+      "evidence": [
+        {
+          "quote": "一种多四旋翼无人机自适应滑模姿态跟踪控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13105,
+            "end_char": 13129
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Based Adaptive Sliding-Mode Containment Control for Multiple Networked Mechanical Systems with Parameter Uncertainties(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f80420e2764c",
+      "evidence": [
+        {
+          "quote": "Event-Based Adaptive Sliding-Mode Containment Control for Multiple Networked Mechanical Systems with Parameter Uncertainties(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13162,
+            "end_char": 13290
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-Based Adaptive Prescribed-Time Control of UAV for Uncooperative Target Tracking with Performance Constraint(高被引,热点)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-432332b1fb5a",
+      "evidence": [
+        {
+          "quote": "Vision-Based Adaptive Prescribed-Time Control of UAV for Uncooperative Target Tracking with Performance Constraint(高被引,热点)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13355,
+            "end_char": 13476
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Command-Filtered Backstepping Repetitive Control for a Class of Uncertain Nonlinear Systems Based on Additive State Decomposition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12e898749feb",
+      "evidence": [
+        {
+          "quote": "Command-Filtered Backstepping Repetitive Control for a Class of Uncertain Nonlinear Systems Based on Additive State Decomposition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13530,
+            "end_char": 13658
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无人机指定性能姿态控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77abbd1e6295",
+      "evidence": [
+        {
+          "quote": "一种无人机指定性能姿态控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13724,
+            "end_char": 13741
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Secure Finite-Horizon Consensus Control of Multiagent Systems Against Cyber Attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b196fd30f116",
+      "evidence": [
+        {
+          "quote": "Secure Finite-Horizon Consensus Control of Multiagent Systems Against Cyber Attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13778,
+            "end_char": 13860
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fuzzy-Based Dynamic Event Triggering Formation Control for Nonstrict-Feedback Nonlinear MASs(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c02c9c647560",
+      "evidence": [
+        {
+          "quote": "Fuzzy-Based Dynamic Event Triggering Formation Control for Nonstrict-Feedback Nonlinear MASs(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13939,
+            "end_char": 14035
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Fault-Tolerant Control for Quadrotor Based on the Second-Order Fast Nonsingular Terminal Sliding Mode Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1ed4f1ed5f9c",
+      "evidence": [
+        {
+          "quote": "Adaptive Fault-Tolerant Control for Quadrotor Based on the Second-Order Fast Nonsingular Terminal Sliding Mode Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14100,
+            "end_char": 14217
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-Based Fixed-Time Adaptive Fuzzy Bipartite Containment Control for Multiagent Systems with Unknown Hysteresis(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d5ad1cc022f",
+      "evidence": [
+        {
+          "quote": "Observer-Based Fixed-Time Adaptive Fuzzy Bipartite Containment Control for Multiagent Systems with Unknown Hysteresis(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14281,
+            "end_char": 14402
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-in-the-Loop Consensus Control for Nonlinear Multi-Agent Systems with Actuator Faults(高被引,热点)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4237e9190e44",
+      "evidence": [
+        {
+          "quote": "Human-in-the-Loop Consensus Control for Nonlinear Multi-Agent Systems with Actuator Faults(高被引,热点)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14451,
+            "end_char": 14548
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Cooperative Learning Control for Multiagent Systems with Data Protection and Disturbance Observation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a44c39e98454",
+      "evidence": [
+        {
+          "quote": "Distributed Cooperative Learning Control for Multiagent Systems with Data Protection and Disturbance Observation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14613,
+            "end_char": 14724
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal Tracking Control for Cyber-Physical Systems Under Mixed Attacks via Game-Theoretical Q-Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d8488a9819d8",
+      "evidence": [
+        {
+          "quote": "Optimal Tracking Control for Cyber-Physical Systems Under Mixed Attacks via Game-Theoretical Q-Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14780,
+            "end_char": 14882
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于采样的高层室内消防多无人机协同运动决策方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f3d0294dd4bf",
+      "evidence": [
+        {
+          "quote": "基于采样的高层室内消防多无人机协同运动决策方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14957,
+            "end_char": 14982
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "HiTL-Based Adaptive Fuzzy Tracking Control of MASs: A Distributed Fixed-Time Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e71bbb4098a8",
+      "evidence": [
+        {
+          "quote": "HiTL-Based Adaptive Fuzzy Tracking Control of MASs: A Distributed Fixed-Time Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15012,
+            "end_char": 15096
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种舰载机动态对接的降落轨迹规划方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29cbc0f7c9ca",
+      "evidence": [
+        {
+          "quote": "一种舰载机动态对接的降落轨迹规划方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15157,
+            "end_char": 15177
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Distributed Adaptive NN Finite-Time Congestion Control for Multiple TCP/AWM Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-732f518e88b9",
+      "evidence": [
+        {
+          "quote": "Distributed Adaptive NN Finite-Time Congestion Control for Multiple TCP/AWM Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15200,
+            "end_char": 15283
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Multigradient Recursive Reinforcement Learning Event-Triggered Tracking Control for Multiagent Systems(高被引)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-970a8a15b8b5",
+      "evidence": [
+        {
+          "quote": "Adaptive Multigradient Recursive Reinforcement Learning Event-Triggered Tracking Control for Multiagent Systems(高被引)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15354,
+            "end_char": 15469
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Finite-Time Containment Control for Nonlinear Multiagent Systems with Mismatched Disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad11311ed541",
+      "evidence": [
+        {
+          "quote": "Distributed Finite-Time Containment Control for Nonlinear Multiagent Systems with Mismatched Disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15522,
+            "end_char": 15626
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Based Finite-Time Neural Control for Human-in-the-Loop UAV Attitude Systems(高被引,热点)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f55390a7fb3d",
+      "evidence": [
+        {
+          "quote": "Event-Based Finite-Time Neural Control for Human-in-the-Loop UAV Attitude Systems(高被引,热点)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15693,
+            "end_char": 15781
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于图社区发现的模糊规则基整定方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a84763398346",
+      "evidence": [
+        {
+          "quote": "基于图社区发现的模糊规则基整定方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15839,
+            "end_char": 15858
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Triggered Secure Tracking Control for Fixed-Wing Aircraft with Measurement Noise Under Sparse Attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8603709c0c39",
+      "evidence": [
+        {
+          "quote": "Event-Triggered Secure Tracking Control for Fixed-Wing Aircraft with Measurement Noise Under Sparse Attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15888,
+            "end_char": 15994
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "具有执行器故障的非线性系统指定性能控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-37ded9a01f6c",
+      "evidence": [
+        {
+          "quote": "具有执行器故障的非线性系统指定性能控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16059,
+            "end_char": 16077
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-Based Adaptive Fixed-Time Uncooperative Target Tracking for QUAV with Unknown Disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2eb2092ff16e",
+      "evidence": [
+        {
+          "quote": "Vision-Based Adaptive Fixed-Time Uncooperative Target Tracking for QUAV with Unknown Disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16112,
+            "end_char": 16208
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Event Triggering Control for Six-Rotor UAV Systems with Asymmetric Time-Varying Output Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1a0925861d3",
+      "evidence": [
+        {
+          "quote": "Distributed Event Triggering Control for Six-Rotor UAV Systems with Asymmetric Time-Varying Output Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16278,
+            "end_char": 16387
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Estimator-Based Reinforcement Learning Consensus Control for Multiagent Systems with Discontinuous Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fcd3ce98a00b",
+      "evidence": [
+        {
+          "quote": "Estimator-Based Reinforcement Learning Consensus Control for Multiagent Systems with Discontinuous Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16453,
+            "end_char": 16562
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SMO-Based Distributed Tracking Control for Linear MASs with Event-Triggering Communication",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6bccbb82369d",
+      "evidence": [
+        {
+          "quote": "SMO-Based Distributed Tracking Control for Linear MASs with Event-Triggering Communication",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16612,
+            "end_char": 16701
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Based Optimal Containment Control for Constrained Multiagent Systems Using Integral Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5d2cbcb2ea8",
+      "evidence": [
+        {
+          "quote": "Event-Based Optimal Containment Control for Constrained Multiagent Systems Using Integral Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16745,
+            "end_char": 16856
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Reinforcement Learning Containment Control for Multiple Nonholonomic Mobile Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a991e34cccde",
+      "evidence": [
+        {
+          "quote": "Distributed Reinforcement Learning Containment Control for Multiple Nonholonomic Mobile Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16916,
+            "end_char": 17009
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于视觉的无人机非合作目标有限时间跟踪方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0420ca9cd29",
+      "evidence": [
+        {
+          "quote": "基于视觉的无人机非合作目标有限时间跟踪方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 17072,
+            "end_char": 17095
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-Based Data-Driven Sliding Mode Control for a Discrete-time Nonlinear Multiagent Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-daec24b4efce",
+      "evidence": [
+        {
+          "quote": "Observer-Based Data-Driven Sliding Mode Control for a Discrete-time Nonlinear Multiagent Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 17129,
+            "end_char": 17224
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于随机采样的高层消防无人机协同搜索规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0aa6cba9b179",
+      "evidence": [
+        {
+          "quote": "基于随机采样的高层消防无人机协同搜索规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 17294,
+            "end_char": 17313
+          },
+          "version": "28560e7c0529d44e535d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 94,
+    "listed": 94,
+    "by_kind": {
+      "专利": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "期刊论文": {
+        "listed": 67,
+        "extracted": 67
+      },
+      "奖励/专著": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

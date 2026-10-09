@@ -2,15 +2,20 @@
   "doc_id": "f7357b11b0b7cf7e140f",
   "version": "588a10f133d20485e933",
   "source_hash": "af17915c8a099fa10e3d07c4b1d50492b3a0fccce42198156684ecc4846ae545",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:16:40.566421+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.882847+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9786f5ca4d7f",
-          "name": "分布式驱动电动汽车控制",
-          "desc": "多体多场强耦合系统的安全稳定、高效节能运动规划与控制",
+          "id": "item-45f984a291c5",
+          "name": "分布式驱动电动汽车(Distributed driver electric vehicle, DDEV)具有多自由度、强",
+          "desc": "分布式驱动电动汽车(Distributed driver electric vehicle, DDEV)具有多自由度、强非线性、多变量强耦合的复杂特性，其运动规划与控制是亟待解决的难题之一。",
           "evidence": [
             {
-              "quote": "项目所研究的分布式驱动电动汽车是一个多体多场强耦合系统，具有行驶环境复杂，动态多变工况、强耦合非线性的复杂特性。如何实现安全稳定、高效节能的运动规划与控制，是一个亟待解决的难题",
+              "quote": "分布式驱动电动汽车(Distributed driver electric vehicle, DDEV)具有多自由度、强非线性、多变量强耦合的复杂特性，其运动规划与控制是亟待解决的难题之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2401,
-                "end_char": 2488
+                "start_char": 649,
+                "end_char": 743
+              },
+              "version": "588a10f133d20485e933"
+            }
+          ]
+        },
+        {
+          "id": "item-c26186000605",
+          "name": "本项目面向智能电动汽车技术需求，以提高DDEV运动安全性、经济性为目标，解决多目标运动规划、高精度路径跟踪、运动稳定控制",
+          "desc": "本项目面向智能电动汽车技术需求，以提高DDEV运动安全性、经济性为目标，解决多目标运动规划、高精度路径跟踪、运动稳定控制等关键技术难题，重点研究：1）针对复杂行驶环境下的安全性、经济性运动规划需求，研究基于深度递归神经网络的动态目标预测模型、基于新型动态人工势力场的多目标运动规划方法；",
+          "evidence": [
+            {
+              "quote": "本项目面向智能电动汽车技术需求，以提高DDEV运动安全性、经济性为目标，解决多目标运动规划、高精度路径跟踪、运动稳定控制等关键技术难题，重点研究：1）针对复杂行驶环境下的安全性、经济性运动规划需求，研究基于深度递归神经网络的动态目标预测模型、基于新型动态人工势力场的多目标运动规划方法；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 744,
+                "end_char": 886
               },
               "version": "588a10f133d20485e933"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-e2c7f8ea8b02",
-          "name": "多目标规划与路径跟踪难",
-          "desc": "多目标运动规划、高精度路径跟踪、运动稳定控制等关键技术难题",
-          "evidence": [
-            {
-              "quote": "解决多目标运动规划、高精度路径跟踪、运动稳定控制等关键技术难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 780,
-                "end_char": 810
-              },
-              "version": "588a10f133d20485e933"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-68e6dbb579f2",
-          "name": "多体多场耦合动力学建模",
-          "desc": "路面-轮胎-悬架-车身多体耦合与多动力电源-驱动系统-轮毂电机多场耦合模型",
+          "id": "item-d082509c2020",
+          "name": "本项目面向智能电动汽车技术需求，以提高DDEV运动安全性、经济性为目标，解决多目标运动规划、高精度路径跟踪、运动稳定控制",
+          "desc": "本项目面向智能电动汽车技术需求，以提高DDEV运动安全性、经济性为目标，解决多目标运动规划、高精度路径跟踪、运动稳定控制等关键技术难题，重点研究：1）针对复杂行驶环境下的安全性、经济性运动规划需求，研究基于深度递归神经网络的动态目标预测模型、基于新型动态人工势力场的多目标运动规划方法；",
           "evidence": [
             {
-              "quote": "构建起DDEV的路面-轮胎-悬架-车身多体耦合动力学模型，以及多动力电源-驱动系统-轮毂电机多场耦合动力学模型，搭建了Carsim-Simulink联合仿真平台",
+              "quote": "本项目面向智能电动汽车技术需求，以提高DDEV运动安全性、经济性为目标，解决多目标运动规划、高精度路径跟踪、运动稳定控制等关键技术难题，重点研究：1）针对复杂行驶环境下的安全性、经济性运动规划需求，研究基于深度递归神经网络的动态目标预测模型、基于新型动态人工势力场的多目标运动规划方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2533,
-                "end_char": 2612
+                "start_char": 744,
+                "end_char": 886
               },
               "version": "588a10f133d20485e933"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-81046c18d7f3",
-          "name": "多目标运动规划方法族",
-          "desc": "自适应动态路径规划、三维梯度重构侧倾稳定、启发式多目标三维路径规划等",
+          "id": "item-5a41b8683d5d",
+          "name": ".3）在DDEV高精度路径跟踪与运动稳定性控制方面，主要理论研究成果包括：基于预测型模糊推理与转向增强的自适应避障与路径",
+          "desc": ".3）在DDEV高精度路径跟踪与运动稳定性控制方面，主要理论研究成果包括：基于预测型模糊推理与转向增强的自适应避障与路径跟踪控制、基于高频需求功率抑制的电动汽车混合储能系统能量管理与控制策略、基于增强型自适应邻域搜索的电动汽车路径优化调度、面向分布式驱动电动汽车生态驾驶的分层速度优化、分布式驱动电动汽车永磁同步电机电流矢量优化控制等；",
           "evidence": [
             {
-              "quote": "车辆稳定性增强的分布式驱动电动汽车自适应动态路径规划、基于三维梯度重构的车辆侧倾稳定增强路径规划、权衡路程与能耗的启发式多目标三维路径规划",
+              "quote": ".3）在DDEV高精度路径跟踪与运动稳定性控制方面，主要理论研究成果包括：基于预测型模糊推理与转向增强的自适应避障与路径跟踪控制、基于高频需求功率抑制的电动汽车混合储能系统能量管理与控制策略、基于增强型自适应邻域搜索的电动汽车路径优化调度、面向分布式驱动电动汽车生态驾驶的分层速度优化、分布式驱动电动汽车永磁同步电机电流矢量优化控制等；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2643,
-                "end_char": 2711
+                "start_char": 2766,
+                "end_char": 2933
               },
               "version": "588a10f133d20485e933"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,568 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2ded1f174e16",
-          "name": "路径优化与生态驾驶",
-          "desc": "增强型自适应邻域搜索路径优化调度与分层速度优化的生态驾驶策略",
+          "id": "item-49a6509028fe",
+          "name": "分布式驱动电动汽车(Distributed driver electric vehicle, DDEV)具有多自由度、强",
+          "desc": "分布式驱动电动汽车(Distributed driver electric vehicle, DDEV)具有多自由度、强非线性、多变量强耦合的复杂特性，其运动规划与控制是亟待解决的难题之一。",
           "evidence": [
             {
-              "quote": "基于增强型自适应邻域搜索的电动汽车路径优化调度、面向分布式驱动电动汽车生态驾驶的分层速度优化、分布式驱动电动汽车永磁同步电机电流矢量优化控制等",
+              "quote": "分布式驱动电动汽车(Distributed driver electric vehicle, DDEV)具有多自由度、强非线性、多变量强耦合的复杂特性，其运动规划与控制是亟待解决的难题之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2862,
-                "end_char": 2932
+                "start_char": 649,
+                "end_char": 743
               },
               "version": "588a10f133d20485e933"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-1cb933858a47",
-          "name": "论文与授权专利",
-          "desc": "发表论文28篇（SCI 19篇），申请专利5项、授权4项",
+          "id": "item-64f55bebeb8f",
+          "name": "项目所研究的分布式驱动电动汽车是一个多体多场强耦合系统，具有行驶环境复杂，动态多变工况、强耦合非线性的复杂特性。",
+          "desc": "项目所研究的分布式驱动电动汽车是一个多体多场强耦合系统，具有行驶环境复杂，动态多变工况、强耦合非线性的复杂特性。",
           "evidence": [
             {
-              "quote": "在国内外学术期刊和会议发表论文28篇，其中SCI源刊论文19篇；申请国家发明专利5项，取得授权专利4项",
+              "quote": "项目所研究的分布式驱动电动汽车是一个多体多场强耦合系统，具有行驶环境复杂，动态多变工况、强耦合非线性的复杂特性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2937,
-                "end_char": 2987
+                "start_char": 2401,
+                "end_char": 2456
               },
               "version": "588a10f133d20485e933"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9786f5ca4d7f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e2c7f8ea8b02"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "NCV-PWM Method for the Phase Current Reconstruction with DC Link Single Sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb7dc50bbcd4",
+      "evidence": [
+        {
+          "quote": "NCV-PWM Method for the Phase Current Reconstruction with DC Link Single Sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3114,
+            "end_char": 3191
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e2c7f8ea8b02"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-68e6dbb579f2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Census Weight Correlation Stereo Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62326fb69c8c",
+      "evidence": [
+        {
+          "quote": "Deep Census Weight Correlation Stereo Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3282,
+            "end_char": 3326
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e2c7f8ea8b02"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-81046c18d7f3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A dynamic estimation-based obstacle avoidance system for AV adapting to various moving directions obstacle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-07df0517754b",
+      "evidence": [
+        {
+          "quote": "A dynamic estimation-based obstacle avoidance system for AV adapting to various moving directions obstacle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3407,
+            "end_char": 3512
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-81046c18d7f3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2ded1f174e16"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An intelligent obstacle detection for autonomous mining transportation with electric locomotive via cellular vehicle-to-everything and vehicular edge computing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d640c0cf8ae1",
+      "evidence": [
+        {
+          "quote": "An intelligent obstacle detection for autonomous mining transportation with electric locomotive via cellular vehicle-to-everything and vehicular edge computing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3552,
+            "end_char": 3710
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-68e6dbb579f2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1cb933858a47"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的无人系统路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-375e89225211",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的无人系统路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3792,
+            "end_char": 3812
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed robust control for vehicle platoon under event-triggered communication mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d26a3a5cdfea",
+      "evidence": [
+        {
+          "quote": "Distributed robust control for vehicle platoon under event-triggered communication mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3844,
+            "end_char": 3935
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "智能网联电动汽车节能优化控制研究进展与展望",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-81319103f6f2",
+      "evidence": [
+        {
+          "quote": "智能网联电动汽车节能优化控制研究进展与展望",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3995,
+            "end_char": 4015
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-objective casting production scheduling problem by a neighborhood structure enhanced discrete NSGA-II: an application from real-world workshop",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1fe2de098267",
+      "evidence": [
+        {
+          "quote": "Multi-objective casting production scheduling problem by a neighborhood structure enhanced discrete NSGA-II: an application from real-world workshop",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4049,
+            "end_char": 4196
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多势场融合的智能驾驶汽车安全避障方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2be4e9f9c4f1",
+      "evidence": [
+        {
+          "quote": "一种多势场融合的智能驾驶汽车安全避障方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4257,
+            "end_char": 4276
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "电动汽车混合储能系统CEEMD-PE能量管理策略",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2080a6ad8fa7",
+      "evidence": [
+        {
+          "quote": "电动汽车混合储能系统CEEMD-PE能量管理策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4313,
+            "end_char": 4336
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Low-carbon joint scheduling in flexible open-shop environment with constrained automatic guided vehicle by multi-objective particle swarm optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5e2fbcdcb92",
+      "evidence": [
+        {
+          "quote": "Low-carbon joint scheduling in flexible open-shop environment with constrained automatic guided vehicle by multi-objective particle swarm optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4371,
+            "end_char": 4520
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive velocity region-based path planning system for autonomous vehicle under multiple obstacles with various velocities",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-11ea5c72a8e3",
+      "evidence": [
+        {
+          "quote": "Adaptive velocity region-based path planning system for autonomous vehicle under multiple obstacles with various velocities",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4586,
+            "end_char": 4708
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Dynamic Path Planning Method for Autonomous Vehicle Under Various Road Friction and Speeds",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-496b7f73fbb8",
+      "evidence": [
+        {
+          "quote": "Adaptive Dynamic Path Planning Method for Autonomous Vehicle Under Various Road Friction and Speeds",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4749,
+            "end_char": 4847
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A fatigue-conscious dual resource constrained flexible job shop scheduling problem by enhanced NSGA-II: An application from casting workshop",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ffd3672e3a8e",
+      "evidence": [
+        {
+          "quote": "A fatigue-conscious dual resource constrained flexible job shop scheduling problem by enhanced NSGA-II: An application from casting workshop",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4937,
+            "end_char": 5076
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Adaptive Lane-Changing Strategy for Multi-CAV with Complex Platoon Geometric",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1845a549d454",
+      "evidence": [
+        {
+          "quote": "An Adaptive Lane-Changing Strategy for Multi-CAV with Complex Platoon Geometric",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5142,
+            "end_char": 5220
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的越野车三维路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7cad099fb8a9",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的越野车三维路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5273,
+            "end_char": 5294
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficiency optimization control of PMSM in electric vehicle-a comparative study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6158b9bea06d",
+      "evidence": [
+        {
+          "quote": "Efficiency optimization control of PMSM in electric vehicle-a comparative study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5333,
+            "end_char": 5411
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-objective teaching–learning-based optimization algorithm for carbon-efficient integrated scheduling of distributed production and distribution considering shared transportation resource",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03dcb0d161ac",
+      "evidence": [
+        {
+          "quote": "Multi-objective teaching–learning-based optimization algorithm for carbon-efficient integrated scheduling of distributed production and distribution considering shared transportation resource",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5476,
+            "end_char": 5666
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Two potential fields fused adaptive path planning system for autonomous vehicle under different velocities",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-78e146d2aba4",
+      "evidence": [
+        {
+          "quote": "Two potential fields fused adaptive path planning system for autonomous vehicle under different velocities",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5741,
+            "end_char": 5846
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A 3-D Multi-Object Path Planning Method for Electric Vehicle Considering the Energy Consumption and Distance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a9df10dcfb0",
+      "evidence": [
+        {
+          "quote": "A 3-D Multi-Object Path Planning Method for Electric Vehicle Considering the Energy Consumption and Distance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5927,
+            "end_char": 6034
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Error Self-Calibration of Phase Current Reconstruction Based on Random Pulsewidth Modulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-378f7cd6e69b",
+      "evidence": [
+        {
+          "quote": "Error Self-Calibration of Phase Current Reconstruction Based on Random Pulsewidth Modulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6104,
+            "end_char": 6195
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical Velocity Optimization for Connected Automated Vehicles With Cellular Vehicle-to-Everything Communication at Continuous Signalized Intersections",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f2970ef9aece",
+      "evidence": [
+        {
+          "quote": "Hierarchical Velocity Optimization for Connected Automated Vehicles With Cellular Vehicle-to-Everything Communication at Continuous Signalized Intersections",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6267,
+            "end_char": 6422
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Contextual Structure and Semantic Feature Enhancement Stereo Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06b4a98cf4af",
+      "evidence": [
+        {
+          "quote": "Deep Contextual Structure and Semantic Feature Enhancement Stereo Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6502,
+            "end_char": 6574
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3-D path planning system for autonomous vehicle considering the rollover and path length",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e59045e97d09",
+      "evidence": [
+        {
+          "quote": "3-D path planning system for autonomous vehicle considering the rollover and path length",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6651,
+            "end_char": 6738
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3D Gradient Reconstruction-Based Path Planning Method for Autonomous Vehicle With Enhanced Roll Stability",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31c8c09a2228",
+      "evidence": [
+        {
+          "quote": "3D Gradient Reconstruction-Based Path Planning Method for Autonomous Vehicle With Enhanced Roll Stability",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6786,
+            "end_char": 6890
+          },
+          "version": "588a10f133d20485e933"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 25,
+    "listed": 25,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

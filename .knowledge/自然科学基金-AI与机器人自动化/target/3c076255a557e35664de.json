@@ -2,15 +2,20 @@
   "doc_id": "3c076255a557e35664de",
   "version": "c6e3150de2444194575f",
   "source_hash": "116ef6ac41558a11a0f9cb1a3c2013d6ba0c74f4aa7dbc6f1534218fccea8472",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:08:08.197772+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.060367+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b08e1f083b72",
-          "name": "航天器柔性高精度装配",
-          "desc": "力矩陀螺、卫星舱板等航天器组件机器人装配",
+          "id": "item-1220c0199eaf",
+          "name": "随着人类探索太空的步伐，现代航天器也越来越向着大型化、集成化和多样化的方向发展，对于装配的效率和精度的需求也越来越高，引",
+          "desc": "随着人类探索太空的步伐，现代航天器也越来越向着大型化、集成化和多样化的方向发展，对于装配的效率和精度的需求也越来越高，引入智能化的机器人式装配是一个必然趋势。",
           "evidence": [
             {
-              "quote": "本项目面向航天器柔性化、高精度装配需求，开展机器人装配技术的研究。",
+              "quote": "随着人类探索太空的步伐，现代航天器也越来越向着大型化、集成化和多样化的方向发展，对于装配的效率和精度的需求也越来越高，引入智能化的机器人式装配是一个必然趋势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2252,
-                "end_char": 2284
+                "start_char": 653,
+                "end_char": 731
+              },
+              "version": "c6e3150de2444194575f"
+            }
+          ]
+        },
+        {
+          "id": "item-ef63c37e5a64",
+          "name": "本项目在调研和分析了国内外研究的情况下，根据课题组前期的技术预研状况，提出采用基于局部三维特征的测量方法和面向大负载的力",
+          "desc": "本项目在调研和分析了国内外研究的情况下，根据课题组前期的技术预研状况，提出采用基于局部三维特征的测量方法和面向大负载的力位柔顺控制方法相结合的研究思路，以拓展机器人在航天设备装配中的应用。",
+          "evidence": [
+            {
+              "quote": "本项目在调研和分析了国内外研究的情况下，根据课题组前期的技术预研状况，提出采用基于局部三维特征的测量方法和面向大负载的力位柔顺控制方法相结合的研究思路，以拓展机器人在航天设备装配中的应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 796,
+                "end_char": 889
               },
               "version": "c6e3150de2444194575f"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-11c78ed0427e",
-          "name": "装配单一化定制化缺点",
-          "desc": "现有自动化装配无法满足任务多样性和复杂性要求",
+          "id": "item-a4c1ca778956",
+          "name": "为了进一步实现装配的自主智能程度，提出了基于装配特征图像视觉伺服引导策略，针对现有图像视觉伺服方法因缺乏三维位置信息而导",
+          "desc": "为了进一步实现装配的自主智能程度，提出了基于装配特征图像视觉伺服引导策略，针对现有图像视觉伺服方法因缺乏三维位置信息而导致空间路径不可控、易引发部件碰撞的问题，提出路径节点引导的视觉伺服控制方法，实现“先姿态后位置”的误差调节机制，在规避碰撞的同时，可实现亚毫米级对准精度。",
           "evidence": [
             {
-              "quote": "目前面向航天器的自动化装配普遍存在单一化和定制化的缺点，无法满足装配任务多样性和复杂性的要求",
+              "quote": "为了进一步实现装配的自主智能程度，提出了基于装配特征图像视觉伺服引导策略，针对现有图像视觉伺服方法因缺乏三维位置信息而导致空间路径不可控、易引发部件碰撞的问题，提出路径节点引导的视觉伺服控制方法，实现“先姿态后位置”的误差调节机制，在规避碰撞的同时，可实现亚毫米级对准精度。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 732,
-                "end_char": 777
+                "start_char": 2475,
+                "end_char": 2611
               },
               "version": "c6e3150de2444194575f"
             }
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f7ce27fcf51d",
-          "name": "局部三维特征测量",
-          "desc": "测量模组与标定平台实现0.1mm和0.1°精度",
+          "id": "item-13d099708390",
+          "name": "为了进一步实现装配的自主智能程度，提出了基于装配特征图像视觉伺服引导策略，针对现有图像视觉伺服方法因缺乏三维位置信息而导",
+          "desc": "为了进一步实现装配的自主智能程度，提出了基于装配特征图像视觉伺服引导策略，针对现有图像视觉伺服方法因缺乏三维位置信息而导致空间路径不可控、易引发部件碰撞的问题，提出路径节点引导的视觉伺服控制方法，实现“先姿态后位置”的误差调节机制，在规避碰撞的同时，可实现亚毫米级对准精度。",
           "evidence": [
             {
-              "quote": "提出了采用基于局部三维特征的测量方法，开发了适用于典型装配特征的测量模组及精度标定平台，在大范围空间内可实现0.1mm和0.1°的测量精度",
+              "quote": "为了进一步实现装配的自主智能程度，提出了基于装配特征图像视觉伺服引导策略，针对现有图像视觉伺服方法因缺乏三维位置信息而导致空间路径不可控、易引发部件碰撞的问题，提出路径节点引导的视觉伺服控制方法，实现“先姿态后位置”的误差调节机制，在规避碰撞的同时，可实现亚毫米级对准精度。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2307,
-                "end_char": 2375
-              },
-              "version": "c6e3150de2444194575f"
-            }
-          ]
-        },
-        {
-          "id": "item-aa9075246635",
-          "name": "自适应柔顺力控",
-          "desc": "根据接触力与位姿信息自适应调整控制参数",
-          "evidence": [
-            {
-              "quote": "提出基于自适应柔顺控制的接触力调控方法，根据航天装备实时的接触力信息和位姿信息，自适应调整柔顺控制参数，有效解决了无法通过试装获得合适控制参数的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2380,
-                "end_char": 2453
-              },
-              "version": "c6e3150de2444194575f"
-            }
-          ]
-        },
-        {
-          "id": "item-9e621fb083fa",
-          "name": "路径节点视觉伺服",
-          "desc": "先姿态后位置的误差调节机制规避碰撞",
-          "evidence": [
-            {
-              "quote": "提出路径节点引导的视觉伺服控制方法，实现“先姿态后位置”的误差调节机制，在规避碰撞的同时，可实现亚毫米级对准精度。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2555,
+                "start_char": 2475,
                 "end_char": 2611
               },
               "version": "c6e3150de2444194575f"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-dbdda6ec467b",
+          "name": "本项目在调研和分析了国内外研究的情况下，根据课题组前期的技术预研状况，提出采用基于局部三维特征的测量方法和面向大负载的力",
+          "desc": "本项目在调研和分析了国内外研究的情况下，根据课题组前期的技术预研状况，提出采用基于局部三维特征的测量方法和面向大负载的力位柔顺控制方法相结合的研究思路，以拓展机器人在航天设备装配中的应用。",
+          "evidence": [
+            {
+              "quote": "本项目在调研和分析了国内外研究的情况下，根据课题组前期的技术预研状况，提出采用基于局部三维特征的测量方法和面向大负载的力位柔顺控制方法相结合的研究思路，以拓展机器人在航天设备装配中的应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 796,
+                "end_char": 889
+              },
+              "version": "c6e3150de2444194575f"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +124,324 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d43c732e6752",
-          "name": "0.1mm测量精度",
-          "desc": "大范围空间内测量精度达0.1mm和0.1°",
+          "id": "item-6bd3a4b70934",
+          "name": "随着人类探索太空的步伐，现代航天器也越来越向着大型化、集成化和多样化的方向发展，对于装配的效率和精度的需求也越来越高，引",
+          "desc": "随着人类探索太空的步伐，现代航天器也越来越向着大型化、集成化和多样化的方向发展，对于装配的效率和精度的需求也越来越高，引入智能化的机器人式装配是一个必然趋势。",
           "evidence": [
             {
-              "quote": "在大范围空间内可实现0.1mm和0.1°的测量精度",
+              "quote": "随着人类探索太空的步伐，现代航天器也越来越向着大型化、集成化和多样化的方向发展，对于装配的效率和精度的需求也越来越高，引入智能化的机器人式装配是一个必然趋势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2351,
-                "end_char": 2375
+                "start_char": 653,
+                "end_char": 731
               },
               "version": "c6e3150de2444194575f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-d6c5f21523e1",
-          "name": "亚毫米级对准精度",
-          "desc": "视觉伺服引导实现亚毫米级对准",
+          "id": "item-50972a25bb92",
+          "name": "本项目面向航天器柔性化、高精度装配需求，开展机器人装配技术的研究。",
+          "desc": "本项目面向航天器柔性化、高精度装配需求，开展机器人装配技术的研究。",
           "evidence": [
             {
-              "quote": "在规避碰撞的同时，可实现亚毫米级对准精度。",
+              "quote": "本项目面向航天器柔性化、高精度装配需求，开展机器人装配技术的研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2591,
-                "end_char": 2611
+                "start_char": 2252,
+                "end_char": 2284
               },
               "version": "c6e3150de2444194575f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b08e1f083b72"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-11c78ed0427e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Incipient Slip Degree Evaluation Method and Its Application in Adaptive Control of Grasping Force",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c36174d754b",
+      "evidence": [
+        {
+          "quote": "A Novel Incipient Slip Degree Evaluation Method and Its Application in Adaptive Control of Grasping Force",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2692,
+            "end_char": 2796
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-11c78ed0427e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f7ce27fcf51d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种抓取装置、装配设备及其控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77db54fd1a39",
+      "evidence": [
+        {
+          "quote": "一种抓取装置、装配设备及其控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2864,
+            "end_char": 2880
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-11c78ed0427e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-aa9075246635"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Robust Incipient Slip Detection Method With Vision-Based Tactile Sensor Based on Local Deformation Degree",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-643f96e30a1f",
+      "evidence": [
+        {
+          "quote": "A Robust Incipient Slip Detection Method With Vision-Based Tactile Sensor Based on Local Deformation Degree",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2909,
+            "end_char": 3015
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-11c78ed0427e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9e621fb083fa"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于FPC装配的目标引导式机器人系统及其控制方法、装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae6ff2efb002",
+      "evidence": [
+        {
+          "quote": "用于FPC装配的目标引导式机器人系统及其控制方法、装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3082,
+            "end_char": 3108
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f7ce27fcf51d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d43c732e6752"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Measurement of mobile manipulator chassis pose change caused by suspension deformation and end-effector accuracy improvement based on multi-sensor fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c89748e221e3",
+      "evidence": [
+        {
+          "quote": "Measurement of mobile manipulator chassis pose change caused by suspension deformation and end-effector accuracy improvement based on multi-sensor fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3137,
+            "end_char": 3289
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9e621fb083fa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d6c5f21523e1"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人及其控制方法和控制装置、标定方法和标定控制装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-403db4b71cc4",
+      "evidence": [
+        {
+          "quote": "机器人及其控制方法和控制装置、标定方法和标定控制装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3346,
+            "end_char": 3371
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Evaluation, selection and validation of force reconstruction models for vision-based tactile sensors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0b36acc3bffe",
+      "evidence": [
+        {
+          "quote": "Evaluation, selection and validation of force reconstruction models for vision-based tactile sensors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3396,
+            "end_char": 3495
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多自由度腕关节、机械手和机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7185bbf95efa",
+      "evidence": [
+        {
+          "quote": "一种多自由度腕关节、机械手和机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3552,
+            "end_char": 3568
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-Guided Autonomous Block Loading in a Dual-Robot Collaborative Handling Framework",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b22671f0fdd",
+      "evidence": [
+        {
+          "quote": "Vision-Guided Autonomous Block Loading in a Dual-Robot Collaborative Handling Framework",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3596,
+            "end_char": 3682
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pose measurement and assembly of spacecraft components based on assembly features and a consistent coordinate system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eb9617aa1d93",
+      "evidence": [
+        {
+          "quote": "Pose measurement and assembly of spacecraft components based on assembly features and a consistent coordinate system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3742,
+            "end_char": 3857
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Image-Based Visual Servoing With Collision-Free Path Planning for Monocular Vision-Guided Assembly",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3cce356a392f",
+      "evidence": [
+        {
+          "quote": "Image-Based Visual Servoing With Collision-Free Path Planning for Monocular Vision-Guided Assembly",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3905,
+            "end_char": 4002
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time and robust feature detection of continuous marker pattern for dense 3-D deformation measurement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29b89e0dbeb9",
+      "evidence": [
+        {
+          "quote": "Real-time and robust feature detection of continuous marker pattern for dense 3-D deformation measurement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4050,
+            "end_char": 4154
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Model-Based Analysis-Design Approach for Virtual Binocular Vision System With Application to Vision-Based Tactile Sensors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7539bcfd7f17",
+      "evidence": [
+        {
+          "quote": "A Model-Based Analysis-Design Approach for Virtual Binocular Vision System With Application to Vision-Based Tactile Sensors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4215,
+            "end_char": 4337
+          },
+          "version": "c6e3150de2444194575f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

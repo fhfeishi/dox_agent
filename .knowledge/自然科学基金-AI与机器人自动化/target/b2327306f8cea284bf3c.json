@@ -2,15 +2,20 @@
   "doc_id": "b2327306f8cea284bf3c",
   "version": "411eb7a39d2089e85581",
   "source_hash": "ab09c1989ce36712d856d0b71f030dda44d46ec602e2910744973b1cb045473e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:48:15.160745+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.204238+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e9ed82fe15a2",
-          "name": "仿生机器人感知与运动控制",
-          "desc": "借鉴大脑多感觉整合机制，为下一代仿生机器人的感知与控制提供理论依据",
+          "id": "item-1940fa833e6e",
+          "name": "在复杂多变的环境中，大脑通过视觉、听觉、前庭觉等多种感觉提取信息，整合形成了灵活而又可靠的感知，为其做出最有利于生存的运",
+          "desc": "在复杂多变的环境中，大脑通过视觉、听觉、前庭觉等多种感觉提取信息，整合形成了灵活而又可靠的感知，为其做出最有利于生存的运动控制提供了基础。",
           "evidence": [
             {
-              "quote": "本研究结合脑科学与机器人学的研究前沿，将为下一代仿生机器人的制造提供理论依据。",
+              "quote": "在复杂多变的环境中，大脑通过视觉、听觉、前庭觉等多种感觉提取信息，整合形成了灵活而又可靠的感知，为其做出最有利于生存的运动控制提供了基础。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 998,
-                "end_char": 1036
+                "start_char": 656,
+                "end_char": 724
               },
               "version": "411eb7a39d2089e85581"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-0b7f28d12da1",
-          "name": "多感觉整合神经网络机制不清",
-          "desc": "大脑多感觉整合近似贝叶斯最优，但其神经网络结构和神经计算机制不清晰",
-          "evidence": [
-            {
-              "quote": "然而，其具体神经网络结构和神经计算机制仍然并不清晰。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 768,
-                "end_char": 793
-              },
-              "version": "411eb7a39d2089e85581"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-80bff727db37",
-          "name": "生物学神经网络建模",
-          "desc": "基于解剖学和神经电生理数据建立双感觉时空整合的生物学神经网络模型",
+          "id": "item-8dc0399653e4",
+          "name": "进一步的，借助虚拟机器人仿真平台生成多感觉信号（双眼光流以及加速度信号），将仿脑的分布式网络结构与主动有效编码的学习框架",
+          "desc": "进一步的，借助虚拟机器人仿真平台生成多感觉信号（双眼光流以及加速度信号），将仿脑的分布式网络结构与主动有效编码的学习框架相结合，试图建立数据驱动的从原始多感觉信号的表征到运动控制的一体化网络学习模型。",
           "evidence": [
             {
-              "quote": "基于解剖学和神经电生理数据，首先建立双感觉在时间和空间上整合的生物学神经网络模型。",
+              "quote": "进一步的，借助虚拟机器人仿真平台生成多感觉信号（双眼光流以及加速度信号），将仿脑的分布式网络结构与主动有效编码的学习框架相结合，试图建立数据驱动的从原始多感觉信号的表征到运动控制的一体化网络学习模型。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 810,
-                "end_char": 850
-              },
-              "version": "411eb7a39d2089e85581"
-            }
-          ]
-        },
-        {
-          "id": "item-4c9cbdf8ea5d",
-          "name": "仿脑一体化网络学习模型",
-          "desc": "将仿脑分布式网络结构与主动有效编码学习框架结合，建立从多感觉表征到运动控制的一体化模型",
-          "evidence": [
-            {
-              "quote": "将仿脑的分布式网络结构与主动有效编码的学习框架相结合，试图建立数据驱动的从原始多感觉信号的表征到运动控制的一体化网络学习模型。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 888,
+                "start_char": 851,
                 "end_char": 950
               },
               "version": "411eb7a39d2089e85581"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d8cffe205055",
+          "name": "本研究对揭示大脑的多感觉整合机制做出了一定贡献，同时有望为下一代仿生机器人的感知和控制系统提供理论依据。",
+          "desc": "本研究对揭示大脑的多感觉整合机制做出了一定贡献，同时有望为下一代仿生机器人的感知和控制系统提供理论依据。",
+          "evidence": [
+            {
+              "quote": "本研究对揭示大脑的多感觉整合机制做出了一定贡献，同时有望为下一代仿生机器人的感知和控制系统提供理论依据。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2953,
+                "end_char": 3004
+              },
+              "version": "411eb7a39d2089e85581"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,80 @@
       "state": "has",
       "items": [
         {
-          "id": "item-42ee79d99a4d",
-          "name": "仿脑架构任务验证",
-          "desc": "在机器人目标检测与仿脑声源分离任务上验证仿脑架构优越性，并探索芯片产业化可行性",
+          "id": "item-6679b45e793e",
+          "name": "在复杂多变的环境中，大脑通过视觉、听觉、前庭觉等多种感觉提取信息，整合形成了灵活而又可靠的感知，为其做出最有利于生存的运",
+          "desc": "在复杂多变的环境中，大脑通过视觉、听觉、前庭觉等多种感觉提取信息，整合形成了灵活而又可靠的感知，为其做出最有利于生存的运动控制提供了基础。",
           "evidence": [
             {
-              "quote": "我们在机器人目标检测以及仿脑声源分离任务上，验证了该仿脑架构的优越性，并在物联网芯片上探索了产业化的可行性。",
+              "quote": "在复杂多变的环境中，大脑通过视觉、听觉、前庭觉等多种感觉提取信息，整合形成了灵活而又可靠的感知，为其做出最有利于生存的运动控制提供了基础。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2899,
-                "end_char": 2952
+                "start_char": 656,
+                "end_char": 724
               },
               "version": "411eb7a39d2089e85581"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-a0ac40273a7f",
-          "name": "声源分离会议论文",
-          "desc": "发表关于改进退化盲源分离估计技术的会议论文",
+          "id": "item-b410946dfdc5",
+          "name": "大量行为学以及神经电生理学研究显示，大脑的多感觉整合近似符合贝叶斯统计理论预测的最优。",
+          "desc": "大量行为学以及神经电生理学研究显示，大脑的多感觉整合近似符合贝叶斯统计理论预测的最优。",
           "evidence": [
             {
-              "quote": "我们在仿真平台上验证了数据驱动的从原始多感觉信号的表征到运动控制的一体化网络学习模型。",
+              "quote": "大量行为学以及神经电生理学研究显示，大脑的多感觉整合近似符合贝叶斯统计理论预测的最优。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2856,
-                "end_char": 2898
+                "start_char": 725,
+                "end_char": 767
               },
               "version": "411eb7a39d2089e85581"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e9ed82fe15a2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0b7f28d12da1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0b7f28d12da1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-80bff727db37"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0b7f28d12da1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4c9cbdf8ea5d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4c9cbdf8ea5d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-42ee79d99a4d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4c9cbdf8ea5d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a0ac40273a7f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "harvesting partially-disjoint time-frequency information for improving degenerate unmixing estimation technique",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d2e771d4c49c",
+      "evidence": [
+        {
+          "quote": "harvesting partially-disjoint time-frequency information for improving degenerate unmixing estimation technique",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3029,
+            "end_char": 3139
+          },
+          "version": "411eb7a39d2089e85581"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 1,
+    "listed": 1,
+    "by_kind": {
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

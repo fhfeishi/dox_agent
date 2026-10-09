@@ -2,15 +2,20 @@
   "doc_id": "7b0e68025cadabcdbef2",
   "version": "16f3292e2dfa7e0853d1",
   "source_hash": "31121e67bad8a00d153f9736e9dceea146d2ebc54d1d6e23b8d268efbe673ec0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:33:44.885253+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.623407+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fea192620c9f",
-          "name": "无人工厂多智能体协同",
-          "desc": "3C柔性装配、大规模仓储管理、电子晶圆检修等无人工厂典型制造场景",
+          "id": "item-f1d7c8e2db90",
+          "name": "面向新一代工业互联网国家战略需要，构建现代化智慧无人工厂，形成在复杂制造环境中的智能认知-决策一体化技术。",
+          "desc": "面向新一代工业互联网国家战略需要，构建现代化智慧无人工厂，形成在复杂制造环境中的智能认知-决策一体化技术。",
           "evidence": [
             {
-              "quote": "项目以3C柔性装配、大规模仓储管理、电子晶圆检修为典型场景加以验证",
+              "quote": "面向新一代工业互联网国家战略需要，构建现代化智慧无人工厂，形成在复杂制造环境中的智能认知-决策一体化技术。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 643,
+                "end_char": 695
+              },
+              "version": "16f3292e2dfa7e0853d1"
+            }
+          ]
+        },
+        {
+          "id": "item-edbf47868c2d",
+          "name": "项目以3C柔性装配、大规模仓储管理、电子晶圆检修为典型场景加以验证，最终建立面向无人工厂的新理论、新方法和新模型。",
+          "desc": "项目以3C柔性装配、大规模仓储管理、电子晶圆检修为典型场景加以验证，最终建立面向无人工厂的新理论、新方法和新模型。",
+          "evidence": [
+            {
+              "quote": "项目以3C柔性装配、大规模仓储管理、电子晶圆检修为典型场景加以验证，最终建立面向无人工厂的新理论、新方法和新模型。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 970,
-                "end_char": 1002
+                "end_char": 1026
               },
               "version": "16f3292e2dfa7e0853d1"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1c71e99bda4c",
-          "name": "感知噪声与交互受限",
-          "desc": "多模态感知噪声大、环境部分可观、交互受限以及工艺频繁变化",
-          "evidence": [
-            {
-              "quote": "本项目针对无人工厂典型制造场景中多模态感知噪声大、环境部分可观、交互受限以及工艺频繁变化等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2916,
-                "end_char": 2962
-              },
-              "version": "16f3292e2dfa7e0853d1"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-e0a53916d4b6",
-          "name": "多模态表征融合与预训练",
-          "desc": "多模态强化学习表征融合方法与基于技能发现的无监督预训练机制",
+          "id": "item-f36670c24a08",
+          "name": "在算法层面，提出了多模态强化学习表征融合方法、基于技能发现的无监督预训练机制、有限通信条件下的协同决策与通信优化方法，以",
+          "desc": "在算法层面，提出了多模态强化学习表征融合方法、基于技能发现的无监督预训练机制、有限通信条件下的协同决策与通信优化方法，以及面向可变制造任务的策略重用与零射迁移框架，有效提升了多智能体学习效率、协同稳定性和扩展能力。",
           "evidence": [
             {
-              "quote": "提出了多模态强化学习表征融合方法、基于技能发现的无监督预训练机制、有限通信条件下的协同决策与通信优化方法",
+              "quote": "在算法层面，提出了多模态强化学习表征融合方法、基于技能发现的无监督预训练机制、有限通信条件下的协同决策与通信优化方法，以及面向可变制造任务的策略重用与零射迁移框架，有效提升了多智能体学习效率、协同稳定性和扩展能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3067,
-                "end_char": 3118
+                "start_char": 3061,
+                "end_char": 3167
               },
               "version": "16f3292e2dfa7e0853d1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e9df25581378",
-          "name": "有限通信协同决策",
-          "desc": "有限通信条件下的协同决策与通信优化方法",
+          "id": "item-215e23651045",
+          "name": "在理论基础层面，项目构建了面向异源多模态感知、多智能体协同与可变制造环境的统一决策建模框架，深化了对有限交互条件下多智能",
+          "desc": "在理论基础层面，项目构建了面向异源多模态感知、多智能体协同与可变制造环境的统一决策建模框架，深化了对有限交互条件下多智能体协同机理与知识重用机制的理解。",
           "evidence": [
             {
-              "quote": "有效提升了多智能体学习效率、协同稳定性和扩展能力",
+              "quote": "在理论基础层面，项目构建了面向异源多模态感知、多智能体协同与可变制造环境的统一决策建模框架，深化了对有限交互条件下多智能体协同机理与知识重用机制的理解。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3143,
-                "end_char": 3166
+                "start_char": 2985,
+                "end_char": 3060
               },
               "version": "16f3292e2dfa7e0853d1"
             }
-          ]
-        },
-        {
-          "id": "item-e8e0ea90935d",
-          "name": "策略重用与零射迁移",
-          "desc": "面向可变制造任务的策略重用与零射迁移框架",
-          "evidence": [
-            {
-              "quote": "以及面向可变制造任务的策略重用与零射迁移框架",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3120,
-                "end_char": 3141
-              },
-              "version": "16f3292e2dfa7e0853d1"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,80 +107,792 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9c96a77465e6",
-          "name": "论文33篇与专利",
-          "desc": "发表论文33篇（SCI一区TOP 10篇），授权国家发明专利5项，获软件著作权3项",
+          "id": "item-959a418552b8",
+          "name": "面向新一代工业互联网国家战略需要，构建现代化智慧无人工厂，形成在复杂制造环境中的智能认知-决策一体化技术。",
+          "desc": "面向新一代工业互联网国家战略需要，构建现代化智慧无人工厂，形成在复杂制造环境中的智能认知-决策一体化技术。",
           "evidence": [
             {
-              "quote": "以上成果发表论文33篇，其中SCI一区TOP期刊10 篇",
+              "quote": "面向新一代工业互联网国家战略需要，构建现代化智慧无人工厂，形成在复杂制造环境中的智能认知-决策一体化技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3313,
-                "end_char": 3340
+                "start_char": 643,
+                "end_char": 695
               },
               "version": "16f3292e2dfa7e0853d1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-d0aa5b67cd75",
+          "name": "面向无人工厂的多智能体协同与决策机制是工业互联网智能制造与人工智能交叉领域的重要研究热点。",
+          "desc": "面向无人工厂的多智能体协同与决策机制是工业互联网智能制造与人工智能交叉领域的重要研究热点。",
+          "evidence": [
+            {
+              "quote": "面向无人工厂的多智能体协同与决策机制是工业互联网智能制造与人工智能交叉领域的重要研究热点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2812,
+                "end_char": 2856
+              },
+              "version": "16f3292e2dfa7e0853d1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fea192620c9f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1c71e99bda4c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "多仓储机器人强化学习调度的自适应修正奖励塑形方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06e77612c876",
+      "evidence": [
+        {
+          "quote": "多仓储机器人强化学习调度的自适应修正奖励塑形方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3772,
+            "end_char": 3795
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1c71e99bda4c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e0a53916d4b6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Irregular Pupil Localization Network Driven by ResNet Architecture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-79f5b9188112",
+      "evidence": [
+        {
+          "quote": "An Irregular Pupil Localization Network Driven by ResNet Architecture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3824,
+            "end_char": 3892
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1c71e99bda4c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e9df25581378"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Domain adaptation with temporal ensembling to local attention region search for object detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f33c6011756",
+      "evidence": [
+        {
+          "quote": "Domain adaptation with temporal ensembling to local attention region search for object detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3969,
+            "end_char": 4064
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1c71e99bda4c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e8e0ea90935d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Lightweight and fast visual detection method for 3C assembly",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fad8f9188630",
+      "evidence": [
+        {
+          "quote": "Lightweight and fast visual detection method for 3C assembly",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4115,
+            "end_char": 4174
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e8e0ea90935d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9c96a77465e6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on 3C compliant assembly strategy method of manipulator based on deep reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f31b0e52592d",
+      "evidence": [
+        {
+          "quote": "Research on 3C compliant assembly strategy method of manipulator based on deep reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4256,
+            "end_char": 4356
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "基于偏好的合作博弈解的公理化与机制设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f45920a126ef",
+      "evidence": [
+        {
+          "quote": "基于偏好的合作博弈解的公理化与机制设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4432,
+            "end_char": 4450
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Behavior Cloning and Replay of Humanoid Robot via a Depth Camera",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff6dfb710884",
+      "evidence": [
+        {
+          "quote": "Behavior Cloning and Replay of Humanoid Robot via a Depth Camera",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4483,
+            "end_char": 4546
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于电机与外力耦合的机器人动力学物理信息预测神经网络构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6bffc2470cff",
+      "evidence": [
+        {
+          "quote": "基于电机与外力耦合的机器人动力学物理信息预测神经网络构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4621,
+            "end_char": 4650
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MJPR: Multi-Modal Joint Predictive Representation in Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e84fb19a96cc",
+      "evidence": [
+        {
+          "quote": "MJPR: Multi-Modal Joint Predictive Representation in Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4684,
+            "end_char": 4763
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于强化学习的无人机路径规划方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bedb0ceaed1d",
+      "evidence": [
+        {
+          "quote": "一种基于强化学习的无人机路径规划方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4819,
+            "end_char": 4839
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于置换策略网络的移动多智能体知识迁移方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30281dcb6fe6",
+      "evidence": [
+        {
+          "quote": "一种基于置换策略网络的移动多智能体知识迁移方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4868,
+            "end_char": 4890
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhancing Emergency Communications via UAV-Assisted Home-Independent Broadband Mobile Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68f87d02f791",
+      "evidence": [
+        {
+          "quote": "Enhancing Emergency Communications via UAV-Assisted Home-Independent Broadband Mobile Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4929,
+            "end_char": 5022
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical Locality-Aware Deep Dictionary Learning for Classification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d967f85bc3b1",
+      "evidence": [
+        {
+          "quote": "Hierarchical Locality-Aware Deep Dictionary Learning for Classification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5061,
+            "end_char": 5131
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Using Goal-Conditioned Reinforcement Learning With Deep Imitation to Control Robot Arm in Flexible Flat Cable Assembly Task",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5790133e126c",
+      "evidence": [
+        {
+          "quote": "Using Goal-Conditioned Reinforcement Learning With Deep Imitation to Control Robot Arm in Flexible Flat Cable Assembly Task",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5206,
+            "end_char": 5328
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Graph-Based Communication Optimization for Multi-Agent Reinforcement Learning in Unmanned Warehousing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9fd542d0e2c1",
+      "evidence": [
+        {
+          "quote": "Graph-Based Communication Optimization for Multi-Agent Reinforcement Learning in Unmanned Warehousing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5382,
+            "end_char": 5482
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Modeling of Robotic Manipulator via an Augmented Deep Lagrangian Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06e16f55d8f8",
+      "evidence": [
+        {
+          "quote": "Dynamic Modeling of Robotic Manipulator via an Augmented Deep Lagrangian Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5544,
+            "end_char": 5623
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第三届“未来工业互联网”学术论坛优秀论文",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec2b2b7ab025",
+      "evidence": [
+        {
+          "quote": "第三届“未来工业互联网”学术论坛优秀论文",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5686,
+            "end_char": 5705
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "TMAC: a Transformer-based partially observable multi-agent communication method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e6e06b9d5b7c",
+      "evidence": [
+        {
+          "quote": "TMAC: a Transformer-based partially observable multi-agent communication method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5736,
+            "end_char": 5814
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "分布式多智能体群体智能协同决策理论与方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f75e1628691",
+      "evidence": [
+        {
+          "quote": "分布式多智能体群体智能协同决策理论与方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5867,
+            "end_char": 5886
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neighborhood-Curiosity-Based Exploration in Multiagent Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-67a1fb640798",
+      "evidence": [
+        {
+          "quote": "Neighborhood-Curiosity-Based Exploration in Multiagent Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5933,
+            "end_char": 6009
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "T-S fuzzy model based event-triggered change control for product and supply chain systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a1ddd7cf3f9",
+      "evidence": [
+        {
+          "quote": "T-S fuzzy model based event-triggered change control for product and supply chain systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6068,
+            "end_char": 6156
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Decentralized Communication Framework based on Dual-Level Recurrence for Multi-Agent Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3bae6564c100",
+      "evidence": [
+        {
+          "quote": "A Decentralized Communication Framework based on Dual-Level Recurrence for Multi-Agent Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6228,
+            "end_char": 6336
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Simplifying communication control: a cooperative multi-agent reinforcement learning framework based on group decision-making",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-97ef7592bbb0",
+      "evidence": [
+        {
+          "quote": "Simplifying communication control: a cooperative multi-agent reinforcement learning framework based on group decision-making",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6399,
+            "end_char": 6522
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DeRL: Coupling Decomposition in Action Space for Reinforcement Learning Task",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b50a55452965",
+      "evidence": [
+        {
+          "quote": "DeRL: Coupling Decomposition in Action Space for Reinforcement Learning Task",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6571,
+            "end_char": 6646
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度强化学习的无人机避障控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-88ac2c7eca17",
+      "evidence": [
+        {
+          "quote": "基于深度强化学习的无人机避障控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6715,
+            "end_char": 6735
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Remaining lifespan prediction on multiple types of hard disks under conditions of data imbalance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-60318cb0c59d",
+      "evidence": [
+        {
+          "quote": "Remaining lifespan prediction on multiple types of hard disks under conditions of data imbalance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6766,
+            "end_char": 6861
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A segmented motion synthesis method for robotic task-oriented locomotion imitation system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-61fb062e6416",
+      "evidence": [
+        {
+          "quote": "A segmented motion synthesis method for robotic task-oriented locomotion imitation system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6951,
+            "end_char": 7039
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive path planning for wafer second probing via an attention-based hierarchical reinforcement learning framework with shared memory",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9593c6d7e447",
+      "evidence": [
+        {
+          "quote": "Adaptive path planning for wafer second probing via an attention-based hierarchical reinforcement learning framework with shared memory",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7105,
+            "end_char": 7239
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向工业互联网的推−抓协作式机械臂精细化自主抓取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-94d443624078",
+      "evidence": [
+        {
+          "quote": "面向工业互联网的推−抓协作式机械臂精细化自主抓取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7291,
+            "end_char": 7316
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semi-Supervised Detection Model Based on Adaptive Ensemble Learning for Medical Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-885ac7f082a9",
+      "evidence": [
+        {
+          "quote": "Semi-Supervised Detection Model Based on Adaptive Ensemble Learning for Medical Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7351,
+            "end_char": 7436
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-robot Cooperative Navigation Method based on Multi-agent Reinforcement Learning in Sparse Reward Tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77aa5ac5a044",
+      "evidence": [
+        {
+          "quote": "Multi-robot Cooperative Navigation Method based on Multi-agent Reinforcement Learning in Sparse Reward Tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7513,
+            "end_char": 7620
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Quantum versatility in PageRank",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f63299bab278",
+      "evidence": [
+        {
+          "quote": "Quantum versatility in PageRank",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7675,
+            "end_char": 7705
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Extrapolation of Physics-Inspired Deep Networks in Learning Robot Inverse Dynamics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-82fb684fd7e3",
+      "evidence": [
+        {
+          "quote": "Extrapolation of Physics-Inspired Deep Networks in Learning Robot Inverse Dynamics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7797,
+            "end_char": 7878
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Using digital twin to enhance Sim2real transfer for reinforcement learning in 3C assembly",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e417e3435b6",
+      "evidence": [
+        {
+          "quote": "Using digital twin to enhance Sim2real transfer for reinforcement learning in 3C assembly",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7943,
+            "end_char": 8031
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "厚植情怀,双创驱动,三链融合,构建计算机专业研究生创新人才培养新体系",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a24e5dc63b27",
+      "evidence": [
+        {
+          "quote": "厚植情怀,双创驱动,三链融合,构建计算机专业研究生创新人才培养新体系",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8114,
+            "end_char": 8147
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PDRL: Towards Deeper States and Further Behaviors in Unsupervised Skill Discovery by Progressive Diversity",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e146df5a906e",
+      "evidence": [
+        {
+          "quote": "PDRL: Towards Deeper States and Further Behaviors in Unsupervised Skill Discovery by Progressive Diversity",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8180,
+            "end_char": 8285
+          },
+          "version": "16f3292e2dfa7e0853d1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 36,
+    "listed": 36,
+    "by_kind": {
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 23,
+        "extracted": 23
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

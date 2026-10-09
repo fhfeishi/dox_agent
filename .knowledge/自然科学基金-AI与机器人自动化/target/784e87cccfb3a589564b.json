@@ -2,15 +2,20 @@
   "doc_id": "784e87cccfb3a589564b",
   "version": "bf76ef31fa8ffd8e5cc5",
   "source_hash": "4ebf18046ba109660cd9f7599e6547862091800761030304c38e97d4f842f789",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:29.393282+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.603207+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4c3f5c91fe92",
-          "name": "三维复杂形体纤维缠绕",
-          "desc": "复合材料复杂构件的机器人纤维缠绕成型",
+          "id": "item-1aff38e834ae",
+          "name": "纤维缠绕技术能够生产出具有优异强度重量比的复合材料制品，广泛应用于军工与国民经济等领域。",
+          "desc": "纤维缠绕技术能够生产出具有优异强度重量比的复合材料制品，广泛应用于军工与国民经济等领域。",
           "evidence": [
             {
-              "quote": "机器人纤维缠绕技术特别适合外形复杂的复合材料结构的高精度成型制造，实现纤维缠绕单元的模块化和柔性化，满足大范围小批量的生产任务需求。",
+              "quote": "纤维缠绕技术能够生产出具有优异强度重量比的复合材料制品，广泛应用于军工与国民经济等领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2702,
-                "end_char": 2767
+                "start_char": 647,
+                "end_char": 690
               },
               "version": "bf76ef31fa8ffd8e5cc5"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-55762bcaad2e",
-          "name": "轨迹设计灵活性低",
-          "desc": "传统方法形体范围有限、轨迹设计灵活性低",
+          "id": "item-8f95eae4a2ff",
+          "name": "项目围绕三维复杂形体机器人纤维缠绕过程的稳定轨迹生成、整体轨迹图案设计、机器人协调缠绕运动规划等关键科学问题，提出了基于",
+          "desc": "项目围绕三维复杂形体机器人纤维缠绕过程的稳定轨迹生成、整体轨迹图案设计、机器人协调缠绕运动规划等关键科学问题，提出了基于多自由度非测地线缠绕模式的典型三维复杂形体的稳定缠绕轨迹生成方法，提高了纤维轨迹的灵活性与设计空间；",
           "evidence": [
             {
-              "quote": "传统的纤维缠绕轨迹设计方法适用的形体范围有限、轨迹设计灵活性低，无法满足整体轨迹图案均匀分布且布满的工艺需求。",
+              "quote": "项目围绕三维复杂形体机器人纤维缠绕过程的稳定轨迹生成、整体轨迹图案设计、机器人协调缠绕运动规划等关键科学问题，提出了基于多自由度非测地线缠绕模式的典型三维复杂形体的稳定缠绕轨迹生成方法，提高了纤维轨迹的灵活性与设计空间；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2815,
-                "end_char": 2869
+                "start_char": 2936,
+                "end_char": 3045
               },
               "version": "bf76ef31fa8ffd8e5cc5"
             }
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b9f1e0f6c1e8",
-          "name": "非测地线稳定轨迹生成",
-          "desc": "多自由度非测地线缠绕模式提高灵活性与设计空间",
+          "id": "item-9867471eb046",
+          "name": "提出了基于体素模型的复杂形体轨迹图案设计方法，并考虑铺层厚度对轨迹图案的影响，实现了纤维缠绕制品的整体结构优化设计；",
+          "desc": "提出了基于体素模型的复杂形体轨迹图案设计方法，并考虑铺层厚度对轨迹图案的影响，实现了纤维缠绕制品的整体结构优化设计；",
           "evidence": [
             {
-              "quote": "提出了基于多自由度非测地线缠绕模式的典型三维复杂形体的稳定缠绕轨迹生成方法，提高了纤维轨迹的灵活性与设计空间",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2991,
-                "end_char": 3044
-              },
-              "version": "bf76ef31fa8ffd8e5cc5"
-            }
-          ]
-        },
-        {
-          "id": "item-f3dd4c8fa2a1",
-          "name": "体素模型图案设计",
-          "desc": "体素模型轨迹图案设计考虑铺层厚度优化整体结构",
-          "evidence": [
-            {
-              "quote": "提出了基于体素模型的复杂形体轨迹图案设计方法，并考虑铺层厚度对轨迹图案的影响，实现了纤维缠绕制品的整体结构优化设计",
+              "quote": "提出了基于体素模型的复杂形体轨迹图案设计方法，并考虑铺层厚度对轨迹图案的影响，实现了纤维缠绕制品的整体结构优化设计；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3046,
-                "end_char": 3102
+                "end_char": 3103
               },
               "version": "bf76ef31fa8ffd8e5cc5"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-60e277584d91",
+          "name": "根据形体中心线提取的区间自适应划分，研究基于轮廓节点、轨迹始末方向、滑动系数等多种方式控制的机器人缠绕图案设计方法；",
+          "desc": "根据形体中心线提取的区间自适应划分，研究基于轮廓节点、轨迹始末方向、滑动系数等多种方式控制的机器人缠绕图案设计方法；",
+          "evidence": [
+            {
+              "quote": "根据形体中心线提取的区间自适应划分，研究基于轮廓节点、轨迹始末方向、滑动系数等多种方式控制的机器人缠绕图案设计方法；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 842,
+                "end_char": 899
+              },
+              "version": "bf76ef31fa8ffd8e5cc5"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,108 +108,388 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bc8411946ca6",
-          "name": "悬纱自适应运动规划",
-          "desc": "悬纱长度自适应变化的时间最优协调运动规划",
+          "id": "item-cb4d4f0348d6",
+          "name": "纤维缠绕技术能够生产出具有优异强度重量比的复合材料制品，广泛应用于军工与国民经济等领域。",
+          "desc": "纤维缠绕技术能够生产出具有优异强度重量比的复合材料制品，广泛应用于军工与国民经济等领域。",
           "evidence": [
             {
-              "quote": "提出了基于悬纱长度自适应变化的时间最优协调运动规划方法，实现了高效、精确、平稳的机器人纤维缠绕运动",
+              "quote": "纤维缠绕技术能够生产出具有优异强度重量比的复合材料制品，广泛应用于军工与国民经济等领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3104,
-                "end_char": 3152
+                "start_char": 647,
+                "end_char": 690
               },
               "version": "bf76ef31fa8ffd8e5cc5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-7fd7bd020989",
-          "name": "论文7篇专利10项",
-          "desc": "期刊论文7篇（SCI 6）、专利10项（授权2）、软著7项、学会二等奖",
+          "id": "item-07c8f90f9f8e",
+          "name": "机器人纤维缠绕技术特别适合外形复杂的复合材料结构的高精度成型制造，实现纤维缠绕单元的模块化和柔性化，满足大范围小批量的生",
+          "desc": "机器人纤维缠绕技术特别适合外形复杂的复合材料结构的高精度成型制造，实现纤维缠绕单元的模块化和柔性化，满足大范围小批量的生产任务需求。",
           "evidence": [
             {
-              "quote": "项目执行期间，发表学术期刊论文7篇（其中6篇被SCI收录），申请发明专利10项（其中授权2项），登记软件著作权7项，获中国复合材料学会科学技术奖二等奖（排名13）",
+              "quote": "机器人纤维缠绕技术特别适合外形复杂的复合材料结构的高精度成型制造，实现纤维缠绕单元的模块化和柔性化，满足大范围小批量的生产任务需求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3213,
-                "end_char": 3293
+                "start_char": 2702,
+                "end_char": 2767
               },
               "version": "bf76ef31fa8ffd8e5cc5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4c3f5c91fe92"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-55762bcaad2e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种含障碍物容器缠绕轨迹确定方法、系统及电子设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-56e981a68cec",
+      "evidence": [
+        {
+          "quote": "一种含障碍物容器缠绕轨迹确定方法、系统及电子设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3438,
+            "end_char": 3461
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-55762bcaad2e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b9f1e0f6c1e8"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种适用于筒形件的缠绕成型模具及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a410918cc84",
+      "evidence": [
+        {
+          "quote": "一种适用于筒形件的缠绕成型模具及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3503,
+            "end_char": 3520
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-55762bcaad2e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f3dd4c8fa2a1"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种悬臂丝嘴张力控制装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eb484547734d",
+      "evidence": [
+        {
+          "quote": "一种悬臂丝嘴张力控制装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3569,
+            "end_char": 3580
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-55762bcaad2e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bc8411946ca6"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于弯管成型的纤维缠绕机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f75784a09cec",
+      "evidence": [
+        {
+          "quote": "一种用于弯管成型的纤维缠绕机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3634,
+            "end_char": 3649
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "成果",
-        "item_id": "item-bc8411946ca6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7fd7bd020989"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种导弹发射筒三向应力确定方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6283f509fc41",
+      "evidence": [
+        {
+          "quote": "一种导弹发射筒三向应力确定方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3701,
+            "end_char": 3718
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f3dd4c8fa2a1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7fd7bd020989"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "纤维缠绕储氢气瓶逐层更新建模方法与性能评估",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c1dd0206c67",
+      "evidence": [
+        {
+          "quote": "纤维缠绕储氢气瓶逐层更新建模方法与性能评估",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3758,
+            "end_char": 3778
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Perforation of carbon fiber reinforced plastic laminates struck transversely by hemispherical-nosed projectiles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-532a43098270",
+      "evidence": [
+        {
+          "quote": "Perforation of carbon fiber reinforced plastic laminates struck transversely by hemispherical-nosed projectiles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3822,
+            "end_char": 3932
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "碳纤维复合材料高精度缠绕设计与成型关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d3dd6652f33d",
+      "evidence": [
+        {
+          "quote": "碳纤维复合材料高精度缠绕设计与成型关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4036,
+            "end_char": 4059
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种纤维圆管缠绕装置及其使用方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b171d1467fde",
+      "evidence": [
+        {
+          "quote": "一种纤维圆管缠绕装置及其使用方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4120,
+            "end_char": 4135
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于椭圆型体纤维缠绕线型设计的仿真方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba9089a625f6",
+      "evidence": [
+        {
+          "quote": "一种用于椭圆型体纤维缠绕线型设计的仿真方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4190,
+            "end_char": 4213
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimisation of recycling process parameters of carbon fibre in epoxy matrix composites",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c2ba57ff8bb",
+      "evidence": [
+        {
+          "quote": "Optimisation of recycling process parameters of carbon fibre in epoxy matrix composites",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4267,
+            "end_char": 4353
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-objective optimization of frequency and damping of vertical stabilizer skin structure placed with variable-angle tows",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-290805027bde",
+      "evidence": [
+        {
+          "quote": "Multi-objective optimization of frequency and damping of vertical stabilizer skin structure placed with variable-angle tows",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4479,
+            "end_char": 4601
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种纤维缠绕丝嘴装置及运行方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ab70786dffe4",
+      "evidence": [
+        {
+          "quote": "一种纤维缠绕丝嘴装置及运行方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4726,
+            "end_char": 4740
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Automatic method to calculate the storage volume of refrigerator assembly based on binary voxel images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24337c1d2378",
+      "evidence": [
+        {
+          "quote": "Automatic method to calculate the storage volume of refrigerator assembly based on binary voxel images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4797,
+            "end_char": 4898
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and fabrication of carbon-fiber-wound composite pressure vessel with HDPE liner",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7cfcd3844b7a",
+      "evidence": [
+        {
+          "quote": "Design and fabrication of carbon-fiber-wound composite pressure vessel with HDPE liner",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4979,
+            "end_char": 5064
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种封头缠绕层厚度预测方法及验证方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a284222e0d66",
+      "evidence": [
+        {
+          "quote": "一种封头缠绕层厚度预测方法及验证方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5200,
+            "end_char": 5217
+          },
+          "version": "bf76ef31fa8ffd8e5cc5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "专利": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

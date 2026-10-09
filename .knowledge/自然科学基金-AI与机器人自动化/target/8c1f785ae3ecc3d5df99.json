@@ -2,15 +2,20 @@
   "doc_id": "8c1f785ae3ecc3d5df99",
   "version": "08c1696d4cae97ca994d",
   "source_hash": "4540ddbf7b143927daed30087d828bfb1ea9b46141118503abff54d1c5f808f1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:24.444180+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.787498+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2ffb0e62743d",
-          "name": "WSN复杂场景节点定位",
-          "desc": "覆盖空洞与边界效应影响下无线传感器网络节点定位",
+          "id": "item-efb0e7863323",
+          "name": "无线传感器网络（WSN）中的节点定位技术是一种重要的有实际应用价值的技术，对于位置敏感的数据采集、分析、处理和应用都具有",
+          "desc": "无线传感器网络（WSN）中的节点定位技术是一种重要的有实际应用价值的技术，对于位置敏感的数据采集、分析、处理和应用都具有重要的意义。",
           "evidence": [
             {
-              "quote": "然而，WSN中受到覆盖空洞和边界效应的影响，针对复杂场景的大型WSN网络还缺乏可靠和准确的定位方案。特别是如何提高边界节点的定位精度和定位可靠性的难题至今未得到有效解决",
+              "quote": "无线传感器网络（WSN）中的节点定位技术是一种重要的有实际应用价值的技术，对于位置敏感的数据采集、分析、处理和应用都具有重要的意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 740,
-                "end_char": 823
+                "start_char": 653,
+                "end_char": 718
               },
               "version": "08c1696d4cae97ca994d"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-10a9b0b06815",
-          "name": "恶意锚节点虚假消息",
-          "desc": "锚节点受攻击或环境变化被捕获为恶意锚节点发送虚假消息影响定位",
+          "id": "item-1e247a80cfe6",
+          "name": "当定位问题难以求解时，研究了灰狼智能优化算法，提出了一种多策略组合的GWO算法(MEGWO)和一种强化等级制度的灰狼优化",
+          "desc": "当定位问题难以求解时，研究了灰狼智能优化算法，提出了一种多策略组合的GWO算法(MEGWO)和一种强化等级制度的灰狼优化算法(HSGWO)；",
           "evidence": [
             {
-              "quote": "当WSN中的锚节点可能会因为受到攻击或者环境变化而被捕获为恶意锚节点，从而发送虚假消息，影响定位过程。对WSN节点安全定位问题进行了研究",
+              "quote": "当定位问题难以求解时，研究了灰狼智能优化算法，提出了一种多策略组合的GWO算法(MEGWO)和一种强化等级制度的灰狼优化算法(HSGWO)；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2877,
-                "end_char": 2944
+                "start_char": 2807,
+                "end_char": 2876
               },
               "version": "08c1696d4cae97ca994d"
             }
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5458466cd96e",
-          "name": "非测距定位与跳数恢复",
-          "desc": "LAPCD、RF-LAAS、LRAQS等非测距定位与朴素贝叶斯/矩阵补全跳数恢复",
+          "id": "item-799f0fe22342",
+          "name": "在节点定位中，由于不完整的跳数矩阵会影响定位精度，因此提出了基于朴素贝叶斯分类器的跳数矩阵恢复方案(HCMR-NBC)和",
+          "desc": "在节点定位中，由于不完整的跳数矩阵会影响定位精度，因此提出了基于朴素贝叶斯分类器的跳数矩阵恢复方案(HCMR-NBC)和基于矩阵补全的跳数矩阵恢复方案(HCMR-MC)，并进一步优化提出了基于决策树的跳数矩阵恢复方法(HCMR-DT)和基于邻接矩阵的跳数矩阵补全方法(HCMR-AM)帮助恢复得到完整的跳数矩阵，通过仿真实验验证了所提算法在不同形状覆盖空洞中的矩阵恢复性能优于其他算法；",
           "evidence": [
             {
-              "quote": "提出了基于锚节点对条件判决的非测距定位算法(LAPCD)和基于锚节点自适应选择的非测距定位算法(RF-LAAS)来提高算法的定位精度",
+              "quote": "在节点定位中，由于不完整的跳数矩阵会影响定位精度，因此提出了基于朴素贝叶斯分类器的跳数矩阵恢复方案(HCMR-NBC)和基于矩阵补全的跳数矩阵恢复方案(HCMR-MC)，并进一步优化提出了基于决策树的跳数矩阵恢复方法(HCMR-DT)和基于邻接矩阵的跳数矩阵补全方法(HCMR-AM)帮助恢复得到完整的跳数矩阵，通过仿真实验验证了所提算法在不同形状覆盖空洞中的矩阵恢复性能优于其他算法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2361,
-                "end_char": 2426
+                "start_char": 2568,
+                "end_char": 2760
               },
               "version": "08c1696d4cae97ca994d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-291e2c0720d2",
-          "name": "恶意锚检测与安全定位",
-          "desc": "基于孤立森林的恶意锚节点检测与抗攻击加权最小二乘ARWLS及梯度投影GPB算法",
+          "id": "item-2f282265f080",
+          "name": "在此基础上，建立并优化数学模型，进行理论分析和数据仿真，对定位错误模式进行修正，以提高WSN中节点定位的准确性及感知位置",
+          "desc": "在此基础上，建立并优化数学模型，进行理论分析和数据仿真，对定位错误模式进行修正，以提高WSN中节点定位的准确性及感知位置的可靠性。",
           "evidence": [
             {
-              "quote": "提出了基于孤立森林的恶意锚节点检测算法以及一种抵抗攻击的加权最小二乘算法(ARWLS)对目标节点定位；另外还提出了一种基于梯度投影恢复稀疏项的安全定位算法(GPB)",
+              "quote": "在此基础上，建立并优化数学模型，进行理论分析和数据仿真，对定位错误模式进行修正，以提高WSN中节点定位的准确性及感知位置的可靠性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2946,
-                "end_char": 3027
+                "start_char": 899,
+                "end_char": 963
               },
               "version": "08c1696d4cae97ca994d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +108,892 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ab41f415033f",
-          "name": "多空洞形状验证",
-          "desc": "仿真验证所提算法在不同形状覆盖空洞网络中的定位精度性能均有提高",
+          "id": "item-b88ef4c5e401",
+          "name": "无线传感器网络（WSN）中的节点定位技术是一种重要的有实际应用价值的技术，对于位置敏感的数据采集、分析、处理和应用都具有",
+          "desc": "无线传感器网络（WSN）中的节点定位技术是一种重要的有实际应用价值的技术，对于位置敏感的数据采集、分析、处理和应用都具有重要的意义。",
           "evidence": [
             {
-              "quote": "并通过仿真实验验证了所提算法在不同形状覆盖空洞网络中的定位精度性能均有提高",
+              "quote": "无线传感器网络（WSN）中的节点定位技术是一种重要的有实际应用价值的技术，对于位置敏感的数据采集、分析、处理和应用都具有重要的意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2530,
-                "end_char": 2566
+                "start_char": 653,
+                "end_char": 718
               },
               "version": "08c1696d4cae97ca994d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-3a041d19e735",
-          "name": "WiFi室内定位深化",
-          "desc": "提出基于深度学习的WiFi室内定位算法提升定位精度，研究灰狼智能优化算法",
+          "id": "item-33ac49adc05c",
+          "name": "本项目首先研究了存在覆盖空洞的WSN非测距节点定位算法，提出了基于锚节点对条件判决的非测距定位算法(LAPCD)和基于锚",
+          "desc": "本项目首先研究了存在覆盖空洞的WSN非测距节点定位算法，提出了基于锚节点对条件判决的非测距定位算法(LAPCD)和基于锚节点自适应选择的非测距定位算法(RF-LAAS)来提高算法的定位精度，并通过利用锚节点对与未知节点结合所提供的几何信息对LAPCD算法进一步优化。",
           "evidence": [
             {
-              "quote": "另外，对室内WiFi定位进行了研究，提出了基于深度学习的WiFi室内定位算法，提升定位精度；当定位问题难以求解时，研究了灰狼智能优化算法",
+              "quote": "本项目首先研究了存在覆盖空洞的WSN非测距节点定位算法，提出了基于锚节点对条件判决的非测距定位算法(LAPCD)和基于锚节点自适应选择的非测距定位算法(RF-LAAS)来提高算法的定位精度，并通过利用锚节点对与未知节点结合所提供的几何信息对LAPCD算法进一步优化。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2761,
-                "end_char": 2828
+                "start_char": 2333,
+                "end_char": 2465
               },
               "version": "08c1696d4cae97ca994d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2ffb0e62743d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-10a9b0b06815"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于堆栈自编码器的无线传感器网络非测距定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9b4d6646a9b",
+      "evidence": [
+        {
+          "quote": "一种基于堆栈自编码器的无线传感器网络非测距定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3120,
+            "end_char": 3144
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-10a9b0b06815"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5458466cd96e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Range-free Localization Based on Adaptive Anchor Selection for Wireless Sensor Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0cab7d0084e9",
+      "evidence": [
+        {
+          "quote": "Range-free Localization Based on Adaptive Anchor Selection for Wireless Sensor Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3170,
+            "end_char": 3256
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-10a9b0b06815"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-291e2c0720d2"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于图卷积神经网络的节点定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-afdab6213512",
+      "evidence": [
+        {
+          "quote": "一种基于图卷积神经网络的节点定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3299,
+            "end_char": 3316
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-291e2c0720d2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ab41f415033f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Range-Based Secure Localization Algorithm for Wireless Sensor Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5354305a680d",
+      "evidence": [
+        {
+          "quote": "A Range-Based Secure Localization Algorithm for Wireless Sensor Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3338,
+            "end_char": 3409
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5458466cd96e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3a041d19e735"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于残差网络的WiFi指纹定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c525662cc63f",
+      "evidence": [
+        {
+          "quote": "基于残差网络的WiFi指纹定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3478,
+            "end_char": 3494
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Local Centroid Distance Constrained Representation-Based K-Nearest Neighbor Classifier",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bac98437d459",
+      "evidence": [
+        {
+          "quote": "Local Centroid Distance Constrained Representation-Based K-Nearest Neighbor Classifier",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3519,
+            "end_char": 3604
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Range-free Localization Using Extreme Learning Machine and Ring-shaped Salp Swarm Algorithm in Anisotropic Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-04cd5024e63c",
+      "evidence": [
+        {
+          "quote": "Range-free Localization Using Extreme Learning Machine and Ring-shaped Salp Swarm Algorithm in Anisotropic Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3662,
+            "end_char": 3776
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Recovery Schemes of Hop Count Matrix via Topology Inference and Applications in Range-free Localization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d27d8458879",
+      "evidence": [
+        {
+          "quote": "Recovery Schemes of Hop Count Matrix via Topology Inference and Applications in Range-free Localization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3833,
+            "end_char": 3935
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LDPC decoding with locally informed dynamic scheduling based on the law of large numbers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f1f88a6ebb27",
+      "evidence": [
+        {
+          "quote": "LDPC decoding with locally informed dynamic scheduling based on the law of large numbers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3985,
+            "end_char": 4072
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于环形樽海鞘算法的无线传感器网络节点定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2029974e03da",
+      "evidence": [
+        {
+          "quote": "一种基于环形樽海鞘算法的无线传感器网络节点定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4137,
+            "end_char": 4161
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A latency‐reduced SC flip decoding algorithm for polar codes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae327b4bb2a5",
+      "evidence": [
+        {
+          "quote": "A latency‐reduced SC flip decoding algorithm for polar codes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4183,
+            "end_char": 4242
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A New Method to determine Basic Probability Assignment based on Interval Number",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5f082a519eb",
+      "evidence": [
+        {
+          "quote": "A New Method to determine Basic Probability Assignment based on Interval Number",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4292,
+            "end_char": 4370
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Detection and Localization Algorithm Based on Sparse Reconstruction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-114944c90bba",
+      "evidence": [
+        {
+          "quote": "Detection and Localization Algorithm Based on Sparse Reconstruction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4413,
+            "end_char": 4479
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于样本边界值及集成多样性的数据分类方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-143d77cc03ce",
+      "evidence": [
+        {
+          "quote": "基于样本边界值及集成多样性的数据分类方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4516,
+            "end_char": 4535
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Influence of the First Erroneous Information Bit on Other Bits in Successive Cancellation Decoding Algorithm for Polar Codes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-801942ecaeba",
+      "evidence": [
+        {
+          "quote": "The Influence of the First Erroneous Information Bit on Other Bits in Successive Cancellation Decoding Algorithm for Polar Codes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4562,
+            "end_char": 4689
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于JCNC的无线传感器网络自适应动态能耗优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-666283f762db",
+      "evidence": [
+        {
+          "quote": "基于JCNC的无线传感器网络自适应动态能耗优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4737,
+            "end_char": 4761
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于樽海鞘算法优化的WSN分簇路由方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-23c3b00a958a",
+      "evidence": [
+        {
+          "quote": "一种基于樽海鞘算法优化的WSN分簇路由方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4782,
+            "end_char": 4802
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Recovery of Hop Count Matrices for the Sensing Nodes in Internet of Things",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-abe5fb94817b",
+      "evidence": [
+        {
+          "quote": "Recovery of Hop Count Matrices for the Sensing Nodes in Internet of Things",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4824,
+            "end_char": 4897
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Threat-Event Detection for Distributed Networks Based on Spatiotemporal Markov Random Field",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-866a404d494e",
+      "evidence": [
+        {
+          "quote": "Threat-Event Detection for Distributed Networks Based on Spatiotemporal Markov Random Field",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4962,
+            "end_char": 5052
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种利用模糊决策的无线传感器网络节点定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f7ff3426f468",
+      "evidence": [
+        {
+          "quote": "一种利用模糊决策的无线传感器网络节点定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5123,
+            "end_char": 5144
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于消息更新范围可变的动态选择策略的LDPC码译码方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a2f7e0880d62",
+      "evidence": [
+        {
+          "quote": "基于消息更新范围可变的动态选择策略的LDPC码译码方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5168,
+            "end_char": 5194
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Blockchain and AI Technology in the Industrial Internet of Things",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-763bec11814a",
+      "evidence": [
+        {
+          "quote": "Blockchain and AI Technology in the Industrial Internet of Things",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5218,
+            "end_char": 5282
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Study on the Basic Probability Assignment Based on Grey Relational Analysis and Gaussian Membership",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4535d06874cb",
+      "evidence": [
+        {
+          "quote": "Study on the Basic Probability Assignment Based on Grey Relational Analysis and Gaussian Membership",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5344,
+            "end_char": 5442
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多项式近似的差分进化节点定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-40b4e0b39414",
+      "evidence": [
+        {
+          "quote": "一种多项式近似的差分进化节点定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5496,
+            "end_char": 5513
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Classifier Combining Local Distance Mean and Centroid for Imbalanced Datasets",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-89aa52aad656",
+      "evidence": [
+        {
+          "quote": "A Classifier Combining Local Distance Mean and Centroid for Imbalanced Datasets",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5536,
+            "end_char": 5614
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于决策树分类器的跳数矩阵恢复方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-789674b928e8",
+      "evidence": [
+        {
+          "quote": "一种基于决策树分类器的跳数矩阵恢复方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5655,
+            "end_char": 5673
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于孤立森林和序贯概率比检验的恶意锚节点检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a63439321b0f",
+      "evidence": [
+        {
+          "quote": "基于孤立森林和序贯概率比检验的恶意锚节点检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5694,
+            "end_char": 5717
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Malicious Anchor Detection Algorithm Based on Isolation Forest and Sequential Probability Ratio Testing (SPRT)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1dd1aab87ed0",
+      "evidence": [
+        {
+          "quote": "A Malicious Anchor Detection Algorithm Based on Isolation Forest and Sequential Probability Ratio Testing (SPRT)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5739,
+            "end_char": 5850
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A New Ensemble Pruning Method Based on Margin and Diversity",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af26981ce704",
+      "evidence": [
+        {
+          "quote": "A New Ensemble Pruning Method Based on Margin and Diversity",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5888,
+            "end_char": 5946
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Low Complexity Neural Network-Based BP Decoder for Polar Codes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7bb164573d23",
+      "evidence": [
+        {
+          "quote": "A Low Complexity Neural Network-Based BP Decoder for Polar Codes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5988,
+            "end_char": 6051
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stacked Auto-Encoders Based Localization without Ranging over Internet of Things",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1655953a4960",
+      "evidence": [
+        {
+          "quote": "Stacked Auto-Encoders Based Localization without Ranging over Internet of Things",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6112,
+            "end_char": 6191
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Improved Segmented Flipped Successive Cancellation List Decoder for Polar Codes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b6fe2ad1c557",
+      "evidence": [
+        {
+          "quote": "An Improved Segmented Flipped Successive Cancellation List Decoder for Polar Codes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6276,
+            "end_char": 6357
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于邻接矩阵构造的跳数矩阵恢复方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-64250b9e149e",
+      "evidence": [
+        {
+          "quote": "一种基于邻接矩阵构造的跳数矩阵恢复方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6409,
+            "end_char": 6427
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "以用户为中心的智能无线网络关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c7e430816b76",
+      "evidence": [
+        {
+          "quote": "以用户为中心的智能无线网络关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6448,
+            "end_char": 6467
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Range-Free Localization Scheme Based on Anchor Pairs Condition Decision in Wireless Sensor Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ff4d465f7f9",
+      "evidence": [
+        {
+          "quote": "A Novel Range-Free Localization Scheme Based on Anchor Pairs Condition Decision in Wireless Sensor Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6523,
+            "end_char": 6629
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Anchor-Pairs Conditional Decision-Based Node Localization for Anisotropic Wireless Sensor Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b710534c510",
+      "evidence": [
+        {
+          "quote": "Anchor-Pairs Conditional Decision-Based Node Localization for Anisotropic Wireless Sensor Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6695,
+            "end_char": 6792
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于无线传感器网络节点定位的数据处理方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0cbb68d076b7",
+      "evidence": [
+        {
+          "quote": "一种用于无线传感器网络节点定位的数据处理方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6828,
+            "end_char": 6849
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Improved Successive Cancellation List Flip Decoder for Polar Codes Based on Key Sets",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-07da24ae6e57",
+      "evidence": [
+        {
+          "quote": "An Improved Successive Cancellation List Flip Decoder for Polar Codes Based on Key Sets",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6875,
+            "end_char": 6961
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种深度学习辅助的Polar码共享权重残差BP译码方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ab9013a19a1e",
+      "evidence": [
+        {
+          "quote": "一种深度学习辅助的Polar码共享权重残差BP译码方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7012,
+            "end_char": 7038
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-strategy ensemble grey wolf optimizer and its application to feature selection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-45feac1846c8",
+      "evidence": [
+        {
+          "quote": "Multi-strategy ensemble grey wolf optimizer and its application to feature selection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7064,
+            "end_char": 7147
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "MALICIOUS ANCHOR NODE DETECTION AND TARGET NODE LOCALIZATION METHOD BASED ON RECOVERY OF SPARSE TERMS",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f3a2f7281af2",
+      "evidence": [
+        {
+          "quote": "MALICIOUS ANCHOR NODE DETECTION AND TARGET NODE LOCALIZATION METHOD BASED ON RECOVERY OF SPARSE TERMS",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7196,
+            "end_char": 7296
+          },
+          "version": "08c1696d4cae97ca994d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 41,
+    "listed": 41,
+    "by_kind": {
+      "专利": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "会议论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

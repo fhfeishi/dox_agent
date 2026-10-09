@@ -2,15 +2,20 @@
   "doc_id": "72e4ab4920122382924c",
   "version": "0ac78cd895f01d1e18f6",
   "source_hash": "9135be2ea6ad1e6de7561a78b795231de900afff88fa0403b272fe395f2f18d5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:29.378687+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.554239+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,31 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8ab244e528fe",
-          "name": "深空探测空间机械臂",
-          "desc": "深空探测任务的机械臂在轨标定",
-          "evidence": [
-            {
-              "quote": "深空探测空间机械臂由于具有高负载自重比，且功耗低、结构紧凑、操作灵活等特点，在深空探测任务中扮演了重要角色，但是其柔性较大易导致末端位姿误差，严重影响机械臂操作精度。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2064,
-                "end_char": 2146
-              },
-              "version": "0ac78cd895f01d1e18f6"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5a7740d0b6b9",
-          "name": "柔性变形致位姿误差",
-          "desc": "发射条件、冲击碰撞与服役变形影响末端操作精度",
+          "id": "item-8bbfc3e20560",
+          "name": "受到发射力学条件、意外冲击或碰撞以及长期服役引起的变形、磨损等多重因素的影响，深空探测空间机械臂在降落后运动学参数会发生",
+          "desc": "受到发射力学条件、意外冲击或碰撞以及长期服役引起的变形、磨损等多重因素的影响，深空探测空间机械臂在降落后运动学参数会发生变化，严重影响其末端操作精度。",
           "evidence": [
             {
               "quote": "受到发射力学条件、意外冲击或碰撞以及长期服役引起的变形、磨损等多重因素的影响，深空探测空间机械臂在降落后运动学参数会发生变化，严重影响其末端操作精度。",
@@ -55,44 +38,67 @@
               "version": "0ac78cd895f01d1e18f6"
             }
           ]
+        },
+        {
+          "id": "item-2a325a7f72a2",
+          "name": "空间探索一般分为地球应用卫星、载人航天和深空探测三大领域。",
+          "desc": "空间探索一般分为地球应用卫星、载人航天和深空探测三大领域。",
+          "evidence": [
+            {
+              "quote": "空间探索一般分为地球应用卫星、载人航天和深空探测三大领域。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1989,
+                "end_char": 2017
+              },
+              "version": "0ac78cd895f01d1e18f6"
+            }
+          ]
         }
       ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-2f0d1d7cb1d2",
-          "name": "相对位姿误差模型",
-          "desc": "考虑位置与转角距离误差的建模及冗余参数判断",
+          "id": "item-507c265390b1",
+          "name": "为此，本课题拟通过分析误差影响规律，建立考虑柔性变形的相对位姿误差模型，并引入强化学习方法优化标定测量构型集合，从而在无",
+          "desc": "为此，本课题拟通过分析误差影响规律，建立考虑柔性变形的相对位姿误差模型，并引入强化学习方法优化标定测量构型集合，从而在无人辅助条件下实现深空探测机械臂运动学参数误差的在线准确辨识，赋予深空探测机械臂智能自主标定能力，提高机械臂末端位姿精度，保证深空探测任务的顺利完成。",
           "evidence": [
             {
-              "quote": "建立考虑位置距离误差和转角距离误差的相对位姿误差模型，提出基于辨识矩阵列相关性的相对位姿误差模型冗余参数判断准则",
+              "quote": "为此，本课题拟通过分析误差影响规律，建立考虑柔性变形的相对位姿误差模型，并引入强化学习方法优化标定测量构型集合，从而在无人辅助条件下实现深空探测机械臂运动学参数误差的在线准确辨识，赋予深空探测机械臂智能自主标定能力，提高机械臂末端位姿精度，保证深空探测任务的顺利完成。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2258,
-                "end_char": 2313
+                "start_char": 722,
+                "end_char": 855
               },
               "version": "0ac78cd895f01d1e18f6"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-00c87a5e5006",
-          "name": "强化学习构型优选",
-          "desc": "引入强化学习优化标定测量构型集合实现在线辨识",
+          "id": "item-569d2551098b",
+          "name": "本课题面向未来深空探索应用，开展深空探测空间机械臂智能在线自标定方法研究工作，取得了如下研究成果：.分析了引起机械臂末端",
+          "desc": "本课题面向未来深空探索应用，开展深空探测空间机械臂智能在线自标定方法研究工作，取得了如下研究成果：.分析了引起机械臂末端定位误差的误差源构成及其特性，揭示了误差源对机械臂末端定位误差的影响规律，提出机械臂最优构型选取策略；",
           "evidence": [
             {
-              "quote": "提出了深空探测空间机械臂智能构型优选与参数辨识方法；建立了一套能够模拟深空探测机械臂自标定的地面实验平台。",
+              "quote": "本课题面向未来深空探索应用，开展深空探测空间机械臂智能在线自标定方法研究工作，取得了如下研究成果：.分析了引起机械臂末端定位误差的误差源构成及其特性，揭示了误差源对机械臂末端定位误差的影响规律，提出机械臂最优构型选取策略；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2315,
-                "end_char": 2367
+                "start_char": 2147,
+                "end_char": 2257
               },
               "version": "0ac78cd895f01d1e18f6"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,508 @@
       "state": "has",
       "items": [
         {
-          "id": "item-87f6dbec8151",
-          "name": "空间站与嫦娥五号应用",
-          "desc": "应用于空间站核心舱机械臂地面验证与嫦娥五号采样",
+          "id": "item-30e0468633f9",
+          "name": "受到发射力学条件、意外冲击或碰撞以及长期服役引起的变形、磨损等多重因素的影响，深空探测空间机械臂在降落后运动学参数会发生",
+          "desc": "受到发射力学条件、意外冲击或碰撞以及长期服役引起的变形、磨损等多重因素的影响，深空探测空间机械臂在降落后运动学参数会发生变化，严重影响其末端操作精度。",
           "evidence": [
             {
-              "quote": "并已成功应用于我国空间站核心舱机械臂的地面实验验证系统和嫦娥五号表取采样机械臂月表采样任务中。",
+              "quote": "受到发射力学条件、意外冲击或碰撞以及长期服役引起的变形、磨损等多重因素的影响，深空探测空间机械臂在降落后运动学参数会发生变化，严重影响其末端操作精度。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2505,
-                "end_char": 2551
+                "start_char": 647,
+                "end_char": 721
               },
               "version": "0ac78cd895f01d1e18f6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-34c0438300f2",
-          "name": "论文16篇与专利8项",
-          "desc": "论文16篇（SCI 11、EI 4）、专利8项授权4项、软著6项",
+          "id": "item-c843c095c82d",
+          "name": "空间探索一般分为地球应用卫星、载人航天和深空探测三大领域。",
+          "desc": "空间探索一般分为地球应用卫星、载人航天和深空探测三大领域。",
           "evidence": [
             {
-              "quote": "在本项目资助下，课题组在国内外期刊上共计发表学术论文16篇，其中包括SCI检索11篇和EI检索4篇；申请相关研究的发明专利8项，其中4项已授权；申请软件著作权6项",
+              "quote": "空间探索一般分为地球应用卫星、载人航天和深空探测三大领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2556,
-                "end_char": 2636
+                "start_char": 1989,
+                "end_char": 2017
               },
               "version": "0ac78cd895f01d1e18f6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8ab244e528fe"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5a7740d0b6b9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "机器人在轨装配无标定视觉伺服对准方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ced968796e94",
+      "evidence": [
+        {
+          "quote": "机器人在轨装配无标定视觉伺服对准方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2693,
+            "end_char": 2710
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5a7740d0b6b9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2f0d1d7cb1d2"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种同质模块化机器人通用数学表征方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8875984a242",
+      "evidence": [
+        {
+          "quote": "一种同质模块化机器人通用数学表征方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2733,
+            "end_char": 2750
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5a7740d0b6b9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-00c87a5e5006"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自组织模块化机器人机电传输接口",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ce9335755179",
+      "evidence": [
+        {
+          "quote": "一种自组织模块化机器人机电传输接口",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2787,
+            "end_char": 2803
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-00c87a5e5006"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-87f6dbec8151"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种同质模块化机器人分布式并行运动学建模方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a2126b7b03b",
+      "evidence": [
+        {
+          "quote": "一种同质模块化机器人分布式并行运动学建模方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2833,
+            "end_char": 2854
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2f0d1d7cb1d2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-34c0438300f2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Controllable Degree Analysis of Space Manipulators with Free-Swing Joint Failure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9c2a91ecf53",
+      "evidence": [
+        {
+          "quote": "Controllable Degree Analysis of Space Manipulators with Free-Swing Joint Failure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2886,
+            "end_char": 2965
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Regulation of Space Manipulators with Free-swinging Joint Failure based on Iterative Learning Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29394d2ffce6",
+      "evidence": [
+        {
+          "quote": "Regulation of Space Manipulators with Free-swinging Joint Failure based on Iterative Learning Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3037,
+            "end_char": 3137
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于手眼相机的双机器人系统标定方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0bc527020e3f",
+      "evidence": [
+        {
+          "quote": "一种基于手眼相机的双机器人系统标定方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3195,
+            "end_char": 3213
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning-Based Visual Servoing for High-Precision Peg-in-Hole Assembly",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52946ecb3240",
+      "evidence": [
+        {
+          "quote": "Learning-Based Visual Servoing for High-Precision Peg-in-Hole Assembly",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3245,
+            "end_char": 3314
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive fuzzy terminal sliding mode control for the free-floating space manipulator with free-swinging joint failure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dd948826cfdb",
+      "evidence": [
+        {
+          "quote": "Adaptive fuzzy terminal sliding mode control for the free-floating space manipulator with free-swinging joint failure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3386,
+            "end_char": 3502
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "考虑弹性变形的月面表取机械臂精度补偿方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f78a1345676",
+      "evidence": [
+        {
+          "quote": "考虑弹性变形的月面表取机械臂精度补偿方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3563,
+            "end_char": 3582
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analysis and Optimization of Motion Coupling for the Coordinated Operation of Flexible Multi-Arm Space Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7074e5f7e5c1",
+      "evidence": [
+        {
+          "quote": "Analysis and Optimization of Motion Coupling for the Coordinated Operation of Flexible Multi-Arm Space Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3610,
+            "end_char": 3718
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种高欠驱动空间机械臂轨迹优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2024e77687a0",
+      "evidence": [
+        {
+          "quote": "一种高欠驱动空间机械臂轨迹优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3791,
+            "end_char": 3807
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A multi-stage regulation strategy of space manipulators with a free-swinging joint failure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d08c128be269",
+      "evidence": [
+        {
+          "quote": "A multi-stage regulation strategy of space manipulators with a free-swinging joint failure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3840,
+            "end_char": 3929
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Teleoperation Method of Space Manipulator Considering both Safety and Efficiency",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5986940b3852",
+      "evidence": [
+        {
+          "quote": "Teleoperation Method of Space Manipulator Considering both Safety and Efficiency",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3998,
+            "end_char": 4077
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Influence Analysis of Joint Effectiveness Partial Loss on the Motion Capability in the Space Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4955dfcbe07a",
+      "evidence": [
+        {
+          "quote": "Influence Analysis of Joint Effectiveness Partial Loss on the Motion Capability in the Space Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4138,
+            "end_char": 4241
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path Planning Strategy for a Manipulator Based on a Heuristically Constructed Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-55662c96b70b",
+      "evidence": [
+        {
+          "quote": "Path Planning Strategy for a Manipulator Based on a Heuristically Constructed Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4301,
+            "end_char": 4385
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种高欠驱动机械臂运动灵巧性评估方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a932a424a015",
+      "evidence": [
+        {
+          "quote": "一种高欠驱动机械臂运动灵巧性评估方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4462,
+            "end_char": 4479
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种轮履腿机器人模糊自适应平衡控制算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35708b36ea27",
+      "evidence": [
+        {
+          "quote": "一种轮履腿机器人模糊自适应平衡控制算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4514,
+            "end_char": 4532
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Control Method of Space Manipulator for Peg-in-Hole Assembly Task Considering Equivalent Stiffness Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e06f6093a0d8",
+      "evidence": [
+        {
+          "quote": "A Control Method of Space Manipulator for Peg-in-Hole Assembly Task Considering Equivalent Stiffness Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4567,
+            "end_char": 4679
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning-Based Reactive Obstacle Avoidance Method for Redundant Manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9aaec49e0e0e",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning-Based Reactive Obstacle Avoidance Method for Redundant Manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4752,
+            "end_char": 4841
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Halt optimization strategy for a space manipulator with a joint-locked failure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-73a2641ee729",
+      "evidence": [
+        {
+          "quote": "Halt optimization strategy for a space manipulator with a joint-locked failure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4926,
+            "end_char": 5003
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fault tolerant motion planning and control of space manipulators with free-swinging joint failure based on controllable degree",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-42b41ab7a912",
+      "evidence": [
+        {
+          "quote": "Fault tolerant motion planning and control of space manipulators with free-swinging joint failure based on controllable degree",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5072,
+            "end_char": 5197
+          },
+          "version": "0ac78cd895f01d1e18f6"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

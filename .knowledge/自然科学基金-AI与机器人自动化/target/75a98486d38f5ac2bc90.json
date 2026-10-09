@@ -2,15 +2,20 @@
   "doc_id": "75a98486d38f5ac2bc90",
   "version": "cb3d65a3153e0aeda567",
   "source_hash": "b02a7c8afb9d2c1cee0b08d41d2a77358299a1be16753dc1fff09ef4588e79c1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:33:44.894853+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.577077+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-70c7eb8b45dc",
-          "name": "脑卒中手部康复训练",
-          "desc": "手部康复机器人帮助脑卒中患者康复训练实现神经康复",
+          "id": "item-ce4f0239e6c4",
+          "name": "脑卒中是目前我国成人致死、致残的首位病因。",
+          "desc": "脑卒中是目前我国成人致死、致残的首位病因。",
           "evidence": [
             {
-              "quote": "手部康复机器人可帮助脑卒中患者康复训练实现神经康复，然而目前存在刚性结构舒适性差、柔性结构控制精度低，训练仅针对运动神经康复等问题，致使患者接受度和康复效率较低",
+              "quote": "脑卒中是目前我国成人致死、致残的首位病因。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3055,
-                "end_char": 3134
+                "start_char": 649,
+                "end_char": 669
               },
               "version": "cb3d65a3153e0aeda567"
             }
@@ -38,93 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5a3d08c30d7c",
-          "name": "刚柔结构与康复效率瓶颈",
-          "desc": "刚性结构舒适性差、柔性结构控制精度低、训练仅针对运动神经康复",
-          "evidence": [
-            {
-              "quote": "目前存在刚性结构舒适性差、柔性结构控制精度低，训练仅针对运动神经康复等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 699,
-                "end_char": 735
-              },
-              "version": "cb3d65a3153e0aeda567"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-9e17489d7e62",
-          "name": "仿螃蟹刚柔耦合机构",
-          "desc": "仿螃蟹刚柔耦合结构的穿戴式手部康复机器人机构设计方法",
+          "id": "item-0fa4a9db9ee9",
+          "name": "从次，项目开展了多模态信息融合的患者运动意图识别与机器人控制方法研究，探索了基于视觉-肌电融合、阵列式肌电-肌力融合、视",
+          "desc": "从次，项目开展了多模态信息融合的患者运动意图识别与机器人控制方法研究，探索了基于视觉-肌电融合、阵列式肌电-肌力融合、视觉大模型，以及阵列式超声的运动意图识别技术，以及人机协同控制方法，用于不同康复阶段患者的运动康复训练。",
           "evidence": [
             {
-              "quote": "提出了仿螃蟹刚柔耦合结构的穿戴式手部康复机器人机构设计方法，实现空间紧凑、兼具刚性保护和柔性穿戴舒适的机器人结构",
+              "quote": "从次，项目开展了多模态信息融合的患者运动意图识别与机器人控制方法研究，探索了基于视觉-肌电融合、阵列式肌电-肌力融合、视觉大模型，以及阵列式超声的运动意图识别技术，以及人机协同控制方法，用于不同康复阶段患者的运动康复训练。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3236,
-                "end_char": 3291
+                "start_char": 3499,
+                "end_char": 3609
               },
               "version": "cb3d65a3153e0aeda567"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-fbeb6e641225",
-          "name": "多通道协同刺激康复",
-          "desc": "穿戴式机器人手套系统实现多通道协同刺激康复训练",
+          "id": "item-16e87e6bedf3",
+          "name": "3）研究生-机双向信息反馈与融合的患者运动意图识别技术，以及人机协调控制方法，实现精确自然的运动控制；",
+          "desc": "3）研究生-机双向信息反馈与融合的患者运动意图识别技术，以及人机协调控制方法，实现精确自然的运动控制；",
           "evidence": [
             {
-              "quote": "设计了穿戴式机器人手套系统，实现多通道协同刺激康复训练",
+              "quote": "3）研究生-机双向信息反馈与融合的患者运动意图识别技术，以及人机协调控制方法，实现精确自然的运动控制；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3413,
-                "end_char": 3439
+                "start_char": 900,
+                "end_char": 950
               },
               "version": "cb3d65a3153e0aeda567"
             }
-          ]
-        },
-        {
-          "id": "item-997b1bb0efa4",
-          "name": "多模态运动意图识别",
-          "desc": "视觉-肌电融合、阵列式肌电-肌力融合、视觉大模型及阵列式超声的运动意图识别技术",
-          "evidence": [
-            {
-              "quote": "探索了基于视觉-肌电融合、阵列式肌电-肌力融合、视觉大模型，以及阵列式超声的运动意图识别技术，以及人机协同控制方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3534,
-                "end_char": 3590
-              },
-              "version": "cb3d65a3153e0aeda567"
-            }
-          ]
-        },
-        {
-          "id": "item-67b906cce575",
-          "name": "多源信息康复评估",
-          "desc": "基于深度学习的面部-肢体动作视频、语音和眼动分析的康复效果评估",
-          "evidence": [
-            {
-              "quote": "开展了基于多源信息融合的康复效果评估技术研究，实现了基于深度学习的面部-肢体动作视频、语音和眼动分析",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3615,
-                "end_char": 3664
-              },
-              "version": "cb3d65a3153e0aeda567"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,91 +91,752 @@
       "state": "has",
       "items": [
         {
-          "id": "item-059be57ce267",
-          "name": "全流程康复提升",
-          "desc": "实现卒中早期识别-水肿痉挛治疗-运动康复训练-效果评估的全流程提升",
+          "id": "item-0ad73cde7411",
+          "name": "脑卒中是目前我国成人致死、致残的首位病因。",
+          "desc": "脑卒中是目前我国成人致死、致残的首位病因。",
           "evidence": [
             {
-              "quote": "实现了卒中的早期识别-初期水肿痉挛康复治疗-中期运动康复训练，后期效果评估的全流程提升，取得了较好的成果",
+              "quote": "脑卒中是目前我国成人致死、致残的首位病因。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3788,
-                "end_char": 3839
+                "start_char": 649,
+                "end_char": 669
               },
               "version": "cb3d65a3153e0aeda567"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-b81158271fff",
+          "name": "手部康复机器人可帮助脑卒中患者康复训练实现神经康复，然而目前存在刚性结构舒适性差、柔性结构控制精度低，训练仅针对运动神经",
+          "desc": "手部康复机器人可帮助脑卒中患者康复训练实现神经康复，然而目前存在刚性结构舒适性差、柔性结构控制精度低，训练仅针对运动神经康复等问题，致使患者接受度和康复效率较低。",
+          "evidence": [
+            {
+              "quote": "手部康复机器人可帮助脑卒中患者康复训练实现神经康复，然而目前存在刚性结构舒适性差、柔性结构控制精度低，训练仅针对运动神经康复等问题，致使患者接受度和康复效率较低。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3055,
+                "end_char": 3135
+              },
+              "version": "cb3d65a3153e0aeda567"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-70c7eb8b45dc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5a3d08c30d7c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal Trajectory Planning and Multimodal Force Control for Robotic Large Surface Rapid Grinding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5073bfab8a74",
+      "evidence": [
+        {
+          "quote": "Optimal Trajectory Planning and Multimodal Force Control for Robotic Large Surface Rapid Grinding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3866,
+            "end_char": 3962
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5a3d08c30d7c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9e17489d7e62"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Rigid and Flexible Structures Coupled System Study and Enhanced Vision-Aided Control for a Versatile Cable Winding Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-61981230a944",
+      "evidence": [
+        {
+          "quote": "Rigid and Flexible Structures Coupled System Study and Enhanced Vision-Aided Control for a Versatile Cable Winding Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4032,
+            "end_char": 4151
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5a3d08c30d7c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fbeb6e641225"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Calibration and Closed-Loop Control Improve Performance of a Force Feedback Device",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e42cc755cb77",
+      "evidence": [
+        {
+          "quote": "Calibration and Closed-Loop Control Improve Performance of a Force Feedback Device",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4215,
+            "end_char": 4296
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5a3d08c30d7c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-997b1bb0efa4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Intelligent Speech Technologies for Transcription, Disease Diagnosis, and Medical Equipment Interactive Control in Smart Hospitals: A Review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f9f574f9b5c",
+      "evidence": [
+        {
+          "quote": "Intelligent Speech Technologies for Transcription, Disease Diagnosis, and Medical Equipment Interactive Control in Smart Hospitals: A Review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4356,
+            "end_char": 4495
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-67b906cce575"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-059be57ce267"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "可变身高与足轮转换人形机器人机构及信息处理控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3b457ec57ac4",
+      "evidence": [
+        {
+          "quote": "可变身高与足轮转换人形机器人机构及信息处理控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4578,
+            "end_char": 4602
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fbeb6e641225"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-059be57ce267"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "具有刚度调节功能的连续体机器人及负载感知控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a91e7d3f713",
+      "evidence": [
+        {
+          "quote": "具有刚度调节功能的连续体机器人及负载感知控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4635,
+            "end_char": 4658
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Early Recognition of Facial Paralysis for Rehabilitation of Stroke Patients Using Visual Perception and AI-Assisted Analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7965945522ff",
+      "evidence": [
+        {
+          "quote": "Early Recognition of Facial Paralysis for Rehabilitation of Stroke Patients Using Visual Perception and AI-Assisted Analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4693,
+            "end_char": 4816
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of a Bio-Inspired Stiffness Controllable Continuum Robot for Object Grasping and Moving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e784d9163130",
+      "evidence": [
+        {
+          "quote": "Design of a Bio-Inspired Stiffness Controllable Continuum Robot for Object Grasping and Moving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4924,
+            "end_char": 5017
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种仿生刚柔耦合可变刚度的连续体机器人及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-45b55b041a12",
+      "evidence": [
+        {
+          "quote": "一种仿生刚柔耦合可变刚度的连续体机器人及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5094,
+            "end_char": 5117
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种穿戴式医疗行为协同监测的心肺复苏辅助系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-65f2fe408c64",
+      "evidence": [
+        {
+          "quote": "一种穿戴式医疗行为协同监测的心肺复苏辅助系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5148,
+            "end_char": 5172
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种连续体机器人可变刚度关节模块及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bfa69c6199e2",
+      "evidence": [
+        {
+          "quote": "一种连续体机器人可变刚度关节模块及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5206,
+            "end_char": 5226
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Rigid and Flexible Structures Coupled Underactuated Hand",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ccb90c00b284",
+      "evidence": [
+        {
+          "quote": "A Rigid and Flexible Structures Coupled Underactuated Hand",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5264,
+            "end_char": 5321
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Speech Feature-Based Machine Learning Model and Smart Devices for Stroke Early Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-309a36b6d1c6",
+      "evidence": [
+        {
+          "quote": "Speech Feature-Based Machine Learning Model and Smart Devices for Stroke Early Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5408,
+            "end_char": 5497
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An adaptive kernel correlation filter algorithm and synchronization error correction method for 3D motion reconstruction of flexible flapping wings using binocular vision",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-55ea26c86f6d",
+      "evidence": [
+        {
+          "quote": "An adaptive kernel correlation filter algorithm and synchronization error correction method for 3D motion reconstruction of flexible flapping wings using binocular vision",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5588,
+            "end_char": 5757
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Interaction-Based Active Perception Method and Vibration-Audio-Visual Information Fusion for Asteroid Surface Material Identification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ca4870486b9",
+      "evidence": [
+        {
+          "quote": "Interaction-Based Active Perception Method and Vibration-Audio-Visual Information Fusion for Asteroid Surface Material Identification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5790,
+            "end_char": 5922
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Criticality and clinical department prediction of ED patients using machine learning based on heterogeneous medical data",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-97410cb409b9",
+      "evidence": [
+        {
+          "quote": "Criticality and clinical department prediction of ED patients using machine learning based on heterogeneous medical data",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5993,
+            "end_char": 6112
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于惯性信息患者上肢恢复评估系统的评估方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-597c926a5d53",
+      "evidence": [
+        {
+          "quote": "基于惯性信息患者上肢恢复评估系统的评估方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6174,
+            "end_char": 6194
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Absolute Localization of Underwater Pipeline Defects Based on Multimodal Information Fusion and Active Perception",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f271917a9c00",
+      "evidence": [
+        {
+          "quote": "Absolute Localization of Underwater Pipeline Defects Based on Multimodal Information Fusion and Active Perception",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6229,
+            "end_char": 6341
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint design, safety margin, and ground experiments of an underactuated asteroid lander",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f7670a4eb81",
+      "evidence": [
+        {
+          "quote": "Joint design, safety margin, and ground experiments of an underactuated asteroid lander",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6411,
+            "end_char": 6497
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种心肺复苏的可穿戴式医生动作采集装置及使用方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d6b71e5f83d9",
+      "evidence": [
+        {
+          "quote": "一种心肺复苏的可穿戴式医生动作采集装置及使用方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6556,
+            "end_char": 6579
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-Time Chest Compression Depth, Rate, Posture, and Person Detections Using Binocular Vision for CPR Training",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06104d58d434",
+      "evidence": [
+        {
+          "quote": "Real-Time Chest Compression Depth, Rate, Posture, and Person Detections Using Binocular Vision for CPR Training",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6614,
+            "end_char": 6724
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种连续体机器人的关节刚度控制机构及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e7bb8ec53e6f",
+      "evidence": [
+        {
+          "quote": "一种连续体机器人的关节刚度控制机构及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6802,
+            "end_char": 6823
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于主动视觉和听觉的医疗行为采集机器人及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d8256899940",
+      "evidence": [
+        {
+          "quote": "基于主动视觉和听觉的医疗行为采集机器人及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6858,
+            "end_char": 6881
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A review of eye-tracking technology and its application in stroke diagnosis and assessment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9254061d9eb4",
+      "evidence": [
+        {
+          "quote": "A review of eye-tracking technology and its application in stroke diagnosis and assessment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6924,
+            "end_char": 7013
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel ED Triage Framework Using Conditional Imputation, Multi-scale Semantic Learning, and Cross-Modal Fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-deec04ffec04",
+      "evidence": [
+        {
+          "quote": "A Novel ED Triage Framework Using Conditional Imputation, Multi-scale Semantic Learning, and Cross-Modal Fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7085,
+            "end_char": 7195
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Wearable Inertial and Pressure Sensors-Based Chest Compression Quality Assessment to Improve Accuracy and Robustness",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c2c003c9ea39",
+      "evidence": [
+        {
+          "quote": "Wearable Inertial and Pressure Sensors-Based Chest Compression Quality Assessment to Improve Accuracy and Robustness",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7250,
+            "end_char": 7365
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A toe-inspired rigid-flexible coupling wheel design method for improving the terrain adaptability of a sewer robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-926e09db0e23",
+      "evidence": [
+        {
+          "quote": "A toe-inspired rigid-flexible coupling wheel design method for improving the terrain adaptability of a sewer robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7436,
+            "end_char": 7549
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Validation of an Aerodynamics and Kinematics Measurement Platform for Flapping-Wing Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-857d2b4051d2",
+      "evidence": [
+        {
+          "quote": "Design and Validation of an Aerodynamics and Kinematics Measurement Platform for Flapping-Wing Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7620,
+            "end_char": 7720
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Ejecting System for Autonomous Takeoff of Flapping-Wing Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-79fa4adbc7dc",
+      "evidence": [
+        {
+          "quote": "An Ejecting System for Autonomous Takeoff of Flapping-Wing Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7773,
+            "end_char": 7837
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂环境下无人系统智能探测关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2e0f5cb1c4cc",
+      "evidence": [
+        {
+          "quote": "复杂环境下无人系统智能探测关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7880,
+            "end_char": 7899
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Detection of Upper Limb Motor Dysfunction for Stroke Patients Using A Wearable Device and A Two-Layer LSTM Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9343d540143",
+      "evidence": [
+        {
+          "quote": "Detection of Upper Limb Motor Dysfunction for Stroke Patients Using A Wearable Device and A Two-Layer LSTM Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7962,
+            "end_char": 8073
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "脑卒中可穿戴式冷热刺激康复系统设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-031da8bcfad0",
+      "evidence": [
+        {
+          "quote": "脑卒中可穿戴式冷热刺激康复系统设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8153,
+            "end_char": 8169
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and Validation of a Flapping-Wing Robot With Compliant Joint-Based Passively Foldable Wings",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7868c389d6d7",
+      "evidence": [
+        {
+          "quote": "Modeling and Validation of a Flapping-Wing Robot With Compliant Joint-Based Passively Foldable Wings",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8190,
+            "end_char": 8289
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种心肺复苏胸外按压合规性检测系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ebf37b46f41f",
+      "evidence": [
+        {
+          "quote": "一种心肺复苏胸外按压合规性检测系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8320,
+            "end_char": 8339
+          },
+          "version": "cb3d65a3153e0aeda567"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 34,
+    "listed": 34,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "专利": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

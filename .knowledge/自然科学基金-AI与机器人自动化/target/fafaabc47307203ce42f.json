@@ -2,15 +2,20 @@
   "doc_id": "fafaabc47307203ce42f",
   "version": "4837a01bfc0a425b2353",
   "source_hash": "401a30f03db643a808194051ebdf95ac16f0549b2c5a8f1b93a40400a1caa1e7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:24.387656+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.980712+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d2ecdf01a6a0",
-          "name": "车身焊渣机器人磨抛",
-          "desc": "视觉引导下车身点焊焊渣的精准检测与自适应磨抛加工",
+          "id": "item-7ee414bcd89b",
+          "name": "本项目提出一套基于视觉引导的车身点焊焊渣机器人磨抛理论与方法，并重点围绕实际加工中的两大难题，开展核心机理和工艺技术研究",
+          "desc": "本项目提出一套基于视觉引导的车身点焊焊渣机器人磨抛理论与方法，并重点围绕实际加工中的两大难题，开展核心机理和工艺技术研究。",
           "evidence": [
             {
-              "quote": "机器人磨抛车身点焊焊渣主要面临随机焊渣的位姿与几何信息难以精准检测、缺乏基于测量数据的加工及质量评估手段等难题，从而限制机器人磨抛技术的应用推广",
+              "quote": "本项目提出一套基于视觉引导的车身点焊焊渣机器人磨抛理论与方法，并重点围绕实际加工中的两大难题，开展核心机理和工艺技术研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 675,
+                "end_char": 735
+              },
+              "version": "4837a01bfc0a425b2353"
+            }
+          ]
+        },
+        {
+          "id": "item-015b7d052c42",
+          "name": "机器人磨抛车身点焊焊渣主要面临随机焊渣的位姿与几何信息难以精准检测、缺乏基于测量数据的加工及质量评估手段等难题，从而限制",
+          "desc": "机器人磨抛车身点焊焊渣主要面临随机焊渣的位姿与几何信息难以精准检测、缺乏基于测量数据的加工及质量评估手段等难题，从而限制机器人磨抛技术的应用推广。",
+          "evidence": [
+            {
+              "quote": "机器人磨抛车身点焊焊渣主要面临随机焊渣的位姿与几何信息难以精准检测、缺乏基于测量数据的加工及质量评估手段等难题，从而限制机器人磨抛技术的应用推广。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2905,
-                "end_char": 2976
+                "end_char": 2977
               },
               "version": "4837a01bfc0a425b2353"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dcd1e487771b",
-          "name": "随机焊渣位姿检测难",
-          "desc": "传统方法难以精准检测随机焊渣的位姿与几何信息",
+          "id": "item-889e5a7bca35",
+          "name": "应用手眼标定、特征匹配、光栅投影、数据拼合等理论方法，研究双目立体视觉系统精确标定、局部点云-全局模型高效匹配、特征区域",
+          "desc": "应用手眼标定、特征匹配、光栅投影、数据拼合等理论方法，研究双目立体视觉系统精确标定、局部点云-全局模型高效匹配、特征区域在线检测及数据高效处理的新方法，突破传统方法难以精准检测随机焊渣的位姿与几何信息（难题1）所引起的焊渣特征区域定位不准确、磨抛去除不充分等问题；",
           "evidence": [
             {
-              "quote": "突破传统方法难以精准检测随机焊渣的位姿与几何信息（难题1）所引起的焊渣特征区域定位不准确、磨抛去除不充分等问题",
+              "quote": "应用手眼标定、特征匹配、光栅投影、数据拼合等理论方法，研究双目立体视觉系统精确标定、局部点云-全局模型高效匹配、特征区域在线检测及数据高效处理的新方法，突破传统方法难以精准检测随机焊渣的位姿与几何信息（难题1）所引起的焊渣特征区域定位不准确、磨抛去除不充分等问题；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 812,
-                "end_char": 866
+                "start_char": 736,
+                "end_char": 867
+              },
+              "version": "4837a01bfc0a425b2353"
+            }
+          ]
+        },
+        {
+          "id": "item-c19be5a02600",
+          "name": "基于视觉测量规模数据和深度卷积神经网络，提出磨抛路径智能规划方法，研究多参数耦合力控机器人磨抛工艺，建立自学习磨抛工艺参",
+          "desc": "基于视觉测量规模数据和深度卷积神经网络，提出磨抛路径智能规划方法，研究多参数耦合力控机器人磨抛工艺，建立自学习磨抛工艺参数库优化加工流程，解决因缺乏基于测量数据的加工及质量评估手段（难题2）从而造成磨抛质量不稳定、磨抛效率低等问题；",
+          "evidence": [
+            {
+              "quote": "基于视觉测量规模数据和深度卷积神经网络，提出磨抛路径智能规划方法，研究多参数耦合力控机器人磨抛工艺，建立自学习磨抛工艺参数库优化加工流程，解决因缺乏基于测量数据的加工及质量评估手段（难题2）从而造成磨抛质量不稳定、磨抛效率低等问题；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 868,
+                "end_char": 983
               },
               "version": "4837a01bfc0a425b2353"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e115b16b2867",
-          "name": "Tool0手眼标定与点云匹配",
-          "desc": "基于{Tool0}的手眼标定方法与WPMAVM大型车身工件标定，匹配0.332s精度0.479mm",
+          "id": "item-e411c3c4df02",
+          "name": "应用手眼标定、特征匹配、光栅投影、数据拼合等理论方法，研究双目立体视觉系统精确标定、局部点云-全局模型高效匹配、特征区域",
+          "desc": "应用手眼标定、特征匹配、光栅投影、数据拼合等理论方法，研究双目立体视觉系统精确标定、局部点云-全局模型高效匹配、特征区域在线检测及数据高效处理的新方法，突破传统方法难以精准检测随机焊渣的位姿与几何信息（难题1）所引起的焊渣特征区域定位不准确、磨抛去除不充分等问题；",
           "evidence": [
             {
-              "quote": "该方法中所提WPMAVM算法对负余量测点和异常余量测点均具有很强的鲁棒性，可有效克服传统ICP、VMM算法易出现的匹配倾斜现象，匹配时间为0.332s且匹配精度达到0.479mm",
+              "quote": "应用手眼标定、特征匹配、光栅投影、数据拼合等理论方法，研究双目立体视觉系统精确标定、局部点云-全局模型高效匹配、特征区域在线检测及数据高效处理的新方法，突破传统方法难以精准检测随机焊渣的位姿与几何信息（难题1）所引起的焊渣特征区域定位不准确、磨抛去除不充分等问题；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3181,
-                "end_char": 3269
+                "start_char": 736,
+                "end_char": 867
               },
               "version": "4837a01bfc0a425b2353"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c525b9bb87ba",
-          "name": "改进YOLOv3焊渣检测",
-          "desc": "改进YOLOv3网络的焊渣缺陷检测算法，召回率准确率F1提升显著",
+          "id": "item-e8f99e695551",
+          "name": "基于视觉测量规模数据和深度卷积神经网络，提出磨抛路径智能规划方法，研究多参数耦合力控机器人磨抛工艺，建立自学习磨抛工艺参",
+          "desc": "基于视觉测量规模数据和深度卷积神经网络，提出磨抛路径智能规划方法，研究多参数耦合力控机器人磨抛工艺，建立自学习磨抛工艺参数库优化加工流程，解决因缺乏基于测量数据的加工及质量评估手段（难题2）从而造成磨抛质量不稳定、磨抛效率低等问题；",
           "evidence": [
             {
-              "quote": "提出了基于改进YOLOv3网络的焊渣缺陷检测算法，解决了原有算法在检测微小焊渣精确度和召回率都比较低的问题。相比原有算法，召回率、准确率和F1_Score分别提升了13.27%、13.05%和0.0859",
+              "quote": "基于视觉测量规模数据和深度卷积神经网络，提出磨抛路径智能规划方法，研究多参数耦合力控机器人磨抛工艺，建立自学习磨抛工艺参数库优化加工流程，解决因缺乏基于测量数据的加工及质量评估手段（难题2）从而造成磨抛质量不稳定、磨抛效率低等问题；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3273,
-                "end_char": 3374
+                "start_char": 868,
+                "end_char": 983
               },
               "version": "4837a01bfc0a425b2353"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +140,608 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bfcb3067c520",
-          "name": "测量加工一体化",
-          "desc": "Dijkstra磨抛路径自主决策与工艺智能数据库，实现车身焊渣视觉检测-磨抛加工一体化",
+          "id": "item-8fa95b65d060",
+          "name": "本项目提出一套基于视觉引导的车身点焊焊渣机器人磨抛理论与方法，并重点围绕实际加工中的两大难题，开展核心机理和工艺技术研究",
+          "desc": "本项目提出一套基于视觉引导的车身点焊焊渣机器人磨抛理论与方法，并重点围绕实际加工中的两大难题，开展核心机理和工艺技术研究。",
           "evidence": [
             {
-              "quote": "提出了基于Dijkstra算法的车身焊渣机器人磨抛路径自主决策方法，解决了检测定位焊渣之后无法局部磨抛车身的难题，开发出车身焊渣机器人磨抛加工路径自主决策软件，实现了车身焊渣“视觉检测-磨抛加工”一体化",
+              "quote": "本项目提出一套基于视觉引导的车身点焊焊渣机器人磨抛理论与方法，并重点围绕实际加工中的两大难题，开展核心机理和工艺技术研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3394,
-                "end_char": 3494
+                "start_char": 675,
+                "end_char": 735
               },
               "version": "4837a01bfc0a425b2353"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-67ed813b1747",
+          "name": "机器人磨抛车身点焊焊渣主要面临随机焊渣的位姿与几何信息难以精准检测、缺乏基于测量数据的加工及质量评估手段等难题，从而限制",
+          "desc": "机器人磨抛车身点焊焊渣主要面临随机焊渣的位姿与几何信息难以精准检测、缺乏基于测量数据的加工及质量评估手段等难题，从而限制机器人磨抛技术的应用推广。",
+          "evidence": [
+            {
+              "quote": "机器人磨抛车身点焊焊渣主要面临随机焊渣的位姿与几何信息难以精准检测、缺乏基于测量数据的加工及质量评估手段等难题，从而限制机器人磨抛技术的应用推广。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2905,
+                "end_char": 2977
+              },
+              "version": "4837a01bfc0a425b2353"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d2ecdf01a6a0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-dcd1e487771b"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "机器人加工视觉测量与力控技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c1b7e4b1bed",
+      "evidence": [
+        {
+          "quote": "机器人加工视觉测量与力控技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3692,
+            "end_char": 3705
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dcd1e487771b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e115b16b2867"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hybrid active/passive force control strategy for grinding marks suppression and profile accuracy enhancement in robotic belt grinding of turbine blade",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b2c7981c47ec",
+      "evidence": [
+        {
+          "quote": "Hybrid active/passive force control strategy for grinding marks suppression and profile accuracy enhancement in robotic belt grinding of turbine blade",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3730,
+            "end_char": 3879
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dcd1e487771b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c525b9bb87ba"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prediction and analysis of material removal characteristics for robotic belt grinding based on single spherical abrasive grain model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7d7cebd6692a",
+      "evidence": [
+        {
+          "quote": "Prediction and analysis of material removal characteristics for robotic belt grinding based on single spherical abrasive grain model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3940,
+            "end_char": 4071
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c525b9bb87ba"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bfcb3067c520"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A technology framework for robotic profiling of blade edges based on model reconstruction and trajectory replanning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b23e90de2615",
+      "evidence": [
+        {
+          "quote": "A technology framework for robotic profiling of blade edges based on model reconstruction and trajectory replanning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4156,
+            "end_char": 4270
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e115b16b2867"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bfcb3067c520"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "机器人磨抛理论、技术与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9470d70c49c9",
+      "evidence": [
+        {
+          "quote": "机器人磨抛理论、技术与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4318,
+            "end_char": 4330
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种盘式打磨头-工件接触界面角偏差估计及补偿方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-932669bb02dc",
+      "evidence": [
+        {
+          "quote": "一种盘式打磨头-工件接触界面角偏差估计及补偿方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4358,
+            "end_char": 4381
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人夹持的柔性打磨轮位姿辨识方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b08ba86d981a",
+      "evidence": [
+        {
+          "quote": "一种机器人夹持的柔性打磨轮位姿辨识方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4405,
+            "end_char": 4423
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Convergent binocular vision algorithm for guiding machining robot under extended imaging dynamic range",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96cee1091b70",
+      "evidence": [
+        {
+          "quote": "Convergent binocular vision algorithm for guiding machining robot under extended imaging dynamic range",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4455,
+            "end_char": 4556
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robotic grinding of complex components: A step towards efficient and intelligent machining - challenges, solutions, and applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e8a7ae86f76",
+      "evidence": [
+        {
+          "quote": "Robotic grinding of complex components: A step towards efficient and intelligent machining - challenges, solutions, and applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4611,
+            "end_char": 4742
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A matrix-solving hand-eye calibration method considering robot kinematic errors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2e5ccf4be570",
+      "evidence": [
+        {
+          "quote": "A matrix-solving hand-eye calibration method considering robot kinematic errors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4831,
+            "end_char": 4909
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An industrial interference-resistant gear defect detection method through improved YOLOv5 network using attention mechanism and feature fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5827e363b42f",
+      "evidence": [
+        {
+          "quote": "An industrial interference-resistant gear defect detection method through improved YOLOv5 network using attention mechanism and feature fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4977,
+            "end_char": 5118
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于去伪加权方差最小化算法的大型复杂零部件局部配准全局方法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9eb874cdadee",
+      "evidence": [
+        {
+          "quote": "基于去伪加权方差最小化算法的大型复杂零部件局部配准全局方法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5177,
+            "end_char": 5207
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards region-based robotic machining system from perspective of intelligent manufacturing: A technology framework with case study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a0e1a1e4d231",
+      "evidence": [
+        {
+          "quote": "Towards region-based robotic machining system from perspective of intelligent manufacturing: A technology framework with case study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5236,
+            "end_char": 5366
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于自动定位的交叉式双目相机标定方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66ecec627e6d",
+      "evidence": [
+        {
+          "quote": "一种基于自动定位的交叉式双目相机标定方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5430,
+            "end_char": 5449
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于TCP坐标系下平移运动的旋转矩阵标定方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-11ec47c41acf",
+      "evidence": [
+        {
+          "quote": "一种基于TCP坐标系下平移运动的旋转矩阵标定方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5481,
+            "end_char": 5504
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于重定位的叶片机器人磨抛系统手眼标定算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d1aee0b33fdb",
+      "evidence": [
+        {
+          "quote": "基于重定位的叶片机器人磨抛系统手眼标定算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5526,
+            "end_char": 5546
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GWM-view: Gradient-weighted multi-view calibration method for machining robot positioning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d647a7754dce",
+      "evidence": [
+        {
+          "quote": "GWM-view: Gradient-weighted multi-view calibration method for machining robot positioning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5579,
+            "end_char": 5667
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analysis and prediction of surface roughness for robotic belt grinding of complex blade considering coexistence of elastic deformation and varying curvature",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-997d1b7d87a4",
+      "evidence": [
+        {
+          "quote": "Analysis and prediction of surface roughness for robotic belt grinding of complex blade considering coexistence of elastic deformation and varying curvature",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5729,
+            "end_char": 5884
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "汽车复杂铸件机器人高效磨抛关键技术、装备及产业化",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fa3b0524da5f",
+      "evidence": [
+        {
+          "quote": "汽车复杂铸件机器人高效磨抛关键技术、装备及产业化",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5958,
+            "end_char": 5981
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "WPMAVM: Weighted plus-and-minus allowance variance minimization algorithm for solving matching distortion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8aea84b3c93",
+      "evidence": [
+        {
+          "quote": "WPMAVM: Weighted plus-and-minus allowance variance minimization algorithm for solving matching distortion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6044,
+            "end_char": 6148
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "用于引导机器人定位的汇聚式双目视觉算法实现",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e076d6a7b64f",
+      "evidence": [
+        {
+          "quote": "用于引导机器人定位的汇聚式双目视觉算法实现",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6203,
+            "end_char": 6223
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An improved SegNet network model for accurate detection and segmentation of car body welding slags",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a366c44c69c",
+      "evidence": [
+        {
+          "quote": "An improved SegNet network model for accurate detection and segmentation of car body welding slags",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6253,
+            "end_char": 6350
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Compliant Force Control Strategy for Suppressing Vibrations and Over-Grinding of Robotic Belt Grinding System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10f32c9154c5",
+      "evidence": [
+        {
+          "quote": "Dynamic Compliant Force Control Strategy for Suppressing Vibrations and Over-Grinding of Robotic Belt Grinding System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6437,
+            "end_char": 6553
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Numerical investigation of crack initiation, propagation and suppression in robot-assisted abrasive belt grinding of zirconia ceramics via an improved chip-thickness model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a6f12a1e209",
+      "evidence": [
+        {
+          "quote": "Numerical investigation of crack initiation, propagation and suppression in robot-assisted abrasive belt grinding of zirconia ceramics via an improved chip-thickness model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6646,
+            "end_char": 6816
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于改进YOLOv3网络的车身点焊焊渣精准检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4c90d709664",
+      "evidence": [
+        {
+          "quote": "一种基于改进YOLOv3网络的车身点焊焊渣精准检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6880,
+            "end_char": 6906
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An adaptive trajectory planning algorithm for robotic belt grinding of blade leading and trailing edges based on material removal profile model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-da6f99ef7ef8",
+      "evidence": [
+        {
+          "quote": "An adaptive trajectory planning algorithm for robotic belt grinding of blade leading and trailing edges based on material removal profile model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6929,
+            "end_char": 7071
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An accurate detection method for randomly distributed welding slags using an improved Yolo v3 network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-403bb32ab585",
+      "evidence": [
+        {
+          "quote": "An accurate detection method for randomly distributed welding slags using an improved Yolo v3 network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7125,
+            "end_char": 7225
+          },
+          "version": "4837a01bfc0a425b2353"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 27,
+    "listed": 27,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

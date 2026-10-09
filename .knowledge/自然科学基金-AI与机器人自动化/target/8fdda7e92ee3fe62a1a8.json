@@ -2,15 +2,20 @@
   "doc_id": "8fdda7e92ee3fe62a1a8",
   "version": "068344fbe8938d831deb",
   "source_hash": "c23384d02b88fed983cd3f2b3e117a87ef3bb3eae0aac15aa9aedc93ea81a385",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:19.583748+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.834172+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e24751d38b99",
-          "name": "水下遥操作抓取捕获",
-          "desc": "浅水复杂环境下仿人手臂遥操作抓取柔性对象",
+          "id": "item-9fc862832857",
+          "name": "由于受到风和海流的影响，浅水环境比较复杂，水下作业困难。",
+          "desc": "由于受到风和海流的影响，浅水环境比较复杂，水下作业困难。",
           "evidence": [
             {
-              "quote": "由于受到风和海流的影响，浅水环境比较复杂，水下作业困难。为提高我国海洋工程装备的智能化水平，突破人机交互水下遥操作实时性和稳定性差的难题，以实现准确抓取、安全捕获。",
+              "quote": "由于受到风和海流的影响，浅水环境比较复杂，水下作业困难。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2650,
-                "end_char": 2731
+                "start_char": 640,
+                "end_char": 667
               },
               "version": "068344fbe8938d831deb"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1fc5f0c1f9b4",
-          "name": "大时延影响实时稳定",
-          "desc": "水下遥操作实时性稳定性差，需克服大时延影响",
-          "evidence": [
-            {
-              "quote": "突破人机交互水下遥操作实时性和稳定性差的难题，以实现准确抓取、安全捕获。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2696,
-                "end_char": 2731
-              },
-              "version": "068344fbe8938d831deb"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-1d28060afc42",
-          "name": "虚拟预测水下平台",
-          "desc": "Unity3D虚拟环境与自适应窗口滑动最小二乘在线修正",
+          "id": "item-58429872aa80",
+          "name": ".(2) 提出肌肉协同作用下的自适应抗干扰抓取控制方法.    采用自适应模糊神经网络（ANFIS）的逆模型辨识器和多输",
+          "desc": ".(2) 提出肌肉协同作用下的自适应抗干扰抓取控制方法.    采用自适应模糊神经网络（ANFIS）的逆模型辨识器和多输入多输出（MIMO）系统的抗干扰观测器(DOB）设计了肌肉协同作用下的自适应抗干扰抓取控制方法，通过MATLAB数字仿真验证了所提出方法的快速性，准确性和稳定性，轨迹跟踪精度可达到96%，并且在自行研发的仿人手臂平台上进行了实物抓取实验验证，结果表明所提出的方法能够精确地到达待捕获的柔性物体。",
           "evidence": [
             {
-              "quote": "采用Unity3D以及C++程序构建了虚拟水下遥操作抓取实验平台，建立了虚拟预测水下环境平台，并采用基于自适应窗口滑动最小二乘法对参数进行在线修正。",
+              "quote": ".(2) 提出肌肉协同作用下的自适应抗干扰抓取控制方法.    采用自适应模糊神经网络（ANFIS）的逆模型辨识器和多输入多输出（MIMO）系统的抗干扰观测器(DOB）设计了肌肉协同作用下的自适应抗干扰抓取控制方法，通过MATLAB数字仿真验证了所提出方法的快速性，准确性和稳定性，轨迹跟踪精度可达到96%，并且在自行研发的仿人手臂平台上进行了实物抓取实验验证，结果表明所提出的方法能够精确地到达待捕获的柔性物体。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2780,
-                "end_char": 2853
+                "start_char": 2999,
+                "end_char": 3205
               },
               "version": "068344fbe8938d831deb"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-03fa7bc59851",
-          "name": "ANFIS抗干扰抓取",
-          "desc": "自适应模糊神经网络逆模型与MIMO抗干扰观测器",
+          "id": "item-aeea6b52fe08",
+          "name": ".(3) 末端执行器安全捕获柔性对象的力控制研究.    设计了改进的强化学习轨迹规划算法，基于其提出了自适应迭代学习阻",
+          "desc": ".(3) 末端执行器安全捕获柔性对象的力控制研究.    设计了改进的强化学习轨迹规划算法，基于其提出了自适应迭代学习阻抗控制方法，采用MATLAB对所提出的方法进行了验证，结果表明所提提出的方法的力跟踪精度可以达到95%；",
           "evidence": [
             {
-              "quote": "采用自适应模糊神经网络（ANFIS）的逆模型辨识器和多输入多输出（MIMO）系统的抗干扰观测器(DOB）设计了肌肉协同作用下的自适应抗干扰抓取控制方法",
+              "quote": ".(3) 末端执行器安全捕获柔性对象的力控制研究.    设计了改进的强化学习轨迹规划算法，基于其提出了自适应迭代学习阻抗控制方法，采用MATLAB对所提出的方法进行了验证，结果表明所提提出的方法的力跟踪精度可以达到95%；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3031,
-                "end_char": 3105
+                "start_char": 3206,
+                "end_char": 3317
               },
               "version": "068344fbe8938d831deb"
             }
-          ]
-        },
-        {
-          "id": "item-c3c75b8f2ef5",
-          "name": "强化学习阻抗力控",
-          "desc": "改进强化学习轨迹规划与自适应迭代学习阻抗控制",
-          "evidence": [
-            {
-              "quote": "设计了改进的强化学习轨迹规划算法，基于其提出了自适应迭代学习阻抗控制方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3235,
-                "end_char": 3270
-              },
-              "version": "068344fbe8938d831deb"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +91,229 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1771feaa0af0",
-          "name": "跟踪精度96%",
-          "desc": "轨迹跟踪精度可达96%，力跟踪精度可达95%",
+          "id": "item-677047aa85aa",
+          "name": "由于受到风和海流的影响，浅水环境比较复杂，水下作业困难。",
+          "desc": "由于受到风和海流的影响，浅水环境比较复杂，水下作业困难。",
           "evidence": [
             {
-              "quote": "通过MATLAB数字仿真验证了所提出方法的快速性，准确性和稳定性，轨迹跟踪精度可达到96%",
+              "quote": "由于受到风和海流的影响，浅水环境比较复杂，水下作业困难。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3107,
-                "end_char": 3151
+                "start_char": 640,
+                "end_char": 667
               },
               "version": "068344fbe8938d831deb"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-767ca5621181",
-          "name": "合适力捕获柔性对象",
-          "desc": "抓取实验验证以合适的力捕获柔性对象",
-          "evidence": [
-            {
-              "quote": "基于研制的仿人手臂系统、虚拟预测水下环境平台对柔性物体进行了抓取实验，结果表明所提出的方法能够以合适的力捕获柔性对象。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3373,
-                "end_char": 3431
-              },
-              "version": "068344fbe8938d831deb"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e24751d38b99"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1fc5f0c1f9b4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sliding Mode Impedance Control for Dual Master Single Slave Teleoperation Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e5977abda08",
+      "evidence": [
+        {
+          "quote": "Sliding Mode Impedance Control for Dual Master Single Slave Teleoperation Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3541,
+            "end_char": 3621
+          },
+          "version": "068344fbe8938d831deb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1fc5f0c1f9b4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1d28060afc42"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An input shaping based active vibration control and adaptive RBF impedance control for suppressing the myospasmin upper-limb rehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b2730dee8c2",
+      "evidence": [
+        {
+          "quote": "An input shaping based active vibration control and adaptive RBF impedance control for suppressing the myospasmin upper-limb rehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3654,
+            "end_char": 3792
+          },
+          "version": "068344fbe8938d831deb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1fc5f0c1f9b4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-03fa7bc59851"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel bilateral impedance controls for underwatertele-operation systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc036b653dad",
+      "evidence": [
+        {
+          "quote": "A novel bilateral impedance controls for underwatertele-operation systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3820,
+            "end_char": 3892
+          },
+          "version": "068344fbe8938d831deb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1fc5f0c1f9b4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c3c75b8f2ef5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sliding mode disturbance observer and Q learning-based bilateral control for underwater teleoperation systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a0da04c93e6",
+      "evidence": [
+        {
+          "quote": "Sliding mode disturbance observer and Q learning-based bilateral control for underwater teleoperation systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3920,
+            "end_char": 4028
+          },
+          "version": "068344fbe8938d831deb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-03fa7bc59851"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1771feaa0af0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于气动人工肌肉的仿生上肢",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-521e2a3b8806",
+      "evidence": [
+        {
+          "quote": "基于气动人工肌肉的仿生上肢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4049,
+            "end_char": 4061
+          },
+          "version": "068344fbe8938d831deb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c3c75b8f2ef5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-767ca5621181"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于力翻译机制的多端遥操作滑模阻抗控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-72bb7604f646",
+      "evidence": [
+        {
+          "quote": "基于力翻译机制的多端遥操作滑模阻抗控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4086,
+            "end_char": 4106
+          },
+          "version": "068344fbe8938d831deb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Output-Bounded and RBFNN-Based Position Tracking and Adaptive Force Control for Security Tele-Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af3821be279a",
+      "evidence": [
+        {
+          "quote": "Output-Bounded and RBFNN-Based Position Tracking and Adaptive Force Control for Security Tele-Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4131,
+            "end_char": 4231
+          },
+          "version": "068344fbe8938d831deb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An adaptive bilateral impedance control based on nonlineardisturbance observer for different flexible targets grasping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9b93cd78776",
+      "evidence": [
+        {
+          "quote": "An adaptive bilateral impedance control based on nonlineardisturbance observer for different flexible targets grasping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4300,
+            "end_char": 4417
+          },
+          "version": "068344fbe8938d831deb"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RBF Neural Network based Trajectory Control and Impedance Control of a Upper Limb Tele-rehabilitation Process",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c2129a1d5de",
+      "evidence": [
+        {
+          "quote": "RBF Neural Network based Trajectory Control and Impedance Control of a Upper Limb Tele-rehabilitation Process",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4455,
+            "end_char": 4563
+          },
+          "version": "068344fbe8938d831deb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

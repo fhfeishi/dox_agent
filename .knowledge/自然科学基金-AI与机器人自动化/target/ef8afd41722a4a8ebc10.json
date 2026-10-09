@@ -2,15 +2,20 @@
   "doc_id": "ef8afd41722a4a8ebc10",
   "version": "e247e00e714d29380841",
   "source_hash": "23dfb3ea877bd8ef2c88264da880975881f76b343d43352fcfdaa7b894580dfe",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:52.417162+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.817338+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4f2fdd63c78b",
-          "name": "移动机器人视觉伺服",
-          "desc": "非结构化环境下机载图像反馈的大范围视觉伺服",
+          "id": "item-76c9024c24d8",
+          "name": "视觉伺服是一种利用视觉反馈控制机器人运动的重要方法。",
+          "desc": "视觉伺服是一种利用视觉反馈控制机器人运动的重要方法。",
           "evidence": [
             {
-              "quote": "针对该问题，本项目重点围绕基于机载图像反馈的移动机器人视觉伺服展开了深入研究，系统解决了复杂环境下的移动机器人大范围鲁棒视觉伺服问题。",
+              "quote": "视觉伺服是一种利用视觉反馈控制机器人运动的重要方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3179,
-                "end_char": 3245
+                "start_char": 646,
+                "end_char": 671
+              },
+              "version": "e247e00e714d29380841"
+            }
+          ]
+        },
+        {
+          "id": "item-6a72da962db3",
+          "name": "本项目研究成果拓展了视觉伺服技术，有望应用于自动驾驶与自主泊车、火星探测、意图识别与机器人自主操作等领域。",
+          "desc": "本项目研究成果拓展了视觉伺服技术，有望应用于自动驾驶与自主泊车、火星探测、意图识别与机器人自主操作等领域。",
+          "evidence": [
+            {
+              "quote": "本项目研究成果拓展了视觉伺服技术，有望应用于自动驾驶与自主泊车、火星探测、意图识别与机器人自主操作等领域。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3834,
+                "end_char": 3886
               },
               "version": "e247e00e714d29380841"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5e068b04a5a1",
-          "name": "约束缺失小范围受限",
-          "desc": "未考虑避碰视野饱和约束、需期望图像、工作空间小",
+          "id": "item-e1251399afc0",
+          "name": "针对火星大气密度低、传统旋翼升力不足/雷诺数效应差问题，设计了基于高压微型气泵驱动的火星无人机系统。",
+          "desc": "针对火星大气密度低、传统旋翼升力不足/雷诺数效应差问题，设计了基于高压微型气泵驱动的火星无人机系统。",
           "evidence": [
             {
-              "quote": "现有方法大部分未考虑避碰、相机视野与输入饱和约束，通常需事先拍摄期望图像且大多只适于工作空间较小的场合，应用范围受限。",
+              "quote": "针对火星大气密度低、传统旋翼升力不足/雷诺数效应差问题，设计了基于高压微型气泵驱动的火星无人机系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3120,
-                "end_char": 3178
+                "start_char": 3784,
+                "end_char": 3833
               },
               "version": "e247e00e714d29380841"
             }
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-11aa541ebd93",
-          "name": "无标定饱和视觉伺服",
-          "desc": "深度比自适应律解决控制输入饱和完全无标定问题",
+          "id": "item-4496e58a551c",
+          "name": "基于此，将设计基于机载图像反馈的位姿镇定方法、图像平面轨迹规划算法以及自适应轨迹跟踪控制方法，使移动机器人能在大范围的障",
+          "desc": "基于此，将设计基于机载图像反馈的位姿镇定方法、图像平面轨迹规划算法以及自适应轨迹跟踪控制方法，使移动机器人能在大范围的障碍物环境中平稳、安全到达期望位姿或跟踪期望轨迹。",
           "evidence": [
             {
-              "quote": "设计了无需光流的深度比自适应律以及无标定饱和图像视觉伺服方法，解决了控制输入饱和下仅依靠纯图像位置反馈的移动机器人完全无标定视觉伺服问题。",
+              "quote": "基于此，将设计基于机载图像反馈的位姿镇定方法、图像平面轨迹规划算法以及自适应轨迹跟踪控制方法，使移动机器人能在大范围的障碍物环境中平稳、安全到达期望位姿或跟踪期望轨迹。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3266,
+                "start_char": 905,
+                "end_char": 988
+              },
+              "version": "e247e00e714d29380841"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8a4dbff6d418",
+          "name": "构建了基于更一般特征点的图像运动学模型，设计了无需光流的深度比自适应律以及无标定饱和图像视觉伺服方法，解决了控制输入饱和",
+          "desc": "构建了基于更一般特征点的图像运动学模型，设计了无需光流的深度比自适应律以及无标定饱和图像视觉伺服方法，解决了控制输入饱和下仅依靠纯图像位置反馈的移动机器人完全无标定视觉伺服问题。",
+          "evidence": [
+            {
+              "quote": "构建了基于更一般特征点的图像运动学模型，设计了无需光流的深度比自适应律以及无标定饱和图像视觉伺服方法，解决了控制输入饱和下仅依靠纯图像位置反馈的移动机器人完全无标定视觉伺服问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3246,
                 "end_char": 3334
               },
               "version": "e247e00e714d29380841"
             }
-          ]
-        },
-        {
-          "id": "item-8f241c184a83",
-          "name": "主动照明观测系统",
-          "desc": "基于图像质量评估提高恶劣环境感知精度",
-          "evidence": [
-            {
-              "quote": "设计了基于图像质量评估的主动照明观测系统，可提高恶劣环境下视觉感知、控制的鲁棒性和精度。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3491,
-                "end_char": 3534
-              },
-              "version": "e247e00e714d29380841"
-            }
-          ]
-        },
-        {
-          "id": "item-7bdc5315ea49",
-          "name": "抓取检测与意图识别",
-          "desc": "RGB-D抓取检测全卷积网络与稀疏Transformer意图分类",
-          "evidence": [
-            {
-              "quote": "提出了基于RGB-D的抓取检测高效全卷积网络和优化算法以及融合注意力机制与多任务学习的抓取检测算法，解决了未知场景下机器人抓取的高效、鲁棒检测问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3662,
-                "end_char": 3735
-              },
-              "version": "e247e00e714d29380841"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +124,204 @@
       "state": "has",
       "items": [
         {
-          "id": "item-16ee647a951c",
-          "name": "多领域应用前景",
-          "desc": "拓展视觉伺服技术应用于自动驾驶、火星探测等领域",
+          "id": "item-393d8bb65e32",
+          "name": "视觉伺服是一种利用视觉反馈控制机器人运动的重要方法。",
+          "desc": "视觉伺服是一种利用视觉反馈控制机器人运动的重要方法。",
           "evidence": [
             {
-              "quote": "本项目研究成果拓展了视觉伺服技术，有望应用于自动驾驶与自主泊车、火星探测、意图识别与机器人自主操作等领域。",
+              "quote": "视觉伺服是一种利用视觉反馈控制机器人运动的重要方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3834,
-                "end_char": 3886
+                "start_char": 646,
+                "end_char": 671
               },
               "version": "e247e00e714d29380841"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-c504a3e9e5fd",
+          "name": "视觉伺服是一种利用视觉反馈对机器人运动实施闭环控制的方法。",
+          "desc": "视觉伺服是一种利用视觉反馈对机器人运动实施闭环控制的方法。",
+          "evidence": [
+            {
+              "quote": "视觉伺服是一种利用视觉反馈对机器人运动实施闭环控制的方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3072,
+                "end_char": 3100
+              },
+              "version": "e247e00e714d29380841"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4f2fdd63c78b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5e068b04a5a1"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于云台手眼相机的机械臂位置视觉伺服方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1b2d29f17f6",
+      "evidence": [
+        {
+          "quote": "一种基于云台手眼相机的机械臂位置视觉伺服方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3909,
+            "end_char": 3933
+          },
+          "version": "e247e00e714d29380841"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5e068b04a5a1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-11aa541ebd93"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于高压微型气泵驱动的火星无人机系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8d64d3f516f",
+      "evidence": [
+        {
+          "quote": "基于高压微型气泵驱动的火星无人机系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3953,
+            "end_char": 3973
+          },
+          "version": "e247e00e714d29380841"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5e068b04a5a1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8f241c184a83"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "融合注意力机制和多任务学习的机器人抓取检测算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c7c0c8732b63",
+      "evidence": [
+        {
+          "quote": "融合注意力机制和多任务学习的机器人抓取检测算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4003,
+            "end_char": 4025
+          },
+          "version": "e247e00e714d29380841"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5e068b04a5a1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7bdc5315ea49"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SRPT: State Refinement ProbSparse Transformer for Tactical Intention Recognition of Cluster Targets",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12cc67a702c6",
+      "evidence": [
+        {
+          "quote": "SRPT: State Refinement ProbSparse Transformer for Tactical Intention Recognition of Cluster Targets",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4047,
+            "end_char": 4145
+          },
+          "version": "e247e00e714d29380841"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-11aa541ebd93"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-16ee647a951c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficient fully convolutional network and optimization approach for robotic grasping detection based on RGB-D images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c7d3ac8d6d6d",
+      "evidence": [
+        {
+          "quote": "Efficient fully convolutional network and optimization approach for robotic grasping detection based on RGB-D images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4203,
+            "end_char": 4318
+          },
+          "version": "e247e00e714d29380841"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8f241c184a83"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-16ee647a951c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于重投影深度差累积图与静态概率的动态RGB-D SLAM算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0456a2924a37",
+      "evidence": [
+        {
+          "quote": "基于重投影深度差累积图与静态概率的动态RGB-D SLAM算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4352,
+            "end_char": 4382
+          },
+          "version": "e247e00e714d29380841"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于图像质量评估的主动照明观测系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96b87d67fbea",
+      "evidence": [
+        {
+          "quote": "一种基于图像质量评估的主动照明观测系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4405,
+            "end_char": 4426
+          },
+          "version": "e247e00e714d29380841"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

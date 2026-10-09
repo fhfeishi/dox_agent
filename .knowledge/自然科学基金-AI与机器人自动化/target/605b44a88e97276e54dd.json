@@ -2,15 +2,20 @@
   "doc_id": "605b44a88e97276e54dd",
   "version": "c65cc2df9353e4123de5",
   "source_hash": "3ff2560864e6fc4d66edb14514191830b0b1e923e9110ba454ed79b3d3ea7fc0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:16:41.852408+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.370333+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d584651d2505",
-          "name": "血管介入手术机器人复杂病变",
-          "desc": "复杂病变下机器人辅助介入手术提高精度同时降低难度",
+          "id": "item-b75138cf1cb3",
+          "name": "当前，心脑血管疾病呈现高患病率、高致残率和高死亡率的特点，血管介入治疗手术是当前最有效且接受度最广的治疗方式，但存在诸如",
+          "desc": "当前，心脑血管疾病呈现高患病率、高致残率和高死亡率的特点，血管介入治疗手术是当前最有效且接受度最广的治疗方式，但存在诸如放射线损伤等问题。",
           "evidence": [
             {
-              "quote": "本项目针对血管介入手术机器人“在辅助医生实施包括复杂病变在内的手术时如何在提高手术精度的同时降低手术难度”这一问题",
+              "quote": "当前，心脑血管疾病呈现高患病率、高致残率和高死亡率的特点，血管介入治疗手术是当前最有效且接受度最广的治疗方式，但存在诸如放射线损伤等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2581,
-                "end_char": 2637
+                "start_char": 669,
+                "end_char": 737
               },
               "version": "c65cc2df9353e4123de5"
             }
@@ -41,16 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-10a4d48c62b4",
-          "name": "现有机器人仅适用简单病变",
-          "desc": "Corpath GRX仅能辅助完成30%简单病变，缺乏力觉感知与手术引导",
+          "id": "item-a88a57c42592",
+          "name": "目前美国的Corpath GRX机器人虽然解决了部分介入治疗问题，但2019年美国心脏协会杂志刊文指出其仅能辅助完成只占",
+          "desc": "目前美国的Corpath GRX机器人虽然解决了部分介入治疗问题，但2019年美国心脏协会杂志刊文指出其仅能辅助完成只占临床病例的30%的简单病变手术操作，此外缺乏力觉感知与手术引导功能，导致不能应用于临床高发的复杂病变、不能有效降低手术难度。",
           "evidence": [
             {
-              "quote": "2019年美国心脏协会杂志刊文指出其仅能辅助完成只占临床病例的30%的简单病变手术操作，此外缺乏力觉感知与手术引导功能，导致不能应用于临床高发的复杂病变、不能有效降低手术难度",
+              "quote": "目前美国的Corpath GRX机器人虽然解决了部分介入治疗问题，但2019年美国心脏协会杂志刊文指出其仅能辅助完成只占临床病例的30%的简单病变手术操作，此外缺乏力觉感知与手术引导功能，导致不能应用于临床高发的复杂病变、不能有效降低手术难度。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 772,
-                "end_char": 858
+                "start_char": 738,
+                "end_char": 859
+              },
+              "version": "c65cc2df9353e4123de5"
+            }
+          ]
+        },
+        {
+          "id": "item-f2bef17173c6",
+          "name": "针对这一问题，本课题针对复杂病变对机器人辅助手术带来的挑战，深入研究机器人本体的综合优化以及精准主从操控方法、基于器械推",
+          "desc": "针对这一问题，本课题针对复杂病变对机器人辅助手术带来的挑战，深入研究机器人本体的综合优化以及精准主从操控方法、基于器械推送阻力剖面的力觉技能学习方法、术前术中多模态数据融合方法、机器人自主操控方法，通过动物实验定量验证机器人在复杂病变中的作用。",
+          "evidence": [
+            {
+              "quote": "针对这一问题，本课题针对复杂病变对机器人辅助手术带来的挑战，深入研究机器人本体的综合优化以及精准主从操控方法、基于器械推送阻力剖面的力觉技能学习方法、术前术中多模态数据融合方法、机器人自主操控方法，通过动物实验定量验证机器人在复杂病变中的作用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 860,
+                "end_char": 981
               },
               "version": "c65cc2df9353e4123de5"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b60883af47dd",
-          "name": "导丝近端阻力状态判别",
-          "desc": "新的导丝近端阻力计算方法与基于神经网络的递送状态判别算法提取时序特征",
+          "id": "item-7cfedbc392b9",
+          "name": "此外，构建了一个基于神经网络的导丝递送状态判别算法，提取导丝近端阻力和递送速度的时间序列特征，用于判断导丝的递送状态是否",
+          "desc": "此外，构建了一个基于神经网络的导丝递送状态判别算法，提取导丝近端阻力和递送速度的时间序列特征，用于判断导丝的递送状态是否异常，进一步降低了手术风险，增强了医生在复杂操作中的安全感知。",
           "evidence": [
             {
-              "quote": "项目提出了一种新的导丝近端阻力计算方法，使得手术机器人能够精确控制导丝的递送力，保障了手术过程中的安全性。此外，构建了一个基于神经网络的导丝递送状态判别算法，提取导丝近端阻力和递送速度的时间序列特征，用于判断导丝的递送状态是否异常",
+              "quote": "此外，构建了一个基于神经网络的导丝递送状态判别算法，提取导丝近端阻力和递送速度的时间序列特征，用于判断导丝的递送状态是否异常，进一步降低了手术风险，增强了医生在复杂操作中的安全感知。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2814,
-                "end_char": 2928
+                "start_char": 2867,
+                "end_char": 2957
               },
               "version": "c65cc2df9353e4123de5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-fa4782385a59",
-          "name": "2D-3D影像配准导航",
-          "desc": "多模态影像融合颅内动脉介入导航，2D-DSA与3D-DSA配准实现三维动态导航",
+          "id": "item-8968c9ed0ff0",
+          "name": "针对这一问题，本课题针对复杂病变对机器人辅助手术带来的挑战，深入研究机器人本体的综合优化以及精准主从操控方法、基于器械推",
+          "desc": "针对这一问题，本课题针对复杂病变对机器人辅助手术带来的挑战，深入研究机器人本体的综合优化以及精准主从操控方法、基于器械推送阻力剖面的力觉技能学习方法、术前术中多模态数据融合方法、机器人自主操控方法，通过动物实验定量验证机器人在复杂病变中的作用。",
           "evidence": [
             {
-              "quote": "开发了基于多模态影像信息融合的颅内动脉介入手术导航系统。首先对2D-DSA影像中的脑血管血管进行精准分割，并对三维影像中的脑血管血管进行快速精准分割",
+              "quote": "针对这一问题，本课题针对复杂病变对机器人辅助手术带来的挑战，深入研究机器人本体的综合优化以及精准主从操控方法、基于器械推送阻力剖面的力觉技能学习方法、术前术中多模态数据融合方法、机器人自主操控方法，通过动物实验定量验证机器人在复杂病变中的作用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2983,
-                "end_char": 3056
+                "start_char": 860,
+                "end_char": 981
               },
               "version": "c65cc2df9353e4123de5"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,528 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a6af7a0112cf",
-          "name": "动物实验100%成功",
-          "desc": "完成动物实验9例（近程5例远程4例），手术成功率100%，器械相关并发症0%",
+          "id": "item-b5c3840f1276",
+          "name": "当前，心脑血管疾病呈现高患病率、高致残率和高死亡率的特点，血管介入治疗手术是当前最有效且接受度最广的治疗方式，但存在诸如",
+          "desc": "当前，心脑血管疾病呈现高患病率、高致残率和高死亡率的特点，血管介入治疗手术是当前最有效且接受度最广的治疗方式，但存在诸如放射线损伤等问题。",
           "evidence": [
             {
-              "quote": "完成动物实验9例。在实验动物中完成了左主干分叉支架植入，分别进行了近程动物实验5例、远程动物实验4例。相关实验的手术成功率100%，器械相关并发症0%",
+              "quote": "当前，心脑血管疾病呈现高患病率、高致残率和高死亡率的特点，血管介入治疗手术是当前最有效且接受度最广的治疗方式，但存在诸如放射线损伤等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3309,
-                "end_char": 3383
+                "start_char": 669,
+                "end_char": 737
               },
               "version": "c65cc2df9353e4123de5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-168220a7b2a7",
-          "name": "多导丝端点定位",
-          "desc": "SA-hourglass模型单导丝端点定位平均误差仅2.20±0.15像素，显著优于已有方法",
+          "id": "item-1b789b4d6348",
+          "name": "本项目针对血管介入手术机器人“在辅助医生实施包括复杂病变在内的手术时如何在提高手术精度的同时降低手术难度”这一问题，在血",
+          "desc": "本项目针对血管介入手术机器人“在辅助医生实施包括复杂病变在内的手术时如何在提高手术精度的同时降低手术难度”这一问题，在血管介入手术机器人设计、血管介入手术导航、介入器械阻力检测与分析、机器人辅助手术动物实验验证等方面进行了深入的研究。",
           "evidence": [
             {
-              "quote": "实验结果显示，SA-hourglass模型在单导丝端点定位任务上的平均定位误差仅为2.20±0.15像素，显著优于目前已有方法",
+              "quote": "本项目针对血管介入手术机器人“在辅助医生实施包括复杂病变在内的手术时如何在提高手术精度的同时降低手术难度”这一问题，在血管介入手术机器人设计、血管介入手术导航、介入器械阻力检测与分析、机器人辅助手术动物实验验证等方面进行了深入的研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3227,
-                "end_char": 3289
+                "start_char": 2581,
+                "end_char": 2697
               },
               "version": "c65cc2df9353e4123de5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d584651d2505"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-10a4d48c62b4"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vessel Width Estimation via Convolutional Regression",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66b2d33c04ed",
+      "evidence": [
+        {
+          "quote": "Vessel Width Estimation via Convolutional Regression",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3540,
+            "end_char": 3591
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-10a4d48c62b4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b60883af47dd"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Roller Design of the Delivery Mechanism of the Novel Endovascular Intervention Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7472439e7b40",
+      "evidence": [
+        {
+          "quote": "Roller Design of the Delivery Mechanism of the Novel Endovascular Intervention Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3707,
+            "end_char": 3790
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-10a4d48c62b4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fa4782385a59"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "血管结构信息提取方法、装置及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8fc025bbe116",
+      "evidence": [
+        {
+          "quote": "血管结构信息提取方法、装置及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3864,
+            "end_char": 3881
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b60883af47dd"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a6af7a0112cf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SDLU-Net: A similarity-based dynamic linking network for the automated segmentation of abdominal aorta aneurysms and branching vessels",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3374ae92e8ac",
+      "evidence": [
+        {
+          "quote": "SDLU-Net: A similarity-based dynamic linking network for the automated segmentation of abdominal aorta aneurysms and branching vessels",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3930,
+            "end_char": 4063
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fa4782385a59"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-168220a7b2a7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向机器人触力觉感知的磁场解析与仿真",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-00c1b931b177",
+      "evidence": [
+        {
+          "quote": "面向机器人触力觉感知的磁场解析与仿真",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4147,
+            "end_char": 4164
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多器械磁控协同操作介入机器人及介入导丝",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d5f3cc6af56",
+      "evidence": [
+        {
+          "quote": "一种多器械磁控协同操作介入机器人及介入导丝",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4203,
+            "end_char": 4223
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Fusion Network for Morphological Analysis of Common Iliac Artery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-43586293f71f",
+      "evidence": [
+        {
+          "quote": "A Novel Fusion Network for Morphological Analysis of Common Iliac Artery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4260,
+            "end_char": 4331
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards Flexible and Universal: A Novel Endpoint-based Framework for Vessel Structural Information Extraction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-58257e1c4a03",
+      "evidence": [
+        {
+          "quote": "Towards Flexible and Universal: A Novel Endpoint-based Framework for Vessel Structural Information Extraction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4432,
+            "end_char": 4540
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于语音交互和多源信息融合的血管关键点识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-61360e025f78",
+      "evidence": [
+        {
+          "quote": "基于语音交互和多源信息融合的血管关键点识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4611,
+            "end_char": 4633
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DSP-Net: Deeply-Supervised Pseudo-Siamese Network for Dynamic Angiographic Image Matching",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8eb5f3b096a",
+      "evidence": [
+        {
+          "quote": "DSP-Net: Deeply-Supervised Pseudo-Siamese Network for Dynamic Angiographic Image Matching",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4683,
+            "end_char": 4771
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "血管介入手术动态路图处理方法、装置、设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ce61356b535e",
+      "evidence": [
+        {
+          "quote": "血管介入手术动态路图处理方法、装置、设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4899,
+            "end_char": 4923
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Spatial Position Prediction Navigation System Makes Surgery More Accurate",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b11ad4a49d6e",
+      "evidence": [
+        {
+          "quote": "A Novel Spatial Position Prediction Navigation System Makes Surgery More Accurate",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4958,
+            "end_char": 5038
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "血管介入机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-acf3cca5d1e8",
+      "evidence": [
+        {
+          "quote": "血管介入机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5178,
+            "end_char": 5184
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Quantitative Movement Analysis Using Scaled Information Implied in Monocular Videos",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0e1d9aaac0d",
+      "evidence": [
+        {
+          "quote": "Quantitative Movement Analysis Using Scaled Information Implied in Monocular Videos",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5222,
+            "end_char": 5304
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-Time Multi-Guidewire Endpoint Localization in Fluoroscopy Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d2cd8ef1a41",
+      "evidence": [
+        {
+          "quote": "Real-Time Multi-Guidewire Endpoint Localization in Fluoroscopy Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5418,
+            "end_char": 5486
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Performance Evaluation of a Novel Vascular Robotic System for Complex Percutaneous Coronary Interventions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-58e15e4841eb",
+      "evidence": [
+        {
+          "quote": "Design and Performance Evaluation of a Novel Vascular Robotic System for Complex Percutaneous Coronary Interventions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5605,
+            "end_char": 5720
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Discrete soft actor-critic with auto-encoder on vascular robotic system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e55fd9a95c25",
+      "evidence": [
+        {
+          "quote": "Discrete soft actor-critic with auto-encoder on vascular robotic system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5855,
+            "end_char": 5925
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Surgical Skill Assessment Based on Dynamic Warping Manipulations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9db12c309b56",
+      "evidence": [
+        {
+          "quote": "Surgical Skill Assessment Based on Dynamic Warping Manipulations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6041,
+            "end_char": 6104
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "介入手术递送装置及递送系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99819a507816",
+      "evidence": [
+        {
+          "quote": "介入手术递送装置及递送系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6245,
+            "end_char": 6257
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Improved Networked Predictive Controller for Vascular Robot Using 5G Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-14bb9902bf97",
+      "evidence": [
+        {
+          "quote": "An Improved Networked Predictive Controller for Vascular Robot Using 5G Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6284,
+            "end_char": 6363
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Experiments of a Novel Halbach-Cylinder-Based Magnetic Skin: A Preliminary Study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0dc4b81c12e5",
+      "evidence": [
+        {
+          "quote": "Design and Experiments of a Novel Halbach-Cylinder-Based Magnetic Skin: A Preliminary Study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6486,
+            "end_char": 6576
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Unified Framework for Multi-Guidewire Endpoint Localization in Fluoroscopy Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-951aa4bca15b",
+      "evidence": [
+        {
+          "quote": "A Unified Framework for Multi-Guidewire Endpoint Localization in Fluoroscopy Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6692,
+            "end_char": 6774
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards Automated Segmentation of Human Abdominal Aorta and Its Branches Using a Hybrid Feature Extraction Module with LSTM",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d04c379b9f89",
+      "evidence": [
+        {
+          "quote": "Towards Automated Segmentation of Human Abdominal Aorta and Its Branches Using a Hybrid Feature Extraction Module with LSTM",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6893,
+            "end_char": 7015
+          },
+          "version": "c65cc2df9353e4123de5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      }
+    },
+    "consistent": true
+  }
 }

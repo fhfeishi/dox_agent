@@ -2,15 +2,20 @@
   "doc_id": "018202048a58144f30f4",
   "version": "15f2fcefe09a557ea549",
   "source_hash": "7fcef041bdf7a74ca8f134d68982a9c52662aeff2565fd2043fcea21c238b8a5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:44.845156+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.519538+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d824ef5273dd",
-          "name": "自动驾驶仿真交通场景生成",
-          "desc": "虚拟仿真加速自动驾驶算法开发并缓解长尾问题",
+          "id": "item-08a097161712",
+          "name": "目前，利用虚拟仿真技术来加速自动驾驶算法开发并缓解长尾问题已成为行业共识。",
+          "desc": "目前，利用虚拟仿真技术来加速自动驾驶算法开发并缓解长尾问题已成为行业共识。",
           "evidence": [
             {
-              "quote": "随着自动驾驶技术的快速发展，利用虚拟仿真技术来加速自动驾驶算法开发并缓解长尾问题已成为行业共识",
+              "quote": "目前，利用虚拟仿真技术来加速自动驾驶算法开发并缓解长尾问题已成为行业共识。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2937,
-                "end_char": 2983
+                "start_char": 647,
+                "end_char": 683
               },
               "version": "15f2fcefe09a557ea549"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-698827f83e27",
-          "name": "重建场景质量受限",
-          "desc": "重建现实交通场景质量数量受限，环境车辆不具备交互能力",
-          "evidence": [
-            {
-              "quote": "而通过重建现实交通场景的方式来构建仿真交通场景，场景质量和数量严重受限于现实数据，且重建场景中的环境车辆不具备交互能力，难以对自动驾驶决策规划类方法带来大幅性能提升",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 707,
-                "end_char": 788
-              },
-              "version": "15f2fcefe09a557ea549"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-538bfa57e93c",
-          "name": "分层解耦多模态轨迹预测",
-          "desc": "多模态轨迹预测及联合预测规划的安全行为建模",
+          "id": "item-fcd482b3efcc",
+          "name": "学习类决策规划算法的开发需要大量虚拟仿真场景，而通过重建现实交通场景的方式来构建仿真交通场景，场景质量和数量严重受限于现",
+          "desc": "学习类决策规划算法的开发需要大量虚拟仿真场景，而通过重建现实交通场景的方式来构建仿真交通场景，场景质量和数量严重受限于现实数据，且重建场景中的环境车辆不具备交互能力，难以对自动驾驶决策规划类方法带来大幅性能提升。",
           "evidence": [
             {
-              "quote": "提出了分层解耦的多模态轨迹预测及联合预测规划的安全行为建模方法",
+              "quote": "学习类决策规划算法的开发需要大量虚拟仿真场景，而通过重建现实交通场景的方式来构建仿真交通场景，场景质量和数量严重受限于现实数据，且重建场景中的环境车辆不具备交互能力，难以对自动驾驶决策规划类方法带来大幅性能提升。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3093,
-                "end_char": 3123
+                "start_char": 684,
+                "end_char": 789
               },
               "version": "15f2fcefe09a557ea549"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-04b085d236f2",
-          "name": "强化学习与树搜索智能行为模型",
-          "desc": "条件依赖的交互行为预测与深度强化学习树搜索结合",
+          "id": "item-3a94ec6d8242",
+          "name": "针对此问题，本课题研究一种基于自然驾驶数据驱动的虚拟仿真交通场景生成技术，基于真实数据泛化生成出大量具有交互性、多样性和",
+          "desc": "针对此问题，本课题研究一种基于自然驾驶数据驱动的虚拟仿真交通场景生成技术，基于真实数据泛化生成出大量具有交互性、多样性和保真性的仿真交通场景，用以提升无人驾驶决策控制算法的训练效率和性能。",
           "evidence": [
             {
-              "quote": "提出了条件依赖的交互行为预测和结合深度强化学习与树搜索的智能行为模型",
+              "quote": "针对此问题，本课题研究一种基于自然驾驶数据驱动的虚拟仿真交通场景生成技术，基于真实数据泛化生成出大量具有交互性、多样性和保真性的仿真交通场景，用以提升无人驾驶决策控制算法的训练效率和性能。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3168,
-                "end_char": 3201
+                "start_char": 790,
+                "end_char": 883
               },
               "version": "15f2fcefe09a557ea549"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,452 @@
       "state": "has",
       "items": [
         {
-          "id": "item-390b2cd3c614",
-          "name": "开源场景库与实车应用",
-          "desc": "基于CARLA搭建实验平台并开源路口仿真交通场景库，算法应用于百度RoboTaxi",
+          "id": "item-b9f368d8faea",
+          "name": "目前，利用虚拟仿真技术来加速自动驾驶算法开发并缓解长尾问题已成为行业共识。",
+          "desc": "目前，利用虚拟仿真技术来加速自动驾驶算法开发并缓解长尾问题已成为行业共识。",
           "evidence": [
             {
-              "quote": "进一步基于CARLA仿真器搭建了超车换道、路口交通场景实验平台，并开源所构建的路口仿真交通场景库",
+              "quote": "目前，利用虚拟仿真技术来加速自动驾驶算法开发并缓解长尾问题已成为行业共识。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3232,
-                "end_char": 3279
+                "start_char": 647,
+                "end_char": 683
               },
               "version": "15f2fcefe09a557ea549"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-ad1261b13dc7",
-          "name": "论文专著与奖励",
-          "desc": "发表论文17篇（SCI 1区9篇），出版专著1本，获北京市自然科学二等奖",
+          "id": "item-eacf4dc3b4b7",
+          "name": "随着自动驾驶技术的快速发展，利用虚拟仿真技术来加速自动驾驶算法开发并缓解长尾问题已成为行业共识。",
+          "desc": "随着自动驾驶技术的快速发展，利用虚拟仿真技术来加速自动驾驶算法开发并缓解长尾问题已成为行业共识。",
           "evidence": [
             {
-              "quote": "在权威国际期刊和国际会议上发表论文17篇(其中SCI 1区期刊9篇)，出版专著1本，申请发明专利2项，其中授权2项",
+              "quote": "随着自动驾驶技术的快速发展，利用虚拟仿真技术来加速自动驾驶算法开发并缓解长尾问题已成为行业共识。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3369,
-                "end_char": 3425
+                "start_char": 2937,
+                "end_char": 2984
               },
               "version": "15f2fcefe09a557ea549"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d824ef5273dd"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-698827f83e27"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Highway Lane Change Decision-Making via Attention-Based Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c2417dd7e2a1",
+      "evidence": [
+        {
+          "quote": "Highway Lane Change Decision-Making via Attention-Based Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3532,
+            "end_char": 3614
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-698827f83e27"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-538bfa57e93c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自动驾驶场景的3D密集标注、电子设备以及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0d7a78b9200",
+      "evidence": [
+        {
+          "quote": "一种自动驾驶场景的3D密集标注、电子设备以及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3664,
+            "end_char": 3689
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-698827f83e27"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-04b085d236f2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Consistency Policy with Categorical Critic for Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1ca6ec872d03",
+      "evidence": [
+        {
+          "quote": "Consistency Policy with Categorical Critic for Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3715,
+            "end_char": 3779
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-04b085d236f2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-390b2cd3c614"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "受限条件下智能无人系统学习控制理论与方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8b3e4fdeb50",
+      "evidence": [
+        {
+          "quote": "受限条件下智能无人系统学习控制理论与方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3837,
+            "end_char": 3856
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-538bfa57e93c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ad1261b13dc7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "TrajGen: Generating Realistic and Diverse Trajectories With Reactive and Feasible Agent Behaviors for Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5630ce0c9509",
+      "evidence": [
+        {
+          "quote": "TrajGen: Generating Realistic and Diverse Trajectories With Reactive and Feasible Agent Behaviors for Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3892,
+            "end_char": 4011
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "高效深度强化学习算法和最优性分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b616a7abb36",
+      "evidence": [
+        {
+          "quote": "高效深度强化学习算法和最优性分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4119,
+            "end_char": 4134
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning Driving Strategy based on Auxiliary Task for Multi-Scenarios Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96c23529a421",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning Driving Strategy based on Auxiliary Task for Multi-Scenarios Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4184,
+            "end_char": 4285
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online Preference-based Reinforcement Learning with Self-augmented Feedback from Large Language Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f46394ddde24",
+      "evidence": [
+        {
+          "quote": "Online Preference-based Reinforcement Learning with Self-augmented Feedback from Large Language Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4333,
+            "end_char": 4433
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-quality Synthetic Data is Efficient for Model-based Offline Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a53eb9d2792",
+      "evidence": [
+        {
+          "quote": "High-quality Synthetic Data is Efficient for Model-based Offline Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4509,
+            "end_char": 4595
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PnP: Integrated Prediction and Planning for Interactive Lane Change in Dense Traffic",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-558537bf2bdb",
+      "evidence": [
+        {
+          "quote": "PnP: Integrated Prediction and Planning for Interactive Lane Change in Dense Traffic",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4679,
+            "end_char": 4762
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "智能网联汽车决策控制技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5a240b2d4917",
+      "evidence": [
+        {
+          "quote": "智能网联汽车决策控制技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4822,
+            "end_char": 4833
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "IP3: Integrated Path-Guided Prediction and Planning for Safe Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9e464811329",
+      "evidence": [
+        {
+          "quote": "IP3: Integrated Path-Guided Prediction and Planning for Safe Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4863,
+            "end_char": 4941
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-task safe reinforcement learning for navigating intersections in dense traffic",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2207f90c1cb2",
+      "evidence": [
+        {
+          "quote": "Multi-task safe reinforcement learning for navigating intersections in dense traffic",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5021,
+            "end_char": 5104
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "双车联合轨迹预测方法及装置、电子设备和自动驾驶车辆",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77100be3c713",
+      "evidence": [
+        {
+          "quote": "双车联合轨迹预测方法及装置、电子设备和自动驾驶车辆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5175,
+            "end_char": 5199
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "In-Dataset Trajectory Return Regularization for Offline Preference-based Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0cc91165ee5c",
+      "evidence": [
+        {
+          "quote": "In-Dataset Trajectory Return Regularization for Offline Preference-based Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5235,
+            "end_char": 5329
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Planning-Inspired Hierarchical Trajectory Prediction via Lateral-Longitudinal Decomposition for Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6317e1a7738f",
+      "evidence": [
+        {
+          "quote": "Planning-Inspired Hierarchical Trajectory Prediction via Lateral-Longitudinal Decomposition for Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5423,
+            "end_char": 5536
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep-Reinforcement-Learning-Based Driving Policy at Intersections Utilizing Lane Graph Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cf084b22efbf",
+      "evidence": [
+        {
+          "quote": "Deep-Reinforcement-Learning-Based Driving Policy at Intersections Utilizing Lane Graph Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5643,
+            "end_char": 5737
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Offline Reinforcement Learning for Autonomous Driving with Real World Driving Data",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5f8a72cfbba",
+      "evidence": [
+        {
+          "quote": "Offline Reinforcement Learning for Autonomous Driving with Real World Driving Data",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5799,
+            "end_char": 5880
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Conditional Goal-Oriented Trajectory Prediction for Interacting Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e781b901aa86",
+      "evidence": [
+        {
+          "quote": "Conditional Goal-Oriented Trajectory Prediction for Interacting Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5943,
+            "end_char": 6014
+          },
+          "version": "15f2fcefe09a557ea549"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

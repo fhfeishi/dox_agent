@@ -2,15 +2,20 @@
   "doc_id": "1e4b581700d878638ab7",
   "version": "2151d63e55714b701cf2",
   "source_hash": "37c9a9c37f31b6b91a797cc0903f67166e518c2d5c6127330c823d132b39f01e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:11:19.655241+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.760846+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dbb1790dc942",
-          "name": "空间站双臂机器人任务操作",
-          "desc": "面向空间站建设运营维护的双臂机器人辅助或代替航天员作业",
+          "id": "item-b8ce71db2aca",
+          "name": "空间站的建设、运营与维护过程复杂漫长、空间作业任务种类繁多，采用空间双臂机器人辅助或代替航天员开展空间站任务作业是各航天",
+          "desc": "空间站的建设、运营与维护过程复杂漫长、空间作业任务种类繁多，采用空间双臂机器人辅助或代替航天员开展空间站任务作业是各航天大国发展方向，也是我国空间站的重点发展战略。",
           "evidence": [
             {
-              "quote": "空间站作为人类探索太空的桥头堡，其建设、运营与维护任务复杂繁重，采用机器人辅助或代替航天员执行任务，已成为各航天大国的发展方向",
+              "quote": "空间站的建设、运营与维护过程复杂漫长、空间作业任务种类繁多，采用空间双臂机器人辅助或代替航天员开展空间站任务作业是各航天大国发展方向，也是我国空间站的重点发展战略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2901,
-                "end_char": 2963
+                "start_char": 659,
+                "end_char": 740
+              },
+              "version": "2151d63e55714b701cf2"
+            }
+          ]
+        },
+        {
+          "id": "item-79af75df5762",
+          "name": "本项目围绕空间站重大工程应用需求，针对空间视觉图像本质特征信息受扰情况下目标识别定位和空间微重力影响下机器人双臂协同规划",
+          "desc": "本项目围绕空间站重大工程应用需求，针对空间视觉图像本质特征信息受扰情况下目标识别定位和空间微重力影响下机器人双臂协同规划与柔顺控制等关键科学问题，开展空间站任务操作研究工作，主要研究内容包括：①解决空间图像特殊干扰问题，实现作业目标鲁棒识别与准确定位、②解决微重力下运动强非线性耦合问题，实现空间机器人双臂协同运动规划、③解决天地环境差异导致的关节或整臂柔顺特性改变问题，实现空间机器人快速适应作业任务，开展柔顺安全控制。",
+          "evidence": [
+            {
+              "quote": "本项目围绕空间站重大工程应用需求，针对空间视觉图像本质特征信息受扰情况下目标识别定位和空间微重力影响下机器人双臂协同规划与柔顺控制等关键科学问题，开展空间站任务操作研究工作，主要研究内容包括：①解决空间图像特殊干扰问题，实现作业目标鲁棒识别与准确定位、②解决微重力下运动强非线性耦合问题，实现空间机器人双臂协同运动规划、③解决天地环境差异导致的关节或整臂柔顺特性改变问题，实现空间机器人快速适应作业任务，开展柔顺安全控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 741,
+                "end_char": 951
               },
               "version": "2151d63e55714b701cf2"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c2ffe19c4d69",
-          "name": "空间光照干扰与天地差异",
-          "desc": "空间复杂非均匀光照干扰目标特征，微重力强耦合与柔顺特性天地差异",
+          "id": "item-61d7ab5c7c33",
+          "name": "本项目围绕空间站重大工程应用需求，针对空间视觉图像本质特征信息受扰情况下目标识别定位和空间微重力影响下机器人双臂协同规划",
+          "desc": "本项目围绕空间站重大工程应用需求，针对空间视觉图像本质特征信息受扰情况下目标识别定位和空间微重力影响下机器人双臂协同规划与柔顺控制等关键科学问题，开展空间站任务操作研究工作，主要研究内容包括：①解决空间图像特殊干扰问题，实现作业目标鲁棒识别与准确定位、②解决微重力下运动强非线性耦合问题，实现空间机器人双臂协同运动规划、③解决天地环境差异导致的关节或整臂柔顺特性改变问题，实现空间机器人快速适应作业任务，开展柔顺安全控制。",
           "evidence": [
             {
-              "quote": "空间复杂非均匀光照会严重干扰目标特征信息，影响目标识别，重尾、轻尾等复杂的非高斯噪声，对目标的准确定位和追踪带来挑战；空间站内空间狭小，微重力环境导致机械臂各部件运动存在强耦合",
+              "quote": "本项目围绕空间站重大工程应用需求，针对空间视觉图像本质特征信息受扰情况下目标识别定位和空间微重力影响下机器人双臂协同规划与柔顺控制等关键科学问题，开展空间站任务操作研究工作，主要研究内容包括：①解决空间图像特殊干扰问题，实现作业目标鲁棒识别与准确定位、②解决微重力下运动强非线性耦合问题，实现空间机器人双臂协同运动规划、③解决天地环境差异导致的关节或整臂柔顺特性改变问题，实现空间机器人快速适应作业任务，开展柔顺安全控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2982,
-                "end_char": 3069
+                "start_char": 741,
+                "end_char": 951
+              },
+              "version": "2151d63e55714b701cf2"
+            }
+          ]
+        },
+        {
+          "id": "item-3789584fa898",
+          "name": "空间站内空间狭小，微重力环境导致机械臂各部件运动存在强耦合，传统算法难以直接应用，机器人运动规划面临挑战；",
+          "desc": "空间站内空间狭小，微重力环境导致机械臂各部件运动存在强耦合，传统算法难以直接应用，机器人运动规划面临挑战；",
+          "evidence": [
+            {
+              "quote": "空间站内空间狭小，微重力环境导致机械臂各部件运动存在强耦合，传统算法难以直接应用，机器人运动规划面临挑战；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3041,
+                "end_char": 3093
               },
               "version": "2151d63e55714b701cf2"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5957092c8b3f",
-          "name": "自适应图像增强与多尺度定位",
-          "desc": "强适应性图像增强、关键参数多尺度获取与非高斯噪声融合目标追踪",
+          "id": "item-5a7c09f06fbe",
+          "name": "本项目围绕空间站重大工程应用需求，针对空间视觉图像本质特征信息受扰情况下目标识别定位和空间微重力影响下机器人双臂协同规划",
+          "desc": "本项目围绕空间站重大工程应用需求，针对空间视觉图像本质特征信息受扰情况下目标识别定位和空间微重力影响下机器人双臂协同规划与柔顺控制等关键科学问题，开展空间站任务操作研究工作，主要研究内容包括：①解决空间图像特殊干扰问题，实现作业目标鲁棒识别与准确定位、②解决微重力下运动强非线性耦合问题，实现空间机器人双臂协同运动规划、③解决天地环境差异导致的关节或整臂柔顺特性改变问题，实现空间机器人快速适应作业任务，开展柔顺安全控制。",
           "evidence": [
             {
-              "quote": "研究提出具有强适应性的图像增强算法，实现目标图像本质特征信息增强；研究操作目标图像关键参数多尺度获取方法，基于特征点参数匹配实现操作目标的准确定位",
+              "quote": "本项目围绕空间站重大工程应用需求，针对空间视觉图像本质特征信息受扰情况下目标识别定位和空间微重力影响下机器人双臂协同规划与柔顺控制等关键科学问题，开展空间站任务操作研究工作，主要研究内容包括：①解决空间图像特殊干扰问题，实现作业目标鲁棒识别与准确定位、②解决微重力下运动强非线性耦合问题，实现空间机器人双臂协同运动规划、③解决天地环境差异导致的关节或整臂柔顺特性改变问题，实现空间机器人快速适应作业任务，开展柔顺安全控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3224,
-                "end_char": 3296
+                "start_char": 741,
+                "end_char": 951
               },
               "version": "2151d63e55714b701cf2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e8132583a47b",
-          "name": "分层二次规划避障控制",
-          "desc": "双层二次规划实现轨迹跟踪、避障与物理约束，规定性能控制保障跟踪性能",
+          "id": "item-99c8115ef5bc",
+          "name": "航天机器人;运动规划;柔顺控制;视觉识别与定位;双臂机器人控制",
+          "desc": "航天机器人;运动规划;柔顺控制;视觉识别与定位;双臂机器人控制",
           "evidence": [
             {
-              "quote": "研究提出一种基于分层二次规划规定性能控制的机器人避障控制策略。第一层二次规划用于实现轨迹跟踪、避障和物理约束；第二层二次规划用于引导避障方向，产生更平滑的规划路径",
+              "quote": "航天机器人;运动规划;柔顺控制;视觉识别与定位;双臂机器人控制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3368,
-                "end_char": 3448
+                "start_char": 2816,
+                "end_char": 2846
               },
               "version": "2151d63e55714b701cf2"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +140,508 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ae0bde2be376",
-          "name": "拟人化柔顺操作",
-          "desc": "刚度椭球实时调节与等效阻抗参数自适应学习，实现空间机器人拟人化柔顺操作",
+          "id": "item-52b60d39b132",
+          "name": "空间站的建设、运营与维护过程复杂漫长、空间作业任务种类繁多，采用空间双臂机器人辅助或代替航天员开展空间站任务作业是各航天",
+          "desc": "空间站的建设、运营与维护过程复杂漫长、空间作业任务种类繁多，采用空间双臂机器人辅助或代替航天员开展空间站任务作业是各航天大国发展方向，也是我国空间站的重点发展战略。",
           "evidence": [
             {
-              "quote": "基于性能评价函数对等效阻抗模型的刚度阻尼参数进行自适应学习，实现空间机器人拟人化柔顺操作。为空间机器人辅助或替代航天员开展空间任务操作提供技术基础",
+              "quote": "空间站的建设、运营与维护过程复杂漫长、空间作业任务种类繁多，采用空间双臂机器人辅助或代替航天员开展空间站任务作业是各航天大国发展方向，也是我国空间站的重点发展战略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3612,
-                "end_char": 3684
+                "start_char": 659,
+                "end_char": 740
               },
               "version": "2151d63e55714b701cf2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-e148bfc6364a",
+          "name": "空间站作为人类探索太空的桥头堡，其建设、运营与维护任务复杂繁重，采用机器人辅助或代替航天员执行任务，已成为各航天大国的发",
+          "desc": "空间站作为人类探索太空的桥头堡，其建设、运营与维护任务复杂繁重，采用机器人辅助或代替航天员执行任务，已成为各航天大国的发展方向，也是我国空间站重要发展方向。",
+          "evidence": [
+            {
+              "quote": "空间站作为人类探索太空的桥头堡，其建设、运营与维护任务复杂繁重，采用机器人辅助或代替航天员执行任务，已成为各航天大国的发展方向，也是我国空间站重要发展方向。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2901,
+                "end_char": 2978
+              },
+              "version": "2151d63e55714b701cf2"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-dbb1790dc942"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c2ffe19c4d69"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MG-GCT: A Motion-Guided Graph Convolutional Transformer for Traffic Gesture Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f2088955156",
+      "evidence": [
+        {
+          "quote": "MG-GCT: A Motion-Guided Graph Convolutional Transformer for Traffic Gesture Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3711,
+            "end_char": 3797
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c2ffe19c4d69"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5957092c8b3f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Natural interactive control method for unmanned swarm systems based on gesture recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db2b0577a8df",
+      "evidence": [
+        {
+          "quote": "Natural interactive control method for unmanned swarm systems based on gesture recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3853,
+            "end_char": 3942
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c2ffe19c4d69"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e8132583a47b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Skeleton-Based Traffic Gesture Recognition via a Motion-Guided 2S-GCN in Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-63e5445cda7e",
+      "evidence": [
+        {
+          "quote": "Skeleton-Based Traffic Gesture Recognition via a Motion-Guided 2S-GCN in Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4021,
+            "end_char": 4111
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e8132583a47b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ae0bde2be376"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Contextual Structure and Semantic Feature Enhancement Stereo Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06b4a98cf4af",
+      "evidence": [
+        {
+          "quote": "Deep Contextual Structure and Semantic Feature Enhancement Stereo Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4167,
+            "end_char": 4239
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5957092c8b3f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ae0bde2be376"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Census Weight Correlation Stereo Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62326fb69c8c",
+      "evidence": [
+        {
+          "quote": "Deep Census Weight Correlation Stereo Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4315,
+            "end_char": 4359
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MultiAgent Path Finding Using Deep Reinforcement Learning Coupled With Hot Supervision Contrastive Loss",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-852540da34d8",
+      "evidence": [
+        {
+          "quote": "MultiAgent Path Finding Using Deep Reinforcement Learning Coupled With Hot Supervision Contrastive Loss",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4440,
+            "end_char": 4542
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Domain Adaptation in Visual Reinforcement Learning via Self-Expert Imitation with Purifying Latent Feature",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fe0baee0c89e",
+      "evidence": [
+        {
+          "quote": "Domain Adaptation in Visual Reinforcement Learning via Self-Expert Imitation with Purifying Latent Feature",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4636,
+            "end_char": 4741
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Generalized Maximum Correntropy Kalman Filter for Target Tracking in TianGong-2 Space Laboratory",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd8b18c1925b",
+      "evidence": [
+        {
+          "quote": "Generalized Maximum Correntropy Kalman Filter for Target Tracking in TianGong-2 Space Laboratory",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4855,
+            "end_char": 4950
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于双重注意力跨视角的视觉定位方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52ec783b264a",
+      "evidence": [
+        {
+          "quote": "一种基于双重注意力跨视角的视觉定位方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5025,
+            "end_char": 5046
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "拒止环境下基于无人机图像和卫星地图的景象匹配方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52526981b961",
+      "evidence": [
+        {
+          "quote": "拒止环境下基于无人机图像和卫星地图的景象匹配方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5072,
+            "end_char": 5095
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Computation-Efficient Fault Detection Framework for Partially Known Nonlinear Distributed Parameter Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ff1d019c574",
+      "evidence": [
+        {
+          "quote": "Computation-Efficient Fault Detection Framework for Partially Known Nonlinear Distributed Parameter Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5151,
+            "end_char": 5257
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Agent Path Finding Using Imitation-Reinforcement Learning with Transformer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2271f2f24329",
+      "evidence": [
+        {
+          "quote": "Multi-Agent Path Finding Using Imitation-Reinforcement Learning with Transformer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5345,
+            "end_char": 5424
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多模态分层融合的人机交互方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-906565fdafc3",
+      "evidence": [
+        {
+          "quote": "一种多模态分层融合的人机交互方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5503,
+            "end_char": 5521
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种动态场景下避免碰撞的智能体自主导航方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01ec556b76da",
+      "evidence": [
+        {
+          "quote": "一种动态场景下避免碰撞的智能体自主导航方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5559,
+            "end_char": 5579
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于数据预处理的无人机图像匹配定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8f9017fe206",
+      "evidence": [
+        {
+          "quote": "一种基于数据预处理的无人机图像匹配定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5609,
+            "end_char": 5629
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于像素级支持向量数据描述的景像匹配方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d39dc02dd01",
+      "evidence": [
+        {
+          "quote": "一种基于像素级支持向量数据描述的景像匹配方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5678,
+            "end_char": 5702
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "STR: Spatial–Temporal RetNet for Distributed Multi-Robot Navigation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1963ccc6d7d7",
+      "evidence": [
+        {
+          "quote": "STR: Spatial–Temporal RetNet for Distributed Multi-Robot Navigation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5758,
+            "end_char": 5824
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Hierarchical Attention GCN Network for Body-Hand Gesture Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4f522cb928f",
+      "evidence": [
+        {
+          "quote": "A Hierarchical Attention GCN Network for Body-Hand Gesture Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5940,
+            "end_char": 6009
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Interpretable Unsupervised Homography Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5835ffed9ffe",
+      "evidence": [
+        {
+          "quote": "Interpretable Unsupervised Homography Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6066,
+            "end_char": 6113
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decentralized Multi-Robot Navigation Coupled with Spatial-Temporal RetNet Based on Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1aa87b7a362a",
+      "evidence": [
+        {
+          "quote": "Decentralized Multi-Robot Navigation Coupled with Spatial-Temporal RetNet Based on Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6204,
+            "end_char": 6313
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Transformer-based Imitative Reinforcement Learning for Multi-Robot Path Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e2d8cebde6d3",
+      "evidence": [
+        {
+          "quote": "Transformer-based Imitative Reinforcement Learning for Multi-Robot Path Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6432,
+            "end_char": 6511
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视觉示教和虚实迁移的机器人强化学习装配的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4273eb55847d",
+      "evidence": [
+        {
+          "quote": "一种基于视觉示教和虚实迁移的机器人强化学习装配的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6603,
+            "end_char": 6628
+          },
+          "version": "2151d63e55714b701cf2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

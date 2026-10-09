@@ -2,15 +2,20 @@
   "doc_id": "1350628680b390503060",
   "version": "946daa79ef0cbdee5767",
   "source_hash": "763bda5d05860eeb389b9aa3fd6c69db81c501b0699f549647bb383867a3397b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:43.625200+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.673398+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-68d88054bda8",
-          "name": "机器人柔性物体抓传交互",
-          "desc": "服务机器人人机协作场景中的柔性物体抓物-传人任务",
+          "id": "item-8204f0d94568",
+          "name": "随着人工智能技术与机器人产业的飞速发展，医疗健康、养老助残、家庭与公共服务等领域对涉及柔性物体的人-机-物交互技术提出了",
+          "desc": "随着人工智能技术与机器人产业的飞速发展，医疗健康、养老助残、家庭与公共服务等领域对涉及柔性物体的人-机-物交互技术提出了更高的要求。",
           "evidence": [
             {
-              "quote": "柔性物体抓传任务是服务机器人在人机协作场景中的关键操作能力",
+              "quote": "随着人工智能技术与机器人产业的飞速发展，医疗健康、养老助残、家庭与公共服务等领域对涉及柔性物体的人-机-物交互技术提出了更高的要求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2732,
-                "end_char": 2760
+                "start_char": 647,
+                "end_char": 712
+              },
+              "version": "946daa79ef0cbdee5767"
+            }
+          ]
+        },
+        {
+          "id": "item-e0f870991e66",
+          "name": "相关成果可为服务机器人在家庭服务和养老助残等实际应用场景中的柔性物体操作提供关键技术支持。",
+          "desc": "相关成果可为服务机器人在家庭服务和养老助残等实际应用场景中的柔性物体操作提供关键技术支持。",
+          "evidence": [
+            {
+              "quote": "相关成果可为服务机器人在家庭服务和养老助残等实际应用场景中的柔性物体操作提供关键技术支持。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3340,
+                "end_char": 3384
               },
               "version": "946daa79ef0cbdee5767"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-91ce7f151520",
-          "name": "协同感知与在线优化难",
-          "desc": "柔性物体抓取点、人体姿态及抓传目标位置的准确感知与在线优化是核心",
-          "evidence": [
-            {
-              "quote": "实现对柔性物体抓取点、人体姿态及抓传目标位置的准确感知与在线优化，是提升机器人在复杂交互环境下操作可靠性与安全性的核心",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2762,
-                "end_char": 2820
-              },
-              "version": "946daa79ef0cbdee5767"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-a842aefa1442",
-          "name": "多模态视觉抓取感知",
-          "desc": "复杂光照、易形变及遮挡条件下抓取点与关键区域稳定识别",
+          "id": "item-4ba3f1bf8eb8",
+          "name": "本项目围绕柔性物体抓传任务中的关键感知与决策问题，构建了从视觉感知、姿态理解到目标位置在线优化的完整技术体系。",
+          "desc": "本项目围绕柔性物体抓传任务中的关键感知与决策问题，构建了从视觉感知、姿态理解到目标位置在线优化的完整技术体系。",
           "evidence": [
             {
-              "quote": "研究并建立了多模态视觉感知方法，在复杂光照、易形变及遮挡条件下实现了对抓取点与关键区域的稳定识别",
+              "quote": "本项目围绕柔性物体抓传任务中的关键感知与决策问题，构建了从视觉感知、姿态理解到目标位置在线优化的完整技术体系。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2889,
-                "end_char": 2936
+                "start_char": 2822,
+                "end_char": 2876
               },
               "version": "946daa79ef0cbdee5767"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-123a123d0c28",
-          "name": "三维人体姿态时序建模",
-          "desc": "面向三维人体姿态的时序建模与鲁棒感知方法",
+          "id": "item-5739d06e6a79",
+          "name": "本项目拟开展面向柔性物体抓取点识别的视觉感知方法、面向物体传递任务的三维人体姿态识别方法、基于协同感知的抓传目标位置实时",
+          "desc": "本项目拟开展面向柔性物体抓取点识别的视觉感知方法、面向物体传递任务的三维人体姿态识别方法、基于协同感知的抓传目标位置实时优化方法及嵌入式实现三项研究内容，并搭建真实机器人交互平台进行实验验证，从而解决基于柔性物体与人体视觉协同感知的机器人抓物-传人交互问题。",
           "evidence": [
             {
-              "quote": "提出了面向三维人体姿态的时序建模与鲁棒感知方法，显著提升了人体姿态估计的准确性与稳定性",
+              "quote": "本项目拟开展面向柔性物体抓取点识别的视觉感知方法、面向物体传递任务的三维人体姿态识别方法、基于协同感知的抓传目标位置实时优化方法及嵌入式实现三项研究内容，并搭建真实机器人交互平台进行实验验证，从而解决基于柔性物体与人体视觉协同感知的机器人抓物-传人交互问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2947,
-                "end_char": 2989
+                "start_char": 808,
+                "end_char": 936
               },
               "version": "946daa79ef0cbdee5767"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,408 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d7af5340495c",
-          "name": "抓传目标位置在线优化",
-          "desc": "目标位姿在线自适应修正与轻量化嵌入式验证",
+          "id": "item-9d3268aca47b",
+          "name": "随着人工智能技术与机器人产业的飞速发展，医疗健康、养老助残、家庭与公共服务等领域对涉及柔性物体的人-机-物交互技术提出了",
+          "desc": "随着人工智能技术与机器人产业的飞速发展，医疗健康、养老助残、家庭与公共服务等领域对涉及柔性物体的人-机-物交互技术提出了更高的要求。",
           "evidence": [
             {
-              "quote": "进一步研究了基于协同感知的抓传目标位置实时优化方法，实现了目标位姿的在线自适应修正，并结合平台算力约束完成了轻量化设计与嵌入式验证",
+              "quote": "随着人工智能技术与机器人产业的飞速发展，医疗健康、养老助残、家庭与公共服务等领域对涉及柔性物体的人-机-物交互技术提出了更高的要求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3002,
-                "end_char": 3066
+                "start_char": 647,
+                "end_char": 712
               },
               "version": "946daa79ef0cbdee5767"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-2ddbb690a8d9",
-          "name": "高水平论文与人才计划",
-          "desc": "发表论文15篇（CCF A 6篇），入选中国科协青年人才托举工程",
+          "id": "item-461d60bd9d2b",
+          "name": "柔性物体抓传任务是服务机器人在人机协作场景中的关键操作能力。",
+          "desc": "柔性物体抓传任务是服务机器人在人机协作场景中的关键操作能力。",
           "evidence": [
             {
-              "quote": "课题组累计发表学术论文15篇，其中中国计算机学会CCF A类论文6篇，中科院1区论文3篇",
+              "quote": "柔性物体抓传任务是服务机器人在人机协作场景中的关键操作能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3076,
-                "end_char": 3119
+                "start_char": 2732,
+                "end_char": 2761
               },
               "version": "946daa79ef0cbdee5767"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-68d88054bda8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-91ce7f151520"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-Resolution Spatiotemporal Modeling with Global-Local State Space Models for Video-Based Human Pose Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8e2820d9cee9",
+      "evidence": [
+        {
+          "quote": "High-Resolution Spatiotemporal Modeling with Global-Local State Space Models for Video-Based Human Pose Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3410,
+            "end_char": 3523
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-91ce7f151520"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a842aefa1442"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "入选中国科协第十届“青年人才托举工程”项目",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fa7c4319c2a7",
+      "evidence": [
+        {
+          "quote": "入选中国科协第十届“青年人才托举工程”项目",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3611,
+            "end_char": 3631
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-91ce7f151520"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-123a123d0c28"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mutual Information-Based Temporal Difference Learning for Human Pose Estimation in Video",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d60d96f343a",
+      "evidence": [
+        {
+          "quote": "Mutual Information-Based Temporal Difference Learning for Human Pose Estimation in Video",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3649,
+            "end_char": 3736
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-123a123d0c28"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d7af5340495c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Revealing the Two Sides of Data Augmentation: An Asymmetric Distillation-based Win-Win Solution for Open-Set Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85b8186a18cc",
+      "evidence": [
+        {
+          "quote": "Revealing the Two Sides of Data Augmentation: An Asymmetric Distillation-based Win-Win Solution for Open-Set Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3818,
+            "end_char": 3937
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a842aefa1442"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2ddbb690a8d9"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AMDANet: Attention-Driven Multi-Perspective Discrepancy Alignment for RGB-Infrared Image Fusion and Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8eb2194e5d8a",
+      "evidence": [
+        {
+          "quote": "AMDANet: Attention-Driven Multi-Perspective Discrepancy Alignment for RGB-Infrared Image Fusion and Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4016,
+            "end_char": 4127
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "吉林省高层次人才评定证书",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-daaa6b36ef74",
+      "evidence": [
+        {
+          "quote": "吉林省高层次人才评定证书",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4210
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collaborative Learning for 3D Hand-Object Reconstruction and Compositional Action Recognition from Egocentric RGB Videos Using Superquadrics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f6f96517b562",
+      "evidence": [
+        {
+          "quote": "Collaborative Learning for 3D Hand-Object Reconstruction and Compositional Action Recognition from Egocentric RGB Videos Using Superquadrics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4228,
+            "end_char": 4367
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DarkSeg: Infrared-Driven Semantic Segmentation for Garment Grasping Detection in Low-Light Conditions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd5483a1b0dc",
+      "evidence": [
+        {
+          "quote": "DarkSeg: Infrared-Driven Semantic Segmentation for Garment Grasping Detection in Low-Light Conditions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4487,
+            "end_char": 4587
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "入选IEEE ICRA 2024 New Generation Star Project",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-631e8cd67c1f",
+      "evidence": [
+        {
+          "quote": "入选IEEE ICRA 2024 New Generation Star Project",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4660,
+            "end_char": 4703
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DualAdaptNet: Enhancing domain adaptation regression with error accumulation reduction and dual-head heterogeneous learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0557a7e03442",
+      "evidence": [
+        {
+          "quote": "DualAdaptNet: Enhancing domain adaptation regression with error accumulation reduction and dual-head heterogeneous learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4722,
+            "end_char": 4844
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Row–Column Separated Attention Based Low‐Light Image/Video Enhancement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3c231a62251",
+      "evidence": [
+        {
+          "quote": "Row–Column Separated Attention Based Low‐Light Image/Video Enhancement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4907,
+            "end_char": 4976
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Guiding Robotic Cloth Grasping in Darkness: Infrared Semantic Segmentation and Grasping Position Selection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f74a978fdabe",
+      "evidence": [
+        {
+          "quote": "Guiding Robotic Cloth Grasping in Darkness: Infrared Semantic Segmentation and Grasping Position Selection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5055,
+            "end_char": 5160
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Clothes Grasping and Unfolding Based on RGB-D Semantic Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ad4fc34cd38",
+      "evidence": [
+        {
+          "quote": "Clothes Grasping and Unfolding Based on RGB-D Semantic Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5227,
+            "end_char": 5293
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Generalizable Category-Level Topological Structure Learning for Clothing Recognition in Robotic Grasping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6eff6be8851e",
+      "evidence": [
+        {
+          "quote": "Generalizable Category-Level Topological Structure Learning for Clothing Recognition in Robotic Grasping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5370,
+            "end_char": 5473
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards fidelity of graph data augmentation via equivariance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ef5687f9a8d",
+      "evidence": [
+        {
+          "quote": "Towards fidelity of graph data augmentation via equivariance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5541,
+            "end_char": 5600
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Video-based human pose estimation via feature decoupling and multi-hypothesis calibration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b1de1820822b",
+      "evidence": [
+        {
+          "quote": "Video-based human pose estimation via feature decoupling and multi-hypothesis calibration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5693,
+            "end_char": 5781
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Knowing Before Seeing: Incorporating Post-retrieval Information into Pre-retrieval Query Intention Classification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3edd467bb49e",
+      "evidence": [
+        {
+          "quote": "Knowing Before Seeing: Incorporating Post-retrieval Information into Pre-retrieval Query Intention Classification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5880,
+            "end_char": 5992
+          },
+          "version": "946daa79ef0cbdee5767"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "会议论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

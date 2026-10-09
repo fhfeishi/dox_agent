@@ -2,15 +2,20 @@
   "doc_id": "7a50d4e2d82b70c557b5",
   "version": "12e5d496a3d147faad7d",
   "source_hash": "3423cf8fd48f7b1c52ebb03501b0c973e6980d4d1d2ff28d55e4dca39b922ff6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:18.146671+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.611150+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9398c2ca25e0",
-          "name": "水下环境监测仿乌贼机器人",
-          "desc": "喷射推进式水下机器人的快速机动与姿态稳定",
+          "id": "item-117014107744",
+          "name": "仿生水下机器人是水下探测的重要工具，因多采用轻质挠性附件，其姿控系统具有刚-柔-液耦合的非线性动力学特性，姿态机动诱发的",
+          "desc": "仿生水下机器人是水下探测的重要工具，因多采用轻质挠性附件，其姿控系统具有刚-柔-液耦合的非线性动力学特性，姿态机动诱发的挠性附件振动对大角度快速机动快速稳定提出巨大挑战，严重影响整体性能的提升。",
+          "evidence": [
+            {
+              "quote": "仿生水下机器人是水下探测的重要工具，因多采用轻质挠性附件，其姿控系统具有刚-柔-液耦合的非线性动力学特性，姿态机动诱发的挠性附件振动对大角度快速机动快速稳定提出巨大挑战，严重影响整体性能的提升。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 749
+              },
+              "version": "12e5d496a3d147faad7d"
+            }
+          ]
+        },
+        {
+          "id": "item-b64832a471ca",
+          "name": "本项目面向水下环境监测、探索需求，针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题，以乌贼为仿生原",
+          "desc": "本项目面向水下环境监测、探索需求，针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题，以乌贼为仿生原型，深入开展管状折纸鳃腔驱动仿乌贼机器人的仿生设计、水动力性能分析及智能控制策略研究。",
           "evidence": [
             {
               "quote": "本项目面向水下环境监测、探索需求，针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题，以乌贼为仿生原型，深入开展管状折纸鳃腔驱动仿乌贼机器人的仿生设计、水动力性能分析及智能控制策略研究。",
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-29656f8a52fd",
-          "name": "推力不足响应慢转向呆板",
-          "desc": "喷射推进水下机器人推力不足、响应慢、转向不灵活",
+          "id": "item-b49101453ba1",
+          "name": "针对仿生水下机器人快速机动过程中抑振维稳的问题，受乌贼快速高机动游动的启发，本项目提出管状折纸鳃腔驱动的仿乌贼机器人一体",
+          "desc": "针对仿生水下机器人快速机动过程中抑振维稳的问题，受乌贼快速高机动游动的启发，本项目提出管状折纸鳃腔驱动的仿乌贼机器人一体化设计方法，对关键结构参数进行多目标优化，构建仿乌贼机器人刚-柔-液耦合的动力学模型，分析迟滞、耦合和非线性对系统响应快速性和准确性的影响，剖析挠性部件振动和机器人姿态稳定之间的内在联系，突破传统仿生水下机器人快速机动过程中稳定性不足的瓶颈，研究仿乌贼机器人大角度快速平稳机动轨迹规划方法，提出一种混合增强智能自抗扰姿态",
           "evidence": [
             {
-              "quote": "针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题",
+              "quote": "针对仿生水下机器人快速机动过程中抑振维稳的问题，受乌贼快速高机动游动的启发，本项目提出管状折纸鳃腔驱动的仿乌贼机器人一体化设计方法，对关键结构参数进行多目标优化，构建仿乌贼机器人刚-柔-液耦合的动力学模型，分析迟滞、耦合和非线性对系统响应快速性和准确性的影响，剖析挠性部件振动和机器人姿态稳定之间的内在联系，突破传统仿生水下机器人快速机动过程中稳定性不足的瓶颈，研究仿乌贼机器人大角度快速平稳机动轨迹规划方法，提出一种混合增强智能自抗扰姿态",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2866,
-                "end_char": 2900
+                "start_char": 750,
+                "end_char": 969
+              },
+              "version": "12e5d496a3d147faad7d"
+            }
+          ]
+        },
+        {
+          "id": "item-ca2b732e861f",
+          "name": "本项目面向水下环境监测、探索需求，针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题，以乌贼为仿生原",
+          "desc": "本项目面向水下环境监测、探索需求，针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题，以乌贼为仿生原型，深入开展管状折纸鳃腔驱动仿乌贼机器人的仿生设计、水动力性能分析及智能控制策略研究。",
+          "evidence": [
+            {
+              "quote": "本项目面向水下环境监测、探索需求，针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题，以乌贼为仿生原型，深入开展管状折纸鳃腔驱动仿乌贼机器人的仿生设计、水动力性能分析及智能控制策略研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2849,
+                "end_char": 2951
               },
               "version": "12e5d496a3d147faad7d"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5ecef6af7f16",
-          "name": "水弹折纸喷射驱动",
-          "desc": "电机驱动柔性折展机构实现腔体快速收缩回弹",
+          "id": "item-a1eabcfa264c",
+          "name": "针对仿生水下机器人快速机动过程中抑振维稳的问题，受乌贼快速高机动游动的启发，本项目提出管状折纸鳃腔驱动的仿乌贼机器人一体",
+          "desc": "针对仿生水下机器人快速机动过程中抑振维稳的问题，受乌贼快速高机动游动的启发，本项目提出管状折纸鳃腔驱动的仿乌贼机器人一体化设计方法，对关键结构参数进行多目标优化，构建仿乌贼机器人刚-柔-液耦合的动力学模型，分析迟滞、耦合和非线性对系统响应快速性和准确性的影响，剖析挠性部件振动和机器人姿态稳定之间的内在联系，突破传统仿生水下机器人快速机动过程中稳定性不足的瓶颈，研究仿乌贼机器人大角度快速平稳机动轨迹规划方法，提出一种混合增强智能自抗扰姿态",
           "evidence": [
             {
-              "quote": "提出一种由电机驱动的\"水弹折纸\"柔性折展机构作为腔体喷射驱动单元，通过柔性结构的径向大变形实现腔体快速收缩与回弹充水，解决了传统刚性腔体难以实现大收缩比与高频驱动的技术瓶颈",
+              "quote": "针对仿生水下机器人快速机动过程中抑振维稳的问题，受乌贼快速高机动游动的启发，本项目提出管状折纸鳃腔驱动的仿乌贼机器人一体化设计方法，对关键结构参数进行多目标优化，构建仿乌贼机器人刚-柔-液耦合的动力学模型，分析迟滞、耦合和非线性对系统响应快速性和准确性的影响，剖析挠性部件振动和机器人姿态稳定之间的内在联系，突破传统仿生水下机器人快速机动过程中稳定性不足的瓶颈，研究仿乌贼机器人大角度快速平稳机动轨迹规划方法，提出一种混合增强智能自抗扰姿态",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2952,
-                "end_char": 3037
+                "start_char": 750,
+                "end_char": 969
               },
               "version": "12e5d496a3d147faad7d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5eed3c8fde7f",
-          "name": "DDPG+ADRC分层控制",
-          "desc": "分层强化学习控制框架提升响应与抗扰",
+          "id": "item-46b8e80cfe65",
+          "name": "镇定控制方法，实现仿乌贼机器人快速机动和姿态稳定，提高机器人的敏捷性和平稳性，为兼具快速机动性和姿态稳定性的水下机器人结",
+          "desc": "镇定控制方法，实现仿乌贼机器人快速机动和姿态稳定，提高机器人的敏捷性和平稳性，为兼具快速机动性和姿态稳定性的水下机器人结构设计与姿态控制提供理论和技术支撑。",
           "evidence": [
             {
-              "quote": "提出了基于深度确定性策略梯度算法（DDPG）与自抗扰控制（ADRC）的分层强化学习控制框架，提升了机器人姿态控制的响应速度与抗扰能力。",
+              "quote": "镇定控制方法，实现仿乌贼机器人快速机动和姿态稳定，提高机器人的敏捷性和平稳性，为兼具快速机动性和姿态稳定性的水下机器人结构设计与姿态控制提供理论和技术支撑。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3188,
-                "end_char": 3254
+                "start_char": 970,
+                "end_char": 1047
               },
               "version": "12e5d496a3d147faad7d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +140,328 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8b92d60a48ef",
-          "name": "样机与论文专利",
-          "desc": "研制原理样机，论文5篇、专利8项、软著1项、研究生7名",
+          "id": "item-e91fbc2ab5ae",
+          "name": "仿生水下机器人是水下探测的重要工具，因多采用轻质挠性附件，其姿控系统具有刚-柔-液耦合的非线性动力学特性，姿态机动诱发的",
+          "desc": "仿生水下机器人是水下探测的重要工具，因多采用轻质挠性附件，其姿控系统具有刚-柔-液耦合的非线性动力学特性，姿态机动诱发的挠性附件振动对大角度快速机动快速稳定提出巨大挑战，严重影响整体性能的提升。",
           "evidence": [
             {
-              "quote": "研制了管状折纸鳃腔驱动仿乌贼机器人原理样机，完成了柔性喷射腔体运动测试及水下推进实验。",
+              "quote": "仿生水下机器人是水下探测的重要工具，因多采用轻质挠性附件，其姿控系统具有刚-柔-液耦合的非线性动力学特性，姿态机动诱发的挠性附件振动对大角度快速机动快速稳定提出巨大挑战，严重影响整体性能的提升。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3255,
-                "end_char": 3297
+                "start_char": 653,
+                "end_char": 749
               },
               "version": "12e5d496a3d147faad7d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-5481bf8a5a00",
+          "name": "本项目面向水下环境监测、探索需求，针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题，以乌贼为仿生原",
+          "desc": "本项目面向水下环境监测、探索需求，针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题，以乌贼为仿生原型，深入开展管状折纸鳃腔驱动仿乌贼机器人的仿生设计、水动力性能分析及智能控制策略研究。",
+          "evidence": [
+            {
+              "quote": "本项目面向水下环境监测、探索需求，针对喷射推进式水下机器人推力不足、响应速度偏慢、转向控制不够灵活等问题，以乌贼为仿生原型，深入开展管状折纸鳃腔驱动仿乌贼机器人的仿生设计、水动力性能分析及智能控制策略研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2849,
+                "end_char": 2951
+              },
+              "version": "12e5d496a3d147faad7d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9398c2ca25e0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-29656f8a52fd"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种高效节能的水下机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75a833174819",
+      "evidence": [
+        {
+          "quote": "一种高效节能的水下机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3391,
+            "end_char": 3402
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-29656f8a52fd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5ecef6af7f16"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Performance Analysis of Underwater Propulsion System Based on Waterbomb Origami Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c3366551c00",
+      "evidence": [
+        {
+          "quote": "Performance Analysis of Underwater Propulsion System Based on Waterbomb Origami Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3444,
+            "end_char": 3532
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-29656f8a52fd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5eed3c8fde7f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于改进偏差耦合的多驱动系统协同控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff077fa10e88",
+      "evidence": [
+        {
+          "quote": "一种基于改进偏差耦合的多驱动系统协同控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3603,
+            "end_char": 3627
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5ecef6af7f16"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8b92d60a48ef"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种双程形状记忆合金驱动管状折纸驱动器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-447010814a2f",
+      "evidence": [
+        {
+          "quote": "一种双程形状记忆合金驱动管状折纸驱动器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3659,
+            "end_char": 3677
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5eed3c8fde7f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8b92d60a48ef"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "折纸驱动仿乌贼水下机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1838e1a4a9cd",
+      "evidence": [
+        {
+          "quote": "折纸驱动仿乌贼水下机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3716,
+            "end_char": 3727
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved Active Disturbance Rejection Control for Permanent Magnet Synchronous Motor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d10f3d7638f8",
+      "evidence": [
+        {
+          "quote": "Improved Active Disturbance Rejection Control for Permanent Magnet Synchronous Motor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3769,
+            "end_char": 3852
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人用矢量喷嘴",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6276d58885a4",
+      "evidence": [
+        {
+          "quote": "一种机器人用矢量喷嘴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3936,
+            "end_char": 3945
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种高机动水下机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b963576ec9b6",
+      "evidence": [
+        {
+          "quote": "一种高机动水下机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3982,
+            "end_char": 3991
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Low cost and robust control for brushless DC motor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fc85edf8facc",
+      "evidence": [
+        {
+          "quote": "Low cost and robust control for brushless DC motor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4033,
+            "end_char": 4082
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种仿乌贼机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a9fd82fcacc",
+      "evidence": [
+        {
+          "quote": "一种仿乌贼机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4103,
+            "end_char": 4110
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimization design and performance analysis of pneumatic grid flexible actuator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b30182eca951",
+      "evidence": [
+        {
+          "quote": "Optimization design and performance analysis of pneumatic grid flexible actuator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4148,
+            "end_char": 4227
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "EDT-YOLOv8n-Based Lightweight Detection of Kiwifruit in Complex Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e6ba15c92c9",
+      "evidence": [
+        {
+          "quote": "EDT-YOLOv8n-Based Lightweight Detection of Kiwifruit in Complex Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4291,
+            "end_char": 4366
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种改进偏差耦合的自抗扰多驱动系统协同控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f5c89237eba8",
+      "evidence": [
+        {
+          "quote": "一种改进偏差耦合的自抗扰多驱动系统协同控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4439,
+            "end_char": 4461
+          },
+          "version": "12e5d496a3d147faad7d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "专利": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

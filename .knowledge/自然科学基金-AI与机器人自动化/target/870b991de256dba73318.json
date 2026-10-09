@@ -2,15 +2,20 @@
   "doc_id": "870b991de256dba73318",
   "version": "1d1f9de16b2e12588b1f",
   "source_hash": "80e2c53168d6a3e3a0fc7f3f260134a2e5da1686002f42bce2eb926dcf48982d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:38:34.822586+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.723932+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c12a843de020",
-          "name": "水陆两栖机器人作业",
-          "desc": "洪涝抢险救灾、环境保护、养殖水产和军事等领域的两栖自主作业",
+          "id": "item-09235725c08b",
+          "name": "水陆两栖机器人具有广阔应用前景，但是要走向实际应用，还需解决两栖推进机理、野外导航以及两栖集群作业等问题。",
+          "desc": "水陆两栖机器人具有广阔应用前景，但是要走向实际应用，还需解决两栖推进机理、野外导航以及两栖集群作业等问题。",
           "evidence": [
             {
-              "quote": "水陆两栖机器人是近年来机器人热门研究领域之一，在洪涝抢险救灾、环境保护、养殖水产和军事等方面具有广阔应用前景",
+              "quote": "水陆两栖机器人具有广阔应用前景，但是要走向实际应用，还需解决两栖推进机理、野外导航以及两栖集群作业等问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 641,
+                "end_char": 693
+              },
+              "version": "1d1f9de16b2e12588b1f"
+            }
+          ]
+        },
+        {
+          "id": "item-df757f9ec8ed",
+          "name": "水陆两栖机器人是近年来机器人热门研究领域之一，在洪涝抢险救灾、环境保护、养殖水产和军事等方面具有广阔应用前景。",
+          "desc": "水陆两栖机器人是近年来机器人热门研究领域之一，在洪涝抢险救灾、环境保护、养殖水产和军事等方面具有广阔应用前景。",
+          "evidence": [
+            {
+              "quote": "水陆两栖机器人是近年来机器人热门研究领域之一，在洪涝抢险救灾、环境保护、养殖水产和军事等方面具有广阔应用前景。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2761,
-                "end_char": 2814
+                "end_char": 2815
               },
               "version": "1d1f9de16b2e12588b1f"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-66143c08a0ad",
-          "name": "两栖推进与导航挑战",
-          "desc": "两栖推进机理不清晰、水陆复合推进机构优化方法缺失、野外复杂因素严重影响导航性能",
-          "evidence": [
-            {
-              "quote": "水陆两栖机器人要实现在水陆两栖地带进行自主作业，需要解决两栖推进机理不清晰、水陆复合推进机构优化方法缺失、和野外复杂因素严重影响导航性能等诸多挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2819,
-                "end_char": 2891
-              },
-              "version": "1d1f9de16b2e12588b1f"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-37471b295c5d",
-          "name": "仿生柔性腿作用模型",
-          "desc": "基于仿生柔性腿的两栖机器人与介质环境作用模型及多足小型两栖仿生机构",
+          "id": "item-aefa39ad70e8",
+          "name": "针对这些问题，本课题开展了移动机构与泥沙等松软介质作用机理、复合柔性推进机构、两栖环境介质类别及参数自主识别方法、多传感",
+          "desc": "针对这些问题，本课题开展了移动机构与泥沙等松软介质作用机理、复合柔性推进机构、两栖环境介质类别及参数自主识别方法、多传感器融合同步定位与环境建图、两栖机器人轨迹规划和跟踪控制、两栖机器人协同算法等方面的研究，搭建了基于动力学引擎的仿真平台、两栖机器人实验平台以及3款样机系统等，建立了相关样机系统的运动学、动力学和感知模型，利用深度学习、机器学习、多目标优化、多模态感知、Kalman滤波、非线性优化、视觉伺服等方法论，建立了基于仿生柔性腿",
           "evidence": [
             {
-              "quote": "建立了基于仿生柔性腿的两栖机器人与介质环境作用模型，设计了高机动性多足小型两栖仿生机构",
+              "quote": "针对这些问题，本课题开展了移动机构与泥沙等松软介质作用机理、复合柔性推进机构、两栖环境介质类别及参数自主识别方法、多传感器融合同步定位与环境建图、两栖机器人轨迹规划和跟踪控制、两栖机器人协同算法等方面的研究，搭建了基于动力学引擎的仿真平台、两栖机器人实验平台以及3款样机系统等，建立了相关样机系统的运动学、动力学和感知模型，利用深度学习、机器学习、多目标优化、多模态感知、Kalman滤波、非线性优化、视觉伺服等方法论，建立了基于仿生柔性腿",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3103,
-                "end_char": 3145
+                "start_char": 2893,
+                "end_char": 3112
               },
               "version": "1d1f9de16b2e12588b1f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b6d0398bc7b3",
-          "name": "环境介质识别步态切换",
-          "desc": "基于电机扭矩自感知的触地检测与基于触觉感知和视觉深度神经网络的环境介质识别技术",
+          "id": "item-06f2873856ee",
+          "name": "的两栖机器人与介质环境作用模型，设计了高机动性多足小型两栖仿生机构，提出了基于电机扭矩自感知特性的触地检测技术、基于触觉",
+          "desc": "的两栖机器人与介质环境作用模型，设计了高机动性多足小型两栖仿生机构，提出了基于电机扭矩自感知特性的触地检测技术、基于触觉感知和视觉深度神经网络的环境介质识别技术、基于地形感知的自适应步态控制技术、面向复杂光照条件的两栖机器人视觉惯性里程计技术、野外环境下两栖机器人主动视觉定位技术、基于多模态信息融合的全天时SLAM技术、基于三维激光增稠机构的多帧融合和目标检测技术、基于边境栅格视角规划和多传感器融合位姿估计的主动重建技术、野外环境两栖机",
           "evidence": [
             {
-              "quote": "提出了基于电机扭矩自感知特性的触地检测技术、基于触觉感知和视觉深度神经网络的环境介质识别技术、基于地形感知的自适应步态控制技术",
+              "quote": "的两栖机器人与介质环境作用模型，设计了高机动性多足小型两栖仿生机构，提出了基于电机扭矩自感知特性的触地检测技术、基于触觉感知和视觉深度神经网络的环境介质识别技术、基于地形感知的自适应步态控制技术、面向复杂光照条件的两栖机器人视觉惯性里程计技术、野外环境下两栖机器人主动视觉定位技术、基于多模态信息融合的全天时SLAM技术、基于三维激光增稠机构的多帧融合和目标检测技术、基于边境栅格视角规划和多传感器融合位姿估计的主动重建技术、野外环境两栖机",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3147,
-                "end_char": 3209
+                "start_char": 3113,
+                "end_char": 3332
               },
               "version": "1d1f9de16b2e12588b1f"
             }
-          ]
-        },
-        {
-          "id": "item-bb34b42435d6",
-          "name": "全天时SLAM与导航",
-          "desc": "面向复杂光照条件的视觉惯性里程计与基于多模态信息融合的全天时SLAM技术",
-          "evidence": [
-            {
-              "quote": "面向复杂光照条件的两栖机器人视觉惯性里程计技术、野外环境下两栖机器人主动视觉定位技术、基于多模态信息融合的全天时SLAM技术",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3211,
-                "end_char": 3272
-              },
-              "version": "1d1f9de16b2e12588b1f"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +107,1068 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a52264b063ff",
-          "name": "样机系统与技术突破",
-          "desc": "搭建仿真平台与3款样机系统，突破两栖跨介质穿越机构和野外环境导航核心技术",
+          "id": "item-f0f01c09ad10",
+          "name": "水陆两栖机器人具有广阔应用前景，但是要走向实际应用，还需解决两栖推进机理、野外导航以及两栖集群作业等问题。",
+          "desc": "水陆两栖机器人具有广阔应用前景，但是要走向实际应用，还需解决两栖推进机理、野外导航以及两栖集群作业等问题。",
           "evidence": [
             {
-              "quote": "搭建了基于动力学引擎的仿真平台、两栖机器人实验平台以及3款样机系统等",
+              "quote": "水陆两栖机器人具有广阔应用前景，但是要走向实际应用，还需解决两栖推进机理、野外导航以及两栖集群作业等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2997,
-                "end_char": 3030
+                "start_char": 641,
+                "end_char": 693
               },
               "version": "1d1f9de16b2e12588b1f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-47dbcc682443",
+          "name": "水陆两栖机器人是近年来机器人热门研究领域之一，在洪涝抢险救灾、环境保护、养殖水产和军事等方面具有广阔应用前景。",
+          "desc": "水陆两栖机器人是近年来机器人热门研究领域之一，在洪涝抢险救灾、环境保护、养殖水产和军事等方面具有广阔应用前景。",
+          "evidence": [
+            {
+              "quote": "水陆两栖机器人是近年来机器人热门研究领域之一，在洪涝抢险救灾、环境保护、养殖水产和军事等方面具有广阔应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2761,
+                "end_char": 2815
+              },
+              "version": "1d1f9de16b2e12588b1f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c12a843de020"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-66143c08a0ad"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于仿生的飞行机械颈眼系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad9c8e607d4b",
+      "evidence": [
+        {
+          "quote": "一种基于仿生的飞行机械颈眼系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3532,
+            "end_char": 3551
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-66143c08a0ad"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-37471b295c5d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Workload-adaptive Vertical Hopping of A Single-legged Robot using Model-based Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-635d4e586921",
+      "evidence": [
+        {
+          "quote": "Workload-adaptive Vertical Hopping of A Single-legged Robot using Model-based Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3580,
+            "end_char": 3669
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-66143c08a0ad"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b6d0398bc7b3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and Motion Control of a Soft SMA Planar actuator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6eccd395bd99",
+      "evidence": [
+        {
+          "quote": "Modeling and Motion Control of a Soft SMA Planar actuator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3725,
+            "end_char": 3781
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-66143c08a0ad"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bb34b42435d6"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Passively Deformable Flipper Legs for An Amphibious Quadruped",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3337ac0c02c6",
+      "evidence": [
+        {
+          "quote": "Passively Deformable Flipper Legs for An Amphibious Quadruped",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3863,
+            "end_char": 3923
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bb34b42435d6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a52264b063ff"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多机器人和高斯信号模型的自适应最优自组网方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-375ae52ea860",
+      "evidence": [
+        {
+          "quote": "基于多机器人和高斯信号模型的自适应最优自组网方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3986,
+            "end_char": 4009
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-37471b295c5d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a52264b063ff"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多无人机立体充电系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-80d133d690ff",
+      "evidence": [
+        {
+          "quote": "一种多无人机立体充电系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4041,
+            "end_char": 4052
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于射流推进的仿生扇贝机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a06e19f941d",
+      "evidence": [
+        {
+          "quote": "一种基于射流推进的仿生扇贝机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4079,
+            "end_char": 4094
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种长期场景下无人车的自主定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d888ddd429b",
+      "evidence": [
+        {
+          "quote": "一种长期场景下无人车的自主定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4118,
+            "end_char": 4134
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于力反馈装置和VR感知的飞行机械臂系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb48c81d90ad",
+      "evidence": [
+        {
+          "quote": "一种基于力反馈装置和VR感知的飞行机械臂系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4165,
+            "end_char": 4191
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Liquid metal motor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd3f66722841",
+      "evidence": [
+        {
+          "quote": "Liquid metal motor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4229,
+            "end_char": 4246
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Light-controlled versatile manipulation of liquid metal droplets: a gateway to future liquid robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-69836eabf9e1",
+      "evidence": [
+        {
+          "quote": "Light-controlled versatile manipulation of liquid metal droplets: a gateway to future liquid robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4372,
+            "end_char": 4470
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多无人机立体充电系统及充电位置指派方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-840b99217f7e",
+      "evidence": [
+        {
+          "quote": "一种多无人机立体充电系统及充电位置指派方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4589,
+            "end_char": 4609
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel high precise laser 3D profile scanning method with flexible calibration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4c772b97b31",
+      "evidence": [
+        {
+          "quote": "A novel high precise laser 3D profile scanning method with flexible calibration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4639,
+            "end_char": 4717
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Aerial Grasping Based on VR Perception and Haptic Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d27915e6289",
+      "evidence": [
+        {
+          "quote": "Aerial Grasping Based on VR Perception and Haptic Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4769,
+            "end_char": 4825
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SNIAE-SSE Deformation Mechanism Enabled Scalable Multicopter: Design, Modeling and Flight Performance Validation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb65145725d5",
+      "evidence": [
+        {
+          "quote": "SNIAE-SSE Deformation Mechanism Enabled Scalable Multicopter: Design, Modeling and Flight Performance Validation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4891,
+            "end_char": 5002
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Liquid Metal Artificial Muscle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c7ea8cc7394",
+      "evidence": [
+        {
+          "quote": "A Liquid Metal Artificial Muscle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5082,
+            "end_char": 5113
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3-D Dense Rangefinder Sensor With a Low-Cost Scanning Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df87775a57df",
+      "evidence": [
+        {
+          "quote": "3-D Dense Rangefinder Sensor With a Low-Cost Scanning Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5277,
+            "end_char": 5339
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于静态语义信息的点云地图创建与场景辨识方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de5a3b2d39fd",
+      "evidence": [
+        {
+          "quote": "一种基于静态语义信息的点云地图创建与场景辨识方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5407,
+            "end_char": 5430
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Recognition and Classification of Wire Bonding Joint via Image Feature and SVM Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4add9ce494ba",
+      "evidence": [
+        {
+          "quote": "Recognition and Classification of Wire Bonding Joint via Image Feature and SVM Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5464,
+            "end_char": 5547
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于液态金属驱动的轮式机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a6aa846d96e",
+      "evidence": [
+        {
+          "quote": "一种基于液态金属驱动的轮式机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5616,
+            "end_char": 5631
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "液态金属驱动的自驱动装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-64bcb0311d00",
+      "evidence": [
+        {
+          "quote": "液态金属驱动的自驱动装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5651,
+            "end_char": 5662
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Comparison of phase optimization algorithms for particle manipulation via acoustic tweezer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1def798dcd0f",
+      "evidence": [
+        {
+          "quote": "Comparison of phase optimization algorithms for particle manipulation via acoustic tweezer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5700,
+            "end_char": 5789
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Simulation Platform for Autonomous Aerial Manipulation in Dynamic Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e2fab548bbb",
+      "evidence": [
+        {
+          "quote": "Simulation Platform for Autonomous Aerial Manipulation in Dynamic Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5882,
+            "end_char": 5959
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于液态金属驱动的旋转电机",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e261ec56f88",
+      "evidence": [
+        {
+          "quote": "一种基于液态金属驱动的旋转电机",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6035,
+            "end_char": 6049
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantic Scan Context: Global Semantic Descriptor for 3D LiDAR based Place Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b18a3547323d",
+      "evidence": [
+        {
+          "quote": "Semantic Scan Context: Global Semantic Descriptor for 3D LiDAR based Place Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6078,
+            "end_char": 6163
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "芯片键合纵弯复合超声换能器的设计与试验",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5a621e1c00ce",
+      "evidence": [
+        {
+          "quote": "芯片键合纵弯复合超声换能器的设计与试验",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6243,
+            "end_char": 6261
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pole-like Objects Mapping and Long-Term Robot Localization in Dynamic Urban Scenarios",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-934eb35e004e",
+      "evidence": [
+        {
+          "quote": "Pole-like Objects Mapping and Long-Term Robot Localization in Dynamic Urban Scenarios",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6292,
+            "end_char": 6376
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种触觉感知装置及机器人地形感知方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bea528ddd101",
+      "evidence": [
+        {
+          "quote": "一种触觉感知装置及机器人地形感知方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6442,
+            "end_char": 6459
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Swan-Inspired Unmanned Aerial Vehicles With Long-neck Visual Perception System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b5c61ef2ad4",
+      "evidence": [
+        {
+          "quote": "Swan-Inspired Unmanned Aerial Vehicles With Long-neck Visual Perception System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6489,
+            "end_char": 6566
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Exploration and Map Construction of a Mobile Robot Based on the TGHM Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57ba2ae1ef28",
+      "evidence": [
+        {
+          "quote": "Autonomous Exploration and Map Construction of a Mobile Robot Based on the TGHM Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6636,
+            "end_char": 6724
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Novel Double Compensation for Impedance-Frequency Characteristics of Rotary Ultrasonic Machining via Multiobjective Genetic Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71de3d84f9ba",
+      "evidence": [
+        {
+          "quote": "Novel Double Compensation for Impedance-Frequency Characteristics of Rotary Ultrasonic Machining via Multiobjective Genetic Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6812,
+            "end_char": 6944
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于三维激光增稠机构的多帧融合方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3377834f2725",
+      "evidence": [
+        {
+          "quote": "一种基于三维激光增稠机构的多帧融合方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7015,
+            "end_char": 7033
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Natural Feature-based Visual Servoing for Grasping Target with an Aerial Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6591e939c0db",
+      "evidence": [
+        {
+          "quote": "Natural Feature-based Visual Servoing for Grasping Target with an Aerial Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7067,
+            "end_char": 7150
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于视觉编码器融合的悬挂负载状态估计器及估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fbe911eb876d",
+      "evidence": [
+        {
+          "quote": "基于视觉编码器融合的悬挂负载状态估计器及估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7218,
+            "end_char": 7241
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time Object Detection System of UAV Based on Embedded NPU Device",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2320d0d17052",
+      "evidence": [
+        {
+          "quote": "Real-time Object Detection System of UAV Based on Embedded NPU Device",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7277,
+            "end_char": 7345
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of a biomimetic scallop robot capable of jet propulsion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-46b03c68e29d",
+      "evidence": [
+        {
+          "quote": "Development of a biomimetic scallop robot capable of jet propulsion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7414,
+            "end_char": 7480
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online Extrinsic Parameter Calibration for Robotic Camera-Encoder System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62c902fb66ed",
+      "evidence": [
+        {
+          "quote": "Online Extrinsic Parameter Calibration for Robotic Camera-Encoder System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7571,
+            "end_char": 7642
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision and laser fused SLAM in indoor environments with multi-robot system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3cf943d1d401",
+      "evidence": [
+        {
+          "quote": "Vision and laser fused SLAM in indoor environments with multi-robot system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7705,
+            "end_char": 7778
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Facial Image Synthesis and Super-Resolution With Stacked Generative Adversarial Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30eabf66102a",
+      "evidence": [
+        {
+          "quote": "Facial Image Synthesis and Super-Resolution With Stacked Generative Adversarial Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7846,
+            "end_char": 7932
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual Grasping for a Lightweight Aerial Manipulator Based on NSGA-II and Kinematic Compensation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-89e97c09c1ee",
+      "evidence": [
+        {
+          "quote": "Visual Grasping for a Lightweight Aerial Manipulator Based on NSGA-II and Kinematic Compensation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8003,
+            "end_char": 8098
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视觉导引的机器人自主开门方法与系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-74c84e601f35",
+      "evidence": [
+        {
+          "quote": "一种基于视觉导引的机器人自主开门方法与系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8168,
+            "end_char": 8188
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Approach to Control of Piezo-Transducer in Microelectronics Packaging: PSO-PID and Editing Trajectory Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-86dfe91ef117",
+      "evidence": [
+        {
+          "quote": "A Novel Approach to Control of Piezo-Transducer in Microelectronics Packaging: PSO-PID and Editing Trajectory Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8222,
+            "end_char": 8343
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Electromechanical Dynamics Model of Ultrasonic Transducer in Ultrasonic Machining Based on Equivalent Circuit Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-91518f38cb5c",
+      "evidence": [
+        {
+          "quote": "Electromechanical Dynamics Model of Ultrasonic Transducer in Ultrasonic Machining Based on Equivalent Circuit Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8426,
+            "end_char": 8543
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Feature Extraction and Mapping Construction for Mobile Robot via Ultrasonic MDP and Fuzzy Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-89795753547b",
+      "evidence": [
+        {
+          "quote": "Feature Extraction and Mapping Construction for Mobile Robot via Ultrasonic MDP and Fuzzy Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8620,
+            "end_char": 8714
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cascaded Approach to Defect Location and Classification in Microelectronic Bonded Joints: Improved Level Set and Random Forest",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dd02623ea56d",
+      "evidence": [
+        {
+          "quote": "Cascaded Approach to Defect Location and Classification in Microelectronic Bonded Joints: Improved Level Set and Random Forest",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8784,
+            "end_char": 8909
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于仿生的机器人感知控制系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f33e6905ef32",
+      "evidence": [
+        {
+          "quote": "一种基于仿生的机器人感知控制系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8954,
+            "end_char": 8974
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种聚类地图创建方法及基于聚类地图和位置描述子匹配的重定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c11b86f64a2",
+      "evidence": [
+        {
+          "quote": "一种聚类地图创建方法及基于聚类地图和位置描述子匹配的重定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9007,
+            "end_char": 9037
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Amphibious Robot’s Trajectory Tracking with DNN-Based Nonlinear Model Predictive Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd026afb78a5",
+      "evidence": [
+        {
+          "quote": "Amphibious Robot’s Trajectory Tracking with DNN-Based Nonlinear Model Predictive Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9067,
+            "end_char": 9154
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Shape and Force Sensing of A Soft SMA Planar Actuator for Soft Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-76d729064715",
+      "evidence": [
+        {
+          "quote": "Shape and Force Sensing of A Soft SMA Planar Actuator for Soft Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9224,
+            "end_char": 9292
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous State Estimation and Mapping in Unknown Environments With Onboard Stereo Camera for Micro Aerial Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd26b678871f",
+      "evidence": [
+        {
+          "quote": "Autonomous State Estimation and Mapping in Unknown Environments With Onboard Stereo Camera for Micro Aerial Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9375,
+            "end_char": 9490
+          },
+          "version": "1d1f9de16b2e12588b1f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 50,
+    "listed": 50,
+    "by_kind": {
+      "专利": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "会议论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "期刊论文": {
+        "listed": 21,
+        "extracted": 21
+      }
+    },
+    "consistent": true
+  }
 }

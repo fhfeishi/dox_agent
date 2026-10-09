@@ -2,15 +2,20 @@
   "doc_id": "ca7f4e208c38356e9aee",
   "version": "6e7147c4f3b61da4faa4",
   "source_hash": "b8a80b9910a6e9f1c342dd407ba3d95e4ab1f89cbf62bb6fd2e7e9584a2035c6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:51:45.336767+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.434756+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-353d68a0a1ea",
-          "name": "上肢康复外骨骼柔顺控制",
-          "desc": "神经功能损伤患者上肢康复机器人训练",
+          "id": "item-1ba69128487d",
+          "name": "康复机器人已成为神经功能损伤引起的上肢功能障碍康复治疗的重要手段。",
+          "desc": "康复机器人已成为神经功能损伤引起的上肢功能障碍康复治疗的重要手段。",
           "evidence": [
             {
-              "quote": "本课题针对基于人机协同信息融合的运动意图识别与自适应柔顺控制方法，重点研究了上肢康复外骨骼机器人设计、运动意图识别和人机协同控制策略等内容。",
+              "quote": "康复机器人已成为神经功能损伤引起的上肢功能障碍康复治疗的重要手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3070,
-                "end_char": 3139
+                "start_char": 667,
+                "end_char": 699
               },
               "version": "6e7147c4f3b61da4faa4"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-886421869b08",
-          "name": "意图识别灵敏度不足",
-          "desc": "运动意图识别灵敏度不足及人机协同控制顺应性差",
-          "evidence": [
-            {
-              "quote": "但上肢康复机器人仍存在着运动意图识别灵敏度不足及人机协同运动控制顺应性差等难题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3030,
-                "end_char": 3069
-              },
-              "version": "6e7147c4f3b61da4faa4"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-091e42bbc2c8",
-          "name": "PSO-BPNN力矩估计",
-          "desc": "sEMG与肘关节角度训练主动力矩估计一致性99%",
+          "id": "item-c496218bef56",
+          "name": "因此，本课题重点研究基于人机协同信息融合的运动意图识别与自适应柔顺控制方法，主要包括：1）结合上肢康复机器人的康复训练模",
+          "desc": "因此，本课题重点研究基于人机协同信息融合的运动意图识别与自适应柔顺控制方法，主要包括：1）结合上肢康复机器人的康复训练模式，研究基于姿势任务下多骨骼肌协同功能网络和骨骼肌激活区域解析，构建基于肌电信号的协同功能网络和肌电的肌力估计模型；",
           "evidence": [
             {
-              "quote": "采用改进的PSO-BPNN神经网络算法训练出了连续运动中的肘关节主动力矩估计模型，其主动力矩估计一致性达99%",
+              "quote": "因此，本课题重点研究基于人机协同信息融合的运动意图识别与自适应柔顺控制方法，主要包括：1）结合上肢康复机器人的康复训练模式，研究基于姿势任务下多骨骼肌协同功能网络和骨骼肌激活区域解析，构建基于肌电信号的协同功能网络和肌电的肌力估计模型；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3221,
-                "end_char": 3275
+                "start_char": 745,
+                "end_char": 862
               },
               "version": "6e7147c4f3b61da4faa4"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f16ff75b9ce4",
-          "name": "闭环意图反馈控制",
-          "desc": "估计力矩为主动反馈结合角度设计闭环控制策略",
+          "id": "item-38a6fe29a799",
+          "name": "在控制方面，基于上肢多块肌肉的sEMG信号和肘关节角度信号等多源信号，并采用改进的PSO-BPNN神经网络算法训练出了连",
+          "desc": "在控制方面，基于上肢多块肌肉的sEMG信号和肘关节角度信号等多源信号，并采用改进的PSO-BPNN神经网络算法训练出了连续运动中的肘关节主动力矩估计模型，其主动力矩估计一致性达99%，并以肘关节的估计力矩为主动反馈，集合角度信息设计出基于运动意图的闭环反馈控制策略，在康复机器人嵌入式控制平台中实现，为患者康复训练提供自适应助力。",
           "evidence": [
             {
-              "quote": "并以肘关节的估计力矩为主动反馈，集合角度信息设计出基于运动意图的闭环反馈控制策略，在康复机器人嵌入式控制平台中实现，为患者康复训练提供自适应助力。",
+              "quote": "在控制方面，基于上肢多块肌肉的sEMG信号和肘关节角度信号等多源信号，并采用改进的PSO-BPNN神经网络算法训练出了连续运动中的肘关节主动力矩估计模型，其主动力矩估计一致性达99%，并以肘关节的估计力矩为主动反馈，集合角度信息设计出基于运动意图的闭环反馈控制策略，在康复机器人嵌入式控制平台中实现，为患者康复训练提供自适应助力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3277,
+                "start_char": 3185,
                 "end_char": 3349
               },
               "version": "6e7147c4f3b61da4faa4"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,348 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f2feb17a7a2f",
-          "name": "低延时高柔顺控制",
-          "desc": "高准确率与几十毫秒控制延时提高人机交互柔顺性",
+          "id": "item-4280ac25502c",
+          "name": "康复机器人已成为神经功能损伤引起的上肢功能障碍康复治疗的重要手段。",
+          "desc": "康复机器人已成为神经功能损伤引起的上肢功能障碍康复治疗的重要手段。",
           "evidence": [
             {
-              "quote": "该控制策略具有高准确率和低至几十毫秒的控制延时，大大提高了人机交互时的柔顺性",
+              "quote": "康复机器人已成为神经功能损伤引起的上肢功能障碍康复治疗的重要手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3350,
-                "end_char": 3387
+                "start_char": 667,
+                "end_char": 699
               },
               "version": "6e7147c4f3b61da4faa4"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-7c85122acc0b",
+          "name": "因中风、外伤等造成的神经功能损伤导致了严重的上肢功能障碍，传统的临床康复训练手段是由康复医师徒手或借助简单器材对患者进行",
+          "desc": "因中风、外伤等造成的神经功能损伤导致了严重的上肢功能障碍，传统的临床康复训练手段是由康复医师徒手或借助简单器材对患者进行不间断的被动训练，效率低下。",
+          "evidence": [
+            {
+              "quote": "因中风、外伤等造成的神经功能损伤导致了严重的上肢功能障碍，传统的临床康复训练手段是由康复医师徒手或借助简单器材对患者进行不间断的被动训练，效率低下。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2914,
+                "end_char": 2987
+              },
+              "version": "6e7147c4f3b61da4faa4"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-353d68a0a1ea"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-886421869b08"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种阵列式高密度表面肌电采集装置及肌电采集方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fe82d7e08e3a",
+      "evidence": [
+        {
+          "quote": "一种阵列式高密度表面肌电采集装置及肌电采集方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3642,
+            "end_char": 3664
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-886421869b08"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-091e42bbc2c8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Effects of passive and active training modes of upper-limb  rehabilitation robot on cortical activation: a functional  near-infrared spectroscopy study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a7c48ce2c64c",
+      "evidence": [
+        {
+          "quote": "Effects of passive and active training modes of upper-limb  rehabilitation robot on cortical activation: a functional  near-infrared spectroscopy study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3696,
+            "end_char": 3846
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-886421869b08"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f16ff75b9ce4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bionic Design to Reduce Driving Power for a Portable Elbow Exoskeleton Based on Gravity-balancing Coupled Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13e3f9b4065f",
+      "evidence": [
+        {
+          "quote": "Bionic Design to Reduce Driving Power for a Portable Elbow Exoskeleton Based on Gravity-balancing Coupled Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3927,
+            "end_char": 4037
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-091e42bbc2c8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f2feb17a7a2f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Comparative Study of Human Skin Detection Using Object Detection Based on Transfer Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9d5c3fa094c",
+      "evidence": [
+        {
+          "quote": "Comparative Study of Human Skin Detection Using Object Detection Based on Transfer Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4131,
+            "end_char": 4221
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f16ff75b9ce4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f2feb17a7a2f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于多传感器信息的新型穿戴式上肢外 骨骼康复机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba1a08c25c01",
+      "evidence": [
+        {
+          "quote": "基于多传感器信息的新型穿戴式上肢外 骨骼康复机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4272,
+            "end_char": 4296
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gamma frequency band shift of contralateral corticomuscular  synchronous oscillations with force strength for hand  movement tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-46c1e2ff0a08",
+      "evidence": [
+        {
+          "quote": "Gamma frequency band shift of contralateral corticomuscular  synchronous oscillations with force strength for hand  movement tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4331,
+            "end_char": 4460
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于 BiLSTM 的表面肌电图手势识别算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-63ffe5511a70",
+      "evidence": [
+        {
+          "quote": "基于 BiLSTM 的表面肌电图手势识别算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4516,
+            "end_char": 4537
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "脑卒中患者上肢功能智能评估系统研究进展",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5df3975a498f",
+      "evidence": [
+        {
+          "quote": "脑卒中患者上肢功能智能评估系统研究进展",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4563,
+            "end_char": 4581
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "智能动态控制肌电仿生假手关键技术与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4586e9165cb6",
+      "evidence": [
+        {
+          "quote": "智能动态控制肌电仿生假手关键技术与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4608,
+            "end_char": 4626
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "穿戴式上肢外骨骼康复机器人发展现状分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6de91817bef9",
+      "evidence": [
+        {
+          "quote": "穿戴式上肢外骨骼康复机器人发展现状分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4676,
+            "end_char": 4694
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种驱动力方向可调节的颈椎牵引外骨骼",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dda7dd402db3",
+      "evidence": [
+        {
+          "quote": "一种驱动力方向可调节的颈椎牵引外骨骼",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4719,
+            "end_char": 4736
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于多模态信息融合的肘关节连续运动估计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-42b44ac01494",
+      "evidence": [
+        {
+          "quote": "基于多模态信息融合的肘关节连续运动估计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4772,
+            "end_char": 4790
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Electromyogram-based motion compensation control for the upper limb rehabilitation robot in active training",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1efaead5fd87",
+      "evidence": [
+        {
+          "quote": "Electromyogram-based motion compensation control for the upper limb rehabilitation robot in active training",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4823,
+            "end_char": 4929
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种前臂无动力旋转的肘关节康复外骨骼",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d33c77a2e65",
+      "evidence": [
+        {
+          "quote": "一种前臂无动力旋转的肘关节康复外骨骼",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4988,
+            "end_char": 5005
+          },
+          "version": "6e7147c4f3b61da4faa4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

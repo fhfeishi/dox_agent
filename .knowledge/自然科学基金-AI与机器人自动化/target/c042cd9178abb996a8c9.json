@@ -2,15 +2,20 @@
   "doc_id": "c042cd9178abb996a8c9",
   "version": "8f7c5dc0f8c52f215fd5",
   "source_hash": "7711b2de8feeff1918abdc281dde73b38afa3c3c86ddecf11af85fd2c06d18de",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:11:19.671873+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.323726+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-086029b9793e",
-          "name": "弧焊机器人多目标路径优化",
-          "desc": "智能制造中焊接机器人多弧焊机器人路径多目标复杂优化",
+          "id": "item-ec827c879b0a",
+          "name": "加快发展智能制造，是抢占未来经济和科技发展制高点的战略选择，对于实现制造强国具有重要的战略意义。",
+          "desc": "加快发展智能制造，是抢占未来经济和科技发展制高点的战略选择，对于实现制造强国具有重要的战略意义。",
           "evidence": [
             {
-              "quote": "项目针对弧焊机器人路径规划中的复杂多约束与多目标优化问题，开展了该优化问题的复杂性分析以及多目标优化模型建立工作",
+              "quote": "加快发展智能制造，是抢占未来经济和科技发展制高点的战略选择，对于实现制造强国具有重要的战略意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2736,
-                "end_char": 2791
+                "start_char": 659,
+                "end_char": 706
+              },
+              "version": "8f7c5dc0f8c52f215fd5"
+            }
+          ]
+        },
+        {
+          "id": "item-f807f6bdbc68",
+          "name": "所取得的创新研究成果丰富了焊接机器人路径优化问题理论体系，同时适用于工业机器人其他应用场景。",
+          "desc": "所取得的创新研究成果丰富了焊接机器人路径优化问题理论体系，同时适用于工业机器人其他应用场景。",
+          "evidence": [
+            {
+              "quote": "所取得的创新研究成果丰富了焊接机器人路径优化问题理论体系，同时适用于工业机器人其他应用场景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2875,
+                "end_char": 2920
               },
               "version": "8f7c5dc0f8c52f215fd5"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d021ce1ea131",
-          "name": "多约束多目标耦合",
-          "desc": "焊枪姿态、焊接参数、多机器人协同与路径优化问题的耦合特征",
-          "evidence": [
-            {
-              "quote": "开展机器人的焊枪姿态、焊接参数、多机器人协同与路径优化相关问题之间的耦合特征分析；以焊接效率、焊接能耗与焊接质量为主要优化目标",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 785,
-                "end_char": 847
-              },
-              "version": "8f7c5dc0f8c52f215fd5"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-3aff552cbf24",
-          "name": "多策略协同多目标进化算法",
-          "desc": "多策略协同混合多目标智能进化算法研究",
+          "id": "item-e662c7bc1893",
+          "name": "projectName: 基于多策略协同进化算法的弧焊机器人多目标路径优化研究",
+          "desc": "projectName: 基于多策略协同进化算法的弧焊机器人多目标路径优化研究",
           "evidence": [
             {
-              "quote": "开展了多策略协同多目标进化算法研究、提出了焊接机器人协同及高效避障策略",
+              "quote": "projectName: 基于多策略协同进化算法的弧焊机器人多目标路径优化研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2793,
-                "end_char": 2827
+                "start_char": 42,
+                "end_char": 80
               },
               "version": "8f7c5dc0f8c52f215fd5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3798015d08f2",
-          "name": "高效避障与多机器人协调",
-          "desc": "基于弧焊特点的焊接机器人高效避障机制与多机器人协调控制策略",
+          "id": "item-d7eccd9bf88b",
+          "name": "以焊接效率、焊接能耗与焊接质量为主要优化目标，综合考虑避障、焊接时间、路径长度、焊接变形等多种目标，开展多焊接机器人多目",
+          "desc": "以焊接效率、焊接能耗与焊接质量为主要优化目标，综合考虑避障、焊接时间、路径长度、焊接变形等多种目标，开展多焊接机器人多目标路径规划问题建模与智能优化策略研究；",
           "evidence": [
             {
-              "quote": "研究基于弧焊特点的焊接机器人高效避障机制与多机器人协调控制策略；研究基于协同混合多目标进化算法的多焊接机器人多目标路径优化方法",
+              "quote": "以焊接效率、焊接能耗与焊接质量为主要优化目标，综合考虑避障、焊接时间、路径长度、焊接变形等多种目标，开展多焊接机器人多目标路径规划问题建模与智能优化策略研究；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 924,
-                "end_char": 986
+                "start_char": 826,
+                "end_char": 904
               },
               "version": "8f7c5dc0f8c52f215fd5"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,708 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4aa452b7ca6f",
-          "name": "工业系统验证应用",
-          "desc": "基于实际工业机器人系统进行策略验证与应用，适用于工业机器人其他场景",
+          "id": "item-129e3cd7cf31",
+          "name": "加快发展智能制造，是抢占未来经济和科技发展制高点的战略选择，对于实现制造强国具有重要的战略意义。",
+          "desc": "加快发展智能制造，是抢占未来经济和科技发展制高点的战略选择，对于实现制造强国具有重要的战略意义。",
           "evidence": [
             {
-              "quote": "最终实现了弧焊机器人多目标路径优化，并基于实际工业机器人系统进行了所提策略的验证与应用工作",
+              "quote": "加快发展智能制造，是抢占未来经济和科技发展制高点的战略选择，对于实现制造强国具有重要的战略意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2829,
-                "end_char": 2873
+                "start_char": 659,
+                "end_char": 706
               },
               "version": "8f7c5dc0f8c52f215fd5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-3e80312d3276",
-          "name": "论文与专利软著",
-          "desc": "发表论文36篇（SCI 22篇），授权发明专利2项，软著3项",
+          "id": "item-f2c9b74891e2",
+          "name": "项目针对弧焊机器人路径规划中的复杂多约束与多目标优化问题，开展了该优化问题的复杂性分析以及多目标优化模型建立工作。",
+          "desc": "项目针对弧焊机器人路径规划中的复杂多约束与多目标优化问题，开展了该优化问题的复杂性分析以及多目标优化模型建立工作。",
           "evidence": [
             {
-              "quote": "共发表论文36篇，其中国际期刊28篇，国内期刊7篇，国际会议1篇；SCI收录期刊22篇，EI收录期刊3篇（不含SCI），国内核心期刊6篇。授权发明专利2项，公开发明专利5项。获得软件著作权3项",
+              "quote": "项目针对弧焊机器人路径规划中的复杂多约束与多目标优化问题，开展了该优化问题的复杂性分析以及多目标优化模型建立工作。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2921,
-                "end_char": 3016
+                "start_char": 2736,
+                "end_char": 2792
               },
               "version": "8f7c5dc0f8c52f215fd5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-086029b9793e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d021ce1ea131"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive path planning for the gantry welding robot system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a48de0828ea5",
+      "evidence": [
+        {
+          "quote": "Adaptive path planning for the gantry welding robot system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3088,
+            "end_char": 3145
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d021ce1ea131"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3aff552cbf24"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "焊接机器人数据采集与管控系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d6e57730716",
+      "evidence": [
+        {
+          "quote": "焊接机器人数据采集与管控系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3219,
+            "end_char": 3232
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d021ce1ea131"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3798015d08f2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AEB-RRT: an adaptive extension bidirectional RRT algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bcb1a4d5b72a",
+      "evidence": [
+        {
+          "quote": "AEB-RRT: an adaptive extension bidirectional RRT algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3262,
+            "end_char": 3319
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3aff552cbf24"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4aa452b7ca6f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自适应调参的电弧增材制造方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-198daf105f08",
+      "evidence": [
+        {
+          "quote": "一种自适应调参的电弧增材制造方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3387,
+            "end_char": 3405
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3798015d08f2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3e80312d3276"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Learning Based Robot Detection and Grinding System for Veneer Defects",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0691ba44f56",
+      "evidence": [
+        {
+          "quote": "Deep Learning Based Robot Detection and Grinding System for Veneer Defects",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3430,
+            "end_char": 3503
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "工业机器人的碰撞检测方法及仿真系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-314f3b4243a9",
+      "evidence": [
+        {
+          "quote": "工业机器人的碰撞检测方法及仿真系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3554,
+            "end_char": 3570
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An approach for solving the three-objective arc welding robot path planning problem",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e6c64569ff47",
+      "evidence": [
+        {
+          "quote": "An approach for solving the three-objective arc welding robot path planning problem",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3613,
+            "end_char": 3695
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path Planning for the Gantry Welding Robot System Based on Improved RRT",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7744c5516c87",
+      "evidence": [
+        {
+          "quote": "Path Planning for the Gantry Welding Robot System Based on Improved RRT",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3742,
+            "end_char": 3812
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A survey of welding robot intelligent path optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9ee39ed16837",
+      "evidence": [
+        {
+          "quote": "A survey of welding robot intelligent path optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3867,
+            "end_char": 3921
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "多种群混合进化算法求解带工序跳跃的分布式异构批量流混合流水车间调度问题",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a73a06b99e2e",
+      "evidence": [
+        {
+          "quote": "多种群混合进化算法求解带工序跳跃的分布式异构批量流混合流水车间调度问题",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3980,
+            "end_char": 4014
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bi-objective no-wait multiproduct multistage product scheduling problem with flexible due dates based on MOIDE- MA",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d0df26096b1",
+      "evidence": [
+        {
+          "quote": "Bi-objective no-wait multiproduct multistage product scheduling problem with flexible due dates based on MOIDE- MA",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4044,
+            "end_char": 4157
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dual-Objective Collision-Free Path Optimization of Arc Welding Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5e37490c2625",
+      "evidence": [
+        {
+          "quote": "Dual-Objective Collision-Free Path Optimization of Arc Welding Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4195,
+            "end_char": 4262
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel trajectory planning method for mobile robotic grinding wind turbine blade",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6ea8e318f86",
+      "evidence": [
+        {
+          "quote": "A novel trajectory planning method for mobile robotic grinding wind turbine blade",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4333,
+            "end_char": 4413
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Ant Colony Algorithm Based on Global Scanning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9b5859dd951",
+      "evidence": [
+        {
+          "quote": "Adaptive Ant Colony Algorithm Based on Global Scanning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4478,
+            "end_char": 4531
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于焊接电源的焊接信息管控系统设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-15d4a5797c64",
+      "evidence": [
+        {
+          "quote": "基于焊接电源的焊接信息管控系统设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4602,
+            "end_char": 4618
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A knowledge-driven many-objective algorithm for energy-efficient distributed heterogeneous hybrid flowshop scheduling with lot-streaming",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-629730e2edbf",
+      "evidence": [
+        {
+          "quote": "A knowledge-driven many-objective algorithm for energy-efficient distributed heterogeneous hybrid flowshop scheduling with lot-streaming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4649,
+            "end_char": 4784
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向机器人打磨的线激光三维测量系统设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3acdc07fbee4",
+      "evidence": [
+        {
+          "quote": "面向机器人打磨的线激光三维测量系统设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4843,
+            "end_char": 4861
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A decomposition-based multiobjective evolutionary algorithm with weight vector adaptation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a3aac18a0cf6",
+      "evidence": [
+        {
+          "quote": "A decomposition-based multiobjective evolutionary algorithm with weight vector adaptation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4884,
+            "end_char": 4972
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于全局扫描的移动机器人路径规划方法、设备及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e746e918b2e1",
+      "evidence": [
+        {
+          "quote": "基于全局扫描的移动机器人路径规划方法、设备及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5018,
+            "end_char": 5041
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于Pareto支配的两阶段多目标优化算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d39cf22874d",
+      "evidence": [
+        {
+          "quote": "基于Pareto支配的两阶段多目标优化算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5081,
+            "end_char": 5101
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Digital Twin Implementation of Autonomous Planning Arc Welding Robot System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-523cbcd0a03c",
+      "evidence": [
+        {
+          "quote": "Digital Twin Implementation of Autonomous Planning Arc Welding Robot System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5131,
+            "end_char": 5205
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multiobjective Path Optimization for Arc Welding Robot Based on DMOEA/D-ET Algorithm and Proxy Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3163d588744b",
+      "evidence": [
+        {
+          "quote": "Multiobjective Path Optimization for Arc Welding Robot Based on DMOEA/D-ET Algorithm and Proxy Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5265,
+            "end_char": 5364
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A biogeography-based optimization algorithm with modified migration operator for large-scale distributed scheduling with transportation time",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-040fcb29f08b",
+      "evidence": [
+        {
+          "quote": "A biogeography-based optimization algorithm with modified migration operator for large-scale distributed scheduling with transportation time",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5451,
+            "end_char": 5590
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An adaptive switching-based evolutionary algorithm for many-objective optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-833363dafd05",
+      "evidence": [
+        {
+          "quote": "An adaptive switching-based evolutionary algorithm for many-objective optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5629,
+            "end_char": 5710
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of WAAM System Based on Industrial Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b7a4ae520bd",
+      "evidence": [
+        {
+          "quote": "Design of WAAM System Based on Industrial Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5776,
+            "end_char": 5822
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ACB-RRT: Adaptive Companion Points Bidirectional RRT Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-587d3e20a93b",
+      "evidence": [
+        {
+          "quote": "ACB-RRT: Adaptive Companion Points Bidirectional RRT Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5898,
+            "end_char": 5959
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改善解集分布性的多目标优化",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-225b2431da82",
+      "evidence": [
+        {
+          "quote": "基于改善解集分布性的多目标优化",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6030,
+            "end_char": 6044
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Many-objective Optimization of Distributed Heterogeneous Hybrid Flowshop Lot-streaming Scheduling Problem with Missing Operations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e3ceaa56e122",
+      "evidence": [
+        {
+          "quote": "Many-objective Optimization of Distributed Heterogeneous Hybrid Flowshop Lot-streaming Scheduling Problem with Missing Operations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6074,
+            "end_char": 6202
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Station Multi-Robot Welding System Planning and Scheduling Based on STNSGA-D: An Industrial Case Study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6b5621fa6665",
+      "evidence": [
+        {
+          "quote": "Multi-Station Multi-Robot Welding System Planning and Scheduling Based on STNSGA-D: An Industrial Case Study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6261,
+            "end_char": 6368
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种工业机器人路径规划方法及仿真示教平台",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-00e0c4e1b4c2",
+      "evidence": [
+        {
+          "quote": "一种工业机器人路径规划方法及仿真示教平台",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6425,
+            "end_char": 6444
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Straight skeleton filling methods for thin-walled parts",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-409f927c9a1e",
+      "evidence": [
+        {
+          "quote": "Straight skeleton filling methods for thin-walled parts",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6480,
+            "end_char": 6534
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GMAW welding procedure expert system based on machine learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-58798621196b",
+      "evidence": [
+        {
+          "quote": "GMAW welding procedure expert system based on machine learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6599,
+            "end_char": 6660
+          },
+          "version": "8f7c5dc0f8c52f215fd5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 32,
+    "listed": 32,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 27,
+        "extracted": 27
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

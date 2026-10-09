@@ -2,15 +2,20 @@
   "doc_id": "74e224a7b0892b8126d5",
   "version": "4dc101b93944b99c0a39",
   "source_hash": "8a73dce0050bfca48fa9e3db89a19246a55577858cf2715d85afb1a192c2791a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:16:40.542333+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.572185+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-11588e6247cc",
-          "name": "穿戴式助盲导航",
-          "desc": "大范围陌生室内环境助盲导航需求，模拟人类认知习惯",
+          "id": "item-715a0751130e",
+          "name": "面向医疗康复领域对共融机器人的需求，针对目前助盲器具存在环境感知难、建图难和交互难的瓶颈，拟研制穿戴式助盲导航机器人，为",
+          "desc": "面向医疗康复领域对共融机器人的需求，针对目前助盲器具存在环境感知难、建图难和交互难的瓶颈，拟研制穿戴式助盲导航机器人，为盲人赋权增能。",
           "evidence": [
             {
-              "quote": "面向大范围陌生室内环境下的助盲导航需求，模拟人在陌生环境下的认知习惯和思维回路，研制了一款具备跨场景语义理解与多模态交互能力的穿戴式助盲导航机器人",
+              "quote": "面向医疗康复领域对共融机器人的需求，针对目前助盲器具存在环境感知难、建图难和交互难的瓶颈，拟研制穿戴式助盲导航机器人，为盲人赋权增能。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2931,
-                "end_char": 3003
+                "start_char": 661,
+                "end_char": 727
               },
               "version": "4dc101b93944b99c0a39"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7dd80925afb7",
-          "name": "助盲器具感知建图交互难",
-          "desc": "目前助盲器具存在环境感知难、建图难和交互难的瓶颈",
-          "evidence": [
-            {
-              "quote": "针对目前助盲器具存在环境感知难、建图难和交互难的瓶颈，拟研制穿戴式助盲导航机器人，为盲人赋权增能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 679,
-                "end_char": 726
-              },
-              "version": "4dc101b93944b99c0a39"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-be8a437aae05",
-          "name": "动态分组主动卷积分割",
-          "desc": "首创动态分组主动卷积模型自学习理论，实现分割精度与速度帕累托最优",
+          "id": "item-938594eb4ebd",
+          "name": "②探索基于平面布局图快速解析方法的语义-拓扑地图构建技术，研究融合视觉推理和分层控制机制的稳健定位及分段避碰导航策略；",
+          "desc": "②探索基于平面布局图快速解析方法的语义-拓扑地图构建技术，研究融合视觉推理和分层控制机制的稳健定位及分段避碰导航策略；",
           "evidence": [
             {
-              "quote": "①首创动态分组主动卷积模型自学习理论，实现分割精度与速度的帕累托最优权衡",
+              "quote": "②探索基于平面布局图快速解析方法的语义-拓扑地图构建技术，研究融合视觉推理和分层控制机制的稳健定位及分段避碰导航策略；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3011,
-                "end_char": 3046
+                "start_char": 779,
+                "end_char": 837
               },
               "version": "4dc101b93944b99c0a39"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-00503d9075bc",
-          "name": "多智能体分层导航规划",
-          "desc": "多阈值加权距离匹配拓扑语义地图与多智能体分层规划框架实现多任务导航",
+          "id": "item-d9893291e2eb",
+          "name": "③创建助盲场景的图-文-音数据集和基于全流架构的预训练模型，研究基于多头自注意力机制的图-文-音跨模态统一知识表示方法，",
+          "desc": "③创建助盲场景的图-文-音数据集和基于全流架构的预训练模型，研究基于多头自注意力机制的图-文-音跨模态统一知识表示方法，设计多感官反馈交互系统；",
           "evidence": [
             {
-              "quote": "①设计多阈值加权距离匹配算法，构建未知环境下拓扑语义地图；②构建多智能体分层规划框架，实现高可靠多任务导航规划",
+              "quote": "③创建助盲场景的图-文-音数据集和基于全流架构的预训练模型，研究基于多头自注意力机制的图-文-音跨模态统一知识表示方法，设计多感官反馈交互系统；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3145,
-                "end_char": 3199
+                "start_char": 838,
+                "end_char": 909
               },
               "version": "4dc101b93944b99c0a39"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,652 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e6c0008d3e05",
-          "name": "典型场景系统验证",
-          "desc": "在医院、商场和地铁等典型室内场景开展系统验证，证明跨场景泛化与运行稳定性",
+          "id": "item-beb808bb504c",
+          "name": "面向医疗康复领域对共融机器人的需求，针对目前助盲器具存在环境感知难、建图难和交互难的瓶颈，拟研制穿戴式助盲导航机器人，为",
+          "desc": "面向医疗康复领域对共融机器人的需求，针对目前助盲器具存在环境感知难、建图难和交互难的瓶颈，拟研制穿戴式助盲导航机器人，为盲人赋权增能。",
           "evidence": [
             {
-              "quote": "研制穿戴式助盲导航机器人样机，在医院、商场和地铁等典型室内场景开展系统验证，证明了其跨场景泛化能力与运行稳定性",
+              "quote": "面向医疗康复领域对共融机器人的需求，针对目前助盲器具存在环境感知难、建图难和交互难的瓶颈，拟研制穿戴式助盲导航机器人，为盲人赋权增能。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3364,
-                "end_char": 3418
+                "start_char": 661,
+                "end_char": 727
               },
               "version": "4dc101b93944b99c0a39"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-6cb8be546d72",
-          "name": "竞赛冠军与顶刊论文",
-          "desc": "获智能机器人大赛康复养老类第一名等多项竞赛奖，IEEE TCYB等Top期刊论文12篇",
+          "id": "item-c4dacfde0dbf",
+          "name": "面向大范围陌生室内环境下的助盲导航需求，模拟人在陌生环境下的认知习惯和思维回路，研制了一款具备跨场景语义理解与多模态交互",
+          "desc": "面向大范围陌生室内环境下的助盲导航需求，模拟人在陌生环境下的认知习惯和思维回路，研制了一款具备跨场景语义理解与多模态交互能力的穿戴式助盲导航机器人。",
           "evidence": [
             {
-              "quote": "竞赛：智能机器人大赛康复养老类赛道第一名（2025）、世界机器人大赛锦标赛—共融机器人挑战赛一等奖（2024）、中国研究生机器人创新设计大赛全国亚军（2023）",
+              "quote": "面向大范围陌生室内环境下的助盲导航需求，模拟人在陌生环境下的认知习惯和思维回路，研制了一款具备跨场景语义理解与多模态交互能力的穿戴式助盲导航机器人。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3572,
-                "end_char": 3651
+                "start_char": 2931,
+                "end_char": 3004
               },
               "version": "4dc101b93944b99c0a39"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-11588e6247cc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7dd80925afb7"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "EDSOD: An Encoder-Decoder, Diffusion-model, and Swin-Transformer-based Small Object Detector",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-324fcec745d0",
+      "evidence": [
+        {
+          "quote": "EDSOD: An Encoder-Decoder, Diffusion-model, and Swin-Transformer-based Small Object Detector",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3841,
+            "end_char": 3932
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7dd80925afb7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-be8a437aae05"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Topological Semantic Mapping Method Based on Text-Based Unsupervised Image Segmentation for Assistive Indoor Navigation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-044f61b6d363",
+      "evidence": [
+        {
+          "quote": "A Topological Semantic Mapping Method Based on Text-Based Unsupervised Image Segmentation for Assistive Indoor Navigation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3983,
+            "end_char": 4103
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7dd80925afb7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-00503d9075bc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel One-Step Small Object Detector for Autonomous Aerial Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f1115dee63d0",
+      "evidence": [
+        {
+          "quote": "A Novel One-Step Small Object Detector for Autonomous Aerial Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4161,
+            "end_char": 4229
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-00503d9075bc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e6c0008d3e05"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Lightweight De-confounding Transformer for Image Captioning in Wearable Assistive Navigation Device",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ea19e55aec3",
+      "evidence": [
+        {
+          "quote": "A Lightweight De-confounding Transformer for Image Captioning in Wearable Assistive Navigation Device",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4280,
+            "end_char": 4380
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-be8a437aae05"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6cb8be546d72"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂地域多面体智能变形移动系统技术与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f97da8b80e9",
+      "evidence": [
+        {
+          "quote": "复杂地域多面体智能变形移动系统技术与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4436,
+            "end_char": 4455
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gated-Dual-Attention-Based Full-Resolution Floor Plan Segmentation Network for Topological Semantic Mapping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4bf2c91268f2",
+      "evidence": [
+        {
+          "quote": "Gated-Dual-Attention-Based Full-Resolution Floor Plan Segmentation Network for Topological Semantic Mapping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4507,
+            "end_char": 4613
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向助盲领域的指示牌语义信息提取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a49bbc701a3c",
+      "evidence": [
+        {
+          "quote": "一种面向助盲领域的指示牌语义信息提取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4662,
+            "end_char": 4681
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Illumination Adaptation for SAM to Achieve Accurate Segmentation of Images Taken in Low-Light Scenes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77f385310555",
+      "evidence": [
+        {
+          "quote": "Illumination Adaptation for SAM to Achieve Accurate Segmentation of Images Taken in Low-Light Scenes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4720,
+            "end_char": 4819
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Obstacle Avoidance System Based on Rapid Instance Segmentation Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a2a73cb3f67e",
+      "evidence": [
+        {
+          "quote": "Dynamic Obstacle Avoidance System Based on Rapid Instance Segmentation Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4870,
+            "end_char": 4947
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Multi-robot Navigation and Cooperative Mapping in Partially Unknown Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5dd4c01d8b36",
+      "evidence": [
+        {
+          "quote": "Autonomous Multi-robot Navigation and Cooperative Mapping in Partially Unknown Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5017,
+            "end_char": 5107
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "End-to-end Semantic Segmentation Network for Low-Light Scenes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-50722104adcb",
+      "evidence": [
+        {
+          "quote": "End-to-end Semantic Segmentation Network for Low-Light Scenes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5180,
+            "end_char": 5240
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "智能机器人大赛康复养老类赛道—康复机器人作业任务挑战赛全国第一名 指导老师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f2efb08df524",
+      "evidence": [
+        {
+          "quote": "智能机器人大赛康复养老类赛道—康复机器人作业任务挑战赛全国第一名 指导老师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5290,
+            "end_char": 5326
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Context-Enhanced Full-Resolution Floor Plan Segmentation Network for Topological Semantic Mapping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f5ca28b3ecf",
+      "evidence": [
+        {
+          "quote": "A Context-Enhanced Full-Resolution Floor Plan Segmentation Network for Topological Semantic Mapping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5345,
+            "end_char": 5443
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向复杂室内场景的语义-高程图构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ba94746faa7",
+      "evidence": [
+        {
+          "quote": "一种面向复杂室内场景的语义-高程图构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5500,
+            "end_char": 5520
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第九届全国兵棋推演大赛联合作战人机协同博弈专项赛全国冠军 指导老师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1351e6c0855c",
+      "evidence": [
+        {
+          "quote": "第九届全国兵棋推演大赛联合作战人机协同博弈专项赛全国冠军 指导老师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5551,
+            "end_char": 5583
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "世界机器人大赛—共融机器人挑战赛 指导老师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa91b058e5eb",
+      "evidence": [
+        {
+          "quote": "世界机器人大赛—共融机器人挑战赛 指导老师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5600,
+            "end_char": 5620
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "De-Confounding Feature Fusion Transformer Network for Image Captioning in Assistive Navigation Applications for the Visually Impaired",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ce401c048834",
+      "evidence": [
+        {
+          "quote": "De-Confounding Feature Fusion Transformer Network for Image Captioning in Assistive Navigation Applications for the Visually Impaired",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5639,
+            "end_char": 5771
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种助盲场景动态避障方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24b5b757984c",
+      "evidence": [
+        {
+          "quote": "一种助盲场景动态避障方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5817,
+            "end_char": 5828
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种低光照场景端到端语义分割方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-430a2ae88ffc",
+      "evidence": [
+        {
+          "quote": "一种低光照场景端到端语义分割方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5866,
+            "end_char": 5881
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A motion blur QR code identification algorithm based on feature extracting and improved adaptive thresholding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d32ecd2566e",
+      "evidence": [
+        {
+          "quote": "A motion blur QR code identification algorithm based on feature extracting and improved adaptive thresholding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5921,
+            "end_char": 6029
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semi-Direct Multimap SLAM System for Real-Time Sparse 3-D Map Reconstruction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef1aec7e44e7",
+      "evidence": [
+        {
+          "quote": "Semi-Direct Multimap SLAM System for Real-Time Sparse 3-D Map Reconstruction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6092,
+            "end_char": 6167
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向助盲场景的多特征快速推理的图像描述方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d656f6544c62",
+      "evidence": [
+        {
+          "quote": "一种面向助盲场景的多特征快速推理的图像描述方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6237,
+            "end_char": 6259
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "知识与数据协同驱动的复杂工业系统智能优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-647278181ee9",
+      "evidence": [
+        {
+          "quote": "知识与数据协同驱动的复杂工业系统智能优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6294,
+            "end_char": 6315
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "QuerySOD: A Small Object Detection Algorithm Based on Sparse Convolutional Network and Query Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13a2345ad343",
+      "evidence": [
+        {
+          "quote": "QuerySOD: A Small Object Detection Algorithm Based on Sparse Convolutional Network and Query Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6350,
+            "end_char": 6451
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第七届中国研究生机器人创新设计大赛全国冠军 指导老师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f23c37e3701",
+      "evidence": [
+        {
+          "quote": "第七届中国研究生机器人创新设计大赛全国冠军 指导老师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6509,
+            "end_char": 6534
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Long-Horizon Planning with Large Language Models for Indoor Assistive Navigation of the Visually Impaired",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa0289816877",
+      "evidence": [
+        {
+          "quote": "Long-Horizon Planning with Large Language Models for Indoor Assistive Navigation of the Visually Impaired",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6553,
+            "end_char": 6657
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Anomaly Knowledge Learning for Patch-Agnostic Defense against Adversarial Patches",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef19be2c9e68",
+      "evidence": [
+        {
+          "quote": "Anomaly Knowledge Learning for Patch-Agnostic Defense against Adversarial Patches",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6716,
+            "end_char": 6796
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向助盲场景的拓扑语义地图构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92f9945addea",
+      "evidence": [
+        {
+          "quote": "一种面向助盲场景的拓扑语义地图构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6833,
+            "end_char": 6851
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于因果干预的多特征增强型图像描述方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6dbceb0bbc73",
+      "evidence": [
+        {
+          "quote": "一种基于因果干预的多特征增强型图像描述方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6889,
+            "end_char": 6909
+          },
+          "version": "4dc101b93944b99c0a39"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 29,
+    "listed": 29,
+    "by_kind": {
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "奖励/专著": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

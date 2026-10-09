@@ -2,15 +2,20 @@
   "doc_id": "9758388312b443925a4d",
   "version": "0f9d1d82dbf4ea6942ab",
   "source_hash": "5432097ed668906aa126aab2d73dc265fe8a72104b737fbbeadc40fa364d458b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:52.357335+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.921815+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6e2fda546093",
-          "name": "人机协作机器人安全开发",
-          "desc": "安全攸关机器人系统的高可信软件开发",
+          "id": "item-1ef009e4c428",
+          "name": "机器人是集运动控制、环境感知、轨迹规划、目标识别、知识推理等于一体的综合性系统，涉及机械、电子、计算机、自动控制等多门学",
+          "desc": "机器人是集运动控制、环境感知、轨迹规划、目标识别、知识推理等于一体的综合性系统，涉及机械、电子、计算机、自动控制等多门学科。",
           "evidence": [
             {
-              "quote": "人机协作机器人系统通常是安全攸关系统，对系统的安全性和可靠性有着极高的要求。",
+              "quote": "机器人是集运动控制、环境感知、轨迹规划、目标识别、知识推理等于一体的综合性系统，涉及机械、电子、计算机、自动控制等多门学科。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 713,
-                "end_char": 750
+                "start_char": 651,
+                "end_char": 712
               },
               "version": "0f9d1d82dbf4ea6942ab"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-30953da3821d",
-          "name": "微小错误致人身危险",
-          "desc": "机器人软件微小错误会造成人身危险，可靠性安全性要求极高",
-          "evidence": [
-            {
-              "quote": "不同于软件，机器人是软件控制的机械机构，微小错误就会造成人身危险。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2410,
-                "end_char": 2442
-              },
-              "version": "0f9d1d82dbf4ea6942ab"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-c374c5e33fa4",
-          "name": "形式模型驱动开发",
-          "desc": "模型组件库与基于转换的混合模型验证",
+          "id": "item-8320a6adfbd0",
+          "name": "本课题以构建安全可靠的机器人控制系统为出发点，探索在领域知识约束下的形式模型驱动的设计与开发方法。",
+          "desc": "本课题以构建安全可靠的机器人控制系统为出发点，探索在领域知识约束下的形式模型驱动的设计与开发方法。",
           "evidence": [
             {
-              "quote": "模型层，构建模型组件库、设计组件连接方式，重点解决了复杂机器人系统软件和硬件协同建模问题；设计实现基于转换的模型验证方法，能够验证混合模型的正确性。",
+              "quote": "本课题以构建安全可靠的机器人控制系统为出发点，探索在领域知识约束下的形式模型驱动的设计与开发方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2538,
-                "end_char": 2611
+                "start_char": 782,
+                "end_char": 830
               },
               "version": "0f9d1d82dbf4ea6942ab"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2317de989b26",
-          "name": "模糊测试漏洞检测",
-          "desc": "面向ROS软件包的差分模糊测试",
+          "id": "item-4a31904908be",
+          "name": "机器人是集运动控制、环境感知、轨迹规划、目标识别、知识推理等于一体的综合性系统，涉及机械、电子、计算机、自动控制等多门学",
+          "desc": "机器人是集运动控制、环境感知、轨迹规划、目标识别、知识推理等于一体的综合性系统，涉及机械、电子、计算机、自动控制等多门学科。",
           "evidence": [
             {
-              "quote": "提出了基于模糊测试的ROS软件包漏洞检测方法，找到了软件中存在的内存泄漏、数组访问越界和段错误等多个漏洞，并得到了软件开发者的确认",
+              "quote": "机器人是集运动控制、环境感知、轨迹规划、目标识别、知识推理等于一体的综合性系统，涉及机械、电子、计算机、自动控制等多门学科。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2669,
-                "end_char": 2733
+                "start_char": 651,
+                "end_char": 712
               },
               "version": "0f9d1d82dbf4ea6942ab"
             }
-          ]
-        },
-        {
-          "id": "item-ad1b32d22b7b",
-          "name": "运行时在线监控验证",
-          "desc": "关键属性实时数据在线监控自动调节控制参数",
-          "evidence": [
-            {
-              "quote": "提出了面向关键属性的实时数据在线监控方法，通过运行时验证技术，确保能够根据环境因素的变化自动调节控制程序参数。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2768,
-                "end_char": 2822
-              },
-              "version": "0f9d1d82dbf4ea6942ab"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +91,452 @@
       "state": "has",
       "items": [
         {
-          "id": "item-10a2b53223b3",
-          "name": "工具链与方法成果",
-          "desc": "代码自动生成大大简化开发时间，提高程序正确性",
+          "id": "item-d209a5034afd",
+          "name": "机器人是集运动控制、环境感知、轨迹规划、目标识别、知识推理等于一体的综合性系统，涉及机械、电子、计算机、自动控制等多门学",
+          "desc": "机器人是集运动控制、环境感知、轨迹规划、目标识别、知识推理等于一体的综合性系统，涉及机械、电子、计算机、自动控制等多门学科。",
           "evidence": [
             {
-              "quote": "提出基于形式模型的机器人控制代码自动生成方法，并实现了相关工具，大大简化了开发的时间，提高了程序的正确性。",
+              "quote": "机器人是集运动控制、环境感知、轨迹规划、目标识别、知识推理等于一体的综合性系统，涉及机械、电子、计算机、自动控制等多门学科。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2612,
-                "end_char": 2664
+                "start_char": 651,
+                "end_char": 712
               },
               "version": "0f9d1d82dbf4ea6942ab"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-ccf2267adec4",
+          "name": "机器人的应用越来越广泛，不同于软件，机器人是软件控制的机械机构，微小错误就会造成人身危险。",
+          "desc": "机器人的应用越来越广泛，不同于软件，机器人是软件控制的机械机构，微小错误就会造成人身危险。",
+          "evidence": [
+            {
+              "quote": "机器人的应用越来越广泛，不同于软件，机器人是软件控制的机械机构，微小错误就会造成人身危险。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2398,
+                "end_char": 2442
+              },
+              "version": "0f9d1d82dbf4ea6942ab"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6e2fda546093"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-30953da3821d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Formal Model-Based Design Method for Robotic Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9b9692a07fde",
+      "evidence": [
+        {
+          "quote": "A Formal Model-Based Design Method for Robotic Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2848,
+            "end_char": 2901
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-30953da3821d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c374c5e33fa4"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "哈密顿力学理论的形式化与机器人动力学形式化分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2e299560fee2",
+      "evidence": [
+        {
+          "quote": "哈密顿力学理论的形式化与机器人动力学形式化分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2991,
+            "end_char": 3013
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-30953da3821d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2317de989b26"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Toward the Trustworthiness of Industrial Robotics Using Differential Fuzz Testing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b7228883c5f",
+      "evidence": [
+        {
+          "quote": "Toward the Trustworthiness of Industrial Robotics Using Differential Fuzz Testing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3041,
+            "end_char": 3121
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-30953da3821d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ad1b32d22b7b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Formal Modeling and Verification of EDCA Based on Probabilistic Model Checking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47f0df244245",
+      "evidence": [
+        {
+          "quote": "Formal Modeling and Verification of EDCA Based on Probabilistic Model Checking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3171,
+            "end_char": 3248
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c374c5e33fa4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-10a2b53223b3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向ROS的差分模糊测试方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02aac2f21bd9",
+      "evidence": [
+        {
+          "quote": "面向ROS的差分模糊测试方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3314,
+            "end_char": 3327
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2317de989b26"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-10a2b53223b3"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向ROS的差分模糊测试方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-170da1963c33",
+      "evidence": [
+        {
+          "quote": "一种面向ROS的差分模糊测试方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3356,
+            "end_char": 3371
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Formalization of camera pose estimation algorithm based on Rodrigues formula",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d977c889d89a",
+      "evidence": [
+        {
+          "quote": "Formalization of camera pose estimation algorithm based on Rodrigues formula",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3399,
+            "end_char": 3474
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "三指机器人灵巧手逆运动学的形式化验证方法及电子设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8aca6d85119a",
+      "evidence": [
+        {
+          "quote": "三指机器人灵巧手逆运动学的形式化验证方法及电子设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3558,
+            "end_char": 3582
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人避障的自动参数选择方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-947ebb4777d9",
+      "evidence": [
+        {
+          "quote": "一种机器人避障的自动参数选择方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3619,
+            "end_char": 3634
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人关节通信系统模型的验证方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba10dfbe24b1",
+      "evidence": [
+        {
+          "quote": "一种机器人关节通信系统模型的验证方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3672,
+            "end_char": 3692
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ptolemy离散事件模型形式化验证方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c443dbeb5e5e",
+      "evidence": [
+        {
+          "quote": "Ptolemy离散事件模型形式化验证方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3751,
+            "end_char": 3770
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于机器人分布式控制系统的形式建模方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-94d5849ad246",
+      "evidence": [
+        {
+          "quote": "一种用于机器人分布式控制系统的形式建模方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3800,
+            "end_char": 3823
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人运行状态监控方法与装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-857055e3ceca",
+      "evidence": [
+        {
+          "quote": "一种机器人运行状态监控方法与装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3881,
+            "end_char": 3896
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "具有多传感器的CPS系统的攻击检测",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0663a39d5129",
+      "evidence": [
+        {
+          "quote": "具有多传感器的CPS系统的攻击检测",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3941,
+            "end_char": 3957
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Formal Verification of CAN Bus in Cyber Physical System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-87a38fd8db9d",
+      "evidence": [
+        {
+          "quote": "Formal Verification of CAN Bus in Cyber Physical System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4000,
+            "end_char": 4054
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "群机器人区域覆盖算法高阶逻辑建模与验证",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18e5d9e290a4",
+      "evidence": [
+        {
+          "quote": "群机器人区域覆盖算法高阶逻辑建模与验证",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4110,
+            "end_char": 4128
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A sensor attack detection method in intelligent vehicles with multiple sensors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d689782e5323",
+      "evidence": [
+        {
+          "quote": "A sensor attack detection method in intelligent vehicles with multiple sensors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4166,
+            "end_char": 4243
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "协作机器人逆运动学形式化建模与验证",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-088447513bc3",
+      "evidence": [
+        {
+          "quote": "协作机器人逆运动学形式化建模与验证",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4322,
+            "end_char": 4338
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向环境建模的移动机器人运行时验证方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b838be98c16",
+      "evidence": [
+        {
+          "quote": "一种面向环境建模的移动机器人运行时验证方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4373,
+            "end_char": 4393
+          },
+          "version": "0f9d1d82dbf4ea6942ab"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

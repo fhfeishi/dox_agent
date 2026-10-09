@@ -2,15 +2,20 @@
   "doc_id": "0900ab0340ea618880a2",
   "version": "ce6a9021e195b4aa9592",
   "source_hash": "385c8b44c27fc2d6bd6cb64b2e46ec4c9609d84d09796b2f44478814af3f49b0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:19:59.372820+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.591016+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c8aa27af20ee",
-          "name": "足式机器人步态优化控制",
-          "desc": "双足四足机器人简化步态模型的混杂系统控制",
+          "id": "item-0d806b704a5b",
+          "name": "足式机器人是一类重要的仿生机器人，在诸多工业领域有着重要的应用前景，是目前机器人领域研究的热点。",
+          "desc": "足式机器人是一类重要的仿生机器人，在诸多工业领域有着重要的应用前景，是目前机器人领域研究的热点。",
           "evidence": [
             {
-              "quote": "项目组重点关注足式机器人简化模型控制这个关键问题，研究了混杂系统在足式机器人步态优化与控制中的应用。",
+              "quote": "足式机器人是一类重要的仿生机器人，在诸多工业领域有着重要的应用前景，是目前机器人领域研究的热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2789,
-                "end_char": 2838
+                "start_char": 655,
+                "end_char": 702
               },
               "version": "ce6a9021e195b4aa9592"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-31366f53bd4a",
-          "name": "复杂动力学简化难",
-          "desc": "复杂动力学特性下简化步态模型系统性优化控制难",
+          "id": "item-e17421509379",
+          "name": "由于足式机器人的复杂动力学特性，如何系统性地进行简化步态模型的优化与控制是足式机器人领域亟待解决的难点问题。",
+          "desc": "由于足式机器人的复杂动力学特性，如何系统性地进行简化步态模型的优化与控制是足式机器人领域亟待解决的难点问题。",
           "evidence": [
             {
               "quote": "由于足式机器人的复杂动力学特性，如何系统性地进行简化步态模型的优化与控制是足式机器人领域亟待解决的难点问题。",
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4982a7947ac0",
-          "name": "SLIP模型高动态动作",
-          "desc": "弹簧负载倒立摆模型实现双足跳跃双点足奔跑",
+          "id": "item-60c857156413",
+          "name": "本项目拟从足式机器人的运动本质可以被混杂系统描述这一独特视角出发，研究如何构造简化步态模型优化的切换系统最优控制问题，并",
+          "desc": "本项目拟从足式机器人的运动本质可以被混杂系统描述这一独特视角出发，研究如何构造简化步态模型优化的切换系统最优控制问题，并设计考虑切换约束的数值算法；",
           "evidence": [
             {
-              "quote": "项目组开展了基于弹簧负载倒立摆模型的双足机器人系统运动规划与控制研究，成功实现了四足机器人双足跳跃、双轮足机器人跳跃、双点足机器人奔跑等高动态动作。",
+              "quote": "本项目拟从足式机器人的运动本质可以被混杂系统描述这一独特视角出发，研究如何构造简化步态模型优化的切换系统最优控制问题，并设计考虑切换约束的数值算法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2860,
-                "end_char": 2933
+                "start_char": 795,
+                "end_char": 868
               },
               "version": "ce6a9021e195b4aa9592"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b63f9d071745",
-          "name": "可达性平衡判定",
-          "desc": "基于可达性分析的扰动平衡恢复判定条件与控制框架",
+          "id": "item-a86e39d22531",
+          "name": "projectName: 足式机器人简化步态模型优化与控制的混杂系统方法研究",
+          "desc": "projectName: 足式机器人简化步态模型优化与控制的混杂系统方法研究",
           "evidence": [
             {
-              "quote": "提出了一套基于可达性分析的平衡恢复判定条件；并基于该判定条件，给出了系统化设计足式机器人扰动回复的控制理论和算法框架，并成功应用于多种足式机器人平台。",
+              "quote": "projectName: 足式机器人简化步态模型优化与控制的混杂系统方法研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2994,
-                "end_char": 3068
+                "start_char": 42,
+                "end_char": 79
               },
               "version": "ce6a9021e195b4aa9592"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +108,288 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1733abc84760",
-          "name": "T-RO等论文发表",
-          "desc": "SCI论文4篇含T-RO 1篇、RAL 2篇，EI会议6篇、专利3项",
+          "id": "item-fb67176b5144",
+          "name": "足式机器人是一类重要的仿生机器人，在诸多工业领域有着重要的应用前景，是目前机器人领域研究的热点。",
+          "desc": "足式机器人是一类重要的仿生机器人，在诸多工业领域有着重要的应用前景，是目前机器人领域研究的热点。",
           "evidence": [
             {
-              "quote": "共发表SCI检索论文4篇，其中在机器人领域旗舰期刊IEEE Transactions on Robotics上发表论文1篇，机器人领域顶级期刊IEEE Robotics and Automation Letters上发表论文2篇",
+              "quote": "足式机器人是一类重要的仿生机器人，在诸多工业领域有着重要的应用前景，是目前机器人领域研究的热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3189,
-                "end_char": 3302
+                "start_char": 655,
+                "end_char": 702
               },
               "version": "ce6a9021e195b4aa9592"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-b8ae79f1393c",
+          "name": "1项目负责人和项目组成员在项目执行期间，按照计划对足式机器人简化模型的混杂系统控制方法开展了一系列研究，完成了预期研究内",
+          "desc": "1项目负责人和项目组成员在项目执行期间，按照计划对足式机器人简化模型的混杂系统控制方法开展了一系列研究，完成了预期研究内容。",
+          "evidence": [
+            {
+              "quote": "1项目负责人和项目组成员在项目执行期间，按照计划对足式机器人简化模型的混杂系统控制方法开展了一系列研究，完成了预期研究内容。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2727,
+                "end_char": 2788
+              },
+              "version": "ce6a9021e195b4aa9592"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c8aa27af20ee"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-31366f53bd4a"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Polytopic Planar Region Characterization of Rough Terrains for Legged Locomotion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-32acd0a29287",
+      "evidence": [
+        {
+          "quote": "Polytopic Planar Region Characterization of Rough Terrains for Legged Locomotion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3398,
+            "end_char": 3477
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-31366f53bd4a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4982a7947ac0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Instantaneous Capture Input for Balancing the Variable Height Inverted Pendulum",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b4958ba65880",
+      "evidence": [
+        {
+          "quote": "Instantaneous Capture Input for Balancing the Variable Height Inverted Pendulum",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3528,
+            "end_char": 3606
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-31366f53bd4a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b63f9d071745"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于视觉感知的四足机器人楼梯攀爬规划方法及其应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ac8564f0907",
+      "evidence": [
+        {
+          "quote": "基于视觉感知的四足机器人楼梯攀爬规划方法及其应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3667,
+            "end_char": 3690
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4982a7947ac0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1733abc84760"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Social Distancing in Urban Environments Using a Quadruped Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c1910cc565e",
+      "evidence": [
+        {
+          "quote": "Autonomous Social Distancing in Urban Environments Using a Quadruped Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3722,
+            "end_char": 3795
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b63f9d071745"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1733abc84760"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Perceptive Autonomous Stair Climbing for Quadrupedal Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad7f347311d5",
+      "evidence": [
+        {
+          "quote": "Perceptive Autonomous Stair Climbing for Quadrupedal Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3909,
+            "end_char": 3967
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved Task Space Locomotion Controller for a Quadruped Robot with Parallel Mechanisms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e9a407f2355",
+      "evidence": [
+        {
+          "quote": "Improved Task Space Locomotion Controller for a Quadruped Robot with Parallel Mechanisms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4033,
+            "end_char": 4120
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "足式机器人运动轨迹优化方法、设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e973d84709a",
+      "evidence": [
+        {
+          "quote": "足式机器人运动轨迹优化方法、设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4208,
+            "end_char": 4228
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "移动装置及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e54f7ea972a9",
+      "evidence": [
+        {
+          "quote": "移动装置及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4254,
+            "end_char": 4261
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Force-feedback based Whole-body Stabilizer for Position-Controlled Humanoid Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-39b1741c99a4",
+      "evidence": [
+        {
+          "quote": "Force-feedback based Whole-body Stabilizer for Position-Controlled Humanoid Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4285,
+            "end_char": 4366
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Three-Dimensional Dynamic Running with a Point-Foot Biped based on Differentially Flat SLIP",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1308ba8e09a",
+      "evidence": [
+        {
+          "quote": "Three-Dimensional Dynamic Running with a Point-Foot Biped based on Differentially Flat SLIP",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4422,
+            "end_char": 4512
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Geometric Sufficient Condition for Contact Wrench Feasibility",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a788ec4c7df2",
+      "evidence": [
+        {
+          "quote": "A Geometric Sufficient Condition for Contact Wrench Feasibility",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4557,
+            "end_char": 4619
+          },
+          "version": "ce6a9021e195b4aa9592"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

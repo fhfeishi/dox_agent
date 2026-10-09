@@ -2,15 +2,20 @@
   "doc_id": "fb57c1ccc38bedefb195",
   "version": "48195f3841792667211c",
   "source_hash": "571f59c35e46411733ed91d6b4cf16d9614d2f079cb6ff5d4acd4cc6aa5e8f46",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:30.677704+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.992837+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-373478158460",
-          "name": "柔性腰部推拿机器人",
-          "desc": "模拟中医推拿手法的腰椎康复机器人",
+          "id": "item-a870d94cd804",
+          "name": "腰椎病已成为我国主要的常发慢性疾病，中医推拿是康复治疗的有效手段，面对人口老龄化的社会现状，迫切需要研发能够模拟中医推拿",
+          "desc": "腰椎病已成为我国主要的常发慢性疾病，中医推拿是康复治疗的有效手段，面对人口老龄化的社会现状，迫切需要研发能够模拟中医推拿手法的腰部推拿机器人。",
           "evidence": [
             {
-              "quote": "腰椎病是我国高发慢性病，传统中医推拿虽疗效明确，但依赖人工、难以标准化。为此，本项目研发新型柔性腰部推拿机器人，融合机器人、传感与信息技术，旨在解决现有刚性机器人手法单一、安全性不足、交互性差等问题。",
+              "quote": "腰椎病已成为我国主要的常发慢性疾病，中医推拿是康复治疗的有效手段，面对人口老龄化的社会现状，迫切需要研发能够模拟中医推拿手法的腰部推拿机器人。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2882,
-                "end_char": 2981
+                "start_char": 655,
+                "end_char": 725
               },
               "version": "48195f3841792667211c"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2adb246dd72a",
-          "name": "刚性机器人手法单一",
-          "desc": "现有刚性机器人手法单一、安全性不足、交互性差",
+          "id": "item-1e551e50f0fe",
+          "name": "为此，本项目研发新型柔性腰部推拿机器人，融合机器人、传感与信息技术，旨在解决现有刚性机器人手法单一、安全性不足、交互性差",
+          "desc": "为此，本项目研发新型柔性腰部推拿机器人，融合机器人、传感与信息技术，旨在解决现有刚性机器人手法单一、安全性不足、交互性差等问题。",
           "evidence": [
             {
-              "quote": "旨在解决现有刚性机器人手法单一、安全性不足、交互性差等问题。",
+              "quote": "为此，本项目研发新型柔性腰部推拿机器人，融合机器人、传感与信息技术，旨在解决现有刚性机器人手法单一、安全性不足、交互性差等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2952,
+                "start_char": 2918,
                 "end_char": 2981
               },
               "version": "48195f3841792667211c"
@@ -63,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-220165f56c24",
-          "name": "机器视觉穴位识别",
-          "desc": "手指同身寸建模实现5mm以内自动识别",
+          "id": "item-2221c5dbf71f",
+          "name": "通过构建多模传感信息快速融合算法，建立机器人多层次融合决策机制，实现准确可靠的人机交互主动柔顺控制。",
+          "desc": "通过构建多模传感信息快速融合算法，建立机器人多层次融合决策机制，实现准确可靠的人机交互主动柔顺控制。",
           "evidence": [
             {
-              "quote": "结合腰部穴位分布与“手指同身寸”法建立人体腰部穴位模型，实现精度在5mm以内的自动识别，其效果主要受衣着宽松程度影响。",
+              "quote": "通过构建多模传感信息快速融合算法，建立机器人多层次融合决策机制，实现准确可靠的人机交互主动柔顺控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3122,
-                "end_char": 3180
+                "start_char": 915,
+                "end_char": 964
               },
               "version": "48195f3841792667211c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-1baa390815a7",
-          "name": "气动肌肉混合驱动",
-          "desc": "气动肌肉与电机结合构型改进D-H正运动学建模",
+          "id": "item-9987fb971023",
+          "name": "通过螺旋理论与气动肌肉三元素模型建立腰部推拿机器人刚柔耦合动力学模型，揭示机器人尺度与结构参数对系统运动与力传递特性的影",
+          "desc": "通过螺旋理论与气动肌肉三元素模型建立腰部推拿机器人刚柔耦合动力学模型，揭示机器人尺度与结构参数对系统运动与力传递特性的影响规律，得出其优化设计目标与约束条件，建立机器人尺度与结构参数集成优化设计方法；",
           "evidence": [
             {
-              "quote": "创新采用气动肌肉与电机结合的混合驱动机械臂构型。使用改进D-H参数法建立正运动学模型，并基于几何法推导逆运动学，显著简化了计算过程、降低了运算复杂度。",
+              "quote": "通过螺旋理论与气动肌肉三元素模型建立腰部推拿机器人刚柔耦合动力学模型，揭示机器人尺度与结构参数对系统运动与力传递特性的影响规律，得出其优化设计目标与约束条件，建立机器人尺度与结构参数集成优化设计方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3191,
-                "end_char": 3265
+                "start_char": 815,
+                "end_char": 914
               },
               "version": "48195f3841792667211c"
             }
-          ]
-        },
-        {
-          "id": "item-cc63bc5216db",
-          "name": "前馈反馈预测控制",
-          "desc": "Kalman预测解决视觉采样与控制频率时序问题",
-          "evidence": [
-            {
-              "quote": "提出一种前馈/反馈预测控制方法，通过Kalman预测算法解决视觉采样频率低于控制频率的时序问题。该方法提升了系统平稳性，减小了跟踪误差。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3458,
-                "end_char": 3525
-              },
-              "version": "48195f3841792667211c"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +108,324 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ebefb2264649",
-          "name": "综合性能提升18.53%",
-          "desc": "灵巧度提高4.13%可操作度提升9.88%",
+          "id": "item-dc7904a53985",
+          "name": "腰椎病已成为我国主要的常发慢性疾病，中医推拿是康复治疗的有效手段，面对人口老龄化的社会现状，迫切需要研发能够模拟中医推拿",
+          "desc": "腰椎病已成为我国主要的常发慢性疾病，中医推拿是康复治疗的有效手段，面对人口老龄化的社会现状，迫切需要研发能够模拟中医推拿手法的腰部推拿机器人。",
           "evidence": [
             {
-              "quote": "提出了以灵巧度与可操作度为核心的综合优化方法。优化后整体性能提升18.53%，灵巧度提高4.13%，可操作度提升9.88%，使其在执行复杂任务时更灵活、稳定。",
+              "quote": "腰椎病已成为我国主要的常发慢性疾病，中医推拿是康复治疗的有效手段，面对人口老龄化的社会现状，迫切需要研发能够模拟中医推拿手法的腰部推拿机器人。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3279,
-                "end_char": 3357
+                "start_char": 655,
+                "end_char": 725
               },
               "version": "48195f3841792667211c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-38edf4aea4c9",
-          "name": "关节跃度降67.39%",
-          "desc": "轨迹优化降低关节冲击振动最大降幅达67.39%",
+          "id": "item-552c03b4a182",
+          "name": "腰椎病是我国高发慢性病，传统中医推拿虽疗效明确，但依赖人工、难以标准化。",
+          "desc": "腰椎病是我国高发慢性病，传统中医推拿虽疗效明确，但依赖人工、难以标准化。",
           "evidence": [
             {
-              "quote": "开展了以降低关节冲击与振动为目标的轨迹优化研究。优化后各关节跃度峰值显著下降，最大降幅达67.39%，有效抑制了速度峰值，提升了运行柔顺性与系统稳定性。",
+              "quote": "腰椎病是我国高发慢性病，传统中医推拿虽疗效明确，但依赖人工、难以标准化。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3372,
-                "end_char": 3447
+                "start_char": 2882,
+                "end_char": 2917
               },
               "version": "48195f3841792667211c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-373478158460"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2adb246dd72a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Predictive Control for an Ankle Rehabilitation Robot Using Differential Evolution Optimization Algorithm-Based Fuzzy NARX Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb5b39e68670",
+      "evidence": [
+        {
+          "quote": "Predictive Control for an Ankle Rehabilitation Robot Using Differential Evolution Optimization Algorithm-Based Fuzzy NARX Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3611,
+            "end_char": 3737
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2adb246dd72a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-220165f56c24"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Fuzzy Iterative Learning Control of Pneumatic Artificial                  Muscle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06225bc4a3eb",
+      "evidence": [
+        {
+          "quote": "Research on Fuzzy Iterative Learning Control of Pneumatic Artificial                  Muscle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3836,
+            "end_char": 3927
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2adb246dd72a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1baa390815a7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-based trajectory tracking control of a pneumatic muscle actuator using a modified asymmetric generalized Prandtl-Ishlinskii model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c7b28f89830",
+      "evidence": [
+        {
+          "quote": "Vision-based trajectory tracking control of a pneumatic muscle actuator using a modified asymmetric generalized Prandtl-Ishlinskii model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3989,
+            "end_char": 4124
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2adb246dd72a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cc63bc5216db"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "人形机器人研究进展与挑战",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e2909ae2d8df",
+      "evidence": [
+        {
+          "quote": "人形机器人研究进展与挑战",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4195,
+            "end_char": 4206
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1baa390815a7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ebefb2264649"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The virtual-real interaction system design and interaction characteristics research of an ankle rehabilitation robot based on digital twin",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c44bd9c2447",
+      "evidence": [
+        {
+          "quote": "The virtual-real interaction system design and interaction characteristics research of an ankle rehabilitation robot based on digital twin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4231,
+            "end_char": 4368
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cc63bc5216db"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-38edf4aea4c9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Force Control Analysis of a Novel Waist Massage Instrument",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a9c4bdc5aec",
+      "evidence": [
+        {
+          "quote": "Design and Force Control Analysis of a Novel Waist Massage Instrument",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4433,
+            "end_char": 4501
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "双目结构光视觉引导的螺栓自动装配系统设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b47534a3b3cc",
+      "evidence": [
+        {
+          "quote": "双目结构光视觉引导的螺栓自动装配系统设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4566,
+            "end_char": 4585
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "数字孪生驱动的气动肌肉控制实验平台建设",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb20ab04a9c0",
+      "evidence": [
+        {
+          "quote": "数字孪生驱动的气动肌肉控制实验平台建设",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4611,
+            "end_char": 4629
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Structural Design and Kinematic Analysis of A Bone Reset Robot Driven by Pneumatic Muscles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5bf5e7e4a8e7",
+      "evidence": [
+        {
+          "quote": "Structural Design and Kinematic Analysis of A Bone Reset Robot Driven by Pneumatic Muscles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4661,
+            "end_char": 4750
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Digital Twin-based Framework of Motion Control and State Monitoring for Pneumatic Muscle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-45e964bb1a2c",
+      "evidence": [
+        {
+          "quote": "A Digital Twin-based Framework of Motion Control and State Monitoring for Pneumatic Muscle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4801,
+            "end_char": 4890
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An improved generalized Prandtl–Ishlinskii model for the hysteresis modeling of pneumatic artificial muscles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0eb4722aa29b",
+      "evidence": [
+        {
+          "quote": "An improved generalized Prandtl–Ishlinskii model for the hysteresis modeling of pneumatic artificial muscles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4966,
+            "end_char": 5073
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于Prandtl-Ishlinskii模型的气动肌肉迟滞特性动态建模与控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-321fa7c366e3",
+      "evidence": [
+        {
+          "quote": "基于Prandtl-Ishlinskii模型的气动肌肉迟滞特性动态建模与控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5136,
+            "end_char": 5175
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A New Approach to the Position of Acupoints on the Back of Humans",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d13e476f2cd5",
+      "evidence": [
+        {
+          "quote": "A New Approach to the Position of Acupoints on the Back of Humans",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5206,
+            "end_char": 5270
+          },
+          "version": "48195f3841792667211c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

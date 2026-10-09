@@ -2,15 +2,20 @@
   "doc_id": "8ec2cbb26786e03ab0ee",
   "version": "d739dc4d890983ff8af5",
   "source_hash": "e6ef50b09219b9e6a8a00a5dbd5650c70d5641d3dc7a34587b9492ce14d42391",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:19:58.041661+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.813200+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9048b51e7208",
-          "name": "多AUV协作目标搜捕",
-          "desc": "水下救援、侦查、攻防的多AUV协作目标搜索",
+          "id": "item-9a4a018ca7c2",
+          "name": "多自治水下机器人（Autonomous Underwater Vehicle, AUV）协作目标搜索是实现水下救援、水下",
+          "desc": "多自治水下机器人（Autonomous Underwater Vehicle, AUV）协作目标搜索是实现水下救援、水下侦查、水下攻防等任务的重要环节，是水下机器人研究的核心内容之一。",
           "evidence": [
             {
-              "quote": "由于水下环境的复杂性和搜索区域的不断扩大，以及目标的智能性不断增强，单个AUV已经很难完成搜捕任务，需要多个AUV协作。",
+              "quote": "多自治水下机器人（Autonomous Underwater Vehicle, AUV）协作目标搜索是实现水下救援、水下侦查、水下攻防等任务的重要环节，是水下机器人研究的核心内容之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2596,
-                "end_char": 2655
+                "start_char": 641,
+                "end_char": 732
               },
               "version": "d739dc4d890983ff8af5"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-46b92e4e933a",
-          "name": "任务分配与搜索规划难",
-          "desc": "协作任务分配、搜索路径规划与围捕策略问题",
-          "evidence": [
-            {
-              "quote": "本项目针对复杂水下环境下多AUV协作目标搜捕算法进行研究，重点对水下环境中多AUV协作任务分配算法，多AUV目标搜索策略，多AUV目标围捕等关键问题展开研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2656,
-                "end_char": 2733
-              },
-              "version": "d739dc4d890983ff8af5"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-6856dced26b9",
-          "name": "栅格信度任务分配",
-          "desc": "自组织神经网络分配职责解决任务冲突",
+          "id": "item-b22faaf97c45",
+          "name": "本项目对多AUV协作目标搜索控制进行研究，探索多AUV搜索中的协作任务分配以及搜索路径规划等问题，为形成系统化的多AUV",
+          "desc": "本项目对多AUV协作目标搜索控制进行研究，探索多AUV搜索中的协作任务分配以及搜索路径规划等问题，为形成系统化的多AUV协作目标搜索控制算法和实际有效的控制系统奠定基础。",
           "evidence": [
             {
-              "quote": "将栅格信度自组织神经网络算法用于AUV协作任务分配，确定系统中每个AUV的职责，解决了AUV任务冲突的问题。",
+              "quote": "本项目对多AUV协作目标搜索控制进行研究，探索多AUV搜索中的协作任务分配以及搜索路径规划等问题，为形成系统化的多AUV协作目标搜索控制算法和实际有效的控制系统奠定基础。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2768,
-                "end_char": 2821
+                "start_char": 733,
+                "end_char": 817
               },
               "version": "d739dc4d890983ff8af5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a2e788d03a1b",
-          "name": "深度强化学习搜索",
-          "desc": "缩短搜索路径节省能量并反步跟踪防逃逸",
+          "id": "item-5bd507a41f2c",
+          "name": "其次，引入生物启发神经网络模型，给出生物启发多AUV搜索策略，解决多AUV对未知目标搜索的路径规划问题。",
+          "desc": "其次，引入生物启发神经网络模型，给出生物启发多AUV搜索策略，解决多AUV对未知目标搜索的路径规划问题。",
           "evidence": [
             {
-              "quote": "提出了基于深度强化学习的目标搜索算法，缩短了搜索路径，节省了能量；以及通过反步算法对目标进行跟踪，防止目标逃逸。",
+              "quote": "其次，引入生物启发神经网络模型，给出生物启发多AUV搜索策略，解决多AUV对未知目标搜索的路径规划问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2830,
-                "end_char": 2885
+                "start_char": 884,
+                "end_char": 935
               },
               "version": "d739dc4d890983ff8af5"
             }
-          ]
-        },
-        {
-          "id": "item-691741d6838d",
-          "name": "主从编队围捕",
-          "desc": "主从编队与包围圈收缩提高围捕效率",
-          "evidence": [
-            {
-              "quote": "选用主从编队算法和包围圈收缩算法，使得所有AUV能够同时靠近目标，快速到达围捕点，提高了目标围捕的效率，降低了目标的逃逸率。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2896,
-                "end_char": 2957
-              },
-              "version": "d739dc4d890983ff8af5"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +91,392 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ccc6cb8849d1",
-          "name": "专著与论文16篇",
-          "desc": "专著1部、论文16篇（SCI 13）、专利8项、软著4项、实验系统1套",
+          "id": "item-2df691f16f87",
+          "name": "多自治水下机器人（Autonomous Underwater Vehicle, AUV）协作目标搜索是实现水下救援、水下",
+          "desc": "多自治水下机器人（Autonomous Underwater Vehicle, AUV）协作目标搜索是实现水下救援、水下侦查、水下攻防等任务的重要环节，是水下机器人研究的核心内容之一。",
           "evidence": [
             {
-              "quote": "以该项目为依托，出版专著1部，发表学术论文16篇，其中包括13篇SCI论文，3篇EI论文，申请发明专利4项，授权实用新型专利4项，软件著作权4项，研发自治水下机器人实验系统1套。",
+              "quote": "多自治水下机器人（Autonomous Underwater Vehicle, AUV）协作目标搜索是实现水下救援、水下侦查、水下攻防等任务的重要环节，是水下机器人研究的核心内容之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2997,
-                "end_char": 3085
+                "start_char": 641,
+                "end_char": 732
               },
               "version": "d739dc4d890983ff8af5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-c9baf534ad20",
+          "name": "海洋蕴含着丰富的生物资源、矿产资源、化学资源、水资源等，正成为各国竞相争夺的重要战略目标。",
+          "desc": "海洋蕴含着丰富的生物资源、矿产资源、化学资源、水资源等，正成为各国竞相争夺的重要战略目标。",
+          "evidence": [
+            {
+              "quote": "海洋蕴含着丰富的生物资源、矿产资源、化学资源、水资源等，正成为各国竞相争夺的重要战略目标。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2477,
+                "end_char": 2521
+              },
+              "version": "d739dc4d890983ff8af5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9048b51e7208"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-46b92e4e933a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hunting Algorithm for Multi-AUV Based on Dynamic Prediction of Target Trajectory in 3D Underwater Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a516cc8a1f12",
+      "evidence": [
+        {
+          "quote": "Hunting Algorithm for Multi-AUV Based on Dynamic Prediction of Target Trajectory in 3D Underwater Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3111,
+            "end_char": 3219
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-46b92e4e933a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6856dced26b9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水下机器人水面操控装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd975f22b3df",
+      "evidence": [
+        {
+          "quote": "一种水下机器人水面操控装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3252,
+            "end_char": 3264
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-46b92e4e933a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a2e788d03a1b"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "水下机器人研发技术与任务规划研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f8cb5b0f4792",
+      "evidence": [
+        {
+          "quote": "水下机器人研发技术与任务规划研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3294,
+            "end_char": 3309
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-46b92e4e933a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-691741d6838d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on AUV global path planning considering safe obstacle avoidance in underwater environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-39ce2cf2a179",
+      "evidence": [
+        {
+          "quote": "Research on AUV global path planning considering safe obstacle avoidance in underwater environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3326,
+            "end_char": 3423
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a2e788d03a1b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ccc6cb8849d1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel cooperative hunting algorithm for multi-AUV in underwater environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4f653d0e212",
+      "evidence": [
+        {
+          "quote": "A novel cooperative hunting algorithm for multi-AUV in underwater environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3477,
+            "end_char": 3554
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-691741d6838d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ccc6cb8849d1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "栅格地图中多机器人目标搜索算法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-994ebcac47b8",
+      "evidence": [
+        {
+          "quote": "栅格地图中多机器人目标搜索算法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3602,
+            "end_char": 3618
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-AUV cooperative target hunting based on improved potential field in underwater environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eb8db9503f87",
+      "evidence": [
+        {
+          "quote": "Multi-AUV cooperative target hunting based on improved potential field in underwater environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3639,
+            "end_char": 3734
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A potential field bio-inspired neural network control algorithm for AUV path planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df46ee8fe0fd",
+      "evidence": [
+        {
+          "quote": "A potential field bio-inspired neural network control algorithm for AUV path planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3771,
+            "end_char": 3855
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Task Assignment for Multi-AUV Cooperative Hunting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b793a1da86ab",
+      "evidence": [
+        {
+          "quote": "Dynamic Task Assignment for Multi-AUV Cooperative Hunting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3889,
+            "end_char": 3945
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A leader-follower formation control approach for target hunting by multi-AUV in 3-D underwater environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-254a609d8607",
+      "evidence": [
+        {
+          "quote": "A leader-follower formation control approach for target hunting by multi-AUV in 3-D underwater environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3994,
+            "end_char": 4100
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于神经网络的全覆盖路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d34826c0d6f2",
+      "evidence": [
+        {
+          "quote": "一种基于神经网络的全覆盖路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4135,
+            "end_char": 4152
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "三维水下环境中多自治水下机器人协作目标搜索算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af316e33541e",
+      "evidence": [
+        {
+          "quote": "三维水下环境中多自治水下机器人协作目标搜索算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4171,
+            "end_char": 4193
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于前视声纳的三维水下地图构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a3924bc0faec",
+      "evidence": [
+        {
+          "quote": "一种基于前视声纳的三维水下地图构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4213,
+            "end_char": 4231
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水下机器人用推进装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a83a069bf11d",
+      "evidence": [
+        {
+          "quote": "一种水下机器人用推进装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4250,
+            "end_char": 4261
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Fuzzy-based Bio-inspired Neural Network Approach for Target Search by Multi-AUV in Underwater Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-97b1d10043ae",
+      "evidence": [
+        {
+          "quote": "A Fuzzy-based Bio-inspired Neural Network Approach for Target Search by Multi-AUV in Underwater Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4282,
+            "end_char": 4389
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Potential field hierarchical reinforcement learning approach for target search by multi-AUV in 3-D underwater environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-127a632c33e0",
+      "evidence": [
+        {
+          "quote": "Potential field hierarchical reinforcement learning approach for target search by multi-AUV in 3-D underwater environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4441,
+            "end_char": 4562
+          },
+          "version": "d739dc4d890983ff8af5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

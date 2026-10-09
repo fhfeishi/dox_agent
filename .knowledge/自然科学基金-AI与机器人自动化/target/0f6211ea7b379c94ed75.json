@@ -2,15 +2,20 @@
   "doc_id": "0f6211ea7b379c94ed75",
   "version": "1ea3d7d39ac5824045d0",
   "source_hash": "7f760b59e6ecde0465ac4f290c27f2b54b8510005af8610043211e1290f7d7b0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:07:58.921264+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.629494+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9fce1cd5aeac",
-          "name": "复杂环境机器人自主导航",
-          "desc": "无人工厂、智能仓库等场景的智能机器人导航与避障",
+          "id": "item-f4801e40c306",
+          "name": "复杂场景要求智能机器人快速稳定的方式到达目标点完成既定任务，同时要有稳定精确的控制动作作为保证。",
+          "desc": "复杂场景要求智能机器人快速稳定的方式到达目标点完成既定任务，同时要有稳定精确的控制动作作为保证。",
           "evidence": [
             {
-              "quote": "重点研究了复杂环境下机器人自主导航与智能避障",
+              "quote": "复杂场景要求智能机器人快速稳定的方式到达目标点完成既定任务，同时要有稳定精确的控制动作作为保证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3049,
-                "end_char": 3070
+                "start_char": 649,
+                "end_char": 696
+              },
+              "version": "1ea3d7d39ac5824045d0"
+            }
+          ]
+        },
+        {
+          "id": "item-09c980fcca72",
+          "name": ".      研究工作针对工业、运输及军事等领域机智能器人应用的迫切需求，实现智能机器人高效有序的导航及控制方法，为智能",
+          "desc": ".      研究工作针对工业、运输及军事等领域机智能器人应用的迫切需求，实现智能机器人高效有序的导航及控制方法，为智能机器人自主导航及控制技术研究提供了新思路。",
+          "evidence": [
+            {
+              "quote": ".      研究工作针对工业、运输及军事等领域机智能器人应用的迫切需求，实现智能机器人高效有序的导航及控制方法，为智能机器人自主导航及控制技术研究提供了新思路。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 946,
+                "end_char": 1026
               },
               "version": "1ea3d7d39ac5824045d0"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-4203089bf098",
-          "name": "奖励稀疏与维数灾难",
-          "desc": "强化学习奖励稀疏、维数灾难及动作自适应控制学习效率问题",
-          "evidence": [
-            {
-              "quote": "智能机器人研究面临监督学习的过拟合与数据收集标注耗时、机器人强化学习中奖励稀疏与维数灾难、机器人动作自适应智能控制中学习效率等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2951,
-                "end_char": 3015
-              },
-              "version": "1ea3d7d39ac5824045d0"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-ac091d57ce0e",
-          "name": "邻域好奇心探索NCE",
-          "desc": "基于正向/逆向模型预测误差的内在奖励机制提升自主探索能力",
+          "id": "item-95fc94033776",
+          "name": "再者，将注意力机制用于机器人控制优化，设计了基于图像状态提取、Dyna算法、自模仿强化学习的控制方法，提出了基于Tran",
+          "desc": "再者，将注意力机制用于机器人控制优化，设计了基于图像状态提取、Dyna算法、自模仿强化学习的控制方法，提出了基于Transformer的智能控制方法；",
           "evidence": [
             {
-              "quote": "设计了基于正向/逆向模型预测误差的内在奖励机制，提出了基于邻域好奇心探索（NCE）的算法",
+              "quote": "再者，将注意力机制用于机器人控制优化，设计了基于图像状态提取、Dyna算法、自模仿强化学习的控制方法，提出了基于Transformer的智能控制方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3091,
-                "end_char": 3134
+                "start_char": 3278,
+                "end_char": 3352
               },
               "version": "1ea3d7d39ac5824045d0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-543b848d9ac1",
-          "name": "Transformer注意力控制",
-          "desc": "注意力机制用于机器人控制优化，基于Transformer的智能控制方法",
+          "id": "item-53de37418fbd",
+          "name": "最后，为提高学习效率和泛化性能，提出了基于横向迁移的机器人迁移学习控制策略，并提出基于分层架构的机器人技能学习框架和面向",
+          "desc": "最后，为提高学习效率和泛化性能，提出了基于横向迁移的机器人迁移学习控制策略，并提出基于分层架构的机器人技能学习框架和面向实用性的无监督学习方法等。",
           "evidence": [
             {
-              "quote": "将注意力机制用于机器人控制优化，设计了基于图像状态提取、Dyna算法、自模仿强化学习的控制方法，提出了基于Transformer的智能控制方法",
+              "quote": "最后，为提高学习效率和泛化性能，提出了基于横向迁移的机器人迁移学习控制策略，并提出基于分层架构的机器人技能学习框架和面向实用性的无监督学习方法等。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3281,
-                "end_char": 3351
+                "start_char": 3353,
+                "end_char": 3425
               },
               "version": "1ea3d7d39ac5824045d0"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,448 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3af031c9415c",
-          "name": "行为融合与技能学习框架",
-          "desc": "模仿学习与逆强化学习行为融合、分层架构技能学习与无监督学习方法",
+          "id": "item-63ccddd738b5",
+          "name": "复杂场景要求智能机器人快速稳定的方式到达目标点完成既定任务，同时要有稳定精确的控制动作作为保证。",
+          "desc": "复杂场景要求智能机器人快速稳定的方式到达目标点完成既定任务，同时要有稳定精确的控制动作作为保证。",
           "evidence": [
             {
-              "quote": "提出了基于横向迁移的机器人迁移学习控制策略，并提出基于分层架构的机器人技能学习框架和面向实用性的无监督学习方法等",
+              "quote": "复杂场景要求智能机器人快速稳定的方式到达目标点完成既定任务，同时要有稳定精确的控制动作作为保证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3369,
-                "end_char": 3424
+                "start_char": 649,
+                "end_char": 696
               },
               "version": "1ea3d7d39ac5824045d0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-3e80312d3276",
-          "name": "论文与专利软著",
-          "desc": "发表录用论文26篇（SCI 25篇，顶刊9篇），授权发明专利1项等",
+          "id": "item-e877d53c6bfa",
+          "name": "与人工智能结合的智能机器人成为当今世界的研究热点，如何让机器人具有自主学习能力是新一代智能机器人区别于上一代机器人的重要",
+          "desc": "与人工智能结合的智能机器人成为当今世界的研究热点，如何让机器人具有自主学习能力是新一代智能机器人区别于上一代机器人的重要特征。",
           "evidence": [
             {
-              "quote": "项目资助发表和录用论文26篇，其中SCI期刊论文25篇、国内顶级学报论文1篇",
+              "quote": "与人工智能结合的智能机器人成为当今世界的研究热点，如何让机器人具有自主学习能力是新一代智能机器人区别于上一代机器人的重要特征。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3489,
-                "end_char": 3526
+                "start_char": 2888,
+                "end_char": 2950
               },
               "version": "1ea3d7d39ac5824045d0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9fce1cd5aeac"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4203089bf098"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An adaptive algorithm for consensus improving in group decision making based on reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4218f25a9060",
+      "evidence": [
+        {
+          "quote": "An adaptive algorithm for consensus improving in group decision making based on reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3904,
+            "end_char": 4005
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4203089bf098"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ac091d57ce0e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path Planning of Randomly Scattering Waypoints for Wafer Probing Based on Deep Attention Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7538715f5885",
+      "evidence": [
+        {
+          "quote": "Path Planning of Randomly Scattering Waypoints for Wafer Probing Based on Deep Attention Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4083,
+            "end_char": 4180
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4203089bf098"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-543b848d9ac1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Agent Reward-Iteration Fuzzy Q-Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-64fe4fbb1776",
+      "evidence": [
+        {
+          "quote": "Multi-Agent Reward-Iteration Fuzzy Q-Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4268,
+            "end_char": 4312
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-543b848d9ac1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3af031c9415c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Using Fuzzy Logic to Learn Abstract Policies in Large-Scale Multi-Agent Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3cfff609556b",
+      "evidence": [
+        {
+          "quote": "Using Fuzzy Logic to Learn Abstract Policies in Large-Scale Multi-Agent Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4389,
+            "end_char": 4482
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ac091d57ce0e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3e80312d3276"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Using Goal-Conditioned Reinforcement Learning With Deep Imitation to Control Robot Arm in Flexible Flat Cable Assembly Task",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5790133e126c",
+      "evidence": [
+        {
+          "quote": "Using Goal-Conditioned Reinforcement Learning With Deep Imitation to Control Robot Arm in Flexible Flat Cable Assembly Task",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4535,
+            "end_char": 4657
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A multi-agent reinforcement learning method with curriculum transfer for large-scale dynamic traffic signal control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4c650766b84",
+      "evidence": [
+        {
+          "quote": "A multi-agent reinforcement learning method with curriculum transfer for large-scale dynamic traffic signal control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4710,
+            "end_char": 4824
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Attentive Hybrid Recurrent Neural Networks for sequential recommendation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c763b98278f",
+      "evidence": [
+        {
+          "quote": "Attentive Hybrid Recurrent Neural Networks for sequential recommendation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4870,
+            "end_char": 4941
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DeRL: Coupling Decomposition in Action Space for Reinforcement Learning Task",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b50a55452965",
+      "evidence": [
+        {
+          "quote": "DeRL: Coupling Decomposition in Action Space for Reinforcement Learning Task",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5016,
+            "end_char": 5091
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Graph convolutional network-based reinforcement learning for tasks offloading in multi-access edge computing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75fc622ee9fd",
+      "evidence": [
+        {
+          "quote": "Graph convolutional network-based reinforcement learning for tasks offloading in multi-access edge computing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5161,
+            "end_char": 5268
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neighborhood curiosity-based exploration in multi-agent reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ae526809b2e",
+      "evidence": [
+        {
+          "quote": "Neighborhood curiosity-based exploration in multi-agent reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5329,
+            "end_char": 5406
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A behavior fusion method based on inverse reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cba69906a71f",
+      "evidence": [
+        {
+          "quote": "A behavior fusion method based on inverse reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5493,
+            "end_char": 5556
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于自注意力机制和策略映射重组的多智能体强化学习算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d82affce5ec",
+      "evidence": [
+        {
+          "quote": "基于自注意力机制和策略映射重组的多智能体强化学习算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5623,
+            "end_char": 5648
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水陆两栖仿生机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8492125b2ce",
+      "evidence": [
+        {
+          "quote": "一种水陆两栖仿生机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5673,
+            "end_char": 5683
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Decentralized Communication Framework based on Dual-Level Recurrence for Multi-Agent Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3bae6564c100",
+      "evidence": [
+        {
+          "quote": "A Decentralized Communication Framework based on Dual-Level Recurrence for Multi-Agent Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5717,
+            "end_char": 5825
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A collaboration of multi-agent model using an interactive interface",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f48640b85825",
+      "evidence": [
+        {
+          "quote": "A collaboration of multi-agent model using an interactive interface",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5888,
+            "end_char": 5954
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "分布式多智能体群体智能协同决策理 论与方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f55f667cc224",
+      "evidence": [
+        {
+          "quote": "分布式多智能体群体智能协同决策理 论与方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6013,
+            "end_char": 6033
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于注意力机制强化学习的半导体晶片测试路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99154904adee",
+      "evidence": [
+        {
+          "quote": "基于注意力机制强化学习的半导体晶片测试路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6078,
+            "end_char": 6102
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An explainable ensemble feedforward method with Gaussian convolutional filter",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc5ef95cf33a",
+      "evidence": [
+        {
+          "quote": "An explainable ensemble feedforward method with Gaussian convolutional filter",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6132,
+            "end_char": 6208
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Eliminating Primacy Bias in Online Reinforcement Learning by Self-Distillation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fdf547a0577e",
+      "evidence": [
+        {
+          "quote": "Eliminating Primacy Bias in Online Reinforcement Learning by Self-Distillation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6262,
+            "end_char": 6339
+          },
+          "version": "1ea3d7d39ac5824045d0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

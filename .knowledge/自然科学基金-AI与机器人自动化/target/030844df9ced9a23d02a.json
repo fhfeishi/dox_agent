@@ -2,15 +2,20 @@
   "doc_id": "030844df9ced9a23d02a",
   "version": "04a32b1f73f4069f734c",
   "source_hash": "d59dafbc3281e7d0bfb4c317ca43e2221262d1f8ad014daeb516197f19899271",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:26.783807+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.547082+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-239be681c582",
-          "name": "手功能康复训练",
-          "desc": "高强度重复性手部康复训练的可穿戴软体机器人",
+          "id": "item-5c6b2e212f41",
+          "name": "手功能康复机器人是解决高强度、重复性手部康复训练的有效手段。",
+          "desc": "手功能康复机器人是解决高强度、重复性手部康复训练的有效手段。",
           "evidence": [
             {
-              "quote": "本项目基于生物结构仿生映射和机构综合，针对制约手功能康复机器人发展的轻量化高契合度外骨骼结构设计、耦合运动机理和多模态感知智能控制方法开展了深入研究。",
+              "quote": "手功能康复机器人是解决高强度、重复性手部康复训练的有效手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2837,
-                "end_char": 2911
+                "start_char": 663,
+                "end_char": 692
               },
               "version": "04a32b1f73f4069f734c"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f6a854b2cef7",
-          "name": "SMA丝应变不足",
-          "desc": "形状记忆合金丝应变不足制约康复外骨骼设计",
+          "id": "item-e0aba441b4d7",
+          "name": "针对SMA丝应变不足的问题，创新性提出了基于滑轮组的应变放大增程机构，总结了人工肌肉的仿生排布规律，通过理论分析和实验研",
+          "desc": "针对SMA丝应变不足的问题，创新性提出了基于滑轮组的应变放大增程机构，总结了人工肌肉的仿生排布规律，通过理论分析和实验研究手段，阐明了SMA丝人工肌肉驱动器的动力学特性和致动机理，基本形成了一套有效的SMA丝驱动可穿戴式软体手功能康复外骨骼设计方法。",
           "evidence": [
             {
-              "quote": "针对SMA丝应变不足的问题，创新性提出了基于滑轮组的应变放大增程机构",
+              "quote": "针对SMA丝应变不足的问题，创新性提出了基于滑轮组的应变放大增程机构，总结了人工肌肉的仿生排布规律，通过理论分析和实验研究手段，阐明了SMA丝人工肌肉驱动器的动力学特性和致动机理，基本形成了一套有效的SMA丝驱动可穿戴式软体手功能康复外骨骼设计方法。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3083,
-                "end_char": 3116
+                "end_char": 3207
               },
               "version": "04a32b1f73f4069f734c"
             }
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d4bebcd8b9cc",
-          "name": "滑轮组应变放大增程",
-          "desc": "仿生排布与增程机构解决SMA应变不足",
+          "id": "item-a94d0a051dad",
+          "name": "综合SMA本构方程、电驱动热力学方程、机器人动力学方程，构建了手功能康复机器人的控制模型，提出了基于SMA电阻自反馈的P",
+          "desc": "综合SMA本构方程、电驱动热力学方程、机器人动力学方程，构建了手功能康复机器人的控制模型，提出了基于SMA电阻自反馈的PSO-BP-PID轨迹跟踪控制方法，探索了基于肌电信号和位姿信号反馈与SMA人工肌肉自感知信号融合的软体外骨骼精确控制策略。",
           "evidence": [
             {
-              "quote": "创新性提出了基于滑轮组的应变放大增程机构，总结了人工肌肉的仿生排布规律，通过理论分析和实验研究手段，阐明了SMA丝人工肌肉驱动器的动力学特性和致动机理",
+              "quote": "综合SMA本构方程、电驱动热力学方程、机器人动力学方程，构建了手功能康复机器人的控制模型，提出了基于SMA电阻自反馈的PSO-BP-PID轨迹跟踪控制方法，探索了基于肌电信号和位姿信号反馈与SMA人工肌肉自感知信号融合的软体外骨骼精确控制策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3097,
-                "end_char": 3171
-              },
-              "version": "04a32b1f73f4069f734c"
-            }
-          ]
-        },
-        {
-          "id": "item-0128d1e25650",
-          "name": "PSO-BP-PID轨迹控制",
-          "desc": "SMA电阻自反馈与肌电位姿信号融合控制",
-          "evidence": [
-            {
-              "quote": "提出了基于SMA电阻自反馈的PSO-BP-PID轨迹跟踪控制方法，探索了基于肌电信号和位姿信号反馈与SMA人工肌肉自感知信号融合的软体外骨骼精确控制策略。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3358,
+                "start_char": 3313,
                 "end_char": 3434
               },
               "version": "04a32b1f73f4069f734c"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b930c7192f5d",
+          "name": "基于手部生理解剖结构，从机构学角度对手指关节运动进行了解析，阐述了手指肌肉和骨骼的协同运动机制，基于运动捕捉系统对手指关",
+          "desc": "基于手部生理解剖结构，从机构学角度对手指关节运动进行了解析，阐述了手指肌肉和骨骼的协同运动机制，基于运动捕捉系统对手指关节协同运动规律进行了分析，在此基础上构建了手指运动的生物力学模型，并基于优化理论提出了生物力学参数求解的混合遗传算法。",
+          "evidence": [
+            {
+              "quote": "基于手部生理解剖结构，从机构学角度对手指关节运动进行了解析，阐述了手指肌肉和骨骼的协同运动机制，基于运动捕捉系统对手指关节协同运动规律进行了分析，在此基础上构建了手指运动的生物力学模型，并基于优化理论提出了生物力学参数求解的混合遗传算法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2912,
+                "end_char": 3030
+              },
+              "version": "04a32b1f73f4069f734c"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +108,368 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c3e609bf5fcc",
-          "name": "样机与数字孪生系统",
-          "desc": "研制样机并开展虚实结合手功能数字孪生康复系统研究",
+          "id": "item-cf103f421389",
+          "name": "手功能康复机器人是解决高强度、重复性手部康复训练的有效手段。",
+          "desc": "手功能康复机器人是解决高强度、重复性手部康复训练的有效手段。",
           "evidence": [
             {
-              "quote": "研制出SMA丝驱动的可穿戴式软体手功能康复机器人样机系统，并系统的对样机开展了功能验证，基于人工智能技术开展了虚实结合手功能数字孪生康复系统研究，初步完成了系统搭建，为后续成果转化为康复医疗装备产品奠定了良好基础。",
+              "quote": "手功能康复机器人是解决高强度、重复性手部康复训练的有效手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3435,
-                "end_char": 3541
+                "start_char": 663,
+                "end_char": 692
               },
               "version": "04a32b1f73f4069f734c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-eb2ae4b24062",
+          "name": "本项目基于生物结构仿生映射和机构综合，针对制约手功能康复机器人发展的轻量化高契合度外骨骼结构设计、耦合运动机理和多模态感",
+          "desc": "本项目基于生物结构仿生映射和机构综合，针对制约手功能康复机器人发展的轻量化高契合度外骨骼结构设计、耦合运动机理和多模态感知智能控制方法开展了深入研究。",
+          "evidence": [
+            {
+              "quote": "本项目基于生物结构仿生映射和机构综合，针对制约手功能康复机器人发展的轻量化高契合度外骨骼结构设计、耦合运动机理和多模态感知智能控制方法开展了深入研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2837,
+                "end_char": 2911
+              },
+              "version": "04a32b1f73f4069f734c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-239be681c582"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f6a854b2cef7"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Countermeasures for cramps in passive training of hand function  rehabilitation robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-977b3baad8e0",
+      "evidence": [
+        {
+          "quote": "Countermeasures for cramps in passive training of hand function  rehabilitation robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3567,
+            "end_char": 3651
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f6a854b2cef7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d4bebcd8b9cc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于神经网络PID的SMA丝恒输出力控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad0c5095c78d",
+      "evidence": [
+        {
+          "quote": "基于神经网络PID的SMA丝恒输出力控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3697,
+            "end_char": 3718
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f6a854b2cef7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0128d1e25650"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SMA 驱动手指康复机器人模糊自适应控制方法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a3d63576518a",
+      "evidence": [
+        {
+          "quote": "SMA 驱动手指康复机器人模糊自适应控制方法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3743,
+            "end_char": 3766
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d4bebcd8b9cc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c3e609bf5fcc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种前臂内外旋震颤抑制装置结构设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4ab03e8bcef",
+      "evidence": [
+        {
+          "quote": "一种前臂内外旋震颤抑制装置结构设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3795,
+            "end_char": 3811
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0128d1e25650"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c3e609bf5fcc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design analysis and motion capture verification of a flexible bionic single finger",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-133ee0a302a8",
+      "evidence": [
+        {
+          "quote": "Design analysis and motion capture verification of a flexible bionic single finger",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3841,
+            "end_char": 3922
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and experimental study of a flexible finger rehabilitation robot driven by shape memory alloy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a066f8a11df5",
+      "evidence": [
+        {
+          "quote": "Design and experimental study of a flexible finger rehabilitation robot driven by shape memory alloy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3994,
+            "end_char": 4093
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on exoskeleton structure design of hand function  rehabilitation robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d910cc886458",
+      "evidence": [
+        {
+          "quote": "Research on exoskeleton structure design of hand function  rehabilitation robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4159,
+            "end_char": 4237
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于减轻患者手腕部特发性震颤的柔性穿戴装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ebb737c9cf9",
+      "evidence": [
+        {
+          "quote": "一种用于减轻患者手腕部特发性震颤的柔性穿戴装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4281,
+            "end_char": 4303
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种形状记忆合金丝驱动的桌面级手功能康复装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-269648ca16c4",
+      "evidence": [
+        {
+          "quote": "一种形状记忆合金丝驱动的桌面级手功能康复装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4338,
+            "end_char": 4359
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and experiment of a hand movement device driven by shape memory alloy wires",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c7c00b84b7cf",
+      "evidence": [
+        {
+          "quote": "Design and experiment of a hand movement device driven by shape memory alloy wires",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4397,
+            "end_char": 4478
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DESIGN OF SOFT EXOSKELETON STRUCTURE FOR HAND REHABILITATION ACTUATED BY SHAPE MEMORY ALLOY",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d1fd18ae4fec",
+      "evidence": [
+        {
+          "quote": "DESIGN OF SOFT EXOSKELETON STRUCTURE FOR HAND REHABILITATION ACTUATED BY SHAPE MEMORY ALLOY",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4553,
+            "end_char": 4643
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种手指康复外骨骼模糊阻抗控制算法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9cdcb98c73fc",
+      "evidence": [
+        {
+          "quote": "一种手指康复外骨骼模糊阻抗控制算法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4715,
+            "end_char": 4733
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种形状记忆合金丝人工肌肉驱动的可穿戴手功能康复软体外骨骼结构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7de7e7a9bdaa",
+      "evidence": [
+        {
+          "quote": "一种形状记忆合金丝人工肌肉驱动的可穿戴手功能康复软体外骨骼结构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4762,
+            "end_char": 4792
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "形状记忆合金驱动手指功能康复外骨骼设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cdfa714799ab",
+      "evidence": [
+        {
+          "quote": "形状记忆合金驱动手指功能康复外骨骼设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4830,
+            "end_char": 4848
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于减轻患者手腕部内外旋静止性震颤装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-baaf2cb392e2",
+      "evidence": [
+        {
+          "quote": "一种用于减轻患者手腕部内外旋静止性震颤装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4879,
+            "end_char": 4899
+          },
+          "version": "04a32b1f73f4069f734c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

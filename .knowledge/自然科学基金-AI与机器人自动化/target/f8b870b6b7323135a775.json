@@ -2,15 +2,20 @@
   "doc_id": "f8b870b6b7323135a775",
   "version": "7d02fc7ab14da1871350",
   "source_hash": "fce55583c9610d088975348ed038047c043cbe42242510762c4ccc1edde65127",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:28:42.502357+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.899119+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a6a0eaff6bc9",
-          "name": "多无人机柔性吊挂运输",
-          "desc": "边防物资运输、应急救援及物资输送等应用场景的多机协同吊挂",
+          "id": "item-a29b4079219e",
+          "name": "多无人机协同吊挂在一定程度上可弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围。",
+          "desc": "多无人机协同吊挂在一定程度上可弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围。",
           "evidence": [
             {
-              "quote": "多无人机通过柔性缆绳协同吊挂运输作业，在一定程度上可以弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围，在边防物资运输、应急救援及物资输送等应用场景具有特别的优势",
+              "quote": "多无人机协同吊挂在一定程度上可弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 643,
+                "end_char": 687
+              },
+              "version": "7d02fc7ab14da1871350"
+            }
+          ]
+        },
+        {
+          "id": "item-1f386ea416e7",
+          "name": "多无人机通过柔性缆绳协同吊挂运输作业，在一定程度上可以弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围，在边防",
+          "desc": "多无人机通过柔性缆绳协同吊挂运输作业，在一定程度上可以弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围，在边防物资运输、应急救援及物资输送等应用场景具有特别的优势。",
+          "evidence": [
+            {
+              "quote": "多无人机通过柔性缆绳协同吊挂运输作业，在一定程度上可以弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围，在边防物资运输、应急救援及物资输送等应用场景具有特别的优势。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2628,
-                "end_char": 2713
+                "end_char": 2714
               },
               "version": "7d02fc7ab14da1871350"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5b5427352051",
-          "name": "多约束强非线性耦合系统",
-          "desc": "多约束、多变量、动态耦合、强非线性复杂系统带来的协同稳定控制挑战",
+          "id": "item-7134e06929f0",
+          "name": "然而，多无人机柔性吊挂是一个多约束、多变量、动态耦合、强非线性的复杂系统，飞行过程中轨迹规划既要考虑多无人机避障问题又要",
+          "desc": "然而，多无人机柔性吊挂是一个多约束、多变量、动态耦合、强非线性的复杂系统，飞行过程中轨迹规划既要考虑多无人机避障问题又要确保载荷安全，多无人机个体之间的约束以及无人机与多自由度负载相对运动所产生的耦合力/力矩也增加了系统的不确定性，这些因素给多无人机协同稳定控制带来了极大的挑战。",
           "evidence": [
             {
-              "quote": "多无人机柔性吊挂是一个多约束、多变量、动态耦合、强非线性的复杂系统",
+              "quote": "然而，多无人机柔性吊挂是一个多约束、多变量、动态耦合、强非线性的复杂系统，飞行过程中轨迹规划既要考虑多无人机避障问题又要确保载荷安全，多无人机个体之间的约束以及无人机与多自由度负载相对运动所产生的耦合力/力矩也增加了系统的不确定性，这些因素给多无人机协同稳定控制带来了极大的挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2718,
-                "end_char": 2750
+                "start_char": 2715,
+                "end_char": 2854
               },
               "version": "7d02fc7ab14da1871350"
             }
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7242fd390a34",
-          "name": "Udwadia-Kalaba耦合建模",
-          "desc": "基于牛顿-欧拉法与拉格朗日法建立耦合动力学关系，引入Udwadia-Kalaba方程建立多约束耦合动力学模型",
+          "id": "item-e30c265d20d3",
+          "name": "本项目拟从建模、轨迹规划与协同控制三方面建立多无人机柔性吊挂过程的理论和技术方法。",
+          "desc": "本项目拟从建模、轨迹规划与协同控制三方面建立多无人机柔性吊挂过程的理论和技术方法。",
           "evidence": [
             {
-              "quote": "进一步面向多机协同吊挂场景，引入Udwadia-Kalaba方程建立可体现多机吊挂系统多约束特性的耦合动力学模型",
+              "quote": "本项目拟从建模、轨迹规划与协同控制三方面建立多无人机柔性吊挂过程的理论和技术方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3025,
-                "end_char": 3080
+                "start_char": 829,
+                "end_char": 869
               },
               "version": "7d02fc7ab14da1871350"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-48e14ba74bf7",
-          "name": "微分平坦多项式轨迹规划",
-          "desc": "生成满足避碰、载荷摆角约束与动力学可行等多重约束的高平滑可行轨迹",
+          "id": "item-8ce2a8a82b2a",
+          "name": "而后，综合考虑避障、控制性能、安全运行等约束条件，并以优先确保载荷安全为控制目标，采用分层规划方法设计最优轨迹；",
+          "desc": "而后，综合考虑避障、控制性能、安全运行等约束条件，并以优先确保载荷安全为控制目标，采用分层规划方法设计最优轨迹；",
           "evidence": [
             {
-              "quote": "采用基于微分平坦特性的多项式轨迹规划方法生成满足障碍物避碰、载荷摆角约束与动力学可行等多重约束条件的高平滑可行轨迹",
+              "quote": "而后，综合考虑避障、控制性能、安全运行等约束条件，并以优先确保载荷安全为控制目标，采用分层规划方法设计最优轨迹；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3085,
-                "end_char": 3141
+                "start_char": 906,
+                "end_char": 961
               },
               "version": "7d02fc7ab14da1871350"
             }
-          ]
-        },
-        {
-          "id": "item-af3f4744aa3d",
-          "name": "力反馈分段能量非线性控制",
-          "desc": "基于力反馈建立无人机与负载的协同运动控制方法",
-          "evidence": [
-            {
-              "quote": "基于力反馈建立无人机与负载的协同运动控制方法，设计基于分段能量的非线性控制器",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3189,
-                "end_char": 3226
-              },
-              "version": "7d02fc7ab14da1871350"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,80 +124,632 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a6ec4a23978f",
-          "name": "稳定飞行理论与实验验证",
-          "desc": "通过理论和实验验证达到稳定飞行的目的，支撑多无人机协同控制理论探索与实际应用",
+          "id": "item-eb9f961e99d2",
+          "name": "多无人机协同吊挂在一定程度上可弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围。",
+          "desc": "多无人机协同吊挂在一定程度上可弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围。",
           "evidence": [
             {
-              "quote": "以此通过理论和实验验证达到稳定飞行的目的。本项目不仅是对多无人机协同控制理论的一次有益探索，也为实际应用提供了技术支撑",
+              "quote": "多无人机协同吊挂在一定程度上可弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3266,
-                "end_char": 3324
+                "start_char": 643,
+                "end_char": 687
               },
               "version": "7d02fc7ab14da1871350"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-2a079e014b73",
+          "name": "多无人机通过柔性缆绳协同吊挂运输作业，在一定程度上可以弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围，在边防",
+          "desc": "多无人机通过柔性缆绳协同吊挂运输作业，在一定程度上可以弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围，在边防物资运输、应急救援及物资输送等应用场景具有特别的优势。",
+          "evidence": [
+            {
+              "quote": "多无人机通过柔性缆绳协同吊挂运输作业，在一定程度上可以弥补单无人机吊挂运输负载能力较低等缺陷，进一步扩展应用范围，在边防物资运输、应急救援及物资输送等应用场景具有特别的优势。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2628,
+                "end_char": 2714
+              },
+              "version": "7d02fc7ab14da1871350"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a6a0eaff6bc9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5b5427352051"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Path Planning for UAVs Based on a Algorithm of Dubins Path",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5a95af147ee5",
+      "evidence": [
+        {
+          "quote": "Distributed Path Planning for UAVs Based on a Algorithm of Dubins Path",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3351,
+            "end_char": 3420
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5b5427352051"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7242fd390a34"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Detector-based Boundary Synchronization Control of Hidden Markov Jump Reaction–diffusion Neural Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-760193bc74c3",
+      "evidence": [
+        {
+          "quote": "Detector-based Boundary Synchronization Control of Hidden Markov Jump Reaction–diffusion Neural Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3498,
+            "end_char": 3601
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5b5427352051"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-48e14ba74bf7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Cooperative Obstacle Avoidance and Formation Reconfiguration for Multiple Quadrotors: Theory and Experiment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a061f66efff",
+      "evidence": [
+        {
+          "quote": "Distributed Cooperative Obstacle Avoidance and Formation Reconfiguration for Multiple Quadrotors: Theory and Experiment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3657,
+            "end_char": 3775
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5b5427352051"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-af3f4744aa3d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Differential-Flatness Based Smooth Trajectory Generation for Multi-Quadrotors Transportation Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-460cd0d92833",
+      "evidence": [
+        {
+          "quote": "Differential-Flatness Based Smooth Trajectory Generation for Multi-Quadrotors Transportation Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3844,
+            "end_char": 3943
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-af3f4744aa3d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a6ec4a23978f"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2024年度吴文俊人工智能科学技术奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f0e967d0d76",
+      "evidence": [
+        {
+          "quote": "2024年度吴文俊人工智能科学技术奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3999,
+            "end_char": 4016
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed H∞ Resilient Bipartite Control of Multiagent Systems With Semi-Markov Switching",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c418f536b1b1",
+      "evidence": [
+        {
+          "quote": "Distributed H∞ Resilient Bipartite Control of Multiagent Systems With Semi-Markov Switching",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4085,
+            "end_char": 4175
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "TVFET-VD: Time-Varying Formation Encircling and Tracking Control Based on Visual Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-006d1e987dda",
+      "evidence": [
+        {
+          "quote": "TVFET-VD: Time-Varying Formation Encircling and Tracking Control Based on Visual Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4241,
+            "end_char": 4330
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Cooperative Collision-Free Tracking Control for 30 Quadrotors Under Internal and External Threats",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bcf4c7b698e3",
+      "evidence": [
+        {
+          "quote": "Distributed Cooperative Collision-Free Tracking Control for 30 Quadrotors Under Internal and External Threats",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4422,
+            "end_char": 4530
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Path Planning for Unmanned Surface Vehicles Based on Cooperative Air-Sea Coordination",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-890ff62b836e",
+      "evidence": [
+        {
+          "quote": "Dynamic Path Planning for Unmanned Surface Vehicles Based on Cooperative Air-Sea Coordination",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4619,
+            "end_char": 4711
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Formation Encirclement of Multiple Quadrotors Subjected to Semi-Markov Jump Switching Topologies under Consensus Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-721874015d27",
+      "evidence": [
+        {
+          "quote": "Formation Encirclement of Multiple Quadrotors Subjected to Semi-Markov Jump Switching Topologies under Consensus Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4836,
+            "end_char": 4956
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GCGE-YOLO: Improved YOLOv5s Algorithm for Object Detection in UAV Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1aa43bc92707",
+      "evidence": [
+        {
+          "quote": "GCGE-YOLO: Improved YOLOv5s Algorithm for Object Detection in UAV Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5057,
+            "end_char": 5128
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UAV Path Planning Based on Expert Experience Strategy RRT Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5ec2989cec8",
+      "evidence": [
+        {
+          "quote": "UAV Path Planning Based on Expert Experience Strategy RRT Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5200,
+            "end_char": 5266
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Sliding Mode Model Predictive Control and Thrust Allocation Methods for Autonomous Berthing of Water-jet Propulsion Unmanned Surface Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad67a38a6293",
+      "evidence": [
+        {
+          "quote": "Robust Sliding Mode Model Predictive Control and Thrust Allocation Methods for Autonomous Berthing of Water-jet Propulsion Unmanned Surface Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5363,
+            "end_char": 5510
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "编队围捕集群坐标信息交互与通信协同飞行的方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db75289fb01d",
+      "evidence": [
+        {
+          "quote": "编队围捕集群坐标信息交互与通信协同飞行的方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5568,
+            "end_char": 5592
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Indoor UAV Formation System Based on UWB Positioning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bafac13657ad",
+      "evidence": [
+        {
+          "quote": "Indoor UAV Formation System Based on UWB Positioning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5619,
+            "end_char": 5670
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Group Formation Tracking Control for Air-Ground Multi-Agent Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-efe2d5883a0e",
+      "evidence": [
+        {
+          "quote": "Group Formation Tracking Control for Air-Ground Multi-Agent Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5739,
+            "end_char": 5805
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cascade Control Strategy Base on MPC for UAVs Collaborative Payload Transport",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e4db3fd66b0",
+      "evidence": [
+        {
+          "quote": "Cascade Control Strategy Base on MPC for UAVs Collaborative Payload Transport",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5899,
+            "end_char": 5975
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collaborative control based on payload-leading for the multi-quadrotor transportation systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-81cd95307d67",
+      "evidence": [
+        {
+          "quote": "Collaborative control based on payload-leading for the multi-quadrotor transportation systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6055,
+            "end_char": 6147
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Perception-aware Trajectory Planning of Quadrotor in SE(3)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a1fe39a3a1d",
+      "evidence": [
+        {
+          "quote": "Perception-aware Trajectory Planning of Quadrotor in SE(3)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6217,
+            "end_char": 6274
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种编队围捕主从机协同飞行控制、状态切换方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba26c9534f0e",
+      "evidence": [
+        {
+          "quote": "一种编队围捕主从机协同飞行控制、状态切换方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6330,
+            "end_char": 6354
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "吊舱框架角补偿方法和相关装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-43d2201f37ff",
+      "evidence": [
+        {
+          "quote": "吊舱框架角补偿方法和相关装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6379,
+            "end_char": 6392
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Localization and Tracking of Multiple Quadrotors with Collision Avoidance: Theory and Experiment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec9942e986ae",
+      "evidence": [
+        {
+          "quote": "Localization and Tracking of Multiple Quadrotors with Collision Avoidance: Theory and Experiment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6418,
+            "end_char": 6513
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DEBS: Decentralized Exploration Planning for Multi-UAV Systems Using Bio-inspired Self-aggregation Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a53ac65b4bb",
+      "evidence": [
+        {
+          "quote": "DEBS: Decentralized Exploration Planning for Multi-UAV Systems Using Bio-inspired Self-aggregation Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6606,
+            "end_char": 6713
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于高阶扰动观测器的四旋翼无人机鲁棒跟踪控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6eff02aa17db",
+      "evidence": [
+        {
+          "quote": "基于高阶扰动观测器的四旋翼无人机鲁棒跟踪控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6824,
+            "end_char": 6845
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collision-Free Formation Tracking Control for Multiple Quadrotors under Switching Directed Topologies: Theory and Experiment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1da133fb9d2b",
+      "evidence": [
+        {
+          "quote": "Collision-Free Formation Tracking Control for Multiple Quadrotors under Switching Directed Topologies: Theory and Experiment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6878,
+            "end_char": 7001
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Distributed Multi-UAV Collision-free Formation Tracking Control Based On The Improved APF Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d3b23ff5d129",
+      "evidence": [
+        {
+          "quote": "A Distributed Multi-UAV Collision-free Formation Tracking Control Based On The Improved APF Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7086,
+            "end_char": 7183
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Formation Keeping Method Based on NMPC for Fixed-Wing UAV with Kinematic Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-089b0f969e69",
+      "evidence": [
+        {
+          "quote": "Formation Keeping Method Based on NMPC for Fixed-Wing UAV with Kinematic Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7280,
+            "end_char": 7363
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collision-Free Distributed Control for Multiple Quadrotors in Cluttered Environments With Static and Dynamic Obstacles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-473baf9eba7e",
+      "evidence": [
+        {
+          "quote": "Collision-Free Distributed Control for Multiple Quadrotors in Cluttered Environments With Static and Dynamic Obstacles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7449,
+            "end_char": 7566
+          },
+          "version": "7d02fc7ab14da1871350"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 28,
+    "listed": 28,
+    "by_kind": {
+      "会议论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

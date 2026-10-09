@@ -2,15 +2,20 @@
   "doc_id": "13e7f5fa649f4128c9ba",
   "version": "2efb32a888b73daff381",
   "source_hash": "7c675bcf233a422bd94691d0617fd4c053ea5e15fc53877c4253f039ce7c30bd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:52:47.595945+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.681933+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ed3c63589cd4",
-          "name": "室内机器人具身智能",
-          "desc": "家庭服务等场景下室内机器人多任务执行",
+          "id": "item-c725c9a3231c",
+          "name": "人通过自然语言对机器人下达指令并使机器人执行相应的动作在人机协作中起着重要作用。",
+          "desc": "人通过自然语言对机器人下达指令并使机器人执行相应的动作在人机协作中起着重要作用。",
           "evidence": [
             {
-              "quote": "室内机器人是当前具身智能研究的重点，在家庭服务等场景下具有重要的潜在价值。",
+              "quote": "人通过自然语言对机器人下达指令并使机器人执行相应的动作在人机协作中起着重要作用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2562,
-                "end_char": 2598
+                "start_char": 648,
+                "end_char": 687
+              },
+              "version": "2efb32a888b73daff381"
+            }
+          ]
+        },
+        {
+          "id": "item-b2066c3c4e15",
+          "name": "同时，结合室内机器人场景，本项目的开展为自然语言处理技术在交互场景的应用提供了新的思路和方法，并为家庭服务机器人的实用提",
+          "desc": "同时，结合室内机器人场景，本项目的开展为自然语言处理技术在交互场景的应用提供了新的思路和方法，并为家庭服务机器人的实用提供了有力的支撑。",
+          "evidence": [
+            {
+              "quote": "同时，结合室内机器人场景，本项目的开展为自然语言处理技术在交互场景的应用提供了新的思路和方法，并为家庭服务机器人的实用提供了有力的支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3205,
+                "end_char": 3272
               },
               "version": "2efb32a888b73daff381"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a9506840fc15",
-          "name": "单任务范式环境适应弱",
-          "desc": "现有智能体构建范式只适用单类任务，环境适应、数据收集、鲁棒性受限",
-          "evidence": [
-            {
-              "quote": "往往只适用于单类任务执行，并且存在环境适应能力弱、收集训练数据困难、系统鲁棒性差等问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 706,
-                "end_char": 749
-              },
-              "version": "2efb32a888b73daff381"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-53b80422b847",
-          "name": "物理常识文本动作生成",
-          "desc": "百万级物理常识知识库与基于类型的文本生成方法",
+          "id": "item-faf42a1ef429",
+          "name": "通过自然语言处理技术解耦智能体训练与机器人硬件系统，设计并阐释物理常识指导的文本动作生成学习方法、基于元强化学习的文本智",
+          "desc": "通过自然语言处理技术解耦智能体训练与机器人硬件系统，设计并阐释物理常识指导的文本动作生成学习方法、基于元强化学习的文本智能体多任务学习方法、以及多模态关联学习方法，突破现有机器人多任务学习方法在环境自适应、数据收集、以及系统鲁棒性上的限制，实现文本智能体在室内机器人系统上的多任务执行。",
           "evidence": [
             {
-              "quote": "有效构建了百万级物理常识知识库，准确率提升20%以上，设计并实现了一种基于类型的文本生成方法，能够更好地控制所生成的文本质量。",
+              "quote": "通过自然语言处理技术解耦智能体训练与机器人硬件系统，设计并阐释物理常识指导的文本动作生成学习方法、基于元强化学习的文本智能体多任务学习方法、以及多模态关联学习方法，突破现有机器人多任务学习方法在环境自适应、数据收集、以及系统鲁棒性上的限制，实现文本智能体在室内机器人系统上的多任务执行。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2817,
+                "start_char": 801,
+                "end_char": 943
+              },
+              "version": "2efb32a888b73daff381"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d4a31403c514",
+          "name": "物理常识指导的文本动作生成学习方面，有效构建了百万级物理常识知识库，准确率提升20%以上，设计并实现了一种基于类型的文本",
+          "desc": "物理常识指导的文本动作生成学习方面，有效构建了百万级物理常识知识库，准确率提升20%以上，设计并实现了一种基于类型的文本生成方法，能够更好地控制所生成的文本质量。",
+          "evidence": [
+            {
+              "quote": "物理常识指导的文本动作生成学习方面，有效构建了百万级物理常识知识库，准确率提升20%以上，设计并实现了一种基于类型的文本生成方法，能够更好地控制所生成的文本质量。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2799,
                 "end_char": 2879
               },
               "version": "2efb32a888b73daff381"
             }
-          ]
-        },
-        {
-          "id": "item-50f93a12abe8",
-          "name": "元强化学习多任务训练",
-          "desc": "基于元强化学习的文本智能体训练方法提升多任务泛化能力",
-          "evidence": [
-            {
-              "quote": "提出一种基于元强化学习的文本智能体训练方法，有效提升了文本智能体多任务处理与泛化能力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2893,
-                "end_char": 2934
-              },
-              "version": "2efb32a888b73daff381"
-            }
-          ]
-        },
-        {
-          "id": "item-f92908060fed",
-          "name": "小样本图文对齐",
-          "desc": "突破图文对齐关键技术实现小样本高效对齐",
-          "evidence": [
-            {
-              "quote": "突破了图文对齐关键技术，实现了小样本条件下的高效图文对齐",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2977,
-                "end_char": 3004
-              },
-              "version": "2efb32a888b73daff381"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +107,124 @@
       "state": "has",
       "items": [
         {
-          "id": "item-288f856a9732",
-          "name": "ALFWorld成功率提升30%",
-          "desc": "新任务成功率提升30%以上",
+          "id": "item-5622b1ac87b9",
+          "name": "人通过自然语言对机器人下达指令并使机器人执行相应的动作在人机协作中起着重要作用。",
+          "desc": "人通过自然语言对机器人下达指令并使机器人执行相应的动作在人机协作中起着重要作用。",
           "evidence": [
             {
-              "quote": "ALFWorld数据集上新任务成功率提升30%以上。",
+              "quote": "人通过自然语言对机器人下达指令并使机器人执行相应的动作在人机协作中起着重要作用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2936,
-                "end_char": 2961
+                "start_char": 648,
+                "end_char": 687
               },
               "version": "2efb32a888b73daff381"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-c746d9fbbe2c",
-          "name": "机器人关键技能验证",
-          "desc": "六自由度估计、机械臂抓取与操作技能经仿真和真实机器人验证",
+          "id": "item-d72923a13968",
+          "name": "具身智能是当前人工智能国际前沿领域，具有极高的理论和应用价值。",
+          "desc": "具身智能是当前人工智能国际前沿领域，具有极高的理论和应用价值。",
           "evidence": [
             {
-              "quote": "分别实现了物体六自由度估计、机械臂抓取、机械臂操作等关键技能，通过仿真环境和真实机器人分别对系统进行验证，在识别准确率、抓取成功率等方面均有明显的性能提升",
+              "quote": "具身智能是当前人工智能国际前沿领域，具有极高的理论和应用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3027,
-                "end_char": 3103
+                "start_char": 2531,
+                "end_char": 2561
               },
               "version": "2efb32a888b73daff381"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ed3c63589cd4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a9506840fc15"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Educational Question Generation of Children Storybooks via Question Type Distribution Learning and Event-centric Summarization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-34c7ebe7f83a",
+      "evidence": [
+        {
+          "quote": "Educational Question Generation of Children Storybooks via Question Type Distribution Learning and Event-centric Summarization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3297,
+            "end_char": 3422
+          },
+          "version": "2efb32a888b73daff381"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a9506840fc15"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-53b80422b847"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bio-inspired Affordance Learning for 6-DoF Robotic Grasping: A Transformer-based Global Feature Encoding Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-43c101bb7c1e",
+      "evidence": [
+        {
+          "quote": "Bio-inspired Affordance Learning for 6-DoF Robotic Grasping: A Transformer-based Global Feature Encoding Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3504,
+            "end_char": 3616
+          },
+          "version": "2efb32a888b73daff381"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a9506840fc15"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-50f93a12abe8"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a9506840fc15"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f92908060fed"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-50f93a12abe8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-288f856a9732"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f92908060fed"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c746d9fbbe2c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Jointly Model-level and Task-level Learning for Semi-supervised Medical Image Segmentation with Low Sample Size",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba1a40b1858d",
+      "evidence": [
+        {
+          "quote": "Jointly Model-level and Task-level Learning for Semi-supervised Medical Image Segmentation with Low Sample Size",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3671,
+            "end_char": 3781
+          },
+          "version": "2efb32a888b73daff381"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

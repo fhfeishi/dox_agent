@@ -2,15 +2,20 @@
   "doc_id": "6fe7572d993a73c1128d",
   "version": "73e8ba654cdbeaf80f49",
   "source_hash": "1bee5c326e33f6192870140042c91514b03b062299c533634b163381b0f6e7bf",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:08:00.349696+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.523164+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6d1ed6d34bb4",
-          "name": "煤矿井下煤矸石分拣",
-          "desc": "矸石不升井、拣矸不用人，井下多机械臂协同智能分拣",
+          "id": "item-c4dc5baa2bae",
+          "name": "针对传统人工煤矸石分拣劳动强度大、地面堆矸环境危害重、充填开采矸石回运成本高等严峻问题，提出“矸石不升井，拣矸不用人”的",
+          "desc": "针对传统人工煤矸石分拣劳动强度大、地面堆矸环境危害重、充填开采矸石回运成本高等严峻问题，提出“矸石不升井，拣矸不用人”的新理念，旨在煤矿井下构建多机械臂协同分拣与稳准抓取的煤矸石智能分拣系统。",
           "evidence": [
             {
-              "quote": "本项目提出了“矸石不升井，拣矸不用人”的新理念，针对煤矿井下皮带输送速度快，煤矸石被煤泥严重包裹、大小不一、随机分布等特点",
+              "quote": "针对传统人工煤矸石分拣劳动强度大、地面堆矸环境危害重、充填开采矸石回运成本高等严峻问题，提出“矸石不升井，拣矸不用人”的新理念，旨在煤矿井下构建多机械臂协同分拣与稳准抓取的煤矸石智能分拣系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2722,
-                "end_char": 2782
+                "start_char": 649,
+                "end_char": 744
               },
               "version": "73e8ba654cdbeaf80f49"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ccafda7bf908",
-          "name": "煤泥包裹识别与抓取难",
-          "desc": "煤矸石被煤泥严重包裹导致识别和抓取特征提取困难",
-          "evidence": [
-            {
-              "quote": "深入研究了煤矸石被煤泥严重包裹导致识别和抓取特征提取问题，提出了“X射线+视觉”煤矸石识别与抓取特征提取方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2849,
-                "end_char": 2902
-              },
-              "version": "73e8ba654cdbeaf80f49"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-ae864ef359c5",
-          "name": "X射线+视觉抓取特征提取",
-          "desc": "X射线识别煤矸石并融合视觉点云图像得到最优抓取立方体",
+          "id": "item-ed006d2355ff",
+          "name": "深入研究机械臂动态目标跟踪和抓取问题，提出基于全局规划和局部视觉伺服的动态目标跟踪方法和基于模糊神经网络的机械手抓取力自",
+          "desc": "深入研究机械臂动态目标跟踪和抓取问题，提出基于全局规划和局部视觉伺服的动态目标跟踪方法和基于模糊神经网络的机械手抓取力自适应控制方法；",
           "evidence": [
             {
-              "quote": "该方法利用X射线识别煤矸石，并融合视觉点云图像得到最优抓取立方体，实现煤矸石抓取特征提取",
+              "quote": "深入研究机械臂动态目标跟踪和抓取问题，提出基于全局规划和局部视觉伺服的动态目标跟踪方法和基于模糊神经网络的机械手抓取力自适应控制方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2904,
-                "end_char": 2947
+                "start_char": 857,
+                "end_char": 923
               },
               "version": "73e8ba654cdbeaf80f49"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-885fc3d7fb4d",
-          "name": "免疫机理多机械臂协同",
-          "desc": "基于免疫机理的动态工作空间多机械臂协同控制与改进匈牙利算法任务分配",
+          "id": "item-6ba14547fecc",
+          "name": "本项目提出了“矸石不升井，拣矸不用人”的新理念，针对煤矿井下皮带输送速度快，煤矸石被煤泥严重包裹、大小不一、随机分布等特",
+          "desc": "本项目提出了“矸石不升井，拣矸不用人”的新理念，针对煤矿井下皮带输送速度快，煤矸石被煤泥严重包裹、大小不一、随机分布等特点，聚焦煤矸石准确识别、精准跟踪和可靠抓取、多目标任务多机械臂协同分拣三大关键技术问题进行了系统深入研究，主要创新性成果如下：.（1）深入研究了煤矸石被煤泥严重包裹导致识别和抓取特征提取问题，提出了“X射线+视觉”煤矸石识别与抓取特征提取方法。",
           "evidence": [
             {
-              "quote": "提出了基于改进匈牙利算法的多机械臂多任务分配方法，保证了任务分配的合理性和高效性；提出了基于免疫机理的动态工作空间多机械臂协同控制方法，实现了多机械臂智能协同控制",
+              "quote": "本项目提出了“矸石不升井，拣矸不用人”的新理念，针对煤矿井下皮带输送速度快，煤矸石被煤泥严重包裹、大小不一、随机分布等特点，聚焦煤矸石准确识别、精准跟踪和可靠抓取、多目标任务多机械臂协同分拣三大关键技术问题进行了系统深入研究，主要创新性成果如下：.（1）深入研究了煤矸石被煤泥严重包裹导致识别和抓取特征提取问题，提出了“X射线+视觉”煤矸石识别与抓取特征提取方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3298,
-                "end_char": 3378
+                "start_char": 2722,
+                "end_char": 2903
               },
               "version": "73e8ba654cdbeaf80f49"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,804 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4d5a5f23be28",
-          "name": "井下双机械臂分拣系统",
-          "desc": "集识别、跟踪、抓取和协同分拣于一体，识别率98%、拣取率98%、误拣率1%",
+          "id": "item-f504cc278cad",
+          "name": "针对传统人工煤矸石分拣劳动强度大、地面堆矸环境危害重、充填开采矸石回运成本高等严峻问题，提出“矸石不升井，拣矸不用人”的",
+          "desc": "针对传统人工煤矸石分拣劳动强度大、地面堆矸环境危害重、充填开采矸石回运成本高等严峻问题，提出“矸石不升井，拣矸不用人”的新理念，旨在煤矿井下构建多机械臂协同分拣与稳准抓取的煤矸石智能分拣系统。",
           "evidence": [
             {
-              "quote": "开发了集煤矸石准确识别、精准跟踪、可靠抓取和智能协同分拣于一体的井下双机械臂煤矸石分拣机器人系统，煤矸石识别率为98%，煤矸石拣取率为98%，误拣率为1%，机械手可拣选最大重量为40kg，粒度级为50-300mm",
+              "quote": "针对传统人工煤矸石分拣劳动强度大、地面堆矸环境危害重、充填开采矸石回运成本高等严峻问题，提出“矸石不升井，拣矸不用人”的新理念，旨在煤矿井下构建多机械臂协同分拣与稳准抓取的煤矸石智能分拣系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3440,
-                "end_char": 3545
+                "start_char": 649,
+                "end_char": 744
               },
               "version": "73e8ba654cdbeaf80f49"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-1b021909cfca",
+          "name": "本项目提出了“矸石不升井，拣矸不用人”的新理念，针对煤矿井下皮带输送速度快，煤矸石被煤泥严重包裹、大小不一、随机分布等特",
+          "desc": "本项目提出了“矸石不升井，拣矸不用人”的新理念，针对煤矿井下皮带输送速度快，煤矸石被煤泥严重包裹、大小不一、随机分布等特点，聚焦煤矸石准确识别、精准跟踪和可靠抓取、多目标任务多机械臂协同分拣三大关键技术问题进行了系统深入研究，主要创新性成果如下：.（1）深入研究了煤矸石被煤泥严重包裹导致识别和抓取特征提取问题，提出了“X射线+视觉”煤矸石识别与抓取特征提取方法。",
+          "evidence": [
+            {
+              "quote": "本项目提出了“矸石不升井，拣矸不用人”的新理念，针对煤矿井下皮带输送速度快，煤矸石被煤泥严重包裹、大小不一、随机分布等特点，聚焦煤矸石准确识别、精准跟踪和可靠抓取、多目标任务多机械臂协同分拣三大关键技术问题进行了系统深入研究，主要创新性成果如下：.（1）深入研究了煤矸石被煤泥严重包裹导致识别和抓取特征提取问题，提出了“X射线+视觉”煤矸石识别与抓取特征提取方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2722,
+                "end_char": 2903
+              },
+              "version": "73e8ba654cdbeaf80f49"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6d1ed6d34bb4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ccafda7bf908"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "煤矸石分拣机器人动态目标稳定抓取轨迹规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-14203aa92f4e",
+      "evidence": [
+        {
+          "quote": "煤矸石分拣机器人动态目标稳定抓取轨迹规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3572,
+            "end_char": 3591
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ccafda7bf908"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ae864ef359c5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "煤矿井下飞行机器人建模与仿真",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b9d551a7dc1",
+      "evidence": [
+        {
+          "quote": "煤矿井下飞行机器人建模与仿真",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3626,
+            "end_char": 3639
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ccafda7bf908"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-885fc3d7fb4d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A cooperative strategy of multi-arm coal gangue sorting robot based on immune dynamic workspace",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5440acae975b",
+      "evidence": [
+        {
+          "quote": "A cooperative strategy of multi-arm coal gangue sorting robot based on immune dynamic workspace",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3664,
+            "end_char": 3758
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ae864ef359c5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4d5a5f23be28"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于视觉及力信息融合感知的多机械臂协同煤矸分拣系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d5855b92426",
+      "evidence": [
+        {
+          "quote": "基于视觉及力信息融合感知的多机械臂协同煤矸分拣系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3844,
+            "end_char": 3868
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-885fc3d7fb4d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4d5a5f23be28"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory Planning for Coal Gangue Sorting Robot Tracking Fast-Mass Target under Multiple Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7cbe379a6db5",
+      "evidence": [
+        {
+          "quote": "Trajectory Planning for Coal Gangue Sorting Robot Tracking Fast-Mass Target under Multiple Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3904,
+            "end_char": 4005
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "煤矸分拣机器人视觉伺服的机械臂动态目标跟踪轨迹规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba2a22e560bc",
+      "evidence": [
+        {
+          "quote": "煤矸分拣机器人视觉伺服的机械臂动态目标跟踪轨迹规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4096,
+            "end_char": 4122
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "煤矸石智能分拣机器人研究进展与关键技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c62b844c40fe",
+      "evidence": [
+        {
+          "quote": "煤矸石智能分拣机器人研究进展与关键技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4158,
+            "end_char": 4176
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "视觉与惯导融合的煤矿移动机器人定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f0e9d38dcbd6",
+      "evidence": [
+        {
+          "quote": "视觉与惯导融合的煤矿移动机器人定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4212,
+            "end_char": 4230
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "煤矿掘进机器人系统智能并行协同控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31a6230af7b6",
+      "evidence": [
+        {
+          "quote": "煤矿掘进机器人系统智能并行协同控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4264,
+            "end_char": 4282
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "复杂地质条件煤矿巷道多履带钻锚机器人运动学研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4bd8550e5162",
+      "evidence": [
+        {
+          "quote": "复杂地质条件煤矿巷道多履带钻锚机器人运动学研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4330,
+            "end_char": 4352
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于二次矸石识别的气动机械手装置及矸石二次识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4fadb4adbd3",
+      "evidence": [
+        {
+          "quote": "用于二次矸石识别的气动机械手装置及矸石二次识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4383,
+            "end_char": 4407
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "复杂地质条件煤矿巷道龙门式钻锚机器人研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa99a8da2d3a",
+      "evidence": [
+        {
+          "quote": "复杂地质条件煤矿巷道龙门式钻锚机器人研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4447,
+            "end_char": 4466
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Arm Global Cooperative Coal Gangue Sorting Method Based on Improved Hungarian Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4e548107650",
+      "evidence": [
+        {
+          "quote": "Multi-Arm Global Cooperative Coal Gangue Sorting Method Based on Improved Hungarian Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4491,
+            "end_char": 4583
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向煤矸分拣机器人的煤矸识别定位系统研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ddcbfff7e3f9",
+      "evidence": [
+        {
+          "quote": "面向煤矸分拣机器人的煤矸识别定位系统研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4667,
+            "end_char": 4686
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "改进的ORB-FLANN煤矸石识别图像与分拣图像高效匹配方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ea12c1efcbcc",
+      "evidence": [
+        {
+          "quote": "改进的ORB-FLANN煤矸石识别图像与分拣图像高效匹配方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4719,
+            "end_char": 4748
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "护盾式智能掘进系统截割机器人截割能力研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10cff8a21433",
+      "evidence": [
+        {
+          "quote": "护盾式智能掘进系统截割机器人截割能力研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4788,
+            "end_char": 4807
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "煤矿智能单轨吊研究进展与关键技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e37fbe1626ed",
+      "evidence": [
+        {
+          "quote": "煤矿智能单轨吊研究进展与关键技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4837,
+            "end_char": 4852
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向煤矸体积检测的图像特征匹配算法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4077769576d4",
+      "evidence": [
+        {
+          "quote": "面向煤矸体积检测的图像特征匹配算法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4898,
+            "end_char": 4916
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "煤矸分拣机器人多目标多机械臂协同分拣系统及分拣策略",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c3360eb80474",
+      "evidence": [
+        {
+          "quote": "煤矸分拣机器人多目标多机械臂协同分拣系统及分拣策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4946,
+            "end_char": 4970
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "考虑含矸率时变性的多臂协同策略优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-14202298f70b",
+      "evidence": [
+        {
+          "quote": "考虑含矸率时变性的多臂协同策略优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5011,
+            "end_char": 5029
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Self-Derived Wavelet Compression and Self Matching Reconstruction Algorithm for Environmental Data in Complex Space of Coal Mine Roadway",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ededddf8f737",
+      "evidence": [
+        {
+          "quote": "Self-Derived Wavelet Compression and Self Matching Reconstruction Algorithm for Environmental Data in Complex Space of Coal Mine Roadway",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5063,
+            "end_char": 5198
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "多机械臂煤矸石智能分拣机器人关键共性技术研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7bd622be171",
+      "evidence": [
+        {
+          "quote": "多机械臂煤矸石智能分拣机器人关键共性技术研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5303,
+            "end_char": 5324
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "多因素光照条件下高质量煤矸图像获取方法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a3aa0366f53",
+      "evidence": [
+        {
+          "quote": "多因素光照条件下高质量煤矸图像获取方法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5357,
+            "end_char": 5377
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "钻锚机器人与掘进机会车防碰撞预警方法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b4d2a384f57",
+      "evidence": [
+        {
+          "quote": "钻锚机器人与掘进机会车防碰撞预警方法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5415,
+            "end_char": 5434
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on the Obstacle-Avoidance Steering Control Strategy of Tracked Inspection Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-53b11db75f04",
+      "evidence": [
+        {
+          "quote": "Research on the Obstacle-Avoidance Steering Control Strategy of Tracked Inspection Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5464,
+            "end_char": 5552
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "煤矿带式输送机分拣机器人异物识别与定位系统设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-791f665e4862",
+      "evidence": [
+        {
+          "quote": "煤矿带式输送机分拣机器人异物识别与定位系统设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5648,
+            "end_char": 5670
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于煤矸抓取的欠驱动机械手及抓取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-497a67bbb31a",
+      "evidence": [
+        {
+          "quote": "一种用于煤矸抓取的欠驱动机械手及抓取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5707,
+            "end_char": 5726
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "煤矿巷道智能掘进机器人系统关键技术研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5d89544d706",
+      "evidence": [
+        {
+          "quote": "煤矿巷道智能掘进机器人系统关键技术研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5775,
+            "end_char": 5793
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于捷联惯导和推移油缸信息融合的智能掘进机器人位姿测量方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-73c441723759",
+      "evidence": [
+        {
+          "quote": "基于捷联惯导和推移油缸信息融合的智能掘进机器人位姿测量方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5848,
+            "end_char": 5876
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3D LiDAR Point Cloud Registration Based on IMU Preintegration in Coal Mine Roadways",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-adcb9dcc575a",
+      "evidence": [
+        {
+          "quote": "3D LiDAR Point Cloud Registration Based on IMU Preintegration in Coal Mine Roadways",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5911,
+            "end_char": 5993
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于双目视觉的掘锚机器人行驶位移检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d12de31f914a",
+      "evidence": [
+        {
+          "quote": "基于双目视觉的掘锚机器人行驶位移检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6077,
+            "end_char": 6096
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于激光惯性融合的煤矿井下移动机器人SLAM算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd04bcf3c0df",
+      "evidence": [
+        {
+          "quote": "基于激光惯性融合的煤矿井下移动机器人SLAM算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6130,
+            "end_char": 6153
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "煤矿井下移动机器人深度视觉自主导航研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-869cecdc78f6",
+      "evidence": [
+        {
+          "quote": "煤矿井下移动机器人深度视觉自主导航研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6178,
+            "end_char": 6196
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于跨模态注意力融合的煤炭异物检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b199dbe3aa05",
+      "evidence": [
+        {
+          "quote": "基于跨模态注意力融合的煤炭异物检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6221,
+            "end_char": 6239
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Simulation and Validation of a Steering Control Strategy for Tracked Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c58327b4550",
+      "evidence": [
+        {
+          "quote": "Simulation and Validation of a Steering Control Strategy for Tracked Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6276,
+            "end_char": 6350
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于VGG_16网络的煤和矸石识别技术研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd3fb0e29b78",
+      "evidence": [
+        {
+          "quote": "基于VGG_16网络的煤和矸石识别技术研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6445,
+            "end_char": 6465
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "煤矿巷道掘进锚网运输机器人结构设计及运动规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f1d91235c71",
+      "evidence": [
+        {
+          "quote": "煤矿巷道掘进锚网运输机器人结构设计及运动规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6491,
+            "end_char": 6512
+          },
+          "version": "73e8ba654cdbeaf80f49"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 37,
+    "listed": 37,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 32,
+        "extracted": 32
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

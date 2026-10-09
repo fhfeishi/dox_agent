@@ -2,15 +2,20 @@
   "doc_id": "ca5d3b0bbc3c45c8a208",
   "version": "c6d705261fe23dae882b",
   "source_hash": "2cfb57fb03843c200614ec4310247653a6e729127440e70de4b49df3932df4cf",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:48:16.643001+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.430388+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-72260f146319",
-          "name": "强水流扰动水下机器人控制",
-          "desc": "恶劣多变水流环境中的水下机器人控制与应用",
+          "id": "item-7b431b6de386",
+          "name": "目前已有控制算法在恶劣多变水流环境中的可靠性仍不足，这很大程度上限制了水下机器人更广泛的应用。",
+          "desc": "目前已有控制算法在恶劣多变水流环境中的可靠性仍不足，这很大程度上限制了水下机器人更广泛的应用。",
           "evidence": [
             {
               "quote": "目前已有控制算法在恶劣多变水流环境中的可靠性仍不足，这很大程度上限制了水下机器人更广泛的应用。",
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b6ba69c0d858",
-          "name": "控制饱和与稳定性缺失",
-          "desc": "控制饱和下不稳定、不确定系统控制器设计困难、强化学习缺乏理论稳定保证",
+          "id": "item-8a5fd12ddb01",
+          "name": "项目针对复杂多变水流环境下机器人因受限于控制饱和而控制不稳定、不确定系统控制器设计困难、强化学习缺乏理论稳定保证等难点问",
+          "desc": "项目针对复杂多变水流环境下机器人因受限于控制饱和而控制不稳定、不确定系统控制器设计困难、强化学习缺乏理论稳定保证等难点问题，以谐振分析与李雅普诺夫稳定基础理论为支撑，开展强扰动下受控制饱和约束的不确定系统强化学习及其稳定控制研究。",
           "evidence": [
             {
               "quote": "项目针对复杂多变水流环境下机器人因受限于控制饱和而控制不稳定、不确定系统控制器设计困难、强化学习缺乏理论稳定保证等难点问题，以谐振分析与李雅普诺夫稳定基础理论为支撑，开展强扰动下受控制饱和约束的不确定系统强化学习及其稳定控制研究。",
@@ -63,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d17dc4e220b3",
-          "name": "扰动模型观测控制网络",
-          "desc": "扰动模型超参估计网络实现不确定性解耦的在线估计",
+          "id": "item-d13caa009b83",
+          "name": "本项目针对强水流扰动下的饱和约束控制系统，建立基于压缩感知的扰动模型观测网络，设计混合状态扰动模型感知强化学习算法，以训",
+          "desc": "本项目针对强水流扰动下的饱和约束控制系统，建立基于压缩感知的扰动模型观测网络，设计混合状态扰动模型感知强化学习算法，以训练自适应强扰动抑制网络。",
           "evidence": [
             {
-              "quote": "设计了扰动模型超参估计网络和提出了基于扰动模型观测的控制网络训练方法，通过数据驱动实现了系统不确定性与外部扰动解耦的扰动模型在线估计",
+              "quote": "本项目针对强水流扰动下的饱和约束控制系统，建立基于压缩感知的扰动模型观测网络，设计混合状态扰动模型感知强化学习算法，以训练自适应强扰动抑制网络。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2729,
-                "end_char": 2794
+                "start_char": 783,
+                "end_char": 854
               },
               "version": "c6d705261fe23dae882b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-eeaa3a495baa",
-          "name": "动态模型匹配迁移强化学习",
-          "desc": "基于动态模型匹配和数据增强的迁移强化学习实现多模态控制",
+          "id": "item-57b3741ab659",
+          "name": "（1）设计了扰动模型超参估计网络和提出了基于扰动模型观测的控制网络训练方法，通过数据驱动实现了系统不确定性与外部扰动解耦",
+          "desc": "（1）设计了扰动模型超参估计网络和提出了基于扰动模型观测的控制网络训练方法，通过数据驱动实现了系统不确定性与外部扰动解耦的扰动模型在线估计；",
           "evidence": [
             {
-              "quote": "提出了基于动态模型匹配和数据增强的迁移强化学习，特别针对突变扰动，实现了基于扰动模型感知强化学习的自适应多模态控制",
+              "quote": "（1）设计了扰动模型超参估计网络和提出了基于扰动模型观测的控制网络训练方法，通过数据驱动实现了系统不确定性与外部扰动解耦的扰动模型在线估计；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2799,
-                "end_char": 2855
+                "start_char": 2726,
+                "end_char": 2795
               },
               "version": "c6d705261fe23dae882b"
             }
-          ]
-        },
-        {
-          "id": "item-23ab43273463",
-          "name": "李雅普诺夫函数学习",
-          "desc": "分段线性不确定性模型结合稳定性约束设计控制器",
-          "evidence": [
-            {
-              "quote": "提出了系统不确定性的分段线性模型，结合李雅普诺夫函数的稳定性约束，设计了李雅普诺夫函数学习方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2860,
-                "end_char": 2906
-              },
-              "version": "c6d705261fe23dae882b"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +108,188 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c6e345645188",
-          "name": "论文6篇与专利成果",
-          "desc": "SCI期刊4篇、会议2篇，获批发明专利1项、受理1项",
+          "id": "item-24b0cfb944ff",
+          "name": "目前已有控制算法在恶劣多变水流环境中的可靠性仍不足，这很大程度上限制了水下机器人更广泛的应用。",
+          "desc": "目前已有控制算法在恶劣多变水流环境中的可靠性仍不足，这很大程度上限制了水下机器人更广泛的应用。",
           "evidence": [
             {
-              "quote": "通过以上研究，发表了标注该基金的论文成果6篇，其中SCI期刊4篇，会议2篇，获批发明专利1项，另受理发明专利1项。",
+              "quote": "目前已有控制算法在恶劣多变水流环境中的可靠性仍不足，这很大程度上限制了水下机器人更广泛的应用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2977,
-                "end_char": 3033
+                "start_char": 664,
+                "end_char": 710
               },
               "version": "c6d705261fe23dae882b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-4da6b2353504",
-          "name": "水下机器人验证平台",
-          "desc": "建立水下机器人验证平台完成实验验证",
+          "id": "item-b8bc317c0932",
+          "name": "项目针对复杂多变水流环境下机器人因受限于控制饱和而控制不稳定、不确定系统控制器设计困难、强化学习缺乏理论稳定保证等难点问",
+          "desc": "项目针对复杂多变水流环境下机器人因受限于控制饱和而控制不稳定、不确定系统控制器设计困难、强化学习缺乏理论稳定保证等难点问题，以谐振分析与李雅普诺夫稳定基础理论为支撑，开展强扰动下受控制饱和约束的不确定系统强化学习及其稳定控制研究。",
           "evidence": [
             {
-              "quote": "最后建立了适合本项目的水下机器人验证平台完成了实验验证。",
+              "quote": "项目针对复杂多变水流环境下机器人因受限于控制饱和而控制不稳定、不确定系统控制器设计困难、强化学习缺乏理论稳定保证等难点问题，以谐振分析与李雅普诺夫稳定基础理论为支撑，开展强扰动下受控制饱和约束的不确定系统强化学习及其稳定控制研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2949,
-                "end_char": 2976
+                "start_char": 2611,
+                "end_char": 2725
               },
               "version": "c6d705261fe23dae882b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-72260f146319"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b6ba69c0d858"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种模型预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f4d551bf4b0",
+      "evidence": [
+        {
+          "quote": "一种模型预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3080,
+            "end_char": 3087
+          },
+          "version": "c6d705261fe23dae882b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b6ba69c0d858"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d17dc4e220b3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Disturbance-aware reinforcement learning for rejecting excessive disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7b103f889820",
+      "evidence": [
+        {
+          "quote": "Disturbance-aware reinforcement learning for rejecting excessive disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3109,
+            "end_char": 3185
+          },
+          "version": "c6d705261fe23dae882b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b6ba69c0d858"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-eeaa3a495baa"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamics-Aligned Transfer Reinforcement Learning For Autonomous Underwater Vehicle Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2c8ee9ec730c",
+      "evidence": [
+        {
+          "quote": "Dynamics-Aligned Transfer Reinforcement Learning For Autonomous Underwater Vehicle Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3219,
+            "end_char": 3308
+          },
+          "version": "c6d705261fe23dae882b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b6ba69c0d858"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-23ab43273463"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning for Underwater Navigation Subject to Infrequent Position Measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-021587c46546",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning for Underwater Navigation Subject to Infrequent Position Measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3364,
+            "end_char": 3455
+          },
+          "version": "c6d705261fe23dae882b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-23ab43273463"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c6e345645188"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning for Autonomous Underwater Vehicles via Data-Informed Domain Randomization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d897f7c3e08",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning for Autonomous Underwater Vehicles via Data-Informed Domain Randomization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3511,
+            "end_char": 3606
+          },
+          "version": "c6d705261fe23dae882b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-eeaa3a495baa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4da6b2353504"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于凸多边形树的多机器人最优编队路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0c6419ce65c",
+      "evidence": [
+        {
+          "quote": "基于凸多边形树的多机器人最优编队路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3648,
+            "end_char": 3669
+          },
+          "version": "c6d705261fe23dae882b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

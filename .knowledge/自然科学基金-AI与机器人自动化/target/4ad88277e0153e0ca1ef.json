@@ -2,15 +2,20 @@
   "doc_id": "4ad88277e0153e0ca1ef",
   "version": "35411fef3759310b874a",
   "source_hash": "78c47801f1648c9e12edc631b7c38deabb8112b2137c5b2fba40a4710e7773fc",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:11:23.173947+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.186937+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-85ad684ceb5d",
-          "name": "电子元器件智能装配",
-          "desc": "复杂场景装配工位单元群电子元器件自主识别、定位与柔顺控制",
+          "id": "item-ce6c6296528a",
+          "name": "本项目拟探索复杂场景装配工位单元群的电子元器件智能装配问题，实现装配过程中对元器件的自主识别、高精度定位与柔顺控制。",
+          "desc": "本项目拟探索复杂场景装配工位单元群的电子元器件智能装配问题，实现装配过程中对元器件的自主识别、高精度定位与柔顺控制。",
           "evidence": [
             {
-              "quote": "本项目探索复杂场景装配工位单元群的电子元器件智能装配问题，主要研究复杂场景机器人视觉电子元器件对象的自主识别、强耦合机器人视觉控制的电子元器件对象高精度定位、电子元器件机器人视觉导向的变刚度柔顺控制",
+              "quote": "本项目拟探索复杂场景装配工位单元群的电子元器件智能装配问题，实现装配过程中对元器件的自主识别、高精度定位与柔顺控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2859,
-                "end_char": 2957
+                "start_char": 659,
+                "end_char": 716
+              },
+              "version": "35411fef3759310b874a"
+            }
+          ]
+        },
+        {
+          "id": "item-f4eab49a07d5",
+          "name": "4）构建了面向知识引导和特征匹配的装配电子元器件自主识别模型，解决了装配电子元器件之间、电子元器件与背景混叠复杂工作场景",
+          "desc": "4）构建了面向知识引导和特征匹配的装配电子元器件自主识别模型，解决了装配电子元器件之间、电子元器件与背景混叠复杂工作场景之间的电子元器件对象自主识别问题。",
+          "evidence": [
+            {
+              "quote": "4）构建了面向知识引导和特征匹配的装配电子元器件自主识别模型，解决了装配电子元器件之间、电子元器件与背景混叠复杂工作场景之间的电子元器件对象自主识别问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3169,
+                "end_char": 3245
               },
               "version": "35411fef3759310b874a"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-c39bc8b40f98",
-          "name": "混叠场景识别与刚柔耦合误差",
-          "desc": "元器件与背景混叠场景识别难、刚柔耦合位姿误差建模难",
-          "evidence": [
-            {
-              "quote": "构建了机器人多自由度刚柔耦合位姿误差预测模型和固有频率预测模型，解决了刚柔耦合位姿误差建模问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3294,
-                "end_char": 3340
-              },
-              "version": "35411fef3759310b874a"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-3fc573b09768",
-          "name": "场景理解图目标检测",
-          "desc": "神经架构搜索与深度可分离卷积轻量化主干网，检测mAP达98.83%",
+          "id": "item-d37e85e41d2b",
+          "name": "其次，考察控制系统的不确定性、高度非线性、强耦合性和复杂性，研究千分位电子元器件位置精确定位方法，并研究基于机器人视觉的",
+          "desc": "其次，考察控制系统的不确定性、高度非线性、强耦合性和复杂性，研究千分位电子元器件位置精确定位方法，并研究基于机器人视觉的位姿与位态精确定位方法，构建机器人多自由度刚柔耦合模型，实现电子元器件的高精度定位；",
           "evidence": [
             {
-              "quote": "构建了场景理解图目标检测模型，设计了神经架构搜索和深度可分离卷积轻量化主干网，提高了网络训练速度和参数效率，并显著提升了检测准确率，mAP达到了98.83%",
+              "quote": "其次，考察控制系统的不确定性、高度非线性、强耦合性和复杂性，研究千分位电子元器件位置精确定位方法，并研究基于机器人视觉的位姿与位态精确定位方法，构建机器人多自由度刚柔耦合模型，实现电子元器件的高精度定位；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3049,
-                "end_char": 3126
+                "start_char": 815,
+                "end_char": 916
               },
               "version": "35411fef3759310b874a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c9f08734b649",
-          "name": "千分位定位与变刚度柔顺控制",
-          "desc": "基于数字微镜的千分位定位、PCB点云重建配准低于0.01mm与变刚度柔顺控制",
+          "id": "item-307be0ab9958",
+          "name": "2）构建了场景理解图目标检测模型，设计了神经架构搜索和深度可分离卷积轻量化主干网，提高了网络训练速度和参数效率，并显著提",
+          "desc": "2）构建了场景理解图目标检测模型，设计了神经架构搜索和深度可分离卷积轻量化主干网，提高了网络训练速度和参数效率，并显著提升了检测准确率，mAP达到了98.83%。",
           "evidence": [
             {
-              "quote": "构建了电子元器件位置、位姿、位态的快速、准确三维重建方法，实现了PCB点云三维重建，配准结果低于0.01mm，达到了千分位精度",
+              "quote": "2）构建了场景理解图目标检测模型，设计了神经架构搜索和深度可分离卷积轻量化主干网，提高了网络训练速度和参数效率，并显著提升了检测准确率，mAP达到了98.83%。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3344,
-                "end_char": 3406
+                "start_char": 3047,
+                "end_char": 3127
               },
               "version": "35411fef3759310b874a"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,668 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e2bd1d1f4b72",
-          "name": "自学习预测控制",
-          "desc": "构建自学习预测控制模型实现视觉导向变刚度柔顺控制，FPC插装实现",
+          "id": "item-bf159ac56ca1",
+          "name": "本项目拟探索复杂场景装配工位单元群的电子元器件智能装配问题，实现装配过程中对元器件的自主识别、高精度定位与柔顺控制。",
+          "desc": "本项目拟探索复杂场景装配工位单元群的电子元器件智能装配问题，实现装配过程中对元器件的自主识别、高精度定位与柔顺控制。",
           "evidence": [
             {
-              "quote": "构建了面向机器人电子元器件装配的自学习预测控制模型，实现了电子元器件机器人视觉导向的变刚度柔顺控制",
+              "quote": "本项目拟探索复杂场景装配工位单元群的电子元器件智能装配问题，实现装配过程中对元器件的自主识别、高精度定位与柔顺控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3524,
-                "end_char": 3572
+                "start_char": 659,
+                "end_char": 716
               },
               "version": "35411fef3759310b874a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-12f18136ccda",
-          "name": "知识图谱色环判读",
-          "desc": "基于知识图谱的电阻色环检测及判读方法实现复杂场景理解",
+          "id": "item-09ec77ad91e0",
+          "name": "面向装配工位单元群电子元器件智能装配移动机器人是具备人机协调、自然交互、自主学习功能的精密装配机器人的代表之一。",
+          "desc": "面向装配工位单元群电子元器件智能装配移动机器人是具备人机协调、自然交互、自主学习功能的精密装配机器人的代表之一。",
           "evidence": [
             {
-              "quote": "提出了基于知识图谱的电阻色环检测及判读方法，实现了机器人视觉识别复杂场景理解",
+              "quote": "面向装配工位单元群电子元器件智能装配移动机器人是具备人机协调、自然交互、自主学习功能的精密装配机器人的代表之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3130,
-                "end_char": 3167
+                "start_char": 2803,
+                "end_char": 2858
               },
               "version": "35411fef3759310b874a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-85ad684ceb5d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c39bc8b40f98"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Eigen Solution of Neural Networks and Its Application in Prediction and Analysis of Controller Parameters of Grinding Robot in Complex Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5415480f9ae4",
+      "evidence": [
+        {
+          "quote": "Eigen Solution of Neural Networks and Its Application in Prediction and Analysis of Controller Parameters of Grinding Robot in Complex Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3632,
+            "end_char": 3778
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c39bc8b40f98"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3fc573b09768"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Object Detection of PCB Assembly Scene Based on Effective Receptive Field Anchor Allocation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f61e056597f8",
+      "evidence": [
+        {
+          "quote": "Research on Object Detection of PCB Assembly Scene Based on Effective Receptive Field Anchor Allocation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3849,
+            "end_char": 3951
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c39bc8b40f98"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c9f08734b649"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Parallax attention stereo matching network based on the improved group-wise correlation stereo network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd6f8f504763",
+      "evidence": [
+        {
+          "quote": "Parallax attention stereo matching network based on the improved group-wise correlation stereo network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4005,
+            "end_char": 4106
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c9f08734b649"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e2bd1d1f4b72"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Fault-Signal-Based Generalizing Remaining Useful Life Prognostics Method for Wheel Hub Bearings",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d4518d52487c",
+      "evidence": [
+        {
+          "quote": "A Fault-Signal-Based Generalizing Remaining Useful Life Prognostics Method for Wheel Hub Bearings",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4165,
+            "end_char": 4261
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3fc573b09768"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-12f18136ccda"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Balanced-YOLOv3: Addressing the Imbalance Problem of Object Detection in PCB Assembly Scene",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-442313573e3d",
+      "evidence": [
+        {
+          "quote": "Balanced-YOLOv3: Addressing the Imbalance Problem of Object Detection in PCB Assembly Scene",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4340,
+            "end_char": 4430
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种电路板自动检测和分拣装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-791517edda62",
+      "evidence": [
+        {
+          "quote": "一种电路板自动检测和分拣装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4482,
+            "end_char": 4495
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Parameter identifcation of robot manipulators with unknown payloads using an improved chaotic sparrow search algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a1deab1c1dd",
+      "evidence": [
+        {
+          "quote": "Parameter identifcation of robot manipulators with unknown payloads using an improved chaotic sparrow search algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4531,
+            "end_char": 4648
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A stereo matching algorithm based on the improved PSMNet",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-17bdea6a4f99",
+      "evidence": [
+        {
+          "quote": "A stereo matching algorithm based on the improved PSMNet",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4714,
+            "end_char": 4769
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于注意力机制的图像立体匹配方法及双目设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57f4784476b7",
+      "evidence": [
+        {
+          "quote": "一种基于注意力机制的图像立体匹配方法及双目设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4821,
+            "end_char": 4843
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tuning ANFIS Using a Simplified Sparrow Search Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-066d621d3b89",
+      "evidence": [
+        {
+          "quote": "Tuning ANFIS Using a Simplified Sparrow Search Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4866,
+            "end_char": 4921
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视觉的批量轴向元器件引脚切折装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-379233ed6592",
+      "evidence": [
+        {
+          "quote": "一种基于视觉的批量轴向元器件引脚切折装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4986,
+            "end_char": 5005
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于纹理和形状特征的电子元件识别的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a47628fe5cb",
+      "evidence": [
+        {
+          "quote": "一种基于纹理和形状特征的电子元件识别的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5029,
+            "end_char": 5049
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Depth Estimation of Monocular PCB Image Based on Self-Supervised Convolution Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68b25080c4f5",
+      "evidence": [
+        {
+          "quote": "Depth Estimation of Monocular PCB Image Based on Self-Supervised Convolution Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5071,
+            "end_char": 5154
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种针对电子元器件的无锚框目标检测钢网络及应用该网络的检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec1433e723b1",
+      "evidence": [
+        {
+          "quote": "一种针对电子元器件的无锚框目标检测钢网络及应用该网络的检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5217,
+            "end_char": 5247
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical multiloop MPC scheme for robot manipulators with  nonlinear disturbance observer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-028640073ece",
+      "evidence": [
+        {
+          "quote": "Hierarchical multiloop MPC scheme for robot manipulators with  nonlinear disturbance observer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5270,
+            "end_char": 5362
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种六自由度工业机器人刚柔耦合模型建模仿真方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-527df4864922",
+      "evidence": [
+        {
+          "quote": "一种六自由度工业机器人刚柔耦合模型建模仿真方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5427,
+            "end_char": 5449
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Blind-Kriging based natural frequency modeling of industrial Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-979acbd49b49",
+      "evidence": [
+        {
+          "quote": "Blind-Kriging based natural frequency modeling of industrial Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5472,
+            "end_char": 5537
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于邻域信息约束与自适应窗口的立体匹配方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c59e8670b2b9",
+      "evidence": [
+        {
+          "quote": "一种基于邻域信息约束与自适应窗口的立体匹配方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5605,
+            "end_char": 5627
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于改进Anchor Free的无序电子元器件快速准确定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1647e4eecd93",
+      "evidence": [
+        {
+          "quote": "一种基于改进Anchor Free的无序电子元器件快速准确定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5648,
+            "end_char": 5680
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向机器人电子元器件装配的自学习模型预测控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c22657e2cec",
+      "evidence": [
+        {
+          "quote": "面向机器人电子元器件装配的自学习模型预测控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5701,
+            "end_char": 5724
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于指尖特征的增强装配示教系统及其控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3d14ca0e7de",
+      "evidence": [
+        {
+          "quote": "一种基于指尖特征的增强装配示教系统及其控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5754,
+            "end_char": 5776
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多特征和尺度估计的PCB板标识跟踪方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68bddce156e2",
+      "evidence": [
+        {
+          "quote": "一种基于多特征和尺度估计的PCB板标识跟踪方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5796,
+            "end_char": 5818
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于视觉信息和语义属性的电子元器件零样本识别模型及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f91f90caec1e",
+      "evidence": [
+        {
+          "quote": "基于视觉信息和语义属性的电子元器件零样本识别模型及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5838,
+            "end_char": 5864
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Multi-Scene Electronic Component Detection Algorithm with Anchor Assignment Based on K-Means",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9bcd835ae54f",
+      "evidence": [
+        {
+          "quote": "Research on Multi-Scene Electronic Component Detection Algorithm with Anchor Assignment Based on K-Means",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5887,
+            "end_char": 5990
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Instance Segmentation Method Based on Improved Mask R-CNN for the Stacked Electronic Components",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3b4f04b19c77",
+      "evidence": [
+        {
+          "quote": "Instance Segmentation Method Based on Improved Mask R-CNN for the Stacked Electronic Components",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6052,
+            "end_char": 6146
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A modified SSD Method for Electronic Components Fast Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dcb195a29c3c",
+      "evidence": [
+        {
+          "quote": "A modified SSD Method for Electronic Components Fast Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6202,
+            "end_char": 6265
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research progress of zero-shot learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-917a6c7d5cfa",
+      "evidence": [
+        {
+          "quote": "Research progress of zero-shot learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6312,
+            "end_char": 6350
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Rapid Recognition Method for Electronic Components Based on the Improved YOLO-V3 Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-100574aac865",
+      "evidence": [
+        {
+          "quote": "A Rapid Recognition Method for Electronic Components Based on the Improved YOLO-V3 Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6400,
+            "end_char": 6489
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research Progress of Visual Inspection Technology of Steel Products ---A Review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb77c924ef95",
+      "evidence": [
+        {
+          "quote": "Research Progress of Visual Inspection Technology of Steel Products ---A Review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6559,
+            "end_char": 6637
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A PCB Electronic Components Detection Network Design Based on Effective Receptive Field Size and Anchor Size Matching",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10fa52413248",
+      "evidence": [
+        {
+          "quote": "A PCB Electronic Components Detection Network Design Based on Effective Receptive Field Size and Anchor Size Matching",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6693,
+            "end_char": 6809
+          },
+          "version": "35411fef3759310b874a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "专利": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

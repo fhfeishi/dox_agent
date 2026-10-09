@@ -2,15 +2,20 @@
   "doc_id": "b74998ed6fa5e45519e7",
   "version": "482ca3412c040d2d673e",
   "source_hash": "01036cb98bc122a502c3d194d3173c61b0026ca4ddd4790fdeebaa8c9049eca8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:48:16.569154+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.261577+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d535205136b7",
-          "name": "手术机器人力触觉再现",
-          "desc": "将仿生触觉再现算法与装置控制结合，用于手术机器人纹理/硬度力触觉再现",
+          "id": "item-25ce81c4748d",
+          "name": "一直以来，对人自身的力触觉感知机理与模型的研究始终是机器人感知研究的基础与难点。",
+          "desc": "一直以来，对人自身的力触觉感知机理与模型的研究始终是机器人感知研究的基础与难点。",
           "evidence": [
             {
-              "quote": "并将仿生触觉再现算法与装置控制结合，用于手术机器人的纹理/硬度力触觉再现。",
+              "quote": "一直以来，对人自身的力触觉感知机理与模型的研究始终是机器人感知研究的基础与难点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 866,
-                "end_char": 902
+                "start_char": 654,
+                "end_char": 693
               },
               "version": "482ca3412c040d2d673e"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-e576b3c2effa",
-          "name": "触觉感知与再现研究相互割裂",
-          "desc": "力触觉再现与力触觉感知模型长期是平行且相对独立的研究",
-          "evidence": [
-            {
-              "quote": "以往，力触觉再现与力触觉感知模型是两个平行且相对独立的研究。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2343,
-                "end_char": 2372
-              },
-              "version": "482ca3412c040d2d673e"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-37a65e5968c2",
-          "name": "仿生机器学习触觉感知模型",
-          "desc": "利用仿生机器学习方法全面描述机械刺激与主观触觉感知的空间关系",
+          "id": "item-af4507045ee5",
+          "name": "本文提出利用阻抗网络等效感受器/神经网络认知器构建分层仿生力触觉感知模型，并尝试基于真实与人工触觉“感觉一致性”的考量，",
+          "desc": "本文提出利用阻抗网络等效感受器/神经网络认知器构建分层仿生力触觉感知模型，并尝试基于真实与人工触觉“感觉一致性”的考量，反演力触觉感知模型，实现多模态力触觉再现模型；",
           "evidence": [
             {
-              "quote": "本研究提出利用仿生的机器学习方法，全面描述客观机械刺激与人类主观触觉感知之间的空间关系。",
+              "quote": "本文提出利用阻抗网络等效感受器/神经网络认知器构建分层仿生力触觉感知模型，并尝试基于真实与人工触觉“感觉一致性”的考量，反演力触觉感知模型，实现多模态力触觉再现模型；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2470,
-                "end_char": 2513
+                "start_char": 755,
+                "end_char": 837
               },
               "version": "482ca3412c040d2d673e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-45f1fc005e95",
-          "name": "感知一致性多模态触觉表达",
-          "desc": "以感知一致性为原则将感知模型转化为多模态力触觉刺激控制模型",
+          "id": "item-1942c17791e7",
+          "name": "由于力触觉感知模型内在规律的复杂性，相关模型通常通过机器学习或统计学方法，建立客观测量交互数据与主观触觉感知之间的映射关",
+          "desc": "由于力触觉感知模型内在规律的复杂性，相关模型通常通过机器学习或统计学方法，建立客观测量交互数据与主观触觉感知之间的映射关系。",
           "evidence": [
             {
-              "quote": "以感知一致性为原则，将感知模型转化为多模态力触觉刺激的控制模型，从而实现了基于感觉相似性的多模态力触觉表达。",
+              "quote": "由于力触觉感知模型内在规律的复杂性，相关模型通常通过机器学习或统计学方法，建立客观测量交互数据与主观触觉感知之间的映射关系。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2514,
-                "end_char": 2567
+                "start_char": 2373,
+                "end_char": 2434
               },
               "version": "482ca3412c040d2d673e"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,224 @@
       "state": "has",
       "items": [
         {
-          "id": "item-524bb4f2483b",
-          "name": "柔性三维触觉传感器与触觉指套",
-          "desc": "研制柔性三维力触觉传感器及纹理/硬度触觉表达指套装置",
+          "id": "item-daeafbdeb7d4",
+          "name": "一直以来，对人自身的力触觉感知机理与模型的研究始终是机器人感知研究的基础与难点。",
+          "desc": "一直以来，对人自身的力触觉感知机理与模型的研究始终是机器人感知研究的基础与难点。",
           "evidence": [
             {
-              "quote": "研制了具有全面检测触觉特征的柔性三维力触觉传感器以及安全便携式的纹理/硬度触觉表达指套装置。",
+              "quote": "一直以来，对人自身的力触觉感知机理与模型的研究始终是机器人感知研究的基础与难点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2597,
-                "end_char": 2642
+                "start_char": 654,
+                "end_char": 693
               },
               "version": "482ca3412c040d2d673e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-deb7a599f4df",
-          "name": "手术机器人操控精度与安全支撑",
-          "desc": "相关成果为手术机器人操控精度和安全提供技术支持",
+          "id": "item-9d639ad6ba02",
+          "name": "对人的触觉感知规律的理解与应用是实现真实力触觉再现的基础。",
+          "desc": "对人的触觉感知规律的理解与应用是实现真实力触觉再现的基础。",
           "evidence": [
             {
-              "quote": "相关研究成果为提升手术机器人的操控精度和安全提供了重要的技术支持，具有显著的理论意义和实用价值。",
+              "quote": "对人的触觉感知规律的理解与应用是实现真实力触觉再现的基础。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2643,
-                "end_char": 2690
+                "start_char": 2314,
+                "end_char": 2342
               },
               "version": "482ca3412c040d2d673e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d535205136b7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e576b3c2effa"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于平面电阻结构的柔性分布式三维触觉传感器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d872b2ba2c2",
+      "evidence": [
+        {
+          "quote": "一种基于平面电阻结构的柔性分布式三维触觉传感器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2713,
+            "end_char": 2735
+          },
+          "version": "482ca3412c040d2d673e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e576b3c2effa"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-37a65e5968c2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "三维骨骼特征融合技术在娱乐机器人系统上的应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9af2cbfd5a6",
+      "evidence": [
+        {
+          "quote": "三维骨骼特征融合技术在娱乐机器人系统上的应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2763,
+            "end_char": 2784
+          },
+          "version": "482ca3412c040d2d673e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e576b3c2effa"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-45f1fc005e95"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Multimodal Haptic Rendering System Combining Force and Vibrotactile Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-500ee448c750",
+      "evidence": [
+        {
+          "quote": "A Multimodal Haptic Rendering System Combining Force and Vibrotactile Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2812,
+            "end_char": 2889
+          },
+          "version": "482ca3412c040d2d673e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-45f1fc005e95"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-524bb4f2483b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Human-Like Siamese-Based Visual-Tactile Fusion Model for Object Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ab558d0226e0",
+      "evidence": [
+        {
+          "quote": "A Human-Like Siamese-Based Visual-Tactile Fusion Model for Object Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2963,
+            "end_char": 3039
+          },
+          "version": "482ca3412c040d2d673e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-37a65e5968c2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-deb7a599f4df"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CM-AVAE: Cross-Modal Adversarial Variational Autoencoder for Visual-to-Tactile Data Generation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f1757e65649c",
+      "evidence": [
+        {
+          "quote": "CM-AVAE: Cross-Modal Adversarial Variational Autoencoder for Visual-to-Tactile Data Generation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3105,
+            "end_char": 3198
+          },
+          "version": "482ca3412c040d2d673e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A cross-texture haptic model based on tactile feature fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4799eac1fe95",
+      "evidence": [
+        {
+          "quote": "A cross-texture haptic model based on tactile feature fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3275,
+            "end_char": 3334
+          },
+          "version": "482ca3412c040d2d673e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Modal Haptic Rendering Based on Genetic Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e41fe780a0ad",
+      "evidence": [
+        {
+          "quote": "Multi-Modal Haptic Rendering Based on Genetic Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3408,
+            "end_char": 3462
+          },
+          "version": "482ca3412c040d2d673e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Metrics analysis of tactile perceptual space based on improved NMDS for leather textures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d57d5762532",
+      "evidence": [
+        {
+          "quote": "Metrics analysis of tactile perceptual space based on improved NMDS for leather textures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3516,
+            "end_char": 3603
+          },
+          "version": "482ca3412c040d2d673e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

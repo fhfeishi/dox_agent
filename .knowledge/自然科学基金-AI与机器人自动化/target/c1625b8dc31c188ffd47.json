@@ -2,15 +2,20 @@
   "doc_id": "c1625b8dc31c188ffd47",
   "version": "92301af9b8193ee647b7",
   "source_hash": "980ed20ae1816785e6cbfaa9e49d60ca03a69df8c7185276172dce9c777b5a01",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:33:46.258691+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.332213+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b4eafa3b4fde",
-          "name": "无人机载雷达目标分类",
-          "desc": "无人机载雷达对地海目标精确分类，服务精确打击、交通巡查和安防监测",
+          "id": "item-f220e0636451",
+          "name": "基于微多普勒特征的雷达目标分类技术已被公认为最有发展潜力的技术之一，是当前雷达信号处理领域的研究热点，实现无人机载雷达对",
+          "desc": "基于微多普勒特征的雷达目标分类技术已被公认为最有发展潜力的技术之一，是当前雷达信号处理领域的研究热点，实现无人机载雷达对地海目标精确分类对于实现国防科技现代化具有战略意义。",
           "evidence": [
             {
-              "quote": "实现无人机载雷达对地海目标精确分类对于实现国防科技现代化具有战略意义",
+              "quote": "基于微多普勒特征的雷达目标分类技术已被公认为最有发展潜力的技术之一，是当前雷达信号处理领域的研究热点，实现无人机载雷达对地海目标精确分类对于实现国防科技现代化具有战略意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 710,
-                "end_char": 743
+                "start_char": 659,
+                "end_char": 744
               },
               "version": "92301af9b8193ee647b7"
             }
@@ -38,93 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b9587720c76f",
-          "name": "微多普勒提取不自适应",
-          "desc": "现有研究均基于地基雷达、特征提取复杂且不具备自适应性、低信噪比小样本识别精度有限",
-          "evidence": [
-            {
-              "quote": "但现有微多普勒效应研究均基于地基雷达、微多普勒特征提取过程复杂且不具备自适应性、低信噪比和小样本条件下的微动目标识别精度有限",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2863,
-                "end_char": 2924
-              },
-              "version": "92301af9b8193ee647b7"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-76bc08b1c5d2",
-          "name": "一体化运动建模",
-          "desc": "无人机载雷达与目标一体化运动建模，阐明微多普勒调制机理",
+          "id": "item-f325dfeaf4f8",
+          "name": "设计了典型地海目标多普勒信号时频图的残差学习和对比学习机制，形成了低信噪比和小样本条件下的无人机载雷达对典型地海目标的智",
+          "desc": "设计了典型地海目标多普勒信号时频图的残差学习和对比学习机制，形成了低信噪比和小样本条件下的无人机载雷达对典型地海目标的智能识别策略，当信噪比仅为-16dB时，基于卷积编码器和残差学习的地面目标识别精度依旧达到90.67%，当信噪比高于-10dB且含类别标签样本占比仅为30%时，基于自监督学习的海上舰船目标识别精度就可以达到90.71%；",
           "evidence": [
             {
-              "quote": "基于无人机载雷达与目标一体化运动建模，阐明了典型人车目标和舰船目标的微多普勒调制机理",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2971,
-                "end_char": 3012
-              },
-              "version": "92301af9b8193ee647b7"
-            }
-          ]
-        },
-        {
-          "id": "item-0049ec7e5539",
-          "name": "多源耦合信号分离",
-          "desc": "大动态多源耦合观测信号分离方法，实现微多普勒信号分离与特征增强",
-          "evidence": [
-            {
-              "quote": "探索了大动态多源耦合观测信号分离方法，实现了目标微多普勒信号分离与微多普勒特征增强",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3014,
-                "end_char": 3054
-              },
-              "version": "92301af9b8193ee647b7"
-            }
-          ]
-        },
-        {
-          "id": "item-25dcaee29739",
-          "name": "机器学习目标识别",
-          "desc": "高区分度微多普勒特征提取与支持向量机的典型地海目标精确识别",
-          "evidence": [
-            {
-              "quote": "定义、提取了具有高区分度的微多普勒特征并送入支持向量机，实现了基于机器学习的典型地海目标精确识别",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3056,
-                "end_char": 3103
-              },
-              "version": "92301af9b8193ee647b7"
-            }
-          ]
-        },
-        {
-          "id": "item-09bbab6e6b4b",
-          "name": "残差对比学习识别",
-          "desc": "多普勒信号时频图的残差学习和对比学习机制，低信噪比小样本智能识别策略",
-          "evidence": [
-            {
-              "quote": "设计了典型地海目标多普勒信号时频图的残差学习和对比学习机制，形成了低信噪比和小样本条件下的无人机载雷达对典型地海目标的智能识别策略",
+              "quote": "设计了典型地海目标多普勒信号时频图的残差学习和对比学习机制，形成了低信噪比和小样本条件下的无人机载雷达对典型地海目标的智能识别策略，当信噪比仅为-16dB时，基于卷积编码器和残差学习的地面目标识别精度依旧达到90.67%，当信噪比高于-10dB且含类别标签样本占比仅为30%时，基于自监督学习的海上舰船目标识别精度就可以达到90.71%；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3152,
-                "end_char": 3216
+                "end_char": 3320
               },
               "version": "92301af9b8193ee647b7"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-4e51038b0efe",
+          "name": "最后，根据雷达电磁散射和微多普勒调制，构建和优化深度卷积神经网络，避免特征提取过程，实现地海目标智能分类。",
+          "desc": "最后，根据雷达电磁散射和微多普勒调制，构建和优化深度卷积神经网络，避免特征提取过程，实现地海目标智能分类。",
+          "evidence": [
+            {
+              "quote": "最后，根据雷达电磁散射和微多普勒调制，构建和优化深度卷积神经网络，避免特征提取过程，实现地海目标智能分类。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 937,
+                "end_char": 989
+              },
+              "version": "92301af9b8193ee647b7"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,108 +91,788 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7186e689cab0",
-          "name": "识别精度指标",
-          "desc": "信噪比高于5dB时地面人车目标识别精度高于90%，海上舰船目标高于85%",
+          "id": "item-0623bcf423c5",
+          "name": "基于微多普勒特征的雷达目标分类技术已被公认为最有发展潜力的技术之一，是当前雷达信号处理领域的研究热点，实现无人机载雷达对",
+          "desc": "基于微多普勒特征的雷达目标分类技术已被公认为最有发展潜力的技术之一，是当前雷达信号处理领域的研究热点，实现无人机载雷达对地海目标精确分类对于实现国防科技现代化具有战略意义。",
           "evidence": [
             {
-              "quote": "当信噪比高于5dB时，地面人车目标的识别精度已高于90%，海上舰船目标的识别精度已高于85%",
+              "quote": "基于微多普勒特征的雷达目标分类技术已被公认为最有发展潜力的技术之一，是当前雷达信号处理领域的研究热点，实现无人机载雷达对地海目标精确分类对于实现国防科技现代化具有战略意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3105,
-                "end_char": 3150
+                "start_char": 659,
+                "end_char": 744
               },
               "version": "92301af9b8193ee647b7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-ffa6bb80554d",
-          "name": "原理验证试验",
-          "desc": "开展无人机载雷达对典型地海目标智能识别方法的原理验证试验",
+          "id": "item-dee0b13cb904",
+          "name": "微多普勒效应为目标的独特特征，基于微多普勒特征的雷达目标分类技术已被公认为最有发展潜力的技术之一，是当前雷达信号处理领域",
+          "desc": "微多普勒效应为目标的独特特征，基于微多普勒特征的雷达目标分类技术已被公认为最有发展潜力的技术之一，是当前雷达信号处理领域的研究热点。",
           "evidence": [
             {
-              "quote": "并开展了无人机载雷达对典型地海目标智能识别方法的原理验证试验，论证了本项目所提出的微多普勒表征提炼手段在雷达目标识别领域的适用性",
+              "quote": "微多普勒效应为目标的独特特征，基于微多普勒特征的雷达目标分类技术已被公认为最有发展潜力的技术之一，是当前雷达信号处理领域的研究热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3321,
-                "end_char": 3384
+                "start_char": 2797,
+                "end_char": 2862
               },
               "version": "92301af9b8193ee647b7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b4eafa3b4fde"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b9587720c76f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vehicle Recognition Based on Carrier-Free UWB Radars Using Contrastive Multi-View Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dd8593c61c8a",
+      "evidence": [
+        {
+          "quote": "Vehicle Recognition Based on Carrier-Free UWB Radars Using Contrastive Multi-View Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3549,
+            "end_char": 3638
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b9587720c76f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-76bc08b1c5d2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep residual learning in modulation recognition of radar signals using higher-order spectral distribution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a932fa97b74",
+      "evidence": [
+        {
+          "quote": "Deep residual learning in modulation recognition of radar signals using higher-order spectral distribution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3685,
+            "end_char": 3790
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b9587720c76f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0049ec7e5539"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Classification of UAV-to-Ground Targets Based on Micro-Doppler Fractal Features Using IEEMD and GA-BP Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b0040e5394f",
+      "evidence": [
+        {
+          "quote": "Classification of UAV-to-Ground Targets Based on Micro-Doppler Fractal Features Using IEEMD and GA-BP Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3863,
+            "end_char": 3978
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b9587720c76f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-09bbab6e6b4b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Angle Measurement of Fuse Using Linear Frequency Modulation System Based on C6678 MultiCore DSPs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-215894c04357",
+      "evidence": [
+        {
+          "quote": "Angle Measurement of Fuse Using Linear Frequency Modulation System Based on C6678 MultiCore DSPs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4070,
+            "end_char": 4165
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-25dcaee29739"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7186e689cab0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multilevel Recognition of UAV-to-Ground Targets Based on Micro-Doppler Signatures and Transfer Learning of Deep Convolutional Neural Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f995f9c6590d",
+      "evidence": [
+        {
+          "quote": "Multilevel Recognition of UAV-to-Ground Targets Based on Micro-Doppler Signatures and Transfer Learning of Deep Convolutional Neural Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4245,
+            "end_char": 4385
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-09bbab6e6b4b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ffa6bb80554d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Suppression of Noise Amplitude Modulation Interference in Triangle Frequency Modulation Detector Based on FrFT",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e15b6155f9b9",
+      "evidence": [
+        {
+          "quote": "Suppression of Noise Amplitude Modulation Interference in Triangle Frequency Modulation Detector Based on FrFT",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4467,
+            "end_char": 4576
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Terrain Recognition Based on the Carrier-Free UWB Radar Using Stacked Denoising Autoencoder",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51e74734583d",
+      "evidence": [
+        {
+          "quote": "Terrain Recognition Based on the Carrier-Free UWB Radar Using Stacked Denoising Autoencoder",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4637,
+            "end_char": 4727
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于无载波超宽带雷达的XXX",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5cd48126ddca",
+      "evidence": [
+        {
+          "quote": "基于无载波超宽带雷达的XXX",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4785,
+            "end_char": 4798
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Task Self-Supervised Learning for Vehicle Classification Based on Carrier-Free UWB Radars",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-963f540ee783",
+      "evidence": [
+        {
+          "quote": "Multi-Task Self-Supervised Learning for Vehicle Classification Based on Carrier-Free UWB Radars",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4827,
+            "end_char": 4921
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Advancing IR-UWB Radar Human Activity Recognition with Swin-Transformers and Supervised Contrastive Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51b3dbdf89de",
+      "evidence": [
+        {
+          "quote": "Advancing IR-UWB Radar Human Activity Recognition with Swin-Transformers and Supervised Contrastive Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4994,
+            "end_char": 5101
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Complex Ground-target Electromegnetical Modeling Using 3ds Max and TDIE",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c01aa48891e",
+      "evidence": [
+        {
+          "quote": "Complex Ground-target Electromegnetical Modeling Using 3ds Max and TDIE",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5183,
+            "end_char": 5253
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于改进最小熵解卷积的XXX",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75533a1374ea",
+      "evidence": [
+        {
+          "quote": "基于改进最小熵解卷积的XXX",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5313,
+            "end_char": 5326
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Target Identification with Improved 2D-VMD for Carrier-Free UWB Radar",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d83130976b16",
+      "evidence": [
+        {
+          "quote": "Target Identification with Improved 2D-VMD for Carrier-Free UWB Radar",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5359,
+            "end_char": 5427
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Interval-forward Jamming Technology to Linear Frequency Modulated Detection System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c6289d303ff",
+      "evidence": [
+        {
+          "quote": "Interval-forward Jamming Technology to Linear Frequency Modulated Detection System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5489,
+            "end_char": 5570
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on anti-Narrowband AM jamming of Ultra-wideband impulse radio detection radar based on improved singular spectrum analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f184bac175ed",
+      "evidence": [
+        {
+          "quote": "Research on anti-Narrowband AM jamming of Ultra-wideband impulse radio detection radar based on improved singular spectrum analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5632,
+            "end_char": 5762
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ground Target Recognition Using Carrier-Free UWB Radar Sensor With a Semi-Supervised Stacked Convolutional Denoising Autoencoder",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-82e5572b3829",
+      "evidence": [
+        {
+          "quote": "Ground Target Recognition Using Carrier-Free UWB Radar Sensor With a Semi-Supervised Stacked Convolutional Denoising Autoencoder",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5834,
+            "end_char": 5961
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Classification of UAV-to-Ground Targets Based on Enhanced Micro-Doppler Features Extracted via PCA and Compressed Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0341dac94570",
+      "evidence": [
+        {
+          "quote": "Classification of UAV-to-Ground Targets Based on Enhanced Micro-Doppler Features Extracted via PCA and Compressed Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6048,
+            "end_char": 6168
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analyze of Ship’s Micro-Doppler Characteristics Based on Hough Trans",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f38de79f76a4",
+      "evidence": [
+        {
+          "quote": "Analyze of Ship’s Micro-Doppler Characteristics Based on Hough Trans",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6249,
+            "end_char": 6316
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Classification of non-motorized vehicle based on micro-Doppler effect and image processing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a56120c8e5ad",
+      "evidence": [
+        {
+          "quote": "Classification of non-motorized vehicle based on micro-Doppler effect and image processing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6388,
+            "end_char": 6477
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Micro-Doppler Parameter Estimation of Ships Based on the Viterbi Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-072291e23c57",
+      "evidence": [
+        {
+          "quote": "Micro-Doppler Parameter Estimation of Ships Based on the Viterbi Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6536,
+            "end_char": 6609
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human Activity Recognition Using IR-UWB Radar: A Lightweight Transformer Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75c534924678",
+      "evidence": [
+        {
+          "quote": "Human Activity Recognition Using IR-UWB Radar: A Lightweight Transformer Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6671,
+            "end_char": 6751
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Improved KSVD Algorithm for Ground Target Recognition Using Carrier-Free UWB Radar",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f502ff35846",
+      "evidence": [
+        {
+          "quote": "An Improved KSVD Algorithm for Ground Target Recognition Using Carrier-Free UWB Radar",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6837,
+            "end_char": 6921
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Suppressive Interference Suppression for Airborne SAR Using BSS for Singular Value and Eigenvalue Decomposition Based on Information Entropy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-60b99b345444",
+      "evidence": [
+        {
+          "quote": "Suppressive Interference Suppression for Airborne SAR Using BSS for Singular Value and Eigenvalue Decomposition Based on Information Entropy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6994,
+            "end_char": 7133
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Anti-Jamming Method of UWB Ranging Sensor Based on Equivalent Sampling and Coupled Chaotic Oscillator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa91ed06665d",
+      "evidence": [
+        {
+          "quote": "An Anti-Jamming Method of UWB Ranging Sensor Based on Equivalent Sampling and Coupled Chaotic Oscillator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7214,
+            "end_char": 7317
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Low-SNR Recognition of UAV-to-Ground Targets Based on Micro-Doppler Signatures Using Deep Convolutional Denoising Encoders and Deep Residual Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-724fbd6243a8",
+      "evidence": [
+        {
+          "quote": "Low-SNR Recognition of UAV-to-Ground Targets Based on Micro-Doppler Signatures Using Deep Convolutional Denoising Encoders and Deep Residual Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7380,
+            "end_char": 7528
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep metric learning for robust radar signal recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b4142562a736",
+      "evidence": [
+        {
+          "quote": "Deep metric learning for robust radar signal recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7614,
+            "end_char": 7669
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于无载波超宽带XXX",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cf4d6ec26733",
+      "evidence": [
+        {
+          "quote": "基于无载波超宽带XXX",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7728,
+            "end_char": 7738
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Identification of Fuzzy Small-sample Terrain Targets Based on 1DC-CGAN and Wavelet Energy Features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1dfccf4bc750",
+      "evidence": [
+        {
+          "quote": "Identification of Fuzzy Small-sample Terrain Targets Based on 1DC-CGAN and Wavelet Energy Features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7772,
+            "end_char": 7869
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical Dictionary Learning for Vehicle Classification Based on the Carrier-Free UWB Radar",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0114cc79d6f2",
+      "evidence": [
+        {
+          "quote": "Hierarchical Dictionary Learning for Vehicle Classification Based on the Carrier-Free UWB Radar",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7933,
+            "end_char": 8027
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantic Learning for Analysis of Overlapping LPI Radar Signals",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a793363c2686",
+      "evidence": [
+        {
+          "quote": "Semantic Learning for Analysis of Overlapping LPI Radar Signals",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8098,
+            "end_char": 8160
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modulation Recognition of Radar Signals Based on Adaptive Singular Value Reconstruction and Deep Residual Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2214aa2f7b24",
+      "evidence": [
+        {
+          "quote": "Modulation Recognition of Radar Signals Based on Adaptive Singular Value Reconstruction and Deep Residual Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8231,
+            "end_char": 8344
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spectrum sensing based on delayed coprime sampling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-407290ff96d3",
+      "evidence": [
+        {
+          "quote": "Spectrum sensing based on delayed coprime sampling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8418,
+            "end_char": 8467
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Automatic modulation classification of radar signals utilizing X-net",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae3db8754d7e",
+      "evidence": [
+        {
+          "quote": "Automatic modulation classification of radar signals utilizing X-net",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8540,
+            "end_char": 8607
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Airborne SAR Suppression of Blanket Jamming Based on Second Order Blind Identification and Fractional Order Fourier Transform",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e720aa03c4d8",
+      "evidence": [
+        {
+          "quote": "Airborne SAR Suppression of Blanket Jamming Based on Second Order Blind Identification and Fractional Order Fourier Transform",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8682,
+            "end_char": 8806
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无载波超宽带发射信号波形库的构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a538a5f6d0d0",
+      "evidence": [
+        {
+          "quote": "一种无载波超宽带发射信号波形库的构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8892,
+            "end_char": 8911
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Automatic Modulation Recognition of Radar Signals Based on Histogram of Oriented Gradient via Improved Principal Component Analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fa2437c5d508",
+      "evidence": [
+        {
+          "quote": "Automatic Modulation Recognition of Radar Signals Based on Histogram of Oriented Gradient via Improved Principal Component Analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8941,
+            "end_char": 9071
+          },
+          "version": "92301af9b8193ee647b7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 36,
+    "listed": 36,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 26,
+        "extracted": 26
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

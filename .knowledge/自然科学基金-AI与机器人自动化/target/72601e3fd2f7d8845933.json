@@ -2,15 +2,20 @@
   "doc_id": "72601e3fd2f7d8845933",
   "version": "befc4fd08d43f2a94111",
   "source_hash": "aef4ff32fc375686558ffa4f94ebf95abeafcbcbe62d439af9dd5fcf3948aff0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:43.582547+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.545370+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-287b64df9c82",
-          "name": "AUV集群博弈对抗",
-          "desc": "面向海洋强国战略的AUV集群智能对抗研究",
+          "id": "item-c0bb2e82cc84",
+          "name": "自主水下航行器（AUV）集群对抗是我国亟待发展的重要研究课题之一，对建设海洋强国等重大战略有着积极的促进作用。",
+          "desc": "自主水下航行器（AUV）集群对抗是我国亟待发展的重要研究课题之一，对建设海洋强国等重大战略有着积极的促进作用。",
           "evidence": [
             {
-              "quote": "自主水下航行器（AUV）集群对抗是我国亟待发展的重要研究课题之一，对建设海洋强国等重大战略有着积极的促进作用",
+              "quote": "自主水下航行器（AUV）集群对抗是我国亟待发展的重要研究课题之一，对建设海洋强国等重大战略有着积极的促进作用。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 649,
-                "end_char": 702
+                "end_char": 703
               },
               "version": "befc4fd08d43f2a94111"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-e4459bcc0753",
-          "name": "弱联通约束收益不确定",
-          "desc": "水下弱联通约束与复杂动态环境使集群博弈收益不确定、决策效率低",
-          "evidence": [
-            {
-              "quote": "然而水下弱联通约束与复杂动态环境使AUV集群博弈具有收益不确定、决策效率低等问题，研究难度较大",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 759,
-                "end_char": 805
-              },
-              "version": "befc4fd08d43f2a94111"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-f441221fd511",
-          "name": "弱联通约束博弈对抗模型",
-          "desc": "直觉模糊映射转换博弈条件，建立多阶段动态对抗非合作零和收益模型",
+          "id": "item-cdb8c6b1bfd2",
+          "name": "本项目完成了基于直觉模糊博弈的AUV集群智能对抗方法研究，建立了弱联通约束下的 AUV 集群博弈对抗模型，分析了博弈参量",
+          "desc": "本项目完成了基于直觉模糊博弈的AUV集群智能对抗方法研究，建立了弱联通约束下的 AUV 集群博弈对抗模型，分析了博弈参量对 AUV集群对抗的影响机理，给出了AUV 集群机动博弈对抗最优策略求解方法，通过半实物仿真验证了所设计方法的有效性。",
           "evidence": [
             {
-              "quote": "建立了弱联通约束下的 AUV 集群博弈对抗模型",
+              "quote": "本项目完成了基于直觉模糊博弈的AUV集群智能对抗方法研究，建立了弱联通约束下的 AUV 集群博弈对抗模型，分析了博弈参量对 AUV集群对抗的影响机理，给出了AUV 集群机动博弈对抗最优策略求解方法，通过半实物仿真验证了所设计方法的有效性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2843,
-                "end_char": 2865
+                "start_char": 2814,
+                "end_char": 2932
               },
               "version": "befc4fd08d43f2a94111"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f09327abd4e4",
-          "name": "直觉模糊博弈对抗算法",
-          "desc": "直觉模糊规则与模糊收益模型建立模糊支付矩阵与对抗决策指标",
+          "id": "item-301b47b44016",
+          "name": "集群对抗;智能控制;群体智能;自主决策与规划;直觉模糊博弈",
+          "desc": "集群对抗;智能控制;群体智能;自主决策与规划;直觉模糊博弈",
           "evidence": [
             {
-              "quote": "建立了具有水下约束的直觉模糊规则，给出了不同对抗策略收益的直觉模糊排序",
+              "quote": "集群对抗;智能控制;群体智能;自主决策与规划;直觉模糊博弈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3344,
-                "end_char": 3378
+                "start_char": 2733,
+                "end_char": 2761
               },
               "version": "befc4fd08d43f2a94111"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,388 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a4d876f9cebd",
-          "name": "纳什均衡最优策略求解",
-          "desc": "借助智能算法得到AUV集群博弈纳什均衡最优策略并经半实物仿真验证",
+          "id": "item-f5d2ec32c10e",
+          "name": "自主水下航行器（AUV）集群对抗是我国亟待发展的重要研究课题之一，对建设海洋强国等重大战略有着积极的促进作用。",
+          "desc": "自主水下航行器（AUV）集群对抗是我国亟待发展的重要研究课题之一，对建设海洋强国等重大战略有着积极的促进作用。",
           "evidence": [
             {
-              "quote": "结合AUV博弈对抗模型建立与直觉模糊收益等，借助智能算法得到了AUV集群博弈纳什均衡最优策略",
+              "quote": "自主水下航行器（AUV）集群对抗是我国亟待发展的重要研究课题之一，对建设海洋强国等重大战略有着积极的促进作用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3547,
-                "end_char": 3592
+                "start_char": 649,
+                "end_char": 703
               },
               "version": "befc4fd08d43f2a94111"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-1a5e3c5dc22a",
+          "name": "本项目完成了基于直觉模糊博弈的AUV集群智能对抗方法研究，建立了弱联通约束下的 AUV 集群博弈对抗模型，分析了博弈参量",
+          "desc": "本项目完成了基于直觉模糊博弈的AUV集群智能对抗方法研究，建立了弱联通约束下的 AUV 集群博弈对抗模型，分析了博弈参量对 AUV集群对抗的影响机理，给出了AUV 集群机动博弈对抗最优策略求解方法，通过半实物仿真验证了所设计方法的有效性。",
+          "evidence": [
+            {
+              "quote": "本项目完成了基于直觉模糊博弈的AUV集群智能对抗方法研究，建立了弱联通约束下的 AUV 集群博弈对抗模型，分析了博弈参量对 AUV集群对抗的影响机理，给出了AUV 集群机动博弈对抗最优策略求解方法，通过半实物仿真验证了所设计方法的有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2814,
+                "end_char": 2932
+              },
+              "version": "befc4fd08d43f2a94111"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-287b64df9c82"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e4459bcc0753"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust yaw control of autonomous underwater vehicle based on fractional-order PID controller",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-783b85dc5458",
+      "evidence": [
+        {
+          "quote": "Robust yaw control of autonomous underwater vehicle based on fractional-order PID controller",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3718,
+            "end_char": 3809
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e4459bcc0753"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f441221fd511"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An improved sparrow search algorithm based on fractional calculus and its application to the PID control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-676e7de98a37",
+      "evidence": [
+        {
+          "quote": "An improved sparrow search algorithm based on fractional calculus and its application to the PID control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3865,
+            "end_char": 3968
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e4459bcc0753"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f09327abd4e4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Variable-Order Fuzzy Logic Controller Design Method for an Unmanned Underwater Vehicle Based on NSGA-II",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f3223d0f29c7",
+      "evidence": [
+        {
+          "quote": "A Variable-Order Fuzzy Logic Controller Design Method for an Unmanned Underwater Vehicle Based on NSGA-II",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4025,
+            "end_char": 4129
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f09327abd4e4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a4d876f9cebd"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于蚁群算法的多UUV协同探测阵位优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-431c9ca2df16",
+      "evidence": [
+        {
+          "quote": "一种基于蚁群算法的多UUV协同探测阵位优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4229,
+            "end_char": 4251
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f441221fd511"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a4d876f9cebd"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A simplified fractional-order fuzzy logic controller with dynamic parameters for an unmanned underwater vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d33246200fa9",
+      "evidence": [
+        {
+          "quote": "A simplified fractional-order fuzzy logic controller with dynamic parameters for an unmanned underwater vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4286,
+            "end_char": 4396
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spiral Dive Control of Underactuated AUV Based on a Single-Input Fractional-Order Fuzzy Logic Controller",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1bd57a62f994",
+      "evidence": [
+        {
+          "quote": "Spiral Dive Control of Underactuated AUV Based on a Single-Input Fractional-Order Fuzzy Logic Controller",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4447,
+            "end_char": 4550
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust PI^lambda controller design for AUV motion control with guaranteed frequency and time domain behaviour",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a51480f3d022",
+      "evidence": [
+        {
+          "quote": "Robust PI^lambda controller design for AUV motion control with guaranteed frequency and time domain behaviour",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4648,
+            "end_char": 4756
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-AUV dynamic maneuver decision-making based on intuitionistic fuzzy counter-game and fractional-order particle swarm optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d03d72ddf8e",
+      "evidence": [
+        {
+          "quote": "Multi-AUV dynamic maneuver decision-making based on intuitionistic fuzzy counter-game and fractional-order particle swarm optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4802,
+            "end_char": 4935
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-UUV Detection Array Optimization Based on Ant Colony Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f275df3bd6a0",
+      "evidence": [
+        {
+          "quote": "Multi-UUV Detection Array Optimization Based on Ant Colony Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5003,
+            "end_char": 5070
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于群体智能的水下无人集群编队关键节点识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a574290d27f",
+      "evidence": [
+        {
+          "quote": "一种基于群体智能的水下无人集群编队关键节点识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5147,
+            "end_char": 5171
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-AUV dynamic maneuver countermeasure algorithm based on interval information game and fractional-order DE",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5f7350d36c9",
+      "evidence": [
+        {
+          "quote": "Multi-AUV dynamic maneuver countermeasure algorithm based on interval information game and fractional-order DE",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5199,
+            "end_char": 5308
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Synthesised fractional‐order PD controller design for fractional‐order time‐delay systems based on improved robust stability surface analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ab03fbd6fe6c",
+      "evidence": [
+        {
+          "quote": "Synthesised fractional‐order PD controller design for fractional‐order time‐delay systems based on improved robust stability surface analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5365,
+            "end_char": 5505
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Critical Node Identification of Multi-UUV Formation Based on Network Structure Entropy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d7833a0f7bb",
+      "evidence": [
+        {
+          "quote": "Critical Node Identification of Multi-UUV Formation Based on Network Structure Entropy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5564,
+            "end_char": 5649
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于人群交互行为的机器人集群运动控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b14b7ddef20",
+      "evidence": [
+        {
+          "quote": "基于人群交互行为的机器人集群运动控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5754,
+            "end_char": 5773
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于改进Dubins曲线的水下航行器编队方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd7618e2ba95",
+      "evidence": [
+        {
+          "quote": "一种基于改进Dubins曲线的水下航行器编队方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5801,
+            "end_char": 5824
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-UUV maneuvering counter-game for dynamic target scenario based on fractional-order recurrent neural network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a8dc4a9e13c",
+      "evidence": [
+        {
+          "quote": "Multi-UUV maneuvering counter-game for dynamic target scenario based on fractional-order recurrent neural network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5856,
+            "end_char": 5968
+          },
+          "version": "befc4fd08d43f2a94111"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

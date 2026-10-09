@@ -2,15 +2,20 @@
   "doc_id": "fbcfbbc7d32836d18afc",
   "version": "777bb896cd7d9ef4d729",
   "source_hash": "db309981e2787142101c6a24902f014fc5cf7292dcac2d136654904b670ac0e0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:28:42.564866+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:20.005525+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3b674ed24f3d",
-          "name": "跨域变构智能飞行",
-          "desc": "面向跨域高效智能飞行的变形机翼飞行器任务需求",
+          "id": "item-310057fc120b",
+          "name": "本项目面向跨域高效智能飞行的任务需求，考虑构型变化和燃料箱中液体晃动因素，开展跨域变构飞行的智能控制理论与方法研究，发展",
+          "desc": "本项目面向跨域高效智能飞行的任务需求，考虑构型变化和燃料箱中液体晃动因素，开展跨域变构飞行的智能控制理论与方法研究，发展连续多维大变构下适应多物理场强耦合等强不确定条件的智能决策与自主控制方法，实现构型与飞行一体化智能控制设计。",
           "evidence": [
             {
-              "quote": "本项目面向跨域高效智能飞行的任务需求，考虑构型变化和燃料箱中液体晃动因素，开展跨域变构飞行的智能控制理论与方法研究",
+              "quote": "本项目面向跨域高效智能飞行的任务需求，考虑构型变化和燃料箱中液体晃动因素，开展跨域变构飞行的智能控制理论与方法研究，发展连续多维大变构下适应多物理场强耦合等强不确定条件的智能决策与自主控制方法，实现构型与飞行一体化智能控制设计。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 661,
-                "end_char": 717
+                "end_char": 774
               },
               "version": "777bb896cd7d9ef4d729"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1e2bf0a02d65",
-          "name": "构型气动强耦合建模难",
-          "desc": "构型与气动强耦合、机体弹性振动带来的刚柔耦合建模困难",
-          "evidence": [
-            {
-              "quote": "为此，考虑构型与气动强耦合、机体弹性振动等因素，针对一类刚柔耦合变翼飞行器",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3112,
-                "end_char": 3148
-              },
-              "version": "777bb896cd7d9ef4d729"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-f560a685f1e4",
-          "name": "刚柔耦合低维智能建模",
-          "desc": "基于深度学习/增量学习和模糊系统的低维智能建模方法",
+          "id": "item-c2885f56b96a",
+          "name": "为此，针对一类变形机翼飞行器，在知识与数据协同驱动框架下，从刚-柔-液耦合智能控制系统增量时空建模、分析与优化设计三个方",
+          "desc": "为此，针对一类变形机翼飞行器，在知识与数据协同驱动框架下，从刚-柔-液耦合智能控制系统增量时空建模、分析与优化设计三个方面开展深入研究。",
           "evidence": [
             {
-              "quote": "提出基于深度学习/增量学习和模糊系统的刚柔耦合低维智能建模方法，克服刚柔耦合带来的建模困难",
+              "quote": "为此，针对一类变形机翼飞行器，在知识与数据协同驱动框架下，从刚-柔-液耦合智能控制系统增量时空建模、分析与优化设计三个方面开展深入研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3252,
-                "end_char": 3296
+                "start_char": 775,
+                "end_char": 842
               },
               "version": "777bb896cd7d9ef4d729"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d4f58a9bd491",
-          "name": "安全强化学习博弈控制",
-          "desc": "变翼-飞行约束博弈模型及博弈策略在线求解的安全强化学习算法",
+          "id": "item-51b3b3a5a4a9",
+          "name": "为此，考虑构型与气动强耦合、机体弹性振动等因素，针对一类刚柔耦合变翼飞行器，将机翼变形参数（如翼展、厚度等）扩展为辅助控",
+          "desc": "为此，考虑构型与气动强耦合、机体弹性振动等因素，针对一类刚柔耦合变翼飞行器，将机翼变形参数（如翼展、厚度等）扩展为辅助控制，在知识与数据协同驱动框架下系统开展基于数据与规则经验知识的低维建模、分析量化以及基于微分博弈和强化学习的机翼变形与飞行控制一体化优化设计研究。",
           "evidence": [
             {
-              "quote": "提出变翼-飞行约束博弈模型以及相应博弈策略在线求解的安全强化学习算法，实现构型与气动强耦合以及安全约束下变翼-飞行协调优化",
+              "quote": "为此，考虑构型与气动强耦合、机体弹性振动等因素，针对一类刚柔耦合变翼飞行器，将机翼变形参数（如翼展、厚度等）扩展为辅助控制，在知识与数据协同驱动框架下系统开展基于数据与规则经验知识的低维建模、分析量化以及基于微分博弈和强化学习的机翼变形与飞行控制一体化优化设计研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3314,
-                "end_char": 3374
+                "start_char": 3112,
+                "end_char": 3244
               },
               "version": "777bb896cd7d9ef4d729"
             }
-          ]
-        },
-        {
-          "id": "item-5e13fec8a6b5",
-          "name": "元学习近似最优控制",
-          "desc": "基于元学习的近似最优变构飞行控制方法",
-          "evidence": [
-            {
-              "quote": "构建基于元学习的近似最优变构飞行控制方法，实现自主变形下变翼-飞行协调控制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3376,
-                "end_char": 3412
-              },
-              "version": "777bb896cd7d9ef4d729"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,80 +91,648 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bb4173b85ef8",
-          "name": "变构飞行智能控制方法体系",
-          "desc": "形成数据与知识协同驱动变构飞行器智能建模、分析与控制方法",
+          "id": "item-b6948b01446a",
+          "name": "本项目面向跨域高效智能飞行的任务需求，考虑构型变化和燃料箱中液体晃动因素，开展跨域变构飞行的智能控制理论与方法研究，发展",
+          "desc": "本项目面向跨域高效智能飞行的任务需求，考虑构型变化和燃料箱中液体晃动因素，开展跨域变构飞行的智能控制理论与方法研究，发展连续多维大变构下适应多物理场强耦合等强不确定条件的智能决策与自主控制方法，实现构型与飞行一体化智能控制设计。",
           "evidence": [
             {
-              "quote": "本项目不仅形成一套数据与知识协同驱动变构飞行器智能建模、分析与控制方法，还为“变构与飞行一体化智能控制”核心科学问题的解决提供理论指导",
+              "quote": "本项目面向跨域高效智能飞行的任务需求，考虑构型变化和燃料箱中液体晃动因素，开展跨域变构飞行的智能控制理论与方法研究，发展连续多维大变构下适应多物理场强耦合等强不确定条件的智能决策与自主控制方法，实现构型与飞行一体化智能控制设计。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3414,
-                "end_char": 3480
+                "start_char": 661,
+                "end_char": 774
               },
               "version": "777bb896cd7d9ef4d729"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-bb321b3d4eba",
+          "name": "本项目围绕跨域高效智能飞行的任务需求，致力于构建连续多维变构智能飞行控制理论与方法。",
+          "desc": "本项目围绕跨域高效智能飞行的任务需求，致力于构建连续多维变构智能飞行控制理论与方法。",
+          "evidence": [
+            {
+              "quote": "本项目围绕跨域高效智能飞行的任务需求，致力于构建连续多维变构智能飞行控制理论与方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3070,
+                "end_char": 3111
+              },
+              "version": "777bb896cd7d9ef4d729"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3b674ed24f3d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1e2bf0a02d65"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed formation control for a class of human-in-the-loop multiagent systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-896b89193ea5",
+      "evidence": [
+        {
+          "quote": "Distributed formation control for a class of human-in-the-loop multiagent systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3507,
+            "end_char": 3587
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1e2bf0a02d65"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f560a685f1e4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-based online adaptive inverse noncooperative linear-quadratic differential games via finite-time concurrent learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c39ed252aba",
+      "evidence": [
+        {
+          "quote": "Model-based online adaptive inverse noncooperative linear-quadratic differential games via finite-time concurrent learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3645,
+            "end_char": 3766
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1e2bf0a02d65"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d4f58a9bd491"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven inverse cooperative game control via off-policy Q-learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35fe96f61d42",
+      "evidence": [
+        {
+          "quote": "Data-driven inverse cooperative game control via off-policy Q-learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3801,
+            "end_char": 3870
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5e13fec8a6b5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bb4173b85ef8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Behavior learning based distributed tracking control for human-in-the-loop multi-agent systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eaf03650a9d1",
+      "evidence": [
+        {
+          "quote": "Behavior learning based distributed tracking control for human-in-the-loop multi-agent systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3905,
+            "end_char": 3998
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f560a685f1e4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bb4173b85ef8"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "抛物型分布参数系统模糊边界控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-93753c125b0d",
+      "evidence": [
+        {
+          "quote": "抛物型分布参数系统模糊边界控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4047,
+            "end_char": 4061
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human behavior learning for a class of nonlinear human-in-the-loop systems via Takagi-Sugeno fuzzy model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92d7ad681d40",
+      "evidence": [
+        {
+          "quote": "Human behavior learning for a class of nonlinear human-in-the-loop systems via Takagi-Sugeno fuzzy model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4087,
+            "end_char": 4190
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A quantum-based collaborative guidance strategy for multirobot plume source localization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a776c39152d4",
+      "evidence": [
+        {
+          "quote": "A quantum-based collaborative guidance strategy for multirobot plume source localization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4233,
+            "end_char": 4320
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coordinated control of deformation and flight for morphing aircraft via meta-learning and coupled state-dependent Riccati equations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-752d685f6a8f",
+      "evidence": [
+        {
+          "quote": "Coordinated control of deformation and flight for morphing aircraft via meta-learning and coupled state-dependent Riccati equations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4358,
+            "end_char": 4488
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coordinated control of flight and morphing for morphing quadrotor via reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8b748c39669",
+      "evidence": [
+        {
+          "quote": "Coordinated control of flight and morphing for morphing quadrotor via reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4527,
+            "end_char": 4618
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A dynamic neural network-based control method using reinforcement learning for nonlinear parameter-varying system with application to morphing aircraft",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ee7799f11a0",
+      "evidence": [
+        {
+          "quote": "A dynamic neural network-based control method using reinforcement learning for nonlinear parameter-varying system with application to morphing aircraft",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4668,
+            "end_char": 4818
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal coordinated control for wing deformation and flight state of morphing aircraft via differential game",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f75196c5079",
+      "evidence": [
+        {
+          "quote": "Optimal coordinated control for wing deformation and flight state of morphing aircraft via differential game",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4859,
+            "end_char": 4966
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-based boundary fuzzy control design of nonlinear parabolic PDE systems using mobile sensors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9856c539fec",
+      "evidence": [
+        {
+          "quote": "Observer-based boundary fuzzy control design of nonlinear parabolic PDE systems using mobile sensors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5004,
+            "end_char": 5103
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DL-based online modeling of nonlinear ODE-beam cascaded systems: Application to flexible morphing aircraft",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-48b8877d2c9b",
+      "evidence": [
+        {
+          "quote": "DL-based online modeling of nonlinear ODE-beam cascaded systems: Application to flexible morphing aircraft",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5180,
+            "end_char": 5285
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Boundary output tracking of nonlinear parabolic differential systems via fuzzy PID control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-045f87b3b67d",
+      "evidence": [
+        {
+          "quote": "Boundary output tracking of nonlinear parabolic differential systems via fuzzy PID control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5341,
+            "end_char": 5430
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-USV cooperative oil spill source seeking via extremum seeking combined with information fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ab839102ca53",
+      "evidence": [
+        {
+          "quote": "Multi-USV cooperative oil spill source seeking via extremum seeking combined with information fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5500,
+            "end_char": 5599
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stochastic safety analysis and synthesis of a class of human-in-the-loop systems via reachable set computation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c596859b7fb0",
+      "evidence": [
+        {
+          "quote": "Stochastic safety analysis and synthesis of a class of human-in-the-loop systems via reachable set computation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5638,
+            "end_char": 5747
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safe RL-based adaptive cooperative game control of wing deformation and flight state tracking for morphing hypersonic vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f7ff559f3641",
+      "evidence": [
+        {
+          "quote": "Safe RL-based adaptive cooperative game control of wing deformation and flight state tracking for morphing hypersonic vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5788,
+            "end_char": 5913
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Imitation learning of linear noncooperative multiagent games: employing stability and equilibrium constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3311c98b06b7",
+      "evidence": [
+        {
+          "quote": "Imitation learning of linear noncooperative multiagent games: employing stability and equilibrium constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5978,
+            "end_char": 6086
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Intent inferring based human-machine game control strategy for spacecraft rendezvous",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d4b2d321b595",
+      "evidence": [
+        {
+          "quote": "Intent inferring based human-machine game control strategy for spacecraft rendezvous",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6130,
+            "end_char": 6213
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "cc-DRL:  A convex combined deep reinforcement learning flight control design of a morphing quadrotor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d6173e6dc0a",
+      "evidence": [
+        {
+          "quote": "cc-DRL:  A convex combined deep reinforcement learning flight control design of a morphing quadrotor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6260,
+            "end_char": 6359
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A finite-horizon inverse linear quadratic optimal control method for human-in-the-loop behavior learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9ad319c4bdb",
+      "evidence": [
+        {
+          "quote": "A finite-horizon inverse linear quadratic optimal control method for human-in-the-loop behavior learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6409,
+            "end_char": 6512
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatiotemporal adaptive fuzzy control for state profile tracking of nonlinear infinite-dimensional systems on a hypercube",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-921e048cf6fc",
+      "evidence": [
+        {
+          "quote": "Spatiotemporal adaptive fuzzy control for state profile tracking of nonlinear infinite-dimensional systems on a hypercube",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6559,
+            "end_char": 6679
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatiotemporal fuzzy-observer-based feedback control for networked parabolic PDE systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-95c717242be0",
+      "evidence": [
+        {
+          "quote": "Spatiotemporal fuzzy-observer-based feedback control for networked parabolic PDE systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6730,
+            "end_char": 6817
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Lyapunov-based stabilization mobile control design of linear parabolic PDE systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68411bc38c93",
+      "evidence": [
+        {
+          "quote": "Lyapunov-based stabilization mobile control design of linear parabolic PDE systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6885,
+            "end_char": 6966
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-robot plume source localization by distributed quantum-inspired guidance with formation behavior",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7adc357e5dbd",
+      "evidence": [
+        {
+          "quote": "Multi-robot plume source localization by distributed quantum-inspired guidance with formation behavior",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7047,
+            "end_char": 7148
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human cognitive learning in shared control via differential game with bounded rationality and incomplete information",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e14797926c7d",
+      "evidence": [
+        {
+          "quote": "Human cognitive learning in shared control via differential game with bounded rationality and incomplete information",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7187,
+            "end_char": 7302
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive inverse nonlinear optimal control based on finite-time concurrent learning and semidefinite programming",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f8644db679d",
+      "evidence": [
+        {
+          "quote": "Adaptive inverse nonlinear optimal control based on finite-time concurrent learning and semidefinite programming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7353,
+            "end_char": 7464
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Attitude takeover control of failed spacecraft via leader-followers adaptive cooperative game",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ee9ea149b08",
+      "evidence": [
+        {
+          "quote": "Attitude takeover control of failed spacecraft via leader-followers adaptive cooperative game",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7500,
+            "end_char": 7592
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cooperative control and performance evaluation of a linear MIMO parabolic spatiotemporal dynamic system on directed and switching topologies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-50bf32c1eb4c",
+      "evidence": [
+        {
+          "quote": "Cooperative control and performance evaluation of a linear MIMO parabolic spatiotemporal dynamic system on directed and switching topologies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7628,
+            "end_char": 7767
+          },
+          "version": "777bb896cd7d9ef4d729"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 29,
+    "listed": 29,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 24,
+        "extracted": 24
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

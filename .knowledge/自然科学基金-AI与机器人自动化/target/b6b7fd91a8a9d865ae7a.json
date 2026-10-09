@@ -2,15 +2,20 @@
   "doc_id": "b6b7fd91a8a9d865ae7a",
   "version": "6fae32537da9685b3e44",
   "source_hash": "4a38c4bd0062b2f2db921b5066456bf0329f49d4f2af5a871e2af22a39ae93ff",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:35.437881+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.257513+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,31 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-eecf7761e608",
-          "name": "自动驾驶预测型运动控制",
-          "desc": "高动态交通场景的毫秒级车规运动控制",
+          "id": "item-fcef5fe0c8ee",
+          "name": "运动控制是智能汽车的三大关键技术之一，直接决定了汽车的行驶性能。",
+          "desc": "运动控制是智能汽车的三大关键技术之一，直接决定了汽车的行驶性能。",
           "evidence": [
             {
-              "quote": "针对自动驾驶汽车的高动态轨迹跟踪功能，项目设计了汽车预测型运动控制器的高实时求解算法",
+              "quote": "运动控制是智能汽车的三大关键技术之一，直接决定了汽车的行驶性能。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2738,
-                "end_char": 2779
+                "start_char": 647,
+                "end_char": 678
               },
               "version": "6fae32537da9685b3e44"
             }
           ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
+        },
         {
-          "id": "item-33ba3709ff81",
-          "name": "在线求解实时性差",
-          "desc": "在线计算模式实时性差不满足毫秒级车规需求",
+          "id": "item-f8b10219c566",
+          "name": "然而现有优化求解过程通常采用在线计算模式，实时性差，不能满足毫秒级的车规级需求，这是制约高级别智能汽车产业化进程的瓶颈难",
+          "desc": "然而现有优化求解过程通常采用在线计算模式，实时性差，不能满足毫秒级的车规级需求，这是制约高级别智能汽车产业化进程的瓶颈难题。",
           "evidence": [
             {
               "quote": "然而现有优化求解过程通常采用在线计算模式，实时性差，不能满足毫秒级的车规级需求，这是制约高级别智能汽车产业化进程的瓶颈难题。",
@@ -59,40 +58,80 @@
       ]
     },
     {
-      "key": "技术",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-133b4bcfcc07",
-          "name": "时域分解并行计算",
-          "desc": "跨节点共识机制减少MPC迭代步数67.1%",
+          "id": "item-1f390c92b14b",
+          "name": ".3）针对有限时域最优控制问题难以数值求解的挑战，首次建立了一种全新的时域分拆型 Hamilton-Jacobi-Bel",
+          "desc": ".3）针对有限时域最优控制问题难以数值求解的挑战，首次建立了一种全新的时域分拆型 Hamilton-Jacobi-Bellman方程，实现了高实时避撞控制策略的准确求解与在线应用。",
           "evidence": [
             {
-              "quote": "提出了跨节点共识机制的时域分解方法，减少了MPC算法67.1%的迭代步数，提升了并行的迭代更新速度。",
+              "quote": ".3）针对有限时域最优控制问题难以数值求解的挑战，首次建立了一种全新的时域分拆型 Hamilton-Jacobi-Bellman方程，实现了高实时避撞控制策略的准确求解与在线应用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2987,
-                "end_char": 3036
+                "start_char": 3094,
+                "end_char": 3183
               },
               "version": "6fae32537da9685b3e44"
             }
           ]
         },
         {
-          "id": "item-c1823f0726ed",
-          "name": "时域分拆型HJB方程",
-          "desc": "首次建立全新HJB方程实现避撞策略准确求解",
+          "id": "item-eb27bdb4c92c",
+          "name": "重点围绕“预测问题时域分解”和“最优策略近似求解”两个关键科学问题开展研究，涵盖四项具体任务：1）自动驾驶汽车轨迹跟踪的",
+          "desc": "重点围绕“预测问题时域分解”和“最优策略近似求解”两个关键科学问题开展研究，涵盖四项具体任务：1）自动驾驶汽车轨迹跟踪的预测控制问题设计；",
           "evidence": [
             {
-              "quote": "首次建立了一种全新的时域分拆型 Hamilton-Jacobi-Bellman方程，实现了高实时避撞控制策略的准确求解与在线应用。",
+              "quote": "重点围绕“预测问题时域分解”和“最优策略近似求解”两个关键科学问题开展研究，涵盖四项具体任务：1）自动驾驶汽车轨迹跟踪的预测控制问题设计；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3119,
-                "end_char": 3183
+                "start_char": 852,
+                "end_char": 920
               },
               "version": "6fae32537da9685b3e44"
             }
           ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4314f91af2dc",
+          "name": "针对自动驾驶汽车的高动态轨迹跟踪功能，项目设计了汽车预测型运动控制器的高实时求解算法，具体包括：考虑安全性的预测型车辆运",
+          "desc": "针对自动驾驶汽车的高动态轨迹跟踪功能，项目设计了汽车预测型运动控制器的高实时求解算法，具体包括：考虑安全性的预测型车辆运动控制问题描述，预测控制问题的时域分解与并行计算，约束型近似动态规划的离线求解，以及实车控制器代码部署等工作，为自动驾驶高实时运动控制系统的设计提供了新的理论支撑与技术手段。",
+          "evidence": [
+            {
+              "quote": "针对自动驾驶汽车的高动态轨迹跟踪功能，项目设计了汽车预测型运动控制器的高实时求解算法，具体包括：考虑安全性的预测型车辆运动控制问题描述，预测控制问题的时域分解与并行计算，约束型近似动态规划的离线求解，以及实车控制器代码部署等工作，为自动驾驶高实时运动控制系统的设计提供了新的理论支撑与技术手段。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2738,
+                "end_char": 2884
+              },
+              "version": "6fae32537da9685b3e44"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-af6273679769",
+          "name": "针对问题的优化可采用强化学习方法，提出的适用于强化学习神经网络训练的RAD算法在基准测试中均展现出世界第一的性能。",
+          "desc": "针对问题的优化可采用强化学习方法，提出的适用于强化学习神经网络训练的RAD算法在基准测试中均展现出世界第一的性能。",
+          "evidence": [
+            {
+              "quote": "针对问题的优化可采用强化学习方法，提出的适用于强化学习神经网络训练的RAD算法在基准测试中均展现出世界第一的性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3037,
+                "end_char": 3093
+              },
+              "version": "6fae32537da9685b3e44"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +140,332 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e6c47b54c0f0",
-          "name": "RAD基准世界第一",
-          "desc": "适用于强化学习训练的RAD算法基准测试世界第一",
+          "id": "item-186667a58e53",
+          "name": "运动控制是智能汽车的三大关键技术之一，直接决定了汽车的行驶性能。",
+          "desc": "运动控制是智能汽车的三大关键技术之一，直接决定了汽车的行驶性能。",
           "evidence": [
             {
-              "quote": "提出的适用于强化学习神经网络训练的RAD算法在基准测试中均展现出世界第一的性能。",
+              "quote": "运动控制是智能汽车的三大关键技术之一，直接决定了汽车的行驶性能。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3054,
-                "end_char": 3093
+                "start_char": 647,
+                "end_char": 678
               },
               "version": "6fae32537da9685b3e44"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-b3fe7eb3a532",
-          "name": "仓储物流平台落地",
-          "desc": "极智嘉移动平台攻关支撑全无人移动平台商业化",
+          "id": "item-b89cd62a314a",
+          "name": "针对自动驾驶汽车的高动态轨迹跟踪功能，项目设计了汽车预测型运动控制器的高实时求解算法，具体包括：考虑安全性的预测型车辆运",
+          "desc": "针对自动驾驶汽车的高动态轨迹跟踪功能，项目设计了汽车预测型运动控制器的高实时求解算法，具体包括：考虑安全性的预测型车辆运动控制问题描述，预测控制问题的时域分解与并行计算，约束型近似动态规划的离线求解，以及实车控制器代码部署等工作，为自动驾驶高实时运动控制系统的设计提供了新的理论支撑与技术手段。",
           "evidence": [
             {
-              "quote": "所开发的智能汽车运动控制技术，通过极智嘉移动平台关键技术攻关，为新一代仓储物流全无人移动平台的产品开发与商业化应用提供了技术保障。",
+              "quote": "针对自动驾驶汽车的高动态轨迹跟踪功能，项目设计了汽车预测型运动控制器的高实时求解算法，具体包括：考虑安全性的预测型车辆运动控制问题描述，预测控制问题的时域分解与并行计算，约束型近似动态规划的离线求解，以及实车控制器代码部署等工作，为自动驾驶高实时运动控制系统的设计提供了新的理论支撑与技术手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3184,
-                "end_char": 3248
+                "start_char": 2738,
+                "end_char": 2884
               },
               "version": "6fae32537da9685b3e44"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-eecf7761e608"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-33ba3709ff81"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "分布式协同控制及优化理论方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c60db910270",
+      "evidence": [
+        {
+          "quote": "分布式协同控制及优化理论方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3404,
+            "end_char": 3417
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-33ba3709ff81"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-133b4bcfcc07"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "高等学校科学研究优秀成果奖(科学技术)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f80e5fba6dd",
+      "evidence": [
+        {
+          "quote": "高等学校科学研究优秀成果奖(科学技术)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3444,
+            "end_char": 3462
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-33ba3709ff81"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c1823f0726ed"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种交通参与者运行轨迹时空分布包络的预测计算方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-206227b19f86",
+      "evidence": [
+        {
+          "quote": "一种交通参与者运行轨迹时空分布包络的预测计算方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3478,
+            "end_char": 3501
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-133b4bcfcc07"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e6c47b54c0f0"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Applications of Distributional Soft Actor-Critic in Real-world Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0dec53fc533a",
+      "evidence": [
+        {
+          "quote": "Applications of Distributional Soft Actor-Critic in Real-world Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3533,
+            "end_char": 3613
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c1823f0726ed"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b3fe7eb3a532"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种适用于智能汽车的结构化道路场景生成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-223618217c76",
+      "evidence": [
+        {
+          "quote": "一种适用于智能汽车的结构化道路场景生成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3698,
+            "end_char": 3718
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种智能决策算法与仿真平台的联合互锁调用方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-da6f0b0959e7",
+      "evidence": [
+        {
+          "quote": "一种智能决策算法与仿真平台的联合互锁调用方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3764,
+            "end_char": 3785
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gradient Correction for Asynchronous Stochastic Gradient Descent in Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-59a5cd8d013a",
+      "evidence": [
+        {
+          "quote": "Gradient Correction for Asynchronous Stochastic Gradient Descent in Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3833,
+            "end_char": 3922
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "自动驾驶汽车的集成式决控方法、装置及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dfb884e34ace",
+      "evidence": [
+        {
+          "quote": "自动驾驶汽车的集成式决控方法、装置及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4000,
+            "end_char": 4021
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "车辆预测巡航控制方法、装置、电子设备和存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df4942419d47",
+      "evidence": [
+        {
+          "quote": "车辆预测巡航控制方法、装置、电子设备和存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4055,
+            "end_char": 4077
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Policy Iteration Based Approximate Dynamic Programming Toward Autonomous Driving in Constrained Dynamic Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0b59c99325d",
+      "evidence": [
+        {
+          "quote": "Policy Iteration Based Approximate Dynamic Programming Toward Autonomous Driving in Constrained Dynamic Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4119,
+            "end_char": 4233
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Approximate Optimal Filter Design for Vehicle System through Actor-Critic Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5461dd432ee",
+      "evidence": [
+        {
+          "quote": "Approximate Optimal Filter Design for Vehicle System through Actor-Critic Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4329,
+            "end_char": 4424
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "自动驾驶汽车的自车状态近似最优估计方法、装置及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ac00900df22",
+      "evidence": [
+        {
+          "quote": "自动驾驶汽车的自车状态近似最优估计方法、装置及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4505,
+            "end_char": 4529
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safe Model-Based Reinforcement Learning With an Uncertainty-Aware Reachability Certificate",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-34e9d57fa101",
+      "evidence": [
+        {
+          "quote": "Safe Model-Based Reinforcement Learning With an Uncertainty-Aware Reachability Certificate",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4572,
+            "end_char": 4661
+          },
+          "version": "6fae32537da9685b3e44"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

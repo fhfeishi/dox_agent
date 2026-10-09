@@ -2,15 +2,20 @@
   "doc_id": "8991d6f5cbdcc3c2e386",
   "version": "c30d8aa7572663966f8e",
   "source_hash": "24f784e4c3f727413cc961b332d57c2495069e5c093485814d2308563c3b51a9",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:07:58.728949+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.751462+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6a6ffb417b51",
-          "name": "全周期下肢康复训练",
-          "desc": "下肢康复机器人辅助脑卒中等患者康复训练，减轻治疗师负担",
+          "id": "item-523fdf66a151",
+          "name": "本项目拟通过研究下肢康复机器人的人机协同交互控制方法与主动康复训练策略，探索全周期下肢康复机器人自然柔顺地完成个性化训练",
+          "desc": "本项目拟通过研究下肢康复机器人的人机协同交互控制方法与主动康复训练策略，探索全周期下肢康复机器人自然柔顺地完成个性化训练任务的新原理、新方法和新策略。",
           "evidence": [
             {
-              "quote": "下肢康复机器人辅助患者进行康复训练能够减轻治疗师体力负担，使得治疗师可以将更多精力放在康复处方的个性化制定和调整中，可有效提升康复效果",
+              "quote": "本项目拟通过研究下肢康复机器人的人机协同交互控制方法与主动康复训练策略，探索全周期下肢康复机器人自然柔顺地完成个性化训练任务的新原理、新方法和新策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2512,
-                "end_char": 2578
+                "start_char": 647,
+                "end_char": 721
               },
               "version": "c30d8aa7572663966f8e"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-c9903e5624bc",
-          "name": "人机交互柔顺性与适应性不足",
-          "desc": "需提高下肢康复机器人的主动柔顺性与被试适应性",
-          "evidence": [
-            {
-              "quote": "本项目研究了下肢康复机器人人机混合系统中人体运动意图识别、人机交互控制方法、主动康复训练策略等内容，并进行了相应的仿真与实验验证，以提高下肢康复机器人的主动柔顺性与被试适应性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2593,
-                "end_char": 2679
-              },
-              "version": "c30d8aa7572663966f8e"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-59fd4d835a47",
-          "name": "人机混合系统动力学辨识",
-          "desc": "综合考虑关节耦合与粘滞力的摩擦力模型，改进粒子群与最小二乘辨识并估计主动力矩",
+          "id": "item-d7acc789e674",
+          "name": "拟通过研究人机混合系统的人体运动意图精准识别、具备主动柔顺性的人机交互触觉接口、参数不确定动态系统的自适应控制律设计、个",
+          "desc": "拟通过研究人机混合系统的人体运动意图精准识别、具备主动柔顺性的人机交互触觉接口、参数不确定动态系统的自适应控制律设计、个性化在线实时按需辅助的主动康复策略等关键科学和技术问题，并进行关键技术的实验验证，提高全周期下肢康复机器人的主动柔顺性与被试适应性，为全周期下肢康复机器人技术的创新发展与应用提供理论方法支撑。",
           "evidence": [
             {
-              "quote": "提出了一种综合考虑关节耦合因素与粘滞力的摩擦力模型，利用改进的粒子群优化算法和最小二乘法对动力学模型参数进行辨识，进而估计出了康复训练过程中人体下肢主动力矩",
+              "quote": "拟通过研究人机混合系统的人体运动意图精准识别、具备主动柔顺性的人机交互触觉接口、参数不确定动态系统的自适应控制律设计、个性化在线实时按需辅助的主动康复策略等关键科学和技术问题，并进行关键技术的实验验证，提高全周期下肢康复机器人的主动柔顺性与被试适应性，为全周期下肢康复机器人技术的创新发展与应用提供理论方法支撑。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2719,
-                "end_char": 2796
+                "start_char": 722,
+                "end_char": 877
               },
               "version": "c30d8aa7572663966f8e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e76b43f1925d",
-          "name": "模糊变阻抗主动柔顺交互",
-          "desc": "基于模糊变阻抗调节器的主动柔顺交互控制方法",
+          "id": "item-87d9b3d4e665",
+          "name": "以实现人体运动意图精准识别为目标，研究了人机混合系统动力学模型精确建模方法，提出了一种综合考虑关节耦合因素与粘滞力的摩擦",
+          "desc": "以实现人体运动意图精准识别为目标，研究了人机混合系统动力学模型精确建模方法，提出了一种综合考虑关节耦合因素与粘滞力的摩擦力模型，利用改进的粒子群优化算法和最小二乘法对动力学模型参数进行辨识，进而估计出了康复训练过程中人体下肢主动力矩。",
           "evidence": [
             {
-              "quote": "提出了一种基于模糊变阻抗调节器的下肢康复机器人主动柔顺交互控制方法，构建了自然舒适的康复训练环境",
+              "quote": "以实现人体运动意图精准识别为目标，研究了人机混合系统动力学模型精确建模方法，提出了一种综合考虑关节耦合因素与粘滞力的摩擦力模型，利用改进的粒子群优化算法和最小二乘法对动力学模型参数进行辨识，进而估计出了康复训练过程中人体下肢主动力矩。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2821,
-                "end_char": 2868
+                "start_char": 2681,
+                "end_char": 2797
               },
               "version": "c30d8aa7572663966f8e"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,592 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5dbe2820300c",
-          "name": "速度自适应主动康复策略",
-          "desc": "基于人机交互力和阻尼控制的速度自适应方法，最大化激励患者主动参与",
+          "id": "item-1853fa92dadb",
+          "name": "本项目拟通过研究下肢康复机器人的人机协同交互控制方法与主动康复训练策略，探索全周期下肢康复机器人自然柔顺地完成个性化训练",
+          "desc": "本项目拟通过研究下肢康复机器人的人机协同交互控制方法与主动康复训练策略，探索全周期下肢康复机器人自然柔顺地完成个性化训练任务的新原理、新方法和新策略。",
           "evidence": [
             {
-              "quote": "提出了一种基于人机交互力和阻尼控制的下肢康复机器人速度自适应方法及相应的主动康复训练策略，最大化激励了患者的主动参与，提高了康复训练效果",
+              "quote": "本项目拟通过研究下肢康复机器人的人机协同交互控制方法与主动康复训练策略，探索全周期下肢康复机器人自然柔顺地完成个性化训练任务的新原理、新方法和新策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2870,
-                "end_char": 2937
+                "start_char": 647,
+                "end_char": 721
               },
               "version": "c30d8aa7572663966f8e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-2f11a2a1fca8",
+          "name": "近年来，由脑卒中等急性脑血管疾病造成的偏瘫与截瘫患者数量与日俱增，严重影响患者的肢体功能与生活信心。",
+          "desc": "近年来，由脑卒中等急性脑血管疾病造成的偏瘫与截瘫患者数量与日俱增，严重影响患者的肢体功能与生活信心。",
+          "evidence": [
+            {
+              "quote": "近年来，由脑卒中等急性脑血管疾病造成的偏瘫与截瘫患者数量与日俱增，严重影响患者的肢体功能与生活信心。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2462,
+                "end_char": 2511
+              },
+              "version": "c30d8aa7572663966f8e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6a6ffb417b51"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c9903e5624bc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-mode adaptive control strategy for a lower limb rehabilitation robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c79458d4639",
+      "evidence": [
+        {
+          "quote": "Multi-mode adaptive control strategy for a lower limb rehabilitation robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3040,
+            "end_char": 3113
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c9903e5624bc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-59fd4d835a47"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "主动自适应下肢康复机器人关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-83327e80ab93",
+      "evidence": [
+        {
+          "quote": "主动自适应下肢康复机器人关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3200,
+            "end_char": 3218
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c9903e5624bc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e76b43f1925d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Adaptive Time-Varying Impedance Controller for Manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0109c5ed3614",
+      "evidence": [
+        {
+          "quote": "An Adaptive Time-Varying Impedance Controller for Manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3252,
+            "end_char": 3313
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e76b43f1925d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5dbe2820300c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种高便携的运动相容膝关节外骨骼机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5ff7c4fa7fe",
+      "evidence": [
+        {
+          "quote": "一种高便携的运动相容膝关节外骨骼机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3442,
+            "end_char": 3460
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-59fd4d835a47"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5dbe2820300c"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Adaptive Estimation of Motion Intention for Human-Robot Hybrid System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-88c30067f7d7",
+      "evidence": [
+        {
+          "quote": "Adaptive Estimation of Motion Intention for Human-Robot Hybrid System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3487,
+            "end_char": 3555
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Kalman filter and moving average based human-robot interaction torque estimation for a lower limb rehabilitation robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1493c87f35a",
+      "evidence": [
+        {
+          "quote": "Kalman filter and moving average based human-robot interaction torque estimation for a lower limb rehabilitation robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3596,
+            "end_char": 3713
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "并联骨折复位装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3875632562f2",
+      "evidence": [
+        {
+          "quote": "并联骨折复位装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3805,
+            "end_char": 3812
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and analysis of a knee exoskeleton with self-alignment capability",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-97263ca2dd25",
+      "evidence": [
+        {
+          "quote": "Design and analysis of a knee exoskeleton with self-alignment capability",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3859,
+            "end_char": 3930
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Modeling of a Spring-Based Continuum Manipulator for Minimally Invasive Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-731a89e17d97",
+      "evidence": [
+        {
+          "quote": "Design and Modeling of a Spring-Based Continuum Manipulator for Minimally Invasive Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4047,
+            "end_char": 4136
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pythagorean-Hodograph curves based trajectory planning for pick-and-place operation of Delta robot with prescribed pick and place heights",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f7b13f297cd5",
+      "evidence": [
+        {
+          "quote": "Pythagorean-Hodograph curves based trajectory planning for pick-and-place operation of Delta robot with prescribed pick and place heights",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4212,
+            "end_char": 4348
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Design and Modeling of a Spring-Based Continuum Manipulator for Minimally Invasive Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a1b7168ab12",
+      "evidence": [
+        {
+          "quote": "Design and Modeling of a Spring-Based Continuum Manipulator for Minimally Invasive Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4047,
+            "end_char": 4136
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "冗余并联长骨骨折复位机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-820597c51056",
+      "evidence": [
+        {
+          "quote": "冗余并联长骨骨折复位机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4568,
+            "end_char": 4580
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "并联Delta机器人不同拾放高度的轨迹规划方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-accce382d8e7",
+      "evidence": [
+        {
+          "quote": "并联Delta机器人不同拾放高度的轨迹规划方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4614,
+            "end_char": 4639
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analysis of a novel underactuated robotic finger",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c194edcccf3a",
+      "evidence": [
+        {
+          "quote": "Analysis of a novel underactuated robotic finger",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4690,
+            "end_char": 4737
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于变阻抗控制的冗余驱动并联机器人多目标内力优化",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8adfbdb8e53d",
+      "evidence": [
+        {
+          "quote": "基于变阻抗控制的冗余驱动并联机器人多目标内力优化",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4819,
+            "end_char": 4842
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive human-robot interaction torque estimation with high accuracy and strong tracking ability for a lower limb rehabilitation robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16077e088c47",
+      "evidence": [
+        {
+          "quote": "Adaptive human-robot interaction torque estimation with high accuracy and strong tracking ability for a lower limb rehabilitation robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4879,
+            "end_char": 5013
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A continuous contact force model for the impact analysis of hard and soft materials",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de74761c84be",
+      "evidence": [
+        {
+          "quote": "A continuous contact force model for the impact analysis of hard and soft materials",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5110,
+            "end_char": 5192
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Kinematic analysis of three redundant parallel mechanisms for fracture reduction surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d69e18bd3f8",
+      "evidence": [
+        {
+          "quote": "Kinematic analysis of three redundant parallel mechanisms for fracture reduction surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5277,
+            "end_char": 5364
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "攀爬机器人钩刺变体机构的时变阻抗控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-72ba4ff971ce",
+      "evidence": [
+        {
+          "quote": "攀爬机器人钩刺变体机构的时变阻抗控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5434,
+            "end_char": 5451
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "下肢康复机器人的主动柔顺自适应交互控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c39c613f9ea",
+      "evidence": [
+        {
+          "quote": "下肢康复机器人的主动柔顺自适应交互控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5486,
+            "end_char": 5504
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design, analysis, and optimization of a kinematically redundant parallel robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cc9deaec5ac1",
+      "evidence": [
+        {
+          "quote": "Design, analysis, and optimization of a kinematically redundant parallel robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5546,
+            "end_char": 5623
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种二自由度运动辅助的膝关节外骨骼机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dfe9727e0c70",
+      "evidence": [
+        {
+          "quote": "一种二自由度运动辅助的膝关节外骨骼机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5703,
+            "end_char": 5722
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Finite-time observer-based variable impedance control of cable-driven continuum manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3dd7fcb2ec97",
+      "evidence": [
+        {
+          "quote": "Finite-time observer-based variable impedance control of cable-driven continuum manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5756,
+            "end_char": 5847
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于下肢助行的外骨骼机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9abf1f19665a",
+      "evidence": [
+        {
+          "quote": "一种基于下肢助行的外骨骼机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5946,
+            "end_char": 5960
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种小型化轻量化的变刚度柔性驱动器及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5eeef6d88864",
+      "evidence": [
+        {
+          "quote": "一种小型化轻量化的变刚度柔性驱动器及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5994,
+            "end_char": 6014
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and analysis of a novel redundant parallel mechanism for long bone fracture reduction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0f84eb5b9c0",
+      "evidence": [
+        {
+          "quote": "Design and analysis of a novel redundant parallel mechanism for long bone fracture reduction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6049,
+            "end_char": 6140
+          },
+          "version": "c30d8aa7572663966f8e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 26,
+    "listed": 26,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

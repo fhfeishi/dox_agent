@@ -2,15 +2,20 @@
   "doc_id": "5a6029fb181c0b406d52",
   "version": "06e5595aed7fddef753f",
   "source_hash": "d15fcd460c43ac5ca521908d1c7940ce1bec825827fdd15389f53e937918164d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:52.820917+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.327506+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c7663f00b18a",
-          "name": "欠驱动刚柔机械臂控制",
-          "desc": "融合欠驱动、刚性与柔性三方面优势的现代机器人前沿方向",
+          "id": "item-1d57f6ccbd27",
+          "name": "欠驱动柔性机器人满足现代机器人轻质、高速、低能耗的发展需求，在工业制造、航天航空等领域具有广阔的应用前景。",
+          "desc": "欠驱动柔性机器人满足现代机器人轻质、高速、低能耗的发展需求，在工业制造、航天航空等领域具有广阔的应用前景。",
           "evidence": [
             {
-              "quote": "欠驱动刚柔机械臂融合了欠驱动、刚性与柔性三方面的优势，是现代机器人技术发展的前沿研究方向",
+              "quote": "欠驱动柔性机器人满足现代机器人轻质、高速、低能耗的发展需求，在工业制造、航天航空等领域具有广阔的应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2775,
-                "end_char": 2818
+                "start_char": 661,
+                "end_char": 713
               },
               "version": "06e5595aed7fddef753f"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ce30f9e34fa6",
-          "name": "非完整约束与刚柔耦合",
-          "desc": "被动关节非完整约束特性与大范围刚性运动和柔性振动耦合",
-          "evidence": [
-            {
-              "quote": "柔性构件的引入以及被动关节的存在，使得该系统不仅呈现出主动关节与被动关节之间的非完整约束特性，还表现出复杂的大范围刚性运动与自身柔性振动相互耦合的动力学特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2823,
-                "end_char": 2900
-              },
-              "version": "06e5595aed7fddef753f"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-3d92bcacc0ae",
-          "name": "智能优化轨迹规划",
-          "desc": "揭示欠驱动约束满足与弹性振动抑制的轨迹规划机理，智能优化求解最优运动轨迹",
+          "id": "item-da108eaff320",
+          "name": "运动规划方面，从系统动力学方程出发，揭示了在主动关节驱动下，欠驱动刚柔机械臂实现欠驱动约束满足与弹性振动抑制的轨迹规划机",
+          "desc": "运动规划方面，从系统动力学方程出发，揭示了在主动关节驱动下，欠驱动刚柔机械臂实现欠驱动约束满足与弹性振动抑制的轨迹规划机理，设计了综合被动关节变量与柔性连杆模态坐标变量的性能指标，并利用智能优化算法，优化求解出了主动关节的最优运动轨迹，从而提出了一种基于智能优化的轨迹规划方法。",
           "evidence": [
             {
-              "quote": "提出了一种基于智能优化的轨迹规划方法",
+              "quote": "运动规划方面，从系统动力学方程出发，揭示了在主动关节驱动下，欠驱动刚柔机械臂实现欠驱动约束满足与弹性振动抑制的轨迹规划机理，设计了综合被动关节变量与柔性连杆模态坐标变量的性能指标，并利用智能优化算法，优化求解出了主动关节的最优运动轨迹，从而提出了一种基于智能优化的轨迹规划方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3222,
-                "end_char": 3239
+                "start_char": 3102,
+                "end_char": 3240
               },
               "version": "06e5595aed7fddef753f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-360b5dd54fb2",
-          "name": "自适应神经网络观测器抗扰",
-          "desc": "单参数神经网络与扩张状态观测器设计的干扰补偿控制策略",
+          "id": "item-0d3f4f08a4da",
+          "name": "最后，为应对模型不确定性及未知外部干扰的影响，设计了单参数神经网络与扩张状态观测器，提出了一种基于自适应神经网络观测器的",
+          "desc": "最后，为应对模型不确定性及未知外部干扰的影响，设计了单参数神经网络与扩张状态观测器，提出了一种基于自适应神经网络观测器的干扰补偿控制策略，显著提升了控制系统的鲁棒性。",
           "evidence": [
             {
-              "quote": "提出了一种基于自适应神经网络观测器的干扰补偿控制策略",
+              "quote": "最后，为应对模型不确定性及未知外部干扰的影响，设计了单参数神经网络与扩张状态观测器，提出了一种基于自适应神经网络观测器的干扰补偿控制策略，显著提升了控制系统的鲁棒性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3382,
-                "end_char": 3407
+                "start_char": 3340,
+                "end_char": 3422
               },
               "version": "06e5595aed7fddef753f"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,408 @@
       "state": "has",
       "items": [
         {
-          "id": "item-910dc10aa1dc",
-          "name": "被动关节稳定与振动抑制",
-          "desc": "存在不确定性时仅靠主动关节驱动即可实现被动关节稳定与振动抑制",
+          "id": "item-032469474702",
+          "name": "欠驱动柔性机器人满足现代机器人轻质、高速、低能耗的发展需求，在工业制造、航天航空等领域具有广阔的应用前景。",
+          "desc": "欠驱动柔性机器人满足现代机器人轻质、高速、低能耗的发展需求，在工业制造、航天航空等领域具有广阔的应用前景。",
           "evidence": [
             {
-              "quote": "使得机械臂在存在不确定性的情况下，仅依靠主动关节驱动，即可同时实现被动关节的稳定运动与柔性连杆振动的有效抑制",
+              "quote": "欠驱动柔性机器人满足现代机器人轻质、高速、低能耗的发展需求，在工业制造、航天航空等领域具有广阔的应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3526,
-                "end_char": 3579
+                "start_char": 661,
+                "end_char": 713
               },
               "version": "06e5595aed7fddef753f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-b0681f2bc61f",
-          "name": "实验平台验证",
-          "desc": "搭建欠驱动柔性机器人实验平台并完成仿真与物理实验验证",
+          "id": "item-5d389a2f546d",
+          "name": "欠驱动刚柔机械臂融合了欠驱动、刚性与柔性三方面的优势，是现代机器人技术发展的前沿研究方向。",
+          "desc": "欠驱动刚柔机械臂融合了欠驱动、刚性与柔性三方面的优势，是现代机器人技术发展的前沿研究方向。",
           "evidence": [
             {
-              "quote": "项目还搭建了欠驱动柔性机器人实验平台，通过仿真与物理实验验证了所提方法的可行性与实际应用效果",
+              "quote": "欠驱动刚柔机械臂融合了欠驱动、刚性与柔性三方面的优势，是现代机器人技术发展的前沿研究方向。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3423,
-                "end_char": 3468
+                "start_char": 2775,
+                "end_char": 2819
               },
               "version": "06e5595aed7fddef753f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c7663f00b18a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ce30f9e34fa6"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Command Filtered Backstepping Control of a Two-Link Flexible Joint Manipulator with Uncertainties Based on Reduced-Order ESO",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dab1f075bf94",
+      "evidence": [
+        {
+          "quote": "Command Filtered Backstepping Control of a Two-Link Flexible Joint Manipulator with Uncertainties Based on Reduced-Order ESO",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3637,
+            "end_char": 3760
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ce30f9e34fa6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3d92bcacc0ae"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Model-Free Output Feedback Control Approach for the Stabilization of Underactuated TORA System with Input Saturation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f6fec7555921",
+      "evidence": [
+        {
+          "quote": "A Model-Free Output Feedback Control Approach for the Stabilization of Underactuated TORA System with Input Saturation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3834,
+            "end_char": 3951
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ce30f9e34fa6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-360b5dd54fb2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neuro-adaptive command-filtered backstepping control of uncertain flexible-joint manipulators with input saturation via output",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f068c16b28c2",
+      "evidence": [
+        {
+          "quote": "Neuro-adaptive command-filtered backstepping control of uncertain flexible-joint manipulators with input saturation via output",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4026,
+            "end_char": 4151
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3d92bcacc0ae"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-910dc10aa1dc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "机器人动量广义比例积分观测器设计与外力检测",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-91ee94d89ce5",
+      "evidence": [
+        {
+          "quote": "机器人动量广义比例积分观测器设计与外力检测",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4229,
+            "end_char": 4249
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-360b5dd54fb2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b0681f2bc61f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "不确定电液伺服系统的时变输出约束自适应滤波控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-36ac2c0c7314",
+      "evidence": [
+        {
+          "quote": "不确定电液伺服系统的时变输出约束自适应滤波控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4282,
+            "end_char": 4304
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "平面欠驱动柔性机械臂的PSO轨迹优化与自抗扰振动抑制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-122eb4a50786",
+      "evidence": [
+        {
+          "quote": "平面欠驱动柔性机械臂的PSO轨迹优化与自抗扰振动抑制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4336,
+            "end_char": 4361
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-Assisted Reduced-Order ESO Based Command Filtered Tracking Control of Flexible-Joint Manipulators with Matched and Mismatched Disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dca761de5022",
+      "evidence": [
+        {
+          "quote": "Model-Assisted Reduced-Order ESO Based Command Filtered Tracking Control of Flexible-Joint Manipulators with Matched and Mismatched Disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4393,
+            "end_char": 4536
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无力传感器的机器人外力检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ac8bdcf53046",
+      "evidence": [
+        {
+          "quote": "一种无力传感器的机器人外力检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4622,
+            "end_char": 4638
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于梅尔倒谱与多层感知机的电鱼信号检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-087fcd8a1f26",
+      "evidence": [
+        {
+          "quote": "一种基于梅尔倒谱与多层感知机的电鱼信号检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4671,
+            "end_char": 4693
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于生物启发模型的欠驱动水平TORA系统的有界输入镇定控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ab6c65a7937e",
+      "evidence": [
+        {
+          "quote": "基于生物启发模型的欠驱动水平TORA系统的有界输入镇定控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4744,
+            "end_char": 4772
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Position Control for a Planar Underactuated Manipulator Based on Model Reduction and Energy Attenuation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10b0020271b3",
+      "evidence": [
+        {
+          "quote": "Position Control for a Planar Underactuated Manipulator Based on Model Reduction and Energy Attenuation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4805,
+            "end_char": 4907
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RLESO-Based Command Filtered Backstepping Tracking Control for Underactuated Hovercrafts with Disturbances and Position Error Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4c1f3ddea2b",
+      "evidence": [
+        {
+          "quote": "RLESO-Based Command Filtered Backstepping Tracking Control for Underactuated Hovercrafts with Disturbances and Position Error Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4976,
+            "end_char": 5112
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于RLESO的气垫船滤波反步轨迹跟踪控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-658f2199dc49",
+      "evidence": [
+        {
+          "quote": "基于RLESO的气垫船滤波反步轨迹跟踪控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5166,
+            "end_char": 5188
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "快速刀具伺服系统位置域重复控制设计及其数字实现",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8e0ff57fbedf",
+      "evidence": [
+        {
+          "quote": "快速刀具伺服系统位置域重复控制设计及其数字实现",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5215,
+            "end_char": 5237
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Speed Sensorless Control Based on Adaptive Fuzzy Double Compound Manifold",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a69ad0f1744a",
+      "evidence": [
+        {
+          "quote": "Research on Speed Sensorless Control Based on Adaptive Fuzzy Double Compound Manifold",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5270,
+            "end_char": 5354
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Compensation Function Observer-Based Backstepping Sliding-Mode Control of Uncertain Electro-Hydraulic Servo System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d350a4d3f94",
+      "evidence": [
+        {
+          "quote": "Compensation Function Observer-Based Backstepping Sliding-Mode Control of Uncertain Electro-Hydraulic Servo System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5433,
+            "end_char": 5546
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Gradient Dynamics-Based Singularity Avoidance Method for Backstepping Control of Underactuated TORA Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9869b421ed09",
+      "evidence": [
+        {
+          "quote": "A Gradient Dynamics-Based Singularity Avoidance Method for Backstepping Control of Underactuated TORA Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5625,
+            "end_char": 5733
+          },
+          "version": "06e5595aed7fddef753f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

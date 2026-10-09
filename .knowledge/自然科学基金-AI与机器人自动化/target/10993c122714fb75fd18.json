@@ -2,15 +2,20 @@
   "doc_id": "10993c122714fb75fd18",
   "version": "19dcfc5125f32b916988",
   "source_hash": "55af92123682bbfa65317c86d137ecc3c75ded63ee24da68aee6ac057169b9f5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:11.462844+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.641720+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cd824443407d",
-          "name": "狭小空间超冗余机械臂",
-          "desc": "空间站维护、飞机装配、手术机器人等领域应用",
+          "id": "item-744b0bca6b72",
+          "name": "面向狭小空间作业的机械臂为获得超冗余自由度，需要引入多套驱动电机和复杂的减速系统，导致机械臂结构复杂、体积大和鲁棒性差。",
+          "desc": "面向狭小空间作业的机械臂为获得超冗余自由度，需要引入多套驱动电机和复杂的减速系统，导致机械臂结构复杂、体积大和鲁棒性差。",
+          "evidence": [
+            {
+              "quote": "面向狭小空间作业的机械臂为获得超冗余自由度，需要引入多套驱动电机和复杂的减速系统，导致机械臂结构复杂、体积大和鲁棒性差。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 672,
+                "end_char": 731
+              },
+              "version": "19dcfc5125f32b916988"
+            }
+          ]
+        },
+        {
+          "id": "item-ed0cbc3ac4db",
+          "name": "超冗余度机械臂作为串联连接的机械臂具有运动灵活度高、回避障碍、克服奇异和运动空间大等优点，能够在狭小有限以及非结构化的环",
+          "desc": "超冗余度机械臂作为串联连接的机械臂具有运动灵活度高、回避障碍、克服奇异和运动空间大等优点，能够在狭小有限以及非结构化的环境中执行任务，在空间站维护、飞机装配和手术机器人等领域有巨大应用前景。",
           "evidence": [
             {
               "quote": "超冗余度机械臂作为串联连接的机械臂具有运动灵活度高、回避障碍、克服奇异和运动空间大等优点，能够在狭小有限以及非结构化的环境中执行任务，在空间站维护、飞机装配和手术机器人等领域有巨大应用前景。",
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-dfd3f004d725",
-          "name": "多电机减速系统臃肿",
-          "desc": "多套驱动电机与复杂减速系统致结构复杂体积大鲁棒性差",
-          "evidence": [
-            {
-              "quote": "面向狭小空间作业的机械臂为获得超冗余自由度，需要引入多套驱动电机和复杂的减速系统，导致机械臂的结构复杂、体积大和鲁棒性差。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2893,
-                "end_char": 2953
-              },
-              "version": "19dcfc5125f32b916988"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-d0e0465716aa",
-          "name": "一套压电驱动器两自由度",
-          "desc": "压电驱动器沿臂运行并在指定关节旋转实现致动",
+          "id": "item-21df2de8b21e",
+          "name": "研究基于神经网络的反步控制理论，获得压电驱动器快速精密定位的控制方法，为实现超冗余度机械臂的狭小空间作业控制奠定基础。",
+          "desc": "研究基于神经网络的反步控制理论，获得压电驱动器快速精密定位的控制方法，为实现超冗余度机械臂的狭小空间作业控制奠定基础。",
           "evidence": [
             {
-              "quote": "提出了直驱式两自由度压电驱动器实现超冗余度机械臂运动的整体规划方案：压电驱动器的一个自由度使其能够沿机械臂运行，压电驱动器运行到指定关节处旋转机械臂一定的角度；仅使用一套压电驱动器实现超冗余度机械臂的运动。",
+              "quote": "研究基于神经网络的反步控制理论，获得压电驱动器快速精密定位的控制方法，为实现超冗余度机械臂的狭小空间作业控制奠定基础。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3089,
-                "end_char": 3191
+                "start_char": 953,
+                "end_char": 1011
               },
               "version": "19dcfc5125f32b916988"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-dfcfbee529b7",
-          "name": "能量法机电耦合建模",
-          "desc": "拉格朗日能量法建立电能到机械能传递模型",
+          "id": "item-e6cc748d2883",
+          "name": "智能材料驱动;压电驱动;神经网络反步控制;融合设计;超冗余度机械臂",
+          "desc": "智能材料驱动;压电驱动;神经网络反步控制;融合设计;超冗余度机械臂",
           "evidence": [
             {
-              "quote": "基于拉格朗日方程的能量法，建立了压电驱动器机电耦合环节电能到机械能之间的能量传递模型，研究驱动器的共振频率、机电耦合效率等动力学特性，从本质上提升压电驱动器的驱动效能。",
+              "quote": "智能材料驱动;压电驱动;神经网络反步控制;融合设计;超冗余度机械臂",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3287,
-                "end_char": 3370
+                "start_char": 2709,
+                "end_char": 2741
               },
               "version": "19dcfc5125f32b916988"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,248 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ab0c72e3ff5b",
-          "name": "空载394.96mm/s",
-          "desc": "纵振模式最大空载速度394.96mm/s，30N负载257.01mm/s",
+          "id": "item-56ec2840a05a",
+          "name": "面向狭小空间作业的机械臂为获得超冗余自由度，需要引入多套驱动电机和复杂的减速系统，导致机械臂结构复杂、体积大和鲁棒性差。",
+          "desc": "面向狭小空间作业的机械臂为获得超冗余自由度，需要引入多套驱动电机和复杂的减速系统，导致机械臂结构复杂、体积大和鲁棒性差。",
           "evidence": [
             {
-              "quote": "当压电驱动器在纵振模式下工作时，最大空载速度为394.96mm/s；在30N的负载下，输出速度为257.01mm/s。",
+              "quote": "面向狭小空间作业的机械臂为获得超冗余自由度，需要引入多套驱动电机和复杂的减速系统，导致机械臂结构复杂、体积大和鲁棒性差。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3446,
-                "end_char": 3504
+                "start_char": 672,
+                "end_char": 731
               },
               "version": "19dcfc5125f32b916988"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-9077a6fde518",
-          "name": "Quanser闭环控制平台",
-          "desc": "搭建闭环平台实现快速精密驱动与机械特性分析",
+          "id": "item-acccbcce6485",
+          "name": "超冗余度机械臂作为串联连接的机械臂具有运动灵活度高、回避障碍、克服奇异和运动空间大等优点，能够在狭小有限以及非结构化的环",
+          "desc": "超冗余度机械臂作为串联连接的机械臂具有运动灵活度高、回避障碍、克服奇异和运动空间大等优点，能够在狭小有限以及非结构化的环境中执行任务，在空间站维护、飞机装配和手术机器人等领域有巨大应用前景。",
           "evidence": [
             {
-              "quote": "基于Quanser搭建了闭环控制平台，对压电驱动器进行运动控制和机械特性分析，实现了压电驱动器的快速精密驱动。",
+              "quote": "超冗余度机械臂作为串联连接的机械臂具有运动灵活度高、回避障碍、克服奇异和运动空间大等优点，能够在狭小有限以及非结构化的环境中执行任务，在空间站维护、飞机装配和手术机器人等领域有巨大应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3391,
-                "end_char": 3445
+                "start_char": 2798,
+                "end_char": 2892
               },
               "version": "19dcfc5125f32b916988"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cd824443407d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-dfd3f004d725"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Performance Evaluation of a Single-Phase Driven Ultrasonic Motor Using Bending-Bending Vibrations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd959ecb9f5b",
+      "evidence": [
+        {
+          "quote": "Design and Performance Evaluation of a Single-Phase Driven Ultrasonic Motor Using Bending-Bending Vibrations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3649,
+            "end_char": 3756
+          },
+          "version": "19dcfc5125f32b916988"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dfd3f004d725"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d0e0465716aa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A three-stage amplification piezoelectric-actuated micro-gripper with adjustable output displacement: design, modeling, and experimental evaluation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd50a0f6ed47",
+      "evidence": [
+        {
+          "quote": "A three-stage amplification piezoelectric-actuated micro-gripper with adjustable output displacement: design, modeling, and experimental evaluation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3817,
+            "end_char": 3963
+          },
+          "version": "19dcfc5125f32b916988"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dfd3f004d725"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dfcfbee529b7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel inchworm piezoelectric actuator using two-stage amplification mechanism with high speed: design, modeling, and experimental evaluation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-299df9ac65e2",
+      "evidence": [
+        {
+          "quote": "A novel inchworm piezoelectric actuator using two-stage amplification mechanism with high speed: design, modeling, and experimental evaluation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4083,
+            "end_char": 4224
+          },
+          "version": "19dcfc5125f32b916988"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d0e0465716aa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ab0c72e3ff5b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A U-shaped and alternately driven ultrasonic motor using three bending coupled modes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5989d208c0ed",
+      "evidence": [
+        {
+          "quote": "A U-shaped and alternately driven ultrasonic motor using three bending coupled modes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4324,
+            "end_char": 4407
+          },
+          "version": "19dcfc5125f32b916988"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-dfcfbee529b7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9077a6fde518"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Review on single-phase driven ultrasonic motors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7c5f54db4bc",
+      "evidence": [
+        {
+          "quote": "Review on single-phase driven ultrasonic motors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4482,
+            "end_char": 4528
+          },
+          "version": "19dcfc5125f32b916988"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于压电直线电机驱动的六自由度并联平台",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ccacf49b38f0",
+      "evidence": [
+        {
+          "quote": "一种基于压电直线电机驱动的六自由度并联平台",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4587,
+            "end_char": 4607
+          },
+          "version": "19dcfc5125f32b916988"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Smith predictor compensation and fuzzy incremental control for delay of space docking hardware-in-the-loop simulation system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b298616c886b",
+      "evidence": [
+        {
+          "quote": "Smith predictor compensation and fuzzy incremental control for delay of space docking hardware-in-the-loop simulation system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4640,
+            "end_char": 4763
+          },
+          "version": "19dcfc5125f32b916988"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A longitudinal-bending hybrid sandwich type ultrasonic actuator based on Lissajous curve driven trajectory: Design and performance evaluation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-208ae7615a3e",
+      "evidence": [
+        {
+          "quote": "A longitudinal-bending hybrid sandwich type ultrasonic actuator based on Lissajous curve driven trajectory: Design and performance evaluation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4823,
+            "end_char": 4963
+          },
+          "version": "19dcfc5125f32b916988"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Two-DOF Ultrasonic Motor Based on Longitudinal and Bending-Bending Vibrations for Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-acb97aa52621",
+      "evidence": [
+        {
+          "quote": "A Two-DOF Ultrasonic Motor Based on Longitudinal and Bending-Bending Vibrations for Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5032,
+            "end_char": 5126
+          },
+          "version": "19dcfc5125f32b916988"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

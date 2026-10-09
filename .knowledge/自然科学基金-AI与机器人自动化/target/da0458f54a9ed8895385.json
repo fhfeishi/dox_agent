@@ -2,15 +2,20 @@
   "doc_id": "da0458f54a9ed8895385",
   "version": "558b3ba080b38251338c",
   "source_hash": "02fba6c12a17dc7875761f03804b2602e903cddf88791b7dfd19023654be71b6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:19:58.096258+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.609356+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d9c89a168e2a",
-          "name": "机械臂多任务模式控制",
-          "desc": "多任务模式下动态模式学习与控制器自主切换",
+          "id": "item-8b6910ba7bfb",
+          "name": "机械臂由于其生产效率高和耐用性等优点，被广泛应用于工业生产。",
+          "desc": "机械臂由于其生产效率高和耐用性等优点，被广泛应用于工业生产。",
           "evidence": [
             {
-              "quote": "本项目主要解决了，机械臂系统在多任务模式下，能够实现动态模式的学习和多任务控制器下的自主切换。",
+              "quote": "机械臂由于其生产效率高和耐用性等优点，被广泛应用于工业生产。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3068,
-                "end_char": 3114
+                "start_char": 648,
+                "end_char": 677
+              },
+              "version": "558b3ba080b38251338c"
+            }
+          ]
+        },
+        {
+          "id": "item-54341819a05e",
+          "name": "机械臂作为机器人的重要分支，凭借其通用性强、稳定可靠、生产效率高、工作年限长以及降低生产成本等优点，被广泛应用于各个生产",
+          "desc": "机械臂作为机器人的重要分支，凭借其通用性强、稳定可靠、生产效率高、工作年限长以及降低生产成本等优点，被广泛应用于各个生产行业，例如机械加工、农业机械、医疗、焊接以及航天科技等等，以代替人力完成劳动强度大、安全风险高和操作环境复杂的工作。",
+          "evidence": [
+            {
+              "quote": "机械臂作为机器人的重要分支，凭借其通用性强、稳定可靠、生产效率高、工作年限长以及降低生产成本等优点，被广泛应用于各个生产行业，例如机械加工、农业机械、医疗、焊接以及航天科技等等，以代替人力完成劳动强度大、安全风险高和操作环境复杂的工作。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2950,
+                "end_char": 3067
               },
               "version": "558b3ba080b38251338c"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7267debf71c9",
-          "name": "任务突变破坏控制性能",
-          "desc": "任务无法人为告知突然改变破坏系统控制性能",
-          "evidence": [
-            {
-              "quote": "当任务在无法人为告知的情况下突然发生改变，将会破坏系统的控制性能。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 678,
-                "end_char": 710
-              },
-              "version": "558b3ba080b38251338c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-e05b7ed7f857",
-          "name": "神经网络未知动态建模",
-          "desc": "神经网络解决非线性大尺度高阶与不确定性",
+          "id": "item-8bec05fd5ecc",
+          "name": "其次，针对不同理想轨迹下的模式，借助障碍Lyapunov函数，构建常值神经网络权值和基于动态模式的控制器，以此提出不同理",
+          "desc": "其次，针对不同理想轨迹下的模式，借助障碍Lyapunov函数，构建常值神经网络权值和基于动态模式的控制器，以此提出不同理想轨迹下的预判策略和机械臂动态模式识别方法；",
           "evidence": [
             {
-              "quote": "机械臂模型具有非线性，大尺度，高阶特性，同时也需要考虑动态不确定性，随机扰动和时间延迟影响。",
+              "quote": "其次，针对不同理想轨迹下的模式，借助障碍Lyapunov函数，构建常值神经网络权值和基于动态模式的控制器，以此提出不同理想轨迹下的预判策略和机械臂动态模式识别方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3283,
-                "end_char": 3328
+                "start_char": 843,
+                "end_char": 924
               },
               "version": "558b3ba080b38251338c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3ca5a8a03d71",
-          "name": "预设性能与有限时间控制",
-          "desc": "保证暂态稳态性能并使误差固定时间收敛",
+          "id": "item-66c470a556de",
+          "name": "因此，本项目拟建立一个机械臂动态模式识别机制来实时监测和自主识别需要执行的任务模式，并设计控制器切换策略，同时保证设计的",
+          "desc": "因此，本项目拟建立一个机械臂动态模式识别机制来实时监测和自主识别需要执行的任务模式，并设计控制器切换策略，同时保证设计的控制器能抑制扰动和机械振动。",
           "evidence": [
             {
-              "quote": "预设性能控制的研究保证了暂态和稳态性能。有限时间也可以使得机械臂跟踪误差在固定时间内收敛到零域。",
+              "quote": "因此，本项目拟建立一个机械臂动态模式识别机制来实时监测和自主识别需要执行的任务模式，并设计控制器切换策略，同时保证设计的控制器能抑制扰动和机械振动。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3397,
-                "end_char": 3444
+                "start_char": 711,
+                "end_char": 784
               },
               "version": "558b3ba080b38251338c"
             }
-          ]
-        },
-        {
-          "id": "item-671b2a6c4289",
-          "name": "障碍Lyapunov受限控制",
-          "desc": "输出受限、输入饱和与全状态约束的可行性处理",
-          "evidence": [
-            {
-              "quote": "研究了输出受限，输入非线性饱和、全状态受限问题。因为安全考虑，机械臂运动需要受限在固定空间，研究了障碍李雅普诺夫函数",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3449,
-                "end_char": 3506
-              },
-              "version": "558b3ba080b38251338c"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +107,180 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ff341f587462",
-          "name": "论文9篇",
-          "desc": "科研论文9篇（SCI 7篇、EI 2篇）",
+          "id": "item-391ddbac8238",
+          "name": "机械臂由于其生产效率高和耐用性等优点，被广泛应用于工业生产。",
+          "desc": "机械臂由于其生产效率高和耐用性等优点，被广泛应用于工业生产。",
           "evidence": [
             {
-              "quote": "项目组发表基金标注科研论文9篇，其中SCI论文7篇，中文EI期刊论文2篇。",
+              "quote": "机械臂由于其生产效率高和耐用性等优点，被广泛应用于工业生产。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3662,
-                "end_char": 3698
+                "start_char": 648,
+                "end_char": 677
               },
               "version": "558b3ba080b38251338c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-4acf32c6a009",
+          "name": "机械臂作为机器人的重要分支，凭借其通用性强、稳定可靠、生产效率高、工作年限长以及降低生产成本等优点，被广泛应用于各个生产",
+          "desc": "机械臂作为机器人的重要分支，凭借其通用性强、稳定可靠、生产效率高、工作年限长以及降低生产成本等优点，被广泛应用于各个生产行业，例如机械加工、农业机械、医疗、焊接以及航天科技等等，以代替人力完成劳动强度大、安全风险高和操作环境复杂的工作。",
+          "evidence": [
+            {
+              "quote": "机械臂作为机器人的重要分支，凭借其通用性强、稳定可靠、生产效率高、工作年限长以及降低生产成本等优点，被广泛应用于各个生产行业，例如机械加工、农业机械、医疗、焊接以及航天科技等等，以代替人力完成劳动强度大、安全风险高和操作环境复杂的工作。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2950,
+                "end_char": 3067
+              },
+              "version": "558b3ba080b38251338c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d9c89a168e2a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7267debf71c9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Barrier Lyapunov function-based decentralized adaptive neural control for uncertain high-order stochastic nonlinear interconnected systems with output constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d070baf6f6c",
+      "evidence": [
+        {
+          "quote": "Barrier Lyapunov function-based decentralized adaptive neural control for uncertain high-order stochastic nonlinear interconnected systems with output constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3762,
+            "end_char": 3923
+          },
+          "version": "558b3ba080b38251338c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7267debf71c9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e05b7ed7f857"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive neural smooth finite-time controller for large-scale stochastic nonlinear state-constrained systems with feasibility removal and time delays",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1f36d1bf7dc4",
+      "evidence": [
+        {
+          "quote": "Adaptive neural smooth finite-time controller for large-scale stochastic nonlinear state-constrained systems with feasibility removal and time delays",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3945,
+            "end_char": 4093
+          },
+          "version": "558b3ba080b38251338c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7267debf71c9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3ca5a8a03d71"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Goal-directed autonomous navigation of mobile robot based on the principle of neuromodulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-21814e0daef2",
+      "evidence": [
+        {
+          "quote": "Goal-directed autonomous navigation of mobile robot based on the principle of neuromodulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4119,
+            "end_char": 4211
+          },
+          "version": "558b3ba080b38251338c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7267debf71c9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-671b2a6c4289"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "具有输入和输出约束的高阶随机系统神经网络控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7cfd21935df1",
+      "evidence": [
+        {
+          "quote": "具有输入和输出约束的高阶随机系统神经网络控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4244,
+            "end_char": 4265
+          },
+          "version": "558b3ba080b38251338c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3ca5a8a03d71"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ff341f587462"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Finite-time adaptive neural control for uncertain nonlinear time-delay systems with actuator delay and full-state constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a19e33977fc6",
+      "evidence": [
+        {
+          "quote": "Finite-time adaptive neural control for uncertain nonlinear time-delay systems with actuator delay and full-state constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4287,
+            "end_char": 4411
+          },
+          "version": "558b3ba080b38251338c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-671b2a6c4289"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ff341f587462"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Approximation-based decentralized output-feedback control for uncertain stochastic interconnected nonlinear time-delay systems with input delay and asymmetric input saturation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b158c74137f4",
+      "evidence": [
+        {
+          "quote": "Approximation-based decentralized output-feedback control for uncertain stochastic interconnected nonlinear time-delay systems with input delay and asymmetric input saturation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4439,
+            "end_char": 4613
+          },
+          "version": "558b3ba080b38251338c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

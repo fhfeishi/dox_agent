@@ -2,15 +2,20 @@
   "doc_id": "fb0090e2952537be0fd1",
   "version": "f39ae3a33265986774a7",
   "source_hash": "e5fc77353db24570fc4c309f1590e1b266240fff399901dfaacd9dc0438c76cf",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:03:20.273559+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.984736+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,111 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d99aa373c706",
-          "name": "柔性微创手术器械控制",
-          "desc": "手术机器人柔性工具的感知、设计与视觉伺服控制",
+          "id": "item-e1d4889a9766",
+          "name": "随着手术机器人技术的发展，传统刚性直杆手术器械逐渐无法满足最新的手术需求。",
+          "desc": "随着手术机器人技术的发展，传统刚性直杆手术器械逐渐无法满足最新的手术需求。",
+          "evidence": [
+            {
+              "quote": "随着手术机器人技术的发展，传统刚性直杆手术器械逐渐无法满足最新的手术需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 654,
+                "end_char": 690
+              },
+              "version": "f39ae3a33265986774a7"
+            }
+          ]
+        },
+        {
+          "id": "item-dc7acc3d3082",
+          "name": "使用柔性关节的手术器械能扩大操作空间、提高手术操作灵活性，且具有安全柔软的生-机交互作用，使其具有良好的临床应用前景。",
+          "desc": "使用柔性关节的手术器械能扩大操作空间、提高手术操作灵活性，且具有安全柔软的生-机交互作用，使其具有良好的临床应用前景。",
+          "evidence": [
+            {
+              "quote": "使用柔性关节的手术器械能扩大操作空间、提高手术操作灵活性，且具有安全柔软的生-机交互作用，使其具有良好的临床应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 691,
+                "end_char": 749
+              },
+              "version": "f39ae3a33265986774a7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-165929982d95",
+          "name": "针对单目视觉收集的特征点深度信息未知问题，基于深度无关交互矩阵的框架下，设计了基于运动学的视觉伺服系统控制器，并基于Sl",
+          "desc": "针对单目视觉收集的特征点深度信息未知问题，基于深度无关交互矩阵的框架下，设计了基于运动学的视觉伺服系统控制器，并基于Slotine-Li算法实现了未知参数的在线估计，以上算法可满足受限环境中的实际应用，在连续体机器人实现精确的特征提取与重建新方法方面具重要意义。",
+          "evidence": [
+            {
+              "quote": "针对单目视觉收集的特征点深度信息未知问题，基于深度无关交互矩阵的框架下，设计了基于运动学的视觉伺服系统控制器，并基于Slotine-Li算法实现了未知参数的在线估计，以上算法可满足受限环境中的实际应用，在连续体机器人实现精确的特征提取与重建新方法方面具重要意义。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3110,
+                "end_char": 3240
+              },
+              "version": "f39ae3a33265986774a7"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-64c8e46f1bc9",
+          "name": "在此基础之上，通过揭示柔性关节结构参数与空间尺度的耦合机制，形成满足形状感知的手术器械创成方法，建立基于视觉伺服的柔性器",
+          "desc": "在此基础之上，通过揭示柔性关节结构参数与空间尺度的耦合机制，形成满足形状感知的手术器械创成方法，建立基于视觉伺服的柔性器械控制模型，并利用仿真与实验手段验证建立模型与方法的有效性。",
+          "evidence": [
+            {
+              "quote": "在此基础之上，通过揭示柔性关节结构参数与空间尺度的耦合机制，形成满足形状感知的手术器械创成方法，建立基于视觉伺服的柔性器械控制模型，并利用仿真与实验手段验证建立模型与方法的有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 884,
+                "end_char": 973
+              },
+              "version": "f39ae3a33265986774a7"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6c69263d5ea5",
+          "name": "随着手术机器人技术的发展，传统刚性直杆手术器械逐渐无法满足最新的手术需求。",
+          "desc": "随着手术机器人技术的发展，传统刚性直杆手术器械逐渐无法满足最新的手术需求。",
+          "evidence": [
+            {
+              "quote": "随着手术机器人技术的发展，传统刚性直杆手术器械逐渐无法满足最新的手术需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 654,
+                "end_char": 690
+              },
+              "version": "f39ae3a33265986774a7"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-42803ae24927",
+          "name": "柔性手术工具能扩大操作空间、提高手术操作灵活性，且在与人体组织接触时具有安全柔软的生-机交互特性，具有良好的临床应用前景",
+          "desc": "柔性手术工具能扩大操作空间、提高手术操作灵活性，且在与人体组织接触时具有安全柔软的生-机交互特性，具有良好的临床应用前景。",
           "evidence": [
             {
               "quote": "柔性手术工具能扩大操作空间、提高手术操作灵活性，且在与人体组织接触时具有安全柔软的生-机交互特性，具有良好的临床应用前景。",
@@ -32,221 +139,108 @@
               },
               "version": "f39ae3a33265986774a7"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-30b9c94d9e7b",
-          "name": "超冗余结构运动控制困难",
-          "desc": "多自由度超冗余结构运动控制困难、易受外部负载扰动",
-          "evidence": [
-            {
-              "quote": "但实际操作过程中，由于柔性手术工具为多自由度超冗余结构，存在运动控制困难、易受外部负载扰动影响等问题，实现连续体机器人精确可靠的运动控制仍存在困难。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2717,
-                "end_char": 2790
-              },
-              "version": "f39ae3a33265986774a7"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-32bf86083955",
-          "name": "立体视觉三维重构",
-          "desc": "基于标记点图像处理重建连续体手术器械形状模型",
-          "evidence": [
-            {
-              "quote": "提出了一种基于立体视觉的连续体手术器械三维重构方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2899,
-                "end_char": 2923
-              },
-              "version": "f39ae3a33265986774a7"
-            }
-          ]
-        },
-        {
-          "id": "item-13eb22925390",
-          "name": "监督学习误差补偿",
-          "desc": "解决图像噪声带来的稳定性差鲁棒性低问题",
-          "evidence": [
-            {
-              "quote": "提出了一种基于监督学习算法的误差补偿方法，并在两自由度的连续体机器人驱动平台上进行了实验验证，结果证明重建精度提高了70%以上。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3005,
-                "end_char": 3068
-              },
-              "version": "f39ae3a33265986774a7"
-            }
-          ]
-        },
-        {
-          "id": "item-99309024c782",
-          "name": "运动学视觉伺服控制器",
-          "desc": "深度无关交互矩阵框架结合Slotine-Li在线参数估计",
-          "evidence": [
-            {
-              "quote": "基于深度无关交互矩阵的框架下，设计了基于运动学的视觉伺服系统控制器，并基于Slotine-Li算法实现了未知参数的在线估计",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3131,
-                "end_char": 3191
-              },
-              "version": "f39ae3a33265986774a7"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7c2b264ea280",
-          "name": "重建精度提高70%以上",
-          "desc": "误差补偿方法实验验证重建精度提升70%以上",
-          "evidence": [
-            {
-              "quote": "结果证明重建精度提高了70%以上。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3052,
-                "end_char": 3068
-              },
-              "version": "f39ae3a33265986774a7"
-            }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-daf49aa87e23",
-          "name": "单目形状检测40帧/秒",
-          "desc": "单目视觉末端形状检测算法鲁棒性高",
-          "evidence": [
-            {
-              "quote": "设计了基于单目视觉的机器人末端形状检测算法，鲁棒性较高，处理帧率可达到40帧/秒。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3069,
-                "end_char": 3109
-              },
-              "version": "f39ae3a33265986774a7"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-003c6eaf8521",
-          "name": "2020国家技术发明二等奖",
-          "desc": "项目核心技术相关成果获国家技术发明二等奖",
-          "evidence": [
-            {
-              "quote": "项目核心技术相关成果获2020年国家技术发明二等奖。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3360,
-                "end_char": 3385
-              },
-              "version": "f39ae3a33265986774a7"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d99aa373c706"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-30b9c94d9e7b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Full-Dimensional Intuitive Motion Mapping Strategy for Minimally Invasive Surgical Robot With Redundant Passive Joints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8483eb54c614",
+      "evidence": [
+        {
+          "quote": "Full-Dimensional Intuitive Motion Mapping Strategy for Minimally Invasive Surgical Robot With Redundant Passive Joints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3435,
+            "end_char": 3552
+          },
+          "version": "f39ae3a33265986774a7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-30b9c94d9e7b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-32bf86083955"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of a dexterous robotic surgical instrument with a novel bending mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db71063499c0",
+      "evidence": [
+        {
+          "quote": "Design of a dexterous robotic surgical instrument with a novel bending mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3605,
+            "end_char": 3684
+          },
+          "version": "f39ae3a33265986774a7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-30b9c94d9e7b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-13eb22925390"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and implementation of a hand‐held robot‐assisted minimally invasive surgical device with enhanced intuitive manipulability and stable grip force",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aeb503295866",
+      "evidence": [
+        {
+          "quote": "Design and implementation of a hand‐held robot‐assisted minimally invasive surgical device with enhanced intuitive manipulability and stable grip force",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3744,
+            "end_char": 3894
+          },
+          "version": "f39ae3a33265986774a7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-30b9c94d9e7b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-99309024c782"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-13eb22925390"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7c2b264ea280"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-32bf86083955"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-daf49aa87e23"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-99309024c782"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-003c6eaf8521"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A variable baseline stereoscopic camera with fast deployable structure for natural orifice transluminal endoscopic surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f51f6392f880",
+      "evidence": [
+        {
+          "quote": "A variable baseline stereoscopic camera with fast deployable structure for natural orifice transluminal endoscopic surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3954,
+            "end_char": 4075
+          },
+          "version": "f39ae3a33265986774a7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "9df44c29c8f9d3560eed",
   "version": "97d966f717c1864c73aa",
   "source_hash": "fa48b2727e80b225c66a56e810271786c68d4abe21ec219cc95ad6961877053f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:07:58.842199+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.014255+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7e3fe1b03338",
-          "name": "内河无人驾驶船舶",
-          "desc": "基于人工智能模拟船长驾驶决策过程，实现安全驾驶策略优化",
+          "id": "item-0e02e4a72817",
+          "name": "无人驾驶技术是当今人工智能发展的重要方向之一，但无人驾驶船舶的发展相对较晚，尤其对无人驾驶船舶的安全策略研究更少。",
+          "desc": "无人驾驶技术是当今人工智能发展的重要方向之一，但无人驾驶船舶的发展相对较晚，尤其对无人驾驶船舶的安全策略研究更少。",
           "evidence": [
             {
-              "quote": "本项目基于人工智能方法，从环境感知、安全策略和经验学习三个方面展开研究，以实现无人驾驶船舶的安全驾驶策略优化",
+              "quote": "无人驾驶技术是当今人工智能发展的重要方向之一，但无人驾驶船舶的发展相对较晚，尤其对无人驾驶船舶的安全策略研究更少。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2756,
-                "end_char": 2809
+                "start_char": 657,
+                "end_char": 713
               },
               "version": "97d966f717c1864c73aa"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-189f8c6f3c2d",
-          "name": "无人船安全策略研究薄弱",
-          "desc": "无人驾驶船舶安全问题是研究相对较弱但又非常重要的方向",
-          "evidence": [
-            {
-              "quote": "无人驾驶船舶的安全问题是当今研究相对较弱，但又非常重要的发展方向之一",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2721,
-                "end_char": 2754
-              },
-              "version": "97d966f717c1864c73aa"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-72f15c1522a7",
-          "name": "模糊贝叶斯安全指数模型",
-          "desc": "基于事故致因构建内河无人驾驶船舶安全指数模型",
+          "id": "item-bc83f04fb6dd",
+          "name": "项目通过获取的环境观察信息等，研究了基于深度学习的智能目标识别、路径跟随及控制等的环境数据处理方法，提出了基于事故致因的",
+          "desc": "项目通过获取的环境观察信息等，研究了基于深度学习的智能目标识别、路径跟随及控制等的环境数据处理方法，提出了基于事故致因的内河无人驾驶船舶安全指数模型，构建安全策略数据库，基于安全性与经济性综合价值判断，提出内河无人驾驶船舶安全驾驶优化决策方案，创建了安全策略数据库学习更新规则。",
           "evidence": [
             {
-              "quote": "构建了基于模糊贝叶斯网安全指数模型",
+              "quote": "项目通过获取的环境观察信息等，研究了基于深度学习的智能目标识别、路径跟随及控制等的环境数据处理方法，提出了基于事故致因的内河无人驾驶船舶安全指数模型，构建安全策略数据库，基于安全性与经济性综合价值判断，提出内河无人驾驶船舶安全驾驶优化决策方案，创建了安全策略数据库学习更新规则。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3164,
-                "end_char": 3180
+                "start_char": 2811,
+                "end_char": 2949
               },
               "version": "97d966f717c1864c73aa"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-67265e3c3d8e",
-          "name": "TD3自主驾驶策略优化",
-          "desc": "基于内河避碰规则与船舶会遇态势制定避碰策略，TD3算法优化",
+          "id": "item-6f534d02fff7",
+          "name": "提出基于事故致因的内河无人驾驶船舶安全指数模型，构建安全策略数据库，基于安全性与经济性综合价值判断，提出内河无人驾驶船舶",
+          "desc": "提出基于事故致因的内河无人驾驶船舶安全指数模型，构建安全策略数据库，基于安全性与经济性综合价值判断，提出内河无人驾驶船舶安全驾驶优化决策方案，实现安全驾驶决策功能；",
           "evidence": [
             {
-              "quote": "基于TD3算法进行优化设计，针对内河航运最常见的对驶、交叉相遇及追越三种会遇场景进行仿真试验，实现自主驾驶策略优化",
+              "quote": "提出基于事故致因的内河无人驾驶船舶安全指数模型，构建安全策略数据库，基于安全性与经济性综合价值判断，提出内河无人驾驶船舶安全驾驶优化决策方案，实现安全驾驶决策功能；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3384,
-                "end_char": 3440
+                "start_char": 808,
+                "end_char": 889
               },
               "version": "97d966f717c1864c73aa"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,628 @@
       "state": "has",
       "items": [
         {
-          "id": "item-797a3cc2c669",
-          "name": "环境感知与场景分类",
-          "desc": "图像增强、船舶图像分类识别、航行场景聚类与安全策略库构建",
+          "id": "item-145f94845c78",
+          "name": "无人驾驶技术是当今人工智能发展的重要方向之一，但无人驾驶船舶的发展相对较晚，尤其对无人驾驶船舶的安全策略研究更少。",
+          "desc": "无人驾驶技术是当今人工智能发展的重要方向之一，但无人驾驶船舶的发展相对较晚，尤其对无人驾驶船舶的安全策略研究更少。",
           "evidence": [
             {
-              "quote": "研究了典型视觉不利场景的图像增强技术，实现了白天与夜晚图像去雾和去雨；研究了船舶图像分类识别方法，提高了复杂环境下目标的检测识别与跟踪能力，构建了船舶环境安全状态参数集",
+              "quote": "无人驾驶技术是当今人工智能发展的重要方向之一，但无人驾驶船舶的发展相对较晚，尤其对无人驾驶船舶的安全策略研究更少。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3050,
-                "end_char": 3133
+                "start_char": 657,
+                "end_char": 713
               },
               "version": "97d966f717c1864c73aa"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-40132a641f7f",
+          "name": "无人驾驶船舶的安全问题是当今研究相对较弱，但又非常重要的发展方向之一。",
+          "desc": "无人驾驶船舶的安全问题是当今研究相对较弱，但又非常重要的发展方向之一。",
+          "evidence": [
+            {
+              "quote": "无人驾驶船舶的安全问题是当今研究相对较弱，但又非常重要的发展方向之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2721,
+                "end_char": 2755
+              },
+              "version": "97d966f717c1864c73aa"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7e3fe1b03338"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-189f8c6f3c2d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于提箱同步的进口箱堆存策略研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-080b5700874b",
+      "evidence": [
+        {
+          "quote": "基于提箱同步的进口箱堆存策略研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3545,
+            "end_char": 3560
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-189f8c6f3c2d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-72f15c1522a7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "内河无人船的自主路径规划模型研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1137c49652ff",
+      "evidence": [
+        {
+          "quote": "内河无人船的自主路径规划模型研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3582,
+            "end_char": 3597
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-189f8c6f3c2d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-67265e3c3d8e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safety Risk Analysis of Unmanned ShipsinInland Rivers Based on a FuzzyBayesianNetwork",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0bbc6f15959a",
+      "evidence": [
+        {
+          "quote": "Safety Risk Analysis of Unmanned ShipsinInland Rivers Based on a FuzzyBayesianNetwork",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3621,
+            "end_char": 3705
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-67265e3c3d8e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-797a3cc2c669"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "内河无人驾驶船舶驾驶行为决策模型研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b7e1402e9521",
+      "evidence": [
+        {
+          "quote": "内河无人驾驶船舶驾驶行为决策模型研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3756,
+            "end_char": 3773
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-72f15c1522a7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-797a3cc2c669"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种船舶自主导航方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d11f8d9abf3d",
+      "evidence": [
+        {
+          "quote": "一种船舶自主导航方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3802,
+            "end_char": 3814
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "15MW级大型漂浮式风力机运动特性分析船",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bdf28f94b1cc",
+      "evidence": [
+        {
+          "quote": "15MW级大型漂浮式风力机运动特性分析船",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3846,
+            "end_char": 3865
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于多尺度卷积神经网络的自适应熵加权决策融合船舶图像分类方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-768d2f6deea6",
+      "evidence": [
+        {
+          "quote": "基于多尺度卷积神经网络的自适应熵加权决策融合船舶图像分类方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3887,
+            "end_char": 3916
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于GA-SVM模型的水上事故严重程度分类",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ebaea893391c",
+      "evidence": [
+        {
+          "quote": "基于GA-SVM模型的水上事故严重程度分类",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3944,
+            "end_char": 3964
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Indoor Angle of Arrival Estimation Algorithm Based on Carrier Smoothing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a91e093f5169",
+      "evidence": [
+        {
+          "quote": "An Indoor Angle of Arrival Estimation Algorithm Based on Carrier Smoothing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3989,
+            "end_char": 4062
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nighttime image dehazing based on Retinex and dark channel prior using Taylor series expansion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-062795f84dd5",
+      "evidence": [
+        {
+          "quote": "Nighttime image dehazing based on Retinex and dark channel prior using Taylor series expansion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4108,
+            "end_char": 4201
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Image De-Blurring Technique Combining Wiener Filtering and CSF De-Noising Technique",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-21f3655a395e",
+      "evidence": [
+        {
+          "quote": "Image De-Blurring Technique Combining Wiener Filtering and CSF De-Noising Technique",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4251,
+            "end_char": 4333
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Joint Ranking Recommendation Model Based on Markov Chain",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0933fbd4fff9",
+      "evidence": [
+        {
+          "quote": "Research on Joint Ranking Recommendation Model Based on Markov Chain",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4379,
+            "end_char": 4446
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于三阶段DEA-Malmquist模型的中国公路运输效率",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7be190f9d6b6",
+      "evidence": [
+        {
+          "quote": "基于三阶段DEA-Malmquist模型的中国公路运输效率",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4482,
+            "end_char": 4510
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ship Detection and Tracking in Inland Waterways Using Improved YOLOv3 and Deep SORT",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41f3d7e2c294",
+      "evidence": [
+        {
+          "quote": "Ship Detection and Tracking in Inland Waterways Using Improved YOLOv3 and Deep SORT",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4533,
+            "end_char": 4615
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Fusion Method of Lidar and Visual Image Based on Surface Vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a906513879e3",
+      "evidence": [
+        {
+          "quote": "Research on Fusion Method of Lidar and Visual Image Based on Surface Vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4661,
+            "end_char": 4736
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A GMS-Guided Approach for 2D Feature Correspondence Selection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bee19bd378b8",
+      "evidence": [
+        {
+          "quote": "A GMS-Guided Approach for 2D Feature Correspondence Selection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4796,
+            "end_char": 4856
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "内河无人船的驾驶行为决策模型",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-052230bce1bd",
+      "evidence": [
+        {
+          "quote": "内河无人船的驾驶行为决策模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4932,
+            "end_char": 4945
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Modified Syn2Real Network for Nighttime Rainy Image Restoration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71ffdf28ffe1",
+      "evidence": [
+        {
+          "quote": "A Modified Syn2Real Network for Nighttime Rainy Image Restoration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4976,
+            "end_char": 5040
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved Image Dehazing Algorithm Based on Multi-scale Feature Fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-50de75e0716b",
+      "evidence": [
+        {
+          "quote": "Improved Image Dehazing Algorithm Based on Multi-scale Feature Fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5100,
+            "end_char": 5168
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ship recognition based on Hu invariant moments and convolutional neural network for video surveillance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8f531609498a",
+      "evidence": [
+        {
+          "quote": "Ship recognition based on Hu invariant moments and convolutional neural network for video surveillance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5216,
+            "end_char": 5317
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于三维卷积神经网络的点云图像船舶分类方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a5c63834687",
+      "evidence": [
+        {
+          "quote": "基于三维卷积神经网络的点云图像船舶分类方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5381,
+            "end_char": 5401
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于聚类分析的水上交通事故影响因素分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e1dc137c93a",
+      "evidence": [
+        {
+          "quote": "基于聚类分析的水上交通事故影响因素分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5431,
+            "end_char": 5449
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Simulation of unmanned ship real-time trajectory planning model based on Q-learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d1df2370bb3",
+      "evidence": [
+        {
+          "quote": "Simulation of unmanned ship real-time trajectory planning model based on Q-learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5481,
+            "end_char": 5563
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Fingerprint and Hyperbolic Fusion Positioning Algorithm Based on 5G Technology",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd95c8cf69b9",
+      "evidence": [
+        {
+          "quote": "Research on Fingerprint and Hyperbolic Fusion Positioning Algorithm Based on 5G Technology",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5632,
+            "end_char": 5721
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "复杂环境SDS+GPS系统RTK短基线定位算法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6265a8376777",
+      "evidence": [
+        {
+          "quote": "复杂环境SDS+GPS系统RTK短基线定位算法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5796,
+            "end_char": 5820
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ship classification based on attention mechanism and multi-scale convolutionalneural network for visible and infrared images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ee06c8961da",
+      "evidence": [
+        {
+          "quote": "Ship classification based on attention mechanism and multi-scale convolutionalneural network for visible and infrared images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5855,
+            "end_char": 5978
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Autonomous Navigation Control of Unmanned Ship Based on Unity3D",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b3cfaebdccb",
+      "evidence": [
+        {
+          "quote": "Research on Autonomous Navigation Control of Unmanned Ship Based on Unity3D",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6035,
+            "end_char": 6109
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path following optimization of unmanned ships based on adaptive line-of-sight guidance and Deep Q-Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d4d3b8acb2f",
+      "evidence": [
+        {
+          "quote": "Path following optimization of unmanned ships based on adaptive line-of-sight guidance and Deep Q-Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6157,
+            "end_char": 6261
+          },
+          "version": "97d966f717c1864c73aa"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 28,
+    "listed": 28,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 20,
+        "extracted": 20
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

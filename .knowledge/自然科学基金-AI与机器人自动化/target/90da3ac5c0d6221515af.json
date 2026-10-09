@@ -2,15 +2,20 @@
   "doc_id": "90da3ac5c0d6221515af",
   "version": "a380d0ac3d3de4ecc7e1",
   "source_hash": "3f1cfec63d50131754d8c56cc1a6dbf4b24df92a74ec83a360f4916dfca3e865",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:36.731015+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.844515+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2a6f4dce5936",
-          "name": "物理人机交互安全协作",
-          "desc": "工业生产与生活服务中的人机主动安全协作",
+          "id": "item-368a7c6e1ec8",
+          "name": "人-机器人主动安全协作结合机器人和人类各自的优势，广泛应用在工业生产与生活服务领域。",
+          "desc": "人-机器人主动安全协作结合机器人和人类各自的优势，广泛应用在工业生产与生活服务领域。",
           "evidence": [
             {
-              "quote": "围绕人–机器人主动安全协作中交互环境动态变化、不确定性强以及安全约束难以统一建模等关键问题，本项目系统开展了面向物理人机交互的主动安全协作控制方法研究",
+              "quote": "人-机器人主动安全协作结合机器人和人类各自的优势，广泛应用在工业生产与生活服务领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2597,
-                "end_char": 2671
+                "start_char": 653,
+                "end_char": 694
               },
               "version": "a380d0ac3d3de4ecc7e1"
             }
@@ -41,9 +46,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d877debb44ba",
-          "name": "力超调抖动安全难兼顾",
-          "desc": "接触交互中力超调、抖动与安全性难以兼顾",
+          "id": "item-7be7d27b5f87",
+          "name": "围绕人–机器人主动安全协作中交互环境动态变化、不确定性强以及安全约束难以统一建模等关键问题，本项目系统开展了面向物理人机",
+          "desc": "围绕人–机器人主动安全协作中交互环境动态变化、不确定性强以及安全约束难以统一建模等关键问题，本项目系统开展了面向物理人机交互的主动安全协作控制方法研究，在安全学习控制、自适应精准控制与高精度柔顺力控等方面取得了系列创新性成果。",
+          "evidence": [
+            {
+              "quote": "围绕人–机器人主动安全协作中交互环境动态变化、不确定性强以及安全约束难以统一建模等关键问题，本项目系统开展了面向物理人机交互的主动安全协作控制方法研究，在安全学习控制、自适应精准控制与高精度柔顺力控等方面取得了系列创新性成果。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2597,
+                "end_char": 2709
+              },
+              "version": "a380d0ac3d3de4ecc7e1"
+            }
+          ]
+        },
+        {
+          "id": "item-c6b0b46aefb4",
+          "name": "针对复杂未知环境下人机接触交互中力超调、抖动与安全性难以兼顾的问题，提出了一种基于高斯过程的安全学习控制方法。",
+          "desc": "针对复杂未知环境下人机接触交互中力超调、抖动与安全性难以兼顾的问题，提出了一种基于高斯过程的安全学习控制方法。",
           "evidence": [
             {
               "quote": "针对复杂未知环境下人机接触交互中力超调、抖动与安全性难以兼顾的问题，提出了一种基于高斯过程的安全学习控制方法。",
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4169365741f0",
-          "name": "高斯过程安全学习控制",
-          "desc": "在线学习不确定性并结合CBF二次规划安全约束",
+          "id": "item-dea6c9a28e9b",
+          "name": "该方法利用高斯过程回归对非参数不确定性与时变扰动进行在线学习，并在 Lyapunov 框架下设计反馈线性化控制器，保证闭",
+          "desc": "该方法利用高斯过程回归对非参数不确定性与时变扰动进行在线学习，并在 Lyapunov 框架下设计反馈线性化控制器，保证闭环系统一致最终有界；",
           "evidence": [
             {
-              "quote": "该方法利用高斯过程回归对非参数不确定性与时变扰动进行在线学习，并在 Lyapunov 框架下设计反馈线性化控制器，保证闭环系统一致最终有界；进一步引入控制障碍函数，将安全约束以二次规划形式融入控制律中",
+              "quote": "该方法利用高斯过程回归对非参数不确定性与时变扰动进行在线学习，并在 Lyapunov 框架下设计反馈线性化控制器，保证闭环系统一致最终有界；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2765,
-                "end_char": 2864
+                "end_char": 2834
               },
               "version": "a380d0ac3d3de4ecc7e1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f1e13575dd25",
-          "name": "策略改进强化学习",
-          "desc": "极限学习机行为克隆与路径积分策略优化",
+          "id": "item-bb8a05a305a3",
+          "name": "进一步将该方法拓展至推操作与微装配场景，提出融合视觉感知、学习控制与双臂协同的一体化操作框架，实现复杂背景下的高精度协同",
+          "desc": "进一步将该方法拓展至推操作与微装配场景，提出融合视觉感知、学习控制与双臂协同的一体化操作框架，实现复杂背景下的高精度协同操作。",
           "evidence": [
             {
-              "quote": "提出了一种面向底层行为学习的策略改进强化学习方法，通过极限学习机实现少量示范下的快速行为克隆，并将其重构为参数化动态系统",
+              "quote": "进一步将该方法拓展至推操作与微装配场景，提出融合视觉感知、学习控制与双臂协同的一体化操作框架，实现复杂背景下的高精度协同操作。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2923,
-                "end_char": 2982
+                "start_char": 3206,
+                "end_char": 3268
               },
               "version": "a380d0ac3d3de4ecc7e1"
             }
-          ]
-        },
-        {
-          "id": "item-3542e1796107",
-          "name": "自适应阻抗鲁棒无源力控",
-          "desc": "神经网络在线补偿实现未知扰动下力位高精度跟踪",
-          "evidence": [
-            {
-              "quote": "构建了基于自适应阻抗与鲁棒无源控制的双回路柔顺力控框架。通过引入神经网络对环境不确定性进行在线补偿，并结合鲁棒逆动力学与无源性理论，实现在未知扰动条件下力与位置的高精度跟踪。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3119,
-                "end_char": 3205
-              },
-              "version": "a380d0ac3d3de4ecc7e1"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +124,288 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e6b1a2d963a8",
-          "name": "论文16篇与人才托举",
-          "desc": "检索论文16篇，获江苏省青年科技人才托举工程",
+          "id": "item-6e68cbb6990e",
+          "name": "人-机器人主动安全协作结合机器人和人类各自的优势，广泛应用在工业生产与生活服务领域。",
+          "desc": "人-机器人主动安全协作结合机器人和人类各自的优势，广泛应用在工业生产与生活服务领域。",
           "evidence": [
             {
-              "quote": "在本项目的资助下，项目组共发表标注本项目基金号的检索论文16篇。项目负责人获得了2025年江苏省科协青年科技人才托举工程。",
+              "quote": "人-机器人主动安全协作结合机器人和人类各自的优势，广泛应用在工业生产与生活服务领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3310,
-                "end_char": 3370
+                "start_char": 653,
+                "end_char": 694
               },
               "version": "a380d0ac3d3de4ecc7e1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-e0cc17761220",
+          "name": "围绕人–机器人主动安全协作中交互环境动态变化、不确定性强以及安全约束难以统一建模等关键问题，本项目系统开展了面向物理人机",
+          "desc": "围绕人–机器人主动安全协作中交互环境动态变化、不确定性强以及安全约束难以统一建模等关键问题，本项目系统开展了面向物理人机交互的主动安全协作控制方法研究，在安全学习控制、自适应精准控制与高精度柔顺力控等方面取得了系列创新性成果。",
+          "evidence": [
+            {
+              "quote": "围绕人–机器人主动安全协作中交互环境动态变化、不确定性强以及安全约束难以统一建模等关键问题，本项目系统开展了面向物理人机交互的主动安全协作控制方法研究，在安全学习控制、自适应精准控制与高精度柔顺力控等方面取得了系列创新性成果。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2597,
+                "end_char": 2709
+              },
+              "version": "a380d0ac3d3de4ecc7e1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2a6f4dce5936"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d877debb44ba"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "On a hierarchical adaptive and robust inverse dynamic control strategy with experiment for robot manipulators under uncertainties",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df59ad663bd3",
+      "evidence": [
+        {
+          "quote": "On a hierarchical adaptive and robust inverse dynamic control strategy with experiment for robot manipulators under uncertainties",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3396,
+            "end_char": 3524
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d877debb44ba"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4169365741f0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collaborative Task Planning for PCB-Driven Magnetic Microrobots Using Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b0bb961e6d7",
+      "evidence": [
+        {
+          "quote": "Collaborative Task Planning for PCB-Driven Magnetic Microrobots Using Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3625,
+            "end_char": 3721
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d877debb44ba"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f1e13575dd25"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "自适应阻抗与鲁棒无源机械臂力跟踪控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-957ebc1d121f",
+      "evidence": [
+        {
+          "quote": "自适应阻抗与鲁棒无源机械臂力跟踪控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3774,
+            "end_char": 3793
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d877debb44ba"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3542e1796107"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PI-ELM: Reinforcement learning-based adaptable policy improvement for dynamical system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a867dc86c722",
+      "evidence": [
+        {
+          "quote": "PI-ELM: Reinforcement learning-based adaptable policy improvement for dynamical system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3823,
+            "end_char": 3908
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4169365741f0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e6b1a2d963a8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Navigation of Magnetic Microrobots With Improved Planning and Control in Complex Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29acec4e384f",
+      "evidence": [
+        {
+          "quote": "Autonomous Navigation of Magnetic Microrobots With Improved Planning and Control in Complex Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3977,
+            "end_char": 4080
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3542e1796107"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e6b1a2d963a8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of a Dual-Layer Four Quadrants Orthogonal Microcoil Platform for Independent Control of Multiple Magnetic Microrobots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d4b65a8a5d56",
+      "evidence": [
+        {
+          "quote": "Design of a Dual-Layer Four Quadrants Orthogonal Microcoil Platform for Independent Control of Multiple Magnetic Microrobots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4157,
+            "end_char": 4280
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一类不确定非线性系统安全学习控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-526d66127997",
+      "evidence": [
+        {
+          "quote": "一类不确定非线性系统安全学习控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4342,
+            "end_char": 4357
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safety-Enhanced Navigation Planning for Magnetic Microrobots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62ca664306c4",
+      "evidence": [
+        {
+          "quote": "Safety-Enhanced Navigation Planning for Magnetic Microrobots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4387,
+            "end_char": 4446
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Vision-Guided Two-Arm Collaborative Microassembly Using Learned Manipulation Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2dc7cd3a0c27",
+      "evidence": [
+        {
+          "quote": "Autonomous Vision-Guided Two-Arm Collaborative Microassembly Using Learned Manipulation Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4505,
+            "end_char": 4597
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "江苏省青年科技人才托举工程",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-753ae4dc68a8",
+      "evidence": [
+        {
+          "quote": "江苏省青年科技人才托举工程",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4650,
+            "end_char": 4662
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Modeling of a Micro-coil Array Platform for the Smooth Movement of Multiple Micro-robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4334a9125606",
+      "evidence": [
+        {
+          "quote": "Design and Modeling of a Micro-coil Array Platform for the Smooth Movement of Multiple Micro-robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4681,
+            "end_char": 4779
+          },
+          "version": "a380d0ac3d3de4ecc7e1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

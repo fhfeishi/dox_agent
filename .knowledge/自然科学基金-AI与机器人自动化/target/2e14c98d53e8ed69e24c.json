@@ -2,15 +2,20 @@
   "doc_id": "2e14c98d53e8ed69e24c",
   "version": "1e1b4305364984a38212",
   "source_hash": "2a1709dccac4451b8662438657499c5bddda7bd2c3dac9908027291e04b26f2c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:28:42.553497+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.902736+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f8fd43cf0148",
-          "name": "多智能体强化学习群体智能",
-          "desc": "研究群体智能学习的多智能体深度强化学习理论与方法",
+          "id": "item-c061d6358f89",
+          "name": "多智能体深度强化学习是研究群体智能学习的新一代重要理论与方法。",
+          "desc": "多智能体深度强化学习是研究群体智能学习的新一代重要理论与方法。",
           "evidence": [
             {
-              "quote": "多智能体深度强化学习是研究群体智能学习的新一代重要理论与方法",
+              "quote": "多智能体深度强化学习是研究群体智能学习的新一代重要理论与方法。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 645,
-                "end_char": 674
+                "end_char": 675
               },
               "version": "1e1b4305364984a38212"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-03dfa01b4b67",
-          "name": "样本效率低下",
-          "desc": "策略性能提升依赖庞大训练数据，环境建模能力差、策略拟合不精确",
-          "evidence": [
-            {
-              "quote": "尽管多智能体深度强化学习技术在近年来有诸多发展，但其样本效率仍然很低下，策略的性能提升依赖庞大的训练数据，导致其适用范围受到极大限制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 735,
-                "end_char": 800
-              },
-              "version": "1e1b4305364984a38212"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-6def537295fb",
-          "name": "AORPO模型基方法",
-          "desc": "基于模型的多智能体强化学习方法，具有与Nash Q-Learning相似的收敛性质",
+          "id": "item-8397eb0a7156",
+          "name": "本项目主要面向多智能体系统的基于模型的多智能体强化学习的基本理论分析工作和算法设计工作，提出了高效的基于模型的多智能体强",
+          "desc": "本项目主要面向多智能体系统的基于模型的多智能体强化学习的基本理论分析工作和算法设计工作，提出了高效的基于模型的多智能体强化学习方法AORPO，并证明了使用环境模型和对手策略模型，并基于所预测的对手动作进行决策的情况下，所提出的算法能和Nash Q-Learning具有相似的收敛性质。",
           "evidence": [
             {
-              "quote": "提出了高效的基于模型的多智能体强化学习方法AORPO，并证明了使用环境模型和对手策略模型，并基于所预测的对手动作进行决策的情况下，所提出的算法能和Nash Q-Learning具有相似的收敛性质",
+              "quote": "本项目主要面向多智能体系统的基于模型的多智能体强化学习的基本理论分析工作和算法设计工作，提出了高效的基于模型的多智能体强化学习方法AORPO，并证明了使用环境模型和对手策略模型，并基于所预测的对手动作进行决策的情况下，所提出的算法能和Nash Q-Learning具有相似的收敛性质。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2750,
-                "end_char": 2846
+                "start_char": 2706,
+                "end_char": 2847
               },
               "version": "1e1b4305364984a38212"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e7441046fc78",
-          "name": "MAT序列建模架构",
-          "desc": "将协作MARL问题转化为序列模型问题的新型多智能体模型架构",
+          "id": "item-b8536833b21e",
+          "name": "然后，研究了面相智能决策任务的大模型方法，以构建决策智能体的大模型为基本技术路线，探索一种可以跨环境、跨任务的可泛化决策",
+          "desc": "然后，研究了面相智能决策任务的大模型方法，以构建决策智能体的大模型为基本技术路线，探索一种可以跨环境、跨任务的可泛化决策智能技术。",
           "evidence": [
             {
-              "quote": "研究团队提出一种新型多智能体模型MAT架构，该架构可以有效地将协作 MARL 问题转化为序列模型问题",
+              "quote": "然后，研究了面相智能决策任务的大模型方法，以构建决策智能体的大模型为基本技术路线，探索一种可以跨环境、跨任务的可泛化决策智能技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2871,
-                "end_char": 2920
+                "start_char": 2949,
+                "end_char": 3013
               },
               "version": "1e1b4305364984a38212"
             }
-          ]
-        },
-        {
-          "id": "item-519f584925e8",
-          "name": "扩散模型强化学习",
-          "desc": "基于扩散模型的非自回归性质优化强化学习复合误差问题，提升样本利用率",
-          "evidence": [
-            {
-              "quote": "研究了基于扩散模型的（多智能体）强化学习方法，旨在基于扩散模型的非自回归性质进一步优化强化学习中的复合误差问题，提升其样本利用率",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3017,
-                "end_char": 3080
-              },
-              "version": "1e1b4305364984a38212"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,80 +91,672 @@
       "state": "has",
       "items": [
         {
-          "id": "item-54763e826095",
-          "name": "CCF-A论文与开源平台",
-          "desc": "发表CCF-A类论文32篇，开源腾讯王者荣耀MARL平台、网易PerfectDou平台等",
+          "id": "item-bd37da708e46",
+          "name": "多智能体深度强化学习是研究群体智能学习的新一代重要理论与方法。",
+          "desc": "多智能体深度强化学习是研究群体智能学习的新一代重要理论与方法。",
           "evidence": [
             {
-              "quote": "项目团队发表CCF-A类论文32篇，其中第一作者2篇，通讯作者22篇；申请国家发明专利4项，其中3项已获授权；开源工程代码4项以上到Github",
+              "quote": "多智能体深度强化学习是研究群体智能学习的新一代重要理论与方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3089,
-                "end_char": 3160
+                "start_char": 645,
+                "end_char": 675
               },
               "version": "1e1b4305364984a38212"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-16999aab8c46",
+          "name": "本项目主要面向多智能体系统的基于模型的多智能体强化学习的基本理论分析工作和算法设计工作，提出了高效的基于模型的多智能体强",
+          "desc": "本项目主要面向多智能体系统的基于模型的多智能体强化学习的基本理论分析工作和算法设计工作，提出了高效的基于模型的多智能体强化学习方法AORPO，并证明了使用环境模型和对手策略模型，并基于所预测的对手动作进行决策的情况下，所提出的算法能和Nash Q-Learning具有相似的收敛性质。",
+          "evidence": [
+            {
+              "quote": "本项目主要面向多智能体系统的基于模型的多智能体强化学习的基本理论分析工作和算法设计工作，提出了高效的基于模型的多智能体强化学习方法AORPO，并证明了使用环境模型和对手策略模型，并基于所预测的对手动作进行决策的情况下，所提出的算法能和Nash Q-Learning具有相似的收敛性质。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2706,
+                "end_char": 2847
+              },
+              "version": "1e1b4305364984a38212"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f8fd43cf0148"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-03dfa01b4b67"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AlphaZero-Like Tree-Search can Guide Large Language Model Decoding and Training",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d65d7b89165",
+      "evidence": [
+        {
+          "quote": "AlphaZero-Like Tree-Search can Guide Large Language Model Decoding and Training",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3359,
+            "end_char": 3437
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-03dfa01b4b67"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6def537295fb"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-based Multi-agent Policy Optimization with Adaptive Opponent-wise Rollouts",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5225130b14ad",
+      "evidence": [
+        {
+          "quote": "Model-based Multi-agent Policy Optimization with Adaptive Opponent-wise Rollouts",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3537,
+            "end_char": 3616
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-03dfa01b4b67"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e7441046fc78"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Goal-Conditioned Reinforcement Learning: Problems and Solutions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f4aec9e6566",
+      "evidence": [
+        {
+          "quote": "Goal-Conditioned Reinforcement Learning: Problems and Solutions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3675,
+            "end_char": 3737
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-03dfa01b4b67"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-519f584925e8"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Plan Your Target and Learn Your Skills: Transferable State-Only Imitation Learning via Decoupled Policy Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f92298af41cc",
+      "evidence": [
+        {
+          "quote": "Plan Your Target and Learn Your Skills: Transferable State-Only Imitation Learning via Decoupled Policy Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3789,
+            "end_char": 3904
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e7441046fc78"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-54763e826095"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Enhanced Representation for Tabular Data via Neighborhood Propagation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a480bc7bbcb3",
+      "evidence": [
+        {
+          "quote": "Learning Enhanced Representation for Tabular Data via Neighborhood Propagation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4001,
+            "end_char": 4078
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GraphHINGE: Learning Interaction Models of Structured Neighborhood on Heterogeneous Information Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-735c30a1e0a5",
+      "evidence": [
+        {
+          "quote": "GraphHINGE: Learning Interaction Models of Structured Neighborhood on Heterogeneous Information Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4301
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Large Decision Models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-813da9508677",
+      "evidence": [
+        {
+          "quote": "Large Decision Models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4415,
+            "end_char": 4435
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Large-scale Interactive Recommendation with Tree-structured Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-747a5137040b",
+      "evidence": [
+        {
+          "quote": "Large-scale Interactive Recommendation with Tree-structured Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4462,
+            "end_char": 4543
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Graph-Enhanced Click Model for Web Search",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-984b6adf9ebf",
+      "evidence": [
+        {
+          "quote": "A Graph-Enhanced Click Model for Web Search",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4626,
+            "end_char": 4668
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AIM: Automatic Interaction Machine for Click-Through Rate Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df2a6fd89919",
+      "evidence": [
+        {
+          "quote": "AIM: Automatic Interaction Machine for Click-Through Rate Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4783,
+            "end_char": 4850
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MADiff: Offline Multi-agent Learning with Diffusion Models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5727d9de369",
+      "evidence": [
+        {
+          "quote": "MADiff: Offline Multi-agent Learning with Diffusion Models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4952,
+            "end_char": 5009
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种轨迹空间行列式点过程的强化学习探索和利用的方法.",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-905ff21b883b",
+      "evidence": [
+        {
+          "quote": "一种轨迹空间行列式点过程的强化学习探索和利用的方法.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5117,
+            "end_char": 5142
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于数据模仿和课程学习的离线强化学习方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c9b5e973b1e5",
+      "evidence": [
+        {
+          "quote": "一种基于数据模仿和课程学习的离线强化学习方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5163,
+            "end_char": 5184
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "On Effective Scheduling of Model-based Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2188e5612601",
+      "evidence": [
+        {
+          "quote": "On Effective Scheduling of Model-based Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5211,
+            "end_char": 5271
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Agent Reinforcement Learning is A Sequence Modeling Problem",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1851d132ce57",
+      "evidence": [
+        {
+          "quote": "Multi-Agent Reinforcement Learning is A Sequence Modeling Problem",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5372,
+            "end_char": 5436
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Diffusion Model is an Effective Planner and Data Synthesizer for Multi-Task Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef746299fd40",
+      "evidence": [
+        {
+          "quote": "Diffusion Model is an Effective Planner and Data Synthesizer for Multi-Task Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5536,
+            "end_char": 5633
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "中国科协青年人才托举工程",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7bf5f0afe3d0",
+      "evidence": [
+        {
+          "quote": "中国科协青年人才托举工程",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5732,
+            "end_char": 5743
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Diffusion-DICE: In-Sample Diffusion Guidance for Offline Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b6bc7e50d70",
+      "evidence": [
+        {
+          "quote": "Diffusion-DICE: In-Sample Diffusion Guidance for Offline Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5762,
+            "end_char": 5840
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于鲁棒模仿学习的模拟器建模方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3da112dae85",
+      "evidence": [
+        {
+          "quote": "一种基于鲁棒模仿学习的模拟器建模方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5911,
+            "end_char": 5928
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Retrieval & Interaction Machine for Tabular Data Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d90cc58f70e",
+      "evidence": [
+        {
+          "quote": "Retrieval & Interaction Machine for Tabular Data Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5957,
+            "end_char": 6015
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "HiFI: Hierarchical Fairness-aware Integrated Ranking with Constrained Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24e5e0096dc8",
+      "evidence": [
+        {
+          "quote": "HiFI: Hierarchical Fairness-aware Integrated Ranking with Constrained Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6118,
+            "end_char": 6209
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcing Language Agents via Policy Optimization with Action Decomposition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0b84727b55a",
+      "evidence": [
+        {
+          "quote": "Reinforcing Language Agents via Policy Optimization with Action Decomposition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6299,
+            "end_char": 6375
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Honor of Kings Arena: an Environment for Generalization in Competitive Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-718a58c9e034",
+      "evidence": [
+        {
+          "quote": "Honor of Kings Arena: an Environment for Generalization in Competitive Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6441,
+            "end_char": 6533
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Curriculum Offline Imitating Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd5ab9cc743c",
+      "evidence": [
+        {
+          "quote": "Curriculum Offline Imitating Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6696,
+            "end_char": 6732
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GMOCAT: A Graph-Enhanced Multi-Objective Method for Computerized Adaptive Testing.",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed043c65c6a9",
+      "evidence": [
+        {
+          "quote": "GMOCAT: A Graph-Enhanced Multi-Objective Method for Computerized Adaptive Testing.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6827,
+            "end_char": 6908
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DiffStitch: Boosting Offline Reinforcement Learning with Diffusion-based Trajectory Stitching",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7bef6edfa4b",
+      "evidence": [
+        {
+          "quote": "DiffStitch: Boosting Offline Reinforcement Learning with Diffusion-based Trajectory Stitching",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7021,
+            "end_char": 7113
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ZSC-Eval: An Evaluation Toolkit and Benchmark for Multi-agent Zero-shot Coordination",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d6ac26e1b77",
+      "evidence": [
+        {
+          "quote": "ZSC-Eval: An Evaluation Toolkit and Benchmark for Multi-agent Zero-shot Coordination",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7188,
+            "end_char": 7271
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GEAR: A GPU-Centric Experience Replay System for Large Reinforcement Learning Models.",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8f1061b4a4c5",
+      "evidence": [
+        {
+          "quote": "GEAR: A GPU-Centric Experience Replay System for Large Reinforcement Learning Models.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7370,
+            "end_char": 7454
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MALib: A Parallel Framework for Population-based Multi-agent Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5b97c641645",
+      "evidence": [
+        {
+          "quote": "MALib: A Parallel Framework for Population-based Multi-agent Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7557,
+            "end_char": 7639
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "动手学强化学习",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9b2c08df5d7",
+      "evidence": [
+        {
+          "quote": "动手学强化学习",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3321,
+            "end_char": 3327
+          },
+          "version": "1e1b4305364984a38212"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "会议论文": {
+        "listed": 21,
+        "extracted": 21
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "2e698dc62c3e637bbcd9",
   "version": "0754b865deae05f959d9",
   "source_hash": "1a3a00cd6161c223bc5617cc91a8558ff0da271fecfb8f321453398a0b7797d2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:55:00.396407+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.907409+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-849688a53ee6",
-          "name": "人机协作装配机器人",
-          "desc": "非结构工况环境下的人机高效、自然协作装配",
+          "id": "item-721fb572cc43",
+          "name": "装配是产品制造的关键环节，实现非结构工况环境下的人机高效、自然协作装配，对促进装配制造向智能化发展具有重要意义。",
+          "desc": "装配是产品制造的关键环节，实现非结构工况环境下的人机高效、自然协作装配，对促进装配制造向智能化发展具有重要意义。",
           "evidence": [
             {
-              "quote": "装配是产品制造的关键环节，实现非结构工况环境下的人机高效、自然协作装配，对促进装配制造向智能化发展具有重要意义",
+              "quote": "装配是产品制造的关键环节，实现非结构工况环境下的人机高效、自然协作装配，对促进装配制造向智能化发展具有重要意义。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 663,
-                "end_char": 717
+                "end_char": 718
+              },
+              "version": "0754b865deae05f959d9"
+            }
+          ]
+        },
+        {
+          "id": "item-24173f87c784",
+          "name": "12. [期刊论文] 光纤传感在制造领域应用的分析与思考 — 周祖德;姚碧涛;谭跃刚;刘明尧;李天梁;魏勤",
+          "desc": "12. [期刊论文] 光纤传感在制造领域应用的分析与思考 — 周祖德;姚碧涛;谭跃刚;刘明尧;李天梁;魏勤",
+          "evidence": [
+            {
+              "quote": "12. [期刊论文] 光纤传感在制造领域应用的分析与思考 — 周祖德;姚碧涛;谭跃刚;刘明尧;李天梁;魏勤",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4925,
+                "end_char": 4977
               },
               "version": "0754b865deae05f959d9"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-e5be22cc932e",
-          "name": "接触力与环境信息获取难",
-          "desc": "动态非结构环境下人机接触力和装配环境信息需要准确获取",
-          "evidence": [
-            {
-              "quote": "实现了动态非结构环境下人机接触力和装配环境信息准确获取",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3268,
-                "end_char": 3294
-              },
-              "version": "0754b865deae05f959d9"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-22e67bda8f52",
-          "name": "外力检测与位姿估计",
-          "desc": "基于动力学建模与不确定性补偿的外力检测、椭圆检测位姿估计",
+          "id": "item-c406f3706602",
+          "name": "面向人机协作装配效率和人的负荷动态优化，研究基于人-机-环境耦合模型和强化学习的人机协作装配机器人主从作业动态控制方法，",
+          "desc": "面向人机协作装配效率和人的负荷动态优化，研究基于人-机-环境耦合模型和强化学习的人机协作装配机器人主从作业动态控制方法，构建人机协作装配原型系统并对相关理论验证。",
           "evidence": [
             {
-              "quote": "研究了基于动力学建模和模型不确定性补偿的机器人外力检测方法",
+              "quote": "面向人机协作装配效率和人的负荷动态优化，研究基于人-机-环境耦合模型和强化学习的人机协作装配机器人主从作业动态控制方法，构建人机协作装配原型系统并对相关理论验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3192,
-                "end_char": 3220
+                "start_char": 949,
+                "end_char": 1029
               },
               "version": "0754b865deae05f959d9"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-325f4facc6f7",
-          "name": "意图识别与耦合建模",
-          "desc": "基于脉冲神经网络的工序状态预测与上下文感知的人员作业意图识别",
+          "id": "item-98eba56bc854",
+          "name": "本项目基于“状态感知-模型创建-控制优化”的研究思路，探索人机接触力和视觉多源数据驱动的人机协作装配机器人主从作业动态控",
+          "desc": "本项目基于“状态感知-模型创建-控制优化”的研究思路，探索人机接触力和视觉多源数据驱动的人机协作装配机器人主从作业动态控制新理论和新方法。",
           "evidence": [
             {
-              "quote": "提出了基于脉冲神经网络的工序状态转换早期预测方法",
+              "quote": "本项目基于“状态感知-模型创建-控制优化”的研究思路，探索人机接触力和视觉多源数据驱动的人机协作装配机器人主从作业动态控制新理论和新方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3312,
-                "end_char": 3335
+                "start_char": 719,
+                "end_char": 787
               },
               "version": "0754b865deae05f959d9"
             }
-          ]
-        },
-        {
-          "id": "item-603c320d62cf",
-          "name": "知识引导与强化学习装配机制",
-          "desc": "揭示机器人与环境耦合关系的高效柔顺装配机制",
-          "evidence": [
-            {
-              "quote": "提出了基于知识引导和强化学习的机器人高效、柔顺装配机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3389,
-                "end_char": 3415
-              },
-              "version": "0754b865deae05f959d9"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,69 +107,369 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d8f05046575e",
-          "name": "主从角色动态转换控制",
-          "desc": "基于强化学习的主从作业控制方法，提高人机协作平顺性与自然性",
+          "id": "item-68b967714433",
+          "name": "装配是产品制造的关键环节，实现非结构工况环境下的人机高效、自然协作装配，对促进装配制造向智能化发展具有重要意义。",
+          "desc": "装配是产品制造的关键环节，实现非结构工况环境下的人机高效、自然协作装配，对促进装配制造向智能化发展具有重要意义。",
           "evidence": [
             {
-              "quote": "提出了基于强化学习的人机协作装配机器人主从作业控制方法，实现了人机协作过程中机器人主从角色的动态转换，提高了人机协作的平顺性和自然性",
+              "quote": "装配是产品制造的关键环节，实现非结构工况环境下的人机高效、自然协作装配，对促进装配制造向智能化发展具有重要意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3447,
-                "end_char": 3512
+                "start_char": 663,
+                "end_char": 718
               },
               "version": "0754b865deae05f959d9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-849688a53ee6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e5be22cc932e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep reinforcement learning on variable stiffness compliant control for programming-free robotic assembly in smart manufacturing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a27d565be0f",
+      "evidence": [
+        {
+          "quote": "Deep reinforcement learning on variable stiffness compliant control for programming-free robotic assembly in smart manufacturing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3590,
+            "end_char": 3717
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e5be22cc932e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-22e67bda8f52"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Digital twin-based multi-level task rescheduling for robotic assembly line",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aeb38639294c",
+      "evidence": [
+        {
+          "quote": "Digital twin-based multi-level task rescheduling for robotic assembly line",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3793,
+            "end_char": 3866
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-325f4facc6f7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d8f05046575e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Turn-Taking Prediction for Human–Robot Collaborative Assembly Considering Human Uncertainty",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c015321afcb",
+      "evidence": [
+        {
+          "quote": "Turn-Taking Prediction for Human–Robot Collaborative Assembly Considering Human Uncertainty",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3927,
+            "end_char": 4017
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-603c320d62cf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d8f05046575e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向人机协作装配的人员作业意图识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d744f9551ab",
+      "evidence": [
+        {
+          "quote": "面向人机协作装配的人员作业意图识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4081,
+            "end_char": 4099
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimizing Non-diagonal Stiffness Matrix of Compliance Control for Robotic Assembly Using Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-864600150d0c",
+      "evidence": [
+        {
+          "quote": "Optimizing Non-diagonal Stiffness Matrix of Compliance Control for Robotic Assembly Using Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4129,
+            "end_char": 4245
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种考虑工人动态疲劳度的人机协作生产任务重分配方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ae066a93f39",
+      "evidence": [
+        {
+          "quote": "一种考虑工人动态疲劳度的人机协作生产任务重分配方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4298,
+            "end_char": 4322
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "数字制造的科学体系与技术架构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0b0dc554f2c6",
+      "evidence": [
+        {
+          "quote": "数字制造的科学体系与技术架构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4352,
+            "end_char": 4365
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Virtual data generation for human intention prediction based on digital modeling of human-robot collaboration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a69594741b7",
+      "evidence": [
+        {
+          "quote": "Virtual data generation for human intention prediction based on digital modeling of human-robot collaboration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4387,
+            "end_char": 4495
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于上下文感知与图注意力网络的人机协作装配人员作业意图识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1babf0281c2",
+      "evidence": [
+        {
+          "quote": "基于上下文感知与图注意力网络的人机协作装配人员作业意图识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4571,
+            "end_char": 4601
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Knowledge-guided robot learning on compliance control for robotic assembly task with predictive model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc4deb0d2a49",
+      "evidence": [
+        {
+          "quote": "Knowledge-guided robot learning on compliance control for robotic assembly task with predictive model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4636,
+            "end_char": 4736
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Digital Twin-Based Task Rescheduling for Robotic Assembly Line",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef801c31d7bc",
+      "evidence": [
+        {
+          "quote": "Digital Twin-Based Task Rescheduling for Robotic Assembly Line",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4812,
+            "end_char": 4873
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "光纤传感在制造领域应用的分析与思考",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85d397c4386f",
+      "evidence": [
+        {
+          "quote": "光纤传感在制造领域应用的分析与思考",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4936,
+            "end_char": 4952
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pose Estimation of Circular Workpieces With Occlusion Based on GAN-Support Ellipse Detection in Manufacturing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52ea33175423",
+      "evidence": [
+        {
+          "quote": "Pose Estimation of Circular Workpieces With Occlusion Based on GAN-Support Ellipse Detection in Manufacturing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4990,
+            "end_char": 5098
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Assembly Status Detection Based on Step-by-step Strategy for Robotic Assembly",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1b9871d24d3",
+      "evidence": [
+        {
+          "quote": "Assembly Status Detection Based on Step-by-step Strategy for Robotic Assembly",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5161,
+            "end_char": 5237
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robotic Disassembly Sequence Planning Considering Robotic Movement State Based on Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f8a301856f2",
+      "evidence": [
+        {
+          "quote": "Robotic Disassembly Sequence Planning Considering Robotic Movement State Based on Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5292,
+            "end_char": 5400
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic task reallocation in human-robot collaborative workshop based on online biotic fatigue detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5ff20afa1b7",
+      "evidence": [
+        {
+          "quote": "Dynamic task reallocation in human-robot collaborative workshop based on online biotic fatigue detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5462,
+            "end_char": 5565
+          },
+          "version": "0754b865deae05f959d9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

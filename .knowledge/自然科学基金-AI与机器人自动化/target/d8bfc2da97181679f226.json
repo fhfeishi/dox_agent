@@ -2,15 +2,20 @@
   "doc_id": "d8bfc2da97181679f226",
   "version": "1af78e278c799d7219ab",
   "source_hash": "a6910a84a247c66949a46bc93e2d29450f64047bc488c235464934d4aab58cd9",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:10.128110+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.598800+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,111 @@
       "state": "has",
       "items": [
         {
-          "id": "item-af8b2b48936b",
-          "name": "智能网联车辆队列控制",
-          "desc": "混合交通环境下的车辆队列预测巡航控制",
+          "id": "item-1d316204604e",
+          "name": "车辆队列对于提高道路交通安全与效率均具有重要作用，现有的车辆队列控制主要采用局部有限的交通环境信息，并基于物理建模进行控",
+          "desc": "车辆队列对于提高道路交通安全与效率均具有重要作用，现有的车辆队列控制主要采用局部有限的交通环境信息，并基于物理建模进行控制设计。",
+          "evidence": [
+            {
+              "quote": "车辆队列对于提高道路交通安全与效率均具有重要作用，现有的车辆队列控制主要采用局部有限的交通环境信息，并基于物理建模进行控制设计。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 649,
+                "end_char": 712
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ]
+        },
+        {
+          "id": "item-868bd2c5055a",
+          "name": ".本项目研究成果系统揭示了混合交通环境下车辆队列预测巡航控制的关键机理，形成了一套融合机器学习与预测控制的车辆队列协同控",
+          "desc": ".本项目研究成果系统揭示了混合交通环境下车辆队列预测巡航控制的关键机理，形成了一套融合机器学习与预测控制的车辆队列协同控制方法体系，为智能网联车辆队列在复杂交通环境中的安全、高效运行提供了重要的理论依据和技术支撑，具有良好的科学意义和工程应用前景。",
+          "evidence": [
+            {
+              "quote": ".本项目研究成果系统揭示了混合交通环境下车辆队列预测巡航控制的关键机理，形成了一套融合机器学习与预测控制的车辆队列协同控制方法体系，为智能网联车辆队列在复杂交通环境中的安全、高效运行提供了重要的理论依据和技术支撑，具有良好的科学意义和工程应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3561,
+                "end_char": 3684
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7405dc240e52",
+          "name": "进一步地，针对传统模型预测控制对模型精度依赖较强的问题，提出了模型预测控制与数据驱动方法相融合的车辆队列预测巡航控制框架",
+          "desc": "进一步地，针对传统模型预测控制对模型精度依赖较强的问题，提出了模型预测控制与数据驱动方法相融合的车辆队列预测巡航控制框架，实现了对预测模型参数和控制参数的自适应优化。",
+          "evidence": [
+            {
+              "quote": "进一步地，针对传统模型预测控制对模型精度依赖较强的问题，提出了模型预测控制与数据驱动方法相融合的车辆队列预测巡航控制框架，实现了对预测模型参数和控制参数的自适应优化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3241,
+                "end_char": 3323
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a2c45ce56720",
+          "name": "同时，在多智能体一致性方法规划车辆轨迹的基础上，建立基于机器学习的车辆模型预测控制，通过对预测模型、成本函数与约束条件的",
+          "desc": "同时，在多智能体一致性方法规划车辆轨迹的基础上，建立基于机器学习的车辆模型预测控制，通过对预测模型、成本函数与约束条件的学习与优化，提高车辆轨迹跟踪性能。",
+          "evidence": [
+            {
+              "quote": "同时，在多智能体一致性方法规划车辆轨迹的基础上，建立基于机器学习的车辆模型预测控制，通过对预测模型、成本函数与约束条件的学习与优化，提高车辆轨迹跟踪性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 845,
+                "end_char": 921
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dc231faaf231",
+          "name": "车辆队列对于提高道路交通安全与效率均具有重要作用，现有的车辆队列控制主要采用局部有限的交通环境信息，并基于物理建模进行控",
+          "desc": "车辆队列对于提高道路交通安全与效率均具有重要作用，现有的车辆队列控制主要采用局部有限的交通环境信息，并基于物理建模进行控制设计。",
+          "evidence": [
+            {
+              "quote": "车辆队列对于提高道路交通安全与效率均具有重要作用，现有的车辆队列控制主要采用局部有限的交通环境信息，并基于物理建模进行控制设计。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 649,
+                "end_char": 712
+              },
+              "version": "1af78e278c799d7219ab"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-bd367067cbf7",
+          "name": "随着智能网联汽车技术的发展，车辆队列运行已成为提升道路通行效率、降低能耗与排放的重要手段。",
+          "desc": "随着智能网联汽车技术的发展，车辆队列运行已成为提升道路通行效率、降低能耗与排放的重要手段。",
           "evidence": [
             {
               "quote": "随着智能网联汽车技术的发展，车辆队列运行已成为提升道路通行效率、降低能耗与排放的重要手段。",
@@ -32,166 +139,276 @@
               },
               "version": "1af78e278c799d7219ab"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d3696bc3cb32",
-          "name": "混合交通确定性模型失效",
-          "desc": "驾驶行为不确定、状态快变与通信非理想挑战队列控制",
-          "evidence": [
-            {
-              "quote": "受驾驶行为不确定性、交通状态快速变化以及通信与执行器非理想等因素影响，传统基于确定性模型的车辆队列控制方法在稳定性、安全性与控制性能方面面临显著挑战。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2844,
-                "end_char": 2918
-              },
-              "version": "1af78e278c799d7219ab"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-91eddb202b0e",
-          "name": "驾驶行为预测模型",
-          "desc": "机器学习建模人类驾驶纵向加速度与跟驰特征",
-          "evidence": [
-            {
-              "quote": "分析了人类驾驶车辆纵向加速度与跟驰行为特征，引入机器学习方法建立了驾驶行为预测模型，为车辆队列预测巡航控制提供先验信息支撑。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3040,
-                "end_char": 3101
-              },
-              "version": "1af78e278c799d7219ab"
-            }
-          ]
-        },
-        {
-          "id": "item-612b34d74ab6",
-          "name": "模型-数据融合控制框架",
-          "desc": "MPC与数据驱动融合实现参数自适应优化",
-          "evidence": [
-            {
-              "quote": "提出了模型预测控制与数据驱动方法相融合的车辆队列预测巡航控制框架，实现了对预测模型参数和控制参数的自适应优化。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3269,
-                "end_char": 3323
-              },
-              "version": "1af78e278c799d7219ab"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6a0bccbca4bc",
-          "name": "碰撞率降至0%",
-          "desc": "碰撞率由最高17.5%降至0%，成功率提升至85%-96%",
-          "evidence": [
-            {
-              "quote": "与传统模型预测控制和强化学习方法相比，在不同驾驶风格条件下将车辆队列碰撞率由最高 17.5% 降低至 0%，队列运行成功率提升至 85%–96%。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3371,
-                "end_char": 3443
-              },
-              "version": "1af78e278c799d7219ab"
-            }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b4c881fa092a",
-          "name": "间距误差降至1.44m",
-          "desc": "最大车间距误差由29.25m降至1.44m，平顺性改善49.8%",
-          "evidence": [
-            {
-              "quote": "在考虑通信延迟约 100 ms 和执行器响应滞后约 500 ms 的商用车辆队列场景中，平均最大车间距误差由 29.25 m 降低至 1.44 m，控制性能显著提升。在预测巡航控制应用中，车辆队列行驶平顺性指标平均改善约 49.8%。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3444,
-                "end_char": 3560
-              },
-              "version": "1af78e278c799d7219ab"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-af8b2b48936b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d3696bc3cb32"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory Tracking of Autonomous Vehicle Based on Model Predictive Control With PID Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6274bdc26493",
+      "evidence": [
+        {
+          "quote": "Trajectory Tracking of Autonomous Vehicle Based on Model Predictive Control With PID Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3710,
+            "end_char": 3802
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d3696bc3cb32"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-91eddb202b0e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Eliminating Uncertainty of Driver’s Social Preferences for Lane Change Decision-Making in Realistic Simulation Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0de5ae0e2ea8",
+      "evidence": [
+        {
+          "quote": "Eliminating Uncertainty of Driver’s Social Preferences for Lane Change Decision-Making in Realistic Simulation Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3866,
+            "end_char": 3987
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d3696bc3cb32"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-612b34d74ab6"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种交通移动目标的置信度判断方法、装置、设备和介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-90abe57fb978",
+      "evidence": [
+        {
+          "quote": "一种交通移动目标的置信度判断方法、装置、设备和介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4109,
+            "end_char": 4133
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-612b34d74ab6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6a0bccbca4bc"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种车辆队列测试方法、电子设备及储存介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13ba79dcb4f8",
+      "evidence": [
+        {
+          "quote": "一种车辆队列测试方法、电子设备及储存介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4156,
+            "end_char": 4175
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-91eddb202b0e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b4c881fa092a"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-lane multi-platoon control with collision avoidance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-484c1dec15c9",
+      "evidence": [
+        {
+          "quote": "Multi-lane multi-platoon control with collision avoidance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4207,
+            "end_char": 4263
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于特征解耦的车辆重识别方法、电子设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-501b698b828b",
+      "evidence": [
+        {
+          "quote": "基于特征解耦的车辆重识别方法、电子设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4336,
+            "end_char": 4359
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于参数自学习的无人车轨迹跟踪控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-23cd20d4ec1b",
+      "evidence": [
+        {
+          "quote": "一种基于参数自学习的无人车轨迹跟踪控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4386,
+            "end_char": 4406
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-data-driven control for human-leading vehicle platoon",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92eba82c9e87",
+      "evidence": [
+        {
+          "quote": "Model-data-driven control for human-leading vehicle platoon",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4438,
+            "end_char": 4496
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Like Decision Making for Autonomous Driving with Social Skills",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a0bca2d28f1f",
+      "evidence": [
+        {
+          "quote": "Human-Like Decision Making for Autonomous Driving with Social Skills",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4567,
+            "end_char": 4634
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Model Predictive Control for Heterogeneous Platoon With Leading Human-Driven Vehicle Acceleration Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-642995e32e91",
+      "evidence": [
+        {
+          "quote": "Distributed Model Predictive Control for Heterogeneous Platoon With Leading Human-Driven Vehicle Acceleration Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4698,
+            "end_char": 4817
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Survey of Multi-Vehicle Consensus in Uncertain Networks for Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03ac019b208b",
+      "evidence": [
+        {
+          "quote": "A Survey of Multi-Vehicle Consensus in Uncertain Networks for Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4901,
+            "end_char": 4980
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Consensus Control of Highway On-Ramp Merging With Communication Delays",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f28a007d0c48",
+      "evidence": [
+        {
+          "quote": "Consensus Control of Highway On-Ramp Merging With Communication Delays",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5069,
+            "end_char": 5138
+          },
+          "version": "1af78e278c799d7219ab"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

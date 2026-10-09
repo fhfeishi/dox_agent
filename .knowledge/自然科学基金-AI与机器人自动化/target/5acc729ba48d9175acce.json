@@ -2,15 +2,20 @@
   "doc_id": "5acc729ba48d9175acce",
   "version": "a26baf15f99b78f2902a",
   "source_hash": "eb8dedfa38a50a5bd2f5f797ca060e6ad32d04e295d78a829d1a7d72ca033667",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:35.352073+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.332451+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-58a79dd555f2",
-          "name": "无人机载穿墙雷达探测",
-          "desc": "空中穿透墙壁对建筑内人体目标三维成像探测",
+          "id": "item-362bc519bd99",
+          "name": "无人机载超宽带三维穿墙雷达机动灵活，能够在空中穿透墙壁对隐匿在建筑内的人体目标进行三维成像探测。",
+          "desc": "无人机载超宽带三维穿墙雷达机动灵活，能够在空中穿透墙壁对隐匿在建筑内的人体目标进行三维成像探测。",
           "evidence": [
             {
-              "quote": "课题以无人机载超宽带三维穿墙雷达（Three-Dimensional Through-the-Wall Radar，3D TWR）人体目标姿态估计为研究对象",
+              "quote": "无人机载超宽带三维穿墙雷达机动灵活，能够在空中穿透墙壁对隐匿在建筑内的人体目标进行三维成像探测。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2582,
-                "end_char": 2659
+                "start_char": 643,
+                "end_char": 690
               },
               "version": "a26baf15f99b78f2902a"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d208b261daec",
-          "name": "低信杂噪比与虚假像",
-          "desc": "发射功率低阵列稀疏抖动多径复杂致信杂噪比低",
+          "id": "item-e673a49a6c2c",
+          "name": "因此，无人机载超宽带三维穿墙雷达人体目标姿态估计，需要解决平台抖动下运动人体目标的回波增强、栅瓣虚假像和多径虚假像抑制、",
+          "desc": "因此，无人机载超宽带三维穿墙雷达人体目标姿态估计，需要解决平台抖动下运动人体目标的回波增强、栅瓣虚假像和多径虚假像抑制、三维成像分辨率低等难点问题。",
           "evidence": [
             {
-              "quote": "工作频段低、发射功率低、阵列稀疏、无人机抖动、多径环境复杂且目标运动状态多变，使得雷达接收的回波信号具有信杂噪比低、多径干扰强、空间采样不足等特点。",
+              "quote": "因此，无人机载超宽带三维穿墙雷达人体目标姿态估计，需要解决平台抖动下运动人体目标的回波增强、栅瓣虚假像和多径虚假像抑制、三维成像分辨率低等难点问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 691,
-                "end_char": 764
+                "start_char": 765,
+                "end_char": 838
               },
               "version": "a26baf15f99b78f2902a"
             }
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e10c1fec2a20",
-          "name": "栅瓣抑制方法",
-          "desc": "基于子孔径子频带相干因子加权抑制稀疏阵列栅瓣",
+          "id": "item-e4dff47008ff",
+          "name": "（2）研究了3D TWR的目标检测及姿态识别算法，构建了3D TWR图像数据集，提出了一种新的基于深度学习的多任务人体目",
+          "desc": "（2）研究了3D TWR的目标检测及姿态识别算法，构建了3D TWR图像数据集，提出了一种新的基于深度学习的多任务人体目标探测及姿态识别方法，实现了对墙后人体目标数量、位置及其姿态信息的可靠同步提取。",
           "evidence": [
             {
-              "quote": "提出了基于子孔径子频带相干因子加权的栅瓣抑制方法，有效抑制了稀疏阵列产生的栅瓣。",
+              "quote": "（2）研究了3D TWR的目标检测及姿态识别算法，构建了3D TWR图像数据集，提出了一种新的基于深度学习的多任务人体目标探测及姿态识别方法，实现了对墙后人体目标数量、位置及其姿态信息的可靠同步提取。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2877,
-                "end_char": 2916
-              },
-              "version": "a26baf15f99b78f2902a"
-            }
-          ]
-        },
-        {
-          "id": "item-70c8fcfcacc0",
-          "name": "多任务姿态识别网络",
-          "desc": "深度学习多任务探测姿态识别并模型剪枝压缩部署",
-          "evidence": [
-            {
-              "quote": "提出了一种新的基于深度学习的多任务人体目标探测及姿态识别方法，实现了对墙后人体目标数量、位置及其姿态信息的可靠同步提取。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2957,
+                "start_char": 2917,
                 "end_char": 3016
               },
               "version": "a26baf15f99b78f2902a"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9bb4a05101ff",
+          "name": "（3）基于距离-时间-多普勒谱图研究了一维稀疏MIMO阵列的目标检测、目标定位与姿态识别方法，提出了一种基于卷积与多尺度",
+          "desc": "（3）基于距离-时间-多普勒谱图研究了一维稀疏MIMO阵列的目标检测、目标定位与姿态识别方法，提出了一种基于卷积与多尺度空间和通道注意力模块的多任务网络。",
+          "evidence": [
+            {
+              "quote": "（3）基于距离-时间-多普勒谱图研究了一维稀疏MIMO阵列的目标检测、目标定位与姿态识别方法，提出了一种基于卷积与多尺度空间和通道注意力模块的多任务网络。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3056,
+                "end_char": 3132
+              },
+              "version": "a26baf15f99b78f2902a"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +108,268 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0ac18c683540",
-          "name": "数据集与可靠提取",
-          "desc": "构建3D TWR图像数据集实现可靠同步提取",
+          "id": "item-b39cf197e4e4",
+          "name": "无人机载超宽带三维穿墙雷达机动灵活，能够在空中穿透墙壁对隐匿在建筑内的人体目标进行三维成像探测。",
+          "desc": "无人机载超宽带三维穿墙雷达机动灵活，能够在空中穿透墙壁对隐匿在建筑内的人体目标进行三维成像探测。",
           "evidence": [
             {
-              "quote": "构建了3D TWR图像数据集，提出了一种新的基于深度学习的多任务人体目标探测及姿态识别方法，实现了对墙后人体目标数量、位置及其姿态信息的可靠同步提取。",
+              "quote": "无人机载超宽带三维穿墙雷达机动灵活，能够在空中穿透墙壁对隐匿在建筑内的人体目标进行三维成像探测。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2942,
-                "end_char": 3016
+                "start_char": 643,
+                "end_char": 690
               },
               "version": "a26baf15f99b78f2902a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-7205a246dab2",
+          "name": "城市环境的日益复杂给隐匿目标探测带来了更大的挑战，作为一种新兴的隐匿目标探测手段，无人机载超宽带三维成像雷达能够机动灵活",
+          "desc": "城市环境的日益复杂给隐匿目标探测带来了更大的挑战，作为一种新兴的隐匿目标探测手段，无人机载超宽带三维成像雷达能够机动灵活地在空中穿透非金属墙体对建筑内的人体目标进行三维成像探测。",
+          "evidence": [
+            {
+              "quote": "城市环境的日益复杂给隐匿目标探测带来了更大的挑战，作为一种新兴的隐匿目标探测手段，无人机载超宽带三维成像雷达能够机动灵活地在空中穿透非金属墙体对建筑内的人体目标进行三维成像探测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2493,
+                "end_char": 2581
+              },
+              "version": "a26baf15f99b78f2902a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-58a79dd555f2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d208b261daec"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CNN-based radar communication integrated signal sidelobe suppression method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1257b5d0bcdc",
+      "evidence": [
+        {
+          "quote": "CNN-based radar communication integrated signal sidelobe suppression method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3283,
+            "end_char": 3357
+          },
+          "version": "a26baf15f99b78f2902a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d208b261daec"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e10c1fec2a20"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Random Matrix based Extended object/Group Target Tracking with Extra Extension Parameters",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9bb2c6c9df28",
+      "evidence": [
+        {
+          "quote": "Random Matrix based Extended object/Group Target Tracking with Extra Extension Parameters",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3414,
+            "end_char": 3502
+          },
+          "version": "a26baf15f99b78f2902a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d208b261daec"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-70c8fcfcacc0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Decoding of Costas DFC Waveforms with Hidden Markov Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47cf29d6e46c",
+      "evidence": [
+        {
+          "quote": "Robust Decoding of Costas DFC Waveforms with Hidden Markov Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3557,
+            "end_char": 3620
+          },
+          "version": "a26baf15f99b78f2902a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-70c8fcfcacc0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0ac18c683540"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Multitask Network for People Counting, Motion Recognition, and Localization Using Through-Wall Radar",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3916c3048894",
+      "evidence": [
+        {
+          "quote": "A Multitask Network for People Counting, Motion Recognition, and Localization Using Through-Wall Radar",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3693,
+            "end_char": 3794
+          },
+          "version": "a26baf15f99b78f2902a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e10c1fec2a20"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0ac18c683540"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "便携式三维穿墙成像雷达卷积神经网络部署方法及其装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9a3c5327972",
+      "evidence": [
+        {
+          "quote": "便携式三维穿墙成像雷达卷积神经网络部署方法及其装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3876,
+            "end_char": 3900
+          },
+          "version": "a26baf15f99b78f2902a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast Factorized Backprojection Algorithm in Orthogonal Elliptical Coordinate System for Ocean Scenes Imaging Using Geosynchronous Spaceborne–Airborne VHF UWB Bistatic SAR",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bb0e6912379f",
+      "evidence": [
+        {
+          "quote": "Fast Factorized Backprojection Algorithm in Orthogonal Elliptical Coordinate System for Ocean Scenes Imaging Using Geosynchronous Spaceborne–Airborne VHF UWB Bistatic SAR",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3928,
+            "end_char": 4097
+          },
+          "version": "a26baf15f99b78f2902a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CNN Based Joint Positioning and Pose Recognition of Concealed Human for 3D Through-Wall Imaging Radar",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29f715399e09",
+      "evidence": [
+        {
+          "quote": "CNN Based Joint Positioning and Pose Recognition of Concealed Human for 3D Through-Wall Imaging Radar",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4190,
+            "end_char": 4290
+          },
+          "version": "a26baf15f99b78f2902a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Detection of Flying Birds in Airport Monitoring Based on Improved YOLOv5",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5ab62709c8c",
+      "evidence": [
+        {
+          "quote": "Detection of Flying Birds in Airport Monitoring Based on Improved YOLOv5",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4346,
+            "end_char": 4417
+          },
+          "version": "a26baf15f99b78f2902a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Doppler spectrum recognition of bird and drone based on one-dimensional deep neural network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-403af7403f56",
+      "evidence": [
+        {
+          "quote": "Doppler spectrum recognition of bird and drone based on one-dimensional deep neural network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4472,
+            "end_char": 4562
+          },
+          "version": "a26baf15f99b78f2902a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimized L2 Norm Loss for Adversarial Robustness",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-19aa72aba293",
+      "evidence": [
+        {
+          "quote": "Optimized L2 Norm Loss for Adversarial Robustness",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4620,
+            "end_char": 4668
+          },
+          "version": "a26baf15f99b78f2902a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "10a4a86a873ecd7432b1",
   "version": "3f08a1cd06d9429bc868",
   "source_hash": "ccbf506adfc399945643e61c9ce7bda12980f65fdf1437e91a67cef0ec75c970",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:19:59.361378+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.645549+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,47 @@
       "state": "has",
       "items": [
         {
-          "id": "item-057b8a655bb8",
-          "name": "肌肉骨骼机器人仿人操作",
-          "desc": "仿人抓取、装配等任务的肌肉骨骼机器人操作",
+          "id": "item-4c4935fce3ff",
+          "name": "与传统的串联刚性机器人相比，模仿人体肌肉驱动方式和关节、骨骼结构的肌肉骨骼机器人具有更好的灵巧性和柔顺性，更利于实现仿人",
+          "desc": "与传统的串联刚性机器人相比，模仿人体肌肉驱动方式和关节、骨骼结构的肌肉骨骼机器人具有更好的灵巧性和柔顺性，更利于实现仿人操作。",
+          "evidence": [
+            {
+              "quote": "与传统的串联刚性机器人相比，模仿人体肌肉驱动方式和关节、骨骼结构的肌肉骨骼机器人具有更好的灵巧性和柔顺性，更利于实现仿人操作。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 723
+              },
+              "version": "3f08a1cd06d9429bc868"
+            }
+          ]
+        },
+        {
+          "id": "item-2448d7d71301",
+          "name": "本项目拟实现肌肉骨骼机器人运动学习的理论突破和创新，形成面向仿人抓取、装配等操作任务的肌肉骨骼机器人原型系统，对提高机器",
+          "desc": "本项目拟实现肌肉骨骼机器人运动学习的理论突破和创新，形成面向仿人抓取、装配等操作任务的肌肉骨骼机器人原型系统，对提高机器人操作性能具有理论和应用意义。",
+          "evidence": [
+            {
+              "quote": "本项目拟实现肌肉骨骼机器人运动学习的理论突破和创新，形成面向仿人抓取、装配等操作任务的肌肉骨骼机器人原型系统，对提高机器人操作性能具有理论和应用意义。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 985,
+                "end_char": 1059
+              },
+              "version": "3f08a1cd06d9429bc868"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e8781106715f",
+          "name": "面向肌肉骨骼机器人仿人操作中高冗余、强耦合和强非线性肌肉群的协同控制问题，以及现有运动学习方法存在学习效率低、硬件部署难",
+          "desc": "面向肌肉骨骼机器人仿人操作中高冗余、强耦合和强非线性肌肉群的协同控制问题，以及现有运动学习方法存在学习效率低、硬件部署难和多任务持续学习能力弱等局限性，本项目开展了系列脑启发式运动学习研究。",
           "evidence": [
             {
               "quote": "面向肌肉骨骼机器人仿人操作中高冗余、强耦合和强非线性肌肉群的协同控制问题，以及现有运动学习方法存在学习效率低、硬件部署难和多任务持续学习能力弱等局限性，本项目开展了系列脑启发式运动学习研究。",
@@ -37,62 +80,42 @@
       ]
     },
     {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-59fefc7dc189",
-          "name": "肌肉群协同控制难题",
-          "desc": "高冗余强耦合强非线性协同控制与学习方法局限",
-          "evidence": [
-            {
-              "quote": "其中，高冗余、强耦合和强非线性肌肉群的协同控制是肌肉骨骼机器人仿人操作的关键问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 724,
-                "end_char": 764
-              },
-              "version": "3f08a1cd06d9429bc868"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-a441af0d9def",
-          "name": "肌肉协同神经机制学习",
-          "desc": "运动皮层-小脑-肌肉多通路机制提升控制精度",
+          "id": "item-af3eaa40d30e",
+          "name": "5. [专利] 基于多通路融合的机器人运动轨迹规划和控制方法及装置、存储介质及程序产品 — 刘政宇;张金涵;陈嘉浩;乔红",
+          "desc": "5. [专利] 基于多通路融合的机器人运动轨迹规划和控制方法及装置、存储介质及程序产品 — 刘政宇;张金涵;陈嘉浩;乔红",
           "evidence": [
             {
-              "quote": "研发了一系列基于肌肉协同激活机制和运动皮层-小脑-肌肉多通路神经机制的肌肉骨骼机器人运动学习，提高了肌肉骨骼机器人的运动控制精度和泛化性",
+              "quote": "5. [专利] 基于多通路融合的机器人运动轨迹规划和控制方法及装置、存储介质及程序产品 — 刘政宇;张金涵;陈嘉浩;乔红",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3060,
-                "end_char": 3127
+                "start_char": 3831,
+                "end_char": 3890
               },
               "version": "3f08a1cd06d9429bc868"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-43f6a6b53c3b",
-          "name": "脑启发多任务持续学习",
-          "desc": "提高多任务学习能力与仿人操作能力",
+          "id": "item-57fb3ec1b389",
+          "name": "具体地，本项目研发了一系列基于肌肉协同激活机制和运动皮层-小脑-肌肉多通路神经机制的肌肉骨骼机器人运动学习，提高了肌肉骨",
+          "desc": "具体地，本项目研发了一系列基于肌肉协同激活机制和运动皮层-小脑-肌肉多通路神经机制的肌肉骨骼机器人运动学习，提高了肌肉骨骼机器人的运动控制精度和泛化性；",
           "evidence": [
             {
-              "quote": "研发了肌肉骨骼机器人的脑启发式多任务持续学习，提高了肌肉骨骼机器人的多任务学习能力和仿人操作能力。",
+              "quote": "具体地，本项目研发了一系列基于肌肉协同激活机制和运动皮层-小脑-肌肉多通路神经机制的肌肉骨骼机器人运动学习，提高了肌肉骨骼机器人的运动控制精度和泛化性；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3129,
-                "end_char": 3177
+                "start_char": 3053,
+                "end_char": 3128
               },
               "version": "3f08a1cd06d9429bc868"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,272 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b9e871aea7be",
-          "name": "IEEE TCDS最佳论文奖",
-          "desc": "获2025 IEEE TCDS最佳论文奖与NeurIPS MyoChallenge亚军",
+          "id": "item-4c5f47402646",
+          "name": "与传统的串联刚性机器人相比，模仿人体肌肉驱动方式和关节、骨骼结构的肌肉骨骼机器人具有更好的灵巧性和柔顺性，更利于实现仿人",
+          "desc": "与传统的串联刚性机器人相比，模仿人体肌肉驱动方式和关节、骨骼结构的肌肉骨骼机器人具有更好的灵巧性和柔顺性，更利于实现仿人操作。",
           "evidence": [
             {
-              "quote": "项目负责人获2025年IEEE TCDS最佳论文奖，获国际比赛NeurlPS Myochallenge 2025肌肉骨骼系统打乒乓球赛道亚军",
+              "quote": "与传统的串联刚性机器人相比，模仿人体肌肉驱动方式和关节、骨骼结构的肌肉骨骼机器人具有更好的灵巧性和柔顺性，更利于实现仿人操作。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3409,
-                "end_char": 3478
+                "start_char": 661,
+                "end_char": 723
               },
               "version": "3f08a1cd06d9429bc868"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-37e67e467cf7",
-          "name": "论文10篇与专利4项",
-          "desc": "标注基金论文10篇（SCI 6篇）、发明专利4项",
+          "id": "item-1a45e7bde25a",
+          "name": "面向肌肉骨骼机器人仿人操作中高冗余、强耦合和强非线性肌肉群的协同控制问题，以及现有运动学习方法存在学习效率低、硬件部署难",
+          "desc": "面向肌肉骨骼机器人仿人操作中高冗余、强耦合和强非线性肌肉群的协同控制问题，以及现有运动学习方法存在学习效率低、硬件部署难和多任务持续学习能力弱等局限性，本项目开展了系列脑启发式运动学习研究。",
           "evidence": [
             {
-              "quote": "发表标注本项目基金号的论文共计10篇，其中以第一作者或通讯作者发表SCI期刊论文6篇，申请/授权国家发明专利4项。",
+              "quote": "面向肌肉骨骼机器人仿人操作中高冗余、强耦合和强非线性肌肉群的协同控制问题，以及现有运动学习方法存在学习效率低、硬件部署难和多任务持续学习能力弱等局限性，本项目开展了系列脑启发式运动学习研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3352,
-                "end_char": 3408
+                "start_char": 2958,
+                "end_char": 3052
               },
               "version": "3f08a1cd06d9429bc868"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-057b8a655bb8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-59fefc7dc189"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "肌肉骨骼机器人的多物体操作任务持续学习方法、控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5320892565d",
+      "evidence": [
+        {
+          "quote": "肌肉骨骼机器人的多物体操作任务持续学习方法、控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3515,
+            "end_char": 3543
+          },
+          "version": "3f08a1cd06d9429bc868"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-59fefc7dc189"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a441af0d9def"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2025 IEEE Transactions on Cognitive and Developmental Systems Outstanding Paper Award",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84fa893c011e",
+      "evidence": [
+        {
+          "quote": "2025 IEEE Transactions on Cognitive and Developmental Systems Outstanding Paper Award",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3576,
+            "end_char": 3660
+          },
+          "version": "3f08a1cd06d9429bc868"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-59fefc7dc189"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-43f6a6b53c3b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多脑区融合的肌肉骨骼机器人控制方法和装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ebb7dba8d26",
+      "evidence": [
+        {
+          "quote": "基于多脑区融合的肌肉骨骼机器人控制方法和装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3694,
+            "end_char": 3715
+          },
+          "version": "3f08a1cd06d9429bc868"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-43f6a6b53c3b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b9e871aea7be"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "NeurIPS MyoChallenge 2025乒乓球赛道亚军",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-65d0b8516be5",
+      "evidence": [
+        {
+          "quote": "NeurIPS MyoChallenge 2025乒乓球赛道亚军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3742,
+            "end_char": 3773
+          },
+          "version": "3f08a1cd06d9429bc868"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a441af0d9def"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-37e67e467cf7"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多通路融合的机器人运动轨迹规划和控制方法及装置、存储介质及程序产品",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-46c8891e20c3",
+      "evidence": [
+        {
+          "quote": "基于多通路融合的机器人运动轨迹规划和控制方法及装置、存储介质及程序产品",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3839,
+            "end_char": 3873
+          },
+          "version": "3f08a1cd06d9429bc868"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Proximal Policy Optimization with Reward Shaping for Musculoskeletal Robot Grasping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5609abfc6964",
+      "evidence": [
+        {
+          "quote": "Proximal Policy Optimization with Reward Shaping for Musculoskeletal Robot Grasping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3902,
+            "end_char": 3984
+          },
+          "version": "3f08a1cd06d9429bc868"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Brain-inspired intelligent robotics: Theoretical analysis and systematic application",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68ff9b831072",
+      "evidence": [
+        {
+          "quote": "Brain-inspired intelligent robotics: Theoretical analysis and systematic application",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4038,
+            "end_char": 4121
+          },
+          "version": "3f08a1cd06d9429bc868"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Continual Learning Method for Generalized Grasping Manipulation in a Musculoskeletal Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a2d42f1a0af",
+      "evidence": [
+        {
+          "quote": "A Continual Learning Method for Generalized Grasping Manipulation in a Musculoskeletal Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4193,
+            "end_char": 4284
+          },
+          "version": "3f08a1cd06d9429bc868"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A memory and attention-based reinforcement learning for musculoskeletal robots with prior knowledge of muscle synergies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-21184675c308",
+      "evidence": [
+        {
+          "quote": "A memory and attention-based reinforcement learning for musculoskeletal robots with prior knowledge of muscle synergies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4348,
+            "end_char": 4466
+          },
+          "version": "3f08a1cd06d9429bc868"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Motion Learning for Musculoskeletal Robots Based on a Recurrent Neural Network and Muscle Synergies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-335e4693eed7",
+      "evidence": [
+        {
+          "quote": "Robust Motion Learning for Musculoskeletal Robots Based on a Recurrent Neural Network and Muscle Synergies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4515,
+            "end_char": 4620
+          },
+          "version": "3f08a1cd06d9429bc868"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

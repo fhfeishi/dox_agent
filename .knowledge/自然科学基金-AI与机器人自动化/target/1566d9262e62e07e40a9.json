@@ -2,15 +2,20 @@
   "doc_id": "1566d9262e62e07e40a9",
   "version": "68c931968cd3e29dbb30",
   "source_hash": "dab4889937f0a00f87149135da4657fe91dd0c065a3fc0397f2062e4c9cb9249",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:52.943032+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.695023+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-85527249e72d",
-          "name": "复杂地形轮足机器人自主运动",
-          "desc": "电动并联式多轮足机器人复杂地形全天候自主运动",
+          "id": "item-0541988834c6",
+          "name": "基于创新提出的电动并联式轮足机器人——北理哪吒，开展复杂地形下机器人自主控制理论与关键技术研究。",
+          "desc": "基于创新提出的电动并联式轮足机器人——北理哪吒，开展复杂地形下机器人自主控制理论与关键技术研究。",
           "evidence": [
             {
-              "quote": "本项目以电动并联式多轮足机器人为对象，面向复杂地形环境下的全天候自主运动需求",
+              "quote": "基于创新提出的电动并联式轮足机器人——北理哪吒，开展复杂地形下机器人自主控制理论与关键技术研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 698
+              },
+              "version": "68c931968cd3e29dbb30"
+            }
+          ]
+        },
+        {
+          "id": "item-10b2052a6853",
+          "name": "本项目以电动并联式多轮足机器人为对象，面向复杂地形环境下的全天候自主运动需求，围绕“分布式协同控制—环境感知与局部规划—",
+          "desc": "本项目以电动并联式多轮足机器人为对象，面向复杂地形环境下的全天候自主运动需求，围绕“分布式协同控制—环境感知与局部规划—多约束路径跟踪与模式切换”开展系统研究，并完成仿真与实验调试验证。",
+          "evidence": [
+            {
+              "quote": "本项目以电动并联式多轮足机器人为对象，面向复杂地形环境下的全天候自主运动需求，围绕“分布式协同控制—环境感知与局部规划—多约束路径跟踪与模式切换”开展系统研究，并完成仿真与实验调试验证。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2652,
-                "end_char": 2689
+                "end_char": 2744
               },
               "version": "68c931968cd3e29dbb30"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8df5fd4322dc",
-          "name": "重载与地形突变不确定性",
-          "desc": "重载、地形突变与外界扰动导致强耦合与不确定性",
-          "evidence": [
-            {
-              "quote": "针对重载、地形突变与外界扰动导致的强耦合与不确定性问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2745,
-                "end_char": 2771
-              },
-              "version": "68c931968cd3e29dbb30"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-c03033475696",
-          "name": "多智能体一致性轮速协同",
-          "desc": "轮速协同与自抗扰补偿方法及柔性步态规划框架",
+          "id": "item-8600cfc68536",
+          "name": "针对重载、地形突变与外界扰动导致的强耦合与不确定性问题，提出基于多智能体一致性的轮速协同与自抗扰补偿方法，构建柔性步态规",
+          "desc": "针对重载、地形突变与外界扰动导致的强耦合与不确定性问题，提出基于多智能体一致性的轮速协同与自抗扰补偿方法，构建柔性步态规划与反馈调节框架实现足端轨迹在线修正，建立“触地状态识别—全身控制”机身稳定控制框架，并提出基于落足点重构的轮足混合越障策略，实现轮式高效率与足式强越障能力的自适应切换，上述方法均通过仿真与室内外样机试验得到系统验证。",
           "evidence": [
             {
-              "quote": "提出基于多智能体一致性的轮速协同与自抗扰补偿方法",
+              "quote": "针对重载、地形突变与外界扰动导致的强耦合与不确定性问题，提出基于多智能体一致性的轮速协同与自抗扰补偿方法，构建柔性步态规划与反馈调节框架实现足端轨迹在线修正，建立“触地状态识别—全身控制”机身稳定控制框架，并提出基于落足点重构的轮足混合越障策略，实现轮式高效率与足式强越障能力的自适应切换，上述方法均通过仿真与室内外样机试验得到系统验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2773,
-                "end_char": 2796
+                "start_char": 2745,
+                "end_char": 2913
               },
               "version": "68c931968cd3e29dbb30"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-0445703ad843",
-          "name": "落足点重构混合越障",
-          "desc": "轮足混合越障策略实现轮式高效率与足式强越障自适应切换",
+          "id": "item-1b8e46ed026e",
+          "name": "在环境感知方面，搭建多传感器融合感知系统，开展道路检测、障碍物识别、定位建图与三维语义地图构建研究，并结合地形感知信息提",
+          "desc": "在环境感知方面，搭建多传感器融合感知系统，开展道路检测、障碍物识别、定位建图与三维语义地图构建研究，并结合地形感知信息提出动态局部轨迹规划方法；",
           "evidence": [
             {
-              "quote": "提出基于落足点重构的轮足混合越障策略，实现轮式高效率与足式强越障能力的自适应切换",
+              "quote": "在环境感知方面，搭建多传感器融合感知系统，开展道路检测、障碍物识别、定位建图与三维语义地图构建研究，并结合地形感知信息提出动态局部轨迹规划方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2849,
-                "end_char": 2888
+                "start_char": 2914,
+                "end_char": 2985
               },
               "version": "68c931968cd3e29dbb30"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,488 @@
       "state": "has",
       "items": [
         {
-          "id": "item-72485f6110bb",
-          "name": "仿真与样机试验验证",
-          "desc": "所提方法均通过仿真与室内外样机试验系统验证",
+          "id": "item-29e440ffd3eb",
+          "name": "基于创新提出的电动并联式轮足机器人——北理哪吒，开展复杂地形下机器人自主控制理论与关键技术研究。",
+          "desc": "基于创新提出的电动并联式轮足机器人——北理哪吒，开展复杂地形下机器人自主控制理论与关键技术研究。",
           "evidence": [
             {
-              "quote": "上述方法均通过仿真与室内外样机试验得到系统验证",
+              "quote": "基于创新提出的电动并联式轮足机器人——北理哪吒，开展复杂地形下机器人自主控制理论与关键技术研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2890,
-                "end_char": 2912
+                "start_char": 651,
+                "end_char": 698
               },
               "version": "68c931968cd3e29dbb30"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-9ac3313a40b9",
-          "name": "自主模式选择与跟踪",
-          "desc": "实现不同地形下自主模式选择、参数调整与精准跟踪",
+          "id": "item-6b99e95dc4d0",
+          "name": "本项目以电动并联式多轮足机器人为对象，面向复杂地形环境下的全天候自主运动需求，围绕“分布式协同控制—环境感知与局部规划—",
+          "desc": "本项目以电动并联式多轮足机器人为对象，面向复杂地形环境下的全天候自主运动需求，围绕“分布式协同控制—环境感知与局部规划—多约束路径跟踪与模式切换”开展系统研究，并完成仿真与实验调试验证。",
           "evidence": [
             {
-              "quote": "实现机器人在不同地形下的自主模式选择、参数调整与精准跟踪",
+              "quote": "本项目以电动并联式多轮足机器人为对象，面向复杂地形环境下的全天候自主运动需求，围绕“分布式协同控制—环境感知与局部规划—多约束路径跟踪与模式切换”开展系统研究，并完成仿真与实验调试验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3026,
-                "end_char": 3053
+                "start_char": 2652,
+                "end_char": 2744
               },
               "version": "68c931968cd3e29dbb30"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-85527249e72d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8df5fd4322dc"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种并联六自由度稳定平台自适应视觉伺服控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-44551c3021d1",
+      "evidence": [
+        {
+          "quote": "一种并联六自由度稳定平台自适应视觉伺服控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3078,
+            "end_char": 3100
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8df5fd4322dc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c03033475696"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Road Environment Perception for Unmanned Motion Platform Based on Binocular Vision",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7fbc488f535c",
+      "evidence": [
+        {
+          "quote": "Road Environment Perception for Unmanned Motion Platform Based on Binocular Vision",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3137,
+            "end_char": 3218
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8df5fd4322dc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0445703ad843"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Targetless Lidar-Camera Calibration via Cross-Modality Structure Consistency",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-087e51470b6b",
+      "evidence": [
+        {
+          "quote": "Targetless Lidar-Camera Calibration via Cross-Modality Structure Consistency",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3263,
+            "end_char": 3338
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c03033475696"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-72485f6110bb"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LQR based drift tracking control strategy for 4WID-4WIS vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-09d88156b673",
+      "evidence": [
+        {
+          "quote": "LQR based drift tracking control strategy for 4WID-4WIS vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3382,
+            "end_char": 3445
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0445703ad843"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9ac3313a40b9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多级电动缸并联式腿足结构的电动四足机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c893d373183",
+      "evidence": [
+        {
+          "quote": "基于多级电动缸并联式腿足结构的电动四足机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3495,
+            "end_char": 3516
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Quasi Time-Fuel Optimal Control Strategy for Dynamic Target Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3fa42d31142",
+      "evidence": [
+        {
+          "quote": "Quasi Time-Fuel Optimal Control Strategy for Dynamic Target Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3561,
+            "end_char": 3628
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Iterative Camera-LiDAR Extrinsic Optimization via Surrogate Diffusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f4f4c85dfb52",
+      "evidence": [
+        {
+          "quote": "Iterative Camera-LiDAR Extrinsic Optimization via Surrogate Diffusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3707,
+            "end_char": 3775
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-performance foot trajectory tracking control of hydraulic legged robots based on fixed-time disturbance observers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cbc81cb175b2",
+      "evidence": [
+        {
+          "quote": "High-performance foot trajectory tracking control of hydraulic legged robots based on fixed-time disturbance observers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3831,
+            "end_char": 3948
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards Broad Learning Networks on Unmanned Mobile Robot for Semantic Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d7ae683263e",
+      "evidence": [
+        {
+          "quote": "Towards Broad Learning Networks on Unmanned Mobile Robot for Semantic Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4003,
+            "end_char": 4084
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Teleoperated Mobile Robotic Manipulator for Rescue Scenarios",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62ced7eb82fe",
+      "evidence": [
+        {
+          "quote": "Teleoperated Mobile Robotic Manipulator for Rescue Scenarios",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4158,
+            "end_char": 4217
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards extreme learning machine framework for lane detection on unmanned mobile robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47f245eb7775",
+      "evidence": [
+        {
+          "quote": "Towards extreme learning machine framework for lane detection on unmanned mobile robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4274,
+            "end_char": 4359
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Targetless Extrinsic Calibration of Camera and Low-Resolution 3-D LiDAR",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dba94c312f3b",
+      "evidence": [
+        {
+          "quote": "Targetless Extrinsic Calibration of Camera and Low-Resolution 3-D LiDAR",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4426,
+            "end_char": 4496
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural network-based finite-time command-filtered adaptive backstepping control of electro-hydraulic servo system with a three-stage valve",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-adc56bb45877",
+      "evidence": [
+        {
+          "quote": "Neural network-based finite-time command-filtered adaptive backstepping control of electro-hydraulic servo system with a three-stage valve",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4553,
+            "end_char": 4690
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于快速终端滑模的并联式节能平台复合前馈稳定控制策略",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae4dea75df63",
+      "evidence": [
+        {
+          "quote": "基于快速终端滑模的并联式节能平台复合前馈稳定控制策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4755,
+            "end_char": 4780
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Lightweight Network Ensemble Architecture for Environmental Perception on the Autonomous System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3764766c59f2",
+      "evidence": [
+        {
+          "quote": "Lightweight Network Ensemble Architecture for Environmental Perception on the Autonomous System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4814,
+            "end_char": 4908
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control Framework of Force-Position Integrated Electric Cylinder and Its application in Motion Simulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33c53c06a841",
+      "evidence": [
+        {
+          "quote": "Control Framework of Force-Position Integrated Electric Cylinder and Its application in Motion Simulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4986,
+            "end_char": 5089
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Impedance control for a Stewart-structure-based wheel-legged robotic system in wheel motion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f6f2816cb91",
+      "evidence": [
+        {
+          "quote": "Impedance control for a Stewart-structure-based wheel-legged robotic system in wheel motion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5151,
+            "end_char": 5241
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel LiDAR-Inertial SLAM with Low Accumulation Error",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f0f0f9eeebd",
+      "evidence": [
+        {
+          "quote": "A Novel LiDAR-Inertial SLAM with Low Accumulation Error",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5293,
+            "end_char": 5347
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "URTSegNet: A real-time segmentation network of unstructured road at night based on thermal infrared images for autonomous robot system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f43a994a0260",
+      "evidence": [
+        {
+          "quote": "URTSegNet: A real-time segmentation network of unstructured road at night based on thermal infrared images for autonomous robot system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5388,
+            "end_char": 5521
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Trajectory Learning With Obstacle Awareness for Motion Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-809fcbcb5021",
+      "evidence": [
+        {
+          "quote": "Adaptive Trajectory Learning With Obstacle Awareness for Motion Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5567,
+            "end_char": 5638
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Vibration Reduction Control Strategy for 3-DOF Parallel Energy-Efficient Stabilization Robotic Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a3d787525cd",
+      "evidence": [
+        {
+          "quote": "Adaptive Vibration Reduction Control Strategy for 3-DOF Parallel Energy-Efficient Stabilization Robotic Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5708,
+            "end_char": 5818
+          },
+          "version": "68c931968cd3e29dbb30"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 21,
+    "listed": 21,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "896b9ea5e6ed2a9e8451",
   "version": "a6a830ea80f83274397c",
   "source_hash": "c7ee067dec150f1374e0fc723d8a84c48342cecd700d764b5fde27a20ae6bd28",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:51:44.016937+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.747224+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-da5ea8234a84",
-          "name": "多模式人机协作康复",
-          "desc": "上肢康复机器人多康复模式下的变阻抗控制",
+          "id": "item-2c8f10bc6fcf",
+          "name": "设计康复机器人变阻抗控制，实现多康复模式下的人机协作，可有效提高康复的安全与舒适。",
+          "desc": "设计康复机器人变阻抗控制，实现多康复模式下的人机协作，可有效提高康复的安全与舒适。",
           "evidence": [
             {
-              "quote": "本项目旨在提高机器人辅助康复的安全性和舒适性，提出了面向多康复模式下人机协作的上肢康复机器人变阻抗控制策略",
+              "quote": "设计康复机器人变阻抗控制，实现多康复模式下的人机协作，可有效提高康复的安全与舒适。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3066,
-                "end_char": 3118
+                "start_char": 661,
+                "end_char": 701
               },
               "version": "a6a830ea80f83274397c"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-84ffd4aa4800",
-          "name": "意图估计不足切换抖振",
-          "desc": "意图估计精度不足与康复模式切换引起控制不连续抖振",
-          "evidence": [
-            {
-              "quote": "已有阻抗控制是在被动或主动康复模式下设计，康复模式切换会导致控制的不连续性易引起抖振问题，影响控制的精度且易造成系统振荡或失稳。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 809,
-                "end_char": 872
-              },
-              "version": "a6a830ea80f83274397c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-baf8e9529934",
-          "name": "高斯过程意图预测",
-          "desc": "多源信息融合与时域卷积网络提升意图预测精度",
+          "id": "item-88a52b9d66d1",
+          "name": "本项目旨在提高机器人辅助康复的安全性和舒适性，提出了面向多康复模式下人机协作的上肢康复机器人变阻抗控制策略，包括：(1)",
+          "desc": "本项目旨在提高机器人辅助康复的安全性和舒适性，提出了面向多康复模式下人机协作的上肢康复机器人变阻抗控制策略，包括：(1)提出了基于高斯过程的多源信息融合意图预测以及基于时域卷积网络的信息融合意图预测方法，对生机电信息进行了多层次、多空间信息互补，提高了连续运动意图预测精度；",
           "evidence": [
             {
-              "quote": "提出了基于高斯过程的多源信息融合意图预测以及基于时域卷积网络的信息融合意图预测方法，对生机电信息进行了多层次、多空间信息互补，提高了连续运动意图预测精度",
+              "quote": "本项目旨在提高机器人辅助康复的安全性和舒适性，提出了面向多康复模式下人机协作的上肢康复机器人变阻抗控制策略，包括：(1)提出了基于高斯过程的多源信息融合意图预测以及基于时域卷积网络的信息融合意图预测方法，对生机电信息进行了多层次、多空间信息互补，提高了连续运动意图预测精度；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3126,
-                "end_char": 3201
+                "start_char": 3066,
+                "end_char": 3202
               },
               "version": "a6a830ea80f83274397c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e307ec64d9df",
-          "name": "时空域阻抗参数学习",
-          "desc": "时间域空间域阻抗参数学习提高人机阻抗匹配",
+          "id": "item-0427cb5e3b61",
+          "name": "面向康复模式切换的期望变阻抗动态是一个切换线性时变系统，目前无变阻抗参数规划方法来保证该动态稳定；",
+          "desc": "面向康复模式切换的期望变阻抗动态是一个切换线性时变系统，目前无变阻抗参数规划方法来保证该动态稳定；",
           "evidence": [
             {
-              "quote": "建立了时间域（空间域）阻抗参数学习策略，提高了人机阻抗匹配性",
+              "quote": "面向康复模式切换的期望变阻抗动态是一个切换线性时变系统，目前无变阻抗参数规划方法来保证该动态稳定；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3206,
-                "end_char": 3235
+                "start_char": 760,
+                "end_char": 808
               },
               "version": "a6a830ea80f83274397c"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,348 @@
       "state": "has",
       "items": [
         {
-          "id": "item-aa83acd10160",
-          "name": "模式无缝切换控制",
-          "desc": "多康复模式任务完成与模式间无缝切换",
+          "id": "item-42fc4ae94d90",
+          "name": "设计康复机器人变阻抗控制，实现多康复模式下的人机协作，可有效提高康复的安全与舒适。",
+          "desc": "设计康复机器人变阻抗控制，实现多康复模式下的人机协作，可有效提高康复的安全与舒适。",
           "evidence": [
             {
-              "quote": "设计了多康复模式下人机交互控制，保证了各康复模式下任务的完成以及康复模式间的无缝切换。",
+              "quote": "设计康复机器人变阻抗控制，实现多康复模式下的人机协作，可有效提高康复的安全与舒适。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3240,
-                "end_char": 3282
+                "start_char": 661,
+                "end_char": 701
               },
               "version": "a6a830ea80f83274397c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-a00261009952",
-          "name": "论文13篇",
-          "desc": "SCI 7篇、EI 6篇、发明专利3项",
+          "id": "item-ad93ec838693",
+          "name": "本项目旨在提高机器人辅助康复的安全性和舒适性，提出了面向多康复模式下人机协作的上肢康复机器人变阻抗控制策略，包括：(1)",
+          "desc": "本项目旨在提高机器人辅助康复的安全性和舒适性，提出了面向多康复模式下人机协作的上肢康复机器人变阻抗控制策略，包括：(1)提出了基于高斯过程的多源信息融合意图预测以及基于时域卷积网络的信息融合意图预测方法，对生机电信息进行了多层次、多空间信息互补，提高了连续运动意图预测精度；",
           "evidence": [
             {
-              "quote": "项目执行期间，发表SCI检索论文7篇、EI检索论文6篇，申请发明专利 3项。",
+              "quote": "本项目旨在提高机器人辅助康复的安全性和舒适性，提出了面向多康复模式下人机协作的上肢康复机器人变阻抗控制策略，包括：(1)提出了基于高斯过程的多源信息融合意图预测以及基于时域卷积网络的信息融合意图预测方法，对生机电信息进行了多层次、多空间信息互补，提高了连续运动意图预测精度；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3283,
-                "end_char": 3320
+                "start_char": 3066,
+                "end_char": 3202
               },
               "version": "a6a830ea80f83274397c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-da5ea8234a84"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-84ffd4aa4800"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatial hybrid adaptive impedance learning control for robots in repetitive interactive tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12f0fa57df3f",
+      "evidence": [
+        {
+          "quote": "Spatial hybrid adaptive impedance learning control for robots in repetitive interactive tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3417,
+            "end_char": 3509
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-84ffd4aa4800"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-baf8e9529934"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Control of Compliant Robots Using Singular Perturbation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e8fe66e0c98",
+      "evidence": [
+        {
+          "quote": "Learning Control of Compliant Robots Using Singular Perturbation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3560,
+            "end_char": 3623
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-84ffd4aa4800"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e307ec64d9df"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于阻抗迭代学习的物理人机交互控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc101af2e1f8",
+      "evidence": [
+        {
+          "quote": "一种基于阻抗迭代学习的物理人机交互控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3684,
+            "end_char": 3704
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-baf8e9529934"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-aa83acd10160"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "防反弹控制方法、装置、电子设备和存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df2c3c313e1a",
+      "evidence": [
+        {
+          "quote": "防反弹控制方法、装置、电子设备和存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3724,
+            "end_char": 3743
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e307ec64d9df"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a00261009952"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Robust Admittance Control of Robots Using Duality Principle-Based Impedance Selection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d444c44f7ff1",
+      "evidence": [
+        {
+          "quote": "Adaptive Robust Admittance Control of Robots Using Duality Principle-Based Impedance Selection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3776,
+            "end_char": 3869
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatial repetitive impedance learning control for robot-assisted rehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a7ddfdc7dd7",
+      "evidence": [
+        {
+          "quote": "Spatial repetitive impedance learning control for robot-assisted rehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3925,
+            "end_char": 4003
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于最优阻抗选取的机器人自适应鲁棒导纳控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f3dca090deb0",
+      "evidence": [
+        {
+          "quote": "基于最优阻抗选取的机器人自适应鲁棒导纳控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4067,
+            "end_char": 4087
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Saturated nonlinear control of robots with series elastic actuators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-575e4a86ed96",
+      "evidence": [
+        {
+          "quote": "Saturated nonlinear control of robots with series elastic actuators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4120,
+            "end_char": 4186
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint torques estimation in human gait based on Gaussian process",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d5703486eff",
+      "evidence": [
+        {
+          "quote": "Joint torques estimation in human gait based on Gaussian process",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4261,
+            "end_char": 4324
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "外骨骼机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-626d161a12e0",
+      "evidence": [
+        {
+          "quote": "外骨骼机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3000,
+            "end_char": 3005
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Finite-Time Interactive Control of Robots with Multiple Interaction Modes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dfc90f7d3a5a",
+      "evidence": [
+        {
+          "quote": "Finite-Time Interactive Control of Robots with Multiple Interaction Modes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4412,
+            "end_char": 4484
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Saturated PD Control of Compliant Robot Arms Using Position Measurements Only",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ffd480b12dc",
+      "evidence": [
+        {
+          "quote": "Saturated PD Control of Compliant Robot Arms Using Position Measurements Only",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4523,
+            "end_char": 4599
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model predictive admittance control of knee arthroplasty surgical robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5894801e1a8c",
+      "evidence": [
+        {
+          "quote": "Model predictive admittance control of knee arthroplasty surgical robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4663,
+            "end_char": 4733
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prediction of Upper Limb Joint Angles Based on Multi-Source Information Fusion using Temporal Convolutional Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-adcfe89424b4",
+      "evidence": [
+        {
+          "quote": "Prediction of Upper Limb Joint Angles Based on Multi-Source Information Fusion using Temporal Convolutional Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4806,
+            "end_char": 4920
+          },
+          "version": "a6a830ea80f83274397c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

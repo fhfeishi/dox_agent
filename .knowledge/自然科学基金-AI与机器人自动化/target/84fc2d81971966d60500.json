@@ -2,15 +2,20 @@
   "doc_id": "84fc2d81971966d60500",
   "version": "8efaf4d42c9a3ae33e9c",
   "source_hash": "099cc4580fbe470f3a7d7bcb6e33ca6f57d3cc86fbf7f04f962cd21d861a29c3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:24.325946+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.695822+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a00c1462685c",
-          "name": "截瘫助行外骨骼",
-          "desc": "下肢外骨骼助行中患者交互不确定性与关节活动范围受限",
+          "id": "item-bfe28682d44f",
+          "name": "外骨骼机器人对于截瘫患者助行带来的功能维持和恢复具有重要意义。",
+          "desc": "外骨骼机器人对于截瘫患者助行带来的功能维持和恢复具有重要意义。",
           "evidence": [
             {
-              "quote": "本项目面向下肢外骨骼机器人助行任务，针对患者助行任务中存在不确定物理交互、患者下肢关节活动范围受限等因素对人机运动协调性影响的问题",
+              "quote": "外骨骼机器人对于截瘫患者助行带来的功能维持和恢复具有重要意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2805,
-                "end_char": 2869
+                "start_char": 663,
+                "end_char": 693
               },
               "version": "8efaf4d42c9a3ae33e9c"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-998674bfeb40",
-          "name": "个性化建模与适应缺失",
-          "desc": "外骨骼模型忽略个性化物理交互建模，控制缺乏对关节运动能力适应",
-          "evidence": [
-            {
-              "quote": "1.外骨骼机器人模型忽略了对不同患者物理人机交互的个性化建模；2.控制方法缺乏对患者关节运动能力的适应性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 754,
-                "end_char": 805
-              },
-              "version": "8efaf4d42c9a3ae33e9c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4161268cc346",
-          "name": "事件采样评价学习控制",
-          "desc": "创新提出基于事件采样评价学习的智能控制策略，解决传统控制采样冗余问题",
+          "id": "item-363ae7d25bd0",
+          "name": "本项目创新性提出了基于事件采样评价学习的智能控制策略，运动约束的下肢外骨骼机器人的分层学习协同控制、人机交互环境下外骨骼",
+          "desc": "本项目创新性提出了基于事件采样评价学习的智能控制策略，运动约束的下肢外骨骼机器人的分层学习协同控制、人机交互环境下外骨骼机器人事件触发阻抗学习协同控制、含有未知不确定性的机器人系统自适应动态规划鲁棒跟踪控制等理论与方法。",
           "evidence": [
             {
-              "quote": "本项目创新性提出了基于事件采样评价学习的智能控制策略，运动约束的下肢外骨骼机器人的分层学习协同控制、人机交互环境下外骨骼机器人事件触发阻抗学习协同控制",
+              "quote": "本项目创新性提出了基于事件采样评价学习的智能控制策略，运动约束的下肢外骨骼机器人的分层学习协同控制、人机交互环境下外骨骼机器人事件触发阻抗学习协同控制、含有未知不确定性的机器人系统自适应动态规划鲁棒跟踪控制等理论与方法。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2975,
-                "end_char": 3049
+                "end_char": 3084
               },
               "version": "8efaf4d42c9a3ae33e9c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-47b533f03a3b",
-          "name": "事件触发阻抗学习协同",
-          "desc": "人机交互环境下外骨骼机器人事件触发阻抗学习协同控制",
+          "id": "item-b74f365441b6",
+          "name": "针对上述问题，本项目拟开展面向截瘫助行外骨骼的人机个性化建模与自适应控制研究，主要创新性包括：1）探究适应不同患者的交互",
+          "desc": "针对上述问题，本项目拟开展面向截瘫助行外骨骼的人机个性化建模与自适应控制研究，主要创新性包括：1）探究适应不同患者的交互力基元建模与在线学习机制，建立支撑控制性能改善的个性化人机系统模型；",
           "evidence": [
             {
-              "quote": "运动约束的下肢外骨骼机器人的分层学习协同控制、人机交互环境下外骨骼机器人事件触发阻抗学习协同控制、含有未知不确定性的机器人系统自适应动态规划鲁棒跟踪控制等理论与方法",
+              "quote": "针对上述问题，本项目拟开展面向截瘫助行外骨骼的人机个性化建模与自适应控制研究，主要创新性包括：1）探究适应不同患者的交互力基元建模与在线学习机制，建立支撑控制性能改善的个性化人机系统模型；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3002,
-                "end_char": 3083
+                "start_char": 807,
+                "end_char": 900
               },
               "version": "8efaf4d42c9a3ae33e9c"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,548 @@
       "state": "has",
       "items": [
         {
-          "id": "item-343374d9d761",
-          "name": "快速稳态响应与人机协调",
-          "desc": "实现机器人系统对交互不确定性的快速稳态响应，提高患者穿戴行走人机协调性",
+          "id": "item-1f65b05100d9",
+          "name": "外骨骼机器人对于截瘫患者助行带来的功能维持和恢复具有重要意义。",
+          "desc": "外骨骼机器人对于截瘫患者助行带来的功能维持和恢复具有重要意义。",
           "evidence": [
             {
-              "quote": "开展了患者行为不确定性下的人机系统个性化建模、面向患者运动能力受限的人机自适应协同控制等重要理论与方法的研究工作，以实现机器人系统对交互不确定性的快速稳态响应，提高患者穿戴行走时的人机运动协调性和穿戴舒适性",
+              "quote": "外骨骼机器人对于截瘫患者助行带来的功能维持和恢复具有重要意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2871,
-                "end_char": 2973
+                "start_char": 663,
+                "end_char": 693
               },
               "version": "8efaf4d42c9a3ae33e9c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-578d2b63656e",
+          "name": "本项目面向下肢外骨骼机器人助行任务，针对患者助行任务中存在不确定物理交互、患者下肢关节活动范围受限等因素对人机运动协调性",
+          "desc": "本项目面向下肢外骨骼机器人助行任务，针对患者助行任务中存在不确定物理交互、患者下肢关节活动范围受限等因素对人机运动协调性影响的问题，开展了患者行为不确定性下的人机系统个性化建模、面向患者运动能力受限的人机自适应协同控制等重要理论与方法的研究工作，以实现机器人系统对交互不确定性的快速稳态响应，提高患者穿戴行走时的人机运动协调性和穿戴舒适性。",
+          "evidence": [
+            {
+              "quote": "本项目面向下肢外骨骼机器人助行任务，针对患者助行任务中存在不确定物理交互、患者下肢关节活动范围受限等因素对人机运动协调性影响的问题，开展了患者行为不确定性下的人机系统个性化建模、面向患者运动能力受限的人机自适应协同控制等重要理论与方法的研究工作，以实现机器人系统对交互不确定性的快速稳态响应，提高患者穿戴行走时的人机运动协调性和穿戴舒适性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2805,
+                "end_char": 2974
+              },
+              "version": "8efaf4d42c9a3ae33e9c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a00c1462685c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-998674bfeb40"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online gait learning with Assist-As-Needed control strategy for post-stroke rehabilitation exoskeletons",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-09268925ffa0",
+      "evidence": [
+        {
+          "quote": "Online gait learning with Assist-As-Needed control strategy for post-stroke rehabilitation exoskeletons",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3417,
+            "end_char": 3519
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-998674bfeb40"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4161268cc346"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic event-driven composite optimal impedance control for lower limb exoskeletons using finite-time reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e189ff573625",
+      "evidence": [
+        {
+          "quote": "Dynamic event-driven composite optimal impedance control for lower limb exoskeletons using finite-time reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3602,
+            "end_char": 3726
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-998674bfeb40"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-47b533f03a3b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal H∞ tracking control of nonlinear systems with zero-equilibrium-free via novel adaptive critic designs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f173c69709b",
+      "evidence": [
+        {
+          "quote": "Optimal H∞ tracking control of nonlinear systems with zero-equilibrium-free via novel adaptive critic designs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3806,
+            "end_char": 3914
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-47b533f03a3b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-343374d9d761"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical critic learning optimal control for lower limb exoskeleton robots with prescribed constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd3f29cb766c",
+      "evidence": [
+        {
+          "quote": "Hierarchical critic learning optimal control for lower limb exoskeleton robots with prescribed constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4012,
+            "end_char": 4117
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4161268cc346"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-343374d9d761"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "C-SQG: Cosine-Law-Based Spatially Quantized Gait Generation for Knee-Stretched Biped Walking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d24effe7522",
+      "evidence": [
+        {
+          "quote": "C-SQG: Cosine-Law-Based Spatially Quantized Gait Generation for Knee-Stretched Biped Walking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4182,
+            "end_char": 4273
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning-Based Tracking Control of Unknown Robot Systems with Online Parameter Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc945ad89ea7",
+      "evidence": [
+        {
+          "quote": "Learning-Based Tracking Control of Unknown Robot Systems with Online Parameter Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4358,
+            "end_char": 4446
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于气动伸缩管柔性手功能康复训练手套",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a1cad7f7b38",
+      "evidence": [
+        {
+          "quote": "一种基于气动伸缩管柔性手功能康复训练手套",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4532,
+            "end_char": 4551
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive optimal control of affine nonlinear systems via identifier-critic neural network approximation with relaxed PE conditions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8fef05d4fa6f",
+      "evidence": [
+        {
+          "quote": "Adaptive optimal control of affine nonlinear systems via identifier-critic neural network approximation with relaxed PE conditions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4586,
+            "end_char": 4715
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种外骨骼物理人机双向交互仿真系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dee2a416d732",
+      "evidence": [
+        {
+          "quote": "一种外骨骼物理人机双向交互仿真系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4778,
+            "end_char": 4794
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Triggered Robust Optimal Control for Nonlinear Systems With Uncertain Dynamics and Nonzero-equilibrium",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-86b8bdf76caf",
+      "evidence": [
+        {
+          "quote": "Event-Triggered Robust Optimal Control for Nonlinear Systems With Uncertain Dynamics and Nonzero-equilibrium",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4826,
+            "end_char": 4933
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Event-Triggered Robust Optimal Tracking Control for Lower Limb Exoskeletons With Human-Robot Conflicts",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7005137f1baf",
+      "evidence": [
+        {
+          "quote": "Dynamic Event-Triggered Robust Optimal Tracking Control for Lower Limb Exoskeletons With Human-Robot Conflicts",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5029,
+            "end_char": 5138
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time learning-based optimal tracking control for robotic systems with prescribed performance constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-531959bc71c9",
+      "evidence": [
+        {
+          "quote": "Fixed-time learning-based optimal tracking control for robotic systems with prescribed performance constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5240,
+            "end_char": 5349
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal tracking control for motion constrained robot systems via event-sampled critic learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-78aece50fc27",
+      "evidence": [
+        {
+          "quote": "Optimal tracking control for motion constrained robot systems via event-sampled critic learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5426,
+            "end_char": 5520
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online Adaptive Optimal Control Algorithm Based on Weighted Policy Iteration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a06a095fabd2",
+      "evidence": [
+        {
+          "quote": "Online Adaptive Optimal Control Algorithm Based on Weighted Policy Iteration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5620,
+            "end_char": 5695
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Force Estimation-Based Adaptive Impedance Control for Lower-Limb Exoskeleton Robots With Disturbance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b10e4fc409ce",
+      "evidence": [
+        {
+          "quote": "Force Estimation-Based Adaptive Impedance Control for Lower-Limb Exoskeleton Robots With Disturbance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5752,
+            "end_char": 5851
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal control of unknown nonlinear systems via online parameter estimation with interval excitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-78b7f9bd5063",
+      "evidence": [
+        {
+          "quote": "Optimal control of unknown nonlinear systems via online parameter estimation with interval excitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5914,
+            "end_char": 6014
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于阻抗扰动观测器的柔性外骨骼阻抗控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c1cd47078659",
+      "evidence": [
+        {
+          "quote": "一种基于阻抗扰动观测器的柔性外骨骼阻抗控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6087,
+            "end_char": 6109
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多点人机交互参数优化的外骨骼自适应阻抗控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a5cd6ddf50b",
+      "evidence": [
+        {
+          "quote": "一种基于多点人机交互参数优化的外骨骼自适应阻抗控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6140,
+            "end_char": 6166
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Event-Triggered Optimal Control for Lower Limb Exoskeleton Robots With Friction and Unknown Perturbations in an Interactive Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-498d871a084f",
+      "evidence": [
+        {
+          "quote": "Robust Event-Triggered Optimal Control for Lower Limb Exoskeleton Robots With Friction and Unknown Perturbations in an Interactive Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6204,
+            "end_char": 6345
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-triggered critic learning impedance control of lower limb exoskeleton robots in interactive environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7798c1f12f0a",
+      "evidence": [
+        {
+          "quote": "Event-triggered critic learning impedance control of lower limb exoskeleton robots in interactive environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6421,
+            "end_char": 6530
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-triggered optimal control of completely unknown nonlinear systems via identifier-critic learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-08a5bb43f0be",
+      "evidence": [
+        {
+          "quote": "Event-triggered optimal control of completely unknown nonlinear systems via identifier-critic learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6599,
+            "end_char": 6700
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Coordinated Motion Planning for Lower Limb Exoskeleton Robots with a Robotic Walker",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d83c1d95909",
+      "evidence": [
+        {
+          "quote": "Adaptive Coordinated Motion Planning for Lower Limb Exoskeleton Robots with a Robotic Walker",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6803,
+            "end_char": 6894
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-triggered learning-based robust tracking control for robotic manipulators with uncertain dynamics and non-zero equilibrium",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c901bda304a",
+      "evidence": [
+        {
+          "quote": "Event-triggered learning-based robust tracking control for robotic manipulators with uncertain dynamics and non-zero equilibrium",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6989,
+            "end_char": 7116
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于气动伸缩管柔性手功能康复训练与评估设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bbf8af5f8ec7",
+      "evidence": [
+        {
+          "quote": "一种基于气动伸缩管柔性手功能康复训练与评估设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7194,
+            "end_char": 7216
+          },
+          "version": "8efaf4d42c9a3ae33e9c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 24,
+    "listed": 24,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

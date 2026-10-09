@@ -2,15 +2,20 @@
   "doc_id": "36b9a7fb5afa115f89e3",
   "version": "df207cc6961f0a4d926a",
   "source_hash": "4976825e1698d20e78c403d2cf855da0b1ab80f2d5f352a16e6e8a090d62e43f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:08:08.103874+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.024575+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ec6a3d9d7b9e",
-          "name": "机械臂控制通用性提升",
-          "desc": "应用环境变化时机械臂控制算法通用性不足",
+          "id": "item-d6b1e0674db7",
+          "name": "机械臂控制算法是保证机械臂高效、安全工作的核心。",
+          "desc": "机械臂控制算法是保证机械臂高效、安全工作的核心。",
           "evidence": [
             {
-              "quote": "大多数机械臂控制算法在某个固定应用环境中能有效实施，当应用环境发生变化时很难继续有效控制，即在通用性方面存在不足。",
+              "quote": "机械臂控制算法是保证机械臂高效、安全工作的核心。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 674,
-                "end_char": 730
+                "start_char": 650,
+                "end_char": 673
               },
               "version": "df207cc6961f0a4d926a"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cfc2010a71f2",
-          "name": "固定环境算法通用性差",
-          "desc": "需统一构建实时跟踪、关节故障、物理极限约束等问题",
-          "evidence": [
-            {
-              "quote": "分析机械臂应用环境中的实时跟踪、关节故障、关节物理极限约束等一系列问题，将它们统一构建成具有多层结构的不同层时变问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 832,
-                "end_char": 889
-              },
-              "version": "df207cc6961f0a4d926a"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-f93b9149768d",
-          "name": "零化神经网络求解",
-          "desc": "连续与离散零化神经网络模型求解混合时变方程组",
+          "id": "item-bda4798a84e1",
+          "name": "然后，优化零化神经动力学方法实现多层结构间的等效映射，设计通用性良好的控制算法，使得算法可根据实际应用环境选择性地或同时",
+          "desc": "然后，优化零化神经动力学方法实现多层结构间的等效映射，设计通用性良好的控制算法，使得算法可根据实际应用环境选择性地或同时考虑实时跟踪、关节故障、关节物理极限约束等问题；",
           "evidence": [
             {
-              "quote": "提出连续零化神经网络模型，使用一种高精度五点型离散公式，提出离散零化神经网络模型混合不同层时变线性方程组。",
+              "quote": "然后，优化零化神经动力学方法实现多层结构间的等效映射，设计通用性良好的控制算法，使得算法可根据实际应用环境选择性地或同时考虑实时跟踪、关节故障、关节物理极限约束等问题；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2942,
+                "start_char": 891,
+                "end_char": 974
+              },
+              "version": "df207cc6961f0a4d926a"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ce8a7677e235",
+          "name": "本项目面向机械臂控制研究不同层时变问题求解，主要研究内容包括以下五个方面：（1）研究混合型不同层时变线性方程组求解，采用",
+          "desc": "本项目面向机械臂控制研究不同层时变问题求解，主要研究内容包括以下五个方面：（1）研究混合型不同层时变线性方程组求解，采用零化神经网络的方法来分析不同层之间的等价性，提出连续零化神经网络模型，使用一种高精度五点型离散公式，提出离散零化神经网络模型混合不同层时变线性方程组。",
+          "evidence": [
+            {
+              "quote": "本项目面向机械臂控制研究不同层时变问题求解，主要研究内容包括以下五个方面：（1）研究混合型不同层时变线性方程组求解，采用零化神经网络的方法来分析不同层之间的等价性，提出连续零化神经网络模型，使用一种高精度五点型离散公式，提出离散零化神经网络模型混合不同层时变线性方程组。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2860,
                 "end_char": 2994
               },
               "version": "df207cc6961f0a4d926a"
             }
-          ]
-        },
-        {
-          "id": "item-668b11e9a7a5",
-          "name": "多任务单层鲁棒控制",
-          "desc": "冗余度机械臂多任务控制建模为双层混合时变问题",
-          "evidence": [
-            {
-              "quote": "将冗余度机械臂的多任务控制建模为双层混合时变问题，分析不同层之间的等价性关系，并在推导过程中引入积分，提出多任务单层鲁棒控制算法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3081,
-                "end_char": 3145
-              },
-              "version": "df207cc6961f0a4d926a"
-            }
-          ]
-        },
-        {
-          "id": "item-3a41a248ca55",
-          "name": "关节极限等价转化克服",
-          "desc": "等式不等式与不同层等价转化实现极限克服",
-          "evidence": [
-            {
-              "quote": "使用等式不等式等价转化，以及不同层之间等价转化，实现机械臂角度极限克服和机械臂角度/角速度克服的机械臂控制。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3249,
-                "end_char": 3302
-              },
-              "version": "df207cc6961f0a4d926a"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +91,208 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f458d23a8ed5",
-          "name": "不同层时变神经动力学方法",
-          "desc": "面向机械臂跟踪、多任务鲁棒控制与极限克服的控制算法体系",
+          "id": "item-33381df145d7",
+          "name": "机械臂控制算法是保证机械臂高效、安全工作的核心。",
+          "desc": "机械臂控制算法是保证机械臂高效、安全工作的核心。",
           "evidence": [
             {
-              "quote": "本项目面向机械臂控制研究不同层时变问题求解，主要研究内容包括以下五个方面",
+              "quote": "机械臂控制算法是保证机械臂高效、安全工作的核心。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2860,
-                "end_char": 2895
+                "start_char": 650,
+                "end_char": 673
               },
               "version": "df207cc6961f0a4d926a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-1bf97447833a",
+          "name": "机械臂在复杂环境中的智能化控制是机器人领域的重要研究课题。",
+          "desc": "机械臂在复杂环境中的智能化控制是机器人领域的重要研究课题。",
+          "evidence": [
+            {
+              "quote": "机械臂在复杂环境中的智能化控制是机器人领域的重要研究课题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2831,
+                "end_char": 2859
+              },
+              "version": "df207cc6961f0a4d926a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ec6a3d9d7b9e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cfc2010a71f2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot Manipulator Control via Solving Four-Layered Time-Variant Equations Including Linear, Nonlinear Equalities and Inequalities",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa273b217e4d",
+      "evidence": [
+        {
+          "quote": "Robot Manipulator Control via Solving Four-Layered Time-Variant Equations Including Linear, Nonlinear Equalities and Inequalities",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3327,
+            "end_char": 3455
+          },
+          "version": "df207cc6961f0a4d926a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cfc2010a71f2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f93b9149768d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stability-Constraint-Free Solutions to Solve Time-Varying Linear Equation System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0a73e25ab1c",
+      "evidence": [
+        {
+          "quote": "Stability-Constraint-Free Solutions to Solve Time-Varying Linear Equation System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3516,
+            "end_char": 3595
+          },
+          "version": "df207cc6961f0a4d926a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cfc2010a71f2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-668b11e9a7a5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-Time Robot Manipulator Tracking Control as Multilayered Time-Varying Problem",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f120b8e63e6",
+      "evidence": [
+        {
+          "quote": "Real-Time Robot Manipulator Tracking Control as Multilayered Time-Varying Problem",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3661,
+            "end_char": 3741
+          },
+          "version": "df207cc6961f0a4d926a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cfc2010a71f2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3a41a248ca55"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多层结构的冗余度机械臂多任务控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-19255b8ed54d",
+      "evidence": [
+        {
+          "quote": "一种基于多层结构的冗余度机械臂多任务控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3803,
+            "end_char": 3824
+          },
+          "version": "df207cc6961f0a4d926a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f93b9149768d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f458d23a8ed5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Time-Varying Matrix Inversion Based on Lagrange-Type Finite Difference",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c912b2ab580",
+      "evidence": [
+        {
+          "quote": "Time-Varying Matrix Inversion Based on Lagrange-Type Finite Difference",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3855,
+            "end_char": 3924
+          },
+          "version": "df207cc6961f0a4d926a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-668b11e9a7a5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f458d23a8ed5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Zeroing Neural Network for Solving Hybrid Time-Dependent Linear-Nonlinear Dynamic System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-37f99cd33130",
+      "evidence": [
+        {
+          "quote": "Zeroing Neural Network for Solving Hybrid Time-Dependent Linear-Nonlinear Dynamic System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4004,
+            "end_char": 4091
+          },
+          "version": "df207cc6961f0a4d926a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot Manipulator Tracking Control with Conquering Joint Physical Limits at Angle and Velocity Layers Based on Different-Layer Equivalency Technique",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b68b8162449c",
+      "evidence": [
+        {
+          "quote": "Robot Manipulator Tracking Control with Conquering Joint Physical Limits at Angle and Velocity Layers Based on Different-Layer Equivalency Technique",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4159,
+            "end_char": 4306
+          },
+          "version": "df207cc6961f0a4d926a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

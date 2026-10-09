@@ -2,15 +2,20 @@
   "doc_id": "d76b2c587aef7dadeeed",
   "version": "980a28b46be1f48b5b9f",
   "source_hash": "30a651012621d41bfd267377077135fd255b71c7be5045637d9b57e6c880586c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:03:23.859388+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.584646+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-55f6dacf8d88",
-          "name": "机器人非设定任务适应",
-          "desc": "提升机器人智能水平灵活适应非设定任务",
+          "id": "item-9751a11470c0",
+          "name": "提升机器人智能水平是目前人工智能研究和应用的前沿热点问题。",
+          "desc": "提升机器人智能水平是目前人工智能研究和应用的前沿热点问题。",
           "evidence": [
             {
-              "quote": "提升机器人智能水平是目前人工智能研究和应用的前沿热点问题。而如何提升机器人智能水平使其对非设定任务灵活适应是当前机器人所面临的瓶颈问题。",
+              "quote": "提升机器人智能水平是目前人工智能研究和应用的前沿热点问题。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 642,
-                "end_char": 709
+                "end_char": 670
+              },
+              "version": "980a28b46be1f48b5b9f"
+            }
+          ]
+        },
+        {
+          "id": "item-922decd64bc7",
+          "name": "这些技术在机器人智能作业等相关产业领域有广泛应用价值。",
+          "desc": "这些技术在机器人智能作业等相关产业领域有广泛应用价值。",
+          "evidence": [
+            {
+              "quote": "这些技术在机器人智能作业等相关产业领域有广泛应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 957,
+                "end_char": 983
               },
               "version": "980a28b46be1f48b5b9f"
             }
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0f4449b8e1c4",
-          "name": "非设定任务灵活适应瓶颈",
-          "desc": "机器人需自主学习获得处理非设定任务能力",
+          "id": "item-e75625b8898d",
+          "name": "而如何提升机器人智能水平使其对非设定任务灵活适应是当前机器人所面临的瓶颈问题。",
+          "desc": "而如何提升机器人智能水平使其对非设定任务灵活适应是当前机器人所面临的瓶颈问题。",
           "evidence": [
             {
               "quote": "而如何提升机器人智能水平使其对非设定任务灵活适应是当前机器人所面临的瓶颈问题。",
@@ -51,6 +72,22 @@
                 "basis": "parsed_text",
                 "start_char": 671,
                 "end_char": 709
+              },
+              "version": "980a28b46be1f48b5b9f"
+            }
+          ]
+        },
+        {
+          "id": "item-51338a448b97",
+          "name": "应用层面，本项目向攻克机器人灵活适应非结构化环境的瓶颈问题迈进了关键一步，成果助力医疗、服务机器人提升智能化水平，受理发",
+          "desc": "应用层面，本项目向攻克机器人灵活适应非结构化环境的瓶颈问题迈进了关键一步，成果助力医疗、服务机器人提升智能化水平，受理发明专利3项、发表SCI论文7篇，初步形成自主知识产权技术体系，并在此基础上形成了已落地应用的产品，将为推动医疗服务机器人产业升级提供重要支撑作用，具有显著的科学价值与社会经济效益。",
+          "evidence": [
+            {
+              "quote": "应用层面，本项目向攻克机器人灵活适应非结构化环境的瓶颈问题迈进了关键一步，成果助力医疗、服务机器人提升智能化水平，受理发明专利3项、发表SCI论文7篇，初步形成自主知识产权技术体系，并在此基础上形成了已落地应用的产品，将为推动医疗服务机器人产业升级提供重要支撑作用，具有显著的科学价值与社会经济效益。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2867,
+                "end_char": 3016
               },
               "version": "980a28b46be1f48b5b9f"
             }
@@ -63,52 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b72b65e606fc",
-          "name": "多模态人机距离感知",
-          "desc": "GSN与多层LSTM并联架构实现四级距离全覆盖感知",
+          "id": "item-e088dc0ed294",
+          "name": "为解决上述问题，本项目融合社会心理学、机器人学与人工智能理论，提出人机共享的可供性框架，取得了四项创新性成果：1）融合社",
+          "desc": "为解决上述问题，本项目融合社会心理学、机器人学与人工智能理论，提出人机共享的可供性框架，取得了四项创新性成果：1）融合社会心理学空间关系与ISO安全策略，构建多层级、多模态人机距离感知算法，融合视觉、激光雷达与接近电容数据，设计门控尖峰滤波神经网络（GSN）与多层LSTM并联架构，实现公共、交互、协作及亲密距离的全覆盖精准感知，成功应用于老年评估机器人并于2025年投入首都医科大学宣武医院；",
           "evidence": [
             {
-              "quote": "构建多层级、多模态人机距离感知算法，融合视觉、激光雷达与接近电容数据，设计门控尖峰滤波神经网络（GSN）与多层LSTM并联架构，实现公共、交互、协作及亲密距离的全覆盖精准感知",
+              "quote": "为解决上述问题，本项目融合社会心理学、机器人学与人工智能理论，提出人机共享的可供性框架，取得了四项创新性成果：1）融合社会心理学空间关系与ISO安全策略，构建多层级、多模态人机距离感知算法，融合视觉、激光雷达与接近电容数据，设计门控尖峰滤波神经网络（GSN）与多层LSTM并联架构，实现公共、交互、协作及亲密距离的全覆盖精准感知，成功应用于老年评估机器人并于2025年投入首都医科大学宣武医院；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2507,
-                "end_char": 2593
+                "start_char": 2430,
+                "end_char": 2626
               },
               "version": "980a28b46be1f48b5b9f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-34961738141a",
-          "name": "imitating CNN仿人抓取",
-          "desc": "借鉴镜像神经元机制基于可供性规则的学习模型",
+          "id": "item-6194856389f9",
+          "name": "2）借鉴镜像神经元机制开发imitating CNN算法，基于人机共享的可供性规则构建了仿人抓取点学习模型，使机器人非设",
+          "desc": "2）借鉴镜像神经元机制开发imitating CNN算法，基于人机共享的可供性规则构建了仿人抓取点学习模型，使机器人非设定任务抓取效率提升了26.1%。",
           "evidence": [
             {
-              "quote": "借鉴镜像神经元机制开发imitating CNN算法，基于人机共享的可供性规则构建了仿人抓取点学习模型",
+              "quote": "2）借鉴镜像神经元机制开发imitating CNN算法，基于人机共享的可供性规则构建了仿人抓取点学习模型，使机器人非设定任务抓取效率提升了26.1%。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2629,
-                "end_char": 2679
+                "start_char": 2627,
+                "end_char": 2702
               },
               "version": "980a28b46be1f48b5b9f"
             }
-          ]
-        },
-        {
-          "id": "item-8c0fc516b347",
-          "name": "社交线索主动控制",
-          "desc": "任务状态感知与自主调整能力框架",
-          "evidence": [
-            {
-              "quote": "开发社交线索主动控制框架，使机器人具备任务状态感知和自主调整的能力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2705,
-                "end_char": 2737
-              },
-              "version": "980a28b46be1f48b5b9f"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +140,209 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d97eedfb72e0",
-          "name": "抓取效率提升26.1%",
-          "desc": "非设定任务抓取效率提升26.1%",
+          "id": "item-4d3069d5e8b0",
+          "name": "提升机器人智能水平是目前人工智能研究和应用的前沿热点问题。",
+          "desc": "提升机器人智能水平是目前人工智能研究和应用的前沿热点问题。",
           "evidence": [
             {
-              "quote": "使机器人非设定任务抓取效率提升了26.1%。",
+              "quote": "提升机器人智能水平是目前人工智能研究和应用的前沿热点问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2681,
-                "end_char": 2702
+                "start_char": 642,
+                "end_char": 670
               },
               "version": "980a28b46be1f48b5b9f"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1f4eefc8ed8e",
-          "name": "医院落地应用",
-          "desc": "老年评估机器人2025年投入宣武医院，专利3项、SCI论文7篇",
-          "evidence": [
-            {
-              "quote": "成功应用于老年评估机器人并于2025年投入首都医科大学宣武医院",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2595,
-                "end_char": 2625
-              },
-              "version": "980a28b46be1f48b5b9f"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-55f6dacf8d88"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0f4449b8e1c4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Capacitive proximity skin for non-contact liquid state measurement of robot grippers with different structures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d31e040c026",
+      "evidence": [
+        {
+          "quote": "Capacitive proximity skin for non-contact liquid state measurement of robot grippers with different structures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3041,
+            "end_char": 3150
+          },
+          "version": "980a28b46be1f48b5b9f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0f4449b8e1c4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b72b65e606fc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Capacitive-Proximity-Based Gripper for Service Robots to Measure the Liquid Level in Opaque Cups",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ac5209438c78",
+      "evidence": [
+        {
+          "quote": "A Capacitive-Proximity-Based Gripper for Service Robots to Measure the Liquid Level in Opaque Cups",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3214,
+            "end_char": 3311
+          },
+          "version": "980a28b46be1f48b5b9f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0f4449b8e1c4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-34961738141a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Empowering robots with social cues: an initiative pose control framework for human–robot interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e00c5fdb0487",
+      "evidence": [
+        {
+          "quote": "Empowering robots with social cues: an initiative pose control framework for human–robot interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3369,
+            "end_char": 3468
+          },
+          "version": "980a28b46be1f48b5b9f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0f4449b8e1c4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8c0fc516b347"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Relative Pose of Robots Reshapes the Invisible Protective Bubble Around Us",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2639f75a4b08",
+      "evidence": [
+        {
+          "quote": "The Relative Pose of Robots Reshapes the Invisible Protective Bubble Around Us",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3573,
+            "end_char": 3650
+          },
+          "version": "980a28b46be1f48b5b9f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-34961738141a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d97eedfb72e0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于数字空间密度网格的多传感融合人机距离估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ea804c182ad4",
+      "evidence": [
+        {
+          "quote": "基于数字空间密度网格的多传感融合人机距离估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3746,
+            "end_char": 3769
+          },
+          "version": "980a28b46be1f48b5b9f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b72b65e606fc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1f4eefc8ed8e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A visual imitation learning algorithm for the selection of robots’ grasping points",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4c29440955f",
+      "evidence": [
+        {
+          "quote": "A visual imitation learning algorithm for the selection of robots’ grasping points",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3803,
+            "end_char": 3884
+          },
+          "version": "980a28b46be1f48b5b9f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural Networks With Linear Adaptive Batch Normalization andSwarm Intelligence Calibration for Real-Time GazeEstimation on Smartphones",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-36c7e96e5a5d",
+      "evidence": [
+        {
+          "quote": "Neural Networks With Linear Adaptive Batch Normalization andSwarm Intelligence Calibration for Real-Time GazeEstimation on Smartphones",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3946,
+            "end_char": 4079
+          },
+          "version": "980a28b46be1f48b5b9f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向人机协作的机器人智能物品传递方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3305426adb9a",
+      "evidence": [
+        {
+          "quote": "一种面向人机协作的机器人智能物品传递方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4187,
+            "end_char": 4209
+          },
+          "version": "980a28b46be1f48b5b9f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

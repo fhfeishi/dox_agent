@@ -2,15 +2,20 @@
   "doc_id": "0fe6e37fa793389dd4d8",
   "version": "5b34bb883932871c04cb",
   "source_hash": "f0dd6d4d416c73feb51d6305ca60e27bf546ad265848bd9118a9912f75eeba4b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:25.370360+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.633918+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ce0545e248bd",
-          "name": "弱刚性薄壁曲面交互",
-          "desc": "智能制造中机器人与弱刚性薄壁曲面交互控制",
+          "id": "item-dfd2f66a7fe4",
+          "name": "安全高效的机器人与弱刚性薄壁曲面交互控制是提高制造工业生产效率的重要手段。",
+          "desc": "安全高效的机器人与弱刚性薄壁曲面交互控制是提高制造工业生产效率的重要手段。",
           "evidence": [
             {
-              "quote": "本项目针对机器人弱刚性部件操作开展研究工作。项目在执行过程中，针对机器人与柔性物体间的耦合动力学特性进行分析，融合视觉与力觉感知信息",
+              "quote": "安全高效的机器人与弱刚性薄壁曲面交互控制是提高制造工业生产效率的重要手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2930,
-                "end_char": 2995
+                "start_char": 662,
+                "end_char": 698
+              },
+              "version": "5b34bb883932871c04cb"
+            }
+          ]
+        },
+        {
+          "id": "item-4787d7c460c1",
+          "name": "本项目的实施将为实现安全、高效的机器人交互控制提供新思路和方法，并促进相关产业的技术发展，对扩展机器人在智能制造中的应用",
+          "desc": "本项目的实施将为实现安全、高效的机器人交互控制提供新思路和方法，并促进相关产业的技术发展，对扩展机器人在智能制造中的应用场景具有重要的意义。",
+          "evidence": [
+            {
+              "quote": "本项目的实施将为实现安全、高效的机器人交互控制提供新思路和方法，并促进相关产业的技术发展，对扩展机器人在智能制造中的应用场景具有重要的意义。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 982,
+                "end_char": 1051
               },
               "version": "5b34bb883932871c04cb"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-10e9fc0c3a7c",
-          "name": "建模精度感知单一策略保守",
-          "desc": "交互建模精度有限、感知手段单一、控制策略保守",
-          "evidence": [
-            {
-              "quote": "由于受有限的交互建模精度、单一的感知手段以及保守的控制策略的影响，传统的柔顺运动控制策略难以满足实际中机器人与弱刚性薄壁曲面高性能交互控制的要求。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 742,
-                "end_char": 814
-              },
-              "version": "5b34bb883932871c04cb"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-a713eec1e4af",
-          "name": "交互动力学建模",
-          "desc": "视觉图像与神经网络建立不确定动态交互模型",
+          "id": "item-5d1e6cba2056",
+          "name": "针对以上的现状和问题，本项目拟以机器人多源信息感知为基础，通过结合特征提取、交互建模、宽度学习、导纳控制、强化学习、自适",
+          "desc": "针对以上的现状和问题，本项目拟以机器人多源信息感知为基础，通过结合特征提取、交互建模、宽度学习、导纳控制、强化学习、自适应控制等技术，研发一套对环境感知精度高、模型适应性强、控制稳定性好的机器人柔顺交互控制方案。",
           "evidence": [
             {
-              "quote": "通过视觉图像技术和神经网络技术，建立了在环境物体不确定动态下机器人操作的交互动力学模型。",
+              "quote": "针对以上的现状和问题，本项目拟以机器人多源信息感知为基础，通过结合特征提取、交互建模、宽度学习、导纳控制、强化学习、自适应控制等技术，研发一套对环境感知精度高、模型适应性强、控制稳定性好的机器人柔顺交互控制方案。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2997,
+                "start_char": 815,
+                "end_char": 920
+              },
+              "version": "5b34bb883932871c04cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9e609b68d62f",
+          "name": "项目在执行过程中，针对机器人与柔性物体间的耦合动力学特性进行分析，融合视觉与力觉感知信息，通过视觉图像技术和神经网络技术",
+          "desc": "项目在执行过程中，针对机器人与柔性物体间的耦合动力学特性进行分析，融合视觉与力觉感知信息，通过视觉图像技术和神经网络技术，建立了在环境物体不确定动态下机器人操作的交互动力学模型。",
+          "evidence": [
+            {
+              "quote": "项目在执行过程中，针对机器人与柔性物体间的耦合动力学特性进行分析，融合视觉与力觉感知信息，通过视觉图像技术和神经网络技术，建立了在环境物体不确定动态下机器人操作的交互动力学模型。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2952,
                 "end_char": 3040
               },
               "version": "5b34bb883932871c04cb"
             }
-          ]
-        },
-        {
-          "id": "item-b4483d2cc357",
-          "name": "力-位融合强化学习",
-          "desc": "实现机器人对柔性物体操作的柔顺控制",
-          "evidence": [
-            {
-              "quote": "开展了力-位融合的机器人强化学习研究，实现了机器人对柔性物体操作的柔顺控制。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3113,
-                "end_char": 3150
-              },
-              "version": "5b34bb883932871c04cb"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,244 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7922017a8ccb",
-          "name": "环境刚度估计研究",
-          "desc": "无力传感条件力感知与环境刚度估计研究",
+          "id": "item-c2ed75d9f90d",
+          "name": "安全高效的机器人与弱刚性薄壁曲面交互控制是提高制造工业生产效率的重要手段。",
+          "desc": "安全高效的机器人与弱刚性薄壁曲面交互控制是提高制造工业生产效率的重要手段。",
           "evidence": [
             {
-              "quote": "开展了机器人操作中力感知的研究，特别是在无力传感器条件下力感知的方法，进一步，通过数值建模技术，开展了不同物体的环境刚度估计的研究。",
+              "quote": "安全高效的机器人与弱刚性薄壁曲面交互控制是提高制造工业生产效率的重要手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3041,
-                "end_char": 3106
+                "start_char": 662,
+                "end_char": 698
               },
               "version": "5b34bb883932871c04cb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-6cb9f8a0f1fe",
-          "name": "论文10篇IEEE汇刊6篇",
-          "desc": "论文10篇（IEEE Transactions SCI 6篇）",
+          "id": "item-c210a58611e3",
+          "name": "近年来，机器人弱刚性部件操作研究受到广泛的关注。",
+          "desc": "近年来，机器人弱刚性部件操作研究受到广泛的关注。",
           "evidence": [
             {
-              "quote": "项目工作共发表论文10篇，其中IEEE Transactions 的SCI论文6篇，Elsevier系列SCI论文1篇，国内国际会议论文3篇，指导硕士研究生4名。",
+              "quote": "近年来，机器人弱刚性部件操作研究受到广泛的关注。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3276,
-                "end_char": 3356
+                "start_char": 2736,
+                "end_char": 2759
               },
               "version": "5b34bb883932871c04cb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ce0545e248bd"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-10e9fc0c3a7c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatial Iterative Learning Control for Robots in Contact with Unknown Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a78ccebf0413",
+      "evidence": [
+        {
+          "quote": "Spatial Iterative Learning Control for Robots in Contact with Unknown Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3381,
+            "end_char": 3462
+          },
+          "version": "5b34bb883932871c04cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-10e9fc0c3a7c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a713eec1e4af"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Admittance Control with Dynamical Systems for Optimized Motion Adaptation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b7006fd7d201",
+      "evidence": [
+        {
+          "quote": "Adaptive Admittance Control with Dynamical Systems for Optimized Motion Adaptation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3527,
+            "end_char": 3608
+          },
+          "version": "5b34bb883932871c04cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-10e9fc0c3a7c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b4483d2cc357"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Force Observer-Based Motion Adaptation and Adaptive Neural Control for Robots in Contact With Unknown Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b389b0cb3155",
+      "evidence": [
+        {
+          "quote": "Force Observer-Based Motion Adaptation and Adaptive Neural Control for Robots in Contact With Unknown Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3662,
+            "end_char": 3775
+          },
+          "version": "5b34bb883932871c04cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a713eec1e4af"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7922017a8ccb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visually Impaired People Recognize Virtual Objects Through 3D Reconstructed Shapes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-236a01cd18ef",
+      "evidence": [
+        {
+          "quote": "Visually Impaired People Recognize Virtual Objects Through 3D Reconstructed Shapes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3867,
+            "end_char": 3948
+          },
+          "version": "5b34bb883932871c04cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b4483d2cc357"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6cb9f8a0f1fe"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-based Sensorless Admittance Control from Demonstrations with Dynamical Systems for Robot-Environment Interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3315d04fe669",
+      "evidence": [
+        {
+          "quote": "Observer-based Sensorless Admittance Control from Demonstrations with Dynamical Systems for Robot-Environment Interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4043,
+            "end_char": 4163
+          },
+          "version": "5b34bb883932871c04cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot skill learning system of multi-space fusion based on dynamic movement primitives and adaptive neural network control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f11c10c2237c",
+      "evidence": [
+        {
+          "quote": "Robot skill learning system of multi-space fusion based on dynamic movement primitives and adaptive neural network control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4227,
+            "end_char": 4348
+          },
+          "version": "5b34bb883932871c04cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural Control for Human-Robot Interaction with Human Motion Intention Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9351868f80de",
+      "evidence": [
+        {
+          "quote": "Neural Control for Human-Robot Interaction with Human Motion Intention Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4422,
+            "end_char": 4502
+          },
+          "version": "5b34bb883932871c04cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Approximation-Based Admittance Control of Robot-Environment Interaction With Guaranteed Performance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f42e9623549",
+      "evidence": [
+        {
+          "quote": "Approximation-Based Admittance Control of Robot-Environment Interaction With Guaranteed Performance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4563,
+            "end_char": 4661
+          },
+          "version": "5b34bb883932871c04cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural-Network-Based Optimal Impedance Control for Robots in Physical Interaction With Soft Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff64c8876fc0",
+      "evidence": [
+        {
+          "quote": "Neural-Network-Based Optimal Impedance Control for Robots in Physical Interaction With Soft Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4729,
+            "end_char": 4832
+          },
+          "version": "5b34bb883932871c04cb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

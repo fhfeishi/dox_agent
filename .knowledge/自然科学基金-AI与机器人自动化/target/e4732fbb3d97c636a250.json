@@ -2,15 +2,20 @@
   "doc_id": "e4732fbb3d97c636a250",
   "version": "0c909eca194bf0301980",
   "source_hash": "c522b0b9147f762740d7ce770a44549a7aa70678938f93caf07d37d6bcd550ed",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:55.670010+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.720282+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-57d17fa8b906",
-          "name": "非结构路面空地协同",
-          "desc": "UAV与UGV协同执行非结构路面下特殊障碍物识别与动态目标跟踪任务",
+          "id": "item-99b2f7a52c61",
+          "name": "无人机（UAV）与无人车（UGV）在功能上存在互补性，使得通过二者间的协同执行任务具有明显优势，有利于无人装置完成复杂任",
+          "desc": "无人机（UAV）与无人车（UGV）在功能上存在互补性，使得通过二者间的协同执行任务具有明显优势，有利于无人装置完成复杂任务与提高效率。",
           "evidence": [
             {
-              "quote": "本课题通过构建空地协同系统，实现在非结构路面条件下，对特殊障碍物的有效识别，以及动态目标跟踪",
+              "quote": "无人机（UAV）与无人车（UGV）在功能上存在互补性，使得通过二者间的协同执行任务具有明显优势，有利于无人装置完成复杂任务与提高效率。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2842,
-                "end_char": 2887
+                "start_char": 663,
+                "end_char": 729
+              },
+              "version": "0c909eca194bf0301980"
+            }
+          ]
+        },
+        {
+          "id": "item-d1c117084314",
+          "name": "14. [奖励] 面向应急救援的中大型多功能遥控挖掘机关键技术及产业化 — 高山铁;白文军;赵津;龙合贵;刘世详",
+          "desc": "14. [奖励] 面向应急救援的中大型多功能遥控挖掘机关键技术及产业化 — 高山铁;白文军;赵津;龙合贵;刘世详",
+          "evidence": [
+            {
+              "quote": "14. [奖励] 面向应急救援的中大型多功能遥控挖掘机关键技术及产业化 — 高山铁;白文军;赵津;龙合贵;刘世详",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4202,
+                "end_char": 4257
               },
               "version": "0c909eca194bf0301980"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-93b5353ea472",
-          "name": "室外通信覆盖不足",
-          "desc": "室外大场景下通信网络在智能装备中无法全面覆盖",
-          "evidence": [
-            {
-              "quote": "以解决室外通信网络在智能装备中无法全面覆盖的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3005,
-                "end_char": 3028
-              },
-              "version": "0c909eca194bf0301980"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-6b5e571860eb",
-          "name": "视觉语义地图协同导航",
-          "desc": "UAV构建非结构场景视觉语义地图辅助UGV自动导航与精准路径规划",
+          "id": "item-87df204793b4",
+          "name": "本课题所研究的负障碍检测与动态目标跟踪是空地协同系统中的两个典型任务，其所涉及的协同感知、决策与控制等共性技术是发展和完",
+          "desc": "本课题所研究的负障碍检测与动态目标跟踪是空地协同系统中的两个典型任务，其所涉及的协同感知、决策与控制等共性技术是发展和完善空地协同系统的重要基础，具有重要的理论与实用价值。",
           "evidence": [
             {
-              "quote": "UAV构建非结构场景的视觉语义地图辅助UGV完成自动导航",
+              "quote": "本课题所研究的负障碍检测与动态目标跟踪是空地协同系统中的两个典型任务，其所涉及的协同感知、决策与控制等共性技术是发展和完善空地协同系统的重要基础，具有重要的理论与实用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3141,
-                "end_char": 3168
+                "start_char": 976,
+                "end_char": 1061
               },
               "version": "0c909eca194bf0301980"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-66b13cb87551",
-          "name": "自注意力特征相关目标跟踪",
-          "desc": "结合搜索区域和模板全局特征，提升跟踪算法精度与鲁棒性",
+          "id": "item-c9d3785cb703",
+          "name": "本课题从空地协同系统的负障碍检测与动态目标跟踪两个典型任务入手，其所涉及的协同感知、决策与控制等共性技术是发展和完善空地",
+          "desc": "本课题从空地协同系统的负障碍检测与动态目标跟踪两个典型任务入手，其所涉及的协同感知、决策与控制等共性技术是发展和完善空地协同系统的重要基础，具有重要的理论与实用价值。",
           "evidence": [
             {
-              "quote": "创新性地提出了一种基于自注意力机制的特征相关网络",
+              "quote": "本课题从空地协同系统的负障碍检测与动态目标跟踪两个典型任务入手，其所涉及的协同感知、决策与控制等共性技术是发展和完善空地协同系统的重要基础，具有重要的理论与实用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3224,
-                "end_char": 3247
+                "start_char": 3435,
+                "end_char": 3517
               },
               "version": "0c909eca194bf0301980"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,592 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ea55037c8990",
-          "name": "UAV/UGV协同实验平台",
-          "desc": "搭建协同系统实验平台，在实验室与真实环境中验证方案有效性",
+          "id": "item-7ddd511b83fb",
+          "name": "无人机（UAV）与无人车（UGV）在功能上存在互补性，使得通过二者间的协同执行任务具有明显优势，有利于无人装置完成复杂任",
+          "desc": "无人机（UAV）与无人车（UGV）在功能上存在互补性，使得通过二者间的协同执行任务具有明显优势，有利于无人装置完成复杂任务与提高效率。",
           "evidence": [
             {
-              "quote": "通过搭建一套UAV/UGV协同系统实验平台，在实验室环境与真实环境中开展实验",
+              "quote": "无人机（UAV）与无人车（UGV）在功能上存在互补性，使得通过二者间的协同执行任务具有明显优势，有利于无人装置完成复杂任务与提高效率。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3350,
-                "end_char": 3387
+                "start_char": 663,
+                "end_char": 729
               },
               "version": "0c909eca194bf0301980"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-25807be3c42d",
+          "name": "无人机(UAV)与无人车(UGV)在功能上存在互补性，通过二者间的协同任务执行具有明显优势，有利于无人装置完成复杂任务与",
+          "desc": "无人机(UAV)与无人车(UGV)在功能上存在互补性，通过二者间的协同任务执行具有明显优势，有利于无人装置完成复杂任务与提高效率。",
+          "evidence": [
+            {
+              "quote": "无人机(UAV)与无人车(UGV)在功能上存在互补性，通过二者间的协同任务执行具有明显优势，有利于无人装置完成复杂任务与提高效率。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2777,
+                "end_char": 2841
+              },
+              "version": "0c909eca194bf0301980"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-57d17fa8b906"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-93b5353ea472"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "贵州省普通本科高校“金师”(教学名师)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0df0102d511e",
+      "evidence": [
+        {
+          "quote": "贵州省普通本科高校“金师”(教学名师)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3541,
+            "end_char": 3559
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-93b5353ea472"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6b5e571860eb"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种深度缓冲区下BBRv2拥塞控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-609f11388f7f",
+      "evidence": [
+        {
+          "quote": "一种深度缓冲区下BBRv2拥塞控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3574,
+            "end_char": 3592
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6b5e571860eb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ea55037c8990"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "应急抢险挖掘机关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a92517cf38a",
+      "evidence": [
+        {
+          "quote": "应急抢险挖掘机关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3617,
+            "end_char": 3630
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-57d17fa8b906"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-66b13cb87551"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "改进Mask R-CNN算法在低光道路环境下行人检测研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d5a8d515797",
+      "evidence": [
+        {
+          "quote": "改进Mask R-CNN算法在低光道路环境下行人检测研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3669,
+            "end_char": 3696
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-66b13cb87551"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ea55037c8990"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种在环境建模中场景地图点与图像帧的匹配方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad65beadabe3",
+      "evidence": [
+        {
+          "quote": "一种在环境建模中场景地图点与图像帧的匹配方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3725,
+            "end_char": 3746
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种面向远程驾驶数据传输的拥塞控制算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7b5007e151b0",
+      "evidence": [
+        {
+          "quote": "一种面向远程驾驶数据传输的拥塞控制算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3766,
+            "end_char": 3784
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于抑制干扰相关滤波器的无人机实时目标跟踪方法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-82525fc46538",
+      "evidence": [
+        {
+          "quote": "基于抑制干扰相关滤波器的无人机实时目标跟踪方法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3804,
+            "end_char": 3828
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Moving Target Tracking by Unmanned Aerial Vehicle: A Survey and Taxonomy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-15456fe5204b",
+      "evidence": [
+        {
+          "quote": "Moving Target Tracking by Unmanned Aerial Vehicle: A Survey and Taxonomy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3849,
+            "end_char": 3920
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种新的无人机目标跟踪算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-653fdc45f155",
+      "evidence": [
+        {
+          "quote": "一种新的无人机目标跟踪算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3952,
+            "end_char": 3964
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual Semantic Mapping System with Remote Interaction in Dynamic Scenarios",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a67cc08dcacb",
+      "evidence": [
+        {
+          "quote": "Visual Semantic Mapping System with Remote Interaction in Dynamic Scenarios",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3986,
+            "end_char": 4060
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种在环境建模中基于单目视觉下的场景深度优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cc3c21b96eab",
+      "evidence": [
+        {
+          "quote": "一种在环境建模中基于单目视觉下的场景深度优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4092,
+            "end_char": 4115
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "《智能车辆队列纵向与横向控制》",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f61dd5741162",
+      "evidence": [
+        {
+          "quote": "《智能车辆队列纵向与横向控制》",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4134,
+            "end_char": 4148
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于本体论的AEB关键场景生成方法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cffe6a5bd889",
+      "evidence": [
+        {
+          "quote": "基于本体论的AEB关键场景生成方法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4173,
+            "end_char": 4191
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "面向应急救援的中大型多功能遥控挖掘机关键技术及产业化",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a287f5a7207",
+      "evidence": [
+        {
+          "quote": "面向应急救援的中大型多功能遥控挖掘机关键技术及产业化",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4211,
+            "end_char": 4236
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "“智能医工融合,服务人类健康”面向口腔医疗先进的气流组织源头控制技术研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-28e5136037d1",
+      "evidence": [
+        {
+          "quote": "“智能医工融合,服务人类健康”面向口腔医疗先进的气流组织源头控制技术研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4268,
+            "end_char": 4303
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2023年青少年高校科学营(贵州省)贵州大学分营课程指导导师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5d64ed002d7",
+      "evidence": [
+        {
+          "quote": "2023年青少年高校科学营(贵州省)贵州大学分营课程指导导师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4319,
+            "end_char": 4348
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real time power management strategy for fuel cell hybrid electric bus based on Lyapunov stability theorem",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e75c0895b86",
+      "evidence": [
+        {
+          "quote": "Real time power management strategy for fuel cell hybrid electric bus based on Lyapunov stability theorem",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4366,
+            "end_char": 4470
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于欧氏聚类的改进激光雷达障碍物检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-34fdf8696dfc",
+      "evidence": [
+        {
+          "quote": "基于欧氏聚类的改进激光雷达障碍物检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4557,
+            "end_char": 4576
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Review of Collaborative Air-Ground Robots Research",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c87c11e8443",
+      "evidence": [
+        {
+          "quote": "A Review of Collaborative Air-Ground Robots Research",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4609,
+            "end_char": 4660
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "贵州省省管专家",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8909a38f8d67",
+      "evidence": [
+        {
+          "quote": "贵州省省管专家",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4703,
+            "end_char": 4709
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A transformer-based real-time LiDAR semantic segmentation method for restricted mobile devices",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-00257d07f12d",
+      "evidence": [
+        {
+          "quote": "A transformer-based real-time LiDAR semantic segmentation method for restricted mobile devices",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4727,
+            "end_char": 4820
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Unmanned Aerial Vehicle Moving Target Tracking Method Based on Global Optical Flow Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-53a967c580a4",
+      "evidence": [
+        {
+          "quote": "Unmanned Aerial Vehicle Moving Target Tracking Method Based on Global Optical Flow Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4854,
+            "end_char": 4946
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on pedestrian detection using optimized mask R-CNN algorithm in low-light road environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31bcb2effc29",
+      "evidence": [
+        {
+          "quote": "Research on pedestrian detection using optimized mask R-CNN algorithm in low-light road environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4981,
+            "end_char": 5079
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Parameter estimation and control of a fuel cell air supply system based on an improved extended state observer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b69bf2e606d",
+      "evidence": [
+        {
+          "quote": "Parameter estimation and control of a fuel cell air supply system based on an improved extended state observer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5115,
+            "end_char": 5224
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved Monocular Visual Odometry Combined with JS Divergence in Restricted Mobile Devices",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f2f115401e68",
+      "evidence": [
+        {
+          "quote": "Improved Monocular Visual Odometry Combined with JS Divergence in Restricted Mobile Devices",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5276,
+            "end_char": 5366
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "视觉定位检测中基于最大信息熵的特征优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-91fc55079a86",
+      "evidence": [
+        {
+          "quote": "视觉定位检测中基于最大信息熵的特征优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5400,
+            "end_char": 5420
+          },
+          "version": "0c909eca194bf0301980"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 26,
+    "listed": 26,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

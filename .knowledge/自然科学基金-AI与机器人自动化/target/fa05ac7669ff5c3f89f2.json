@@ -2,15 +2,20 @@
   "doc_id": "fa05ac7669ff5c3f89f2",
   "version": "349985613c7a3806fdd9",
   "source_hash": "2008ac179d7e21c54ece319795b2aaedd4ae80188d7c2dec10c41226f7709c76",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:28:43.779593+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.931232+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ae1c95368020",
-          "name": "应急救援遥操作定位抓取",
-          "desc": "面向应急救援环境的遥操作机器人目标定位与柔性抓取",
+          "id": "item-eb6ed940c6f5",
+          "name": "遥操作机器人定位抓取系统旨在通过操作者与机器人的交互，以实现目标的精确定位与可靠抓取，对提升我国危险环境救援能力具有重要",
+          "desc": "遥操作机器人定位抓取系统旨在通过操作者与机器人的交互，以实现目标的精确定位与可靠抓取，对提升我国危险环境救援能力具有重要现实意义。",
           "evidence": [
             {
-              "quote": "本项目面向应急救援环境，聚焦基于遥操作机器人的目标定位与柔性抓取问题",
+              "quote": "遥操作机器人定位抓取系统旨在通过操作者与机器人的交互，以实现目标的精确定位与可靠抓取，对提升我国危险环境救援能力具有重要现实意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2790,
-                "end_char": 2823
+                "start_char": 645,
+                "end_char": 709
               },
               "version": "349985613c7a3806fdd9"
             }
@@ -38,93 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-57c54c4114d7",
-          "name": "弱通信柔性目标抓取难",
-          "desc": "强干扰、高噪声、长时延下定位抓取算法不能直接应用，救援目标具有耦合形变的柔性特点",
-          "evidence": [
-            {
-              "quote": "受强干扰、高噪声、长时延的影响，良好通信条件下的定位抓取算法不能直接应用于救援环境，且救援目标具有耦合形变的柔性特点",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 710,
-                "end_char": 767
-              },
-              "version": "349985613c7a3806fdd9"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-781aa896b2c9",
-          "name": "最优刚性图定位方法",
-          "desc": "设计最优刚性图下的可定位判据以及异步时钟下的定位方法",
+          "id": "item-66f39b8daeca",
+          "name": "本项目面向应急救援环境，聚焦基于遥操作机器人的目标定位与柔性抓取问题，从提高目标定位精度与增强抓取可靠性出发，设计最优刚",
+          "desc": "本项目面向应急救援环境，聚焦基于遥操作机器人的目标定位与柔性抓取问题，从提高目标定位精度与增强抓取可靠性出发，设计最优刚性图下的可定位判据以及异步时钟下的定位方法，建立模型不确定与弱通信网络下的协同趋近算法，并提出基于操作者力反馈感知的柔性目标抓取力控制策略，取得如下创新性成果。",
           "evidence": [
             {
-              "quote": "设计最优刚性图下的可定位判据以及异步时钟下的定位方法，建立模型不确定与弱通信网络下的协同趋近算法",
+              "quote": "本项目面向应急救援环境，聚焦基于遥操作机器人的目标定位与柔性抓取问题，从提高目标定位精度与增强抓取可靠性出发，设计最优刚性图下的可定位判据以及异步时钟下的定位方法，建立模型不确定与弱通信网络下的协同趋近算法，并提出基于操作者力反馈感知的柔性目标抓取力控制策略，取得如下创新性成果。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2845,
-                "end_char": 2892
+                "start_char": 2790,
+                "end_char": 2929
               },
               "version": "349985613c7a3806fdd9"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2a22c99018fa",
-          "name": "有限时间滑模协同控制",
-          "desc": "新型滑模面与有限时间速度观测器，基于滑模的有限时间协同控制器",
+          "id": "item-575146e104ee",
+          "name": "在定位与趋近基础上，建立柔性目标稳定抓取条件，并基于操作者对接触力感知设计抓取力控制算法，以实现对目标的可靠抓取；",
+          "desc": "在定位与趋近基础上，建立柔性目标稳定抓取条件，并基于操作者对接触力感知设计抓取力控制算法，以实现对目标的可靠抓取；",
           "evidence": [
             {
-              "quote": "在此基础上，设计了基于滑模的有限时间协同控制器",
+              "quote": "在定位与趋近基础上，建立柔性目标稳定抓取条件，并基于操作者对接触力感知设计抓取力控制算法，以实现对目标的可靠抓取；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3238,
-                "end_char": 3260
+                "start_char": 919,
+                "end_char": 975
               },
               "version": "349985613c7a3806fdd9"
             }
-          ]
-        },
-        {
-          "id": "item-76d1c00f3d2e",
-          "name": "力反馈漂移补偿",
-          "desc": "构造辅助系统输出校正位置信号，补偿由力反馈引起的位置漂移",
-          "evidence": [
-            {
-              "quote": "本项目通过构造辅助系统，利用反馈力作为输入信号，输出校正位置信号，补偿由力反馈引起的位置漂移",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3440,
-                "end_char": 3485
-              },
-              "version": "349985613c7a3806fdd9"
-            }
-          ]
-        },
-        {
-          "id": "item-5b9fe698c458",
-          "name": "强化学习最优阻抗抓取",
-          "desc": "利用强化学习建立从端机器人最优阻抗模型并生成抓取轨迹",
-          "evidence": [
-            {
-              "quote": "利用强化学习方法建立从端机器人最优阻抗模型，并由该模型生成抓取轨迹",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3505,
-                "end_char": 3537
-              },
-              "version": "349985613c7a3806fdd9"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,80 +91,792 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d1f1d2f05413",
-          "name": "定位抓取理论方法体系",
-          "desc": "在目标定位、协同趋近与柔性抓取三层面取得创新性成果，为柔性目标定位抓取提供研究基础和关键技术支持",
+          "id": "item-56732d283d9a",
+          "name": "遥操作机器人定位抓取系统旨在通过操作者与机器人的交互，以实现目标的精确定位与可靠抓取，对提升我国危险环境救援能力具有重要",
+          "desc": "遥操作机器人定位抓取系统旨在通过操作者与机器人的交互，以实现目标的精确定位与可靠抓取，对提升我国危险环境救援能力具有重要现实意义。",
           "evidence": [
             {
-              "quote": "并提出基于操作者力反馈感知的柔性目标抓取力控制策略，取得如下创新性成果",
+              "quote": "遥操作机器人定位抓取系统旨在通过操作者与机器人的交互，以实现目标的精确定位与可靠抓取，对提升我国危险环境救援能力具有重要现实意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2894,
-                "end_char": 2928
+                "start_char": 645,
+                "end_char": 709
               },
               "version": "349985613c7a3806fdd9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-aefbe92dfb22",
+          "name": "本项目面向应急救援环境，聚焦基于遥操作机器人的目标定位与柔性抓取问题，从提高目标定位精度与增强抓取可靠性出发，设计最优刚",
+          "desc": "本项目面向应急救援环境，聚焦基于遥操作机器人的目标定位与柔性抓取问题，从提高目标定位精度与增强抓取可靠性出发，设计最优刚性图下的可定位判据以及异步时钟下的定位方法，建立模型不确定与弱通信网络下的协同趋近算法，并提出基于操作者力反馈感知的柔性目标抓取力控制策略，取得如下创新性成果。",
+          "evidence": [
+            {
+              "quote": "本项目面向应急救援环境，聚焦基于遥操作机器人的目标定位与柔性抓取问题，从提高目标定位精度与增强抓取可靠性出发，设计最优刚性图下的可定位判据以及异步时钟下的定位方法，建立模型不确定与弱通信网络下的协同趋近算法，并提出基于操作者力反馈感知的柔性目标抓取力控制策略，取得如下创新性成果。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2790,
+                "end_char": 2929
+              },
+              "version": "349985613c7a3806fdd9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ae1c95368020"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-57c54c4114d7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "To Hide Private Position Information in Localization for Internet of Underwater Things",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-463c9afb7fbb",
+      "evidence": [
+        {
+          "quote": "To Hide Private Position Information in Localization for Internet of Underwater Things",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3564,
+            "end_char": 3649
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-57c54c4114d7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-781aa896b2c9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ubiquitous Tracking for Autonomous Underwater Vehicle With IoUT: A Rigid-Graph-Based Solution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9bcd52a6d8f5",
+      "evidence": [
+        {
+          "quote": "Ubiquitous Tracking for Autonomous Underwater Vehicle With IoUT: A Rigid-Graph-Based Solution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3708,
+            "end_char": 3800
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-57c54c4114d7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2a22c99018fa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-Free Formation Control of Autonomous Underwater Vehicles: A Broad Learning-Based Solution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3840ef6dd660",
+      "evidence": [
+        {
+          "quote": "Model-Free Formation Control of Autonomous Underwater Vehicles: A Broad Learning-Based Solution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3861,
+            "end_char": 3955
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-57c54c4114d7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-76d1c00f3d2e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Energy-Efficient Target Tracking With UASNs: A Consensus-Based Bayesian Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-adb23bebebeb",
+      "evidence": [
+        {
+          "quote": "Energy-Efficient Target Tracking With UASNs: A Consensus-Based Bayesian Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4027,
+            "end_char": 4106
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5b9fe698c458"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d1f1d2f05413"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AUV-Aided Localization for Underwater Acoustic Sensor Networks With Current Field Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-59cbb75813be",
+      "evidence": [
+        {
+          "quote": "AUV-Aided Localization for Underwater Acoustic Sensor Networks With Current Field Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4187,
+            "end_char": 4278
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Localization in Underwater Sensor Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-59a1714f96cc",
+      "evidence": [
+        {
+          "quote": "Localization in Underwater Sensor Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4336,
+            "end_char": 4377
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于声呐和视觉图像拼接的水下三维地图构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dda69db6965c",
+      "evidence": [
+        {
+          "quote": "一种基于声呐和视觉图像拼接的水下三维地图构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4433,
+            "end_char": 4456
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning-Based Formation Control of Autonomous Underwater Vehicles with Model Interferences",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b324c261c6e7",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning-Based Formation Control of Autonomous Underwater Vehicles with Model Interferences",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4484,
+            "end_char": 4588
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Privacy-Preserving Localization for Underwater Sensor Networks via Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b6c3b294d61a",
+      "evidence": [
+        {
+          "quote": "Privacy-Preserving Localization for Underwater Sensor Networks via Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4647,
+            "end_char": 4740
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Communication-Aware Swarm Control for AUVs A Reinforcement Learning-Based Solution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b32a54b4d13e",
+      "evidence": [
+        {
+          "quote": "Communication-Aware Swarm Control for AUVs A Reinforcement Learning-Based Solution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4810,
+            "end_char": 4891
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Communication-Aware Motion Planning of AUV in Obstacle-Dense Environment: A Binocular Vision-Based Deep Learning Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75fe93628b07",
+      "evidence": [
+        {
+          "quote": "Communication-Aware Motion Planning of AUV in Obstacle-Dense Environment: A Binocular Vision-Based Deep Learning Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4940,
+            "end_char": 5058
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于信道建模的自主水下航行器路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c618361b7508",
+      "evidence": [
+        {
+          "quote": "一种基于信道建模的自主水下航行器路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5128,
+            "end_char": 5149
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于数字孪生与强化学习的水下机器人编队控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1934c7b64c1",
+      "evidence": [
+        {
+          "quote": "一种基于数字孪生与强化学习的水下机器人编队控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5180,
+            "end_char": 5204
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于Q学习的自主水下航行器协助下水下数据收集方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f744d37e1ac",
+      "evidence": [
+        {
+          "quote": "基于Q学习的自主水下航行器协助下水下数据收集方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5235,
+            "end_char": 5258
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Teleoperation system of autonomous underwater vehicle toward Human-on-the-Loop: Design and implementation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-391f80355eed",
+      "evidence": [
+        {
+          "quote": "Teleoperation system of autonomous underwater vehicle toward Human-on-the-Loop: Design and implementation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5291,
+            "end_char": 5395
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于宽度学习的水下传感器定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e2153f63bf8e",
+      "evidence": [
+        {
+          "quote": "一种基于宽度学习的水下传感器定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5467,
+            "end_char": 5484
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "水下网络系统定位与控制联合设计:研究现状与发展趋势",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e506508127de",
+      "evidence": [
+        {
+          "quote": "水下网络系统定位与控制联合设计:研究现状与发展趋势",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5519,
+            "end_char": 5543
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Target Localization in Underwater Acoustic Sensor Networks with False Data Attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-974ff4b4fd9c",
+      "evidence": [
+        {
+          "quote": "Target Localization in Underwater Acoustic Sensor Networks with False Data Attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5576,
+            "end_char": 5657
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-AUV Formation Control Based on Combination of Artificial Potential Field and Virtual Structure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fe1fec68ac9d",
+      "evidence": [
+        {
+          "quote": "Multi-AUV Formation Control Based on Combination of Artificial Potential Field and Virtual Structure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5717,
+            "end_char": 5816
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-free control of underwater vehicle-manipulator system interacting with unknown environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fbc588fca6d4",
+      "evidence": [
+        {
+          "quote": "Model-free control of underwater vehicle-manipulator system interacting with unknown environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5871,
+            "end_char": 5967
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-domain Monitoring of Underwater Targets Based on Q-learning for Heterogeneous Unmanned Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-55f348e486cc",
+      "evidence": [
+        {
+          "quote": "Cross-domain Monitoring of Underwater Targets Based on Q-learning for Heterogeneous Unmanned Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6042,
+            "end_char": 6142
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于最优刚性图的潜器组网编队方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d5137a294ff",
+      "evidence": [
+        {
+          "quote": "一种基于最优刚性图的潜器组网编队方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6201,
+            "end_char": 6218
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Finite-Time Tracking Control of Autonomous Underwater Vehicle Without Velocity Measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-256354c19958",
+      "evidence": [
+        {
+          "quote": "Finite-Time Tracking Control of Autonomous Underwater Vehicle Without Velocity Measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6253,
+            "end_char": 6343
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An obstacle avoiding method of autonomous underwater vehicle based on the reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3b66b07f1e45",
+      "evidence": [
+        {
+          "quote": "An obstacle avoiding method of autonomous underwater vehicle based on the reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6414,
+            "end_char": 6509
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "通信连通性保持约束下的水下多机器人避障装置及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f31de2c5ba54",
+      "evidence": [
+        {
+          "quote": "通信连通性保持约束下的水下多机器人避障装置及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6565,
+            "end_char": 6588
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Containment Control of Autonomous Underwater Vehicles With Stochastic Environment Disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-23c3f021e9f6",
+      "evidence": [
+        {
+          "quote": "Containment Control of Autonomous Underwater Vehicles With Stochastic Environment Disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6623,
+            "end_char": 6716
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Communication-Aware Formation Control of AUVs With Model Uncertainty and Fading Channel via Integral Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e86a57870603",
+      "evidence": [
+        {
+          "quote": "Communication-Aware Formation Control of AUVs With Model Uncertainty and Fading Channel via Integral Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6788,
+            "end_char": 6910
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Unsynchronized Underwater Localization with Isogradient Sound Speed Profile and Anchor Location Uncertainties",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4192a3f2e03",
+      "evidence": [
+        {
+          "quote": "Unsynchronized Underwater Localization with Isogradient Sound Speed Profile and Anchor Location Uncertainties",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6983,
+            "end_char": 7091
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Autonomous Underwater Vehicles Localization, Tracking, and Formation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4d36b9f3a15",
+      "evidence": [
+        {
+          "quote": "Autonomous Underwater Vehicles Localization, Tracking, and Formation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7158,
+            "end_char": 7225
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Privacy Preserving Localization Algorithm for Underwater Sensor Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fbe1972111ee",
+      "evidence": [
+        {
+          "quote": "Privacy Preserving Localization Algorithm for Underwater Sensor Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7297,
+            "end_char": 7368
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "力反馈水下遥操作系统稳定性分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc96f5cbffcc",
+      "evidence": [
+        {
+          "quote": "力反馈水下遥操作系统稳定性分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7425,
+            "end_char": 7439
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于深度强化学习的多潜器编队控制算法设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b5a869faf87",
+      "evidence": [
+        {
+          "quote": "基于深度强化学习的多潜器编队控制算法设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7465,
+            "end_char": 7484
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Tracking Control of Autonomous Underwater Vehicle Under Stochastic Environmental Disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41ca9304bfbd",
+      "evidence": [
+        {
+          "quote": "Adaptive Tracking Control of Autonomous Underwater Vehicle Under Stochastic Environmental Disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7517,
+            "end_char": 7618
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Three-Dimensional Persistent Topology Generation and Optimal Control of Autonomous Underwater Vehicle Formation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33ce1ff04365",
+      "evidence": [
+        {
+          "quote": "Three-Dimensional Persistent Topology Generation and Optimal Control of Autonomous Underwater Vehicle Formation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7677,
+            "end_char": 7787
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "考虑锚节点位置不确定的水下目标定位算法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-500661b94889",
+      "evidence": [
+        {
+          "quote": "考虑锚节点位置不确定的水下目标定位算法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7846,
+            "end_char": 7866
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Position Measurement Based Slave Torque Feedback Control for Teleoperation Systems With Time-Varying Communication Delays",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e83a364ccc6",
+      "evidence": [
+        {
+          "quote": "Position Measurement Based Slave Torque Feedback Control for Teleoperation Systems With Time-Varying Communication Delays",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7902,
+            "end_char": 8022
+          },
+          "version": "349985613c7a3806fdd9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 36,
+    "listed": 36,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 10,
+        "extracted": 10
+      }
+    },
+    "consistent": true
+  }
 }

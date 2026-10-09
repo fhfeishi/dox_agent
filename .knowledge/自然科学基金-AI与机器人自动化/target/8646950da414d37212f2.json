@@ -2,15 +2,20 @@
   "doc_id": "8646950da414d37212f2",
   "version": "1b2c70220df8e1d17e6c",
   "source_hash": "436e5fa361840a849a6e9889d703b8818ce41bd0a1ecb6f88fb4a2b48afebeb2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:11:19.609796+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.711419+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c6118e1d5bf9",
-          "name": "高动态有人环境服务机器人",
-          "desc": "有人环境高动态特性给机器人自主作业安全可靠性带来挑战",
+          "id": "item-81d7127ce021",
+          "name": "机器人在走入公众与社会服务过程中，有人环境的高动态特性，给它们自主作业的安全性与可靠性带来巨大挑战。",
+          "desc": "机器人在走入公众与社会服务过程中，有人环境的高动态特性，给它们自主作业的安全性与可靠性带来巨大挑战。",
           "evidence": [
             {
-              "quote": "机器人在走入公众与社会服务过程中，有人环境的高动态特性，给它们自主作业的安全性与可靠性带来巨大挑战",
+              "quote": "机器人在走入公众与社会服务过程中，有人环境的高动态特性，给它们自主作业的安全性与可靠性带来巨大挑战。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 665,
-                "end_char": 713
+                "end_char": 714
+              },
+              "version": "1b2c70220df8e1d17e6c"
+            }
+          ]
+        },
+        {
+          "id": "item-21b067f79a2e",
+          "name": "应用前景广阔，成果已用于军事指挥、自主导航等高风险场景，为国防与工业自动化提供关键技术支撑，体现了从理论突破到实战部署的",
+          "desc": "应用前景广阔，成果已用于军事指挥、自主导航等高风险场景，为国防与工业自动化提供关键技术支撑，体现了从理论突破到实战部署的完整价值链。",
+          "evidence": [
+            {
+              "quote": "应用前景广阔，成果已用于军事指挥、自主导航等高风险场景，为国防与工业自动化提供关键技术支撑，体现了从理论突破到实战部署的完整价值链。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3144,
+                "end_char": 3209
               },
               "version": "1b2c70220df8e1d17e6c"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d200051cf4e2",
-          "name": "非完备感知与静态假设",
-          "desc": "传统静态场景假设架构难以解决遮挡噪声导致的非完备感知问题",
-          "evidence": [
-            {
-              "quote": "本课题针对高动态复杂场景下机器人环境建模问题，探索一种“自上而下”的设计范式—即从人类概念出发，参照人类语言语义、认知概念和推理方法等要素来指导系统框架设计",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 803,
-                "end_char": 880
-              },
-              "version": "1b2c70220df8e1d17e6c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-44810efb8d5f",
-          "name": "Mamba+图注意力地点识别",
-          "desc": "视觉Mamba嵌入与空间图注意力网络，全局检索与局部重排序平衡精度效率",
+          "id": "item-cf9a7fcc758c",
+          "name": ".本课题针对高动态复杂场景下机器人环境建模问题，探索一种“自上而下”的设计范式—即从人类概念出发，参照人类语言语义、认知",
+          "desc": ".本课题针对高动态复杂场景下机器人环境建模问题，探索一种“自上而下”的设计范式—即从人类概念出发，参照人类语言语义、认知概念和推理方法等要素来指导系统框架设计。",
           "evidence": [
             {
-              "quote": "一是提出基于视觉Mamba嵌入与空间图注意力网络的地点识别方法，通过全局检索与局部重排序平衡精度与效率",
+              "quote": ".本课题针对高动态复杂场景下机器人环境建模问题，探索一种“自上而下”的设计范式—即从人类概念出发，参照人类语言语义、认知概念和推理方法等要素来指导系统框架设计。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2796,
-                "end_char": 2846
+                "start_char": 802,
+                "end_char": 881
               },
               "version": "1b2c70220df8e1d17e6c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ba704ac4a033",
-          "name": "知识图谱+大模型分层规划",
-          "desc": "构建知识图谱ActKG并融合大语言模型实现分层任务规划，减少幻觉错误",
+          "id": "item-062b2aed5440",
+          "name": "研究背景源于机器人技术在真实场景中面临的外观变化、动态干扰及任务规划可靠性等挑战，需开发条件不变的特征表示与可解释的决策",
+          "desc": "研究背景源于机器人技术在真实场景中面临的外观变化、动态干扰及任务规划可靠性等挑战，需开发条件不变的特征表示与可解释的决策框架。",
           "evidence": [
             {
-              "quote": "二是构建知识图谱（ActKG）并融合大语言模型实现分层任务规划，减少幻觉错误",
+              "quote": "研究背景源于机器人技术在真实场景中面临的外观变化、动态干扰及任务规划可靠性等挑战，需开发条件不变的特征表示与可解释的决策框架。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2848,
-                "end_char": 2885
+                "start_char": 2720,
+                "end_char": 2782
               },
               "version": "1b2c70220df8e1d17e6c"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,632 @@
       "state": "has",
       "items": [
         {
-          "id": "item-482f2115e32c",
-          "name": "Recall@1达99.1%",
-          "desc": "地点识别Recall@1最高达99.1%，闭环检测召回率93.3%且延迟仅4.5毫秒",
+          "id": "item-4f7d7f25fef9",
+          "name": "机器人在走入公众与社会服务过程中，有人环境的高动态特性，给它们自主作业的安全性与可靠性带来巨大挑战。",
+          "desc": "机器人在走入公众与社会服务过程中，有人环境的高动态特性，给它们自主作业的安全性与可靠性带来巨大挑战。",
           "evidence": [
             {
-              "quote": "在MSLS、Pitts30k等数据集上地点识别Recall@1最高达99.1%，闭环检测召回率提升至93.3%且延迟仅4.5毫秒；定位误差降低超10%",
+              "quote": "机器人在走入公众与社会服务过程中，有人环境的高动态特性，给它们自主作业的安全性与可靠性带来巨大挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2982,
-                "end_char": 3056
+                "start_char": 665,
+                "end_char": 714
               },
               "version": "1b2c70220df8e1d17e6c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-db5408f263b1",
-          "name": "高风险场景应用",
-          "desc": "成果已用于军事指挥、自主导航等高风险场景，支撑国防与工业自动化",
+          "id": "item-e1b54346daee",
+          "name": "本项目面向复杂动态环境中服务机器人的智能化需求，旨在通过理论创新提升其感知、规划与定位能力。",
+          "desc": "本项目面向复杂动态环境中服务机器人的智能化需求，旨在通过理论创新提升其感知、规划与定位能力。",
           "evidence": [
             {
-              "quote": "应用前景广阔，成果已用于军事指挥、自主导航等高风险场景，为国防与工业自动化提供关键技术支撑",
+              "quote": "本项目面向复杂动态环境中服务机器人的智能化需求，旨在通过理论创新提升其感知、规划与定位能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3144,
-                "end_char": 3188
+                "start_char": 2674,
+                "end_char": 2719
               },
               "version": "1b2c70220df8e1d17e6c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c6118e1d5bf9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d200051cf4e2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Robot’s Understanding of Different Concepts and Autonomous Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2444c9ba72a1",
+      "evidence": [
+        {
+          "quote": "Research on Robot’s Understanding of Different Concepts and Autonomous Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3235,
+            "end_char": 3313
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d200051cf4e2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-44810efb8d5f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Effect of pattern on the resolution of the visual-tactile sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3cb5d5e2daa4",
+      "evidence": [
+        {
+          "quote": "Effect of pattern on the resolution of the visual-tactile sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3385,
+            "end_char": 3448
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d200051cf4e2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ba704ac4a033"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Integrating Reinforcement Learning and Learning From Demonstrations to Learn Nonprehensile Manipulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-235c931ce092",
+      "evidence": [
+        {
+          "quote": "Integrating Reinforcement Learning and Learning From Demonstrations to Learn Nonprehensile Manipulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3510,
+            "end_char": 3612
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-44810efb8d5f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-482f2115e32c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Unified Depth-Guided Feature Fusion and Reranking for Hierarchical Place Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f733af4b622",
+      "evidence": [
+        {
+          "quote": "Unified Depth-Guided Feature Fusion and Reranking for Hierarchical Place Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3697,
+            "end_char": 3780
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ba704ac4a033"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-db5408f263b1"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "轴孔装配方法、系统、电子设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d358dbda0604",
+      "evidence": [
+        {
+          "quote": "轴孔装配方法、系统、电子设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3861,
+            "end_char": 3879
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种点云耦合方法及ASIC专用处理器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bb1e764585da",
+      "evidence": [
+        {
+          "quote": "一种点云耦合方法及ASIC专用处理器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3912,
+            "end_char": 3929
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "紧配合轴孔装配方法、系统、电子设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ceb6403400f",
+      "evidence": [
+        {
+          "quote": "紧配合轴孔装配方法、系统、电子设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3966,
+            "end_char": 3987
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种类蛙式混合驱动水陆两栖机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f29ed433309d",
+      "evidence": [
+        {
+          "quote": "一种类蛙式混合驱动水陆两栖机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4014,
+            "end_char": 4029
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive memory event-triggered fault-tolerant dissipative control for networked T-S fuzzy switched systems under denial-of-service attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-46527f3f3437",
+      "evidence": [
+        {
+          "quote": "Adaptive memory event-triggered fault-tolerant dissipative control for networked T-S fuzzy switched systems under denial-of-service attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4067,
+            "end_char": 4205
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Robot’s Understanding of Classification Concepts Based on Large Language Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed963833e368",
+      "evidence": [
+        {
+          "quote": "The Robot’s Understanding of Classification Concepts Based on Large Language Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4263,
+            "end_char": 4344
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Learning-Based Object Tracking Strategy Using Visual Sensors and Intelligent Robot Arm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c53f49ecb823",
+      "evidence": [
+        {
+          "quote": "A Learning-Based Object Tracking Strategy Using Visual Sensors and Intelligent Robot Arm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4412,
+            "end_char": 4499
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Human Strategies for Tuning Cavity Filters with Continuous Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-70d1dbaea517",
+      "evidence": [
+        {
+          "quote": "Learning Human Strategies for Tuning Cavity Filters with Continuous Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4573,
+            "end_char": 4662
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Person Following with Dynamic Obstacle Avoidance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d796b171b0b",
+      "evidence": [
+        {
+          "quote": "Person Following with Dynamic Obstacle Avoidance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4703,
+            "end_char": 4750
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantic geometric fusion multi-object tracking and lidar odometry in dynamic environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-32f6858793bf",
+      "evidence": [
+        {
+          "quote": "Semantic geometric fusion multi-object tracking and lidar odometry in dynamic environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4877,
+            "end_char": 4965
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A self‐stabilised walking gait for humanoid robots based on the essential model with internal states",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10ae5131cf51",
+      "evidence": [
+        {
+          "quote": "A self‐stabilised walking gait for humanoid robots based on the essential model with internal states",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5027,
+            "end_char": 5126
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Three-Dimensional Force Sensor Based on Deep Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7633215c0768",
+      "evidence": [
+        {
+          "quote": "Three-Dimensional Force Sensor Based on Deep Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5238,
+            "end_char": 5290
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gaussian Processes Based Indoor Visible Light Positioning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8077c52ddb4f",
+      "evidence": [
+        {
+          "quote": "Gaussian Processes Based Indoor Visible Light Positioning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5382,
+            "end_char": 5438
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "国际发明博览会获奖项目 (项目编号:A8374)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0c83794e414",
+      "evidence": [
+        {
+          "quote": "国际发明博览会获奖项目 (项目编号:A8374)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5472,
+            "end_char": 5495
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "机器人服务机器人模块化 第1部分 通用要求(ISO 22166-1:2021)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01d2e81b5793",
+      "evidence": [
+        {
+          "quote": "机器人服务机器人模块化 第1部分 通用要求(ISO 22166-1:2021)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5532,
+            "end_char": 5570
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Compliant Assembly Strategy From Demonstration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30b25c66e4a2",
+      "evidence": [
+        {
+          "quote": "Learning Compliant Assembly Strategy From Demonstration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5589,
+            "end_char": 5643
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人运动控制方法,机器人及计算机可读存储装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fba74070e75a",
+      "evidence": [
+        {
+          "quote": "机器人运动控制方法,机器人及计算机可读存储装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5690,
+            "end_char": 5712
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于机器人的点火控制系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-22c19bdeb2ee",
+      "evidence": [
+        {
+          "quote": "一种用于机器人的点火控制系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5754,
+            "end_char": 5767
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Self-organizing hierarchical incremental learning framework and universal approximation analysis based on stochastic configuration mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d81db2baf17b",
+      "evidence": [
+        {
+          "quote": "Self-organizing hierarchical incremental learning framework and universal approximation analysis based on stochastic configuration mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5809,
+            "end_char": 5948
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Transferring General Models to Vertical Domains for Fine-Grained Discrete Control under Data Scarcity",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-293adf7a45c7",
+      "evidence": [
+        {
+          "quote": "Transferring General Models to Vertical Domains for Fine-Grained Discrete Control under Data Scarcity",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6010,
+            "end_char": 6110
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于学习的大扰流环境中机器人稳定跟踪控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6804c33e26ab",
+      "evidence": [
+        {
+          "quote": "基于学习的大扰流环境中机器人稳定跟踪控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6147,
+            "end_char": 6168
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Accurate 3D LiDAR SLAM System Based on Hash Multi-Scale Map and Bidirectional Matching Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc94fdc2f5e5",
+      "evidence": [
+        {
+          "quote": "Accurate 3D LiDAR SLAM System Based on Hash Multi-Scale Map and Bidirectional Matching Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6201,
+            "end_char": 6296
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Lightweight Multimodal Domain Generic Person Reidentification Metric for Person-Following Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b24aed67f50",
+      "evidence": [
+        {
+          "quote": "Lightweight Multimodal Domain Generic Person Reidentification Metric for Person-Following Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6358,
+            "end_char": 6453
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint Knowledge Graph Reasoning and Large Language Models for Hierarchical Task Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd7a24d3f9f0",
+      "evidence": [
+        {
+          "quote": "Joint Knowledge Graph Reasoning and Large Language Models for Hierarchical Task Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6521,
+            "end_char": 6608
+          },
+          "version": "1b2c70220df8e1d17e6c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 29,
+    "listed": 29,
+    "by_kind": {
+      "会议论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 8,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

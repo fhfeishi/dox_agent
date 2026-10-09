@@ -2,15 +2,20 @@
   "doc_id": "e60fb39a212df3b34dd7",
   "version": "a9b93417144bce78fcee",
   "source_hash": "8b36343bb877af59f2c495b580ed5d302b8ad77f55f85e666ad0da2636f55d69",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:24.478524+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.738505+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-811c2a67945c",
-          "name": "拟人机械臂仿人运动",
-          "desc": "仿人机器人运动基础及人机交互领域的拓展应用",
+          "id": "item-4e95f2c5bbb8",
+          "name": "仿人机器人是机器人技术中最前沿、最活跃的研究领域之一，其中拟人机械臂的仿人运动作为仿人机器人的运动基础，一直都是研究的热",
+          "desc": "仿人机器人是机器人技术中最前沿、最活跃的研究领域之一，其中拟人机械臂的仿人运动作为仿人机器人的运动基础，一直都是研究的热点及难点。",
           "evidence": [
             {
               "quote": "仿人机器人是机器人技术中最前沿、最活跃的研究领域之一，其中拟人机械臂的仿人运动作为仿人机器人的运动基础，一直都是研究的热点及难点。",
@@ -33,82 +38,67 @@
               "version": "a9b93417144bce78fcee"
             }
           ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
+        },
         {
-          "id": "item-cbfce1aaf116",
-          "name": "人臂运动机理与智能表达",
-          "desc": "需系统研究人臂运动机理与机械臂智能化运动表达",
+          "id": "item-faabbd8f6902",
+          "name": "项目预期将揭示人臂运动内在机理，建立拟人机械臂智能化运动体系，拓展拟人臂仿人运动应用领域。",
+          "desc": "项目预期将揭示人臂运动内在机理，建立拟人机械臂智能化运动体系，拓展拟人臂仿人运动应用领域。",
           "evidence": [
             {
-              "quote": "本项目针对拟人机械臂的仿人运动，对人臂运动机理、机械臂智能化运动表达两个方面展开系统研究，并将拟人臂仿人运动应用于机器人情感表达中。",
+              "quote": "项目预期将揭示人臂运动内在机理，建立拟人机械臂智能化运动体系，拓展拟人臂仿人运动应用领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 717,
-                "end_char": 782
+                "start_char": 974,
+                "end_char": 1018
               },
               "version": "a9b93417144bce78fcee"
             }
           ]
         }
       ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-356e707ef224",
-          "name": "动作基元人臂运动表达",
-          "desc": "基于动作基元的人臂运动表达方法与生成法则",
+          "id": "item-09317fbedfbe",
+          "name": "构建适用于仿人运动规划的拟人臂智能运动决策算法。",
+          "desc": "构建适用于仿人运动规划的拟人臂智能运动决策算法。",
           "evidence": [
             {
-              "quote": "利用动作基元建立人臂模型，确定各基元的生成法则及连接方式，建立基于动作基元的人臂运动表达方法。",
+              "quote": "构建适用于仿人运动规划的拟人臂智能运动决策算法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2881,
-                "end_char": 2927
+                "start_char": 3003,
+                "end_char": 3026
               },
               "version": "a9b93417144bce78fcee"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-28de6bc55cec",
-          "name": "贝叶斯网络运动决策",
-          "desc": "基于运动变量的贝叶斯网络决策指标将决策转为择优",
+          "id": "item-60f4269048b8",
+          "name": "projectName: 基于智能算法的机械臂仿人运动规划策略及其拓展研究",
+          "desc": "projectName: 基于智能算法的机械臂仿人运动规划策略及其拓展研究",
           "evidence": [
             {
-              "quote": "建立基于运动变量的贝叶斯网络，确定各个变量之间的依赖关系。",
+              "quote": "projectName: 基于智能算法的机械臂仿人运动规划策略及其拓展研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3041,
-                "end_char": 3069
+                "start_char": 42,
+                "end_char": 78
               },
               "version": "a9b93417144bce78fcee"
             }
-          ]
-        },
-        {
-          "id": "item-af0a09bc4353",
-          "name": "耦合神经网络多模型映射",
-          "desc": "高度集成化耦合神经网络解决拟人臂运动多模型映射",
-          "evidence": [
-            {
-              "quote": "针对拟人臂运动多模型所引起的逆解困难，提出一种高度集成化的耦合神经网络。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3148,
-                "end_char": 3183
-              },
-              "version": "a9b93417144bce78fcee"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,136 +107,145 @@
       "state": "has",
       "items": [
         {
-          "id": "item-181052cf4293",
-          "name": "自主仿人运动选择",
-          "desc": "根据任务需求自主选择合适的仿人运动方式",
+          "id": "item-4a1a074ba0ba",
+          "name": "仿人机器人是机器人技术中最前沿、最活跃的研究领域之一，其中拟人机械臂的仿人运动作为仿人机器人的运动基础，一直都是研究的热",
+          "desc": "仿人机器人是机器人技术中最前沿、最活跃的研究领域之一，其中拟人机械臂的仿人运动作为仿人机器人的运动基础，一直都是研究的热点及难点。",
           "evidence": [
             {
-              "quote": "使拟人机械臂能够根据不同的任务需求自主地选择合适的仿人运动方式来完成相应的任务。",
+              "quote": "仿人机器人是机器人技术中最前沿、最活跃的研究领域之一，其中拟人机械臂的仿人运动作为仿人机器人的运动基础，一直都是研究的热点及难点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3108,
-                "end_char": 3147
+                "start_char": 652,
+                "end_char": 716
               },
               "version": "a9b93417144bce78fcee"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-a806e09fd11c",
-          "name": "机器人情感表达方法",
-          "desc": "维度情感模型与拟人运动结合的动作行为情感表达",
-          "evidence": [
-            {
-              "quote": "提出了一种机器人基于动作行为的情感表达方法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3389,
-                "end_char": 3410
-              },
-              "version": "a9b93417144bce78fcee"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-15bb612414b7",
-          "name": "拟人臂理论方法体系",
-          "desc": "形成运动建模、智能决策、运动规划、仿真实验的理论和方法",
-          "evidence": [
-            {
-              "quote": "形成了一套拟人机械臂运动建模、智能决策、运动规划、仿真及实验的理论和方法，为拟人机械臂仿人运动的研究提供了理论依据和方法支持。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3511,
-                "end_char": 3573
-              },
-              "version": "a9b93417144bce78fcee"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-811c2a67945c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cbfce1aaf116"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于动作基元的拟人机械臂仿人运动规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0234f929ffb2",
+      "evidence": [
+        {
+          "quote": "基于动作基元的拟人机械臂仿人运动规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3598,
+            "end_char": 3615
+          },
+          "version": "a9b93417144bce78fcee"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cbfce1aaf116"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-356e707ef224"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Comprehensive Approach to the Generation of Human-Like Arm Movements on Robot NAO",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-895df2d9fa88",
+      "evidence": [
+        {
+          "quote": "A Comprehensive Approach to the Generation of Human-Like Arm Movements on Robot NAO",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3632,
+            "end_char": 3714
+          },
+          "version": "a9b93417144bce78fcee"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cbfce1aaf116"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-28de6bc55cec"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于实践能力培养的数控技术课程改革",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ae88f902feb",
+      "evidence": [
+        {
+          "quote": "基于实践能力培养的数控技术课程改革",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3731,
+            "end_char": 3747
+          },
+          "version": "a9b93417144bce78fcee"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cbfce1aaf116"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-af0a09bc4353"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Hierarchical Plan Strategy for Manipulators Based on Movement Rules of Human Arms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d4ce5fbed723",
+      "evidence": [
+        {
+          "quote": "A Hierarchical Plan Strategy for Manipulators Based on Movement Rules of Human Arms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3779,
+            "end_char": 3861
+          },
+          "version": "a9b93417144bce78fcee"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-28de6bc55cec"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-181052cf4293"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-356e707ef224"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a806e09fd11c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-af0a09bc4353"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-15bb612414b7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于分级规划策略的拟人机械臂仿人运动规划算法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d94b385494c3",
+      "evidence": [
+        {
+          "quote": "基于分级规划策略的拟人机械臂仿人运动规划算法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3882,
+            "end_char": 3905
+          },
+          "version": "a9b93417144bce78fcee"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

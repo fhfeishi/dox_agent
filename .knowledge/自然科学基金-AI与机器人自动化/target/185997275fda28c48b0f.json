@@ -2,15 +2,20 @@
   "doc_id": "185997275fda28c48b0f",
   "version": "c911de3280fb99b4a957",
   "source_hash": "dd49963a78e49b5566ddb422fd05b3e20bee6548107f498b56b2145532971107",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:44.960142+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.727491+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-74709674d5ba",
-          "name": "助行膝关节外骨骼康复",
-          "desc": "机器人辅助行走激活运动皮质与脊髓节律中枢，促进神经肢体功能恢复",
+          "id": "item-5ecca0817e2e",
+          "name": "机器人辅助行走在脊髓损伤患者康复治疗中起极其重要的作用，能有效地激活运动皮质和脊髓节律性运动中枢，促进神经和肢体功能恢复",
+          "desc": "机器人辅助行走在脊髓损伤患者康复治疗中起极其重要的作用，能有效地激活运动皮质和脊髓节律性运动中枢，促进神经和肢体功能恢复。",
           "evidence": [
             {
-              "quote": "机器人辅助行走在康复治疗中起极其重要的作用。然而，目前大部分助行外骨骼都属于为固定转动轴系统，使用过程中往往造成人机关节错位",
+              "quote": "机器人辅助行走在脊髓损伤患者康复治疗中起极其重要的作用，能有效地激活运动皮质和脊髓节律性运动中枢，促进神经和肢体功能恢复。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2845,
-                "end_char": 2906
+                "start_char": 651,
+                "end_char": 711
               },
               "version": "c911de3280fb99b4a957"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-dad75d498008",
-          "name": "人机关节错位驱动不匹配",
-          "desc": "固定转动轴造成人机关节错位与驱动能力不匹配",
-          "evidence": [
-            {
-              "quote": "本项目致力于研发一种新型融合动态轴和最优驱动机理的助行外骨骼，解决行走辅助过程中关节错位和驱动能力不匹配的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2908,
-                "end_char": 2962
-              },
-              "version": "c911de3280fb99b4a957"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-22ed3e6e1bc7",
-          "name": "膝关节动态轴实时测定",
-          "desc": "平面转动-平移-转动构型轻量化可穿戴测量系统，人机关节不对齐减少51%",
+          "id": "item-c8ccae13ac67",
+          "name": "本项目针对人体膝关节动态轴测定方法及高度人机共融的下肢外骨骼系统及其辅助策略展开研究，突破了以下关键技术：1）提出一种可",
+          "desc": "本项目针对人体膝关节动态轴测定方法及高度人机共融的下肢外骨骼系统及其辅助策略展开研究，突破了以下关键技术：1）提出一种可实时检测人体膝关节矢状面动态转动轴的测定方法，并基于该方法设计了一套基于平面转动-平移-转动构型的轻量化、可穿戴测量系统，成功将人机关节不对齐减少51%且测量误差小于2毫米；",
           "evidence": [
             {
-              "quote": "提出一种可实时检测人体膝关节矢状面动态转动轴的测定方法，并基于该方法设计了一套基于平面转动-平移-转动构型的轻量化、可穿戴测量系统，成功将人机关节不对齐减少51%且测量误差小于2毫米",
+              "quote": "本项目针对人体膝关节动态轴测定方法及高度人机共融的下肢外骨骼系统及其辅助策略展开研究，突破了以下关键技术：1）提出一种可实时检测人体膝关节矢状面动态转动轴的测定方法，并基于该方法设计了一套基于平面转动-平移-转动构型的轻量化、可穿戴测量系统，成功将人机关节不对齐减少51%且测量误差小于2毫米；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3039,
-                "end_char": 3129
+                "start_char": 2984,
+                "end_char": 3130
               },
               "version": "c911de3280fb99b4a957"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-0118024c1a83",
-          "name": "气动肌肉滑模同步控制",
-          "desc": "基于滑模理论的关节位置、刚度同步控制实现运动学与刚度协同匹配",
+          "id": "item-54ec6089c7d9",
+          "name": "2）设计并优化气动肌肉下肢外骨骼，提出了一种基于滑模理论的关节位置、刚度同步控制算法，实现了外骨骼与人体下肢运动学和刚度",
+          "desc": "2）设计并优化气动肌肉下肢外骨骼，提出了一种基于滑模理论的关节位置、刚度同步控制算法，实现了外骨骼与人体下肢运动学和刚度的协同匹配；",
           "evidence": [
             {
-              "quote": "提出了一种基于滑模理论的关节位置、刚度同步控制算法，实现了外骨骼与人体下肢运动学和刚度的协同匹配",
+              "quote": "2）设计并优化气动肌肉下肢外骨骼，提出了一种基于滑模理论的关节位置、刚度同步控制算法，实现了外骨骼与人体下肢运动学和刚度的协同匹配；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3148,
-                "end_char": 3195
+                "start_char": 3131,
+                "end_char": 3196
               },
               "version": "c911de3280fb99b4a957"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,488 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6b69f6c4aadf",
-          "name": "绳驱外骨骼临床验证",
-          "desc": "串联弹性柔性驱动绳驱外骨骼系统与自然步态层级控制并完成临床验证",
+          "id": "item-50da177ab4a2",
+          "name": "机器人辅助行走在脊髓损伤患者康复治疗中起极其重要的作用，能有效地激活运动皮质和脊髓节律性运动中枢，促进神经和肢体功能恢复",
+          "desc": "机器人辅助行走在脊髓损伤患者康复治疗中起极其重要的作用，能有效地激活运动皮质和脊髓节律性运动中枢，促进神经和肢体功能恢复。",
           "evidence": [
             {
-              "quote": "开发了一套基于串联弹性柔性驱动器的绳驱下肢外骨骼系统，同时提出了融合自然行走步态的层级控制策略并完成了临床验证",
+              "quote": "机器人辅助行走在脊髓损伤患者康复治疗中起极其重要的作用，能有效地激活运动皮质和脊髓节律性运动中枢，促进神经和肢体功能恢复。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3199,
-                "end_char": 3253
+                "start_char": 651,
+                "end_char": 711
               },
               "version": "c911de3280fb99b4a957"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-22b21e9a2325",
-          "name": "论文与专利",
-          "desc": "发表学术论文20篇（SCI 12篇），申请专利5项（授权1项、实用新型4项）",
+          "id": "item-2e2d0d995c34",
+          "name": "机器人辅助行走在康复治疗中起极其重要的作用。",
+          "desc": "机器人辅助行走在康复治疗中起极其重要的作用。",
           "evidence": [
             {
-              "quote": "相关成果共计发表学术论文20篇，其中高水平SCI学术论文12篇，国际学术会议论文7篇，中文期刊论文1篇；申请专利5项，其中授权发明专利1项，实用新型专利4项",
+              "quote": "机器人辅助行走在康复治疗中起极其重要的作用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3300,
-                "end_char": 3377
+                "start_char": 2845,
+                "end_char": 2866
               },
               "version": "c911de3280fb99b4a957"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-74709674d5ba"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-dad75d498008"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Haptic Rendering of Soft Object Interaction for Robot-aided Neurorehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d3d31e62201",
+      "evidence": [
+        {
+          "quote": "Haptic Rendering of Soft Object Interaction for Robot-aided Neurorehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3414,
+            "end_char": 3492
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dad75d498008"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-22ed3e6e1bc7"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "六自由度触觉交互装置和机器人系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0bacb009375",
+      "evidence": [
+        {
+          "quote": "六自由度触觉交互装置和机器人系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3530,
+            "end_char": 3545
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dad75d498008"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0118024c1a83"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Robot-Assisted Bilateral Upper Limb Training Strategy with Subject-Specific Workspace: A Pilot Study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e276be0c721c",
+      "evidence": [
+        {
+          "quote": "A Robot-Assisted Bilateral Upper Limb Training Strategy with Subject-Specific Workspace: A Pilot Study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3567,
+            "end_char": 3668
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-22ed3e6e1bc7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6b69f6c4aadf"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Walking Assistance Exoskeleton with Individual Control of Multiple Cables via a Single Actuator: Design and Evaluation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e8ae2a61733",
+      "evidence": [
+        {
+          "quote": "A Walking Assistance Exoskeleton with Individual Control of Multiple Cables via a Single Actuator: Design and Evaluation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3745,
+            "end_char": 3864
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0118024c1a83"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-22b21e9a2325"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种柔性外骨骼机器人的驱动单元及柔性外骨骼机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77eab0f7a1fe",
+      "evidence": [
+        {
+          "quote": "一种柔性外骨骼机器人的驱动单元及柔性外骨骼机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3925,
+            "end_char": 3948
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Linear Active Disturbance Rejection Control for Two-mass Systems via Singular Perturbation Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b37dbb63567c",
+      "evidence": [
+        {
+          "quote": "Linear Active Disturbance Rejection Control for Two-mass Systems via Singular Perturbation Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3974,
+            "end_char": 4072
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A New EEG-based Paradigm for Classifying Intention of Compound-Limbs Movement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dcb9e56bcb2c",
+      "evidence": [
+        {
+          "quote": "A New EEG-based Paradigm for Classifying Intention of Compound-Limbs Movement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4128,
+            "end_char": 4204
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种助力路径可重构的柔性助行外骨骼系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af9957afb139",
+      "evidence": [
+        {
+          "quote": "一种助力路径可重构的柔性助行外骨骼系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4264,
+            "end_char": 4282
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Performance-based Iterative Learning Control for Task-oriented Rehabilitation: A Pilot Study in Robot-assisted Bilateral Training",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ce80f5b8dde",
+      "evidence": [
+        {
+          "quote": "Performance-based Iterative Learning Control for Task-oriented Rehabilitation: A Pilot Study in Robot-assisted Bilateral Training",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4307,
+            "end_char": 4435
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Subject-Specific Compliance Control of an Upper-Limb Bilateral Robotic System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c09d2a37ece",
+      "evidence": [
+        {
+          "quote": "Subject-Specific Compliance Control of an Upper-Limb Bilateral Robotic System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4530,
+            "end_char": 4606
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Linear Active Disturbance Rejection Control of Servo Systems via IMC Principle with Active Damping and Sliding Mode Techniques",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5a6adbb78cf4",
+      "evidence": [
+        {
+          "quote": "Linear Active Disturbance Rejection Control of Servo Systems via IMC Principle with Active Damping and Sliding Mode Techniques",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4678,
+            "end_char": 4803
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bilateral Asymmetry of Hand Force Production in Dynamic Physically-Coupled Tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dd2043b0e5b8",
+      "evidence": [
+        {
+          "quote": "Bilateral Asymmetry of Hand Force Production in Dynamic Physically-Coupled Tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4851,
+            "end_char": 4930
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Exoskeleton Misalignment Reduction on Knee Joint via an RPR Mechanism-Based Device",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-321d7d2490ac",
+      "evidence": [
+        {
+          "quote": "Human-Exoskeleton Misalignment Reduction on Knee Joint via an RPR Mechanism-Based Device",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5015,
+            "end_char": 5102
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Characterization of Bimanual Cyclical Tasks from Single-trial EEG-fNIRS Measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ff4ef6ba4a2",
+      "evidence": [
+        {
+          "quote": "Characterization of Bimanual Cyclical Tasks from Single-trial EEG-fNIRS Measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5172,
+            "end_char": 5255
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Electroencephalogram Variability Analysis for Monitoring Depth of Anesthesia",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f5448ba2575",
+      "evidence": [
+        {
+          "quote": "Electroencephalogram Variability Analysis for Monitoring Depth of Anesthesia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5357,
+            "end_char": 5432
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于任务表现的机器人辅助康复自适应控制策略",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-08df7baa4eb2",
+      "evidence": [
+        {
+          "quote": "基于任务表现的机器人辅助康复自适应控制策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5521,
+            "end_char": 5541
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Muscle Synergy-Driven ANFIS Approach to Predict Continuous Knee Joint Movement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ecd6803acfa",
+      "evidence": [
+        {
+          "quote": "A Muscle Synergy-Driven ANFIS Approach to Predict Continuous Knee Joint Movement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5571,
+            "end_char": 5650
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot-Assisted Haptic Rendering of Bilateral Physical Tasks via Physical Engine",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3825403e739a",
+      "evidence": [
+        {
+          "quote": "Robot-Assisted Haptic Rendering of Bilateral Physical Tasks via Physical Engine",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5705,
+            "end_char": 5783
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Robotic System to Deliver Multiple Physically Bimanual Tasks via Varying Force Fields",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4fb819f80fb7",
+      "evidence": [
+        {
+          "quote": "A Robotic System to Deliver Multiple Physically Bimanual Tasks via Varying Force Fields",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5844,
+            "end_char": 5930
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nonlinear Analysis of Electroencephalogram Variability as a Measure of the Depth of Anesthesia",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db82159dc8df",
+      "evidence": [
+        {
+          "quote": "Nonlinear Analysis of Electroencephalogram Variability as a Measure of the Depth of Anesthesia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5993,
+            "end_char": 6086
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种融合自适应膝关节的下肢外骨骼结构及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d15887f09478",
+      "evidence": [
+        {
+          "quote": "一种融合自适应膝关节的下肢外骨骼结构及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6172,
+            "end_char": 6193
+          },
+          "version": "c911de3280fb99b4a957"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 21,
+    "listed": 21,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      }
+    },
+    "consistent": true
+  }
 }

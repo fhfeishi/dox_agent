@@ -2,15 +2,20 @@
   "doc_id": "95b4da14aaa00d7e2524",
   "version": "ad687b86312d740a833f",
   "source_hash": "a9828f3d0965ceb8e4f1068c2a4dfdeeb76e829da490759e3332a416a335c572",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:24.450113+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.902357+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f595b35b744f",
-          "name": "人机共融协作机器人",
-          "desc": "工业自动化中人机共融协作场景的机器人动态运动规划",
+          "id": "item-f4337a091c2b",
+          "name": "人机共融协作是目前工业领域自动化的未来发展趋势，能够充分发挥机器人的高重复定位精度高负载能力和人类独特的技巧灵活性优势，",
+          "desc": "人机共融协作是目前工业领域自动化的未来发展趋势，能够充分发挥机器人的高重复定位精度高负载能力和人类独特的技巧灵活性优势，对提高生产制造的智能化水平与工作效率至关重要。",
           "evidence": [
             {
-              "quote": "人机共融协作是目前工业领域自动化的未来发展趋势，能够充分发挥机器人的高重复定位精度高负载能力和人类独特的技巧灵活性优势",
+              "quote": "人机共融协作是目前工业领域自动化的未来发展趋势，能够充分发挥机器人的高重复定位精度高负载能力和人类独特的技巧灵活性优势，对提高生产制造的智能化水平与工作效率至关重要。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 642,
-                "end_char": 700
+                "end_char": 724
               },
               "version": "ad687b86312d740a833f"
             }
@@ -38,66 +43,34 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8d858a86ae6f",
-          "name": "协作环境碰撞检测与规划",
-          "desc": "快速碰撞检测、动态路径变更与时间最优平滑轨迹生成",
-          "evidence": [
-            {
-              "quote": "针对协作环境中的快速碰撞检测问题，研究基于混合模块建模和包围盒层次树的分级碰撞检测方法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2898,
-                "end_char": 2941
-              },
-              "version": "ad687b86312d740a833f"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-5466f6ab4e2f",
-          "name": "分级碰撞检测",
-          "desc": "基于混合模块建模和包围盒层次树的分级碰撞检测方法",
+          "id": "item-a1d6092417aa",
+          "name": "针对人机协作环境下的路径规划问题，模拟神经生物学机理设计振荡器模型，研究基于中枢模式发生器的动态避碰路径规划方法。",
+          "desc": "针对人机协作环境下的路径规划问题，模拟神经生物学机理设计振荡器模型，研究基于中枢模式发生器的动态避碰路径规划方法。",
           "evidence": [
             {
-              "quote": "研究基于混合模块建模和包围盒层次树的分级碰撞检测方法。",
+              "quote": "针对人机协作环境下的路径规划问题，模拟神经生物学机理设计振荡器模型，研究基于中枢模式发生器的动态避碰路径规划方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 770,
-                "end_char": 796
+                "start_char": 797,
+                "end_char": 853
               },
               "version": "ad687b86312d740a833f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-57f5ff6d168b",
-          "name": "数字人动作序列生成",
-          "desc": "基于Transformer结构的数字人趋近动作序列生成方法",
-          "evidence": [
-            {
-              "quote": "研究基于Transformer结构的数字人趋近动作序列生成方法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2959,
-                "end_char": 2990
-              },
-              "version": "ad687b86312d740a833f"
-            }
-          ]
-        },
-        {
-          "id": "item-c305a116192c",
-          "name": "中枢模式发生器路径变更",
-          "desc": "模拟神经生物学机理设计振荡器模型的动态路径变更方法",
+          "id": "item-d8b1566a46a2",
+          "name": "针对动态目标点下的路径规划问题，模拟神经生物学机理设计振荡器模型，研究基于中枢模式发生器的动态路径变更方法。",
+          "desc": "针对动态目标点下的路径规划问题，模拟神经生物学机理设计振荡器模型，研究基于中枢模式发生器的动态路径变更方法。",
           "evidence": [
             {
               "quote": "针对动态目标点下的路径规划问题，模拟神经生物学机理设计振荡器模型，研究基于中枢模式发生器的动态路径变更方法。",
@@ -108,23 +81,8 @@
               },
               "version": "ad687b86312d740a833f"
             }
-          ]
-        },
-        {
-          "id": "item-c5b8f6e82b20",
-          "name": "高阶S曲线轨迹优化",
-          "desc": "基于有限脉冲响应滤波器的时间频率最优平滑轨迹生成",
-          "evidence": [
-            {
-              "quote": "针对驱动器约束下的时间频率最优平滑轨迹生成问题，研究基于有限脉冲响应滤波器的高阶S曲线轨迹优化方法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3045,
-                "end_char": 3094
-              },
-              "version": "ad687b86312d740a833f"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,102 +91,173 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e883cca6be0d",
-          "name": "碰撞检测效率与路径平滑提升",
-          "desc": "提升碰撞检测效率、动作精确性，路径平滑切换并最小化振动",
+          "id": "item-5b6d2401ee4e",
+          "name": "人机共融协作是目前工业领域自动化的未来发展趋势，能够充分发挥机器人的高重复定位精度高负载能力和人类独特的技巧灵活性优势，",
+          "desc": "人机共融协作是目前工业领域自动化的未来发展趋势，能够充分发挥机器人的高重复定位精度高负载能力和人类独特的技巧灵活性优势，对提高生产制造的智能化水平与工作效率至关重要。",
           "evidence": [
             {
-              "quote": "结果表明本项目提出的方法能有效提升碰撞检测效率，提高数字人趋近动作序列的精确性，实现动态目标点任务下的路径平滑切换，最小化运动激发的系统振动。",
+              "quote": "人机共融协作是目前工业领域自动化的未来发展趋势，能够充分发挥机器人的高重复定位精度高负载能力和人类独特的技巧灵活性优势，对提高生产制造的智能化水平与工作效率至关重要。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3120,
-                "end_char": 3190
+                "start_char": 642,
+                "end_char": 724
               },
               "version": "ad687b86312d740a833f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f595b35b744f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8d858a86ae6f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "受限可抓取区域引导的灵巧手抓取姿态生成方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f44716f8ac4d",
+      "evidence": [
+        {
+          "quote": "受限可抓取区域引导的灵巧手抓取姿态生成方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3303,
+            "end_char": 3326
+          },
+          "version": "ad687b86312d740a833f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8d858a86ae6f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5466f6ab4e2f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online Traffic Crash Risk Inference Method Using Detection Transformer and Support Vector Machine Optimized by Biomimetic Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-061d29a18cf1",
+      "evidence": [
+        {
+          "quote": "Online Traffic Crash Risk Inference Method Using Detection Transformer and Support Vector Machine Optimized by Biomimetic Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3347,
+            "end_char": 3477
+          },
+          "version": "ad687b86312d740a833f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8d858a86ae6f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-57f5ff6d168b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Smooth trajectory generation for industrial machines and robots based on high-order S-curve profiles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2506033f78d7",
+      "evidence": [
+        {
+          "quote": "Smooth trajectory generation for industrial machines and robots based on high-order S-curve profiles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3556,
+            "end_char": 3655
+          },
+          "version": "ad687b86312d740a833f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8d858a86ae6f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c305a116192c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于大数据的工业机器人动态管理系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0bb314f6612c",
+      "evidence": [
+        {
+          "quote": "一种基于大数据的工业机器人动态管理系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3723,
+            "end_char": 3744
+          },
+          "version": "ad687b86312d740a833f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8d858a86ae6f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c5b8f6e82b20"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "“临平杯”第三届全国机械工业设计创新大赛产品组铜奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c504a0ebe85c",
+      "evidence": [
+        {
+          "quote": "“临平杯”第三届全国机械工业设计创新大赛产品组铜奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3782,
+            "end_char": 3806
+          },
+          "version": "ad687b86312d740a833f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5466f6ab4e2f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e883cca6be0d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c5b8f6e82b20"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e883cca6be0d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Target Pose Guided Whole-body Grasping Motion Generation for Digital Humans",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30ee93bd10fc",
+      "evidence": [
+        {
+          "quote": "Target Pose Guided Whole-body Grasping Motion Generation for Digital Humans",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3827,
+            "end_char": 3901
+          },
+          "version": "ad687b86312d740a833f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

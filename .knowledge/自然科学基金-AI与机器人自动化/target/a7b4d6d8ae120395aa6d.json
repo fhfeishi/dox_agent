@@ -2,15 +2,20 @@
   "doc_id": "a7b4d6d8ae120395aa6d",
   "version": "568a60c938e8a8e12e24",
   "source_hash": "c964d8bd594cb2b1a16bd7356611190f0c11198192812331a6d7a7f6a83b2cc2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:29.328802+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.128156+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-59164aebf9b0",
-          "name": "混行交通无人车跟驰",
-          "desc": "有人与无人驾驶混行场景的无人车跟驰控制",
+          "id": "item-8a377a1ae09d",
+          "name": "随着无人驾驶车辆进入城市交通，未来交通形态将首先表现为无人与有人驾驶车辆的混行状态，同时，伴随着以高效集团化编队运行为目",
+          "desc": "随着无人驾驶车辆进入城市交通，未来交通形态将首先表现为无人与有人驾驶车辆的混行状态，同时，伴随着以高效集团化编队运行为目标的无人车跟驰行为。",
           "evidence": [
             {
-              "quote": "本项目聚焦于有人驾驶与无人驾驶混行场景下，基于车辆行为预测的无人车跟驰控制问题，构建无人车自适应跟驰控制研究体系，并在关键理论方法上取得实质性突破。",
+              "quote": "随着无人驾驶车辆进入城市交通，未来交通形态将首先表现为无人与有人驾驶车辆的混行状态，同时，伴随着以高效集团化编队运行为目标的无人车跟驰行为。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3431,
-                "end_char": 3504
+                "start_char": 669,
+                "end_char": 738
+              },
+              "version": "568a60c938e8a8e12e24"
+            }
+          ]
+        },
+        {
+          "id": "item-20bbfaf1e220",
+          "name": ".项目研究形成了内涵丰富、逻辑自洽、兼具学术前沿性与工程应用潜力的无人车跟驰控制理论方法体系，为未来混行交通环境下无人车",
+          "desc": ".项目研究形成了内涵丰富、逻辑自洽、兼具学术前沿性与工程应用潜力的无人车跟驰控制理论方法体系，为未来混行交通环境下无人车的安全、高效运行提供了重要的理论基础。",
+          "evidence": [
+            {
+              "quote": ".项目研究形成了内涵丰富、逻辑自洽、兼具学术前沿性与工程应用潜力的无人车跟驰控制理论方法体系，为未来混行交通环境下无人车的安全、高效运行提供了重要的理论基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4195,
+                "end_char": 4273
               },
               "version": "568a60c938e8a8e12e24"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-dd17efb60465",
-          "name": "不确定行为影响跟驰",
-          "desc": "高度动态交互场景中车辆不确定行为影响跟驰控制",
-          "evidence": [
-            {
-              "quote": "但在高度动态和交互性交通场景中，车辆的不确定行为及协同模式都会对无人车跟驰模式及控制策略带来影响。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 739,
-                "end_char": 787
-              },
-              "version": "568a60c938e8a8e12e24"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-ece445c0ad1d",
-          "name": "移动闭塞时变间距模型",
-          "desc": "授权点机制将动态跟踪转化为虚拟目标稳定跟踪",
+          "id": "item-06734c3762d6",
+          "name": "在感知预测层，提出结合 GBDT 规律挖掘与 CNN - LSTM 特征提取能力的组合模型，以及基于 Transform",
+          "desc": "在感知预测层，提出结合 GBDT 规律挖掘与 CNN - LSTM 特征提取能力的组合模型，以及基于 Transformer 架构的行为预测模型，构建融合行为预测结果与多维优化注意力机制的 CNN - LSTM - Attention 轨迹预测框架，实现复杂交通场景下从驾驶行为识别到车辆轨迹推演的技术闭环。",
           "evidence": [
             {
-              "quote": "决策建模层创新引入轨道交通移动闭塞思想，提出基于“授权点”的时变间距跟驰运动学模型，将车辆间动态跟踪问题转化为对虚拟目标的稳定跟踪问题",
+              "quote": "在感知预测层，提出结合 GBDT 规律挖掘与 CNN - LSTM 特征提取能力的组合模型，以及基于 Transformer 架构的行为预测模型，构建融合行为预测结果与多维优化注意力机制的 CNN - LSTM - Attention 轨迹预测框架，实现复杂交通场景下从驾驶行为识别到车辆轨迹推演的技术闭环。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3575,
+                "end_char": 3728
+              },
+              "version": "568a60c938e8a8e12e24"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3d0a32901656",
+          "name": "决策建模层创新引入轨道交通移动闭塞思想，提出基于“授权点”的时变间距跟驰运动学模型，将车辆间动态跟踪问题转化为对虚拟目标",
+          "desc": "决策建模层创新引入轨道交通移动闭塞思想，提出基于“授权点”的时变间距跟驰运动学模型，将车辆间动态跟踪问题转化为对虚拟目标的稳定跟踪问题，为核心控制器设计奠定安全框架。",
+          "evidence": [
+            {
+              "quote": "决策建模层创新引入轨道交通移动闭塞思想，提出基于“授权点”的时变间距跟驰运动学模型，将车辆间动态跟踪问题转化为对虚拟目标的稳定跟踪问题，为核心控制器设计奠定安全框架。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3729,
-                "end_char": 3795
+                "end_char": 3811
               },
               "version": "568a60c938e8a8e12e24"
             }
-          ]
-        },
-        {
-          "id": "item-6e2537cf1305",
-          "name": "自适应滑模控制器",
-          "desc": "光滑投影自适应律与区间2型模糊辨识实现横纵向鲁棒跟踪",
-          "evidence": [
-            {
-              "quote": "设计融合光滑投影自适应律与区间 2 型模糊系统参数辨识的自适应滑模控制器，实现横纵向综合鲁棒跟踪。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3837,
-                "end_char": 3885
-              },
-              "version": "568a60c938e8a8e12e24"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,108 +107,292 @@
       "state": "has",
       "items": [
         {
-          "id": "item-19cd61d75784",
-          "name": "预测-建模-控制体系",
-          "desc": "感知预测、决策建模、执行控制三层全链条闭环",
+          "id": "item-93ed92506e8d",
+          "name": "随着无人驾驶车辆进入城市交通，未来交通形态将首先表现为无人与有人驾驶车辆的混行状态，同时，伴随着以高效集团化编队运行为目",
+          "desc": "随着无人驾驶车辆进入城市交通，未来交通形态将首先表现为无人与有人驾驶车辆的混行状态，同时，伴随着以高效集团化编队运行为目标的无人车跟驰行为。",
           "evidence": [
             {
-              "quote": "项目构建了“预测 - 建模 - 控制”一体化的无人车跟驰问题研究体系。将跟驰问题分解为感知预测、决策建模、执行控制三个紧密耦合的理论层次。",
+              "quote": "随着无人驾驶车辆进入城市交通，未来交通形态将首先表现为无人与有人驾驶车辆的混行状态，同时，伴随着以高效集团化编队运行为目标的无人车跟驰行为。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3506,
-                "end_char": 3574
+                "start_char": 669,
+                "end_char": 738
               },
               "version": "568a60c938e8a8e12e24"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-df7575929c5a",
-          "name": "CNN-LSTM-Attention预测",
-          "desc": "行为识别到轨迹推演的技术闭环",
+          "id": "item-4fd73c4bd224",
+          "name": "在无人驾驶技术蓬勃发展的当下，无人车跟驰控制作为保障其安全、高效运行的关键环节，成为研究热点。",
+          "desc": "在无人驾驶技术蓬勃发展的当下，无人车跟驰控制作为保障其安全、高效运行的关键环节，成为研究热点。",
           "evidence": [
             {
-              "quote": "构建融合行为预测结果与多维优化注意力机制的 CNN - LSTM - Attention 轨迹预测框架，实现复杂交通场景下从驾驶行为识别到车辆轨迹推演的技术闭环。",
+              "quote": "在无人驾驶技术蓬勃发展的当下，无人车跟驰控制作为保障其安全、高效运行的关键环节，成为研究热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3648,
-                "end_char": 3728
+                "start_char": 3384,
+                "end_char": 3430
               },
               "version": "568a60c938e8a8e12e24"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-59164aebf9b0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-dd17efb60465"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Vehicle Collision Avoidance Path Planning and F MPC Tracking Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a75585af557",
+      "evidence": [
+        {
+          "quote": "Autonomous Vehicle Collision Avoidance Path Planning and F MPC Tracking Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4299,
+            "end_char": 4377
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dd17efb60465"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ece445c0ad1d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于前置跟随拓扑结构的无人车编队控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0781b0feef08",
+      "evidence": [
+        {
+          "quote": "基于前置跟随拓扑结构的无人车编队控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4397,
+            "end_char": 4419
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dd17efb60465"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6e2537cf1305"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Driving Behavior Prediction Based on Combined Neural Network Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a61b25bf9245",
+      "evidence": [
+        {
+          "quote": "Driving Behavior Prediction Based on Combined Neural Network Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4441,
+            "end_char": 4506
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dd17efb60465"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-df7575929c5a"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "区间二型模糊粒度信息处理及其在智能交通系统中的应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ea9ecadb92d",
+      "evidence": [
+        {
+          "quote": "区间二型模糊粒度信息处理及其在智能交通系统中的应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4549,
+            "end_char": 4573
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6e2537cf1305"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-19cd61d75784"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "主动避撞方法、系统及汽车",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5a54abe7a99",
+      "evidence": [
+        {
+          "quote": "主动避撞方法、系统及汽车",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4602,
+            "end_char": 4613
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ece445c0ad1d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-df7575929c5a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于移动闭塞-领航跟随的无人车跟驰控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47831d3a8b0e",
+      "evidence": [
+        {
+          "quote": "基于移动闭塞-领航跟随的无人车跟驰控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4637,
+            "end_char": 4660
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Vehicle Behavior Prediction Method Based on CNN-Transformer Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24c0793f2ba2",
+      "evidence": [
+        {
+          "quote": "A Vehicle Behavior Prediction Method Based on CNN-Transformer Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4682,
+            "end_char": 4748
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust following control of unmanned vehicles: a case of disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8f03bb2f684",
+      "evidence": [
+        {
+          "quote": "Robust following control of unmanned vehicles: a case of disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4770,
+            "end_char": 4838
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Long-term Prediction of Traffic Volume Based on Clustering Weighted Markov Chainsy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1dd068f5359b",
+      "evidence": [
+        {
+          "quote": "Long-term Prediction of Traffic Volume Based on Clustering Weighted Markov Chainsy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4864,
+            "end_char": 4945
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Vehicle Modeling and Velocity Control Based on Decomposed Fuzzy PID",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3921742d61b3",
+      "evidence": [
+        {
+          "quote": "Autonomous Vehicle Modeling and Velocity Control Based on Decomposed Fuzzy PID",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4994,
+            "end_char": 5071
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Following Control of Unmanned Vehicles Based on the Adaptive Sliding Mode Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7092434df82f",
+      "evidence": [
+        {
+          "quote": "Following Control of Unmanned Vehicles Based on the Adaptive Sliding Mode Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5122,
+            "end_char": 5201
+          },
+          "version": "568a60c938e8a8e12e24"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

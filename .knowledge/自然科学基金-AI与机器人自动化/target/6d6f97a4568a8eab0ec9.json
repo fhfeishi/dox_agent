@@ -2,15 +2,20 @@
   "doc_id": "6d6f97a4568a8eab0ec9",
   "version": "1a8409f12547297cdb3f",
   "source_hash": "437baffcae1bf8ff80c7b934062f48844d45c67efe32527e713f03f5a9e579bf",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:52.382189+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.493494+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,91 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b348924f5f1e",
-          "name": "历史建筑三维重建建档",
-          "desc": "历史建筑测绘建档与保护修复",
+          "id": "item-daab9a8f451d",
+          "name": "历史建筑是我国文化遗产的重要组成部分，具有不可再生的宝贵价值，有效的测绘建档对历史建筑的管理与修复具有重要意义。",
+          "desc": "历史建筑是我国文化遗产的重要组成部分，具有不可再生的宝贵价值，有效的测绘建档对历史建筑的管理与修复具有重要意义。",
           "evidence": [
             {
-              "quote": "项目完成空地协同系统集成，形成“空地协同采集—协同定位建图—三维重建—BIM表达—云端展示”的完整技术链条，并以长沙潮宗街历史街区金九故居为典型对象开展实景验证",
+              "quote": "历史建筑是我国文化遗产的重要组成部分，具有不可再生的宝贵价值，有效的测绘建档对历史建筑的管理与修复具有重要意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3033,
-                "end_char": 3112
-              },
-              "version": "1a8409f12547297cdb3f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1c75cbc1b61d",
-          "name": "弱纹理GNSS不可用重建难",
-          "desc": "弱纹理、重复结构、遮挡严重及GNSS不可用难题",
-          "evidence": [
-            {
-              "quote": "面向历史建筑测绘中普遍存在的弱纹理、重复结构、遮挡严重、空间受限及GNSS不可用等关键难题，本项目提出并构建了“空地机器人协同SLAM支撑的历史建筑高精度、高完整度三维重建”技术体系。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2765,
-                "end_char": 2856
-              },
-              "version": "1a8409f12547297cdb3f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f51339ad4763",
-          "name": "深度学习视觉特征提取",
-          "desc": "结构化建筑场景深度学习视觉特征提取",
-          "evidence": [
-            {
-              "quote": "研发了结构化建筑场景下的深度学习视觉特征提取方法、面向建筑环境的点云运动估计与配准策略",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2878,
-                "end_char": 2920
+                "start_char": 653,
+                "end_char": 708
               },
               "version": "1a8409f12547297cdb3f"
             }
           ]
         },
         {
-          "id": "item-d6d2109d23f2",
-          "name": "因子图紧耦合SLAM",
-          "desc": "视觉-激光-IMU紧耦合融合SLAM框架",
-          "evidence": [
-            {
-              "quote": "以及基于因子图的视觉–激光–IMU紧耦合融合SLAM框架，实现了多源传感信息的统一建模与高精度协同定位建图。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2922,
-                "end_char": 2975
-              },
-              "version": "1a8409f12547297cdb3f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-70379d6078fa",
-          "name": "空地一体化测绘验证",
-          "desc": "建模精度、完整度与自动化程度优于单一方法",
+          "id": "item-f5877cd2bf32",
+          "name": "结果表明，该空地一体化测绘方案在建模精度、模型完整度与自动化程度方面显著优于单一倾斜摄影或传统地面激光扫描方法，验证了技",
+          "desc": "结果表明，该空地一体化测绘方案在建模精度、模型完整度与自动化程度方面显著优于单一倾斜摄影或传统地面激光扫描方法，验证了技术体系的工程可行性与社会应用推广效益。",
           "evidence": [
             {
               "quote": "结果表明，该空地一体化测绘方案在建模精度、模型完整度与自动化程度方面显著优于单一倾斜摄影或传统地面激光扫描方法，验证了技术体系的工程可行性与社会应用推广效益。",
@@ -114,67 +53,362 @@
               },
               "version": "1a8409f12547297cdb3f"
             }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-213a67772861",
+          "name": "项目融合无人机与地面移动机器人多平台优势，研发了结构化建筑场景下的深度学习视觉特征提取方法、面向建筑环境的点云运动估计与",
+          "desc": "项目融合无人机与地面移动机器人多平台优势，研发了结构化建筑场景下的深度学习视觉特征提取方法、面向建筑环境的点云运动估计与配准策略，以及基于因子图的视觉–激光–IMU紧耦合融合SLAM框架，实现了多源传感信息的统一建模与高精度协同定位建图。",
+          "evidence": [
+            {
+              "quote": "项目融合无人机与地面移动机器人多平台优势，研发了结构化建筑场景下的深度学习视觉特征提取方法、面向建筑环境的点云运动估计与配准策略，以及基于因子图的视觉–激光–IMU紧耦合融合SLAM框架，实现了多源传感信息的统一建模与高精度协同定位建图。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2857,
+                "end_char": 2975
+              },
+              "version": "1a8409f12547297cdb3f"
+            }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-72031f1a14ac",
+          "name": "在系统实现中，构建了视觉、激光、IMU协同的多传感器实时融合机制，有效提升了复杂建筑环境下的定位稳定性与建图精度。",
+          "desc": "在系统实现中，构建了视觉、激光、IMU协同的多传感器实时融合机制，有效提升了复杂建筑环境下的定位稳定性与建图精度。",
+          "evidence": [
+            {
+              "quote": "在系统实现中，构建了视觉、激光、IMU协同的多传感器实时融合机制，有效提升了复杂建筑环境下的定位稳定性与建图精度。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2976,
+                "end_char": 3032
+              },
+              "version": "1a8409f12547297cdb3f"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d51981956ef3",
+          "name": "历史建筑是我国文化遗产的重要组成部分，具有不可再生的宝贵价值，有效的测绘建档对历史建筑的管理与修复具有重要意义。",
+          "desc": "历史建筑是我国文化遗产的重要组成部分，具有不可再生的宝贵价值，有效的测绘建档对历史建筑的管理与修复具有重要意义。",
+          "evidence": [
+            {
+              "quote": "历史建筑是我国文化遗产的重要组成部分，具有不可再生的宝贵价值，有效的测绘建档对历史建筑的管理与修复具有重要意义。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 708
+              },
+              "version": "1a8409f12547297cdb3f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-20a54902fd39",
+          "name": "面向历史建筑测绘中普遍存在的弱纹理、重复结构、遮挡严重、空间受限及GNSS不可用等关键难题，本项目提出并构建了“空地机器",
+          "desc": "面向历史建筑测绘中普遍存在的弱纹理、重复结构、遮挡严重、空间受限及GNSS不可用等关键难题，本项目提出并构建了“空地机器人协同SLAM支撑的历史建筑高精度、高完整度三维重建”技术体系。",
+          "evidence": [
+            {
+              "quote": "面向历史建筑测绘中普遍存在的弱纹理、重复结构、遮挡严重、空间受限及GNSS不可用等关键难题，本项目提出并构建了“空地机器人协同SLAM支撑的历史建筑高精度、高完整度三维重建”技术体系。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2765,
+                "end_char": 2856
+              },
+              "version": "1a8409f12547297cdb3f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b348924f5f1e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1c75cbc1b61d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于交叉通道注意力机制特征融合的三维场景重建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f734bd228a19",
+      "evidence": [
+        {
+          "quote": "基于交叉通道注意力机制特征融合的三维场景重建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3293,
+            "end_char": 3316
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1c75cbc1b61d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f51339ad4763"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of “air-ground data fusion” based LiDAR method: towards sustainable preservation and utilization of multiple-scaled historical blocks and buildings",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b75cbf06c8e2",
+      "evidence": [
+        {
+          "quote": "Development of “air-ground data fusion” based LiDAR method: towards sustainable preservation and utilization of multiple-scaled historical blocks and buildings",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3361,
+            "end_char": 3519
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1c75cbc1b61d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d6d2109d23f2"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多视角特征引导的大范围场景三维建模方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47e8e7259840",
+      "evidence": [
+        {
+          "quote": "一种多视角特征引导的大范围场景三维建模方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3612,
+            "end_char": 3635
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d6d2109d23f2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-70379d6078fa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Digital development of architectural heritage under the trend of Metaverse: Challenges and opportunities",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ef3bfca0803",
+      "evidence": [
+        {
+          "quote": "Digital development of architectural heritage under the trend of Metaverse: Challenges and opportunities",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3683,
+            "end_char": 3786
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f51339ad4763"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-70379d6078fa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Confidence Propagation Stereo Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a2248e07387b",
+      "evidence": [
+        {
+          "quote": "Deep Confidence Propagation Stereo Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3845,
+            "end_char": 3886
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "论移动建筑思想中的社会维度——基于弗里德曼的移动建筑理论思辨",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5264bc31017",
+      "evidence": [
+        {
+          "quote": "论移动建筑思想中的社会维度——基于弗里德曼的移动建筑理论思辨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3960,
+            "end_char": 3989
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "历史街区数字化立体重建关键技术与产业化应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f56b3f88e31",
+      "evidence": [
+        {
+          "quote": "历史街区数字化立体重建关键技术与产业化应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4008,
+            "end_char": 4028
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Key Technologies and Trends of Active Robotic 3-D Measurement in Intelligent Manufacturing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8616d763896",
+      "evidence": [
+        {
+          "quote": "Key Technologies and Trends of Active Robotic 3-D Measurement in Intelligent Manufacturing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4084,
+            "end_char": 4173
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "建筑遗产数字化三维建模关键技术及推广应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3434906b7b06",
+      "evidence": [
+        {
+          "quote": "建筑遗产数字化三维建模关键技术及推广应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4248,
+            "end_char": 4267
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2022年度包装行业科学技术二等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fdbc134ccf64",
+      "evidence": [
+        {
+          "quote": "2022年度包装行业科学技术二等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4312,
+            "end_char": 4328
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "绘长沙·五一广场",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c43e7941c2b0",
+      "evidence": [
+        {
+          "quote": "绘长沙·五一广场",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4373,
+            "end_char": 4380
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于知识图谱可视化的中西城市更新研究综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b652cc1949a3",
+      "evidence": [
+        {
+          "quote": "基于知识图谱可视化的中西城市更新研究综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4398,
+            "end_char": 4417
+          },
+          "version": "1a8409f12547297cdb3f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

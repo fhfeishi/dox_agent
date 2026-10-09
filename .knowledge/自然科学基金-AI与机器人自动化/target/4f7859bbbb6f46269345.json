@@ -2,15 +2,20 @@
   "doc_id": "4f7859bbbb6f46269345",
   "version": "c13397e289afc9507653",
   "source_hash": "7608ec11830360dff73f1f0ab3aed72b12bcf351a881386887ce51bbed70285a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:55:01.820110+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.233638+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b640111fab0d",
-          "name": "动态环境智能体决策",
-          "desc": "动态环境下的智能体决策模型、实现方法和群智算法",
+          "id": "item-ac226e91d2a6",
+          "name": "本课题针对动态环境下的智能体决策模型、实现方法和群智算法展开研究。",
+          "desc": "本课题针对动态环境下的智能体决策模型、实现方法和群智算法展开研究。",
           "evidence": [
             {
-              "quote": "本课题针对动态环境下的智能体决策模型、实现方法和群智算法展开研究",
+              "quote": "本课题针对动态环境下的智能体决策模型、实现方法和群智算法展开研究。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 649,
-                "end_char": 680
+                "end_char": 681
+              },
+              "version": "c13397e289afc9507653"
+            }
+          ]
+        },
+        {
+          "id": "item-0da166cb84b4",
+          "name": "进一步地，面向智能体模型衍生的典型群智算法，设计一系列基于神经网络行为决策的群智算法，并将其应用于求解不确定性调度模型中",
+          "desc": "进一步地，面向智能体模型衍生的典型群智算法，设计一系列基于神经网络行为决策的群智算法，并将其应用于求解不确定性调度模型中的关键因素特征选择、参数优化和工序优化问题。",
+          "evidence": [
+            {
+              "quote": "进一步地，面向智能体模型衍生的典型群智算法，设计一系列基于神经网络行为决策的群智算法，并将其应用于求解不确定性调度模型中的关键因素特征选择、参数优化和工序优化问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 917,
+                "end_char": 998
               },
               "version": "c13397e289afc9507653"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-3a3127f1ed92",
-          "name": "环境变化下的行为适应",
-          "desc": "智能体需面对不同环境做出适应其状态的行为决策",
-          "evidence": [
-            {
-              "quote": "使智能体能面对不同环境做出适应其状态的行为决策",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 893,
-                "end_char": 915
-              },
-              "version": "c13397e289afc9507653"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-9d688435abe2",
-          "name": "神经网络辅助动态优化",
-          "desc": "进化指导神经网络辅助的动态优化与搜索引导网络辅助的动态粒子群算法",
+          "id": "item-870731339031",
+          "name": "其次，为了具体实现智能体状态到决策的映射，基于静态映射模型，设计静态环境下智能体行为决策的神经网络及训练方法。",
+          "desc": "其次，为了具体实现智能体状态到决策的映射，基于静态映射模型，设计静态环境下智能体行为决策的神经网络及训练方法。",
           "evidence": [
             {
-              "quote": "设计进化指导神经网络辅助的动态优化算法和搜索引导网络辅助的动态粒子群优化算法",
+              "quote": "其次，为了具体实现智能体状态到决策的映射，基于静态映射模型，设计静态环境下智能体行为决策的神经网络及训练方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2813,
-                "end_char": 2850
+                "start_char": 776,
+                "end_char": 830
               },
               "version": "c13397e289afc9507653"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-89e185b449b2",
-          "name": "多区域趋势预测策略",
-          "desc": "粒子搜索指导网络与多区域趋势预测，引导种群快速收敛",
+          "id": "item-3a647d904359",
+          "name": "为了适应动态环境，在静态环境下的决策网络及训练方法基础上，利用动态映射模型设计动态环境下智能体行为决策的神经网络及训练方",
+          "desc": "为了适应动态环境，在静态环境下的决策网络及训练方法基础上，利用动态映射模型设计动态环境下智能体行为决策的神经网络及训练方法，使智能体能面对不同环境做出适应其状态的行为决策。",
           "evidence": [
             {
-              "quote": "设计粒子搜索指导网络和多区域趋势预测策略",
+              "quote": "为了适应动态环境，在静态环境下的决策网络及训练方法基础上，利用动态映射模型设计动态环境下智能体行为决策的神经网络及训练方法，使智能体能面对不同环境做出适应其状态的行为决策。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3151,
-                "end_char": 3170
+                "start_char": 831,
+                "end_char": 916
               },
               "version": "c13397e289afc9507653"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,86 +107,428 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1cb933858a47",
-          "name": "论文与授权专利",
-          "desc": "发表高质量论文18篇（SCI(E) 13篇），申请专利5项、授权4项",
+          "id": "item-29a98838da82",
+          "name": "本课题针对动态环境下的智能体决策模型、实现方法和群智算法展开研究。",
+          "desc": "本课题针对动态环境下的智能体决策模型、实现方法和群智算法展开研究。",
           "evidence": [
             {
-              "quote": "在本领域国内外重要期刊及会议上发表高质量论文18篇，其中发表/录用SCI(E)检索论文13篇，发表会议论文5篇，申请发明专利5项，授权发明专利4项",
+              "quote": "本课题针对动态环境下的智能体决策模型、实现方法和群智算法展开研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3404,
-                "end_char": 3476
+                "start_char": 649,
+                "end_char": 681
               },
               "version": "c13397e289afc9507653"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-e9ee4a6d2c26",
-          "name": "优化软件共享",
-          "desc": "开发通用优化软件与动态环境柔性调度专用软件向学术界共享",
+          "id": "item-f9c21e096808",
+          "name": "在动态优化方面，本项目设计进化指导神经网络辅助的动态优化算法和搜索引导网络辅助的动态粒子群优化算法。",
+          "desc": "在动态优化方面，本项目设计进化指导神经网络辅助的动态优化算法和搜索引导网络辅助的动态粒子群优化算法。",
           "evidence": [
             {
-              "quote": "还开发了一系列通用的优化软件，以及针对动态环境柔性调度的专用优化软件，向学术界共享",
+              "quote": "在动态优化方面，本项目设计进化指导神经网络辅助的动态优化算法和搜索引导网络辅助的动态粒子群优化算法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3481,
-                "end_char": 3521
+                "start_char": 2802,
+                "end_char": 2851
               },
               "version": "c13397e289afc9507653"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b640111fab0d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-3a3127f1ed92"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Federated Learning Based on Feature Decoupling and Domain Adaptation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eefa9634f5fb",
+      "evidence": [
+        {
+          "quote": "Federated Learning Based on Feature Decoupling and Domain Adaptation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3592,
+            "end_char": 3659
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-3a3127f1ed92"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9d688435abe2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Region Trend Prediction Strategy With Online Sequential Extreme Learning Machine for Dynamic Multi-Objective Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-528f826f43bb",
+      "evidence": [
+        {
+          "quote": "Multi-Region Trend Prediction Strategy With Online Sequential Extreme Learning Machine for Dynamic Multi-Objective Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3703,
+            "end_char": 3829
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-89e185b449b2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e9ee4a6d2c26"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于行为决策网络粒子群优化的柔性车间调度方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8abe40258541",
+      "evidence": [
+        {
+          "quote": "一种基于行为决策网络粒子群优化的柔性车间调度方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3900,
+            "end_char": 3923
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9d688435abe2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1cb933858a47"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多层级渐进式细化网络的细粒度视觉分类方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b70e3850bc7a",
+      "evidence": [
+        {
+          "quote": "一种基于多层级渐进式细化网络的细粒度视觉分类方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3955,
+            "end_char": 3978
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural Network-Assisted Particle Swarm Dynamic Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4fd23215d83f",
+      "evidence": [
+        {
+          "quote": "Neural Network-Assisted Particle Swarm Dynamic Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4024,
+            "end_char": 4082
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Interaction-and-Response Network for Distantly Supervised Relation Extraction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbb44550d752",
+      "evidence": [
+        {
+          "quote": "Interaction-and-Response Network for Distantly Supervised Relation Extraction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4127,
+            "end_char": 4203
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning to Guide Particle Search for Dynamic Multiobjective Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6238086ce13a",
+      "evidence": [
+        {
+          "quote": "Learning to Guide Particle Search for Dynamic Multiobjective Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4264,
+            "end_char": 4336
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantics perception and refinement network for aspect-based sentiment analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0b3199fbaee",
+      "evidence": [
+        {
+          "quote": "Semantics perception and refinement network for aspect-based sentiment analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4421,
+            "end_char": 4499
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Particle Search Control Network for Dynamic Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a64f1ab84e6f",
+      "evidence": [
+        {
+          "quote": "Particle Search Control Network for Dynamic Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4562,
+            "end_char": 4617
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "融合位置信息的三元组抽取方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-28ae614e2617",
+      "evidence": [
+        {
+          "quote": "融合位置信息的三元组抽取方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4700,
+            "end_char": 4716
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于注意力和知识蒸馏的孪生高光谱图像跟踪方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cdc8baa351fe",
+      "evidence": [
+        {
+          "quote": "基于注意力和知识蒸馏的孪生高光谱图像跟踪方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4756,
+            "end_char": 4780
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Anchor-based scalable multi-view subspace clustering",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8012572e1750",
+      "evidence": [
+        {
+          "quote": "Anchor-based scalable multi-view subspace clustering",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4837,
+            "end_char": 4888
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-exemplar affinity propagation clustering based on local density peak",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f0a0728b74c",
+      "evidence": [
+        {
+          "quote": "Multi-exemplar affinity propagation clustering based on local density peak",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4946,
+            "end_char": 5019
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improving Dual-Population Differential Evolution Based on Hierarchical Mutation and Selection Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d6976e6f9b50",
+      "evidence": [
+        {
+          "quote": "Improving Dual-Population Differential Evolution Based on Hierarchical Mutation and Selection Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5077,
+            "end_char": 5178
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Attention Learning Particle Swarm Optimizer with Sensitive Search Transition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bfc1f3270a7d",
+      "evidence": [
+        {
+          "quote": "An Attention Learning Particle Swarm Optimizer with Sensitive Search Transition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5228,
+            "end_char": 5306
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical Knowledge Transfer Network for Distantly Supervised Relation Extraction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-031f9e231a65",
+      "evidence": [
+        {
+          "quote": "Hierarchical Knowledge Transfer Network for Distantly Supervised Relation Extraction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5343,
+            "end_char": 5426
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel deep auto-encoder considering energy and label constraints  for categorization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-075ac8ec4385",
+      "evidence": [
+        {
+          "quote": "A novel deep auto-encoder considering energy and label constraints  for categorization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5462,
+            "end_char": 5547
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A new deep auto-encoder using multiscale reconstruction errors and weight update correlation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-222a41fa50c8",
+      "evidence": [
+        {
+          "quote": "A new deep auto-encoder using multiscale reconstruction errors and weight update correlation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5600,
+            "end_char": 5691
+          },
+          "version": "c13397e289afc9507653"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "d06901a35e60c773d183",
   "version": "5301a956fd5ede62a2ea",
   "source_hash": "572039bfb4512ab7c29f6675d9d2e18a8c70c27315a3ebfc849a5f73b57a22ff",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:54.255842+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.524091+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-66f0de03fb9d",
-          "name": "异构多水下机器人协同作业",
-          "desc": "功能互补、灵活多样、工作效率高的海洋协同作业",
+          "id": "item-1430599d424b",
+          "name": "任务规划是提高异构多水下机器人系统协同任务执行能力的关键。",
+          "desc": "任务规划是提高异构多水下机器人系统协同任务执行能力的关键。",
           "evidence": [
             {
-              "quote": "与单一或同构的水下机器人相比，异构多水下机器人系统协同作业具有功能互补、灵活多样、工作效率高等突出优点",
+              "quote": "任务规划是提高异构多水下机器人系统协同任务执行能力的关键。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2974,
-                "end_char": 3024
+                "start_char": 657,
+                "end_char": 685
+              },
+              "version": "5301a956fd5ede62a2ea"
+            }
+          ]
+        },
+        {
+          "id": "item-a0a5924d2a2f",
+          "name": "本项目以异构多水下机器人系统协同作业为背景，针对海洋环境的强未知性、强分布式任务规划需求及强耦合性等问题，对任务规划问题",
+          "desc": "本项目以异构多水下机器人系统协同作业为背景，针对海洋环境的强未知性、强分布式任务规划需求及强耦合性等问题，对任务规划问题展开研究。",
+          "evidence": [
+            {
+              "quote": "本项目以异构多水下机器人系统协同作业为背景，针对海洋环境的强未知性、强分布式任务规划需求及强耦合性等问题，对任务规划问题展开研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3026,
+                "end_char": 3090
               },
               "version": "5301a956fd5ede62a2ea"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-4c87a5e3e323",
-          "name": "海洋环境强未知性",
-          "desc": "海洋环境强未知性、强分布式任务规划需求及强耦合性",
-          "evidence": [
-            {
-              "quote": "针对海洋环境的强未知性、强分布式任务规划需求及强耦合性等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3048,
-                "end_char": 3077
-              },
-              "version": "5301a956fd5ede62a2ea"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-b3b0bad3705a",
-          "name": "分布式任务规划博弈模型",
-          "desc": "分布式鲁棒拍卖与多任务捆绑拍卖算法对抗不确定性",
+          "id": "item-a5469c3527a8",
+          "name": "首先，构建异构多水下机器人系统任务规划博弈模型，将系统优化问题转化为单个个体的求解最佳策略响应问题，实现分布式优化。",
+          "desc": "首先，构建异构多水下机器人系统任务规划博弈模型，将系统优化问题转化为单个个体的求解最佳策略响应问题，实现分布式优化。",
           "evidence": [
             {
-              "quote": "考虑水下环境的不确定因素、异构系统等多约束条件，提出了分布式任务规划博弈模型",
+              "quote": "首先，构建异构多水下机器人系统任务规划博弈模型，将系统优化问题转化为单个个体的求解最佳策略响应问题，实现分布式优化。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3122,
-                "end_char": 3159
+                "start_char": 761,
+                "end_char": 818
               },
               "version": "5301a956fd5ede62a2ea"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-9df4c1562448",
-          "name": "在线轻量化任务规划",
-          "desc": "自组织神经网络与神经动力学结合，降低计算负荷实现混合任务一致性求解",
+          "id": "item-06148ff2b2e3",
+          "name": "本项目拟针对现有方法对抗海洋强动态未知环境能力弱、分布式优化困难及在线求解复杂耦合策略效率低的问题，提出可适用性强的对抗",
+          "desc": "本项目拟针对现有方法对抗海洋强动态未知环境能力弱、分布式优化困难及在线求解复杂耦合策略效率低的问题，提出可适用性强的对抗性MAB决策任务规划博弈方法。",
           "evidence": [
             {
-              "quote": "结合自组织神经网络和神经动力学理论提出了一系列在线轻量化任务规划算法，有效降低了计算负荷",
+              "quote": "本项目拟针对现有方法对抗海洋强动态未知环境能力弱、分布式优化困难及在线求解复杂耦合策略效率低的问题，提出可适用性强的对抗性MAB决策任务规划博弈方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3509,
-                "end_char": 3552
+                "start_char": 686,
+                "end_char": 760
               },
               "version": "5301a956fd5ede62a2ea"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,368 @@
       "state": "has",
       "items": [
         {
-          "id": "item-835f6037b2a1",
-          "name": "理论依据与技术保障",
-          "desc": "为协同分布式任务规划提供理论依据，为海洋可持续开发提供技术保障",
+          "id": "item-6674f3cde702",
+          "name": "任务规划是提高异构多水下机器人系统协同任务执行能力的关键。",
+          "desc": "任务规划是提高异构多水下机器人系统协同任务执行能力的关键。",
           "evidence": [
             {
-              "quote": "本项目的研究成果可为异构多水下机器人系统协同分布式任务规划提供理论依据，并为我国海洋的可持续开发提供技术保障",
+              "quote": "任务规划是提高异构多水下机器人系统协同任务执行能力的关键。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3694,
-                "end_char": 3747
+                "start_char": 657,
+                "end_char": 685
               },
               "version": "5301a956fd5ede62a2ea"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-1d90cbbd103a",
+          "name": "与单一或同构的水下机器人相比，异构多水下机器人系统协同作业具有功能互补、灵活多样、工作效率高等突出优点。",
+          "desc": "与单一或同构的水下机器人相比，异构多水下机器人系统协同作业具有功能互补、灵活多样、工作效率高等突出优点。",
+          "evidence": [
+            {
+              "quote": "与单一或同构的水下机器人相比，异构多水下机器人系统协同作业具有功能互补、灵活多样、工作效率高等突出优点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2974,
+                "end_char": 3025
+              },
+              "version": "5301a956fd5ede62a2ea"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-66f0de03fb9d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4c87a5e3e323"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online Path Planning for AUV in Dynamic Ocean Scenarios: A Lightweight Neural Dynamics Network Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66f3ab3369ea",
+      "evidence": [
+        {
+          "quote": "Online Path Planning for AUV in Dynamic Ocean Scenarios: A Lightweight Neural Dynamics Network Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3774,
+            "end_char": 3876
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4c87a5e3e323"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b3b0bad3705a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint Relay Selection and Power Allocation for Time-Varying Energy Harvesting-Driven UASNs: A Stratified Reinforcement Learning Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-205f92466994",
+      "evidence": [
+        {
+          "quote": "Joint Relay Selection and Power Allocation for Time-Varying Energy Harvesting-Driven UASNs: A Stratified Reinforcement Learning Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3953,
+            "end_char": 4088
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4c87a5e3e323"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9df4c1562448"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Underwater vision enhancement based on GAN with dehazing evaluation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68c8ef78bcd8",
+      "evidence": [
+        {
+          "quote": "Underwater vision enhancement based on GAN with dehazing evaluation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4161,
+            "end_char": 4227
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9df4c1562448"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-835f6037b2a1"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于自组织神经网络的多水下机器人任务分配方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-78720a57a879",
+      "evidence": [
+        {
+          "quote": "基于自组织神经网络的多水下机器人任务分配方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4281,
+            "end_char": 4305
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b3b0bad3705a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-835f6037b2a1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Partial Expert-Based Adversarial Relay Learning Strategy for Underwater Acoustic Sensor Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-357aef5ca254",
+      "evidence": [
+        {
+          "quote": "Partial Expert-Based Adversarial Relay Learning Strategy for Underwater Acoustic Sensor Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4333,
+            "end_char": 4428
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Neural Dynamic Network Pathfinding Algorithm for Autonomous Underwater Vehicles under the Presence of Obstacles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-09d88b9fdaf1",
+      "evidence": [
+        {
+          "quote": "A Neural Dynamic Network Pathfinding Algorithm for Autonomous Underwater Vehicles under the Presence of Obstacles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4492,
+            "end_char": 4604
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种分布式异构多AUV任务分配鲁棒拍卖算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16cbcff20555",
+      "evidence": [
+        {
+          "quote": "一种分布式异构多AUV任务分配鲁棒拍卖算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4658,
+            "end_char": 4678
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Learning for OFDM Channel Estimation in Impulsive Noise Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d4a10a03a79c",
+      "evidence": [
+        {
+          "quote": "Deep Learning for OFDM Channel Estimation in Impulsive Noise Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4703,
+            "end_char": 4775
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An adaptive multi-zone geographic routing protocol for underwater acoustic sensor networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-79455bd669e6",
+      "evidence": [
+        {
+          "quote": "An adaptive multi-zone geographic routing protocol for underwater acoustic sensor networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4840,
+            "end_char": 4929
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Relay Selection Strategy in Underwater Acoustic Cooperative Networks: A Hierarchical Adversarial Bandit Learning Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b4c4d8f319e",
+      "evidence": [
+        {
+          "quote": "Adaptive Relay Selection Strategy in Underwater Acoustic Cooperative Networks: A Hierarchical Adversarial Bandit Learning Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4992,
+            "end_char": 5121
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multiple attentional path aggregation network for marine object detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a91a97a8a3a9",
+      "evidence": [
+        {
+          "quote": "Multiple attentional path aggregation network for marine object detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5186,
+            "end_char": 5258
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collaboration-Aware Relay Selection for AUV in Internet of Underwater Network: Evolving Contextual Bandit Learning Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f4e42a8c5401",
+      "evidence": [
+        {
+          "quote": "Collaboration-Aware Relay Selection for AUV in Internet of Underwater Network: Evolving Contextual Bandit Learning Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5315,
+            "end_char": 5437
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Finite-time event-triggered sliding mode predictive control of unmanned underwater vehicles without velocity measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92b4d7a47ec7",
+      "evidence": [
+        {
+          "quote": "Finite-time event-triggered sliding mode predictive control of unmanned underwater vehicles without velocity measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5502,
+            "end_char": 5622
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于两步卡尔曼滤波的非视距水下航行器定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-58df10a079c4",
+      "evidence": [
+        {
+          "quote": "一种基于两步卡尔曼滤波的非视距水下航行器定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5690,
+            "end_char": 5713
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A modified nature-inspired meta-heuristic methodology for heterogeneous unmanned aerial vehicle system task assignment problem",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5661e33ed35b",
+      "evidence": [
+        {
+          "quote": "A modified nature-inspired meta-heuristic methodology for heterogeneous unmanned aerial vehicle system task assignment problem",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5747,
+            "end_char": 5872
+          },
+          "version": "5301a956fd5ede62a2ea"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

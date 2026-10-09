@@ -2,15 +2,20 @@
   "doc_id": "53dca912e1483d1e882e",
   "version": "4b5150869b816ab681a3",
   "source_hash": "f8cd20179b26b37df4e0a6ebb1e109e18edc9c904dad760e2b8813d9ea7f797f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:18.193084+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.264567+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-33689fe874e0",
-          "name": "人机协作装配作业",
-          "desc": "人机协作下的机械零部件装配系统",
+          "id": "item-75e9b14443ab",
+          "name": "在电子器件、机械零部件装配等工业场合，所有的工位完全由机器人自动化实现难度很大，人机协作可以让机器人更好地与工人配合，适",
+          "desc": "在电子器件、机械零部件装配等工业场合，所有的工位完全由机器人自动化实现难度很大，人机协作可以让机器人更好地与工人配合，适应更复杂的工作任务。",
           "evidence": [
             {
-              "quote": "本项目面向下一代机器人人机协作的重要发展方向，以人机协作下的机械零部件装配系统为研究对象，研究基于视、力觉反馈的人机协作控制系统",
+              "quote": "在电子器件、机械零部件装配等工业场合，所有的工位完全由机器人自动化实现难度很大，人机协作可以让机器人更好地与工人配合，适应更复杂的工作任务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3100,
-                "end_char": 3163
+                "start_char": 636,
+                "end_char": 705
+              },
+              "version": "4b5150869b816ab681a3"
+            }
+          ]
+        },
+        {
+          "id": "item-cafe76d5242a",
+          "name": "（3）协作机器人运动控制策略，建立机器人主动避碰安全策略，针对人机协作装配应用场景，研究基于视觉、力觉的机器人主动柔顺控",
+          "desc": "（3）协作机器人运动控制策略，建立机器人主动避碰安全策略，针对人机协作装配应用场景，研究基于视觉、力觉的机器人主动柔顺控制算法，实现机器人的实时行为决策与控制。",
+          "evidence": [
+            {
+              "quote": "（3）协作机器人运动控制策略，建立机器人主动避碰安全策略，针对人机协作装配应用场景，研究基于视觉、力觉的机器人主动柔顺控制算法，实现机器人的实时行为决策与控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3365,
+                "end_char": 3444
               },
               "version": "4b5150869b816ab681a3"
             }
@@ -41,15 +62,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9e5c44ccbd9a",
-          "name": "交互理论模型缺失",
-          "desc": "多元交互系统理论模型未建立、感知识别欠缺、安全策略待突破",
+          "id": "item-ae02a2b69f95",
+          "name": "人机协作已成为新一代机器人发展的重点方向，但关于协作机器人的研究才刚刚起步，大多研究成果集中在最近五年内，很多重要的基础",
+          "desc": "人机协作已成为新一代机器人发展的重点方向，但关于协作机器人的研究才刚刚起步，大多研究成果集中在最近五年内，很多重要的基础性和关键性问题还未解决，如融合人、机器人、环境的多元交互系统理论模型尚未建立，机器人对人与环境的感知识别还很欠缺，协作机器人的安全策略和运动控制算法也亟待突破。",
           "evidence": [
             {
-              "quote": "很多重要的基础性和关键性问题还未解决，如融合人、机器人、环境的多元交互系统理论模型尚未建立，机器人对人与环境的感知识别还很欠缺，协作机器人的安全策略和运动控制算法也亟待突破。",
+              "quote": "人机协作已成为新一代机器人发展的重点方向，但关于协作机器人的研究才刚刚起步，大多研究成果集中在最近五年内，很多重要的基础性和关键性问题还未解决，如融合人、机器人、环境的多元交互系统理论模型尚未建立，机器人对人与环境的感知识别还很欠缺，协作机器人的安全策略和运动控制算法也亟待突破。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 759,
+                "start_char": 706,
                 "end_char": 845
               },
               "version": "4b5150869b816ab681a3"
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9f71dc47465c",
-          "name": "人机环境交互动力学",
-          "desc": "空间运动学力学多维度耦合的系统动力学建模",
+          "id": "item-b29709b55573",
+          "name": ".本项目提出基于视、力觉反馈的协作机器人控制系统，按照理论分析―算法仿真―实验验证的技术路线，建立人-机器人-环境交互动",
+          "desc": ".本项目提出基于视、力觉反馈的协作机器人控制系统，按照理论分析―算法仿真―实验验证的技术路线，建立人-机器人-环境交互动力学模型，通过视觉、力觉等多传感器信息融合实现机器人的工作环境感知，构建人机协同作业的安全机制，研究基于视、力觉阻抗的协作机器人运动控制算法。",
           "evidence": [
             {
-              "quote": "研究机器人与人、环境之间的空间、运动学、力学等多维度变量耦合关系，建立机器人、人与环境的交互系统动力学模型",
+              "quote": ".本项目提出基于视、力觉反馈的协作机器人控制系统，按照理论分析―算法仿真―实验验证的技术路线，建立人-机器人-环境交互动力学模型，通过视觉、力觉等多传感器信息融合实现机器人的工作环境感知，构建人机协同作业的安全机制，研究基于视、力觉阻抗的协作机器人运动控制算法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3189,
-                "end_char": 3241
+                "start_char": 846,
+                "end_char": 976
               },
               "version": "4b5150869b816ab681a3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-12edc9906c79",
-          "name": "多传感环境感知",
-          "desc": "视觉力觉激光多传感融合目标识别跟踪",
+          "id": "item-5d8969d1f22f",
+          "name": "人机协作已成为新一代机器人发展的重点方向，但关于协作机器人的研究才刚刚起步，大多研究成果集中在最近五年内，很多重要的基础",
+          "desc": "人机协作已成为新一代机器人发展的重点方向，但关于协作机器人的研究才刚刚起步，大多研究成果集中在最近五年内，很多重要的基础性和关键性问题还未解决，如融合人、机器人、环境的多元交互系统理论模型尚未建立，机器人对人与环境的感知识别还很欠缺，协作机器人的安全策略和运动控制算法也亟待突破。",
           "evidence": [
             {
-              "quote": "基于视觉、力觉、激光等多种传感方式，实现机器人作业环境中的目标识别及跟踪，通过多传感信息融合，得出准确、可靠的人机协作环境描述",
+              "quote": "人机协作已成为新一代机器人发展的重点方向，但关于协作机器人的研究才刚刚起步，大多研究成果集中在最近五年内，很多重要的基础性和关键性问题还未解决，如融合人、机器人、环境的多元交互系统理论模型尚未建立，机器人对人与环境的感知识别还很欠缺，协作机器人的安全策略和运动控制算法也亟待突破。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3280,
-                "end_char": 3342
+                "start_char": 706,
+                "end_char": 845
               },
               "version": "4b5150869b816ab681a3"
             }
-          ]
-        },
-        {
-          "id": "item-34f96517a5ea",
-          "name": "视-力觉主动柔顺控制",
-          "desc": "主动避碰安全策略与实时行为决策",
-          "evidence": [
-            {
-              "quote": "建立机器人主动避碰安全策略，针对人机协作装配应用场景，研究基于视觉、力觉的机器人主动柔顺控制算法，实现机器人的实时行为决策与控制。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3380,
-                "end_char": 3444
-              },
-              "version": "4b5150869b816ab681a3"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +124,248 @@
       "state": "has",
       "items": [
         {
-          "id": "item-31b8a80d092b",
-          "name": "工业场景初步应用",
-          "desc": "成果应用于人机协作装配、乱序抓取、搬运等场景",
+          "id": "item-b49811c7d501",
+          "name": "在电子器件、机械零部件装配等工业场合，所有的工位完全由机器人自动化实现难度很大，人机协作可以让机器人更好地与工人配合，适",
+          "desc": "在电子器件、机械零部件装配等工业场合，所有的工位完全由机器人自动化实现难度很大，人机协作可以让机器人更好地与工人配合，适应更复杂的工作任务。",
           "evidence": [
             {
-              "quote": "项目研究成果已初步应用于人机协作装配、乱序工件抓取、搬运等工业自动化场景，为协作机器人控制和人机协作系统构建提供了理论指导。",
+              "quote": "在电子器件、机械零部件装配等工业场合，所有的工位完全由机器人自动化实现难度很大，人机协作可以让机器人更好地与工人配合，适应更复杂的工作任务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3446,
-                "end_char": 3507
+                "start_char": 636,
+                "end_char": 705
               },
               "version": "4b5150869b816ab681a3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-382556eba403",
+          "name": "传统生产中绝大部分工业机器人都被安置在静态、确定的“被隔离”环境中，完成重复性的动作，空间上往往由非常坚固的围栏把机器人",
+          "desc": "传统生产中绝大部分工业机器人都被安置在静态、确定的“被隔离”环境中，完成重复性的动作，空间上往往由非常坚固的围栏把机器人与人隔离开。",
+          "evidence": [
+            {
+              "quote": "传统生产中绝大部分工业机器人都被安置在静态、确定的“被隔离”环境中，完成重复性的动作，空间上往往由非常坚固的围栏把机器人与人隔离开。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2921,
+                "end_char": 2986
+              },
+              "version": "4b5150869b816ab681a3"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-33689fe874e0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9e5c44ccbd9a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于视觉图像的机器人工件抓取位姿误差补偿方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a299845054d1",
+      "evidence": [
+        {
+          "quote": "基于视觉图像的机器人工件抓取位姿误差补偿方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3530,
+            "end_char": 3551
+          },
+          "version": "4b5150869b816ab681a3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9e5c44ccbd9a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9f71dc47465c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于机器视觉的机器人装配位姿在线校正算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dcba6b99de1e",
+      "evidence": [
+        {
+          "quote": "基于机器视觉的机器人装配位姿在线校正算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3585,
+            "end_char": 3604
+          },
+          "version": "4b5150869b816ab681a3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9e5c44ccbd9a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-12edc9906c79"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Grasping pose estimation for SCARA robot based on deep learning of point cloud",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-07c26617fd4c",
+      "evidence": [
+        {
+          "quote": "Grasping pose estimation for SCARA robot based on deep learning of point cloud",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3638,
+            "end_char": 3715
+          },
+          "version": "4b5150869b816ab681a3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9e5c44ccbd9a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-34f96517a5ea"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Flexible Job-Shop Scheduling based on Improved Firefly Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c3437e6ceb7",
+      "evidence": [
+        {
+          "quote": "Flexible Job-Shop Scheduling based on Improved Firefly Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3797,
+            "end_char": 3860
+          },
+          "version": "4b5150869b816ab681a3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-34f96517a5ea"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-31b8a80d092b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人轴孔装配捶打式末端执行器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d3decfac2e9",
+      "evidence": [
+        {
+          "quote": "机器人轴孔装配捶打式末端执行器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3943,
+            "end_char": 3957
+          },
+          "version": "4b5150869b816ab681a3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-12edc9906c79"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-31b8a80d092b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Characteristics of an Elastic Structure with Thermal Effects",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b990662a747a",
+      "evidence": [
+        {
+          "quote": "Dynamic Characteristics of an Elastic Structure with Thermal Effects",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3995,
+            "end_char": 4062
+          },
+          "version": "4b5150869b816ab681a3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Simulation and deep learning on point clouds for robot grasping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6b25ca6b6e02",
+      "evidence": [
+        {
+          "quote": "Simulation and deep learning on point clouds for robot grasping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4153,
+            "end_char": 4215
+          },
+          "version": "4b5150869b816ab681a3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Instance segmentation of point cloud captured by RGB-D sensor based on deep learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-154cceb677b1",
+      "evidence": [
+        {
+          "quote": "Instance segmentation of point cloud captured by RGB-D sensor based on deep learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4300,
+            "end_char": 4383
+          },
+          "version": "4b5150869b816ab681a3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "轴类件装配协作机器人系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b83a63def977",
+      "evidence": [
+        {
+          "quote": "轴类件装配协作机器人系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4466,
+            "end_char": 4477
+          },
+          "version": "4b5150869b816ab681a3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

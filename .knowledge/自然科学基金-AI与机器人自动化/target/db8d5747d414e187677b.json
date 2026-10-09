@@ -2,15 +2,20 @@
   "doc_id": "db8d5747d414e187677b",
   "version": "ad98155bf147d7d461b4",
   "source_hash": "5d29f31ac5e748c166be766a98f2bc5ad0ec764a3e04d9dbb744c6632982b7ef",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:48:15.251617+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.621137+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-654cddbbf0d9",
-          "name": "输尿管软镜手术机器人自主定位",
-          "desc": "医学影像引导下手术器械相对靶点的自主定位",
+          "id": "item-3ec95514c2d5",
+          "name": "输尿管肾内手术作为无创手术的典型代表，目前主要采用 “人在回路”的主从遥操作模式，严重依赖于医生的经验和操作技能，为降低",
+          "desc": "输尿管肾内手术作为无创手术的典型代表，目前主要采用 “人在回路”的主从遥操作模式，严重依赖于医生的经验和操作技能，为降低医生对主从遥操作的依赖、提高手术机器人的自主性，围绕医学影像引导下手术器械相对目标靶点的自主定位问题，凝练出本项目的三个核心科学问题：a)面向靶点精准可达的软镜高精度建模与控制问题,b）面向靶点自主可达的软镜末端轨迹实时优化问题,c）面向体外超声检测的机械臂柔顺控制问题。",
           "evidence": [
             {
-              "quote": "围绕医学影像引导下手术器械相对目标靶点的自主定位问题，凝练出本项目的三个核心科学问题",
+              "quote": "输尿管肾内手术作为无创手术的典型代表，目前主要采用 “人在回路”的主从遥操作模式，严重依赖于医生的经验和操作技能，为降低医生对主从遥操作的依赖、提高手术机器人的自主性，围绕医学影像引导下手术器械相对目标靶点的自主定位问题，凝练出本项目的三个核心科学问题：a)面向靶点精准可达的软镜高精度建模与控制问题,b）面向靶点自主可达的软镜末端轨迹实时优化问题,c）面向体外超声检测的机械臂柔顺控制问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 726,
-                "end_char": 767
+                "start_char": 642,
+                "end_char": 837
               },
               "version": "ad98155bf147d7d461b4"
             }
@@ -38,93 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8dc5fd3fc9f2",
-          "name": "主从遥操作依赖医生经验",
-          "desc": "输尿管肾内手术采用人在回路模式，严重依赖医生经验与操作技能",
-          "evidence": [
-            {
-              "quote": "严重依赖于医生的经验和操作技能，为降低医生对主从遥操作的依赖、提高手术机器人的自主性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 683,
-                "end_char": 724
-              },
-              "version": "ad98155bf147d7d461b4"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-26add3d7fa14",
-          "name": "软镜弯曲主动建模",
-          "desc": "主动建模方法估计迟滞并修正控制信号",
+          "id": "item-aa05501c5d6f",
+          "name": "（3）在软镜手术靶点自主对准的规划和控制方面，基于本项目所提的耦合运动模型，为软镜末端2自由度的运动轨迹设计了一种双层优",
+          "desc": "（3）在软镜手术靶点自主对准的规划和控制方面，基于本项目所提的耦合运动模型，为软镜末端2自由度的运动轨迹设计了一种双层优化方法，以同时在三维空间稳定软镜末端的弯曲角和扭转角，通过考虑全状态约束并设计合适的次优化目标，所提规划算法的时间优化过程是拟凸优化，提高了算法的执行效率；",
           "evidence": [
             {
-              "quote": "提出了一种主动建模方法，通过估计的方法，提升参考模型的建模精度，并以此修正系统的控制信号，显著提升了建模与控制精度",
+              "quote": "（3）在软镜手术靶点自主对准的规划和控制方面，基于本项目所提的耦合运动模型，为软镜末端2自由度的运动轨迹设计了一种双层优化方法，以同时在三维空间稳定软镜末端的弯曲角和扭转角，通过考虑全状态约束并设计合适的次优化目标，所提规划算法的时间优化过程是拟凸优化，提高了算法的执行效率；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2563,
-                "end_char": 2619
+                "start_char": 2731,
+                "end_char": 2868
               },
               "version": "ad98155bf147d7d461b4"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-01f99f208d82",
-          "name": "弯曲扭转耦合多元等效模型",
-          "desc": "刚柔混合动力学建模考虑末端重量与摩擦力",
+          "id": "item-89e4b4fd9c32",
+          "name": "针对目前输尿管手术主要依赖“人在回路”的主从遥操作存在的问题，本项目主要从软镜的高精度建模与控制、软镜末端的轨迹规划开展",
+          "desc": "针对目前输尿管手术主要依赖“人在回路”的主从遥操作存在的问题，本项目主要从软镜的高精度建模与控制、软镜末端的轨迹规划开展研究，已经按计划完成了所有研究任务，取得的主要成果概述如下：（1）在软镜操作机器人弯曲运动建模方法研究方面，针对软镜弯曲运动存在的迟滞现象，提出了一种主动建模方法，通过估计的方法，提升参考模型的建模精度，并以此修正系统的控制信号，显著提升了建模与控制精度；",
           "evidence": [
             {
-              "quote": "提出了多元等效模型，充分考虑了软镜末端的重量、镜体与管壁之间的复杂摩擦力等因素，最终实现了软镜扭转运动的刚柔混合动力学建模",
+              "quote": "针对目前输尿管手术主要依赖“人在回路”的主从遥操作存在的问题，本项目主要从软镜的高精度建模与控制、软镜末端的轨迹规划开展研究，已经按计划完成了所有研究任务，取得的主要成果概述如下：（1）在软镜操作机器人弯曲运动建模方法研究方面，针对软镜弯曲运动存在的迟滞现象，提出了一种主动建模方法，通过估计的方法，提升参考模型的建模精度，并以此修正系统的控制信号，显著提升了建模与控制精度；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2669,
-                "end_char": 2729
+                "start_char": 2433,
+                "end_char": 2620
               },
               "version": "ad98155bf147d7d461b4"
             }
-          ]
-        },
-        {
-          "id": "item-76d75fe02c6a",
-          "name": "双层优化轨迹规划",
-          "desc": "同时稳定弯曲角与扭转角的拟凸优化方法",
-          "evidence": [
-            {
-              "quote": "为软镜末端2自由度的运动轨迹设计了一种双层优化方法，以同时在三维空间稳定软镜末端的弯曲角和扭转角",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2769,
-                "end_char": 2816
-              },
-              "version": "ad98155bf147d7d461b4"
-            }
-          ]
-        },
-        {
-          "id": "item-9ec5705c6ff8",
-          "name": "多永磁体末端形状估计",
-          "desc": "磁环定位跟踪与差分扩展卡尔曼抗电磁干扰",
-          "evidence": [
-            {
-              "quote": "提出一基于多永磁体的软镜末端形状估计方法，附在内窥镜末端的四对磁环用作定位跟踪器",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2889,
-                "end_char": 2928
-              },
-              "version": "ad98155bf147d7d461b4"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,119 +91,120 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e1f442e9231e",
-          "name": "建模与控制精度提升",
-          "desc": "主动建模显著提升软镜建模与控制精度",
+          "id": "item-3c9b21979d9f",
+          "name": "输尿管肾内手术作为无创手术的典型代表，目前主要采用 “人在回路”的主从遥操作模式，严重依赖于医生的经验和操作技能，为降低",
+          "desc": "输尿管肾内手术作为无创手术的典型代表，目前主要采用 “人在回路”的主从遥操作模式，严重依赖于医生的经验和操作技能，为降低医生对主从遥操作的依赖、提高手术机器人的自主性，围绕医学影像引导下手术器械相对目标靶点的自主定位问题，凝练出本项目的三个核心科学问题：a)面向靶点精准可达的软镜高精度建模与控制问题,b）面向靶点自主可达的软镜末端轨迹实时优化问题,c）面向体外超声检测的机械臂柔顺控制问题。",
           "evidence": [
             {
-              "quote": "显著提升了建模与控制精度",
+              "quote": "输尿管肾内手术作为无创手术的典型代表，目前主要采用 “人在回路”的主从遥操作模式，严重依赖于医生的经验和操作技能，为降低医生对主从遥操作的依赖、提高手术机器人的自主性，围绕医学影像引导下手术器械相对目标靶点的自主定位问题，凝练出本项目的三个核心科学问题：a)面向靶点精准可达的软镜高精度建模与控制问题,b）面向靶点自主可达的软镜末端轨迹实时优化问题,c）面向体外超声检测的机械臂柔顺控制问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2608,
-                "end_char": 2619
+                "start_char": 642,
+                "end_char": 837
               },
               "version": "ad98155bf147d7d461b4"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-77bbb69c1ad1",
-          "name": "磁导航抗干扰方法",
-          "desc": "差分扩展卡尔曼方法有效抑制电磁干扰影响",
+          "id": "item-ff41c49c68b7",
+          "name": "针对目前输尿管手术主要依赖“人在回路”的主从遥操作存在的问题，本项目主要从软镜的高精度建模与控制、软镜末端的轨迹规划开展",
+          "desc": "针对目前输尿管手术主要依赖“人在回路”的主从遥操作存在的问题，本项目主要从软镜的高精度建模与控制、软镜末端的轨迹规划开展研究，已经按计划完成了所有研究任务，取得的主要成果概述如下：（1）在软镜操作机器人弯曲运动建模方法研究方面，针对软镜弯曲运动存在的迟滞现象，提出了一种主动建模方法，通过估计的方法，提升参考模型的建模精度，并以此修正系统的控制信号，显著提升了建模与控制精度；",
           "evidence": [
             {
-              "quote": "提出了一种基于差分扩展卡尔曼的方法，有效抑制了电磁干扰对磁导航系统的影响。",
+              "quote": "针对目前输尿管手术主要依赖“人在回路”的主从遥操作存在的问题，本项目主要从软镜的高精度建模与控制、软镜末端的轨迹规划开展研究，已经按计划完成了所有研究任务，取得的主要成果概述如下：（1）在软镜操作机器人弯曲运动建模方法研究方面，针对软镜弯曲运动存在的迟滞现象，提出了一种主动建模方法，通过估计的方法，提升参考模型的建模精度，并以此修正系统的控制信号，显著提升了建模与控制精度；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3021,
-                "end_char": 3057
+                "start_char": 2433,
+                "end_char": 2620
               },
               "version": "ad98155bf147d7d461b4"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-654cddbbf0d9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8dc5fd3fc9f2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A BAS-Based Strategy for Redundant Manipulator Tracking Continuous Moving Object in 3D Relative Velocity Coordinate",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4be15d30038d",
+      "evidence": [
+        {
+          "quote": "A BAS-Based Strategy for Redundant Manipulator Tracking Continuous Moving Object in 3D Relative Velocity Coordinate",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3082,
+            "end_char": 3196
+          },
+          "version": "ad98155bf147d7d461b4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8dc5fd3fc9f2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-26add3d7fa14"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Active Modeling and Control for Manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6e205f4985b9",
+      "evidence": [
+        {
+          "quote": "Active Modeling and Control for Manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3257,
+            "end_char": 3300
+          },
+          "version": "ad98155bf147d7d461b4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8dc5fd3fc9f2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-01f99f208d82"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8dc5fd3fc9f2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-76d75fe02c6a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8dc5fd3fc9f2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9ec5705c6ff8"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-26add3d7fa14"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e1f442e9231e"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9ec5705c6ff8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-77bbb69c1ad1"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot-camera and Hand-target Calibration in Eye-to-hand Navigation System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbe61f95d40e",
+      "evidence": [
+        {
+          "quote": "Robot-camera and Hand-target Calibration in Eye-to-hand Navigation System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3363,
+            "end_char": 3435
+          },
+          "version": "ad98155bf147d7d461b4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

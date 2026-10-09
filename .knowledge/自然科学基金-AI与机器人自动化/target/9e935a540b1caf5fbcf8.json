@@ -2,15 +2,20 @@
   "doc_id": "9e935a540b1caf5fbcf8",
   "version": "79d837a42317654e039b",
   "source_hash": "90e2bcda3fbbf710adf9d6175352cc4357f30166c03c9e23a04fca97e804b19e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:35.424200+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.023568+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1f114ea09cc7",
-          "name": "多无人艇编队控制",
-          "desc": "复杂海洋环境与电磁干扰下的多无人艇编队",
+          "id": "item-7789cf18f3e4",
+          "name": "多无人艇编队具有自主能力强、执行效率高、活动范围广等优点，将服务于海洋探测、作业、作战、巡逻、考察、测绘等多方面。",
+          "desc": "多无人艇编队具有自主能力强、执行效率高、活动范围广等优点，将服务于海洋探测、作业、作战、巡逻、考察、测绘等多方面。",
           "evidence": [
             {
-              "quote": "本项目以提高复杂海洋环境及电磁干扰条件下多无人艇编队的鲁棒性与通信效率为目的，从混杂系统建模、分布式协同控制、通信机制优化等角度出发",
+              "quote": "多无人艇编队具有自主能力强、执行效率高、活动范围广等优点，将服务于海洋探测、作业、作战、巡逻、考察、测绘等多方面。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2398,
-                "end_char": 2463
+                "start_char": 655,
+                "end_char": 711
               },
               "version": "79d837a42317654e039b"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cb587fb87972",
-          "name": "海况干扰与拓扑切换",
-          "desc": "风浪流干扰航向航速，电磁干扰致通信拓扑随机切换",
-          "evidence": [
-            {
-              "quote": "在风、浪、流复杂海洋环境影响下，无人艇的航向、航速受到了较大的干扰，这极大地增加了多无人艇队形控制难度。同时在战场环境中，复杂电磁干扰使得多无人艇的通讯拓扑发生随机切换，这极大地降低了多无人艇之间的通信鲁棒性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 738,
-                "end_char": 842
-              },
-              "version": "79d837a42317654e039b"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-5549997e5ff2",
-          "name": "随机切换拓扑建模",
-          "desc": "Lyapunov-Krasovskii泛函实现编队误差系统镇定",
+          "id": "item-2da167f1b152",
+          "name": "针对这些问题开展的相关研究内容包括：随机切换通信拓扑下编队控制算法，含有模依赖时变时滞的分布式编队控制器设计方法，基于采",
+          "desc": "针对这些问题开展的相关研究内容包括：随机切换通信拓扑下编队控制算法，含有模依赖时变时滞的分布式编队控制器设计方法，基于采样/事件触发控制策略的编队控制算法，随机切换通信拓扑下事件触发编队控制器设计及仿真技术。",
           "evidence": [
             {
-              "quote": "利用随机切换拓扑和模依赖时变时滞对复杂通信条件进行建模，构造Lyapunov-Krasovskii泛函实现编队误差系统的镇定控制。",
+              "quote": "针对这些问题开展的相关研究内容包括：随机切换通信拓扑下编队控制算法，含有模依赖时变时滞的分布式编队控制器设计方法，基于采样/事件触发控制策略的编队控制算法，随机切换通信拓扑下事件触发编队控制器设计及仿真技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2548,
-                "end_char": 2612
+                "start_char": 843,
+                "end_char": 946
               },
               "version": "79d837a42317654e039b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-db1e153ebdec",
-          "name": "事件触发编队控制",
-          "desc": "阈值参数构造触发条件分布式控制协议",
+          "id": "item-883d65420523",
+          "name": "本项目以提高复杂海洋环境及电磁干扰条件下多无人艇编队的鲁棒性与通信效率为目的，从混杂系统建模、分布式协同控制、通信机制优",
+          "desc": "本项目以提高复杂海洋环境及电磁干扰条件下多无人艇编队的鲁棒性与通信效率为目的，从混杂系统建模、分布式协同控制、通信机制优化等角度出发，将动态事件触发机制融入到通信受限条件下的编队控制框架内，建立以减少信息传输数量和节约通信资源为核心的多无人艇协同编队控制方法。",
           "evidence": [
             {
-              "quote": "引入恰当的阈值参数构造事件触发条件，利用局部采样信息设计分布式控制协议实现多无人艇编队队形运动控制。",
+              "quote": "本项目以提高复杂海洋环境及电磁干扰条件下多无人艇编队的鲁棒性与通信效率为目的，从混杂系统建模、分布式协同控制、通信机制优化等角度出发，将动态事件触发机制融入到通信受限条件下的编队控制框架内，建立以减少信息传输数量和节约通信资源为核心的多无人艇协同编队控制方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2723,
-                "end_char": 2772
+                "start_char": 2398,
+                "end_char": 2527
               },
               "version": "79d837a42317654e039b"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,352 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7524610a9fac",
-          "name": "实船测试验证",
-          "desc": "搭建UOS系统三艘海豚2无人艇完成实船编队验证",
+          "id": "item-d7b269286afa",
+          "name": "多无人艇编队具有自主能力强、执行效率高、活动范围广等优点，将服务于海洋探测、作业、作战、巡逻、考察、测绘等多方面。",
+          "desc": "多无人艇编队具有自主能力强、执行效率高、活动范围广等优点，将服务于海洋探测、作业、作战、巡逻、考察、测绘等多方面。",
           "evidence": [
             {
-              "quote": "搭建多无人艇编队操作系统UOS，利用三艘“海豚2”无人艇完成编队控制算法的实船测试验证",
+              "quote": "多无人艇编队具有自主能力强、执行效率高、活动范围广等优点，将服务于海洋探测、作业、作战、巡逻、考察、测绘等多方面。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2776,
-                "end_char": 2818
+                "start_char": 655,
+                "end_char": 711
               },
               "version": "79d837a42317654e039b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-0d19892a1a87",
-          "name": "专著与论文14篇",
-          "desc": "专著1部、SCI/EI论文14篇（SCI 10）、专利3项、国家科技进步二等奖",
+          "id": "item-6903720d852a",
+          "name": "本项目以提高复杂海洋环境及电磁干扰条件下多无人艇编队的鲁棒性与通信效率为目的，从混杂系统建模、分布式协同控制、通信机制优",
+          "desc": "本项目以提高复杂海洋环境及电磁干扰条件下多无人艇编队的鲁棒性与通信效率为目的，从混杂系统建模、分布式协同控制、通信机制优化等角度出发，将动态事件触发机制融入到通信受限条件下的编队控制框架内，建立以减少信息传输数量和节约通信资源为核心的多无人艇协同编队控制方法。",
           "evidence": [
             {
-              "quote": "围绕复杂通信条件下无人艇集群编队控制出版专著1部；在IEEE TMECH、IEEE TNSE、IEEE TCNS、OCEANS等国际学术期刊与会议上发表SCI/EI检索论文14篇，其中SCI检索论文10篇；授权国家发明专利3项。",
+              "quote": "本项目以提高复杂海洋环境及电磁干扰条件下多无人艇编队的鲁棒性与通信效率为目的，从混杂系统建模、分布式协同控制、通信机制优化等角度出发，将动态事件触发机制融入到通信受限条件下的编队控制框架内，建立以减少信息传输数量和节约通信资源为核心的多无人艇协同编队控制方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2881,
-                "end_char": 2994
+                "start_char": 2398,
+                "end_char": 2527
               },
               "version": "79d837a42317654e039b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1f114ea09cc7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cb587fb87972"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dissipative Leaderless Formation via Nonfragile Memory Sampled-Data Control for Unmanned Surface Vehicles With Switching Topologies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bf8bac511c92",
+      "evidence": [
+        {
+          "quote": "Dissipative Leaderless Formation via Nonfragile Memory Sampled-Data Control for Unmanned Surface Vehicles With Switching Topologies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3105,
+            "end_char": 3235
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cb587fb87972"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5549997e5ff2"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "船舶设计大师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ec3c56ae9ea",
+      "evidence": [
+        {
+          "quote": "船舶设计大师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3068,
+            "end_char": 3073
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cb587fb87972"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-db1e153ebdec"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种船舶路径规划方法、装置及电子设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a9aad852459",
+      "evidence": [
+        {
+          "quote": "一种船舶路径规划方法、装置及电子设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3293,
+            "end_char": 3310
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-db1e153ebdec"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7524610a9fac"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spotlight on Small-scale Ship Detection: Empowering YOLO with Advanced Techniques and a Novel Dataset",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c95ac55d7ac",
+      "evidence": [
+        {
+          "quote": "Spotlight on Small-scale Ship Detection: Empowering YOLO with Advanced Techniques and a Novel Dataset",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3344,
+            "end_char": 3444
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5549997e5ff2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0d19892a1a87"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Design of Leaderless Formation Controller for Multi-ASVs with Sampled Data and Communication Delay",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-039ce8fad2db",
+      "evidence": [
+        {
+          "quote": "A Design of Leaderless Formation Controller for Multi-ASVs with Sampled Data and Communication Delay",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3525,
+            "end_char": 3624
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多船舶协同跟控制系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2f72d0b36dd5",
+      "evidence": [
+        {
+          "quote": "一种多船舶协同跟控制系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3671,
+            "end_char": 3687
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-Triggered Practical Formation Control of Leaderless Unmanned Surface Vehicles With Environmental Disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5abf5ee4feeb",
+      "evidence": [
+        {
+          "quote": "Event-Triggered Practical Formation Control of Leaderless Unmanned Surface Vehicles With Environmental Disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3727,
+            "end_char": 3841
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sliding mode formation control of leaderless unmanned surface vehicles with environmental disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-27f31b0ffc1e",
+      "evidence": [
+        {
+          "quote": "Sliding mode formation control of leaderless unmanned surface vehicles with environmental disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3880,
+            "end_char": 3981
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nonfragile Formation Seeking of Unmanned Surface Vehicles: A Sliding Mode Control Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d7eed4f593d",
+      "evidence": [
+        {
+          "quote": "Nonfragile Formation Seeking of Unmanned Surface Vehicles: A Sliding Mode Control Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4020,
+            "end_char": 4109
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂通信条件下无人艇集群编队控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6c3e4d45757",
+      "evidence": [
+        {
+          "quote": "复杂通信条件下无人艇集群编队控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2883,
+            "end_char": 2898
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nonfragile Formation Control of Leaderless Unmanned Surface Vehicles With Memory Sampling Data and Packet Loss",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7cbda2dc5709",
+      "evidence": [
+        {
+          "quote": "Nonfragile Formation Control of Leaderless Unmanned Surface Vehicles With Memory Sampling Data and Packet Loss",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4217,
+            "end_char": 4326
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "DP3动力定位系统关键技术与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d31c9798eae",
+      "evidence": [
+        {
+          "quote": "DP3动力定位系统关键技术与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4364,
+            "end_char": 4379
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reachable Set Estimation of Multiagent Systems: An Approximate Consensus Perspective",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e2b2a6326114",
+      "evidence": [
+        {
+          "quote": "Reachable Set Estimation of Multiagent Systems: An Approximate Consensus Perspective",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4432,
+            "end_char": 4515
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhancing Ship Maneuvering Models through Hybrid Integration of Data-Driven Velocity Calibrator for Improved Performance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f5ed0d2bbc37",
+      "evidence": [
+        {
+          "quote": "Enhancing Ship Maneuvering Models through Hybrid Integration of Data-Driven Velocity Calibrator for Improved Performance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4591,
+            "end_char": 4710
+          },
+          "version": "79d837a42317654e039b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

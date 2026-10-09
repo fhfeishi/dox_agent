@@ -2,15 +2,20 @@
   "doc_id": "760c6b87a830608dd495",
   "version": "0269b86346ac04749fc3",
   "source_hash": "7333f73eeb3960e34d0084ea6a260339933edacebec52cce4f78cbe4a89df360",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:55:01.859491+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.581527+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fcbb40582344",
-          "name": "室内人机共融机器人导航",
-          "desc": "移动服务机器人导航中与行人的自然交互",
+          "id": "item-e8d35e2cc945",
+          "name": "机器人在导航过程中与行人的自然交互，是移动型服务机器人实际应用中要解决的重点问题。",
+          "desc": "机器人在导航过程中与行人的自然交互，是移动型服务机器人实际应用中要解决的重点问题。",
           "evidence": [
             {
-              "quote": "机器人在导航过程中与行人的自然交互，是移动型服务机器人实际应用中要解决的重点问题",
+              "quote": "机器人在导航过程中与行人的自然交互，是移动型服务机器人实际应用中要解决的重点问题。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 651,
-                "end_char": 690
+                "end_char": 691
               },
               "version": "0269b86346ac04749fc3"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-bc3a370abfdd",
-          "name": "机器人缺乏社会意识",
-          "desc": "大多数机器人把行人当障碍物，运动方式不自然，影响导航效率与体验",
-          "evidence": [
-            {
-              "quote": "目前，大多数机器人缺乏社会意识，仅把行人当作障碍物，造成行人需要被动迁就机器人的运动，运动方式不够自然，影响导航效率和用户体验",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 692,
-                "end_char": 754
-              },
-              "version": "0269b86346ac04749fc3"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-129ff9952309",
-          "name": "逆向强化学习社会交互学习",
-          "desc": "基于逆向强化学习的社会自适应运动交互学习框架及评估方法",
+          "id": "item-0c62daab0017",
+          "name": "针对这些问题，本课题采用逆向强化学习算法，基于空间关系学与社会力模型等心理学研究成果，根据专家示范路径系统研究机器人和行",
+          "desc": "针对这些问题，本课题采用逆向强化学习算法，基于空间关系学与社会力模型等心理学研究成果，根据专家示范路径系统研究机器人和行人之间的运动交互机理，提出机器人社会自适应导航方法，重点研究机器人社会自适应特征提取、高维复合状态空间融合、启发式运动规划、社会自适应运动优化等问题。",
           "evidence": [
             {
-              "quote": "提出了基于逆向强化学习的社会自适应运动交互学习框架及评估方法",
+              "quote": "针对这些问题，本课题采用逆向强化学习算法，基于空间关系学与社会力模型等心理学研究成果，根据专家示范路径系统研究机器人和行人之间的运动交互机理，提出机器人社会自适应导航方法，重点研究机器人社会自适应特征提取、高维复合状态空间融合、启发式运动规划、社会自适应运动优化等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2566,
-                "end_char": 2595
+                "start_char": 756,
+                "end_char": 890
               },
               "version": "0269b86346ac04749fc3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-1e446680ce88",
-          "name": "环境拓扑特征矩阵表达",
-          "desc": "基于扩展维诺图引导启发式采样与拓扑特征矩阵工作空间精炼化表达",
+          "id": "item-b51b00991a7d",
+          "name": "本课题首先针对移动机器人导航轨迹不自然、人机自然交互欠缺的问题，基于空间关系学与社会力模型等心理学研究成果，在路径规划中",
+          "desc": "本课题首先针对移动机器人导航轨迹不自然、人机自然交互欠缺的问题，基于空间关系学与社会力模型等心理学研究成果，在路径规划中引入社会规则模型，提出了基于逆向强化学习的社会自适应运动交互学习框架及评估方法，解决了运动交互学习过程中的非同伦问题，人机共融环境下的路径拟人化置信度超过70%。",
           "evidence": [
             {
-              "quote": "提出了原创性的基于环境拓扑特征矩阵的工作空间精炼化表达方法",
+              "quote": "本课题首先针对移动机器人导航轨迹不自然、人机自然交互欠缺的问题，基于空间关系学与社会力模型等心理学研究成果，在路径规划中引入社会规则模型，提出了基于逆向强化学习的社会自适应运动交互学习框架及评估方法，解决了运动交互学习过程中的非同伦问题，人机共融环境下的路径拟人化置信度超过70%。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2725,
-                "end_char": 2753
+                "start_char": 2497,
+                "end_char": 2637
               },
               "version": "0269b86346ac04749fc3"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,86 +91,453 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8fcb537ab4af",
-          "name": "路径拟人化置信度超70%",
-          "desc": "解决运动交互学习非同伦问题，拟人化置信度超过70%",
+          "id": "item-8d33eda443fb",
+          "name": "机器人在导航过程中与行人的自然交互，是移动型服务机器人实际应用中要解决的重点问题。",
+          "desc": "机器人在导航过程中与行人的自然交互，是移动型服务机器人实际应用中要解决的重点问题。",
           "evidence": [
             {
-              "quote": "人机共融环境下的路径拟人化置信度超过70%",
+              "quote": "机器人在导航过程中与行人的自然交互，是移动型服务机器人实际应用中要解决的重点问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2616,
-                "end_char": 2636
+                "start_char": 651,
+                "end_char": 691
               },
               "version": "0269b86346ac04749fc3"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-9e631f755f33",
-          "name": "规划资源消耗毫秒级",
-          "desc": "解决陷阱空间问题，复杂动态环境规划线上资源消耗降低为毫秒级",
-          "evidence": [
-            {
-              "quote": "将复杂动态环境的规划线上资源消耗降低为毫秒级",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2783,
-                "end_char": 2804
-              },
-              "version": "0269b86346ac04749fc3"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fcbb40582344"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-bc3a370abfdd"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Grounding Language to Natural Human-Robot Interaction in Robot Navigation Tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d57d2f44a20",
+      "evidence": [
+        {
+          "quote": "Grounding Language to Natural Human-Robot Interaction in Robot Navigation Tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3034,
+            "end_char": 3112
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bc3a370abfdd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-129ff9952309"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于高斯混合模型的机器人实时运动规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a72affeca41c",
+      "evidence": [
+        {
+          "quote": "一种基于高斯混合模型的机器人实时运动规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3185,
+            "end_char": 3206
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-129ff9952309"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8fcb537ab4af"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Efficient Robot Exploration Method based on Heuristics Biased Sampling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-820d9aaca575",
+      "evidence": [
+        {
+          "quote": "An Efficient Robot Exploration Method based on Heuristics Biased Sampling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3238,
+            "end_char": 3310
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1e446680ce88"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9e631f755f33"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Gaussian Mixture Model based Fast Motion Planning Method Through Online Environmental Feature Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bff9dcbd10d6",
+      "evidence": [
+        {
+          "quote": "A Gaussian Mixture Model based Fast Motion Planning Method Through Online Environmental Feature Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3387,
+            "end_char": 3490
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Prior Information Heuristic based Robot Exploration Method in Indoor Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ade38103d77a",
+      "evidence": [
+        {
+          "quote": "A Prior Information Heuristic based Robot Exploration Method in Indoor Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3559,
+            "end_char": 3640
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多模态信息特征树的机器人实时运动规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c640ce2744af",
+      "evidence": [
+        {
+          "quote": "基于多模态信息特征树的机器人实时运动规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3715,
+            "end_char": 3736
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Reusable Generalized Voronoi Diagram Based Feature Tree for Fast Robot Motion Planning in Trapped Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0d9af4e0047",
+      "evidence": [
+        {
+          "quote": "A Reusable Generalized Voronoi Diagram Based Feature Tree for Fast Robot Motion Planning in Trapped Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3772,
+            "end_char": 3883
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "苏州市自然科学优秀学术论文",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ecc6d66552c8",
+      "evidence": [
+        {
+          "quote": "苏州市自然科学优秀学术论文",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3956,
+            "end_char": 3968
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Generalized Voronoi Diagram based Robot Exploration Method for Mobile Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8fb5935f5072",
+      "evidence": [
+        {
+          "quote": "A Generalized Voronoi Diagram based Robot Exploration Method for Mobile Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3990,
+            "end_char": 4067
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Generalized Voronoi Diagram based Efficient Heuristic Path Planning Method for RRTs in Mobile Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1bff5e96a87b",
+      "evidence": [
+        {
+          "quote": "A Generalized Voronoi Diagram based Efficient Heuristic Path Planning Method for RRTs in Mobile Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4153,
+            "end_char": 4254
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Natural Language Instruction Disambiguation Method for Robot Grasping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ebe8417f68f",
+      "evidence": [
+        {
+          "quote": "A Natural Language Instruction Disambiguation Method for Robot Grasping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4330,
+            "end_char": 4400
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Active Pedestrian Detection for Excavator Robots based on Multi-Sensor Fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b25c89a1ce5c",
+      "evidence": [
+        {
+          "quote": "Active Pedestrian Detection for Excavator Robots based on Multi-Sensor Fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4497,
+            "end_char": 4573
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Knowledge-Based Fast Motion Planning Method Through Online Environmental Feature Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e44604d48fe",
+      "evidence": [
+        {
+          "quote": "A Knowledge-Based Fast Motion Planning Method Through Online Environmental Feature Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4640,
+            "end_char": 4730
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Inverted Residual based Lightweight Network for Object Detection in Sweeping Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f30dd87a13b1",
+      "evidence": [
+        {
+          "quote": "An Inverted Residual based Lightweight Network for Object Detection in Sweeping Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4813,
+            "end_char": 4898
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向人机自然交互的移动机器人自主导航方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c36421048da0",
+      "evidence": [
+        {
+          "quote": "面向人机自然交互的移动机器人自主导航方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4964,
+            "end_char": 4986
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于扩展维诺图特征的可复用搜索树方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4687392e2ca1",
+      "evidence": [
+        {
+          "quote": "一种基于扩展维诺图特征的可复用搜索树方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5022,
+            "end_char": 5041
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Efficient Medicine Identification and Delivery System based on Mobile Manipulation Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a06830179fe7",
+      "evidence": [
+        {
+          "quote": "An Efficient Medicine Identification and Delivery System based on Mobile Manipulation Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5072,
+            "end_char": 5162
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Generative Adversarial Network Based Motion Planning Framework for Mobile Robots in Dynamic Human-Robot Integration Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a0b7c76a7691",
+      "evidence": [
+        {
+          "quote": "A Generative Adversarial Network Based Motion Planning Framework for Mobile Robots in Dynamic Human-Robot Integration Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5254,
+            "end_char": 5382
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PRTIRL Based Socially Adaptive Path Planning for Mobile Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b4128cc5b9b",
+      "evidence": [
+        {
+          "quote": "PRTIRL Based Socially Adaptive Path Planning for Mobile Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5463,
+            "end_char": 5524
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Object Clustering with Dirichlet Process Mixture Model for Data Association in Monocular SLAM",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7304eefca5ce",
+      "evidence": [
+        {
+          "quote": "Object Clustering with Dirichlet Process Mixture Model for Data Association in Monocular SLAM",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5608,
+            "end_char": 5700
+          },
+          "version": "0269b86346ac04749fc3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

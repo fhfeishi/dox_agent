@@ -2,15 +2,20 @@
   "doc_id": "890769246526a2b52602",
   "version": "58a1512abc1f7fa59103",
   "source_hash": "1b897f9186458b368366e00e4511893fc36ff6cab1293ba8b48dee126e67ef55",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:55:01.795943+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.742989+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-274dd74a9970",
-          "name": "复杂环境作业机器人抓取",
-          "desc": "农业农产品自动化采摘和模拟核设施环境废弃物自动分拣",
+          "id": "item-f48f068e8ae2",
+          "name": "作业型机器人运动规划与应用是近年来的热点，尤其是针对复杂不确定交互环境下的建模和监督、对可变形物体的识别、抓取及优化等复",
+          "desc": "作业型机器人运动规划与应用是近年来的热点，尤其是针对复杂不确定交互环境下的建模和监督、对可变形物体的识别、抓取及优化等复杂问题。",
           "evidence": [
             {
-              "quote": "最后，实际应用于农业农产品自动化采摘和模拟核设施环境废弃物自动分拣场景中进行验证，为高效解决实际运动规划问题提供理论和实验依据",
+              "quote": "作业型机器人运动规划与应用是近年来的热点，尤其是针对复杂不确定交互环境下的建模和监督、对可变形物体的识别、抓取及优化等复杂问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 661,
+                "end_char": 724
+              },
+              "version": "58a1512abc1f7fa59103"
+            }
+          ]
+        },
+        {
+          "id": "item-1a3db525e937",
+          "name": "最后，实际应用于农业农产品自动化采摘和模拟核设施环境废弃物自动分拣场景中进行验证，为高效解决实际运动规划问题提供理论和实",
+          "desc": "最后，实际应用于农业农产品自动化采摘和模拟核设施环境废弃物自动分拣场景中进行验证，为高效解决实际运动规划问题提供理论和实验依据。",
+          "evidence": [
+            {
+              "quote": "最后，实际应用于农业农产品自动化采摘和模拟核设施环境废弃物自动分拣场景中进行验证，为高效解决实际运动规划问题提供理论和实验依据。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 994,
-                "end_char": 1056
+                "end_char": 1057
               },
               "version": "58a1512abc1f7fa59103"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cb3f13abdfb8",
-          "name": "可变形物体识别抓取难",
-          "desc": "复杂不确定交互环境下的建模监督与可变形物体识别抓取优化",
-          "evidence": [
-            {
-              "quote": "作业型机器人运动规划与应用是近年来的热点，尤其是针对复杂不确定交互环境下的建模和监督、对可变形物体的识别、抓取及优化等复杂问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 661,
-                "end_char": 723
-              },
-              "version": "58a1512abc1f7fa59103"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-7115550c6639",
-          "name": "准静态机-物交互建模",
-          "desc": "联合物理特性及分析学特征建立动态及准静态机物交互模型",
+          "id": "item-95abd5de9844",
+          "name": "项目从机-物交互的特征分析出发，建立基于准静态交互模型，研究专家示范轨迹的分布特性，并将其嵌入机器人运动轨迹的学习和训练",
+          "desc": "项目从机-物交互的特征分析出发，建立基于准静态交互模型，研究专家示范轨迹的分布特性，并将其嵌入机器人运动轨迹的学习和训练中，并设计实时闭环多传感器反馈控制系统框架，对物体（特别是可变形物体）进行识别与抓取，并对物-物交互进行监督并间接控制机器人的运动轨迹。",
           "evidence": [
             {
-              "quote": "提出一种联合物理特性及分析学特征的方法，分析交互过程中的力学建立动态及准静态机物交互模型",
+              "quote": "项目从机-物交互的特征分析出发，建立基于准静态交互模型，研究专家示范轨迹的分布特性，并将其嵌入机器人运动轨迹的学习和训练中，并设计实时闭环多传感器反馈控制系统框架，对物体（特别是可变形物体）进行识别与抓取，并对物-物交互进行监督并间接控制机器人的运动轨迹。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2925,
-                "end_char": 2968
+                "start_char": 2742,
+                "end_char": 2869
               },
               "version": "58a1512abc1f7fa59103"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-676fcfbbba8f",
-          "name": "弱监督RGBD目标检测",
-          "desc": "从未标注视频学习深度卷积神经网络的弱监督方法",
+          "id": "item-19006f42a59c",
+          "name": "在复杂不确定场景下专家示范轨迹生成及优化方法方面，提出了基于概率运动原语和专家示范学习的局部轨迹优化算法，并建立了作业型",
+          "desc": "在复杂不确定场景下专家示范轨迹生成及优化方法方面，提出了基于概率运动原语和专家示范学习的局部轨迹优化算法，并建立了作业型机器人控制系统基准化模型。",
           "evidence": [
             {
-              "quote": "提出了一种弱监督学习的方法用于基于RGBD的目标物体检测与分类中",
+              "quote": "在复杂不确定场景下专家示范轨迹生成及优化方法方面，提出了基于概率运动原语和专家示范学习的局部轨迹优化算法，并建立了作业型机器人控制系统基准化模型。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3471,
-                "end_char": 3502
+                "start_char": 3504,
+                "end_char": 3576
               },
               "version": "58a1512abc1f7fa59103"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,69 +107,305 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2315426b50d4",
-          "name": "轨迹优化与基准化模型",
-          "desc": "基于概率运动原语和专家示范学习的局部轨迹优化算法与控制系统基准化模型",
+          "id": "item-1ae059ebee15",
+          "name": "作业型机器人运动规划与应用是近年来的热点，尤其是针对复杂不确定交互环境下的建模和监督、对可变形物体的识别、抓取及优化等复",
+          "desc": "作业型机器人运动规划与应用是近年来的热点，尤其是针对复杂不确定交互环境下的建模和监督、对可变形物体的识别、抓取及优化等复杂问题。",
           "evidence": [
             {
-              "quote": "提出了基于概率运动原语和专家示范学习的局部轨迹优化算法，并建立了作业型机器人控制系统基准化模型",
+              "quote": "作业型机器人运动规划与应用是近年来的热点，尤其是针对复杂不确定交互环境下的建模和监督、对可变形物体的识别、抓取及优化等复杂问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3529,
-                "end_char": 3575
+                "start_char": 661,
+                "end_char": 724
               },
               "version": "58a1512abc1f7fa59103"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-274dd74a9970"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cb3f13abdfb8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive neural network tracking control for underactuated systems with matched and mismatched disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ee2ca1d2e7b0",
+      "evidence": [
+        {
+          "quote": "Adaptive neural network tracking control for underactuated systems with matched and mismatched disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3673,
+            "end_char": 3779
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cb3f13abdfb8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7115550c6639"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improving Local Trajectory Optimization by Probabilistic Movement Primitives",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a3e5f8dd0ae0",
+      "evidence": [
+        {
+          "quote": "Improving Local Trajectory Optimization by Probabilistic Movement Primitives",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3831,
+            "end_char": 3906
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cb3f13abdfb8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-676fcfbbba8f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reweighted l(p) constraint LMS-based adaptive sparse channel estimation for cooperative communication system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4e2ef7878ce",
+      "evidence": [
+        {
+          "quote": "Reweighted l(p) constraint LMS-based adaptive sparse channel estimation for cooperative communication system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4019,
+            "end_char": 4126
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7115550c6639"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2315426b50d4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel CSI Feedback Approach for Massive MIMO Using LSTM-Attention CNN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b2f9e416542",
+      "evidence": [
+        {
+          "quote": "A Novel CSI Feedback Approach for Massive MIMO Using LSTM-Attention CNN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4186,
+            "end_char": 4256
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A self-propelled robotic system with a visco-elastic joint: dynamics and motion analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-061790c48f08",
+      "evidence": [
+        {
+          "quote": "A self-propelled robotic system with a visco-elastic joint: dynamics and motion analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4324,
+            "end_char": 4411
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Clothes Manipulation Using a Hierarchical Vision Architecture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fdbc1a78cec5",
+      "evidence": [
+        {
+          "quote": "Autonomous Clothes Manipulation Using a Hierarchical Vision Architecture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4475,
+            "end_char": 4546
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modelling and analysis of dynamic frictional interactions of vibro-driven capsule systems with viscoelastic property",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-43dafc2417e8",
+      "evidence": [
+        {
+          "quote": "Modelling and analysis of dynamic frictional interactions of vibro-driven capsule systems with viscoelastic property",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4621,
+            "end_char": 4736
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control and benchmarking of a 7-DOF robotic arm using Gazebo and ROS",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7b43ef3140f",
+      "evidence": [
+        {
+          "quote": "Control and benchmarking of a 7-DOF robotic arm using Gazebo and ROS",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4788,
+            "end_char": 4855
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Block-Sparsity Log-Sum-Induced Adaptive Filter for Cluster Sparse System Identification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4fc98b1f28c1",
+      "evidence": [
+        {
+          "quote": "Block-Sparsity Log-Sum-Induced Adaptive Filter for Cluster Sparse System Identification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4895,
+            "end_char": 4981
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A survey on underactuated robotic systems: Bio-inspiration, trajectory planning and control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-215b004241aa",
+      "evidence": [
+        {
+          "quote": "A survey on underactuated robotic systems: Bio-inspiration, trajectory planning and control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5040,
+            "end_char": 5130
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Channel Estimation for MmWave Massive MIMO With Hybrid Precoding Based on Log-Sum Sparse Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03540229742a",
+      "evidence": [
+        {
+          "quote": "Channel Estimation for MmWave Massive MIMO With Hybrid Precoding Based on Log-Sum Sparse Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5194,
+            "end_char": 5293
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Single-Trial Classification of Different Movements on One Arm Based on ERD/ERS and Corticomuscular Coherence",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6343fb222725",
+      "evidence": [
+        {
+          "quote": "Single-Trial Classification of Different Movements on One Arm Based on ERD/ERS and Corticomuscular Coherence",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5365,
+            "end_char": 5472
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Weakly-supervised approach for RGB-D-based Nuclear Waste Object Detection and Categorization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d60549a2f36",
+      "evidence": [
+        {
+          "quote": "A Novel Weakly-supervised approach for RGB-D-based Nuclear Waste Object Detection and Categorization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5548,
+            "end_char": 5647
+          },
+          "version": "58a1512abc1f7fa59103"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

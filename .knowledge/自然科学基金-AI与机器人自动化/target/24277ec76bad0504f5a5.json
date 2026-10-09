@@ -2,15 +2,20 @@
   "doc_id": "24277ec76bad0504f5a5",
   "version": "20e7ae2573b601ac42be",
   "source_hash": "b0080cc4383fdf71342c1b4f22b3b57c463f6ef5a4fd0f507c1f8207fc6694b4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:03:20.356544+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.824293+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0a674b5a01e2",
-          "name": "脑卒中上肢康复训练",
-          "desc": "患者主动参与的个性化上肢康复机器人训练",
+          "id": "item-587f7cee542c",
+          "name": "脑卒中患者主动参与的个性化的上肢训练具有更好的康复效果。",
+          "desc": "脑卒中患者主动参与的个性化的上肢训练具有更好的康复效果。",
           "evidence": [
             {
               "quote": "脑卒中患者主动参与的个性化的上肢训练具有更好的康复效果。",
@@ -29,6 +34,22 @@
                 "basis": "parsed_text",
                 "start_char": 668,
                 "end_char": 695
+              },
+              "version": "20e7ae2573b601ac42be"
+            }
+          ]
+        },
+        {
+          "id": "item-2075dd177cc8",
+          "name": "本项目能实现主动的个性化机器人辅助康复训练，研究成果具有重要的临床应用前景。",
+          "desc": "本项目能实现主动的个性化机器人辅助康复训练，研究成果具有重要的临床应用前景。",
+          "evidence": [
+            {
+              "quote": "本项目能实现主动的个性化机器人辅助康复训练，研究成果具有重要的临床应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1025,
+                "end_char": 1062
               },
               "version": "20e7ae2573b601ac42be"
             }
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4c1da6ad063f",
-          "name": "主动参与不足模式单一",
-          "desc": "康复机器人主动参与性不足、训练模式单一、交互不柔顺",
+          "id": "item-424a03a5feb2",
+          "name": "但目前上肢康复机器人多存在人的主动参与性不足、康复训练模式较单一、人机交互不够自然柔顺的问题。",
+          "desc": "但目前上肢康复机器人多存在人的主动参与性不足、康复训练模式较单一、人机交互不够自然柔顺的问题。",
           "evidence": [
             {
               "quote": "但目前上肢康复机器人多存在人的主动参与性不足、康复训练模式较单一、人机交互不够自然柔顺的问题。",
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-43fd8b3f648c",
-          "name": "力-速度耦合主动控制",
-          "desc": "以人的主动力为控制源实现主动参与与速度连续调节",
+          "id": "item-1d8e840099cd",
+          "name": "本项目针对临床需求，基于搭建的康复机器人平台，结合人体运动控制模型和与之匹配的康复机器人控制方法进行理论探索和实验验证，",
+          "desc": "本项目针对临床需求，基于搭建的康复机器人平台，结合人体运动控制模型和与之匹配的康复机器人控制方法进行理论探索和实验验证，研究成果是建立了一套人机交互自然柔顺、受试者主动参与度高、多种训练模式自适应切换的上肢康复机器人系统。",
           "evidence": [
             {
-              "quote": "建立柔顺的变阻尼被动控制方法，提高人机交互性能，并建立柔顺的力-速度耦合主动控制方法，提高受试者的主动参与度",
+              "quote": "本项目针对临床需求，基于搭建的康复机器人平台，结合人体运动控制模型和与之匹配的康复机器人控制方法进行理论探索和实验验证，研究成果是建立了一套人机交互自然柔顺、受试者主动参与度高、多种训练模式自适应切换的上肢康复机器人系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3081,
-                "end_char": 3134
+                "start_char": 3162,
+                "end_char": 3272
               },
               "version": "20e7ae2573b601ac42be"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-cf453649aeb5",
-          "name": "多模态自适应控制",
-          "desc": "满足不同康复需求的多模态自适应切换",
+          "id": "item-6ea9d66ec2da",
+          "name": "在此基础上，本项目以上肢康复机器人的力-速度耦合控制方法为研究目标，首先，通过工作空间的仿真分析，设计可实现三维空间中肩",
+          "desc": "在此基础上，本项目以上肢康复机器人的力-速度耦合控制方法为研究目标，首先，通过工作空间的仿真分析，设计可实现三维空间中肩肘关节协同运动的绳牵引上肢康复机器人，并建立上肢康复机器人实验系统；",
           "evidence": [
             {
-              "quote": "最后，研究多模态自适应控制方法，满足不同的康复需求。",
+              "quote": "在此基础上，本项目以上肢康复机器人的力-速度耦合控制方法为研究目标，首先，通过工作空间的仿真分析，设计可实现三维空间中肩肘关节协同运动的绳牵引上肢康复机器人，并建立上肢康复机器人实验系统；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3136,
-                "end_char": 3161
+                "start_char": 805,
+                "end_char": 898
               },
               "version": "20e7ae2573b601ac42be"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,169 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ee6c30652d5f",
-          "name": "上肢康复机器人系统",
-          "desc": "交互自然柔顺、参与度高、多模式自适应切换的康复系统",
+          "id": "item-1fa462dc20a5",
+          "name": "脑卒中患者主动参与的个性化的上肢训练具有更好的康复效果。",
+          "desc": "脑卒中患者主动参与的个性化的上肢训练具有更好的康复效果。",
           "evidence": [
             {
-              "quote": "研究成果是建立了一套人机交互自然柔顺、受试者主动参与度高、多种训练模式自适应切换的上肢康复机器人系统。",
+              "quote": "脑卒中患者主动参与的个性化的上肢训练具有更好的康复效果。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3222,
-                "end_char": 3272
+                "start_char": 668,
+                "end_char": 695
               },
               "version": "20e7ae2573b601ac42be"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0a674b5a01e2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4c1da6ad063f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Finite-Time Convergence Control for a Knee Rehabilitation Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4624e5b13950",
+      "evidence": [
+        {
+          "quote": "Robust Finite-Time Convergence Control for a Knee Rehabilitation Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3353,
+            "end_char": 3422
+          },
+          "version": "20e7ae2573b601ac42be"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4c1da6ad063f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-43fd8b3f648c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种结合轨迹规划的康复机器人变阻抗控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-56d1073b5c9f",
+      "evidence": [
+        {
+          "quote": "一种结合轨迹规划的康复机器人变阻抗控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3478,
+            "end_char": 3498
+          },
+          "version": "20e7ae2573b601ac42be"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4c1da6ad063f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cf453649aeb5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Step Response in Isometric Grip Force Tracking: A Model to Characterize Aging- and Stroke-induced Changes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84a13c38e5b3",
+      "evidence": [
+        {
+          "quote": "The Step Response in Isometric Grip Force Tracking: A Model to Characterize Aging- and Stroke-induced Changes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3523,
+            "end_char": 3631
+          },
+          "version": "20e7ae2573b601ac42be"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-43fd8b3f648c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ee6c30652d5f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Variable Impedance Control Based on Target Position and Tracking Error for Rehabilitation Robots during a Reaching Task",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc6877f0fd91",
+      "evidence": [
+        {
+          "quote": "Variable Impedance Control Based on Target Position and Tracking Error for Rehabilitation Robots during a Reaching Task",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3704,
+            "end_char": 3822
+          },
+          "version": "20e7ae2573b601ac42be"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cf453649aeb5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ee6c30652d5f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Hybrid Arm-hand Rehabilitation Robot with EMG-based Admittance Controller",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5e677a4b2e7e",
+      "evidence": [
+        {
+          "quote": "A Hybrid Arm-hand Rehabilitation Robot with EMG-based Admittance Controller",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3874,
+            "end_char": 3948
+          },
+          "version": "20e7ae2573b601ac42be"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Variable Impedance Control with Smooth Trajectory Planning for Human–Robot Interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62819ca329d3",
+      "evidence": [
+        {
+          "quote": "Variable Impedance Control with Smooth Trajectory Planning for Human–Robot Interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4030,
+            "end_char": 4115
+          },
+          "version": "20e7ae2573b601ac42be"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

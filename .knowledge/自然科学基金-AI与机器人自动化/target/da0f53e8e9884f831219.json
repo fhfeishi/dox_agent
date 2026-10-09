@@ -2,15 +2,20 @@
   "doc_id": "da0f53e8e9884f831219",
   "version": "4811d8b6bf6ef914f191",
   "source_hash": "cecfbe1d34cbb1b3dacd50155d23e55e12acc1e92647e04a9ecec06b2f7666c8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:55:00.331205+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.613098+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-93b9effdf4ab",
-          "name": "移动机器人集群目标环绕编队",
-          "desc": "面向军事和工业应用场景的集群编队分布式控制",
+          "id": "item-962f431f65bc",
+          "name": "移动机器人组的目标环绕编队控制研究，对拓展移动机器人组编队在军事和工业领域的应用场景具有重要的意义。",
+          "desc": "移动机器人组的目标环绕编队控制研究，对拓展移动机器人组编队在军事和工业领域的应用场景具有重要的意义。",
           "evidence": [
             {
-              "quote": "移动机器人集群目标环绕编队控制对拓展移动机器人集群编队在军事和工业领域的应用场景具有重要的意义",
+              "quote": "移动机器人组的目标环绕编队控制研究，对拓展移动机器人组编队在军事和工业领域的应用场景具有重要的意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2953,
-                "end_char": 2999
+                "start_char": 657,
+                "end_char": 706
               },
               "version": "4811d8b6bf6ef914f191"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ccecc0f4f3cd",
-          "name": "全局信息与拓扑限制",
-          "desc": "现有工作通常需要所有机器人得到目标状态、使用全局坐标系测量信息、限制网络拓扑",
-          "evidence": [
-            {
-              "quote": "现有的研究工作通常需要所有机器人得到目标状态，使用全局坐标系下的测量信息，限制网络的拓扑结构",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3001,
-                "end_char": 3046
-              },
-              "version": "4811d8b6bf6ef914f191"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-f5ebf4110141",
-          "name": "输出调节理论稳定性分析",
-          "desc": "分析速度扰动影响，建立受扰情况下集群闭环系统全局稳定性条件",
+          "id": "item-4930cdba40ca",
+          "name": "本课题拟研究在仅部分机器人可测得目标和网络拓扑为一般有向图的情况下，如何基于机器人独立坐标系的局部测量信息，设计分布式控",
+          "desc": "本课题拟研究在仅部分机器人可测得目标和网络拓扑为一般有向图的情况下，如何基于机器人独立坐标系的局部测量信息，设计分布式控制器并建立受控机器人组闭环系统的稳定性条件。",
           "evidence": [
             {
-              "quote": "利用输出调节理论思想，建立了受速度扰动情况下移动机器人集群闭环系统的全局稳定性成立条件",
+              "quote": "本课题拟研究在仅部分机器人可测得目标和网络拓扑为一般有向图的情况下，如何基于机器人独立坐标系的局部测量信息，设计分布式控制器并建立受控机器人组闭环系统的稳定性条件。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3211,
-                "end_char": 3253
+                "start_char": 803,
+                "end_char": 884
               },
               "version": "4811d8b6bf6ef914f191"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-370744f76440",
-          "name": "输入-状态稳定非完全信息设计",
-          "desc": "面向方位信息、丢包、带宽受限等非完全局部信息的分布式编队控制",
+          "id": "item-3d866da36397",
+          "name": "本项目研究在尽可能不使用任何全局信息和尽可能降低网络拓扑条件限制的同时，基于移动机器人局部测量的相对状态信息与机器人之间",
+          "desc": "本项目研究在尽可能不使用任何全局信息和尽可能降低网络拓扑条件限制的同时，基于移动机器人局部测量的相对状态信息与机器人之间的信息交互设计分布式控制器，并建立了受控机器人集群闭环系统全局稳定性的条件。",
           "evidence": [
             {
-              "quote": "基于非线性系统输入-状态稳定的分析，建立闭环系统的全局稳定性",
+              "quote": "本项目研究在尽可能不使用任何全局信息和尽可能降低网络拓扑条件限制的同时，基于移动机器人局部测量的相对状态信息与机器人之间的信息交互设计分布式控制器，并建立了受控机器人集群闭环系统全局稳定性的条件。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3447,
-                "end_char": 3476
+                "start_char": 3048,
+                "end_char": 3145
               },
               "version": "4811d8b6bf6ef914f191"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,86 +91,368 @@
       "state": "has",
       "items": [
         {
-          "id": "item-52e4b001379b",
-          "name": "多机器人协同控制实验平台",
-          "desc": "搭建实验平台并完成部分理论成果的实验验证",
+          "id": "item-78a2b90d11b7",
+          "name": "移动机器人组的目标环绕编队控制研究，对拓展移动机器人组编队在军事和工业领域的应用场景具有重要的意义。",
+          "desc": "移动机器人组的目标环绕编队控制研究，对拓展移动机器人组编队在军事和工业领域的应用场景具有重要的意义。",
           "evidence": [
             {
-              "quote": "最后，完成多机器人协同控制实验平台的搭建，并完成部分理论成果的实验验证工作",
+              "quote": "移动机器人组的目标环绕编队控制研究，对拓展移动机器人组编队在军事和工业领域的应用场景具有重要的意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3478,
-                "end_char": 3514
+                "start_char": 657,
+                "end_char": 706
               },
               "version": "4811d8b6bf6ef914f191"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-f634012ede97",
-          "name": "稳定性分析方法创新",
-          "desc": "提出基于非线性摄动系统和稳定集合退减理论的稳定性分析方法",
+          "id": "item-a6aa06cee237",
+          "name": "移动机器人集群目标环绕编队控制对拓展移动机器人集群编队在军事和工业领域的应用场景具有重要的意义。",
+          "desc": "移动机器人集群目标环绕编队控制对拓展移动机器人集群编队在军事和工业领域的应用场景具有重要的意义。",
           "evidence": [
             {
-              "quote": "在稳定性分析中提出了基于非线性摄动系统和稳定集合退减理论的稳定性分析方法，补充了非线性系统稳定性理论",
+              "quote": "移动机器人集群目标环绕编队控制对拓展移动机器人集群编队在军事和工业领域的应用场景具有重要的意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3550,
-                "end_char": 3599
+                "start_char": 2953,
+                "end_char": 3000
               },
               "version": "4811d8b6bf6ef914f191"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-93b9effdf4ab"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ccecc0f4f3cd"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种实现航天器集群最优覆盖的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16605cf6d094",
+      "evidence": [
+        {
+          "quote": "一种实现航天器集群最优覆盖的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3688,
+            "end_char": 3703
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ccecc0f4f3cd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f5ebf4110141"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bearing-only formation tracking control of multi-agent systems with local reference frames and constant-velocity leaders",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c79ec7d5010",
+      "evidence": [
+        {
+          "quote": "Bearing-only formation tracking control of multi-agent systems with local reference frames and constant-velocity leaders",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3727,
+            "end_char": 3846
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-370744f76440"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-52e4b001379b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Consensus of general linear multi-agent systems under directed communication graph with limited data rate",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-80b6c9018750",
+      "evidence": [
+        {
+          "quote": "Consensus of general linear multi-agent systems under directed communication graph with limited data rate",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3905,
+            "end_char": 4009
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f5ebf4110141"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f634012ede97"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cooperative target enclosing control of multiple mobile robots subject to input disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ac190cba2b4",
+      "evidence": [
+        {
+          "quote": "Cooperative target enclosing control of multiple mobile robots subject to input disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4048,
+            "end_char": 4139
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed consensus of linear multi-agent systems with nonidentical random packet loss",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-76a77d66f6cd",
+      "evidence": [
+        {
+          "quote": "Distributed consensus of linear multi-agent systems with nonidentical random packet loss",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4190,
+            "end_char": 4277
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed leader-following formation control for mobile robots with unknown amplitudes of leader’s velocity",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9af836c39f11",
+      "evidence": [
+        {
+          "quote": "Distributed leader-following formation control for mobile robots with unknown amplitudes of leader’s velocity",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4316,
+            "end_char": 4424
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed entrapping control of multiple second-order mobile agents under a directed network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df8f76da04c2",
+      "evidence": [
+        {
+          "quote": "Distributed entrapping control of multiple second-order mobile agents under a directed network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4476,
+            "end_char": 4569
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cooperative moving-target enclosing of networked vehicles with constant linear velocities",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66af85c3b555",
+      "evidence": [
+        {
+          "quote": "Cooperative moving-target enclosing of networked vehicles with constant linear velocities",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4611,
+            "end_char": 4699
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Finite-time cooperative control for bearing-defined leader-following formation of multiple double-integrators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7829a6e87c7f",
+      "evidence": [
+        {
+          "quote": "Finite-time cooperative control for bearing-defined leader-following formation of multiple double-integrators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4757,
+            "end_char": 4865
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Leader-follower trajectory tracking control for a mobile robot with unknown amplitudes of reference velocities and input disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12d0f7f0dcc4",
+      "evidence": [
+        {
+          "quote": "Leader-follower trajectory tracking control for a mobile robot with unknown amplitudes of reference velocities and input disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4925,
+            "end_char": 5057
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Moving-target enclosing control for mobile agents with collision avoidance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-87ee90da8546",
+      "evidence": [
+        {
+          "quote": "Moving-target enclosing control for mobile agents with collision avoidance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5102,
+            "end_char": 5175
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "针对智能体集群不确定丢包的优化控制方法、系统和装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-49a641b7a3f0",
+      "evidence": [
+        {
+          "quote": "针对智能体集群不确定丢包的优化控制方法、系统和装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5235,
+            "end_char": 5259
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed optimization design of multi-agent systems with nonidentical packet losses",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-124275c34155",
+      "evidence": [
+        {
+          "quote": "Distributed optimization design of multi-agent systems with nonidentical packet losses",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5288,
+            "end_char": 5373
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种消除最佳路径算法运行结果中车辆碰撞的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd0b7c2e0f12",
+      "evidence": [
+        {
+          "quote": "一种消除最佳路径算法运行结果中车辆碰撞的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5411,
+            "end_char": 5432
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Leader-follower tracking control of mobile robot with unknown leader’s constant velocities",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-310965c38e3e",
+      "evidence": [
+        {
+          "quote": "Leader-follower tracking control of mobile robot with unknown leader’s constant velocities",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5458,
+            "end_char": 5547
+          },
+          "version": "4811d8b6bf6ef914f191"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

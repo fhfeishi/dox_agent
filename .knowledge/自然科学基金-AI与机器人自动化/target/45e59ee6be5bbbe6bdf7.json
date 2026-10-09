@@ -2,15 +2,20 @@
   "doc_id": "45e59ee6be5bbbe6bdf7",
   "version": "cb0dca0d8126d2ef01e0",
   "source_hash": "bf9694c52cd523e9a00bc140869c451a1391a3ef2dbb886130cf79d733c7e57e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:28:42.482337+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.139623+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b567768a93be",
-          "name": "微创关节置换手术机器人",
-          "desc": "面向微创化关节置换手术个性化、精确化的临床需求，以解决术后关节稳定性、软组织平衡性为目标",
+          "id": "item-560cd82d1d96",
+          "name": "面向微创化关节置换手术个性化、精确化的临床需求，以解决机器人临床环境下术后关节稳定性、软组织平衡性为目标，针对人机器人共",
+          "desc": "面向微创化关节置换手术个性化、精确化的临床需求，以解决机器人临床环境下术后关节稳定性、软组织平衡性为目标，针对人机器人共融环境下机器人对复杂手术过程的精确感知和人机协作机器人的精准操控问题，从个体关节的解剖学结构和病变组织特征提取研究出发，考虑假体形态对关节应力分布和振型影响，探究基于关节稳定性分析的关节置换手术精确规划方法；",
           "evidence": [
             {
-              "quote": "面向微创化关节置换手术个性化、精确化的临床需求，以解决机器人临床环境下术后关节稳定性、软组织平衡性为目标",
+              "quote": "面向微创化关节置换手术个性化、精确化的临床需求，以解决机器人临床环境下术后关节稳定性、软组织平衡性为目标，针对人机器人共融环境下机器人对复杂手术过程的精确感知和人机协作机器人的精准操控问题，从个体关节的解剖学结构和病变组织特征提取研究出发，考虑假体形态对关节应力分布和振型影响，探究基于关节稳定性分析的关节置换手术精确规划方法；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 661,
-                "end_char": 712
+                "end_char": 824
               },
               "version": "cb0dca0d8126d2ef01e0"
             }
@@ -38,93 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-902fe505f2ef",
-          "name": "人机共融精确感知与操控难",
-          "desc": "人机器人共融环境下机器人对复杂手术过程的精确感知和人机协作机器人的精准操控问题",
-          "evidence": [
-            {
-              "quote": "针对人机器人共融环境下机器人对复杂手术过程的精确感知和人机协作机器人的精准操控问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 714,
-                "end_char": 754
-              },
-              "version": "cb0dca0d8126d2ef01e0"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-fed258fb4e13",
-          "name": "关节动力学分析与置换规划",
-          "desc": "基于有限元和关节疲劳的关节动力学分析与关节假体-骨界面稳定性分析方法",
+          "id": "item-7bff9b47cade",
+          "name": "在此基础上，研究被动跟随操作方式对机器人精度控制的影响，基于变导纳控制方法，构建基于人机协作模式的机器人精准控制策略；",
+          "desc": "在此基础上，研究被动跟随操作方式对机器人精度控制的影响，基于变导纳控制方法，构建基于人机协作模式的机器人精准控制策略；",
           "evidence": [
             {
-              "quote": "提出基于有限元和关节疲劳的关节动力学分析与关节假体-骨界面稳定性分析方法",
+              "quote": "在此基础上，研究被动跟随操作方式对机器人精度控制的影响，基于变导纳控制方法，构建基于人机协作模式的机器人精准控制策略；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2799,
-                "end_char": 2834
+                "start_char": 880,
+                "end_char": 938
               },
               "version": "cb0dca0d8126d2ef01e0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-79617f4c109c",
-          "name": "医生-机器人双向感知模型",
-          "desc": "基于3D-CNN和操作力的医生操作意图辨识方法以及基于手术磨削力反馈的骨组织辨识方法",
+          "id": "item-c3a23bc8b48f",
+          "name": "提出基于3D-CNN和操作力的医生操作意图辨识方法，以及基于手术磨削力反馈的骨组织辨识方法，构建医生-机器人-关节磨削界",
+          "desc": "提出基于3D-CNN和操作力的医生操作意图辨识方法，以及基于手术磨削力反馈的骨组织辨识方法，构建医生-机器人-关节磨削界面的双向感知模型，提升手术安全性。",
           "evidence": [
             {
-              "quote": "提出基于3D-CNN和操作力的医生操作意图辨识方法，以及基于手术磨削力反馈的骨组织辨识方法，构建医生-机器人-关节磨削界面的双向感知模型",
+              "quote": "提出基于3D-CNN和操作力的医生操作意图辨识方法，以及基于手术磨削力反馈的骨组织辨识方法，构建医生-机器人-关节磨削界面的双向感知模型，提升手术安全性。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2862,
-                "end_char": 2929
+                "end_char": 2938
               },
               "version": "cb0dca0d8126d2ef01e0"
             }
-          ]
-        },
-        {
-          "id": "item-c817f599b059",
-          "name": "可变导纳控制与虚拟夹具",
-          "desc": "基于人体运动学模型的模糊模型参考学习控制可变导纳方法与基于人工势场的虚拟夹具模型",
-          "evidence": [
-            {
-              "quote": "提出基于人体运动学模型的模糊模型参考学习控制可变导纳方法与基于人工势场的虚拟夹具模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2939,
-                "end_char": 2980
-              },
-              "version": "cb0dca0d8126d2ef01e0"
-            }
-          ]
-        },
-        {
-          "id": "item-e8b4866c53b6",
-          "name": "软组织平衡量化分析",
-          "desc": "基于关节运动模型和聚类分析的关节假体垫片设计方法，构建关节置换软组织量化分析模型",
-          "evidence": [
-            {
-              "quote": "基于关节运动模型和聚类分析的关节假体垫片设计方法，构建关节置换软组织量化分析模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3007,
-                "end_char": 3046
-              },
-              "version": "cb0dca0d8126d2ef01e0"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,80 +91,752 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6b2e30cb0195",
-          "name": "个性化关节置换手术机器人系统",
-          "desc": "经过系统集成构建并进行初步验证的手术机器人系统",
+          "id": "item-739bc9f886a1",
+          "name": "面向微创化关节置换手术个性化、精确化的临床需求，以解决机器人临床环境下术后关节稳定性、软组织平衡性为目标，针对人机器人共",
+          "desc": "面向微创化关节置换手术个性化、精确化的临床需求，以解决机器人临床环境下术后关节稳定性、软组织平衡性为目标，针对人机器人共融环境下机器人对复杂手术过程的精确感知和人机协作机器人的精准操控问题，从个体关节的解剖学结构和病变组织特征提取研究出发，考虑假体形态对关节应力分布和振型影响，探究基于关节稳定性分析的关节置换手术精确规划方法；",
           "evidence": [
             {
-              "quote": "经过系统集成，构建个性化关节置换手术机器人系统，并进行了初步的验证工作",
+              "quote": "面向微创化关节置换手术个性化、精确化的临床需求，以解决机器人临床环境下术后关节稳定性、软组织平衡性为目标，针对人机器人共融环境下机器人对复杂手术过程的精确感知和人机协作机器人的精准操控问题，从个体关节的解剖学结构和病变组织特征提取研究出发，考虑假体形态对关节应力分布和振型影响，探究基于关节稳定性分析的关节置换手术精确规划方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3075,
-                "end_char": 3109
+                "start_char": 661,
+                "end_char": 824
               },
               "version": "cb0dca0d8126d2ef01e0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-4bd562222212",
+          "name": "面向微创化关节置换手术个性化、精确化的临床需求，以解决机器人临床环境下术后关节稳定性、软组织平衡性为目标。",
+          "desc": "面向微创化关节置换手术个性化、精确化的临床需求，以解决机器人临床环境下术后关节稳定性、软组织平衡性为目标。",
+          "evidence": [
+            {
+              "quote": "面向微创化关节置换手术个性化、精确化的临床需求，以解决机器人临床环境下术后关节稳定性、软组织平衡性为目标。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2746,
+                "end_char": 2798
+              },
+              "version": "cb0dca0d8126d2ef01e0"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b567768a93be"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-902fe505f2ef"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Variable Admittance Control for Human-Robot Collaboration in Robot-Assisted Orthopedic Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e7efc8bdf710",
+      "evidence": [
+        {
+          "quote": "Variable Admittance Control for Human-Robot Collaboration in Robot-Assisted Orthopedic Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3165,
+            "end_char": 3258
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-902fe505f2ef"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-79617f4c109c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种同步提取运动想象信号时⁃频⁃空特征的 卷积神经网络算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d17224f1ef5e",
+      "evidence": [
+        {
+          "quote": "一种同步提取运动想象信号时⁃频⁃空特征的 卷积神经网络算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3347,
+            "end_char": 3375
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-902fe505f2ef"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c817f599b059"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Detecting self-paced walking intention based on fNIRS technology for the development of BCI",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d414982113b5",
+      "evidence": [
+        {
+          "quote": "Detecting self-paced walking intention based on fNIRS technology for the development of BCI",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3409,
+            "end_char": 3499
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fed258fb4e13"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6b2e30cb0195"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于上肢外骨骼机器人回旋运动的关节",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-93cc1e8222e2",
+      "evidence": [
+        {
+          "quote": "一种用于上肢外骨骼机器人回旋运动的关节",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3579,
+            "end_char": 3597
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e8b4866c53b6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6b2e30cb0195"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A fully coupled framework for in silico investigation of in-stent restenosis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-56165bb609fd",
+      "evidence": [
+        {
+          "quote": "A fully coupled framework for in silico investigation of in-stent restenosis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3616,
+            "end_char": 3691
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on fNIRS Recognition Method of Upper Limb Movement Intention",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c0d15b2eca2",
+      "evidence": [
+        {
+          "quote": "Research on fNIRS Recognition Method of Upper Limb Movement Intention",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3771,
+            "end_char": 3839
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A GPU parallelization scheme for 3D agent-based simulation of instent restenosis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b2ec27af6567",
+      "evidence": [
+        {
+          "quote": "A GPU parallelization scheme for 3D agent-based simulation of instent restenosis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3923,
+            "end_char": 4002
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于虚拟夹具的手术机器人导纳控制安全策略",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0150a11bd25e",
+      "evidence": [
+        {
+          "quote": "基于虚拟夹具的手术机器人导纳控制安全策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4071,
+            "end_char": 4090
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Between-Subject fNIRS-BCI Study on Detecting Self-Regulated Intention During Walking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f94279832ad7",
+      "evidence": [
+        {
+          "quote": "A Between-Subject fNIRS-BCI Study on Detecting Self-Regulated Intention During Walking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4127,
+            "end_char": 4212
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Mechanism of a Multi-Branch Structure for EEG-Based Motor Imagery Classification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a0082417a72",
+      "evidence": [
+        {
+          "quote": "The Mechanism of a Multi-Branch Structure for EEG-Based Motor Imagery Classification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4281,
+            "end_char": 4364
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Super-Resolution reconstruction of Bone Micro-Structure Micro-CT Image based on Auto-Encoder Structure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92e4dfb39363",
+      "evidence": [
+        {
+          "quote": "Super-Resolution reconstruction of Bone Micro-Structure Micro-CT Image based on Auto-Encoder Structure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4435,
+            "end_char": 4536
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向术前焦虑症的低频理疗仪研制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-485bc779060a",
+      "evidence": [
+        {
+          "quote": "面向术前焦虑症的低频理疗仪研制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4610,
+            "end_char": 4624
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safety Control Method of Robot-Assisted Cataract Surgery with Virtual Fixture and Virtual Force Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c8aa650a049",
+      "evidence": [
+        {
+          "quote": "Safety Control Method of Robot-Assisted Cataract Surgery with Virtual Fixture and Virtual Force Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4663,
+            "end_char": 4766
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种助力上肢外骨骼机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1fecfa7f48f9",
+      "evidence": [
+        {
+          "quote": "一种助力上肢外骨骼机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4873,
+            "end_char": 4884
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coordinated control of a dual-arm robot for surgical instrument sorting tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d8636b15e879",
+      "evidence": [
+        {
+          "quote": "Coordinated control of a dual-arm robot for surgical instrument sorting tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4904,
+            "end_char": 4980
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Novel Force Measurement System for Soft Tissue Balance in Total Knee Arthroplasty Based on Flexible Pressure Sensor Arrays",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62d4551df846",
+      "evidence": [
+        {
+          "quote": "Novel Force Measurement System for Soft Tissue Balance in Total Knee Arthroplasty Based on Flexible Pressure Sensor Arrays",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5053,
+            "end_char": 5174
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于模糊模型参考学习控制的手术机器人人机交互",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0ab0eab69bc",
+      "evidence": [
+        {
+          "quote": "基于模糊模型参考学习控制的手术机器人人机交互",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5290,
+            "end_char": 5311
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Motion Intention Classification of Multi-Class Upper Limbs Actions for Brain Machine Interface Applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd998b2e33b6",
+      "evidence": [
+        {
+          "quote": "Motion Intention Classification of Multi-Class Upper Limbs Actions for Brain Machine Interface Applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5357,
+            "end_char": 5463
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Correlation between Thoracic-abdominal Surface and Tumor Motion based on 3D Point Cloud: A Preliminary Study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-98fe62bec617",
+      "evidence": [
+        {
+          "quote": "Correlation between Thoracic-abdominal Surface and Tumor Motion based on 3D Point Cloud: A Preliminary Study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5539,
+            "end_char": 5646
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种手术机器人人机协同运动模糊模型参考学习控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ed23a5b364c",
+      "evidence": [
+        {
+          "quote": "一种手术机器人人机协同运动模糊模型参考学习控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5723,
+            "end_char": 5747
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Respiratory Motion Compensation Based on Phase Prediction for Spine Surgery Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2f641157b54c",
+      "evidence": [
+        {
+          "quote": "Respiratory Motion Compensation Based on Phase Prediction for Spine Surgery Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5767,
+            "end_char": 5848
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "有限元和拓扑联合优化方法及其在机器人结构轻量化设计中的应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4f05a418375",
+      "evidence": [
+        {
+          "quote": "有限元和拓扑联合优化方法及其在机器人结构轻量化设计中的应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5907,
+            "end_char": 5935
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prothesis sensor used for soft tissue balancing in total knee arthroplasty",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-709c0034551e",
+      "evidence": [
+        {
+          "quote": "Prothesis sensor used for soft tissue balancing in total knee arthroplasty",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5970,
+            "end_char": 6043
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of an E-Health App for Lower Limb Postoperative Rehabilitation Based on Plantar Pressure Analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-220dd7b8c73d",
+      "evidence": [
+        {
+          "quote": "Development of an E-Health App for Lower Limb Postoperative Rehabilitation Based on Plantar Pressure Analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6132,
+            "end_char": 6240
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on blood oxygen activity in cerebral cortical motor function areas with adjustment intention during gait",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3147430a745",
+      "evidence": [
+        {
+          "quote": "Research on blood oxygen activity in cerebral cortical motor function areas with adjustment intention during gait",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6332,
+            "end_char": 6444
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Two-Stage Refine Filtering Method for EEG-Based Motor Imagery Classification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-910dad9b2fec",
+      "evidence": [
+        {
+          "quote": "A Novel Two-Stage Refine Filtering Method for EEG-Based Motor Imagery Classification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6500,
+            "end_char": 6583
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于Stewart平台改进的脚踝康复机构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6259d9c6f3f2",
+      "evidence": [
+        {
+          "quote": "基于Stewart平台改进的脚踝康复机构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6657,
+            "end_char": 6676
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual Servoed Robotic Mouse Oocyte Rotation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5822f6620c0",
+      "evidence": [
+        {
+          "quote": "Visual Servoed Robotic Mouse Oocyte Rotation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6696,
+            "end_char": 6739
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于三坐标测量机的机器人位姿精度检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-589aa1cdb945",
+      "evidence": [
+        {
+          "quote": "基于三坐标测量机的机器人位姿精度检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6794,
+            "end_char": 6813
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "微创手术机器人关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c21e8adfea8",
+      "evidence": [
+        {
+          "quote": "微创手术机器人关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6842,
+            "end_char": 6855
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于样本熵与时频分析的手部抓握运动意图预测",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b0f3915d41d",
+      "evidence": [
+        {
+          "quote": "基于样本熵与时频分析的手部抓握运动意图预测",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6878,
+            "end_char": 6898
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Multi-Branch 3D Convolutional Neural Network for EEG-Based Motor Imagery Classification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6cfda85ea36e",
+      "evidence": [
+        {
+          "quote": "A Multi-Branch 3D Convolutional Neural Network for EEG-Based Motor Imagery Classification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6978,
+            "end_char": 7066
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Variable Admittance Control Based on Trajectory Prediction of Human Hand Motion for Physical Human-Robot Interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-87fbc0d2ecd3",
+      "evidence": [
+        {
+          "quote": "Variable Admittance Control Based on Trajectory Prediction of Human Hand Motion for Physical Human-Robot Interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7160,
+            "end_char": 7275
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Spinal Canal Generation Method based on Vertebral Foramina Inpainting of Spinal CT Images by using BEGAN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f208907412da",
+      "evidence": [
+        {
+          "quote": "Research on Spinal Canal Generation Method based on Vertebral Foramina Inpainting of Spinal CT Images by using BEGAN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7391,
+            "end_char": 7506
+          },
+          "version": "cb0dca0d8126d2ef01e0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 34,
+    "listed": 34,
+    "by_kind": {
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 21,
+        "extracted": 21
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

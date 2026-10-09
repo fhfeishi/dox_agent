@@ -2,15 +2,20 @@
   "doc_id": "536f71cd0681b4ce2aa2",
   "version": "936ec3992ce79501eec0",
   "source_hash": "1e7f42f2ba1ebe5d46400e43c627a28b4753252951a4a83aa35436b6d7f48602",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:28:42.543991+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.259100+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8ff998308de8",
-          "name": "可重构绳索牵引并联机器人",
-          "desc": "构型可在线切换的绳索牵引并联机器人的构型规划、高性能控制与新构型优化",
+          "id": "item-33c19b84c2c8",
+          "name": "本项目围绕一种构型可以在线切换的可重构绳索牵引并联机器人，通过巧妙的构型切换实现性能优化和避障轨迹规划，并且借助运动学参",
+          "desc": "本项目围绕一种构型可以在线切换的可重构绳索牵引并联机器人，通过巧妙的构型切换实现性能优化和避障轨迹规划，并且借助运动学参数和动力学参数的实时精确估计，确保构型切换下的高精度自适应控制。",
           "evidence": [
             {
-              "quote": "本项目围绕可重构绳索牵引并联机器人的构型规划、高性能控制和新构型优化开展研究工作",
+              "quote": "本项目围绕一种构型可以在线切换的可重构绳索牵引并联机器人，通过巧妙的构型切换实现性能优化和避障轨迹规划，并且借助运动学参数和动力学参数的实时精确估计，确保构型切换下的高精度自适应控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2973,
-                "end_char": 3012
+                "start_char": 671,
+                "end_char": 762
               },
               "version": "936ec3992ce79501eec0"
             }
@@ -38,93 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d76dbc59d1cd",
-          "name": "构型绳长多变量强耦合",
-          "desc": "构型和绳长多变量强耦合下的高维空间轨迹探索与参数收敛难题",
-          "evidence": [
-            {
-              "quote": "从多绳索协同和动力学参数自适应两个角度出发",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3140,
-                "end_char": 3160
-              },
-              "version": "936ec3992ce79501eec0"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-d499a66510db",
-          "name": "带约束路径规划避障",
-          "desc": "通过协调绳索引出点位置和绳长的变化实现避障的路径规划方法",
+          "id": "item-d5ff75d758a1",
+          "name": "4）在实际平台上全面验证所提出的理论方法，实现一套适用于可重构绳索牵引并联机器人构型规划和高精度控制的软件系统。",
+          "desc": "4）在实际平台上全面验证所提出的理论方法，实现一套适用于可重构绳索牵引并联机器人构型规划和高精度控制的软件系统。",
           "evidence": [
             {
-              "quote": "提出了一种适合可重构绳索牵引并联机器人的带约束路径规划方法，通过协调绳索引出点位置和绳长的变化实现避障",
+              "quote": "4）在实际平台上全面验证所提出的理论方法，实现一套适用于可重构绳索牵引并联机器人构型规划和高精度控制的软件系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3025,
-                "end_char": 3075
+                "start_char": 949,
+                "end_char": 1004
               },
               "version": "936ec3992ce79501eec0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bf623ed0f8b6",
-          "name": "最优重构规划方法",
-          "desc": "根据任务所需工作空间合理安排绳索引出点的移动顺序和数量",
+          "id": "item-593fad502921",
+          "name": "本项目围绕可重构绳索牵引并联机器人的构型规划、高性能控制和新构型优化开展研究工作，主要研究内容包括：1）提出了一种适合可",
+          "desc": "本项目围绕可重构绳索牵引并联机器人的构型规划、高性能控制和新构型优化开展研究工作，主要研究内容包括：1）提出了一种适合可重构绳索牵引并联机器人的带约束路径规划方法，通过协调绳索引出点位置和绳长的变化实现避障；",
           "evidence": [
             {
-              "quote": "提出了一种最优重构规划方法，根据任务所需的工作空间合理安排绳索引出点的移动顺序和数量，大大减少了重构动作，节省了能量",
+              "quote": "本项目围绕可重构绳索牵引并联机器人的构型规划、高性能控制和新构型优化开展研究工作，主要研究内容包括：1）提出了一种适合可重构绳索牵引并联机器人的带约束路径规划方法，通过协调绳索引出点位置和绳长的变化实现避障；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3079,
-                "end_char": 3136
+                "start_char": 2973,
+                "end_char": 3076
               },
               "version": "936ec3992ce79501eec0"
             }
-          ]
-        },
-        {
-          "id": "item-51c001049281",
-          "name": "高精度自适应协同控制",
-          "desc": "保证参数快速收敛的绳索牵引并联机器人自适应协同控制方法",
-          "evidence": [
-            {
-              "quote": "提出了一种保证参数快速收敛的绳索牵引并联机器人高精度自适应协同控制方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3162,
-                "end_char": 3196
-              },
-              "version": "936ec3992ce79501eec0"
-            }
-          ]
-        },
-        {
-          "id": "item-e11e018da495",
-          "name": "双环动力学混合阻抗控制",
-          "desc": "双环动力学控制方案与基于自适应摩擦力补偿的混合阻抗控制方法",
-          "evidence": [
-            {
-              "quote": "提出了一种新颖的双环动力学控制方案，通过引入一种并联的双环跟踪策略来提供更全面的控制思路，融合了张力控制环和位置控制环",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3200,
-                "end_char": 3258
-              },
-              "version": "936ec3992ce79501eec0"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,108 +91,652 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5f62ccc9658e",
-          "name": "论文与专利成果",
-          "desc": "发表学术论文26篇（SCI 20篇、EI 6篇），申请国家发明专利10项",
+          "id": "item-17756b091536",
+          "name": "本项目围绕一种构型可以在线切换的可重构绳索牵引并联机器人，通过巧妙的构型切换实现性能优化和避障轨迹规划，并且借助运动学参",
+          "desc": "本项目围绕一种构型可以在线切换的可重构绳索牵引并联机器人，通过巧妙的构型切换实现性能优化和避障轨迹规划，并且借助运动学参数和动力学参数的实时精确估计，确保构型切换下的高精度自适应控制。",
           "evidence": [
             {
-              "quote": "研究成果在国内外权威期刊和会议上发表学术论文 26 篇，包括 SCI收录论文20篇，EI收录论文6篇",
+              "quote": "本项目围绕一种构型可以在线切换的可重构绳索牵引并联机器人，通过巧妙的构型切换实现性能优化和避障轨迹规划，并且借助运动学参数和动力学参数的实时精确估计，确保构型切换下的高精度自适应控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3419,
-                "end_char": 3468
+                "start_char": 671,
+                "end_char": 762
               },
               "version": "936ec3992ce79501eec0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-9c663edc6d4a",
-          "name": "FAST新型馈源舱机构",
-          "desc": "设计并优化新型索驱动馈源舱机构，实现减重与天顶角观测范围扩大",
+          "id": "item-d57ca6404ded",
+          "name": "本项目围绕可重构绳索牵引并联机器人的构型规划、高性能控制和新构型优化开展研究工作，主要研究内容包括：1）提出了一种适合可",
+          "desc": "本项目围绕可重构绳索牵引并联机器人的构型规划、高性能控制和新构型优化开展研究工作，主要研究内容包括：1）提出了一种适合可重构绳索牵引并联机器人的带约束路径规划方法，通过协调绳索引出点位置和绳长的变化实现避障；",
           "evidence": [
             {
-              "quote": "设计并优化了一种新型索驱动馈源舱机构，实现馈源舱整体减重以及天顶角观测范围扩大",
+              "quote": "本项目围绕可重构绳索牵引并联机器人的构型规划、高性能控制和新构型优化开展研究工作，主要研究内容包括：1）提出了一种适合可重构绳索牵引并联机器人的带约束路径规划方法，通过协调绳索引出点位置和绳长的变化实现避障；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3358,
-                "end_char": 3396
+                "start_char": 2973,
+                "end_char": 3076
               },
               "version": "936ec3992ce79501eec0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8ff998308de8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d76dbc59d1cd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Modelling of a Flexible Cable-Driven Robotic Joint With Variable Stiffness Capability",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ef031a5b253",
+      "evidence": [
+        {
+          "quote": "Design and Modelling of a Flexible Cable-Driven Robotic Joint With Variable Stiffness Capability",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3645,
+            "end_char": 3740
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d76dbc59d1cd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d499a66510db"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "6自由度绳索牵引并联机器人的快速终端滑模同步控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec62bf6183fb",
+      "evidence": [
+        {
+          "quote": "6自由度绳索牵引并联机器人的快速终端滑模同步控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3813,
+            "end_char": 3836
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d76dbc59d1cd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bf623ed0f8b6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal Reconfiguration Planning of a 3-DOF Point-Mass Cable-Driven Parallel Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2e2590707e5e",
+      "evidence": [
+        {
+          "quote": "Optimal Reconfiguration Planning of a 3-DOF Point-Mass Cable-Driven Parallel Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3864,
+            "end_char": 3945
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d76dbc59d1cd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-51c001049281"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种FAST新型馈源舱机构结构参数优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35c70672ca0b",
+      "evidence": [
+        {
+          "quote": "一种FAST新型馈源舱机构结构参数优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4005,
+            "end_char": 4025
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e11e018da495"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5f62ccc9658e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dimensional Optimization and Anti-Disturbance Analysis of an Upgraded Feed Mechanism in FAST",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41f64b9da846",
+      "evidence": [
+        {
+          "quote": "Dimensional Optimization and Anti-Disturbance Analysis of an Upgraded Feed Mechanism in FAST",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4087,
+            "end_char": 4178
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bf623ed0f8b6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9c663edc6d4a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory Planning of Radio Source Tracking for the New Feed Cabin Mechanism in FAST",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a0cf23a5645",
+      "evidence": [
+        {
+          "quote": "Trajectory Planning of Radio Source Tracking for the New Feed Cabin Mechanism in FAST",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4320,
+            "end_char": 4404
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2023年ICARM最佳论文提名奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f6bbe3d527c1",
+      "evidence": [
+        {
+          "quote": "2023年ICARM最佳论文提名奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4533,
+            "end_char": 4549
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-Precision Adaptive Control of Cable-Driven Parallel Robots With Convergence Guarantee",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2df58f193a4e",
+      "evidence": [
+        {
+          "quote": "High-Precision Adaptive Control of Cable-Driven Parallel Robots With Convergence Guarantee",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4600,
+            "end_char": 4689
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Offline Reinforcement Learning of Robotic Control Using Deep Kinematics and Dynamics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd6c8729acf5",
+      "evidence": [
+        {
+          "quote": "Offline Reinforcement Learning of Robotic Control Using Deep Kinematics and Dynamics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4760,
+            "end_char": 4843
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An online reconfiguration strategy of the cable-driven parallel robot for pHRI via APF-Adjusted linear approximation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-166bec09344b",
+      "evidence": [
+        {
+          "quote": "An online reconfiguration strategy of the cable-driven parallel robot for pHRI via APF-Adjusted linear approximation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4892,
+            "end_char": 5007
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stiffness Optimization of Cable-Driven Humanoid Manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ee4f2827f432",
+      "evidence": [
+        {
+          "quote": "Stiffness Optimization of Cable-Driven Humanoid Manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5054,
+            "end_char": 5113
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Comprehensive Performance Optimization of a Novel Anthropomorphic Dexterous Hand",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c60c0585f89c",
+      "evidence": [
+        {
+          "quote": "Comprehensive Performance Optimization of a Novel Anthropomorphic Dexterous Hand",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5209,
+            "end_char": 5288
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Synchronous Impedance Control of Cable-Driven Parallel Robots With External Interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-774be4ec5dda",
+      "evidence": [
+        {
+          "quote": "Synchronous Impedance Control of Cable-Driven Parallel Robots With External Interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5396,
+            "end_char": 5482
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive-Interaction-Based Online Reconfiguration of Cable-Driven Parallel Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cfa88e66c948",
+      "evidence": [
+        {
+          "quote": "Adaptive-Interaction-Based Online Reconfiguration of Cable-Driven Parallel Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5532,
+            "end_char": 5612
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种绳索牵引并联机器人的绳索牵导引系统与并联机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1de7a384d6ae",
+      "evidence": [
+        {
+          "quote": "一种绳索牵引并联机器人的绳索牵导引系统与并联机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5658,
+            "end_char": 5682
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Stiffness Analysis of a Novel 7-DOF Cable-Driven Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb4251e69d73",
+      "evidence": [
+        {
+          "quote": "Design and Stiffness Analysis of a Novel 7-DOF Cable-Driven Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5720,
+            "end_char": 5790
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hybrid Impedance Control of Cable-Driven Parallel Robots Using Adaptive Friction Compensation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e3a42007301",
+      "evidence": [
+        {
+          "quote": "Hybrid Impedance Control of Cable-Driven Parallel Robots Using Adaptive Friction Compensation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5865,
+            "end_char": 5957
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Synthetic design and analysis of the new feed cabin mechanism in Five-hundred-meter Aperture Spherical radio Telescope (FAST)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a3feeb7e0b5",
+      "evidence": [
+        {
+          "quote": "Synthetic design and analysis of the new feed cabin mechanism in Five-hundred-meter Aperture Spherical radio Telescope (FAST)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6005,
+            "end_char": 6129
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Accurate Model Identification for a 7-DOF Cable-Driven Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0a37068c2a7",
+      "evidence": [
+        {
+          "quote": "Accurate Model Identification for a 7-DOF Cable-Driven Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6271,
+            "end_char": 6336
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of a Flexible Cable-Driven Dexterous Hand and Arm-Hand Integrated System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-76e78a8d52a4",
+      "evidence": [
+        {
+          "quote": "Development of a Flexible Cable-Driven Dexterous Hand and Arm-Hand Integrated System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6422,
+            "end_char": 6505
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Constrained Path Planning for Reconfiguration of Cable-Driven Parallel Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f8c06c8db57a",
+      "evidence": [
+        {
+          "quote": "Constrained Path Planning for Reconfiguration of Cable-Driven Parallel Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6591,
+            "end_char": 6667
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Forward Kinematics and Natural Frequency Analysis of the Upgraded Feed Cabin in FAST",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-69077ebf3785",
+      "evidence": [
+        {
+          "quote": "Forward Kinematics and Natural Frequency Analysis of the Upgraded Feed Cabin in FAST",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6740,
+            "end_char": 6823
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Disturbance Observer-Based Model Predictive Control for Cable-Driven Parallel Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-045a4eaa92ed",
+      "evidence": [
+        {
+          "quote": "Disturbance Observer-Based Model Predictive Control for Cable-Driven Parallel Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6974,
+            "end_char": 7057
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and implementation of fast terminal sliding mode control with synchronization error for cable-driven parallel robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e48fb050d46",
+      "evidence": [
+        {
+          "quote": "Design and implementation of fast terminal sliding mode control with synchronization error for cable-driven parallel robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7105,
+            "end_char": 7227
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-Based Reinforcement Learning Inspired by Augmented PD for Robotic Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-235ca15146de",
+      "evidence": [
+        {
+          "quote": "Model-Based Reinforcement Learning Inspired by Augmented PD for Robotic Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7299,
+            "end_char": 7377
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种绳索牵引并联机器人重构规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e7c0b5f4056",
+      "evidence": [
+        {
+          "quote": "一种绳索牵引并联机器人重构规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7424,
+            "end_char": 7440
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dual-Loop Dynamic Control of Cable-Driven Parallel Robots Without Online Tension Distribution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d5d0b115333",
+      "evidence": [
+        {
+          "quote": "Dual-Loop Dynamic Control of Cable-Driven Parallel Robots Without Online Tension Distribution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7469,
+            "end_char": 7561
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "FAST新型馈源舱机构运动学正解求解及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20d1d1a3296e",
+      "evidence": [
+        {
+          "quote": "FAST新型馈源舱机构运动学正解求解及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7619,
+            "end_char": 7641
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种采用扰动观测器的绳索牵引并联机器人分层力-位置混合控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f281ad8933fe",
+      "evidence": [
+        {
+          "quote": "一种采用扰动观测器的绳索牵引并联机器人分层力-位置混合控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7702,
+            "end_char": 7732
+          },
+          "version": "936ec3992ce79501eec0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 29,
+    "listed": 29,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

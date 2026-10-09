@@ -2,15 +2,20 @@
   "doc_id": "32ad2acbc99f77e0cfcf",
   "version": "2fb1cb0a2db4caf213f8",
   "source_hash": "681febb235ab7fc73a7cc91bbba3ee03e5f3bd84f13d553e35c2cd8fd4888c42",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:38:36.107549+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.986419+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-44b39c6e8a85",
-          "name": "AUV水下目标搜索",
-          "desc": "深海高压浑浊恶劣环境下AUV自主水下机器人的目标自主搜索",
+          "id": "item-b1b3eac06554",
+          "name": "AUV深海水下目标自主搜索研究是一个极具挑战性的研究领域。",
+          "desc": "AUV深海水下目标自主搜索研究是一个极具挑战性的研究领域。",
           "evidence": [
             {
-              "quote": "项目形成了一套系统的AUV水下目标自主搜索理论，包括AUV时空信息融合水下地图构建技术，AUV生物启发全覆盖水下搜索路径规划与安全避障技术",
+              "quote": "AUV深海水下目标自主搜索研究是一个极具挑战性的研究领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2881,
-                "end_char": 2949
+                "start_char": 649,
+                "end_char": 677
+              },
+              "version": "2fb1cb0a2db4caf213f8"
+            }
+          ]
+        },
+        {
+          "id": "item-4e87ead4620b",
+          "name": "在民用空难海难目标搜索与未来海洋无人战争中有重要应用前景，特别是针对水下非合作目标的自主搜索，跟踪博弈与围捕攻击有直接的",
+          "desc": "在民用空难海难目标搜索与未来海洋无人战争中有重要应用前景，特别是针对水下非合作目标的自主搜索，跟踪博弈与围捕攻击有直接的应用价值。",
+          "evidence": [
+            {
+              "quote": "在民用空难海难目标搜索与未来海洋无人战争中有重要应用前景，特别是针对水下非合作目标的自主搜索，跟踪博弈与围捕攻击有直接的应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3304,
+                "end_char": 3368
               },
               "version": "2fb1cb0a2db4caf213f8"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ea05d8451393",
-          "name": "深海恶劣环境搜索难",
-          "desc": "深海高压浑浊、暗弱多变的恶劣环境与AUV自身非线性、强耦合、模型不确定性使搜索极具挑战",
-          "evidence": [
-            {
-              "quote": "深海高压浑浊、暗弱多变的恶劣环境，AUV(Autonomous Underwater Vehicle)自主水下机器人自身的非线性、强耦合与模型不确定性，使得AUV深海水下目标自主搜索技术研究极具挑战性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2416,
-                "end_char": 2515
-              },
-              "version": "2fb1cb0a2db4caf213f8"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-91779dacb649",
-          "name": "异质多传感信息融合",
-          "desc": "利用水声和光视觉等异质传感器冗余互补特性获取水下环境信息并生成地图",
+          "id": "item-94cd7509cb39",
+          "name": ".项目形成了一套系统的AUV水下目标自主搜索理论，包括AUV时空信息融合水下地图构建技术，AUV生物启发全覆盖水下搜索路",
+          "desc": ".项目形成了一套系统的AUV水下目标自主搜索理论，包括AUV时空信息融合水下地图构建技术，AUV生物启发全覆盖水下搜索路径规划与安全避障技术，AUV模型预测滑模串级轨迹跟踪控制技术。",
           "evidence": [
             {
-              "quote": "项目针对时变海流、动态障碍物环境，提出异质多传感器时空信息融合环境感知方法，利用水声和光视觉等异质传感器之间的冗余和互补特性来获取水下环境信息",
+              "quote": ".项目形成了一套系统的AUV水下目标自主搜索理论，包括AUV时空信息融合水下地图构建技术，AUV生物启发全覆盖水下搜索路径规划与安全避障技术，AUV模型预测滑模串级轨迹跟踪控制技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2518,
-                "end_char": 2588
+                "start_char": 2880,
+                "end_char": 2970
               },
               "version": "2fb1cb0a2db4caf213f8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-71803a814e3d",
-          "name": "生物启发神经网络规划",
-          "desc": "海流激励（抑制）生物启发神经网络模型实现全覆盖自主搜索路径规划与避障",
+          "id": "item-ec528ba0ef1f",
+          "name": "接着将环境地图栅格单元与神经网络神经元一一映射，构建海流激励（抑制）生物启发神经网络模型，借助生物启发神经网络模型的在线",
+          "desc": "接着将环境地图栅格单元与神经网络神经元一一映射，构建海流激励（抑制）生物启发神经网络模型，借助生物启发神经网络模型的在线无学习与自适应输出特性，实现AUV水下全覆盖自主搜索路径规划与避障；",
           "evidence": [
             {
-              "quote": "构建海流激励（抑制）生物启发神经网络模型，借助生物启发神经网络模型的在线无学习与自适应输出特性，实现AUV水下全覆盖自主搜索路径规划与避障",
+              "quote": "接着将环境地图栅格单元与神经网络神经元一一映射，构建海流激励（抑制）生物启发神经网络模型，借助生物启发神经网络模型的在线无学习与自适应输出特性，实现AUV水下全覆盖自主搜索路径规划与避障；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 780,
-                "end_char": 848
+                "start_char": 756,
+                "end_char": 849
               },
               "version": "2fb1cb0a2db4caf213f8"
             }
-          ]
-        },
-        {
-          "id": "item-4867198eb60a",
-          "name": "模型预测滑模控制",
-          "desc": "时变海流下AUV模型预测滑模串级跟踪控制策略，克服驱动饱和与模型不确定性",
-          "evidence": [
-            {
-              "quote": "提出时变海流下AUV模型预测滑模串级跟踪控制策略，应用量子粒子群模型的约束优化和滑模控制的模型不确定鲁棒性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 893,
-                "end_char": 945
-              },
-              "version": "2fb1cb0a2db4caf213f8"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +107,1272 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e52868e99cc8",
-          "name": "实验验证系统",
-          "desc": "以“智海号”和“海翔号”AUV为实验载体构建实验验证系统并进行实际水域试验",
+          "id": "item-202766321110",
+          "name": "AUV深海水下目标自主搜索研究是一个极具挑战性的研究领域。",
+          "desc": "AUV深海水下目标自主搜索研究是一个极具挑战性的研究领域。",
           "evidence": [
             {
-              "quote": "以“智海号“和“海翔号”AUV为实验载体，构建AUV水下目标自主搜索实验验证系统，并进行实际水域的试验验证",
+              "quote": "AUV深海水下目标自主搜索研究是一个极具挑战性的研究领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2826,
-                "end_char": 2878
+                "start_char": 649,
+                "end_char": 677
               },
               "version": "2fb1cb0a2db4caf213f8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-d55fb3488279",
-          "name": "论文专利与省奖",
-          "desc": "发表SCI期刊论文50篇（IEEE顶刊21篇），授权发明专利11项，获上海市技术发明二等奖等奖项",
+          "id": "item-31ad227cc0ec",
+          "name": "深海高压浑浊、暗弱多变的恶劣环境，AUV(Autonomous Underwater Vehicle)自主水下机器人自身",
+          "desc": "深海高压浑浊、暗弱多变的恶劣环境，AUV(Autonomous Underwater Vehicle)自主水下机器人自身的非线性、强耦合与模型不确定性，使得AUV深海水下目标自主搜索技术研究极具挑战性。",
           "evidence": [
             {
-              "quote": "发表SCI期刊论文50篇，其中IEEE顶刊论文21篇，会议论文7篇，出版专著1部；授权发明专利11项，申请美国PCT发明专利1项",
+              "quote": "深海高压浑浊、暗弱多变的恶劣环境，AUV(Autonomous Underwater Vehicle)自主水下机器人自身的非线性、强耦合与模型不确定性，使得AUV深海水下目标自主搜索技术研究极具挑战性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3017,
-                "end_char": 3080
+                "start_char": 2416,
+                "end_char": 2516
               },
               "version": "2fb1cb0a2db4caf213f8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-44b39c6e8a85"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ea05d8451393"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "随机干扰下拓扑时变Kuramoto网络事件触发固定时间同步",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e4a880afa1c",
+      "evidence": [
+        {
+          "quote": "随机干扰下拓扑时变Kuramoto网络事件触发固定时间同步",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3394,
+            "end_char": 3422
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ea05d8451393"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-91779dacb649"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Algorithm of Multi-AUVs Task Assignmentand Path Planning Based on Biologically Inspired Neural Network Map",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-25755c85c471",
+      "evidence": [
+        {
+          "quote": "A Novel Algorithm of Multi-AUVs Task Assignmentand Path Planning Based on Biologically Inspired Neural Network Map",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3453,
+            "end_char": 3566
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ea05d8451393"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-71803a814e3d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Motion planning for an under-actuated autonomous underwater vehicle based on fast marching nonlinear model-predictive quantum particle swarm optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-50145365b034",
+      "evidence": [
+        {
+          "quote": "Motion planning for an under-actuated autonomous underwater vehicle based on fast marching nonlinear model-predictive quantum particle swarm optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3612,
+            "end_char": 3764
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ea05d8451393"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4867198eb60a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种双功能深潜器推进器系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b6bd60227746",
+      "evidence": [
+        {
+          "quote": "一种双功能深潜器推进器系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3810,
+            "end_char": 3822
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4867198eb60a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e52868e99cc8"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Tightly Coupled Inertial-Sonar Fusion for Localization of Underwater Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c73a8795727e",
+      "evidence": [
+        {
+          "quote": "A Tightly Coupled Inertial-Sonar Fusion for Localization of Underwater Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3850,
+            "end_char": 3926
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-71803a814e3d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d55fb3488279"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "桥梁水下结构损伤光视觉感知方法与装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7b039df79930",
+      "evidence": [
+        {
+          "quote": "桥梁水下结构损伤光视觉感知方法与装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3989,
+            "end_char": 4006
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Time-varying Formation Obstacle Avoidance Algorithm for Multiple AUVs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7458b316dc2b",
+      "evidence": [
+        {
+          "quote": "A Novel Time-varying Formation Obstacle Avoidance Algorithm for Multiple AUVs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4042,
+            "end_char": 4118
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Formation Obstacle Avoidance Algorithm of Multiple AUVs Based on Interfered Fluid Dynamical System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-64cadbd5ae6d",
+      "evidence": [
+        {
+          "quote": "Research on Formation Obstacle Avoidance Algorithm of Multiple AUVs Based on Interfered Fluid Dynamical System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4164,
+            "end_char": 4273
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "深海潜水器故障容错控制与安全自救关键技术创新及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e7b43d36af93",
+      "evidence": [
+        {
+          "quote": "深海潜水器故障容错控制与安全自救关键技术创新及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4315,
+            "end_char": 4339
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水下观察装置及操作方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e0cca7707e1",
+      "evidence": [
+        {
+          "quote": "一种水下观察装置及操作方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4386,
+            "end_char": 4398
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tracking fault-tolerant control based on model predictive control for human occupied vehicle in three-dimensional underwater workspace",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ce307975894",
+      "evidence": [
+        {
+          "quote": "Tracking fault-tolerant control based on model predictive control for human occupied vehicle in three-dimensional underwater workspace",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4438,
+            "end_char": 4571
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "UNDERWATER POINT SOURCE POLARIZED LIGHT DETECTION DEVICE AND HEADING ANGLE MEASUREMENT METHOD",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-516a1dcd9eec",
+      "evidence": [
+        {
+          "quote": "UNDERWATER POINT SOURCE POLARIZED LIGHT DETECTION DEVICE AND HEADING ANGLE MEASUREMENT METHOD",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4627,
+            "end_char": 4719
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种新型小波图像融合的水下目标增强算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33b4790072cd",
+      "evidence": [
+        {
+          "quote": "一种新型小波图像融合的水下目标增强算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4738,
+            "end_char": 4756
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于神经动力学结构的欠驱动AUV轨迹规划方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-676a32edc81b",
+      "evidence": [
+        {
+          "quote": "基于神经动力学结构的欠驱动AUV轨迹规划方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4777,
+            "end_char": 4801
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SIO-UV: Rapid and Robust Sonar Intertial Odometry for Underwater Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1000cfa8bbb9",
+      "evidence": [
+        {
+          "quote": "SIO-UV: Rapid and Robust Sonar Intertial Odometry for Underwater Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4842,
+            "end_char": 4914
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Fusion Underwater Salient Object Detection Based on Multi-Scale Saliency and Spatial Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2c2e4da9d640",
+      "evidence": [
+        {
+          "quote": "A Fusion Underwater Salient Object Detection Based on Multi-Scale Saliency and Spatial Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4972,
+            "end_char": 5070
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory Tracking Control for a Hybrid Underwater Vehicle in Free-Flying and Crawling Operation Modes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-728ff5f36a68",
+      "evidence": [
+        {
+          "quote": "Trajectory Tracking Control for a Hybrid Underwater Vehicle in Free-Flying and Crawling Operation Modes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5122,
+            "end_char": 5224
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Incremental Sparse Gaussian Process-Based Model Predictive Control for Trajectory Tracking of Unmanned Underwater Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-609a424de556",
+      "evidence": [
+        {
+          "quote": "Incremental Sparse Gaussian Process-Based Model Predictive Control for Trajectory Tracking of Unmanned Underwater Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5282,
+            "end_char": 5403
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A cooperative heterogeneous formation control and motion planning design of 3U: UAV-USV-UUV systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4fbf804557ee",
+      "evidence": [
+        {
+          "quote": "A cooperative heterogeneous formation control and motion planning design of 3U: UAV-USV-UUV systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5472,
+            "end_char": 5570
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多功能自动化深海采矿车",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a7d259ad64a",
+      "evidence": [
+        {
+          "quote": "一种多功能自动化深海采矿车",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5637,
+            "end_char": 5649
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于多水下航行器编队控制的水下目标协同搬运研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52b81a6c60b1",
+      "evidence": [
+        {
+          "quote": "基于多水下航行器编队控制的水下目标协同搬运研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5690,
+            "end_char": 5712
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online Iterative Optimization for Angle Tracking of Electromagnetic Scanning Micro-Mirror With Unmatched Interference and Hysteresis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff479d8b2e3d",
+      "evidence": [
+        {
+          "quote": "Online Iterative Optimization for Angle Tracking of Electromagnetic Scanning Micro-Mirror With Unmatched Interference and Hysteresis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5742,
+            "end_char": 5873
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An AUV path planning algorithm based on model predictive controland obstacle restraint",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbdc37441b54",
+      "evidence": [
+        {
+          "quote": "An AUV path planning algorithm based on model predictive controland obstacle restraint",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5913,
+            "end_char": 5998
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Task allocation for multi-AUV system under ocean current environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f881697a441",
+      "evidence": [
+        {
+          "quote": "Task allocation for multi-AUV system under ocean current environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6049,
+            "end_char": 6116
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Fault Diagnostic Approach for Underwater Thrusters Based on Generative Adversarial Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-768fde91cf6d",
+      "evidence": [
+        {
+          "quote": "A Fault Diagnostic Approach for Underwater Thrusters Based on Generative Adversarial Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6164,
+            "end_char": 6255
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Neural Network-Based Adaptive Formation Control for Cooperative Transportation of an Underwater Payload Using a Fleet of UUVs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c3f22642613",
+      "evidence": [
+        {
+          "quote": "A Novel Neural Network-Based Adaptive Formation Control for Cooperative Transportation of an Underwater Payload Using a Fleet of UUVs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6329,
+            "end_char": 6461
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Self-competition Leader-follower Multi-AUV Formation Control Based on Improved PSO Algorithm with Energy Consumption Allocation,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e11544d952f8",
+      "evidence": [
+        {
+          "quote": "Self-competition Leader-follower Multi-AUV Formation Control Based on Improved PSO Algorithm with Energy Consumption Allocation,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6526,
+            "end_char": 6653
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Obstacle Avoidance Consensus Control for Multi-AUV Formation System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6d2df4dbf60",
+      "evidence": [
+        {
+          "quote": "A Novel Obstacle Avoidance Consensus Control for Multi-AUV Formation System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6705,
+            "end_char": 6779
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "水下机器人感知规划与控制技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f7066b3c5c3e",
+      "evidence": [
+        {
+          "quote": "水下机器人感知规划与控制技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6835,
+            "end_char": 6848
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tracking fault-tolerant control based on model prediction control for human occupied vehicle in Three-Dimensional Underwater Workspace",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f7a591e3be6",
+      "evidence": [
+        {
+          "quote": "Tracking fault-tolerant control based on model prediction control for human occupied vehicle in Three-Dimensional Underwater Workspace",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6874,
+            "end_char": 7007
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-AUV Formation Reconfiguration Obstacle Avoidance Algorithm Based on Affine Transformation and Improved Artificial Potential Field Under Ocean Currents Disturbance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-79f2acd040e3",
+      "evidence": [
+        {
+          "quote": "Multi-AUV Formation Reconfiguration Obstacle Avoidance Algorithm Based on Affine Transformation and Improved Artificial Potential Field Under Ocean Currents Disturbance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7062,
+            "end_char": 7229
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A gated dual-attention network for multivariate time series classiﬁcation in AUV fault diagnosis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9b025db83289",
+      "evidence": [
+        {
+          "quote": "A gated dual-attention network for multivariate time series classiﬁcation in AUV fault diagnosis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7275,
+            "end_char": 7370
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Improved Reeds–Shepp and Distributed Auction Algorithm for Task Allocation in Multi-AUV System with Both Specific Positional and Directional Requirement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-064ec3c31973",
+      "evidence": [
+        {
+          "quote": "An Improved Reeds–Shepp and Distributed Auction Algorithm for Task Allocation in Multi-AUV System with Both Specific Positional and Directional Requirement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7420,
+            "end_char": 7574
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data Collection in Underwater Acoustic Sensor Networks Using Multiple AUVs With Sequential Greedy-QPSO and Fast Marching Algorithms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9567fa1c0971",
+      "evidence": [
+        {
+          "quote": "Data Collection in Underwater Acoustic Sensor Networks Using Multiple AUVs With Sequential Greedy-QPSO and Fast Marching Algorithms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7644,
+            "end_char": 7774
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Fusion Designed Improved Elastic Potential Field Method in AUV Underwater Target Interception",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e070242b8f64",
+      "evidence": [
+        {
+          "quote": "A Fusion Designed Improved Elastic Potential Field Method in AUV Underwater Target Interception",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7848,
+            "end_char": 7942
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tracking controller based on model prediction control for remotely operated vehicle for thruster fault",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c9e3596ac2b",
+      "evidence": [
+        {
+          "quote": "Tracking controller based on model prediction control for remotely operated vehicle for thruster fault",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7986,
+            "end_char": 8087
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Underwater Object Detection Enhanced Algorithm based on YOLOv5-MH",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-618a3af1fd71",
+      "evidence": [
+        {
+          "quote": "A Novel Underwater Object Detection Enhanced Algorithm based on YOLOv5-MH",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8138,
+            "end_char": 8210
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The multi-AUV time-varying formation reconfiguration control based on rigid-graph theory and affine transformation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4b3246cd0ac",
+      "evidence": [
+        {
+          "quote": "The multi-AUV time-varying formation reconfiguration control based on rigid-graph theory and affine transformation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8258,
+            "end_char": 8371
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Effective Strategy for Distributed Unmanned Underwater Vehicles to Encircle and Capture Intelligent Targets",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bdf38ee3651c",
+      "evidence": [
+        {
+          "quote": "An Effective Strategy for Distributed Unmanned Underwater Vehicles to Encircle and Capture Intelligent Targets",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8429,
+            "end_char": 8538
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-AUV collaborative search for multiple targets in a dynamic obstacle environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-11a2ef6b7cb5",
+      "evidence": [
+        {
+          "quote": "Multi-AUV collaborative search for multiple targets in a dynamic obstacle environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8598,
+            "end_char": 8682
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fault Detection and Identification of Underwater Thruster Without Fault Sample Based on Adversarial Variational Autoencoder",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fe9d0a2b1786",
+      "evidence": [
+        {
+          "quote": "Fault Detection and Identification of Underwater Thruster Without Fault Sample Based on Adversarial Variational Autoencoder",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8751,
+            "end_char": 8873
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "事件触发的多AUV编队模型预测控制算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2605f5d69995",
+      "evidence": [
+        {
+          "quote": "事件触发的多AUV编队模型预测控制算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8911,
+            "end_char": 8929
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "海流环境下多AUV多目标生物启发任务分配与路径规划算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1003c474e046",
+      "evidence": [
+        {
+          "quote": "海流环境下多AUV多目标生物启发任务分配与路径规划算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8955,
+            "end_char": 8981
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Obstacle avoidance control of Multi-AUV Formation with Third- Order Dynamics based on IAPF in 3-dimensional environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-addcb382c6ea",
+      "evidence": [
+        {
+          "quote": "Obstacle avoidance control of Multi-AUV Formation with Third- Order Dynamics based on IAPF in 3-dimensional environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9010,
+            "end_char": 9128
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Adaptive Formation Reconfiguration Control for Multiple Autonomous Underwater Vehicles Based on Affine Transformation in Three-Dimensional Ocean Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-931f30746703",
+      "evidence": [
+        {
+          "quote": "Distributed Adaptive Formation Reconfiguration Control for Multiple Autonomous Underwater Vehicles Based on Affine Transformation in Three-Dimensional Ocean Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9174,
+            "end_char": 9341
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "海流影响下的UUV模型预测自适应滑模跟踪控制算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-564aa82d7fcd",
+      "evidence": [
+        {
+          "quote": "海流影响下的UUV模型预测自适应滑模跟踪控制算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9397,
+            "end_char": 9420
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Formation control and motion planning of multiple AUVs under external disturbance: Rigid graph theory and interfered fluid flow-based approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1560cfea7b47",
+      "evidence": [
+        {
+          "quote": "Formation control and motion planning of multiple AUVs under external disturbance: Rigid graph theory and interfered fluid flow-based approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9443,
+            "end_char": 9584
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "YOLOv7t-CEBC Network for Underwater Litter Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f7d2b09c907",
+      "evidence": [
+        {
+          "quote": "YOLOv7t-CEBC Network for Underwater Litter Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9644,
+            "end_char": 9695
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水下点源偏振光检测装置及其航向角测量的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b1b29edf74f5",
+      "evidence": [
+        {
+          "quote": "一种水下点源偏振光检测装置及其航向角测量的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9741,
+            "end_char": 9763
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "深远海双功能探测无人潜航器关键技术与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-872fa62f6983",
+      "evidence": [
+        {
+          "quote": "深远海双功能探测无人潜航器关键技术与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9806,
+            "end_char": 9825
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水下无人航行器回收装置及操作方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d6ba5b4b4ed4",
+      "evidence": [
+        {
+          "quote": "一种水下无人航行器回收装置及操作方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9855,
+            "end_char": 9872
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种潜水器水下应急自救装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a4e3e696103",
+      "evidence": [
+        {
+          "quote": "一种潜水器水下应急自救装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9906,
+            "end_char": 9918
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Information Fusion Fault Diagnosis Method for Deep-Sea Human Occupied Vehicle Thruster Based on Deep Belief Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2cd6da0a7516",
+      "evidence": [
+        {
+          "quote": "Information Fusion Fault Diagnosis Method for Deep-Sea Human Occupied Vehicle Thruster Based on Deep Belief Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9947,
+            "end_char": 10061
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Survey of Underwater Search for Multi-target Using Multi-AUV: Task Allocation, Path Planning, and Formation Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d9847cb77ad",
+      "evidence": [
+        {
+          "quote": "A Survey of Underwater Search for Multi-target Using Multi-AUV: Task Allocation, Path Planning, and Formation Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10139,
+            "end_char": 10255
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Hybrid Algorithm of Sea Object Classification Based on Multi-sensor and Multi-level Track",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d62351d0130",
+      "evidence": [
+        {
+          "quote": "A Novel Hybrid Algorithm of Sea Object Classification Based on Multi-sensor and Multi-level Track",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10314,
+            "end_char": 10410
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种深海潜水器推进器故障辨识的深度卷积神经网络学习方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b62910eadc2d",
+      "evidence": [
+        {
+          "quote": "一种深海潜水器推进器故障辨识的深度卷积神经网络学习方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10461,
+            "end_char": 10487
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dual-Sampling Noise2Noise: Efffcient Single-Image Denoising",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41467718c8b6",
+      "evidence": [
+        {
+          "quote": "Dual-Sampling Noise2Noise: Efffcient Single-Image Denoising",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10513,
+            "end_char": 10571
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "可变翼双功能无人潜航器深海搜索关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-19fbd5db1ea8",
+      "evidence": [
+        {
+          "quote": "可变翼双功能无人潜航器深海搜索关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10615,
+            "end_char": 10636
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进YOLOv5s的鱼雷检测算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed17f6c20793",
+      "evidence": [
+        {
+          "quote": "基于改进YOLOv5s的鱼雷检测算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10673,
+            "end_char": 10690
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PGL: A short-time model for ship trajectory prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20b57c784b2b",
+      "evidence": [
+        {
+          "quote": "PGL: A short-time model for ship trajectory prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10716,
+            "end_char": 10769
+          },
+          "version": "2fb1cb0a2db4caf213f8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 60,
+    "listed": 60,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 40,
+        "extracted": 40
+      },
+      "专利": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

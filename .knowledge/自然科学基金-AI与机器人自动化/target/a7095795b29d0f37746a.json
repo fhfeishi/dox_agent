@@ -2,15 +2,20 @@
   "doc_id": "a7095795b29d0f37746a",
   "version": "94ae9681a19da0f1acc1",
   "source_hash": "4f39988de7098b92b718850583727f618cf2909e50b1a43c8f81ccab07d1bd98",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:27.720241+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.123711+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-053540f8651d",
-          "name": "网络空间认知引导文本生成",
-          "desc": "面向网络空间用户情感认知个性化动态化隐匿化特点的文本生成",
+          "id": "item-713f20eb89aa",
+          "name": "对话系统既具有研究价值，又具有商业价值，可应用于智能客服、心理医疗和舆论引导等多个领域。",
+          "desc": "对话系统既具有研究价值，又具有商业价值，可应用于智能客服、心理医疗和舆论引导等多个领域。",
           "evidence": [
             {
-              "quote": "围绕网络空间认知引导需求，充分考虑网络空间用户情感认知个性化、动态化、隐匿化等特点，重点研究网络空间用户情感认知分析、知识增强的可控内容生成等关键技术",
+              "quote": "对话系统既具有研究价值，又具有商业价值，可应用于智能客服、心理医疗和舆论引导等多个领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2326,
-                "end_char": 2400
+                "start_char": 653,
+                "end_char": 696
               },
               "version": "94ae9681a19da0f1acc1"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d83797739c76",
-          "name": "通用回复与知识匮乏",
-          "desc": "端到端模型易生成千篇一律通用回复缺乏情绪感知，对话系统知识匮乏",
-          "evidence": [
-            {
-              "quote": "端到端结构的模型容易生成诸如“好的”、“我不知道”等千篇一律的通用回复，缺乏情绪感知能力。其次，对话系统面临知识匮乏的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 750,
-                "end_char": 810
-              },
-              "version": "94ae9681a19da0f1acc1"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-f129c4a40533",
-          "name": "个性化情感认知测绘",
-          "desc": "多用户社交常识交互情绪分析框架实现个性化动态化情绪检测和溯因",
+          "id": "item-78ef3395d912",
+          "name": "大模型已成为内容生成的重要技术手段，针对大模型应用中参数多、训练慢、推断慢等问题，提出融合剪枝、矩阵分解和知识蒸馏的综合",
+          "desc": "大模型已成为内容生成的重要技术手段，针对大模型应用中参数多、训练慢、推断慢等问题，提出融合剪枝、矩阵分解和知识蒸馏的综合压缩方法，在情感分析任务上将模型推断计算量减少至5%内，从千亿浮点运算降低至十亿量级；",
           "evidence": [
             {
-              "quote": "提出基于多用户社交常识交互的情绪分析框架，实现了个性化、动态化的情绪检测和溯因，有效解决了复杂舆论环境下的精准情绪感知问题",
+              "quote": "大模型已成为内容生成的重要技术手段，针对大模型应用中参数多、训练慢、推断慢等问题，提出融合剪枝、矩阵分解和知识蒸馏的综合压缩方法，在情感分析任务上将模型推断计算量减少至5%内，从千亿浮点运算降低至十亿量级；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2546,
-                "end_char": 2606
+                "start_char": 2833,
+                "end_char": 2935
               },
               "version": "94ae9681a19da0f1acc1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5ede4e5e0bcb",
-          "name": "多维可控内容生成",
-          "desc": "主题可控、风格可控、情感可控的内容生成技术降低生成式模型内容风险",
+          "id": "item-2ebd08b63076",
+          "name": "目前主流的方法是基于端到端结构的序列编码-解码模型，但这一类方法尚不能保证自动回复质量，主要体现在：首先，端到端结构的模",
+          "desc": "目前主流的方法是基于端到端结构的序列编码-解码模型，但这一类方法尚不能保证自动回复质量，主要体现在：首先，端到端结构的模型容易生成诸如“好的”、“我不知道”等千篇一律的通用回复，缺乏情绪感知能力。",
           "evidence": [
             {
-              "quote": "分别从主题可控、风格可控、情感可控等多维度，提出基于主题先验知识的主题可控内容生成、语义和风格特征解耦的风格可控内容生成、常识图谱增强的情感可控内容生成技术",
+              "quote": "目前主流的方法是基于端到端结构的序列编码-解码模型，但这一类方法尚不能保证自动回复质量，主要体现在：首先，端到端结构的模型容易生成诸如“好的”、“我不知道”等千篇一律的通用回复，缺乏情绪感知能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2709,
-                "end_char": 2786
+                "start_char": 697,
+                "end_char": 794
               },
               "version": "94ae9681a19da0f1acc1"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,692 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4eaa1318956e",
-          "name": "大模型轻量化压缩",
-          "desc": "融合剪枝矩阵分解知识蒸馏，情感分析推断计算量减少至5%内，训练提速约3倍",
+          "id": "item-39dd361d734d",
+          "name": "对话系统既具有研究价值，又具有商业价值，可应用于智能客服、心理医疗和舆论引导等多个领域。",
+          "desc": "对话系统既具有研究价值，又具有商业价值，可应用于智能客服、心理医疗和舆论引导等多个领域。",
           "evidence": [
             {
-              "quote": "提出融合剪枝、矩阵分解和知识蒸馏的综合压缩方法，在情感分析任务上将模型推断计算量减少至5%内，从千亿浮点运算降低至十亿量级；同时，针对模型训练开销大的问题，发现了知识蒸馏中的边际效益递减现象，指导训练时利用1%的隐藏状态蒸馏达到了全量蒸馏的效果，相近精度下训练提速约3倍",
+              "quote": "对话系统既具有研究价值，又具有商业价值，可应用于智能客服、心理医疗和舆论引导等多个领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2874,
-                "end_char": 3008
+                "start_char": 653,
+                "end_char": 696
               },
               "version": "94ae9681a19da0f1acc1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-5e4546614047",
+          "name": "围绕网络空间认知引导需求，充分考虑网络空间用户情感认知个性化、动态化、隐匿化等特点，重点研究网络空间用户情感认知分析、知",
+          "desc": "围绕网络空间认知引导需求，充分考虑网络空间用户情感认知个性化、动态化、隐匿化等特点，重点研究网络空间用户情感认知分析、知识增强的可控内容生成等关键技术，积极宣传主流价值观，为提高我国争取大国博弈网络空间认知主导权提供技术支撑。",
+          "evidence": [
+            {
+              "quote": "围绕网络空间认知引导需求，充分考虑网络空间用户情感认知个性化、动态化、隐匿化等特点，重点研究网络空间用户情感认知分析、知识增强的可控内容生成等关键技术，积极宣传主流价值观，为提高我国争取大国博弈网络空间认知主导权提供技术支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2326,
+                "end_char": 2438
+              },
+              "version": "94ae9681a19da0f1acc1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-053540f8651d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d83797739c76"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Check It Again:Progressive Visual Question Answering via Visual Entailment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9312c0c28bc1",
+      "evidence": [
+        {
+          "quote": "Check It Again:Progressive Visual Question Answering via Visual Entailment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3035,
+            "end_char": 3108
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d83797739c76"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f129c4a40533"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Maximum Entropy Loss, the Silver Bullet Targeting Backdoor Attacks in Pre-trained Language Models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de65a35bde79",
+      "evidence": [
+        {
+          "quote": "Maximum Entropy Loss, the Silver Bullet Targeting Backdoor Attacks in Pre-trained Language Models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3177,
+            "end_char": 3273
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d83797739c76"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5ede4e5e0bcb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sarcasm Detection with Commonsense Knowledge",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e3a121223b30",
+      "evidence": [
+        {
+          "quote": "Sarcasm Detection with Commonsense Knowledge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3345,
+            "end_char": 3388
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5ede4e5e0bcb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4eaa1318956e"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "情感分析进阶",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b59f09cbe6cd",
+      "evidence": [
+        {
+          "quote": "情感分析进阶",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3457,
+            "end_char": 3462
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f129c4a40533"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4eaa1318956e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Chain-of-Thought Reasoning in Tabular Language Models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-822af9d78603",
+      "evidence": [
+        {
+          "quote": "Chain-of-Thought Reasoning in Tabular Language Models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3487,
+            "end_char": 3539
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Compressing and Debiasing Vision-Language Pre-Trained Models for Visual Question Answering",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-98aec3f48b67",
+      "evidence": [
+        {
+          "quote": "Compressing and Debiasing Vision-Language Pre-Trained Models for Visual Question Answering",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3635,
+            "end_char": 3724
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Marginal Utility Diminishes: Exploring the Minimum Knowledge for BERT Knowledge Distillation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03632e2b7e2e",
+      "evidence": [
+        {
+          "quote": "Marginal Utility Diminishes: Exploring the Minimum Knowledge for BERT Knowledge Distillation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3801,
+            "end_char": 3892
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Detach and Attach: Stylized Image Captioning without Paired Stylized Dataset",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-19888ababd20",
+      "evidence": [
+        {
+          "quote": "Detach and Attach: Stylized Image Captioning without Paired Stylized Dataset",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3963,
+            "end_char": 4038
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-level Adaptive Contrastive Learning for Knowledge Internalization in Dialogue Generation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0eaa918c7d08",
+      "evidence": [
+        {
+          "quote": "Multi-level Adaptive Contrastive Learning for Knowledge Internalization in Dialogue Generation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4130,
+            "end_char": 4223
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "IM-TQA: A Chinese Table Question Answering Dataset with Implicit and Multi-type Table Structures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-264e32257b52",
+      "evidence": [
+        {
+          "quote": "IM-TQA: A Chinese Table Question Answering Dataset with Implicit and Multi-type Table Structures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4339,
+            "end_char": 4434
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ROSITA: Refined BERT Compression with Integrated Technique",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4953686b99d2",
+      "evidence": [
+        {
+          "quote": "ROSITA: Refined BERT Compression with Integrated Technique",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4531,
+            "end_char": 4588
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于序列化证据抽取的推理阅读理解方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e71681bfc774",
+      "evidence": [
+        {
+          "quote": "一种基于序列化证据抽取的推理阅读理解方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4638,
+            "end_char": 4660
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neutral Utterances are Also Causes: Enhancing Conversational Causal Emotion Entailment with Social Commonsense Knowledge",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-166a75f9fff2",
+      "evidence": [
+        {
+          "quote": "Neutral Utterances are Also Causes: Enhancing Conversational Causal Emotion Entailment with Social Commonsense Knowledge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4691,
+            "end_char": 4810
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Disentangled Intent Representations for Zero-shot Intent Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e7099d497d1e",
+      "evidence": [
+        {
+          "quote": "Learning Disentangled Intent Representations for Zero-shot Intent Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4908,
+            "end_char": 4982
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于迭代图注意力网络的用户兴趣预测方法及电子装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-957722272395",
+      "evidence": [
+        {
+          "quote": "基于迭代图注意力网络的用户兴趣预测方法及电子装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5060,
+            "end_char": 5083
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning to Win Lottery Tickets in BERT Transfer via Task-agnostic Mask Training",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c55a61ba7a31",
+      "evidence": [
+        {
+          "quote": "Learning to Win Lottery Tickets in BERT Transfer via Task-agnostic Mask Training",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5114,
+            "end_char": 5193
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Connecting Targets via Latent Topics And Contrastive Learning: A Unified Framework For Robust Zero-Shot and Few-Shot Stance Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a6c16798f30",
+      "evidence": [
+        {
+          "quote": "Connecting Targets via Latent Topics And Contrastive Learning: A Unified Framework For Robust Zero-Shot and Few-Shot Stance Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5283,
+            "end_char": 5415
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-Target Stance Detection Via Refined Meta-Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10f19b1d8bcb",
+      "evidence": [
+        {
+          "quote": "Cross-Target Stance Detection Via Refined Meta-Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5481,
+            "end_char": 5535
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Empathetic Dialogue Generation via Sensitive Emotion Recognition and Sensible Knowledge Selection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f36125fdb02",
+      "evidence": [
+        {
+          "quote": "Empathetic Dialogue Generation via Sensitive Emotion Recognition and Sensible Knowledge Selection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5592,
+            "end_char": 5688
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Language Prior Is Not the Only Shortcut: A Benchmark for Shortcut Learning in VQA",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c02accd32c92",
+      "evidence": [
+        {
+          "quote": "Language Prior Is Not the Only Shortcut: A Benchmark for Shortcut Learning in VQA",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5784,
+            "end_char": 5864
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Empirical Study of Instruction-tuning Large Language Models in Chinese",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aff7f14b0c97",
+      "evidence": [
+        {
+          "quote": "An Empirical Study of Instruction-tuning Large Language Models in Chinese",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5977,
+            "end_char": 6049
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Addressing Extraction and Generation Separately: Keyphrase Prediction With Pre-Trained Language Models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3059a42acc9a",
+      "evidence": [
+        {
+          "quote": "Addressing Extraction and Generation Separately: Keyphrase Prediction With Pre-Trained Language Models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6126,
+            "end_char": 6227
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "TAKE: Topic-shift Aware Knowledge sElection for Dialogue Generation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6b15f9262f24",
+      "evidence": [
+        {
+          "quote": "TAKE: Topic-shift Aware Knowledge sElection for Dialogue Generation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6273,
+            "end_char": 6339
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多层感知的问题答案抽取方法及电子装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d36764cbb3e5",
+      "evidence": [
+        {
+          "quote": "一种基于多层感知的问题答案抽取方法及电子装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6433,
+            "end_char": 6454
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Past, Present, and Future: Conversational Emotion Recognition through Structural Modeling of Psychological Knowledge",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5871a14f66ae",
+      "evidence": [
+        {
+          "quote": "Past, Present, and Future: Conversational Emotion Recognition through Structural Modeling of Psychological Knowledge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6485,
+            "end_char": 6600
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种层级对齐结构的问答立场检测方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e2ffd15770a2",
+      "evidence": [
+        {
+          "quote": "一种层级对齐结构的问答立场检测方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6656,
+            "end_char": 6675
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "融合实体和句子推理信息的问题答案提取方法及电子装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8613298dca22",
+      "evidence": [
+        {
+          "quote": "融合实体和句子推理信息的问题答案提取方法及电子装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6704,
+            "end_char": 6728
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhancing Zero-shot and Few-shot Stance Detection with Commonsense Knowledge Graph",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0fcdb4ed201d",
+      "evidence": [
+        {
+          "quote": "Enhancing Zero-shot and Few-shot Stance Detection with Commonsense Knowledge Graph",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6759,
+            "end_char": 6840
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards Robust Visual Question Answering: Making the Most of Biased Samples via Contrastive Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dfe0035766f9",
+      "evidence": [
+        {
+          "quote": "Towards Robust Visual Question Answering: Making the Most of Biased Samples via Contrastive Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6897,
+            "end_char": 6996
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Target Really Matters: Target-aware Contrastive Learning and Consistency Regularization for Few-shot Stance Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c701d443c2d",
+      "evidence": [
+        {
+          "quote": "Target Really Matters: Target-aware Contrastive Learning and Consistency Regularization for Few-shot Stance Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7096,
+            "end_char": 7212
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-modality Multiple Relations Learning for Knowledge-based Visual Question Answering",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c2d5b8dfcc2c",
+      "evidence": [
+        {
+          "quote": "Cross-modality Multiple Relations Learning for Knowledge-based Visual Question Answering",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7289,
+            "end_char": 7376
+          },
+          "version": "94ae9681a19da0f1acc1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 31,
+    "listed": 31,
+    "by_kind": {
+      "会议论文": {
+        "listed": 22,
+        "extracted": 22
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

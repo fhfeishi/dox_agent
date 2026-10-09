@@ -2,15 +2,20 @@
   "doc_id": "fee42fda68c8d6bd8170",
   "version": "b7467c68aefc8e9223bd",
   "source_hash": "d5a53e39a5c8eef19ac822b6527e9a07dc19b4535d3ebef70f01b328fdec1f38",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:51:45.361323+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:20.031136+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,95 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b5074b5b5915",
-          "name": "水声通信网络资源分配",
-          "desc": "多发射器-接收器对共存水声网络的自适应分配",
+          "id": "item-0c741d1cb0db",
+          "name": "有效地分配子信道、功率等资源能够给系统带来更高的通信容量和性能。",
+          "desc": "有效地分配子信道、功率等资源能够给系统带来更高的通信容量和性能。",
+          "evidence": [
+            {
+              "quote": "有效地分配子信道、功率等资源能够给系统带来更高的通信容量和性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 690
+              },
+              "version": "b7467c68aefc8e9223bd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-127d9dc6f47e",
+          "name": "随后，项目系统研究了非合作博弈模型的构建方法，揭示了多节点间的个体决策与竞争关系，进而提出了信道信息已知时多智能体协同认",
+          "desc": "随后，项目系统研究了非合作博弈模型的构建方法，揭示了多节点间的个体决策与竞争关系，进而提出了信道信息已知时多智能体协同认知策略。",
+          "evidence": [
+            {
+              "quote": "随后，项目系统研究了非合作博弈模型的构建方法，揭示了多节点间的个体决策与竞争关系，进而提出了信道信息已知时多智能体协同认知策略。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3187,
+                "end_char": 3250
+              },
+              "version": "b7467c68aefc8e9223bd"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9e7c0b1829e1",
+          "name": "具体而言，本项目首先深入解析了水声通信网络中的资源分配机制，系统研究了将联合资源分配问题转化为多状态马尔可夫决策的建模过",
+          "desc": "具体而言，本项目首先深入解析了水声通信网络中的资源分配机制，系统研究了将联合资源分配问题转化为多状态马尔可夫决策的建模过程，为状态信息已知和未知情况下多发射器-接收器对共存场景下的资源分配方法奠定了基础。",
+          "evidence": [
+            {
+              "quote": "具体而言，本项目首先深入解析了水声通信网络中的资源分配机制，系统研究了将联合资源分配问题转化为多状态马尔可夫决策的建模过程，为状态信息已知和未知情况下多发射器-接收器对共存场景下的资源分配方法奠定了基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3085,
+                "end_char": 3186
+              },
+              "version": "b7467c68aefc8e9223bd"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-28a817b72e7f",
+          "name": "有效地分配子信道、功率等资源能够给系统带来更高的通信容量和性能。",
+          "desc": "有效地分配子信道、功率等资源能够给系统带来更高的通信容量和性能。",
+          "evidence": [
+            {
+              "quote": "有效地分配子信道、功率等资源能够给系统带来更高的通信容量和性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 690
+              },
+              "version": "b7467c68aefc8e9223bd"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-0dc5374958b8",
+          "name": "针对水下复杂环境中多发射器-接收器对共存的水声通信网络所面临的挑战，本项目采用了分布式学习机制，旨在深入研究基于多智能体",
+          "desc": "针对水下复杂环境中多发射器-接收器对共存的水声通信网络所面临的挑战，本项目采用了分布式学习机制，旨在深入研究基于多智能体强化学习的水声通信网络自适应资源分配与优化方法。",
           "evidence": [
             {
               "quote": "针对水下复杂环境中多发射器-接收器对共存的水声通信网络所面临的挑战，本项目采用了分布式学习机制，旨在深入研究基于多智能体强化学习的水声通信网络自适应资源分配与优化方法。",
@@ -32,149 +123,276 @@
               },
               "version": "b7467c68aefc8e9223bd"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-fb98194d9e00",
-          "name": "RL应用于水下网络困难",
-          "desc": "学习模型、计算复杂度和算法适应性困难",
-          "evidence": [
-            {
-              "quote": "但是将已有多智能体强化学习算法应用于水下网络资源分配却面临着学习模型、计算复杂度和算法适应性等困难。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 776,
-                "end_char": 825
-              },
-              "version": "b7467c68aefc8e9223bd"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a5da8c1d89e3",
-          "name": "马尔科夫决策建模",
-          "desc": "联合资源分配问题转化为多状态马尔科夫决策模型",
-          "evidence": [
-            {
-              "quote": "系统研究了将联合资源分配问题转化为多状态马尔可夫决策的建模过程，为状态信息已知和未知情况下多发射器-接收器对共存场景下的资源分配方法奠定了基础。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3115,
-                "end_char": 3186
-              },
-              "version": "b7467c68aefc8e9223bd"
-            }
-          ]
-        },
-        {
-          "id": "item-43f7d092ce6e",
-          "name": "分层博弈学习",
-          "desc": "自适应探索利用机制利用历史奖励信息",
-          "evidence": [
-            {
-              "quote": "项目基于博弈均衡的特点，系统地研究了自适应调整探索与利用的概率机制，并充分利用历史奖励信息，提出了信道信息未知条件下的多智能体分层博弈学习方案。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3254,
-                "end_char": 3325
-              },
-              "version": "b7467c68aefc8e9223bd"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f1476afb587b",
-          "name": "分布式学习资源优化",
-          "desc": "协作竞争机制实现资源有效分配提升网络性能",
-          "evidence": [
-            {
-              "quote": "通过协作与竞争机制，实现了资源的更有效分配，提高整个水声通信网络的性能。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3367,
-                "end_char": 3402
-              },
-              "version": "b7467c68aefc8e9223bd"
-            }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b5074b5b5915"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fb98194d9e00"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Power Allocation Algorithm for Underwater Acoustic Communication Networks Based on Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a802b3c66524",
+      "evidence": [
+        {
+          "quote": "A Power Allocation Algorithm for Underwater Acoustic Communication Networks Based on Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3428,
+            "end_char": 3534
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fb98194d9e00"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a5da8c1d89e3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Deep Reinforcement Learning with Prioritized Replay for Power Allocation in Underwater Acoustic Communication Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b15141d35ee0",
+      "evidence": [
+        {
+          "quote": "Distributed Deep Reinforcement Learning with Prioritized Replay for Power Allocation in Underwater Acoustic Communication Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3580,
+            "end_char": 3709
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fb98194d9e00"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-43f7d092ce6e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Agent Transfer Reinforcement Learning for Resource Management in Underwater Acoustic Communication Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6166fd706781",
+      "evidence": [
+        {
+          "quote": "Multi-Agent Transfer Reinforcement Learning for Resource Management in Underwater Acoustic Communication Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3766,
+            "end_char": 3878
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-43f7d092ce6e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f1476afb587b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Reverse Path Planning Approach for Enhanced Performance of Multi-Degree-of-Freedom Industrial Manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d6f21484a65",
+      "evidence": [
+        {
+          "quote": "A Reverse Path Planning Approach for Enhanced Performance of Multi-Degree-of-Freedom Industrial Manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3935,
+            "end_char": 4042
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a5da8c1d89e3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f1476afb587b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An adaptive fuzzing method based on transformer and protocol similarity mutation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e51deff9d713",
+      "evidence": [
+        {
+          "quote": "An adaptive fuzzing method based on transformer and protocol similarity mutation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4131,
+            "end_char": 4210
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Feature fusion-based malicious code detection with dual attention mechanism and BiLSTM",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a97535ce6a81",
+      "evidence": [
+        {
+          "quote": "Feature fusion-based malicious code detection with dual attention mechanism and BiLSTM",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4273,
+            "end_char": 4358
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于挤压激励网络的恶意代码家族检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a873579b42dd",
+      "evidence": [
+        {
+          "quote": "基于挤压激励网络的恶意代码家族检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4429,
+            "end_char": 4447
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "多维信号处理数学建模及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-98a5d6d9b1c5",
+      "evidence": [
+        {
+          "quote": "多维信号处理数学建模及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4473,
+            "end_char": 4485
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "B-Spline-Based Curve Fitting to Cam Pitch Curve Using Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d0a33aed2cc",
+      "evidence": [
+        {
+          "quote": "B-Spline-Based Curve Fitting to Cam Pitch Curve Using Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4506,
+            "end_char": 4581
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-weight and multi-granularity fusion of underwater image enhancement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d74fb2435510",
+      "evidence": [
+        {
+          "quote": "Multi-weight and multi-granularity fusion of underwater image enhancement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4664,
+            "end_char": 4736
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-objective Game Learning Algorithm Based on Multi-armed Bandit in Underwater Acoustic Communication Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-45c116c7ccc5",
+      "evidence": [
+        {
+          "quote": "Multi-objective Game Learning Algorithm Based on Multi-armed Bandit in Underwater Acoustic Communication Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4785,
+            "end_char": 4897
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Jamming Games in Underwater Sensor Networks with Hierarchical Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9dcf9230015e",
+      "evidence": [
+        {
+          "quote": "Jamming Games in Underwater Sensor Networks with Hierarchical Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4933,
+            "end_char": 5002
+          },
+          "version": "b7467c68aefc8e9223bd"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

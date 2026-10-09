@@ -2,15 +2,20 @@
   "doc_id": "faa2f5c526f80ba8a18b",
   "version": "5bba86aa654408d40ee8",
   "source_hash": "ae8eeec81d175ba3ee6e6f8707bc59adeacad9c67087788bb9c8e3e5d53fd80f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:54.241193+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.968930+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-811a283f1207",
-          "name": "下肢康复机器人人机交互",
-          "desc": "患者主动参与与感知觉反馈促进神经通路重建、改善康复效果",
+          "id": "item-a43ab07be980",
+          "name": "机器人辅助的康复训练中，患者意图的主动参与并获得有效的感知觉反馈，能促进神经通路重建、改善康复效果，其中，本体感觉是人体",
+          "desc": "机器人辅助的康复训练中，患者意图的主动参与并获得有效的感知觉反馈，能促进神经通路重建、改善康复效果，其中，本体感觉是人体获得反馈信息的重要来源。",
           "evidence": [
             {
-              "quote": "机器人辅助的康复训练中，患者意图的主动参与并获得有效的感知觉反馈，能促进神经通路重建、改善康复效果",
+              "quote": "机器人辅助的康复训练中，患者意图的主动参与并获得有效的感知觉反馈，能促进神经通路重建、改善康复效果，其中，本体感觉是人体获得反馈信息的重要来源。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 669,
-                "end_char": 717
+                "end_char": 740
+              },
+              "version": "5bba86aa654408d40ee8"
+            }
+          ]
+        },
+        {
+          "id": "item-8a1bfde26d92",
+          "name": "projectName: 面向下肢康复机器人临床应用的双向感知增强人机交互方法",
+          "desc": "projectName: 面向下肢康复机器人临床应用的双向感知增强人机交互方法",
+          "evidence": [
+            {
+              "quote": "projectName: 面向下肢康复机器人临床应用的双向感知增强人机交互方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 42,
+                "end_char": 80
               },
               "version": "5bba86aa654408d40ee8"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-90a9b5e1ecef",
-          "name": "意图感知与本体反馈不足",
-          "desc": "现有系统在精确感知患者意图与强化本体感觉反馈方面存在较大不足",
+          "id": "item-290c8ec601de",
+          "name": ".首先，针对已有方法在应用肌电信号识别人体运动意图存在的识别率低和鲁棒性不足等问题，项目组提出了基于神经肌骨协同建模与自",
+          "desc": ".首先，针对已有方法在应用肌电信号识别人体运动意图存在的识别率低和鲁棒性不足等问题，项目组提出了基于神经肌骨协同建模与自适应学习的sEMG-关节扭矩建模方法，实现了基于人体下肢关键骨骼肌对下肢关节扭矩的可靠预测。",
           "evidence": [
             {
-              "quote": "现有下肢康复机器人系统在精确感知患者意图与强化本体感觉反馈两个方面还存在较大不足",
+              "quote": ".首先，针对已有方法在应用肌电信号识别人体运动意图存在的识别率低和鲁棒性不足等问题，项目组提出了基于神经肌骨协同建模与自适应学习的sEMG-关节扭矩建模方法，实现了基于人体下肢关键骨骼肌对下肢关节扭矩的可靠预测。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 744,
-                "end_char": 783
+                "start_char": 3287,
+                "end_char": 3392
               },
               "version": "5bba86aa654408d40ee8"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5cdfd1ed2009",
-          "name": "sEMG-关节扭矩神经肌骨建模",
-          "desc": "神经肌骨协同建模与自适应学习实现下肢关节扭矩可靠预测",
+          "id": "item-5567b7207444",
+          "name": "一方面，研究基于多模态神经信号的人体下肢动作识别与关节连续量的估计方法、神经信号与力位信息的统一表征与融合算法、意图识别",
+          "desc": "一方面，研究基于多模态神经信号的人体下肢动作识别与关节连续量的估计方法、神经信号与力位信息的统一表征与融合算法、意图识别模型的在线学习与自适应技术等，建立基于多模态信息融合的运动意图精确识别方法，增强机器人对患者的感知。",
           "evidence": [
             {
-              "quote": "提出了基于神经肌骨协同建模与自适应学习的sEMG-关节扭矩建模方法，实现了基于人体下肢关键骨骼肌对下肢关节扭矩的可靠预测",
+              "quote": "一方面，研究基于多模态神经信号的人体下肢动作识别与关节连续量的估计方法、神经信号与力位信息的统一表征与融合算法、意图识别模型的在线学习与自适应技术等，建立基于多模态信息融合的运动意图精确识别方法，增强机器人对患者的感知。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3332,
-                "end_char": 3391
+                "start_char": 820,
+                "end_char": 929
               },
               "version": "5bba86aa654408d40ee8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f9489df471b6",
-          "name": "FES+VR运动想象BCI范式",
-          "desc": "新型运动想象脑机接口范式提高下肢运动想象能力与效率",
+          "id": "item-ffad3fd05141",
+          "name": "针对现有康复机器人技术的不足，本项目对基于肌电和脑电信号的人体运动意图精准识别、新型运动想象脑机接口（BCI）范式以及基",
+          "desc": "针对现有康复机器人技术的不足，本项目对基于肌电和脑电信号的人体运动意图精准识别、新型运动想象脑机接口（BCI）范式以及基于BCI的患者参与度增强策略进行了研究和创新，构建了强化患者主动参与的机器人辅助康复训练方法并创新研制了全周期下肢康复机器人样机。",
           "evidence": [
             {
-              "quote": "提出了基于FES和VR反馈的新型运动想象BCI范式，有效提高了被试执行下肢运动想象的能力和效率",
+              "quote": "针对现有康复机器人技术的不足，本项目对基于肌电和脑电信号的人体运动意图精准识别、新型运动想象脑机接口（BCI）范式以及基于BCI的患者参与度增强策略进行了研究和创新，构建了强化患者主动参与的机器人辅助康复训练方法并创新研制了全周期下肢康复机器人样机。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3396,
-                "end_char": 3442
+                "start_char": 3162,
+                "end_char": 3286
               },
               "version": "5bba86aa654408d40ee8"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,352 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2366770f288e",
-          "name": "全周期康复机器人与临床试验",
-          "desc": "自主研制国际首款完整康复周期下肢康复机器人并完成20例临床试验",
+          "id": "item-0953183fe679",
+          "name": "机器人辅助的康复训练中，患者意图的主动参与并获得有效的感知觉反馈，能促进神经通路重建、改善康复效果，其中，本体感觉是人体",
+          "desc": "机器人辅助的康复训练中，患者意图的主动参与并获得有效的感知觉反馈，能促进神经通路重建、改善康复效果，其中，本体感觉是人体获得反馈信息的重要来源。",
           "evidence": [
             {
-              "quote": "项目组自主研制了国际首款可在完整康复周期为下肢障碍患者提供训练的机器人，并完成了20例临床试验，患者反馈良好",
+              "quote": "机器人辅助的康复训练中，患者意图的主动参与并获得有效的感知觉反馈，能促进神经通路重建、改善康复效果，其中，本体感觉是人体获得反馈信息的重要来源。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3558,
-                "end_char": 3611
+                "start_char": 669,
+                "end_char": 740
               },
               "version": "5bba86aa654408d40ee8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-1f84476eb66b",
-          "name": "专利与国际奖项",
-          "desc": "授权国际发明专利1项、国家发明专利5项，获日内瓦发明展金奖等奖项",
+          "id": "item-ad4551e05c16",
+          "name": "针对现有康复机器人技术的不足，本项目对基于肌电和脑电信号的人体运动意图精准识别、新型运动想象脑机接口（BCI）范式以及基",
+          "desc": "针对现有康复机器人技术的不足，本项目对基于肌电和脑电信号的人体运动意图精准识别、新型运动想象脑机接口（BCI）范式以及基于BCI的患者参与度增强策略进行了研究和创新，构建了强化患者主动参与的机器人辅助康复训练方法并创新研制了全周期下肢康复机器人样机。",
           "evidence": [
             {
-              "quote": "获得授权国际发明专利1项、国家发明专利5项，并获得第48届日内瓦国际发明展金奖、2021年中国自动化学会技术发明奖一等奖等奖项",
+              "quote": "针对现有康复机器人技术的不足，本项目对基于肌电和脑电信号的人体运动意图精准识别、新型运动想象脑机接口（BCI）范式以及基于BCI的患者参与度增强策略进行了研究和创新，构建了强化患者主动参与的机器人辅助康复训练方法并创新研制了全周期下肢康复机器人样机。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3648,
-                "end_char": 3710
+                "start_char": 3162,
+                "end_char": 3286
               },
               "version": "5bba86aa654408d40ee8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-811a283f1207"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-90a9b5e1ecef"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Personalized gait trajectory generation based on anthropometric features using Random Forest",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-94774837af88",
+      "evidence": [
+        {
+          "quote": "Personalized gait trajectory generation based on anthropometric features using Random Forest",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3737,
+            "end_char": 3828
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-90a9b5e1ecef"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5cdfd1ed2009"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Position Based Impedance Control Strategy for a Lower Limb Rehabilitation Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d53415b8800",
+      "evidence": [
+        {
+          "quote": "Position Based Impedance Control Strategy for a Lower Limb Rehabilitation Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3925,
+            "end_char": 4003
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-90a9b5e1ecef"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f9489df471b6"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "BCI and Multimodal Feedback Based Attention Regulation for Lower Limb Rehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-195a892ef9a2",
+      "evidence": [
+        {
+          "quote": "BCI and Multimodal Feedback Based Attention Regulation for Lower Limb Rehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4111,
+            "end_char": 4194
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5cdfd1ed2009"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2366770f288e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CNN-LSTM Network Based Prediction of Human Joint Angles Using Multi-Band SEMG and Historical Angles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8cf4611228e6",
+      "evidence": [
+        {
+          "quote": "CNN-LSTM Network Based Prediction of Human Joint Angles Using Multi-Band SEMG and Historical Angles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4290,
+            "end_char": 4388
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f9489df471b6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1f84476eb66b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进共空间模式与视觉反馈的闭环脑机接口",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd47d6d78ac8",
+      "evidence": [
+        {
+          "quote": "基于改进共空间模式与视觉反馈的闭环脑机接口",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4495,
+            "end_char": 4515
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Damping Control Based Speed Adjustment Strategy for a Lower Limb Rehabilitation Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f357f15d01ef",
+      "evidence": [
+        {
+          "quote": "Damping Control Based Speed Adjustment Strategy for a Lower Limb Rehabilitation Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4556,
+            "end_char": 4640
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive estimation of human-robot interaction force for lower limb rehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9789461a0f9a",
+      "evidence": [
+        {
+          "quote": "Adaptive estimation of human-robot interaction force for lower limb rehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4737,
+            "end_char": 4818
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "足下垂康复外骨骼机器人及自适应步态辅助控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-082b51325f63",
+      "evidence": [
+        {
+          "quote": "足下垂康复外骨骼机器人及自适应步态辅助控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4912,
+            "end_char": 4934
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural Correlates of Single-Task versus Cognitive-Motor Dual-Task Training",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f5fba39d1e8",
+      "evidence": [
+        {
+          "quote": "Neural Correlates of Single-Task versus Cognitive-Motor Dual-Task Training",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4972,
+            "end_char": 5045
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning regional attention convolutional neural network for motion intention recognition based on EEG data",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dda59b278d3c",
+      "evidence": [
+        {
+          "quote": "Learning regional attention convolutional neural network for motion intention recognition based on EEG data",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5122,
+            "end_char": 5228
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Full-cycle lower limb rehabilitation robot based on enhancement of synergistic neural engagement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7cebd763bd34",
+      "evidence": [
+        {
+          "quote": "Full-cycle lower limb rehabilitation robot based on enhancement of synergistic neural engagement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5338,
+            "end_char": 5433
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neuromuscular Activation Based SEMG-Torque Hybrid Modeling and Optimization for Robot Assisted Neurorehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aeb09c88c991",
+      "evidence": [
+        {
+          "quote": "Neuromuscular Activation Based SEMG-Torque Hybrid Modeling and Optimization for Robot Assisted Neurorehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5529,
+            "end_char": 5642
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Engagement Enhancement Based on Human-in-the-Loop Optimization for Neural Rehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c52054df5478",
+      "evidence": [
+        {
+          "quote": "Engagement Enhancement Based on Human-in-the-Loop Optimization for Neural Rehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5739,
+            "end_char": 5826
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第七届CAA青年科学家奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5637bb798723",
+      "evidence": [
+        {
+          "quote": "第七届CAA青年科学家奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5901,
+            "end_char": 5912
+          },
+          "version": "5bba86aa654408d40ee8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

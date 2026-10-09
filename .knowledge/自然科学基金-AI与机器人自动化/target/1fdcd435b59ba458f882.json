@@ -2,15 +2,20 @@
   "doc_id": "1fdcd435b59ba458f882",
   "version": "5a6548ab4ef4260b97cf",
   "source_hash": "b3c4645553e8a3592515a1f327fe973cd1fce387334cd254fe47134e361f5528",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:27.783746+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.778922+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1bdddd17cd39",
-          "name": "机器人时变优化控制",
-          "desc": "机器人优化控制可描述为含多类约束的动态时变最优化问题",
+          "id": "item-569f5108077e",
+          "name": "科学研究和工程实践中广泛存在着动态时变问题，如机器人的优化控制可描述成含多类约束的动态时变最优化问题。",
+          "desc": "科学研究和工程实践中广泛存在着动态时变问题，如机器人的优化控制可描述成含多类约束的动态时变最优化问题。",
           "evidence": [
             {
-              "quote": "时变问题广泛存在于科学研究与工程实践中，如机器人的优化控制问题在数学上可表征为含多类约束的时变优化问题",
+              "quote": "科学研究和工程实践中广泛存在着动态时变问题，如机器人的优化控制可描述成含多类约束的动态时变最优化问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2792,
-                "end_char": 2842
+                "start_char": 661,
+                "end_char": 711
+              },
+              "version": "5a6548ab4ef4260b97cf"
+            }
+          ]
+        },
+        {
+          "id": "item-41c7175ac4e3",
+          "name": "然而，面向动态时变问题求解，现有递归神经网络仍面临难以处理最优化问题中的不等式约束、缺乏模型性能的综合保障及提升机制、机",
+          "desc": "然而，面向动态时变问题求解，现有递归神经网络仍面临难以处理最优化问题中的不等式约束、缺乏模型性能的综合保障及提升机制、机器人应用范围亟待拓展等问题。",
+          "evidence": [
+            {
+              "quote": "然而，面向动态时变问题求解，现有递归神经网络仍面临难以处理最优化问题中的不等式约束、缺乏模型性能的综合保障及提升机制、机器人应用范围亟待拓展等问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 731,
+                "end_char": 804
               },
               "version": "5a6548ab4ef4260b97cf"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9012521c2d2a",
-          "name": "不等式约束与鲁棒性",
-          "desc": "现有递归神经网络难处理不等式约束、缺乏性能保障、鲁棒性不足",
+          "id": "item-f84e6beaf507",
+          "name": "然而，面向动态时变问题求解，现有递归神经网络仍面临难以处理最优化问题中的不等式约束、缺乏模型性能的综合保障及提升机制、机",
+          "desc": "然而，面向动态时变问题求解，现有递归神经网络仍面临难以处理最优化问题中的不等式约束、缺乏模型性能的综合保障及提升机制、机器人应用范围亟待拓展等问题。",
           "evidence": [
             {
-              "quote": "传统递归神经网络（RNN）在处理此类问题时，需依赖短时不变性假设，通过迭代计算求解各时刻的静态问题，导致存在滞后残差、精度受限及鲁棒性能不足等缺陷",
+              "quote": "然而，面向动态时变问题求解，现有递归神经网络仍面临难以处理最优化问题中的不等式约束、缺乏模型性能的综合保障及提升机制、机器人应用范围亟待拓展等问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 731,
+                "end_char": 804
+              },
+              "version": "5a6548ab4ef4260b97cf"
+            }
+          ]
+        },
+        {
+          "id": "item-947ec3d7be37",
+          "name": "传统递归神经网络（RNN）在处理此类问题时，需依赖短时不变性假设，通过迭代计算求解各时刻的静态问题，导致存在滞后残差、精",
+          "desc": "传统递归神经网络（RNN）在处理此类问题时，需依赖短时不变性假设，通过迭代计算求解各时刻的静态问题，导致存在滞后残差、精度受限及鲁棒性能不足等缺陷。",
+          "evidence": [
+            {
+              "quote": "传统递归神经网络（RNN）在处理此类问题时，需依赖短时不变性假设，通过迭代计算求解各时刻的静态问题，导致存在滞后残差、精度受限及鲁棒性能不足等缺陷。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2844,
-                "end_char": 2916
+                "end_char": 2917
               },
               "version": "5a6548ab4ef4260b97cf"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b4bbcd1a41fc",
-          "name": "NCP-ZNN统一形式",
-          "desc": "非线性互补问题函数设计建立统一NCP-ZNN数学形式，固定时间收敛与噪声抑制",
+          "id": "item-14d2611811d2",
+          "name": "然而，面向动态时变问题求解，现有递归神经网络仍面临难以处理最优化问题中的不等式约束、缺乏模型性能的综合保障及提升机制、机",
+          "desc": "然而，面向动态时变问题求解，现有递归神经网络仍面临难以处理最优化问题中的不等式约束、缺乏模型性能的综合保障及提升机制、机器人应用范围亟待拓展等问题。",
           "evidence": [
             {
-              "quote": "探讨了非线性互补问题（NCP）函数的设计方法，建立了统一的NCP-ZNN数学形式，揭示了NCP函数与求解性能的潜在关系。为提升模型鲁棒性，通过综合演化法则、非线性激活函数和时变参数，构建了具备固定时间收敛及噪声抑制能力的模型",
+              "quote": "然而，面向动态时变问题求解，现有递归神经网络仍面临难以处理最优化问题中的不等式约束、缺乏模型性能的综合保障及提升机制、机器人应用范围亟待拓展等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3099,
-                "end_char": 3210
+                "start_char": 731,
+                "end_char": 804
               },
               "version": "5a6548ab4ef4260b97cf"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-95ccbc407b42",
-          "name": "Dini导数模式切换",
-          "desc": "引入Dini导数作为模式切换器设计Dini-ZNN模型并推广至其他RNN非迭代改进",
+          "id": "item-9280527fcc1e",
+          "name": "2）提出一种新型递归神经网络的系统性构造方法，开发兼具指定时间收敛、高精度和鲁棒可抑制多种噪声等特性的新型递归神经网络模",
+          "desc": "2）提出一种新型递归神经网络的系统性构造方法，开发兼具指定时间收敛、高精度和鲁棒可抑制多种噪声等特性的新型递归神经网络模型，以有效求解动态时变问题；",
           "evidence": [
             {
-              "quote": "针对要求模型元素处处可导的限制，引入Dini导数作为模式切换器，设计了一种Dini-ZNN模型，并将其成功推广至其他RNN模型的非迭代改进中",
+              "quote": "2）提出一种新型递归神经网络的系统性构造方法，开发兼具指定时间收敛、高精度和鲁棒可抑制多种噪声等特性的新型递归神经网络模型，以有效求解动态时变问题；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3237,
-                "end_char": 3306
+                "start_char": 864,
+                "end_char": 937
               },
               "version": "5a6548ab4ef4260b97cf"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +140,548 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bfd27cbd2ab3",
-          "name": "多类机器人应用拓展",
-          "desc": "应用于冗余机器人障碍躲避、位姿控制、视觉伺服、移动机器人导航及并联机器人",
+          "id": "item-68685e3f8feb",
+          "name": "科学研究和工程实践中广泛存在着动态时变问题，如机器人的优化控制可描述成含多类约束的动态时变最优化问题。",
+          "desc": "科学研究和工程实践中广泛存在着动态时变问题，如机器人的优化控制可描述成含多类约束的动态时变最优化问题。",
           "evidence": [
             {
-              "quote": "针对冗余机器人，提出了涵盖速度层与位置层的障碍物躲避方案，有效处理了关节极限与重复运动规划问题。在位姿控制任务中，通过引入中间变量和一阶最优性条件，构建了一种维度更低的NCP-ZNN模型，实现了精确的控制",
+              "quote": "科学研究和工程实践中广泛存在着动态时变问题，如机器人的优化控制可描述成含多类约束的动态时变最优化问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3371,
-                "end_char": 3472
+                "start_char": 661,
+                "end_char": 711
               },
               "version": "5a6548ab4ef4260b97cf"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-f1f13ba60617",
+          "name": "时变问题广泛存在于科学研究与工程实践中，如机器人的优化控制问题在数学上可表征为含多类约束的时变优化问题。",
+          "desc": "时变问题广泛存在于科学研究与工程实践中，如机器人的优化控制问题在数学上可表征为含多类约束的时变优化问题。",
+          "evidence": [
+            {
+              "quote": "时变问题广泛存在于科学研究与工程实践中，如机器人的优化控制问题在数学上可表征为含多类约束的时变优化问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2792,
+                "end_char": 2843
+              },
+              "version": "5a6548ab4ef4260b97cf"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1bdddd17cd39"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9012521c2d2a"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Remote-Center-of-Motion Generation for Hands-on Robotic Surgery: A Constrained Optimization and Neural Network Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24687cd8adfe",
+      "evidence": [
+        {
+          "quote": "Remote-Center-of-Motion Generation for Hands-on Robotic Surgery: A Constrained Optimization and Neural Network Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3655,
+            "end_char": 3773
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9012521c2d2a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b4bbcd1a41fc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhanced fault tolerant kinematic control of redundant robots with linear-variational-inequality based zeroing neural network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a2dc4034ba0d",
+      "evidence": [
+        {
+          "quote": "Enhanced fault tolerant kinematic control of redundant robots with linear-variational-inequality based zeroing neural network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3845,
+            "end_char": 3969
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9012521c2d2a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-95ccbc407b42"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Novel Neural Controllers for Kinematic Redundancy Resolution of Joint-Constrained Gough-Stewart Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0fbb954b322f",
+      "evidence": [
+        {
+          "quote": "Novel Neural Controllers for Kinematic Redundancy Resolution of Joint-Constrained Gough-Stewart Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4039,
+            "end_char": 4139
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b4bbcd1a41fc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bfd27cbd2ab3"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于二次规划和零化神经网络的冗余并联机械臂运动规划方法、系统及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-160648567463",
+      "evidence": [
+        {
+          "quote": "基于二次规划和零化神经网络的冗余并联机械臂运动规划方法、系统及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4206,
+            "end_char": 4239
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-95ccbc407b42"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bfd27cbd2ab3"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Cerebellar Model Articulation Controller Enhanced Neural Solution to Time-Varying Linear Equations With Robotic Application",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2487d313c19b",
+      "evidence": [
+        {
+          "quote": "A Cerebellar Model Articulation Controller Enhanced Neural Solution to Time-Varying Linear Equations With Robotic Application",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4272,
+            "end_char": 4396
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Unification and comparison of zeroing neural networks based on nonlinear complementary problem functions applied to serial and parallel robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c1112b3a8cd",
+      "evidence": [
+        {
+          "quote": "Unification and comparison of zeroing neural networks based on nonlinear complementary problem functions applied to serial and parallel robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4440,
+            "end_char": 4581
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Mode-Switcher-Based Neural Solution to Linearly Constrained Systems Applied to Robot Obstacle Avoidance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4985fadef760",
+      "evidence": [
+        {
+          "quote": "A Mode-Switcher-Based Neural Solution to Linearly Constrained Systems Applied to Robot Obstacle Avoidance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4631,
+            "end_char": 4735
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Dini-Derivative-Aided Zeroing Neural Network for Time-Variant Quadratic Programming Involving Multi-Type Constraints With Robotic Applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fa9d75b9933b",
+      "evidence": [
+        {
+          "quote": "A Dini-Derivative-Aided Zeroing Neural Network for Time-Variant Quadratic Programming Involving Multi-Type Constraints With Robotic Applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4792,
+            "end_char": 4935
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Obstacle-Avoidance Solution With Non-Iterative Neural Controller for Joint-Constrained Redundant Manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a2012aa4eea",
+      "evidence": [
+        {
+          "quote": "A Novel Obstacle-Avoidance Solution With Non-Iterative Neural Controller for Joint-Constrained Redundant Manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4973,
+            "end_char": 5089
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Cerebellum Model Enhanced Gradient Neural Network for Solving Time-Variant Linear Equations Applied to Robot Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-94f80cd67112",
+      "evidence": [
+        {
+          "quote": "A Cerebellum Model Enhanced Gradient Neural Network for Solving Time-Variant Linear Equations Applied to Robot Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5170,
+            "end_char": 5287
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual Servo Control of a Conceptual Magnetically Anchored and Guided Flexible Endoscope",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33661f626f41",
+      "evidence": [
+        {
+          "quote": "Visual Servo Control of a Conceptual Magnetically Anchored and Guided Flexible Endoscope",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5339,
+            "end_char": 5426
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Mangasarian-Soldov Function Based Neural Network for Constrained Control of Parallel and Serial Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-116c6afbf8d1",
+      "evidence": [
+        {
+          "quote": "A Mangasarian-Soldov Function Based Neural Network for Constrained Control of Parallel and Serial Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5475,
+            "end_char": 5578
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "冗余机械臂的轨迹规划与优化控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-69746fc47035",
+      "evidence": [
+        {
+          "quote": "冗余机械臂的轨迹规划与优化控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5647,
+            "end_char": 5663
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "多自由度冗余机械臂的容错运动学控制方法、系统、机器人及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ebbdb0dbc370",
+      "evidence": [
+        {
+          "quote": "多自由度冗余机械臂的容错运动学控制方法、系统、机器人及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5690,
+            "end_char": 5718
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Strictly Predefined-Time Convergent and Noise-Tolerant Neural Model for Solving Linear Equations With Robotic Applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f2d489d4dbc",
+      "evidence": [
+        {
+          "quote": "A Strictly Predefined-Time Convergent and Noise-Tolerant Neural Model for Solving Linear Equations With Robotic Applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5750,
+            "end_char": 5873
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Noniterative Neural Algorithm Involving Dini Derivatives for Visual Servoing of Joint-Constrained Robotic Endoscope",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-217871ba30c4",
+      "evidence": [
+        {
+          "quote": "A Noniterative Neural Algorithm Involving Dini Derivatives for Visual Servoing of Joint-Constrained Robotic Endoscope",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5929,
+            "end_char": 6045
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A noniterative linear-variational-inequality based primal-dual neural network for repetitive motion planning of robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b6457d8132a8",
+      "evidence": [
+        {
+          "quote": "A noniterative linear-variational-inequality based primal-dual neural network for repetitive motion planning of robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6094,
+            "end_char": 6211
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Quadratic Programming Solution to Position-Level Repetitive Motion Planning and Obstacle Avoidance of Joint-Constrained Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e12717577204",
+      "evidence": [
+        {
+          "quote": "A Quadratic Programming Solution to Position-Level Repetitive Motion Planning and Obstacle Avoidance of Joint-Constrained Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6272,
+            "end_char": 6399
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Lower Dimension Zeroing Neural Network for Time-Variant Quadratic Programming Applied to Robot Pose Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26ee13b79ca6",
+      "evidence": [
+        {
+          "quote": "A Lower Dimension Zeroing Neural Network for Time-Variant Quadratic Programming Applied to Robot Pose Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6482,
+            "end_char": 6590
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An inverse-free Getz-Marsden dynamic system and its eleven-instant discrete model for time-variant linear equations solving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6e8bd724a8ef",
+      "evidence": [
+        {
+          "quote": "An inverse-free Getz-Marsden dynamic system and its eleven-instant discrete model for time-variant linear equations solving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6635,
+            "end_char": 6757
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Neurodynamic Solution to Mobile Robot Navigation and Obstacle Avoidance Formulated as Time-Varying Convex Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-93dfe8e6fea9",
+      "evidence": [
+        {
+          "quote": "A Neurodynamic Solution to Mobile Robot Navigation and Obstacle Avoidance Formulated as Time-Varying Convex Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6818,
+            "end_char": 6937
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Spiking Cerebellar Model Enhanced Gradient Neural Solution to Time-Varying Linear Equations With Application to Robot Motion Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c39b23769a4",
+      "evidence": [
+        {
+          "quote": "A Spiking Cerebellar Model Enhanced Gradient Neural Solution to Time-Varying Linear Equations With Application to Robot Motion Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7009,
+            "end_char": 7143
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A reinforcement learning enhanced pseudo-inverse approach to self-collision avoidance of redundant robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5067bca28da",
+      "evidence": [
+        {
+          "quote": "A reinforcement learning enhanced pseudo-inverse approach to self-collision avoidance of redundant robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7211,
+            "end_char": 7315
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Homography-Based Visual Servoing of a Joint-Constrained Robotic Endoscope",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-478e54f6dc58",
+      "evidence": [
+        {
+          "quote": "Homography-Based Visual Servoing of a Joint-Constrained Robotic Endoscope",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7363,
+            "end_char": 7435
+          },
+          "version": "5a6548ab4ef4260b97cf"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 24,
+    "listed": 24,
+    "by_kind": {
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

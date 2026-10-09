@@ -2,15 +2,20 @@
   "doc_id": "dcde568e3477041ba985",
   "version": "ac1503be002dfc60fe75",
   "source_hash": "94790f4eceae4af6a8d8d7630265a27b4b375324bc12ec1ea0014c70a57109cc",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:16:40.619646+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.644514+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c5b4b77a79ca",
-          "name": "无人机集群事件触发控制",
-          "desc": "无人机集群、即插即用航天器需求下不确定系统事件触发自适应控制",
+          "id": "item-b8c71caf8576",
+          "name": "受无人机集群、即插即用航天器等实际需求的推动，不确定系统的事件触发自适应控制是近年来控制领域兼具重要性和挑战性的一个研究",
+          "desc": "受无人机集群、即插即用航天器等实际需求的推动，不确定系统的事件触发自适应控制是近年来控制领域兼具重要性和挑战性的一个研究热点。",
           "evidence": [
             {
-              "quote": "受无人机集群、即插即用航天器等实际需求的推动，不确定系统的事件触发自适应控制是近年来控制领域兼具重要性和挑战性的一个研究热点",
+              "quote": "受无人机集群、即插即用航天器等实际需求的推动，不确定系统的事件触发自适应控制是近年来控制领域兼具重要性和挑战性的一个研究热点。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 657,
-                "end_char": 718
+                "end_char": 719
               },
               "version": "ac1503be002dfc60fe75"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7a78e2732d7d",
-          "name": "多未知控制方向与干扰",
-          "desc": "全回路事件触发、多智能体协同、多未知控制方向等理论难题",
-          "evidence": [
-            {
-              "quote": "力争突破全回路事件触发自适应控制、事件触发通信下多智能体自适应协同、干扰环境下多未知控制方向的处理等理论难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 767,
-                "end_char": 820
-              },
-              "version": "ac1503be002dfc60fe75"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-cca6bb2f688d",
-          "name": "Nussbaum函数组突破",
-          "desc": "新型Nussbaum函数组突破多个未知且时变控制方向的强不确定非线性系统控制难题",
+          "id": "item-6261eeb043c7",
+          "name": "不确定系统;事件触发控制;无人机编队控制;自适应控制设计方法与系统性能分析;自适应控制",
+          "desc": "不确定系统;事件触发控制;无人机编队控制;自适应控制设计方法与系统性能分析;自适应控制",
           "evidence": [
             {
-              "quote": "提出了新型Nussbaum函数组，突破了存在多个未知且时变控制方向的强不确定非线性系统自适应控制难题",
+              "quote": "不确定系统;事件触发控制;无人机编队控制;自适应控制设计方法与系统性能分析;自适应控制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2590,
-                "end_char": 2639
+                "start_char": 2395,
+                "end_char": 2437
               },
               "version": "ac1503be002dfc60fe75"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f9e779ae7c70",
-          "name": "事件触发零稳态跟踪",
-          "desc": "面向通信约束、干扰与故障混杂多智能体系统的事件触发自适应一致性控制",
+          "id": "item-80f6cd537f52",
+          "name": "通过融合干扰观测器和自适应控制技术，克服了加性、乘性和隐性干扰及不确定性并存的非线性系统高精度自适应控制问题。",
+          "desc": "通过融合干扰观测器和自适应控制技术，克服了加性、乘性和隐性干扰及不确定性并存的非线性系统高精度自适应控制问题。",
           "evidence": [
             {
-              "quote": "面向存在通信约束、干扰与故障混杂的多智能体系统，提出了基于事件触发通信、能实现零稳态误差跟踪的自适应一致性控制方法",
+              "quote": "通过融合干扰观测器和自适应控制技术，克服了加性、乘性和隐性干扰及不确定性并存的非线性系统高精度自适应控制问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2641,
-                "end_char": 2697
+                "start_char": 2535,
+                "end_char": 2589
               },
               "version": "ac1503be002dfc60fe75"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,672 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c0cd67173cf3",
-          "name": "机间按需通信编队",
-          "desc": "针对风干扰、通信延时和执行器故障提出机间仅在需要时通信的分布式自适应编队控制并实验验证",
+          "id": "item-f6f467e0c85d",
+          "name": "受无人机集群、即插即用航天器等实际需求的推动，不确定系统的事件触发自适应控制是近年来控制领域兼具重要性和挑战性的一个研究",
+          "desc": "受无人机集群、即插即用航天器等实际需求的推动，不确定系统的事件触发自适应控制是近年来控制领域兼具重要性和挑战性的一个研究热点。",
           "evidence": [
             {
-              "quote": "针对风干扰、通信延时和执行器故障等强不确定条件下的四旋翼无人机集群，提出机间仅在需要时通信而非连续通信的分布式自适应编队控制方案，并对所提方案进行实验验证",
+              "quote": "受无人机集群、即插即用航天器等实际需求的推动，不确定系统的事件触发自适应控制是近年来控制领域兼具重要性和挑战性的一个研究热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 870,
-                "end_char": 946
+                "start_char": 657,
+                "end_char": 719
               },
               "version": "ac1503be002dfc60fe75"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-0325aa27909d",
-          "name": "论文专利与人才荣誉",
-          "desc": "发表论文24篇（SCI 14篇），授权专利5项，负责人获批国家优青并获多项科技奖",
+          "id": "item-3ea09f77fafd",
+          "name": "本项目针对不确定非线性系统，提出了新型事件触发自适应控制方法。",
+          "desc": "本项目针对不确定非线性系统，提出了新型事件触发自适应控制方法。",
           "evidence": [
             {
-              "quote": "目前已在Automatica、IEEE汇刊等国内外知名期刊和会议上发表论文24篇，其中SCI论文14篇、EI论文10篇。授权国家发明专利5项、软件著作权3项",
+              "quote": "本项目针对不确定非线性系统，提出了新型事件触发自适应控制方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2782,
-                "end_char": 2859
+                "start_char": 2504,
+                "end_char": 2534
               },
               "version": "ac1503be002dfc60fe75"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c5b4b77a79ca"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7a78e2732d7d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Policy iteration adaptive dynamic programming based control for hypersonic flight vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-90b49b671ab2",
+      "evidence": [
+        {
+          "quote": "Policy iteration adaptive dynamic programming based control for hypersonic flight vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3004,
+            "end_char": 3093
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7a78e2732d7d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cca6bb2f688d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Anti-disturbance control for PEMFC air supply systems with input quantization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9556bf8e61b7",
+      "evidence": [
+        {
+          "quote": "Anti-disturbance control for PEMFC air supply systems with input quantization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3173,
+            "end_char": 3249
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7a78e2732d7d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f9e779ae7c70"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "空间仿生可变构智能感知网络技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f0507496d19",
+      "evidence": [
+        {
+          "quote": "空间仿生可变构智能感知网络技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3327,
+            "end_char": 3341
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f9e779ae7c70"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c0cd67173cf3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive antidisturbance prescribed performance control for electromechanical fin actuators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4dd348d40bfa",
+      "evidence": [
+        {
+          "quote": "Adaptive antidisturbance prescribed performance control for electromechanical fin actuators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3383,
+            "end_char": 3473
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cca6bb2f688d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0325aa27909d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于干扰预示的高超声速飞行器强抗扰控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e6f3fde38d8",
+      "evidence": [
+        {
+          "quote": "一种基于干扰预示的高超声速飞行器强抗扰控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3554,
+            "end_char": 3576
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于滑模干扰观测器的飞行器预测校正复合制导方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2bdd1fbb4595",
+      "evidence": [
+        {
+          "quote": "一种基于滑模干扰观测器的飞行器预测校正复合制导方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3606,
+            "end_char": 3630
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive prescribed performance control for PEM fuel cell air supply systems with unknown air compressor faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-157be9410607",
+      "evidence": [
+        {
+          "quote": "Adaptive prescribed performance control for PEM fuel cell air supply systems with unknown air compressor faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3659,
+            "end_char": 3769
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coordinated attitude tracking control of spacecraft cluster under switching topology",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e280e2fd036f",
+      "evidence": [
+        {
+          "quote": "Coordinated attitude tracking control of spacecraft cluster under switching topology",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3828,
+            "end_char": 3911
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive coordinated control for nonlinear PEM fuel cell air supply systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc4a4ad65c29",
+      "evidence": [
+        {
+          "quote": "Adaptive coordinated control for nonlinear PEM fuel cell air supply systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3998,
+            "end_char": 4072
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analysis, estimation, and rejection of multi-frequency unknown disturbances in CMG gimbal servo systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-49148e2eca4c",
+      "evidence": [
+        {
+          "quote": "Analysis, estimation, and rejection of multi-frequency unknown disturbances in CMG gimbal servo systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4148,
+            "end_char": 4250
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "无人飞行器风险识别、灵巧与安全操纵关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b08114c7ea2",
+      "evidence": [
+        {
+          "quote": "无人飞行器风险识别、灵巧与安全操纵关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4318,
+            "end_char": 4341
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "A muscle-like intelligent CMG with green anti-disturbance control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e43c63d8275a",
+      "evidence": [
+        {
+          "quote": "A muscle-like intelligent CMG with green anti-disturbance control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4396,
+            "end_char": 4460
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A sensorless haptic force estimation method and its application to uncertain robotic manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9153624dd05",
+      "evidence": [
+        {
+          "quote": "A sensorless haptic force estimation method and its application to uncertain robotic manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4513,
+            "end_char": 4609
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Wind disturbance compensated path-following control for fixed-wing UAVs in arbitrarily strong winds",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0b8b065779cf",
+      "evidence": [
+        {
+          "quote": "Wind disturbance compensated path-following control for fixed-wing UAVs in arbitrarily strong winds",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4679,
+            "end_char": 4777
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Anti-disturbance and fast pointing control technology for airborne precision tracking systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7093dab2d69a",
+      "evidence": [
+        {
+          "quote": "Anti-disturbance and fast pointing control technology for airborne precision tracking systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4842,
+            "end_char": 4934
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Three-dimensional anti-disturbance guidance for impact angle control with feld-of-view constraint",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-197970f896d2",
+      "evidence": [
+        {
+          "quote": "Three-dimensional anti-disturbance guidance for impact angle control with feld-of-view constraint",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4973,
+            "end_char": 5069
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel adaptive coordinated tracking control scheme for a morphing aircraft with telescopic wings",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a275a7d050d",
+      "evidence": [
+        {
+          "quote": "A novel adaptive coordinated tracking control scheme for a morphing aircraft with telescopic wings",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5145,
+            "end_char": 5242
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive secure missile guidance against additive and multiplicative cyber-attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9ae3b80a61e5",
+      "evidence": [
+        {
+          "quote": "Adaptive secure missile guidance against additive and multiplicative cyber-attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5320,
+            "end_char": 5401
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safe approaching control for spacecraft rendezvous with disturbances: A positive system approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de468108f0df",
+      "evidence": [
+        {
+          "quote": "Safe approaching control for spacecraft rendezvous with disturbances: A positive system approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5492,
+            "end_char": 5587
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive fault-tolerant control for a class of nonlinear multi-agent systems with multiple unknown time-varying control directions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5ff9f6083d5",
+      "evidence": [
+        {
+          "quote": "Adaptive fault-tolerant control for a class of nonlinear multi-agent systems with multiple unknown time-varying control directions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5649,
+            "end_char": 5778
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multivariable secure guidance for interceptors against cyber-attacks in guidance commands",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec68c912ee6a",
+      "evidence": [
+        {
+          "quote": "Multivariable secure guidance for interceptors against cyber-attacks in guidance commands",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5826,
+            "end_char": 5914
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于干扰利用技术的高超声速飞行器三维制导方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-17286836c2e1",
+      "evidence": [
+        {
+          "quote": "一种基于干扰利用技术的高超声速飞行器三维制导方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5997,
+            "end_char": 6020
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种导弹抗网络攻击制导律设计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02032debf202",
+      "evidence": [
+        {
+          "quote": "一种导弹抗网络攻击制导律设计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6051,
+            "end_char": 6066
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive anti-disturbance control for a class of uncertain nonlinear systems with composite disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0bf5ffa71bea",
+      "evidence": [
+        {
+          "quote": "Adaptive anti-disturbance control for a class of uncertain nonlinear systems with composite disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6095,
+            "end_char": 6198
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Attitude control for hypersonic morphing vehicles based on fixed-time disturbance observers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e8a1ff5133f4",
+      "evidence": [
+        {
+          "quote": "Attitude control for hypersonic morphing vehicles based on fixed-time disturbance observers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6274,
+            "end_char": 6364
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Attitude tracking control for hypersonic flight vehicles based on sliding mode observers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f6d65d70a0ca",
+      "evidence": [
+        {
+          "quote": "Attitude tracking control for hypersonic flight vehicles based on sliding mode observers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6449,
+            "end_char": 6536
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于快速策略迭代的高超声速飞行器优化控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26043d9c6250",
+      "evidence": [
+        {
+          "quote": "一种基于快速策略迭代的高超声速飞行器优化控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6600,
+            "end_char": 6623
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Expectation-maximization based disturbance identification and velocity tracking for gimbal servo systems with dynamic imbalance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-732593beb26c",
+      "evidence": [
+        {
+          "quote": "Expectation-maximization based disturbance identification and velocity tracking for gimbal servo systems with dynamic imbalance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6656,
+            "end_char": 6782
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust stabilization for a class of nonlinear positive systems with multiple disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df7d80b7f544",
+      "evidence": [
+        {
+          "quote": "Robust stabilization for a class of nonlinear positive systems with multiple disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6861,
+            "end_char": 6949
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "多源干扰下高超声速飞行器自主精细控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-320aeafa426d",
+      "evidence": [
+        {
+          "quote": "多源干扰下高超声速飞行器自主精细控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7011,
+            "end_char": 7028
+          },
+          "version": "ac1503be002dfc60fe75"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

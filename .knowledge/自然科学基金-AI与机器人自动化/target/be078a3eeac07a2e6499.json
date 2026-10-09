@@ -2,15 +2,20 @@
   "doc_id": "be078a3eeac07a2e6499",
   "version": "1ee4c8819a952502f886",
   "source_hash": "1493090ae2bfc81f55897cf47d9b08959d0067041e683f3695e2007db1d80ad3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:33:44.906650+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.306665+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7f4c4c46d60d",
-          "name": "经输尿管肾内介入手术",
-          "desc": "肾、输尿管结石和上尿路肿瘤等上尿路疾病的介入诊疗",
+          "id": "item-351fc7968788",
+          "name": "输尿管软镜作为目前腔内泌尿外科技术的代表，可对肾、输尿管结石或上尿路肿瘤进行诊断，亦可在各类激光等辅助设备的帮助下进行碎",
+          "desc": "输尿管软镜作为目前腔内泌尿外科技术的代表，可对肾、输尿管结石或上尿路肿瘤进行诊断，亦可在各类激光等辅助设备的帮助下进行碎石与肿瘤切除等治疗，具有经自然腔道、微创、安全、恢复快、治疗效率高等优点。",
           "evidence": [
             {
-              "quote": "本项目研发了一种多器械协同、功能完备、结构紧凑的经输尿管肾内介入手术机器人",
+              "quote": "输尿管软镜作为目前腔内泌尿外科技术的代表，可对肾、输尿管结石或上尿路肿瘤进行诊断，亦可在各类激光等辅助设备的帮助下进行碎石与肿瘤切除等治疗，具有经自然腔道、微创、安全、恢复快、治疗效率高等优点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3003,
-                "end_char": 3039
+                "start_char": 643,
+                "end_char": 739
               },
               "version": "1ee4c8819a952502f886"
             }
@@ -41,16 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8fdc877ab832",
-          "name": "辐射疲劳与压力监测缺失",
-          "desc": "医生遭受X射线辐射、易疲劳、操作不够精细，肾内压力无法实时预警",
+          "id": "item-2ef852322571",
+          "name": "然而，传统的输尿管软镜技术对术者的操作要求高，且存在不足，主要包括：术者的操作姿势易引起疲劳，且往往需要助手的协助，难以",
+          "desc": "然而，传统的输尿管软镜技术对术者的操作要求高，且存在不足，主要包括：术者的操作姿势易引起疲劳，且往往需要助手的协助，难以单人完成操作；",
           "evidence": [
             {
-              "quote": "解决了医生遭受X射线辐射、易疲劳、操作不够精细等问题",
+              "quote": "然而，传统的输尿管软镜技术对术者的操作要求高，且存在不足，主要包括：术者的操作姿势易引起疲劳，且往往需要助手的协助，难以单人完成操作；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3078,
-                "end_char": 3103
+                "start_char": 740,
+                "end_char": 806
+              },
+              "version": "1ee4c8819a952502f886"
+            }
+          ]
+        },
+        {
+          "id": "item-19e34dcca6c1",
+          "name": "但传统的输尿管软镜技术对术者的操作要求高，且存在不足，主要包括：术者的操作姿势易引起疲劳，且往往需要助手的协助，难以单人",
+          "desc": "但传统的输尿管软镜技术对术者的操作要求高，且存在不足，主要包括：术者的操作姿势易引起疲劳，且往往需要助手的协助，难以单人完成操作；",
+          "evidence": [
+            {
+              "quote": "但传统的输尿管软镜技术对术者的操作要求高，且存在不足，主要包括：术者的操作姿势易引起疲劳，且往往需要助手的协助，难以单人完成操作；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2885,
+                "end_char": 2949
               },
               "version": "1ee4c8819a952502f886"
             }
@@ -63,68 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6e9788437c7e",
-          "name": "内窥镜灌流机构",
-          "desc": "灵活可控、响应快、具备高精度灌注压强感知功能的灌流机构设计技术",
+          "id": "item-f2a52fccd3fc",
+          "name": ".针对软镜与环境强交互、外部干扰大、变形不确定等限制条件和介入手术频繁单自由度操作的特点，提出了基于多层感知机和长短期记",
+          "desc": ".针对软镜与环境强交互、外部干扰大、变形不确定等限制条件和介入手术频繁单自由度操作的特点，提出了基于多层感知机和长短期记忆网络智能交互算法的主从直观映射算法，智能判定医生所控制的特定自由度，与医生传统操作相符使操作更加智能流畅。",
           "evidence": [
             {
-              "quote": "突破了灵活可控、响应快、具备高精度灌注压强感知功能的内窥镜灌流机构设计技术，实现了定量、定速精准灌流",
+              "quote": ".针对软镜与环境强交互、外部干扰大、变形不确定等限制条件和介入手术频繁单自由度操作的特点，提出了基于多层感知机和长短期记忆网络智能交互算法的主从直观映射算法，智能判定医生所控制的特定自由度，与医生传统操作相符使操作更加智能流畅。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3164,
+                "end_char": 3277
+              },
+              "version": "1ee4c8819a952502f886"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-bb9e042dbd4c",
+          "name": "突破了灵活可控、响应快、具备高精度灌注压强感知功能的内窥镜灌流机构设计技术，实现了定量、定速精准灌流，提高了手术效率。",
+          "desc": "突破了灵活可控、响应快、具备高精度灌注压强感知功能的内窥镜灌流机构设计技术，实现了定量、定速精准灌流，提高了手术效率。",
+          "evidence": [
+            {
+              "quote": "突破了灵活可控、响应快、具备高精度灌注压强感知功能的内窥镜灌流机构设计技术，实现了定量、定速精准灌流，提高了手术效率。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3105,
-                "end_char": 3154
+                "end_char": 3163
               },
               "version": "1ee4c8819a952502f886"
             }
-          ]
-        },
-        {
-          "id": "item-298af3e96542",
-          "name": "智能主从直观映射",
-          "desc": "基于多层感知机和长短期记忆网络智能交互算法的主从直观映射算法",
-          "evidence": [
-            {
-              "quote": "提出了基于多层感知机和长短期记忆网络智能交互算法的主从直观映射算法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3209,
-                "end_char": 3241
-              },
-              "version": "1ee4c8819a952502f886"
-            }
-          ]
-        },
-        {
-          "id": "item-0ea964a88bc5",
-          "name": "神经网络增强力反馈",
-          "desc": "基于机器人自学习的神经网络增强力反馈策略，实现推拉力、旋转扭矩等全面力反馈",
-          "evidence": [
-            {
-              "quote": "提出了基于机器人自学习的神经网络增强力反馈策略，实现了全面的力反馈功能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3292,
-                "end_char": 3326
-              },
-              "version": "1ee4c8819a952502f886"
-            }
-          ]
-        },
-        {
-          "id": "item-9674c1aaa067",
-          "name": "非侵入式肾内压力感知",
-          "desc": "无需置入微型传感器即可实时估计肾内压力水平",
-          "evidence": [
-            {
-              "quote": "提出了非侵入式肾内压力感知算法，无需向体内置入微型传感器也可实时估计肾内压力水平",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3436,
-                "end_char": 3475
-              },
-              "version": "1ee4c8819a952502f886"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,80 +124,848 @@
       "state": "has",
       "items": [
         {
-          "id": "item-73d8f9ccc6ae",
-          "name": "动物实验验证",
-          "desc": "在实验猪上进行动物实验，验证机器人系统可行性和可靠性",
+          "id": "item-13e6325048bb",
+          "name": "输尿管软镜作为目前腔内泌尿外科技术的代表，可对肾、输尿管结石或上尿路肿瘤进行诊断，亦可在各类激光等辅助设备的帮助下进行碎",
+          "desc": "输尿管软镜作为目前腔内泌尿外科技术的代表，可对肾、输尿管结石或上尿路肿瘤进行诊断，亦可在各类激光等辅助设备的帮助下进行碎石与肿瘤切除等治疗，具有经自然腔道、微创、安全、恢复快、治疗效率高等优点。",
           "evidence": [
             {
-              "quote": "在实验猪上进行了动物实验，验证了机器人系统的可行性和可靠性",
+              "quote": "输尿管软镜作为目前腔内泌尿外科技术的代表，可对肾、输尿管结石或上尿路肿瘤进行诊断，亦可在各类激光等辅助设备的帮助下进行碎石与肿瘤切除等治疗，具有经自然腔道、微创、安全、恢复快、治疗效率高等优点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3565,
-                "end_char": 3593
+                "start_char": 643,
+                "end_char": 739
               },
               "version": "1ee4c8819a952502f886"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-338c132cd58c",
+          "name": "输尿管软镜具有微创、安全、恢复快、治疗效率高等优点。",
+          "desc": "输尿管软镜具有微创、安全、恢复快、治疗效率高等优点。",
+          "evidence": [
+            {
+              "quote": "输尿管软镜具有微创、安全、恢复快、治疗效率高等优点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2859,
+                "end_char": 2884
+              },
+              "version": "1ee4c8819a952502f886"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7f4c4c46d60d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8fdc877ab832"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning-Based Multimodal Information Fusion and Behavior Recognition of Vascular Interventionists’ Operating Skills",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f7a0765f144",
+      "evidence": [
+        {
+          "quote": "Learning-Based Multimodal Information Fusion and Behavior Recognition of Vascular Interventionists’ Operating Skills",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3673,
+            "end_char": 3788
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8fdc877ab832"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0ea964a88bc5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development and experiments of a continuum robotic system for transoral laryngeal surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c9262d0b8c71",
+      "evidence": [
+        {
+          "quote": "Development and experiments of a continuum robotic system for transoral laryngeal surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3867,
+            "end_char": 3955
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8fdc877ab832"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9674c1aaa067"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A learning-based tip contact force estimation method for tendon-driven continuum manipulator,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d8f67233e3d9",
+      "evidence": [
+        {
+          "quote": "A learning-based tip contact force estimation method for tendon-driven continuum manipulator,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4017,
+            "end_char": 4109
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6e9788437c7e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-73d8f9ccc6ae"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Preliminary reports of augmented-reality assisted craniofacial bone fracture reduction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-878ef6cb81f7",
+      "evidence": [
+        {
+          "quote": "Preliminary reports of augmented-reality assisted craniofacial bone fracture reduction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4151,
+            "end_char": 4236
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-298af3e96542"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-73d8f9ccc6ae"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Closed-Loop Trajectory Tracking Control of a Cable-Driven Continuum Robot With Integrated Draw Tower Grating Sensor Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cc14ee054c98",
+      "evidence": [
+        {
+          "quote": "Closed-Loop Trajectory Tracking Control of a Cable-Driven Continuum Robot With Integrated Draw Tower Grating Sensor Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4334,
+            "end_char": 4457
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of 3D-Printed Flexible Joints with Presettable Stiffness for Surgical Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1309e15d90f5",
+      "evidence": [
+        {
+          "quote": "Design of 3D-Printed Flexible Joints with Presettable Stiffness for Surgical Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4511,
+            "end_char": 4593
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种玻璃体视网膜手术机器人系统、控制方法及终端",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-362b648badae",
+      "evidence": [
+        {
+          "quote": "一种玻璃体视网膜手术机器人系统、控制方法及终端",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4633,
+            "end_char": 4655
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Application research of master-slave craniofacial surgery robot based on force feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9fb843047cf0",
+      "evidence": [
+        {
+          "quote": "Application research of master-slave craniofacial surgery robot based on force feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4676,
+            "end_char": 4762
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of a Robotic Cochlear Implantation System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0799502ded0a",
+      "evidence": [
+        {
+          "quote": "Development of a Robotic Cochlear Implantation System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4857,
+            "end_char": 4909
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种非接触式监测肾内压力的内窥镜灌流系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7276ee44fabc",
+      "evidence": [
+        {
+          "quote": "一种非接触式监测肾内压力的内窥镜灌流系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4965,
+            "end_char": 4984
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mechanism design and force sensing of a novelcardiovascular interventional surgery robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-209885acc955",
+      "evidence": [
+        {
+          "quote": "Mechanism design and force sensing of a novelcardiovascular interventional surgery robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5009,
+            "end_char": 5096
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Path Tracking Control of a Continuum Robot for Maxillary Sinus Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ad9b12a67a4",
+      "evidence": [
+        {
+          "quote": "Design and Path Tracking Control of a Continuum Robot for Maxillary Sinus Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5154,
+            "end_char": 5234
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development and validation of a two-segment continuum robot for maxillary sinus surgery,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd9a30357f8c",
+      "evidence": [
+        {
+          "quote": "Development and validation of a two-segment continuum robot for maxillary sinus surgery,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5302,
+            "end_char": 5389
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Two-Segment Continuum Robot With Piecewise Stiffness for Maxillary Sinus Surgery and Its Decoupling Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5b05ea90d2a",
+      "evidence": [
+        {
+          "quote": "A Two-Segment Continuum Robot With Piecewise Stiffness for Maxillary Sinus Surgery and Its Decoupling Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5476,
+            "end_char": 5583
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种具备力反馈功能的软镜介入手术机器人系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b6aa9374be5a",
+      "evidence": [
+        {
+          "quote": "一种具备力反馈功能的软镜介入手术机器人系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5641,
+            "end_char": 5661
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Preliminary clinical experience of robot-assisted surgery in treatment with genioplasty",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5526ca136f1",
+      "evidence": [
+        {
+          "quote": "Preliminary clinical experience of robot-assisted surgery in treatment with genioplasty",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5686,
+            "end_char": 5772
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Robotic System for Flexible Ureteroscopy,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-053dba90a6ab",
+      "evidence": [
+        {
+          "quote": "A Novel Robotic System for Flexible Ureteroscopy,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5856,
+            "end_char": 5904
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Eye Robotic System for Vitreoretinal Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f58ffbdd8aa",
+      "evidence": [
+        {
+          "quote": "Eye Robotic System for Vitreoretinal Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5948,
+            "end_char": 5991
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "并行渐进可替换式的心血管介入手术机器人及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-daf1fdf709f7",
+      "evidence": [
+        {
+          "quote": "并行渐进可替换式的心血管介入手术机器人及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6048,
+            "end_char": 6071
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "泌尿外科手术机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5713b3aef58b",
+      "evidence": [
+        {
+          "quote": "泌尿外科手术机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6090,
+            "end_char": 6098
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Continuum Robots for Endoscopic Sinus Surgery: Recent Advances, Challenges, and Prospects",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae8c27d44626",
+      "evidence": [
+        {
+          "quote": "Continuum Robots for Endoscopic Sinus Surgery: Recent Advances, Challenges, and Prospects",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6123,
+            "end_char": 6211
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of the robotic system for natural orifice transluminal endoscopic surgery in urology,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05ccffa5a9a3",
+      "evidence": [
+        {
+          "quote": "Design of the robotic system for natural orifice transluminal endoscopic surgery in urology,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6303,
+            "end_char": 6394
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved precise guidewire delivery of a cardiovascular interventional surgery robot based on admittance control,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb387324945a",
+      "evidence": [
+        {
+          "quote": "Improved precise guidewire delivery of a cardiovascular interventional surgery robot based on admittance control,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6470,
+            "end_char": 6582
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Validation of a Master-slave Continuum Robot for Maxillary Sinus Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1bf18f7b04b5",
+      "evidence": [
+        {
+          "quote": "Design and Validation of a Master-slave Continuum Robot for Maxillary Sinus Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6650,
+            "end_char": 6732
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种适用于尿道括约肌障碍的自动控制装置及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47b4ba0a2de3",
+      "evidence": [
+        {
+          "quote": "一种适用于尿道括约肌障碍的自动控制装置及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6785,
+            "end_char": 6806
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Magnetorheological Fluid Based Force Feedback Master Robot for Vascular Interventional Surgery,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-128d1ebaabed",
+      "evidence": [
+        {
+          "quote": "A Magnetorheological Fluid Based Force Feedback Master Robot for Vascular Interventional Surgery,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6834,
+            "end_char": 6930
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Use of Augmented Reality Navigation to Optimize the Surgical Management of Craniofacial Fibrous Dysplasia,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4854b238528b",
+      "evidence": [
+        {
+          "quote": "Use of Augmented Reality Navigation to Optimize the Surgical Management of Craniofacial Fibrous Dysplasia,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6983,
+            "end_char": 7088
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种可监测肾内压力的自动内窥镜灌流系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d8e77043586",
+      "evidence": [
+        {
+          "quote": "一种可监测肾内压力的自动内窥镜灌流系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7144,
+            "end_char": 7162
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种人工耳蜗植入手术机器人及其辅助方法和辅助系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9b02cab4d41f",
+      "evidence": [
+        {
+          "quote": "一种人工耳蜗植入手术机器人及其辅助方法和辅助系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7185,
+            "end_char": 7208
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Depth Camera-Based Robot-Assisted Ultrasonic Lipolysis System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e27c0b81e88",
+      "evidence": [
+        {
+          "quote": "Depth Camera-Based Robot-Assisted Ultrasonic Lipolysis System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7238,
+            "end_char": 7298
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种连续体构型的微创手术机器人及其工作方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d032cf7feac",
+      "evidence": [
+        {
+          "quote": "一种连续体构型的微创手术机器人及其工作方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7340,
+            "end_char": 7360
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A preliminary study on animal experiments of robot-assisted craniotomy,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e44b0519cfff",
+      "evidence": [
+        {
+          "quote": "A preliminary study on animal experiments of robot-assisted craniotomy,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7382,
+            "end_char": 7452
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Cable-Driven Soft Robot for Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-084a413ec501",
+      "evidence": [
+        {
+          "quote": "A Novel Cable-Driven Soft Robot for Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7538,
+            "end_char": 7580
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatial Shape Sensing of a Multisection Continuum Robot With Integrated DTG Sensor for Maxillary Sinus Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ed4685d1812",
+      "evidence": [
+        {
+          "quote": "Spatial Shape Sensing of a Multisection Continuum Robot With Integrated DTG Sensor for Maxillary Sinus Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7657,
+            "end_char": 7766
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种肺部穿刺活检手术机器人及定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9acad7b3740c",
+      "evidence": [
+        {
+          "quote": "一种肺部穿刺活检手术机器人及定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7833,
+            "end_char": 7850
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Compact Surgical Robot System for Cranio-maxillofacial Surgery and Its Preliminary Study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b40417936f47",
+      "evidence": [
+        {
+          "quote": "A Compact Surgical Robot System for Cranio-maxillofacial Surgery and Its Preliminary Study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7878,
+            "end_char": 7967
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面部自体脂肪移植手术导航系统及虚拟刻度提示方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a52458f02f2b",
+      "evidence": [
+        {
+          "quote": "面部自体脂肪移植手术导航系统及虚拟刻度提示方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8018,
+            "end_char": 8040
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ADRC-Based Trajectory Tracking Control for a Planar Continuum Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96686361b551",
+      "evidence": [
+        {
+          "quote": "ADRC-Based Trajectory Tracking Control for a Planar Continuum Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8068,
+            "end_char": 8134
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on spatial motion safety constraints and cooperative control of robot‐assisted craniotomy: Beagle model experiment verification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d1804067a18c",
+      "evidence": [
+        {
+          "quote": "Research on spatial motion safety constraints and cooperative control of robot‐assisted craniotomy: Beagle model experiment verification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8192,
+            "end_char": 8327
+          },
+          "version": "1ee4c8819a952502f886"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 39,
+    "listed": 39,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 26,
+        "extracted": 26
+      },
+      "专利": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

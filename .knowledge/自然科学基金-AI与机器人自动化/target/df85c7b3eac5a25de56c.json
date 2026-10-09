@@ -2,15 +2,20 @@
   "doc_id": "df85c7b3eac5a25de56c",
   "version": "c72ab50337c4b26c02fe",
   "source_hash": "7d39cdc1fc2dcba5825a5f2df4c5e9b7228274c23cc05308ecd1064fbab42227",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:56.996143+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.671473+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1dca0ab91dbd",
-          "name": "自动驾驶强化学习决策",
-          "desc": "自动驾驶汽车面临驾驶环境随机性，强化学习通过试错学习适应环境特征",
+          "id": "item-d3bae135e54e",
+          "name": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致",
+          "desc": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致决策失效难以追溯应对，这与车辆的高可靠性需求相矛盾。",
           "evidence": [
             {
-              "quote": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征",
+              "quote": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致决策失效难以追溯应对，这与车辆的高可靠性需求相矛盾。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 637,
-                "end_char": 687
+                "end_char": 722
+              },
+              "version": "c72ab50337c4b26c02fe"
+            }
+          ]
+        },
+        {
+          "id": "item-04676e3423e6",
+          "name": "在项目执行的过程中，这一矛盾导致的自动驾驶长尾问题愈发凸显，严重制约了行业的产业化应用。",
+          "desc": "在项目执行的过程中，这一矛盾导致的自动驾驶长尾问题愈发凸显，严重制约了行业的产业化应用。",
+          "evidence": [
+            {
+              "quote": "在项目执行的过程中，这一矛盾导致的自动驾驶长尾问题愈发凸显，严重制约了行业的产业化应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2795,
+                "end_char": 2838
               },
               "version": "c72ab50337c4b26c02fe"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-60b677a6ff54",
-          "name": "决策黑盒失效难追溯",
-          "desc": "强化学习黑盒属性导致决策失效难以追溯应对，与车辆高可靠性需求矛盾",
+          "id": "item-69f507f3c385",
+          "name": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致",
+          "desc": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致决策失效难以追溯应对，这与车辆的高可靠性需求相矛盾。",
           "evidence": [
             {
-              "quote": "但其黑盒属性导致决策失效难以追溯应对，这与车辆的高可靠性需求相矛盾",
+              "quote": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致决策失效难以追溯应对，这与车辆的高可靠性需求相矛盾。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 689,
-                "end_char": 721
+                "start_char": 637,
+                "end_char": 722
               },
               "version": "c72ab50337c4b26c02fe"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b31ef98fe16b",
-          "name": "驾驶一致性约束方法",
-          "desc": "考虑感知、预测等多AI模块耦合风险的约束方法",
+          "id": "item-0d82bb7400b4",
+          "name": "2）探究不同驾驶条件、训练进程对决策可信赖度的影响，设计可信赖度驱动的强化学习决策机制；",
+          "desc": "2）探究不同驾驶条件、训练进程对决策可信赖度的影响，设计可信赖度驱动的强化学习决策机制；",
           "evidence": [
             {
-              "quote": "设计了考虑感知、预测等多AI模块耦合风险的驾驶一致性约束方法",
+              "quote": "2）探究不同驾驶条件、训练进程对决策可信赖度的影响，设计可信赖度驱动的强化学习决策机制；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2941,
-                "end_char": 2970
+                "start_char": 909,
+                "end_char": 952
               },
               "version": "c72ab50337c4b26c02fe"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-39df116c3bb4",
-          "name": "可信持续在线进化技术",
-          "desc": "车辆遇到未设定场景时自主学习应对并保证性能单调持续提升",
+          "id": "item-708cb14d41a6",
+          "name": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致",
+          "desc": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致决策失效难以追溯应对，这与车辆的高可靠性需求相矛盾。",
           "evidence": [
             {
-              "quote": "提出了自动驾驶汽车可信持续在线进化技术。",
+              "quote": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致决策失效难以追溯应对，这与车辆的高可靠性需求相矛盾。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3013,
-                "end_char": 3032
+                "start_char": 637,
+                "end_char": 722
               },
               "version": "c72ab50337c4b26c02fe"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,333 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0e7b0b71dd44",
-          "name": "危险驾驶行为规避",
-          "desc": "雨雪夜等复杂天气及预测不准确情况下避免超过30%的危险驾驶行为",
+          "id": "item-305a78bbe2d0",
+          "name": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致",
+          "desc": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致决策失效难以追溯应对，这与车辆的高可靠性需求相矛盾。",
           "evidence": [
             {
-              "quote": "实现了在雨雪夜等复杂天气、以及预测不准确等情况下能够避免超过30%的危险驾驶行为",
+              "quote": "自动驾驶汽车自主决策方法面临驾驶环境随机性带来的挑战，强化学习决策方法能够通过试错学习机制适应环境特征，但其黑盒属性导致决策失效难以追溯应对，这与车辆的高可靠性需求相矛盾。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2972,
-                "end_char": 3011
+                "start_char": 637,
+                "end_char": 722
               },
               "version": "c72ab50337c4b26c02fe"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ea86b8d301ca",
-          "name": "科技冬奥项目应用",
-          "desc": "技术成功应用于2022北京市科技冬奥首钢园区示范项目",
-          "evidence": [
-            {
-              "quote": "本项目提出的自动驾驶可信决策技术成功应用于2022北京市科技冬奥项目“全天候多车型自动驾驶技术开发及首钢园区功能示范”",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3080,
-                "end_char": 3138
-              },
-              "version": "c72ab50337c4b26c02fe"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1dca0ab91dbd"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-60b677a6ff54"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A General Autonomous Driving Planner Adaptive to Scenario Characteristics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d877dfcf5276",
+      "evidence": [
+        {
+          "quote": "A General Autonomous Driving Planner Adaptive to Scenario Characteristics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3611,
+            "end_char": 3683
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-60b677a6ff54"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b31ef98fe16b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantic Traffic Law Adaptive Decision-Making for Self-Driving Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-855ded82b961",
+      "evidence": [
+        {
+          "quote": "Semantic Traffic Law Adaptive Decision-Making for Self-Driving Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3752,
+            "end_char": 3822
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b31ef98fe16b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0e7b0b71dd44"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PNNUAD: Perception Neural Networks Uncertainty Aware Decision-Making for Autonomous Vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1396a63b79d",
+      "evidence": [
+        {
+          "quote": "PNNUAD: Perception Neural Networks Uncertainty Aware Decision-Making for Autonomous Vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3922,
+            "end_char": 4012
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1dca0ab91dbd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-39df116c3bb4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "驾驶环境模型的训练方法及驾驶环境信息的预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f8382d0806c2",
+      "evidence": [
+        {
+          "quote": "驾驶环境模型的训练方法及驾驶环境信息的预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4085,
+            "end_char": 4107
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-39df116c3bb4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ea86b8d301ca"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Continuous Improvement of Self-Driving Cars Using Dynamic Confidence-Aware Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7fb7678036ed",
+      "evidence": [
+        {
+          "quote": "Continuous Improvement of Self-Driving Cars Using Dynamic Confidence-Aware Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4143,
+            "end_char": 4239
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "自动驾驶车辆驾驶场景重构及决策推演评估方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d79db1c15aa9",
+      "evidence": [
+        {
+          "quote": "自动驾驶车辆驾驶场景重构及决策推演评估方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4317,
+            "end_char": 4340
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An End-to-End Autonomous Driving Pre-trained Transformer Model for Multi-Behavior-Optimal Trajectory Generation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-17ae7ef442fb",
+      "evidence": [
+        {
+          "quote": "An End-to-End Autonomous Driving Pre-trained Transformer Model for Multi-Behavior-Optimal Trajectory Generation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4372,
+            "end_char": 4482
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Long-Tail Prediction Uncertainty Aware Trajectory Planning for Self-driving Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e52a19f570b1",
+      "evidence": [
+        {
+          "quote": "Long-Tail Prediction Uncertainty Aware Trajectory Planning for Self-driving Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4572,
+            "end_char": 4655
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trustworthy Safety Improvement for Autonomous Driving Using Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c5f8feecf61",
+      "evidence": [
+        {
+          "quote": "Trustworthy Safety Improvement for Autonomous Driving Using Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4748,
+            "end_char": 4829
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Identify, Estimate and Bound the Uncertainty of Reinforcement Learning for Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c134972818c",
+      "evidence": [
+        {
+          "quote": "Identify, Estimate and Bound the Uncertainty of Reinforcement Learning for Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4899,
+            "end_char": 4991
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "实现自动驾驶决策的方法、装置、计算机存储介质及终端",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7fafe6d750b0",
+      "evidence": [
+        {
+          "quote": "实现自动驾驶决策的方法、装置、计算机存储介质及终端",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5061,
+            "end_char": 5085
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "中国测绘学会测绘科学技术奖一等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dcf6a9ed1af0",
+      "evidence": [
+        {
+          "quote": "中国测绘学会测绘科学技术奖一等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5111,
+            "end_char": 5126
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Acceleration Method for Hazardous Scenario Generation Based on Disengagement Cases",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f88824de3e7c",
+      "evidence": [
+        {
+          "quote": "Acceleration Method for Hazardous Scenario Generation Based on Disengagement Cases",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5195,
+            "end_char": 5276
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Road Traffic Law Adaptive Decision-making for Self-Driving Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a52220094e81",
+      "evidence": [
+        {
+          "quote": "Road Traffic Law Adaptive Decision-making for Self-Driving Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5356,
+            "end_char": 5422
+          },
+          "version": "c72ab50337c4b26c02fe"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

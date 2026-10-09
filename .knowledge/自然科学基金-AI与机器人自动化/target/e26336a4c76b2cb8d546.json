@@ -2,15 +2,20 @@
   "doc_id": "e26336a4c76b2cb8d546",
   "version": "ad4fc6662350fa9afcec",
   "source_hash": "940d28e00530c6db67d9a8635927ba7ca4231b6c0299df0cf02cc09bb771b6d4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:51:44.058294+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.704320+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5de866276200",
-          "name": "无人车在线学习MPC",
-          "desc": "无人车控制的模型预测控制优化",
+          "id": "item-6f5b0514c35b",
+          "name": "模型预测控制以其优化的控制性能和强大的处理约束能力在工业界得到了成功应用，近年来在无人车控制领域也引起了广泛关注。",
+          "desc": "模型预测控制以其优化的控制性能和强大的处理约束能力在工业界得到了成功应用，近年来在无人车控制领域也引起了广泛关注。",
           "evidence": [
             {
-              "quote": "本项目针对不确定系统的模型预测控制方法展开深入研究，致力解决模型预测控制方法依赖精确数学模型与无人系统难以精确建模之间的矛盾。",
+              "quote": "模型预测控制以其优化的控制性能和强大的处理约束能力在工业界得到了成功应用，近年来在无人车控制领域也引起了广泛关注。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2826,
-                "end_char": 2888
+                "start_char": 651,
+                "end_char": 707
+              },
+              "version": "ad4fc6662350fa9afcec"
+            }
+          ]
+        },
+        {
+          "id": "item-fcabfc374556",
+          "name": "本项目拟搭建一台无人移动平台，用于实验验证，并进一步推广模型预测控制在无人车控制领域的应用。",
+          "desc": "本项目拟搭建一台无人移动平台，用于实验验证，并进一步推广模型预测控制在无人车控制领域的应用。",
+          "evidence": [
+            {
+              "quote": "本项目拟搭建一台无人移动平台，用于实验验证，并进一步推广模型预测控制在无人车控制领域的应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1001,
+                "end_char": 1046
               },
               "version": "ad4fc6662350fa9afcec"
             }
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-57f05af79f17",
-          "name": "依赖精确数学模型",
-          "desc": "设计条件保守且依赖精确数学模型",
+          "id": "item-55a7d33aaf04",
+          "name": "传统模型预测控制还存在以下问题难以解决：设计条件保守性强，并且依赖于系统精确的数学模型。",
+          "desc": "传统模型预测控制还存在以下问题难以解决：设计条件保守性强，并且依赖于系统精确的数学模型。",
           "evidence": [
             {
               "quote": "传统模型预测控制还存在以下问题难以解决：设计条件保守性强，并且依赖于系统精确的数学模型。",
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1b7675d5dcb0",
-          "name": "强化学习MPC",
-          "desc": "策略迭代学习最优终端代价降低在线优化复杂度",
+          "id": "item-178540d90216",
+          "name": "首先，在系统模型精确已知的情况下，提出了强化学习模型预测控制方法，利用策略迭代学习最优终端代价函数，一方面避免了过于保守",
+          "desc": "首先，在系统模型精确已知的情况下，提出了强化学习模型预测控制方法，利用策略迭代学习最优终端代价函数，一方面避免了过于保守的设计条件，另一方面通过自由选择预测时域降低了在线优化问题复杂度；",
           "evidence": [
             {
-              "quote": "提出了强化学习模型预测控制方法，利用策略迭代学习最优终端代价函数，一方面避免了过于保守的设计条件，另一方面通过自由选择预测时域降低了在线优化问题复杂度",
+              "quote": "首先，在系统模型精确已知的情况下，提出了强化学习模型预测控制方法，利用策略迭代学习最优终端代价函数，一方面避免了过于保守的设计条件，另一方面通过自由选择预测时域降低了在线优化问题复杂度；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2948,
-                "end_char": 3022
+                "start_char": 2931,
+                "end_char": 3023
               },
               "version": "ad4fc6662350fa9afcec"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-11111e140b3a",
-          "name": "高斯回归补偿未建模",
-          "desc": "高斯回归模型补偿未建模动态提高预测精度",
+          "id": "item-6e83179cf66e",
+          "name": "最后，在系统模型完全未知的情况下，设计数据驱动模型预测控制方法，实现满足系统约束的优化控制。",
+          "desc": "最后，在系统模型完全未知的情况下，设计数据驱动模型预测控制方法，实现满足系统约束的优化控制。",
           "evidence": [
             {
-              "quote": "提出了高斯回归模型预测控制方法，利用高斯回归模型补偿系统中的未建模动态，提高预测精度，降低了模型预测控制对精确模型的依赖程度",
+              "quote": "最后，在系统模型完全未知的情况下，设计数据驱动模型预测控制方法，实现满足系统约束的优化控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3041,
-                "end_char": 3102
+                "start_char": 955,
+                "end_char": 1000
               },
               "version": "ad4fc6662350fa9afcec"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,108 +124,372 @@
       "state": "has",
       "items": [
         {
-          "id": "item-422d28f94f44",
-          "name": "论文12篇与两系统应用",
-          "desc": "论文12篇、专利5项，应用于无人车极限测试与车流诱导",
+          "id": "item-82c0d7cffbc1",
+          "name": "模型预测控制以其优化的控制性能和强大的处理约束能力在工业界得到了成功应用，近年来在无人车控制领域也引起了广泛关注。",
+          "desc": "模型预测控制以其优化的控制性能和强大的处理约束能力在工业界得到了成功应用，近年来在无人车控制领域也引起了广泛关注。",
           "evidence": [
             {
-              "quote": "以上成果共发表学术论文12篇；授权发明专利5项；支撑获得国防进步三等奖1项、自动化学会自然科学一等奖1项",
+              "quote": "模型预测控制以其优化的控制性能和强大的处理约束能力在工业界得到了成功应用，近年来在无人车控制领域也引起了广泛关注。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3152,
-                "end_char": 3203
+                "start_char": 651,
+                "end_char": 707
               },
               "version": "ad4fc6662350fa9afcec"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-0273245f10d8",
-          "name": "数据驱动MPC",
-          "desc": "系统模型完全未知时实现满足约束的优化控制",
+          "id": "item-b607c06c4344",
+          "name": "本项目针对不确定系统的模型预测控制方法展开深入研究，致力解决模型预测控制方法依赖精确数学模型与无人系统难以精确建模之间的",
+          "desc": "本项目针对不确定系统的模型预测控制方法展开深入研究，致力解决模型预测控制方法依赖精确数学模型与无人系统难以精确建模之间的矛盾。",
           "evidence": [
             {
-              "quote": "最后，在系统模型完全未知的情况下，提出了数据驱动模型预测控制方法，实现了满足系统约束的优化控制。",
+              "quote": "本项目针对不确定系统的模型预测控制方法展开深入研究，致力解决模型预测控制方法依赖精确数学模型与无人系统难以精确建模之间的矛盾。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3104,
-                "end_char": 3151
+                "start_char": 2826,
+                "end_char": 2888
               },
               "version": "ad4fc6662350fa9afcec"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5de866276200"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-57f05af79f17"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model Predictive Control of Autonomous Vehicles Using Sequence Convex Programming",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-edebbe1982ce",
+      "evidence": [
+        {
+          "quote": "Model Predictive Control of Autonomous Vehicles Using Sequence Convex Programming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3313,
+            "end_char": 3393
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-57f05af79f17"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1b7675d5dcb0"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "运动体强抗扰控制技术(公布名)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2cc6e8e0a00f",
+      "evidence": [
+        {
+          "quote": "运动体强抗扰控制技术(公布名)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3455,
+            "end_char": 3469
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-57f05af79f17"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-11111e140b3a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Disturbance observer based adaptive fuzzy sliding mode control: A dynamic sliding surface approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57e91f4837ae",
+      "evidence": [
+        {
+          "quote": "Disturbance observer based adaptive fuzzy sliding mode control: A dynamic sliding surface approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3501,
+            "end_char": 3598
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-57f05af79f17"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0273245f10d8"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种轮式移动机器人的基于学习预测跟踪控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cdc707fcef18",
+      "evidence": [
+        {
+          "quote": "一种轮式移动机器人的基于学习预测跟踪控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3675,
+            "end_char": 3699
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1b7675d5dcb0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-422d28f94f44"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于演化博弈的多智能体编队的分层模型预测控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7dfcc8783796",
+      "evidence": [
+        {
+          "quote": "基于演化博弈的多智能体编队的分层模型预测控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3736,
+            "end_char": 3759
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-11111e140b3a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0273245f10d8"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "现代坦克系统抗扰控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e5dbb09967e",
+      "evidence": [
+        {
+          "quote": "现代坦克系统抗扰控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3823,
+            "end_char": 3834
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-Driven MPC for Linear Systems using Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd1bdac7267b",
+      "evidence": [
+        {
+          "quote": "Data-Driven MPC for Linear Systems using Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3864,
+            "end_char": 3926
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic event-triggered MPC with shrinking prediction horizon and without terminal constraint",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f998c8dd1625",
+      "evidence": [
+        {
+          "quote": "Dynamic event-triggered MPC with shrinking prediction horizon and without terminal constraint",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3985,
+            "end_char": 4077
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning‐based model predictive control under value iteration with finite approximation errors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99e7048d782a",
+      "evidence": [
+        {
+          "quote": "Learning‐based model predictive control under value iteration with finite approximation errors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4138,
+            "end_char": 4231
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "云调度无人机-无人车空地协同控制系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18794ed904c2",
+      "evidence": [
+        {
+          "quote": "云调度无人机-无人车空地协同控制系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4284,
+            "end_char": 4301
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-driven disturbance rejection control for discrete time-varying systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d6ae9d5320b",
+      "evidence": [
+        {
+          "quote": "Event-driven disturbance rejection control for discrete time-varying systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4320,
+            "end_char": 4395
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive sliding mode disturbance observer-based composite trajectory tracking control for robot manipulator with prescribed performance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c60734ec534e",
+      "evidence": [
+        {
+          "quote": "Adaptive sliding mode disturbance observer-based composite trajectory tracking control for robot manipulator with prescribed performance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4455,
+            "end_char": 4590
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于容器云和模型预测控制的汽车能源管理方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4799d7b7f30a",
+      "evidence": [
+        {
+          "quote": "一种基于容器云和模型预测控制的汽车能源管理方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4651,
+            "end_char": 4673
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Full-Dimensional Collision Avoidance of Autonomous Vehicles Using Sequence Convex Programming",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4f3ea1a3185",
+      "evidence": [
+        {
+          "quote": "Full-Dimensional Collision Avoidance of Autonomous Vehicles Using Sequence Convex Programming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4733,
+            "end_char": 4825
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Networked and event-triggered control approaches in cyber-physical systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-65d1234b8f83",
+      "evidence": [
+        {
+          "quote": "Networked and event-triggered control approaches in cyber-physical systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4896,
+            "end_char": 4969
+          },
+          "version": "ad4fc6662350fa9afcec"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

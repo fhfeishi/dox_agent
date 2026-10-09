@@ -2,15 +2,20 @@
   "doc_id": "31974065de62807e7f69",
   "version": "4fb0d81d4994b7535870",
   "source_hash": "f806d8bf43663c0dd4b2965664f1fd0f438cc07c6d69b0a71fe57a1fc79bb364",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:19.517923+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.927056+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,111 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3eea077cfb0f",
-          "name": "重载铣削机器人加工",
-          "desc": "大尺度复杂构件重载铣削振动抑制",
+          "id": "item-4e2d4a76e84d",
+          "name": "机器人铣削过程的振动是制约其加工效率和加工精度提高的一个重要因素，对机器人结构动力学特性的精确分析是解决振动问题的关键。",
+          "desc": "机器人铣削过程的振动是制约其加工效率和加工精度提高的一个重要因素，对机器人结构动力学特性的精确分析是解决振动问题的关键。",
+          "evidence": [
+            {
+              "quote": "机器人铣削过程的振动是制约其加工效率和加工精度提高的一个重要因素，对机器人结构动力学特性的精确分析是解决振动问题的关键。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 726
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ]
+        },
+        {
+          "id": "item-ad18dda540d6",
+          "name": "成果可广泛应用于重型机械、航空航天等领域，推广前景广阔。",
+          "desc": "成果可广泛应用于重型机械、航空航天等领域，推广前景广阔。",
+          "evidence": [
+            {
+              "quote": "成果可广泛应用于重型机械、航空航天等领域，推广前景广阔。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3230,
+                "end_char": 3257
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e1889b220bf8",
+          "name": ".项目如期完成全部立项内容，形成的理论与方法突破动力学特性精准表征与控制瓶颈，为机器人结构优化、工艺匹配及轨迹规划提供核",
+          "desc": ".项目如期完成全部立项内容，形成的理论与方法突破动力学特性精准表征与控制瓶颈，为机器人结构优化、工艺匹配及轨迹规划提供核心支撑，验证立项价值。",
+          "evidence": [
+            {
+              "quote": ".项目如期完成全部立项内容，形成的理论与方法突破动力学特性精准表征与控制瓶颈，为机器人结构优化、工艺匹配及轨迹规划提供核心支撑，验证立项价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3159,
+                "end_char": 3229
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ba7944e9a95a",
+          "name": "最后，建立基于半监督神经网络的机器人多维耦合动力学特征深度学习预测模型，实现多维因素耦合影响下的振动分析及多参数优化。",
+          "desc": "最后，建立基于半监督神经网络的机器人多维耦合动力学特征深度学习预测模型，实现多维因素耦合影响下的振动分析及多参数优化。",
+          "evidence": [
+            {
+              "quote": "最后，建立基于半监督神经网络的机器人多维耦合动力学特征深度学习预测模型，实现多维因素耦合影响下的振动分析及多参数优化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 930,
+                "end_char": 988
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1b1f522c608e",
+          "name": "机器人铣削过程的振动是制约其加工效率和加工精度提高的一个重要因素，对机器人结构动力学特性的精确分析是解决振动问题的关键。",
+          "desc": "机器人铣削过程的振动是制约其加工效率和加工精度提高的一个重要因素，对机器人结构动力学特性的精确分析是解决振动问题的关键。",
+          "evidence": [
+            {
+              "quote": "机器人铣削过程的振动是制约其加工效率和加工精度提高的一个重要因素，对机器人结构动力学特性的精确分析是解决振动问题的关键。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 667,
+                "end_char": 726
+              },
+              "version": "4fb0d81d4994b7535870"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-b2ef31980f8f",
+          "name": "机器人铣削振动制约了加工效率与精度，精准分析结构动力学特性是解决该问题的核心。",
+          "desc": "机器人铣削振动制约了加工效率与精度，精准分析结构动力学特性是解决该问题的核心。",
           "evidence": [
             {
               "quote": "机器人铣削振动制约了加工效率与精度，精准分析结构动力学特性是解决该问题的核心。",
@@ -32,166 +139,232 @@
               },
               "version": "4fb0d81d4994b7535870"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1dc2c2b85737",
-          "name": "多维因素耦合振动",
-          "desc": "关节速度、位姿及铣削激励多维度耦合影响动力学特性",
-          "evidence": [
-            {
-              "quote": "针对大尺度复杂构件重载铣削中，机器人动力学特性受关节速度、位姿及铣削激励多维度耦合影响的难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2656,
-                "end_char": 2701
-              },
-              "version": "4fb0d81d4994b7535870"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-3bef9d168bbe",
-          "name": "电流信号模态辨识",
-          "desc": "关节随机自激励与多参考点最小二乘复指数法",
-          "evidence": [
-            {
-              "quote": "提出关节随机加减速自激励策略，构建三类随机激励规律；建立伺服驱动与振动信号关联机制，形成融合倒谱编辑与随机减量法的特征提取方法，基于多参考点最小二乘复指数法实现模态参数精准辨识",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2803,
-                "end_char": 2890
-              },
-              "version": "4fb0d81d4994b7535870"
-            }
-          ]
-        },
-        {
-          "id": "item-dd6b9e202fa2",
-          "name": "半监督图卷积预测",
-          "desc": "半监督图卷积神经网络解决数据量有限预测精度",
-          "evidence": [
-            {
-              "quote": "提出半监督图卷积神经网络模型，解决数据量有限导致的预测精度问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3057,
-                "end_char": 3087
-              },
-              "version": "4fb0d81d4994b7535870"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-40581de7231f",
-          "name": "辨识精度提升15%",
-          "desc": "模态参数辨识精度提升15%以上",
-          "evidence": [
-            {
-              "quote": "基于多参考点最小二乘复指数法实现模态参数精准辨识，制定标准化流程，辨识精度提升15%以上，解决多因素耦合下辨识难题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2867,
-                "end_char": 2924
-              },
-              "version": "4fb0d81d4994b7535870"
-            }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5bbf7d6729e7",
-          "name": "振动幅值降低30%",
-          "desc": "多目标优化使振动幅值降低30%以上",
-          "evidence": [
-            {
-              "quote": "以临界切深和振动幅值为指标，实现工艺参数与位姿、速度多目标优化，振动幅值降低30%以上，提升加工稳定性与精度。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3104,
-                "end_char": 3158
-              },
-              "version": "4fb0d81d4994b7535870"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3eea077cfb0f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1dc2c2b85737"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进YOLOv5s的激光软钎焊焊点缺陷检测算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fffb31e1bd66",
+      "evidence": [
+        {
+          "quote": "基于改进YOLOv5s的激光软钎焊焊点缺陷检测算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3332,
+            "end_char": 3356
+          },
+          "version": "4fb0d81d4994b7535870"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1dc2c2b85737"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3bef9d168bbe"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进U-Net算法的焊缝特征识别研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd0ca29d942b",
+      "evidence": [
+        {
+          "quote": "基于改进U-Net算法的焊缝特征识别研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3386,
+            "end_char": 3405
+          },
+          "version": "4fb0d81d4994b7535870"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1dc2c2b85737"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dd6b9e202fa2"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种振动智能抑制系统及其控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b38b91c4adb2",
+      "evidence": [
+        {
+          "quote": "一种振动智能抑制系统及其控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3437,
+            "end_char": 3452
+          },
+          "version": "4fb0d81d4994b7535870"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3bef9d168bbe"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-40581de7231f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人末端视觉测试装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03f4570e3dc7",
+      "evidence": [
+        {
+          "quote": "一种机器人末端视觉测试装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3517,
+            "end_char": 3529
+          },
+          "version": "4fb0d81d4994b7535870"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-dd6b9e202fa2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5bbf7d6729e7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Automatic chatter monitoring and modal analysis of robotic milling based on multi-joint servo current signals",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f6c782272e27",
+      "evidence": [
+        {
+          "quote": "Automatic chatter monitoring and modal analysis of robotic milling based on multi-joint servo current signals",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3569,
+            "end_char": 3677
+          },
+          "version": "4fb0d81d4994b7535870"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Method for Vibration Analysis of Machine Tools Under Variable Cutting Excitation Based on Modal Participation Ratio",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e94b3f470442",
+      "evidence": [
+        {
+          "quote": "A Method for Vibration Analysis of Machine Tools Under Variable Cutting Excitation Based on Modal Participation Ratio",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3735,
+            "end_char": 3851
+          },
+          "version": "4fb0d81d4994b7535870"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Output-only complete mode shape identification of milling robot body structures using a limited number of current sensors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9322b2b73351",
+      "evidence": [
+        {
+          "quote": "Output-only complete mode shape identification of milling robot body structures using a limited number of current sensors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3921,
+            "end_char": 4041
+          },
+          "version": "4fb0d81d4994b7535870"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Auto-identification of dominant modal parameters from multi-batch signals based on weighted SSA to suppress milling vibration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d9dc454c926e",
+      "evidence": [
+        {
+          "quote": "Auto-identification of dominant modal parameters from multi-batch signals based on weighted SSA to suppress milling vibration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4157,
+            "end_char": 4281
+          },
+          "version": "4fb0d81d4994b7535870"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A new approach for bin packing problem using knowledge reuse and improved heuristic",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d0323593dfe",
+      "evidence": [
+        {
+          "quote": "A new approach for bin packing problem using knowledge reuse and improved heuristic",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4354,
+            "end_char": 4436
+          },
+          "version": "4fb0d81d4994b7535870"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于主振模态的变工况龙门铣床工作空间分区方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1ec776945e8f",
+      "evidence": [
+        {
+          "quote": "一种基于主振模态的变工况龙门铣床工作空间分区方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4501,
+            "end_char": 4524
+          },
+          "version": "4fb0d81d4994b7535870"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

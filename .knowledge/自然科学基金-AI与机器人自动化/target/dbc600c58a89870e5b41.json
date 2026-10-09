@@ -2,15 +2,20 @@
   "doc_id": "dbc600c58a89870e5b41",
   "version": "905b76452d9d064a5482",
   "source_hash": "3c7ee92c1cd2fb2216e27d1fbdf098895f699811b1f38ddb46afa4c89d3a0874",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:28:43.758972+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.626474+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dc11b2206ecb",
-          "name": "移动双臂机器人自主作业",
-          "desc": "家庭服务、新能源汽车充电、变电站接地线挂摘等领域的全自动作业",
+          "id": "item-138fe9badba7",
+          "name": "移动双臂机器人要实现全自动作业，人机交互与推理、规划自动生成、双臂协调与控制算法等方面的研究尤其重要。",
+          "desc": "移动双臂机器人要实现全自动作业，人机交互与推理、规划自动生成、双臂协调与控制算法等方面的研究尤其重要。",
           "evidence": [
             {
-              "quote": "本项目研究移动双臂机器人的多模态感知与自动作业关键算法，并以此为理论基础构建移动双臂机器人软硬件系统，实现遵循用户指令的机器人自主作业",
+              "quote": "移动双臂机器人要实现全自动作业，人机交互与推理、规划自动生成、双臂协调与控制算法等方面的研究尤其重要。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2313,
-                "end_char": 2379
+                "start_char": 657,
+                "end_char": 707
+              },
+              "version": "905b76452d9d064a5482"
+            }
+          ]
+        },
+        {
+          "id": "item-44a2e54e5da6",
+          "name": ".    (5)搭建了应用于家庭服务、新能源汽车充电、变电站接地线挂摘等领域的机器人系统仿真平台与实物示范应用测试平台，",
+          "desc": ".    (5)搭建了应用于家庭服务、新能源汽车充电、变电站接地线挂摘等领域的机器人系统仿真平台与实物示范应用测试平台，实现家务整理、汽车充电、接地线挂摘等任务的自动作业。",
+          "evidence": [
+            {
+              "quote": ".    (5)搭建了应用于家庭服务、新能源汽车充电、变电站接地线挂摘等领域的机器人系统仿真平台与实物示范应用测试平台，实现家务整理、汽车充电、接地线挂摘等任务的自动作业。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2951,
+                "end_char": 3036
               },
               "version": "905b76452d9d064a5482"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-debad4e7c92a",
-          "name": "交互规划与双臂协调难",
-          "desc": "实现全自动作业中人机交互与推理、规划自动生成、双臂协调与控制算法等方面的挑战",
+          "id": "item-d06407283845",
+          "name": "将HPN算法与基于半马尔可夫决策过程的强化学习算法结合，研究行为树自动生成算法，解决BTs子树间存在优先级冲突、BTs不",
+          "desc": "将HPN算法与基于半马尔可夫决策过程的强化学习算法结合，研究行为树自动生成算法，解决BTs子树间存在优先级冲突、BTs不规则结构导致难以映射等问题，建立机器人作业任务自动规划模型；",
           "evidence": [
             {
-              "quote": "移动双臂机器人要实现全自动作业，人机交互与推理、规划自动生成、双臂协调与控制算法等方面的研究尤其重要",
+              "quote": "将HPN算法与基于半马尔可夫决策过程的强化学习算法结合，研究行为树自动生成算法，解决BTs子树间存在优先级冲突、BTs不规则结构导致难以映射等问题，建立机器人作业任务自动规划模型；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
-                "end_char": 706
+                "start_char": 748,
+                "end_char": 837
               },
               "version": "905b76452d9d064a5482"
             }
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3e46cbc6d20c",
-          "name": "大语言模型感知交互体系",
-          "desc": "基于大语言模型的多模态感知与交互体系结构，实现用户意图理解与任务自动规划执行",
+          "id": "item-ffd965c9aa06",
+          "name": "提出基于BiLSTM网络机械臂逆动力学建模方法和BiLSTM-BP网络的外力估计策略，提高机械臂对外力的感知精度，实现双",
+          "desc": "提出基于BiLSTM网络机械臂逆动力学建模方法和BiLSTM-BP网络的外力估计策略，提高机械臂对外力的感知精度，实现双臂协调操作中的柔顺控制。",
           "evidence": [
             {
-              "quote": "提出一种基于大语言模型的多模态感知与交互体系结构，实现用户意图的理解与任务的自动规划与执行",
+              "quote": "提出基于BiLSTM网络机械臂逆动力学建模方法和BiLSTM-BP网络的外力估计策略，提高机械臂对外力的感知精度，实现双臂协调操作中的柔顺控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2381,
-                "end_char": 2425
+                "start_char": 2462,
+                "end_char": 2533
               },
               "version": "905b76452d9d064a5482"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d00bc69f130b",
-          "name": "后向链式行为树生成",
-          "desc": "基于后向链式和慎思的行为树生成算法，定义隐式约束条件",
+          "id": "item-f933784492af",
+          "name": "将HPN算法与基于半马尔可夫决策过程的强化学习算法结合，研究行为树自动生成算法，解决BTs子树间存在优先级冲突、BTs不",
+          "desc": "将HPN算法与基于半马尔可夫决策过程的强化学习算法结合，研究行为树自动生成算法，解决BTs子树间存在优先级冲突、BTs不规则结构导致难以映射等问题，建立机器人作业任务自动规划模型；",
           "evidence": [
             {
-              "quote": "提出了一种基于后向链式和慎思的行为树生成算法，定义了行为树中的隐式约束条件",
+              "quote": "将HPN算法与基于半马尔可夫决策过程的强化学习算法结合，研究行为树自动生成算法，解决BTs子树间存在优先级冲突、BTs不规则结构导致难以映射等问题，建立机器人作业任务自动规划模型；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2725,
-                "end_char": 2761
+                "start_char": 748,
+                "end_char": 837
               },
               "version": "905b76452d9d064a5482"
             }
-          ]
-        },
-        {
-          "id": "item-ea4b9a2b0a82",
-          "name": "BiLSTM逆动力学建模",
-          "desc": "基于BiLSTM网络的机械臂逆动力学建模和BiLSTM-BP网络外力估计策略",
-          "evidence": [
-            {
-              "quote": "提出了基于BiLSTM网络机械臂逆动力学建模方法和BiLSTM-BP网络的外力估计策略",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2844,
-                "end_char": 2886
-              },
-              "version": "905b76452d9d064a5482"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +124,1028 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cf7b08e52164",
-          "name": "机器人软硬件平台与应用",
-          "desc": "搭建仿真平台与实物示范应用测试平台，实现家务整理、汽车充电、接地线挂摘等自动作业",
+          "id": "item-56dbc76054d6",
+          "name": "移动双臂机器人要实现全自动作业，人机交互与推理、规划自动生成、双臂协调与控制算法等方面的研究尤其重要。",
+          "desc": "移动双臂机器人要实现全自动作业，人机交互与推理、规划自动生成、双臂协调与控制算法等方面的研究尤其重要。",
           "evidence": [
             {
-              "quote": "搭建了应用于家庭服务、新能源汽车充电、变电站接地线挂摘等领域的机器人系统仿真平台与实物示范应用测试平台，实现家务整理、汽车充电、接地线挂摘等任务的自动作业",
+              "quote": "移动双臂机器人要实现全自动作业，人机交互与推理、规划自动生成、双臂协调与控制算法等方面的研究尤其重要。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2959,
-                "end_char": 3035
+                "start_char": 657,
+                "end_char": 707
               },
               "version": "905b76452d9d064a5482"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-ea6547712ec1",
+          "name": "本项目研究移动双臂机器人的多模态感知与自动作业关键算法，并以此为理论基础构建移动双臂机器人软硬件系统，实现遵循用户指令的",
+          "desc": "本项目研究移动双臂机器人的多模态感知与自动作业关键算法，并以此为理论基础构建移动双臂机器人软硬件系统，实现遵循用户指令的机器人自主作业。",
+          "evidence": [
+            {
+              "quote": "本项目研究移动双臂机器人的多模态感知与自动作业关键算法，并以此为理论基础构建移动双臂机器人软硬件系统，实现遵循用户指令的机器人自主作业。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2313,
+                "end_char": 2380
+              },
+              "version": "905b76452d9d064a5482"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-dc11b2206ecb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-debad4e7c92a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Textual emotion recognition method based on ALBERT-BiLSTM model and SVM-NB classification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-44c2067f0cd0",
+      "evidence": [
+        {
+          "quote": "Textual emotion recognition method based on ALBERT-BiLSTM model and SVM-NB classification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3151,
+            "end_char": 3239
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-debad4e7c92a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3e46cbc6d20c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DNGF-LS: A Dynamic Non-Ground Points Filtering LiDAR SLAM Based on Sparse 4DCNN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66760ada7032",
+      "evidence": [
+        {
+          "quote": "DNGF-LS: A Dynamic Non-Ground Points Filtering LiDAR SLAM Based on Sparse 4DCNN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3300,
+            "end_char": 3378
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-debad4e7c92a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d00bc69f130b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot Calligraphy Based on Footprint Model and Brush Trajectory Extraction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ee759e20c987",
+      "evidence": [
+        {
+          "quote": "Robot Calligraphy Based on Footprint Model and Brush Trajectory Extraction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3426,
+            "end_char": 3499
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-debad4e7c92a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ea4b9a2b0a82"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "书法机器人研究综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-88187ed95ae3",
+      "evidence": [
+        {
+          "quote": "书法机器人研究综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3547,
+            "end_char": 3555
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3e46cbc6d20c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cf7b08e52164"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Inverse Dynamics Model Learning for Robotic Manipulator Based on Swarm Optimization AdaBoost-LSTM",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a470a8e60f9",
+      "evidence": [
+        {
+          "quote": "Inverse Dynamics Model Learning for Robotic Manipulator Based on Swarm Optimization AdaBoost-LSTM",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3577,
+            "end_char": 3673
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ea4b9a2b0a82"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cf7b08e52164"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot Grasp with Multi-object Detection based on RGB-D Image",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-48df7829d2fb",
+      "evidence": [
+        {
+          "quote": "Robot Grasp with Multi-object Detection based on RGB-D Image",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3734,
+            "end_char": 3793
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "杂乱场景中多尺度注意力特征融合抓取检测网络",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-54e44e772ea5",
+      "evidence": [
+        {
+          "quote": "杂乱场景中多尺度注意力特征融合抓取检测网络",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3847,
+            "end_char": 3867
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Fruit Detection Model in Complex Environments Based on Attention Mechanism and Feature Fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8a80d27732c",
+      "evidence": [
+        {
+          "quote": "A Fruit Detection Model in Complex Environments Based on Attention Mechanism and Feature Fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3892,
+            "end_char": 3986
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "OFM-SLAM: A Visual Semantic SLAM for Dynamic Indoor Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-86e5ad73d90e",
+      "evidence": [
+        {
+          "quote": "OFM-SLAM: A Visual Semantic SLAM for Dynamic Indoor Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4034,
+            "end_char": 4097
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MHRN-ST: Go Board Recognition With Multi-stage Highlight Removal Network Based On Swin Transformer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a37f47ff0127",
+      "evidence": [
+        {
+          "quote": "MHRN-ST: Go Board Recognition With Multi-stage Highlight Removal Network Based On Swin Transformer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4140,
+            "end_char": 4237
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SDSLP-YOLO: An end-to-end model for simultaneously detecting strawberry and locating picking point",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-003ea558e3e8",
+      "evidence": [
+        {
+          "quote": "SDSLP-YOLO: An end-to-end model for simultaneously detecting strawberry and locating picking point",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4288,
+            "end_char": 4385
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于点云关键点分类的特征提取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-910a95e73ca6",
+      "evidence": [
+        {
+          "quote": "基于点云关键点分类的特征提取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4434,
+            "end_char": 4449
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于全自动液体样本处理工作站的目标识别和路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aacc88c5f39e",
+      "evidence": [
+        {
+          "quote": "一种基于全自动液体样本处理工作站的目标识别和路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4477,
+            "end_char": 4504
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于3D视觉与力柔顺控制的电动汽车自动充电系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d2e8cdff9e33",
+      "evidence": [
+        {
+          "quote": "基于3D视觉与力柔顺控制的电动汽车自动充电系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4531,
+            "end_char": 4553
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LA-Net: LSTM and attention based point cloud down-sampling and its application",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8d8802c0aea",
+      "evidence": [
+        {
+          "quote": "LA-Net: LSTM and attention based point cloud down-sampling and its application",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4593,
+            "end_char": 4670
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved Data-Weighted Iterative Parameter Identification Method for Accurate Dynamic Modeling of Collaborative Manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-097ae7425825",
+      "evidence": [
+        {
+          "quote": "Improved Data-Weighted Iterative Parameter Identification Method for Accurate Dynamic Modeling of Collaborative Manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4750,
+            "end_char": 4873
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot Grasping using Dilated Residual Convolutional Neural Netwok",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a85f0a976f9b",
+      "evidence": [
+        {
+          "quote": "Robot Grasping using Dilated Residual Convolutional Neural Netwok",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4922,
+            "end_char": 4986
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "关节测试实验平台",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8b261b9f8dd",
+      "evidence": [
+        {
+          "quote": "关节测试实验平台",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5042,
+            "end_char": 5049
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CCpos: WiFi Fingerprint Indoor Positioning System Based on CDAE-CNN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2e81f6b942da",
+      "evidence": [
+        {
+          "quote": "CCpos: WiFi Fingerprint Indoor Positioning System Based on CDAE-CNN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5076,
+            "end_char": 5142
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Electric Vehicle Automatic Charging System Guided by 3D Vision and F/T Sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-63b613eb8b09",
+      "evidence": [
+        {
+          "quote": "Electric Vehicle Automatic Charging System Guided by 3D Vision and F/T Sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5184,
+            "end_char": 5260
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SPSOC: Staged Pseudo-Spectral Optimal Control Optimization Model for Robotic Chinese Calligraphy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f0d980b5a264",
+      "evidence": [
+        {
+          "quote": "SPSOC: Staged Pseudo-Spectral Optimal Control Optimization Model for Robotic Chinese Calligraphy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5306,
+            "end_char": 5401
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual Weld Seam Tracking through Feature-Fused Kernelized Correlation Filters and Generative Adversarial Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e300b4828541",
+      "evidence": [
+        {
+          "quote": "Visual Weld Seam Tracking through Feature-Fused Kernelized Correlation Filters and Generative Adversarial Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5450,
+            "end_char": 5563
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于ALBERT-BiLSTM模型和SVM-NB分类的文本情绪识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d8291a73d03",
+      "evidence": [
+        {
+          "quote": "一种基于ALBERT-BiLSTM模型和SVM-NB分类的文本情绪识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5629,
+            "end_char": 5665
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LLM-BT: Performing Robotic Adaptive Tasks based on Large Language Models and Behavior Trees",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2472c3717917",
+      "evidence": [
+        {
+          "quote": "LLM-BT: Performing Robotic Adaptive Tasks based on Large Language Models and Behavior Trees",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5691,
+            "end_char": 5781
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种高空作业机器人及其远程控制方法和远程控制系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-61b9b6792c05",
+      "evidence": [
+        {
+          "quote": "一种高空作业机器人及其远程控制方法和远程控制系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5850,
+            "end_char": 5873
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "变电站机器人挂/摘接地线的遥操作控制系统与控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a534f0507859",
+      "evidence": [
+        {
+          "quote": "变电站机器人挂/摘接地线的遥操作控制系统与控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5921,
+            "end_char": 5945
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Error Related Potential Detection Algorithm for Brain Computer Interface",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d95bce05cc2",
+      "evidence": [
+        {
+          "quote": "Error Related Potential Detection Algorithm for Brain Computer Interface",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6002,
+            "end_char": 6073
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种提升新型域泛化性的6-DoF抓取方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-301624fbdc29",
+      "evidence": [
+        {
+          "quote": "一种提升新型域泛化性的6-DoF抓取方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6107,
+            "end_char": 6129
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向平层多房间的内墙作业移动机器人路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fa87154592b7",
+      "evidence": [
+        {
+          "quote": "面向平层多房间的内墙作业移动机器人路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6156,
+            "end_char": 6176
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "利用统计数据并行蒙特卡罗树搜索算法的中国象棋博弈",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad5e5d7433b5",
+      "evidence": [
+        {
+          "quote": "利用统计数据并行蒙特卡罗树搜索算法的中国象棋博弈",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6206,
+            "end_char": 6229
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MDLIRE-Net: Semantic Segmentation of Point Clouds Based on Multidimensional Local Information Re-encoding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d29c2ed3b9c8",
+      "evidence": [
+        {
+          "quote": "MDLIRE-Net: Semantic Segmentation of Point Clouds Based on Multidimensional Local Information Re-encoding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6251,
+            "end_char": 6355
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向电动汽车自动充电的移动双臂机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-27de4cac7aa1",
+      "evidence": [
+        {
+          "quote": "面向电动汽车自动充电的移动双臂机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6401,
+            "end_char": 6418
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的自主移机器人路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7b9be950df68",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的自主移机器人路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6446,
+            "end_char": 6468
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An InterFormer-BERT Chinese named entity recognition model with enhanced boundary",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0580ef82664f",
+      "evidence": [
+        {
+          "quote": "An InterFormer-BERT Chinese named entity recognition model with enhanced boundary",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6501,
+            "end_char": 6581
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于端电压尖峰的无刷直流电机无位置传感器换相控制策略",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ff8a6a0c8f6",
+      "evidence": [
+        {
+          "quote": "基于端电压尖峰的无刷直流电机无位置传感器换相控制策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6611,
+            "end_char": 6636
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CCD-BSM:composite-curve-dilation brush stroke model for robotic chinese calligraphy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bb6d8fdaa732",
+      "evidence": [
+        {
+          "quote": "CCD-BSM:composite-curve-dilation brush stroke model for robotic chinese calligraphy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6659,
+            "end_char": 6741
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PL-TD3: A Dynamic Path Planning Algorithm of Mobile Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3abe6b620282",
+      "evidence": [
+        {
+          "quote": "PL-TD3: A Dynamic Path Planning Algorithm of Mobile Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6799,
+            "end_char": 6855
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于LOS可信度识别的UWB室内定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0fb9e91dfa6",
+      "evidence": [
+        {
+          "quote": "一种基于LOS可信度识别的UWB室内定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6911,
+            "end_char": 6932
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Backward chained behavior trees with deliberation for multi-goal tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35c41237b16d",
+      "evidence": [
+        {
+          "quote": "Backward chained behavior trees with deliberation for multi-goal tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6966,
+            "end_char": 7035
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-stage Objective Function Optimized Hand-Eye Self-calibration of Robot in Autonomous Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7fd9e437a6da",
+      "evidence": [
+        {
+          "quote": "Multi-stage Objective Function Optimized Hand-Eye Self-calibration of Robot in Autonomous Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7086,
+            "end_char": 7186
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3D Grasping Pose Detection Method Based on Improved PointNet Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9fdda7a113ef",
+      "evidence": [
+        {
+          "quote": "3D Grasping Pose Detection Method Based on Improved PointNet Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7247,
+            "end_char": 7314
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于目标检测的单目视觉半稠密语义地图构建",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-91dab9dacf82",
+      "evidence": [
+        {
+          "quote": "基于目标检测的单目视觉半稠密语义地图构建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7377,
+            "end_char": 7396
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PVS-CNN:子流稀疏卷积优化的Point-Voxel CNN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7501230a0406",
+      "evidence": [
+        {
+          "quote": "PVS-CNN:子流稀疏卷积优化的Point-Voxel CNN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7421,
+            "end_char": 7452
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A review of dynamic parameters identification for manipulator control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b48e4f723ca6",
+      "evidence": [
+        {
+          "quote": "A review of dynamic parameters identification for manipulator control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7475,
+            "end_char": 7543
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SESGMS: A Welding Seam Extraction Method Based on Spherical Gaussian Mixture Sampling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99dd927c0cbf",
+      "evidence": [
+        {
+          "quote": "SESGMS: A Welding Seam Extraction Method Based on Spherical Gaussian Mixture Sampling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7606,
+            "end_char": 7690
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种面向低采样率的点云数据处理网络",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc45e3a37947",
+      "evidence": [
+        {
+          "quote": "一种面向低采样率的点云数据处理网络",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7742,
+            "end_char": 7758
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Velocity-aware spatial-temporal attention LSTM model for inverse dynamic model learning of manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca7d51294409",
+      "evidence": [
+        {
+          "quote": "Velocity-aware spatial-temporal attention LSTM model for inverse dynamic model learning of manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7784,
+            "end_char": 7886
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Model Learning for Robotic Manipulators using BiLSTM Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b4b77c7245ee",
+      "evidence": [
+        {
+          "quote": "Dynamic Model Learning for Robotic Manipulators using BiLSTM Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7949,
+            "end_char": 8017
+          },
+          "version": "905b76452d9d064a5482"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 48,
+    "listed": 48,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "会议论文": {
+        "listed": 21,
+        "extracted": 21
+      },
+      "专利": {
+        "listed": 10,
+        "extracted": 10
+      }
+    },
+    "consistent": true
+  }
 }

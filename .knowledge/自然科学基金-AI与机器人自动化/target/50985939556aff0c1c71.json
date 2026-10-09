@@ -2,15 +2,20 @@
   "doc_id": "50985939556aff0c1c71",
   "version": "74c1917530bcfb0de0cb",
   "source_hash": "8d2aa2e134137bf5951dc9aede16419762081c502ec7c62681935fe7d6339b91",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:52.429137+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.242794+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e7eaccff6ce6",
-          "name": "空间站大型机械臂作业",
-          "desc": "空间站在轨组装维护与航天员辅助出舱操作",
+          "id": "item-276b7aee1d28",
+          "name": "空间大型机械臂是空间站在轨组装、维护维修、载荷照料和航天员辅助出舱操作等的重要工具，它有助于延长空间站及载荷的使用寿命，",
+          "desc": "空间大型机械臂是空间站在轨组装、维护维修、载荷照料和航天员辅助出舱操作等的重要工具，它有助于延长空间站及载荷的使用寿命，获得更多的科研和经济回报。",
           "evidence": [
             {
               "quote": "空间大型机械臂是空间站在轨组装、维护维修、载荷照料和航天员辅助出舱操作等的重要工具，它有助于延长空间站及载荷的使用寿命，获得更多的科研和经济回报。",
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b080bed30890",
-          "name": "柔性行为致振荡精度降低",
-          "desc": "关节臂杆柔性导致系统振荡、精度降低和性能退化",
-          "evidence": [
-            {
-              "quote": "然而，由于空间大型机械臂关节和臂杆的柔性行为，易导致机械臂系统振荡、精度降低和性能退化等问题，无法满足快速、稳定、精细操作的需求。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 732,
-                "end_char": 796
-              },
-              "version": "74c1917530bcfb0de0cb"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4daa3dcb81db",
-          "name": "多传感器融合柔性控制",
-          "desc": "12D传感器（六维力矩+六维加速度）信息融合控制",
+          "id": "item-0c04a6de0bed",
+          "name": "针对以上问题，结合哈尔滨工业大学研制的空间站问天舱大型机械臂，建立了空间大型机械臂完整的数学模型，分析了关节和臂杆柔性对",
+          "desc": "针对以上问题，结合哈尔滨工业大学研制的空间站问天舱大型机械臂，建立了空间大型机械臂完整的数学模型，分析了关节和臂杆柔性对系统动力学的影响，基于研制的12D传感器（包含六维力矩和六维加速度传感器），开展了多传感器信息融合、柔性抓捕、残余振动抑制等控制策略研究，提出了基于基座反作用力矩估计的协调控制方法，合理规划了机械臂运动，使其对基座姿态扰动最小。",
           "evidence": [
             {
-              "quote": "基于研制的12D传感器（包含六维力矩和六维加速度传感器），开展了多传感器信息融合、柔性抓捕、残余振动抑制等控制策略研究",
+              "quote": "针对以上问题，结合哈尔滨工业大学研制的空间站问天舱大型机械臂，建立了空间大型机械臂完整的数学模型，分析了关节和臂杆柔性对系统动力学的影响，基于研制的12D传感器（包含六维力矩和六维加速度传感器），开展了多传感器信息融合、柔性抓捕、残余振动抑制等控制策略研究，提出了基于基座反作用力矩估计的协调控制方法，合理规划了机械臂运动，使其对基座姿态扰动最小。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2904,
-                "end_char": 2962
-              },
-              "version": "74c1917530bcfb0de0cb"
-            }
-          ]
-        },
-        {
-          "id": "item-eda3cd565515",
-          "name": "基座反作用力矩协调控制",
-          "desc": "合理规划机械臂运动使基座姿态扰动最小",
-          "evidence": [
-            {
-              "quote": "提出了基于基座反作用力矩估计的协调控制方法，合理规划了机械臂运动，使其对基座姿态扰动最小。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2964,
+                "start_char": 2835,
                 "end_char": 3008
               },
               "version": "74c1917530bcfb0de0cb"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-94bfd8e6590f",
+          "name": "从而建立空间大型机械臂柔性动力学的演化模型，提出柔性行为的态势预测方法和鲁棒性的控制策略，进行仿真和地面试验验证，为我国",
+          "desc": "从而建立空间大型机械臂柔性动力学的演化模型，提出柔性行为的态势预测方法和鲁棒性的控制策略，进行仿真和地面试验验证，为我国空间大型机械臂技术的发展奠定基础。",
+          "evidence": [
+            {
+              "quote": "从而建立空间大型机械臂柔性动力学的演化模型，提出柔性行为的态势预测方法和鲁棒性的控制策略，进行仿真和地面试验验证，为我国空间大型机械臂技术的发展奠定基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 975,
+                "end_char": 1051
+              },
+              "version": "74c1917530bcfb0de0cb"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,313 @@
       "state": "has",
       "items": [
         {
-          "id": "item-911289a6c936",
-          "name": "问天舱机械臂在轨应用",
-          "desc": "完成扩展泵组安装、全景相机抬升等任务获航天员赞誉",
+          "id": "item-2e9067fe4dca",
+          "name": "空间大型机械臂是空间站在轨组装、维护维修、载荷照料和航天员辅助出舱操作等的重要工具，它有助于延长空间站及载荷的使用寿命，",
+          "desc": "空间大型机械臂是空间站在轨组装、维护维修、载荷照料和航天员辅助出舱操作等的重要工具，它有助于延长空间站及载荷的使用寿命，获得更多的科研和经济回报。",
           "evidence": [
             {
-              "quote": "提出的方法已应用在空间站问天舱机械臂中，其先后完成了问天舱扩展泵组安装、全景相机抬升、舱外自主应急返回验证，舱外助力手柄安装、载荷回路扩展泵组安装等任务，全部任务圆满完成，同时验证了与航天员协同工作的能力，获得了航天员刘洋“定位精准，无需微调”的赞誉。",
+              "quote": "空间大型机械臂是空间站在轨组装、维护维修、载荷照料和航天员辅助出舱操作等的重要工具，它有助于延长空间站及载荷的使用寿命，获得更多的科研和经济回报。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3009,
-                "end_char": 3134
+                "start_char": 659,
+                "end_char": 731
               },
               "version": "74c1917530bcfb0de0cb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e7eaccff6ce6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b080bed30890"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于实现 C2 连续的机器人轨迹 规划方法、装置及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1715d7097cbf",
+      "evidence": [
+        {
+          "quote": "用于实现 C2 连续的机器人轨迹 规划方法、装置及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3158,
+            "end_char": 3184
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b080bed30890"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4daa3dcb81db"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "仿蝙蝠柔性变形扑翼机器人的飞行控制装置及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ff97f558906",
+      "evidence": [
+        {
+          "quote": "仿蝙蝠柔性变形扑翼机器人的飞行控制装置及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3213,
+            "end_char": 3236
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b080bed30890"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-eda3cd565515"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "多个旋转变压器的并行数据采集电路及自动采集方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-032fcab54700",
+      "evidence": [
+        {
+          "quote": "多个旋转变压器的并行数据采集电路及自动采集方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3262,
+            "end_char": 3284
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-eda3cd565515"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-911289a6c936"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人姿态轨迹生成方 法、装置及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed3df066a9b3",
+      "evidence": [
+        {
+          "quote": "一种机器人姿态轨迹生成方 法、装置及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3311,
+            "end_char": 3332
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4daa3dcb81db"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-911289a6c936"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of a Hierarchical Control System for Tetherless Snake Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a8385aec4b4",
+      "evidence": [
+        {
+          "quote": "Design of a Hierarchical Control System for Tetherless Snake Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3363,
+            "end_char": 3428
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A C2 continuous trajectory planning method for 6-DOF rotational robot manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-697cc4dbf399",
+      "evidence": [
+        {
+          "quote": "A C2 continuous trajectory planning method for 6-DOF rotational robot manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3461,
+            "end_char": 3542
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Adaptive Force Control Architecture with Fast-Response and Robustness in Uncertain Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-036365300fcd",
+      "evidence": [
+        {
+          "quote": "An Adaptive Force Control Architecture with Fast-Response and Robustness in Uncertain Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3606,
+            "end_char": 3702
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A_Real-time_Robot_Control_Framework_Using_ROS_Control_for_7-DoF_Light-weight_Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5472e713ac1b",
+      "evidence": [
+        {
+          "quote": "A_Real-time_Robot_Control_Framework_Using_ROS_Control_for_7-DoF_Light-weight_Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3733,
+            "end_char": 3814
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "机械手人机协同操作关键技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3caa22ce8847",
+      "evidence": [
+        {
+          "quote": "机械手人机协同操作关键技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3841,
+            "end_char": 3853
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning impedance regulation skills for robot belt grinding from human demonstrations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4cb4667cf511",
+      "evidence": [
+        {
+          "quote": "Learning impedance regulation skills for robot belt grinding from human demonstrations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3890,
+            "end_char": 3975
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Kinematic Parameter Calibration Method of Light Weight Robots Based on Sequence Quadratic Programming Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8035d353fdfd",
+      "evidence": [
+        {
+          "quote": "Kinematic Parameter Calibration Method of Light Weight Robots Based on Sequence Quadratic Programming Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4061,
+            "end_char": 4171
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An efficient and accurate forcetorque sensing method based on an excitation trajectory",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ac5ba9023b84",
+      "evidence": [
+        {
+          "quote": "An efficient and accurate forcetorque sensing method based on an excitation trajectory",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4202,
+            "end_char": 4287
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Locally Guided Multiple Bi-RRT∗ for Fast Path Planning in Narrow Passages",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7eb16b012c03",
+      "evidence": [
+        {
+          "quote": "Locally Guided Multiple Bi-RRT∗ for Fast Path Planning in Narrow Passages",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4312,
+            "end_char": 4384
+          },
+          "version": "74c1917530bcfb0de0cb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "541e6da5e3eb6e297f8b",
   "version": "7edc08eb6973a13ef936",
   "source_hash": "d35677e43955d544b8bea8158bad39fb5f833178c77133541670d61a8405f708",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:54.194398+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.268610+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1dca0ab91dbd",
-          "name": "自动驾驶强化学习决策",
-          "desc": "自主决策能力是自动驾驶汽车智能性的核心体现",
+          "id": "item-8fbf55cdfb47",
+          "name": "自主决策能力是自动驾驶汽车智能性的核心体现。",
+          "desc": "自主决策能力是自动驾驶汽车智能性的核心体现。",
           "evidence": [
             {
-              "quote": "自主决策能力是自动驾驶汽车智能性的核心体现",
+              "quote": "自主决策能力是自动驾驶汽车智能性的核心体现。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 649,
-                "end_char": 669
+                "end_char": 670
+              },
+              "version": "7edc08eb6973a13ef936"
+            }
+          ]
+        },
+        {
+          "id": "item-f1ed443265c6",
+          "name": "利用该系统进行了端到端自动驾驶模型训练，将策略部署于实车平台，在包含7个信控路口的开放城市道路进行测试，策略在高复杂度真",
+          "desc": "利用该系统进行了端到端自动驾驶模型训练，将策略部署于实车平台，在包含7个信控路口的开放城市道路进行测试，策略在高复杂度真实环境下实现了平稳安全的决策控制，为强化学习在复杂工业控制领域的应用推广奠定基础。",
+          "evidence": [
+            {
+              "quote": "利用该系统进行了端到端自动驾驶模型训练，将策略部署于实车平台，在包含7个信控路口的开放城市道路进行测试，策略在高复杂度真实环境下实现了平稳安全的决策控制，为强化学习在复杂工业控制领域的应用推广奠定基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3162,
+                "end_char": 3262
               },
               "version": "7edc08eb6973a13ef936"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-373a36191fdd",
-          "name": "规则决策与过估计难题",
-          "desc": "规则型决策难以穷尽驾驶可能，强化学习面临值函数过估计与周车动态变化",
-          "evidence": [
-            {
-              "quote": "现有规则型决策难以穷尽所有驾驶可能，无法满足高级别自动驾驶需求",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 671,
-                "end_char": 701
-              },
-              "version": "7edc08eb6973a13ef936"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-344f061bb2c4",
-          "name": "值分布强化学习算法",
-          "desc": "最大熵策略优化与值分布函数，建立值分布柔性迭代框架",
+          "id": "item-84b54b395eeb",
+          "name": "依托强化学习的端到端自动驾驶提高决控智能性重要途径，项目研究了具备过估计抑制能力的强化学习算法和动态数目周车的状态编码方",
+          "desc": "依托强化学习的端到端自动驾驶提高决控智能性重要途径，项目研究了具备过估计抑制能力的强化学习算法和动态数目周车的状态编码方法，搭建了强化学习型驾驶策略训练系统，通过仿真和实车实验验证策略性能，为下一代学习型智能汽车决策系统的开发奠定基础。",
           "evidence": [
             {
-              "quote": "引入最大熵策略优化目标和值分布函数，建立了具有收敛至最优策略能力的值分布柔性迭代框架",
+              "quote": "依托强化学习的端到端自动驾驶提高决控智能性重要途径，项目研究了具备过估计抑制能力的强化学习算法和动态数目周车的状态编码方法，搭建了强化学习型驾驶策略训练系统，通过仿真和实车实验验证策略性能，为下一代学习型智能汽车决策系统的开发奠定基础。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2785,
-                "end_char": 2826
+                "start_char": 2640,
+                "end_char": 2757
               },
               "version": "7edc08eb6973a13ef936"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-558a844b6adf",
-          "name": "周车排列不变性状态编码",
-          "desc": "编码神经网络将动态数目周车信息映射为定维排列不变向量",
+          "id": "item-286ee61f82d1",
+          "name": "利用该系统进行了端到端自动驾驶模型训练，将策略部署于实车平台，在包含7个信控路口的开放城市道路进行测试，策略在高复杂度真",
+          "desc": "利用该系统进行了端到端自动驾驶模型训练，将策略部署于实车平台，在包含7个信控路口的开放城市道路进行测试，策略在高复杂度真实环境下实现了平稳安全的决策控制，为强化学习在复杂工业控制领域的应用推广奠定基础。",
           "evidence": [
             {
-              "quote": "提出了周车的排列不变性状态编码方法",
+              "quote": "利用该系统进行了端到端自动驾驶模型训练，将策略部署于实车平台，在包含7个信控路口的开放城市道路进行测试，策略在高复杂度真实环境下实现了平稳安全的决策控制，为强化学习在复杂工业控制领域的应用推广奠定基础。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2962,
-                "end_char": 2978
+                "start_char": 3162,
+                "end_char": 3262
               },
               "version": "7edc08eb6973a13ef936"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,125 +107,448 @@
       "state": "has",
       "items": [
         {
-          "id": "item-acb09c4c8fd7",
-          "name": "策略性能提升20%",
-          "desc": "与SAC、TD3、DDPG等主流算法相比过估计抑制效果明显，性能提升20.0%",
+          "id": "item-0b3fe40db524",
+          "name": "自主决策能力是自动驾驶汽车智能性的核心体现。",
+          "desc": "自主决策能力是自动驾驶汽车智能性的核心体现。",
           "evidence": [
             {
-              "quote": "与SAC、TD3、DDPG等主流算法相比，所提出算法对过估计偏差的抑制效果明显，策略性能提升20.0%",
+              "quote": "自主决策能力是自动驾驶汽车智能性的核心体现。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2888,
-                "end_char": 2938
+                "start_char": 649,
+                "end_char": 670
               },
               "version": "7edc08eb6973a13ef936"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-750b7fa51076",
-          "name": "实车开放道路测试",
-          "desc": "策略部署实车平台，在7个信控路口开放城市道路实现平稳安全决策控制",
+          "id": "item-24cc3556d766",
+          "name": "依托强化学习的端到端自动驾驶提高决控智能性重要途径，项目研究了具备过估计抑制能力的强化学习算法和动态数目周车的状态编码方",
+          "desc": "依托强化学习的端到端自动驾驶提高决控智能性重要途径，项目研究了具备过估计抑制能力的强化学习算法和动态数目周车的状态编码方法，搭建了强化学习型驾驶策略训练系统，通过仿真和实车实验验证策略性能，为下一代学习型智能汽车决策系统的开发奠定基础。",
           "evidence": [
             {
-              "quote": "将策略部署于实车平台，在包含7个信控路口的开放城市道路进行测试，策略在高复杂度真实环境下实现了平稳安全的决策控制",
+              "quote": "依托强化学习的端到端自动驾驶提高决控智能性重要途径，项目研究了具备过估计抑制能力的强化学习算法和动态数目周车的状态编码方法，搭建了强化学习型驾驶策略训练系统，通过仿真和实车实验验证策略性能，为下一代学习型智能汽车决策系统的开发奠定基础。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3182,
-                "end_char": 3237
+                "start_char": 2640,
+                "end_char": 2757
               },
               "version": "7edc08eb6973a13ef936"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1cb933858a47",
-          "name": "论文与授权专利",
-          "desc": "发表期刊论文18篇、会议论文4篇，授权国内外发明专利6项",
-          "evidence": [
-            {
-              "quote": "共发表国内外知名期刊论文18篇、会议论文4篇，授权国内外发明专利6项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3273,
-                "end_char": 3306
-              },
-              "version": "7edc08eb6973a13ef936"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1dca0ab91dbd"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-373a36191fdd"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "依托强化学习的多风格车辆轨迹跟踪避撞控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-55ad93151846",
+      "evidence": [
+        {
+          "quote": "依托强化学习的多风格车辆轨迹跟踪避撞控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3381,
+            "end_char": 3405
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-373a36191fdd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-344f061bb2c4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种依托强化学习的PID轨迹跟踪控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b277a191c8ef",
+      "evidence": [
+        {
+          "quote": "一种依托强化学习的PID轨迹跟踪控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3447,
+            "end_char": 3469
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-373a36191fdd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-558a844b6adf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fuel-efficient predictive cruise control using the explicit MPC method for commercial vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f30e7464168a",
+      "evidence": [
+        {
+          "quote": "Fuel-efficient predictive cruise control using the explicit MPC method for commercial vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3507,
+            "end_char": 3600
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-344f061bb2c4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-acb09c4c8fd7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RL-Driven MPPI: Accelerating Online Control Laws Calculation With Offline Policy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d49b0ddf255",
+      "evidence": [
+        {
+          "quote": "RL-Driven MPPI: Accelerating Online Control Laws Calculation With Offline Policy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3718,
+            "end_char": 3797
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-558a844b6adf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-750b7fa51076"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributional Soft Actor-Critic With Three Refinements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbf745ab2a47",
+      "evidence": [
+        {
+          "quote": "Distributional Soft Actor-Critic With Three Refinements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3904,
+            "end_char": 3958
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-344f061bb2c4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1cb933858a47"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimization Landscape of Policy Gradient Methods for Discrete-Time Static Output Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2df4aa07e660",
+      "evidence": [
+        {
+          "quote": "Optimization Landscape of Policy Gradient Methods for Discrete-Time Static Output Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4082,
+            "end_char": 4171
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "On the Optimization Landscape of Dynamic Output Feedback Linear Quadratic Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1d0b35b9dab",
+      "evidence": [
+        {
+          "quote": "On the Optimization Landscape of Dynamic Output Feedback Linear Quadratic Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4253,
+            "end_char": 4333
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Global Optimality of Single-Timescale Actor-Critic under Continuous State-Action Space: A Study on Linear Quadratic Regulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a449cf8f0581",
+      "evidence": [
+        {
+          "quote": "Global Optimality of Single-Timescale Actor-Critic under Continuous State-Action Space: A Study on Linear Quadratic Regulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4393,
+            "end_char": 4517
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Relaxed Policy Iteration Algorithm for Nonlinear Zero-Sum Games With Application to H-Infinity Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ebf3e1c30843",
+      "evidence": [
+        {
+          "quote": "Relaxed Policy Iteration Algorithm for Nonlinear Zero-Sum Games With Application to H-Infinity Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4567,
+            "end_char": 4668
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种强化学习型液压机械臂集成控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-678a5b05d801",
+      "evidence": [
+        {
+          "quote": "一种强化学习型液压机械臂集成控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4759,
+            "end_char": 4779
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "智能汽车主动避撞工况的高实时预测控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-83449cc41fc8",
+      "evidence": [
+        {
+          "quote": "智能汽车主动避撞工况的高实时预测控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4829,
+            "end_char": 4846
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Policy Iteration Based Approximate Dynamic Programming Toward Autonomous Driving in Constrained Dynamic Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0b59c99325d",
+      "evidence": [
+        {
+          "quote": "Policy Iteration Based Approximate Dynamic Programming Toward Autonomous Driving in Constrained Dynamic Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4888,
+            "end_char": 5002
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributional Soft Actor-Critic for Decision-Making in On-Ramp Merge Scenarios",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-46b7c09a066f",
+      "evidence": [
+        {
+          "quote": "Distributional Soft Actor-Critic for Decision-Making in On-Ramp Merge Scenarios",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5098,
+            "end_char": 5176
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "无监督学习型凿岩钻臂逆运动学求解方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-089d53a5aa8f",
+      "evidence": [
+        {
+          "quote": "无监督学习型凿岩钻臂逆运动学求解方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5292,
+            "end_char": 5309
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multimodal Reinforcement Learning With Score-Based Policy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0f6673ec707",
+      "evidence": [
+        {
+          "quote": "Multimodal Reinforcement Learning With Score-Based Policy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5353,
+            "end_char": 5409
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "自动驾驶车辆前向避撞场景下干预型共享控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01205f7fcead",
+      "evidence": [
+        {
+          "quote": "自动驾驶车辆前向避撞场景下干预型共享控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5517,
+            "end_char": 5541
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "依托多风格强化学习的车辆轨迹跟踪避撞控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-90d1a76e4c5c",
+      "evidence": [
+        {
+          "quote": "依托多风格强化学习的车辆轨迹跟踪避撞控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5571,
+            "end_char": 5590
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Relaxed Actor-Critic With Convergence Guarantees for Continuous-Time Optimal Control of Nonlinear Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a28c0a42944",
+      "evidence": [
+        {
+          "quote": "Relaxed Actor-Critic With Convergence Guarantees for Continuous-Time Optimal Control of Nonlinear Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5632,
+            "end_char": 5736
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种依托强化学习的铰接车轨迹跟踪控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-afe16b759529",
+      "evidence": [
+        {
+          "quote": "一种依托强化学习的铰接车轨迹跟踪控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5836,
+            "end_char": 5858
+          },
+          "version": "7edc08eb6973a13ef936"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

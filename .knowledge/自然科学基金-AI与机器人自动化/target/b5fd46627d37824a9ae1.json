@@ -2,15 +2,20 @@
   "doc_id": "b5fd46627d37824a9ae1",
   "version": "03cc2cd979ae54c45d89",
   "source_hash": "c569d2e26e4c10fdf59058eaee4322549ad49b7a1e501aa1548c43541fcedf7c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:52:47.484337+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.249775+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f3486eb56370",
-          "name": "脑卒中主动康复脑机接口",
-          "desc": "BCI技术辅助脑卒中患者进行主动康复训练",
+          "id": "item-49cda1b4e6b8",
+          "name": "脑机接口(brain-computer interface, BCI)技术可以实现大脑与外界环境的直接交互，从而辅助脑卒",
+          "desc": "脑机接口(brain-computer interface, BCI)技术可以实现大脑与外界环境的直接交互，从而辅助脑卒中患者进行主动康复训练。",
           "evidence": [
             {
               "quote": "脑机接口(brain-computer interface, BCI)技术可以实现大脑与外界环境的直接交互，从而辅助脑卒中患者进行主动康复训练。",
@@ -33,82 +38,67 @@
               "version": "03cc2cd979ae54c45d89"
             }
           ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
+        },
         {
-          "id": "item-0d64bc9cb58d",
-          "name": "脑电快速测量与运动意图解码",
-          "desc": "脑电信号非平稳，快速测量与准确解码是核心问题",
+          "id": "item-91970ee15982",
+          "name": "本项目针对脑机接口技术在中风康复领域应用推广中存在的一些关键问题开展了研究：1）研制了一款基于离子水凝胶材料的半干式脑电",
+          "desc": "本项目针对脑机接口技术在中风康复领域应用推广中存在的一些关键问题开展了研究：1）研制了一款基于离子水凝胶材料的半干式脑电测量电极和一款基于还原氧化石墨烯材料的聚氨酯海绵电极，解决了脑电信号的免胶测量问题；",
           "evidence": [
             {
-              "quote": "如何实现脑电信号的快速测量和运动意图的准确解码是当前面临的核心问题。",
+              "quote": "本项目针对脑机接口技术在中风康复领域应用推广中存在的一些关键问题开展了研究：1）研制了一款基于离子水凝胶材料的半干式脑电测量电极和一款基于还原氧化石墨烯材料的聚氨酯海绵电极，解决了脑电信号的免胶测量问题；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 749,
-                "end_char": 782
+                "start_char": 2391,
+                "end_char": 2492
               },
               "version": "03cc2cd979ae54c45d89"
             }
           ]
         }
       ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-f73776f1833c",
-          "name": "水凝胶脑电电极",
-          "desc": "免胶测量电极降低BCI应用准备时间",
+          "id": "item-ca998122dbd5",
+          "name": "最后，设计和制造了脑控外骨骼手功能康复训练系统，实现了脑电测量与信号分析技术的系统集成，为BCI技术的临床推广奠定基础。",
+          "desc": "最后，设计和制造了脑控外骨骼手功能康复训练系统，实现了脑电测量与信号分析技术的系统集成，为BCI技术的临床推广奠定基础。",
           "evidence": [
             {
-              "quote": "项目设计了一款水凝胶脑电电极，可以实现脑电信号的免胶测量，从而降低BCI应用的准备时间",
+              "quote": "最后，设计和制造了脑控外骨骼手功能康复训练系统，实现了脑电测量与信号分析技术的系统集成，为BCI技术的临床推广奠定基础。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 838,
-                "end_char": 880
+                "start_char": 978,
+                "end_char": 1037
               },
               "version": "03cc2cd979ae54c45d89"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d648510e0b65",
-          "name": "脑-肌电耦合伪迹识别",
-          "desc": "特征自适应的伪迹识别方法检测代偿伪迹信号",
+          "id": "item-2673d671790d",
+          "name": "2）开展了脑机接口解码算法研究，提出了基于脑-肌电耦合的伪迹识别方法，并通过用户迁移学习算法实现了长时、多用户脑机接口应",
+          "desc": "2）开展了脑机接口解码算法研究，提出了基于脑-肌电耦合的伪迹识别方法，并通过用户迁移学习算法实现了长时、多用户脑机接口应用中的零训练/少训练建模；",
           "evidence": [
             {
-              "quote": "分析了脑卒中患者的中枢-外周神经信号耦合机制，提出了基于特征自适应的伪迹识别方法，可有效检测代偿伪迹信号",
+              "quote": "2）开展了脑机接口解码算法研究，提出了基于脑-肌电耦合的伪迹识别方法，并通过用户迁移学习算法实现了长时、多用户脑机接口应用中的零训练/少训练建模；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 885,
-                "end_char": 936
+                "start_char": 2493,
+                "end_char": 2565
               },
               "version": "03cc2cd979ae54c45d89"
             }
-          ]
-        },
-        {
-          "id": "item-c817d330c421",
-          "name": "用户迁移学习零训练建模",
-          "desc": "基于用户迁移学习的模式分类算法实现解码模型零再训练",
-          "evidence": [
-            {
-              "quote": "研究了基于用户迁移学习的模式分类算法，实现了BCI解码模型的",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 941,
-                "end_char": 970
-              },
-              "version": "03cc2cd979ae54c45d89"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,136 +107,164 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9eee45fa5c6f",
-          "name": "免胶测量电极研制",
-          "desc": "离子水凝胶半干式电极与还原氧化石墨烯海绵电极",
+          "id": "item-d9577e66f808",
+          "name": "脑机接口(brain-computer interface, BCI)技术可以实现大脑与外界环境的直接交互，从而辅助脑卒",
+          "desc": "脑机接口(brain-computer interface, BCI)技术可以实现大脑与外界环境的直接交互，从而辅助脑卒中患者进行主动康复训练。",
           "evidence": [
             {
-              "quote": "1）研制了一款基于离子水凝胶材料的半干式脑电测量电极和一款基于还原氧化石墨烯材料的聚氨酯海绵电极，解决了脑电信号的免胶测量问题",
+              "quote": "脑机接口(brain-computer interface, BCI)技术可以实现大脑与外界环境的直接交互，从而辅助脑卒中患者进行主动康复训练。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2429,
-                "end_char": 2491
+                "start_char": 638,
+                "end_char": 709
               },
               "version": "03cc2cd979ae54c45d89"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-c0d7a5bbea1c",
-          "name": "零训练/少训练建模",
-          "desc": "用户迁移学习实现长时多用户应用零训练/少训练建模",
+          "id": "item-c2bc7a748be8",
+          "name": "脑机接口技术为中风患者提供了一种全新的康复训练方案，可以帮助中风患者实现肢体运动功能的主动康复训练。",
+          "desc": "脑机接口技术为中风患者提供了一种全新的康复训练方案，可以帮助中风患者实现肢体运动功能的主动康复训练。",
           "evidence": [
             {
-              "quote": "并通过用户迁移学习算法实现了长时、多用户脑机接口应用中的零训练/少训练建模",
+              "quote": "脑机接口技术为中风患者提供了一种全新的康复训练方案，可以帮助中风患者实现肢体运动功能的主动康复训练。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2528,
-                "end_char": 2564
+                "start_char": 2341,
+                "end_char": 2390
               },
               "version": "03cc2cd979ae54c45d89"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b505dd0e4b7b",
-          "name": "脑控外骨骼系统与临床验证",
-          "desc": "研制脑控外骨骼手康复系统并完成临床测试，循证验证安全性与优效性",
-          "evidence": [
-            {
-              "quote": "3）最后，开了一款用于中风患者上肢运动功能康复训练的脑控外骨骼系统，并开展了大量的临床测试工作，从循证医学角度验证了脑机接口技术的安全性和优效性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2566,
-                "end_char": 2638
-              },
-              "version": "03cc2cd979ae54c45d89"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f3486eb56370"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0d64bc9cb58d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Automated RGB-D Sensor-Based Measurement of Voluntary Items of the Fugl-Meyer Assessment for Upper Extremity: A Feasibility Study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f5a30e43712",
+      "evidence": [
+        {
+          "quote": "A Novel Automated RGB-D Sensor-Based Measurement of Voluntary Items of the Fugl-Meyer Assessment for Upper Extremity: A Feasibility Study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2711,
+            "end_char": 2847
+          },
+          "version": "03cc2cd979ae54c45d89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0d64bc9cb58d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f73776f1833c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Correlation between the ERD in grasp/open tasks of BCIs and hand function of stroke patients: a cross-sectional study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c97b68891bfb",
+      "evidence": [
+        {
+          "quote": "Correlation between the ERD in grasp/open tasks of BCIs and hand function of stroke patients: a cross-sectional study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2925,
+            "end_char": 3041
+          },
+          "version": "03cc2cd979ae54c45d89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0d64bc9cb58d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d648510e0b65"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "State of the Art of Non-Invasive Electrode Materials for Brain–Computer Interface",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-891503e4628c",
+      "evidence": [
+        {
+          "quote": "State of the Art of Non-Invasive Electrode Materials for Brain–Computer Interface",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3113,
+            "end_char": 3193
+          },
+          "version": "03cc2cd979ae54c45d89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0d64bc9cb58d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c817d330c421"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Functional-oriented, portable brain–computer interface training for hand motor recovery after stroke: a randomized controlled study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8152befb110e",
+      "evidence": [
+        {
+          "quote": "Functional-oriented, portable brain–computer interface training for hand motor recovery after stroke: a randomized controlled study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3297,
+            "end_char": 3427
+          },
+          "version": "03cc2cd979ae54c45d89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f73776f1833c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9eee45fa5c6f"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c817d330c421"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c0d7a5bbea1c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d648510e0b65"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b505dd0e4b7b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Assessment of sEMG Performance and its Correlation with Upper Fugl-Meyer Assessment in Stroke Patients",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad5ddea0c7cf",
+      "evidence": [
+        {
+          "quote": "Assessment of sEMG Performance and its Correlation with Upper Fugl-Meyer Assessment in Stroke Patients",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3535,
+            "end_char": 3636
+          },
+          "version": "03cc2cd979ae54c45d89"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

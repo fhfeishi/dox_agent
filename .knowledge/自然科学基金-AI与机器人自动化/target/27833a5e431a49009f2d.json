@@ -2,15 +2,20 @@
   "doc_id": "27833a5e431a49009f2d",
   "version": "c0bd540c06868940cded",
   "source_hash": "381b0c17b52d01063103388879494d0c80c193edd9e33858c6e1d19025fc55ea",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:24.431407+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.863450+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0c87a61c5e3e",
-          "name": "动态环境视觉SLAM导航",
-          "desc": "复杂动态场景低成本视觉SLAM定位导航及终端配送应用示范",
+          "id": "item-b6ff17e9ed9e",
+          "name": "视觉定位导航技术一直是机器人领域的研究热点，具有低成本、信息丰富等优势。",
+          "desc": "视觉定位导航技术一直是机器人领域的研究热点，具有低成本、信息丰富等优势。",
           "evidence": [
             {
-              "quote": "结合应用实际场景，开展复杂动态环境下的场景感知与理解、人机交互、视觉SLAM等技术研究，突破面向应用的复杂动态环境视觉感知、导航、自然交互、智能控制等核心技术，进而开发全天候应用的视觉导航自主移动系统，并实现在终端配送等领域的应用示范",
+              "quote": "视觉定位导航技术一直是机器人领域的研究热点，具有低成本、信息丰富等优势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2845,
-                "end_char": 2961
+                "start_char": 641,
+                "end_char": 676
+              },
+              "version": "c0bd540c06868940cded"
+            }
+          ]
+        },
+        {
+          "id": "item-f08de19d25e4",
+          "name": "本项目针对该问题，结合应用实际场景，开展复杂动态环境下的场景感知与理解、人机交互、视觉SLAM等技术研究，突破面向应用的",
+          "desc": "本项目针对该问题，结合应用实际场景，开展复杂动态环境下的场景感知与理解、人机交互、视觉SLAM等技术研究，突破面向应用的复杂动态环境视觉感知、导航、自然交互、智能控制等核心技术，进而开发全天候应用的视觉导航自主移动系统，并实现在终端配送等领域的应用示范。",
+          "evidence": [
+            {
+              "quote": "本项目针对该问题，结合应用实际场景，开展复杂动态环境下的场景感知与理解、人机交互、视觉SLAM等技术研究，突破面向应用的复杂动态环境视觉感知、导航、自然交互、智能控制等核心技术，进而开发全天候应用的视觉导航自主移动系统，并实现在终端配送等领域的应用示范。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2836,
+                "end_char": 2962
               },
               "version": "c0bd540c06868940cded"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bca245c76555",
-          "name": "动态物体定位漂移",
-          "desc": "动态物体导致传统视觉定位导航出现定位漂移和特征丢失",
+          "id": "item-dc1949026c2c",
+          "name": "针对环境发生变化，传统视觉SLAM难以识别闭环，地图对动态环境不具备自主更新功能等问题，通过动态性信息构建更适用于动态环",
+          "desc": "针对环境发生变化，传统视觉SLAM难以识别闭环，地图对动态环境不具备自主更新功能等问题，通过动态性信息构建更适用于动态环境的地图模型以及地图更新策略，并完善闭环检测算法，降低环境中物体位置改变对视觉重定位的影响，最终实现可用于不同复杂动态场景下的高稳定性视觉SLAM算法。",
           "evidence": [
             {
-              "quote": "视觉定位导航技术中，由于实际应用场景常常存在动态物体，从而导致传统视觉定位导航技术出现定位漂移和特征丢失等问题",
+              "quote": "针对环境发生变化，传统视觉SLAM难以识别闭环，地图对动态环境不具备自主更新功能等问题，通过动态性信息构建更适用于动态环境的地图模型以及地图更新策略，并完善闭环检测算法，降低环境中物体位置改变对视觉重定位的影响，最终实现可用于不同复杂动态场景下的高稳定性视觉SLAM算法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2780,
-                "end_char": 2834
+                "start_char": 904,
+                "end_char": 1039
               },
               "version": "c0bd540c06868940cded"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-00de98733f3e",
-          "name": "语义分割动态SLAM",
-          "desc": "像素级视觉语义分割构建含语义地图，建图与定位精度高于10cm",
+          "id": "item-4e1c6ee55e75",
+          "name": "针对环境发生变化，传统视觉SLAM难以识别闭环，地图对动态环境不具备自主更新功能等问题，通过动态性信息构建更适用于动态环",
+          "desc": "针对环境发生变化，传统视觉SLAM难以识别闭环，地图对动态环境不具备自主更新功能等问题，通过动态性信息构建更适用于动态环境的地图模型以及地图更新策略，并完善闭环检测算法，降低环境中物体位置改变对视觉重定位的影响，最终实现可用于不同复杂动态场景下的高稳定性视觉SLAM算法。",
           "evidence": [
             {
-              "quote": "攻克室内外、全天候、动态环境下的机器人视觉定位、建图与自主导航规划技术，实现像素级的视觉语义分割并构建含语义的地图，建图与定位精度高于10cm",
+              "quote": "针对环境发生变化，传统视觉SLAM难以识别闭环，地图对动态环境不具备自主更新功能等问题，通过动态性信息构建更适用于动态环境的地图模型以及地图更新策略，并完善闭环检测算法，降低环境中物体位置改变对视觉重定位的影响，最终实现可用于不同复杂动态场景下的高稳定性视觉SLAM算法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3025,
-                "end_char": 3095
+                "start_char": 904,
+                "end_char": 1039
               },
               "version": "c0bd540c06868940cded"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e29632a716dc",
-          "name": "自然化人机交互",
-          "desc": "具备人体识别、人脸识别、语音交互、触屏交互等多种互动手段",
+          "id": "item-1852dfd3ae12",
+          "name": ".开展的研究包括：复杂动态场景感知与建图技术、人机交互及规划控制技术、整机应用系统集成开发三个层面。",
+          "desc": ".开展的研究包括：复杂动态场景感知与建图技术、人机交互及规划控制技术、整机应用系统集成开发三个层面。",
           "evidence": [
             {
-              "quote": "自然化人机交互：具备人体识别、人脸识别、语音交互、触屏交互等多种互动手段",
+              "quote": ".开展的研究包括：复杂动态场景感知与建图技术、人机交互及规划控制技术、整机应用系统集成开发三个层面。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3100,
-                "end_char": 3135
+                "start_char": 2963,
+                "end_char": 3012
               },
               "version": "c0bd540c06868940cded"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,708 @@
       "state": "has",
       "items": [
         {
-          "id": "item-abebd7aa0153",
-          "name": "无人车实验平台",
-          "desc": "无人车载重不低于30kg、最大速度不低于3m/s、爬坡角度不低于10度",
+          "id": "item-2752ce3e1f23",
+          "name": "视觉定位导航技术一直是机器人领域的研究热点，具有低成本、信息丰富等优势。",
+          "desc": "视觉定位导航技术一直是机器人领域的研究热点，具有低成本、信息丰富等优势。",
           "evidence": [
             {
-              "quote": "研发了无人车实验平台，具备自主导航移动功能，能够实时确定自身在环境中的位置，载重不低于30kg，最大运行速度不低于3m/s，爬坡角度不低于10度",
+              "quote": "视觉定位导航技术一直是机器人领域的研究热点，具有低成本、信息丰富等优势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3140,
-                "end_char": 3211
+                "start_char": 641,
+                "end_char": 676
               },
               "version": "c0bd540c06868940cded"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-1cc1479cc1d7",
+          "name": "视觉定位导航技术中，由于实际应用场景常常存在动态物体，从而导致传统视觉定位导航技术出现定位漂移和特征丢失等问题。",
+          "desc": "视觉定位导航技术中，由于实际应用场景常常存在动态物体，从而导致传统视觉定位导航技术出现定位漂移和特征丢失等问题。",
+          "evidence": [
+            {
+              "quote": "视觉定位导航技术中，由于实际应用场景常常存在动态物体，从而导致传统视觉定位导航技术出现定位漂移和特征丢失等问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2780,
+                "end_char": 2835
+              },
+              "version": "c0bd540c06868940cded"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0c87a61c5e3e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-bca245c76555"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Rrt autonomous detection algorithm based on multiple pilot point bias strategy and karto slam algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d0e1a9714fe",
+      "evidence": [
+        {
+          "quote": "Rrt autonomous detection algorithm based on multiple pilot point bias strategy and karto slam algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3238,
+            "end_char": 3340
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bca245c76555"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-00de98733f3e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种应用于机器人室内定位的WiFi FLA",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f661da54c6c8",
+      "evidence": [
+        {
+          "quote": "一种应用于机器人室内定位的WiFi FLA",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3426,
+            "end_char": 3446
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bca245c76555"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e29632a716dc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PR-SLAM: Parallel Real-Time Dynamic SLAM Method Based on Semantic Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a610395abb9f",
+      "evidence": [
+        {
+          "quote": "PR-SLAM: Parallel Real-Time Dynamic SLAM Method Based on Semantic Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3468,
+            "end_char": 3545
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-00de98733f3e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-abebd7aa0153"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic SLAM Visual Odometry Based on Instance Segmentation: A Comprehensive Review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ea8f7bba2042",
+      "evidence": [
+        {
+          "quote": "Dynamic SLAM Visual Odometry Based on Instance Segmentation: A Comprehensive Review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3597,
+            "end_char": 3679
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e29632a716dc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-abebd7aa0153"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Compliant Assembly Strategy From Demonstration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30b25c66e4a2",
+      "evidence": [
+        {
+          "quote": "Learning Compliant Assembly Strategy From Demonstration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3761,
+            "end_char": 3815
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Lightweight Multimodal Domain Generic Person Reidentification Metric for Person-Following Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b24aed67f50",
+      "evidence": [
+        {
+          "quote": "Lightweight Multimodal Domain Generic Person Reidentification Metric for Person-Following Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3863,
+            "end_char": 3958
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "生成式与判别式视觉目标跟踪算法综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-25f527f2f2c8",
+      "evidence": [
+        {
+          "quote": "生成式与判别式视觉目标跟踪算法综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4025,
+            "end_char": 4041
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Robot’s Understanding of Different Concepts and Autonomous Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2444c9ba72a1",
+      "evidence": [
+        {
+          "quote": "Research on Robot’s Understanding of Different Concepts and Autonomous Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4071,
+            "end_char": 4149
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "图像特征提取与匹配的室内机器人定位关键技术研究与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7822bd92bd94",
+      "evidence": [
+        {
+          "quote": "图像特征提取与匹配的室内机器人定位关键技术研究与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4219,
+            "end_char": 4244
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Intelligent Speed-Suggestion Planner for Coverage Path with Multiple Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d85682480d12",
+      "evidence": [
+        {
+          "quote": "An Intelligent Speed-Suggestion Planner for Coverage Path with Multiple Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4291,
+            "end_char": 4373
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Depth Image Super-resolution via Two-branch Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a3a7cae9517",
+      "evidence": [
+        {
+          "quote": "Depth Image Super-resolution via Two-branch Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4458,
+            "end_char": 4508
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Three-Dimensional Force Sensor Based on Deep Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7633215c0768",
+      "evidence": [
+        {
+          "quote": "Three-Dimensional Force Sensor Based on Deep Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4576,
+            "end_char": 4628
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Eliminating Mismatched Feature Points: A Review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9c679489e29",
+      "evidence": [
+        {
+          "quote": "Research on Eliminating Mismatched Feature Points: A Review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4720,
+            "end_char": 4778
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Effect of pattern on the resolution of the visual-tactile sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3cb5d5e2daa4",
+      "evidence": [
+        {
+          "quote": "Effect of pattern on the resolution of the visual-tactile sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4830,
+            "end_char": 4893
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Integrating Reinforcement Learning and Learning From Demonstrations to Learn Nonprehensile Manipulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-235c931ce092",
+      "evidence": [
+        {
+          "quote": "Integrating Reinforcement Learning and Learning From Demonstrations to Learn Nonprehensile Manipulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4956,
+            "end_char": 5058
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Lightweight Road Scene Semantic Segmentation Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-37a90bf8f278",
+      "evidence": [
+        {
+          "quote": "A Lightweight Road Scene Semantic Segmentation Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5144,
+            "end_char": 5199
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A lightweight contour detection network inspired by biologys",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e60710d9f516",
+      "evidence": [
+        {
+          "quote": "A lightweight contour detection network inspired by biologys",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5248,
+            "end_char": 5307
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DFD-SLAM: Visual SLAM with Deep Features in Dynamic Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4952b3975442",
+      "evidence": [
+        {
+          "quote": "DFD-SLAM: Visual SLAM with Deep Features in Dynamic Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5398,
+            "end_char": 5460
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Human Strategies for Tuning Cavity Filters with Continuous Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-70d1dbaea517",
+      "evidence": [
+        {
+          "quote": "Learning Human Strategies for Tuning Cavity Filters with Continuous Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5512,
+            "end_char": 5601
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual SLAM Based on Object Detection Network: A Review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ea16c53c9d3",
+      "evidence": [
+        {
+          "quote": "Visual SLAM Based on Object Detection Network: A Review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5642,
+            "end_char": 5696
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PPS-SLAM: Dynamic Visual SLAM with a Precise Pruning Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41ce767abe8a",
+      "evidence": [
+        {
+          "quote": "PPS-SLAM: Dynamic Visual SLAM with a Precise Pruning Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5779,
+            "end_char": 5839
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Robot’s Understanding of Classification Concepts Based on Large Language Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed963833e368",
+      "evidence": [
+        {
+          "quote": "The Robot’s Understanding of Classification Concepts Based on Large Language Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5891,
+            "end_char": 5972
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Person Following with Dynamic Obstacle Avoidance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d796b171b0b",
+      "evidence": [
+        {
+          "quote": "Person Following with Dynamic Obstacle Avoidance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6040,
+            "end_char": 6087
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Accurate 3D LiDAR SLAM System Based on Hash Multi-Scale Map and Bidirectional Matching Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc94fdc2f5e5",
+      "evidence": [
+        {
+          "quote": "Accurate 3D LiDAR SLAM System Based on Hash Multi-Scale Map and Bidirectional Matching Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6162,
+            "end_char": 6257
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gaussian Processes Based Indoor Visible Light Positioning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8077c52ddb4f",
+      "evidence": [
+        {
+          "quote": "Gaussian Processes Based Indoor Visible Light Positioning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6319,
+            "end_char": 6375
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic visual SLAM and MEC technologies for B5G: a comprehensive review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5b7bbe45aa2",
+      "evidence": [
+        {
+          "quote": "Dynamic visual SLAM and MEC technologies for B5G: a comprehensive review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6411,
+            "end_char": 6482
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved Double Deep Q Network Algorithm Based on Average Q-Value Estimation and Reward Redistribution for Robot Path Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0dc9e28370c6",
+      "evidence": [
+        {
+          "quote": "Improved Double Deep Q Network Algorithm Based on Average Q-Value Estimation and Reward Redistribution for Robot Path Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6543,
+            "end_char": 6668
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于自适应探索DDQN的移动机器人路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d94e668f1946",
+      "evidence": [
+        {
+          "quote": "基于自适应探索DDQN的移动机器人路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6757,
+            "end_char": 6777
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Road Scene Instance Segmentation Based on Improved SOLOv2",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0b873c6f2272",
+      "evidence": [
+        {
+          "quote": "Road Scene Instance Segmentation Based on Improved SOLOv2",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6811,
+            "end_char": 6867
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mobile Robot Path Planning Algorithm Based on RRT_Connect",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-937633168cf0",
+      "evidence": [
+        {
+          "quote": "Mobile Robot Path Planning Algorithm Based on RRT_Connect",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6932,
+            "end_char": 6988
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Constrained Model Predictive Control for Low-cost Autonomous Driving With Stability Guarantees",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6991c28bf0d",
+      "evidence": [
+        {
+          "quote": "Constrained Model Predictive Control for Low-cost Autonomous Driving With Stability Guarantees",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7074,
+            "end_char": 7167
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control System For Low-cost Autonomous Vehicle Backstepping Control and Extended State Observer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0f7c5ddde36",
+      "evidence": [
+        {
+          "quote": "Control System For Low-cost Autonomous Vehicle Backstepping Control and Extended State Observer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7207,
+            "end_char": 7301
+          },
+          "version": "c0bd540c06868940cded"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 32,
+    "listed": 32,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "会议论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

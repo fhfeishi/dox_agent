@@ -2,15 +2,20 @@
   "doc_id": "e0c41bcc94731b01a2d8",
   "version": "54dedc067bb4848320db",
   "source_hash": "fe2299551dd1bdcc0d07c7199d95f9dffedafdb2259eac0092e182f28451837b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:16:41.796979+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.686139+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7b0c1c487aa4",
-          "name": "大规模无人机集群协同控制",
-          "desc": "动态开放环境下群体协同模型适应性与协作机制高效性问题",
+          "id": "item-b269289d061b",
+          "name": "协同控制是制约智能无人集群智能化水平的核心因素之一，而通过认知共享为集群提供全面、可靠的态势信息是提高协同控制有效性与精",
+          "desc": "协同控制是制约智能无人集群智能化水平的核心因素之一，而通过认知共享为集群提供全面、可靠的态势信息是提高协同控制有效性与精确性的关键手段。",
           "evidence": [
             {
-              "quote": "本项目针对无人机集群群体协同模型的适应性和协作机制的高效性问题，探索基于临近自适应认知共享的大规模无人机集群协同控制方法",
+              "quote": "协同控制是制约智能无人集群智能化水平的核心因素之一，而通过认知共享为集群提供全面、可靠的态势信息是提高协同控制有效性与精确性的关键手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2921,
-                "end_char": 2980
+                "start_char": 663,
+                "end_char": 730
+              },
+              "version": "54dedc067bb4848320db"
+            }
+          ]
+        },
+        {
+          "id": "item-1bc06945bcbc",
+          "name": "最后，构建虚实结合的仿真试验平台，结合协同搜索典型应用场景，验证所提出模型、方法与机制的有效性。",
+          "desc": "最后，构建虚实结合的仿真试验平台，结合协同搜索典型应用场景，验证所提出模型、方法与机制的有效性。",
+          "evidence": [
+            {
+              "quote": "最后，构建虚实结合的仿真试验平台，结合协同搜索典型应用场景，验证所提出模型、方法与机制的有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 971,
+                "end_char": 1018
               },
               "version": "54dedc067bb4848320db"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-75dee5ff9702",
-          "name": "学习空间维数爆炸",
-          "desc": "智能体数量剧增带来学习空间爆炸问题",
-          "evidence": [
-            {
-              "quote": "设计基于群体强化学习的协同行为管控机制，并采用平均场论对智能体联合动作空间的维度进行缩减，有效解决智能体数量剧增带来的学习空间爆炸问题，使群体协作更加智能、高效",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 890,
-                "end_char": 969
-              },
-              "version": "54dedc067bb4848320db"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-948a1fb528cb",
-          "name": "分层自适应认知模型",
-          "desc": "融合环境状态与行为状态信息构建分层次、可组合、可共享的自适应认知模型",
+          "id": "item-aad2da353832",
+          "name": "首先，提出融合环境与行为信息的自适应认知模型构建方法和基于时空收益密度的认知共享策略，把认知数据的共享限定在临近且密切的",
+          "desc": "首先，提出融合环境与行为信息的自适应认知模型构建方法和基于时空收益密度的认知共享策略，把认知数据的共享限定在临近且密切的群组内，提高认知知识构建效率；",
           "evidence": [
             {
-              "quote": "提出一种自适应认知模型的分层构建方法，通过融合集群的环境状态信息与行为状态信息，构建分层次、可组合、可共享的自适应认知模型",
+              "quote": "首先，提出融合环境与行为信息的自适应认知模型构建方法和基于时空收益密度的认知共享策略，把认知数据的共享限定在临近且密切的群组内，提高认知知识构建效率；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3012,
-                "end_char": 3072
+                "start_char": 812,
+                "end_char": 886
               },
               "version": "54dedc067bb4848320db"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-30ba37c7ce80",
-          "name": "时空收益密度认知共享",
-          "desc": "首创基于时空收益密度的临近认知共享策略，把认知共享限定在临近且密切的群组内",
+          "id": "item-bee7db9a2f5d",
+          "name": "因此，本课题以大规模无人机集群为载体，针对动态开放环境下群体协同模型的适应性和协作机制的高效性问题，探索智能无人集群中基",
+          "desc": "因此，本课题以大规模无人机集群为载体，针对动态开放环境下群体协同模型的适应性和协作机制的高效性问题，探索智能无人集群中基于临近自适应认知共享的协同控制理论与方法。",
           "evidence": [
             {
-              "quote": "首创一种基于时空收益密度的临近认知共享策略，以最大化认知共享的收益为目标，把认知数据的共享限定在临近且密切的群组内，提高认知知识的构建效率",
+              "quote": "因此，本课题以大规模无人机集群为载体，针对动态开放环境下群体协同模型的适应性和协作机制的高效性问题，探索智能无人集群中基于临近自适应认知共享的协同控制理论与方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3113,
-                "end_char": 3181
+                "start_char": 731,
+                "end_char": 811
               },
               "version": "54dedc067bb4848320db"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,549 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9df3478feecc",
-          "name": "高被引论文与专利",
-          "desc": "发表第一标注论文25篇（ESI高被引5篇），申请发明专利5项、软著4项",
+          "id": "item-eaf467e3ef35",
+          "name": "协同控制是制约智能无人集群智能化水平的核心因素之一，而通过认知共享为集群提供全面、可靠的态势信息是提高协同控制有效性与精",
+          "desc": "协同控制是制约智能无人集群智能化水平的核心因素之一，而通过认知共享为集群提供全面、可靠的态势信息是提高协同控制有效性与精确性的关键手段。",
           "evidence": [
             {
-              "quote": "发表本项目基金号第一标注的期刊与会议论文25篇，其中ESI高被引论文5篇、 CCF A类中文期刊论文1篇、CCF B类/CAA A类期刊论文7篇、IEEE/ACM Transactions系列国际期刊论文5篇，申请国家发明专利5项，获授权软件著作权4项",
+              "quote": "协同控制是制约智能无人集群智能化水平的核心因素之一，而通过认知共享为集群提供全面、可靠的态势信息是提高协同控制有效性与精确性的关键手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3315,
-                "end_char": 3440
+                "start_char": 663,
+                "end_char": 730
               },
               "version": "54dedc067bb4848320db"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ea4335620cb1",
-          "name": "协同搜索场景验证",
-          "desc": "构建虚实结合仿真试验平台，结合协同搜索典型应用场景验证模型方法机制有效性",
-          "evidence": [
-            {
-              "quote": "构建虚实结合的仿真试验平台，结合协同搜索典型应用场景，验证所提出模型、方法与机制的有效性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 974,
-                "end_char": 1017
-              },
-              "version": "54dedc067bb4848320db"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7b0c1c487aa4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-75dee5ff9702"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path Planning Algorithm for Multiple UAVs Based on Artificial Potential Field",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4826427cc50d",
+      "evidence": [
+        {
+          "quote": "Path Planning Algorithm for Multiple UAVs Based on Artificial Potential Field",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3588,
+            "end_char": 3664
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-75dee5ff9702"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-948a1fb528cb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online Energy-Aware Scheduling for Deadline-Constrained Applications in Distributed Heterogeneous Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e9878f74d4e",
+      "evidence": [
+        {
+          "quote": "Online Energy-Aware Scheduling for Deadline-Constrained Applications in Distributed Heterogeneous Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3726,
+            "end_char": 3830
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-75dee5ff9702"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-30ba37c7ce80"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多平台航空电子系统的服务管理方法、装置和设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9d4e9a4ad23",
+      "evidence": [
+        {
+          "quote": "一种多平台航空电子系统的服务管理方法、装置和设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3889,
+            "end_char": 3912
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-30ba37c7ce80"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9df3478feecc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CrossPrune: Cooperative pruning for camera–LiDAR fused perception models of autonomous driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d03e295d6541",
+      "evidence": [
+        {
+          "quote": "CrossPrune: Cooperative pruning for camera–LiDAR fused perception models of autonomous driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3959,
+            "end_char": 4052
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-948a1fb528cb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ea4335620cb1"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Agent Deep Deterministic Policy Gradient Algorithm Based on Classification Experience Replay",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5f10eb66db7",
+      "evidence": [
+        {
+          "quote": "Multi-Agent Deep Deterministic Policy Gradient Algorithm Based on Classification Experience Replay",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4136,
+            "end_char": 4233
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Allocation of Multi-UAVs Timing-dependent Tasks based on Completion Time",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d69f04c71a1",
+      "evidence": [
+        {
+          "quote": "Allocation of Multi-UAVs Timing-dependent Tasks based on Completion Time",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4299,
+            "end_char": 4370
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coverage Path Planning of Heterogeneous Unmanned Aerial Vehicles Based on Ant Colony System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e70785114f50",
+      "evidence": [
+        {
+          "quote": "Coverage Path Planning of Heterogeneous Unmanned Aerial Vehicles Based on Ant Colony System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4421,
+            "end_char": 4511
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ontology-Based Resource Modeling and Matching Framework in Avionics Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fe73409f3e6e",
+      "evidence": [
+        {
+          "quote": "Ontology-Based Resource Modeling and Matching Framework in Avionics Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4590,
+            "end_char": 4664
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种深度网络模型持续学习方法、系统、设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-46ddb890b77f",
+      "evidence": [
+        {
+          "quote": "一种深度网络模型持续学习方法、系统、设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4735,
+            "end_char": 4759
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prioritized Experience Replay-Based Path Planning Algorithm for Multiple UAVs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f2a91f1a35da",
+      "evidence": [
+        {
+          "quote": "Prioritized Experience Replay-Based Path Planning Algorithm for Multiple UAVs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4797,
+            "end_char": 4873
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Extrinsic-and-Intrinsic Reward-Based Multi-Agent Reinforcement Learning for Multi-UAV Cooperative Target Encirclement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a01f9346e72",
+      "evidence": [
+        {
+          "quote": "Extrinsic-and-Intrinsic Reward-Based Multi-Agent Reinforcement Learning for Multi-UAV Cooperative Target Encirclement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4925,
+            "end_char": 5041
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Scheduling Energy Consumption-Constrained Workflows in Heterogeneous Multi-Processor Embedded Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d38ca58f5d99",
+      "evidence": [
+        {
+          "quote": "Scheduling Energy Consumption-Constrained Workflows in Heterogeneous Multi-Processor Embedded Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5121,
+            "end_char": 5221
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于时空密度聚类的异构无人机集群覆盖路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b33f3863e68",
+      "evidence": [
+        {
+          "quote": "基于时空密度聚类的异构无人机集群覆盖路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5295,
+            "end_char": 5318
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Adaptive Clustering-Based Algorithm for Automatic Path Planning of Heterogeneous UAVs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bb9c571749cf",
+      "evidence": [
+        {
+          "quote": "An Adaptive Clustering-Based Algorithm for Automatic Path Planning of Heterogeneous UAVs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5354,
+            "end_char": 5441
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Energy-Aware Scheduling for Dependent Tasks in Heterogeneous Multiprocessor Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-012af590c39b",
+      "evidence": [
+        {
+          "quote": "Energy-Aware Scheduling for Dependent Tasks in Heterogeneous Multiprocessor Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5508,
+            "end_char": 5590
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无人机集群的资源管控方法、装置、介质和设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f831b7793e0",
+      "evidence": [
+        {
+          "quote": "一种无人机集群的资源管控方法、装置、介质和设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5659,
+            "end_char": 5681
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and implementation of a real-time simulation platform for embedded applications on general-purpose operating systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca84d63df72d",
+      "evidence": [
+        {
+          "quote": "Design and implementation of a real-time simulation platform for embedded applications on general-purpose operating systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5726,
+            "end_char": 5848
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进贪心算法的无人机集群协同任务分配",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b55efba14a50",
+      "evidence": [
+        {
+          "quote": "基于改进贪心算法的无人机集群协同任务分配",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5933,
+            "end_char": 5952
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An energy-aware resource allocation method for avionics systems based on improved ant colony optimization algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-768872648062",
+      "evidence": [
+        {
+          "quote": "An energy-aware resource allocation method for avionics systems based on improved ant colony optimization algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5979,
+            "end_char": 6093
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Global-and-Local Attention-Based Reinforcement Learning for Cooperative Behaviour Control of Multiple UAVs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d6f79290c2c5",
+      "evidence": [
+        {
+          "quote": "Global-and-Local Attention-Based Reinforcement Learning for Cooperative Behaviour Control of Multiple UAVs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6154,
+            "end_char": 6259
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多平台航空电子系统的服务集成方法、装置和设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ced6be696bb8",
+      "evidence": [
+        {
+          "quote": "一种多平台航空电子系统的服务集成方法、装置和设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6353,
+            "end_char": 6376
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Uncertainty-aware online deadline-constrained scheduling of parallel applications in distributed heterogeneous systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e0f335a7e9d",
+      "evidence": [
+        {
+          "quote": "Uncertainty-aware online deadline-constrained scheduling of parallel applications in distributed heterogeneous systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6421,
+            "end_char": 6538
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A load balancing method for avionics systems via artificial bee colony and simulated annealing algorithms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f4f20f403a6",
+      "evidence": [
+        {
+          "quote": "A load balancing method for avionics systems via artificial bee colony and simulated annealing algorithms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6613,
+            "end_char": 6717
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Implementation of Parallel Simulation System for UAV Swarms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-56a46b372125",
+      "evidence": [
+        {
+          "quote": "Design and Implementation of Parallel Simulation System for UAV Swarms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6778,
+            "end_char": 6847
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Simulation and Verification Platform for Avionics Systems Based on Future Airborne Capability Environment Architecture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-349b3ca4bba4",
+      "evidence": [
+        {
+          "quote": "A Simulation and Verification Platform for Avionics Systems Based on Future Airborne Capability Environment Architecture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6908,
+            "end_char": 7027
+          },
+          "version": "54dedc067bb4848320db"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 25,
+    "listed": 25,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

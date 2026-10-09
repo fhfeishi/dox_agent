@@ -2,15 +2,20 @@
   "doc_id": "d40d92fa4e8301440afd",
   "version": "5fc53a26c13c4b06b41c",
   "source_hash": "da5633d074b469a93bd162f1c2e75553f11a4cae4e0fa7dcd96f25f2417f1a87",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:52.394888+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.564193+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d4ca1467764e",
-          "name": "公共服务机器人社交导航",
-          "desc": "人机共融环境下的拟人化社交导航",
+          "id": "item-8935d6fa6cca",
+          "name": "公共服务机器人具有广阔的市场需求，但传统机器人导航系统对复杂、动态的人机共融环境的适应能力差、效率较低，限制了其应用范围",
+          "desc": "公共服务机器人具有广阔的市场需求，但传统机器人导航系统对复杂、动态的人机共融环境的适应能力差、效率较低，限制了其应用范围。",
           "evidence": [
             {
               "quote": "公共服务机器人具有广阔的市场需求，但传统机器人导航系统对复杂、动态的人机共融环境的适应能力差、效率较低，限制了其应用范围。",
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-04f3719ce291",
-          "name": "共融环境适应能力差",
-          "desc": "轨迹预测、行为决策和运动规划关键问题待解",
-          "evidence": [
-            {
-              "quote": "构建模仿人类行为模式和符合社会规范的拟人化社交导航，是突破当前应用瓶颈的关键。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 711,
-                "end_char": 749
-              },
-              "version": "5fc53a26c13c4b06b41c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-372c8e6012a6",
-          "name": "异质关系图轨迹预测",
-          "desc": "异质交互特征提取融合实现行人轨迹预测",
+          "id": "item-b26c05fee0d8",
+          "name": "(3)在基于强化学习的机器人运动规划模型中引入知识蒸馏机制，通过设计记忆池、状态预测模块、价值评估模块以及基于知识蒸馏的",
+          "desc": "(3)在基于强化学习的机器人运动规划模型中引入知识蒸馏机制，通过设计记忆池、状态预测模块、价值评估模块以及基于知识蒸馏的策略训练框架，提高了机器人运动策略的泛化性能；",
           "evidence": [
             {
-              "quote": "提出一种基于异质关系图的行人轨迹预测划方法，通过异质交互特征的提取和融合，实现了多行人动态环境下机器人对行人轨迹的预测",
+              "quote": "(3)在基于强化学习的机器人运动规划模型中引入知识蒸馏机制，通过设计记忆池、状态预测模块、价值评估模块以及基于知识蒸馏的策略训练框架，提高了机器人运动策略的泛化性能；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3001,
-                "end_char": 3059
+                "start_char": 3133,
+                "end_char": 3215
               },
               "version": "5fc53a26c13c4b06b41c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b851f027f44a",
-          "name": "蒙特卡洛树搜索决策",
-          "desc": "价值-策略模型与决策搜索模型的拟人决策",
+          "id": "item-bb1fbbbdbcf1",
+          "name": "本项目针对公共服务机器人社交导航任务中的轨迹预测、行为决策和运动规划等关键问题展开研究：(1)研究人机共融场景下行人-机",
+          "desc": "本项目针对公共服务机器人社交导航任务中的轨迹预测、行为决策和运动规划等关键问题展开研究：(1)研究人机共融场景下行人-机器人-环境之间的多种交互关系和相互作用机制，构建多模态时空交互特征提取及交叉融合模型，实现精准的行人运动轨迹预测；",
           "evidence": [
             {
-              "quote": "提出基于蒙特卡洛树搜索和拟人化策略学习的导航行为决策方法，通过构建机器人价值-策略模型以及决策搜索模型，提高了复杂环境下机器人运动鲁棒性",
+              "quote": "本项目针对公共服务机器人社交导航任务中的轨迹预测、行为决策和运动规划等关键问题展开研究：(1)研究人机共融场景下行人-机器人-环境之间的多种交互关系和相互作用机制，构建多模态时空交互特征提取及交叉融合模型，实现精准的行人运动轨迹预测；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3064,
-                "end_char": 3131
+                "start_char": 750,
+                "end_char": 866
               },
               "version": "5fc53a26c13c4b06b41c"
             }
-          ]
-        },
-        {
-          "id": "item-62a40f1eca26",
-          "name": "知识蒸馏运动规划",
-          "desc": "记忆池与知识蒸馏策略训练框架提升泛化",
-          "evidence": [
-            {
-              "quote": "在基于强化学习的机器人运动规划模型中引入知识蒸馏机制，通过设计记忆池、状态预测模块、价值评估模块以及基于知识蒸馏的策略训练框架，提高了机器人运动策略的泛化性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3136,
-                "end_char": 3214
-              },
-              "version": "5fc53a26c13c4b06b41c"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +91,209 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bda0cbeaf2aa",
-          "name": "样机场景应用验证",
-          "desc": "多类样机在体育场馆和医院病房开展实验与应用验证",
+          "id": "item-4c48b6684811",
+          "name": "公共服务机器人具有广阔的市场需求，但传统机器人导航系统对复杂、动态的人机共融环境的适应能力差、效率较低，限制了其应用范围",
+          "desc": "公共服务机器人具有广阔的市场需求，但传统机器人导航系统对复杂、动态的人机共融环境的适应能力差、效率较低，限制了其应用范围。",
           "evidence": [
             {
-              "quote": "搭建了多类系统样机，在体育场馆和医院病房等典型场景中开展了实验验证和应用验证，取得了良好的社会效益。",
+              "quote": "公共服务机器人具有广阔的市场需求，但传统机器人导航系统对复杂、动态的人机共融环境的适应能力差、效率较低，限制了其应用范围。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3219,
-                "end_char": 3268
+                "start_char": 650,
+                "end_char": 710
               },
               "version": "5fc53a26c13c4b06b41c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d4ca1467764e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-04f3719ce291"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "JPMDP: Joint base placement and multi-configuration path planning for 3D surface disinfection with a UV-C robotic system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f69b3c3c07ff",
+      "evidence": [
+        {
+          "quote": "JPMDP: Joint base placement and multi-configuration path planning for 3D surface disinfection with a UV-C robotic system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3293,
+            "end_char": 3412
+          },
+          "version": "5fc53a26c13c4b06b41c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-04f3719ce291"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-372c8e6012a6"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Crowd-Aware Robot Navigation for Scenario Generalization via Deep Reinforcement Learning and Knowledge Distillation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0bf76ea071a6",
+      "evidence": [
+        {
+          "quote": "Crowd-Aware Robot Navigation for Scenario Generalization via Deep Reinforcement Learning and Knowledge Distillation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3500,
+            "end_char": 3614
+          },
+          "version": "5fc53a26c13c4b06b41c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-04f3719ce291"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b851f027f44a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种基于多状态颜色一致性约束的激光-惯性-视觉里程计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92bbd3b5a55c",
+      "evidence": [
+        {
+          "quote": "一种基于多状态颜色一致性约束的激光-惯性-视觉里程计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3712,
+            "end_char": 3737
+          },
+          "version": "5fc53a26c13c4b06b41c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-04f3719ce291"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-62a40f1eca26"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Covariance Estimation for Pose Graph Optimization in Visual-Inertial Navigation Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af0805e8213c",
+      "evidence": [
+        {
+          "quote": "Covariance Estimation for Pose Graph Optimization in Visual-Inertial Navigation Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3775,
+            "end_char": 3861
+          },
+          "version": "5fc53a26c13c4b06b41c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-62a40f1eca26"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bda0cbeaf2aa"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于蒙特卡洛树搜索的机器人导航动作决策方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-94974dbe9091",
+      "evidence": [
+        {
+          "quote": "基于蒙特卡洛树搜索的机器人导航动作决策方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3944,
+            "end_char": 3967
+          },
+          "version": "5fc53a26c13c4b06b41c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b851f027f44a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bda0cbeaf2aa"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "移动机器人的导航方法以及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c02916403d41",
+      "evidence": [
+        {
+          "quote": "移动机器人的导航方法以及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3990,
+            "end_char": 4003
+          },
+          "version": "5fc53a26c13c4b06b41c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "HierGAT: hierarchical spatial-temporal network with graph and transformer for video HOI detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d2f4b32795d2",
+      "evidence": [
+        {
+          "quote": "HierGAT: hierarchical spatial-temporal network with graph and transformer for video HOI detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4040,
+            "end_char": 4136
+          },
+          "version": "5fc53a26c13c4b06b41c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coarse-to-Fine Recurrently Aligned Transformer with Balance Tokens for Video Moment Retrieval and Highlight Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c98e22644227",
+      "evidence": [
+        {
+          "quote": "Coarse-to-Fine Recurrently Aligned Transformer with Balance Tokens for Video Moment Retrieval and Highlight Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4249,
+            "end_char": 4365
+          },
+          "version": "5fc53a26c13c4b06b41c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "0d3ef69e4bd6a91671e9",
   "version": "3a14a0b41f6ea351384b",
   "source_hash": "bdc3afc3095dd1524570f77f1846b1f91fa42becc51f83b56db6d91371f67ffe",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:26.898766+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.609206+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-027dc0b1e6ca",
-          "name": "复杂交通多模态融合感知",
-          "desc": "自动驾驶复杂环境下多任务协同感知",
+          "id": "item-4671026327e2",
+          "name": "多模态信息融合对于实现自动驾驶在复杂环境下精准、高效、可靠地感知环境具有重要意义，但是基于多模态的环境感知技术面临多模态",
+          "desc": "多模态信息融合对于实现自动驾驶在复杂环境下精准、高效、可靠地感知环境具有重要意义，但是基于多模态的环境感知技术面临多模态数据异构、复杂环境下干扰严重、低成本感知精度低等问题。",
           "evidence": [
             {
-              "quote": "随着自动驾驶技术向高阶演进，复杂动态环境下的可靠感知已成为核心瓶颈。单一传感模态易受干扰，而多模态融合面临数据异质性强、动态场景干扰大、虚拟训练数据域偏差显著三大挑战。",
+              "quote": "多模态信息融合对于实现自动驾驶在复杂环境下精准、高效、可靠地感知环境具有重要意义，但是基于多模态的环境感知技术面临多模态数据异构、复杂环境下干扰严重、低成本感知精度低等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2882,
-                "end_char": 2965
+                "start_char": 683,
+                "end_char": 769
+              },
+              "version": "3a14a0b41f6ea351384b"
+            }
+          ]
+        },
+        {
+          "id": "item-8dfbf2445f73",
+          "name": "本项目面向复杂驾驶环境的高鲁棒性感知需求，旨在构建一套从特征融合、场景理解到数据扩增的协同理论方法与技术。",
+          "desc": "本项目面向复杂驾驶环境的高鲁棒性感知需求，旨在构建一套从特征融合、场景理解到数据扩增的协同理论方法与技术。",
+          "evidence": [
+            {
+              "quote": "本项目面向复杂驾驶环境的高鲁棒性感知需求，旨在构建一套从特征融合、场景理解到数据扩增的协同理论方法与技术。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2966,
+                "end_char": 3018
               },
               "version": "3a14a0b41f6ea351384b"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f18b9ba05a1f",
-          "name": "异构干扰与域偏差",
-          "desc": "多模态数据异质、动态干扰、虚拟数据域偏差三大挑战",
-          "evidence": [
-            {
-              "quote": "多模态融合面临数据异质性强、动态场景干扰大、虚拟训练数据域偏差显著三大挑战。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2928,
-                "end_char": 2965
-              },
-              "version": "3a14a0b41f6ea351384b"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-d7d75d6b7a1a",
-          "name": "多层次自适应融合网络",
-          "desc": "竞争协作分解与注意力融合实现文本图像点云对齐",
+          "id": "item-0fcdc899e5ec",
+          "name": "3）针对虚拟数据域偏差问题，研究基于生成与空间约束重组的融合网络，设计可解释蒙版预测生成模型与几何约束重组方法，实现高质",
+          "desc": "3）针对虚拟数据域偏差问题，研究基于生成与空间约束重组的融合网络，设计可解释蒙版预测生成模型与几何约束重组方法，实现高质量虚拟数据生成与有效的域自适应训练。",
           "evidence": [
             {
-              "quote": "研究多层次自适应的深度融合网络，通过竞争协作分解、统一特征空间映射及注意力融合机制，实现文本、图像与点云的高效互补与对齐。",
+              "quote": "3）针对虚拟数据域偏差问题，研究基于生成与空间约束重组的融合网络，设计可解释蒙版预测生成模型与几何约束重组方法，实现高质量虚拟数据生成与有效的域自适应训练。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3043,
-                "end_char": 3103
+                "start_char": 3188,
+                "end_char": 3265
               },
               "version": "3a14a0b41f6ea351384b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-fdc2c60f7ea7",
-          "name": "空间解构融合感知",
-          "desc": "光流引导语义推理与动态静态分离提升遮挡鲁棒性",
+          "id": "item-72aa769101a4",
+          "name": "本项目面向复杂驾驶环境的高鲁棒性感知需求，旨在构建一套从特征融合、场景理解到数据扩增的协同理论方法与技术。",
+          "desc": "本项目面向复杂驾驶环境的高鲁棒性感知需求，旨在构建一套从特征融合、场景理解到数据扩增的协同理论方法与技术。",
           "evidence": [
             {
-              "quote": "研究基于空间解构的融合感知网络，创新性地融合光流引导与语义推理，提出动态-静态分离与多视图一致性约束，显著提升在遮挡及运动干扰下的感知鲁棒性。",
+              "quote": "本项目面向复杂驾驶环境的高鲁棒性感知需求，旨在构建一套从特征融合、场景理解到数据扩增的协同理论方法与技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3117,
-                "end_char": 3187
+                "start_char": 2966,
+                "end_char": 3018
               },
               "version": "3a14a0b41f6ea351384b"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,392 @@
       "state": "has",
       "items": [
         {
-          "id": "item-839086c382c3",
-          "name": "论文12篇与专利4项",
-          "desc": "SCI/EI论文12篇（IEEE汇刊6篇）、授权专利4项、全军成果奖励",
+          "id": "item-3c8f084af709",
+          "name": "多模态信息融合对于实现自动驾驶在复杂环境下精准、高效、可靠地感知环境具有重要意义，但是基于多模态的环境感知技术面临多模态",
+          "desc": "多模态信息融合对于实现自动驾驶在复杂环境下精准、高效、可靠地感知环境具有重要意义，但是基于多模态的环境感知技术面临多模态数据异构、复杂环境下干扰严重、低成本感知精度低等问题。",
           "evidence": [
             {
-              "quote": "项目执行期间共发表SCI/EI论文12篇，其中IEEE汇刊等旗舰期刊论文6篇，授权发明专利4项，培养硕士研究生5名，负责人入选中国科协“青年托举人才工程”",
+              "quote": "多模态信息融合对于实现自动驾驶在复杂环境下精准、高效、可靠地感知环境具有重要意义，但是基于多模态的环境感知技术面临多模态数据异构、复杂环境下干扰严重、低成本感知精度低等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3347,
-                "end_char": 3423
+                "start_char": 683,
+                "end_char": 769
               },
               "version": "3a14a0b41f6ea351384b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-6fd78f253f97",
-          "name": "军事目标识别应用",
-          "desc": "成果应用于军事目标精准识别等领域",
+          "id": "item-bf66b14b1551",
+          "name": "随着自动驾驶技术向高阶演进，复杂动态环境下的可靠感知已成为核心瓶颈。",
+          "desc": "随着自动驾驶技术向高阶演进，复杂动态环境下的可靠感知已成为核心瓶颈。",
           "evidence": [
             {
-              "quote": "研究成果已成功应用于军事目标精准识别等领域，获全军相关成果奖励。",
+              "quote": "随着自动驾驶技术向高阶演进，复杂动态环境下的可靠感知已成为核心瓶颈。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3315,
-                "end_char": 3346
+                "start_char": 2882,
+                "end_char": 2915
               },
               "version": "3a14a0b41f6ea351384b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-027dc0b1e6ca"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f18b9ba05a1f"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "面向复杂环境强扰动的多模态自适应融合感知目标技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ac3f443c5d13",
+      "evidence": [
+        {
+          "quote": "面向复杂环境强扰动的多模态自适应融合感知目标技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3473,
+            "end_char": 3499
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f18b9ba05a1f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d7d75d6b7a1a"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂环境多域融合智能感知技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5da6cdab11f5",
+      "evidence": [
+        {
+          "quote": "复杂环境多域融合智能感知技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3543,
+            "end_char": 3556
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f18b9ba05a1f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fdc2c60f7ea7"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MPPI-2D: MPPI-Based Camera Servo System Using Image Coordinates",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed6b5c3ce8f5",
+      "evidence": [
+        {
+          "quote": "MPPI-2D: MPPI-Based Camera Servo System Using Image Coordinates",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3589,
+            "end_char": 3651
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d7d75d6b7a1a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-839086c382c3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于CCA多域特征融合的雷达辐射源个体识别",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-391300441217",
+      "evidence": [
+        {
+          "quote": "基于CCA多域特征融合的雷达辐射源个体识别",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3711,
+            "end_char": 3731
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fdc2c60f7ea7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6fd78f253f97"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "全军资料成果奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d1084652fc5",
+      "evidence": [
+        {
+          "quote": "全军资料成果奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3753,
+            "end_char": 3759
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第三届天智杯人工智能挑战赛个体识别科目一等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03c156d16d77",
+      "evidence": [
+        {
+          "quote": "第三届天智杯人工智能挑战赛个体识别科目一等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3862,
+            "end_char": 3883
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "单阶段单目3D目标检测网络",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6226ff46fc1a",
+      "evidence": [
+        {
+          "quote": "单阶段单目3D目标检测网络",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3912,
+            "end_char": 3924
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UAMF: U-Net with Adaptive Memory Fusion For Infrared Small Target Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-939c6e5dd957",
+      "evidence": [
+        {
+          "quote": "UAMF: U-Net with Adaptive Memory Fusion For Infrared Small Target Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3972,
+            "end_char": 4046
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast and Accurate Single-Snapshot DOA Estimation: Iterative Interpolated Approaches",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57e1b375c7a7",
+      "evidence": [
+        {
+          "quote": "Fast and Accurate Single-Snapshot DOA Estimation: Iterative Interpolated Approaches",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4109,
+            "end_char": 4191
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Embedded RF fingerprint interpretation: Multi-channel complex residual networks with adaptive sphere space decision boundaries",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c3c06606947",
+      "evidence": [
+        {
+          "quote": "Embedded RF fingerprint interpretation: Multi-channel complex residual networks with adaptive sphere space decision boundaries",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4261,
+            "end_char": 4386
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于CCA多域特征融合的雷达辐射源个体识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8f6b8e07b81",
+      "evidence": [
+        {
+          "quote": "基于CCA多域特征融合的雷达辐射源个体识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4444,
+            "end_char": 4466
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "宽带频谱信号检测与分类网络",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b09f0550499f",
+      "evidence": [
+        {
+          "quote": "宽带频谱信号检测与分类网络",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4489,
+            "end_char": 4501
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于K-SVD的时频谱特征稀疏编码的小样本未知辐射源盲聚类方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c820b69d0b0",
+      "evidence": [
+        {
+          "quote": "基于K-SVD的时频谱特征稀疏编码的小样本未知辐射源盲聚类方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4551,
+            "end_char": 4581
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Decomposition and Extraction Network of Individual Fingerprint Features for Specific Emitter Identification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eaee64dcdc05",
+      "evidence": [
+        {
+          "quote": "Adaptive Decomposition and Extraction Network of Individual Fingerprint Features for Specific Emitter Identification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4611,
+            "end_char": 4726
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于多尺度模型空间度量的雷达辐射源行为意图高校识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-026b6eda48f3",
+      "evidence": [
+        {
+          "quote": "基于多尺度模型空间度量的雷达辐射源行为意图高校识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4797,
+            "end_char": 4823
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PYRF-PCR: A Robust Three-Stage 3D Point Cloud Registration for Outdoor Scene",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4884809cc9c7",
+      "evidence": [
+        {
+          "quote": "PYRF-PCR: A Robust Three-Stage 3D Point Cloud Registration for Outdoor Scene",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4852,
+            "end_char": 4927
+          },
+          "version": "3a14a0b41f6ea351384b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 5,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": false
+  }
 }

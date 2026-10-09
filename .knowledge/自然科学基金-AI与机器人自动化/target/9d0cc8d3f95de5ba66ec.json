@@ -2,15 +2,20 @@
   "doc_id": "9d0cc8d3f95de5ba66ec",
   "version": "2646c66d235f2804a1b3",
   "source_hash": "db87c28d01fd132bf68ad0041fe027a75e473f75a486b776a51d13a96d16a846",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:08:00.328239+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.982347+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-328aa2e4c06f",
-          "name": "家庭服务机器人环境认知",
-          "desc": "家庭环境动态、非结构化、开放，需准确认知与理解环境信息",
+          "id": "item-60238dc747a8",
+          "name": "服务机器人在家庭环境中执行家政服务，需要准确认知与理解环境信息。",
+          "desc": "服务机器人在家庭环境中执行家政服务，需要准确认知与理解环境信息。",
           "evidence": [
             {
-              "quote": "服务机器人在家庭环境中执行家政服务，需要准确认知与理解环境信息。然而，家庭环境具有动态性、非结构化、开放性等特点，这对服务机器人的环境认知与理解能力提出了更高要求",
+              "quote": "服务机器人在家庭环境中执行家政服务，需要准确认知与理解环境信息。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 651,
-                "end_char": 731
+                "end_char": 682
+              },
+              "version": "2646c66d235f2804a1b3"
+            }
+          ]
+        },
+        {
+          "id": "item-665ac1b89b21",
+          "name": "3）构建面向机器人任务执行的层次化环境模型，实现对家庭环境的准确认知与建模，并通过设计基于环境模型的机器人任务规划方法，",
+          "desc": "3）构建面向机器人任务执行的层次化环境模型，实现对家庭环境的准确认知与建模，并通过设计基于环境模型的机器人任务规划方法，实现在实际家庭场景中的应用验证，提高机器人执行家政服务的智能化水平。",
+          "evidence": [
+            {
+              "quote": "3）构建面向机器人任务执行的层次化环境模型，实现对家庭环境的准确认知与建模，并通过设计基于环境模型的机器人任务规划方法，实现在实际家庭场景中的应用验证，提高机器人执行家政服务的智能化水平。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 886,
+                "end_char": 979
               },
               "version": "2646c66d235f2804a1b3"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6d3ab1859dd8",
-          "name": "环境知识表征与建模缺失",
-          "desc": "需研究面向家庭服务机器人的环境知识一体化表征与层次化建模",
-          "evidence": [
-            {
-              "quote": "本项目以机器人执行家政服务的需求为导向，深入研究了面向家庭服务机器人的环境知识一体化表征与层次化建模",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2869,
-                "end_char": 2918
-              },
-              "version": "2646c66d235f2804a1b3"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-663bc963e7a2",
-          "name": "知识一体化表征与获取",
-          "desc": "基于深度学习与本体技术的场景-物品属性关系表征及环境知识库构建",
+          "id": "item-0088445016c3",
+          "name": "3）构建面向机器人任务执行的层次化环境模型，实现对家庭环境的准确认知与建模，并通过设计基于环境模型的机器人任务规划方法，",
+          "desc": "3）构建面向机器人任务执行的层次化环境模型，实现对家庭环境的准确认知与建模，并通过设计基于环境模型的机器人任务规划方法，实现在实际家庭场景中的应用验证，提高机器人执行家政服务的智能化水平。",
           "evidence": [
             {
-              "quote": "提出了基于深度学习与本体技术的场景-物品及其属性关系的知识一体化表征与获取方法，建立了基于深度学习的环境感知、识别与分割方法，并构建了环境知识库",
+              "quote": "3）构建面向机器人任务执行的层次化环境模型，实现对家庭环境的准确认知与建模，并通过设计基于环境模型的机器人任务规划方法，实现在实际家庭场景中的应用验证，提高机器人执行家政服务的智能化水平。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2931,
-                "end_char": 3002
+                "start_char": 886,
+                "end_char": 979
               },
               "version": "2646c66d235f2804a1b3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-65ae426f48aa",
-          "name": "知识不确定推理与更新",
-          "desc": "基于贝叶斯定理的推理更新机制与高斯混合模型时空概率定位",
+          "id": "item-16dc0a83a5ad",
+          "name": "本项目以机器人执行家政服务的需求为导向，深入研究了面向家庭服务机器人的环境知识一体化表征与层次化建模，取得了如下进展：（",
+          "desc": "本项目以机器人执行家政服务的需求为导向，深入研究了面向家庭服务机器人的环境知识一体化表征与层次化建模，取得了如下进展：（1）提出了基于深度学习与本体技术的场景-物品及其属性关系的知识一体化表征与获取方法，建立了基于深度学习的环境感知、识别与分割方法，并构建了环境知识库；",
           "evidence": [
             {
-              "quote": "建立了基于贝叶斯定理的知识不确定推理与更新机制，构建了面向任务物品推演定位的基于高斯混合模型的时空概率模型",
+              "quote": "本项目以机器人执行家政服务的需求为导向，深入研究了面向家庭服务机器人的环境知识一体化表征与层次化建模，取得了如下进展：（1）提出了基于深度学习与本体技术的场景-物品及其属性关系的知识一体化表征与获取方法，建立了基于深度学习的环境感知、识别与分割方法，并构建了环境知识库；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3007,
-                "end_char": 3059
+                "start_char": 2869,
+                "end_char": 3003
               },
               "version": "2646c66d235f2804a1b3"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,493 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a659d0d3e942",
-          "name": "大模型任务规划验证",
-          "desc": "基于先验知识和大模型的任务规划、动态路径规划与舒适性导航并完成真实场景实验",
+          "id": "item-452578fc8250",
+          "name": "服务机器人在家庭环境中执行家政服务，需要准确认知与理解环境信息。",
+          "desc": "服务机器人在家庭环境中执行家政服务，需要准确认知与理解环境信息。",
           "evidence": [
             {
-              "quote": "提出了基于先验知识和大模型的机器人任务规划方法、基于预测的动态场景机器人路径规划和机器人舒适性导航方法，建立了知识引导的目标物品快速搜寻策略，并在真实场景中完成了家庭物品搜寻实验和操作实验",
+              "quote": "服务机器人在家庭环境中执行家政服务，需要准确认知与理解环境信息。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3122,
-                "end_char": 3215
+                "start_char": 651,
+                "end_char": 682
               },
               "version": "2646c66d235f2804a1b3"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-579caefd07ac",
-          "name": "论文与专利应用",
-          "desc": "发表学术论文17篇（IEEE TRO等汇刊9篇），申请发明专利4项，技术已企业应用",
-          "evidence": [
-            {
-              "quote": "发表相关学术论文17篇，其中以第一作者或通讯作者发表15篇、SCI检索11篇（IEEE TRO等汇刊9篇）、卓越期刊2篇；申请国家发明专利4项，其中已授权1项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3248,
-                "end_char": 3326
-              },
-              "version": "2646c66d235f2804a1b3"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-328aa2e4c06f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6d3ab1859dd8"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "河北省教育厅青年拔尖人才",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d9cc68eb67c",
+      "evidence": [
+        {
+          "quote": "河北省教育厅青年拔尖人才",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3457,
+            "end_char": 3468
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6d3ab1859dd8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-663bc963e7a2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ZISVFM: Zero-Shot Object Instance Segmentation in Indoor Robotic Environments With Vision Foundation Models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-764d9c066321",
+      "evidence": [
+        {
+          "quote": "ZISVFM: Zero-Shot Object Instance Segmentation in Indoor Robotic Environments With Vision Foundation Models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3485,
+            "end_char": 3591
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6d3ab1859dd8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-65ae426f48aa"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "家庭服务机器人的任务理解与适应性操作关键技术研究与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0502bc7a65f6",
+      "evidence": [
+        {
+          "quote": "家庭服务机器人的任务理解与适应性操作关键技术研究与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3688,
+            "end_char": 3714
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-65ae426f48aa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a659d0d3e942"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-Level Multi-Modal Features Learning With Transformer for RGB-D Object Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b1e14314c76",
+      "evidence": [
+        {
+          "quote": "Cross-Level Multi-Modal Features Learning With Transformer for RGB-D Object Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3759,
+            "end_char": 3845
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-663bc963e7a2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-579caefd07ac"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Environment Modeling for Service Robots from a Task Execution Perspective",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eebf821c6b43",
+      "evidence": [
+        {
+          "quote": "Environment Modeling for Service Robots from a Task Execution Perspective",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3909,
+            "end_char": 3981
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Indoor Object Distance Measurement for Robots Based on YOLO and Depth Foreground Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7412b00a4151",
+      "evidence": [
+        {
+          "quote": "Indoor Object Distance Measurement for Robots Based on YOLO and Depth Foreground Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4069,
+            "end_char": 4159
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Aware Social Navigation With Comfort Space for Mobile Robots in Human-Robot Coexistence Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f5ada3dcde8",
+      "evidence": [
+        {
+          "quote": "Human-Aware Social Navigation With Comfort Space for Mobile Robots in Human-Robot Coexistence Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4246,
+            "end_char": 4351
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "河北省优秀青年科学基金获得者",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ffd6c5e5013c",
+      "evidence": [
+        {
+          "quote": "河北省优秀青年科学基金获得者",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4441,
+            "end_char": 4454
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于预测触发机制的机器人实时路径规划系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b5446f52bfe",
+      "evidence": [
+        {
+          "quote": "一种基于预测触发机制的机器人实时路径规划系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4469,
+            "end_char": 4493
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Object Fingerprinting-Based Environment Model for Service Robots: Task-Oriented Modeling Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16033e92dd79",
+      "evidence": [
+        {
+          "quote": "Object Fingerprinting-Based Environment Model for Service Robots: Task-Oriented Modeling Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4526,
+            "end_char": 4622
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Long-Term Dynamic Object Relocalization for Mobile Robots in Human–Robot Coexisting Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-521d6f0624da",
+      "evidence": [
+        {
+          "quote": "Long-Term Dynamic Object Relocalization for Mobile Robots in Human–Robot Coexisting Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4708,
+            "end_char": 4803
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "P-RT-BFMT: A Prediction-Based Real-Time Bidirectional Fast Marching Tree for Robot Motion Planning in Dynamic Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-becb920656f6",
+      "evidence": [
+        {
+          "quote": "P-RT-BFMT: A Prediction-Based Real-Time Bidirectional Fast Marching Tree for Robot Motion Planning in Dynamic Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4903,
+            "end_char": 5024
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "大型散料场多机协同智能作业与安全控制关键技术与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0bb6c70586ec",
+      "evidence": [
+        {
+          "quote": "大型散料场多机协同智能作业与安全控制关键技术与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5121,
+            "end_char": 5145
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Human-Robot Interaction Segmentation: Gesture-Guided Object Segmentation Based on Deep Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e1425b1db48",
+      "evidence": [
+        {
+          "quote": "A Novel Human-Robot Interaction Segmentation: Gesture-Guided Object Segmentation Based on Deep Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5198,
+            "end_char": 5300
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical Semantic Knowledge-Based Object Search Method for Household Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9abf212bc17c",
+      "evidence": [
+        {
+          "quote": "Hierarchical Semantic Knowledge-Based Object Search Method for Household Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5404,
+            "end_char": 5482
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向机器人的物品识别与抓取系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7328ba3cc03e",
+      "evidence": [
+        {
+          "quote": "一种面向机器人的物品识别与抓取系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5559,
+            "end_char": 5578
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sequential Learning for Ingredient Recognition From Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f38d22d36e9",
+      "evidence": [
+        {
+          "quote": "Sequential Learning for Ingredient Recognition From Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5620,
+            "end_char": 5677
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot Localization Based on Semantic Information in Dynamic Indoor Environments with Similar Layouts",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1cf588c5484e",
+      "evidence": [
+        {
+          "quote": "Robot Localization Based on Semantic Information in Dynamic Indoor Environments with Similar Layouts",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5739,
+            "end_char": 5838
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bi-AM-RRT: A Fast and Efficient Sampling-Based Motion Planning Algorithm in Dynamic Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0f691b626e4",
+      "evidence": [
+        {
+          "quote": "Bi-AM-RRT: A Fast and Efficient Sampling-Based Motion Planning Algorithm in Dynamic Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5936,
+            "end_char": 6031
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot Active Task Cognition: Situation-Aware Task Planning with Large Language Models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-39a2d7e7ed1a",
+      "evidence": [
+        {
+          "quote": "Robot Active Task Cognition: Situation-Aware Task Planning with Large Language Models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6109,
+            "end_char": 6193
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SAM-Assisted 3D Reconstruction: A Novel Framework for Unseen Object Modeling in Unknown Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d55aca91d89",
+      "evidence": [
+        {
+          "quote": "SAM-Assisted 3D Reconstruction: A Novel Framework for Unseen Object Modeling in Unknown Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6290,
+            "end_char": 6389
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人环境下零样本物体实例分割系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc2cc4608c0f",
+      "evidence": [
+        {
+          "quote": "一种机器人环境下零样本物体实例分割系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6465,
+            "end_char": 6486
+          },
+          "version": "2646c66d235f2804a1b3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

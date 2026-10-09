@@ -2,15 +2,20 @@
   "doc_id": "a2d8389dace84843ed2f",
   "version": "57698bf20f202350b07f",
   "source_hash": "4bd9ba458c0d9e2531eaaff645687ef642efebea8c4e9f7aff44b9d95d2368ba",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:44.974308+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.070596+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-282c58c7b686",
-          "name": "机械臂仿生运动规划控制",
-          "desc": "借鉴生物视觉机制与人体手臂运动神经调控机理的机械臂控制",
+          "id": "item-c24e3cff9838",
+          "name": "为提高机械臂在动态环境下与环境交互的运动性能和环境适应能力，项目从仿生学角度出发，借鉴生物系统视觉机制和人体手臂运动神经",
+          "desc": "为提高机械臂在动态环境下与环境交互的运动性能和环境适应能力，项目从仿生学角度出发，借鉴生物系统视觉机制和人体手臂运动神经调控机理的研究成果，开展机械臂运动控制的仿生控制方法研究。",
           "evidence": [
             {
-              "quote": "为提高机械臂在动态环境下与环境交互的运动性能和环境适应能力，项目从仿生学角度出发，借鉴生物系统视觉机制和人体手臂运动神经调控机理的研究成果，开展机械臂运动控制的仿生控制方法研究",
+              "quote": "为提高机械臂在动态环境下与环境交互的运动性能和环境适应能力，项目从仿生学角度出发，借鉴生物系统视觉机制和人体手臂运动神经调控机理的研究成果，开展机械臂运动控制的仿生控制方法研究。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 649,
-                "end_char": 736
+                "end_char": 737
               },
               "version": "57698bf20f202350b07f"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d65dcff03e49",
-          "name": "动态环境趋近避障需求",
-          "desc": "动态环境中机械臂需同时满足趋近目标与避障需要",
-          "evidence": [
-            {
-              "quote": "研究基于视觉线索Tau理论的机械臂仿生运动规划方法，以满足动态环境中同时趋近目标和避障的需要",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 821,
-                "end_char": 866
-              },
-              "version": "57698bf20f202350b07f"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-77bbedee1a94",
-          "name": "Tau指数导引运动规划",
-          "desc": "基于生物视觉机制的Tau指数导引策略与改进细菌觅食优化",
+          "id": "item-48a7af3c5e5d",
+          "name": "（3）研究基于虚拟动力学模型和基于视觉线索的机械臂仿生柔顺控制方法，通过反复试验和迭代学习的方法，设计仿生学习算法对控制",
+          "desc": "（3）研究基于虚拟动力学模型和基于视觉线索的机械臂仿生柔顺控制方法，通过反复试验和迭代学习的方法，设计仿生学习算法对控制系统中的参数进行优化，实现机械臂的仿生学习柔顺控制。",
           "evidence": [
             {
-              "quote": "基于生物视觉机制提出了一种新的Tau指数导引策略并将其应用于机械臂的运动规划中",
+              "quote": "（3）研究基于虚拟动力学模型和基于视觉线索的机械臂仿生柔顺控制方法，通过反复试验和迭代学习的方法，设计仿生学习算法对控制系统中的参数进行优化，实现机械臂的仿生学习柔顺控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3073,
-                "end_char": 3111
+                "start_char": 868,
+                "end_char": 953
               },
               "version": "57698bf20f202350b07f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-cd9713bcdebe",
-          "name": "神经网络阻抗柔顺控制",
-          "desc": "自适应雅克比与神经网络位置/力跟踪阻抗控制等方法增强柔顺性",
+          "id": "item-1ba8f80b449f",
+          "name": "最后，针对控制系统中存在的干扰和不确定性，提出了基于自适应雅克比和神经网络的位置/力跟踪阻抗控制方法、基于观测器的神经网",
+          "desc": "最后，针对控制系统中存在的干扰和不确定性，提出了基于自适应雅克比和神经网络的位置/力跟踪阻抗控制方法、基于观测器的神经网络位置/力跟踪阻抗控制方法、基于电压控制策略的神经网络阻抗控制方法和基于视觉的虚拟阻抗控制方法等，使机械臂在不确定性环境下具有较好的柔顺性。",
           "evidence": [
             {
-              "quote": "提出了基于自适应雅克比和神经网络的位置/力跟踪阻抗控制方法、基于观测器的神经网络位置/力跟踪阻抗控制方法",
+              "quote": "最后，针对控制系统中存在的干扰和不确定性，提出了基于自适应雅克比和神经网络的位置/力跟踪阻抗控制方法、基于观测器的神经网络位置/力跟踪阻抗控制方法、基于电压控制策略的神经网络阻抗控制方法和基于视觉的虚拟阻抗控制方法等，使机械臂在不确定性环境下具有较好的柔顺性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3199,
-                "end_char": 3250
+                "start_char": 3178,
+                "end_char": 3307
               },
               "version": "57698bf20f202350b07f"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,512 @@
       "state": "has",
       "items": [
         {
-          "id": "item-063ce82ebd1e",
-          "name": "人机交互理论支持",
-          "desc": "提高机械臂未知动态环境稳定运动与交互能力，支持人机自然交互协作",
+          "id": "item-37dfee65eb07",
+          "name": "为提高机械臂在动态环境下与环境交互的运动性能和环境适应能力，项目从仿生学角度出发，借鉴生物系统视觉机制和人体手臂运动神经",
+          "desc": "为提高机械臂在动态环境下与环境交互的运动性能和环境适应能力，项目从仿生学角度出发，借鉴生物系统视觉机制和人体手臂运动神经调控机理的研究成果，开展机械臂运动控制的仿生控制方法研究。",
           "evidence": [
             {
-              "quote": "本项目的研究有助于可提高机械臂在未知动态环境中的稳定运动和交互能力，为人-机器人自然交互与高效协作提供有效的理论支持和方法途径",
+              "quote": "为提高机械臂在动态环境下与环境交互的运动性能和环境适应能力，项目从仿生学角度出发，借鉴生物系统视觉机制和人体手臂运动神经调控机理的研究成果，开展机械臂运动控制的仿生控制方法研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3308,
-                "end_char": 3370
+                "start_char": 649,
+                "end_char": 737
               },
               "version": "57698bf20f202350b07f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-7a4c51fcae0c",
-          "name": "论文专著与专利",
-          "desc": "发表SCI论文13篇、EI论文12篇，出版专著1部，获批发明专利1项",
+          "id": "item-d6e57c148bb5",
+          "name": "本项目围绕工业机械臂的仿生运动规划和柔顺控制等问题进行了深入的研究。",
+          "desc": "本项目围绕工业机械臂的仿生运动规划和柔顺控制等问题进行了深入的研究。",
           "evidence": [
             {
-              "quote": "依托本项目的研究，发表高水平SCI检索论文13篇和EI检索论文12篇，出版学术专著1部，获批发明专利1项、申请发明专利4项",
+              "quote": "本项目围绕工业机械臂的仿生运动规划和柔顺控制等问题进行了深入的研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3372,
-                "end_char": 3432
+                "start_char": 2913,
+                "end_char": 2946
               },
               "version": "57698bf20f202350b07f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-282c58c7b686"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d65dcff03e49"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Transfer Learning-Based Intention Recognition of Human Upper Limb in Human-Robot Collaboration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a77c0c288b5",
+      "evidence": [
+        {
+          "quote": "Transfer Learning-Based Intention Recognition of Human Upper Limb in Human-Robot Collaboration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3548,
+            "end_char": 3641
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d65dcff03e49"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-77bbedee1a94"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Novel Trajectory Planning Method Based on Double Quaternion and Tau Theory",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-662c062d1f66",
+      "evidence": [
+        {
+          "quote": "Novel Trajectory Planning Method Based on Double Quaternion and Tau Theory",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3706,
+            "end_char": 3779
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d65dcff03e49"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cd9713bcdebe"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于生物启发神经网络和DMPC的多机器人协同搜索算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4092e756840a",
+      "evidence": [
+        {
+          "quote": "基于生物启发神经网络和DMPC的多机器人协同搜索算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3868,
+            "end_char": 3893
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-77bbedee1a94"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-063ce82ebd1e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-based adaptive neural control of robotic systems with prescribed performance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e532e9f503e7",
+      "evidence": [
+        {
+          "quote": "Observer-based adaptive neural control of robotic systems with prescribed performance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3926,
+            "end_char": 4010
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cd9713bcdebe"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7a4c51fcae0c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision and EMG Information Fusion Based on DS Evidence Theory for Gesture Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e871a5a4da7c",
+      "evidence": [
+        {
+          "quote": "Vision and EMG Information Fusion Based on DS Evidence Theory for Gesture Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4060,
+            "end_char": 4144
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于手势肌电信号的投影交互系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d533547c0811",
+      "evidence": [
+        {
+          "quote": "一种基于手势肌电信号的投影交互系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4207,
+            "end_char": 4223
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Kinect sensor-based long-distance hand gesture recognition and fingertips detection with depth information",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e62501ea35b",
+      "evidence": [
+        {
+          "quote": "Kinect sensor-based long-distance hand gesture recognition and fingertips detection with depth information",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4263,
+            "end_char": 4368
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "移动作业机器人感知、规划与控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e222f4d95496",
+      "evidence": [
+        {
+          "quote": "移动作业机器人感知、规划与控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4402,
+            "end_char": 4416
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于DRNN 网络的轮式机器人鲁棒H∞ 控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a7b107819db",
+      "evidence": [
+        {
+          "quote": "基于DRNN 网络的轮式机器人鲁棒H∞ 控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4445,
+            "end_char": 4466
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural network-based adaptive hybrid impedance control for electrically driven flexible-joint robotic manipulators with input saturation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c1793a2b1dee",
+      "evidence": [
+        {
+          "quote": "Neural network-based adaptive hybrid impedance control for electrically driven flexible-joint robotic manipulators with input saturation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4493,
+            "end_char": 4628
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-order control barrier functions-based impedance control of a robotic manipulator with time-varying output constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bae10a32f6ee",
+      "evidence": [
+        {
+          "quote": "High-order control barrier functions-based impedance control of a robotic manipulator with time-varying output constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4688,
+            "end_char": 4809
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive fuzzy backstepping control for a class of uncertain nonlinear strict-feedback systems based on dynamic surface control approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa512db1c5ef",
+      "evidence": [
+        {
+          "quote": "Adaptive fuzzy backstepping control for a class of uncertain nonlinear strict-feedback systems based on dynamic surface control approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4886,
+            "end_char": 5021
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive neural network force tracking impedance control for uncertain robotic manipulator based on nonlinear velocity observer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-119c9eab9861",
+      "evidence": [
+        {
+          "quote": "Adaptive neural network force tracking impedance control for uncertain robotic manipulator based on nonlinear velocity observer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5061,
+            "end_char": 5187
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于投影重构的人体上肢意图识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9317bcbc65ab",
+      "evidence": [
+        {
+          "quote": "一种基于投影重构的人体上肢意图识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5234,
+            "end_char": 5252
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于Tau-E的机器人轨迹规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-42aba5fe5f03",
+      "evidence": [
+        {
+          "quote": "一种基于Tau-E的机器人轨迹规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5292,
+            "end_char": 5310
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Impedance Control Based on Neural Network for Electrically-Driven Robotic Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-491348fbaeb6",
+      "evidence": [
+        {
+          "quote": "Adaptive Impedance Control Based on Neural Network for Electrically-Driven Robotic Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5352,
+            "end_char": 5441
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive neural impedance control for electrically driven robotic systems based on a neuro-adaptive observer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f80ca9002873",
+      "evidence": [
+        {
+          "quote": "Adaptive neural impedance control for electrically driven robotic systems based on a neuro-adaptive observer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5492,
+            "end_char": 5599
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于视觉和肌电信息融合的手势识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-15e2b640ecba",
+      "evidence": [
+        {
+          "quote": "基于视觉和肌电信息融合的手势识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5659,
+            "end_char": 5676
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Bio-inspired trajectory planning method for robotic manipulators based on improved bacteria foraging optimization algorithm and tau theory",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-632a091534ab",
+      "evidence": [
+        {
+          "quote": "A Bio-inspired trajectory planning method for robotic manipulators based on improved bacteria foraging optimization algorithm and tau theory",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5702,
+            "end_char": 5841
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于机器视觉的类球形水果采摘机器人及其水果采摘方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b73b424dc0fd",
+      "evidence": [
+        {
+          "quote": "基于机器视觉的类球形水果采摘机器人及其水果采摘方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5891,
+            "end_char": 5915
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural Network-based Hybrid Position/Force Tracking Control for Flexible Joint Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01298d09216b",
+      "evidence": [
+        {
+          "quote": "Neural Network-based Hybrid Position/Force Tracking Control for Flexible Joint Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5954,
+            "end_char": 6037
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-robot Formation Control Based on Parameter optimization Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-029ddaa7ddbe",
+      "evidence": [
+        {
+          "quote": "Multi-robot Formation Control Based on Parameter optimization Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6098,
+            "end_char": 6168
+          },
+          "version": "57698bf20f202350b07f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

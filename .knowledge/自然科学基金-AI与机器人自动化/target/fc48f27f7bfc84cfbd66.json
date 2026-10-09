@@ -2,15 +2,20 @@
   "doc_id": "fc48f27f7bfc84cfbd66",
   "version": "8e5fecda42c4171fbaa0",
   "source_hash": "019c5b0e44e5a2dfde5d26d18c157874e37edf60c45278b01259ece64c661d64",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:25.388518+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:20.010168+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f15146c4bfed",
-          "name": "3级自动驾驶人机共驾",
-          "desc": "3级驾驶自动化系统ODD边界与接管",
+          "id": "item-7ce393cbc670",
+          "name": "3级驾驶自动化系统应准确预判自身对驾驶场景的应对能力，并在即将超出设计运行范围时，合理地向驾驶人发出介入请求，弥补自动驾",
+          "desc": "3级驾驶自动化系统应准确预判自身对驾驶场景的应对能力，并在即将超出设计运行范围时，合理地向驾驶人发出介入请求，弥补自动驾驶系统的局限性并提升控制权移交过程的安全性。",
           "evidence": [
             {
-              "quote": "3级驾驶自动化系统在临近设计运行范围（Operational Design Domain, ODD）边界时，能否准确预判场景适应能力并精准发起控制权移交，是保障人机共驾安全的核心机制。",
+              "quote": "3级驾驶自动化系统应准确预判自身对驾驶场景的应对能力，并在即将超出设计运行范围时，合理地向驾驶人发出介入请求，弥补自动驾驶系统的局限性并提升控制权移交过程的安全性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2986,
-                "end_char": 3077
+                "start_char": 681,
+                "end_char": 762
+              },
+              "version": "8e5fecda42c4171fbaa0"
+            }
+          ]
+        },
+        {
+          "id": "item-d330bc84172b",
+          "name": ".（2）面向车端实时部署需求，提出了多模态信息融合的非驾驶相关任务（Non-Driving Related Tasks,",
+          "desc": ".（2）面向车端实时部署需求，提出了多模态信息融合的非驾驶相关任务（Non-Driving Related Tasks, NDRT）增强辨识方法，实现了自动驾驶模式下驾驶人行为与状态的精细化、连续化监测，为接管准备度评估提供关键输入；",
+          "evidence": [
+            {
+              "quote": ".（2）面向车端实时部署需求，提出了多模态信息融合的非驾驶相关任务（Non-Driving Related Tasks, NDRT）增强辨识方法，实现了自动驾驶模式下驾驶人行为与状态的精细化、连续化监测，为接管准备度评估提供关键输入；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3344,
+                "end_char": 3460
               },
               "version": "8e5fecda42c4171fbaa0"
             }
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-747196564c35",
-          "name": "ODD量化界定缺失",
-          "desc": "分级标准缺乏ODD量化界定与动态判据难自评估",
+          "id": "item-fef608730556",
+          "name": "然而，现有分级标准多侧重于人机任务角色的静态划分，缺乏对ODD的量化界定与动态判据，导致系统难以自评估场景适应度，进而无",
+          "desc": "然而，现有分级标准多侧重于人机任务角色的静态划分，缺乏对ODD的量化界定与动态判据，导致系统难以自评估场景适应度，进而无法制定精准的接管策略，这已成为影响3级驾驶自动化安全性的关键问题。",
           "evidence": [
             {
               "quote": "然而，现有分级标准多侧重于人机任务角色的静态划分，缺乏对ODD的量化界定与动态判据，导致系统难以自评估场景适应度，进而无法制定精准的接管策略，这已成为影响3级驾驶自动化安全性的关键问题。",
@@ -51,6 +72,22 @@
                 "basis": "parsed_text",
                 "start_char": 3078,
                 "end_char": 3170
+              },
+              "version": "8e5fecda42c4171fbaa0"
+            }
+          ]
+        },
+        {
+          "id": "item-de0c87e586e0",
+          "name": ".针对上述瓶颈，本项目确立了以“风险场景驱动的ODD边界识别与人机协同接管优化”为总体思路，聚焦“系统应对能力难预判、O",
+          "desc": ".针对上述瓶颈，本项目确立了以“风险场景驱动的ODD边界识别与人机协同接管优化”为总体思路，聚焦“系统应对能力难预判、ODD边界难界定、接管策略缺乏依据”等科学问题，开展了以下系统性研究：.（1）面向典型高风险交通场景，提出了场景要素表征与演化分析方法，建立了能够支撑ODD边界识别、校准与验证的建模与评估框架，为设计运行范围的界定提供科学依据；",
+          "evidence": [
+            {
+              "quote": ".针对上述瓶颈，本项目确立了以“风险场景驱动的ODD边界识别与人机协同接管优化”为总体思路，聚焦“系统应对能力难预判、ODD边界难界定、接管策略缺乏依据”等科学问题，开展了以下系统性研究：.（1）面向典型高风险交通场景，提出了场景要素表征与演化分析方法，建立了能够支撑ODD边界识别、校准与验证的建模与评估框架，为设计运行范围的界定提供科学依据；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3171,
+                "end_char": 3343
               },
               "version": "8e5fecda42c4171fbaa0"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-61bff7eba92c",
-          "name": "场景要素演化分析",
-          "desc": "支撑ODD边界识别校准验证的建模评估框架",
+          "id": "item-dc42e4a2c1d0",
+          "name": ".针对上述瓶颈，本项目确立了以“风险场景驱动的ODD边界识别与人机协同接管优化”为总体思路，聚焦“系统应对能力难预判、O",
+          "desc": ".针对上述瓶颈，本项目确立了以“风险场景驱动的ODD边界识别与人机协同接管优化”为总体思路，聚焦“系统应对能力难预判、ODD边界难界定、接管策略缺乏依据”等科学问题，开展了以下系统性研究：.（1）面向典型高风险交通场景，提出了场景要素表征与演化分析方法，建立了能够支撑ODD边界识别、校准与验证的建模与评估框架，为设计运行范围的界定提供科学依据；",
           "evidence": [
             {
-              "quote": "提出了场景要素表征与演化分析方法，建立了能够支撑ODD边界识别、校准与验证的建模与评估框架，为设计运行范围的界定提供科学依据",
+              "quote": ".针对上述瓶颈，本项目确立了以“风险场景驱动的ODD边界识别与人机协同接管优化”为总体思路，聚焦“系统应对能力难预判、ODD边界难界定、接管策略缺乏依据”等科学问题，开展了以下系统性研究：.（1）面向典型高风险交通场景，提出了场景要素表征与演化分析方法，建立了能够支撑ODD边界识别、校准与验证的建模与评估框架，为设计运行范围的界定提供科学依据；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3281,
-                "end_char": 3342
+                "start_char": 3171,
+                "end_char": 3343
               },
               "version": "8e5fecda42c4171fbaa0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a7c33842652a",
-          "name": "NDRT增强辨识",
-          "desc": "多模态融合非驾驶相关任务辨识连续监测驾驶状态",
+          "id": "item-89a5159003a0",
+          "name": ".本项目最终形成了“风险场景构建-ODD边界界定与校准-场景适应度预测-驾驶人状态识别-接管策略优化”的闭环技术路线，为",
+          "desc": ".本项目最终形成了“风险场景构建-ODD边界界定与校准-场景适应度预测-驾驶人状态识别-接管策略优化”的闭环技术路线，为3级驾驶自动化系统在复杂交通环境中的安全运行边界管理与人机协同接管提供了可验证的方法体系与理论支撑。",
           "evidence": [
             {
-              "quote": "提出了多模态信息融合的非驾驶相关任务（Non-Driving Related Tasks, NDRT）增强辨识方法，实现了自动驾驶模式下驾驶人行为与状态的精细化、连续化监测",
+              "quote": ".本项目最终形成了“风险场景构建-ODD边界界定与校准-场景适应度预测-驾驶人状态识别-接管策略优化”的闭环技术路线，为3级驾驶自动化系统在复杂交通环境中的安全运行边界管理与人机协同接管提供了可验证的方法体系与理论支撑。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3359,
-                "end_char": 3444
+                "start_char": 3566,
+                "end_char": 3675
               },
               "version": "8e5fecda42c4171fbaa0"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +140,324 @@
       "state": "has",
       "items": [
         {
-          "id": "item-aed58d191faa",
-          "name": "闭环技术路线形成",
-          "desc": "风险场景构建到接管策略优化的闭环方法体系",
+          "id": "item-a4dce07b1b56",
+          "name": "3级驾驶自动化系统应准确预判自身对驾驶场景的应对能力，并在即将超出设计运行范围时，合理地向驾驶人发出介入请求，弥补自动驾",
+          "desc": "3级驾驶自动化系统应准确预判自身对驾驶场景的应对能力，并在即将超出设计运行范围时，合理地向驾驶人发出介入请求，弥补自动驾驶系统的局限性并提升控制权移交过程的安全性。",
           "evidence": [
             {
-              "quote": "本项目最终形成了“风险场景构建-ODD边界界定与校准-场景适应度预测-驾驶人状态识别-接管策略优化”的闭环技术路线，为3级驾驶自动化系统在复杂交通环境中的安全运行边界管理与人机协同接管提供了可验证的方法体系与理论支撑。",
+              "quote": "3级驾驶自动化系统应准确预判自身对驾驶场景的应对能力，并在即将超出设计运行范围时，合理地向驾驶人发出介入请求，弥补自动驾驶系统的局限性并提升控制权移交过程的安全性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3567,
-                "end_char": 3675
+                "start_char": 681,
+                "end_char": 762
               },
               "version": "8e5fecda42c4171fbaa0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-5fde9894dd13",
+          "name": "3级驾驶自动化系统在临近设计运行范围（Operational Design Domain, ODD）边界时，能否准确预判",
+          "desc": "3级驾驶自动化系统在临近设计运行范围（Operational Design Domain, ODD）边界时，能否准确预判场景适应能力并精准发起控制权移交，是保障人机共驾安全的核心机制。",
+          "evidence": [
+            {
+              "quote": "3级驾驶自动化系统在临近设计运行范围（Operational Design Domain, ODD）边界时，能否准确预判场景适应能力并精准发起控制权移交，是保障人机共驾安全的核心机制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2986,
+                "end_char": 3077
+              },
+              "version": "8e5fecda42c4171fbaa0"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f15146c4bfed"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-747196564c35"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于车载激光雷达预期功能安全的场景数据集构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-642398206abc",
+      "evidence": [
+        {
+          "quote": "基于车载激光雷达预期功能安全的场景数据集构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3699,
+            "end_char": 3722
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-747196564c35"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-61bff7eba92c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自动驾驶接管场景扰动建模与虚实对抗生成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7bbcea4a8887",
+      "evidence": [
+        {
+          "quote": "一种自动驾驶接管场景扰动建模与虚实对抗生成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3764,
+            "end_char": 3786
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-747196564c35"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a7c33842652a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive occlusion object detection algorithm based on OL-IoU",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6af625ce8201",
+      "evidence": [
+        {
+          "quote": "Adaptive occlusion object detection algorithm based on OL-IoU",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3836,
+            "end_char": 3896
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a7c33842652a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-aed58d191faa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "风险场景驱动的次任务驾驶行为对接管绩效的影响",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e28246d54292",
+      "evidence": [
+        {
+          "quote": "风险场景驱动的次任务驾驶行为对接管绩效的影响",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3930,
+            "end_char": 3951
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-61bff7eba92c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-aed58d191faa"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "自动驾驶车辆人工控制阶段的行为预测模型构建方法以及行为预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-afc0d0d76ebe",
+      "evidence": [
+        {
+          "quote": "自动驾驶车辆人工控制阶段的行为预测模型构建方法以及行为预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3987,
+            "end_char": 4017
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向测试车载视觉传感器预期功能的极限场景分类方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b53ddda3eb0f",
+      "evidence": [
+        {
+          "quote": "面向测试车载视觉传感器预期功能的极限场景分类方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4048,
+            "end_char": 4071
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于规则库和大语言模型融合的自动驾驶强交互场景生成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c2018bf84df",
+      "evidence": [
+        {
+          "quote": "一种基于规则库和大语言模型融合的自动驾驶强交互场景生成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4106,
+            "end_char": 4134
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-modal information fusion for multi-task end-to-end behavior prediction in autonomous driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cfd367f5a15c",
+      "evidence": [
+        {
+          "quote": "Multi-modal information fusion for multi-task end-to-end behavior prediction in autonomous driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4177,
+            "end_char": 4274
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi‑modality trajectory prediction with the dynamic spatial interaction among vehicles under connected vehicle environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ae5310d6895",
+      "evidence": [
+        {
+          "quote": "Multi‑modality trajectory prediction with the dynamic spatial interaction among vehicles under connected vehicle environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4309,
+            "end_char": 4432
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhancing lightweight distracted driving behavior detection capabilities using KRCA knowledge distillation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3365cc88c211",
+      "evidence": [
+        {
+          "quote": "Enhancing lightweight distracted driving behavior detection capabilities using KRCA knowledge distillation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4475,
+            "end_char": 4580
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "VRUFinder: A Real-Time, Infrastructure-SensorEnabled Framework for Recognizing Vulnerable Road Users",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b2e6a482e78d",
+      "evidence": [
+        {
+          "quote": "VRUFinder: A Real-Time, Infrastructure-SensorEnabled Framework for Recognizing Vulnerable Road Users",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4624,
+            "end_char": 4723
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DCM3-YOLOv4: A Real-Time Multi-Object Detection Framework",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99bc98ec6d8f",
+      "evidence": [
+        {
+          "quote": "DCM3-YOLOv4: A Real-Time Multi-Object Detection Framework",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4773,
+            "end_char": 4829
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种跟车、旁车插入场景的高风险场景构建方法及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-296367ad5102",
+      "evidence": [
+        {
+          "quote": "一种跟车、旁车插入场景的高风险场景构建方法及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4862,
+            "end_char": 4885
+          },
+          "version": "8e5fecda42c4171fbaa0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

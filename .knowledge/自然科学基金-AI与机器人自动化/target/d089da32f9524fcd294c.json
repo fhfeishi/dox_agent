@@ -2,15 +2,20 @@
   "doc_id": "d089da32f9524fcd294c",
   "version": "c579895ce3a6a40bd257",
   "source_hash": "84120c70eba5f0eb4a82b741b352f1905642e31b8da8bca60bc887d778b35197",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:38:34.835937+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.529442+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5038e3f50615",
-          "name": "无人船智能航行控制",
-          "desc": "复杂海洋环境下全驱动和欠驱动无人驾驶船舶的智能航行",
+          "id": "item-111ff99efc51",
+          "name": "当前，海洋交通运输呈现无人化、智能化、网络化重要发展趋势，无人驾驶船舶是改变未来航运模式的重要载体，然而其自主智能技术极",
+          "desc": "当前，海洋交通运输呈现无人化、智能化、网络化重要发展趋势，无人驾驶船舶是改变未来航运模式的重要载体，然而其自主智能技术极其缺乏。",
           "evidence": [
             {
-              "quote": "本项目以提高无人驾驶船舶自主航行智能化水平为目的，从运动建模与运动控制一体化角度出发",
+              "quote": "当前，海洋交通运输呈现无人化、智能化、网络化重要发展趋势，无人驾驶船舶是改变未来航运模式的重要载体，然而其自主智能技术极其缺乏。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2638,
-                "end_char": 2679
+                "start_char": 639,
+                "end_char": 702
               },
               "version": "c579895ce3a6a40bd257"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-52b46ed214ed",
-          "name": "自主智能技术缺乏",
-          "desc": "无人驾驶船舶是改变未来航运模式的重要载体，然而其自主智能技术极其缺乏",
-          "evidence": [
-            {
-              "quote": "无人驾驶船舶是改变未来航运模式的重要载体，然而其自主智能技术极其缺乏",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 668,
-                "end_char": 701
-              },
-              "version": "c579895ce3a6a40bd257"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-841abef380eb",
-          "name": "在线自学习运动建模",
-          "desc": "机器学习和自适应控制融入的无人驾驶船舶在线自学习运动建模方法",
+          "id": "item-e379f2c0771f",
+          "name": "本项目从运动建模与运动控制一体化角度出发，针对复杂海洋环境下全驱动和欠驱动无人驾驶船舶，将机器学习和网络化通信融入到无人",
+          "desc": "本项目从运动建模与运动控制一体化角度出发，针对复杂海洋环境下全驱动和欠驱动无人驾驶船舶，将机器学习和网络化通信融入到无人驾驶船舶智能航行控制框架内，探索以数据驱动为核心的无人驾驶船舶智能建模与控制方法，构建兼具自学习、自适应、自抗扰能力的智能航行控制器，实现多工况多任务下的自学习航行控制，提高突发环境变化与模型变化下无人驾驶船舶航行的稳定性、抗扰性、安全性。",
           "evidence": [
             {
-              "quote": "将机器学习和自适应控制融入到无人驾驶船舶在线自学习运动建模框架内，研究了以数据驱动为核心的无人驾驶船舶在线自学习运动建模方法",
+              "quote": "本项目从运动建模与运动控制一体化角度出发，针对复杂海洋环境下全驱动和欠驱动无人驾驶船舶，将机器学习和网络化通信融入到无人驾驶船舶智能航行控制框架内，探索以数据驱动为核心的无人驾驶船舶智能建模与控制方法，构建兼具自学习、自适应、自抗扰能力的智能航行控制器，实现多工况多任务下的自学习航行控制，提高突发环境变化与模型变化下无人驾驶船舶航行的稳定性、抗扰性、安全性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2827,
-                "end_char": 2888
+                "start_char": 703,
+                "end_char": 882
               },
               "version": "c579895ce3a6a40bd257"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-0aedbd947938",
-          "name": "数据驱动自学习控制",
-          "desc": "实现轨迹跟踪、路径跟踪、自动靠泊等多种海上任务的自学习运动控制方法",
+          "id": "item-265a43a2eb5f",
+          "name": "本项目以提高无人驾驶船舶自主航行智能化水平为目的，从运动建模与运动控制一体化角度出发，将机器学习和网络化通信融入到无人驾",
+          "desc": "本项目以提高无人驾驶船舶自主航行智能化水平为目的，从运动建模与运动控制一体化角度出发，将机器学习和网络化通信融入到无人驾驶船舶智能航行控制框架内，探索了以数据驱动为核心的无人驾驶船舶智能建模与控制方法，构建了兼具自学习、自适应、自抗扰能力的智能航行控制器，实现了多工况多任务下的自学习航行控制。",
           "evidence": [
             {
-              "quote": "研究了无人驾驶船舶数据驱动自学习运动控制方法，实现了基于数据驱动的轨迹跟踪、路径跟踪、自动靠泊等多种海上任务",
+              "quote": "本项目以提高无人驾驶船舶自主航行智能化水平为目的，从运动建模与运动控制一体化角度出发，将机器学习和网络化通信融入到无人驾驶船舶智能航行控制框架内，探索了以数据驱动为核心的无人驾驶船舶智能建模与控制方法，构建了兼具自学习、自适应、自抗扰能力的智能航行控制器，实现了多工况多任务下的自学习航行控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2945,
-                "end_char": 2998
+                "start_char": 2638,
+                "end_char": 2784
               },
               "version": "c579895ce3a6a40bd257"
             }
-          ]
-        },
-        {
-          "id": "item-d6bcfe068f43",
-          "name": "深度神经预估器通信",
-          "desc": "深度神经预估器和通信触发条件，降低网络化控制通信频次",
-          "evidence": [
-            {
-              "quote": "研究了深度神经预估器和通信触发条件，降低了网络环境下无人驾驶船舶网络化控制所需的通信频次",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3083,
-                "end_char": 3126
-              },
-              "version": "c579895ce3a6a40bd257"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,97 +91,848 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f5c334117a47",
-          "name": "航行实验验证",
-          "desc": "研制智能航行控制系统，在大连海事大学心海湖和近海海域开展轨迹跟踪、自主靠泊等航行实验",
+          "id": "item-e737510cbc18",
+          "name": "当前，海洋交通运输呈现无人化、智能化、网络化重要发展趋势，无人驾驶船舶是改变未来航运模式的重要载体，然而其自主智能技术极",
+          "desc": "当前，海洋交通运输呈现无人化、智能化、网络化重要发展趋势，无人驾驶船舶是改变未来航运模式的重要载体，然而其自主智能技术极其缺乏。",
           "evidence": [
             {
-              "quote": "系统地开展了轨迹跟踪、路径跟踪、自主靠泊等航行实验，在大连海事大学心海湖和近海海域验证了所提无人驾驶船舶数据驱动自学习航行方法的有效性",
+              "quote": "当前，海洋交通运输呈现无人化、智能化、网络化重要发展趋势，无人驾驶船舶是改变未来航运模式的重要载体，然而其自主智能技术极其缺乏。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3167,
-                "end_char": 3233
+                "start_char": 639,
+                "end_char": 702
               },
               "version": "c579895ce3a6a40bd257"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-d55fb3488279",
-          "name": "论文专利与省奖",
-          "desc": "发表论文41篇（SCI 29篇），申请/授权发明专利13项，获辽宁省自然科学奖一等奖",
+          "id": "item-8d1a75bdf659",
+          "name": "本项目以提高无人驾驶船舶自主航行智能化水平为目的，从运动建模与运动控制一体化角度出发，将机器学习和网络化通信融入到无人驾",
+          "desc": "本项目以提高无人驾驶船舶自主航行智能化水平为目的，从运动建模与运动控制一体化角度出发，将机器学习和网络化通信融入到无人驾驶船舶智能航行控制框架内，探索了以数据驱动为核心的无人驾驶船舶智能建模与控制方法，构建了兼具自学习、自适应、自抗扰能力的智能航行控制器，实现了多工况多任务下的自学习航行控制。",
           "evidence": [
             {
-              "quote": "共发表学术期刊论文和会议论文41篇，其中SCI检索论文29篇，在船舶智能运动控制领域申请/授权国家发明专利13项",
+              "quote": "本项目以提高无人驾驶船舶自主航行智能化水平为目的，从运动建模与运动控制一体化角度出发，将机器学习和网络化通信融入到无人驾驶船舶智能航行控制框架内，探索了以数据驱动为核心的无人驾驶船舶智能建模与控制方法，构建了兼具自学习、自适应、自抗扰能力的智能航行控制器，实现了多工况多任务下的自学习航行控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3336,
-                "end_char": 3391
+                "start_char": 2638,
+                "end_char": 2784
               },
               "version": "c579895ce3a6a40bd257"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5038e3f50615"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-52b46ed214ed"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collision-free output-feedback super-twisting control of robotic surface vehicles for coordinated path following with experiments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d406ca0954ab",
+      "evidence": [
+        {
+          "quote": "Collision-free output-feedback super-twisting control of robotic surface vehicles for coordinated path following with experiments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3495,
+            "end_char": 3623
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-52b46ed214ed"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-841abef380eb"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Discrete-time anti-disturbance heading tracking control of autonomous surface vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5adde344284",
+      "evidence": [
+        {
+          "quote": "Discrete-time anti-disturbance heading tracking control of autonomous surface vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3683,
+            "end_char": 3767
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-52b46ed214ed"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0aedbd947938"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safety-critical line-of-sight path following guidance of an under-actuated maritime autonomous surface ship based on robust optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1fde1ff0b24",
+      "evidence": [
+        {
+          "quote": "Safety-critical line-of-sight path following guidance of an under-actuated maritime autonomous surface ship based on robust optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3833,
+            "end_char": 3968
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d6bcfe068f43"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d55fb3488279"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Advances in line-of-sight guidance for path following of autonomous marine vehicles: An overview",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8faae5b1cca1",
+      "evidence": [
+        {
+          "quote": "Advances in line-of-sight guidance for path following of autonomous marine vehicles: An overview",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4043,
+            "end_char": 4138
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0aedbd947938"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f5c334117a47"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种全驱动无人船平行安全靠泊控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e318e2e7904",
+      "evidence": [
+        {
+          "quote": "一种全驱动无人船平行安全靠泊控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4202,
+            "end_char": 4222
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Parallel path following control of cyber-physical maritime autonomous surface ships based on deep neural predictor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d02a9a1e74c6",
+      "evidence": [
+        {
+          "quote": "Parallel path following control of cyber-physical maritime autonomous surface ships based on deep neural predictor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4262,
+            "end_char": 4375
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-free containment control of underactuated surface vessels under switching topologies based on guiding vector fields and data-driven neural predictors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-11b68b194526",
+      "evidence": [
+        {
+          "quote": "Model-free containment control of underactuated surface vessels under switching topologies based on guiding vector fields and data-driven neural predictors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4455,
+            "end_char": 4609
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-free adaptive disturbance rejection control of an RSV with hardware-in-the-loop experiments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-46f285e59034",
+      "evidence": [
+        {
+          "quote": "Model-free adaptive disturbance rejection control of an RSV with hardware-in-the-loop experiments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4678,
+            "end_char": 4774
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven learning extended state observers for nonlinear systems: Design, analysis and hardware-in-loop simulations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b3c87fcb511",
+      "evidence": [
+        {
+          "quote": "Data-driven learning extended state observers for nonlinear systems: Design, analysis and hardware-in-loop simulations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4825,
+            "end_char": 4942
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive parameter identification of maritime autonomous surface ships with exponential convergence",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed076effd9a7",
+      "evidence": [
+        {
+          "quote": "Adaptive parameter identification of maritime autonomous surface ships with exponential convergence",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4996,
+            "end_char": 5094
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safety-critical parallel trajectory tracking control of maritime autonomous surface ships based on integral control barrier functions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cfbcdd5a12e4",
+      "evidence": [
+        {
+          "quote": "Safety-critical parallel trajectory tracking control of maritime autonomous surface ships based on integral control barrier functions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5143,
+            "end_char": 5275
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GVF-based guidance and super-twisting control of autonomous surface vehicle for target tracking in obstacle environments with experiments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a02ff2bf4f53",
+      "evidence": [
+        {
+          "quote": "GVF-based guidance and super-twisting control of autonomous surface vehicle for target tracking in obstacle environments with experiments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5349,
+            "end_char": 5485
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Flocking of under-actuated unmanned surface vehicles via deep reinforcement learning and model predictive path integral control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-43498870c2da",
+      "evidence": [
+        {
+          "quote": "Flocking of under-actuated unmanned surface vehicles via deep reinforcement learning and model predictive path integral control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5539,
+            "end_char": 5665
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collision-free automatic berthing of maritime autonomous surface ships via safety-certified active disturbance rejection control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9cefdec6c1b5",
+      "evidence": [
+        {
+          "quote": "Collision-free automatic berthing of maritime autonomous surface ships via safety-certified active disturbance rejection control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5732,
+            "end_char": 5859
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种时变海流干扰下无人船集群协同避碰制导方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e988fba8e3b2",
+      "evidence": [
+        {
+          "quote": "一种时变海流干扰下无人船集群协同避碰制导方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5934,
+            "end_char": 5958
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven adaptive extended state observer design for autonomous surface vehicles with unknown input gains based on concurrent learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f13e19928e93",
+      "evidence": [
+        {
+          "quote": "Data-driven adaptive extended state observer design for autonomous surface vehicles with unknown input gains based on concurrent learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5997,
+            "end_char": 6133
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safety-critical guidance of maritime autonomous surface ship for automatic docking based on control barrier functions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6368d2b75133",
+      "evidence": [
+        {
+          "quote": "Safety-critical guidance of maritime autonomous surface ship for automatic docking based on control barrier functions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6200,
+            "end_char": 6316
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prediction-based event-triggered extended state observers design for unmanned surface vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-526c98409a0e",
+      "evidence": [
+        {
+          "quote": "Prediction-based event-triggered extended state observers design for unmanned surface vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6396,
+            "end_char": 6489
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive anti-disturbance sampling control of autonomous surface vehicles based on discrete-time concurrent learning extended state observers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-53077d7377c5",
+      "evidence": [
+        {
+          "quote": "Adaptive anti-disturbance sampling control of autonomous surface vehicles based on discrete-time concurrent learning extended state observers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6547,
+            "end_char": 6687
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Wave-filtering finite-time self-learning extended state observers for robotic surface vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-74f498ae03f8",
+      "evidence": [
+        {
+          "quote": "Wave-filtering finite-time self-learning extended state observers for robotic surface vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6757,
+            "end_char": 6850
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cooperative target enclosing of ring-networked underactuated autonomous surface vehicles based on data-driven fuzzy predictors and extended state observers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-28829ffbcc30",
+      "evidence": [
+        {
+          "quote": "Cooperative target enclosing of ring-networked underactuated autonomous surface vehicles based on data-driven fuzzy predictors and extended state observers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6906,
+            "end_char": 7060
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-triggered distributed coordinated control of networked autonomous surface vehicles subject to fully unknown kinetics via concurrent-learning-based neural predictor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5f8da572b6c",
+      "evidence": [
+        {
+          "quote": "Event-triggered distributed coordinated control of networked autonomous surface vehicles subject to fully unknown kinetics via concurrent-learning-based neural predictor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7130,
+            "end_char": 7298
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-based deep reinforcement learning for data-driven motion control of an under-actuated unmanned surface vehicle: path following and trajectory tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5fcb7fc102ff",
+      "evidence": [
+        {
+          "quote": "Model-based deep reinforcement learning for data-driven motion control of an under-actuated unmanned surface vehicle: path following and trajectory tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7355,
+            "end_char": 7510
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-free antidisturbance autopilot design for autonomous surface vehicles with hardware-in-the-loop experiments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eb8bd8a2b5eb",
+      "evidence": [
+        {
+          "quote": "Model-free antidisturbance autopilot design for autonomous surface vehicles with hardware-in-the-loop experiments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7588,
+            "end_char": 7700
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safety-critical path planning and following of maritime autonomous surface for automatic docking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4755893d3b9f",
+      "evidence": [
+        {
+          "quote": "Safety-critical path planning and following of maritime autonomous surface for automatic docking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7770,
+            "end_char": 7865
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Digital twin and parallel control for automatic berthing of maritime autonomous surface ships",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b99c0f673351",
+      "evidence": [
+        {
+          "quote": "Digital twin and parallel control for automatic berthing of maritime autonomous surface ships",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7955,
+            "end_char": 8047
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Network-based line-of-sight path tracking of underactuated unmanned surface vehicles with experiment results",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c1764f87b7a3",
+      "evidence": [
+        {
+          "quote": "Network-based line-of-sight path tracking of underactuated unmanned surface vehicles with experiment results",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8123,
+            "end_char": 8230
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无人船虚拟目标跟踪控制系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c1dfd3a79bf6",
+      "evidence": [
+        {
+          "quote": "一种无人船虚拟目标跟踪控制系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8296,
+            "end_char": 8310
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-free anti-disturbance tracking control for high-order discrete-time nonlinear system based on concurrent learning extended state observer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4bf642e6baf5",
+      "evidence": [
+        {
+          "quote": "Model-free anti-disturbance tracking control for high-order discrete-time nonlinear system based on concurrent learning extended state observer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8350,
+            "end_char": 8492
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven ath following of unmanned surface vehicles based on model-based reinforcement learning and model predictive path integral control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a33bf3df776",
+      "evidence": [
+        {
+          "quote": "Data-driven ath following of unmanned surface vehicles based on model-based reinforcement learning and model predictive path integral control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8547,
+            "end_char": 8687
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无人驾驶船舶非周期通信协同控制系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e99c25c182a8",
+      "evidence": [
+        {
+          "quote": "一种无人驾驶船舶非周期通信协同控制系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8747,
+            "end_char": 8765
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无人艇数据驱动自适应动态轨迹跟踪控制器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-32ef575051c6",
+      "evidence": [
+        {
+          "quote": "一种无人艇数据驱动自适应动态轨迹跟踪控制器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8802,
+            "end_char": 8822
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "COLREGs-compliant collision-free cooperative path following for multiple maritime autonomous surface ships",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77196c366902",
+      "evidence": [
+        {
+          "quote": "COLREGs-compliant collision-free cooperative path following for multiple maritime autonomous surface ships",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8869,
+            "end_char": 8974
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven distributed formation control of under-actuated unmanned surface vehicles with collision avoidance via model-based deep reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2cdecf2152a6",
+      "evidence": [
+        {
+          "quote": "Data-driven distributed formation control of under-actuated unmanned surface vehicles with collision avoidance via model-based deep reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9038,
+            "end_char": 9191
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多无人艇编队避碰的优化控制器及其结构、设计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-93833e2cbd4d",
+      "evidence": [
+        {
+          "quote": "一种多无人艇编队避碰的优化控制器及其结构、设计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9242,
+            "end_char": 9266
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于元学习的无人艇轨迹跟踪控制器结构及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d75fa90fb92",
+      "evidence": [
+        {
+          "quote": "一种基于元学习的无人艇轨迹跟踪控制器结构及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9299,
+            "end_char": 9323
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种事件触发的无人艇集群分布式协同控制器、结构及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-25430b192d27",
+      "evidence": [
+        {
+          "quote": "一种事件触发的无人艇集群分布式协同控制器、结构及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9365,
+            "end_char": 9390
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种海上智能船舶安全自主靠泊控制系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24d10b64e3e5",
+      "evidence": [
+        {
+          "quote": "一种海上智能船舶安全自主靠泊控制系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9425,
+            "end_char": 9442
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Parallel dynamic control of maritime autonomous surface ships for automatic berthing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-678b16b58beb",
+      "evidence": [
+        {
+          "quote": "Parallel dynamic control of maritime autonomous surface ships for automatic berthing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9485,
+            "end_char": 9568
+          },
+          "version": "c579895ce3a6a40bd257"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 39,
+    "listed": 39,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 20,
+        "extracted": 20
+      },
+      "会议论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 9,
+        "extracted": 9
+      }
+    },
+    "consistent": true
+  }
 }

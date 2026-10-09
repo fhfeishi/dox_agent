@@ -2,15 +2,20 @@
   "doc_id": "fc70d944a7322e3953b4",
   "version": "2e91eea43631d9e94c7b",
   "source_hash": "d1c6725e385253fcaea3e7783ccb73380fdf09cbf935b8c59bd543502cb544e6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:30.715070+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:20.014407+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e476118a8fb2",
-          "name": "固定翼无人机紧密编队",
-          "desc": "通过尾流感知实现减阻节能的紧密编队飞行",
+          "id": "item-935cf7eedb78",
+          "name": "对长机尾流的有效感知和跟踪是固定翼无人机通过紧密编队飞行实现减阻节能的根本。",
+          "desc": "对长机尾流的有效感知和跟踪是固定翼无人机通过紧密编队飞行实现减阻节能的根本。",
           "evidence": [
             {
-              "quote": "本课题从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计可靠的尾流在线感知和估计方法",
+              "quote": "对长机尾流的有效感知和跟踪是固定翼无人机通过紧密编队飞行实现减阻节能的根本。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2657,
-                "end_char": 2726
+                "start_char": 653,
+                "end_char": 690
+              },
+              "version": "2e91eea43631d9e94c7b"
+            }
+          ]
+        },
+        {
+          "id": "item-a42b768bd5b9",
+          "name": "在此基础上，本课题发展了融合强化学习与干扰抑制器的新型鲁棒控制策略、综合运动规划与协同控制的一体化紧密编队控制架构、融合",
+          "desc": "在此基础上，本课题发展了融合强化学习与干扰抑制器的新型鲁棒控制策略、综合运动规划与协同控制的一体化紧密编队控制架构、融合强化学习与传统人工势场法的多机协同控制方法、基于分层强化学习的多机协同控制算法、面向大规模集群协同运动与安全飞行的分布式控制算法、考虑构型约束的大规模无人机集群控制技术、面向目标协同跟踪的多机编队应用策略等相关技术与算法。",
+          "evidence": [
+            {
+              "quote": "在此基础上，本课题发展了融合强化学习与干扰抑制器的新型鲁棒控制策略、综合运动规划与协同控制的一体化紧密编队控制架构、融合强化学习与传统人工势场法的多机协同控制方法、基于分层强化学习的多机协同控制算法、面向大规模集群协同运动与安全飞行的分布式控制算法、考虑构型约束的大规模无人机集群控制技术、面向目标协同跟踪的多机编队应用策略等相关技术与算法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2924,
+                "end_char": 3094
               },
               "version": "2e91eea43631d9e94c7b"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a6af345e1034",
-          "name": "尾流感知估计方案匮乏",
-          "desc": "尾流非线性强噪声大，模型控制难兼顾鲁棒与精确",
+          "id": "item-7fb43b3de5cd",
+          "name": "在尾流感知和紧密编队控制方面，当前还存在两个关键科学问题尚未得到系统解决：1) 应对无人机尾流非线性强，测量噪声大，易受",
+          "desc": "在尾流感知和紧密编队控制方面，当前还存在两个关键科学问题尚未得到系统解决：1) 应对无人机尾流非线性强，测量噪声大，易受环境影响等问题的在线尾流感知和估计技术方案匮乏；",
           "evidence": [
             {
-              "quote": "1) 应对无人机尾流非线性强，测量噪声大，易受环境影响等问题的在线尾流感知和估计技术方案匮乏；2) 无人机之间复杂的空气动力学耦合特性增大了无人机系统的不确定性，基于模型的控制方法难以同时满足鲁棒性和精确性要求。",
+              "quote": "在尾流感知和紧密编队控制方面，当前还存在两个关键科学问题尚未得到系统解决：1) 应对无人机尾流非线性强，测量噪声大，易受环境影响等问题的在线尾流感知和估计技术方案匮乏；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 728,
-                "end_char": 833
+                "start_char": 691,
+                "end_char": 774
               },
               "version": "2e91eea43631d9e94c7b"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-41a1315782ac",
-          "name": "大涡模拟尾流建模",
-          "desc": "大涡模拟仿真与集合卡尔曼滤波尾流估计",
+          "id": "item-6036596de7d1",
+          "name": "鉴于此，本项目从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计",
+          "desc": "鉴于此，本项目从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计可靠的尾流在线感知和估计方法，提出基于尾流感知的数据驱动与模型依赖混合的紧密编队控制与优化策略。",
           "evidence": [
             {
-              "quote": "本课题发展了基于大涡模拟的无人机尾流建模与仿真，进而开发了基于集合卡尔曼滤波技术的无人机尾流估计算法。",
+              "quote": "鉴于此，本项目从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计可靠的尾流在线感知和估计方法，提出基于尾流感知的数据驱动与模型依赖混合的紧密编队控制与优化策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2873,
-                "end_char": 2923
+                "start_char": 834,
+                "end_char": 941
               },
               "version": "2e91eea43631d9e94c7b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5ac44e296ea2",
-          "name": "分层RL多机协同",
-          "desc": "RL与干扰抑制器、分层强化学习的多机协同算法",
+          "id": "item-27763a945e2f",
+          "name": "本课题从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计可靠的尾",
+          "desc": "本课题从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计可靠的尾流在线感知和估计方法，提出基于尾流感知的数据驱动与模型依赖混合的紧密编队控制与优化策略。",
           "evidence": [
             {
-              "quote": "本课题发展了融合强化学习与干扰抑制器的新型鲁棒控制策略、综合运动规划与协同控制的一体化紧密编队控制架构、融合强化学习与传统人工势场法的多机协同控制方法、基于分层强化学习的多机协同控制算法",
+              "quote": "本课题从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计可靠的尾流在线感知和估计方法，提出基于尾流感知的数据驱动与模型依赖混合的紧密编队控制与优化策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2930,
-                "end_char": 3022
+                "start_char": 2657,
+                "end_char": 2760
               },
               "version": "2e91eea43631d9e94c7b"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,408 @@
       "state": "has",
       "items": [
         {
-          "id": "item-92c3781b64f0",
-          "name": "ROS-Pybullet测试系统",
-          "desc": "支持纯实物、纯数字与半实物多种验证模式",
+          "id": "item-7f36debb7ad4",
+          "name": "对长机尾流的有效感知和跟踪是固定翼无人机通过紧密编队飞行实现减阻节能的根本。",
+          "desc": "对长机尾流的有效感知和跟踪是固定翼无人机通过紧密编队飞行实现减阻节能的根本。",
           "evidence": [
             {
-              "quote": "本课题还基于ROS系统、Pybullet物理引擎及Unity3D三维渲染引擎开发了一套面向多机协同控制算法验证的测试系统，支持纯实物试验的数据收发与存储、纯数字仿真测试及半实物半数字验证评估等多种模式",
+              "quote": "对长机尾流的有效感知和跟踪是固定翼无人机通过紧密编队飞行实现减阻节能的根本。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3192,
-                "end_char": 3291
+                "start_char": 653,
+                "end_char": 690
               },
               "version": "2e91eea43631d9e94c7b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-dd18c185f63b",
+          "name": "本课题从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计可靠的尾",
+          "desc": "本课题从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计可靠的尾流在线感知和估计方法，提出基于尾流感知的数据驱动与模型依赖混合的紧密编队控制与优化策略。",
+          "evidence": [
+            {
+              "quote": "本课题从空气动力学建模、尾流感知与估计、编队控制与优化等方面出发，系统研究无人机自主紧密编队控制与优化问题，设计可靠的尾流在线感知和估计方法，提出基于尾流感知的数据驱动与模型依赖混合的紧密编队控制与优化策略。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2657,
+                "end_char": 2760
+              },
+              "version": "2e91eea43631d9e94c7b"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e476118a8fb2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a6af345e1034"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Formation Control for Moving Target Enclosing via Relative Localization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-753ab163abb1",
+      "evidence": [
+        {
+          "quote": "Formation Control for Moving Target Enclosing via Relative Localization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3347,
+            "end_char": 3417
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a6af345e1034"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-41a1315782ac"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Maneuver synchronization of networked rotating platforms using historical nominal command",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a7dd09de929d",
+      "evidence": [
+        {
+          "quote": "Maneuver synchronization of networked rotating platforms using historical nominal command",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3480,
+            "end_char": 3568
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a6af345e1034"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5ac44e296ea2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "EASpace: Enhanced Action Space for Policy Transfer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75f3df4624df",
+      "evidence": [
+        {
+          "quote": "EASpace: Enhanced Action Space for Policy Transfer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3639,
+            "end_char": 3688
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5ac44e296ea2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-92c3781b64f0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向水上围捕任务的多机器人协同追踪方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2595eb72c565",
+      "evidence": [
+        {
+          "quote": "一种面向水上围捕任务的多机器人协同追踪方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3759,
+            "end_char": 3779
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-41a1315782ac"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-92c3781b64f0"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Flocking Control of Aerial Vehicles Based on a Markov Random Field",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30752ce2d422",
+      "evidence": [
+        {
+          "quote": "Distributed Flocking Control of Aerial Vehicles Based on a Markov Random Field",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3809,
+            "end_char": 3886
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Time-varying uncertainty and disturbance estimator without velocity measurements: Design and application",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2c1958cf4a21",
+      "evidence": [
+        {
+          "quote": "Time-varying uncertainty and disturbance estimator without velocity measurements: Design and application",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3937,
+            "end_char": 4040
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforced Potential Field for Multi-Robot Motion Planning in Cluttered Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b497cbf960bc",
+      "evidence": [
+        {
+          "quote": "Reinforced Potential Field for Multi-Robot Motion Planning in Cluttered Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4107,
+            "end_char": 4190
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GRF-based Predictive Flocking Control with Dynamic Pattern Formation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-971d5207c922",
+      "evidence": [
+        {
+          "quote": "GRF-based Predictive Flocking Control with Dynamic Pattern Formation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4262,
+            "end_char": 4329
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Control Based on a Time-varying UDE for an Under-actuated 3-DOF Helicopter",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c71a11a83039",
+      "evidence": [
+        {
+          "quote": "Robust Control Based on a Time-varying UDE for an Under-actuated 3-DOF Helicopter",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4382,
+            "end_char": 4462
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DACOOP-A: Decentralized Adaptive Cooperative Pursuit via Attention",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7470e9eae325",
+      "evidence": [
+        {
+          "quote": "DACOOP-A: Decentralized Adaptive Cooperative Pursuit via Attention",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4530,
+            "end_char": 4595
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Heuristic Predictive Control for Multirobot Flocking in Congested Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ea5fc26be62",
+      "evidence": [
+        {
+          "quote": "Heuristic Predictive Control for Multirobot Flocking in Congested Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4670,
+            "end_char": 4747
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UDE-PLC: Uncertainty and Disturbance Estimator with Phase-lead Compensation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e024d4651a21",
+      "evidence": [
+        {
+          "quote": "UDE-PLC: Uncertainty and Disturbance Estimator with Phase-lead Compensation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4807,
+            "end_char": 4881
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多源扰动补偿的机电平台参数辨识方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-675b21be306a",
+      "evidence": [
+        {
+          "quote": "一种基于多源扰动补偿的机电平台参数辨识方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4934,
+            "end_char": 4957
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Robot Motion Planning: A Learning-Based Artificial Potential Field Solution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62c7eeb9fcd8",
+      "evidence": [
+        {
+          "quote": "Multi-Robot Motion Planning: A Learning-Based Artificial Potential Field Solution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4989,
+            "end_char": 5069
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向多无人机系统的启发式集群预测控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-206258a3f77c",
+      "evidence": [
+        {
+          "quote": "一种面向多无人机系统的启发式集群预测控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5120,
+            "end_char": 5141
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Triangular lattice formation in robot swarms with minimal local sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-38135d8729a6",
+      "evidence": [
+        {
+          "quote": "Triangular lattice formation in robot swarms with minimal local sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5168,
+            "end_char": 5238
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向狭窄通道穿越的多机编队安全鲁棒控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a546093154e",
+      "evidence": [
+        {
+          "quote": "面向狭窄通道穿越的多机编队安全鲁棒控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5314,
+            "end_char": 5332
+          },
+          "version": "2e91eea43631d9e94c7b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "b8ce7368a0050632f575",
   "version": "0fc19be6b90472f4e30c",
   "source_hash": "de160ad1513b9c9f72b49fe187edb9e8312a51945c75e93449f28108d2a5815e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:11:23.149437+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.280405+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cc02ed14a771",
-          "name": "服务机器人感知与自主运动",
-          "desc": "非结构化高动态环境下的服务机器人环境感知与自主运动技术",
+          "id": "item-298e5e3a6587",
+          "name": "针对目前服务机器人在环境感知和运动方面存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目将深度学习强大的感知能力",
+          "desc": "针对目前服务机器人在环境感知和运动方面存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目将深度学习强大的感知能力和强化学习优秀的决策能力相结合，在基于模型的强化学习理论框架下，提出一种基于深度强化学习的服务机器人智能感知与自主运动方法。",
           "evidence": [
             {
-              "quote": "针对在非结构化、高动态环境下，服务机器人存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目开展面向服务机器人的环境感知与自主运动技术研究",
+              "quote": "针对目前服务机器人在环境感知和运动方面存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目将深度学习强大的感知能力和强化学习优秀的决策能力相结合，在基于模型的强化学习理论框架下，提出一种基于深度强化学习的服务机器人智能感知与自主运动方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2678,
-                "end_char": 2749
+                "start_char": 655,
+                "end_char": 776
+              },
+              "version": "0fc19be6b90472f4e30c"
+            }
+          ]
+        },
+        {
+          "id": "item-1fcff08ba3b6",
+          "name": "因此，本项研究对提高服务机器人智能感知与自主运动能力具有重要的理论创新意义和广阔的应用前景。",
+          "desc": "因此，本项研究对提高服务机器人智能感知与自主运动能力具有重要的理论创新意义和广阔的应用前景。",
+          "evidence": [
+            {
+              "quote": "因此，本项研究对提高服务机器人智能感知与自主运动能力具有重要的理论创新意义和广阔的应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1006,
+                "end_char": 1051
               },
               "version": "0fc19be6b90472f4e30c"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a174c0880b27",
-          "name": "语义地图鲁棒性差",
-          "desc": "地图构建效率低、精度差、抗扰能力弱，路径规划环境适应性弱",
-          "evidence": [
-            {
-              "quote": "针对非结构化、高动态环境中地图构建效率低、精度差、抗扰能力弱等问题，本项目提出了一种改进的集中式协同单目SLAM方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2754,
-                "end_char": 2811
-              },
-              "version": "0fc19be6b90472f4e30c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-43f908c361fb",
-          "name": "协同单目SLAM与自主建图",
-          "desc": "改进集中式协同单目SLAM，自主探索与深度学习语义地图构建结合",
+          "id": "item-fbecbc5c464e",
+          "name": "针对目前服务机器人在环境感知和运动方面存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目将深度学习强大的感知能力",
+          "desc": "针对目前服务机器人在环境感知和运动方面存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目将深度学习强大的感知能力和强化学习优秀的决策能力相结合，在基于模型的强化学习理论框架下，提出一种基于深度强化学习的服务机器人智能感知与自主运动方法。",
           "evidence": [
             {
-              "quote": "提出了一种移动机器人自主语义地图构建方法，该方法将机器人自主探索算法和基于深度学习的语义地图构建算法相结合，能够在移动机器人自主探索过程中构建目标场景的高精度3D语义地图",
+              "quote": "针对目前服务机器人在环境感知和运动方面存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目将深度学习强大的感知能力和强化学习优秀的决策能力相结合，在基于模型的强化学习理论框架下，提出一种基于深度强化学习的服务机器人智能感知与自主运动方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2906,
-                "end_char": 2990
+                "start_char": 655,
+                "end_char": 776
               },
               "version": "0fc19be6b90472f4e30c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-93191d0c9786",
-          "name": "语义驱动自主导航",
-          "desc": "环境信息重构为高效状态描述，生成高通用性运动决策解决目标泛化问题",
+          "id": "item-94ba57f94d22",
+          "name": "首先，针对非结构化、高动态环境中地图构建效率低、精度差、抗扰能力弱等问题，本项目提出了一种改进的集中式协同单目SLAM方",
+          "desc": "首先，针对非结构化、高动态环境中地图构建效率低、精度差、抗扰能力弱等问题，本项目提出了一种改进的集中式协同单目SLAM方法，该方法使整个机器人系统能够在强外界干扰与大视角变化情况下快速、准确的构建地图模型，显著提高了机器人三维同步定位与地图构建的鲁棒性与准确性。",
           "evidence": [
             {
-              "quote": "提出一种语义驱动的机器人自主导航方法，该方法根据将当前的环境信息重构为一种更高效状态描述，并根据记忆的状态描述结果生成高通用性的运动决策",
+              "quote": "首先，针对非结构化、高动态环境中地图构建效率低、精度差、抗扰能力弱等问题，本项目提出了一种改进的集中式协同单目SLAM方法，该方法使整个机器人系统能够在强外界干扰与大视角变化情况下快速、准确的构建地图模型，显著提高了机器人三维同步定位与地图构建的鲁棒性与准确性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3035,
-                "end_char": 3102
+                "start_char": 2751,
+                "end_char": 2881
               },
               "version": "0fc19be6b90472f4e30c"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,712 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1b4dcf1b25e3",
-          "name": "多场景有效性验证",
-          "desc": "经模拟环境测试与现实场景实现验证有效性，可应用于智能巡检、建筑装修、应急救援",
+          "id": "item-3c8913ef2209",
+          "name": "针对目前服务机器人在环境感知和运动方面存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目将深度学习强大的感知能力",
+          "desc": "针对目前服务机器人在环境感知和运动方面存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目将深度学习强大的感知能力和强化学习优秀的决策能力相结合，在基于模型的强化学习理论框架下，提出一种基于深度强化学习的服务机器人智能感知与自主运动方法。",
           "evidence": [
             {
-              "quote": "同时已将上述研究成果通过模拟环境测试、现实场景实现等方法验证了其有效性，可进一步应用于智能巡检、建筑装修、应急救援等",
+              "quote": "针对目前服务机器人在环境感知和运动方面存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目将深度学习强大的感知能力和强化学习优秀的决策能力相结合，在基于模型的强化学习理论框架下，提出一种基于深度强化学习的服务机器人智能感知与自主运动方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3206,
-                "end_char": 3263
+                "start_char": 655,
+                "end_char": 776
               },
               "version": "0fc19be6b90472f4e30c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-7305469d9eeb",
-          "name": "论文与发明专利",
-          "desc": "发表论文23篇（SCI 6篇、EI 21篇），申请发明专利13项（授权2项）",
+          "id": "item-a9822bebfb93",
+          "name": "针对在非结构化、高动态环境下，服务机器人存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目开展面向服务机器人的环",
+          "desc": "针对在非结构化、高动态环境下，服务机器人存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目开展面向服务机器人的环境感知与自主运动技术研究。",
           "evidence": [
             {
-              "quote": "项目共计发表论文23篇，其中，SCI检索论文6篇、 EI检索论文21篇；共计申请发明专利13项，其中授权2项",
+              "quote": "针对在非结构化、高动态环境下，服务机器人存在语义地图鲁棒性差、路径规划对环境适应性弱的问题，本项目开展面向服务机器人的环境感知与自主运动技术研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3265,
-                "end_char": 3318
+                "start_char": 2678,
+                "end_char": 2750
               },
               "version": "0fc19be6b90472f4e30c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cc02ed14a771"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a174c0880b27"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Bayesian Filtering Approach for Error Mitigation in Ultra-Wideband Ranging",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0eb1a01c67e3",
+      "evidence": [
+        {
+          "quote": "A Bayesian Filtering Approach for Error Mitigation in Ultra-Wideband Ranging",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3345,
+            "end_char": 3420
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a174c0880b27"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-43f908c361fb"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Security Monitoring System for Intelligent Multi-Region Transfer Platform",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b2a646cf42e",
+      "evidence": [
+        {
+          "quote": "Security Monitoring System for Intelligent Multi-Region Transfer Platform",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3480,
+            "end_char": 3552
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a174c0880b27"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-93191d0c9786"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "短时训练卷积神经网络的心电信号分类方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4a7d1076d40",
+      "evidence": [
+        {
+          "quote": "短时训练卷积神经网络的心电信号分类方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3605,
+            "end_char": 3623
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-43f908c361fb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1b4dcf1b25e3"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Early Forest Fire Segmentation Based on Deep Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-026c9ae0d77a",
+      "evidence": [
+        {
+          "quote": "Early Forest Fire Segmentation Based on Deep Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3648,
+            "end_char": 3700
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-93191d0c9786"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7305469d9eeb"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于边缘检测和深度残差网络的图像质量评估方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6fe973acf2dd",
+      "evidence": [
+        {
+          "quote": "基于边缘检测和深度残差网络的图像质量评估方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3806,
+            "end_char": 3827
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于特征融合的ResNet50网络关键设备剩余寿命预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca80bd90b637",
+      "evidence": [
+        {
+          "quote": "基于特征融合的ResNet50网络关键设备剩余寿命预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3874,
+            "end_char": 3902
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "V-SLAM loop closure detection based on deep compression network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca80c8272de8",
+      "evidence": [
+        {
+          "quote": "V-SLAM loop closure detection based on deep compression network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3950,
+            "end_char": 4012
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Experimental Research on Deep Reinforcement Learning in Autonomous navigation of Mobile Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b56493884fc1",
+      "evidence": [
+        {
+          "quote": "Experimental Research on Deep Reinforcement Learning in Autonomous navigation of Mobile Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4066,
+            "end_char": 4158
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A vision-based rail alignment detection algorithm for the transfer Platform",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-030b4e742cfb",
+      "evidence": [
+        {
+          "quote": "A vision-based rail alignment detection algorithm for the transfer Platform",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4231,
+            "end_char": 4305
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CUDA Implementation of A Parallel Particle Filter for Mobile Robot Pose Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33022fe8ccb7",
+      "evidence": [
+        {
+          "quote": "CUDA Implementation of A Parallel Particle Filter for Mobile Robot Pose Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4366,
+            "end_char": 4447
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A high-precision vision-based mobile robot slope detection method in unknown environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e7ab0007cda9",
+      "evidence": [
+        {
+          "quote": "A high-precision vision-based mobile robot slope detection method in unknown environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4497,
+            "end_char": 4584
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DIR-SLAM: Dynamic Interference Removal for Real-Time VSLAM in Dynamic Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8dad0568e2c",
+      "evidence": [
+        {
+          "quote": "DIR-SLAM: Dynamic Interference Removal for Real-Time VSLAM in Dynamic Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4650,
+            "end_char": 4731
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于聚焦变换的宽带信号稀疏表示波达方向估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-91588e419391",
+      "evidence": [
+        {
+          "quote": "基于聚焦变换的宽带信号稀疏表示波达方向估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4811,
+            "end_char": 4833
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual Servoing of Unknown Objects for Family Service Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1963dbbefff8",
+      "evidence": [
+        {
+          "quote": "Visual Servoing of Unknown Objects for Family Service Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4863,
+            "end_char": 4922
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Thermal stress deformation prediction for rotary air-preheater rotor using deep learning approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ddba59b1e4a",
+      "evidence": [
+        {
+          "quote": "Thermal stress deformation prediction for rotary air-preheater rotor using deep learning approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4994,
+            "end_char": 5090
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Real-Time Forest Fire Recognition Method Based on R-shufflenetv2",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-861c9bdb2ce7",
+      "evidence": [
+        {
+          "quote": "A Real-Time Forest Fire Recognition Method Based on R-shufflenetv2",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5144,
+            "end_char": 5209
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multimobile Robot Cooperative Localization Using Ultrawideband Sensor and GPU Acceleration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a07053f34cc2",
+      "evidence": [
+        {
+          "quote": "Multimobile Robot Cooperative Localization Using Ultrawideband Sensor and GPU Acceleration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5322,
+            "end_char": 5411
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual servoing of robot manipulator with weak field-of-view constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9ffc7e6988f",
+      "evidence": [
+        {
+          "quote": "Visual servoing of robot manipulator with weak field-of-view constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5479,
+            "end_char": 5550
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Deep Learning Based Forest Fire Detection Approach Using UAV and YOLOv3",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-36a09432f5d8",
+      "evidence": [
+        {
+          "quote": "A Deep Learning Based Forest Fire Detection Approach Using UAV and YOLOv3",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5596,
+            "end_char": 5668
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-mobile Robot Autonomous Navigation System for Intelligent Logistics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2122171e3c05",
+      "evidence": [
+        {
+          "quote": "Multi-mobile Robot Autonomous Navigation System for Intelligent Logistics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5758,
+            "end_char": 5830
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自主探索式语义地图构建方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-36fa07c62797",
+      "evidence": [
+        {
+          "quote": "一种自主探索式语义地图构建方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5892,
+            "end_char": 5909
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "V-SLAM loop closure detection based on deep compression network(会议最佳论文)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62762ee9e33d",
+      "evidence": [
+        {
+          "quote": "V-SLAM loop closure detection based on deep compression network(会议最佳论文)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5942,
+            "end_char": 6012
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于数字形态学的双动态阈值心电QRS波检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68ceb2742bb3",
+      "evidence": [
+        {
+          "quote": "基于数字形态学的双动态阈值心电QRS波检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6065,
+            "end_char": 6087
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep learning for manipulator visual positioning(会议最佳论文提名)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-15cd02a562bd",
+      "evidence": [
+        {
+          "quote": "Deep learning for manipulator visual positioning(会议最佳论文提名)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6113,
+            "end_char": 6170
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Deep learning for manipulator visual positioning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05bb54c8be5f",
+      "evidence": [
+        {
+          "quote": "Deep learning for manipulator visual positioning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6113,
+            "end_char": 6160
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度学习的机械臂自主抓取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f621f4ba5318",
+      "evidence": [
+        {
+          "quote": "一种基于深度学习的机械臂自主抓取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6335,
+            "end_char": 6352
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于权重预分配的多源信息融合方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6947751e1d0b",
+      "evidence": [
+        {
+          "quote": "一种基于权重预分配的多源信息融合方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6374,
+            "end_char": 6391
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度学习的室内环境三维语义地图构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bb6a7d900fbb",
+      "evidence": [
+        {
+          "quote": "一种基于深度学习的室内环境三维语义地图构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6445,
+            "end_char": 6467
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于超宽带技术的多机器人高精度协同跟踪方法(已授权)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9aad8d9f71dc",
+      "evidence": [
+        {
+          "quote": "一种基于超宽带技术的多机器人高精度协同跟踪方法(已授权)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6490,
+            "end_char": 6517
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UAV Image-based Forest Fire Detection Approach Using Convolutional Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-08e0fe7d99e0",
+      "evidence": [
+        {
+          "quote": "UAV Image-based Forest Fire Detection Approach Using Convolutional Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6545,
+            "end_char": 6625
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于最大似然的嵌套阵稀疏表示波达方向估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f1172c0adb8a",
+      "evidence": [
+        {
+          "quote": "基于最大似然的嵌套阵稀疏表示波达方向估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6725,
+            "end_char": 6746
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂工业系统状态监测与智能决策技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c56fa0309f15",
+      "evidence": [
+        {
+          "quote": "复杂工业系统状态监测与智能决策技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6778,
+            "end_char": 6797
+          },
+          "version": "0fc19be6b90472f4e30c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 32,
+    "listed": 32,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

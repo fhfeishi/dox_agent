@@ -2,15 +2,20 @@
   "doc_id": "9af96c003e3c37f3a019",
   "version": "7181c73ae36f602bd327",
   "source_hash": "b19298d05361b98a48fa9eccb401c08fb25bf9bca866e4dc59361a780b16c016",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:19:58.123808+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.934208+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fe5deaa2ed76",
-          "name": "群智能优化与机器人规划",
-          "desc": "和声搜索算法理论完善与多机器人动态路径规划",
+          "id": "item-e08c92205a18",
+          "name": "和声搜索算法是一种群智能优化算法，其独特的随机搜索机制已引起广泛关注。",
+          "desc": "和声搜索算法是一种群智能优化算法，其独特的随机搜索机制已引起广泛关注。",
           "evidence": [
             {
-              "quote": "项目以群智能优化算法为研究对象，以和声搜索算法为代表，从优化问题特征，参数调节方法，搜索机制与策略，算法融合，性能评价等方面研究了算法设计理论。",
+              "quote": "和声搜索算法是一种群智能优化算法，其独特的随机搜索机制已引起广泛关注。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2571,
-                "end_char": 2642
+                "start_char": 662,
+                "end_char": 696
+              },
+              "version": "7181c73ae36f602bd327"
+            }
+          ]
+        },
+        {
+          "id": "item-9d5580a4f099",
+          "name": "总体上，本项目的研究进一步完善了和声搜索算法的基本优化理论，研究了和声搜索算法在机器人动态路径规划中的应用，推动智能优化",
+          "desc": "总体上，本项目的研究进一步完善了和声搜索算法的基本优化理论，研究了和声搜索算法在机器人动态路径规划中的应用，推动智能优化算法在实际工程应用的发展。",
+          "evidence": [
+            {
+              "quote": "总体上，本项目的研究进一步完善了和声搜索算法的基本优化理论，研究了和声搜索算法在机器人动态路径规划中的应用，推动智能优化算法在实际工程应用的发展。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2951,
+                "end_char": 3023
               },
               "version": "7181c73ae36f602bd327"
             }
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-48c370d47f6b",
-          "name": "HS算法收敛性能差",
-          "desc": "优化理论缺乏、参数敏感、收敛率低易停滞",
+          "id": "item-32bfb6ad8c74",
+          "name": "但和声搜索算法的优化理论缺乏，存在控制参数的敏感，搜索的盲目性，收敛率低，容易陷入停滞状态，收敛效果不理想的局限。",
+          "desc": "但和声搜索算法的优化理论缺乏，存在控制参数的敏感，搜索的盲目性，收敛率低，容易陷入停滞状态，收敛效果不理想的局限。",
           "evidence": [
             {
               "quote": "但和声搜索算法的优化理论缺乏，存在控制参数的敏感，搜索的盲目性，收敛率低，容易陷入停滞状态，收敛效果不理想的局限。",
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ac0100007d44",
-          "name": "三种搜索模式设计",
-          "desc": "随机多维、统一与种群模式验证搜索机制普适性",
+          "id": "item-c7e8b8e7e8e6",
+          "name": "项目以群智能优化算法为研究对象，以和声搜索算法为代表，从优化问题特征，参数调节方法，搜索机制与策略，算法融合，性能评价等",
+          "desc": "项目以群智能优化算法为研究对象，以和声搜索算法为代表，从优化问题特征，参数调节方法，搜索机制与策略，算法融合，性能评价等方面研究了算法设计理论。",
           "evidence": [
             {
-              "quote": "一是提出了改进和声搜索算法，分别设计了三种搜索模式：随机多维模式，统一模式，种群模式",
+              "quote": "项目以群智能优化算法为研究对象，以和声搜索算法为代表，从优化问题特征，参数调节方法，搜索机制与策略，算法融合，性能评价等方面研究了算法设计理论。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2643,
-                "end_char": 2684
+                "start_char": 2571,
+                "end_char": 2642
               },
               "version": "7181c73ae36f602bd327"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-16db8a218eae",
-          "name": "混合和声差分进化",
-          "desc": "和声搜索与差分进化融合提升算法性能",
+          "id": "item-305f89b0880c",
+          "name": "以历史迭代数据为基本点，融合预测估计思想，构建通用型预估搜索框架，构建数据驱动算法搜索的新理念，以求完善和声搜索算法的优",
+          "desc": "以历史迭代数据为基本点，融合预测估计思想，构建通用型预估搜索框架，构建数据驱动算法搜索的新理念，以求完善和声搜索算法的优化理论，从根本上提升和声搜索算法的优化性能，并将其应用于多机器人动态路径规划问题，验证算法的可实施性。",
           "evidence": [
             {
-              "quote": "三是提出了混合和声差分进化算法，将和声搜索算法与差分进化算法融合，实验结果表明所设计的混合算法具有良好性能。",
+              "quote": "以历史迭代数据为基本点，融合预测估计思想，构建通用型预估搜索框架，构建数据驱动算法搜索的新理念，以求完善和声搜索算法的优化理论，从根本上提升和声搜索算法的优化性能，并将其应用于多机器人动态路径规划问题，验证算法的可实施性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2777,
-                "end_char": 2830
+                "start_char": 837,
+                "end_char": 947
               },
               "version": "7181c73ae36f602bd327"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,248 @@
       "state": "has",
       "items": [
         {
-          "id": "item-581df6df57da",
-          "name": "机器人路径规划应用",
-          "desc": "静态与动态机器人路径规划算法研究支撑",
+          "id": "item-d7257e88475e",
+          "name": "和声搜索算法是一种群智能优化算法，其独特的随机搜索机制已引起广泛关注。",
+          "desc": "和声搜索算法是一种群智能优化算法，其独特的随机搜索机制已引起广泛关注。",
           "evidence": [
             {
-              "quote": "二是针对动态机器人路径规划问题，提出一种混合和声搜索算法，设计了新思路，为机器人路径规划研究提供了一些理论支撑。",
+              "quote": "和声搜索算法是一种群智能优化算法，其独特的随机搜索机制已引起广泛关注。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2895,
-                "end_char": 2950
+                "start_char": 662,
+                "end_char": 696
               },
               "version": "7181c73ae36f602bd327"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-814628ee34b7",
-          "name": "SCI论文8篇",
-          "desc": "Soft Computing等领域SCI论文8篇、核心1篇",
+          "id": "item-b34d96ddb7f4",
+          "name": "本项目从整体上按计划顺利完成了相关目标，取得了相关的研究成果。",
+          "desc": "本项目从整体上按计划顺利完成了相关目标，取得了相关的研究成果。",
           "evidence": [
             {
-              "quote": "依托本项目，在Soft computing, Applied intelligence, Applied soft computing等领域内SCI期刊发表论文8篇，核心期刊论文 1篇",
+              "quote": "本项目从整体上按计划顺利完成了相关目标，取得了相关的研究成果。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3050,
-                "end_char": 3141
+                "start_char": 2540,
+                "end_char": 2570
               },
               "version": "7181c73ae36f602bd327"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fe5deaa2ed76"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-48c370d47f6b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Collaborative Fireworks Algorithm and its applications in robust pole assignment optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d40a6926701a",
+      "evidence": [
+        {
+          "quote": "Dynamic Collaborative Fireworks Algorithm and its applications in robust pole assignment optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3232,
+            "end_char": 3332
+          },
+          "version": "7181c73ae36f602bd327"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-48c370d47f6b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ac0100007d44"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved harmony search with general iteration models for engineering design optimization problems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-230a46a7f524",
+      "evidence": [
+        {
+          "quote": "Improved harmony search with general iteration models for engineering design optimization problems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3415,
+            "end_char": 3512
+          },
+          "version": "7181c73ae36f602bd327"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-48c370d47f6b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-16db8a218eae"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hybrid Harmony Search Differential Evolution Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-043807c2880f",
+      "evidence": [
+        {
+          "quote": "Hybrid Harmony Search Differential Evolution Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3600,
+            "end_char": 3653
+          },
+          "version": "7181c73ae36f602bd327"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ac0100007d44"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-581df6df57da"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Novel global harmony search algorithm with new position updating for optimization problems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-da553f9cc46b",
+      "evidence": [
+        {
+          "quote": "Novel global harmony search algorithm with new position updating for optimization problems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3726,
+            "end_char": 3815
+          },
+          "version": "7181c73ae36f602bd327"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-16db8a218eae"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-814628ee34b7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mobile Robot Dynamic Path Planning Based on Self-Adaptive Harmony Search Algorithm and Morphin Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d9c12808ba11",
+      "evidence": [
+        {
+          "quote": "Mobile Robot Dynamic Path Planning Based on Self-Adaptive Harmony Search Algorithm and Morphin Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3862,
+            "end_char": 3965
+          },
+          "version": "7181c73ae36f602bd327"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhanced harmony search algorithm with circular region perturbation for global optimization problems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99638b324c84",
+      "evidence": [
+        {
+          "quote": "Enhanced harmony search algorithm with circular region perturbation for global optimization problems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4043,
+            "end_char": 4142
+          },
+          "version": "7181c73ae36f602bd327"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Parameter Identification for Photovoltaic Models Using an Improved Learning Search Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ccabf0385d63",
+      "evidence": [
+        {
+          "quote": "Parameter Identification for Photovoltaic Models Using an Improved Learning Search Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4226,
+            "end_char": 4317
+          },
+          "version": "7181c73ae36f602bd327"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Self-adaptively commensal learning-based Jaya algorithm with multi-populations and its application",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7df5f2ace122",
+      "evidence": [
+        {
+          "quote": "Self-adaptively commensal learning-based Jaya algorithm with multi-populations and its application",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4407,
+            "end_char": 4504
+          },
+          "version": "7181c73ae36f602bd327"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于最优寿命的无人机路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6ae68909633",
+      "evidence": [
+        {
+          "quote": "一种基于最优寿命的无人机路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4578,
+            "end_char": 4595
+          },
+          "version": "7181c73ae36f602bd327"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

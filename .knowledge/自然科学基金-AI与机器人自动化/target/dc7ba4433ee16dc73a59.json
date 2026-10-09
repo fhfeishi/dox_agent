@@ -2,15 +2,20 @@
   "doc_id": "dc7ba4433ee16dc73a59",
   "version": "19485e5af5a0f4106e0d",
   "source_hash": "8a9cf327d355938eb2c7885c97d2cf182edf3635206a2fcc0817fce8718371e2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:24.513765+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.630879+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-12100bca1213",
-          "name": "工业机械臂人机交互安全",
-          "desc": "工业生产中机器人取代人工作业带来的操作员安全需求",
+          "id": "item-39fb8b9dcb07",
+          "name": "在目前工业生产中，机器人越来越多地取代了人工作业，伴随生产效率提高而来的是频繁发生的操作员安全事故。",
+          "desc": "在目前工业生产中，机器人越来越多地取代了人工作业，伴随生产效率提高而来的是频繁发生的操作员安全事故。",
           "evidence": [
             {
               "quote": "在目前工业生产中，机器人越来越多地取代了人工作业，伴随生产效率提高而来的是频繁发生的操作员安全事故。",
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-139ad013f1fd",
-          "name": "被动安全缺乏灵活性实时性",
-          "desc": "企业被动安全方式欠缺灵活性和安全实时性",
-          "evidence": [
-            {
-              "quote": "为解决此问题，企业往往采用被动安全方式来保障操作人员的安全，但该类方式欠缺灵活性和安全实时性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 700,
-                "end_char": 746
-              },
-              "version": "19485e5af5a0f4106e0d"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4909ffb55fef",
-          "name": "石墨烯柔性压阻传感器",
-          "desc": "三聚氰胺海绵包裹石墨烯的电子皮肤本体感知",
+          "id": "item-8741a4a122eb",
+          "name": "本项目针对工业机器人的安全控制需求，开展机械臂主动安全交互控制方法研究，采用电子皮肤与关节传感器构成机械臂本体感知系统，",
+          "desc": "本项目针对工业机器人的安全控制需求，开展机械臂主动安全交互控制方法研究，采用电子皮肤与关节传感器构成机械臂本体感知系统，重点突破基于机械臂本体感知的交互信息提取方法及主动柔顺安全控制策略等科学问题，实现基于交互信息的作业空间快速重构及运动规划，建立安全稳定的人机交互系统。",
           "evidence": [
             {
-              "quote": "设计机械臂本体感知系统，制备了高灵敏度的三聚氰胺海绵包裹石墨烯柔性压阻式传感器",
+              "quote": "本项目针对工业机器人的安全控制需求，开展机械臂主动安全交互控制方法研究，采用电子皮肤与关节传感器构成机械臂本体感知系统，重点突破基于机械臂本体感知的交互信息提取方法及主动柔顺安全控制策略等科学问题，实现基于交互信息的作业空间快速重构及运动规划，建立安全稳定的人机交互系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2555,
-                "end_char": 2593
+                "start_char": 793,
+                "end_char": 928
               },
               "version": "19485e5af5a0f4106e0d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-72f9d838eb47",
-          "name": "改进人工势场避障",
-          "desc": "改进吸引/排斥势场增强处理不同障碍物能力",
+          "id": "item-258d34bf4093",
+          "name": "本项目针对机械臂主动安全交互方法开展研究，设计机械臂本体感知系统，制备了高灵敏度的三聚氰胺海绵包裹石墨烯柔性压阻式传感器",
+          "desc": "本项目针对机械臂主动安全交互方法开展研究，设计机械臂本体感知系统，制备了高灵敏度的三聚氰胺海绵包裹石墨烯柔性压阻式传感器，传感器的柔性基底和传感单元分别采用3D打印模具辅助和超声波辅助浸涂法制备。",
           "evidence": [
             {
-              "quote": "本项目提出了改进人工势场算法，通过改进吸引势场和排斥势场的建立方法，使得算法处理不同障碍物的能力大大增加",
+              "quote": "本项目针对机械臂主动安全交互方法开展研究，设计机械臂本体感知系统，制备了高灵敏度的三聚氰胺海绵包裹石墨烯柔性压阻式传感器，传感器的柔性基底和传感单元分别采用3D打印模具辅助和超声波辅助浸涂法制备。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2761,
-                "end_char": 2812
+                "start_char": 2534,
+                "end_char": 2631
               },
               "version": "19485e5af5a0f4106e0d"
             }
-          ]
-        },
-        {
-          "id": "item-68fbb5011d42",
-          "name": "阻尼最小二乘避奇异",
-          "desc": "避奇异与动态阻尼因子方法",
-          "evidence": [
-            {
-              "quote": "使用阻尼最小二乘法进行避奇异，并且提出了动态阻尼因子的方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2822,
-                "end_char": 2850
-              },
-              "version": "19485e5af5a0f4106e0d"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +91,189 @@
       "state": "has",
       "items": [
         {
-          "id": "item-615d5b49a796",
-          "name": "电子皮肤性能指标",
-          "desc": "0-30N压力检测、线性系数0.97以上、分辨率0.05N",
+          "id": "item-9b3562fd20b4",
+          "name": "在目前工业生产中，机器人越来越多地取代了人工作业，伴随生产效率提高而来的是频繁发生的操作员安全事故。",
+          "desc": "在目前工业生产中，机器人越来越多地取代了人工作业，伴随生产效率提高而来的是频繁发生的操作员安全事故。",
           "evidence": [
             {
-              "quote": "该电子皮肤可实现0-30N压力检测，线性系数达到0.97以上，最小力分辨率可达0.05N。",
+              "quote": "在目前工业生产中，机器人越来越多地取代了人工作业，伴随生产效率提高而来的是频繁发生的操作员安全事故。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2675,
-                "end_char": 2719
+                "start_char": 650,
+                "end_char": 699
               },
               "version": "19485e5af5a0f4106e0d"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-104bac566ad3",
-          "name": "避障与轨迹平滑验证",
-          "desc": "静态动态避障实验验证算法避障效果与轨迹平滑性",
-          "evidence": [
-            {
-              "quote": "静态和动态避障实验表明，该算法在避障效果和轨迹平滑性方面都有良好的表现。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2852,
-                "end_char": 2887
-              },
-              "version": "19485e5af5a0f4106e0d"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-12100bca1213"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-139ad013f1fd"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robotic Arm Motion Planning for Obstacle Avoidance Based on the CMN-RRT Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbcd86a26067",
+      "evidence": [
+        {
+          "quote": "Robotic Arm Motion Planning for Obstacle Avoidance Based on the CMN-RRT Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2972,
+            "end_char": 3049
+          },
+          "version": "19485e5af5a0f4106e0d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-139ad013f1fd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4909ffb55fef"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种具有温度补偿功能的触觉感知采集系统及其方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f0565865768e",
+      "evidence": [
+        {
+          "quote": "一种具有温度补偿功能的触觉感知采集系统及其方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3126,
+            "end_char": 3148
+          },
+          "version": "19485e5af5a0f4106e0d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-139ad013f1fd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-72f9d838eb47"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path Planning for Obstacle Avoidance of Robot Arm Based on Improved Potential Field Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47d53440a4ff",
+      "evidence": [
+        {
+          "quote": "Path Planning for Obstacle Avoidance of Robot Arm Based on Improved Potential Field Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3186,
+            "end_char": 3275
+          },
+          "version": "19485e5af5a0f4106e0d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-139ad013f1fd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-68fbb5011d42"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "End-to-End Automatic Classification of Retinal Vessel Based on Generative Adversarial Networks with Improved U-Net",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1af936868858",
+      "evidence": [
+        {
+          "quote": "End-to-End Automatic Classification of Retinal Vessel Based on Generative Adversarial Networks with Improved U-Net",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3369,
+            "end_char": 3482
+          },
+          "version": "19485e5af5a0f4106e0d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4909ffb55fef"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-615d5b49a796"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Self-Powered, Non-Toxic, Recyclable Thermogalvanic Hydrogel Sensor for Temperature Monitoring of Edibles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fa244e43d084",
+      "evidence": [
+        {
+          "quote": "Self-Powered, Non-Toxic, Recyclable Thermogalvanic Hydrogel Sensor for Temperature Monitoring of Edibles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3588,
+            "end_char": 3691
+          },
+          "version": "19485e5af5a0f4106e0d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-72f9d838eb47"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-104bac566ad3"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of the Flexible Tactile Sensor for Safe Human-Robot Interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-527b35fe869c",
+      "evidence": [
+        {
+          "quote": "Development of the Flexible Tactile Sensor for Safe Human-Robot Interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3763,
+            "end_char": 3837
+          },
+          "version": "19485e5af5a0f4106e0d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机械臂的主动安全装置及其安全控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eaa14b37e1eb",
+      "evidence": [
+        {
+          "quote": "一种机械臂的主动安全装置及其安全控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3904,
+            "end_char": 3923
+          },
+          "version": "19485e5af5a0f4106e0d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

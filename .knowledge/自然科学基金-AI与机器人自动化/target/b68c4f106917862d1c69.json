@@ -2,15 +2,20 @@
   "doc_id": "b68c4f106917862d1c69",
   "version": "3805b707b2479117321c",
   "source_hash": "174b7c3e7e3205eb3d3e64118b92adbac07fef861e15e88ff65309026451ee85",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:52.909097+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.253795+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c3b32ccc3189",
-          "name": "柔性机械臂容错控制",
-          "desc": "面向航空航天、微创医疗、智能制造领域的柔性机械臂",
+          "id": "item-55f729992ae5",
+          "name": "本项目以具有驱动器故障的柔性机械臂为研究对象，开展其运动控制方法研究。",
+          "desc": "本项目以具有驱动器故障的柔性机械臂为研究对象，开展其运动控制方法研究。",
           "evidence": [
             {
-              "quote": "柔性机械臂作为先进机器人系统的关键组成部分，在航空航天、微创医疗、智能制造等领域具有广泛应用前景",
+              "quote": "本项目以具有驱动器故障的柔性机械臂为研究对象，开展其运动控制方法研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 647,
+                "end_char": 681
+              },
+              "version": "3805b707b2479117321c"
+            }
+          ]
+        },
+        {
+          "id": "item-38089b4c2c71",
+          "name": "柔性机械臂作为先进机器人系统的关键组成部分，在航空航天、微创医疗、智能制造等领域具有广泛应用前景。",
+          "desc": "柔性机械臂作为先进机器人系统的关键组成部分，在航空航天、微创医疗、智能制造等领域具有广泛应用前景。",
+          "evidence": [
+            {
+              "quote": "柔性机械臂作为先进机器人系统的关键组成部分，在航空航天、微创医疗、智能制造等领域具有广泛应用前景。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2690,
-                "end_char": 2737
+                "end_char": 2738
               },
               "version": "3805b707b2479117321c"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-9bb33c4de271",
-          "name": "驱动器故障引发失效",
-          "desc": "高性能运行依赖驱动系统可靠性，驱动器故障易引发控制失效甚至系统崩溃",
-          "evidence": [
-            {
-              "quote": "其高性能运行高度依赖于驱动系统的可靠性，一旦发生驱动器故障，极易引发控制失效甚至系统崩溃",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2742,
-                "end_char": 2785
-              },
-              "version": "3805b707b2479117321c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-dbe67b67fcd8",
-          "name": "多类容错控制策略",
-          "desc": "基于神经网络、滑模控制、扩展状态观测器等的针对性补偿与容错控制",
+          "id": "item-1806b1873135",
+          "name": "针对上述挑战，本项目提出了多种针对性补偿与容错控制策略，并构建了仿真平台与多套实验装置，验证了理论方法的有效性与工程可行",
+          "desc": "针对上述挑战，本项目提出了多种针对性补偿与容错控制策略，并构建了仿真平台与多套实验装置，验证了理论方法的有效性与工程可行性。",
           "evidence": [
             {
-              "quote": "提出了多种针对性补偿与容错控制策略，并构建了仿真平台与多套实验装置",
+              "quote": "针对上述挑战，本项目提出了多种针对性补偿与容错控制策略，并构建了仿真平台与多套实验装置，验证了理论方法的有效性与工程可行性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2937,
-                "end_char": 2969
+                "start_char": 2927,
+                "end_char": 2988
               },
               "version": "3805b707b2479117321c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-9a94feb06c0e",
-          "name": "多驱动柔性臂实验平台",
-          "desc": "常规电机、气动软体与PVDF压电驱动实验平台及硬件在环故障测试系统",
+          "id": "item-9ebc93697a43",
+          "name": "理论上，基于神经网络、滑模控制、扩展状态观测器、迭代学习、模糊神经网络等先进控制方法，提出多类新型容错控制策略，实现了柔",
+          "desc": "理论上，基于神经网络、滑模控制、扩展状态观测器、迭代学习、模糊神经网络等先进控制方法，提出多类新型容错控制策略，实现了柔性机械臂在多种驱动器故障条件下的高精度位置控制与振动抑制；",
           "evidence": [
             {
-              "quote": "分别研制了采用常规电机驱动、新型气动软体驱动以及PVDF压电驱动的柔性机械臂实验平台，并开发硬件在环驱动器故障测试系统",
+              "quote": "理论上，基于神经网络、滑模控制、扩展状态观测器、迭代学习、模糊神经网络等先进控制方法，提出多类新型容错控制策略，实现了柔性机械臂在多种驱动器故障条件下的高精度位置控制与振动抑制；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3206,
-                "end_char": 3264
+                "start_char": 3113,
+                "end_char": 3201
               },
               "version": "3805b707b2479117321c"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,408 @@
       "state": "has",
       "items": [
         {
-          "id": "item-865dfcb966b4",
-          "name": "论文专利与软著",
-          "desc": "发表学术论文19篇，申请发明专利6项（授权3项），登记软著4项",
+          "id": "item-af93349c93ac",
+          "name": "本项目以具有驱动器故障的柔性机械臂为研究对象，开展其运动控制方法研究。",
+          "desc": "本项目以具有驱动器故障的柔性机械臂为研究对象，开展其运动控制方法研究。",
           "evidence": [
             {
-              "quote": "项目共发表标注本项目资助的学术论文19篇（其中期刊论文16篇），申请国家发明专利6项（已授权3项），登记软件著作权4项",
+              "quote": "本项目以具有驱动器故障的柔性机械臂为研究对象，开展其运动控制方法研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3330,
-                "end_char": 3388
+                "start_char": 647,
+                "end_char": 681
               },
               "version": "3805b707b2479117321c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-dc224c770ba4",
-          "name": "柔性机器人原型系统",
-          "desc": "搭建面向实际场景的柔性机器人原型系统，验证应用潜力",
+          "id": "item-7f1e6222051e",
+          "name": "柔性机械臂作为先进机器人系统的关键组成部分，在航空航天、微创医疗、智能制造等领域具有广泛应用前景。",
+          "desc": "柔性机械臂作为先进机器人系统的关键组成部分，在航空航天、微创医疗、智能制造等领域具有广泛应用前景。",
           "evidence": [
             {
-              "quote": "成功搭建了面向实际场景的柔性机器人原型系统，展示了研究成果的应用潜力",
+              "quote": "柔性机械臂作为先进机器人系统的关键组成部分，在航空航天、微创医疗、智能制造等领域具有广泛应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3287,
-                "end_char": 3320
+                "start_char": 2690,
+                "end_char": 2738
               },
               "version": "3805b707b2479117321c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c3b32ccc3189"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9bb33c4de271"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design, performance analysis and applications of pneumatic bellows actuator for building block soft robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0529926c22d",
+      "evidence": [
+        {
+          "quote": "Design, performance analysis and applications of pneumatic bellows actuator for building block soft robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3582,
+            "end_char": 3687
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9bb33c4de271"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dbe67b67fcd8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Time-varying disturbance-observer-based tracking control of uncertain flexible-joint manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7973ab511876",
+      "evidence": [
+        {
+          "quote": "Time-varying disturbance-observer-based tracking control of uncertain flexible-joint manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3783,
+            "end_char": 3878
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9bb33c4de271"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9a94feb06c0e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种翻滚爬行双运动方式的软体气动机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-653280026110",
+      "evidence": [
+        {
+          "quote": "一种翻滚爬行双运动方式的软体气动机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3938,
+            "end_char": 3956
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-dbe67b67fcd8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-865dfcb966b4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Kinematic Modeling and Control for an Elephant-Trunk Soft Manipulator Considering Hysteresis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-49e25bb1dbad",
+      "evidence": [
+        {
+          "quote": "Kinematic Modeling and Control for an Elephant-Trunk Soft Manipulator Considering Hysteresis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3993,
+            "end_char": 4084
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9a94feb06c0e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dc224c770ba4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semiphenomenological Modeling and Control for a Sheet PVDF Actuator With Nonlinear Hysteresis Effects",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad139891cb94",
+      "evidence": [
+        {
+          "quote": "Semiphenomenological Modeling and Control for a Sheet PVDF Actuator With Nonlinear Hysteresis Effects",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4170,
+            "end_char": 4270
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling, analysis, and adaptive neural modified-backstepping control of an uncertain horizontal pendubot with double flexible joints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e15872d6a84f",
+      "evidence": [
+        {
+          "quote": "Modeling, analysis, and adaptive neural modified-backstepping control of an uncertain horizontal pendubot with double flexible joints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4331,
+            "end_char": 4463
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "气压-电机协同驱动的超冗余变形连续体充电机器人系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f4be49417e8c",
+      "evidence": [
+        {
+          "quote": "气压-电机协同驱动的超冗余变形连续体充电机器人系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4538,
+            "end_char": 4562
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and Trajectory Tracking Control of Continuum Robot With Magnetic Spacer Disks and Soft Drives",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-27a9ff02227a",
+      "evidence": [
+        {
+          "quote": "Modeling and Trajectory Tracking Control of Continuum Robot With Magnetic Spacer Disks and Soft Drives",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4594,
+            "end_char": 4695
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Humanoid finger with rigid-flexible-soft structure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06d385dddf76",
+      "evidence": [
+        {
+          "quote": "Humanoid finger with rigid-flexible-soft structure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4796,
+            "end_char": 4845
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种具有非对称刚度气动驱动连续体机器人的结构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d79741c1706d",
+      "evidence": [
+        {
+          "quote": "一种具有非对称刚度气动驱动连续体机器人的结构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4945,
+            "end_char": 4966
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "垂直气动人工肌肉系统的模型参考自适应逆补偿控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-199f71366346",
+      "evidence": [
+        {
+          "quote": "垂直气动人工肌肉系统的模型参考自适应逆补偿控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4999,
+            "end_char": 5021
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种平面两连杆刚柔耦合型机械臂",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-08855908ecab",
+      "evidence": [
+        {
+          "quote": "一种平面两连杆刚柔耦合型机械臂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5055,
+            "end_char": 5069
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Length-Variable Bionic Continuum Robot with Millimeter-Scale Diameter and Compliant Driving Force",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dfeaf14b45df",
+      "evidence": [
+        {
+          "quote": "Length-Variable Bionic Continuum Robot with Millimeter-Scale Diameter and Compliant Driving Force",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5104,
+            "end_char": 5200
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and Neural-Network-Based Tail Oscillation Control of a Fish-Like Bionic Soft Actuation Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc80d0ee139a",
+      "evidence": [
+        {
+          "quote": "Modeling and Neural-Network-Based Tail Oscillation Control of a Fish-Like Bionic Soft Actuation Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5296,
+            "end_char": 5400
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Double-loop frame-based adaptive neural sliding-mode control of single-input 3-DOF flexible-joint manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4cf2c24fdd7",
+      "evidence": [
+        {
+          "quote": "Double-loop frame-based adaptive neural sliding-mode control of single-input 3-DOF flexible-joint manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5472,
+            "end_char": 5580
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种可测量末端振动状态的两连杆刚柔耦合型机械臂系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f983101e59e4",
+      "evidence": [
+        {
+          "quote": "一种可测量末端振动状态的两连杆刚柔耦合型机械臂系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5641,
+            "end_char": 5665
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Phenomenological Modeling and End-Point Trajectory Tracking Control of a Flexible Beam with Pneumatic Soft Actuators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f15ed73ecca",
+      "evidence": [
+        {
+          "quote": "Phenomenological Modeling and End-Point Trajectory Tracking Control of a Flexible Beam with Pneumatic Soft Actuators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5704,
+            "end_char": 5819
+          },
+          "version": "3805b707b2479117321c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

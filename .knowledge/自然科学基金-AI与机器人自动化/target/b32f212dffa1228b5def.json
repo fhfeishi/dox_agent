@@ -2,15 +2,20 @@
   "doc_id": "b32f212dffa1228b5def",
   "version": "2c7ffcbc2d87ef028e9e",
   "source_hash": "fc74abe6da00ee1348013696bf8683f702b69ae28c080a2c43840b4d159a7609",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:08:00.305158+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.216027+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-de200fb11c5b",
-          "name": "高铁接触网智能巡检",
-          "desc": "复杂时变环境下提升高铁接触网巡检效率与效果",
+          "id": "item-228eb969aa19",
+          "name": "项目研究提升复杂时变环境下高铁接触网巡检机器人巡检效率与效果所需解决的若干问题。",
+          "desc": "项目研究提升复杂时变环境下高铁接触网巡检机器人巡检效率与效果所需解决的若干问题。",
           "evidence": [
             {
-              "quote": "本项目针对高铁接触网巡检需求，研究如何提升复杂时变环境下高铁接触网巡检机器人巡检效率与效果，实现了CPS例化产品—高铁接触网智能巡检机器人",
+              "quote": "项目研究提升复杂时变环境下高铁接触网巡检机器人巡检效率与效果所需解决的若干问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2717,
-                "end_char": 2785
+                "start_char": 643,
+                "end_char": 682
+              },
+              "version": "2c7ffcbc2d87ef028e9e"
+            }
+          ]
+        },
+        {
+          "id": "item-0a9efa3d9c0e",
+          "name": "本项目为CPS例化提供了若干共性理论、方法、工具与环境，并提供了使用途径，为服务于高铁接触网运维系统的高铁智能巡检机器人",
+          "desc": "本项目为CPS例化提供了若干共性理论、方法、工具与环境，并提供了使用途径，为服务于高铁接触网运维系统的高铁智能巡检机器人研发提供了科学的理论依据与应用基础。",
+          "evidence": [
+            {
+              "quote": "本项目为CPS例化提供了若干共性理论、方法、工具与环境，并提供了使用途径，为服务于高铁接触网运维系统的高铁智能巡检机器人研发提供了科学的理论依据与应用基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3078,
+                "end_char": 3155
               },
               "version": "2c7ffcbc2d87ef028e9e"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-15df8196cf2a",
-          "name": "时空与安全关键约束",
-          "desc": "巡检任务具有时空关键及安全关键特性，需CPS建模与混合关键级调度",
-          "evidence": [
-            {
-              "quote": "对巡检任务进行理论抽象，完成满足任务需求的基于层次化模型的智能巡检机器人研究与设计",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 797,
-                "end_char": 837
-              },
-              "version": "2c7ffcbc2d87ef028e9e"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-1d694a73c879",
-          "name": "可重构FPGA检测模块",
-          "desc": "基于FPGA的检测算法研究与模块设计，实现检测算法组合与参数快速配置",
+          "id": "item-2814c3b0dc9a",
+          "name": "5）高铁接触网点云识别、分割方法设计及实现；",
+          "desc": "5）高铁接触网点云识别、分割方法设计及实现；",
           "evidence": [
             {
-              "quote": "对可重构FPGA检测模块展开研究，包含基于FPGA的检测算法研究与模块设计，通过可重构特性实现对不同巡检工作环境与巡检任务所需检测算法的组合与参数快速配置",
+              "quote": "5）高铁接触网点云识别、分割方法设计及实现；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 719,
-                "end_char": 795
+                "start_char": 2893,
+                "end_char": 2914
               },
               "version": "2c7ffcbc2d87ef028e9e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2ac157ff5496",
-          "name": "激光雷达点云识别分割",
-          "desc": "高铁接触网点云识别、分割方法设计及实现",
+          "id": "item-348fae1e5c35",
+          "name": "7）高铁巡检机器人平台上的视觉感知方法设计；",
+          "desc": "7）高铁巡检机器人平台上的视觉感知方法设计；",
           "evidence": [
             {
-              "quote": "高铁接触网点云识别、分割方法设计及实现",
+              "quote": "7）高铁巡检机器人平台上的视觉感知方法设计；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2895,
-                "end_char": 2913
+                "start_char": 2934,
+                "end_char": 2955
               },
               "version": "2c7ffcbc2d87ef028e9e"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,508 @@
       "state": "has",
       "items": [
         {
-          "id": "item-90e5a934baa6",
-          "name": "原型成果转化销售",
-          "desc": "原型产品高铁智能巡检机器人已成果转化并销售多台，1项专利技术转让",
+          "id": "item-13dac42ec215",
+          "name": "项目研究提升复杂时变环境下高铁接触网巡检机器人巡检效率与效果所需解决的若干问题。",
+          "desc": "项目研究提升复杂时变环境下高铁接触网巡检机器人巡检效率与效果所需解决的若干问题。",
           "evidence": [
             {
-              "quote": "基于本项目所设计的原型产品“高铁智能巡检机器人”已进行成果转化并已被销售多台",
+              "quote": "项目研究提升复杂时变环境下高铁接触网巡检机器人巡检效率与效果所需解决的若干问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3174,
-                "end_char": 3211
+                "start_char": 643,
+                "end_char": 682
               },
               "version": "2c7ffcbc2d87ef028e9e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-8f702eceda16",
-          "name": "论文与知识产权",
-          "desc": "发表论文22篇（IEEE Trans 2篇），专利4篇，软著4篇",
+          "id": "item-b04a30044d2c",
+          "name": "本项目针对高铁接触网巡检需求，研究如何提升复杂时变环境下高铁接触网巡检机器人巡检效率与效果，实现了CPS例化产品—高铁接",
+          "desc": "本项目针对高铁接触网巡检需求，研究如何提升复杂时变环境下高铁接触网巡检机器人巡检效率与效果，实现了CPS例化产品—高铁接触网智能巡检机器人。",
           "evidence": [
             {
-              "quote": "本团队共发表（含录用）论文22篇，其中IEEE Transactions期刊论文2篇，专利4篇（含实审），软件著作权4篇，其中1篇专利进行了技术转让",
+              "quote": "本项目针对高铁接触网巡检需求，研究如何提升复杂时变环境下高铁接触网巡检机器人巡检效率与效果，实现了CPS例化产品—高铁接触网智能巡检机器人。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2986,
-                "end_char": 3059
+                "start_char": 2717,
+                "end_char": 2786
               },
               "version": "2c7ffcbc2d87ef028e9e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-de200fb11c5b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-15df8196cf2a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LiDAR Point Cloud Recognition of Overhead Catenary System with Deep Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b969fb41ff4b",
+      "evidence": [
+        {
+          "quote": "LiDAR Point Cloud Recognition of Overhead Catenary System with Deep Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3335,
+            "end_char": 3410
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-15df8196cf2a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1d694a73c879"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LiDAR Point Cloud Recognition and Visualization with Deep Learning for Overhead Contact Inspection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d288d831fb99",
+      "evidence": [
+        {
+          "quote": "LiDAR Point Cloud Recognition and Visualization with Deep Learning for Overhead Contact Inspection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3473,
+            "end_char": 3570
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-15df8196cf2a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2ac157ff5496"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Depth for Scene Reconstruction Using an Encoder-Decoder Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71fb4814736d",
+      "evidence": [
+        {
+          "quote": "Learning Depth for Scene Reconstruction Using an Encoder-Decoder Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3655,
+            "end_char": 3724
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2ac157ff5496"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-90e5a934baa6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Traffic Sign Detection and Recognition Using Novel Center-Point Estimation and Local Features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c06d90bace4",
+      "evidence": [
+        {
+          "quote": "Traffic Sign Detection and Recognition Using Novel Center-Point Estimation and Local Features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3812,
+            "end_char": 3904
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1d694a73c879"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8f702eceda16"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Digital Twinning Based Adaptive Development Environment for Automotive Cyber-Physical Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-775ffd549bc4",
+      "evidence": [
+        {
+          "quote": "Digital Twinning Based Adaptive Development Environment for Automotive Cyber-Physical Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3957,
+            "end_char": 4049
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Enhanced Lightweight Biometric-Based Three-Factor Anonymous Authentication Protocol for Mobile Cloud Computing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8dd972781648",
+      "evidence": [
+        {
+          "quote": "An Enhanced Lightweight Biometric-Based Three-Factor Anonymous Authentication Protocol for Mobile Cloud Computing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4112,
+            "end_char": 4224
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Lightweight Mutual Authentication and Key Agreement Scheme for Medical Internet of Things",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ece96fa81bdf",
+      "evidence": [
+        {
+          "quote": "A Lightweight Mutual Authentication and Key Agreement Scheme for Medical Internet of Things",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4281,
+            "end_char": 4371
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Optimized Deep Neural Network for Overhead Contact System Recognition from LiDAR Point Clouds",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-78313c0079e1",
+      "evidence": [
+        {
+          "quote": "An Optimized Deep Neural Network for Overhead Contact System Recognition from LiDAR Point Clouds",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4437,
+            "end_char": 4532
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Deep Learning-Based Method for Overhead Contact System Component Recognition Using Mobile 2D LiDAR",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-844ff928eb2d",
+      "evidence": [
+        {
+          "quote": "A Deep Learning-Based Method for Overhead Contact System Component Recognition Using Mobile 2D LiDAR",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4607,
+            "end_char": 4706
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Secure Key Establishment Mechanism for Smart Sensing System Based Robots Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92caaf1dd774",
+      "evidence": [
+        {
+          "quote": "Secure Key Establishment Mechanism for Smart Sensing System Based Robots Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4770,
+            "end_char": 4849
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-Time Depth Estimation with an Optimized Encoder-Decoder Architecture on Embedded Devices",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff6894064754",
+      "evidence": [
+        {
+          "quote": "Real-Time Depth Estimation with an Optimized Encoder-Decoder Architecture on Embedded Devices",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4903,
+            "end_char": 4995
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "State Estimation and Localization Based on Sensor Fusion for Autonomous Robots in Indoor Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1fef2d7e3e51",
+      "evidence": [
+        {
+          "quote": "State Estimation and Localization Based on Sensor Fusion for Autonomous Robots in Indoor Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5060,
+            "end_char": 5159
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A blockchain-based Roadside Unit-assisted authentication and key agreement protocol for Internet of Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cdd2c7a1deda",
+      "evidence": [
+        {
+          "quote": "A blockchain-based Roadside Unit-assisted authentication and key agreement protocol for Internet of Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5199,
+            "end_char": 5306
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A lightweight anonymous mutual authentication and key agreement scheme for WBAN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-689959429492",
+      "evidence": [
+        {
+          "quote": "A lightweight anonymous mutual authentication and key agreement scheme for WBAN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5373,
+            "end_char": 5451
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Energy-Efficient Scheduling Optimization for Parallel Applications on Heterogeneous Distributed Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26f0dc120055",
+      "evidence": [
+        {
+          "quote": "Energy-Efficient Scheduling Optimization for Parallel Applications on Heterogeneous Distributed Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5508,
+            "end_char": 5610
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于移动机器人的充电电路及其移动机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c7c41f376d4",
+      "evidence": [
+        {
+          "quote": "用于移动机器人的充电电路及其移动机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5678,
+            "end_char": 5696
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "钻探数据监测装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-113b5617d71c",
+      "evidence": [
+        {
+          "quote": "钻探数据监测装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5749,
+            "end_char": 5756
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种巡逻无人机电源管理系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6b831077f515",
+      "evidence": [
+        {
+          "quote": "一种巡逻无人机电源管理系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5795,
+            "end_char": 5807
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Application and Storage-Aware Data Placement and Job Scheduling for Hadoop Clusters",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5fda5cc198bd",
+      "evidence": [
+        {
+          "quote": "Application and Storage-Aware Data Placement and Job Scheduling for Hadoop Clusters",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5848,
+            "end_char": 5930
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Effective Real-Time Scheduling Optimization for Multi-Functional Mixed-Criticality Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-08d1aebc998d",
+      "evidence": [
+        {
+          "quote": "Effective Real-Time Scheduling Optimization for Multi-Functional Mixed-Criticality Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6007,
+            "end_char": 6096
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The EDF with Dual Virtual Deadline Algorithm for Mixed Criticality Task System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10d02f730187",
+      "evidence": [
+        {
+          "quote": "The EDF with Dual Virtual Deadline Algorithm for Mixed Criticality Task System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6168,
+            "end_char": 6245
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficient Monocular Depth Estimation for Edge Devices in Internet of Things",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-88ba9fd792e9",
+      "evidence": [
+        {
+          "quote": "Efficient Monocular Depth Estimation for Edge Devices in Internet of Things",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6290,
+            "end_char": 6364
+          },
+          "version": "2c7ffcbc2d87ef028e9e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

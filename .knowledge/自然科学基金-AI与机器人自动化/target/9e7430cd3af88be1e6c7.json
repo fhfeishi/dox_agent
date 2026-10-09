@@ -2,15 +2,20 @@
   "doc_id": "9e7430cd3af88be1e6c7",
   "version": "4e57544eaa70121dc2c1",
   "source_hash": "760b1d7ae3b8ed81f3f1ab3fc89f688d482884ad6b0332de5b2cac9eecec8798",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:28:43.789269+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.019298+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8b8f5deee90e",
-          "name": "运载火箭智能控制",
-          "desc": "面向运载火箭任务适应能力和运载效率提升、智慧火箭先期研制",
+          "id": "item-d28edb810772",
+          "name": "运载火箭飞行任务呈现愈发复杂的趋势，在面对本体、环境及任务不确定性时，传统控制算法性能难以保证，亟需研究智能化控制方法。",
+          "desc": "运载火箭飞行任务呈现愈发复杂的趋势，在面对本体、环境及任务不确定性时，传统控制算法性能难以保证，亟需研究智能化控制方法。",
           "evidence": [
             {
-              "quote": "针对运载火箭任务适应能力和运载效率提升等重大需求",
+              "quote": "运载火箭飞行任务呈现愈发复杂的趋势，在面对本体、环境及任务不确定性时，传统控制算法性能难以保证，亟需研究智能化控制方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 681,
+                "end_char": 740
+              },
+              "version": "4e57544eaa70121dc2c1"
+            }
+          ]
+        },
+        {
+          "id": "item-772321977b98",
+          "name": "针对运载火箭任务适应能力和运载效率提升等重大需求，本项目聚焦于克服其在线计算能力有限、学习过程数据依赖度高等核心瓶颈，重",
+          "desc": "针对运载火箭任务适应能力和运载效率提升等重大需求，本项目聚焦于克服其在线计算能力有限、学习过程数据依赖度高等核心瓶颈，重点在适用于在线调优的运载火箭控制律拓扑结构设计、飞行过程中增量学习提升控制律的任务适应能力、在线学习的可行性与安全性自主评价等方面开展了建模与方法研究，构建了面向运载火箭在线调优的增量学习理论与方法体系，搭建了运载火箭在线增量学习控制系统验证平台，完成了关键技术的可行性与适用性验证。",
+          "evidence": [
+            {
+              "quote": "针对运载火箭任务适应能力和运载效率提升等重大需求，本项目聚焦于克服其在线计算能力有限、学习过程数据依赖度高等核心瓶颈，重点在适用于在线调优的运载火箭控制律拓扑结构设计、飞行过程中增量学习提升控制律的任务适应能力、在线学习的可行性与安全性自主评价等方面开展了建模与方法研究，构建了面向运载火箭在线调优的增量学习理论与方法体系，搭建了运载火箭在线增量学习控制系统验证平台，完成了关键技术的可行性与适用性验证。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2988,
-                "end_char": 3011
+                "end_char": 3189
               },
               "version": "4e57544eaa70121dc2c1"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-514b0a573d1c",
-          "name": "在线计算与数据依赖瓶颈",
-          "desc": "在线计算能力有限、学习过程数据依赖度高等核心瓶颈",
+          "id": "item-1db1067cf096",
+          "name": "运载火箭飞行任务呈现愈发复杂的趋势，在面对本体、环境及任务不确定性时，传统控制算法性能难以保证，亟需研究智能化控制方法。",
+          "desc": "运载火箭飞行任务呈现愈发复杂的趋势，在面对本体、环境及任务不确定性时，传统控制算法性能难以保证，亟需研究智能化控制方法。",
           "evidence": [
             {
-              "quote": "本项目聚焦于克服其在线计算能力有限、学习过程数据依赖度高等核心瓶颈",
+              "quote": "运载火箭飞行任务呈现愈发复杂的趋势，在面对本体、环境及任务不确定性时，传统控制算法性能难以保证，亟需研究智能化控制方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3013,
-                "end_char": 3045
+                "start_char": 681,
+                "end_char": 740
               },
               "version": "4e57544eaa70121dc2c1"
             }
@@ -63,68 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fa856430a080",
-          "name": "深度强化学习控制律框架",
-          "desc": "适配在线增量学习控制的深度强化学习框架，实现控制律离线高效学习",
+          "id": "item-0aa6f0cdd178",
+          "name": "最后，利用飞行特征关键参数在线辨识方法不断修正数字孪生模型，对调优后的控制律进行加速预测验证，并设计安全的更新机制和备保",
+          "desc": "最后，利用飞行特征关键参数在线辨识方法不断修正数字孪生模型，对调优后的控制律进行加速预测验证，并设计安全的更新机制和备保策略，提高在线学习算法的可靠性。",
           "evidence": [
             {
-              "quote": "构建了适配在线增量学习控制的深度强化学习框架，实现了控制律的离线高效学习",
+              "quote": "最后，利用飞行特征关键参数在线辨识方法不断修正数字孪生模型，对调优后的控制律进行加速预测验证，并设计安全的更新机制和备保策略，提高在线学习算法的可靠性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3204,
-                "end_char": 3239
+                "start_char": 957,
+                "end_char": 1032
               },
               "version": "4e57544eaa70121dc2c1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-da2767af9e23",
-          "name": "自动机器学习超参优化",
-          "desc": "基于自动机器学习的超参数自动选择与控制性能优化算法",
+          "id": "item-efa3af2adb2b",
+          "name": "针对运载火箭任务适应能力和运载效率提升等重大需求，本项目聚焦于克服其在线计算能力有限、学习过程数据依赖度高等核心瓶颈，重",
+          "desc": "针对运载火箭任务适应能力和运载效率提升等重大需求，本项目聚焦于克服其在线计算能力有限、学习过程数据依赖度高等核心瓶颈，重点在适用于在线调优的运载火箭控制律拓扑结构设计、飞行过程中增量学习提升控制律的任务适应能力、在线学习的可行性与安全性自主评价等方面开展了建模与方法研究，构建了面向运载火箭在线调优的增量学习理论与方法体系，搭建了运载火箭在线增量学习控制系统验证平台，完成了关键技术的可行性与适用性验证。",
           "evidence": [
             {
-              "quote": "设计了基于自动机器学习的超参数自动选择与控制性能优化算法，实现了控制性能的自主优化",
+              "quote": "针对运载火箭任务适应能力和运载效率提升等重大需求，本项目聚焦于克服其在线计算能力有限、学习过程数据依赖度高等核心瓶颈，重点在适用于在线调优的运载火箭控制律拓扑结构设计、飞行过程中增量学习提升控制律的任务适应能力、在线学习的可行性与安全性自主评价等方面开展了建模与方法研究，构建了面向运载火箭在线调优的增量学习理论与方法体系，搭建了运载火箭在线增量学习控制系统验证平台，完成了关键技术的可行性与适用性验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3241,
-                "end_char": 3281
+                "start_char": 2988,
+                "end_char": 3189
               },
               "version": "4e57544eaa70121dc2c1"
             }
-          ]
-        },
-        {
-          "id": "item-1512190c6096",
-          "name": "小样本在线增量学习",
-          "desc": "小样本情境信息高效利用的控制律在线增量学习算法",
-          "evidence": [
-            {
-              "quote": "提出了一种小样本情境信息高效利用的控制律在线增量学习算法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3300,
-                "end_char": 3327
-              },
-              "version": "4e57544eaa70121dc2c1"
-            }
-          ]
-        },
-        {
-          "id": "item-3be3273ec27f",
-          "name": "模型修正预测控制调优",
-          "desc": "基于模型修正预测控制的可靠在线调优机制",
-          "evidence": [
-            {
-              "quote": "设计了基于模型修正预测控制的可靠在线调优机制，提升了在线增量学习的可靠性与安全性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3329,
-                "end_char": 3368
-              },
-              "version": "4e57544eaa70121dc2c1"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,80 +124,908 @@
       "state": "has",
       "items": [
         {
-          "id": "item-995d0b080048",
-          "name": "增量学习理论与验证平台",
-          "desc": "构建在线调优的增量学习理论与方法体系，搭建验证平台并完成可行性与适用性验证",
+          "id": "item-cdfc550e3152",
+          "name": "运载火箭飞行任务呈现愈发复杂的趋势，在面对本体、环境及任务不确定性时，传统控制算法性能难以保证，亟需研究智能化控制方法。",
+          "desc": "运载火箭飞行任务呈现愈发复杂的趋势，在面对本体、环境及任务不确定性时，传统控制算法性能难以保证，亟需研究智能化控制方法。",
           "evidence": [
             {
-              "quote": "构建了面向运载火箭在线调优的增量学习理论与方法体系，搭建了运载火箭在线增量学习控制系统验证平台，完成了关键技术的可行性与适用性验证",
+              "quote": "运载火箭飞行任务呈现愈发复杂的趋势，在面对本体、环境及任务不确定性时，传统控制算法性能难以保证，亟需研究智能化控制方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3124,
-                "end_char": 3188
+                "start_char": 681,
+                "end_char": 740
               },
               "version": "4e57544eaa70121dc2c1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-5a2968745d6b",
+          "name": "针对运载火箭任务适应能力和运载效率提升等重大需求，本项目聚焦于克服其在线计算能力有限、学习过程数据依赖度高等核心瓶颈，重",
+          "desc": "针对运载火箭任务适应能力和运载效率提升等重大需求，本项目聚焦于克服其在线计算能力有限、学习过程数据依赖度高等核心瓶颈，重点在适用于在线调优的运载火箭控制律拓扑结构设计、飞行过程中增量学习提升控制律的任务适应能力、在线学习的可行性与安全性自主评价等方面开展了建模与方法研究，构建了面向运载火箭在线调优的增量学习理论与方法体系，搭建了运载火箭在线增量学习控制系统验证平台，完成了关键技术的可行性与适用性验证。",
+          "evidence": [
+            {
+              "quote": "针对运载火箭任务适应能力和运载效率提升等重大需求，本项目聚焦于克服其在线计算能力有限、学习过程数据依赖度高等核心瓶颈，重点在适用于在线调优的运载火箭控制律拓扑结构设计、飞行过程中增量学习提升控制律的任务适应能力、在线学习的可行性与安全性自主评价等方面开展了建模与方法研究，构建了面向运载火箭在线调优的增量学习理论与方法体系，搭建了运载火箭在线增量学习控制系统验证平台，完成了关键技术的可行性与适用性验证。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2988,
+                "end_char": 3189
+              },
+              "version": "4e57544eaa70121dc2c1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8b8f5deee90e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-514b0a573d1c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "飞行器设计方法及飞行器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9b3bd3b2cca2",
+      "evidence": [
+        {
+          "quote": "飞行器设计方法及飞行器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3508,
+            "end_char": 3518
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-514b0a573d1c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fa856430a080"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nonlinear Flight Attitude Control Using Error Dynamics Based Dual Heuristic Dynamic Programming",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a37b7efff700",
+      "evidence": [
+        {
+          "quote": "Nonlinear Flight Attitude Control Using Error Dynamics Based Dual Heuristic Dynamic Programming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3570,
+            "end_char": 3664
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-514b0a573d1c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1512190c6096"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于DDPG强化学习火箭回收控制器实现与仿真的应用方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1711dbd29250",
+      "evidence": [
+        {
+          "quote": "一种基于DDPG强化学习火箭回收控制器实现与仿真的应用方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3732,
+            "end_char": 3760
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3be3273ec27f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-995d0b080048"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vertical Recovery Guidance of Unmanned Aerial Vehicle Based on Improved SAC",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-88185e9b5e65",
+      "evidence": [
+        {
+          "quote": "Vertical Recovery Guidance of Unmanned Aerial Vehicle Based on Improved SAC",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3792,
+            "end_char": 3866
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-da2767af9e23"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-995d0b080048"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online learning control law design based on policy gradient reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a137d47ec64c",
+      "evidence": [
+        {
+          "quote": "Online learning control law design based on policy gradient reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3916,
+            "end_char": 3997
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Error Dynamics Based Dual Heuristic Dynamic Programming for Self-Learning Flight Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-536759449187",
+      "evidence": [
+        {
+          "quote": "Error Dynamics Based Dual Heuristic Dynamic Programming for Self-Learning Flight Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4078,
+            "end_char": 4165
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Self-Learning Control Method of Reusable Launch Vehicle Based on Neural Network Architecture Search",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-59d0243d66f3",
+      "evidence": [
+        {
+          "quote": "Research on Self-Learning Control Method of Reusable Launch Vehicle Based on Neural Network Architecture Search",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4246,
+            "end_char": 4356
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Ballistic Planning Method Based on Improved DDPG Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9daf7ab65fd",
+      "evidence": [
+        {
+          "quote": "Research on Ballistic Planning Method Based on Improved DDPG Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4389,
+            "end_char": 4458
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "飞行器减载制导方法、设备、存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f49d5e67a355",
+      "evidence": [
+        {
+          "quote": "飞行器减载制导方法、设备、存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4480,
+            "end_char": 4496
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vehicle Localization Method Based on Multitask Cascaded Learning During GPS Outages",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-98f5e4dc08a4",
+      "evidence": [
+        {
+          "quote": "Vehicle Localization Method Based on Multitask Cascaded Learning During GPS Outages",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4544,
+            "end_char": 4626
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gaussian Process-Based Self-Learning Attitude Control of Flight Vehicle with State Constraint and Unmodeled Dynamics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10d107c01dc2",
+      "evidence": [
+        {
+          "quote": "Gaussian Process-Based Self-Learning Attitude Control of Flight Vehicle with State Constraint and Unmodeled Dynamics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4661,
+            "end_char": 4776
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于长短期记忆网络的控制律自动设计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7725465fd101",
+      "evidence": [
+        {
+          "quote": "一种基于长短期记忆网络的控制律自动设计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4830,
+            "end_char": 4850
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于火箭一子级落区控制的修正系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-502c404240e6",
+      "evidence": [
+        {
+          "quote": "一种用于火箭一子级落区控制的修正系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4920,
+            "end_char": 4940
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Attitude Controller Designation Of Rocket Vertical Flight Control Via Deep Reinforcement Learning Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad917f58a749",
+      "evidence": [
+        {
+          "quote": "Robust Attitude Controller Designation Of Rocket Vertical Flight Control Via Deep Reinforcement Learning Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4978,
+            "end_char": 5091
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种飞行器起飞系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-da2382c80736",
+      "evidence": [
+        {
+          "quote": "一种飞行器起飞系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5173,
+            "end_char": 5181
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种低成本类火箭可回收试验飞行器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6e4e96563464",
+      "evidence": [
+        {
+          "quote": "一种低成本类火箭可回收试验飞行器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5222,
+            "end_char": 5237
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种运载火箭多通道并行仿真系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca9fbea67ab4",
+      "evidence": [
+        {
+          "quote": "一种运载火箭多通道并行仿真系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5292,
+            "end_char": 5309
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种神经网络控制律高效自主学习方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4403ff3e4cbc",
+      "evidence": [
+        {
+          "quote": "一种神经网络控制律高效自主学习方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5345,
+            "end_char": 5361
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Guidance Law Design of Launch Vehicles via Deep Reinforcement Learning Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3e60265dd7c",
+      "evidence": [
+        {
+          "quote": "Robust Guidance Law Design of Launch Vehicles via Deep Reinforcement Learning Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5432,
+            "end_char": 5518
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimization Method for Launch Vehicle Attitude Control Parameters Based on Bayesian Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ec328d80408",
+      "evidence": [
+        {
+          "quote": "Optimization Method for Launch Vehicle Attitude Control Parameters Based on Bayesian Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5602,
+            "end_char": 5698
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast Self-Alignment and Self-Calibration Method for Rotational Inertial Navigation System Based on Environment Function Matrix",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8850b11366d3",
+      "evidence": [
+        {
+          "quote": "Fast Self-Alignment and Self-Calibration Method for Rotational Inertial Navigation System Based on Environment Function Matrix",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5763,
+            "end_char": 5888
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Strategy for Hypersonic Vehicle With Complex Distributed No-Fly Zone Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4de4bbc8b4fb",
+      "evidence": [
+        {
+          "quote": "A Novel Strategy for Hypersonic Vehicle With Complex Distributed No-Fly Zone Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5922,
+            "end_char": 6009
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Intelligent Bait Delivery Control Method for Flight Vehicle Evasion Based on Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b6177bb86fb2",
+      "evidence": [
+        {
+          "quote": "An Intelligent Bait Delivery Control Method for Flight Vehicle Evasion Based on Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6032,
+            "end_char": 6133
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Online Optimization Control Method Based on Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e404e67470ec",
+      "evidence": [
+        {
+          "quote": "Adaptive Online Optimization Control Method Based on Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6171,
+            "end_char": 6245
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于强化学习的经验回放缓存池飞行器数据处理方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ba00dfefa6c",
+      "evidence": [
+        {
+          "quote": "一种基于强化学习的经验回放缓存池飞行器数据处理方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6324,
+            "end_char": 6348
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "神经网络架构轻量化搜索的飞行器控制律自学习方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e587976279ba",
+      "evidence": [
+        {
+          "quote": "神经网络架构轻量化搜索的飞行器控制律自学习方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6398,
+            "end_char": 6420
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "针对运载火箭上升段考虑大风区减载的智能姿态控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9b93921c1192",
+      "evidence": [
+        {
+          "quote": "针对运载火箭上升段考虑大风区减载的智能姿态控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6459,
+            "end_char": 6481
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Fast Continuous Self-Calibration Method for FOG Rotational Inertial Navigation System Based on Invariant Extended Kalman Filter",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b75bfb43231",
+      "evidence": [
+        {
+          "quote": "A Fast Continuous Self-Calibration Method for FOG Rotational Inertial Navigation System Based on Invariant Extended Kalman Filter",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6513,
+            "end_char": 6641
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种运载火箭增强拓扑变异进化神经网络着陆制导方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c0b7266c12b",
+      "evidence": [
+        {
+          "quote": "一种运载火箭增强拓扑变异进化神经网络着陆制导方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6673,
+            "end_char": 6696
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Optimization Method of Attitude Control Parameters Based on Genetic Algorithm for the Boost-Glide Rocket",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8e3c03e5462",
+      "evidence": [
+        {
+          "quote": "An Optimization Method of Attitude Control Parameters Based on Genetic Algorithm for the Boost-Glide Rocket",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6730,
+            "end_char": 6836
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "知识与数据混合驱动的高速飞行控制方法综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ce171d0d284d",
+      "evidence": [
+        {
+          "quote": "知识与数据混合驱动的高速飞行控制方法综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6867,
+            "end_char": 6886
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Intelligent Control Method of Launch Vehicle Landing Based on Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57dae9680af7",
+      "evidence": [
+        {
+          "quote": "Research on Intelligent Control Method of Launch Vehicle Landing Based on Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6923,
+            "end_char": 7023
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的火箭着陆制导方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-07ecca724fbf",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的火箭着陆制导方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7051,
+            "end_char": 7072
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于强化学习的飞行器控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30a4fba1a8e3",
+      "evidence": [
+        {
+          "quote": "一种基于强化学习的飞行器控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7107,
+            "end_char": 7122
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "助推滑翔火箭姿态控制方法、装置、设备和 存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de2eedffce1b",
+      "evidence": [
+        {
+          "quote": "助推滑翔火箭姿态控制方法、装置、设备和 存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7153,
+            "end_char": 7176
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Layout Design of Strapdown Array Seeker and Extraction Method of Guidance Information",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2dd92b80a12b",
+      "evidence": [
+        {
+          "quote": "Layout Design of Strapdown Array Seeker and Extraction Method of Guidance Information",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7211,
+            "end_char": 7295
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-loop adaptive load relief control technology for launch vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2cc86792dc10",
+      "evidence": [
+        {
+          "quote": "Multi-loop adaptive load relief control technology for launch vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7321,
+            "end_char": 7389
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Asynchronously switched fault detection filter design for full-envelope flight vehicle, Transactions of the Institute of Measurement and Control,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51bc3b129f6b",
+      "evidence": [
+        {
+          "quote": "Asynchronously switched fault detection filter design for full-envelope flight vehicle, Transactions of the Institute of Measurement and Control,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7451,
+            "end_char": 7595
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design method of an intelligent pilot for missiles under space constraint",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5afecfd7d608",
+      "evidence": [
+        {
+          "quote": "Design method of an intelligent pilot for missiles under space constraint",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7661,
+            "end_char": 7733
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safe Reinforcement Learning on Attitude Control of Launch Vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c1fd744b71d",
+      "evidence": [
+        {
+          "quote": "Safe Reinforcement Learning on Attitude Control of Launch Vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7763,
+            "end_char": 7827
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Rocket Self-learning Control based on Lightweight Neural Network Architecture Search",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8f0c3574dc25",
+      "evidence": [
+        {
+          "quote": "Rocket Self-learning Control based on Lightweight Neural Network Architecture Search",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7915,
+            "end_char": 7998
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向精度提升的轨迹规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-23df4ccf7b72",
+      "evidence": [
+        {
+          "quote": "一种面向精度提升的轨迹规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8075,
+            "end_char": 8089
+          },
+          "version": "4e57544eaa70121dc2c1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 42,
+    "listed": 42,
+    "by_kind": {
+      "专利": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "会议论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      }
+    },
+    "consistent": true
+  }
 }

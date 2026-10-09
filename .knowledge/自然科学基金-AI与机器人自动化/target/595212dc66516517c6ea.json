@@ -2,15 +2,20 @@
   "doc_id": "595212dc66516517c6ea",
   "version": "0d61caf8754e0a2fed44",
   "source_hash": "4603176c48d1a22abe436e663a8a71903fd8f693e727c437f7c2bb1f6fc570fc",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:26.800707+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.316035+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,31 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c87f45fe16c0",
-          "name": "机器人主动视觉眼动模拟",
-          "desc": "机器人像人一样主动观察环境发现感兴趣目标",
-          "evidence": [
-            {
-              "quote": "本项目以视觉显著性信息为引导发现复杂场景中的目标并研究眼动模拟方法，使机器人视觉系统的关注点在多个目标间连续过渡和转移",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2258,
-                "end_char": 2316
-              },
-              "version": "0d61caf8754e0a2fed44"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b44ef6d2f463",
-          "name": "视觉系统只能整体运动",
-          "desc": "机器人视觉系统无法像人眼动扫视般主动观察",
+          "id": "item-5d8feccf6e81",
+          "name": "如何让机器人面对未知环境时能够像人一样通过眼动、扫视等行为主动观察环境并发现感兴趣的目标是一个极具挑战性的课题。",
+          "desc": "如何让机器人面对未知环境时能够像人一样通过眼动、扫视等行为主动观察环境并发现感兴趣的目标是一个极具挑战性的课题。",
           "evidence": [
             {
               "quote": "如何让机器人面对未知环境时能够像人一样通过眼动、扫视等行为主动观察环境并发现感兴趣的目标是一个极具挑战性的课题。",
@@ -55,44 +38,67 @@
               "version": "0d61caf8754e0a2fed44"
             }
           ]
+        },
+        {
+          "id": "item-7d57f254c443",
+          "name": "本项目对主动视觉技术的研究能够显著地减少机器人视觉系统的计算数据量，增强机器人的环境适应能力，提高机器人与环境的交互效率",
+          "desc": "本项目对主动视觉技术的研究能够显著地减少机器人视觉系统的计算数据量，增强机器人的环境适应能力，提高机器人与环境的交互效率，在智能机器人领域有较为迫切的需求和广阔的应用前景。",
+          "evidence": [
+            {
+              "quote": "本项目对主动视觉技术的研究能够显著地减少机器人视觉系统的计算数据量，增强机器人的环境适应能力，提高机器人与环境的交互效率，在智能机器人领域有较为迫切的需求和广阔的应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 903,
+                "end_char": 988
+              },
+              "version": "0d61caf8754e0a2fed44"
+            }
+          ]
         }
       ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-79a2f8ebd0b7",
-          "name": "显著性引导目标推荐",
-          "desc": "自底向上与自顶向下结合减少视觉关注区域",
+          "id": "item-a466c075dba2",
+          "name": "基础算法模型方面，围绕机器人主动视觉这一主题开展多源视觉传感器联合标、多特征聚合和自注意力机制引导的视觉显著性检测、基于",
+          "desc": "基础算法模型方面，围绕机器人主动视觉这一主题开展多源视觉传感器联合标、多特征聚合和自注意力机制引导的视觉显著性检测、基于频域先验与时空关联的视频显著性检测、基于视觉注意的各向异性卷积模块设计、基于位置显著性损失度量的计算方法、基于任务的端到端注视点转移预测方法等。",
           "evidence": [
             {
-              "quote": "基于多源视觉信息研究自底向上和自顶向下相结合的视觉显著性引导的目标推荐方法，减少机器人的视觉关注区域",
+              "quote": "基础算法模型方面，围绕机器人主动视觉这一主题开展多源视觉传感器联合标、多特征聚合和自注意力机制引导的视觉显著性检测、基于频域先验与时空关联的视频显著性检测、基于视觉注意的各向异性卷积模块设计、基于位置显著性损失度量的计算方法、基于任务的端到端注视点转移预测方法等。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 803,
-                "end_char": 852
+                "start_char": 2437,
+                "end_char": 2568
               },
               "version": "0d61caf8754e0a2fed44"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-51333a75c110",
-          "name": "眼动数据采集数据集",
-          "desc": "桌面型眼动采集系统采集10被试数据建显著性数据集",
+          "id": "item-7f6d217604e9",
+          "name": "本项目以视觉显著性信息为引导发现复杂场景中的目标并研究眼动模拟方法，使机器人视觉系统的关注点在多个目标间连续过渡和转移，",
+          "desc": "本项目以视觉显著性信息为引导发现复杂场景中的目标并研究眼动模拟方法，使机器人视觉系统的关注点在多个目标间连续过渡和转移，通过研究使智能移动机器人能够主动发现场景中的各目标，像人一样通过连续观察逐步地理解环境，从而减少目标识别等高层算法的计算负担，提高机器人的适应未知环境的能力和与环境交互的效率。",
           "evidence": [
             {
-              "quote": "设计了桌面型眼动数据采集系统，采集了10个被试人观看RGB-D和行车记录仪视频数据时的眼动数据，并基于眼动数据创建了显著性检测数据集。",
+              "quote": "本项目以视觉显著性信息为引导发现复杂场景中的目标并研究眼动模拟方法，使机器人视觉系统的关注点在多个目标间连续过渡和转移，通过研究使智能移动机器人能够主动发现场景中的各目标，像人一样通过连续观察逐步地理解环境，从而减少目标识别等高层算法的计算负担，提高机器人的适应未知环境的能力和与环境交互的效率。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2577,
-                "end_char": 2643
+                "start_char": 2258,
+                "end_char": 2405
               },
               "version": "0d61caf8754e0a2fed44"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,548 @@
       "state": "has",
       "items": [
         {
-          "id": "item-267139fb912b",
-          "name": "移动机器人平台验证",
-          "desc": "视觉显著性应用于室内地标检测初步验证作用",
+          "id": "item-ac728309df8c",
+          "name": "如何让机器人面对未知环境时能够像人一样通过眼动、扫视等行为主动观察环境并发现感兴趣的目标是一个极具挑战性的课题。",
+          "desc": "如何让机器人面对未知环境时能够像人一样通过眼动、扫视等行为主动观察环境并发现感兴趣的目标是一个极具挑战性的课题。",
           "evidence": [
             {
-              "quote": "设计了小型地面移动机器人主动视觉计算平台，将视觉显著性分析方法应用于移动机器人室内地标检测，初步验证了视觉显著性检测在机器人应用中的作用。",
+              "quote": "如何让机器人面对未知环境时能够像人一样通过眼动、扫视等行为主动观察环境并发现感兴趣的目标是一个极具挑战性的课题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2651,
-                "end_char": 2719
+                "start_char": 657,
+                "end_char": 712
               },
               "version": "0d61caf8754e0a2fed44"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-39e2f87cf97f",
+          "name": "本项目以视觉显著性信息为引导发现复杂场景中的目标并研究眼动模拟方法，使机器人视觉系统的关注点在多个目标间连续过渡和转移，",
+          "desc": "本项目以视觉显著性信息为引导发现复杂场景中的目标并研究眼动模拟方法，使机器人视觉系统的关注点在多个目标间连续过渡和转移，通过研究使智能移动机器人能够主动发现场景中的各目标，像人一样通过连续观察逐步地理解环境，从而减少目标识别等高层算法的计算负担，提高机器人的适应未知环境的能力和与环境交互的效率。",
+          "evidence": [
+            {
+              "quote": "本项目以视觉显著性信息为引导发现复杂场景中的目标并研究眼动模拟方法，使机器人视觉系统的关注点在多个目标间连续过渡和转移，通过研究使智能移动机器人能够主动发现场景中的各目标，像人一样通过连续观察逐步地理解环境，从而减少目标识别等高层算法的计算负担，提高机器人的适应未知环境的能力和与环境交互的效率。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2258,
+                "end_char": 2405
+              },
+              "version": "0d61caf8754e0a2fed44"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c87f45fe16c0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b44ef6d2f463"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于频域先验的视频显著性目标检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-641aa2919d89",
+      "evidence": [
+        {
+          "quote": "基于频域先验的视频显著性目标检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2743,
+            "end_char": 2760
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b44ef6d2f463"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-79a2f8ebd0b7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "改进YOLOv3的非机动车检测与识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-038fb2a545ec",
+      "evidence": [
+        {
+          "quote": "改进YOLOv3的非机动车检测与识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2781,
+            "end_char": 2800
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b44ef6d2f463"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-51333a75c110"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度卷积网络的非机动车检测和识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8bfee6a092a6",
+      "evidence": [
+        {
+          "quote": "基于深度卷积网络的非机动车检测和识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2831,
+            "end_char": 2850
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-79a2f8ebd0b7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-267139fb912b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Foreground-Background Collaboration Network for Salient Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-58873fbcc600",
+      "evidence": [
+        {
+          "quote": "Foreground-Background Collaboration Network for Salient Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2875,
+            "end_char": 2946
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-51333a75c110"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-267139fb912b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "视频目标分割中帧间相似性传播的研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-38241c4ceb9a",
+      "evidence": [
+        {
+          "quote": "视频目标分割中帧间相似性传播的研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3007,
+            "end_char": 3023
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Anisotropic Convolutional Networks for 3D Semantic Scene Completion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f549905dae0",
+      "evidence": [
+        {
+          "quote": "Anisotropic Convolutional Networks for 3D Semantic Scene Completion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3048,
+            "end_char": 3114
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于RGB-D的变尺度图像分割方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f7309480b2d",
+      "evidence": [
+        {
+          "quote": "基于RGB-D的变尺度图像分割方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3167,
+            "end_char": 3183
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种深度图的显著性区域检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec4237904247",
+      "evidence": [
+        {
+          "quote": "一种深度图的显著性区域检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3209,
+            "end_char": 3223
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于特种选择和特征融合的图像显著性检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d10fb66d1252",
+      "evidence": [
+        {
+          "quote": "基于特种选择和特征融合的图像显著性检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3249,
+            "end_char": 3269
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于重要性加权的道路场景图像语义分割方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8dc9cec45e6",
+      "evidence": [
+        {
+          "quote": "基于重要性加权的道路场景图像语义分割方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3293,
+            "end_char": 3312
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Depth Based Semantic Scene Completion with Position Importance Aware Loss",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bbdab4c82b98",
+      "evidence": [
+        {
+          "quote": "Depth Based Semantic Scene Completion with Position Importance Aware Loss",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3338,
+            "end_char": 3410
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RGBD Based Dimensional Decomposition Residual Network for 3D Semantic Scene Completion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c93fa397d384",
+      "evidence": [
+        {
+          "quote": "RGBD Based Dimensional Decomposition Residual Network for 3D Semantic Scene Completion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3505,
+            "end_char": 3590
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Salient Object Detection Via Cascaded Bottom-Up Feature Aggregation with Attention",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9d1b166b271",
+      "evidence": [
+        {
+          "quote": "Salient Object Detection Via Cascaded Bottom-Up Feature Aggregation with Attention",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3672,
+            "end_char": 3753
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CFNet: Context Fusion Network for Multi-focus Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84901746e955",
+      "evidence": [
+        {
+          "quote": "CFNet: Context Fusion Network for Multi-focus Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3815,
+            "end_char": 3866
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Attention Guided Multi-level Feedback Network for Camouflage Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d380ecc75844",
+      "evidence": [
+        {
+          "quote": "Attention Guided Multi-level Feedback Network for Camouflage Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3926,
+            "end_char": 4002
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "L1-Norm Distance Minimization-Based Fast Robust Twin Support Vector k-Plane Clustering",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-394077306193",
+      "evidence": [
+        {
+          "quote": "L1-Norm Distance Minimization-Based Fast Robust Twin Support Vector k-Plane Clustering",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4060,
+            "end_char": 4145
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于图像序列上下文信息的候选框选择方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bcb7853b2220",
+      "evidence": [
+        {
+          "quote": "一种基于图像序列上下文信息的候选框选择方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4239,
+            "end_char": 4259
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "半结构化环境稀疏点云可通行区域检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-00513b69a7fb",
+      "evidence": [
+        {
+          "quote": "半结构化环境稀疏点云可通行区域检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4285,
+            "end_char": 4303
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于RGB-D图像的语义场景补全研究进展综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f3dae894aafb",
+      "evidence": [
+        {
+          "quote": "基于RGB-D图像的语义场景补全研究进展综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4341,
+            "end_char": 4362
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Unsupervised Segmentation of Urban 3D Point Cloud Based On Lidar-image",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ceefd8be97f",
+      "evidence": [
+        {
+          "quote": "Unsupervised Segmentation of Urban 3D Point Cloud Based On Lidar-image",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4394,
+            "end_char": 4463
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Depth Based Semantic Scene Completion with Position Importance Aware Loss",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3fd5318577c5",
+      "evidence": [
+        {
+          "quote": "Depth Based Semantic Scene Completion with Position Importance Aware Loss",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3338,
+            "end_char": 3410
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于目标检测的多目标跟踪中轨迹匹配计算方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae3649e305a3",
+      "evidence": [
+        {
+          "quote": "基于目标检测的多目标跟踪中轨迹匹配计算方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4673,
+            "end_char": 4693
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Infrared and Visible Image Fusion Based on Intuitionistic Fuzzy Sets",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02d6f67146d2",
+      "evidence": [
+        {
+          "quote": "Infrared and Visible Image Fusion Based on Intuitionistic Fuzzy Sets",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4714,
+            "end_char": 4781
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "COMatchNet: Co-Attention Matching Network for Video Object Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-218cadd80f38",
+      "evidence": [
+        {
+          "quote": "COMatchNet: Co-Attention Matching Network for Video Object Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4844,
+            "end_char": 4914
+          },
+          "version": "0d61caf8754e0a2fed44"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 24,
+    "listed": 24,
+    "by_kind": {
+      "专利": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

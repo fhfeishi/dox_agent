@@ -2,15 +2,20 @@
   "doc_id": "0868c23c55df1610b275",
   "version": "27c760d9833bea4a88a1",
   "source_hash": "5e9247e05dd47564007232d92fc772454718134112093c6ab5b86b1f2825bd14",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:30.727504+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.587299+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e085da54cae9",
-          "name": "大规模集群在线轨迹规划",
-          "desc": "非理想条件下无人机集群军民实用性推广",
+          "id": "item-0648749328fd",
+          "name": "非理想条件下大规模集群在线轨迹规划是实现无人机集群军民实用性推广的关键技术之一。",
+          "desc": "非理想条件下大规模集群在线轨迹规划是实现无人机集群军民实用性推广的关键技术之一。",
           "evidence": [
             {
               "quote": "非理想条件下大规模集群在线轨迹规划是实现无人机集群军民实用性推广的关键技术之一。",
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-fbd7c95c40cf",
-          "name": "误差通信耦合致收敛差",
-          "desc": "位置误差、非完备通信与高维强耦合致收敛性差时效低",
-          "evidence": [
-            {
-              "quote": "针对位置误差、非完备通信与集群规划高维强耦合特性导致的收敛性差、结果不可行及时效性低等难题，基于解耦规划框架，开展非理想条件下学习增强的集群在线轨迹规划研究。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 707,
-                "end_char": 785
-              },
-              "version": "27c760d9833bea4a88a1"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-092f37d31fd7",
-          "name": "安全通道序列凸规划",
-          "desc": "非凸避障约束转线性不等式实现亚秒级计算",
+          "id": "item-bc0e11649101",
+          "name": "③针对强干扰下弱通信问题，提出协同策略学习驱动的集群在线轨迹规划方法，引入集群状态感知信息，构建“集中训练-分布执行”学",
+          "desc": "③针对强干扰下弱通信问题，提出协同策略学习驱动的集群在线轨迹规划方法，引入集群状态感知信息，构建“集中训练-分布执行”学习架构，实现协同轨迹在线生成。",
           "evidence": [
             {
-              "quote": "提出了一种安全飞行通道约束的序列凸规划算法，所设计的安全通道能够将大量的具有不确定性的非凸避障约束转化为少量的线性不等式约束，从而降低了问题的复杂性，轨迹计算耗时为亚秒级",
+              "quote": "③针对强干扰下弱通信问题，提出协同策略学习驱动的集群在线轨迹规划方法，引入集群状态感知信息，构建“集中训练-分布执行”学习架构，实现协同轨迹在线生成。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3264,
-                "end_char": 3348
+                "start_char": 948,
+                "end_char": 1022
               },
               "version": "27c760d9833bea4a88a1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-6f7b32549da9",
-          "name": "时域滚动触发通信",
-          "desc": "稀疏图连接实现100架在线编队与5机实物飞行",
+          "id": "item-680c590bef70",
+          "name": "③基于深度强化学习，构建了“集中训练-分布执行”学习架构，实现了不依赖外部定位的端到端飞行控制方法，并实现了仿真到现实的",
+          "desc": "③基于深度强化学习，构建了“集中训练-分布执行”学习架构，实现了不依赖外部定位的端到端飞行控制方法，并实现了仿真到现实的迁移，完成了实物飞行试验。",
           "evidence": [
             {
-              "quote": "针对非理想通信下集群编队规划，引入稀疏图描述连接关系，构建“时域滚动-触发通信”集群轨迹规划框架，在仿真中实现了100架无人机的在线编队规划，并完成了5机实物编队飞行试验",
+              "quote": "③基于深度强化学习，构建了“集中训练-分布执行”学习架构，实现了不依赖外部定位的端到端飞行控制方法，并实现了仿真到现实的迁移，完成了实物飞行试验。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3351,
-                "end_char": 3435
+                "start_char": 3437,
+                "end_char": 3509
               },
               "version": "27c760d9833bea4a88a1"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,292 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c66a2412c54e",
-          "name": "端到端Sim2Real迁移",
-          "desc": "集中训练分布执行实现不依赖外部定位的实物飞行",
+          "id": "item-3f533a0e068c",
+          "name": "非理想条件下大规模集群在线轨迹规划是实现无人机集群军民实用性推广的关键技术之一。",
+          "desc": "非理想条件下大规模集群在线轨迹规划是实现无人机集群军民实用性推广的关键技术之一。",
           "evidence": [
             {
-              "quote": "基于深度强化学习，构建了“集中训练-分布执行”学习架构，实现了不依赖外部定位的端到端飞行控制方法，并实现了仿真到现实的迁移，完成了实物飞行试验。",
+              "quote": "非理想条件下大规模集群在线轨迹规划是实现无人机集群军民实用性推广的关键技术之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3438,
-                "end_char": 3509
+                "start_char": 667,
+                "end_char": 706
               },
               "version": "27c760d9833bea4a88a1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-351dd3cb96aa",
-          "name": "论文12篇与ICRA提名",
-          "desc": "SCI/EI期刊7篇EI会议5篇，获ICRA最佳论文提名",
+          "id": "item-254615b17eaa",
+          "name": "群体智能因其协作涌现效应与效能指增优势，具备颠覆传统作战样式的潜力，已成为大国博弈中必须抢占的重要科技制高点。",
+          "desc": "群体智能因其协作涌现效应与效能指增优势，具备颠覆传统作战样式的潜力，已成为大国博弈中必须抢占的重要科技制高点。",
           "evidence": [
             {
-              "quote": "经项目研究，在本领域重要期刊和会议上发表论文12篇，其中SCI/EI期刊论文7篇，EI会议论文5篇。",
+              "quote": "群体智能因其协作涌现效应与效能指增优势，具备颠覆传统作战样式的潜力，已成为大国博弈中必须抢占的重要科技制高点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3629,
-                "end_char": 3678
+                "start_char": 3065,
+                "end_char": 3119
               },
               "version": "27c760d9833bea4a88a1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e085da54cae9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fbd7c95c40cf"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A trajectory-based flight assistive system for novice pilots in drone racing scenario",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-edce628ccab0",
+      "evidence": [
+        {
+          "quote": "A trajectory-based flight assistive system for novice pilots in drone racing scenario",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3760,
+            "end_char": 3844
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fbd7c95c40cf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-092f37d31fd7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time multi-quadrotor trajectory generation via distributed receding architecture and hierarchical planning in complex environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66829aa551ef",
+      "evidence": [
+        {
+          "quote": "Real-time multi-quadrotor trajectory generation via distributed receding architecture and hierarchical planning in complex environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3926,
+            "end_char": 4060
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fbd7c95c40cf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6f7b32549da9"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Terrain-based hierarchical trajectory planning for low-altitude flight of fixed-wing aircrafts",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9599de02e584",
+      "evidence": [
+        {
+          "quote": "Terrain-based hierarchical trajectory planning for low-altitude flight of fixed-wing aircrafts",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4140,
+            "end_char": 4233
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-092f37d31fd7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c66a2412c54e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safe corridor constrained trajectory planning for formation flight of fixed-wing unmanned aerial vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-719416ed5ce1",
+      "evidence": [
+        {
+          "quote": "Safe corridor constrained trajectory planning for formation flight of fixed-wing unmanned aerial vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4328,
+            "end_char": 4432
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6f7b32549da9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-351dd3cb96aa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Comparison of distributed task allocation algorithms considering non-ideal communication factors for multi-UAV collaborative visit missions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66de554710a3",
+      "evidence": [
+        {
+          "quote": "Comparison of distributed task allocation algorithms considering non-ideal communication factors for multi-UAV collaborative visit missions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4512,
+            "end_char": 4650
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "梯度优化驱动的无人机实时避障多阶段轨迹规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-754bc75f09d6",
+      "evidence": [
+        {
+          "quote": "梯度优化驱动的无人机实时避障多阶段轨迹规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4716,
+            "end_char": 4738
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RE-formation: resilient and efficient formation planning in large-scale distributed aerial swarms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85f08f3aebfb",
+      "evidence": [
+        {
+          "quote": "RE-formation: resilient and efficient formation planning in large-scale distributed aerial swarms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4756,
+            "end_char": 4852
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive-risk-aware end-to-end control system for mapless navigation of drones",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66ea03bf6ad2",
+      "evidence": [
+        {
+          "quote": "Adaptive-risk-aware end-to-end control system for mapless navigation of drones",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4914,
+            "end_char": 4991
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种旋翼无人机近地飞行的控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-724e74cd74b7",
+      "evidence": [
+        {
+          "quote": "一种旋翼无人机近地飞行的控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5081,
+            "end_char": 5096
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "IEEE International Conference on Robotics and Automation (ICRA) Best Conference Paper Award—Finalist",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-45f0ca34045c",
+      "evidence": [
+        {
+          "quote": "IEEE International Conference on Robotics and Automation (ICRA) Best Conference Paper Award—Finalist",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5132,
+            "end_char": 5231
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于多指标动态优先级的无人机协同路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f10096e32cbd",
+      "evidence": [
+        {
+          "quote": "基于多指标动态优先级的无人机协同路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5314,
+            "end_char": 5333
+          },
+          "version": "27c760d9833bea4a88a1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

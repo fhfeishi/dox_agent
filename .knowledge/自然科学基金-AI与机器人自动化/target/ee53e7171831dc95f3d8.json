@@ -2,15 +2,20 @@
   "doc_id": "ee53e7171831dc95f3d8",
   "version": "9eed836a64c9ebe14f1f",
   "source_hash": "af9c32616592ca4e8509806f5829b5a2c0fe3f104ed79fa601fbfd25287553f3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:35.315176+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.808633+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,111 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0aa4ef16e476",
-          "name": "移动机器人自主导航",
-          "desc": "目标搜寻、货物运载等场景的自主导航",
+          "id": "item-7567d466e5e1",
+          "name": "导航是自然界中许多生物的基本生存技能，是移动机器人的一项基础能力。",
+          "desc": "导航是自然界中许多生物的基本生存技能，是移动机器人的一项基础能力。",
+          "evidence": [
+            {
+              "quote": "导航是自然界中许多生物的基本生存技能，是移动机器人的一项基础能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 639,
+                "end_char": 671
+              },
+              "version": "9eed836a64c9ebe14f1f"
+            }
+          ]
+        },
+        {
+          "id": "item-f4d26157e24d",
+          "name": "在应用前景上，所开发的低功耗、高稳健算法为微型机器人、电力巡检、资源受限环境下的自主系统（如太空探测）提供了切实可行的技",
+          "desc": "在应用前景上，所开发的低功耗、高稳健算法为微型机器人、电力巡检、资源受限环境下的自主系统（如太空探测）提供了切实可行的技术路径，具有重要的潜在应用价值。",
+          "evidence": [
+            {
+              "quote": "在应用前景上，所开发的低功耗、高稳健算法为微型机器人、电力巡检、资源受限环境下的自主系统（如太空探测）提供了切实可行的技术路径，具有重要的潜在应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3068,
+                "end_char": 3143
+              },
+              "version": "9eed836a64c9ebe14f1f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d7dfaba7caf6",
+          "name": "本项目从自然界中被称为“导航专家”的昆虫的内在神经结构和导航机理出发，使用稀疏编码、环吸引子等数学理论工具对昆虫导航神经",
+          "desc": "本项目从自然界中被称为“导航专家”的昆虫的内在神经结构和导航机理出发，使用稀疏编码、环吸引子等数学理论工具对昆虫导航神经系统进行刻画和功能扩展，构建一套高可靠、低功耗、从传感信息输入到运动控制输出的自主导航闭环系统，并利用微型移动机器人和多模态物理实验平台对所设计的导航算法进行测试和验证，从而为解决现阶段自主导航技术中的科学难题，探索一种崭新的生物似然性研究方法。",
+          "evidence": [
+            {
+              "quote": "本项目从自然界中被称为“导航专家”的昆虫的内在神经结构和导航机理出发，使用稀疏编码、环吸引子等数学理论工具对昆虫导航神经系统进行刻画和功能扩展，构建一套高可靠、低功耗、从传感信息输入到运动控制输出的自主导航闭环系统，并利用微型移动机器人和多模态物理实验平台对所设计的导航算法进行测试和验证，从而为解决现阶段自主导航技术中的科学难题，探索一种崭新的生物似然性研究方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 794,
+                "end_char": 976
+              },
+              "version": "9eed836a64c9ebe14f1f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-536de7f24886",
+          "name": ".项目主要研究内容包括：（1）构建导航计算核心：借鉴昆虫神经结构，利用稀疏编码与环吸引子网络，模拟了多模态信息的贝叶斯最",
+          "desc": ".项目主要研究内容包括：（1）构建导航计算核心：借鉴昆虫神经结构，利用稀疏编码与环吸引子网络，模拟了多模态信息的贝叶斯最优融合与路径积分机制，形成了鲁棒的空间认知计算框架。",
+          "evidence": [
+            {
+              "quote": ".项目主要研究内容包括：（1）构建导航计算核心：借鉴昆虫神经结构，利用稀疏编码与环吸引子网络，模拟了多模态信息的贝叶斯最优融合与路径积分机制，形成了鲁棒的空间认知计算框架。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2477,
+                "end_char": 2562
+              },
+              "version": "9eed836a64c9ebe14f1f"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-92740b409602",
+          "name": "导航是自然界中许多生物的基本生存技能，是移动机器人的一项基础能力。",
+          "desc": "导航是自然界中许多生物的基本生存技能，是移动机器人的一项基础能力。",
+          "evidence": [
+            {
+              "quote": "导航是自然界中许多生物的基本生存技能，是移动机器人的一项基础能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 639,
+                "end_char": 671
+              },
+              "version": "9eed836a64c9ebe14f1f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-e381d9e4600f",
+          "name": "“导航”是移动机器人融入人类生产生活的核心能力，然而其可靠性、能耗与效率仍远逊于自然界中的昆虫。",
+          "desc": "“导航”是移动机器人融入人类生产生活的核心能力，然而其可靠性、能耗与效率仍远逊于自然界中的昆虫。",
           "evidence": [
             {
               "quote": "“导航”是移动机器人融入人类生产生活的核心能力，然而其可靠性、能耗与效率仍远逊于自然界中的昆虫。",
@@ -32,166 +139,232 @@
               },
               "version": "9eed836a64c9ebe14f1f"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-acf3b9999c51",
-          "name": "导航可靠性能耗效率不足",
-          "desc": "机器人导航能力达不到低等动物水平，可靠性与能耗是瓶颈",
-          "evidence": [
-            {
-              "quote": "然而其可靠性、能耗与效率仍远逊于自然界中的昆虫。针对这一瓶颈，本项目从被誉为“导航专家”的昆虫入手，旨在探索一套高可靠、低功耗的生物似然自主导航新范式。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2401,
-                "end_char": 2476
-              },
-              "version": "9eed836a64c9ebe14f1f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1e3492b7d66d",
-          "name": "稀疏编码环吸引子导航核心",
-          "desc": "模拟多模态贝叶斯融合与路径积分的空间认知框架",
-          "evidence": [
-            {
-              "quote": "借鉴昆虫神经结构，利用稀疏编码与环吸引子网络，模拟了多模态信息的贝叶斯最优融合与路径积分机制，形成了鲁棒的空间认知计算框架。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2501,
-                "end_char": 2562
-              },
-              "version": "9eed836a64c9ebe14f1f"
-            }
-          ]
-        },
-        {
-          "id": "item-e31b175412e2",
-          "name": "I2Bot沙漠蚂蚁仿真平台",
-          "desc": "世界首个高精度沙漠蚂蚁具身仿真平台并开源",
-          "evidence": [
-            {
-              "quote": "更创新性地研制了世界首个高精度沙漠蚂蚁具身仿真平台I2Bot，为复杂环境下的导航算法测试提供了革命性工具。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2682,
-                "end_char": 2734
-              },
-              "version": "9eed836a64c9ebe14f1f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-e5085ed38ff4",
-          "name": "论文14篇",
-          "desc": "高水平论文14篇（Q1 7篇含Neural Networks等、CCF-C 5篇）",
-          "evidence": [
-            {
-              "quote": "研究期间共发表高水平学术论文14篇，其中JCR Q1期刊论文7篇（包括神经网络顶级期刊Neural Networks、英国皇家学会界面期刊Journal of the Royal Society Interface等），CCF-C类国际会议论文5篇。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2750,
-                "end_char": 2874
-              },
-              "version": "9eed836a64c9ebe14f1f"
-            }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-4a2b0c32677b",
-          "name": "生物似然优于强化学习",
-          "desc": "证实生物似然方法在能耗与效率上优势，I2Bot开源",
-          "evidence": [
-            {
-              "quote": "通过系统性比较，证实了生物似然方法在能耗与效率上相较于强化学习等方法的优势；所创建的I2Bot平台已开源，极大促进了具身仿真研究。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2921,
-                "end_char": 2985
-              },
-              "version": "9eed836a64c9ebe14f1f"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0aa4ef16e476"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-acf3b9999c51"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Vector-Based Computational Model of Multimodal Insect Learning Walks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-633d11cb90ea",
+      "evidence": [
+        {
+          "quote": "A Vector-Based Computational Model of Multimodal Insect Learning Walks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3169,
+            "end_char": 3238
+          },
+          "version": "9eed836a64c9ebe14f1f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-acf3b9999c51"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1e3492b7d66d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Unveiling the power of Haar frequency domain: Advancing small target motion detection in dim light",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2236e01c5594",
+      "evidence": [
+        {
+          "quote": "Unveiling the power of Haar frequency domain: Advancing small target motion detection in dim light",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3289,
+            "end_char": 3386
+          },
+          "version": "9eed836a64c9ebe14f1f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-acf3b9999c51"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e31b175412e2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "I2Bot: an open-source tool for multi-modal and embodied simulation of insect navigation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-772f8f2882b2",
+      "evidence": [
+        {
+          "quote": "I2Bot: an open-source tool for multi-modal and embodied simulation of insect navigation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3454,
+            "end_char": 3540
+          },
+          "version": "9eed836a64c9ebe14f1f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1e3492b7d66d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e5085ed38ff4"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Comparative Study of Reinforcement Learning and Insect-Inspired Visual Navigation Methods",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c31315379b6a",
+      "evidence": [
+        {
+          "quote": "A Comparative Study of Reinforcement Learning and Insect-Inspired Visual Navigation Methods",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3604,
+            "end_char": 3694
+          },
+          "version": "9eed836a64c9ebe14f1f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e31b175412e2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4a2b0c32677b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Boosting Collision Perception Against Noisy Signals with a Probabilistic Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-753d22598b31",
+      "evidence": [
+        {
+          "quote": "Boosting Collision Perception Against Noisy Signals with a Probabilistic Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3746,
+            "end_char": 3832
+          },
+          "version": "9eed836a64c9ebe14f1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improving the Performance of an Insect-Inspired Navigation Model Using Directional Selective Collision Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-feb1502396ab",
+      "evidence": [
+        {
+          "quote": "Improving the Performance of an Insect-Inspired Navigation Model Using Directional Selective Collision Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3903,
+            "end_char": 4014
+          },
+          "version": "9eed836a64c9ebe14f1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Bio-Inspired and Solely Vision-Based Model for Autonomous Navigation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71c88c4a96a4",
+      "evidence": [
+        {
+          "quote": "A Bio-Inspired and Solely Vision-Based Model for Autonomous Navigation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4083,
+            "end_char": 4152
+          },
+          "version": "9eed836a64c9ebe14f1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An insect-inspired model facilitating autonomous navigation by incorporating goal approaching and collision avoidance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9079d48142b4",
+      "evidence": [
+        {
+          "quote": "An insect-inspired model facilitating autonomous navigation by incorporating goal approaching and collision avoidance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4223,
+            "end_char": 4339
+          },
+          "version": "9eed836a64c9ebe14f1f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Synaptic ring attractor: A unified framework for attractor dynamics and multiple cues integration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62ee815aac87",
+      "evidence": [
+        {
+          "quote": "Synaptic ring attractor: A unified framework for attractor dynamics and multiple cues integration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4399,
+            "end_char": 4495
+          },
+          "version": "9eed836a64c9ebe14f1f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Binocular Vision and Vector-Summation Based Integration of Bilateral Innate and Learned Visual Cues in Insect Navigation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-83c789bbfebb",
+      "evidence": [
+        {
+          "quote": "Binocular Vision and Vector-Summation Based Integration of Bilateral Innate and Learned Visual Cues in Insect Navigation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4562,
+            "end_char": 4681
+          },
+          "version": "9eed836a64c9ebe14f1f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

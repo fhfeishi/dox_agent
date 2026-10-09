@@ -2,15 +2,20 @@
   "doc_id": "b928dc7cb48bd8a6e486",
   "version": "4d240fbbedd869b46ac4",
   "source_hash": "f1d8d20571bb8dd6db20ec814ef3aaf1e78ebe5279e33542426f24f36730667c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:10.081998+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.284846+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,111 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8b262c7f9b84",
-          "name": "无人艇集群伴飞通信",
-          "desc": "小型无人机伴飞扩展无人艇自组网通信范围",
+          "id": "item-f66cf5b099af",
+          "name": "受海上天线架设高度限制，基于自组网的无人艇集群通信距离受限。",
+          "desc": "受海上天线架设高度限制，基于自组网的无人艇集群通信距离受限。",
+          "evidence": [
+            {
+              "quote": "受海上天线架设高度限制，基于自组网的无人艇集群通信距离受限。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 654,
+                "end_char": 683
+              },
+              "version": "4d240fbbedd869b46ac4"
+            }
+          ]
+        },
+        {
+          "id": "item-16ca313fee00",
+          "name": "为此，本项目拟研究出针对上述应用场景的特定海域电波传播智能预测模型，为伴飞无人机飞行决策提供依据。",
+          "desc": "为此，本项目拟研究出针对上述应用场景的特定海域电波传播智能预测模型，为伴飞无人机飞行决策提供依据。",
+          "evidence": [
+            {
+              "quote": "为此，本项目拟研究出针对上述应用场景的特定海域电波传播智能预测模型，为伴飞无人机飞行决策提供依据。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 764,
+                "end_char": 812
+              },
+              "version": "4d240fbbedd869b46ac4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f13935713bff",
+          "name": "再次利用生成对抗网络技术拟合出训练数据集的分布特征，得到特定海域电波传播智能预测模型。",
+          "desc": "再次利用生成对抗网络技术拟合出训练数据集的分布特征，得到特定海域电波传播智能预测模型。",
+          "evidence": [
+            {
+              "quote": "再次利用生成对抗网络技术拟合出训练数据集的分布特征，得到特定海域电波传播智能预测模型。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 929,
+                "end_char": 971
+              },
+              "version": "4d240fbbedd869b46ac4"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d181c323ca10",
+          "name": "首先通过生成对抗网络技术获得特定海域粗糙海面高保真生成模型；",
+          "desc": "首先通过生成对抗网络技术获得特定海域粗糙海面高保真生成模型；",
+          "evidence": [
+            {
+              "quote": "首先通过生成对抗网络技术获得特定海域粗糙海面高保真生成模型；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 813,
+                "end_char": 842
+              },
+              "version": "4d240fbbedd869b46ac4"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-abafe1af290e",
+          "name": "受海上天线架设高度限制，基于自组网的无人艇集群通信距离受限。",
+          "desc": "受海上天线架设高度限制，基于自组网的无人艇集群通信距离受限。",
+          "evidence": [
+            {
+              "quote": "受海上天线架设高度限制，基于自组网的无人艇集群通信距离受限。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 654,
+                "end_char": 683
+              },
+              "version": "4d240fbbedd869b46ac4"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-9c52fd3e361a",
+          "name": "为了解决基于自主网的无人艇集群通信距离受限问题，本项目分别对海面粗糙面高保真建模、海上电波传播计算模型、海上无线通信信道",
+          "desc": "为了解决基于自主网的无人艇集群通信距离受限问题，本项目分别对海面粗糙面高保真建模、海上电波传播计算模型、海上无线通信信道智能模型等方面开展了深入研究。",
           "evidence": [
             {
               "quote": "为了解决基于自主网的无人艇集群通信距离受限问题，本项目分别对海面粗糙面高保真建模、海上电波传播计算模型、海上无线通信信道智能模型等方面开展了深入研究。",
@@ -32,149 +139,216 @@
               },
               "version": "4d240fbbedd869b46ac4"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-58ae1d905a6e",
-          "name": "天线高度限通信距离",
-          "desc": "海上天线架设高度限制使自组网通信距离受限",
-          "evidence": [
-            {
-              "quote": "受海上天线架设高度限制，基于自组网的无人艇集群通信距离受限。若以小型无人机来伴飞无人艇集群，使之作为该自组网的空中节点，将能显著提高该网络的通信范围。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 654,
-                "end_char": 728
-              },
-              "version": "4d240fbbedd869b46ac4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-bd1f161bccbf",
-          "name": "GAN海面生成模型",
-          "desc": "南海1000余张海面照片生成高保真海面图像数据库",
-          "evidence": [
-            {
-              "quote": "项目组采集了南海海域海面1000余张照片作为基础并对其进行了预处理，生成了海面图像数据库，提出了基于生成对抗网络（Generative Adversarial Network，GAN）的高保真图像生成模型。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3096,
-                "end_char": 3198
-              },
-              "version": "4d240fbbedd869b46ac4"
-            }
-          ]
-        },
-        {
-          "id": "item-3d023095fbc4",
-          "name": "FDTD-PE混合算法",
-          "desc": "双向滑动窗FDTD与宽角水平PE兼顾精度与效率",
-          "evidence": [
-            {
-              "quote": "首先提出了双向滑动窗FDTD方法，该方法在保持了传统的滑动窗FDTD的高效性的基础上提升了算法精度。其次，提出了一种宽角水平PE方法，较传统的宽角PE方法效率更高",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3559,
-                "end_char": 3639
-              },
-              "version": "4d240fbbedd869b46ac4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-c2d44cfbabfa",
-          "name": "轻量化信道智能模型",
-          "desc": "面向海上无人集群系统的轻量化无线通信信道模型",
-          "evidence": [
-            {
-              "quote": "结合无人集群系统中的通信系统参数，提出了面向海上无人集群系统的轻量化无线通信信道智能模型。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3340,
-                "end_char": 3384
-              },
-              "version": "4d240fbbedd869b46ac4"
-            }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8b262c7f9b84"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-58ae1d905a6e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "OpenGL-Accelerated MoM-PO Hybrid Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-413213dd65b2",
+      "evidence": [
+        {
+          "quote": "OpenGL-Accelerated MoM-PO Hybrid Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3920,
+            "end_char": 3961
+          },
+          "version": "4d240fbbedd869b46ac4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-58ae1d905a6e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bd1f161bccbf"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Computation of Electromagnetic Scattering from  Ice-sea Rough Surface via FDTD",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6cacdc79150",
+      "evidence": [
+        {
+          "quote": "Computation of Electromagnetic Scattering from  Ice-sea Rough Surface via FDTD",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4013,
+            "end_char": 4090
+          },
+          "version": "4d240fbbedd869b46ac4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-58ae1d905a6e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3d023095fbc4"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analysis of the Influence of Canopy Layer of Forest Trees on Unmanned Aerial Vehicle Signal  Transmission",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-519835b9da0e",
+      "evidence": [
+        {
+          "quote": "Analysis of the Influence of Canopy Layer of Forest Trees on Unmanned Aerial Vehicle Signal  Transmission",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4149,
+            "end_char": 4253
+          },
+          "version": "4d240fbbedd869b46ac4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3d023095fbc4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c2d44cfbabfa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于MW-FDTD与树木精细模型的树林电波传播 研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8b2077a2827",
+      "evidence": [
+        {
+          "quote": "基于MW-FDTD与树木精细模型的树林电波传播 研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4322,
+            "end_char": 4347
+          },
+          "version": "4d240fbbedd869b46ac4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bd1f161bccbf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c2d44cfbabfa"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Channel Allocation Optimization of UAV Based on  Intelligent Ray Tracing in Urban Outdoor  Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-606a8986c9ce",
+      "evidence": [
+        {
+          "quote": "Channel Allocation Optimization of UAV Based on  Intelligent Ray Tracing in Urban Outdoor  Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4378,
+            "end_char": 4479
+          },
+          "version": "4d240fbbedd869b46ac4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Potential Game Approach to Multi-UAV  Accurate Coverage Based on Deterministic Radio  Wave Propagation Model in Urban Area",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f0cf5fb8de45",
+      "evidence": [
+        {
+          "quote": "A Potential Game Approach to Multi-UAV  Accurate Coverage Based on Deterministic Radio  Wave Propagation Model in Urban Area",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4534,
+            "end_char": 4657
+          },
+          "version": "4d240fbbedd869b46ac4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向确定城市的多无人机中继通信精确覆盖优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-861d4dbfb396",
+      "evidence": [
+        {
+          "quote": "面向确定城市的多无人机中继通信精确覆盖优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4731,
+            "end_char": 4753
+          },
+          "version": "4d240fbbedd869b46ac4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Energy-saving Multi-path Traffic Scheduling  Approach for Data Center Networks Based on the  Rate Scaling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4861f8e525b3",
+      "evidence": [
+        {
+          "quote": "An Energy-saving Multi-path Traffic Scheduling  Approach for Data Center Networks Based on the  Rate Scaling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4796,
+            "end_char": 4903
+          },
+          "version": "4d240fbbedd869b46ac4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Multi-Agent Reinforcement Learning-Based Collaborative Jamming System: Algorithm Design and Software-Defined Radio Implementation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a5d9123cd05",
+      "evidence": [
+        {
+          "quote": "A Multi-Agent Reinforcement Learning-Based Collaborative Jamming System: Algorithm Design and Software-Defined Radio Implementation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4955,
+            "end_char": 5085
+          },
+          "version": "4d240fbbedd869b46ac4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "2cc2fe99c0db7b25c629",
   "version": "d3a5798c1416bfd2c57a",
   "source_hash": "ff97ea0754126e5f722ae8a189d53b1d8cc3e5508ac39364190b42522bf4d92d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:18.134372+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.898341+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d8e2d0ae3946",
-          "name": "大规模多智能体网络",
-          "desc": "低轨卫星网络、无人机无人车集群等混杂多智能体网络",
+          "id": "item-07ac3079bbbd",
+          "name": "多智能体协同机制在经济和国防建设中发挥着不可替代的重大作用。",
+          "desc": "多智能体协同机制在经济和国防建设中发挥着不可替代的重大作用。",
           "evidence": [
             {
-              "quote": "本项目从低轨卫星网络、无人机/无人车集群及多机械臂协同系统等典型混杂多智能体网络的实际问题出发，深入剖析了通信-控制强耦合机理与交互规律",
+              "quote": "多智能体协同机制在经济和国防建设中发挥着不可替代的重大作用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2968,
-                "end_char": 3035
+                "start_char": 649,
+                "end_char": 678
+              },
+              "version": "d3a5798c1416bfd2c57a"
+            }
+          ]
+        },
+        {
+          "id": "item-280db0aab9a4",
+          "name": "项目的研究成果突破了资源受限下群体智能的性能边界，对于推动混杂多智能体网络在空天组网、智能制造及国防安全等领域的实际应用",
+          "desc": "项目的研究成果突破了资源受限下群体智能的性能边界，对于推动混杂多智能体网络在空天组网、智能制造及国防安全等领域的实际应用具有重要的理论价值和工程指导意义。",
+          "evidence": [
+            {
+              "quote": "项目的研究成果突破了资源受限下群体智能的性能边界，对于推动混杂多智能体网络在空天组网、智能制造及国防安全等领域的实际应用具有重要的理论价值和工程指导意义。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3249,
+                "end_char": 3325
               },
               "version": "d3a5798c1416bfd2c57a"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-420f28867cbb",
-          "name": "资源受限强耦合不确定",
-          "desc": "通信频谱稀缺、系统异构非线性、环境动态不确定与资源受限",
+          "id": "item-5eed509b6be7",
+          "name": "实际应用中的多智能体网络具有通信频谱稀缺、传感资源有限、信道动态变化、环境开放等问题，统筹传感、通信、计算和控制资源实现",
+          "desc": "实际应用中的多智能体网络具有通信频谱稀缺、传感资源有限、信道动态变化、环境开放等问题，统筹传感、通信、计算和控制资源实现整体性能最优极具挑战，需克服通信和控制强耦合、系统和环境不确定以及非线性多约束等理论困难。",
           "evidence": [
             {
-              "quote": "针对实际应用中通信频谱稀缺、系统异构非线性、环境动态不确定以及资源（感、算、能、控）严格受限等本质难题，传统理论难以实现整体性能的帕累托最优。",
+              "quote": "实际应用中的多智能体网络具有通信频谱稀缺、传感资源有限、信道动态变化、环境开放等问题，统筹传感、通信、计算和控制资源实现整体性能最优极具挑战，需克服通信和控制强耦合、系统和环境不确定以及非线性多约束等理论困难。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2897,
-                "end_char": 2967
+                "start_char": 754,
+                "end_char": 858
               },
               "version": "d3a5798c1416bfd2c57a"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cc812270d7b2",
-          "name": "动态事件触发与竞争接入",
-          "desc": "适用于复杂约束环境的事件触发与分布式竞争接入",
+          "id": "item-9e07fe0dbf68",
+          "name": "在多智能体网络框架下，结合多径路由寻优、信道竞争调度、远程状态估计及编队协同控制及等典型任务，提出和发展了适用于复杂约束",
+          "desc": "在多智能体网络框架下，结合多径路由寻优、信道竞争调度、远程状态估计及编队协同控制及等典型任务，提出和发展了适用于复杂约束环境的动态事件触发机制、分布式竞争接入策略、脉冲神经网络及多智能体深度强化学习方法，构建了具有通信-控制跨层优化、高能效感知与自适应容错决策的混杂多智能体网络动态演化、协同控制与优化设计的理论体系，并对所得结果进行了多场景数值仿真、软件模拟和半实物验证。",
           "evidence": [
             {
-              "quote": "提出和发展了适用于复杂约束环境的动态事件触发机制、分布式竞争接入策略、脉冲神经网络及多智能体深度强化学习方法",
+              "quote": "在多智能体网络框架下，结合多径路由寻优、信道竞争调度、远程状态估计及编队协同控制及等典型任务，提出和发展了适用于复杂约束环境的动态事件触发机制、分布式竞争接入策略、脉冲神经网络及多智能体深度强化学习方法，构建了具有通信-控制跨层优化、高能效感知与自适应容错决策的混杂多智能体网络动态演化、协同控制与优化设计的理论体系，并对所得结果进行了多场景数值仿真、软件模拟和半实物验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3109,
-                "end_char": 3162
-              },
-              "version": "d3a5798c1416bfd2c57a"
-            }
-          ]
-        },
-        {
-          "id": "item-a03e405fc2f8",
-          "name": "跨层协同优化理论体系",
-          "desc": "通信-控制跨层优化、高能效感知与自适应容错决策",
-          "evidence": [
-            {
-              "quote": "构建了具有通信-控制跨层优化、高能效感知与自适应容错决策的混杂多智能体网络动态演化、协同控制与优化设计的理论体系，并对所得结果进行了多场景数值仿真、软件模拟和半实物验证。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3164,
+                "start_char": 3062,
                 "end_char": 3248
               },
               "version": "d3a5798c1416bfd2c57a"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8ead47b48c59",
+          "name": "构建基于远程控制的多智能体协同框架，研究分布式传输调度机制和最优控制律，讨论通信参量对系统性能的影响。",
+          "desc": "构建基于远程控制的多智能体协同框架，研究分布式传输调度机制和最优控制律，讨论通信参量对系统性能的影响。",
+          "evidence": [
+            {
+              "quote": "构建基于远程控制的多智能体协同框架，研究分布式传输调度机制和最优控制律，讨论通信参量对系统性能的影响。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 952,
+                "end_char": 1002
+              },
+              "version": "d3a5798c1416bfd2c57a"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,288 @@
       "state": "has",
       "items": [
         {
-          "id": "item-52fe7d0c4e17",
-          "name": "混杂网络理论体系",
-          "desc": "突破资源受限下群体智能性能边界",
+          "id": "item-d0f2e181f3a5",
+          "name": "多智能体协同机制在经济和国防建设中发挥着不可替代的重大作用。",
+          "desc": "多智能体协同机制在经济和国防建设中发挥着不可替代的重大作用。",
           "evidence": [
             {
-              "quote": "项目的研究成果突破了资源受限下群体智能的性能边界，对于推动混杂多智能体网络在空天组网、智能制造及国防安全等领域的实际应用具有重要的理论价值和工程指导意义。",
+              "quote": "多智能体协同机制在经济和国防建设中发挥着不可替代的重大作用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3249,
-                "end_char": 3325
+                "start_char": 649,
+                "end_char": 678
               },
               "version": "d3a5798c1416bfd2c57a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-c97e5f85028d",
+          "name": "通信与控制的深度融合，是多智能体网络在经济与国防领域释放集群效能的关键所在。",
+          "desc": "通信与控制的深度融合，是多智能体网络在经济与国防领域释放集群效能的关键所在。",
+          "evidence": [
+            {
+              "quote": "通信与控制的深度融合，是多智能体网络在经济与国防领域释放集群效能的关键所在。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2859,
+                "end_char": 2896
+              },
+              "version": "d3a5798c1416bfd2c57a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d8e2d0ae3946"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-420f28867cbb"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Raw Waveform-Based Speech Command Recognition with Impulsive Neural Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-42f4dd50a94f",
+      "evidence": [
+        {
+          "quote": "Raw Waveform-Based Speech Command Recognition with Impulsive Neural Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3351,
+            "end_char": 3426
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-420f28867cbb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cc812270d7b2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "2-DOF旋转欠驱动机械臂统一控制策略",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f41c04c0c427",
+      "evidence": [
+        {
+          "quote": "2-DOF旋转欠驱动机械臂统一控制策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3486,
+            "end_char": 3504
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-420f28867cbb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a03e405fc2f8"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多智能体的楼宇能耗优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-246c76c1524e",
+      "evidence": [
+        {
+          "quote": "一种基于多智能体的楼宇能耗优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3526,
+            "end_char": 3542
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a03e405fc2f8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-52fe7d0c4e17"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Metric Learning with Impulsive Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a7c142c619b",
+      "evidence": [
+        {
+          "quote": "Deep Metric Learning with Impulsive Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3573,
+            "end_char": 3622
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cc812270d7b2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-52fe7d0c4e17"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Finite-Time Dynamical Analysis of Nonlinear Systems with Time-Varying Impulsive Strength Factors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dd1051b177a7",
+      "evidence": [
+        {
+          "quote": "Finite-Time Dynamical Analysis of Nonlinear Systems with Time-Varying Impulsive Strength Factors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3682,
+            "end_char": 3777
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Formation Defense Game for Multi-Agent Systems with Actuator Faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc868288d672",
+      "evidence": [
+        {
+          "quote": "Distributed Formation Defense Game for Multi-Agent Systems with Actuator Faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3848,
+            "end_char": 3926
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Low Complexity Data-Driven Load Frequency Control for the Power System with Wind Farm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b2e03fd957ea",
+      "evidence": [
+        {
+          "quote": "Low Complexity Data-Driven Load Frequency Control for the Power System with Wind Farm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3995,
+            "end_char": 4079
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于分布式竞争通信的无人机集群编队控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f3f4e4ae1357",
+      "evidence": [
+        {
+          "quote": "一种基于分布式竞争通信的无人机集群编队控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4134,
+            "end_char": 4156
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "切换基因调控网络耗散性分析与控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c55c1fd41b7",
+      "evidence": [
+        {
+          "quote": "切换基因调控网络耗散性分析与控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4187,
+            "end_char": 4202
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficient Multipath Differential Routing and Traffic Scheduling in Ultra-Dense LEO Satellite Networks: A DRL With Stackelberg Game Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-48d51c7f75ed",
+      "evidence": [
+        {
+          "quote": "Efficient Multipath Differential Routing and Traffic Scheduling in Ultra-Dense LEO Satellite Networks: A DRL With Stackelberg Game Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4236,
+            "end_char": 4374
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种通信受限下基于事件触发的多机械臂一致性控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-601612fe02e0",
+      "evidence": [
+        {
+          "quote": "一种通信受限下基于事件触发的多机械臂一致性控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4439,
+            "end_char": 4463
+          },
+          "version": "d3a5798c1416bfd2c57a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

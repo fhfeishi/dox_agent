@@ -2,15 +2,20 @@
   "doc_id": "54413725a7c742725f89",
   "version": "18b0987299b57541c94b",
   "source_hash": "a40d881b7c265f1e93160671a94363d9d6dd23479133d0c82b8eaf222422d11f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:48.948899+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.272459+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-66223378a881",
-          "name": "自动驾驶轨迹行为预测",
-          "desc": "保障行车安全与智能决策的轨迹与行为预测",
+          "id": "item-4a4732f57e50",
+          "name": "随着人工智能技术的不断发展，作为其在交通领域的延伸和应用，自动驾驶技术也不断取得突破。",
+          "desc": "随着人工智能技术的不断发展，作为其在交通领域的延伸和应用，自动驾驶技术也不断取得突破。",
           "evidence": [
             {
-              "quote": "自动驾驶中的车辆轨迹与行为预测是保障行车安全、实现智能决策的核心技术，其发展趋势正从单一轨迹建模走向融合高精地图、多车交互与自车意图的多模态协同预测。",
+              "quote": "随着人工智能技术的不断发展，作为其在交通领域的延伸和应用，自动驾驶技术也不断取得突破。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2731,
-                "end_char": 2805
+                "start_char": 654,
+                "end_char": 696
               },
               "version": "18b0987299b57541c94b"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-de2ed6873cc4",
-          "name": "精度不足交互建模难",
-          "desc": "预测精度不足、交互建模困难及长尾场景泛化能力弱",
+          "id": "item-5e97dbe98e50",
+          "name": "本项目针对此前沿方向，系统研究了如何利用海量无标签轨迹数据构建高性能预训练模型，旨在解决复杂交通场景下预测精度不足、交互",
+          "desc": "本项目针对此前沿方向，系统研究了如何利用海量无标签轨迹数据构建高性能预训练模型，旨在解决复杂交通场景下预测精度不足、交互建模困难及长尾场景泛化能力弱等关键挑战。",
           "evidence": [
             {
-              "quote": "旨在解决复杂交通场景下预测精度不足、交互建模困难及长尾场景泛化能力弱等关键挑战。",
+              "quote": "本项目针对此前沿方向，系统研究了如何利用海量无标签轨迹数据构建高性能预训练模型，旨在解决复杂交通场景下预测精度不足、交互建模困难及长尾场景泛化能力弱等关键挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2846,
+                "start_char": 2806,
                 "end_char": 2885
               },
               "version": "18b0987299b57541c94b"
@@ -63,41 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-43bba4a08ee6",
-          "name": "分层多级图表征",
-          "desc": "高精地图厘米级车道拓扑编码为全局局部两级图",
+          "id": "item-263abb0ad2ee",
+          "name": "其次，针对车辆与道路动态关联学习的挑战，设计了高精度地图匹配算法与“双编码-后融合”、“交叉编码”两种交互范式，构建了动",
+          "desc": "其次，针对车辆与道路动态关联学习的挑战，设计了高精度地图匹配算法与“双编码-后融合”、“交叉编码”两种交互范式，构建了动静信息深度融合的计算框架；",
           "evidence": [
             {
-              "quote": "提出了分层多级图表征学习方法，将高精地图的厘米级车道拓扑编码为全局与局部相结合的两级图结构，实现了对复杂道路环境的高效、结构化表征",
+              "quote": "其次，针对车辆与道路动态关联学习的挑战，设计了高精度地图匹配算法与“双编码-后融合”、“交叉编码”两种交互范式，构建了动静信息深度融合的计算框架；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2927,
-                "end_char": 2991
+                "start_char": 3009,
+                "end_char": 3081
               },
               "version": "18b0987299b57541c94b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-832e497ccbaf",
-          "name": "Behavior-Pred对比孪生预训练",
-          "desc": "区分场景行为一致性提升长尾鲁棒性",
-          "evidence": [
-            {
-              "quote": "并创新性地提出了Behavior-Pred对比孪生预训练框架，通过区分不同场景下的行为一致性，显著提升了模型在复杂长尾场景下的鲁棒性与预测能力。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3082,
-                "end_char": 3153
-              },
-              "version": "18b0987299b57541c94b"
-            }
-          ]
-        },
-        {
-          "id": "item-2b974446ee27",
-          "name": "隐式规划感知内化",
-          "desc": "DECAMP框架在预训练阶段内化交互语义",
+          "id": "item-93df64298ebc",
+          "name": "再通过 DECAMP 框架在预训练阶段内化交互语义，使模型具备“隐式规划感知”能力，实现了预测模型从被动推演到主动协同的",
+          "desc": "再通过 DECAMP 框架在预训练阶段内化交互语义，使模型具备“隐式规划感知”能力，实现了预测模型从被动推演到主动协同的范式转变。",
           "evidence": [
             {
               "quote": "再通过 DECAMP 框架在预训练阶段内化交互语义，使模型具备“隐式规划感知”能力，实现了预测模型从被动推演到主动协同的范式转变。",
@@ -108,7 +98,8 @@
               },
               "version": "18b0987299b57541c94b"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +108,188 @@
       "state": "has",
       "items": [
         {
-          "id": "item-71ac47fb2055",
-          "name": "顶会顶刊论文近10篇",
-          "desc": "WWW、TKDE、WSDM等发表论文近10篇，CCF-A类3篇，专利1项",
+          "id": "item-d88b51d6027d",
+          "name": "随着人工智能技术的不断发展，作为其在交通领域的延伸和应用，自动驾驶技术也不断取得突破。",
+          "desc": "随着人工智能技术的不断发展，作为其在交通领域的延伸和应用，自动驾驶技术也不断取得突破。",
           "evidence": [
             {
-              "quote": "在WWW、TKDE、WSDM等国际顶级会议与期刊上发表论文近10篇，其中CCF-A类论文3篇，申请专利1项",
+              "quote": "随着人工智能技术的不断发展，作为其在交通领域的延伸和应用，自动驾驶技术也不断取得突破。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3334,
-                "end_char": 3386
+                "start_char": 654,
+                "end_char": 696
               },
               "version": "18b0987299b57541c94b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-2174ff76d3f5",
+          "name": "自动驾驶中的车辆轨迹与行为预测是保障行车安全、实现智能决策的核心技术，其发展趋势正从单一轨迹建模走向融合高精地图、多车交",
+          "desc": "自动驾驶中的车辆轨迹与行为预测是保障行车安全、实现智能决策的核心技术，其发展趋势正从单一轨迹建模走向融合高精地图、多车交互与自车意图的多模态协同预测。",
+          "evidence": [
+            {
+              "quote": "自动驾驶中的车辆轨迹与行为预测是保障行车安全、实现智能决策的核心技术，其发展趋势正从单一轨迹建模走向融合高精地图、多车交互与自车意图的多模态协同预测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2731,
+                "end_char": 2805
+              },
+              "version": "18b0987299b57541c94b"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-66223378a881"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-de2ed6873cc4"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ApeGNN: Node-Wise Adaptive Aggregation in GNNs for Recommendation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-58d5ebf322e8",
+      "evidence": [
+        {
+          "quote": "ApeGNN: Node-Wise Adaptive Aggregation in GNNs for Recommendation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3492,
+            "end_char": 3556
+          },
+          "version": "18b0987299b57541c94b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-de2ed6873cc4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-43bba4a08ee6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Behavior-Pred: A semantic-enhanced trajectory pre-training framework for motion forecasting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca81cd589459",
+      "evidence": [
+        {
+          "quote": "Behavior-Pred: A semantic-enhanced trajectory pre-training framework for motion forecasting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3656,
+            "end_char": 3746
+          },
+          "version": "18b0987299b57541c94b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-de2ed6873cc4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-832e497ccbaf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Motion Forecasting for Autonomous Vehicles: A Survey",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f16f775914e3",
+      "evidence": [
+        {
+          "quote": "Motion Forecasting for Autonomous Vehicles: A Survey",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3827,
+            "end_char": 3878
+          },
+          "version": "18b0987299b57541c94b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-de2ed6873cc4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2b974446ee27"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "常识增强的多轮对话应答排序方法和装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-34ac793d66bb",
+      "evidence": [
+        {
+          "quote": "常识增强的多轮对话应答排序方法和装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3968,
+            "end_char": 3985
+          },
+          "version": "18b0987299b57541c94b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-832e497ccbaf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-71ac47fb2055"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MultiSPANS: A Multi-range Spatial-Temporal Transformer Network for Traffic Forecast via Structural Entropy Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7b561ac4c1f5",
+      "evidence": [
+        {
+          "quote": "MultiSPANS: A Multi-range Spatial-Temporal Transformer Network for Traffic Forecast via Structural Entropy Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4010,
+            "end_char": 4128
+          },
+          "version": "18b0987299b57541c94b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-43bba4a08ee6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-71ac47fb2055"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhancing Language Models with Commonsense Knowledge for Multi-turn Response Selection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-998bf9e57785",
+      "evidence": [
+        {
+          "quote": "Enhancing Language Models with Commonsense Knowledge for Multi-turn Response Selection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4238,
+            "end_char": 4323
+          },
+          "version": "18b0987299b57541c94b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

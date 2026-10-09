@@ -2,15 +2,20 @@
   "doc_id": "aba037d0ec4498518652",
   "version": "4ca0cc33e9f0195ff899",
   "source_hash": "868b805d62e8859ca8963b3c66cac3eaba68f039228bd2fe5a271fe8823e2c85",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:19:58.028392+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.166104+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-455737ca82b9",
-          "name": "无人车远距离小物体检测",
-          "desc": "高速行驶无人车及时避免危险的小物体检测",
+          "id": "item-8fdfd6c57b44",
+          "name": "无人车弱特征小物体检测因物体像素占比小、特征简单、成像质量差的特点，一直是极具挑战性的科学问题。",
+          "desc": "无人车弱特征小物体检测因物体像素占比小、特征简单、成像质量差的特点，一直是极具挑战性的科学问题。",
           "evidence": [
             {
-              "quote": "可靠的远距离小物体检测是高速行驶无人车辆及时避免危险的关键，如果车辆能在远距离准确的检测到潜在的危险小物体，将大幅降低交通事故的发生率和死亡率。",
+              "quote": "无人车弱特征小物体检测因物体像素占比小、特征简单、成像质量差的特点，一直是极具挑战性的科学问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2611,
-                "end_char": 2682
+                "start_char": 660,
+                "end_char": 707
+              },
+              "version": "4ca0cc33e9f0195ff899"
+            }
+          ]
+        },
+        {
+          "id": "item-763aab139f3a",
+          "name": "2）研究了基于消失点引导的融合场景信息小物体检测算法，提出了针对交通场景的大规模小物体检测数据集，取得了广泛的实际应用；",
+          "desc": "2）研究了基于消失点引导的融合场景信息小物体检测算法，提出了针对交通场景的大规模小物体检测数据集，取得了广泛的实际应用；",
+          "evidence": [
+            {
+              "quote": "2）研究了基于消失点引导的融合场景信息小物体检测算法，提出了针对交通场景的大规模小物体检测数据集，取得了广泛的实际应用；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2826,
+                "end_char": 2885
               },
               "version": "4ca0cc33e9f0195ff899"
             }
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-00a467321bf6",
-          "name": "弱特征小物体检测挑战",
-          "desc": "像素占比小、特征简单、成像质量差",
+          "id": "item-4e379853e1ce",
+          "name": "无人车弱特征小物体检测因物体像素占比小、特征简单、成像质量差的特点，一直是极具挑战性的科学问题。",
+          "desc": "无人车弱特征小物体检测因物体像素占比小、特征简单、成像质量差的特点，一直是极具挑战性的科学问题。",
           "evidence": [
             {
               "quote": "无人车弱特征小物体检测因物体像素占比小、特征简单、成像质量差的特点，一直是极具挑战性的科学问题。",
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cd0ed95dd2af",
-          "name": "消失点引导检测",
-          "desc": "融合场景信息与大规模小物体检测数据集",
+          "id": "item-6d7d5da78e00",
+          "name": "本项目开展基于要素关联图模型的深度神经网络调制机制研究及小物体检测新方法，从数据集构建、深度学习模型设计、深度学习理论研",
+          "desc": "本项目开展基于要素关联图模型的深度神经网络调制机制研究及小物体检测新方法，从数据集构建、深度学习模型设计、深度学习理论研究等方面开展弱特征小物体的检测识别技术研究。",
           "evidence": [
             {
-              "quote": "研究了基于消失点引导的融合场景信息小物体检测算法，提出了针对交通场景的大规模小物体检测数据集，取得了广泛的实际应用",
+              "quote": "本项目开展基于要素关联图模型的深度神经网络调制机制研究及小物体检测新方法，从数据集构建、深度学习模型设计、深度学习理论研究等方面开展弱特征小物体的检测识别技术研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2828,
-                "end_char": 2884
+                "start_char": 2683,
+                "end_char": 2764
               },
               "version": "4ca0cc33e9f0195ff899"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-09c2b9644ef4",
-          "name": "上下文感知分割",
-          "desc": "基于上下文感知的道路场景小物体分割算法",
+          "id": "item-035754214f31",
+          "name": "本项目从数据集构建、模型设计、理论研究等方面对弱特征小物体的检测识别开展了广泛的研究，建立“知识与经验”到“深度神经网络",
+          "desc": "本项目从数据集构建、模型设计、理论研究等方面对弱特征小物体的检测识别开展了广泛的研究，建立“知识与经验”到“深度神经网络模型”的新型信息流传递通路，为弱特征小物体检测提供新方法。",
           "evidence": [
             {
-              "quote": "提出了基于上下文感知的道路场景小物体分割算法",
+              "quote": "本项目从数据集构建、模型设计、理论研究等方面对弱特征小物体的检测识别开展了广泛的研究，建立“知识与经验”到“深度神经网络模型”的新型信息流传递通路，为弱特征小物体检测提供新方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2909,
-                "end_char": 2930
+                "start_char": 3358,
+                "end_char": 3446
               },
               "version": "4ca0cc33e9f0195ff899"
             }
-          ]
-        },
-        {
-          "id": "item-74e8283f0536",
-          "name": "激光雷达轻量化检测",
-          "desc": "多尺度二维激光雷达小物体轻量化检测与关键点算法",
-          "evidence": [
-            {
-              "quote": "提出了基于关键点的小物体检测算法，相比级联金字塔RCNN，我们的方法实现了10%的改进",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3104,
-                "end_char": 3146
-              },
-              "version": "4ca0cc33e9f0195ff899"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +124,228 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7b979aa57088",
-          "name": "mIoU 93.22%/79.58%",
-          "desc": "自采集与CityScapes分割数据集准确率均优于baseline",
+          "id": "item-d6dbfa43183c",
+          "name": "无人车弱特征小物体检测因物体像素占比小、特征简单、成像质量差的特点，一直是极具挑战性的科学问题。",
+          "desc": "无人车弱特征小物体检测因物体像素占比小、特征简单、成像质量差的特点，一直是极具挑战性的科学问题。",
           "evidence": [
             {
-              "quote": "所提出的方法在mIoU准确率分别达到93.22%和79.58%，均优于其他baseline方法",
+              "quote": "无人车弱特征小物体检测因物体像素占比小、特征简单、成像质量差的特点，一直是极具挑战性的科学问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2965,
-                "end_char": 3011
+                "start_char": 660,
+                "end_char": 707
               },
               "version": "4ca0cc33e9f0195ff899"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-904700594732",
-          "name": "论文8篇与专利5项",
-          "desc": "IEEE T-Cyber等SCI/EI论文8篇、专利5项、软著1项",
+          "id": "item-9407ffc367e3",
+          "name": "可靠的远距离小物体检测是高速行驶无人车辆及时避免危险的关键，如果车辆能在远距离准确的检测到潜在的危险小物体，将大幅降低交",
+          "desc": "可靠的远距离小物体检测是高速行驶无人车辆及时避免危险的关键，如果车辆能在远距离准确的检测到潜在的危险小物体，将大幅降低交通事故的发生率和死亡率。",
           "evidence": [
             {
-              "quote": "在项目支持下在包括IEEE T-Cyber等重要期刊发表SCI/EI会议论文8篇；申请发明专利5项，软件著作权1项；培养博士生5名，硕士生6名。",
+              "quote": "可靠的远距离小物体检测是高速行驶无人车辆及时避免危险的关键，如果车辆能在远距离准确的检测到潜在的危险小物体，将大幅降低交通事故的发生率和死亡率。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3286,
-                "end_char": 3357
+                "start_char": 2611,
+                "end_char": 2682
               },
               "version": "4ca0cc33e9f0195ff899"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-455737ca82b9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-00a467321bf6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pseudo-Image and Sparse Points: Vehicle Detection With 2D LiDAR Revisited by Deep Learning-Based Methods",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6eae183947f3",
+      "evidence": [
+        {
+          "quote": "Pseudo-Image and Sparse Points: Vehicle Detection With 2D LiDAR Revisited by Deep Learning-Based Methods",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3560,
+            "end_char": 3663
+          },
+          "version": "4ca0cc33e9f0195ff899"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-00a467321bf6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cd0ed95dd2af"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度学习采用单线激光雷达的车辆检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f4d2e23d5d3",
+      "evidence": [
+        {
+          "quote": "一种基于深度学习采用单线激光雷达的车辆检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3750,
+            "end_char": 3772
+          },
+          "version": "4ca0cc33e9f0195ff899"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-00a467321bf6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-09c2b9644ef4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于动态视觉传感器的角点检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12a963339c71",
+      "evidence": [
+        {
+          "quote": "一种基于动态视觉传感器的角点检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3805,
+            "end_char": 3822
+          },
+          "version": "4ca0cc33e9f0195ff899"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-00a467321bf6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-74e8283f0536"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于3D激光雷达的车辆位姿定位方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-08d899d7895e",
+      "evidence": [
+        {
+          "quote": "一种基于3D激光雷达的车辆位姿定位方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3853,
+            "end_char": 3874
+          },
+          "version": "4ca0cc33e9f0195ff899"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-09c2b9644ef4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7b979aa57088"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Orientation-aware People Detection and Counting Method based on Overhead Fisheye Camera",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c9dbd4fd446b",
+      "evidence": [
+        {
+          "quote": "Orientation-aware People Detection and Counting Method based on Overhead Fisheye Camera",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3909,
+            "end_char": 3995
+          },
+          "version": "4ca0cc33e9f0195ff899"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cd0ed95dd2af"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-904700594732"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Global-local Feature Aggregation for Event-based Object Detection on EventKITTI",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-471b522d926c",
+      "evidence": [
+        {
+          "quote": "Global-local Feature Aggregation for Event-based Object Detection on EventKITTI",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4070,
+            "end_char": 4148
+          },
+          "version": "4ca0cc33e9f0195ff899"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Context-aware Method for Small Object Segmentation in Road Scenes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9fe964a1d2f7",
+      "evidence": [
+        {
+          "quote": "Context-aware Method for Small Object Segmentation in Road Scenes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4214,
+            "end_char": 4278
+          },
+          "version": "4ca0cc33e9f0195ff899"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Survey of the Four Pillars for Small Object Detection: Multiscale Representation, Contextual Information, Super-Resolution, and Region Proposal",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-44d33f05da8c",
+      "evidence": [
+        {
+          "quote": "A Survey of the Four Pillars for Small Object Detection: Multiscale Representation, Contextual Information, Super-Resolution, and Region Proposal",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4355,
+            "end_char": 4499
+          },
+          "version": "4ca0cc33e9f0195ff899"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

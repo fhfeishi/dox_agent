@@ -2,15 +2,20 @@
   "doc_id": "9b4c82ec9f213af92220",
   "version": "d719b6fd507334d5b01f",
   "source_hash": "887e3f400f16ccec3f69e84e8e1106077c4e6dafed0aa3b1965a8aa7302d8783",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:36.663883+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.952219+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-67a3fdb11804",
-          "name": "多智能体复杂社会困境",
-          "desc": "移动边缘计算、智慧交通、无人机集群等协同场景",
+          "id": "item-d3e3ea2df15e",
+          "name": "在复杂社会困境中，个体会追求短期个人利益而导致团队长期利益受损。",
+          "desc": "在复杂社会困境中，个体会追求短期个人利益而导致团队长期利益受损。",
           "evidence": [
             {
-              "quote": "随着大语言模型、移动计算、无人机集群等国家重要设施系统日益发展，这些系统也越来越依赖多智能体的协同作业。",
+              "quote": "在复杂社会困境中，个体会追求短期个人利益而导致团队长期利益受损。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2522,
-                "end_char": 2573
+                "start_char": 653,
+                "end_char": 684
+              },
+              "version": "d719b6fd507334d5b01f"
+            }
+          ]
+        },
+        {
+          "id": "item-6486b725a4c9",
+          "name": "本项目力图从多个方面构建出复杂社会困境的有效合作机制，并为算法在真实复杂社会困境的部署提供理论基础，相关研究可推动算法在",
+          "desc": "本项目力图从多个方面构建出复杂社会困境的有效合作机制，并为算法在真实复杂社会困境的部署提供理论基础，相关研究可推动算法在智能供应链协同、智慧交通、疫情防控等多种涉及社会资源共享场景中的应用和发展。",
+          "evidence": [
+            {
+              "quote": "本项目力图从多个方面构建出复杂社会困境的有效合作机制，并为算法在真实复杂社会困境的部署提供理论基础，相关研究可推动算法在智能供应链协同、智慧交通、疫情防控等多种涉及社会资源共享场景中的应用和发展。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 950,
+                "end_char": 1047
               },
               "version": "d719b6fd507334d5b01f"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a7919e9c0733",
-          "name": "自利竞争与动态低效",
-          "desc": "自利倾向致竞争对抗、策略动态变化致分布式决策低效",
+          "id": "item-2add77c7ea12",
+          "name": "然而，由于复杂社会困境中个体自利、动态博弈、资源共享等特点，现有研究仍存在探索代价高、互信缺失、难以分布协同等挑战。",
+          "desc": "然而，由于复杂社会困境中个体自利、动态博弈、资源共享等特点，现有研究仍存在探索代价高、互信缺失、难以分布协同等挑战。",
           "evidence": [
             {
-              "quote": "首先，智能体往往具有自利倾向，易导致竞争对抗而非合作；其次，多智能体策略可能动态变化，导致分布式决策效率低下；此外，在线交互可能危害系统安全",
+              "quote": "然而，由于复杂社会困境中个体自利、动态博弈、资源共享等特点，现有研究仍存在探索代价高、互信缺失、难以分布协同等挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2612,
-                "end_char": 2681
+                "start_char": 716,
+                "end_char": 773
               },
               "version": "d719b6fd507334d5b01f"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-262687a5bc11",
-          "name": "Coord-Q领导者框架",
-          "desc": "结构化通信最大化互信息解决层级分布式协同",
+          "id": "item-e42c43c5be80",
+          "name": "针对在线交互代价高的问题，提出基于对抗训练的 MOAN 框架与双重验证的 SDV 模型，通过判别式网络引入保守性约束，实",
+          "desc": "针对在线交互代价高的问题，提出基于对抗训练的 MOAN 框架与双重验证的 SDV 模型，通过判别式网络引入保守性约束，实现了低资源环境下的策略提升，并引入平均场机制（AOTO 算法）解决大规模异步交互的计算爆炸问题。",
           "evidence": [
             {
-              "quote": "本项目设计了基于领导者-跟随者的Coord-Q框架，通过结构化多智能体之间的关系，并设计了结构化通信的策略，通过最大化策略与广播信息的互信息，解决层级结构中的分布式协同难题。",
+              "quote": "针对在线交互代价高的问题，提出基于对抗训练的 MOAN 框架与双重验证的 SDV 模型，通过判别式网络引入保守性约束，实现了低资源环境下的策略提升，并引入平均场机制（AOTO 算法）解决大规模异步交互的计算爆炸问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2749,
-                "end_char": 2835
-              },
-              "version": "d719b6fd507334d5b01f"
-            }
-          ]
-        },
-        {
-          "id": "item-f4c5f9b3a623",
-          "name": "MOAN与AOTO机制",
-          "desc": "对抗训练保守约束与平均场机制解决计算爆炸",
-          "evidence": [
-            {
-              "quote": "提出基于对抗训练的 MOAN 框架与双重验证的 SDV 模型，通过判别式网络引入保守性约束，实现了低资源环境下的策略提升，并引入平均场机制（AOTO 算法）解决大规模异步交互的计算爆炸问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2934,
+                "start_char": 2921,
                 "end_char": 3028
               },
               "version": "d719b6fd507334d5b01f"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5662fd554cd8",
+          "name": "针对于此，本项目拟结合多智能体强化学习和相关社会学理论，从模型的训练、优化和部署等不同角度来分别研究复杂社会困境中的多智",
+          "desc": "针对于此，本项目拟结合多智能体强化学习和相关社会学理论，从模型的训练、优化和部署等不同角度来分别研究复杂社会困境中的多智能体合作机制。",
+          "evidence": [
+            {
+              "quote": "针对于此，本项目拟结合多智能体强化学习和相关社会学理论，从模型的训练、优化和部署等不同角度来分别研究复杂社会困境中的多智能体合作机制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 774,
+                "end_char": 840
+              },
+              "version": "d719b6fd507334d5b01f"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,388 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a3578d122d31",
-          "name": "论文14篇代码开源",
-          "desc": "期刊会议论文14篇、专利4项、核心代码GitHub开源",
+          "id": "item-cdec54931b20",
+          "name": "在复杂社会困境中，个体会追求短期个人利益而导致团队长期利益受损。",
+          "desc": "在复杂社会困境中，个体会追求短期个人利益而导致团队长期利益受损。",
           "evidence": [
             {
-              "quote": "基于本项目的研究结果，发表国内外重要期刊及会议论文14篇。其中SCI一区及CCF-B类以上高水平成果占比显著，完全达到并超过预定目标。申请国家发明专利4项，培养研究生5名，多项核心代码已在GitHub开源。",
+              "quote": "在复杂社会困境中，个体会追求短期个人利益而导致团队长期利益受损。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3034,
-                "end_char": 3136
+                "start_char": 653,
+                "end_char": 684
               },
               "version": "d719b6fd507334d5b01f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-7ff8e0e1e2e4",
+          "name": "随着大语言模型、移动计算、无人机集群等国家重要设施系统日益发展，这些系统也越来越依赖多智能体的协同作业。",
+          "desc": "随着大语言模型、移动计算、无人机集群等国家重要设施系统日益发展，这些系统也越来越依赖多智能体的协同作业。",
+          "evidence": [
+            {
+              "quote": "随着大语言模型、移动计算、无人机集群等国家重要设施系统日益发展，这些系统也越来越依赖多智能体的协同作业。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2522,
+                "end_char": 2573
+              },
+              "version": "d719b6fd507334d5b01f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-67a3fdb11804"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a7919e9c0733"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online Adaptable Offline RL With Guidance Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-583cc8846232",
+      "evidence": [
+        {
+          "quote": "Online Adaptable Offline RL With Guidance Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3299,
+            "end_char": 3345
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a7919e9c0733"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-262687a5bc11"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种调查问卷分配方法及相关装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5dac7046b6af",
+      "evidence": [
+        {
+          "quote": "一种调查问卷分配方法及相关装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3406,
+            "end_char": 3420
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a7919e9c0733"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f4c5f9b3a623"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于双置信度样本选择的鲁棒恶意加密流量检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b090fa4b13ce",
+      "evidence": [
+        {
+          "quote": "基于双置信度样本选择的鲁棒恶意加密流量检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3442,
+            "end_char": 3464
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-262687a5bc11"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a3578d122d31"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Graph-Based Multi-scale Learning for Predicting Mass Spectra from Molecules",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16fbe8b7886f",
+      "evidence": [
+        {
+          "quote": "Graph-Based Multi-scale Learning for Predicting Mass Spectra from Molecules",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3490,
+            "end_char": 3564
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f4c5f9b3a623"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a3578d122d31"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于代价敏感学习的物联网异常检测模型",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-abf7148b3cb1",
+      "evidence": [
+        {
+          "quote": "基于代价敏感学习的物联网异常检测模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3634,
+            "end_char": 3651
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于值分布多智能体强化学习的无人机协同方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-091318a9042c",
+      "evidence": [
+        {
+          "quote": "基于值分布多智能体强化学习的无人机协同方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3677,
+            "end_char": 3697
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视觉人体姿势估计的实时辅助训练方法及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5298d1d56dc9",
+      "evidence": [
+        {
+          "quote": "一种基于视觉人体姿势估计的实时辅助训练方法及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3720,
+            "end_char": 3743
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视觉生成的机械臂自动组装方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20575e9e04f5",
+      "evidence": [
+        {
+          "quote": "一种基于视觉生成的机械臂自动组装方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3766,
+            "end_char": 3783
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning to Coordinate in Mobile-Edge Computing for Decentralized Task Offloading",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a3bad128b976",
+      "evidence": [
+        {
+          "quote": "Learning to Coordinate in Mobile-Edge Computing for Decentralized Task Offloading",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3820,
+            "end_char": 3900
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-Based Offline Policy Optimization with Adversarial Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b4b39874db47",
+      "evidence": [
+        {
+          "quote": "Model-Based Offline Policy Optimization with Adversarial Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3944,
+            "end_char": 4007
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep learning for tear film stability assessment and breakup pattern classification in dry eye diagnosis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-54899acbbcbb",
+      "evidence": [
+        {
+          "quote": "Deep learning for tear film stability assessment and breakup pattern classification in dry eye diagnosis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4075,
+            "end_char": 4178
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Unlocking cross-modal interplay of single-cell joint profiling with CellMATE",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7db7d43aa3e8",
+      "evidence": [
+        {
+          "quote": "Unlocking cross-modal interplay of single-cell joint profiling with CellMATE",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4279,
+            "end_char": 4354
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SDV: Simple Double Validation Model-Based Offline Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-50aeebb2815e",
+      "evidence": [
+        {
+          "quote": "SDV: Simple Double Validation Model-Based Offline Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4432,
+            "end_char": 4503
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于最优邻域搜索改进模拟退火的多雷达优化布站",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9fe8e72c999d",
+      "evidence": [
+        {
+          "quote": "基于最优邻域搜索改进模拟退火的多雷达优化布站",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4578,
+            "end_char": 4599
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向深度学习的后门攻击及防御研究综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9667550c2ffc",
+      "evidence": [
+        {
+          "quote": "面向深度学习的后门攻击及防御研究综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4625,
+            "end_char": 4642
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online budget-feasible mobile crowdsensing with constrained reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7074f38ddde1",
+      "evidence": [
+        {
+          "quote": "Online budget-feasible mobile crowdsensing with constrained reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4672,
+            "end_char": 4753
+          },
+          "version": "d719b6fd507334d5b01f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

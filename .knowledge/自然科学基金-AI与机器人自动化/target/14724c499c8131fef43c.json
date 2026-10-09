@@ -2,15 +2,20 @@
   "doc_id": "14724c499c8131fef43c",
   "version": "9ad912b1be278ad5ccfe",
   "source_hash": "22d24bb823a480d566c541a7cbefec0e4df1a83a17673f9f6d1b1c0022aa24bd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:55:00.356011+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.690499+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1ed7846d6bb1",
-          "name": "手功能康复机器人",
-          "desc": "需要训练与辅助一体化、柔性轻巧、可穿戴便携的手功能康复机器人",
+          "id": "item-63a5cd87a971",
+          "name": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠的手功能康复机器人。",
+          "desc": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠的手功能康复机器人。",
           "evidence": [
             {
-              "quote": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠手功能康复机器人",
+              "quote": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠的手功能康复机器人。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2942,
-                "end_char": 2998
+                "start_char": 657,
+                "end_char": 715
               },
               "version": "9ad912b1be278ad5ccfe"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1e215a4e2b11",
-          "name": "外骨骼仿生便携交互不足",
-          "desc": "外骨骼机器人在仿生性、便携性及人机交互性上存在问题",
-          "evidence": [
-            {
-              "quote": "针对外骨骼机器人在仿生性、便携性及人机交互性上的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3527,
-                "end_char": 3552
-              },
-              "version": "9ad912b1be278ad5ccfe"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-d098a37ba829",
-          "name": "变截面柔性仿生关节设计",
-          "desc": "基于最小变形能量原理的柔性仿生关节设计方法与人机耦合模型",
+          "id": "item-0e5fa7811264",
+          "name": "在此基础上建立基于递归神经网络的自适应人机混合协调控制系统，通过参考模型自我学习来满足不同肌力患者的主动运动需求，达到训",
+          "desc": "在此基础上建立基于递归神经网络的自适应人机混合协调控制系统，通过参考模型自我学习来满足不同肌力患者的主动运动需求，达到训练与辅助功能统一，满足上述康复需求；",
           "evidence": [
             {
-              "quote": "提出了基于刚度和应力特性的变截面圆弧型柔性仿生关节和变刚度柔性仿生关节设计方法",
+              "quote": "在此基础上建立基于递归神经网络的自适应人机混合协调控制系统，通过参考模型自我学习来满足不同肌力患者的主动运动需求，达到训练与辅助功能统一，满足上述康复需求；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3093,
-                "end_char": 3131
+                "start_char": 893,
+                "end_char": 970
               },
               "version": "9ad912b1be278ad5ccfe"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-17e191c61f58",
-          "name": "有限状态机协同控制",
-          "desc": "集成多运动信号与意图信息融合的康复机器人协同控制策略",
+          "id": "item-96fd506abcc7",
+          "name": "并通过分析柔性外骨骼运动状态、线槽摩擦力及线变形对末端驱动力的影响，建立手指运动状态下人机耦合瞬时静力学与实时动力学模型",
+          "desc": "并通过分析柔性外骨骼运动状态、线槽摩擦力及线变形对末端驱动力的影响，建立手指运动状态下人机耦合瞬时静力学与实时动力学模型，研究利用李群李代数理论简化动力学模型并给出动力学方程高效解法，提出多目标动态优化设计方法；",
           "evidence": [
             {
-              "quote": "提出基于有限状态机的柔性外骨骼手功能康复机器人协同控制方法",
+              "quote": "并通过分析柔性外骨骼运动状态、线槽摩擦力及线变形对末端驱动力的影响，建立手指运动状态下人机耦合瞬时静力学与实时动力学模型，研究利用李群李代数理论简化动力学模型并给出动力学方程高效解法，提出多目标动态优化设计方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3325,
-                "end_char": 3353
+                "start_char": 787,
+                "end_char": 892
               },
               "version": "9ad912b1be278ad5ccfe"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,448 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9d585323cdd4",
-          "name": "四型原理样机与实验平台",
-          "desc": "研制四种柔性外骨骼手康复机器人原理样机及上肢外骨骼、柔性假手样机",
+          "id": "item-6e087fa63314",
+          "name": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠的手功能康复机器人。",
+          "desc": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠的手功能康复机器人。",
           "evidence": [
             {
-              "quote": "研制了四种新型线驱动柔性外骨骼手功能康复机器人原理样机和一种重力平衡式上肢外骨骼和自适应抓握柔性假手样机",
+              "quote": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠的手功能康复机器人。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3435,
-                "end_char": 3486
+                "start_char": 657,
+                "end_char": 715
               },
               "version": "9ad912b1be278ad5ccfe"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-c797daebba9e",
-          "name": "SMA驱动轻质方案",
-          "desc": "基于形状记忆合金驱动模块的外骨骼轻质便携解决方案",
+          "id": "item-1bcec5338c9e",
+          "name": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠手功能康复机器人。",
+          "desc": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠手功能康复机器人。",
           "evidence": [
             {
-              "quote": "提出了一种基于形状记忆合金（SMA）驱动模块用于柔性外骨骼外骨骼手、腕外骨骼及肘外骨骼",
+              "quote": "在手功能康复中，急切需要训练与辅助功能一体化、手体柔性轻巧、可穿戴便携，且易加工、低成本、安全可靠手功能康复机器人。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3554,
-                "end_char": 3596
+                "start_char": 2942,
+                "end_char": 2999
               },
               "version": "9ad912b1be278ad5ccfe"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1ed7846d6bb1"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1e215a4e2b11"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "柔性双手康复外骨骼抛接任务的过程协同控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7389e106f823",
+      "evidence": [
+        {
+          "quote": "柔性双手康复外骨骼抛接任务的过程协同控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3723,
+            "end_char": 3742
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1e215a4e2b11"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d098a37ba829"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于柔性铰链的仿生外骨骼机械手设计研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5e8beac68b12",
+      "evidence": [
+        {
+          "quote": "基于柔性铰链的仿生外骨骼机械手设计研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3788,
+            "end_char": 3806
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d098a37ba829"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9d585323cdd4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种假肢拇指机构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c502ad5e2e76",
+      "evidence": [
+        {
+          "quote": "一种假肢拇指机构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3834,
+            "end_char": 3841
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-17e191c61f58"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9d585323cdd4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视觉的柔性外骨骼手指关节的运动轨迹测量装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb394230f4f5",
+      "evidence": [
+        {
+          "quote": "一种基于视觉的柔性外骨骼手指关节的运动轨迹测量装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3890,
+            "end_char": 3914
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d098a37ba829"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c797daebba9e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种模块化多模态假手",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-146220443aea",
+      "evidence": [
+        {
+          "quote": "一种模块化多模态假手",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3958,
+            "end_char": 3967
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于绳索驱动上肢康复训练器的左右手互换机构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ab1fb8bcfdae",
+      "evidence": [
+        {
+          "quote": "一种用于绳索驱动上肢康复训练器的左右手互换机构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4017,
+            "end_char": 4039
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Development of a Portable Exoskeleton for Hand Rehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dfda022d4053",
+      "evidence": [
+        {
+          "quote": "Design and Development of a Portable Exoskeleton for Hand Rehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4080,
+            "end_char": 4151
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种绳驱多用型腕部康复训练机构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5886126cc6e4",
+      "evidence": [
+        {
+          "quote": "一种绳驱多用型腕部康复训练机构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4223,
+            "end_char": 4237
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自适应抓握柔性假手",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af66c4991e09",
+      "evidence": [
+        {
+          "quote": "一种自适应抓握柔性假手",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4276,
+            "end_char": 4286
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于SMA驱动模块的腕部柔性外骨骼设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1174736f9c80",
+      "evidence": [
+        {
+          "quote": "基于SMA驱动模块的腕部柔性外骨骼设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4343,
+            "end_char": 4361
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Control of a Novel Pneumatic Soft Upper Limb Exoskeleton for Rehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-48adf1a9a848",
+      "evidence": [
+        {
+          "quote": "Design and Control of a Novel Pneumatic Soft Upper Limb Exoskeleton for Rehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4403,
+            "end_char": 4488
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pilot Study of a Powered Exoskeleton for Upper Limb Rehabilitation Based on the Wheelchair",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f216da6a4fd1",
+      "evidence": [
+        {
+          "quote": "Pilot Study of a Powered Exoskeleton for Upper Limb Rehabilitation Based on the Wheelchair",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4571,
+            "end_char": 4660
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and evaluation of a novel upper limb rehabilitation robot with space training based on an end effector",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b634f3a44d55",
+      "evidence": [
+        {
+          "quote": "Design and evaluation of a novel upper limb rehabilitation robot with space training based on an end effector",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4766,
+            "end_char": 4874
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design Method for Constant Force Components Based on Superelastic SMA",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-65a10acbc1f6",
+      "evidence": [
+        {
+          "quote": "Design Method for Constant Force Components Based on Superelastic SMA",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4941,
+            "end_char": 5009
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-robot coupling dynamic modeling and analysis for upper limb rehabilitation robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db8d823db401",
+      "evidence": [
+        {
+          "quote": "Human-robot coupling dynamic modeling and analysis for upper limb rehabilitation robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5071,
+            "end_char": 5157
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Exoskeleton Coupling Dynamics of a Multi-Mode Therapeutic Exoskeleton for Upper Limb Rehabilitation Training",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc1b3ad07ee0",
+      "evidence": [
+        {
+          "quote": "Human-Exoskeleton Coupling Dynamics of a Multi-Mode Therapeutic Exoskeleton for Upper Limb Rehabilitation Training",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5243,
+            "end_char": 5356
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种手部康复机器人系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0cd61327e19",
+      "evidence": [
+        {
+          "quote": "一种手部康复机器人系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5440,
+            "end_char": 5450
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种线驱动上肢康复训练机械臂",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-299654806451",
+      "evidence": [
+        {
+          "quote": "一种线驱动上肢康复训练机械臂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5503,
+            "end_char": 5516
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种柔性康复外骨骼手套",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d11716b25976",
+      "evidence": [
+        {
+          "quote": "一种柔性康复外骨骼手套",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5559,
+            "end_char": 5569
+          },
+          "version": "9ad912b1be278ad5ccfe"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "af9841bf3afb3319308c",
   "version": "96483ae3263a0a5f8acb",
   "source_hash": "e7f162f4820668a75eb4817f5fd0907733ab1af91005ffe08d26d4d17930086b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:25.798292+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.179879+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3dd7c6fe8f7a",
-          "name": "辅助生殖细胞手术机器人",
-          "desc": "辅助生殖治疗中末端执行器精准定位控制",
+          "id": "item-9fc2c99d33c1",
+          "name": "细胞手术是辅助生殖治疗中的核心技术，其中“手术刀”（末端执行器）的精准定位是手术成功的前提，然而现有的伺服定位方法难以满",
+          "desc": "细胞手术是辅助生殖治疗中的核心技术，其中“手术刀”（末端执行器）的精准定位是手术成功的前提，然而现有的伺服定位方法难以满足临床应用中较高的精度、速度与安全性要求。",
           "evidence": [
             {
-              "quote": "精准控制末端执行器位姿是细胞手术成功的前提",
+              "quote": "细胞手术是辅助生殖治疗中的核心技术，其中“手术刀”（末端执行器）的精准定位是手术成功的前提，然而现有的伺服定位方法难以满足临床应用中较高的精度、速度与安全性要求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2569,
-                "end_char": 2589
+                "start_char": 660,
+                "end_char": 740
               },
               "version": "96483ae3263a0a5f8acb"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fe113e27a075",
-          "name": "定位精度速度安全性不足",
-          "desc": "现有定位技术难以满足临床精度、速度、安全性要求",
+          "id": "item-175dcf59129d",
+          "name": "本项目针对细胞手术中末端执行器三维位姿精准控制的难点，围绕“基于单目显微系统的末端执行器图像特征与其三维位姿关系”和“显",
+          "desc": "本项目针对细胞手术中末端执行器三维位姿精准控制的难点，围绕“基于单目显微系统的末端执行器图像特征与其三维位姿关系”和“显微镜小视野、浅景深约束下的旋转自由度视觉伺服控制方法”两个关键科学问题，展开旋转自由度构建、末端执行器位姿估计、四自由度视觉伺服控制等方向的基础理论与关键技术研究。",
           "evidence": [
             {
-              "quote": "然而，现有的定位技术难以满足临床应用中的精度、速度、安全性要求，限制了机器人细胞手术的应用。",
+              "quote": "本项目针对细胞手术中末端执行器三维位姿精准控制的难点，围绕“基于单目显微系统的末端执行器图像特征与其三维位姿关系”和“显微镜小视野、浅景深约束下的旋转自由度视觉伺服控制方法”两个关键科学问题，展开旋转自由度构建、末端执行器位姿估计、四自由度视觉伺服控制等方向的基础理论与关键技术研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2591,
-                "end_char": 2636
+                "start_char": 2637,
+                "end_char": 2778
               },
               "version": "96483ae3263a0a5f8acb"
             }
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-aaf375a307ce",
-          "name": "显微操作手旋转自由度",
-          "desc": "设计构建旋转自由度使能末端执行器角度调整",
+          "id": "item-c67e949b5cc1",
+          "name": "本项目设计并构建了显微操作手上的旋转自由度，使能末端执行器的角度调整，提出了基于细粒度分类的深度估计方法、重尾噪声分布下",
+          "desc": "本项目设计并构建了显微操作手上的旋转自由度，使能末端执行器的角度调整，提出了基于细粒度分类的深度估计方法、重尾噪声分布下优化器训练方法、遮挡感知的视觉跟踪方法，建立了普适性的显微末端执行器“倾斜圆”空间运动学模型与三环路视觉伺服控制方法。",
           "evidence": [
             {
-              "quote": "本项目设计并构建了显微操作手上的旋转自由度，使能末端执行器的角度调整",
+              "quote": "本项目设计并构建了显微操作手上的旋转自由度，使能末端执行器的角度调整，提出了基于细粒度分类的深度估计方法、重尾噪声分布下优化器训练方法、遮挡感知的视觉跟踪方法，建立了普适性的显微末端执行器“倾斜圆”空间运动学模型与三环路视觉伺服控制方法。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2779,
-                "end_char": 2812
+                "end_char": 2897
               },
               "version": "96483ae3263a0a5f8acb"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bf01fb3c225b",
-          "name": "深度估计与遮挡跟踪",
-          "desc": "细粒度分类深度估计、重尾噪声优化器、遮挡感知跟踪",
+          "id": "item-223abfac6d18",
+          "name": "本项目聚焦1)临床显微操作手缺少旋转自由度、无法调整末端执行器角度，2)显微镜小视野、浅景深约束下三维视觉反馈的获取和高",
+          "desc": "本项目聚焦1)临床显微操作手缺少旋转自由度、无法调整末端执行器角度，2)显微镜小视野、浅景深约束下三维视觉反馈的获取和高效率显微操作两方面难题，通过构建显微操作中的旋转自由度（解决旋转自由度缺失问题），发展融合视觉-几何多源信息的操作针三维姿态估计方法（解决三维位置感知问题），探寻显微镜小视野、浅景深约束下的旋转自由度视觉伺服控制方法（解决高效率显微操作问题），最终开发具有自主知识产权的细胞手术机器人软硬件系统，实现对末端执行器的精准、",
           "evidence": [
             {
-              "quote": "提出了基于细粒度分类的深度估计方法、重尾噪声分布下优化器训练方法、遮挡感知的视觉跟踪方法",
+              "quote": "本项目聚焦1)临床显微操作手缺少旋转自由度、无法调整末端执行器角度，2)显微镜小视野、浅景深约束下三维视觉反馈的获取和高效率显微操作两方面难题，通过构建显微操作中的旋转自由度（解决旋转自由度缺失问题），发展融合视觉-几何多源信息的操作针三维姿态估计方法（解决三维位置感知问题），探寻显微镜小视野、浅景深约束下的旋转自由度视觉伺服控制方法（解决高效率显微操作问题），最终开发具有自主知识产权的细胞手术机器人软硬件系统，实现对末端执行器的精准、",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2814,
-                "end_char": 2857
+                "start_char": 741,
+                "end_char": 960
               },
               "version": "96483ae3263a0a5f8acb"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +108,164 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f54196093007",
-          "name": "三维位姿估计与精准控制",
-          "desc": "实现三维位姿估计、鲁棒跟踪与旋转自由度精准控制",
+          "id": "item-ce3fce1daaee",
+          "name": "细胞手术是辅助生殖治疗中的核心技术，其中“手术刀”（末端执行器）的精准定位是手术成功的前提，然而现有的伺服定位方法难以满",
+          "desc": "细胞手术是辅助生殖治疗中的核心技术，其中“手术刀”（末端执行器）的精准定位是手术成功的前提，然而现有的伺服定位方法难以满足临床应用中较高的精度、速度与安全性要求。",
           "evidence": [
             {
-              "quote": "成功实现了末端执行器的三维位姿估计与鲁棒跟踪，实现了在显微镜小视野、浅景深约束下末端执行器旋转自由度的精准控制。",
+              "quote": "细胞手术是辅助生殖治疗中的核心技术，其中“手术刀”（末端执行器）的精准定位是手术成功的前提，然而现有的伺服定位方法难以满足临床应用中较高的精度、速度与安全性要求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2898,
-                "end_char": 2953
+                "start_char": 660,
+                "end_char": 740
               },
               "version": "96483ae3263a0a5f8acb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-77405c860fca",
+          "name": "细胞手术是辅助生殖治疗中的核心技术，末端执行器犹如机器人手中的“手术刀”，精准控制末端执行器位姿是细胞手术成功的前提；",
+          "desc": "细胞手术是辅助生殖治疗中的核心技术，末端执行器犹如机器人手中的“手术刀”，精准控制末端执行器位姿是细胞手术成功的前提；",
+          "evidence": [
+            {
+              "quote": "细胞手术是辅助生殖治疗中的核心技术，末端执行器犹如机器人手中的“手术刀”，精准控制末端执行器位姿是细胞手术成功的前提；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2532,
+                "end_char": 2590
+              },
+              "version": "96483ae3263a0a5f8acb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3dd7c6fe8f7a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fe113e27a075"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Testing the generalizability and effectiveness of deep learning models among clinics: sperm detection as a pilot study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84161955b529",
+      "evidence": [
+        {
+          "quote": "Testing the generalizability and effectiveness of deep learning models among clinics: sperm detection as a pilot study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3004,
+            "end_char": 3121
+          },
+          "version": "96483ae3263a0a5f8acb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fe113e27a075"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-aaf375a307ce"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fully On-Smartphone: Efficient Speed-Up of Sperm Tracking Algorithm for Point-of-Care Semen Analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9df1d46a90e",
+      "evidence": [
+        {
+          "quote": "Fully On-Smartphone: Efficient Speed-Up of Sperm Tracking Algorithm for Point-of-Care Semen Analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3316,
+            "end_char": 3415
+          },
+          "version": "96483ae3263a0a5f8acb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fe113e27a075"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bf01fb3c225b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fine-Grained Classification for Depth Estimation From Monocular Microscopy for Robotic Micromanipulation of Motile Cells",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-688affc5fd63",
+      "evidence": [
+        {
+          "quote": "Fine-Grained Classification for Depth Estimation From Monocular Microscopy for Robotic Micromanipulation of Motile Cells",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3558,
+            "end_char": 3677
+          },
+          "version": "96483ae3263a0a5f8acb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-aaf375a307ce"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f54196093007"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ape Optimizer: A p-Power Adaptive Filter-Based Approach for Deep Learning Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f25b93a58d84",
+      "evidence": [
+        {
+          "quote": "Ape Optimizer: A p-Power Adaptive Filter-Based Approach for Deep Learning Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3777,
+            "end_char": 3862
+          },
+          "version": "96483ae3263a0a5f8acb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bf01fb3c225b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f54196093007"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Continuous Convolution for Automated Measurement of Sperm Flagella",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-535834c818ef",
+      "evidence": [
+        {
+          "quote": "Continuous Convolution for Automated Measurement of Sperm Flagella",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3932,
+            "end_char": 3997
+          },
+          "version": "96483ae3263a0a5f8acb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

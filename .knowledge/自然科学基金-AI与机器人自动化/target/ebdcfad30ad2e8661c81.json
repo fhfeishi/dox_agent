@@ -2,15 +2,20 @@
   "doc_id": "ebdcfad30ad2e8661c81",
   "version": "36cd1987afeb8b8fd524",
   "source_hash": "2b095585de7bc40e25661a2598aa1836a5c91abb7d9b7e87c89a1f5cf0830ce5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:46:21.056803+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.792353+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-94e2ad896427",
-          "name": "肺小结节机器人活检",
-          "desc": "机器人辅助肺周小结节精准定位与穿刺活检手术",
+          "id": "item-ee67db81c0ed",
+          "name": "4    刚度控制方案    不干扰正常活检手术流程且具备推广应用优势",
+          "desc": "4    刚度控制方案    不干扰正常活检手术流程且具备推广应用优势",
           "evidence": [
             {
-              "quote": "针对肺周小结节活检手术面临的深部病灶触达困难、多器械操作协同复杂以及生理运动干扰手术精度等临床难题，本研究提出并构建了一种“支气管镜-变刚度鞘管-活检工具”三段式的机器人辅助介入模式",
+              "quote": "4    刚度控制方案    不干扰正常活检手术流程且具备推广应用优势",
               "locator": {
                 "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "1163da941c4a15de3f0908849ca55e223545ba15"
+                "page": 14,
+                "chunk_id": "351e6a503e4e32ec6a096d6fd85e3f369b464ace"
+              },
+              "version": "36cd1987afeb8b8fd524"
+            }
+          ]
+        },
+        {
+          "id": "item-6e10e8540afa",
+          "name": "去噪需要的Γ通常设置为20\\~50，这种迭代过程严重制约了其在实时应用中的部署。",
+          "desc": "去噪需要的Γ通常设置为20\\~50，这种迭代过程严重制约了其在实时应用中的部署。",
+          "evidence": [
+            {
+              "quote": "去噪需要的Γ通常设置为20\\~50，这种迭代过程严重制约了其在实时应用中的部署。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 31754,
+                "end_char": 31793
               },
               "version": "36cd1987afeb8b8fd524"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-183f0ee8e86b",
-          "name": "深部触达与精度干扰",
-          "desc": "深部病灶触达困难、多器械操作协同复杂以及生理运动干扰手术精度等临床难题",
+          "id": "item-8f4d52a82029",
+          "name": "本研究面向肺周小结节活检的临床难点，旨在解决传统手术中医生操作负担重、多器械协同困难及深部病灶触达不足的问题。",
+          "desc": "本研究面向肺周小结节活检的临床难点，旨在解决传统手术中医生操作负担重、多器械协同困难及深部病灶触达不足的问题。",
           "evidence": [
             {
-              "quote": "针对肺周小结节活检手术面临的深部病灶触达困难、多器械操作协同复杂以及生理运动干扰手术精度等临床难题",
+              "quote": "本研究面向肺周小结节活检的临床难点，旨在解决传统手术中医生操作负担重、多器械协同困难及深部病灶触达不足的问题。",
               "locator": {
                 "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "1163da941c4a15de3f0908849ca55e223545ba15"
+                "page": 8,
+                "chunk_id": "e71446d89b1631efba7fb9508eea588e6372ab70"
+              },
+              "version": "36cd1987afeb8b8fd524"
+            }
+          ]
+        },
+        {
+          "id": "item-c4daf95b0de0",
+          "name": "针对肺周小结节难以展开精准定位及活检的临床难点，研究生理动态环境下机器人辅助小结节穿刺活检的精准手术规划、手术导航与精准",
+          "desc": "针对肺周小结节难以展开精准定位及活检的临床难点，研究生理动态环境下机器人辅助小结节穿刺活检的精准手术规划、手术导航与精准控制方法。",
+          "evidence": [
+            {
+              "quote": "针对肺周小结节难以展开精准定位及活检的临床难点，研究生理动态环境下机器人辅助小结节穿刺活检的精准手术规划、手术导航与精准控制方法。",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "82055ecbc2a9c3c5250bdae5dfddfcb56792e586"
               },
               "version": "36cd1987afeb8b8fd524"
             }
@@ -63,52 +100,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c758b86a6123",
-          "name": "变刚度鞘管器械",
-          "desc": "基于低熔点合金固-液相变原理的变刚度鞘管，毫米级尺度内实现刚度一个数量级以上主动调控",
+          "id": "item-e92c8ee9f72b",
+          "name": "本研究面向肺周小结节活检的临床难点，旨在解决传统手术中医生操作负担重、多器械协同困难及深部病灶触达不足的问题。",
+          "desc": "本研究面向肺周小结节活检的临床难点，旨在解决传统手术中医生操作负担重、多器械协同困难及深部病灶触达不足的问题。",
           "evidence": [
             {
-              "quote": "本研究创制基于低熔点合金固 - 液相变原理的变刚度鞘管，在毫米级尺度内实现弯曲与轴向刚度一个数量级以上的主动调控",
+              "quote": "本研究面向肺周小结节活检的临床难点，旨在解决传统手术中医生操作负担重、多器械协同困难及深部病灶触达不足的问题。",
               "locator": {
                 "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "1163da941c4a15de3f0908849ca55e223545ba15"
+                "page": 8,
+                "chunk_id": "e71446d89b1631efba7fb9508eea588e6372ab70"
               },
               "version": "36cd1987afeb8b8fd524"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c3d28d994bfb",
-          "name": "多器械分级协同操控",
-          "desc": "多自由度分级驱动的手术机器人系统，达成支气管镜、鞘管与活检钳的独立驱动及协同精密操控",
+          "id": "item-a89e57c1bdb3",
+          "name": "在机器人辅助肺部小结节活检系统中，活检工具需在狭窄弯曲且伴随生理运动的深层支气管内同时实现灵活抵达病灶与稳定支撑取样操作",
+          "desc": "在机器人辅助肺部小结节活检系统中，活检工具需在狭窄弯曲且伴随生理运动的深层支气管内同时实现灵活抵达病灶与稳定支撑取样操作。",
           "evidence": [
             {
-              "quote": "研发多自由度分级驱动的手术机器人系统，达成对支气管镜、鞘管与活检钳的独立驱动及协同精密操控",
+              "quote": "在机器人辅助肺部小结节活检系统中，活检工具需在狭窄弯曲且伴随生理运动的深层支气管内同时实现灵活抵达病灶与稳定支撑取样操作。",
               "locator": {
                 "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "1163da941c4a15de3f0908849ca55e223545ba15"
+                "page": 13,
+                "chunk_id": "37fe78ae8e6f13fae7c189e88a806166089d8aa3"
               },
               "version": "36cd1987afeb8b8fd524"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-69e1628e5fda",
-          "name": "可变形SLAM与自主导航",
-          "desc": "融合弹簧-质量物理模型的可变形SLAM算法与基于扩散概率模型的术中实时规划框架",
+          "id": "item-e29cd5c4b63b",
+          "name": "在体内微创手术中，传统的视觉SLAM方法因难以建模呼吸、心跳及器械操作引起的组织非刚性形变，常导致三维重建出现空洞、点云",
+          "desc": "在体内微创手术中，传统的视觉SLAM方法因难以建模呼吸、心跳及器械操作引起的组织非刚性形变，常导致三维重建出现空洞、点云漂移及拓扑失真，严重制约了导航精度与应用可靠性。",
           "evidence": [
             {
-              "quote": "提出融合弹簧-质量物理模型的可变形 SLAM 算法，有效抑制软组织动态形变引发的三维重建点云漂移与拓扑失真问题",
+              "quote": "在体内微创手术中，传统的视觉SLAM方法因难以建模呼吸、心跳及器械操作引起的组织非刚性形变，常导致三维重建出现空洞、点云漂移及拓扑失真，严重制约了导航精度与应用可靠性。",
               "locator": {
                 "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "1163da941c4a15de3f0908849ca55e223545ba15"
+                "page": 21,
+                "chunk_id": "90008f1f612e056bb0226b6d9ffd9a2d537c330c"
               },
               "version": "36cd1987afeb8b8fd524"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +157,49 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6abe95eb3c17",
-          "name": "体模与活体验证",
-          "desc": "通过体模实验与活体动物手术验证系统在递送精度、操作安全性与深部触达能力方面的性能指标",
+          "id": "item-1c4ed4a06c54",
+          "name": "针对肺周小结节难以展开精准定位及活检的临床难点，研究生理动态环境下机器人辅助小结节穿刺活检的精准手术规划、手术导航与精准",
+          "desc": "针对肺周小结节难以展开精准定位及活检的临床难点，研究生理动态环境下机器人辅助小结节穿刺活检的精准手术规划、手术导航与精准控制方法。",
           "evidence": [
             {
-              "quote": "项目通过体模实验与活体动物手术验证了系统在递送精度、操作安全性与深部触达能力方面的性能指标，形成了“器械-系统-算法-验证”的完整技术链路",
+              "quote": "针对肺周小结节难以展开精准定位及活检的临床难点，研究生理动态环境下机器人辅助小结节穿刺活检的精准手术规划、手术导航与精准控制方法。",
               "locator": {
                 "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "1163da941c4a15de3f0908849ca55e223545ba15"
+                "page": 1,
+                "chunk_id": "82055ecbc2a9c3c5250bdae5dfddfcb56792e586"
               },
               "version": "36cd1987afeb8b8fd524"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-ed422a93818f",
+          "name": "项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。",
+          "desc": "项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。",
+          "evidence": [
+            {
+              "quote": "项目负责人通过系统，从文献库中检索研究成果或者按要求格式自行填入。",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 58,
+                "chunk_id": "684f933fb6b4c66e77af3b2de623cbcf2964ad3f"
+              },
+              "version": "36cd1987afeb8b8fd524"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-94e2ad896427"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-183f0ee8e86b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-183f0ee8e86b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c758b86a6123"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-183f0ee8e86b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c3d28d994bfb"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-183f0ee8e86b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-69e1628e5fda"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-69e1628e5fda"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6abe95eb3c17"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c758b86a6123"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6abe95eb3c17"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

@@ -2,15 +2,20 @@
   "doc_id": "3e1f5e88b291a8edb2a3",
   "version": "3742826446796c063801",
   "source_hash": "e3e2f2e93d6eaffc15c81e81cb0d42723a860d9ff17e4c9da6e26790ac588d87",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:33:46.155485+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.073627+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-92894ebdd96d",
-          "name": "通信受限集群协同",
-          "desc": "国防、救援、物流等领域移动机器人集群协同",
+          "id": "item-d7d942351f84",
+          "name": "本项目针对非完整约束移动机器人集群系统，研究如何通过个体机器人的主动感知测量反馈设计分布式控制，达到整体集群系统的协同编",
+          "desc": "本项目针对非完整约束移动机器人集群系统，研究如何通过个体机器人的主动感知测量反馈设计分布式控制，达到整体集群系统的协同编队任务。",
           "evidence": [
             {
-              "quote": "移动机器人集群协同在国防、救援、物流等领域具有重大应用价值",
+              "quote": "本项目针对非完整约束移动机器人集群系统，研究如何通过个体机器人的主动感知测量反馈设计分布式控制，达到整体集群系统的协同编队任务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3139,
-                "end_char": 3167
+                "start_char": 655,
+                "end_char": 718
+              },
+              "version": "3742826446796c063801"
+            }
+          ]
+        },
+        {
+          "id": "item-e02d37ec3af7",
+          "name": "研究无协作通信条件下的分布式控制方法对提升集群自主性、拓展应用场景，具有重要的科学意义。",
+          "desc": "研究无协作通信条件下的分布式控制方法对提升集群自主性、拓展应用场景，具有重要的科学意义。",
+          "evidence": [
+            {
+              "quote": "研究无协作通信条件下的分布式控制方法对提升集群自主性、拓展应用场景，具有重要的科学意义。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 775,
+                "end_char": 818
               },
               "version": "3742826446796c063801"
             }
@@ -38,93 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-9bf69c2b01d4",
-          "name": "通信链路依赖瓶颈",
-          "desc": "传统协同控制严重依赖机器人间稳定、可靠的通信链路",
-          "evidence": [
-            {
-              "quote": "然而，传统协同控制严重依赖机器人间稳定、可靠的通信链路，在通信受限、拒止或静默等复杂实际场景下面临严峻挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3169,
-                "end_char": 3221
-              },
-              "version": "3742826446796c063801"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-db432499c7d9",
-          "name": "局部感知分布式观测器",
-          "desc": "仅依靠局部相对感知的分布式动态控制基础框架与无需交换内部状态的观测器",
+          "id": "item-97e0189b1f56",
+          "name": "..本项目围绕“无协作通信条件下移动机器人集群编队分布式控制”这一核心科学问题，系统开展了以下研究：1）构建了仅依靠局部",
+          "desc": "..本项目围绕“无协作通信条件下移动机器人集群编队分布式控制”这一核心科学问题，系统开展了以下研究：1）构建了仅依靠局部相对感知（位置、方位）的分布式动态控制基础框架，提出了无需交换内部状态的全新观测器设计；",
           "evidence": [
             {
-              "quote": "构建了仅依靠局部相对感知（位置、方位）的分布式动态控制基础框架，提出了无需交换内部状态的全新观测器设计",
+              "quote": "..本项目围绕“无协作通信条件下移动机器人集群编队分布式控制”这一核心科学问题，系统开展了以下研究：1）构建了仅依靠局部相对感知（位置、方位）的分布式动态控制基础框架，提出了无需交换内部状态的全新观测器设计；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3325,
-                "end_char": 3375
+                "start_char": 3273,
+                "end_char": 3376
               },
               "version": "3742826446796c063801"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2ee48d8a25b8",
-          "name": "自适应估计鲁棒控制",
-          "desc": "针对非完全信息场景的自适应估计与纯输出反馈鲁棒控制方法",
+          "id": "item-fc659351519b",
+          "name": "所发展的理论工具与设计方法，丰富了分布式控制理论，并为在通信受限、感知不全、环境扰动强烈的复杂场景下实现可靠自主协同提供",
+          "desc": "所发展的理论工具与设计方法，丰富了分布式控制理论，并为在通信受限、感知不全、环境扰动强烈的复杂场景下实现可靠自主协同提供了关键的理论基础与技术解决方案，对推动下一代高自主无人集群系统的发展具有重要科学价值。",
           "evidence": [
             {
-              "quote": "针对目标信息未知、感知维度缺失等非完全信息场景，发展了基于自适应估计与纯输出反馈的鲁棒控制方法",
+              "quote": "所发展的理论工具与设计方法，丰富了分布式控制理论，并为在通信受限、感知不全、环境扰动强烈的复杂场景下实现可靠自主协同提供了关键的理论基础与技术解决方案，对推动下一代高自主无人集群系统的发展具有重要科学价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3379,
-                "end_char": 3425
+                "start_char": 3899,
+                "end_char": 4001
               },
               "version": "3742826446796c063801"
             }
-          ]
-        },
-        {
-          "id": "item-a229b11341f2",
-          "name": "输出调节抗扰动控制",
-          "desc": "融合输出调节理论与鲁棒性分析框架的抗扰动控制器",
-          "evidence": [
-            {
-              "quote": "融合输出调节理论与鲁棒性分析框架，设计了抗扰动控制器并建立了时变连通性下的稳定性条件",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3444,
-                "end_char": 3485
-              },
-              "version": "3742826446796c063801"
-            }
-          ]
-        },
-        {
-          "id": "item-55414d41dde5",
-          "name": "数据驱动参数自学习",
-          "desc": "基于自适应控制与数据驱动自适应动态规划的参数自学习算法",
-          "evidence": [
-            {
-              "quote": "发展了基于自适应控制与数据驱动自适应动态规划的参数自学习算法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3497,
-                "end_char": 3526
-              },
-              "version": "3742826446796c063801"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,108 +107,752 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4759a224cd19",
-          "name": "IROS竞赛第一名",
-          "desc": "基于项目核心技术获2024年IROS空中机器人协作巡检挑战赛第一名",
+          "id": "item-928909f7527e",
+          "name": "本项目针对非完整约束移动机器人集群系统，研究如何通过个体机器人的主动感知测量反馈设计分布式控制，达到整体集群系统的协同编",
+          "desc": "本项目针对非完整约束移动机器人集群系统，研究如何通过个体机器人的主动感知测量反馈设计分布式控制，达到整体集群系统的协同编队任务。",
           "evidence": [
             {
-              "quote": "基于项目核心技术，在2024年机器人顶级会议IROS的空中机器人协作巡检挑战赛中荣获第一名",
+              "quote": "本项目针对非完整约束移动机器人集群系统，研究如何通过个体机器人的主动感知测量反馈设计分布式控制，达到整体集群系统的协同编队任务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3718,
-                "end_char": 3762
+                "start_char": 655,
+                "end_char": 718
               },
               "version": "3742826446796c063801"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-2181aecdae42",
-          "name": "旗舰期刊论文",
-          "desc": "在IEEE-TAC和Automatica发表论文5篇，权威期刊及顶级会议共20余篇",
+          "id": "item-af0365daa628",
+          "name": "移动机器人集群协同在国防、救援、物流等领域具有重大应用价值。",
+          "desc": "移动机器人集群协同在国防、救援、物流等领域具有重大应用价值。",
           "evidence": [
             {
-              "quote": "在控制领域旗舰期刊IEEE-TAC和Automatica发表论文5篇，在IEEE-TCNS、SCL、IEEE/ASME-TMech、IEEE-RAL、IEEE-TCST等权威期刊及IEEE-CDC、IROS等顶级会议共发表论文20余篇",
+              "quote": "移动机器人集群协同在国防、救援、物流等领域具有重大应用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3600,
-                "end_char": 3716
+                "start_char": 3139,
+                "end_char": 3168
               },
               "version": "3742826446796c063801"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-92894ebdd96d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9bf69c2b01d4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical exploration of mobile robots by unknown region division with multiple environment representations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b31d85b54a4f",
+      "evidence": [
+        {
+          "quote": "Hierarchical exploration of mobile robots by unknown region division with multiple environment representations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4027,
+            "end_char": 4136
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9bf69c2b01d4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-db432499c7d9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven cooperative optimal output regulation for linear discrete-time multi-agent systems by online distributed adaptive internal model approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10fa196ed75f",
+      "evidence": [
+        {
+          "quote": "Data-driven cooperative optimal output regulation for linear discrete-time multi-agent systems by online distributed adaptive internal model approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4184,
+            "end_char": 4332
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9bf69c2b01d4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2ee48d8a25b8"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal synthesis for stochastic systems with information security preservation under temporal logic constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3329aa27d8c8",
+      "evidence": [
+        {
+          "quote": "Optimal synthesis for stochastic systems with information security preservation under temporal logic constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4383,
+            "end_char": 4494
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9bf69c2b01d4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a229b11341f2"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Communication-free Circular formation control of dynamic nonholonomic vehicles with backstepping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-39b6858f8eae",
+      "evidence": [
+        {
+          "quote": "Communication-free Circular formation control of dynamic nonholonomic vehicles with backstepping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4537,
+            "end_char": 4632
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-db432499c7d9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4759a224cd19"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal dynamic output feedback control of unknown linear continuous-time system by adaptive dynamic programming",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0901ad77bdf",
+      "evidence": [
+        {
+          "quote": "Optimal dynamic output feedback control of unknown linear continuous-time system by adaptive dynamic programming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4653,
+            "end_char": 4764
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-55414d41dde5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2181aecdae42"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Automated manipulation of magnetic microswarms for temporal logic cargo delivery tasks in complex environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f75951145e9",
+      "evidence": [
+        {
+          "quote": "Automated manipulation of magnetic microswarms for temporal logic cargo delivery tasks in complex environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4827,
+            "end_char": 4936
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Formation control of networked mobile robots with unknown reference orientation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-659c3eaf26b9",
+      "evidence": [
+        {
+          "quote": "Formation control of networked mobile robots with unknown reference orientation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5015,
+            "end_char": 5093
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Formal synthesis of controllers for safety-critical autonomous systems: Developments and challenges",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-931cf4558f30",
+      "evidence": [
+        {
+          "quote": "Formal synthesis of controllers for safety-critical autonomous systems: Developments and challenges",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5173,
+            "end_char": 5271
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal path planning with opacity-preserving temporal logic specifications using bipartite synthesizers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-69c4938eef29",
+      "evidence": [
+        {
+          "quote": "Optimal path planning with opacity-preserving temporal logic specifications using bipartite synthesizers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5316,
+            "end_char": 5419
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "IROS 2024 Cooperative Aerial Robots Inspection Challenge",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c694265b049",
+      "evidence": [
+        {
+          "quote": "IROS 2024 Cooperative Aerial Robots Inspection Challenge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5473,
+            "end_char": 5528
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive optimal output regulation of unknown linear continuous-time systems by dynamic output feedback and value iteration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5cee226979cd",
+      "evidence": [
+        {
+          "quote": "Adaptive optimal output regulation of unknown linear continuous-time systems by dynamic output feedback and value iteration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5633,
+            "end_char": 5755
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bearing-only formation maneuvering control of multi-agent systems with time-varying leaders' velocity",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-423d50180bab",
+      "evidence": [
+        {
+          "quote": "Bearing-only formation maneuvering control of multi-agent systems with time-varying leaders' velocity",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5810,
+            "end_char": 5910
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Early-awareness collision avoidance in optimal multi-agent path planning with temporal logic specifications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-83f1dce7bedc",
+      "evidence": [
+        {
+          "quote": "Early-awareness collision avoidance in optimal multi-agent path planning with temporal logic specifications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5968,
+            "end_char": 6074
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Quantized feedback control of linear system with performance barrier",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b285cf7927c6",
+      "evidence": [
+        {
+          "quote": "Quantized feedback control of linear system with performance barrier",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6130,
+            "end_char": 6197
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "林祖赓青年科技奖(科研奖)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c3edb200749d",
+      "evidence": [
+        {
+          "quote": "林祖赓青年科技奖(科研奖)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6235,
+            "end_char": 6247
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Composite nonlinear feedback control for cooperative output regulation of linear multi-agent systems with input saturation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47e9876c44a8",
+      "evidence": [
+        {
+          "quote": "Composite nonlinear feedback control for cooperative output regulation of linear multi-agent systems with input saturation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6265,
+            "end_char": 6386
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decentralized leader-following formation control of nonholonomic mobile robots by local measurement: A small-gain approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e158e99b945",
+      "evidence": [
+        {
+          "quote": "Decentralized leader-following formation control of nonholonomic mobile robots by local measurement: A small-gain approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6443,
+            "end_char": 6564
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无人机系统控制器的参数在线调节方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d2b5e9df820f",
+      "evidence": [
+        {
+          "quote": "一种无人机系统控制器的参数在线调节方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6626,
+            "end_char": 6644
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bearing-only formation control of nonholonomic mobile agents with local reference frames",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c762c999c17",
+      "evidence": [
+        {
+          "quote": "Bearing-only formation control of nonholonomic mobile agents with local reference frames",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6670,
+            "end_char": 6757
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水下机器人协同包围目标控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-433a7143dcbb",
+      "evidence": [
+        {
+          "quote": "一种水下机器人协同包围目标控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6811,
+            "end_char": 6827
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种模型参数未知的起重机伺服控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9ca8c595db9",
+      "evidence": [
+        {
+          "quote": "一种模型参数未知的起重机伺服控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6851,
+            "end_char": 6868
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enforcement of opacity for interval weighted discrete-event system by supervisory control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b2e2b797b630",
+      "evidence": [
+        {
+          "quote": "Enforcement of opacity for interval weighted discrete-event system by supervisory control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6894,
+            "end_char": 6982
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Memory-reduced meta-learning with guaranteed convergence",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-73b4d57c4678",
+      "evidence": [
+        {
+          "quote": "Memory-reduced meta-learning with guaranteed convergence",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7046,
+            "end_char": 7101
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven composite nonlinear feedback control for semi-global output regulation of unknown linear systems with input saturation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c22c7d8ebfdd",
+      "evidence": [
+        {
+          "quote": "Data-driven composite nonlinear feedback control for semi-global output regulation of unknown linear systems with input saturation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7143,
+            "end_char": 7272
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decentralized circular formation control of nonholonomic mobile robots under a directed sensor graph",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c6d7a2046146",
+      "evidence": [
+        {
+          "quote": "Decentralized circular formation control of nonholonomic mobile robots under a directed sensor graph",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7317,
+            "end_char": 7416
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Image-based leader-follower formation tracking control of nonholonomic mobile robots with field-of-view constraint",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-86bc55753677",
+      "evidence": [
+        {
+          "quote": "Image-based leader-follower formation tracking control of nonholonomic mobile robots with field-of-view constraint",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7447,
+            "end_char": 7560
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reaching global leaderless consensus in directed networks via smooth and bounded control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5c367a14130",
+      "evidence": [
+        {
+          "quote": "Reaching global leaderless consensus in directed networks via smooth and bounded control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7605,
+            "end_char": 7692
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Circular formation control for networked dynamic autonomous underwater vehicles: Estimator-based approaches",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b2cbe86731e7",
+      "evidence": [
+        {
+          "quote": "Circular formation control for networked dynamic autonomous underwater vehicles: Estimator-based approaches",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7726,
+            "end_char": 7832
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sparse false data injection attacks against distributed control of multi-agent systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a947752f9da",
+      "evidence": [
+        {
+          "quote": "Sparse false data injection attacks against distributed control of multi-agent systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7889,
+            "end_char": 7974
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A formal control framework of autonomous vehicle for signal temporal logic tasks and obstacle avoidance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-820ce3d00089",
+      "evidence": [
+        {
+          "quote": "A formal control framework of autonomous vehicle for signal temporal logic tasks and obstacle avoidance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8020,
+            "end_char": 8122
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive bearing-only control of multiple Euler-Lagrange systems for static geometric formation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84fd68ce1336",
+      "evidence": [
+        {
+          "quote": "Adaptive bearing-only control of multiple Euler-Lagrange systems for static geometric formation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8170,
+            "end_char": 8264
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Leader-follower formation tracking control of mobile robots: A visual observer-based approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51703687e20c",
+      "evidence": [
+        {
+          "quote": "Leader-follower formation tracking control of mobile robots: A visual observer-based approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8324,
+            "end_char": 8416
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal output regulation for unknown continuous-time linear systems by internal model and adaptive dynamic programming",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-087942712060",
+      "evidence": [
+        {
+          "quote": "Optimal output regulation for unknown continuous-time linear systems by internal model and adaptive dynamic programming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8478,
+            "end_char": 8596
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Composite nonlinear feedback control for cooperative output regulation of linear multi-agent systems by a distributed dynamic compensator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-672e68a4945c",
+      "evidence": [
+        {
+          "quote": "Composite nonlinear feedback control for cooperative output regulation of linear multi-agent systems by a distributed dynamic compensator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8639,
+            "end_char": 8775
+          },
+          "version": "3742826446796c063801"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 34,
+    "listed": 34,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "会议论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

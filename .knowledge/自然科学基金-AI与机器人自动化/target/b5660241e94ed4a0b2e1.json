@@ -2,15 +2,20 @@
   "doc_id": "b5660241e94ed4a0b2e1",
   "version": "f2521ab77056929d0db3",
   "source_hash": "42e04f2951988b78db13062673ce25b1545b0e16571da616d9238d4650a4e13e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:11:19.704874+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.241327+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c0085e5e45be",
-          "name": "飞机电缆线束自动化安装",
-          "desc": "飞机总装关键环节，从人工安装转向机器人自动化安装",
+          "id": "item-4f84c6c32d21",
+          "name": "电缆线束的安装是飞机总装的关键环节之一，直接影响了飞机制造质量。",
+          "desc": "电缆线束的安装是飞机总装的关键环节之一，直接影响了飞机制造质量。",
           "evidence": [
             {
-              "quote": "电缆线束的安装是飞机总装的关键环节之一，直接影响了飞机制造质量。目前主要依靠人工安装完成，其安装效率和质量严重制约了我国飞机批量生产的进度和质量",
+              "quote": "电缆线束的安装是飞机总装的关键环节之一，直接影响了飞机制造质量。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 653,
-                "end_char": 724
+                "end_char": 684
+              },
+              "version": "f2521ab77056929d0db3"
+            }
+          ]
+        },
+        {
+          "id": "item-0dad5991b388",
+          "name": "本项目面向国家重大需求，重点研究可变形线性物体机器人自动化操作中感知、规划与控制所亟待解决的基础理论与关键技术，旨在实现",
+          "desc": "本项目面向国家重大需求，重点研究可变形线性物体机器人自动化操作中感知、规划与控制所亟待解决的基础理论与关键技术，旨在实现飞机电缆线束机器人自动化安装。",
+          "evidence": [
+            {
+              "quote": "本项目面向国家重大需求，重点研究可变形线性物体机器人自动化操作中感知、规划与控制所亟待解决的基础理论与关键技术，旨在实现飞机电缆线束机器人自动化安装。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 726,
+                "end_char": 800
               },
               "version": "f2521ab77056929d0db3"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-49cfbaf0ae4f",
-          "name": "可变形线性物体操作难",
-          "desc": "可变形线性物体机器人操作的感知、规划与控制基础理论待解决",
-          "evidence": [
-            {
-              "quote": "重点研究可变形线性物体机器人自动化操作中感知、规划与控制所亟待解决的基础理论与关键技术，旨在实现飞机电缆线束机器人自动化安装",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 738,
-                "end_char": 799
-              },
-              "version": "f2521ab77056929d0db3"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-e3586d191846",
-          "name": "结构光边界误差补偿",
-          "desc": "揭示结构光三维测量边界误差机理，建立误差模型与补偿方法，精度提升一个数量级",
+          "id": "item-af945e99d585",
+          "name": "具体研究内容包含研究结构光实时三维测量边界误差产生机理及补偿方法、发展受生物启发的高分辨率高精度触觉感知方法、探索基于仿",
+          "desc": "具体研究内容包含研究结构光实时三维测量边界误差产生机理及补偿方法、发展受生物启发的高分辨率高精度触觉感知方法、探索基于仿生机理的机器人动态环境复杂运动在线规划方法、研究基于高维视触觉融合的机器人模型预测控制理论与方法，成果将形成可变形线性物体机器人操作的“感知-规划-控制”一体的理论与方法体系，为我国飞机电缆线束的机器人自动化安装提供理论基础和技术支撑。",
           "evidence": [
             {
-              "quote": "揭示了结构光三维测量中边界误差的产生机理，建立了精确的误差模型，提出了有效的补偿方法，边界测量精度提升一个数量级",
+              "quote": "具体研究内容包含研究结构光实时三维测量边界误差产生机理及补偿方法、发展受生物启发的高分辨率高精度触觉感知方法、探索基于仿生机理的机器人动态环境复杂运动在线规划方法、研究基于高维视触觉融合的机器人模型预测控制理论与方法，成果将形成可变形线性物体机器人操作的“感知-规划-控制”一体的理论与方法体系，为我国飞机电缆线束的机器人自动化安装提供理论基础和技术支撑。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2235,
-                "end_char": 2290
+                "start_char": 801,
+                "end_char": 978
               },
               "version": "f2521ab77056929d0db3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d8fae6499bd2",
-          "name": "视触觉融合模型预测控制",
-          "desc": "高维视触觉信息融合的机器人模型预测控制理论，实现40um配合间隙零样本Sim2Real迁移",
+          "id": "item-0c30d08b4bce",
+          "name": "本项目面向国家重大需求，重点研究可变形线性物体机器人自动化操作中感知、规划与控制所亟待解决的基础理论与关键技术，旨在实现",
+          "desc": "本项目面向国家重大需求，重点研究可变形线性物体机器人自动化操作中感知、规划与控制所亟待解决的基础理论与关键技术，旨在实现飞机电缆线束机器人自动化安装。",
           "evidence": [
             {
-              "quote": "提出了高维视触觉信息融合的机器人模型预测控制理论，实现了40um配合间隙装配操作的零样本仿真到现实迁移",
+              "quote": "本项目面向国家重大需求，重点研究可变形线性物体机器人自动化操作中感知、规划与控制所亟待解决的基础理论与关键技术，旨在实现飞机电缆线束机器人自动化安装。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2370,
-                "end_char": 2420
+                "start_char": 726,
+                "end_char": 800
               },
               "version": "f2521ab77056929d0db3"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,708 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cdf5f9e44265",
-          "name": "电缆线束自动操作系统",
-          "desc": "实现飞机电缆线束机器人自动化操作系统，三维测量成果在航空制造业应用",
+          "id": "item-06c655e2bd03",
+          "name": "电缆线束的安装是飞机总装的关键环节之一，直接影响了飞机制造质量。",
+          "desc": "电缆线束的安装是飞机总装的关键环节之一，直接影响了飞机制造质量。",
           "evidence": [
             {
-              "quote": "成功实现了对飞机电缆线束这类“可变形线性物体”的机器人自动化操作系统，项目三维测量等成果已在航空制造业取得了应用",
+              "quote": "电缆线束的安装是飞机总装的关键环节之一，直接影响了飞机制造质量。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2422,
-                "end_char": 2477
+                "start_char": 653,
+                "end_char": 684
               },
               "version": "f2521ab77056929d0db3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-105cf4d89aca",
-          "name": "奖励与国家标准",
-          "desc": "获北京市技术发明一等奖、日内瓦银奖等，参编国家标准1项",
+          "id": "item-cb3bd10d9950",
+          "name": "项目围绕飞机电缆线束自动化安装的重大需求，系统性开展了机器人自动化安装理论与技术研究，主要研究内容与创新成果如下：揭示了",
+          "desc": "项目围绕飞机电缆线束自动化安装的重大需求，系统性开展了机器人自动化安装理论与技术研究，主要研究内容与创新成果如下：揭示了结构光三维测量中边界误差的产生机理，建立了精确的误差模型，提出了有效的补偿方法，边界测量精度提升一个数量级；",
           "evidence": [
             {
-              "quote": "以第一完成人获得北京市技术发明一等奖、中国智能制造十大科技进展、中国仪器仪表学会技术发明一等奖、北京市发明创新大赛特等奖、日内瓦国际发明展银奖",
+              "quote": "项目围绕飞机电缆线束自动化安装的重大需求，系统性开展了机器人自动化安装理论与技术研究，主要研究内容与创新成果如下：揭示了结构光三维测量中边界误差的产生机理，建立了精确的误差模型，提出了有效的补偿方法，边界测量精度提升一个数量级；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2697,
-                "end_char": 2767
+                "start_char": 2178,
+                "end_char": 2291
               },
               "version": "f2521ab77056929d0db3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c0085e5e45be"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-49cfbaf0ae4f"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "先进飞机部件装配的智能高精测量控制技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1658981bf759",
+      "evidence": [
+        {
+          "quote": "先进飞机部件装配的智能高精测量控制技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2840,
+            "end_char": 2861
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-49cfbaf0ae4f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e3586d191846"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视觉的触觉传感器的数字孪生方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e819ed47ea0",
+      "evidence": [
+        {
+          "quote": "一种基于视觉的触觉传感器的数字孪生方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2919,
+            "end_char": 2940
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-49cfbaf0ae4f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d8fae6499bd2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Origami Morphing Surfaces with Arrayed Quasi-Rigid-Foldable Polyhedrons",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e6f0a6a769ba",
+      "evidence": [
+        {
+          "quote": "Origami Morphing Surfaces with Arrayed Quasi-Rigid-Foldable Polyhedrons",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2964,
+            "end_char": 3034
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d8fae6499bd2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cdf5f9e44265"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Weighted Least-Squares Algorithm for Wrapped Phase Retrieval in Sinusoidal Fringe Projection Profilometry",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-80fad99bed64",
+      "evidence": [
+        {
+          "quote": "A Weighted Least-Squares Algorithm for Wrapped Phase Retrieval in Sinusoidal Fringe Projection Profilometry",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3101,
+            "end_char": 3207
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e3586d191846"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-105cf4d89aca"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Phase error model and compensation method for reflectivity and distance discontinuities in fringe projection profilometry",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5916a0ff096f",
+      "evidence": [
+        {
+          "quote": "Phase error model and compensation method for reflectivity and distance discontinuities in fringe projection profilometry",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3287,
+            "end_char": 3407
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Nonautoregressive Dynamic Model Based Welding Parameter Planning Method for Varying Geometry Beads in WAAM",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f1ec70039dc0",
+      "evidence": [
+        {
+          "quote": "A Nonautoregressive Dynamic Model Based Welding Parameter Planning Method for Varying Geometry Beads in WAAM",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3461,
+            "end_char": 3568
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ThinTact: Thin Vision-Based Tactile Sensor by Lensless Imaging",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b31cbc541520",
+      "evidence": [
+        {
+          "quote": "ThinTact: Thin Vision-Based Tactile Sensor by Lensless Imaging",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3628,
+            "end_char": 3689
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Intelligent three-dimensional measurement and its application",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41a23324fca6",
+      "evidence": [
+        {
+          "quote": "Intelligent three-dimensional measurement and its application",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3750,
+            "end_char": 3810
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DexSim2Real2: Building Explicit World Model for Precise Articulated Object Dexterous Manipulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3dfc4b327b2c",
+      "evidence": [
+        {
+          "quote": "DexSim2Real2: Building Explicit World Model for Precise Articulated Object Dexterous Manipulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3891,
+            "end_char": 3987
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GlassMolder: Transparent Object Reconstruction With Silhouette-Guided Object-Centric Diffusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6bf081922c17",
+      "evidence": [
+        {
+          "quote": "GlassMolder: Transparent Object Reconstruction With Silhouette-Guided Object-Centric Diffusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4109,
+            "end_char": 4202
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Approach to Material Detection for Blind Amputee Users With Hand Prosthetic",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6b28c5b0d216",
+      "evidence": [
+        {
+          "quote": "A Novel Approach to Material Detection for Blind Amputee Users With Hand Prosthetic",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4267,
+            "end_char": 4349
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "飞机部件智能装配测控关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-566829f70756",
+      "evidence": [
+        {
+          "quote": "飞机部件智能装配测控关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4416,
+            "end_char": 4432
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "新型飞机部件高精度智能装配技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ac1a67cf188",
+      "evidence": [
+        {
+          "quote": "新型飞机部件高精度智能装配技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4448,
+            "end_char": 4465
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人6D位姿估计系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6cace69189eb",
+      "evidence": [
+        {
+          "quote": "一种机器人6D位姿估计系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4512,
+            "end_char": 4527
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast Actuating Multi-Helically Heated Twisted and Coiled Polymer Actuator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9eb79771f33c",
+      "evidence": [
+        {
+          "quote": "Fast Actuating Multi-Helically Heated Twisted and Coiled Polymer Actuator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4564,
+            "end_char": 4636
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A conceptual approach to material detection based on damping vibration-force signals via robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9b1d04dce741",
+      "evidence": [
+        {
+          "quote": "A conceptual approach to material detection based on damping vibration-force signals via robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4730,
+            "end_char": 4823
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种任务条件自适应机器人轴孔装配方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10a5e0524312",
+      "evidence": [
+        {
+          "quote": "一种任务条件自适应机器人轴孔装配方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4909,
+            "end_char": 4929
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "飞机结构装配高精度测控技术及装备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9fd80e7e9158",
+      "evidence": [
+        {
+          "quote": "飞机结构装配高精度测控技术及装备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4949,
+            "end_char": 4964
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视觉传感的机器人柔性轴孔装配方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d453c8ffd320",
+      "evidence": [
+        {
+          "quote": "一种基于视觉传感的机器人柔性轴孔装配方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4998,
+            "end_char": 5020
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Hierarchical Compliance-based Contextual Policy Search for Robotic Manipulation Tasks with Multiple Objectives",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ec91744fd38",
+      "evidence": [
+        {
+          "quote": "A Hierarchical Compliance-based Contextual Policy Search for Robotic Manipulation Tasks with Multiple Objectives",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5042,
+            "end_char": 5153
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种结构光测量中的反射率边界补偿方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-76bfb22e8621",
+      "evidence": [
+        {
+          "quote": "一种结构光测量中的反射率边界补偿方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5218,
+            "end_char": 5238
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Generalizable Force Estimation Based on Graph Networks for Thin Lensless Vision Based Tactile Sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0eb0a964aa1c",
+      "evidence": [
+        {
+          "quote": "Generalizable Force Estimation Based on Graph Networks for Thin Lensless Vision Based Tactile Sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5258,
+            "end_char": 5357
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bidirectional Sim-to-Real Transfer for GelSight Tactile Sensors With CycleGAN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f45dfb11e85",
+      "evidence": [
+        {
+          "quote": "Bidirectional Sim-to-Real Transfer for GelSight Tactile Sensors With CycleGAN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5401,
+            "end_char": 5477
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于鳍条效应结构的柔性视触觉手指、手爪及传感方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7a3ef386253",
+      "evidence": [
+        {
+          "quote": "基于鳍条效应结构的柔性视触觉手指、手爪及传感方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5565,
+            "end_char": 5588
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种RGB-D相机和激光雷达的系统标定方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fded4ba2f3a5",
+      "evidence": [
+        {
+          "quote": "一种RGB-D相机和激光雷达的系统标定方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5611,
+            "end_char": 5634
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Biomechanical Signals-Based Pattern Recognition Using a Developed Algorithm in Upper Limb Amputees",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-addb8d40f8f7",
+      "evidence": [
+        {
+          "quote": "Biomechanical Signals-Based Pattern Recognition Using a Developed Algorithm in Upper Limb Amputees",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5656,
+            "end_char": 5753
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种结构光解码与深度学习融合的三维测量方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cc1cfdc1365c",
+      "evidence": [
+        {
+          "quote": "一种结构光解码与深度学习融合的三维测量方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5820,
+            "end_char": 5843
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reproducing Tactile and Proprioception Based on the Human-in-the-Closed-Loop Conceptual Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2bd1e9adc94a",
+      "evidence": [
+        {
+          "quote": "Reproducing Tactile and Proprioception Based on the Human-in-the-Closed-Loop Conceptual Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5864,
+            "end_char": 5959
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AllTact Fin Ray: A Compliant Robot Gripper With Omni-Directional Tactile Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a7992d1bfd1",
+      "evidence": [
+        {
+          "quote": "AllTact Fin Ray: A Compliant Robot Gripper With Omni-Directional Tactile Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6075,
+            "end_char": 6154
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Hybrid Approach to Pattern Recognition of Finger Movements and Grasping Gestures in Upper Limb Amputees",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2e085b4cb315",
+      "evidence": [
+        {
+          "quote": "A Novel Hybrid Approach to Pattern Recognition of Finger Movements and Grasping Gestures in Upper Limb Amputees",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6255,
+            "end_char": 6365
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Fusing Vision and Force : A Framework of Reinforcement Learning for Elastic Peg-in-Hole Assembly",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c67947cdc0f3",
+      "evidence": [
+        {
+          "quote": "Fusing Vision and Force : A Framework of Reinforcement Learning for Elastic Peg-in-Hole Assembly",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6432,
+            "end_char": 6527
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Online Domain Adaption for Sim2Real Transfer of High-Precision Manipulation with Visuotactile Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bb4d4450408d",
+      "evidence": [
+        {
+          "quote": "Online Domain Adaption for Sim2Real Transfer of High-Precision Manipulation with Visuotactile Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6592,
+            "end_char": 6692
+          },
+          "version": "f2521ab77056929d0db3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 32,
+    "listed": 32,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      }
+    },
+    "consistent": true
+  }
 }

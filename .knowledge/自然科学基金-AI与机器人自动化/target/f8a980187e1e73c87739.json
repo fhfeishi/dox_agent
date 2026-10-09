@@ -2,15 +2,20 @@
   "doc_id": "f8a980187e1e73c87739",
   "version": "cbd7159b5ee372b97176",
   "source_hash": "e70c2dee3a4181cbe67be3c8f30ecde792f9bac9a4596adcca369dcf8da47750",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:55:01.887675+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.893446+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cfa18b821a6f",
-          "name": "GNN处理器集群通信",
-          "desc": "图神经网络大规模执行依赖多节点集群，聚合阶段通信成为主要瓶颈",
+          "id": "item-c1cf25a2ec86",
+          "name": "超大规模图神经网络（GNN）被认为是推动“认知智能”发展强有力的推理方法。",
+          "desc": "超大规模图神经网络（GNN）被认为是推动“认知智能”发展强有力的推理方法。",
           "evidence": [
             {
-              "quote": "图神经网络是实现认知智能的关键技术，其大规模执行依赖多节点集群，而聚合阶段的不规则、高并发通信成为主要瓶颈，引发网络冲突、数据冗余和带宽压力",
+              "quote": "超大规模图神经网络（GNN）被认为是推动“认知智能”发展强有力的推理方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2755,
-                "end_char": 2824
+                "start_char": 657,
+                "end_char": 693
               },
               "version": "cbd7159b5ee372b97176"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7c014d9a8ff2",
-          "name": "不规则粗粒度通信挑战",
-          "desc": "GNN特有不规则粗粒度通信导致网络冲突多、重复通信多、带宽需求高",
-          "evidence": [
-            {
-              "quote": "集群的通信结构面临着GNN特有的不规则粗粒度通信行为，导致网络冲突多、重复通信多、通信带宽需求高等严峻挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 746,
-                "end_char": 798
-              },
-              "version": "cbd7159b5ee372b97176"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-633dfb39c944",
-          "name": "主动分轮执行机制",
-          "desc": "耦合隐式同步，将动态依赖通信模式转化为可预测分轮规则通信",
+          "id": "item-e02b7471410b",
+          "name": "..原型验证表明，所提机制效果显著：基于分轮执行构建的MultiGCN系统相比同类方案实现了4–12倍加速；",
+          "desc": "..原型验证表明，所提机制效果显著：基于分轮执行构建的MultiGCN系统相比同类方案实现了4–12倍加速；",
           "evidence": [
             {
-              "quote": "提出耦合隐式同步的主动分轮执行机制",
+              "quote": "..原型验证表明，所提机制效果显著：基于分轮执行构建的MultiGCN系统相比同类方案实现了4–12倍加速；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2933,
-                "end_char": 2949
+                "start_char": 3136,
+                "end_char": 3189
               },
               "version": "cbd7159b5ee372b97176"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3644e14c9f96",
-          "name": "动态广播域分散式广播",
-          "desc": "依据实时数据依赖关系动态构建通信域并选择广播节点",
+          "id": "item-b31a6868cc3e",
+          "name": "动态广播机制在8×8系统上为MultiGCN带来平均1.17倍额外加速，并减少4%网络传输；",
+          "desc": "动态广播机制在8×8系统上为MultiGCN带来平均1.17倍额外加速，并减少4%网络传输；",
           "evidence": [
             {
-              "quote": "提出基于动态广播域的分散式广播机制",
+              "quote": "动态广播机制在8×8系统上为MultiGCN带来平均1.17倍额外加速，并减少4%网络传输；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3010,
-                "end_char": 3026
+                "start_char": 3190,
+                "end_char": 3235
               },
               "version": "cbd7159b5ee372b97176"
             }
-          ]
-        },
-        {
-          "id": "item-43f431bc3cc7",
-          "name": "路由即时归约与结果复用",
-          "desc": "传输中间节点提前归约计算并复用中间结果压缩传输总量",
-          "evidence": [
-            {
-              "quote": "提出路由中即时归约与结果复用策略",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3084,
-                "end_char": 3099
-              },
-              "version": "cbd7159b5ee372b97176"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,119 +91,452 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ead4ea3bd18b",
-          "name": "原型系统多倍加速",
-          "desc": "集成所有机制的原型系统相比其他多节点系统实现6.6–19.8倍加速",
+          "id": "item-5272df3933bb",
+          "name": "超大规模图神经网络（GNN）被认为是推动“认知智能”发展强有力的推理方法。",
+          "desc": "超大规模图神经网络（GNN）被认为是推动“认知智能”发展强有力的推理方法。",
           "evidence": [
             {
-              "quote": "集成所有机制的原型系统相比其他多节点系统实现了6.6–19.8倍加速，相较多GPU方案达4.13–13.2倍加速",
+              "quote": "超大规模图神经网络（GNN）被认为是推动“认知智能”发展强有力的推理方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3254,
-                "end_char": 3309
+                "start_char": 657,
+                "end_char": 693
               },
               "version": "cbd7159b5ee372b97176"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-7305469d9eeb",
-          "name": "论文与发明专利",
-          "desc": "产出CCF A/CCF B/SCI论文16篇、国家发明专利6项",
+          "id": "item-6fb4e1d08eaf",
+          "name": "优化处理器集群通信结构对提升系统效能、推动大规模图智能应用具有重要意义。",
+          "desc": "优化处理器集群通信结构对提升系统效能、推动大规模图智能应用具有重要意义。",
           "evidence": [
             {
-              "quote": "产出CCF A/CCF B/SCI论文16篇、国家发明专利6项，培养博士4名、硕士4名",
+              "quote": "优化处理器集群通信结构对提升系统效能、推动大规模图智能应用具有重要意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3351,
-                "end_char": 3393
+                "start_char": 2826,
+                "end_char": 2861
               },
               "version": "cbd7159b5ee372b97176"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cfa18b821a6f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7c014d9a8ff2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Revisiting Edge Perturbation for Graph Neural Network in Graph Data Augmentation and Attack",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f92e28abb34a",
+      "evidence": [
+        {
+          "quote": "Revisiting Edge Perturbation for Graph Neural Network in Graph Data Augmentation and Attack",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3456,
+            "end_char": 3546
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7c014d9a8ff2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-633dfb39c944"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Comprehensive Survey on Distributed Training of Graph Neural Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eeaade3f9f22",
+      "evidence": [
+        {
+          "quote": "A Comprehensive Survey on Distributed Training of Graph Neural Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3651,
+            "end_char": 3721
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7c014d9a8ff2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3644e14c9f96"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "HiHGNN: Accelerating HGNNs Through Parallelism and Data Reusability Exploitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7d8ea3cb2f5a",
+      "evidence": [
+        {
+          "quote": "HiHGNN: Accelerating HGNNs Through Parallelism and Data Reusability Exploitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3816,
+            "end_char": 3895
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7c014d9a8ff2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-43f431bc3cc7"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于图神经网络加速器的异构图神经网络的推理方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4fa0f1368db4",
+      "evidence": [
+        {
+          "quote": "一种基于图神经网络加速器的异构图神经网络的推理方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4028,
+            "end_char": 4052
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-633dfb39c944"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ead4ea3bd18b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Characterizing and Understanding Defense Methods for GNNs on GPUs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-553276fc44e4",
+      "evidence": [
+        {
+          "quote": "Characterizing and Understanding Defense Methods for GNNs on GPUs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4078,
+            "end_char": 4142
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3644e14c9f96"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7305469d9eeb"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GDR-HGNN: A Heterogeneous Graph Neural Networks Accelerator Frontend with Graph Decoupling and Recoupling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-53fe07e8aad7",
+      "evidence": [
+        {
+          "quote": "GDR-HGNN: A Heterogeneous Graph Neural Networks Accelerator Frontend with Graph Decoupling and Recoupling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4238,
+            "end_char": 4342
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-43f431bc3cc7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ead4ea3bd18b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于异构图神经网络的异构图数据加速处理方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-760e5ea3db39",
+      "evidence": [
+        {
+          "quote": "一种基于异构图神经网络的异构图数据加速处理方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4435,
+            "end_char": 4457
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Survey on Characterizing and Understanding GNNs From a Computer Architecture Perspective",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc301013696f",
+      "evidence": [
+        {
+          "quote": "Survey on Characterizing and Understanding GNNs From a Computer Architecture Perspective",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4494,
+            "end_char": 4581
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "中国科学院青年创新促进会会员",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4535719c255c",
+      "evidence": [
+        {
+          "quote": "中国科学院青年创新促进会会员",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4656,
+            "end_char": 4669
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Simple and Efficient Heterogeneous Graph Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a4c8e3fa8e9",
+      "evidence": [
+        {
+          "quote": "Simple and Efficient Heterogeneous Graph Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4688,
+            "end_char": 4742
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Leveraging Large Language Models for Effective Label-free Node Classification in Text-Attributed Graphs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-49d4d0873170",
+      "evidence": [
+        {
+          "quote": "Leveraging Large Language Models for Effective Label-free Node Classification in Text-Attributed Graphs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4818,
+            "end_char": 4920
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种分配语义图至多个硬件处理单元处理的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c7bdbd67058",
+      "evidence": [
+        {
+          "quote": "一种分配语义图至多个硬件处理单元处理的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5003,
+            "end_char": 5023
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DropNaE: Alleviating irregularity for large-scale graph representation learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2648f34b0cf1",
+      "evidence": [
+        {
+          "quote": "DropNaE: Alleviating irregularity for large-scale graph representation learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5050,
+            "end_char": 5128
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于异构图神经网络的推理加速器及加速推理方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e632f8c35d6e",
+      "evidence": [
+        {
+          "quote": "一种用于异构图神经网络的推理加速器及加速推理方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5241,
+            "end_char": 5264
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ADE-HGNN: Accelerating HGNNs Through Attention Disparity Exploitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bed4fd579647",
+      "evidence": [
+        {
+          "quote": "ADE-HGNN: Accelerating HGNNs Through Attention Disparity Exploitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5294,
+            "end_char": 5362
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Characterizing and Understanding HGNN Training on GPUs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f47f1e846125",
+      "evidence": [
+        {
+          "quote": "Characterizing and Understanding HGNN Training on GPUs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5443,
+            "end_char": 5496
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GDL-GNN: Applying GPU Dataloading of Large Datasets for Graph Neural Network Inference",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc585ec7bad9",
+      "evidence": [
+        {
+          "quote": "GDL-GNN: Applying GPU Dataloading of Large Datasets for Graph Neural Network Inference",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5557,
+            "end_char": 5642
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2025年北京科技新星计划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1f29d1790dd",
+      "evidence": [
+        {
+          "quote": "2025年北京科技新星计划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5710,
+            "end_char": 5722
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于异构图采样的方法和加速器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2fd771166e43",
+      "evidence": [
+        {
+          "quote": "一种用于异构图采样的方法和加速器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5739,
+            "end_char": 5754
+          },
+          "version": "cbd7159b5ee372b97176"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

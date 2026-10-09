@@ -2,15 +2,20 @@
   "doc_id": "65ff1cf0cef3df8db468",
   "version": "d79b762eeeb70415acf3",
   "source_hash": "ba7e90ffa481b2e0c988b1627cccfb761247116147c86ac3676993311ba0dff4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:11:19.623695+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.426962+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f53450a7be2d",
-          "name": "CTO介入手术机器人",
-          "desc": "冠状动脉慢性完全闭塞介入治疗中导丝操作精准力觉感知",
+          "id": "item-9ceb9213dbe8",
+          "name": "冠状动脉慢性完全闭塞（CTO）介入治疗是一项复杂的介入技术，关键步骤是术者手眼结合凭借手感操作导丝通过闭塞病变，其难度大",
+          "desc": "冠状动脉慢性完全闭塞（CTO）介入治疗是一项复杂的介入技术，关键步骤是术者手眼结合凭借手感操作导丝通过闭塞病变，其难度大、成功率低、耗时长、射线曝光量高。",
           "evidence": [
             {
-              "quote": "针对CTO介入治疗关键步骤中导丝容易刺穿血管壁进入假腔的临床痛点，本项目拟建立手术机器人自主控制的导丝操作模式，通过精确力觉感知反馈控制环路，确保导丝行走在血管真腔",
+              "quote": "冠状动脉慢性完全闭塞（CTO）介入治疗是一项复杂的介入技术，关键步骤是术者手眼结合凭借手感操作导丝通过闭塞病变，其难度大、成功率低、耗时长、射线曝光量高。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2860,
-                "end_char": 2941
+                "start_char": 675,
+                "end_char": 751
+              },
+              "version": "d79b762eeeb70415acf3"
+            }
+          ]
+        },
+        {
+          "id": "item-22c2eddf4039",
+          "name": "该研究针对临床需求，融合现代工程技术解决临床痛点。",
+          "desc": "该研究针对临床需求，融合现代工程技术解决临床痛点。",
+          "evidence": [
+            {
+              "quote": "该研究针对临床需求，融合现代工程技术解决临床痛点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1038,
+                "end_char": 1062
               },
               "version": "d79b762eeeb70415acf3"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7ef3d81c09fe",
-          "name": "导丝刺穿血管壁风险",
-          "desc": "术者凭手感操作导丝通过闭塞病变难度大、成功率低、射线曝光高",
-          "evidence": [
-            {
-              "quote": "关键步骤是术者手眼结合凭借手感操作导丝通过闭塞病变，其难度大、成功率低、耗时长、射线曝光量高",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 705,
-                "end_char": 750
-              },
-              "version": "d79b762eeeb70415acf3"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-6cfbe0333823",
-          "name": "螺旋缠绕式光纤光栅力传感",
-          "desc": "光纤布拉格光栅传感器设计，建立导丝力-曲率-应变模型实现末端触觉反馈",
+          "id": "item-a7ace36b503e",
+          "name": "本项目结合当前介入手术机器人的研究基础，针对开通CTO术式研究导丝操作的精确力觉感知、实时反馈与安全性机制，通过螺旋缠绕",
+          "desc": "本项目结合当前介入手术机器人的研究基础，针对开通CTO术式研究导丝操作的精确力觉感知、实时反馈与安全性机制，通过螺旋缠绕式光纤布拉格光栅传感器的设计，建立导丝相应的力-曲率-应变模型，实现导丝末端精细的触觉反馈。",
           "evidence": [
             {
-              "quote": "通过螺旋缠绕式光纤布拉格光栅传感器的设计，建立导丝相应的力-曲率-应变模型，实现导丝末端精细的触觉反馈",
+              "quote": "本项目结合当前介入手术机器人的研究基础，针对开通CTO术式研究导丝操作的精确力觉感知、实时反馈与安全性机制，通过螺旋缠绕式光纤布拉格光栅传感器的设计，建立导丝相应的力-曲率-应变模型，实现导丝末端精细的触觉反馈。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 806,
-                "end_char": 856
+                "start_char": 752,
+                "end_char": 857
               },
               "version": "d79b762eeeb70415acf3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-86fd37580b62",
-          "name": "多模态影像AI穿刺引导",
-          "desc": "三维近红外与超声波成像、AI算法和多自由度机械结构结合的实时图像引导机器人系统",
+          "id": "item-c6744fbd3ad3",
+          "name": "提出了对姿态进行稳健分割、定位和跟踪的方法，并设计、研发了在实时图像引导下能够自主对准和伺服的机器人样机。",
+          "desc": "提出了对姿态进行稳健分割、定位和跟踪的方法，并设计、研发了在实时图像引导下能够自主对准和伺服的机器人样机。",
           "evidence": [
             {
-              "quote": "通过结合三维近红外和超声波成像、计算机视觉软件，将光学和声学成像技术、AI算法和多自由度机械结构结合，实现基于实时图像引导的介入穿刺小型灵巧机器人系统",
+              "quote": "提出了对姿态进行稳健分割、定位和跟踪的方法，并设计、研发了在实时图像引导下能够自主对准和伺服的机器人样机。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3075,
-                "end_char": 3149
+                "start_char": 3151,
+                "end_char": 3203
               },
               "version": "d79b762eeeb70415acf3"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,952 @@
       "state": "has",
       "items": [
         {
-          "id": "item-12d66c0e37bd",
-          "name": "血管网络数字化坐标",
-          "desc": "创新提出血管网络稳健分割定位跟踪方法，将走向深度转化为数字化坐标实现自动化操作",
+          "id": "item-7d6ae4ff1187",
+          "name": "冠状动脉慢性完全闭塞（CTO）介入治疗是一项复杂的介入技术，关键步骤是术者手眼结合凭借手感操作导丝通过闭塞病变，其难度大",
+          "desc": "冠状动脉慢性完全闭塞（CTO）介入治疗是一项复杂的介入技术，关键步骤是术者手眼结合凭借手感操作导丝通过闭塞病变，其难度大、成功率低、耗时长、射线曝光量高。",
           "evidence": [
             {
-              "quote": "项目研究创新性地提出了对血管网络进行稳健分割、定位和跟踪的方法，将血管的走向和深度转化为精准的数字化“坐标”，通过机器人实时图像引导来实现自动化操作",
+              "quote": "冠状动脉慢性完全闭塞（CTO）介入治疗是一项复杂的介入技术，关键步骤是术者手眼结合凭借手感操作导丝通过闭塞病变，其难度大、成功率低、耗时长、射线曝光量高。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3410,
-                "end_char": 3483
+                "start_char": 675,
+                "end_char": 751
               },
               "version": "d79b762eeeb70415acf3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-ac8002836df3",
-          "name": "准确性与完成时间提升",
-          "desc": "与无辅助和图像引导人工血管介入技术相比准确性和完成时间显著提高",
+          "id": "item-88900710e2ff",
+          "name": "本项目结合了介入医学前沿与工程技术，是一项交叉学科研究课题。",
+          "desc": "本项目结合了介入医学前沿与工程技术，是一项交叉学科研究课题。",
           "evidence": [
             {
-              "quote": "与无辅助和图像引导的人工血管介入技术相比，该装置在准确性和完成时间方面有了显著提高",
+              "quote": "本项目结合了介入医学前沿与工程技术，是一项交叉学科研究课题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3538,
-                "end_char": 3578
+                "start_char": 2830,
+                "end_char": 2859
               },
               "version": "d79b762eeeb70415acf3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f53450a7be2d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7ef3d81c09fe"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "上海市产业青年创新大赛金奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f66d422d8cc",
+      "evidence": [
+        {
+          "quote": "上海市产业青年创新大赛金奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3603,
+            "end_char": 3615
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7ef3d81c09fe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6cfbe0333823"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "智能PCI手术导管的力反馈系统、控制方法及控制终端",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b6791be1fd1",
+      "evidence": [
+        {
+          "quote": "智能PCI手术导管的力反馈系统、控制方法及控制终端",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3649,
+            "end_char": 3673
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7ef3d81c09fe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-86fd37580b62"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "体内导入装置的控制方法、系统和计算机可读存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-abc960d73df9",
+      "evidence": [
+        {
+          "quote": "体内导入装置的控制方法、系统和计算机可读存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3692,
+            "end_char": 3715
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-86fd37580b62"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-12d66c0e37bd"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于超声评估的静脉注射机器人进针角度控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a2070e09ce6",
+      "evidence": [
+        {
+          "quote": "一种基于超声评估的静脉注射机器人进针角度控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3746,
+            "end_char": 3769
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6cfbe0333823"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ac8002836df3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "EEG Functional Connectivity Predicts Individual Behavioural Impairment During Mental Fatigue",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9b2804a7835",
+      "evidence": [
+        {
+          "quote": "EEG Functional Connectivity Predicts Individual Behavioural Impairment During Mental Fatigue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3790,
+            "end_char": 3881
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于双目视觉的近红外血管图像投影校正方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bab5d31178ef",
+      "evidence": [
+        {
+          "quote": "一种基于双目视觉的近红外血管图像投影校正方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3988,
+            "end_char": 4009
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于图像识别和反馈控制的血管穿刺角度获取和穿刺方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc0fcc731327",
+      "evidence": [
+        {
+          "quote": "基于图像识别和反馈控制的血管穿刺角度获取和穿刺方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4039,
+            "end_char": 4063
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度学习的双目近红外肢体静脉图像的三维重建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a8729ea7031",
+      "evidence": [
+        {
+          "quote": "基于深度学习的双目近红外肢体静脉图像的三维重建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4089,
+            "end_char": 4113
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于重组Unet的近红外静脉图像处理方法、装置及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff452a2119f2",
+      "evidence": [
+        {
+          "quote": "基于重组Unet的近红外静脉图像处理方法、装置及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4136,
+            "end_char": 4163
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Criminisi Algorithm Applied to a GelSight Fingertip Sensor for Multi-modality Perception",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f5b787caf2a",
+      "evidence": [
+        {
+          "quote": "Criminisi Algorithm Applied to a GelSight Fingertip Sensor for Multi-modality Perception",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4185,
+            "end_char": 4272
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Automated Vein Segmentation from NIR Images Using a Mixer-UNet Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3b3a6076513a",
+      "evidence": [
+        {
+          "quote": "Automated Vein Segmentation from NIR Images Using a Mixer-UNet Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4341,
+            "end_char": 4408
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种体内导入控制装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3198177aa129",
+      "evidence": [
+        {
+          "quote": "一种体内导入控制装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4470,
+            "end_char": 4479
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自动化止血按压器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-14bd995d769c",
+      "evidence": [
+        {
+          "quote": "一种自动化止血按压器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4511,
+            "end_char": 4520
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于超声图像引导的静脉穿刺机器人操作轨迹规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a8a3b6437f4",
+      "evidence": [
+        {
+          "quote": "基于超声图像引导的静脉穿刺机器人操作轨迹规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4540,
+            "end_char": 4563
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "智能PCI手术导管、其控制系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-427677d4dec9",
+      "evidence": [
+        {
+          "quote": "智能PCI手术导管、其控制系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4582,
+            "end_char": 4601
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种全自动静脉穿刺识别一体机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-982ffae32000",
+      "evidence": [
+        {
+          "quote": "一种全自动静脉穿刺识别一体机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4621,
+            "end_char": 4636
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Validation of Viscosity Induced Chord-wise Undulation on Soft Fin Ray Array Towards a Novel Robotic Manta Ray",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fdf6a3438ce8",
+      "evidence": [
+        {
+          "quote": "The Validation of Viscosity Induced Chord-wise Undulation on Soft Fin Ray Array Towards a Novel Robotic Manta Ray",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4668,
+            "end_char": 4780
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种血管介入手术用精密操作装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-655564aafcea",
+      "evidence": [
+        {
+          "quote": "一种血管介入手术用精密操作装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4847,
+            "end_char": 4861
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "静脉穿刺机器人的图像及视频血管增强与分割方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-443153531983",
+      "evidence": [
+        {
+          "quote": "静脉穿刺机器人的图像及视频血管增强与分割方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4877,
+            "end_char": 4901
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度学习的自动血管穿刺方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df3fa25fd764",
+      "evidence": [
+        {
+          "quote": "一种基于深度学习的自动血管穿刺方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4933,
+            "end_char": 4949
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Powerful 2D Soft Morphing Actuator Propels Giant Manta Ray Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e92748b847d",
+      "evidence": [
+        {
+          "quote": "Powerful 2D Soft Morphing Actuator Propels Giant Manta Ray Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4982,
+            "end_char": 5045
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vessel Site Selection for Autonomous Cannulation Under NIR Image Guidance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ffd84a32dfff",
+      "evidence": [
+        {
+          "quote": "Vessel Site Selection for Autonomous Cannulation Under NIR Image Guidance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5156,
+            "end_char": 5228
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种静脉分叉避让方法及静脉穿刺机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0391c7e2b88",
+      "evidence": [
+        {
+          "quote": "一种静脉分叉避让方法及静脉穿刺机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5290,
+            "end_char": 5307
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种静脉穿刺机器人的针头跟踪与路径显示方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b186dfbec5f",
+      "evidence": [
+        {
+          "quote": "一种静脉穿刺机器人的针头跟踪与路径显示方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5326,
+            "end_char": 5346
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "浅层静脉血管固定装置及固定机构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31fd05439539",
+      "evidence": [
+        {
+          "quote": "浅层静脉血管固定装置及固定机构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5370,
+            "end_char": 5384
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种应用于静脉采血机器人的表皮伤病区域识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e2398b32e548",
+      "evidence": [
+        {
+          "quote": "一种应用于静脉采血机器人的表皮伤病区域识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5404,
+            "end_char": 5426
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于光学相干层析成像的皮下微血管分割与三维重建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5a59b43d49f1",
+      "evidence": [
+        {
+          "quote": "基于光学相干层析成像的皮下微血管分割与三维重建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5446,
+            "end_char": 5470
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "静脉穿刺机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1f6670ab63e0",
+      "evidence": [
+        {
+          "quote": "静脉穿刺机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4549,
+            "end_char": 4555
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于药品涂抹和止血的机器人装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-036edf64472b",
+      "evidence": [
+        {
+          "quote": "一种用于药品涂抹和止血的机器人装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5514,
+            "end_char": 5530
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "上海科技青年35人引领计划获奖者",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-493f89e42d31",
+      "evidence": [
+        {
+          "quote": "上海科技青年35人引领计划获奖者",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5550,
+            "end_char": 5565
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于滤除毛发噪声的近红外静脉图像处理方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7aaa530848b7",
+      "evidence": [
+        {
+          "quote": "一种用于滤除毛发噪声的近红外静脉图像处理方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5581,
+            "end_char": 5602
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semi-supervised Vein Segmentation of Ultrasound Images for Autonomous Venipuncture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a516b151c193",
+      "evidence": [
+        {
+          "quote": "Semi-supervised Vein Segmentation of Ultrasound Images for Autonomous Venipuncture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5630,
+            "end_char": 5711
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于静脉穿刺的静脉压迫装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03015f4ca1bf",
+      "evidence": [
+        {
+          "quote": "一种用于静脉穿刺的静脉压迫装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5830,
+            "end_char": 5844
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于力控的多阶段机器人注射装置和方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bb4861dcc2e8",
+      "evidence": [
+        {
+          "quote": "一种基于力控的多阶段机器人注射装置和方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5864,
+            "end_char": 5883
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于红外与可见光图像融合的血管图像增强方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b115023bdc70",
+      "evidence": [
+        {
+          "quote": "基于红外与可见光图像融合的血管图像增强方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5903,
+            "end_char": 5926
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种静脉穿刺采血机器人的血管影像压缩与降维方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-622ba3692154",
+      "evidence": [
+        {
+          "quote": "一种静脉穿刺采血机器人的血管影像压缩与降维方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5949,
+            "end_char": 5971
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Static Modeling of the Fiber-Reinforced Soft Pneumatic Actuators Including Inner Compression: Bending in Free Space, Block Force, and Deflection upon Block Force",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d581c1d6405",
+      "evidence": [
+        {
+          "quote": "Static Modeling of the Fiber-Reinforced Soft Pneumatic Actuators Including Inner Compression: Bending in Free Space, Block Force, and Deflection upon Block Force",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5993,
+            "end_char": 6153
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于可见光图像的血流成像方法、装置及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cbb03c9eefa9",
+      "evidence": [
+        {
+          "quote": "一种基于可见光图像的血流成像方法、装置及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6227,
+            "end_char": 6250
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modulating break types induces divergent low band EEG processes during post-break improvement: A power spectral analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-952b270279d7",
+      "evidence": [
+        {
+          "quote": "Modulating break types induces divergent low band EEG processes during post-break improvement: A power spectral analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6272,
+            "end_char": 6391
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于超声成像的静脉穿刺机器人扎针速度控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc276af98c79",
+      "evidence": [
+        {
+          "quote": "一种基于超声成像的静脉穿刺机器人扎针速度控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6470,
+            "end_char": 6493
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于静脉注射机器人的姿态识别静脉穿刺方法和装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4bb2b2e95608",
+      "evidence": [
+        {
+          "quote": "一种用于静脉注射机器人的姿态识别静脉穿刺方法和装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6516,
+            "end_char": 6540
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种超声图像血管分叉检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7d5b0536ded",
+      "evidence": [
+        {
+          "quote": "一种超声图像血管分叉检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6559,
+            "end_char": 6572
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一体式扎针消毒机构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85bb233f73e9",
+      "evidence": [
+        {
+          "quote": "一体式扎针消毒机构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6603,
+            "end_char": 6611
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "静脉穿刺机器人控制方法、装置及计算机可读存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c263696c633",
+      "evidence": [
+        {
+          "quote": "静脉穿刺机器人控制方法、装置及计算机可读存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6631,
+            "end_char": 6654
+          },
+          "version": "d79b762eeeb70415acf3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 44,
+    "listed": 44,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 33,
+        "extracted": 33
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

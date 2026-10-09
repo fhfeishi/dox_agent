@@ -2,15 +2,20 @@
   "doc_id": "436e8e34fe0f9f369440",
   "version": "2d4686e69ac4aff55679",
   "source_hash": "01f124caa43ccc7bbc550504d23d19ea94af3ac1747ab16fffdd15770afa05ab",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:10.041120+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.131119+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-30f638e70bc0",
-          "name": "灵巧手触觉感知",
-          "desc": "医学假肢和中高端机器人灵巧手的触觉操控",
+          "id": "item-f68b9ad23c07",
+          "name": "灵巧手，是医学假肢和中高端机器人等产业的核心部件，可实现触觉信息的感知与复杂物体的操控。",
+          "desc": "灵巧手，是医学假肢和中高端机器人等产业的核心部件，可实现触觉信息的感知与复杂物体的操控。",
           "evidence": [
             {
-              "quote": "在诸多核心要素中，触觉感知能力是灵巧手测量所操作物体属性与姿态、检测接触状态的必备能力之一。",
+              "quote": "灵巧手，是医学假肢和中高端机器人等产业的核心部件，可实现触觉信息的感知与复杂物体的操控。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2923,
-                "end_char": 2968
+                "start_char": 647,
+                "end_char": 690
+              },
+              "version": "2d4686e69ac4aff55679"
+            }
+          ]
+        },
+        {
+          "id": "item-8711f8db2939",
+          "name": "作为具体动作的末端执行器，灵巧手能满足工业机器人在自适应抓取、柔性装配、智能包装等方面的多样化需求，同时也可广泛应用于手",
+          "desc": "作为具体动作的末端执行器，灵巧手能满足工业机器人在自适应抓取、柔性装配、智能包装等方面的多样化需求，同时也可广泛应用于手术缝合、果蔬采摘和家居服务等领域。",
+          "evidence": [
+            {
+              "quote": "作为具体动作的末端执行器，灵巧手能满足工业机器人在自适应抓取、柔性装配、智能包装等方面的多样化需求，同时也可广泛应用于手术缝合、果蔬采摘和家居服务等领域。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2846,
+                "end_char": 2922
               },
               "version": "2d4686e69ac4aff55679"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b4799aa9dc96",
-          "name": "感知机理与融合不足",
-          "desc": "缺乏感知机理深入研究与深度仿生设计、信号处理精度待提高",
+          "id": "item-216b77b3bd43",
+          "name": "然而，现有仿生手指在触觉传感设计方面，缺乏接触过程物理机理的引导和系统性设计方法，在触觉信号处理方面，存在信息利用不充分",
+          "desc": "然而，现有仿生手指在触觉传感设计方面，缺乏接触过程物理机理的引导和系统性设计方法，在触觉信号处理方面，存在信息利用不充分和应用场景受限等问题，其敏感度、灵巧性和鲁棒性有待提高。",
           "evidence": [
             {
-              "quote": "然而，目前尚缺乏对灵巧手触觉感知机理的深入研究和深度仿生的设计方法，其信号处理模型的精度也有待提高，极大限制了灵巧手从实验室走向市场应用。",
+              "quote": "然而，现有仿生手指在触觉传感设计方面，缺乏接触过程物理机理的引导和系统性设计方法，在触觉信号处理方面，存在信息利用不充分和应用场景受限等问题，其敏感度、灵巧性和鲁棒性有待提高。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2969,
-                "end_char": 3037
+                "start_char": 728,
+                "end_char": 815
               },
               "version": "2d4686e69ac4aff55679"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f3f021b87ef3",
-          "name": "数值模型导引设计",
-          "desc": "接触动力学模型导引优化设计五敏感元件仿生手指",
+          "id": "item-f7cdedef4d61",
+          "name": "鉴于此，本项目创新性地提出从接触过程的力学分析角度对仿生手指的触觉传感设计与触觉信息融合开展研究：建立接触过程的动力学模",
+          "desc": "鉴于此，本项目创新性地提出从接触过程的力学分析角度对仿生手指的触觉传感设计与触觉信息融合开展研究：建立接触过程的动力学模型，揭示其触觉感知机理，明确敏感单元、皮肤材料、指骨、指纹等元素对感知灵敏度和感知域的影响机制，提出其优化设计方法；",
           "evidence": [
             {
-              "quote": "提出了数值模型导引的优化设计方法；基于此方法设计出含有五个敏感元件的触觉仿生手指及触觉夹爪，在8种表面的智能识别中获得了93.64%的识别准确率",
+              "quote": "鉴于此，本项目创新性地提出从接触过程的力学分析角度对仿生手指的触觉传感设计与触觉信息融合开展研究：建立接触过程的动力学模型，揭示其触觉感知机理，明确敏感单元、皮肤材料、指骨、指纹等元素对感知灵敏度和感知域的影响机制，提出其优化设计方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3138,
-                "end_char": 3209
+                "start_char": 816,
+                "end_char": 933
               },
               "version": "2d4686e69ac4aff55679"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3bcbd4a0c819",
-          "name": "接触状态自动分割",
-          "desc": "特征工程与迁移学习深度神经网络感知模型",
+          "id": "item-759c1a17084e",
+          "name": ".  鉴于此，本项目开展了触觉仿生手指的力学感知机理及数据融合算法研究：针对手指与物体表面的接触过程建立了动力学模型，分",
+          "desc": ".  鉴于此，本项目开展了触觉仿生手指的力学感知机理及数据融合算法研究：针对手指与物体表面的接触过程建立了动力学模型，分析了仿生手指与不同表面接触过程中的内部应力应变随时间与空间的分布规律及变化趋势，提出了数值模型导引的优化设计方法；",
           "evidence": [
             {
-              "quote": "据此提出了不同接触状态自动分割的预处理算法，并分别提出了基于特征工程与迁移学习深度神经网络的感知模型，并通过机器人操作实验进行了验证，对12种材料和6种形状的触觉识别中达到了92.38%和99.72%的准确率。",
+              "quote": ".  鉴于此，本项目开展了触觉仿生手指的力学感知机理及数据融合算法研究：针对手指与物体表面的接触过程建立了动力学模型，分析了仿生手指与不同表面接触过程中的内部应力应变随时间与空间的分布规律及变化趋势，提出了数值模型导引的优化设计方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3247,
-                "end_char": 3351
+                "start_char": 3038,
+                "end_char": 3154
               },
               "version": "2d4686e69ac4aff55679"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,344 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b43c9d138772",
-          "name": "触觉对齐自动装配",
-          "desc": "两指夹爪实现U盘及电子插口姿态对齐与自动化装配",
+          "id": "item-0562304c63e5",
+          "name": "灵巧手，是医学假肢和中高端机器人等产业的核心部件，可实现触觉信息的感知与复杂物体的操控。",
+          "desc": "灵巧手，是医学假肢和中高端机器人等产业的核心部件，可实现触觉信息的感知与复杂物体的操控。",
           "evidence": [
             {
-              "quote": "基于该触觉手指开发的两指夹爪可以在实现不同物体抓取的同时，通过触觉感知实现U盘及不同电子插口的姿态对齐与自动化装配。",
+              "quote": "灵巧手，是医学假肢和中高端机器人等产业的核心部件，可实现触觉信息的感知与复杂物体的操控。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3460,
-                "end_char": 3517
+                "start_char": 647,
+                "end_char": 690
               },
               "version": "2d4686e69ac4aff55679"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-b71d2277bd9d",
+          "name": "作为具体动作的末端执行器，灵巧手能满足工业机器人在自适应抓取、柔性装配、智能包装等方面的多样化需求，同时也可广泛应用于手",
+          "desc": "作为具体动作的末端执行器，灵巧手能满足工业机器人在自适应抓取、柔性装配、智能包装等方面的多样化需求，同时也可广泛应用于手术缝合、果蔬采摘和家居服务等领域。",
+          "evidence": [
+            {
+              "quote": "作为具体动作的末端执行器，灵巧手能满足工业机器人在自适应抓取、柔性装配、智能包装等方面的多样化需求，同时也可广泛应用于手术缝合、果蔬采摘和家居服务等领域。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2846,
+                "end_char": 2922
+              },
+              "version": "2d4686e69ac4aff55679"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-30f638e70bc0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b4799aa9dc96"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于插拔操作的触觉仿人手指及机械手",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d8accca4519",
+      "evidence": [
+        {
+          "quote": "一种用于插拔操作的触觉仿人手指及机械手",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3651,
+            "end_char": 3669
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b4799aa9dc96"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f3f021b87ef3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Numerical simulation-assisted design of a soft-rigid-hybrid tactile finger for surface recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-796baeab8093",
+      "evidence": [
+        {
+          "quote": "Numerical simulation-assisted design of a soft-rigid-hybrid tactile finger for surface recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3691,
+            "end_char": 3788
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b4799aa9dc96"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3bcbd4a0c819"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Surface Recognition With a Tactile Finger Based on Automatic Features Transferred From Deep Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a76c3c11826",
+      "evidence": [
+        {
+          "quote": "Surface Recognition With a Tactile Finger Based on Automatic Features Transferred From Deep Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3837,
+            "end_char": 3936
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f3f021b87ef3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b43c9d138772"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Perception of Static and Dynamic Forces with a Bio-inspired Tactile Fingertip",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dac023bacb63",
+      "evidence": [
+        {
+          "quote": "Perception of Static and Dynamic Forces with a Bio-inspired Tactile Fingertip",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4022,
+            "end_char": 4098
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3bcbd4a0c819"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b43c9d138772"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of a flexible data glove for gesture recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0054eece0a0e",
+      "evidence": [
+        {
+          "quote": "Design of a flexible data glove for gesture recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4160,
+            "end_char": 4214
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Electrical Connector Assembly Based on Compliant Tactile Finger with Fingernail",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-976475668d7e",
+      "evidence": [
+        {
+          "quote": "Electrical Connector Assembly Based on Compliant Tactile Finger with Fingernail",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4277,
+            "end_char": 4355
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于人工肌肉的线驱动柔性触觉仿生手指",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c80b9239a88",
+      "evidence": [
+        {
+          "quote": "一种基于人工肌肉的线驱动柔性触觉仿生手指",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4419,
+            "end_char": 4438
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tactile Exploration-Enabled Shape Recognition With Multiperspective Feature Representation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8fc3ac3575b0",
+      "evidence": [
+        {
+          "quote": "Tactile Exploration-Enabled Shape Recognition With Multiperspective Feature Representation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4464,
+            "end_char": 4553
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种带有指纹微结构的触觉指尖及触觉信息感知方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a876b7c18791",
+      "evidence": [
+        {
+          "quote": "一种带有指纹微结构的触觉指尖及触觉信息感知方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4629,
+            "end_char": 4651
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Recent progress and challenges of key technologies in robotic assembly",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f8d5b333b431",
+      "evidence": [
+        {
+          "quote": "Recent progress and challenges of key technologies in robotic assembly",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4693,
+            "end_char": 4762
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于触觉反馈的装配元件插孔位姿检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4b4325849bf",
+      "evidence": [
+        {
+          "quote": "一种基于触觉反馈的装配元件插孔位姿检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4787,
+            "end_char": 4807
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于传感器阵列的触觉感知手套",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0b3513559ebb",
+      "evidence": [
+        {
+          "quote": "一种基于传感器阵列的触觉感知手套",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4847,
+            "end_char": 4862
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Surface Recognition With a Bioinspired Tactile Fingertip",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-188bc4d2b73b",
+      "evidence": [
+        {
+          "quote": "Surface Recognition With a Bioinspired Tactile Fingertip",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4889,
+            "end_char": 4944
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and Simulation of Dynamics in Soft Robotics: a Review of Numerical Approaches",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d657501e1fd4",
+      "evidence": [
+        {
+          "quote": "Modeling and Simulation of Dynamics in Soft Robotics: a Review of Numerical Approaches",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4994,
+            "end_char": 5079
+          },
+          "version": "2d4686e69ac4aff55679"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      }
+    },
+    "consistent": true
+  }
 }

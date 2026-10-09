@@ -2,15 +2,20 @@
   "doc_id": "4a21a82996c2fe84d80b",
   "version": "1af77134ab2de7e42890",
   "source_hash": "8e33550e47599eef02a4142c0876594f319829bc827ee4da16e6c83183294de8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:52:48.879179+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.173514+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,31 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-47cf536ab178",
-          "name": "ROV-机械手水环境监测作业",
-          "desc": "带缆遥控水下机器人-机械手系统水下自主作业",
-          "evidence": [
-            {
-              "quote": "项目组以水环境监测为ROVMS作业任务，分析系统自主作业能力不高、非线性强、外界干扰大等运动控制问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2319,
-                "end_char": 2368
-              },
-              "version": "1af77134ab2de7e42890"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-810b3a0cc9a1",
-          "name": "控制策略繁杂与切换抖动",
-          "desc": "运动控制策略构建繁杂、载体与机械手相互干扰、切换瞬间抖动",
+          "id": "item-cbb4595f6037",
+          "name": "本项目拟解决带缆遥控水下机器人-机械手系统(ROVMS)运动控制策略构建繁杂、ROV载体与水下机械手相互干扰、不同运动控",
+          "desc": "本项目拟解决带缆遥控水下机器人-机械手系统(ROVMS)运动控制策略构建繁杂、ROV载体与水下机械手相互干扰、不同运动控制器切换瞬间抖动等运动控制问题，以提高系统水下自主作业的效率。",
           "evidence": [
             {
               "quote": "本项目拟解决带缆遥控水下机器人-机械手系统(ROVMS)运动控制策略构建繁杂、ROV载体与水下机械手相互干扰、不同运动控制器切换瞬间抖动等运动控制问题，以提高系统水下自主作业的效率。",
@@ -59,72 +42,47 @@
       ]
     },
     {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-c9b3e555b714",
-          "name": "非完全同态多模型控制库",
-          "desc": "自辨识PID、自适应S面等组成控制库",
+          "id": "item-9c33225dfc4d",
+          "name": "综合多种控制策略的控制优势，构建非完全同态多模型控制法，提高载体与机械手的抗干扰能力，解决两子系统相互干扰问题；",
+          "desc": "综合多种控制策略的控制优势，构建非完全同态多模型控制法，提高载体与机械手的抗干扰能力，解决两子系统相互干扰问题；",
           "evidence": [
             {
-              "quote": "构建了自辨识PID控制法、自适应S面控制法等组成的ROVMS控制库",
+              "quote": "综合多种控制策略的控制优势，构建非完全同态多模型控制法，提高载体与机械手的抗干扰能力，解决两子系统相互干扰问题；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2464,
-                "end_char": 2496
+                "start_char": 859,
+                "end_char": 914
               },
               "version": "1af77134ab2de7e42890"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f9adb8ff117d",
-          "name": "超螺旋非奇异快速终端滑模",
-          "desc": "旋量理论基础上简化模型并提高机械臂路径跟踪速度",
+          "id": "item-399591c13b91",
+          "name": "项目组以水环境监测为ROVMS作业任务，分析系统自主作业能力不高、非线性强、外界干扰大等运动控制问题，对ROVMS控制策",
+          "desc": "项目组以水环境监测为ROVMS作业任务，分析系统自主作业能力不高、非线性强、外界干扰大等运动控制问题，对ROVMS控制策略、机械手位姿控制策略、路径规划、路径跟踪与避障、水下障碍物图像处理、水下采样装置等进行研究：①针对ROVMS位姿传感器精度不高、外界干扰力导致系统运动控制精度不高问题，构建了自辨识PID控制法、自适应S面控制法等组成的ROVMS控制库，通过水池试验、赣江试验等验证了控制库具备良好的控制品质、自主作业能力；",
           "evidence": [
             {
-              "quote": "采用超螺旋的非奇异快速终端滑模控制算法，仿真结果表明机械臂路径跟踪速度得到提高",
+              "quote": "项目组以水环境监测为ROVMS作业任务，分析系统自主作业能力不高、非线性强、外界干扰大等运动控制问题，对ROVMS控制策略、机械手位姿控制策略、路径规划、路径跟踪与避障、水下障碍物图像处理、水下采样装置等进行研究：①针对ROVMS位姿传感器精度不高、外界干扰力导致系统运动控制精度不高问题，构建了自辨识PID控制法、自适应S面控制法等组成的ROVMS控制库，通过水池试验、赣江试验等验证了控制库具备良好的控制品质、自主作业能力；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2570,
-                "end_char": 2608
+                "start_char": 2319,
+                "end_char": 2532
               },
               "version": "1af77134ab2de7e42890"
             }
-          ]
-        },
-        {
-          "id": "item-373fced6af27",
-          "name": "水下图像增强与目标检测",
-          "desc": "DU2Net水下图像增强与改进WSDA-YOLOv8小目标检测",
-          "evidence": [
-            {
-              "quote": "提出颜色空间优化的轻量级U形网络（DU2Net）的水下图像增强法，提高系统目标检测精确率",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2641,
-                "end_char": 2684
-              },
-              "version": "1af77134ab2de7e42890"
-            }
-          ]
-        },
-        {
-          "id": "item-d728dafd00b8",
-          "name": "强化学习路径规划与避障",
-          "desc": "改进型Dueling DQN与SRPPO实现路径规划与动态避障",
-          "evidence": [
-            {
-              "quote": "提出了一种SRPPO算法实现了实时跟踪与动态避障的同时进行",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2864,
-                "end_char": 2892
-              },
-              "version": "1af77134ab2de7e42890"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,147 +91,268 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b870fa4335d4",
-          "name": "控制库试验验证",
-          "desc": "水池试验、赣江试验验证控制库良好控制品质与自主作业能力",
+          "id": "item-16e056964fd5",
+          "name": "本项目拟解决带缆遥控水下机器人-机械手系统(ROVMS)运动控制策略构建繁杂、ROV载体与水下机械手相互干扰、不同运动控",
+          "desc": "本项目拟解决带缆遥控水下机器人-机械手系统(ROVMS)运动控制策略构建繁杂、ROV载体与水下机械手相互干扰、不同运动控制器切换瞬间抖动等运动控制问题，以提高系统水下自主作业的效率。",
           "evidence": [
             {
-              "quote": "通过水池试验、赣江试验等验证了控制库具备良好的控制品质、自主作业能力",
+              "quote": "本项目拟解决带缆遥控水下机器人-机械手系统(ROVMS)运动控制策略构建繁杂、ROV载体与水下机械手相互干扰、不同运动控制器切换瞬间抖动等运动控制问题，以提高系统水下自主作业的效率。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2498,
-                "end_char": 2531
+                "start_char": 683,
+                "end_char": 773
               },
               "version": "1af77134ab2de7e42890"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-a810c97c7bd5",
-          "name": "自主采样装置",
-          "desc": "采样瓶与采样筐组成的多点自主采样装置",
+          "id": "item-5eccae934f0a",
+          "name": "项目组以水环境监测为ROVMS作业任务，分析系统自主作业能力不高、非线性强、外界干扰大等运动控制问题，对ROVMS控制策",
+          "desc": "项目组以水环境监测为ROVMS作业任务，分析系统自主作业能力不高、非线性强、外界干扰大等运动控制问题，对ROVMS控制策略、机械手位姿控制策略、路径规划、路径跟踪与避障、水下障碍物图像处理、水下采样装置等进行研究：①针对ROVMS位姿传感器精度不高、外界干扰力导致系统运动控制精度不高问题，构建了自辨识PID控制法、自适应S面控制法等组成的ROVMS控制库，通过水池试验、赣江试验等验证了控制库具备良好的控制品质、自主作业能力；",
           "evidence": [
             {
-              "quote": "针对ROV载体框架结构特点构建了自主采样装置，其由采样瓶与采样筐组成",
+              "quote": "项目组以水环境监测为ROVMS作业任务，分析系统自主作业能力不高、非线性强、外界干扰大等运动控制问题，对ROVMS控制策略、机械手位姿控制策略、路径规划、路径跟踪与避障、水下障碍物图像处理、水下采样装置等进行研究：①针对ROVMS位姿传感器精度不高、外界干扰力导致系统运动控制精度不高问题，构建了自辨识PID控制法、自适应S面控制法等组成的ROVMS控制库，通过水池试验、赣江试验等验证了控制库具备良好的控制品质、自主作业能力；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2895,
-                "end_char": 2928
+                "start_char": 2319,
+                "end_char": 2532
               },
               "version": "1af77134ab2de7e42890"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-6c022ff75d23",
-          "name": "仿真系统与样机",
-          "desc": "ROVMS虚拟现实仿真系统与小型水环境监测机器人系统完成水池调试",
-          "evidence": [
-            {
-              "quote": "构建了一套ROVMS虚拟现实仿真瓶体，研发了一套小型水环境监测机器人系统，已完成水池试验调试。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2989,
-                "end_char": 3035
-              },
-              "version": "1af77134ab2de7e42890"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-47cf536ab178"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-810b3a0cc9a1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ROV水下障碍物检测和避障技术的应用综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed6cd99538ba",
+      "evidence": [
+        {
+          "quote": "ROV水下障碍物检测和避障技术的应用综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3061,
+            "end_char": 3080
+          },
+          "version": "1af77134ab2de7e42890"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-810b3a0cc9a1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c9b3e555b714"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水下采样装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae159b47851d",
+      "evidence": [
+        {
+          "quote": "一种水下采样装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3104,
+            "end_char": 3111
+          },
+          "version": "1af77134ab2de7e42890"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-810b3a0cc9a1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f9adb8ff117d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种遥操控水下机器人系统的自主作业PID位姿控制模式的控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4221bf7cc35c",
+      "evidence": [
+        {
+          "quote": "一种遥操控水下机器人系统的自主作业PID位姿控制模式的控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3131,
+            "end_char": 3161
+          },
+          "version": "1af77134ab2de7e42890"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-810b3a0cc9a1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-373fced6af27"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机械臂的定位与控制系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b10e9385511",
+      "evidence": [
+        {
+          "quote": "一种机械臂的定位与控制系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3188,
+            "end_char": 3200
+          },
+          "version": "1af77134ab2de7e42890"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-810b3a0cc9a1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d728dafd00b8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AUV模块化对于操纵性的影响分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e656e70584d",
+      "evidence": [
+        {
+          "quote": "AUV模块化对于操纵性的影响分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3222,
+            "end_char": 3237
+          },
+          "version": "1af77134ab2de7e42890"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c9b3e555b714"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b870fa4335d4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "New delay dependent H  state estimator for static neural networks with bounded",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c471793cb418",
+      "evidence": [
+        {
+          "quote": "New delay dependent H  state estimator for static neural networks with bounded",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3274,
+            "end_char": 3351
+          },
+          "version": "1af77134ab2de7e42890"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d728dafd00b8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a810c97c7bd5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on One Virtual Environment Construction of Remote Operated Vehicle Semi-physical Simulation Platform",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5ed1ee7619e",
+      "evidence": [
+        {
+          "quote": "Research on One Virtual Environment Construction of Remote Operated Vehicle Semi-physical Simulation Platform",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3425,
+            "end_char": 3533
+          },
+          "version": "1af77134ab2de7e42890"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c9b3e555b714"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6c022ff75d23"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Self‐learning tuning of coaxial cavity filter by using the poles and residues of admittance function",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06332fdbf809",
+      "evidence": [
+        {
+          "quote": "Self‐learning tuning of coaxial cavity filter by using the poles and residues of admittance function",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3581,
+            "end_char": 3680
+          },
+          "version": "1af77134ab2de7e42890"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于自适应S面算法的小型ROV艏向和深度运动控制研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bca74a118910",
+      "evidence": [
+        {
+          "quote": "基于自适应S面算法的小型ROV艏向和深度运动控制研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3744,
+            "end_char": 3769
+          },
+          "version": "1af77134ab2de7e42890"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于PID控制器的遥操作水下机器人航向运动研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1057d14fa11c",
+      "evidence": [
+        {
+          "quote": "基于PID控制器的遥操作水下机器人航向运动研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3792,
+            "end_char": 3814
+          },
+          "version": "1af77134ab2de7e42890"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

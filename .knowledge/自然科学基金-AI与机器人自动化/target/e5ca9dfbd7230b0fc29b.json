@@ -2,15 +2,20 @@
   "doc_id": "e5ca9dfbd7230b0fc29b",
   "version": "d8717693df1aa91f984f",
   "source_hash": "e6825840ea602e4c6158cc837c7ca3b40dac0410acee1cdb73cc5a7b66cf59ee",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:48.922681+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.734329+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e25246b647d2",
-          "name": "自动驾驶视野遮挡危险场景",
-          "desc": "视野遮挡潜在危险场景的自动驾驶认知决策",
+          "id": "item-8b270f4abbae",
+          "name": "当前自动驾驶系统不能像人类驾驶员一样处理因视觉传感器视野遮挡造成的潜在危险场景，并且现有研究方法主要集中在以数据为驱动的",
+          "desc": "当前自动驾驶系统不能像人类驾驶员一样处理因视觉传感器视野遮挡造成的潜在危险场景，并且现有研究方法主要集中在以数据为驱动的深度学习技术，存在举一反三能力差、泛化性不足的问题。",
           "evidence": [
             {
-              "quote": "本项目面向自动驾驶在视野遮挡潜在危险场景下“可见信息不完整、语义线索分散、风险难评估与经验难沉淀”的安全瓶颈，按“感知表征—语义推理—决策执行—记忆更新”认知链条，构建面向潜在危险场景的广义认知机制。",
+              "quote": "当前自动驾驶系统不能像人类驾驶员一样处理因视觉传感器视野遮挡造成的潜在危险场景，并且现有研究方法主要集中在以数据为驱动的深度学习技术，存在举一反三能力差、泛化性不足的问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2878,
-                "end_char": 2977
+                "start_char": 666,
+                "end_char": 751
+              },
+              "version": "d8717693df1aa91f984f"
+            }
+          ]
+        },
+        {
+          "id": "item-f3168c343e46",
+          "name": "部分技术成果已应用于智慧环卫平台建设并完成多地部署验证，表明所提出的“文本化感知—知识推理—决策与记忆更新”链路具备可复",
+          "desc": "部分技术成果已应用于智慧环卫平台建设并完成多地部署验证，表明所提出的“文本化感知—知识推理—决策与记忆更新”链路具备可复现性与应用潜力，为遮挡风险场景的可解释评估与安全决策提供了方法学基础。",
+          "evidence": [
+            {
+              "quote": "部分技术成果已应用于智慧环卫平台建设并完成多地部署验证，表明所提出的“文本化感知—知识推理—决策与记忆更新”链路具备可复现性与应用潜力，为遮挡风险场景的可解释评估与安全决策提供了方法学基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3411,
+                "end_char": 3505
               },
               "version": "d8717693df1aa91f984f"
             }
@@ -41,15 +62,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c4e67235ddc4",
-          "name": "数据驱动泛化能力不足",
-          "desc": "现有深度学习方法举一反三能力差、泛化性不足",
+          "id": "item-4b87230c9b6f",
+          "name": "当前自动驾驶系统不能像人类驾驶员一样处理因视觉传感器视野遮挡造成的潜在危险场景，并且现有研究方法主要集中在以数据为驱动的",
+          "desc": "当前自动驾驶系统不能像人类驾驶员一样处理因视觉传感器视野遮挡造成的潜在危险场景，并且现有研究方法主要集中在以数据为驱动的深度学习技术，存在举一反三能力差、泛化性不足的问题。",
           "evidence": [
             {
-              "quote": "并且现有研究方法主要集中在以数据为驱动的深度学习技术，存在举一反三能力差、泛化性不足的问题。",
+              "quote": "当前自动驾驶系统不能像人类驾驶员一样处理因视觉传感器视野遮挡造成的潜在危险场景，并且现有研究方法主要集中在以数据为驱动的深度学习技术，存在举一反三能力差、泛化性不足的问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 706,
+                "start_char": 666,
                 "end_char": 751
               },
               "version": "d8717693df1aa91f984f"
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dc7a0b43593b",
-          "name": "场景文本化感知",
-          "desc": "细粒度属性文本描述网络与多维信息融合描述模型",
+          "id": "item-479a9b6d35ad",
+          "name": "针对上述问题，拟融合深度学习和知识图谱理论，研究面向视野遮挡潜在危险场景的自动驾驶车辆感知、推理、决策和记忆方法，构建自",
+          "desc": "针对上述问题，拟融合深度学习和知识图谱理论，研究面向视野遮挡潜在危险场景的自动驾驶车辆感知、推理、决策和记忆方法，构建自动驾驶系统的类人化广义认知机制。",
           "evidence": [
             {
-              "quote": "提出场景元素细粒度属性文本描述网络与多维信息融合描述模型，覆盖参与者属性/状态、时空关系及宏观位置与时间等信息，形成统一的结构化文本输入",
+              "quote": "针对上述问题，拟融合深度学习和知识图谱理论，研究面向视野遮挡潜在危险场景的自动驾驶车辆感知、推理、决策和记忆方法，构建自动驾驶系统的类人化广义认知机制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2996,
-                "end_char": 3063
+                "start_char": 752,
+                "end_char": 827
               },
               "version": "d8717693df1aa91f984f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f6b7450b9697",
-          "name": "知识图谱宏观推理",
-          "desc": "本体构建、实体关系抽取与多线程混合推理",
+          "id": "item-75ac327fea27",
+          "name": "基于深度学习、知识图谱、元学习、计算机视觉等理论，分别建立视野遮挡场景文本描述方法、潜在危险场景知识图谱构建与场景宏观类",
+          "desc": "基于深度学习、知识图谱、元学习、计算机视觉等理论，分别建立视野遮挡场景文本描述方法、潜在危险场景知识图谱构建与场景宏观类型推理方法、驾驶行为决策与知识动态更新方法，提出一种以数据驱动和知识驱动相结合、面向视野遮挡潜在危险场景的自动驾驶系统广义认知机制，为自动驾驶汽车在潜在危险场景下的安全高效运行提供决策依据。",
           "evidence": [
             {
-              "quote": "完成本体/Schema、实体—关系抽取入库与小样本知识补全/更新机制，并构建多线程混合推理与场景语义相似度求解方法",
+              "quote": "基于深度学习、知识图谱、元学习、计算机视觉等理论，分别建立视野遮挡场景文本描述方法、潜在危险场景知识图谱构建与场景宏观类型推理方法、驾驶行为决策与知识动态更新方法，提出一种以数据驱动和知识驱动相结合、面向视野遮挡潜在危险场景的自动驾驶系统广义认知机制，为自动驾驶汽车在潜在危险场景下的安全高效运行提供决策依据。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3078,
-                "end_char": 3134
+                "start_char": 828,
+                "end_char": 982
               },
               "version": "d8717693df1aa91f984f"
             }
-          ]
-        },
-        {
-          "id": "item-5f4b37d481ca",
-          "name": "类型类比迁移决策与记忆",
-          "desc": "类型类比迁移决策与闭环反馈记忆机制",
-          "evidence": [
-            {
-              "quote": "提出“类型类比迁移决策+闭环反馈记忆”机制，构建常规型/保守型决策网络与动态更新模型，实现“决策—反馈—修正—固化”的持续积累。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3174,
-                "end_char": 3237
-              },
-              "version": "d8717693df1aa91f984f"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +124,224 @@
       "state": "has",
       "items": [
         {
-          "id": "item-366880c82494",
-          "name": "增量检测mAP提升",
-          "desc": "DA-FSIL的mAP@50达50.72%，较微调提升7.91%",
+          "id": "item-2196fce73c5e",
+          "name": "当前自动驾驶系统不能像人类驾驶员一样处理因视觉传感器视野遮挡造成的潜在危险场景，并且现有研究方法主要集中在以数据为驱动的",
+          "desc": "当前自动驾驶系统不能像人类驾驶员一样处理因视觉传感器视野遮挡造成的潜在危险场景，并且现有研究方法主要集中在以数据为驱动的深度学习技术，存在举一反三能力差、泛化性不足的问题。",
           "evidence": [
             {
-              "quote": "在BDD100K小样本增量检测实验中，DA-FSIL的mAP@50达50.72%，较微调提升7.91%",
+              "quote": "当前自动驾驶系统不能像人类驾驶员一样处理因视觉传感器视野遮挡造成的潜在危险场景，并且现有研究方法主要集中在以数据为驱动的深度学习技术，存在举一反三能力差、泛化性不足的问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3246,
-                "end_char": 3296
+                "start_char": 666,
+                "end_char": 751
               },
               "version": "d8717693df1aa91f984f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-c4e519071cdb",
-          "name": "论文6篇与专利",
-          "desc": "SCI 5篇、EI 1篇，发明专利2项授权5项，应用智慧环卫平台",
+          "id": "item-0c618ecacb25",
+          "name": "本项目面向自动驾驶在视野遮挡潜在危险场景下“可见信息不完整、语义线索分散、风险难评估与经验难沉淀”的安全瓶颈，按“感知表",
+          "desc": "本项目面向自动驾驶在视野遮挡潜在危险场景下“可见信息不完整、语义线索分散、风险难评估与经验难沉淀”的安全瓶颈，按“感知表征—语义推理—决策执行—记忆更新”认知链条，构建面向潜在危险场景的广义认知机制。",
           "evidence": [
             {
-              "quote": "项目执行期内发表论文6篇（SCI 5篇、EI 1篇），申请国家发明专利2项并授权发明专利5项，培养硕博研究生8名。",
+              "quote": "本项目面向自动驾驶在视野遮挡潜在危险场景下“可见信息不完整、语义线索分散、风险难评估与经验难沉淀”的安全瓶颈，按“感知表征—语义推理—决策执行—记忆更新”认知链条，构建面向潜在危险场景的广义认知机制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3354,
-                "end_char": 3410
+                "start_char": 2878,
+                "end_char": 2977
               },
               "version": "d8717693df1aa91f984f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e25246b647d2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c4e67235ddc4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhancing intention prediction and interpretability in service robots with LLM and KG",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75fbee6cc634",
+      "evidence": [
+        {
+          "quote": "Enhancing intention prediction and interpretability in service robots with LLM and KG",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3530,
+            "end_char": 3614
+          },
+          "version": "d8717693df1aa91f984f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c4e67235ddc4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dc7a0b43593b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pedestrian Trajectory Prediction and Pose Estimation Considering Behavioral Characteristic Relationships and Noise Inhibition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a3128ad453c",
+      "evidence": [
+        {
+          "quote": "Pedestrian Trajectory Prediction and Pose Estimation Considering Behavioral Characteristic Relationships and Noise Inhibition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3678,
+            "end_char": 3802
+          },
+          "version": "d8717693df1aa91f984f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c4e67235ddc4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f6b7450b9697"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于视野遮挡的自动驾驶行为决策方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16655e610d90",
+      "evidence": [
+        {
+          "quote": "用于视野遮挡的自动驾驶行为决策方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3858,
+            "end_char": 3874
+          },
+          "version": "d8717693df1aa91f984f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c4e67235ddc4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5f4b37d481ca"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "自动驾驶汽车视野遮挡场景潜在风险评估",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5bb409a5fe39",
+      "evidence": [
+        {
+          "quote": "自动驾驶汽车视野遮挡场景潜在风险评估",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3907,
+            "end_char": 3924
+          },
+          "version": "d8717693df1aa91f984f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5f4b37d481ca"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-366880c82494"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pedestrian intention estimation and trajectory prediction based on data and knowledge‐driven method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f4b4a5b42f88",
+      "evidence": [
+        {
+          "quote": "Pedestrian intention estimation and trajectory prediction based on data and knowledge‐driven method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3958,
+            "end_char": 4056
+          },
+          "version": "d8717693df1aa91f984f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f6b7450b9697"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c4e519071cdb"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于类人化广义感知机制的目标误识别纠正方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-46840b60f719",
+      "evidence": [
+        {
+          "quote": "基于类人化广义感知机制的目标误识别纠正方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4117,
+            "end_char": 4137
+          },
+          "version": "d8717693df1aa91f984f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "考虑长尾型场景的驾驶行为决策与知识动态更新方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a99aa7cf964",
+      "evidence": [
+        {
+          "quote": "考虑长尾型场景的驾驶行为决策与知识动态更新方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4168,
+            "end_char": 4190
+          },
+          "version": "d8717693df1aa91f984f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Like Assessment Method for Potential Risks in View Occlusion Scenarios Driven by Data and Knowledge",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f32a9d87221",
+      "evidence": [
+        {
+          "quote": "Human-Like Assessment Method for Potential Risks in View Occlusion Scenarios Driven by Data and Knowledge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4223,
+            "end_char": 4327
+          },
+          "version": "d8717693df1aa91f984f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

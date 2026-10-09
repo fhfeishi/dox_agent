@@ -2,15 +2,20 @@
   "doc_id": "7110fbe8ee755db2fc14",
   "version": "91faf937201ae0192de1",
   "source_hash": "ca85c8574bfa40976ab266670f58312eb14f98df92d81911567bdbd360f8d4b2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:18.228185+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.527345+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-86e5e76c7804",
-          "name": "电子鼻气体安全检测",
-          "desc": "复杂工业环境危险气体检测与工业安全监测",
+          "id": "item-31a0282cee16",
+          "name": "本项目围绕仿生嗅觉感知系统，以深度学习为理论基础，旨在解决复杂工业环境中危险气体/气味安全性检测问题。",
+          "desc": "本项目围绕仿生嗅觉感知系统，以深度学习为理论基础，旨在解决复杂工业环境中危险气体/气味安全性检测问题。",
+          "evidence": [
+            {
+              "quote": "本项目围绕仿生嗅觉感知系统，以深度学习为理论基础，旨在解决复杂工业环境中危险气体/气味安全性检测问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 650,
+                "end_char": 700
+              },
+              "version": "91faf937201ae0192de1"
+            }
+          ]
+        },
+        {
+          "id": "item-4f1a9bfc2396",
+          "name": "本研究为电子鼻系统在工业安全监测、医疗与健康检测及复杂气体感知等实际场景中的实时应用与长期稳定运行奠定了可行的技术基础。",
+          "desc": "本研究为电子鼻系统在工业安全监测、医疗与健康检测及复杂气体感知等实际场景中的实时应用与长期稳定运行奠定了可行的技术基础。",
           "evidence": [
             {
               "quote": "本研究为电子鼻系统在工业安全监测、医疗与健康检测及复杂气体感知等实际场景中的实时应用与长期稳定运行奠定了可行的技术基础。",
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8b270f523fb6",
-          "name": "动态信号难利用漂移退化",
-          "desc": "依赖稳态特征、实时性鲁棒性不足、传感器漂移致性能退化",
+          "id": "item-f268fa7a868d",
+          "name": "针对传统方法主要依赖稳态特征、难以充分挖掘传感器动态响应信号、实时性与鲁棒性不足的局限，系统开展了基于原始动态响应信号的",
+          "desc": "针对传统方法主要依赖稳态特征、难以充分挖掘传感器动态响应信号、实时性与鲁棒性不足的局限，系统开展了基于原始动态响应信号的建模与智能分析方法研究。",
           "evidence": [
             {
               "quote": "针对传统方法主要依赖稳态特征、难以充分挖掘传感器动态响应信号、实时性与鲁棒性不足的局限，系统开展了基于原始动态响应信号的建模与智能分析方法研究。",
@@ -51,6 +72,22 @@
                 "basis": "parsed_text",
                 "start_char": 2980,
                 "end_char": 3051
+              },
+              "version": "91faf937201ae0192de1"
+            }
+          ]
+        },
+        {
+          "id": "item-c2d205279ddf",
+          "name": "针对电子鼻系统长期运行过程中普遍存在的传感器漂移问题，突破现有方法主要依赖单一源域校正模型的局限，将气体识别建模为多源到",
+          "desc": "针对电子鼻系统长期运行过程中普遍存在的传感器漂移问题，突破现有方法主要依赖单一源域校正模型的局限，将气体识别建模为多源到目标的跨域学习任务，提出了一种无监督注意力驱动的多源域自适应漂移补偿方法（AMDS-PFFA）。",
+          "evidence": [
+            {
+              "quote": "针对电子鼻系统长期运行过程中普遍存在的传感器漂移问题，突破现有方法主要依赖单一源域校正模型的局限，将气体识别建模为多源到目标的跨域学习任务，提出了一种无监督注意力驱动的多源域自适应漂移补偿方法（AMDS-PFFA）。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3334,
+                "end_char": 3441
               },
               "version": "91faf937201ae0192de1"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d8cbb1df24a8",
-          "name": "DWCM-AAN识别模型",
-          "desc": "动态小波系数映射与轴向注意力实现接近100%识别",
+          "id": "item-02d59a7d3c34",
+          "name": "该方法通过共享–私有特征融合机制，协同建模跨域共享特征与域特有特征，并结合注意力特征融合与分布对齐策略，有效提升了模型在",
+          "desc": "该方法通过共享–私有特征融合机制，协同建模跨域共享特征与域特有特征，并结合注意力特征融合与分布对齐策略，有效提升了模型在漂移条件下的识别稳定性与泛化能力。",
           "evidence": [
             {
-              "quote": "提出了基于动态小波系数映射与轴向注意力机制的 DWCM-AAN 气体识别模型，实现了接近 100% 的气体识别准确率",
+              "quote": "该方法通过共享–私有特征融合机制，协同建模跨域共享特征与域特有特征，并结合注意力特征融合与分布对齐策略，有效提升了模型在漂移条件下的识别稳定性与泛化能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3065,
-                "end_char": 3122
+                "start_char": 3442,
+                "end_char": 3518
               },
               "version": "91faf937201ae0192de1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-1648f15a2d84",
-          "name": "AMDS-PFFA漂移补偿",
-          "desc": "无监督注意力多源域自适应补偿传感器漂移",
+          "id": "item-22f3d343f35e",
+          "name": "进一步从图神经网络建模角度出发，提出了 GraphCapsNet 气体识别模型（识别准确率超过 98%）和 GraphA",
+          "desc": "进一步从图神经网络建模角度出发，提出了 GraphCapsNet 气体识别模型（识别准确率超过 98%）和 GraphANet 浓度估计模型（R2>0.96），并构建了阵列信号图统一建模框架，实现气体识别与浓度估计任务的协同建模与联合分析。",
           "evidence": [
             {
-              "quote": "提出了一种无监督注意力驱动的多源域自适应漂移补偿方法（AMDS-PFFA）。该方法通过共享–私有特征融合机制，协同建模跨域共享特征与域特有特征",
+              "quote": "进一步从图神经网络建模角度出发，提出了 GraphCapsNet 气体识别模型（识别准确率超过 98%）和 GraphANet 浓度估计模型（R2>0.96），并构建了阵列信号图统一建模框架，实现气体识别与浓度估计任务的协同建模与联合分析。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3404,
-                "end_char": 3474
+                "start_char": 3214,
+                "end_char": 3333
               },
               "version": "91faf937201ae0192de1"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +140,164 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f57f11a094b3",
-          "name": "R2超0.95浓度估计",
-          "desc": "WDRS-Cosformer浓度预测决定系数R2超0.95",
+          "id": "item-ac10079b806f",
+          "name": "本项目围绕仿生嗅觉感知系统，以深度学习为理论基础，旨在解决复杂工业环境中危险气体/气味安全性检测问题。",
+          "desc": "本项目围绕仿生嗅觉感知系统，以深度学习为理论基础，旨在解决复杂工业环境中危险气体/气味安全性检测问题。",
           "evidence": [
             {
-              "quote": "构建了基于加权动态响应信号与高效注意力机制的 WDRS-Cosformer 浓度估计模型，实现了对单一气体及混合气体成分与浓度的高精度估计，浓度预测决定系数R2超过 0.95",
+              "quote": "本项目围绕仿生嗅觉感知系统，以深度学习为理论基础，旨在解决复杂工业环境中危险气体/气味安全性检测问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3126,
-                "end_char": 3212
+                "start_char": 650,
+                "end_char": 700
               },
               "version": "91faf937201ae0192de1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-dfa0a0d23fc8",
-          "name": "长期漂移识别93.96%",
-          "desc": "30个月自研数据识别准确率93.96%优于现有方法",
+          "id": "item-a1152df0cf29",
+          "name": "本项目围绕电子鼻系统在复杂气体环境中面临的气体成分实时识别、混合气体浓度精确估计以及传感器长期漂移引发的气体/气味识别性",
+          "desc": "本项目围绕电子鼻系统在复杂气体环境中面临的气体成分实时识别、混合气体浓度精确估计以及传感器长期漂移引发的气体/气味识别性能退化等关键科学与工程问题展开研究。",
           "evidence": [
             {
-              "quote": "在自研电子鼻系统采集的长期漂移数据（30 个月）上，实现了 93.96% 的气体识别准确率，均显著优于现有漂移补偿方法。",
+              "quote": "本项目围绕电子鼻系统在复杂气体环境中面临的气体成分实时识别、混合气体浓度精确估计以及传感器长期漂移引发的气体/气味识别性能退化等关键科学与工程问题展开研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3574,
-                "end_char": 3633
+                "start_char": 2902,
+                "end_char": 2979
               },
               "version": "91faf937201ae0192de1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-86e5e76c7804"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8b270f523fb6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gas Component Strategy and Signal Graph Framework for Scalable and Generalizable Gas Identification and Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af6a853ae8a4",
+      "evidence": [
+        {
+          "quote": "Gas Component Strategy and Signal Graph Framework for Scalable and Generalizable Gas Identification and Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3718,
+            "end_char": 3831
+          },
+          "version": "91faf937201ae0192de1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8b270f523fb6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d8cbb1df24a8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "仿生嗅觉感知系统气体识别和浓度估计模型",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d1d061d3435",
+      "evidence": [
+        {
+          "quote": "仿生嗅觉感知系统气体识别和浓度估计模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3952,
+            "end_char": 3970
+          },
+          "version": "91faf937201ae0192de1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8b270f523fb6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1648f15a2d84"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Graph-Driven Models for Gas Mixture Identification and Concentration Estimation on Heterogeneous Sensor Array Signals",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e5be6377ba9",
+      "evidence": [
+        {
+          "quote": "Graph-Driven Models for Gas Mixture Identification and Concentration Estimation on Heterogeneous Sensor Array Signals",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4003,
+            "end_char": 4119
+          },
+          "version": "91faf937201ae0192de1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d8cbb1df24a8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f57f11a094b3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-Time Gas Composition Identification and Concentration Estimation Model for Artificial Olfaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e2a296e26ed7",
+      "evidence": [
+        {
+          "quote": "Real-Time Gas Composition Identification and Concentration Estimation Model for Artificial Olfaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4298
+          },
+          "version": "91faf937201ae0192de1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1648f15a2d84"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dfa0a0d23fc8"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gas/Odor Qualitative and Quantitative Estimation Methodology for a Bionic Electronic Nose",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ad5d160a056",
+      "evidence": [
+        {
+          "quote": "Gas/Odor Qualitative and Quantitative Estimation Methodology for a Bionic Electronic Nose",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4351,
+            "end_char": 4439
+          },
+          "version": "91faf937201ae0192de1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

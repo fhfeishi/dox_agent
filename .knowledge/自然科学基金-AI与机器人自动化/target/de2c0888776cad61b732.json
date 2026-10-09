@@ -2,15 +2,20 @@
   "doc_id": "de2c0888776cad61b732",
   "version": "1cc0935384de4d73c6d3",
   "source_hash": "21ec4253fe7e7092d5b279a9aebd794ffcf589b1ea10b401d9705094ac7f15e6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:10.098949+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.657628+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,31 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2bac1a4e2a6c",
-          "name": "经皮穿刺手术机器人",
-          "desc": "微创诊疗手术的透明性精准性安全性提升",
-          "evidence": [
-            {
-              "quote": "本项目以“机理建模，透明感知，精准穿刺，安全保障”为目标，探索呼吸运动与穿刺作用下的生理运动关联交互机理",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 784,
-                "end_char": 835
-              },
-              "version": "1cc0935384de4d73c6d3"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-24cd2143b4a2",
-          "name": "穿刺不可视辐射伤害",
-          "desc": "组织结构复杂、运动影响精度、过程不可视、辐射伤害",
+          "id": "item-6872da10681d",
+          "name": "经皮穿刺是临床上量大面广的一种微创诊疗手术，传统方式存在内部组织结构复杂、生理运动影响精度、穿刺过程不可视、遭受辐射伤害",
+          "desc": "经皮穿刺是临床上量大面广的一种微创诊疗手术，传统方式存在内部组织结构复杂、生理运动影响精度、穿刺过程不可视、遭受辐射伤害等问题。",
           "evidence": [
             {
               "quote": "经皮穿刺是临床上量大面广的一种微创诊疗手术，传统方式存在内部组织结构复杂、生理运动影响精度、穿刺过程不可视、遭受辐射伤害等问题。",
@@ -59,40 +42,47 @@
       ]
     },
     {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-dabbf7bc17ad",
-          "name": "多模时空数据融合",
-          "desc": "医学影像动态规律与形状感知的时空数据融合机制",
+          "id": "item-382fb9941966",
+          "name": "突破多目标优化穿刺路径规划、主被动结合的安全控制策略以及机器人主从信息共享和精准穿刺控制等瓶颈技术，解决动态复杂环境下穿",
+          "desc": "突破多目标优化穿刺路径规划、主被动结合的安全控制策略以及机器人主从信息共享和精准穿刺控制等瓶颈技术，解决动态复杂环境下穿刺手术的透明性、精准性、安全性等临床难题，使得手术机器人具有一定的智能特征，用机器智能来弥补安全性精准性对医生的全部依赖，在一定程度上降低医生的操作难度。",
           "evidence": [
             {
-              "quote": "研究基于医学影像下的肿瘤、器官、组织的动态变化规律，并融合形状感知技术建立多模影像及多传感信息的时空数据融合机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 837,
-                "end_char": 892
-              },
-              "version": "1cc0935384de4d73c6d3"
-            }
-          ]
-        },
-        {
-          "id": "item-5e111499bee5",
-          "name": "多目标穿刺路径规划",
-          "desc": "主被动结合安全控制与主从信息共享精准穿刺",
-          "evidence": [
-            {
-              "quote": "突破多目标优化穿刺路径规划、主被动结合的安全控制策略以及机器人主从信息共享和精准穿刺控制等瓶颈技术",
+              "quote": "突破多目标优化穿刺路径规划、主被动结合的安全控制策略以及机器人主从信息共享和精准穿刺控制等瓶颈技术，解决动态复杂环境下穿刺手术的透明性、精准性、安全性等临床难题，使得手术机器人具有一定的智能特征，用机器智能来弥补安全性精准性对医生的全部依赖，在一定程度上降低医生的操作难度。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 894,
-                "end_char": 942
+                "end_char": 1030
               },
               "version": "1cc0935384de4d73c6d3"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-04d9598c10c0",
+          "name": "研究基于医学影像下的肿瘤、器官、组织的动态变化规律，并融合形状感知技术建立多模影像及多传感信息的时空数据融合机制；",
+          "desc": "研究基于医学影像下的肿瘤、器官、组织的动态变化规律，并融合形状感知技术建立多模影像及多传感信息的时空数据融合机制；",
+          "evidence": [
+            {
+              "quote": "研究基于医学影像下的肿瘤、器官、组织的动态变化规律，并融合形状感知技术建立多模影像及多传感信息的时空数据融合机制；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 837,
+                "end_char": 893
+              },
+              "version": "1cc0935384de4d73c6d3"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,329 @@
       "state": "has",
       "items": [
         {
-          "id": "item-059f5f70224c",
-          "name": "机器智能降低操作难度",
-          "desc": "手术机器人具备智能特征弥补安全性精准性依赖",
+          "id": "item-099a2db83a8c",
+          "name": "经皮穿刺是临床上量大面广的一种微创诊疗手术，传统方式存在内部组织结构复杂、生理运动影响精度、穿刺过程不可视、遭受辐射伤害",
+          "desc": "经皮穿刺是临床上量大面广的一种微创诊疗手术，传统方式存在内部组织结构复杂、生理运动影响精度、穿刺过程不可视、遭受辐射伤害等问题。",
           "evidence": [
             {
-              "quote": "使得手术机器人具有一定的智能特征，用机器智能来弥补安全性精准性对医生的全部依赖，在一定程度上降低医生的操作难度。",
+              "quote": "经皮穿刺是临床上量大面广的一种微创诊疗手术，传统方式存在内部组织结构复杂、生理运动影响精度、穿刺过程不可视、遭受辐射伤害等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 975,
-                "end_char": 1030
+                "start_char": 681,
+                "end_char": 744
               },
               "version": "1cc0935384de4d73c6d3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2bac1a4e2a6c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-24cd2143b4a2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Generation & Clinical Validation of Individualized Gait Trajectory for Stroke Patients Based on Lower Limb Exoskeleton Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96b423834cdd",
+      "evidence": [
+        {
+          "quote": "Generation & Clinical Validation of Individualized Gait Trajectory for Stroke Patients Based on Lower Limb Exoskeleton Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3141,
+            "end_char": 3264
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-24cd2143b4a2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dabbf7bc17ad"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "经皮穿刺手术的力反馈方法、电子装置及机 器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7b7d9d99350d",
+      "evidence": [
+        {
+          "quote": "经皮穿刺手术的力反馈方法、电子装置及机 器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3376,
+            "end_char": 3397
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-24cd2143b4a2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5e111499bee5"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于经支气管介入诊疗的机器人系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a0abca8ffb4",
+      "evidence": [
+        {
+          "quote": "用于经支气管介入诊疗的机器人系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3439,
+            "end_char": 3454
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5e111499bee5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-059f5f70224c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Robotic Bronchoscope System for Navigation and Biopsy of Pulmonary Lesions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca504ee2dca0",
+      "evidence": [
+        {
+          "quote": "A Novel Robotic Bronchoscope System for Navigation and Biopsy of Pulmonary Lesions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3488,
+            "end_char": 3569
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-dabbf7bc17ad"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-059f5f70224c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Obstacle Avoidance Strategy of Improved APF Method in C-space",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66140c30cd17",
+      "evidence": [
+        {
+          "quote": "Obstacle Avoidance Strategy of Improved APF Method in C-space",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3683,
+            "end_char": 3743
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "胸腹腔经皮穿刺机器人研究进展及关键技术分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d6af5ca03449",
+      "evidence": [
+        {
+          "quote": "胸腹腔经皮穿刺机器人研究进展及关键技术分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3820,
+            "end_char": 3840
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Kinematic Self-calibration of a 3-DOF Parallel Mechanism with Ill-conditioned Identification Matrix",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77195514ebdb",
+      "evidence": [
+        {
+          "quote": "Kinematic Self-calibration of a 3-DOF Parallel Mechanism with Ill-conditioned Identification Matrix",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3874,
+            "end_char": 3972
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Conv-Informer: A Data-driven Method Combining sEMG and Lower Limb Joint Angles for Gait Trajectory Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31d87a92e954",
+      "evidence": [
+        {
+          "quote": "Conv-Informer: A Data-driven Method Combining sEMG and Lower Limb Joint Angles for Gait Trajectory Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4052,
+            "end_char": 4160
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-Driven Model of Off-Line Collision Safety Based on Neural Network for Cooperative Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92a558eeabac",
+      "evidence": [
+        {
+          "quote": "Data-Driven Model of Off-Line Collision Safety Based on Neural Network for Cooperative Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4272,
+            "end_char": 4363
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot-assisted navigation for percutaneous localization of peripheral pulmonary nodule: an in vivo swine study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b3efed0dc0d",
+      "evidence": [
+        {
+          "quote": "Robot-assisted navigation for percutaneous localization of peripheral pulmonary nodule: an in vivo swine study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4461,
+            "end_char": 4570
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向人体自然腔道的柔性手术机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31a34bbd3e3d",
+      "evidence": [
+        {
+          "quote": "面向人体自然腔道的柔性手术机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4782,
+            "end_char": 4797
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "绳驱动并联可重构手术导航定位机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9b7f6a96690",
+      "evidence": [
+        {
+          "quote": "绳驱动并联可重构手术导航定位机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4826,
+            "end_char": 4842
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Surgical instruments hyalinization: Occlusion removal in minimally invasive endoscopic surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-304600be4f7d",
+      "evidence": [
+        {
+          "quote": "Surgical instruments hyalinization: Occlusion removal in minimally invasive endoscopic surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4894,
+            "end_char": 4987
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于微创手术的多自由度手术执行器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-88940e0568b8",
+      "evidence": [
+        {
+          "quote": "一种用于微创手术的多自由度手术执行器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5124,
+            "end_char": 5141
+          },
+          "version": "1cc0935384de4d73c6d3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

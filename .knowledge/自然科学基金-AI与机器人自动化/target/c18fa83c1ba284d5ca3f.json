@@ -2,15 +2,20 @@
   "doc_id": "c18fa83c1ba284d5ca3f",
   "version": "985df2639030287fb542",
   "source_hash": "d607f0c6f2f33671f43f160e29dee821e3520a753d38d5963bf2ed6088c23814",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:55:00.344008+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.341436+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c76e464de32e",
-          "name": "船舶主动干扰下无人艇脱逃",
-          "desc": "船舶主动干扰时无人艇难以有效避碰与脱逃，限制全自主航行",
+          "id": "item-a24c89ab2dec",
+          "name": "避碰能力是无人艇执行任务的基础，现有研究多考虑船舶按规则航行，而在船舶主动干扰时，无人艇难以开展有效的避碰与脱逃，这是限",
+          "desc": "避碰能力是无人艇执行任务的基础，现有研究多考虑船舶按规则航行，而在船舶主动干扰时，无人艇难以开展有效的避碰与脱逃，这是限制无人艇全自主航行的重要因素。",
           "evidence": [
             {
-              "quote": "避碰能力是无人艇执行任务的基础，现有研究多考虑船舶按规则航行，而在船舶主动干扰时，无人艇难以开展有效的避碰与脱逃",
+              "quote": "避碰能力是无人艇执行任务的基础，现有研究多考虑船舶按规则航行，而在船舶主动干扰时，无人艇难以开展有效的避碰与脱逃，这是限制无人艇全自主航行的重要因素。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 645,
-                "end_char": 700
+                "end_char": 719
               },
               "version": "985df2639030287fb542"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a49bb5659d00",
-          "name": "干扰方式难以辨识",
-          "desc": "船舶主动干扰方式难以有效辨识，无法制定针对性避碰策略",
-          "evidence": [
-            {
-              "quote": "船舶的主动干扰方式难以有效辨识，导致无人艇无法制定针对性的避碰策略",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 752,
-                "end_char": 784
-              },
-              "version": "985df2639030287fb542"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-7e09cf292457",
-          "name": "PCA+SVM干扰类型分类",
-          "desc": "对高维运动特征降维并分类，识别主动干扰与非主动干扰",
+          "id": "item-b3d428dd1e80",
+          "name": "针对多约束条件与规划目标存在隔阂导致脱逃规划求解效果不佳的问题，采用增广拉格朗日协同递归神经网络算法进行多约束与脱逃规划",
+          "desc": "针对多约束条件与规划目标存在隔阂导致脱逃规划求解效果不佳的问题，采用增广拉格朗日协同递归神经网络算法进行多约束与脱逃规划的融合与求解；",
           "evidence": [
             {
-              "quote": "提出了一种结合主成分分析（Principal Component Analysis，PCA）和支持向量机（Support Vector Machine，SVM）的分类算法",
+              "quote": "针对多约束条件与规划目标存在隔阂导致脱逃规划求解效果不佳的问题，采用增广拉格朗日协同递归神经网络算法进行多约束与脱逃规划的融合与求解；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2962,
-                "end_char": 3046
+                "start_char": 895,
+                "end_char": 961
               },
               "version": "985df2639030287fb542"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5e977792be0d",
-          "name": "GMM+CHMM干扰意图识别",
-          "desc": "基于速度障碍模型构造运动特征参数，Baum-Welch训练意图识别模型",
+          "id": "item-e6b7fb201ddb",
+          "name": "然后，通过Baum-Welch算法对训练数据进行训练，得到意图识别模型。",
+          "desc": "然后，通过Baum-Welch算法对训练数据进行训练，得到意图识别模型。",
           "evidence": [
             {
-              "quote": "提出了基于高斯混合模型（Gaussian mixture model，GMM）和连续隐马尔科夫模型（Continuous Hidden Markov Model，CHMM）的船舶干扰意图识别模型",
+              "quote": "然后，通过Baum-Welch算法对训练数据进行训练，得到意图识别模型。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3198,
-                "end_char": 3294
+                "start_char": 3384,
+                "end_char": 3419
               },
               "version": "985df2639030287fb542"
             }
-          ]
-        },
-        {
-          "id": "item-1cd3c13ee501",
-          "name": "基于DQN的协同围捕脱逃",
-          "desc": "面向多船协同干扰的脱逃算法训练与仿真试验验证",
-          "evidence": [
-            {
-              "quote": "提出了基于DQN的无人艇在协同围捕下的脱逃算法并进行训练和仿真、试验验证",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3469,
-                "end_char": 3504
-              },
-              "version": "985df2639030287fb542"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,80 +91,365 @@
       "state": "has",
       "items": [
         {
-          "id": "item-365e9c610c62",
-          "name": "避碰与脱逃能力提升",
-          "desc": "差异化处理提升无人艇运动安全性，助力全自主航行",
+          "id": "item-57b2433b1a8b",
+          "name": "避碰能力是无人艇执行任务的基础，现有研究多考虑船舶按规则航行，而在船舶主动干扰时，无人艇难以开展有效的避碰与脱逃，这是限",
+          "desc": "避碰能力是无人艇执行任务的基础，现有研究多考虑船舶按规则航行，而在船舶主动干扰时，无人艇难以开展有效的避碰与脱逃，这是限制无人艇全自主航行的重要因素。",
           "evidence": [
             {
-              "quote": "研究成果有助于提升无人艇在船舶复杂干扰下的避碰与脱逃能力，推动无人艇全自主航行的发展",
+              "quote": "避碰能力是无人艇执行任务的基础，现有研究多考虑船舶按规则航行，而在船舶主动干扰时，无人艇难以开展有效的避碰与脱逃，这是限制无人艇全自主航行的重要因素。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3506,
-                "end_char": 3547
+                "start_char": 645,
+                "end_char": 719
               },
               "version": "985df2639030287fb542"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c76e464de32e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a49bb5659d00"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RANS Prediction of Wave-Induced Ship Motions, and Steady Wave Forces and Moments in Regular Waves",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b35cc3bcb60d",
+      "evidence": [
+        {
+          "quote": "RANS Prediction of Wave-Induced Ship Motions, and Steady Wave Forces and Moments in Regular Waves",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3595,
+            "end_char": 3691
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a49bb5659d00"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7e09cf292457"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "载体边界动态保护方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b3a72a824e9",
+      "evidence": [
+        {
+          "quote": "载体边界动态保护方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3736,
+            "end_char": 3745
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a49bb5659d00"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5e977792be0d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于目标干扰意图识别的无人艇避碰算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f63263d2ec0",
+      "evidence": [
+        {
+          "quote": "基于目标干扰意图识别的无人艇避碰算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3763,
+            "end_char": 3780
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1cd3c13ee501"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-365e9c610c62"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Heading Control of Unmanned Marine Vehicles Based on an Improved Robust Adaptive Fuzzy Neural Network Control Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-79ced9b9cc94",
+      "evidence": [
+        {
+          "quote": "Heading Control of Unmanned Marine Vehicles Based on an Improved Robust Adaptive Fuzzy Neural Network Control Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3813,
+            "end_char": 3931
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7e09cf292457"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-365e9c610c62"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A two-level dynamic obstacle avoidance algorithm for unmanned surface vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9ddea8672a53",
+      "evidence": [
+        {
+          "quote": "A two-level dynamic obstacle avoidance algorithm for unmanned surface vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4009,
+            "end_char": 4086
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "METHOD OF EMERGENCY COLLISION AVOIDANCE FOR UNMANNED SURFACE VEHICLE (USV) BASED ON MOTION ABILITY DATABASE",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9980be03fdc",
+      "evidence": [
+        {
+          "quote": "METHOD OF EMERGENCY COLLISION AVOIDANCE FOR UNMANNED SURFACE VEHICLE (USV) BASED ON MOTION ABILITY DATABASE",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4183,
+            "end_char": 4289
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进细菌觅食优化的无人艇自主避碰算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f803222c0f23",
+      "evidence": [
+        {
+          "quote": "基于改进细菌觅食优化的无人艇自主避碰算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4383,
+            "end_char": 4402
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种模块化的减横摇系统移动滑块",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd2e6d302ce1",
+      "evidence": [
+        {
+          "quote": "一种模块化的减横摇系统移动滑块",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4433,
+            "end_char": 4447
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collision avoidance planning for unmanned surface vehicle based on eccentric expansion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-73e32eacf7b2",
+      "evidence": [
+        {
+          "quote": "Collision avoidance planning for unmanned surface vehicle based on eccentric expansion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4480,
+            "end_char": 4565
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collision Avoidance Algorithm for USV Based on Rolling Obstacle Classification and Fuzzy Rules",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b4b8cdc91467",
+      "evidence": [
+        {
+          "quote": "Collision Avoidance Algorithm for USV Based on Rolling Obstacle Classification and Fuzzy Rules",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4656,
+            "end_char": 4749
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于移动滑块的减横摇系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9ccaa7ce1b76",
+      "evidence": [
+        {
+          "quote": "一种基于移动滑块的减横摇系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4798,
+            "end_char": 4811
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Identification of Ship Hydrodynamic Derivatives Based on LS-SVM with Wavelet Threshold Denoising",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-384941324d5a",
+      "evidence": [
+        {
+          "quote": "Identification of Ship Hydrodynamic Derivatives Based on LS-SVM with Wavelet Threshold Denoising",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4845,
+            "end_char": 4940
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust exponential point stabilization control of the high-speed underactuated unmanned marine vehicle with model asymmetry",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a18f9fee2b73",
+      "evidence": [
+        {
+          "quote": "Robust exponential point stabilization control of the high-speed underactuated unmanned marine vehicle with model asymmetry",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4983,
+            "end_char": 5105
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "多艇两层协同自动控制收缩围追方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7d091aa98071",
+      "evidence": [
+        {
+          "quote": "多艇两层协同自动控制收缩围追方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5187,
+            "end_char": 5202
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Object tracking algorithm for unmanned surface vehicle based on improved mean-shift method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-40a978bcfcd9",
+      "evidence": [
+        {
+          "quote": "Object tracking algorithm for unmanned surface vehicle based on improved mean-shift method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5221,
+            "end_char": 5310
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Parameter identification of unmanned marine vehicle manoeuvring model based on extended Kalman filter and support vector machine",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-403a0f470927",
+      "evidence": [
+        {
+          "quote": "Parameter identification of unmanned marine vehicle manoeuvring model based on extended Kalman filter and support vector machine",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5407,
+            "end_char": 5534
+          },
+          "version": "985df2639030287fb542"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

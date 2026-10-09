@@ -2,15 +2,20 @@
   "doc_id": "5ea828c9af56bd5edfc9",
   "version": "6ee94e0142892b2747d1",
   "source_hash": "76549302e9b5160deccfdecae01f0b4b8916f17db2329b8d518890bae3ca1f60",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:36.714329+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.351301+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,37 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-797ad10379df",
-          "name": "中小型建筑温湿分控",
-          "desc": "中小型居住办公建筑室内环境控制",
+          "id": "item-eaad6b0a74d8",
+          "name": "中小型居住办公建筑中，因传统直膨式空调系统蒸发器降温除湿耦合作用及室内新风需求变化引起湿负荷动态变化，导致室内温湿度解耦",
+          "desc": "中小型居住办公建筑中，因传统直膨式空调系统蒸发器降温除湿耦合作用及室内新风需求变化引起湿负荷动态变化，导致室内温湿度解耦分控困难。",
           "evidence": [
             {
-              "quote": "长江中下游地区夏季高温高湿，全年湿度偏高。中小型居住办公建筑室内环境控制一直存在挑战。本项目基于双蒸发温度压缩机构建制冷系统，建立了适用于中小型居住办公建筑的双温位温湿分控系统，为中小型居住办公建筑室内环境控制提出新的解决方案。",
+              "quote": "中小型居住办公建筑中，因传统直膨式空调系统蒸发器降温除湿耦合作用及室内新风需求变化引起湿负荷动态变化，导致室内温湿度解耦分控困难。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3024,
-                "end_char": 3137
-              },
-              "version": "6ee94e0142892b2747d1"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-72ed91c0aa80",
-          "name": "温湿耦合解耦分控难",
-          "desc": "蒸发器降温除湿耦合及湿负荷动态变化致解耦分控困难",
-          "evidence": [
-            {
-              "quote": "因传统直膨式空调系统蒸发器降温除湿耦合作用及室内新风需求变化引起湿负荷动态变化，导致室内温湿度解耦分控困难。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 676,
+                "start_char": 665,
                 "end_char": 729
               },
               "version": "6ee94e0142892b2747d1"
@@ -59,40 +42,47 @@
       ]
     },
     {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-00301a86068c",
-          "name": "双温位制冷系统",
-          "desc": "高温位控温低温位控湿的双蒸发温度机组",
+          "id": "item-df9d7d7de573",
+          "name": "本项目基于双蒸发温度压缩机构建制冷系统，建立了适用于中小型居住办公建筑的双温位温湿分控系统，为中小型居住办公建筑室内环境",
+          "desc": "本项目基于双蒸发温度压缩机构建制冷系统，建立了适用于中小型居住办公建筑的双温位温湿分控系统，为中小型居住办公建筑室内环境控制提出新的解决方案。",
           "evidence": [
             {
-              "quote": "在负荷特性分析基础上设计并建立了基于双蒸发温度压缩机的双温位温湿分控机组，并针对双蒸发温度压缩机及双温位冷热水机组进行了实验研究。",
+              "quote": "本项目基于双蒸发温度压缩机构建制冷系统，建立了适用于中小型居住办公建筑的双温位温湿分控系统，为中小型居住办公建筑室内环境控制提出新的解决方案。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3257,
-                "end_char": 3321
+                "start_char": 3067,
+                "end_char": 3137
               },
               "version": "6ee94e0142892b2747d1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b01d457b8f1b",
-          "name": "强化学习温湿调控",
-          "desc": "有限迭代步数实现干球湿球温度有效追踪",
+          "id": "item-16c96d7eae4c",
+          "name": ".最后，研究采用强化学习算法，建立了室内温湿分控方法，模拟结果表明借助强化学习算法，在系统开机后，通过有限迭代步数，即可",
+          "desc": ".最后，研究采用强化学习算法，建立了室内温湿分控方法，模拟结果表明借助强化学习算法，在系统开机后，通过有限迭代步数，即可实现对室内干球温度和湿球温度的有效追踪，实现室内温湿分控。",
           "evidence": [
             {
-              "quote": "研究采用强化学习算法，建立了室内温湿分控方法，模拟结果表明借助强化学习算法，在系统开机后，通过有限迭代步数，即可实现对室内干球温度和湿球温度的有效追踪，实现室内温湿分控。",
+              "quote": ".最后，研究采用强化学习算法，建立了室内温湿分控方法，模拟结果表明借助强化学习算法，在系统开机后，通过有限迭代步数，即可实现对室内干球温度和湿球温度的有效追踪，实现室内温湿分控。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3795,
+                "start_char": 3791,
                 "end_char": 3879
               },
               "version": "6ee94e0142892b2747d1"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,268 @@
       "state": "has",
       "items": [
         {
-          "id": "item-775bb856905d",
-          "name": "冷量耦合规律揭示",
-          "desc": "实验揭示双蒸发温度机组冷量耦合与运行特性",
+          "id": "item-25b45cbeb52e",
+          "name": "中小型居住办公建筑中，因传统直膨式空调系统蒸发器降温除湿耦合作用及室内新风需求变化引起湿负荷动态变化，导致室内温湿度解耦",
+          "desc": "中小型居住办公建筑中，因传统直膨式空调系统蒸发器降温除湿耦合作用及室内新风需求变化引起湿负荷动态变化，导致室内温湿度解耦分控困难。",
           "evidence": [
             {
-              "quote": "结果揭示了实验范围内双蒸发温度温湿分控机组高低温位冷量的耦合关系以及在系统可调参数变化下的运行特性。",
+              "quote": "中小型居住办公建筑中，因传统直膨式空调系统蒸发器降温除湿耦合作用及室内新风需求变化引起湿负荷动态变化，导致室内温湿度解耦分控困难。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3507,
-                "end_char": 3556
+                "start_char": 665,
+                "end_char": 729
               },
               "version": "6ee94e0142892b2747d1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-3455d395f5ff",
+          "name": "长江中下游地区夏季高温高湿，全年湿度偏高。",
+          "desc": "长江中下游地区夏季高温高湿，全年湿度偏高。",
+          "evidence": [
+            {
+              "quote": "长江中下游地区夏季高温高湿，全年湿度偏高。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3024,
+                "end_char": 3044
+              },
+              "version": "6ee94e0142892b2747d1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-797ad10379df"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-72ed91c0aa80"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于单机双蒸发热泵机组的温湿分控多工况空调系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c737da9915c",
+      "evidence": [
+        {
+          "quote": "一种基于单机双蒸发热泵机组的温湿分控多工况空调系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3903,
+            "end_char": 3927
+          },
+          "version": "6ee94e0142892b2747d1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-72ed91c0aa80"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-00301a86068c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于人数反馈调节的变风量新风系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f854ac133e45",
+      "evidence": [
+        {
+          "quote": "一种基于人数反馈调节的变风量新风系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3960,
+            "end_char": 3977
+          },
+          "version": "6ee94e0142892b2747d1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-72ed91c0aa80"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b01d457b8f1b"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "大型制造企业规模化分布式光伏利用与能源智慧管理关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-42a820301be7",
+      "evidence": [
+        {
+          "quote": "大型制造企业规模化分布式光伏利用与能源智慧管理关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4004,
+            "end_char": 4033
+          },
+          "version": "6ee94e0142892b2747d1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-00301a86068c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-775bb856905d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Experimental Study of Influencing Factors on the Snow Removing Time for Self-Heating Snow Removed Photovoltaic Panels",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-baecaf3a840b",
+      "evidence": [
+        {
+          "quote": "An Experimental Study of Influencing Factors on the Snow Removing Time for Self-Heating Snow Removed Photovoltaic Panels",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4065,
+            "end_char": 4184
+          },
+          "version": "6ee94e0142892b2747d1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b01d457b8f1b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-775bb856905d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于双蒸发温度制冷系统的实验室新风机组",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-70e918025880",
+      "evidence": [
+        {
+          "quote": "一种基于双蒸发温度制冷系统的实验室新风机组",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4214,
+            "end_char": 4234
+          },
+          "version": "6ee94e0142892b2747d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "小型双蒸发温度冷/热水机组的运行调节特性实验",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a0cd076cb37",
+      "evidence": [
+        {
+          "quote": "小型双蒸发温度冷/热水机组的运行调节特性实验",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4269,
+            "end_char": 4290
+          },
+          "version": "6ee94e0142892b2747d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "缓冲水箱对小型户式化空调系统制冷运行影响的研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-deed535e958a",
+      "evidence": [
+        {
+          "quote": "缓冲水箱对小型户式化空调系统制冷运行影响的研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4326,
+            "end_char": 4348
+          },
+          "version": "6ee94e0142892b2747d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Energy, exergy, economic and environmental analysis of photovoltaic/ thermal integrated water source heat pump water heater",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3df4efca8a08",
+      "evidence": [
+        {
+          "quote": "Energy, exergy, economic and environmental analysis of photovoltaic/ thermal integrated water source heat pump water heater",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4376,
+            "end_char": 4498
+          },
+          "version": "6ee94e0142892b2747d1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于单机不同蒸发温度的温湿分控空调系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e4b7f578696",
+      "evidence": [
+        {
+          "quote": "基于单机不同蒸发温度的温湿分控空调系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4540,
+            "end_char": 4563
+          },
+          "version": "6ee94e0142892b2747d1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Thermal energy storage based (TES-based) reverse cycle defrosting control strategy optimization for a cascade air source heat pump",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-665f21f64bf9",
+      "evidence": [
+        {
+          "quote": "Thermal energy storage based (TES-based) reverse cycle defrosting control strategy optimization for a cascade air source heat pump",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4603,
+            "end_char": 4732
+          },
+          "version": "6ee94e0142892b2747d1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

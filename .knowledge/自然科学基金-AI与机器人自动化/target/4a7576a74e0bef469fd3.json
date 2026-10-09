@@ -2,15 +2,20 @@
   "doc_id": "4a7576a74e0bef469fd3",
   "version": "18e5ea4c5cfe34f0b69a",
   "source_hash": "00bf8df505b65e10895cc9be2d112e7a25fa5c90ab453596b049f04cf308d742",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:03:23.794618+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.181504+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a6b9ffc9ef25",
-          "name": "DNA材料软体机器人",
-          "desc": "DNA凝胶为软体机器人发展提供新路径",
+          "id": "item-60f5d6cf5a51",
+          "name": "软体机器人由于自身的柔软性、环境适应性和安全性，可适应复杂的作业环境。",
+          "desc": "软体机器人由于自身的柔软性、环境适应性和安全性，可适应复杂的作业环境。",
           "evidence": [
             {
-              "quote": "DNA凝胶兼具多孔结构与DNA分子的独特功能，为软体机器人发展提供新路径",
+              "quote": "软体机器人由于自身的柔软性、环境适应性和安全性，可适应复杂的作业环境。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2610,
-                "end_char": 2645
+                "start_char": 674,
+                "end_char": 708
+              },
+              "version": "18e5ea4c5cfe34f0b69a"
+            }
+          ]
+        },
+        {
+          "id": "item-85df88f99650",
+          "name": "更为重要的是，此类脂质-DNA分子兼具细胞修饰能力与可编程性双重功能优势，可作为分子识别单元或功能接头用于细胞的精准功能",
+          "desc": "更为重要的是，此类脂质-DNA分子兼具细胞修饰能力与可编程性双重功能优势，可作为分子识别单元或功能接头用于细胞的精准功能化修饰，在生物医学成像、生物传感等光电子学领域展现出广阔的应用前景。",
+          "evidence": [
+            {
+              "quote": "更为重要的是，此类脂质-DNA分子兼具细胞修饰能力与可编程性双重功能优势，可作为分子识别单元或功能接头用于细胞的精准功能化修饰，在生物医学成像、生物传感等光电子学领域展现出广阔的应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3186,
+                "end_char": 3279
               },
               "version": "18e5ea4c5cfe34f0b69a"
             }
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-deaff1d2e7e5",
-          "name": "DNA水凝胶疏水与机械弱",
-          "desc": "传统DNA水凝胶疏水性不足、机械性能薄弱",
+          "id": "item-c58e577c40c1",
+          "name": "但传统DNA水凝胶存在明显局限，基于此，DNA有机凝胶以有机相为介质，通过引入多元构建元素，可有效弥补传统DNA水凝胶疏",
+          "desc": "但传统DNA水凝胶存在明显局限，基于此，DNA有机凝胶以有机相为介质，通过引入多元构建元素，可有效弥补传统DNA水凝胶疏水性不足、机械性能薄弱的短板。",
           "evidence": [
             {
               "quote": "但传统DNA水凝胶存在明显局限，基于此，DNA有机凝胶以有机相为介质，通过引入多元构建元素，可有效弥补传统DNA水凝胶疏水性不足、机械性能薄弱的短板。",
@@ -51,6 +72,22 @@
                 "basis": "parsed_text",
                 "start_char": 2647,
                 "end_char": 2721
+              },
+              "version": "18e5ea4c5cfe34f0b69a"
+            }
+          ]
+        },
+        {
+          "id": "item-cbc0a8aec1f9",
+          "name": ".在明确有机相DNA杂化规律的基础上，构建了有机相核酸模板反应体系，以DNA双链为模板，突破传统水相依赖瓶颈，解决了底物",
+          "desc": ".在明确有机相DNA杂化规律的基础上，构建了有机相核酸模板反应体系，以DNA双链为模板，突破传统水相依赖瓶颈，解决了底物兼容性差等问题，为叠氮-炔烃点击反应等水相不相容反应提供新路径。",
+          "evidence": [
+            {
+              "quote": ".在明确有机相DNA杂化规律的基础上，构建了有机相核酸模板反应体系，以DNA双链为模板，突破传统水相依赖瓶颈，解决了底物兼容性差等问题，为叠氮-炔烃点击反应等水相不相容反应提供新路径。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2897,
+                "end_char": 2988
               },
               "version": "18e5ea4c5cfe34f0b69a"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-242192a1204a",
-          "name": "有机相DNA杂化规律",
-          "desc": "表面活性剂与介电常数对杂化过程的调控规律",
+          "id": "item-43a34059dc82",
+          "name": "DNA液晶有机凝胶是利用DNA的信息编码功能和框架构建能力，通过精密设计可实现丰富刺激响应的新型智能软材料，液晶的分子间",
+          "desc": "DNA液晶有机凝胶是利用DNA的信息编码功能和框架构建能力，通过精密设计可实现丰富刺激响应的新型智能软材料，液晶的分子间相互作用更使其具备优异的机械性能。",
           "evidence": [
             {
-              "quote": "发现表面活性剂烷基链长度与数量对DNA双链热稳定性呈正向调控作用，且较高介电常数环境可显著加速DNA杂化进程",
+              "quote": "DNA液晶有机凝胶是利用DNA的信息编码功能和框架构建能力，通过精密设计可实现丰富刺激响应的新型智能软材料，液晶的分子间相互作用更使其具备优异的机械性能。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2804,
-                "end_char": 2857
+                "start_char": 809,
+                "end_char": 885
               },
               "version": "18e5ea4c5cfe34f0b69a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-06803bef5f2b",
-          "name": "原位杂化液晶有机凝胶",
-          "desc": "DNA液晶有机凝胶制备与动态性能调控策略",
+          "id": "item-454e0de69082",
+          "name": "另外，本项目受海星运动启发设计动态不对称修饰位点，构建多区域协同运动的仿生机器人，实现机器人局部运动的精准控制。",
+          "desc": "另外，本项目受海星运动启发设计动态不对称修饰位点，构建多区域协同运动的仿生机器人，实现机器人局部运动的精准控制。",
           "evidence": [
             {
-              "quote": "设计并制备了原位杂化型DNA液晶有机凝胶，在优化其制备条件并完成系统结构表征后，发现表面活性剂对凝胶自愈合等动态性能起主导调控作用",
+              "quote": "另外，本项目受海星运动启发设计动态不对称修饰位点，构建多区域协同运动的仿生机器人，实现机器人局部运动的精准控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3013,
-                "end_char": 3077
+                "start_char": 954,
+                "end_char": 1009
               },
               "version": "18e5ea4c5cfe34f0b69a"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,69 +140,164 @@
       "state": "has",
       "items": [
         {
-          "id": "item-96298e538943",
-          "name": "脂质-DNA细胞功能化",
-          "desc": "兼具细胞修饰与可编程性，应用于生物成像传感",
+          "id": "item-abdf2fd407cc",
+          "name": "软体机器人由于自身的柔软性、环境适应性和安全性，可适应复杂的作业环境。",
+          "desc": "软体机器人由于自身的柔软性、环境适应性和安全性，可适应复杂的作业环境。",
           "evidence": [
             {
-              "quote": "可作为分子识别单元或功能接头用于细胞的精准功能化修饰，在生物医学成像、生物传感等光电子学领域展现出广阔的应用前景。",
+              "quote": "软体机器人由于自身的柔软性、环境适应性和安全性，可适应复杂的作业环境。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3223,
-                "end_char": 3279
+                "start_char": 674,
+                "end_char": 708
               },
               "version": "18e5ea4c5cfe34f0b69a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-d81bf8461435",
+          "name": "DNA凝胶兼具多孔结构与DNA分子的独特功能，为软体机器人发展提供新路径；",
+          "desc": "DNA凝胶兼具多孔结构与DNA分子的独特功能，为软体机器人发展提供新路径；",
+          "evidence": [
+            {
+              "quote": "DNA凝胶兼具多孔结构与DNA分子的独特功能，为软体机器人发展提供新路径；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2610,
+                "end_char": 2646
+              },
+              "version": "18e5ea4c5cfe34f0b69a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a6b9ffc9ef25"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-deaff1d2e7e5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Scalable fabrication of cellulose/zirconium phosphate hydrogel spheres for portable dialysis cartridges",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a2b1207fb86e",
+      "evidence": [
+        {
+          "quote": "Scalable fabrication of cellulose/zirconium phosphate hydrogel spheres for portable dialysis cartridges",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3362,
+            "end_char": 3464
+          },
+          "version": "18e5ea4c5cfe34f0b69a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-deaff1d2e7e5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-242192a1204a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Regenerated Cellulose Hydrogel for Green, Efficient, and Selective Heparin Extraction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e1e5fd7ce07",
+      "evidence": [
+        {
+          "quote": "Regenerated Cellulose Hydrogel for Green, Efficient, and Selective Heparin Extraction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3567,
+            "end_char": 3651
+          },
+          "version": "18e5ea4c5cfe34f0b69a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-deaff1d2e7e5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-06803bef5f2b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Covalent Prodrug Nanonetworks via Reaction-Induced Self-Assembly for Periodontitis Treatment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad0bd2e57b1a",
+      "evidence": [
+        {
+          "quote": "Dynamic Covalent Prodrug Nanonetworks via Reaction-Induced Self-Assembly for Periodontitis Treatment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3746,
+            "end_char": 3845
+          },
+          "version": "18e5ea4c5cfe34f0b69a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-06803bef5f2b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-96298e538943"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于透析系统的纤维素磷酸锆复合凝胶材料及其制备方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20a79c0082ce",
+      "evidence": [
+        {
+          "quote": "一种用于透析系统的纤维素磷酸锆复合凝胶材料及其制备方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3955,
+            "end_char": 3981
+          },
+          "version": "18e5ea4c5cfe34f0b69a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Static and transient vacuolation in protein-based coacervates induced by charged amino acids",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4604b2337802",
+      "evidence": [
+        {
+          "quote": "Static and transient vacuolation in protein-based coacervates induced by charged amino acids",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4018,
+            "end_char": 4109
+          },
+          "version": "18e5ea4c5cfe34f0b69a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

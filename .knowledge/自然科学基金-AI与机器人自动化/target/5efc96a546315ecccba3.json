@@ -2,15 +2,20 @@
   "doc_id": "5efc96a546315ecccba3",
   "version": "72d52db032355a984ecb",
   "source_hash": "7dcf62a53296981c360854f59f1092de61492d7e18fc494660f1ebefb8eca66d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:43.523762+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.355224+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dc928f5931ca",
-          "name": "心墙堆石坝碾压智能建设",
-          "desc": "紧密结合堆石坝碾压质量控制的实际工程需求",
+          "id": "item-ba16bac6bfcd",
+          "name": "心墙堆石坝接触黏土微观结构在碾压过程中的变化显著影响其宏观物理力学性能。",
+          "desc": "心墙堆石坝接触黏土微观结构在碾压过程中的变化显著影响其宏观物理力学性能。",
           "evidence": [
             {
-              "quote": "项目紧密结合心墙堆石坝碾压质量控制的实际工程需求，提出考虑坝料特征的堆石坝碾压智能控制方法研究",
+              "quote": "心墙堆石坝接触黏土微观结构在碾压过程中的变化显著影响其宏观物理力学性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 694
+              },
+              "version": "72d52db032355a984ecb"
+            }
+          ]
+        },
+        {
+          "id": "item-1de9eafc3fe5",
+          "name": "项目紧密结合心墙堆石坝碾压质量控制的实际工程需求，提出考虑坝料特征的堆石坝碾压智能控制方法研究，解决了坝料微观结构特征与",
+          "desc": "项目紧密结合心墙堆石坝碾压质量控制的实际工程需求，提出考虑坝料特征的堆石坝碾压智能控制方法研究，解决了坝料微观结构特征与坝料关键参数认知与提取的基础科学问题，突破了碾压参数与压实质量关联关系模型建立的技术瓶颈，攻克了复杂不确定条件下压实质量智能控制难题。",
+          "evidence": [
+            {
+              "quote": "项目紧密结合心墙堆石坝碾压质量控制的实际工程需求，提出考虑坝料特征的堆石坝碾压智能控制方法研究，解决了坝料微观结构特征与坝料关键参数认知与提取的基础科学问题，突破了碾压参数与压实质量关联关系模型建立的技术瓶颈，攻克了复杂不确定条件下压实质量智能控制难题。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3020,
-                "end_char": 3066
+                "end_char": 3146
               },
               "version": "72d52db032355a984ecb"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-161ebb717d8c",
-          "name": "坝料特征认知与关联建模",
-          "desc": "坝料微观结构特征认知提取及碾压参数与压实质量关联建模是技术瓶颈",
+          "id": "item-cb35d16bf488",
+          "name": "项目紧密结合心墙堆石坝碾压质量控制的实际工程需求，提出考虑坝料特征的堆石坝碾压智能控制方法研究，解决了坝料微观结构特征与",
+          "desc": "项目紧密结合心墙堆石坝碾压质量控制的实际工程需求，提出考虑坝料特征的堆石坝碾压智能控制方法研究，解决了坝料微观结构特征与坝料关键参数认知与提取的基础科学问题，突破了碾压参数与压实质量关联关系模型建立的技术瓶颈，攻克了复杂不确定条件下压实质量智能控制难题。",
           "evidence": [
             {
-              "quote": "解决了坝料微观结构特征与坝料关键参数认知与提取的基础科学问题，突破了碾压参数与压实质量关联关系模型建立的技术瓶颈",
+              "quote": "项目紧密结合心墙堆石坝碾压质量控制的实际工程需求，提出考虑坝料特征的堆石坝碾压智能控制方法研究，解决了坝料微观结构特征与坝料关键参数认知与提取的基础科学问题，突破了碾压参数与压实质量关联关系模型建立的技术瓶颈，攻克了复杂不确定条件下压实质量智能控制难题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3068,
-                "end_char": 3123
+                "start_char": 3020,
+                "end_char": 3146
               },
               "version": "72d52db032355a984ecb"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4c5b436f8aa6",
-          "name": "坝料特征智能辨识",
-          "desc": "CT扫描多重分形描述、改进Mask-RCNN掺拌均匀性辨识与级配精准辨析",
+          "id": "item-1c54666f0e76",
+          "name": "其次，融合深度卷积神经网络、群智能优化、概念漂移检测等方法，厘清碾压参数与微观结构特征空间关联关系，并探究模型更新机制；",
+          "desc": "其次，融合深度卷积神经网络、群智能优化、概念漂移检测等方法，厘清碾压参数与微观结构特征空间关联关系，并探究模型更新机制；",
           "evidence": [
             {
-              "quote": "建立了粘黏、遮挡等复杂条件下坝料级配高效精准辨析模型，攻克了传统人工筛分检测级配耗时费力的难题",
+              "quote": "其次，融合深度卷积神经网络、群智能优化、概念漂移检测等方法，厘清碾压参数与微观结构特征空间关联关系，并探究模型更新机制；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3301,
-                "end_char": 3347
+                "start_char": 892,
+                "end_char": 951
               },
               "version": "72d52db032355a984ecb"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-90950fa6aea1",
-          "name": "无人碾压机群协同作业",
-          "desc": "无驾驶舱原生集成式智能无人碾压机与机群协同全覆盖路径规划",
+          "id": "item-cd76ad01c580",
+          "name": "1）自主研发了集成多模态智能感知、智能规划决策和智能控制等功能的无驾驶舱原生集成式智能无人碾压机，实现了复杂条件下碾压过",
+          "desc": "1）自主研发了集成多模态智能感知、智能规划决策和智能控制等功能的无驾驶舱原生集成式智能无人碾压机，实现了复杂条件下碾压过程的自主控制。",
           "evidence": [
             {
-              "quote": "自主研发了集成多模态智能感知、智能规划决策和智能控制等功能的无驾驶舱原生集成式智能无人碾压机，实现了复杂条件下碾压过程的自主控制",
+              "quote": "1）自主研发了集成多模态智能感知、智能规划决策和智能控制等功能的无驾驶舱原生集成式智能无人碾压机，实现了复杂条件下碾压过程的自主控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3541,
-                "end_char": 3604
+                "start_char": 3539,
+                "end_char": 3605
               },
               "version": "72d52db032355a984ecb"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,348 @@
       "state": "has",
       "items": [
         {
-          "id": "item-21fd69fb38d0",
-          "name": "重大高坝工程应用",
-          "desc": "应用于两河口、双江口、大石峡等重大高坝工程，提高质量提升效率节省投资",
+          "id": "item-83aebc2e9f24",
+          "name": "心墙堆石坝接触黏土微观结构在碾压过程中的变化显著影响其宏观物理力学性能。",
+          "desc": "心墙堆石坝接触黏土微观结构在碾压过程中的变化显著影响其宏观物理力学性能。",
           "evidence": [
             {
-              "quote": "项目研究成果成功应用于我国已建最高堆石坝两河口（295m）、世界在建第一高坝双江口（315m）、世界第一高面板堆石坝大石峡（247m）等多项重大高坝工程中，在提高质量、提升效率、节省投资等方面发挥了重大作用",
+              "quote": "心墙堆石坝接触黏土微观结构在碾压过程中的变化显著影响其宏观物理力学性能。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3735,
-                "end_char": 3837
+                "start_char": 659,
+                "end_char": 694
               },
               "version": "72d52db032355a984ecb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-6157e4180d00",
+          "name": "项目紧密结合心墙堆石坝碾压质量控制的实际工程需求，提出考虑坝料特征的堆石坝碾压智能控制方法研究，解决了坝料微观结构特征与",
+          "desc": "项目紧密结合心墙堆石坝碾压质量控制的实际工程需求，提出考虑坝料特征的堆石坝碾压智能控制方法研究，解决了坝料微观结构特征与坝料关键参数认知与提取的基础科学问题，突破了碾压参数与压实质量关联关系模型建立的技术瓶颈，攻克了复杂不确定条件下压实质量智能控制难题。",
+          "evidence": [
+            {
+              "quote": "项目紧密结合心墙堆石坝碾压质量控制的实际工程需求，提出考虑坝料特征的堆石坝碾压智能控制方法研究，解决了坝料微观结构特征与坝料关键参数认知与提取的基础科学问题，突破了碾压参数与压实质量关联关系模型建立的技术瓶颈，攻克了复杂不确定条件下压实质量智能控制难题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3020,
+                "end_char": 3146
+              },
+              "version": "72d52db032355a984ecb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-dc928f5931ca"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-161ebb717d8c"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "杨房沟水电站高拱坝智能建设关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba6cbb85f041",
+      "evidence": [
+        {
+          "quote": "杨房沟水电站高拱坝智能建设关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3862,
+            "end_char": 3881
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-161ebb717d8c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4c5b436f8aa6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficient virtual-to-real dataset synthesis for amodal instance segmentation of occlusion-aware rockfill material gradation detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c3d6f08b10da",
+      "evidence": [
+        {
+          "quote": "Efficient virtual-to-real dataset synthesis for amodal instance segmentation of occlusion-aware rockfill material gradation detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3990,
+            "end_char": 4122
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-161ebb717d8c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-90950fa6aea1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Occlusion-aware particle size distribution detection of gravel material based on the improved Bilayer Convolutional Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fcd401d5af6b",
+      "evidence": [
+        {
+          "quote": "Occlusion-aware particle size distribution detection of gravel material based on the improved Bilayer Convolutional Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4187,
+            "end_char": 4309
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-90950fa6aea1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-21fd69fb38d0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An innovation gain-adaptive Kalman filter for unmanned vibratory roller positioning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-662783a6f581",
+      "evidence": [
+        {
+          "quote": "An innovation gain-adaptive Kalman filter for unmanned vibratory roller positioning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4366,
+            "end_char": 4448
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4c5b436f8aa6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-21fd69fb38d0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved RefineDNet algorithm for precise environmental perception of autonomous earthmoving machinery under haze and fugitive dust conditions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-36bb517f284e",
+      "evidence": [
+        {
+          "quote": "Improved RefineDNet algorithm for precise environmental perception of autonomous earthmoving machinery under haze and fugitive dust conditions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4511,
+            "end_char": 4652
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pixel-wise annotated and high-quality synthesized image datasets for semi-supervised truck segmentation with limited raw images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-311e29dd6efe",
+      "evidence": [
+        {
+          "quote": "Pixel-wise annotated and high-quality synthesized image datasets for semi-supervised truck segmentation with limited raw images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4730,
+            "end_char": 4856
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gravelly soil uniformity identification based on the optimized Mask R-CNN model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-89c6213462bb",
+      "evidence": [
+        {
+          "quote": "Gravelly soil uniformity identification based on the optimized Mask R-CNN model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4946,
+            "end_char": 5024
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂地质条件下大坝坝基(地基)灌浆智能分析与馈控关键技术研究及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c10bb0de549e",
+      "evidence": [
+        {
+          "quote": "复杂地质条件下大坝坝基(地基)灌浆智能分析与馈控关键技术研究及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5108,
+            "end_char": 5140
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast detection of dam zone boundary based on Otsu thresholding optimized by enhanced harris hawks optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5fe49cacbbb7",
+      "evidence": [
+        {
+          "quote": "Fast detection of dam zone boundary based on Otsu thresholding optimized by enhanced harris hawks optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5209,
+            "end_char": 5318
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于SLAM的无人碾压动态路径自主规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-012596c4758d",
+      "evidence": [
+        {
+          "quote": "一种基于SLAM的无人碾压动态路径自主规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5399,
+            "end_char": 5421
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hybrid 1D-CNN and attention-based Bi-GRU neural networks for predicting moisture content of sand gravel using NIR spectroscopy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e68a88ab28f1",
+      "evidence": [
+        {
+          "quote": "Hybrid 1D-CNN and attention-based Bi-GRU neural networks for predicting moisture content of sand gravel using NIR spectroscopy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5451,
+            "end_char": 5576
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An enhanced multiobjective bacterial foraging algorithm for the compaction parameter optimization of earth-rock dams",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-841bcdf12327",
+      "evidence": [
+        {
+          "quote": "An enhanced multiobjective bacterial foraging algorithm for the compaction parameter optimization of earth-rock dams",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5641,
+            "end_char": 5756
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "大场景视频监控下大坝运输车改进多目标多视觉卸料识别模型研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dfe432b20d39",
+      "evidence": [
+        {
+          "quote": "大场景视频监控下大坝运输车改进多目标多视觉卸料识别模型研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5843,
+            "end_char": 5871
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种去中心化框架下的无人碾压机群协同作业控制系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12fc253ccaf6",
+      "evidence": [
+        {
+          "quote": "一种去中心化框架下的无人碾压机群协同作业控制系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5903,
+            "end_char": 5926
+          },
+          "version": "72d52db032355a984ecb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

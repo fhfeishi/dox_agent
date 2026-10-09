@@ -2,15 +2,20 @@
   "doc_id": "76206a64122109bce3df",
   "version": "98b1fdadddc1555b476e",
   "source_hash": "94e50344dbafdca38cb64c0360ff3ebe8628e9e4b0d298c57d310254426104b0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:08:06.728864+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.585887+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,15 +24,31 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7cc07e2a3bed",
-          "name": "在轨解锁与狭窄空间作业",
-          "desc": "航天、医疗和管道探测场景的柔体机械臂应用",
+          "id": "item-aa8faf3d8a97",
+          "name": "为解决太阳翼在轨辅助解锁问题，本项目提出基于滑移锁解的柔体臂变刚度方式，其基本思想是：通过锁止或解除驱动杆使机械臂在结构",
+          "desc": "为解决太阳翼在轨辅助解锁问题，本项目提出基于滑移锁解的柔体臂变刚度方式，其基本思想是：通过锁止或解除驱动杆使机械臂在结构和机构之间切换。",
           "evidence": [
             {
-              "quote": "面向航天、医疗和管道探测等应用场景。",
+              "quote": "为解决太阳翼在轨辅助解锁问题，本项目提出基于滑移锁解的柔体臂变刚度方式，其基本思想是：通过锁止或解除驱动杆使机械臂在结构和机构之间切换。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3152,
+                "start_char": 654,
+                "end_char": 721
+              },
+              "version": "98b1fdadddc1555b476e"
+            }
+          ]
+        },
+        {
+          "id": "item-b5d8a6b5d7cf",
+          "name": "传统连续体机械臂在柔顺性和承载能力间难以兼顾，项目以“结构型变刚度”方法解决此问题，面向航天、医疗和管道探测等应用场景。",
+          "desc": "传统连续体机械臂在柔顺性和承载能力间难以兼顾，项目以“结构型变刚度”方法解决此问题，面向航天、医疗和管道探测等应用场景。",
+          "evidence": [
+            {
+              "quote": "传统连续体机械臂在柔顺性和承载能力间难以兼顾，项目以“结构型变刚度”方法解决此问题，面向航天、医疗和管道探测等应用场景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3110,
                 "end_char": 3169
               },
               "version": "98b1fdadddc1555b476e"
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4b2f6fd41c7f",
-          "name": "柔顺性与承载难兼顾",
-          "desc": "传统连续体机械臂柔顺性与承载能力矛盾",
+          "id": "item-748fbbbcf54a",
+          "name": "传统连续体机械臂在柔顺性和承载能力间难以兼顾，项目以“结构型变刚度”方法解决此问题，面向航天、医疗和管道探测等应用场景。",
+          "desc": "传统连续体机械臂在柔顺性和承载能力间难以兼顾，项目以“结构型变刚度”方法解决此问题，面向航天、医疗和管道探测等应用场景。",
           "evidence": [
             {
-              "quote": "传统连续体机械臂在柔顺性和承载能力间难以兼顾",
+              "quote": "传统连续体机械臂在柔顺性和承载能力间难以兼顾，项目以“结构型变刚度”方法解决此问题，面向航天、医疗和管道探测等应用场景。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3110,
-                "end_char": 3131
+                "end_char": 3169
               },
               "version": "98b1fdadddc1555b476e"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b40c5c37fae9",
-          "name": "杆驱动摩擦夹紧结构",
-          "desc": "弹簧-盘式骨架与弹性杆集成摩擦夹紧模块",
+          "id": "item-a921d932a4ce",
+          "name": "项目将针对滑移锁解变刚度机理展开深入研究，利用刚度模型优化机械臂参数，并针对在轨辅助解锁动作要求开展机械臂的运动控制及刚",
+          "desc": "项目将针对滑移锁解变刚度机理展开深入研究，利用刚度模型优化机械臂参数，并针对在轨辅助解锁动作要求开展机械臂的运动控制及刚度调控策略研究，开展考虑卫星本体晃动等实际作业条件的地面模拟实验；",
           "evidence": [
             {
-              "quote": "核心结构包括弹簧-盘式骨架与三根方截面弹性杆，集成多组摩擦夹紧模块（螺纹-锥面增力机构与弹性摩擦套）。",
+              "quote": "项目将针对滑移锁解变刚度机理展开深入研究，利用刚度模型优化机械臂参数，并针对在轨辅助解锁动作要求开展机械臂的运动控制及刚度调控策略研究，开展考虑卫星本体晃动等实际作业条件的地面模拟实验；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3213,
-                "end_char": 3263
+                "start_char": 919,
+                "end_char": 1011
               },
               "version": "98b1fdadddc1555b476e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-353f26aefd5d",
-          "name": "旋转角-刚度链式模型",
-          "desc": "旋转角-预紧力-摩擦承载阈值-等效刚度建模",
+          "id": "item-9f934e09ee52",
+          "name": "（4）驱动系统集成，设计单杆双输入解耦驱动，实现多杆协同控制与实验验证。",
+          "desc": "（4）驱动系统集成，设计单杆双输入解耦驱动，实现多杆协同控制与实验验证。",
           "evidence": [
             {
-              "quote": "建立旋转角-预紧力-摩擦承载阈值-等效刚度的链式模型",
+              "quote": "（4）驱动系统集成，设计单杆双输入解耦驱动，实现多杆协同控制与实验验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3320,
-                "end_char": 3345
+                "start_char": 3378,
+                "end_char": 3413
               },
               "version": "98b1fdadddc1555b476e"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,120 @@
       "state": "has",
       "items": [
         {
-          "id": "item-98da6599b3e1",
-          "name": "刚度变化5.33倍",
-          "desc": "最大刚度变化约5.33倍，模型预测误差小于6%",
+          "id": "item-c3077547f9cf",
+          "name": "为解决太阳翼在轨辅助解锁问题，本项目提出基于滑移锁解的柔体臂变刚度方式，其基本思想是：通过锁止或解除驱动杆使机械臂在结构",
+          "desc": "为解决太阳翼在轨辅助解锁问题，本项目提出基于滑移锁解的柔体臂变刚度方式，其基本思想是：通过锁止或解除驱动杆使机械臂在结构和机构之间切换。",
           "evidence": [
             {
-              "quote": "实验结果显示，系统最大刚度变化倍率约5.33倍（从柔顺态到刚化态），理论模型对实验数据的平均预测误差小于6%。",
+              "quote": "为解决太阳翼在轨辅助解锁问题，本项目提出基于滑移锁解的柔体臂变刚度方式，其基本思想是：通过锁止或解除驱动杆使机械臂在结构和机构之间切换。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3437,
-                "end_char": 3491
+                "start_char": 654,
+                "end_char": 721
               },
               "version": "98b1fdadddc1555b476e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-685c324e1a7c",
-          "name": "专利1项与SCI论文3篇",
-          "desc": "授权发明专利1项，第一/通讯作者SCI论文3篇",
+          "id": "item-c177d217b3f0",
+          "name": "项目背景：针对狭窄空间作业（如在轨辅助解锁、设备内部检修）和在轨维护等任务对柔性机械臂提出的“既要柔顺通过狭小通道、又需",
+          "desc": "项目背景：针对狭窄空间作业（如在轨辅助解锁、设备内部检修）和在轨维护等任务对柔性机械臂提出的“既要柔顺通过狭小通道、又需高刚度负载支撑”的矛盾需求，本项目开展了基于滑移锁解的可伸缩柔体机械臂变刚度机理及控制研究。",
           "evidence": [
             {
-              "quote": "授权国家发明专利1项（ZL202510286308.5，涵盖机械臂、调节装置及方法），以第一或通讯作者发表SCI论文3篇。",
+              "quote": "项目背景：针对狭窄空间作业（如在轨辅助解锁、设备内部检修）和在轨维护等任务对柔性机械臂提出的“既要柔顺通过狭小通道、又需高刚度负载支撑”的矛盾需求，本项目开展了基于滑移锁解的可伸缩柔体机械臂变刚度机理及控制研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3552,
-                "end_char": 3612
+                "start_char": 3004,
+                "end_char": 3109
               },
               "version": "98b1fdadddc1555b476e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7cc07e2a3bed"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4b2f6fd41c7f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analytical Inverse Kinematics for Two-Segment Extensible Continuum Manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-732b9b61580f",
+      "evidence": [
+        {
+          "quote": "Analytical Inverse Kinematics for Two-Segment Extensible Continuum Manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3817,
+            "end_char": 3895
+          },
+          "version": "98b1fdadddc1555b476e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4b2f6fd41c7f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b40c5c37fae9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Chain-Type Magnetic Wheeled Robot for In-Situ Inspection of Integrated Pipeline-Valve-Vessel Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a3871a910a79",
+      "evidence": [
+        {
+          "quote": "A Chain-Type Magnetic Wheeled Robot for In-Situ Inspection of Integrated Pipeline-Valve-Vessel Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3974,
+            "end_char": 4075
+          },
+          "version": "98b1fdadddc1555b476e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4b2f6fd41c7f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-353f26aefd5d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b40c5c37fae9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-98da6599b3e1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-353f26aefd5d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-685c324e1a7c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and statics model of an extensible hybrid-driven continuum robot with variable stiffness",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ebf54f6326b",
+      "evidence": [
+        {
+          "quote": "Design and statics model of an extensible hybrid-driven continuum robot with variable stiffness",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4137,
+            "end_char": 4231
+          },
+          "version": "98b1fdadddc1555b476e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

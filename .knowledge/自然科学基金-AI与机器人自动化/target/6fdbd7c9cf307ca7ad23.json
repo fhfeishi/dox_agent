@@ -2,15 +2,20 @@
   "doc_id": "6fdbd7c9cf307ca7ad23",
   "version": "7e3a36d14d2e4a99563f",
   "source_hash": "49ba7bad91437e05d7c6e9d6affcb056efac818ac4c2686b0f50d9065e816088",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:24.402030+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.517593+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a5c2095a8c40",
-          "name": "机器人视觉受污应急",
-          "desc": "泥地滩涂及跨介质战场环境中视觉传感器光学窗口受污",
+          "id": "item-20e645f01264",
+          "name": "自主机器人在复杂环境如泥地滩涂等场合、尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和",
+          "desc": "自主机器人在复杂环境如泥地滩涂等场合、尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和安全影响至重。",
           "evidence": [
             {
-              "quote": "自主机器人在复杂环境如泥地滩涂等场合，尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和安全影响至重",
+              "quote": "自主机器人在复杂环境如泥地滩涂等场合、尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和安全影响至重。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2768,
-                "end_char": 2833
+                "start_char": 659,
+                "end_char": 725
               },
               "version": "7e3a36d14d2e4a99563f"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-25b6ff11101d",
-          "name": "受污案例多样策略协调",
-          "desc": "机器人视觉受污案例多样和应急策略优化协调问题",
-          "evidence": [
-            {
-              "quote": "本项目针对机器人视觉受污案例多样和机器人应急策略优化协调问题，提出了多场景多环境的识别策略，针对水中和陆上的视觉受污问题采取不同的规划策略",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2883,
-                "end_char": 2951
-              },
-              "version": "7e3a36d14d2e4a99563f"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-e63c297f0feb",
-          "name": "自省CBR偶然性规划",
-          "desc": "自省CBR方法获得具有自我评估、自我更新能力的自动规划器",
+          "id": "item-5ff2dcc12abc",
+          "name": "本项目针对机器人视觉受污案例多样和机器人应急策略优化协调问题，采用自省CBR偶然性规划方法，得到具有自我评估、自我更新能",
+          "desc": "本项目针对机器人视觉受污案例多样和机器人应急策略优化协调问题，采用自省CBR偶然性规划方法，得到具有自我评估、自我更新能力的自动规划器；",
           "evidence": [
             {
-              "quote": "采用自省CBR偶然性规划方法，得到具有自我评估、自我更新能力的自动规划器",
+              "quote": "本项目针对机器人视觉受污案例多样和机器人应急策略优化协调问题，采用自省CBR偶然性规划方法，得到具有自我评估、自我更新能力的自动规划器；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 805,
-                "end_char": 840
+                "start_char": 774,
+                "end_char": 841
               },
               "version": "7e3a36d14d2e4a99563f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e0abcc12b47c",
-          "name": "仿生眼睑泪器清洁设计",
-          "desc": "BioTRIZ与可拓学设计清洁执行部分，变刚度眼睑-泪器多元仿生优化模型",
+          "id": "item-429a232ba6a6",
+          "name": "本项目针对机器人视觉受污案例多样和机器人应急策略优化协调问题，提出了多场景多环境的识别策略，针对水中和陆上的视觉受污问题",
+          "desc": "本项目针对机器人视觉受污案例多样和机器人应急策略优化协调问题，提出了多场景多环境的识别策略，针对水中和陆上的视觉受污问题采取不同的规划策略；",
           "evidence": [
             {
-              "quote": "提出BioTRIZ与可拓学分析的设计学方法设计相关清洁执行部分；以此仿生学设计为基础，基于水下适应性提出自带环境识别和自我位置解算的水下软体机器人平台",
+              "quote": "本项目针对机器人视觉受污案例多样和机器人应急策略优化协调问题，提出了多场景多环境的识别策略，针对水中和陆上的视觉受污问题采取不同的规划策略；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2997,
-                "end_char": 3071
+                "start_char": 2883,
+                "end_char": 2952
               },
               "version": "7e3a36d14d2e4a99563f"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,672 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ed89f616cc88",
-          "name": "多模态应急行为策略",
-          "desc": "多模态感知补偿信息与代价函数优化得到机器人应急行为策略，支撑应急自救",
+          "id": "item-3d2001ef90f4",
+          "name": "自主机器人在复杂环境如泥地滩涂等场合、尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和",
+          "desc": "自主机器人在复杂环境如泥地滩涂等场合、尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和安全影响至重。",
           "evidence": [
             {
-              "quote": "针对机器人保持持续运动功能问题，采用多模态感知补偿信息和代价函数优化，得到机器人应急行为策略。本项目研究成果将为自主作业机器人、移动作战平台提供应急自救的理论和技术基础",
+              "quote": "自主机器人在复杂环境如泥地滩涂等场合、尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和安全影响至重。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 974,
-                "end_char": 1057
+                "start_char": 659,
+                "end_char": 725
               },
               "version": "7e3a36d14d2e4a99563f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-3763921a7283",
+          "name": "自主机器人在复杂环境如泥地滩涂等场合，尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和",
+          "desc": "自主机器人在复杂环境如泥地滩涂等场合，尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和安全影响至重。",
+          "evidence": [
+            {
+              "quote": "自主机器人在复杂环境如泥地滩涂等场合，尤其在跨介质行动的战场，视觉传感器作为核心传感部件，其光学窗口清晰度对机器人性能和安全影响至重。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2768,
+                "end_char": 2834
+              },
+              "version": "7e3a36d14d2e4a99563f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a5c2095a8c40"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-25b6ff11101d"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "中国兵器集团第六届创新竞赛",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-baa7dc5711e3",
+      "evidence": [
+        {
+          "quote": "中国兵器集团第六届创新竞赛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3350,
+            "end_char": 3362
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-25b6ff11101d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e63c297f0feb"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Omnidirectional and Variable Density Point Cloud Acquisition Based on Turntable Solid-state LiDAR",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc4291a5be22",
+      "evidence": [
+        {
+          "quote": "Omnidirectional and Variable Density Point Cloud Acquisition Based on Turntable Solid-state LiDAR",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3395,
+            "end_char": 3491
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-25b6ff11101d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e0abcc12b47c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhancement of the measurement stability of conductive ink based sensor by topology optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1831f69ba618",
+      "evidence": [
+        {
+          "quote": "Enhancement of the measurement stability of conductive ink based sensor by topology optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3525,
+            "end_char": 3620
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e63c297f0feb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ed89f616cc88"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Material Analysis and Molecular Dynamics Simulation for Cavitation Erosion and Corrosion Suppression in Water Hydraulic Valves",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13f93cea930c",
+      "evidence": [
+        {
+          "quote": "Material Analysis and Molecular Dynamics Simulation for Cavitation Erosion and Corrosion Suppression in Water Hydraulic Valves",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3673,
+            "end_char": 3798
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e0abcc12b47c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ed89f616cc88"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Erosion wear of biomimetic valve plug prediction with random forest regression based on Mahalanobis distance: an experimental study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-04c6008d39c9",
+      "evidence": [
+        {
+          "quote": "Erosion wear of biomimetic valve plug prediction with random forest regression based on Mahalanobis distance: an experimental study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3885,
+            "end_char": 4015
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Arrangement optimization of a novel three dimensional multiphase flow imaging device employing modified harmony search algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c5325ce06ae1",
+      "evidence": [
+        {
+          "quote": "Arrangement optimization of a novel three dimensional multiphase flow imaging device employing modified harmony search algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4044,
+            "end_char": 4171
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Biomimetic fiber reinforced dual-mode actuator for soft robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-252f2089241a",
+      "evidence": [
+        {
+          "quote": "Biomimetic fiber reinforced dual-mode actuator for soft robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4242,
+            "end_char": 4303
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven fault diagnosis of control valve with missing data based on modeling and deep residual shrinkage network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ca9c8d5afd8",
+      "evidence": [
+        {
+          "quote": "Data-driven fault diagnosis of control valve with missing data based on modeling and deep residual shrinkage network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4336,
+            "end_char": 4451
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Underwater Bionic Visual Decontamination Design Applied in Ocean Robots Based on CBR Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fe76e0c88bbc",
+      "evidence": [
+        {
+          "quote": "Underwater Bionic Visual Decontamination Design Applied in Ocean Robots Based on CBR Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4504,
+            "end_char": 4596
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第八届杰瑞杯中国研究生能源装备创新设计大赛",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1bbb3d6491b8",
+      "evidence": [
+        {
+          "quote": "第八届杰瑞杯中国研究生能源装备创新设计大赛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4627,
+            "end_char": 4647
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling, Analysis, and Function Extension of the McKibben Hydraulic Artificial Muscles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f165eb2e7afc",
+      "evidence": [
+        {
+          "quote": "Modeling, Analysis, and Function Extension of the McKibben Hydraulic Artificial Muscles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4682,
+            "end_char": 4768
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Detail-semantic guide network based on spatial attention for surface defect detection with fewer samples",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd3d20af939f",
+      "evidence": [
+        {
+          "quote": "Detail-semantic guide network based on spatial attention for surface defect detection with fewer samples",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4801,
+            "end_char": 4904
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Study on an Underwater Flexible Manipulator Based on Hydraulic Drive",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b55701c1eb07",
+      "evidence": [
+        {
+          "quote": "Study on an Underwater Flexible Manipulator Based on Hydraulic Drive",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4936,
+            "end_char": 5003
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and Experiments on the Swallowing and Disgorging Characteristics of an Underwater Continuum Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ddb9cb68e9ff",
+      "evidence": [
+        {
+          "quote": "Modeling and Experiments on the Swallowing and Disgorging Characteristics of an Underwater Continuum Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5065,
+            "end_char": 5176
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Ag-IPMC force electric model and force output characteristics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1cce12433219",
+      "evidence": [
+        {
+          "quote": "Research on Ag-IPMC force electric model and force output characteristics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5290,
+            "end_char": 5362
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于仿生瞬膜的移动机器人摄像头视野综合清洁装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4112f0133124",
+      "evidence": [
+        {
+          "quote": "一种基于仿生瞬膜的移动机器人摄像头视野综合清洁装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5436,
+            "end_char": 5460
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Kinematic modeling and solution of rigid-flexible and variable-diameter underwater continuous manipulator with load",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ee0b58dee15",
+      "evidence": [
+        {
+          "quote": "Kinematic modeling and solution of rigid-flexible and variable-diameter underwater continuous manipulator with load",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5485,
+            "end_char": 5599
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "BERT-based coupling evaluation of biological strategies in bio-inspired design",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-50ef8f291674",
+      "evidence": [
+        {
+          "quote": "BERT-based coupling evaluation of biological strategies in bio-inspired design",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5648,
+            "end_char": 5725
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "杰瑞杯第八届中国研究生能源装备创新设计大赛",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9815f2fadbb6",
+      "evidence": [
+        {
+          "quote": "杰瑞杯第八届中国研究生能源装备创新设计大赛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5787,
+            "end_char": 5807
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于液压半桥的水压柔性臂驱动与控制系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-97a747cf75b8",
+      "evidence": [
+        {
+          "quote": "一种基于液压半桥的水压柔性臂驱动与控制系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5838,
+            "end_char": 5858
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Cavitation Resistance by Vortex in Water Hydraulic Valves",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c5e0f2627f61",
+      "evidence": [
+        {
+          "quote": "Research on Cavitation Resistance by Vortex in Water Hydraulic Valves",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5887,
+            "end_char": 5955
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Flexible Strain Sensor for Detecting Pressure based on Metamaterial Structure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d974a0d87d74",
+      "evidence": [
+        {
+          "quote": "A Flexible Strain Sensor for Detecting Pressure based on Metamaterial Structure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5988,
+            "end_char": 6066
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Method of Mobile Robot Visual Contaminant Detection Based on Five-frame Difference and Visual Background Extractor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b301d9db6fd0",
+      "evidence": [
+        {
+          "quote": "The Method of Mobile Robot Visual Contaminant Detection Based on Five-frame Difference and Visual Background Extractor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6133,
+            "end_char": 6250
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Double-Input Multi-Output Pressure Control System Based on Addressable Pressure Component",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d8542c25405",
+      "evidence": [
+        {
+          "quote": "Double-Input Multi-Output Pressure Control System Based on Addressable Pressure Component",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6319,
+            "end_char": 6407
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Bidirectional Soft Biomimetic Hand Driven by Water Hydraulic for Dexterous Underwater Grasping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed1c1d99f83b",
+      "evidence": [
+        {
+          "quote": "A Bidirectional Soft Biomimetic Hand Driven by Water Hydraulic for Dexterous Underwater Grasping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6465,
+            "end_char": 6560
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Soft Robotic Hand Design With Human-Inspired Soft Palm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ebaf1b05e64",
+      "evidence": [
+        {
+          "quote": "A Novel Soft Robotic Hand Design With Human-Inspired Soft Palm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6601,
+            "end_char": 6662
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A review of biomimetic research for erosion wear resistance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1429ba341272",
+      "evidence": [
+        {
+          "quote": "A review of biomimetic research for erosion wear resistance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6742,
+            "end_char": 6800
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Molecular Dynamics Study of Anti-Wear Erosion and Corrosion Protection of PTFE/Al2O3 (010) Coating Composite in Water Hydraulic Valves",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca7278bcbbd6",
+      "evidence": [
+        {
+          "quote": "Molecular Dynamics Study of Anti-Wear Erosion and Corrosion Protection of PTFE/Al2O3 (010) Coating Composite in Water Hydraulic Valves",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6826,
+            "end_char": 6959
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-DoF Soft Robotic Actuators Based on Spring Reinforce and Particle Jamming",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e90ac32ca91",
+      "evidence": [
+        {
+          "quote": "Multi-DoF Soft Robotic Actuators Based on Spring Reinforce and Particle Jamming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7015,
+            "end_char": 7093
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sensitive Monitoring Particles Conveying in Water Hydraulic System via a Facile Molding Conductive Hydrogel",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dcff54b87903",
+      "evidence": [
+        {
+          "quote": "Sensitive Monitoring Particles Conveying in Water Hydraulic System via a Facile Molding Conductive Hydrogel",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7126,
+            "end_char": 7232
+          },
+          "version": "7e3a36d14d2e4a99563f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

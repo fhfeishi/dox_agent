@@ -2,15 +2,20 @@
   "doc_id": "b2afafb760026fe1c7b9",
   "version": "ac25500b76e71bd0bcef",
   "source_hash": "3ecdc68d2d7191ffcee8b428401cdef5df345dbd6aff95ad41ce13067bb52c67",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:10.015244+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.211321+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d4ddc2aa703f",
-          "name": "自动驾驶动态避障",
-          "desc": "动态不确定环境下自动驾驶车辆避障",
+          "id": "item-37df007f6f2e",
+          "name": "道路障碍物易引发碰撞事故，严重威胁自动驾驶车辆的行驶安全，研究并实现避障控制是确保道路行车安全性的关键。",
+          "desc": "道路障碍物易引发碰撞事故，严重威胁自动驾驶车辆的行驶安全，研究并实现避障控制是确保道路行车安全性的关键。",
           "evidence": [
             {
-              "quote": "本项目针对道路交通和行车安全的迫切需求，开展了自动驾驶车辆避障控制策略研究，突破障碍物运动解析、运动特性表征以及避障控制方法等关键基础理论",
+              "quote": "道路障碍物易引发碰撞事故，严重威胁自动驾驶车辆的行驶安全，研究并实现避障控制是确保道路行车安全性的关键。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3014,
-                "end_char": 3082
+                "start_char": 657,
+                "end_char": 708
+              },
+              "version": "ac25500b76e71bd0bcef"
+            }
+          ]
+        },
+        {
+          "id": "item-2ea627601acb",
+          "name": "研究工作面向国家智能交通的战略需求和学科发展前沿，为车辆避障控制的理论和方法提供重要支撑，有力推动自动驾驶技术的发展和应",
+          "desc": "研究工作面向国家智能交通的战略需求和学科发展前沿，为车辆避障控制的理论和方法提供重要支撑，有力推动自动驾驶技术的发展和应用，显著提升我国的道路交通运输安全，具有重要的学术研究意义与工程应用价值。",
+          "evidence": [
+            {
+              "quote": "研究工作面向国家智能交通的战略需求和学科发展前沿，为车辆避障控制的理论和方法提供重要支撑，有力推动自动驾驶技术的发展和应用，显著提升我国的道路交通运输安全，具有重要的学术研究意义与工程应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3473,
+                "end_char": 3569
               },
               "version": "ac25500b76e71bd0bcef"
             }
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-beb40290250d",
-          "name": "障碍动态不确定考虑不足",
-          "desc": "对障碍物复杂运动特性考虑不足难安全避让",
+          "id": "item-0d015c81bfba",
+          "name": "但障碍物运动状态具有动态特性和不确定性，当前的研究普遍对障碍物的复杂运动特性考虑不足，致使车辆难以安全准确避让障碍物。",
+          "desc": "但障碍物运动状态具有动态特性和不确定性，当前的研究普遍对障碍物的复杂运动特性考虑不足，致使车辆难以安全准确避让障碍物。",
           "evidence": [
             {
               "quote": "但障碍物运动状态具有动态特性和不确定性，当前的研究普遍对障碍物的复杂运动特性考虑不足，致使车辆难以安全准确避让障碍物。",
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-91fd0d1034cd",
-          "name": "随动半平面概率约束",
-          "desc": "时变稀疏高斯混合刻画动态不确定运动特性",
+          "id": "item-3785350438b2",
+          "name": "3）针对车辆系统误差和多约束条件，提出车辆随机鲁棒模型预测避障控制方法；",
+          "desc": "3）针对车辆系统误差和多约束条件，提出车辆随机鲁棒模型预测避障控制方法；",
           "evidence": [
             {
-              "quote": "利用随动半平面概率约束描述障碍物的运动特性，并融入车辆随机鲁棒避障控制，使自动驾驶车辆能够避让动态不确定运动障碍物",
+              "quote": "3）针对车辆系统误差和多约束条件，提出车辆随机鲁棒模型预测避障控制方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3248,
-                "end_char": 3304
+                "start_char": 887,
+                "end_char": 922
               },
               "version": "ac25500b76e71bd0bcef"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-66c496024ed3",
-          "name": "周围车辆轨迹预测",
-          "desc": "避障策略融合轨迹预测实现交互协同",
+          "id": "item-f3c21f500b31",
+          "name": "本项目建立障碍物的运动模型明确运动状态，依据障碍物运动状态设计避障控制方法，实现对特定运动模式障碍物的有效避让；",
+          "desc": "本项目建立障碍物的运动模型明确运动状态，依据障碍物运动状态设计避障控制方法，实现对特定运动模式障碍物的有效避让；",
           "evidence": [
             {
-              "quote": "提出了周围车辆轨迹预测方法，在自动驾驶车辆避障策略中充分考虑周围车辆的轨迹预测，实现复杂道路交互场景下自动驾驶车辆与周围车辆的交互协同",
+              "quote": "本项目建立障碍物的运动模型明确运动状态，依据障碍物运动状态设计避障控制方法，实现对特定运动模式障碍物的有效避让；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3312,
-                "end_char": 3378
+                "start_char": 3150,
+                "end_char": 3205
               },
               "version": "ac25500b76e71bd0bcef"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,308 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c3eb2228bd1b",
-          "name": "随机鲁棒MPC避障",
-          "desc": "动态不确定运动特性融入避障控制实现安全避让",
+          "id": "item-f3b178f4b327",
+          "name": "道路障碍物易引发碰撞事故，严重威胁自动驾驶车辆的行驶安全，研究并实现避障控制是确保道路行车安全性的关键。",
+          "desc": "道路障碍物易引发碰撞事故，严重威胁自动驾驶车辆的行驶安全，研究并实现避障控制是确保道路行车安全性的关键。",
           "evidence": [
             {
-              "quote": "通过本项目的研究，障碍物的动态不确定运动特性将被充分融入到自动驾驶车辆的避障控制中，在此基础上实现更准确的车辆避障控制方法，安全有效避让道路障碍物。",
+              "quote": "道路障碍物易引发碰撞事故，严重威胁自动驾驶车辆的行驶安全，研究并实现避障控制是确保道路行车安全性的关键。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3399,
-                "end_char": 3472
+                "start_char": 657,
+                "end_char": 708
               },
               "version": "ac25500b76e71bd0bcef"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-f706e22e9e8b",
+          "name": "自动驾驶车辆能够代替驾驶员自主安全完成道路驾驶任务，显著提升道路交通的高效性、安全性和舒适性，是现代智能交通运输和汽车工",
+          "desc": "自动驾驶车辆能够代替驾驶员自主安全完成道路驾驶任务，显著提升道路交通的高效性、安全性和舒适性，是现代智能交通运输和汽车工业发展的重要方向。",
+          "evidence": [
+            {
+              "quote": "自动驾驶车辆能够代替驾驶员自主安全完成道路驾驶任务，显著提升道路交通的高效性、安全性和舒适性，是现代智能交通运输和汽车工业发展的重要方向。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2891,
+                "end_char": 2959
+              },
+              "version": "ac25500b76e71bd0bcef"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d4ddc2aa703f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-beb40290250d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical Reinforcement Learning-Based End-to-End Visual Servoing With Smooth Subgoals",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c937c846d84",
+      "evidence": [
+        {
+          "quote": "Hierarchical Reinforcement Learning-Based End-to-End Visual Servoing With Smooth Subgoals",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3595,
+            "end_char": 3683
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-beb40290250d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-91fd0d1034cd"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-triggered MPC for Collision Avoidance of Autonomous Vehicles Considering Trajectory Tracking Performance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c5db32c93f9",
+      "evidence": [
+        {
+          "quote": "Event-triggered MPC for Collision Avoidance of Autonomous Vehicles Considering Trajectory Tracking Performance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3749,
+            "end_char": 3858
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-beb40290250d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-66c496024ed3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Lane-Exchanging Driving Strategy for Autonomous Vehicle via Trajectory Prediction and Model Predictive Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa25454c65fb",
+      "evidence": [
+        {
+          "quote": "Lane-Exchanging Driving Strategy for Autonomous Vehicle via Trajectory Prediction and Model Predictive Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3929,
+            "end_char": 4038
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-91fd0d1034cd"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c3eb2228bd1b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "视觉伺服方法、装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-458dff945689",
+      "evidence": [
+        {
+          "quote": "视觉伺服方法、装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4096,
+            "end_char": 4104
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-66c496024ed3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c3eb2228bd1b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于新颖性度量的SAC强化学习视觉伺服控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f93466380dd",
+      "evidence": [
+        {
+          "quote": "一种基于新颖性度量的SAC强化学习视觉伺服控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4131,
+            "end_char": 4158
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Underwater Target Detection Using Side-Scan Sonar Images Based on Upsampling and Downsampling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e6127c44d834",
+      "evidence": [
+        {
+          "quote": "Underwater Target Detection Using Side-Scan Sonar Images Based on Upsampling and Downsampling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4187,
+            "end_char": 4279
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning End-to-End Visual Servoing Using an Improved Soft Actor-Critic Approach With Centralized Novelty Measurement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c5547de2048",
+      "evidence": [
+        {
+          "quote": "Learning End-to-End Visual Servoing Using an Improved Soft Actor-Critic Approach With Centralized Novelty Measurement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4344,
+            "end_char": 4460
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep learning-based pose prediction for visual servoing of robotic manipulators using image similarity",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae91eec8cf77",
+      "evidence": [
+        {
+          "quote": "Deep learning-based pose prediction for visual servoing of robotic manipulators using image similarity",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4515,
+            "end_char": 4616
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于神经网络的事件触发MPC自动驾驶车辆避碰方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29a8da700953",
+      "evidence": [
+        {
+          "quote": "基于神经网络的事件触发MPC自动驾驶车辆避碰方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4659,
+            "end_char": 4682
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Fault Diagnosis Method for AUVs Based on Meta-Self-Attentive Variable-Scale CNN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-81c4e59afa97",
+      "evidence": [
+        {
+          "quote": "A Fault Diagnosis Method for AUVs Based on Meta-Self-Attentive Variable-Scale CNN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4720,
+            "end_char": 4800
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "车辆驾驶的辅助控制方法、装置、设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-298e1567a31b",
+      "evidence": [
+        {
+          "quote": "车辆驾驶的辅助控制方法、装置、设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4865,
+            "end_char": 4886
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Improved SAC-Based Deep Reinforcement Learning Framework for Collaborative Pushing and Grasping in Underwater Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-069f0ab526f4",
+      "evidence": [
+        {
+          "quote": "An Improved SAC-Based Deep Reinforcement Learning Framework for Collaborative Pushing and Grasping in Underwater Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4960,
+            "end_char": 5084
+          },
+          "version": "ac25500b76e71bd0bcef"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "3211761abce416d709e4",
   "version": "a54129bf8d43d14fbac1",
   "source_hash": "6f3865b96c84f79c6339632824eb1ec3e02156bffa725555484e4e72ac063d8d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:10.068783+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.934858+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4664d10e3329",
-          "name": "海洋弱小目标检测",
-          "desc": "海事监管、航道巡检、应急救援的无人艇感知",
+          "id": "item-40959fd4f7b8",
+          "name": "由于海洋环境复杂多变，目标种类繁多、机动性强，给海面目标检测带来了很大挑战，因此建立基于无人艇的海面观测系统对海洋资源的",
+          "desc": "由于海洋环境复杂多变，目标种类繁多、机动性强，给海面目标检测带来了很大挑战，因此建立基于无人艇的海面观测系统对海洋资源的开发与管理有重大意义。",
           "evidence": [
             {
-              "quote": "无人艇作为海上智能感知与自主作业的重要装备，在海事监管、航道巡检和应急救援等领域的应用需求不断增长。",
+              "quote": "由于海洋环境复杂多变，目标种类繁多、机动性强，给海面目标检测带来了很大挑战，因此建立基于无人艇的海面观测系统对海洋资源的开发与管理有重大意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2839,
-                "end_char": 2888
+                "start_char": 661,
+                "end_char": 731
+              },
+              "version": "a54129bf8d43d14fbac1"
+            }
+          ]
+        },
+        {
+          "id": "item-2d275f3671e2",
+          "name": "项目以面向海洋环境的无人艇目标检测为研究对象，围绕基于数据驱动的场景目标原型库构建、复杂海况下的弱小目标识别、面向跨域任",
+          "desc": "项目以面向海洋环境的无人艇目标检测为研究对象，围绕基于数据驱动的场景目标原型库构建、复杂海况下的弱小目标识别、面向跨域任务的模型自适应优化三个科学问题展开研究：（1）深入挖掘目标及背景的特征属性，建立基于动态原型学习的目标特征知识库，从样本空间进行数据约简，实现背景及目标的高精度区分；",
+          "evidence": [
+            {
+              "quote": "项目以面向海洋环境的无人艇目标检测为研究对象，围绕基于数据驱动的场景目标原型库构建、复杂海况下的弱小目标识别、面向跨域任务的模型自适应优化三个科学问题展开研究：（1）深入挖掘目标及背景的特征属性，建立基于动态原型学习的目标特征知识库，从样本空间进行数据约简，实现背景及目标的高精度区分；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 732,
+                "end_char": 874
               },
               "version": "a54129bf8d43d14fbac1"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-34b664ac01c2",
-          "name": "弱小目标成像退化",
-          "desc": "目标尺度小对比度低伴随雾霾低光浪涌反射退化",
+          "id": "item-d995e9e6f2cb",
+          "name": "另一方面，面向弱小目标特征不足和背景干扰强的问题，研究多尺度特征融合与注意力引导的检测方法，增强小目标的判别性表达。",
+          "desc": "另一方面，面向弱小目标特征不足和背景干扰强的问题，研究多尺度特征融合与注意力引导的检测方法，增强小目标的判别性表达。",
           "evidence": [
             {
-              "quote": "但在实际海洋环境中，目标尺度小、对比度低，且常伴随雾霾、低光照、浪涌反射等复杂成像退化，导致感知可靠性和识别稳定性显著下降。",
+              "quote": "另一方面，面向弱小目标特征不足和背景干扰强的问题，研究多尺度特征融合与注意力引导的检测方法，增强小目标的判别性表达。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2918,
-                "end_char": 2979
+                "start_char": 3091,
+                "end_char": 3148
               },
               "version": "a54129bf8d43d14fbac1"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a5b77eda4ee8",
-          "name": "去雾与低光照增强",
-          "desc": "成像机理与视觉感知结合注意力机制提升可视性",
+          "id": "item-1ea3fba98b72",
+          "name": "（3）分析时序图像拓扑结构，设计优化算法实现元学习模型的自适应更新，从而解决小样本、跨场景约束下的模型训练难问题。",
+          "desc": "（3）分析时序图像拓扑结构，设计优化算法实现元学习模型的自适应更新，从而解决小样本、跨场景约束下的模型训练难问题。",
           "evidence": [
             {
-              "quote": "聚焦去雾与低光照增强等典型退化场景，从成像机理建模与人类视觉感知出发，结合多尺度特征提取与注意力机制，提升退化图像的可视性与信息可用性",
+              "quote": "（3）分析时序图像拓扑结构，设计优化算法实现元学习模型的自适应更新，从而解决小样本、跨场景约束下的模型训练难问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3023,
-                "end_char": 3089
+                "start_char": 929,
+                "end_char": 985
               },
               "version": "a54129bf8d43d14fbac1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-45b90e10460b",
-          "name": "跨域频域特征迁移",
-          "desc": "不确定性约束的跨场景泛化方法提升适应能力",
+          "id": "item-43d9dedb5e07",
+          "name": "项目以面向海洋环境的无人艇目标检测为研究对象，围绕基于数据驱动的场景目标原型库构建、复杂海况下的弱小目标识别、面向跨域任",
+          "desc": "项目以面向海洋环境的无人艇目标检测为研究对象，围绕基于数据驱动的场景目标原型库构建、复杂海况下的弱小目标识别、面向跨域任务的模型自适应优化三个科学问题展开研究：（1）深入挖掘目标及背景的特征属性，建立基于动态原型学习的目标特征知识库，从样本空间进行数据约简，实现背景及目标的高精度区分；",
           "evidence": [
             {
-              "quote": "引入跨域模式识别与领域自适应理论，探索基于频域特征迁移与不确定性约束的跨场景泛化方法，提升模型在不同海域、海况和成像条件下的适应能力。",
+              "quote": "项目以面向海洋环境的无人艇目标检测为研究对象，围绕基于数据驱动的场景目标原型库构建、复杂海况下的弱小目标识别、面向跨域任务的模型自适应优化三个科学问题展开研究：（1）深入挖掘目标及背景的特征属性，建立基于动态原型学习的目标特征知识库，从样本空间进行数据约简，实现背景及目标的高精度区分；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3152,
-                "end_char": 3218
+                "start_char": 732,
+                "end_char": 874
               },
               "version": "a54129bf8d43d14fbac1"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,348 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ec39ee48c428",
-          "name": "多尺度注意力检测",
-          "desc": "多尺度特征融合与注意力引导增强小目标判别表达",
+          "id": "item-db3e8f328ed2",
+          "name": "由于海洋环境复杂多变，目标种类繁多、机动性强，给海面目标检测带来了很大挑战，因此建立基于无人艇的海面观测系统对海洋资源的",
+          "desc": "由于海洋环境复杂多变，目标种类繁多、机动性强，给海面目标检测带来了很大挑战，因此建立基于无人艇的海面观测系统对海洋资源的开发与管理有重大意义。",
           "evidence": [
             {
-              "quote": "另一方面，面向弱小目标特征不足和背景干扰强的问题，研究多尺度特征融合与注意力引导的检测方法，增强小目标的判别性表达。",
+              "quote": "由于海洋环境复杂多变，目标种类繁多、机动性强，给海面目标检测带来了很大挑战，因此建立基于无人艇的海面观测系统对海洋资源的开发与管理有重大意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3091,
-                "end_char": 3148
+                "start_char": 661,
+                "end_char": 731
               },
               "version": "a54129bf8d43d14fbac1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-b06ff0521c38",
+          "name": "无人艇作为海上智能感知与自主作业的重要装备，在海事监管、航道巡检和应急救援等领域的应用需求不断增长。",
+          "desc": "无人艇作为海上智能感知与自主作业的重要装备，在海事监管、航道巡检和应急救援等领域的应用需求不断增长。",
+          "evidence": [
+            {
+              "quote": "无人艇作为海上智能感知与自主作业的重要装备，在海事监管、航道巡检和应急救援等领域的应用需求不断增长。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2839,
+                "end_char": 2888
+              },
+              "version": "a54129bf8d43d14fbac1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4664d10e3329"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-34b664ac01c2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Fourier Transform Framework for Domain Adaptation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52479fe3a98d",
+      "evidence": [
+        {
+          "quote": "A Fourier Transform Framework for Domain Adaptation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3296,
+            "end_char": 3346
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-34b664ac01c2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a5b77eda4ee8"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Motion Planning Integrated with Vehicle-terrain Interactions for Off-road Autonomous Ground Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-69e1021dd515",
+      "evidence": [
+        {
+          "quote": "Motion Planning Integrated with Vehicle-terrain Interactions for Off-road Autonomous Ground Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3413,
+            "end_char": 3512
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-34b664ac01c2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-45b90e10460b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Driving Cognitive Alertness Detecting Using Evoked Multimodal Physiological Signals Based on Uncertain Self-Supervised Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a279ac0df248",
+      "evidence": [
+        {
+          "quote": "Driving Cognitive Alertness Detecting Using Evoked Multimodal Physiological Signals Based on Uncertain Self-Supervised Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3605,
+            "end_char": 3731
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a5b77eda4ee8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ec39ee48c428"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DAFormer: Depth-aware 3D Object Detection Guided by Camera Model via Transformers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b4862f639fd3",
+      "evidence": [
+        {
+          "quote": "DAFormer: Depth-aware 3D Object Detection Guided by Camera Model via Transformers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3802,
+            "end_char": 3882
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-45b90e10460b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ec39ee48c428"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种汽车队列控制方法、装置、电子设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9002442fb52",
+      "evidence": [
+        {
+          "quote": "一种汽车队列控制方法、装置、电子设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3939,
+            "end_char": 3961
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于特征解耦的车辆重识别方法、电子设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-501b698b828b",
+      "evidence": [
+        {
+          "quote": "基于特征解耦的车辆重识别方法、电子设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3992,
+            "end_char": 4015
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling of Longitudinal and Lateral Dynamics for Autonomous Vehicles by Physics-Informed Neural Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d56951c0ab7",
+      "evidence": [
+        {
+          "quote": "Modeling of Longitudinal and Lateral Dynamics for Autonomous Vehicles by Physics-Informed Neural Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4044,
+            "end_char": 4148
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PSGformer: A novel multivariate net load forecasting model for the smart grid",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-da4b85f46feb",
+      "evidence": [
+        {
+          "quote": "PSGformer: A novel multivariate net load forecasting model for the smart grid",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4205,
+            "end_char": 4281
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Low-Rank Optimal Transport for Robust Domain Adaptation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ce1d8f914e4",
+      "evidence": [
+        {
+          "quote": "Low-Rank Optimal Transport for Robust Domain Adaptation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4362,
+            "end_char": 4416
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GNet: 3D Object Detection from Point Cloud with Geometry-Aware Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cacdd5bf8100",
+      "evidence": [
+        {
+          "quote": "GNet: 3D Object Detection from Point Cloud with Geometry-Aware Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4488,
+            "end_char": 4557
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-quality 3D Object Detection Based on Instance-aware Sampling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-69d1f49deb23",
+      "evidence": [
+        {
+          "quote": "High-quality 3D Object Detection Based on Instance-aware Sampling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4652,
+            "end_char": 4716
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gated Recurrent Unit Embedded with Dual Spatial Convolution for Long-Term Traffic Flow Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2efe6d6cd771",
+      "evidence": [
+        {
+          "quote": "Gated Recurrent Unit Embedded with Dual Spatial Convolution for Long-Term Traffic Flow Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4764,
+            "end_char": 4860
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种越野车运动规划方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-823927174436",
+      "evidence": [
+        {
+          "quote": "一种越野车运动规划方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4934,
+            "end_char": 4947
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bimodal Masked Autoencoders with internal representation connections for electrocardiogram classification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f8a45ffa025",
+      "evidence": [
+        {
+          "quote": "Bimodal Masked Autoencoders with internal representation connections for electrocardiogram classification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4981,
+            "end_char": 5085
+          },
+          "version": "a54129bf8d43d14fbac1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

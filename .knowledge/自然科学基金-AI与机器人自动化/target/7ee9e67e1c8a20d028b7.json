@@ -2,15 +2,20 @@
   "doc_id": "7ee9e67e1c8a20d028b7",
   "version": "ba106159001d0821b341",
   "source_hash": "48a8170695f22fbb70fabc0dfbd13e9e379f440a65775f69dec2e42a61615124",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:33:44.961494+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.654296+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9878e6d3a925",
-          "name": "机器人工作环境表达",
-          "desc": "智能制造与机器人技术快速发展下的复杂工作场景精准感知",
+          "id": "item-b226ad7bc253",
+          "name": "对机器人工作环境的有效表达是机器人行为动作的前提。",
+          "desc": "对机器人工作环境的有效表达是机器人行为动作的前提。",
           "evidence": [
             {
-              "quote": "随着智能制造与机器人技术的快速发展，机器人对复杂工作场景的精准感知与高效交互需求日益迫切",
+              "quote": "对机器人工作环境的有效表达是机器人行为动作的前提。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2893,
-                "end_char": 2936
+                "start_char": 639,
+                "end_char": 663
+              },
+              "version": "ba106159001d0821b341"
+            }
+          ]
+        },
+        {
+          "id": "item-a0d01ba01960",
+          "name": "（2）针对机器人应用特点，探索如何将神经场景表达进一步分解为几何要素和非形状几何要素的途径；",
+          "desc": "（2）针对机器人应用特点，探索如何将神经场景表达进一步分解为几何要素和非形状几何要素的途径；",
+          "evidence": [
+            {
+              "quote": "（2）针对机器人应用特点，探索如何将神经场景表达进一步分解为几何要素和非形状几何要素的途径；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 885,
+                "end_char": 930
               },
               "version": "ba106159001d0821b341"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ecbe0bb191ea",
-          "name": "场景表达精度与泛化瓶颈",
-          "desc": "低纹理区域重建精度不足、多场景泛化能力弱、稀疏视角下伪影显著",
+          "id": "item-362e83842d1b",
+          "name": "三维建模难以描述复杂的场景，而神经表达缺乏机器人操作需要的高精度和鲁棒性。",
+          "desc": "三维建模难以描述复杂的场景，而神经表达缺乏机器人操作需要的高精度和鲁棒性。",
           "evidence": [
             {
-              "quote": "传统三维场景表达方法存在低纹理区域重建精度不足、多场景泛化能力弱、稀疏视角下伪影显著等瓶颈，严重制约了机器人在动态工业环境中的自主性与适应性",
+              "quote": "三维建模难以描述复杂的场景，而神经表达缺乏机器人操作需要的高精度和鲁棒性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 740,
+                "end_char": 776
+              },
+              "version": "ba106159001d0821b341"
+            }
+          ]
+        },
+        {
+          "id": "item-824c464d8628",
+          "name": "传统三维场景表达方法存在低纹理区域重建精度不足、多场景泛化能力弱、稀疏视角下伪影显著等瓶颈，严重制约了机器人在动态工业环",
+          "desc": "传统三维场景表达方法存在低纹理区域重建精度不足、多场景泛化能力弱、稀疏视角下伪影显著等瓶颈，严重制约了机器人在动态工业环境中的自主性与适应性。",
+          "evidence": [
+            {
+              "quote": "传统三维场景表达方法存在低纹理区域重建精度不足、多场景泛化能力弱、稀疏视角下伪影显著等瓶颈，严重制约了机器人在动态工业环境中的自主性与适应性。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2938,
-                "end_char": 3007
+                "end_char": 3008
               },
               "version": "ba106159001d0821b341"
             }
@@ -63,68 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-727fe4269baf",
-          "name": "超像素引导场景表达",
-          "desc": "超像素引导的多任务自监督场景表达框架（SG-SRNs）",
+          "id": "item-b1dc67535eaa",
+          "name": "5.交互式场景分割：开发基于 PU Learning 的三维分割网络（PU - NeRF），在 LLFF 数据集上交并比",
+          "desc": "5.交互式场景分割：开发基于 PU Learning 的三维分割网络（PU - NeRF），在 LLFF 数据集上交并比（IoU）达 85.5%，较现有方法提升 18.3%，并构建多模态交互策略。",
           "evidence": [
             {
-              "quote": "提出超像素引导的多任务自监督场景表达框架（SG - SRNs），利用超像素分割模块与正则化约束，将低纹理区域几何表达精度的 AbsRel 误差降至 0.013",
+              "quote": "5.交互式场景分割：开发基于 PU Learning 的三维分割网络（PU - NeRF），在 LLFF 数据集上交并比（IoU）达 85.5%，较现有方法提升 18.3%，并构建多模态交互策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3113,
-                "end_char": 3191
+                "start_char": 3488,
+                "end_char": 3585
               },
               "version": "ba106159001d0821b341"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c10c0377ca27",
-          "name": "语义引导组合表达",
-          "desc": "语义引导的组合场景表达框架（SemG-LFNs），融合语义属性与视觉特征",
+          "id": "item-cc9c8fc53380",
+          "name": "39. [专利] 一种基于WiFi网络信号的键盘击键识别系统及方法 — 卢晓;段皓天;梁慧敏;张治国;梁慧斌;王海霞",
+          "desc": "39. [专利] 一种基于WiFi网络信号的键盘击键识别系统及方法 — 卢晓;段皓天;梁慧敏;张治国;梁慧斌;王海霞",
           "evidence": [
             {
-              "quote": "构建语义引导的组合场景表达框架（SemG - LFNs），融合语义属性与视觉特征",
+              "quote": "39. [专利] 一种基于WiFi网络信号的键盘击键识别系统及方法 — 卢晓;段皓天;梁慧敏;张治国;梁慧斌;王海霞",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3203,
-                "end_char": 3242
+                "start_char": 7409,
+                "end_char": 7466
               },
               "version": "ba106159001d0821b341"
             }
-          ]
-        },
-        {
-          "id": "item-7ad2a73ccf5b",
-          "name": "三平面特征融合",
-          "desc": "视觉-语义协同引导的三平面特征融合框架，结合DINOv2与语义编码",
-          "evidence": [
-            {
-              "quote": "设计视觉 - 语义协同引导的三平面特征融合框架，结合 DINOv2 与语义编码",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3314,
-                "end_char": 3352
-              },
-              "version": "ba106159001d0821b341"
-            }
-          ]
-        },
-        {
-          "id": "item-b38b12b8aa13",
-          "name": "PU-NeRF交互分割",
-          "desc": "基于PU Learning的三维分割网络与多模态交互策略",
-          "evidence": [
-            {
-              "quote": "开发基于 PU Learning 的三维分割网络（PU - NeRF），在 LLFF 数据集上交并比（IoU）达 85.5%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3498,
-                "end_char": 3559
-              },
-              "version": "ba106159001d0821b341"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,108 +140,1084 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ff74d1a0ff79",
-          "name": "论文专利与开源数据",
-          "desc": "发表SCI论文17篇，获授权发明专利9项，提出6项核心算法并构建两大开源数据库",
+          "id": "item-057e64a7d074",
+          "name": "对机器人工作环境的有效表达是机器人行为动作的前提。",
+          "desc": "对机器人工作环境的有效表达是机器人行为动作的前提。",
           "evidence": [
             {
-              "quote": "基于这些研究，发表SCI论文17篇，获授权发明专利9项，提出6项核心算法（SG-SRNs、SemG-LFNs等）",
+              "quote": "对机器人工作环境的有效表达是机器人行为动作的前提。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3587,
-                "end_char": 3642
+                "start_char": 639,
+                "end_char": 663
               },
               "version": "ba106159001d0821b341"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-49871d6ef5dd",
-          "name": "AI在线检测产业应用",
-          "desc": "与海信、英搏尔等企业合作开发AI在线检测系统，缺陷识别准确率99.2%，应用产线超20条",
+          "id": "item-d820eea91de0",
+          "name": "随着智能制造与机器人技术的快速发展，机器人对复杂工作场景的精准感知与高效交互需求日益迫切。",
+          "desc": "随着智能制造与机器人技术的快速发展，机器人对复杂工作场景的精准感知与高效交互需求日益迫切。",
           "evidence": [
             {
-              "quote": "同时与海信、英搏尔等企业合作开发AI在线检测系统，缺陷识别准确率达99.2%，生产效率提升30%，累计应用产线超20条",
+              "quote": "随着智能制造与机器人技术的快速发展，机器人对复杂工作场景的精准感知与高效交互需求日益迫切。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3745,
-                "end_char": 3803
+                "start_char": 2893,
+                "end_char": 2937
               },
               "version": "ba106159001d0821b341"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9878e6d3a925"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ecbe0bb191ea"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于混合灰狼-粒子群算法的旋翼无人机路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-adedd352d484",
+      "evidence": [
+        {
+          "quote": "基于混合灰狼-粒子群算法的旋翼无人机路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3893,
+            "end_char": 3916
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ecbe0bb191ea"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-727fe4269baf"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向隐私保护的联邦无线行为识别方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20299c102636",
+      "evidence": [
+        {
+          "quote": "一种面向隐私保护的联邦无线行为识别方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3958,
+            "end_char": 3979
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ecbe0bb191ea"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c10c0377ca27"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "目标分类检测方法、装置与系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9cfd728dfc4",
+      "evidence": [
+        {
+          "quote": "目标分类检测方法、装置与系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4033,
+            "end_char": 4046
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ecbe0bb191ea"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b38b12b8aa13"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种获取制样研磨钵侧壁残留物分布图像的检测装置及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77bfecbd6474",
+      "evidence": [
+        {
+          "quote": "一种获取制样研磨钵侧壁残留物分布图像的检测装置及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4092,
+            "end_char": 4117
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7ad2a73ccf5b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ff74d1a0ff79"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种视觉检测用的视觉定位装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-27f6d81eb6e4",
+      "evidence": [
+        {
+          "quote": "一种视觉检测用的视觉定位装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4157,
+            "end_char": 4170
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-727fe4269baf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-49871d6ef5dd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SG-SRNs: Superpixel-Guided Scene Representation Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8321fd8e7576",
+      "evidence": [
+        {
+          "quote": "SG-SRNs: Superpixel-Guided Scene Representation Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4210,
+            "end_char": 4265
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantically guided self-supervised monocular depth estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51f440183503",
+      "evidence": [
+        {
+          "quote": "Semantically guided self-supervised monocular depth estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4336,
+            "end_char": 4397
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Keypoint regression strategy  and angle loss based YOLO  for object detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e59c8f28b29",
+      "evidence": [
+        {
+          "quote": "Keypoint regression strategy  and angle loss based YOLO  for object detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4468,
+            "end_char": 4544
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种感应电机的扰动抑制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e4ffaeb324a",
+      "evidence": [
+        {
+          "quote": "一种感应电机的扰动抑制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4615,
+            "end_char": 4630
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种针对低纹理区域精确表示的场景表达方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a704a4337e1",
+      "evidence": [
+        {
+          "quote": "一种针对低纹理区域精确表示的场景表达方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4665,
+            "end_char": 4687
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于无监督学习的回环检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-91047df96849",
+      "evidence": [
+        {
+          "quote": "一种基于无监督学习的回环检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4726,
+            "end_char": 4741
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于模糊推理与强化学习的移动机器人轨迹跟踪控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-87953b1ef81d",
+      "evidence": [
+        {
+          "quote": "一种基于模糊推理与强化学习的移动机器人轨迹跟踪控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4783,
+            "end_char": 4809
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机电安装用机电控制柜",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-caa9a97c9fe8",
+      "evidence": [
+        {
+          "quote": "一种机电安装用机电控制柜",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4855,
+            "end_char": 4866
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种改进的强化学习AGV路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d028de61aad2",
+      "evidence": [
+        {
+          "quote": "一种改进的强化学习AGV路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4905,
+            "end_char": 4922
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种带扰动抑制的PIR型永磁同步电机无差拍预测控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d4b47effedb8",
+      "evidence": [
+        {
+          "quote": "一种带扰动抑制的PIR型永磁同步电机无差拍预测控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4969,
+            "end_char": 4995
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于无监督深度学习神经网络的图像特征提取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7cb51ab93f5d",
+      "evidence": [
+        {
+          "quote": "一种基于无监督深度学习神经网络的图像特征提取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5037,
+            "end_char": 5060
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Global Fixed-Time Sliding Mode Trajectory Tracking Control  Design for the Saturated Uncertain Rigid Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8cf559ee0e16",
+      "evidence": [
+        {
+          "quote": "Global Fixed-Time Sliding Mode Trajectory Tracking Control  Design for the Saturated Uncertain Rigid Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5112,
+            "end_char": 5223
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于点云密度分析的自适应分辨率八叉树建图方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e6d1e6b9006",
+      "evidence": [
+        {
+          "quote": "一种基于点云密度分析的自适应分辨率八叉树建图方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5290,
+            "end_char": 5313
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于无线信号的步数检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f4244372215",
+      "evidence": [
+        {
+          "quote": "基于无线信号的步数检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5348,
+            "end_char": 5360
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gaussian-IoU loss: Better Learning for Bounding Box Regression on PCB Component Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d9cb2968a76b",
+      "evidence": [
+        {
+          "quote": "Gaussian-IoU loss: Better Learning for Bounding Box Regression on PCB Component Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5415,
+            "end_char": 5503
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种异形元器件针脚检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0717881b31d",
+      "evidence": [
+        {
+          "quote": "一种异形元器件针脚检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5604,
+            "end_char": 5616
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SAR-to-Optical Image Translation with Hierarchical Latent Features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a49628752096",
+      "evidence": [
+        {
+          "quote": "SAR-to-Optical Image Translation with Hierarchical Latent Features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5672,
+            "end_char": 5737
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于语义属性的不可见场景表达方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-307543cd4c62",
+      "evidence": [
+        {
+          "quote": "一种基于语义属性的不可见场景表达方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5798,
+            "end_char": 5818
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decentralized linear–quadratic–Gaussian control of networked control systems with asymmetric information",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4309ea00e62f",
+      "evidence": [
+        {
+          "quote": "Decentralized linear–quadratic–Gaussian control of networked control systems with asymmetric information",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5870,
+            "end_char": 5973
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于元学习的无线信号本手势识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca9237779027",
+      "evidence": [
+        {
+          "quote": "一种基于元学习的无线信号本手势识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6037,
+            "end_char": 6055
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于扰动补偿的AGV滑模路径跟踪控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-34fad9a8c14b",
+      "evidence": [
+        {
+          "quote": "一种基于扰动补偿的AGV滑模路径跟踪控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6105,
+            "end_char": 6126
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于改进型模型参考自适应系统的永磁同步电机参数辨识方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-09da1de377a8",
+      "evidence": [
+        {
+          "quote": "一种基于改进型模型参考自适应系统的永磁同步电机参数辨识方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6172,
+            "end_char": 6200
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Self-Supervised Monocular Depth Estimation Based on High-Order Spatial Interactions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-357278c52b4d",
+      "evidence": [
+        {
+          "quote": "Self-Supervised Monocular Depth Estimation Based on High-Order Spatial Interactions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6240,
+            "end_char": 6322
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Obstacle avoidancemethodbasedonreinforcementlearningdual-layer  decision modelforAGVwithvisualperception",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-acbcb0f16bfa",
+      "evidence": [
+        {
+          "quote": "Obstacle avoidancemethodbasedonreinforcementlearningdual-layer  decision modelforAGVwithvisualperception",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6394,
+            "end_char": 6497
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于正样本学习的三维交互式目标分割方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e7cc9d16deb5",
+      "evidence": [
+        {
+          "quote": "基于正样本学习的三维交互式目标分割方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6576,
+            "end_char": 6597
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于3D传感器的集装箱自动定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eed2c77d7e80",
+      "evidence": [
+        {
+          "quote": "一种基于3D传感器的集装箱自动定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6647,
+            "end_char": 6665
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机械臂预定义时间轨迹跟踪滑模控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-158ad347f545",
+      "evidence": [
+        {
+          "quote": "一种机械臂预定义时间轨迹跟踪滑模控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6711,
+            "end_char": 6730
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多线激光雷达的大目标精确定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e8104ccc3fa",
+      "evidence": [
+        {
+          "quote": "一种基于多线激光雷达的大目标精确定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6777,
+            "end_char": 6796
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AMSA-CAFF Net: Counting and High-Quality Density Map Estimation from X-ray Images of Electronic Components",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-682cc13b8eb3",
+      "evidence": [
+        {
+          "quote": "AMSA-CAFF Net: Counting and High-Quality Density Map Estimation from X-ray Images of Electronic Components",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6845,
+            "end_char": 6950
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于二自由度自抗扰控制器的感应电机控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ff672efa7ea",
+      "evidence": [
+        {
+          "quote": "一种基于二自由度自抗扰控制器的感应电机控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7028,
+            "end_char": 7053
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved M-DQN with ϵ-UCB Action Selection  Policy and Multi-goal Fusion Reward Function for  Mobile Robot Path Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5d37fcde1ef",
+      "evidence": [
+        {
+          "quote": "Improved M-DQN with ϵ-UCB Action Selection  Policy and Multi-goal Fusion Reward Function for  Mobile Robot Path Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7105,
+            "end_char": 7224
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于速度观测器的视觉伺服有限时间控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d69d574a3c94",
+      "evidence": [
+        {
+          "quote": "一种基于速度观测器的视觉伺服有限时间控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7287,
+            "end_char": 7308
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机械臂全局固定时间轨迹跟踪滑模控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f6ddd440ff9",
+      "evidence": [
+        {
+          "quote": "一种机械臂全局固定时间轨迹跟踪滑模控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7355,
+            "end_char": 7375
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于WiFi网络信号的键盘击键识别系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a01194277be",
+      "evidence": [
+        {
+          "quote": "一种基于WiFi网络信号的键盘击键识别系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7418,
+            "end_char": 7441
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CeHAR: CSI-based Channel-Exchanging Human Activity Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e728309f058",
+      "evidence": [
+        {
+          "quote": "CeHAR: CSI-based Channel-Exchanging Human Activity Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7479,
+            "end_char": 7540
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种复杂工况下稳定有效的地标检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a27222b7d15",
+      "evidence": [
+        {
+          "quote": "一种复杂工况下稳定有效的地标检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7589,
+            "end_char": 7606
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于WiFi信号的室内人群计数系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-132ac1520353",
+      "evidence": [
+        {
+          "quote": "一种基于WiFi信号的室内人群计数系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7645,
+            "end_char": 7666
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种分散分布的多激光雷达标定方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f6594e9162cb",
+      "evidence": [
+        {
+          "quote": "一种分散分布的多激光雷达标定方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7720,
+            "end_char": 7735
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于无线信号的小样本手势识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-59e191066073",
+      "evidence": [
+        {
+          "quote": "一种基于无线信号的小样本手势识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7782,
+            "end_char": 7799
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种求解回转曲面上有界曲面面积的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c47b7436c8a8",
+      "evidence": [
+        {
+          "quote": "一种求解回转曲面上有界曲面面积的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7842,
+            "end_char": 7859
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于天牛群算法的旋翼无人机自主路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-34f1885c0753",
+      "evidence": [
+        {
+          "quote": "一种基于天牛群算法的旋翼无人机自主路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7898,
+            "end_char": 7920
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于零样本检测的目标识别定位方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-65056677d6bb",
+      "evidence": [
+        {
+          "quote": "基于零样本检测的目标识别定位方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7963,
+            "end_char": 7981
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Parameter Identification of a Permanent Magnet Synchronous Motor Based on the Model Reference Adaptive System with Improved Active Disturbance Rejection Control Adaptive Law",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0524d1421418",
+      "evidence": [
+        {
+          "quote": "Parameter Identification of a Permanent Magnet Synchronous Motor Based on the Model Reference Adaptive System with Improved Active Disturbance Rejection Control Adaptive Law",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8031,
+            "end_char": 8203
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于点线综合特征的改进同步定位与建图方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8add7644a9b",
+      "evidence": [
+        {
+          "quote": "一种基于点线综合特征的改进同步定位与建图方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8269,
+            "end_char": 8290
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于注意力机制的高光谱图像匹配检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ea680540596",
+      "evidence": [
+        {
+          "quote": "一种基于注意力机制的高光谱图像匹配检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8333,
+            "end_char": 8353
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement learning method based on sample regularization and  adaptive learning rate for AGV path planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bcf94288408f",
+      "evidence": [
+        {
+          "quote": "Reinforcement learning method based on sample regularization and  adaptive learning rate for AGV path planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8406,
+            "end_char": 8515
+          },
+          "version": "ba106159001d0821b341"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 51,
+    "listed": 51,
+    "by_kind": {
+      "专利": {
+        "listed": 37,
+        "extracted": 37
+      },
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "d2e644c73febec6509b6",
   "version": "94fce73cdb0fba97d9ce",
   "source_hash": "e9f6ccc6559c2df9eeddfb0e9e888d5ada1078d0d74cbc9abd7994e4ea068402",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:55:01.807899+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.550812+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0cab710fab8f",
-          "name": "铁路巡检无人机毫米波通信",
-          "desc": "无人机自动化高密度铁路巡检，回传高清监测视频",
+          "id": "item-5a4438624a9d",
+          "name": "无人机可深入铁路复杂环境，回传高清监测视频，支持隐患高效排查，助力铁路巡检，具有重大应用价值。",
+          "desc": "无人机可深入铁路复杂环境，回传高清监测视频，支持隐患高效排查，助力铁路巡检，具有重大应用价值。",
           "evidence": [
             {
-              "quote": "无人机可在不影响铁路正常运营前提下，进行自动化、高密度巡检，且不易受复杂环境限制；能够回传高清监测视频，支持隐患高效排查",
+              "quote": "无人机可深入铁路复杂环境，回传高清监测视频，支持隐患高效排查，助力铁路巡检，具有重大应用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3249,
-                "end_char": 3308
+                "start_char": 673,
+                "end_char": 719
               },
               "version": "94fce73cdb0fba97d9ce"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5a8cf27c9ca7",
-          "name": "铁路场景信道特性复杂",
-          "desc": "复杂传播环境与特殊结构体导致信道时空特性复杂，现有模型难以精确刻画",
+          "id": "item-5ef407084062",
+          "name": "然而，铁路场景中复杂传播环境与特殊结构体导致信道时空特性复杂，现有模型难以精确刻画，成为系统设计的瓶颈。",
+          "desc": "然而，铁路场景中复杂传播环境与特殊结构体导致信道时空特性复杂，现有模型难以精确刻画，成为系统设计的瓶颈。",
           "evidence": [
             {
-              "quote": "铁路场景中复杂传播环境与特殊结构体导致信道时空特性复杂，现有模型难以精确刻画，成为系统设计的瓶颈",
+              "quote": "然而，铁路场景中复杂传播环境与特殊结构体导致信道时空特性复杂，现有模型难以精确刻画，成为系统设计的瓶颈。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3388,
-                "end_char": 3435
+                "start_char": 3385,
+                "end_char": 3436
               },
               "version": "94fce73cdb0fba97d9ce"
             }
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-470a0466870d",
-          "name": "序列二次规划SAGE参数估计",
-          "desc": "单快拍低信噪比条件下传播参数高效估计方法",
+          "id": "item-e31aa1281f0d",
+          "name": "提出了基于序列二次规划优化的SAGE算法，时延估计误差小于0.2 ns，角度误差小于2°，较传统方法效率明显提升；",
+          "desc": "提出了基于序列二次规划优化的SAGE算法，时延估计误差小于0.2 ns，角度误差小于2°，较传统方法效率明显提升；",
           "evidence": [
             {
-              "quote": "提出了基于序列二次规划优化的SAGE算法，时延估计误差小于0.2 ns，角度误差小于2°",
+              "quote": "提出了基于序列二次规划优化的SAGE算法，时延估计误差小于0.2 ns，角度误差小于2°，较传统方法效率明显提升；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3534,
-                "end_char": 3577
+                "end_char": 3590
               },
               "version": "94fce73cdb0fba97d9ce"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d3e9f63767fa",
-          "name": "结构体多径深度学习轻量模型",
-          "desc": "深度神经网络建模与结构化剪枝，支持无人机边缘部署",
+          "id": "item-4a9761b57eee",
+          "name": "基于此，提出铁路场景结构体分类方法，并构建不同类结构体作用多径的深度学习模型，探索数据增强与模型结构化剪枝方法，提高模型",
+          "desc": "基于此，提出铁路场景结构体分类方法，并构建不同类结构体作用多径的深度学习模型，探索数据增强与模型结构化剪枝方法，提高模型泛化能力，降低模型复杂度。",
           "evidence": [
             {
-              "quote": "建立了基于深度神经网络的结构体作用多径的轻量化模型，结合结构化剪枝技术，实测验证平均误差1.8 dB，硬件资源占用降低60%，支持无人机边缘部署",
+              "quote": "基于此，提出铁路场景结构体分类方法，并构建不同类结构体作用多径的深度学习模型，探索数据增强与模型结构化剪枝方法，提高模型泛化能力，降低模型复杂度。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3658,
-                "end_char": 3729
+                "start_char": 959,
+                "end_char": 1031
               },
               "version": "94fce73cdb0fba97d9ce"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +108,412 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ad812e241768",
-          "name": "信道测量系统与数据库",
-          "desc": "26、38 GHz毫米波频段1 GHz超宽带信道测量系统与铁路空地信道数据库",
+          "id": "item-3c30daeaa6ee",
+          "name": "无人机可深入铁路复杂环境，回传高清监测视频，支持隐患高效排查，助力铁路巡检，具有重大应用价值。",
+          "desc": "无人机可深入铁路复杂环境，回传高清监测视频，支持隐患高效排查，助力铁路巡检，具有重大应用价值。",
           "evidence": [
             {
-              "quote": "设计了无人机可搭载的26、38 GHz毫米波频段1 GHz超宽带信道测量系统，构建了铁路空地场景信道数据库",
+              "quote": "无人机可深入铁路复杂环境，回传高清监测视频，支持隐患高效排查，助力铁路巡检，具有重大应用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3480,
-                "end_char": 3532
+                "start_char": 673,
+                "end_char": 719
               },
               "version": "94fce73cdb0fba97d9ce"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-7305469d9eeb",
-          "name": "论文与发明专利",
-          "desc": "发表期刊会议论文10篇，申请国家发明专利5项",
+          "id": "item-63ddc8620c98",
+          "name": "随着我国铁路网络规模扩大与运营环境复杂化，传统人工巡检效率不足，无人机可在不影响铁路正常运营前提下，进行自动化、高密度巡",
+          "desc": "随着我国铁路网络规模扩大与运营环境复杂化，传统人工巡检效率不足，无人机可在不影响铁路正常运营前提下，进行自动化、高密度巡检，且不易受复杂环境限制；",
           "evidence": [
             {
-              "quote": "共发表国内外期刊和会议论文10篇，其中国际期刊论文4篇，国内通信领域顶级期刊4篇，会议论文2篇；申请国家发明专利5项",
+              "quote": "随着我国铁路网络规模扩大与运营环境复杂化，传统人工巡检效率不足，无人机可在不影响铁路正常运营前提下，进行自动化、高密度巡检，且不易受复杂环境限制；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3817,
-                "end_char": 3874
+                "start_char": 3217,
+                "end_char": 3289
               },
               "version": "94fce73cdb0fba97d9ce"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0cab710fab8f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5a8cf27c9ca7"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种同频干扰抑制方法、设备、介质及产品",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f0ba53b935b1",
+      "evidence": [
+        {
+          "quote": "一种同频干扰抑制方法、设备、介质及产品",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4010,
+            "end_char": 4028
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5a8cf27c9ca7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-470a0466870d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于测量的典型工业物联网场景毫米波信道特性分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ff7dd731911",
+      "evidence": [
+        {
+          "quote": "基于测量的典型工业物联网场景毫米波信道特性分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4059,
+            "end_char": 4081
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5a8cf27c9ca7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d3e9f63767fa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Non-stationarity Characteristics in Dynamic Vehicular ISAC Channels at 28 GHz",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9b6efb76c324",
+      "evidence": [
+        {
+          "quote": "Non-stationarity Characteristics in Dynamic Vehicular ISAC Channels at 28 GHz",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4107,
+            "end_char": 4183
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d3e9f63767fa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7305469d9eeb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "近岸海陆结合场景6GHz以下频段无线信道测量与建模",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d13cd4e95732",
+      "evidence": [
+        {
+          "quote": "近岸海陆结合场景6GHz以下频段无线信道测量与建模",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4286,
+            "end_char": 4310
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-470a0466870d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ad812e241768"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Channel Measurements and Sparsity Analysis for Air-to-Ground mmWave Communications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b545203384e",
+      "evidence": [
+        {
+          "quote": "Channel Measurements and Sparsity Analysis for Air-to-Ground mmWave Communications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4356,
+            "end_char": 4437
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2024中国国际“互联网+”大学生创新创业大赛高教主赛道赛道河南省一等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0de2335aec0b",
+      "evidence": [
+        {
+          "quote": "2024中国国际“互联网+”大学生创新创业大赛高教主赛道赛道河南省一等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4527,
+            "end_char": 4562
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第十九届“挑战杯”全国大学生课外学术科技作品竞赛2024年度“揭榜挂帅”专项赛国家一等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-54d9d24756ce",
+      "evidence": [
+        {
+          "quote": "第十九届“挑战杯”全国大学生课外学术科技作品竞赛2024年度“揭榜挂帅”专项赛国家一等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3912,
+            "end_char": 3955
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2022年河南省“互联网+”大学生创新创业大赛一等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-934c4821e9a5",
+      "evidence": [
+        {
+          "quote": "2022年河南省“互联网+”大学生创新创业大赛一等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4659,
+            "end_char": 4684
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于智能反射面的毫米波MIMO系统混合预编码方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d17ca6e6b02c",
+      "evidence": [
+        {
+          "quote": "一种基于智能反射面的毫米波MIMO系统混合预编码方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4715,
+            "end_char": 4743
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向联邦学习的6G大规模物联网资源跳跃多址方案",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d3f82b00b82c",
+      "evidence": [
+        {
+          "quote": "面向联邦学习的6G大规模物联网资源跳跃多址方案",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4785,
+            "end_char": 4807
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RIS辅助高铁毫米波无线通信多普勒频移补偿技术研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e8acc59fe05",
+      "evidence": [
+        {
+          "quote": "RIS辅助高铁毫米波无线通信多普勒频移补偿技术研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4849,
+            "end_char": 4873
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于不同类结构体作用多径产生机理的信道建模方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-988b2e917881",
+      "evidence": [
+        {
+          "quote": "基于不同类结构体作用多径产生机理的信道建模方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4908,
+            "end_char": 4933
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Quasi-Deterministic Modeling for Industrial IoT Channels Based on Millimeter Wave Measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b7bc23ea9db5",
+      "evidence": [
+        {
+          "quote": "Quasi-Deterministic Modeling for Industrial IoT Channels Based on Millimeter Wave Measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4967,
+            "end_char": 5060
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多用户宽带毫米波波束分配方法、系统及可存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-756233daec82",
+      "evidence": [
+        {
+          "quote": "一种多用户宽带毫米波波束分配方法、系统及可存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5181,
+            "end_char": 5205
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collision Control in Tandem Spreading Multiple Access with Cognitive Radio for 6G Internet of Things: Enhanced System Reliability Through Effective User Identification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-043691fea7bc",
+      "evidence": [
+        {
+          "quote": "Collision Control in Tandem Spreading Multiple Access with Cognitive Radio for 6G Internet of Things: Enhanced System Reliability Through Effective User Identification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5255,
+            "end_char": 5421
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Channel measurement and characterisation for 5G multi-scenarios at 26 and 38 GHz",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b832195ccc9b",
+      "evidence": [
+        {
+          "quote": "Channel measurement and characterisation for 5G multi-scenarios at 26 and 38 GHz",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5503,
+            "end_char": 5582
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于布谷鸟搜索及蚁群优化的波束选择方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb723041e83e",
+      "evidence": [
+        {
+          "quote": "基于布谷鸟搜索及蚁群优化的波束选择方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5675,
+            "end_char": 5696
+          },
+          "version": "94fce73cdb0fba97d9ce"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

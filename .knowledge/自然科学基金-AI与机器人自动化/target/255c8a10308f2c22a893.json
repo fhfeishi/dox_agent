@@ -2,15 +2,20 @@
   "doc_id": "255c8a10308f2c22a893",
   "version": "9ef0b914365babfc5edd",
   "source_hash": "407e5d02cdcba304f6b9b1b2648149ab6068f9043b27fb9bc3f1d17622b3b5ed",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:48:16.618953+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.839738+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a89c3350d2c9",
-          "name": "并联机器人机构创新设计",
-          "desc": "面向机器人自主创新需求的并联机构智能设计",
+          "id": "item-f0a9def4378e",
+          "name": "面向机器人机构学国际学术前沿和我国机器人自主创新的重大需求，本项目拟开展并联机器人机构智能创新设计研究。",
+          "desc": "面向机器人机构学国际学术前沿和我国机器人自主创新的重大需求，本项目拟开展并联机器人机构智能创新设计研究。",
           "evidence": [
             {
               "quote": "面向机器人机构学国际学术前沿和我国机器人自主创新的重大需求，本项目拟开展并联机器人机构智能创新设计研究。",
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b2a1bfa3054f",
-          "name": "并联机构设计复杂且不确定性大",
-          "desc": "多闭环强耦合特征使创新设计成为复杂综合计算决策过程，学习曲线长",
-          "evidence": [
-            {
-              "quote": "并联机构由于具有多闭环、强耦合的特征，其创新设计是一个基于复杂机构学知识的综合计算、分析、推理和决策过程，设计学习曲线长、不确定性大。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2722,
-                "end_char": 2788
-              },
-              "version": "9ef0b914365babfc5edd"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-028fc14d178b",
-          "name": "图结构数字化表征",
-          "desc": "基于图结构的并联机构数字化表征方法与运动学性能自动化计算框架",
+          "id": "item-4cf6d416fe29",
+          "name": "将机器人机构学与人工智能深度交叉融合，研究拓扑“自学习”生长、性能随动预测和设计参数自主寻优的机理模型和自动化算法，研发",
+          "desc": "将机器人机构学与人工智能深度交叉融合，研究拓扑“自学习”生长、性能随动预测和设计参数自主寻优的机理模型和自动化算法，研发并联机构可视化交互设计软件。",
           "evidence": [
             {
-              "quote": "提出了基于图结构的并联机器人机构数字化表征方法，建立了运动学性能自动化计算框架",
+              "quote": "将机器人机构学与人工智能深度交叉融合，研究拓扑“自学习”生长、性能随动预测和设计参数自主寻优的机理模型和自动化算法，研发并联机构可视化交互设计软件。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2926,
-                "end_char": 2964
+                "start_char": 698,
+                "end_char": 771
               },
               "version": "9ef0b914365babfc5edd"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-399aaadeca23",
-          "name": "生成式构型创新设计",
-          "desc": "构建机构数据集与知识模型，从设计需求映射生成机构拓扑",
+          "id": "item-b7dde675102d",
+          "name": "建立并联机器人机构综合评价体系，提出基于混合决策的设计参数自主寻优方法，解决优化设计模型庞大、数字化计算耗时长的问题；",
+          "desc": "建立并联机器人机构综合评价体系，提出基于混合决策的设计参数自主寻优方法，解决优化设计模型庞大、数字化计算耗时长的问题；",
           "evidence": [
             {
-              "quote": "构建了并联机器人机构数据集及创新设计知识模型，基于生成式模型实现了从设计需求到机构拓扑的映射与创新生成",
+              "quote": "建立并联机器人机构综合评价体系，提出基于混合决策的设计参数自主寻优方法，解决优化设计模型庞大、数字化计算耗时长的问题；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2970,
-                "end_char": 3020
+                "start_char": 870,
+                "end_char": 928
               },
               "version": "9ef0b914365babfc5edd"
             }
-          ]
-        },
-        {
-          "id": "item-dcd944ca17e6",
-          "name": "知识-强化学习一体优化",
-          "desc": "以运动轨迹与工作空间为驱动的构型与尺度一体优化方法",
-          "evidence": [
-            {
-              "quote": "以运动轨迹与工作空间为驱动，提出了基于设计知识模型与强化学习的机构构型与尺度一体优化方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3026,
-                "end_char": 3069
-              },
-              "version": "9ef0b914365babfc5edd"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +91,184 @@
       "state": "has",
       "items": [
         {
-          "id": "item-67a49c9ba819",
-          "name": "可视化交互设计软件平台",
-          "desc": "开发人机协同的机构创新设计可视化交互式软件平台",
+          "id": "item-ff7ed698ef36",
+          "name": "面向机器人机构学国际学术前沿和我国机器人自主创新的重大需求，本项目拟开展并联机器人机构智能创新设计研究。",
+          "desc": "面向机器人机构学国际学术前沿和我国机器人自主创新的重大需求，本项目拟开展并联机器人机构智能创新设计研究。",
           "evidence": [
             {
-              "quote": "开发了可视化交互式软件平台，实现了人机协同的机构创新设计。",
+              "quote": "面向机器人机构学国际学术前沿和我国机器人自主创新的重大需求，本项目拟开展并联机器人机构智能创新设计研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3075,
-                "end_char": 3103
+                "start_char": 646,
+                "end_char": 697
               },
               "version": "9ef0b914365babfc5edd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-e47f72bc2b39",
-          "name": "构型拓扑生成与一体优化方法",
-          "desc": "从设计需求到机构拓扑的映射生成及构型尺度一体优化",
+          "id": "item-aad789a4d319",
+          "name": "机构是机器人的骨架和执行器，也是决定机器人功能与性能的基因。",
+          "desc": "机构是机器人的骨架和执行器，也是决定机器人功能与性能的基因。",
           "evidence": [
             {
-              "quote": "基于生成式模型实现了从设计需求到机构拓扑的映射与创新生成",
+              "quote": "机构是机器人的骨架和执行器，也是决定机器人功能与性能的基因。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2993,
-                "end_char": 3020
+                "start_char": 2692,
+                "end_char": 2721
               },
               "version": "9ef0b914365babfc5edd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a89c3350d2c9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b2a1bfa3054f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatial multi-locomotion tensegrity mobile robot with modular design",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f0cfd3b1f966",
+      "evidence": [
+        {
+          "quote": "Spatial multi-locomotion tensegrity mobile robot with modular design",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3192,
+            "end_char": 3259
+          },
+          "version": "9ef0b914365babfc5edd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b2a1bfa3054f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-028fc14d178b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于绳驱动Stewart并联机构的大空间3D打印设备及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d52ec9add09",
+      "evidence": [
+        {
+          "quote": "一种基于绳驱动Stewart并联机构的大空间3D打印设备及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3322,
+            "end_char": 3352
+          },
+          "version": "9ef0b914365babfc5edd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b2a1bfa3054f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-399aaadeca23"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于绳驱并联机构的磁吸式无人机空中回收装置及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-624bb89bf71b",
+      "evidence": [
+        {
+          "quote": "基于绳驱并联机构的磁吸式无人机空中回收装置及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3375,
+            "end_char": 3398
+          },
+          "version": "9ef0b914365babfc5edd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b2a1bfa3054f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dcd944ca17e6"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于跨模态对比学习的机器人设计知识推荐方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c2be14e8684",
+      "evidence": [
+        {
+          "quote": "一种基于跨模态对比学习的机器人设计知识推荐方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3421,
+            "end_char": 3443
+          },
+          "version": "9ef0b914365babfc5edd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-399aaadeca23"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e47f72bc2b39"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多学科联合仿真的机器人机构性能优化设计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3df538367412",
+      "evidence": [
+        {
+          "quote": "一种基于多学科联合仿真的机器人机构性能优化设计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3466,
+            "end_char": 3490
+          },
+          "version": "9ef0b914365babfc5edd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-028fc14d178b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-67a49c9ba819"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Knowledge-enhanced optimization of a mobile parallel robot considering topological structure and dimensions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ccb2ef1b6a83",
+      "evidence": [
+        {
+          "quote": "Knowledge-enhanced optimization of a mobile parallel robot considering topological structure and dimensions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3516,
+            "end_char": 3622
+          },
+          "version": "9ef0b914365babfc5edd"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

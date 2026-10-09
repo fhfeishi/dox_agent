@@ -2,15 +2,20 @@
   "doc_id": "8dfcee4b35895eff4130",
   "version": "4ddcbff866c613936be8",
   "source_hash": "9d484747edf7a7afbef6ccf24c0d1e5d77f82e49a1131dcbb58558507c705414",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:33:46.171497+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.808328+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0e71352e06be",
-          "name": "复合机器人轮臂交互",
-          "desc": "复合机器人“轮-臂-非结构化环境”自主交互",
+          "id": "item-a2e54208d4e0",
+          "name": "复合机器人具有广阔的运动空间和灵活的作业形式，但其在非结构化环境下的自主感知、协调规划、跟踪控制和柔顺交互等自主交互机理",
+          "desc": "复合机器人具有广阔的运动空间和灵活的作业形式，但其在非结构化环境下的自主感知、协调规划、跟踪控制和柔顺交互等自主交互机理和方法上存在诸多挑战。",
           "evidence": [
             {
-              "quote": "项目组围绕“轮-臂-非结构化环境”自主交互的关键问题，完成研究内容和结果包括",
+              "quote": "复合机器人具有广阔的运动空间和灵活的作业形式，但其在非结构化环境下的自主感知、协调规划、跟踪控制和柔顺交互等自主交互机理和方法上存在诸多挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2884,
-                "end_char": 2921
+                "start_char": 661,
+                "end_char": 731
+              },
+              "version": "4ddcbff866c613936be8"
+            }
+          ]
+        },
+        {
+          "id": "item-2795721e1d10",
+          "name": ".  项目意义在于提升复合机器人面向非结构化环境自主交互的精确性、实时性、平稳性和适应性，为其在复杂场景的作业应用提供理",
+          "desc": ".  项目意义在于提升复合机器人面向非结构化环境自主交互的精确性、实时性、平稳性和适应性，为其在复杂场景的作业应用提供理论方法支持。",
+          "evidence": [
+            {
+              "quote": ".  项目意义在于提升复合机器人面向非结构化环境自主交互的精确性、实时性、平稳性和适应性，为其在复杂场景的作业应用提供理论方法支持。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 986,
+                "end_char": 1051
               },
               "version": "4ddcbff866c613936be8"
             }
@@ -38,93 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-84c215928492",
-          "name": "非结构化自主交互难",
-          "desc": "非结构化环境下的自主感知、协调规划、跟踪控制和柔顺交互存在诸多挑战",
-          "evidence": [
-            {
-              "quote": "但其在非结构化环境下的自主感知、协调规划、跟踪控制和柔顺交互等自主交互机理和方法上存在诸多挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 684,
-                "end_char": 730
-              },
-              "version": "4ddcbff866c613936be8"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-92cb5415a8cd",
-          "name": "多传感融合动态感知",
-          "desc": "点云特征编码融合、三维场景图预测、6D位姿估计与视触觉融合的自主感知方法",
+          "id": "item-4733acc9e6e1",
+          "name": ".②构建基于负载晃动约束、有向距离场碰撞检测、能耗-冲击综合效能的评估模型，提出非结构化运动环境下复合机器人自主协调实时",
+          "desc": ".②构建基于负载晃动约束、有向距离场碰撞检测、能耗-冲击综合效能的评估模型，提出非结构化运动环境下复合机器人自主协调实时综合运动规划方法：基于模仿学习、混合随机梯度、蒙特卡洛随机优化的自主避障规划，轮-臂-欠约束负载自主平顺运动规划，轮-臂自主协调运动规划，基于时间-能耗-冲击多目标优化、强化学习决策-规划联合训练、滚动时域决策的实时综合运动规划，实现高实时性协调规划；",
           "evidence": [
             {
-              "quote": "提出非结构化作业环境下复合机器人多传感融合动态自主感知方法",
+              "quote": ".②构建基于负载晃动约束、有向距离场碰撞检测、能耗-冲击综合效能的评估模型，提出非结构化运动环境下复合机器人自主协调实时综合运动规划方法：基于模仿学习、混合随机梯度、蒙特卡洛随机优化的自主避障规划，轮-臂-欠约束负载自主平顺运动规划，轮-臂自主协调运动规划，基于时间-能耗-冲击多目标优化、强化学习决策-规划联合训练、滚动时域决策的实时综合运动规划，实现高实时性协调规划；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2925,
-                "end_char": 2953
+                "start_char": 3086,
+                "end_char": 3271
               },
               "version": "4ddcbff866c613936be8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-294c1822c700",
-          "name": "自主协调运动规划",
-          "desc": "基于负载晃动约束、有向距离场碰撞检测、能耗-冲击综合效能的实时综合运动规划",
+          "id": "item-34397c614cfe",
+          "name": "复合机器人具有广阔的运动空间和灵活的作业形式，项目组围绕“轮-臂-非结构化环境”自主交互的关键问题，完成研究内容和结果包",
+          "desc": "复合机器人具有广阔的运动空间和灵活的作业形式，项目组围绕“轮-臂-非结构化环境”自主交互的关键问题，完成研究内容和结果包括：.①提出非结构化作业环境下复合机器人多传感融合动态自主感知方法：基于点云特征编码融合、三维场景图预测、自主探索建图和视觉实例分割的动态场景自主定位感知，移动障碍多传感融合感知及自主导航，基于深度学习6D位姿估计、同步图卷积三维位姿估计、自适应注意力作业特征识别、视触觉融合自主定位抓取的作业目标自主感知，实现高精确性",
           "evidence": [
             {
-              "quote": "提出非结构化运动环境下复合机器人自主协调实时综合运动规划方法",
+              "quote": "复合机器人具有广阔的运动空间和灵活的作业形式，项目组围绕“轮-臂-非结构化环境”自主交互的关键问题，完成研究内容和结果包括：.①提出非结构化作业环境下复合机器人多传感融合动态自主感知方法：基于点云特征编码融合、三维场景图预测、自主探索建图和视觉实例分割的动态场景自主定位感知，移动障碍多传感融合感知及自主导航，基于深度学习6D位姿估计、同步图卷积三维位姿估计、自适应注意力作业特征识别、视触觉融合自主定位抓取的作业目标自主感知，实现高精确性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3124,
-                "end_char": 3153
+                "start_char": 2861,
+                "end_char": 3080
               },
               "version": "4ddcbff866c613936be8"
             }
-          ]
-        },
-        {
-          "id": "item-fa61f5e45dca",
-          "name": "鲁棒自适应轨迹跟踪",
-          "desc": "轮-臂-负载耦合动力学线性化模型与鲁棒自适应轨迹跟踪控制方法",
-          "evidence": [
-            {
-              "quote": "提出非结构化动力学环境下复合机器人鲁棒自适应轨迹跟踪控制方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3293,
-                "end_char": 3322
-              },
-              "version": "4ddcbff866c613936be8"
-            }
-          ]
-        },
-        {
-          "id": "item-d44aa0309e3e",
-          "name": "视力位混合柔顺控制",
-          "desc": "视觉空间动力学阻抗模型与视-力-位混合自主柔顺控制方法",
-          "evidence": [
-            {
-              "quote": "构建视觉空间动力学阻抗模型，提出非结构化作业交互下复合机器人视-力-位混合自主柔顺控制方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3450,
-                "end_char": 3494
-              },
-              "version": "4ddcbff866c613936be8"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,91 +107,968 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5f62ccc9658e",
-          "name": "论文与专利成果",
-          "desc": "发表SCI期刊论文21篇、EI会议论文5篇，申请发明专利28项其中授权16项",
+          "id": "item-a0f2563bf414",
+          "name": "复合机器人具有广阔的运动空间和灵活的作业形式，但其在非结构化环境下的自主感知、协调规划、跟踪控制和柔顺交互等自主交互机理",
+          "desc": "复合机器人具有广阔的运动空间和灵活的作业形式，但其在非结构化环境下的自主感知、协调规划、跟踪控制和柔顺交互等自主交互机理和方法上存在诸多挑战。",
           "evidence": [
             {
-              "quote": "发表SCI期刊论文21篇、EI会议论文5篇；获得科学技术成果鉴定证书，申请发明专利28项，其中授权16项",
+              "quote": "复合机器人具有广阔的运动空间和灵活的作业形式，但其在非结构化环境下的自主感知、协调规划、跟踪控制和柔顺交互等自主交互机理和方法上存在诸多挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3589,
-                "end_char": 3640
+                "start_char": 661,
+                "end_char": 731
               },
               "version": "4ddcbff866c613936be8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-eeffc1ab5984",
+          "name": "复合机器人具有广阔的运动空间和灵活的作业形式，项目组围绕“轮-臂-非结构化环境”自主交互的关键问题，完成研究内容和结果包",
+          "desc": "复合机器人具有广阔的运动空间和灵活的作业形式，项目组围绕“轮-臂-非结构化环境”自主交互的关键问题，完成研究内容和结果包括：.①提出非结构化作业环境下复合机器人多传感融合动态自主感知方法：基于点云特征编码融合、三维场景图预测、自主探索建图和视觉实例分割的动态场景自主定位感知，移动障碍多传感融合感知及自主导航，基于深度学习6D位姿估计、同步图卷积三维位姿估计、自适应注意力作业特征识别、视触觉融合自主定位抓取的作业目标自主感知，实现高精确性动态感知；",
+          "evidence": [
+            {
+              "quote": "复合机器人具有广阔的运动空间和灵活的作业形式，项目组围绕“轮-臂-非结构化环境”自主交互的关键问题，完成研究内容和结果包括：.①提出非结构化作业环境下复合机器人多传感融合动态自主感知方法：基于点云特征编码融合、三维场景图预测、自主探索建图和视觉实例分割的动态场景自主定位感知，移动障碍多传感融合感知及自主导航，基于深度学习6D位姿估计、同步图卷积三维位姿估计、自适应注意力作业特征识别、视触觉融合自主定位抓取的作业目标自主感知，实现高精确性动态感知；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2861,
+                "end_char": 3085
+              },
+              "version": "4ddcbff866c613936be8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0e71352e06be"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-84c215928492"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种封闭环境下的多车协同轨迹规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5fe71825465c",
+      "evidence": [
+        {
+          "quote": "一种封闭环境下的多车协同轨迹规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3684,
+            "end_char": 3701
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-84c215928492"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-92cb5415a8cd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Aggressive Collision-Inclusive Motion Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dde610dba67e",
+      "evidence": [
+        {
+          "quote": "Aggressive Collision-Inclusive Motion Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3744,
+            "end_char": 3789
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-84c215928492"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-294c1822c700"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于强化学习与动力学前馈融合的机器人轨迹跟踪控制器设计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6fa17be7ebc4",
+      "evidence": [
+        {
+          "quote": "一种基于强化学习与动力学前馈融合的机器人轨迹跟踪控制器设计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3877,
+            "end_char": 3907
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-84c215928492"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fa61f5e45dca"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于注意力机制的多尺度融合机器人抓取检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7d6555fe3623",
+      "evidence": [
+        {
+          "quote": "一种基于注意力机制的多尺度融合机器人抓取检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3942,
+            "end_char": 3965
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d44aa0309e3e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5f62ccc9658e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Catch Planner: Catching High-Speed Targets in the Flight",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba281949ee35",
+      "evidence": [
+        {
+          "quote": "Catch Planner: Catching High-Speed Targets in the Flight",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3993,
+            "end_char": 4048
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-294c1822c700"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5f62ccc9658e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于六自由度串联机械臂提高绝对定位精度的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-329d7184867f",
+      "evidence": [
+        {
+          "quote": "一种基于六自由度串联机械臂提高绝对定位精度的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4169,
+            "end_char": 4192
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于最佳操作区域的复合机器人车臂协调自抗扰控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9bf8c46efc59",
+      "evidence": [
+        {
+          "quote": "基于最佳操作区域的复合机器人车臂协调自抗扰控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4222,
+            "end_char": 4246
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Homogeneous weighted motion planning for cooperated manipulator systems under position-torque constrained processing Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-79016a9d0051",
+      "evidence": [
+        {
+          "quote": "Homogeneous weighted motion planning for cooperated manipulator systems under position-torque constrained processing Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4275,
+            "end_char": 4402
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Granular3D: Delving into multi-granularity 3D scene graph prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c833f729aca3",
+      "evidence": [
+        {
+          "quote": "Granular3D: Delving into multi-granularity 3D scene graph prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4490,
+            "end_char": 4557
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于建议分布地图的室内全局定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-675021917196",
+      "evidence": [
+        {
+          "quote": "一种基于建议分布地图的室内全局定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4663,
+            "end_char": 4681
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptively Fused Attention Module for the Fabric Defect Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dea62728a855",
+      "evidence": [
+        {
+          "quote": "Adaptively Fused Attention Module for the Fabric Defect Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4721,
+            "end_char": 4785
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "协调打磨机械臂系统自适应神经网络同步阻抗控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a559f7c20c40",
+      "evidence": [
+        {
+          "quote": "协调打磨机械臂系统自适应神经网络同步阻抗控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4863,
+            "end_char": 4886
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "复合机器人车臂协调动力学最优激励与高精度辨识方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b67759a805e",
+      "evidence": [
+        {
+          "quote": "复合机器人车臂协调动力学最优激励与高精度辨识方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4918,
+            "end_char": 4941
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于自适应复合观测器的机器人全局有限时间运动控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75d3042cca0a",
+      "evidence": [
+        {
+          "quote": "基于自适应复合观测器的机器人全局有限时间运动控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4969,
+            "end_char": 4994
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多源误差建模的工业机器人精度补偿方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-17581c4bde89",
+      "evidence": [
+        {
+          "quote": "一种基于多源误差建模的工业机器人精度补偿方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5022,
+            "end_char": 5043
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种主从遥操作机器人的柔顺控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cfa2e0b0b1be",
+      "evidence": [
+        {
+          "quote": "一种主从遥操作机器人的柔顺控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5069,
+            "end_char": 5085
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ContourPose: Monocular 6-D Pose Estimation Method for Reflective Textureless Metal Parts",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3b3ab8aa4e37",
+      "evidence": [
+        {
+          "quote": "ContourPose: Monocular 6-D Pose Estimation Method for Reflective Textureless Metal Parts",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5114,
+            "end_char": 5201
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bat Planner: Aggressive Flying Ball Player",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-50bc44a191b4",
+      "evidence": [
+        {
+          "quote": "Bat Planner: Aggressive Flying Ball Player",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5298,
+            "end_char": 5339
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于前馈补偿和模型预测的欠约束负载平稳运输控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3b51ff88b97d",
+      "evidence": [
+        {
+          "quote": "基于前馈补偿和模型预测的欠约束负载平稳运输控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5430,
+            "end_char": 5454
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive neural synchronized impedance control for cooperative manipulators processing under uncertain environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ea05aaf3295a",
+      "evidence": [
+        {
+          "quote": "Adaptive neural synchronized impedance control for cooperative manipulators processing under uncertain environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5488,
+            "end_char": 5602
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于激光雷达的自适应沿墙导航方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24f3765e8f5a",
+      "evidence": [
+        {
+          "quote": "一种基于激光雷达的自适应沿墙导航方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5680,
+            "end_char": 5697
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于模糊变导纳和人体运动预测的人机协同柔顺交互方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-23ca9e325721",
+      "evidence": [
+        {
+          "quote": "基于模糊变导纳和人体运动预测的人机协同柔顺交互方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5738,
+            "end_char": 5762
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种工业机器人时间最优控制轨迹的优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c1f8ed36032",
+      "evidence": [
+        {
+          "quote": "一种工业机器人时间最优控制轨迹的优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5794,
+            "end_char": 5813
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Incrementally Stochastic and Accelerated Gradient Information Mixed Optimization for Manipulator Motion Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b46716716614",
+      "evidence": [
+        {
+          "quote": "Incrementally Stochastic and Accelerated Gradient Information Mixed Optimization for Manipulator Motion Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5852,
+            "end_char": 5963
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向七轴机械臂视觉示教的可变姿态映射方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-610be45ea17a",
+      "evidence": [
+        {
+          "quote": "一种面向七轴机械臂视觉示教的可变姿态映射方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6022,
+            "end_char": 6043
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Incremental accelerated gradient descent and adaptive fine-tuning heuristic performance optimization for robotic motion planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e87e7b6b44d6",
+      "evidence": [
+        {
+          "quote": "Incremental accelerated gradient descent and adaptive fine-tuning heuristic performance optimization for robotic motion planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6073,
+            "end_char": 6200
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于二次规划的移动机械臂人机协同作业运动控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4af158be6277",
+      "evidence": [
+        {
+          "quote": "基于二次规划的移动机械臂人机协同作业运动控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6283,
+            "end_char": 6306
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The motion reliability analysis of a series system with multiple coordinated manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eaf6df9e4a9c",
+      "evidence": [
+        {
+          "quote": "The motion reliability analysis of a series system with multiple coordinated manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6340,
+            "end_char": 6428
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Composite Observer-Based Global Finite Time Control With Prescribed Performance for Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1558161eb126",
+      "evidence": [
+        {
+          "quote": "Adaptive Composite Observer-Based Global Finite Time Control With Prescribed Performance for Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6502,
+            "end_char": 6600
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于最大似然估计的复合机器人动力学全参数辨识方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e05e5f4d815",
+      "evidence": [
+        {
+          "quote": "基于最大似然估计的复合机器人动力学全参数辨识方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6673,
+            "end_char": 6696
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多元线性回归和动力学的机器人能耗建模方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31b00a007049",
+      "evidence": [
+        {
+          "quote": "基于多元线性回归和动力学的机器人能耗建模方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6724,
+            "end_char": 6748
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Quantum Machine Learning and Grover's Algorithm for Quantum Optimization of Robotic Manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-247f11d87a25",
+      "evidence": [
+        {
+          "quote": "Quantum Machine Learning and Grover's Algorithm for Quantum Optimization of Robotic Manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6774,
+            "end_char": 6869
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向工业机器人路径规划的保守碰撞检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b433dcb6c551",
+      "evidence": [
+        {
+          "quote": "面向工业机器人路径规划的保守碰撞检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6946,
+            "end_char": 6965
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于事件聚类的多动态目标感知方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c54a0faf625f",
+      "evidence": [
+        {
+          "quote": "一种基于事件聚类的多动态目标感知方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6988,
+            "end_char": 7008
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous robotic exploration with region-biased sampling and consistent decision making",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a32e0969082b",
+      "evidence": [
+        {
+          "quote": "Autonomous robotic exploration with region-biased sampling and consistent decision making",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7041,
+            "end_char": 7129
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A calibration-based method for interval reliability analysis of the multi-manipulator system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e5bac436bb8",
+      "evidence": [
+        {
+          "quote": "A calibration-based method for interval reliability analysis of the multi-manipulator system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7214,
+            "end_char": 7305
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Motion planning of mobile robot with non-holonomic constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6810fd7f64c1",
+      "evidence": [
+        {
+          "quote": "Motion planning of mobile robot with non-holonomic constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7363,
+            "end_char": 7424
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MASGC: Hybrid attention and synchronous graph learning for monocular 3D pose estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-be73408ac270",
+      "evidence": [
+        {
+          "quote": "MASGC: Hybrid attention and synchronous graph learning for monocular 3D pose estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7495,
+            "end_char": 7581
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A real-time explicit mapping and teleoperation control method for humanoid robots with posture constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbe775a629ab",
+      "evidence": [
+        {
+          "quote": "A real-time explicit mapping and teleoperation control method for humanoid robots with posture constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7703,
+            "end_char": 7808
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-objective optimal trajectory planning of customized industrial robot based on reliable dynamic identification for improving control accuracy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4e974867028",
+      "evidence": [
+        {
+          "quote": "Multi-objective optimal trajectory planning of customized industrial robot based on reliable dynamic identification for improving control accuracy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7901,
+            "end_char": 8046
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A distributed variable density path search and simplification method for industrial manipulators with end-effector's attitude constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-572c998f7d6b",
+      "evidence": [
+        {
+          "quote": "A distributed variable density path search and simplification method for industrial manipulators with end-effector's attitude constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8152,
+            "end_char": 8288
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Roller-Quadrotor: A Novel Hybrid Terrestrial/Aerial Quadrotor with Unicycle-Driven and Rotor-Assisted Turning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-494d6b413536",
+      "evidence": [
+        {
+          "quote": "Roller-Quadrotor: A Novel Hybrid Terrestrial/Aerial Quadrotor with Unicycle-Driven and Rotor-Assisted Turning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8380,
+            "end_char": 8488
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于复杂网格曲面NURBS拟合的机器人作业轨迹生成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e90f6a71ce13",
+      "evidence": [
+        {
+          "quote": "一种基于复杂网格曲面NURBS拟合的机器人作业轨迹生成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8595,
+            "end_char": 8623
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A kinematic calibration method for robots based on the PGTF error model and Levenberg-Marquardt algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2cd8aabaf8e5",
+      "evidence": [
+        {
+          "quote": "A kinematic calibration method for robots based on the PGTF error model and Levenberg-Marquardt algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8648,
+            "end_char": 8752
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度学习的工件 4D 位姿估计及机器人抓取系统与方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4511cfd9c701",
+      "evidence": [
+        {
+          "quote": "基于深度学习的工件 4D 位姿估计及机器人抓取系统与方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8825,
+            "end_char": 8852
+          },
+          "version": "4ddcbff866c613936be8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 45,
+    "listed": 45,
+    "by_kind": {
+      "专利": {
+        "listed": 23,
+        "extracted": 23
+      },
+      "期刊论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

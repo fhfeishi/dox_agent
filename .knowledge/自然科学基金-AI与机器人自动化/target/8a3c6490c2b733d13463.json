@@ -2,15 +2,20 @@
   "doc_id": "8a3c6490c2b733d13463",
   "version": "89e36c18c25edd203e29",
   "source_hash": "23f49ab9ec11e584209cd2b10c546a628f263dd4f4c258f5b9e792f7b8d60e5b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:27.679581+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.761142+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9004e9328869",
-          "name": "双臂协作人机交接",
-          "desc": "面向双臂协作机器人的人机协作系统与物体交接任务",
+          "id": "item-843167bea5dc",
+          "name": "目前，人机协作系统是机器人领域的研究热点。",
+          "desc": "目前，人机协作系统是机器人领域的研究热点。",
           "evidence": [
             {
-              "quote": "本项目提升了双臂协作机器人在人机协作系统中的智能化和安全性，聚焦人类运动建模与预测、机器人轨迹规划、轨迹跟踪与力控制等关键技术",
+              "quote": "目前，人机协作系统是机器人领域的研究热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2605,
-                "end_char": 2667
+                "start_char": 653,
+                "end_char": 673
+              },
+              "version": "89e36c18c25edd203e29"
+            }
+          ]
+        },
+        {
+          "id": "item-c6caa21e0070",
+          "name": "通过对人类运动的精准建模与预测，结合多传感器数据和交接策略，旨在实现高效、安全的双臂协作机器人系统，推动机器人在人机协作",
+          "desc": "通过对人类运动的精准建模与预测，结合多传感器数据和交接策略，旨在实现高效、安全的双臂协作机器人系统，推动机器人在人机协作领域的应用发展。",
+          "evidence": [
+            {
+              "quote": "通过对人类运动的精准建模与预测，结合多传感器数据和交接策略，旨在实现高效、安全的双臂协作机器人系统，推动机器人在人机协作领域的应用发展。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2669,
+                "end_char": 2736
               },
               "version": "89e36c18c25edd203e29"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d6f8446d2126",
-          "name": "动态环境实时轨迹规划",
-          "desc": "动态非结构环境中如何实时生成安全、快速、平滑且保持特殊运动趋势的轨迹",
-          "evidence": [
-            {
-              "quote": "设计双臂协作机器人实时轨迹规划方法，解决机器人在动态非结构环境中如何实时生成安全、快速、平滑且保持特殊运动趋势轨迹的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 828,
-                "end_char": 887
-              },
-              "version": "89e36c18c25edd203e29"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-03b1684743e1",
-          "name": "GMM/LSTM运动建模预测",
-          "desc": "高斯混合模型构建人体运动序列模型并在线更新，LSTM预测人类运动状态",
+          "id": "item-f19a66b5b32d",
+          "name": "然后，设计双臂协作机器人的精准轨迹跟踪控制器以及双臂物体抓取力控制策略，解决机器人动力学模型的参数不确定性以及物体抓取的",
+          "desc": "然后，设计双臂协作机器人的精准轨迹跟踪控制器以及双臂物体抓取力控制策略，解决机器人动力学模型的参数不确定性以及物体抓取的安全性问题。",
           "evidence": [
             {
-              "quote": "通过深度摄像头获取人体骨架数据，利用高斯混合模型（GMM）构建人体运动序列模型，并结合在线学习算法实时更新模型参数。对于复杂任务，采用长短期记忆网络（LSTM）进行人类运动状态的预测",
+              "quote": "然后，设计双臂协作机器人的精准轨迹跟踪控制器以及双臂物体抓取力控制策略，解决机器人动力学模型的参数不确定性以及物体抓取的安全性问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2759,
-                "end_char": 2849
+                "start_char": 889,
+                "end_char": 954
               },
               "version": "89e36c18c25edd203e29"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-92608ba921f5",
-          "name": "动态运动基元时间最优规划",
-          "desc": "基于动态运动基元和急动度受限的时间最优轨迹规划与碰撞检测策略",
+          "id": "item-8f07023f1ea1",
+          "name": "最后，改进双臂协作机器人的抓取装置，集成多种传感器，并结合上述方法设计交接策略，建立完整的、能快速响应人类运动意图的人与",
+          "desc": "最后，改进双臂协作机器人的抓取装置，集成多种传感器，并结合上述方法设计交接策略，建立完整的、能快速响应人类运动意图的人与双臂协作机器人物体交接系统，完成对多种类物体的人机交接任务。",
           "evidence": [
             {
-              "quote": "项目组提出了基于动态运动基元和急动度受限的时间最优轨迹规划方法，使机器人能够实时调整运动轨迹，保证任务执行的高效性",
+              "quote": "最后，改进双臂协作机器人的抓取装置，集成多种传感器，并结合上述方法设计交接策略，建立完整的、能快速响应人类运动意图的人与双臂协作机器人物体交接系统，完成对多种类物体的人机交接任务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2936,
-                "end_char": 2992
+                "start_char": 955,
+                "end_char": 1044
               },
               "version": "89e36c18c25edd203e29"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,114 +107,668 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02f2a77219bb",
-          "name": "双向双臂物体交接系统",
-          "desc": "双手抓取与交接垂直姿势大物体，自适应控制确保操作精确性与安全性",
+          "id": "item-365cf290ac0b",
+          "name": "目前，人机协作系统是机器人领域的研究热点。",
+          "desc": "目前，人机协作系统是机器人领域的研究热点。",
           "evidence": [
             {
-              "quote": "项目提出了一种双向双臂协作的物体交接系统，对板体和箱体进行物体交接实验。该系统能够使机器人通过双手抓取与交接垂直姿势的大物体，在交接过程中采用自适应控制技术确保操作的精确性与安全性",
+              "quote": "目前，人机协作系统是机器人领域的研究热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3053,
-                "end_char": 3142
+                "start_char": 653,
+                "end_char": 673
               },
               "version": "89e36c18c25edd203e29"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-ff727af6d436",
-          "name": "GAIL改进实验平台",
-          "desc": "构建UR3/UR3e双臂协作平台，基于专家轨迹改进GAIL算法稳定性显著提升",
+          "id": "item-219c08dd20d7",
+          "name": "本项目提升了双臂协作机器人在人机协作系统中的智能化和安全性，聚焦人类运动建模与预测、机器人轨迹规划、轨迹跟踪与力控制等关",
+          "desc": "本项目提升了双臂协作机器人在人机协作系统中的智能化和安全性，聚焦人类运动建模与预测、机器人轨迹规划、轨迹跟踪与力控制等关键技术。",
           "evidence": [
             {
-              "quote": "项目组构建了集成UR3和UR3e双臂的协作机器人实验平台，通过视觉伺服与力位混合控制实现了材料制备、液体分配及性能检测的自动化闭环，并基于专家轨迹数据改进了GAIL算法",
+              "quote": "本项目提升了双臂协作机器人在人机协作系统中的智能化和安全性，聚焦人类运动建模与预测、机器人轨迹规划、轨迹跟踪与力控制等关键技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3147,
-                "end_char": 3230
+                "start_char": 2605,
+                "end_char": 2668
               },
               "version": "89e36c18c25edd203e29"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ef2263b5c83e",
-          "name": "论文与学会一等奖",
-          "desc": "发表期刊论文39篇（IEEE汇刊23篇），申请授权专利8项，获中国自动化学会技术发明一等奖",
-          "evidence": [
-            {
-              "quote": "项目发表了标注本项目基金号的期刊论文39篇，其中IEEE汇刊论文23篇；发表相关会议论文13篇；申请或授权国家发明专利成果8项，相关研究成果获2022中国自动化学会技术发明奖一等奖",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3314,
-                "end_char": 3403
-              },
-              "version": "89e36c18c25edd203e29"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9004e9328869"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d6f8446d2126"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Compensation for Infinite Number of Actuator Faults and Time-Varying Delay of a Flexible Manipulator System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8f6c79891d43",
+      "evidence": [
+        {
+          "quote": "Adaptive Compensation for Infinite Number of Actuator Faults and Time-Varying Delay of a Flexible Manipulator System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3503,
+            "end_char": 3618
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d6f8446d2126"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-03b1684743e1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Predictor-based Control for a Flexible Satellite Subject to Output Time Delay",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4939a50673b4",
+      "evidence": [
+        {
+          "quote": "Predictor-based Control for a Flexible Satellite Subject to Output Time Delay",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3686,
+            "end_char": 3762
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d6f8446d2126"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-92608ba921f5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于连续反演算法的时滞补偿控制综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cfab763a94e3",
+      "evidence": [
+        {
+          "quote": "基于连续反演算法的时滞补偿控制综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3812,
+            "end_char": 3828
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-92608ba921f5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-02f2a77219bb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Formation Centroid Tracking Control of Clustered Rotorcraft",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71929d069d24",
+      "evidence": [
+        {
+          "quote": "Distributed Formation Centroid Tracking Control of Clustered Rotorcraft",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3857,
+            "end_char": 3927
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-03b1684743e1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ef2263b5c83e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-based output feedback control for a rotating beam with a general exosystem",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-72227a3c4947",
+      "evidence": [
+        {
+          "quote": "Observer-based output feedback control for a rotating beam with a general exosystem",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3988,
+            "end_char": 4070
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Anti-Disturbance and Rough Trajectory Tracking Control of Quadrotor UAVs Based on Dual-Channel Control Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4bae6e1b569c",
+      "evidence": [
+        {
+          "quote": "Anti-Disturbance and Rough Trajectory Tracking Control of Quadrotor UAVs Based on Dual-Channel Control Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4116,
+            "end_char": 4227
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vibration Control for Flexible Air-Breathing Hypersonic Vehicles with Input Quantification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-55ab9d810f94",
+      "evidence": [
+        {
+          "quote": "Vibration Control for Flexible Air-Breathing Hypersonic Vehicles with Input Quantification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4308,
+            "end_char": 4397
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "仿生扑翼飞行器能耗研究进展",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e3af49fa7e3",
+      "evidence": [
+        {
+          "quote": "仿生扑翼飞行器能耗研究进展",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4458,
+            "end_char": 4470
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Robot Sharing Operation in Co-transporting for Nonholonomic Mobile Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ad3cb6ded8e",
+      "evidence": [
+        {
+          "quote": "Human-Robot Sharing Operation in Co-transporting for Nonholonomic Mobile Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4500,
+            "end_char": 4577
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive-Constrained Impedance Control for Human-Robot Co-Transportation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6232367bdb2f",
+      "evidence": [
+        {
+          "quote": "Adaptive-Constrained Impedance Control for Human-Robot Co-Transportation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4640,
+            "end_char": 4711
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust output regulation of a non‐uniform Euler‐Bernoulli beam",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd468c764973",
+      "evidence": [
+        {
+          "quote": "Robust output regulation of a non‐uniform Euler‐Bernoulli beam",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4789,
+            "end_char": 4850
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-Time Trajectory Planning and Obstacle Avoidance for Human-Robot Co-Transporting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-25099fded4f6",
+      "evidence": [
+        {
+          "quote": "Real-Time Trajectory Planning and Obstacle Avoidance for Human-Robot Co-Transporting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4914,
+            "end_char": 4997
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-Based Target Localization for a Flapping-Wing Aerial Vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47086d2ef680",
+      "evidence": [
+        {
+          "quote": "Vision-Based Target Localization for a Flapping-Wing Aerial Vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5071,
+            "end_char": 5137
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive fault-tolerant control for a three-tank system with height and rate constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9cead54929f9",
+      "evidence": [
+        {
+          "quote": "Adaptive fault-tolerant control for a three-tank system with height and rate constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5195,
+            "end_char": 5282
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement learning control for a flapping-wing micro aerial vehicle with output constraint",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c5da04ba9d02",
+      "evidence": [
+        {
+          "quote": "Reinforcement learning control for a flapping-wing micro aerial vehicle with output constraint",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5350,
+            "end_char": 5443
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bidirectional Human-Robot Bimanual Handover of Big Planar Object With Vertical Posture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f120613cec30",
+      "evidence": [
+        {
+          "quote": "Bidirectional Human-Robot Bimanual Handover of Big Planar Object With Vertical Posture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5519,
+            "end_char": 5604
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机械臂零空间实时避障控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7fb8eadd8e5d",
+      "evidence": [
+        {
+          "quote": "一种机械臂零空间实时避障控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5654,
+            "end_char": 5672
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于视觉信息的仿生四足机器人人员感知跟随方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c77912c180ae",
+      "evidence": [
+        {
+          "quote": "基于视觉信息的仿生四足机器人人员感知跟随方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5714,
+            "end_char": 5738
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cooperative Fault-Tolerant Control for a Mobile Dual Flexible Manipulator With Output Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8039ba22109c",
+      "evidence": [
+        {
+          "quote": "Cooperative Fault-Tolerant Control for a Mobile Dual Flexible Manipulator With Output Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5782,
+            "end_char": 5878
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Target Detection and Localization for Flapping-Wing Robots Based on Biological Eagle-Eye Vision",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-abc1b2f6b68b",
+      "evidence": [
+        {
+          "quote": "Target Detection and Localization for Flapping-Wing Robots Based on Biological Eagle-Eye Vision",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5933,
+            "end_char": 6027
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Obstacle Avoidance of Flapping Wing Air Vehicles Based on Optical Flow and Fuzzy Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c786db3872a",
+      "evidence": [
+        {
+          "quote": "Obstacle Avoidance of Flapping Wing Air Vehicles Based on Optical Flow and Fuzzy Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6091,
+            "end_char": 6178
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于力感知的机器人人机物理协作共享可变导纳控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5a8ebb71c7ab",
+      "evidence": [
+        {
+          "quote": "基于力感知的机器人人机物理协作共享可变导纳控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6238,
+            "end_char": 6262
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机械臂自适应固定时间控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-243767fb6b92",
+      "evidence": [
+        {
+          "quote": "一种机械臂自适应固定时间控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6306,
+            "end_char": 6321
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Intelligent Experiment Robotic Systems Design for Material Preparation and Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-842bdbcad518",
+      "evidence": [
+        {
+          "quote": "Intelligent Experiment Robotic Systems Design for Material Preparation and Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6372,
+            "end_char": 6455
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Flight and Vibration Control of Flexible Air-Breathing Hypersonic Vehicles Under Actuator Faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47711d932874",
+      "evidence": [
+        {
+          "quote": "Flight and Vibration Control of Flexible Air-Breathing Hypersonic Vehicles Under Actuator Faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6518,
+            "end_char": 6613
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Miniature Biological Eagle-Eye Vision System for Small Target Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e6eccdd26e61",
+      "evidence": [
+        {
+          "quote": "A Miniature Biological Eagle-Eye Vision System for Small Target Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6664,
+            "end_char": 6736
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Fault-Tolerant Anti-Sway Control of a Nonlinear Tower Crane System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d399945a95cd",
+      "evidence": [
+        {
+          "quote": "Adaptive Fault-Tolerant Anti-Sway Control of a Nonlinear Tower Crane System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6803,
+            "end_char": 6877
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Internal Model Control for a Flexible Wing With Unsteady Aerodynamic Loads",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62387390477f",
+      "evidence": [
+        {
+          "quote": "Adaptive Internal Model Control for a Flexible Wing With Unsteady Aerodynamic Loads",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6929,
+            "end_char": 7011
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Three-dimensional vibration suppression for an Euler-Bernoulli beam with asymmetric output constraint",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f296fad3c51",
+      "evidence": [
+        {
+          "quote": "Three-dimensional vibration suppression for an Euler-Bernoulli beam with asymmetric output constraint",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7069,
+            "end_char": 7169
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural Network-Based Cooperative Trajectory Tracking Control for a Mobile Dual Flexible Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-781613b86a0a",
+      "evidence": [
+        {
+          "quote": "Neural Network-Based Cooperative Trajectory Tracking Control for a Mobile Dual Flexible Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7235,
+            "end_char": 7333
+          },
+          "version": "89e36c18c25edd203e29"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 21,
+        "extracted": 21
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

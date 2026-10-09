@@ -2,15 +2,20 @@
   "doc_id": "59a94b5ccae824ba4227",
   "version": "8a9ec7011808fa9421d1",
   "source_hash": "e32f12763b222150384f16facb0cb7886aae90eaa52d0e035fc79467a4d3b455",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:25.865973+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.323618+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3faee64658de",
-          "name": "脊髓损伤辅助排痰",
-          "desc": "咳嗽无力患者的无创高效辅助咳嗽",
+          "id": "item-81a111c24936",
+          "name": "全球每年有50万例脊髓损伤发生，且呈逐年上升趋势。",
+          "desc": "全球每年有50万例脊髓损伤发生，且呈逐年上升趋势。",
           "evidence": [
             {
-              "quote": "全球每年有50万例脊髓损伤发生，且呈逐年上升趋势。咳嗽功能受损导致呼吸系统并发症是主要死因之一。",
+              "quote": "全球每年有50万例脊髓损伤发生，且呈逐年上升趋势。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 642,
-                "end_char": 689
+                "end_char": 666
+              },
+              "version": "8a9ec7011808fa9421d1"
+            }
+          ]
+        },
+        {
+          "id": "item-00754e827af8",
+          "name": "本项目面向呼吸辅助与康复的临床需求，整合软体机器人、膈肌超声和脑电（EEG）技术，构建“脑-机-膈”闭环呼吸辅助系统。",
+          "desc": "本项目面向呼吸辅助与康复的临床需求，整合软体机器人、膈肌超声和脑电（EEG）技术，构建“脑-机-膈”闭环呼吸辅助系统。",
+          "evidence": [
+            {
+              "quote": "本项目面向呼吸辅助与康复的临床需求，整合软体机器人、膈肌超声和脑电（EEG）技术，构建“脑-机-膈”闭环呼吸辅助系统。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3127,
+                "end_char": 3185
               },
               "version": "8a9ec7011808fa9421d1"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-018ad0479bff",
-          "name": "现有排痰技术非生理低效",
-          "desc": "人工吸痰、振动排痰等非生理、有创、复杂、效率低",
-          "evidence": [
-            {
-              "quote": "现有辅助咳嗽技术如人工吸痰、振动排痰和腹部冲击排痰等存在非生理、有创、复杂、专业性强、排痰效率低及不能提高咳嗽能力等问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 690,
-                "end_char": 750
-              },
-              "version": "8a9ec7011808fa9421d1"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-a0df446b85a1",
-          "name": "软体外骨骼呼吸辅助",
-          "desc": "吸气模块真空提拉胸廓、呼气模块折纸气囊推腹升膈",
+          "id": "item-6fa50ad00f1f",
+          "name": "将人机耦合咳嗽生理机制和软体机器人技术相结合，突破基于仿呼吸肌的可变刚度材料驱动控制机理、软体材料制备工艺、人机协同控制",
+          "desc": "将人机耦合咳嗽生理机制和软体机器人技术相结合，突破基于仿呼吸肌的可变刚度材料驱动控制机理、软体材料制备工艺、人机协同控制策略等技术瓶颈，研发自然咳嗽仿生机制启发的辅助排痰软体外骨骼机器人，用于脊髓损伤等咳嗽无力患者，从而实现无创、高效、智能及连续使用的辅助咳嗽。",
           "evidence": [
             {
-              "quote": "开发可穿戴软体外骨骼——吸气模块以-30 kPa真空提拉胸廓，呼气模块用400 N折纸气囊推腹升膈，同步无线IMU实时监测胸壁运动",
+              "quote": "将人机耦合咳嗽生理机制和软体机器人技术相结合，突破基于仿呼吸肌的可变刚度材料驱动控制机理、软体材料制备工艺、人机协同控制策略等技术瓶颈，研发自然咳嗽仿生机制启发的辅助排痰软体外骨骼机器人，用于脊髓损伤等咳嗽无力患者，从而实现无创、高效、智能及连续使用的辅助咳嗽。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3189,
-                "end_char": 3253
+                "start_char": 857,
+                "end_char": 987
               },
               "version": "8a9ec7011808fa9421d1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-12a91b50265a",
-          "name": "膈肌超声反馈",
-          "desc": "膈肌位移与潮气量预测误差小于7%",
+          "id": "item-f833746004c1",
+          "name": "通过建立人机耦合呼吸力学，量化机器人辅助下人体呼吸系统的动态特征，为仿生设计和智能控制提供理论基础；",
+          "desc": "通过建立人机耦合呼吸力学，量化机器人辅助下人体呼吸系统的动态特征，为仿生设计和智能控制提供理论基础；",
           "evidence": [
             {
-              "quote": "创新引入膈肌超声成像，实现机器人辅助下膈肌位移与潮气量预测误差<7%",
+              "quote": "通过建立人机耦合呼吸力学，量化机器人辅助下人体呼吸系统的动态特征，为仿生设计和智能控制提供理论基础；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3258,
-                "end_char": 3291
+                "start_char": 807,
+                "end_char": 856
               },
               "version": "8a9ec7011808fa9421d1"
             }
-          ]
-        },
-        {
-          "id": "item-2961c09e5faf",
-          "name": "EEG呼吸意识识别",
-          "desc": "EEG低频功率、PLV与样本熵在线识别自主呼吸意识",
-          "evidence": [
-            {
-              "quote": "在线识别率≥90%，使系统可按患者意图即时调整辅助水平。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3369,
-                "end_char": 3396
-              },
-              "version": "8a9ec7011808fa9421d1"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +107,124 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3bffdcd18703",
-          "name": "膈肌冲程潮气量提升",
-          "desc": "健康人膈肌冲程提升1.95倍、潮气量提升2.14倍",
+          "id": "item-ce62d98b802c",
+          "name": "全球每年有50万例脊髓损伤发生，且呈逐年上升趋势。",
+          "desc": "全球每年有50万例脊髓损伤发生，且呈逐年上升趋势。",
           "evidence": [
             {
-              "quote": "验证健康人膈肌冲程提升1.95倍、潮气量提升2.14倍。",
+              "quote": "全球每年有50万例脊髓损伤发生，且呈逐年上升趋势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3293,
-                "end_char": 3320
+                "start_char": 642,
+                "end_char": 666
               },
               "version": "8a9ec7011808fa9421d1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-6edd821e82ac",
-          "name": "临床受试者通气改善",
-          "desc": "20名受试者吸气量增276.6%、呼气量增306.0%，无不良事件",
+          "id": "item-5030d7a72f58",
+          "name": "本项目面向呼吸辅助与康复的临床需求，整合软体机器人、膈肌超声和脑电（EEG）技术，构建“脑-机-膈”闭环呼吸辅助系统。",
+          "desc": "本项目面向呼吸辅助与康复的临床需求，整合软体机器人、膈肌超声和脑电（EEG）技术，构建“脑-机-膈”闭环呼吸辅助系统。",
           "evidence": [
             {
-              "quote": "结果显示患者吸气量增加276.6%，呼气量增加306.0%，PaCO₂平均下降3.1 mmHg，PaO₂上升8.7 mmHg，无不良事件。",
+              "quote": "本项目面向呼吸辅助与康复的临床需求，整合软体机器人、膈肌超声和脑电（EEG）技术，构建“脑-机-膈”闭环呼吸辅助系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3433,
-                "end_char": 3501
+                "start_char": 3127,
+                "end_char": 3185
               },
               "version": "8a9ec7011808fa9421d1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3faee64658de"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-018ad0479bff"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Extracorporeal Closed-Loop Respiratory Regulation for Patients With Respiratory Difficulty Using a Soft Bionic Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f92e52cbaefd",
+      "evidence": [
+        {
+          "quote": "Extracorporeal Closed-Loop Respiratory Regulation for Patients With Respiratory Difficulty Using a Soft Bionic Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3588,
+            "end_char": 3703
+          },
+          "version": "8a9ec7011808fa9421d1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-018ad0479bff"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a0df446b85a1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Soft Exoskeleton Mimics Human Cough for Assisting the Expectoration Capability of SCI Patients",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e7292b9e8bb",
+      "evidence": [
+        {
+          "quote": "Soft Exoskeleton Mimics Human Cough for Assisting the Expectoration Capability of SCI Patients",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3852,
+            "end_char": 3945
+          },
+          "version": "8a9ec7011808fa9421d1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-018ad0479bff"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-12a91b50265a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-018ad0479bff"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2961c09e5faf"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-12a91b50265a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3bffdcd18703"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2961c09e5faf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6edd821e82ac"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于咳痰辅助的外骨骼机器人及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e158e51fb674",
+      "evidence": [
+        {
+          "quote": "一种用于咳痰辅助的外骨骼机器人及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4065,
+            "end_char": 4084
+          },
+          "version": "8a9ec7011808fa9421d1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

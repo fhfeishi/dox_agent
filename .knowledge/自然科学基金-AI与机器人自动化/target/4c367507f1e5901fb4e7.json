@@ -2,15 +2,20 @@
   "doc_id": "4c367507f1e5901fb4e7",
   "version": "0c24ec20fcb84b443e6c",
   "source_hash": "3e04e3dddb42f3ae1f01c079538553cba2f3434398c740d047ec78d089d9de78",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:43.560988+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.215303+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-99f6ef8714af",
-          "name": "微创手术机器人导航跟踪",
-          "desc": "位姿跟踪是微创手术机器人导航基础并决定手术效果",
+          "id": "item-e39493b39f0d",
+          "name": "手术器械及病人标记点的位姿跟踪（定位定向）是微创手术机器人导航的基础并决定手术效果。",
+          "desc": "手术器械及病人标记点的位姿跟踪（定位定向）是微创手术机器人导航的基础并决定手术效果。",
           "evidence": [
             {
-              "quote": "手术器械及病人标记点的位姿跟踪（定位定向）是微创手术机器人导航的基础并决定手术效果",
+              "quote": "手术器械及病人标记点的位姿跟踪（定位定向）是微创手术机器人导航的基础并决定手术效果。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 683,
-                "end_char": 723
+                "end_char": 724
               },
               "version": "0c24ec20fcb84b443e6c"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8ce84125f380",
-          "name": "光磁跟踪多次切换低效",
-          "desc": "光学与电磁跟踪多次切换或混合跟踪，导航配准效率和精度不高",
-          "evidence": [
-            {
-              "quote": "目前在进行微创手术操作时需要对光学和电磁跟踪装置进行多次切换或者混合跟踪，导致了导航配准效率（精度和实时性）不高的难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 725,
-                "end_char": 783
-              },
-              "version": "0c24ec20fcb84b443e6c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4785b8847bb6",
-          "name": "多模态光磁融合跟踪",
-          "desc": "光学、永磁体和交变电磁跟踪误差机理先验下的多级多层次融合",
+          "id": "item-a860801208d7",
+          "name": ".不同于现有的“光磁混合跟踪”方法，我们认为解决“如何实现跟踪性能提升以改进微创手术导航配准的精度和效率”的有效手段是系",
+          "desc": ".不同于现有的“光磁混合跟踪”方法，我们认为解决“如何实现跟踪性能提升以改进微创手术导航配准的精度和效率”的有效手段是系统性开展多模态（光学、永磁体和交变电磁）位姿跟踪误差的产生、传递与耦合机理和基于误差机理作为先验知识的光磁融合算法研究，并结合临床需求研发基于光磁融合方法的微创手术机器人跟踪装置。",
           "evidence": [
             {
-              "quote": "系统性开展基于光学、永磁体和交变电磁的跟踪位姿误差产生与传递机理研究",
+              "quote": ".不同于现有的“光磁混合跟踪”方法，我们认为解决“如何实现跟踪性能提升以改进微创手术导航配准的精度和效率”的有效手段是系统性开展多模态（光学、永磁体和交变电磁）位姿跟踪误差的产生、传递与耦合机理和基于误差机理作为先验知识的光磁融合算法研究，并结合临床需求研发基于光磁融合方法的微创手术机器人跟踪装置。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 886,
-                "end_char": 919
+                "start_char": 2929,
+                "end_char": 3078
               },
               "version": "0c24ec20fcb84b443e6c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-da59a5a3a643",
-          "name": "自主四目光学与电磁跟踪装置",
-          "desc": "自主研发四目光学跟踪装置和交变电磁跟踪装置，打破NDI垄断",
+          "id": "item-5a463a41b590",
+          "name": "本项目提出了一种基于多模态（光学、永磁体和交变电磁）的光磁融合跟踪新方法，为复杂场景下的微创手术机器人高效导航控制提供高",
+          "desc": "本项目提出了一种基于多模态（光学、永磁体和交变电磁）的光磁融合跟踪新方法，为复杂场景下的微创手术机器人高效导航控制提供高精度、高鲁棒性和高实时性的反馈参数。",
           "evidence": [
             {
-              "quote": "通过项目的实施，自主研发四目光学跟踪装置和交变电磁跟踪装置，进而实现光磁融合算法研究",
+              "quote": "本项目提出了一种基于多模态（光学、永磁体和交变电磁）的光磁融合跟踪新方法，为复杂场景下的微创手术机器人高效导航控制提供高精度、高鲁棒性和高实时性的反馈参数。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3247,
-                "end_char": 3288
+                "start_char": 785,
+                "end_char": 862
               },
               "version": "0c24ec20fcb84b443e6c"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,512 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ecdeec1754c2",
-          "name": "医工协同关键技术研究",
-          "desc": "与微创电生理、卡本医疗、博仕康等企业开展磁定位标测与光磁导航合作",
+          "id": "item-2fbc47b26e2d",
+          "name": "手术器械及病人标记点的位姿跟踪（定位定向）是微创手术机器人导航的基础并决定手术效果。",
+          "desc": "手术器械及病人标记点的位姿跟踪（定位定向）是微创手术机器人导航的基础并决定手术效果。",
           "evidence": [
             {
-              "quote": "并同上海微创电生理医疗科技股份有限公司（688351.SH）、卡本(深圳)医疗科技有限公司、重庆博仕康科技有限公司分别开展了磁定位功能心脏3D标测、电子输尿管肾盂内窥镜导管磁定位、光磁一体脊柱外科手术导航系统等关键技术研究",
+              "quote": "手术器械及病人标记点的位姿跟踪（定位定向）是微创手术机器人导航的基础并决定手术效果。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3134,
-                "end_char": 3244
+                "start_char": 683,
+                "end_char": 724
               },
               "version": "0c24ec20fcb84b443e6c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-5abe9344819c",
+          "name": "随着《“健康中国2030”规划纲要》和《“机器人+”应用行动实施方案》等国家战略计划的推进，微创手术机器人的关键技术突破",
+          "desc": "随着《“健康中国2030”规划纲要》和《“机器人+”应用行动实施方案》等国家战略计划的推进，微创手术机器人的关键技术突破就至关重要。",
+          "evidence": [
+            {
+              "quote": "随着《“健康中国2030”规划纲要》和《“机器人+”应用行动实施方案》等国家战略计划的推进，微创手术机器人的关键技术突破就至关重要。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2594,
+                "end_char": 2659
+              },
+              "version": "0c24ec20fcb84b443e6c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-99f6ef8714af"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8ce84125f380"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "小跟班跟随机器人2020数字中国创新大赛机器人赛道",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e816efa3eccd",
+      "evidence": [
+        {
+          "quote": "小跟班跟随机器人2020数字中国创新大赛机器人赛道",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3444,
+            "end_char": 3468
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8ce84125f380"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4785b8847bb6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Validation of Inertial Sensing-Based Wearable Device for Tremor and Bradykinesia Quantification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0bbe555e159b",
+      "evidence": [
+        {
+          "quote": "Validation of Inertial Sensing-Based Wearable Device for Tremor and Bradykinesia Quantification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3509,
+            "end_char": 3603
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8ce84125f380"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-da59a5a3a643"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved Magnetic Guidance Approach for Automated Guided Vehicles by Error Analysis and Prior Knowledge",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3b5bb83e403d",
+      "evidence": [
+        {
+          "quote": "Improved Magnetic Guidance Approach for Automated Guided Vehicles by Error Analysis and Prior Knowledge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3673,
+            "end_char": 3775
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-da59a5a3a643"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ecdeec1754c2"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于磁偶极子模型的磁性标记物定位方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b640681dc63b",
+      "evidence": [
+        {
+          "quote": "一种基于磁偶极子模型的磁性标记物定位方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3835,
+            "end_char": 3857
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4785b8847bb6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ecdeec1754c2"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于像素化磁钉信息的深度学习定位方法、装置及可读介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba245a93c5c1",
+      "evidence": [
+        {
+          "quote": "基于像素化磁钉信息的深度学习定位方法、装置及可读介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3896,
+            "end_char": 3921
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "中国科学院首届职工技能大赛",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b9cfec03233",
+      "evidence": [
+        {
+          "quote": "中国科学院首届职工技能大赛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3945,
+            "end_char": 3957
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于电磁定位跟踪的三维磁场发生装置及磁场控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d8c608c32019",
+      "evidence": [
+        {
+          "quote": "一种用于电磁定位跟踪的三维磁场发生装置及磁场控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3989,
+            "end_char": 4014
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Liquid-Metal Magnetic Soft Robot With Reprogrammable Magnetization and Stiffness",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02dd79e937c1",
+      "evidence": [
+        {
+          "quote": "Liquid-Metal Magnetic Soft Robot With Reprogrammable Magnetization and Stiffness",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4044,
+            "end_char": 4123
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Improved Magnetic Spot Navigation for Replacing the Barcode Navigation in Automated Guided Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e06ed383d8c",
+      "evidence": [
+        {
+          "quote": "An Improved Magnetic Spot Navigation for Replacing the Barcode Navigation in Automated Guided Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4168,
+            "end_char": 4269
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UWB-Based Adaptable Side-by-Side Following for Human-Following Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05776e8d9f29",
+      "evidence": [
+        {
+          "quote": "UWB-Based Adaptable Side-by-Side Following for Human-Following Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4353,
+            "end_char": 4421
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Magnetic Tracking With Real-Time Geomagnetic Vector Separation for Robotic Dockable Charging",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fc9bcdf82906",
+      "evidence": [
+        {
+          "quote": "Magnetic Tracking With Real-Time Geomagnetic Vector Separation for Robotic Dockable Charging",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4507,
+            "end_char": 4598
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Improved Magnetic Tracking Approach Based on ResNet-LM Fusion Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-981d05e1812a",
+      "evidence": [
+        {
+          "quote": "An Improved Magnetic Tracking Approach Based on ResNet-LM Fusion Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4687,
+            "end_char": 4760
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Robust 6-D Pose Tracking Approach by Fusing a Multi-Camera Tracking Device and an AHRS Module",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b0cc824c05c",
+      "evidence": [
+        {
+          "quote": "A Robust 6-D Pose Tracking Approach by Fusing a Multi-Camera Tracking Device and an AHRS Module",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4837,
+            "end_char": 4931
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Force Decoupling Method for Simultaneously Measuring Vertical and Shear Force",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c657ad02d314",
+      "evidence": [
+        {
+          "quote": "A Force Decoupling Method for Simultaneously Measuring Vertical and Shear Force",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4993,
+            "end_char": 5071
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于空间多点磁场强度信息融合的磁定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae60a5d21573",
+      "evidence": [
+        {
+          "quote": "一种基于空间多点磁场强度信息融合的磁定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5140,
+            "end_char": 5161
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prior Knowledge-Based Optimization Method for the Reconstruction Model of Multicamera Optical Tracking System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b13f3e70ad06",
+      "evidence": [
+        {
+          "quote": "Prior Knowledge-Based Optimization Method for the Reconstruction Model of Multicamera Optical Tracking System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5211,
+            "end_char": 5319
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "电磁空间象限的识别方法、装置、存储介质及电子设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec5f91a85e35",
+      "evidence": [
+        {
+          "quote": "电磁空间象限的识别方法、装置、存储介质及电子设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5426,
+            "end_char": 5449
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Simplified Magnetic Positioning Approach Based on Analytical Method and Data Fusion for Automated Guided Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16aacf25c00d",
+      "evidence": [
+        {
+          "quote": "A Simplified Magnetic Positioning Approach Based on Analytical Method and Data Fusion for Automated Guided Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5484,
+            "end_char": 5598
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于快速运动下的永磁体实时定位方法、装置及可读介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8673cd828429",
+      "evidence": [
+        {
+          "quote": "用于快速运动下的永磁体实时定位方法、装置及可读介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5681,
+            "end_char": 5705
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Laser-Based Side-by-Side Following for Human-Following Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6063bc2442a",
+      "evidence": [
+        {
+          "quote": "Laser-Based Side-by-Side Following for Human-Following Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5748,
+            "end_char": 5808
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于WOA-1DCNN-LSTM的足底地面反作用力预测方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-64de5e6b6d0c",
+      "evidence": [
+        {
+          "quote": "一种基于WOA-1DCNN-LSTM的足底地面反作用力预测方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5875,
+            "end_char": 5908
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无线电磁六维定位方法、系统、存储介质及电子设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d6ab5c3151e",
+      "evidence": [
+        {
+          "quote": "一种无线电磁六维定位方法、系统、存储介质及电子设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5945,
+            "end_char": 5969
+          },
+          "version": "0c24ec20fcb84b443e6c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "251b28e9501899ccf51e",
   "version": "16d94c37815fa49b00b3",
   "source_hash": "fad239699d1175dce8550717efbb0e02f251307236c379dc1173f1124f06c1a4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:52.472318+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.831432+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9ec9818e7dd7",
-          "name": "介电弹性体软体机器人",
-          "desc": "基于介电弹性体驱动器的软体机器人运动控制",
+          "id": "item-8414bce69f34",
+          "name": "本项目以基于介电弹性体驱动器的软体机器人为对象，研究其动力学建模与运动控制器设计问题。",
+          "desc": "本项目以基于介电弹性体驱动器的软体机器人为对象，研究其动力学建模与运动控制器设计问题。",
           "evidence": [
             {
               "quote": "本项目以基于介电弹性体驱动器的软体机器人为对象，研究其动力学建模与运动控制器设计问题。",
@@ -33,66 +38,67 @@
               "version": "16d94c37815fa49b00b3"
             }
           ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
+        },
         {
-          "id": "item-0c0b5dcba4c9",
-          "name": "迟滞蠕变复合非线性",
-          "desc": "频率-应力耦合动态迟滞与迟滞-蠕变复合非线性特性",
+          "id": "item-794e4d2f31e3",
+          "name": "通过本项目研究，为基于介电弹性体驱动器的软体机器人的运动控制提供一种可行有效的新方法，具有重要的理论意义和应用前景。",
+          "desc": "通过本项目研究，为基于介电弹性体驱动器的软体机器人的运动控制提供一种可行有效的新方法，具有重要的理论意义和应用前景。",
           "evidence": [
             {
-              "quote": "在分析介电弹性体材料频率-应力耦合相关动态迟滞特性及迟滞-蠕变复合非线性特性的基础上，建立介电弹性体材料的迟滞-蠕变复合非线性模型并构造该模型的逆解析表达式。",
+              "quote": "通过本项目研究，为基于介电弹性体驱动器的软体机器人的运动控制提供一种可行有效的新方法，具有重要的理论意义和应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2637,
-                "end_char": 2715
+                "start_char": 969,
+                "end_char": 1026
               },
               "version": "16d94c37815fa49b00b3"
             }
           ]
         }
       ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-17e4b4d9eb8e",
-          "name": "两步参数辨识建模",
-          "desc": "群体智能优化或非线性最小二乘的两步辨识",
+          "id": "item-5f02f6579aff",
+          "name": "建立由迟滞-蠕变复合非线性系统和高阶线性系统或非线性系统组成的介电弹性体驱动器动力学模型，进而构建由介电弹性体驱动器和机",
+          "desc": "建立由迟滞-蠕变复合非线性系统和高阶线性系统或非线性系统组成的介电弹性体驱动器动力学模型，进而构建由介电弹性体驱动器和机器人本体组成的整体串级系统动力学模型，并借助群体智能优化算法对整体动力学模型的待定参数进行辨识；",
           "evidence": [
             {
-              "quote": "提出基于介电弹性体驱动器的软体机器人的动力学模型框架，并利用基于群体智能优化算法或非线性最小二乘算法的两步参数辨识方法对模型参数进行辨识",
+              "quote": "建立由迟滞-蠕变复合非线性系统和高阶线性系统或非线性系统组成的介电弹性体驱动器动力学模型，进而构建由介电弹性体驱动器和机器人本体组成的整体串级系统动力学模型，并借助群体智能优化算法对整体动力学模型的待定参数进行辨识；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2716,
-                "end_char": 2783
+                "start_char": 789,
+                "end_char": 896
               },
               "version": "16d94c37815fa49b00b3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-94329287ded0",
-          "name": "逆补偿前馈+反馈控制",
-          "desc": "逆补偿前馈消除非线性、反馈消除误差与扰动",
+          "id": "item-25ca2f78984c",
+          "name": "结合逆补偿前馈控制器设计方法、自适应鲁棒反馈控制器设计方法和系统状态观测器设计方法，提出一种针对基于介电弹性体驱动器的软",
+          "desc": "结合逆补偿前馈控制器设计方法、自适应鲁棒反馈控制器设计方法和系统状态观测器设计方法，提出一种针对基于介电弹性体驱动器的软体机器人的运动控制策略。",
           "evidence": [
             {
-              "quote": "对基于介电弹性体驱动器的软体机器人动力学模型求逆，设计逆补偿前馈控制器补偿其迟滞-蠕变复合非线性；此外，设计反馈控制器消除逆补偿控制误差和系统不确定因素（参数摄动和外界扰动等）对系统控制精度的不利影响",
+              "quote": "结合逆补偿前馈控制器设计方法、自适应鲁棒反馈控制器设计方法和系统状态观测器设计方法，提出一种针对基于介电弹性体驱动器的软体机器人的运动控制策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2842,
-                "end_char": 2941
+                "start_char": 897,
+                "end_char": 968
               },
               "version": "16d94c37815fa49b00b3"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,249 @@
       "state": "has",
       "items": [
         {
-          "id": "item-96a25a23cf5d",
-          "name": "高精度运动控制实现",
-          "desc": "运动控制策略实现高精度运动控制目标",
+          "id": "item-995f29ee563c",
+          "name": "本项目以基于介电弹性体驱动器的软体机器人为对象，研究其动力学建模与运动控制器设计问题。",
+          "desc": "本项目以基于介电弹性体驱动器的软体机器人为对象，研究其动力学建模与运动控制器设计问题。",
           "evidence": [
             {
-              "quote": "结合逆补偿前馈控制方法和反馈控制方法，提出基于介电弹性体驱动器的软体机器人的运动控制策略实现其高精度运动控制目标。",
+              "quote": "本项目以基于介电弹性体驱动器的软体机器人为对象，研究其动力学建模与运动控制器设计问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2943,
-                "end_char": 2999
+                "start_char": 667,
+                "end_char": 709
               },
               "version": "16d94c37815fa49b00b3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9ec9818e7dd7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0c0b5dcba4c9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Inverse dynamics modelling and tracking control of conical dielectric elastomer actuator based on GRU neural network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6114afefa68e",
+      "evidence": [
+        {
+          "quote": "Inverse dynamics modelling and tracking control of conical dielectric elastomer actuator based on GRU neural network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3092,
+            "end_char": 3207
+          },
+          "version": "16d94c37815fa49b00b3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0c0b5dcba4c9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-17e4b4d9eb8e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and tracking control for soft robots of dielectric elastomer actuators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9e0d65021f5",
+      "evidence": [
+        {
+          "quote": "Modeling and tracking control for soft robots of dielectric elastomer actuators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3274,
+            "end_char": 3352
+          },
+          "version": "16d94c37815fa49b00b3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0c0b5dcba4c9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-94329287ded0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modelling and compound control of intelligently dielectric elastomer actuator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-400d08a174c3",
+      "evidence": [
+        {
+          "quote": "Modelling and compound control of intelligently dielectric elastomer actuator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3427,
+            "end_char": 3503
+          },
+          "version": "16d94c37815fa49b00b3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-94329287ded0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-96a25a23cf5d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tracking control of dielectric elastomer actuators for soft robots based on inverse dynamic compensation method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af2fd5dd4f4c",
+      "evidence": [
+        {
+          "quote": "Tracking control of dielectric elastomer actuators for soft robots based on inverse dynamic compensation method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3560,
+            "end_char": 3670
+          },
+          "version": "16d94c37815fa49b00b3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-17e4b4d9eb8e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-96a25a23cf5d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水陆两栖仿生机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8492125b2ce",
+      "evidence": [
+        {
+          "quote": "一种水陆两栖仿生机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3734,
+            "end_char": 3744
+          },
+          "version": "16d94c37815fa49b00b3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and tracking control for dielectric elastomer actuator with sliding mode feedback controller",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad328ee42529",
+      "evidence": [
+        {
+          "quote": "Modeling and tracking control for dielectric elastomer actuator with sliding mode feedback controller",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3777,
+            "end_char": 3877
+          },
+          "version": "16d94c37815fa49b00b3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Study of soft force and displacement sensor based on dielectric elastomer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d6e8b396187",
+      "evidence": [
+        {
+          "quote": "Study of soft force and displacement sensor based on dielectric elastomer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3932,
+            "end_char": 4004
+          },
+          "version": "16d94c37815fa49b00b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Iterative convergence control method for planar underactuated manipulator based on support vector regression model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18ea04ff6b94",
+      "evidence": [
+        {
+          "quote": "Iterative convergence control method for planar underactuated manipulator based on support vector regression model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4060,
+            "end_char": 4173
+          },
+          "version": "16d94c37815fa49b00b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic modeling of dielectric elastomer actuator with conical shape",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a1e2d01a008",
+      "evidence": [
+        {
+          "quote": "Dynamic modeling of dielectric elastomer actuator with conical shape",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4220,
+            "end_char": 4287
+          },
+          "version": "16d94c37815fa49b00b3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic modeling for dielectric elastomer actuators based on LSTM deep neural network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ebb9b434b80f",
+      "evidence": [
+        {
+          "quote": "Dynamic modeling for dielectric elastomer actuators based on LSTM deep neural network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4333,
+            "end_char": 4417
+          },
+          "version": "16d94c37815fa49b00b3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

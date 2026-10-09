@@ -2,15 +2,20 @@
   "doc_id": "767d2528ee593e623ccb",
   "version": "461e1251f6290582a47d",
   "source_hash": "e0ea5830a2ed17d87939cb2a4f0282d8a699a7f0e5d4f491c948c6dab20c09a4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:11:23.161144+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.590444+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-998753dbc5f6",
-          "name": "机电产品智能装配",
-          "desc": "以空心杯电机/永磁同步电机为对象的认知视域机器人装配",
+          "id": "item-dd3da9d45415",
+          "name": "装配是机械制造中必不可少的环节，机械产品的装配工作量占其制造工作量的20%-70%。",
+          "desc": "装配是机械制造中必不可少的环节，机械产品的装配工作量占其制造工作量的20%-70%。",
           "evidence": [
             {
-              "quote": "面向机电产品装配知识分散、装配方案依赖人工经验以及机器人装配智能性与灵活性不足等问题，本项目以空心杯电机/永磁同步电机为对象，开展认知视域下机器人装配行为关键技术研究",
+              "quote": "装配是机械制造中必不可少的环节，机械产品的装配工作量占其制造工作量的20%-70%。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2720,
-                "end_char": 2802
+                "start_char": 633,
+                "end_char": 674
+              },
+              "version": "461e1251f6290582a47d"
+            }
+          ]
+        },
+        {
+          "id": "item-3d63264b88ed",
+          "name": "研究成果为航天及高端装备制造领域的智能装配规划、柔性抓取与认知决策提供了理论与原型系统支撑，具有良好工程应用前景。",
+          "desc": "研究成果为航天及高端装备制造领域的智能装配规划、柔性抓取与认知决策提供了理论与原型系统支撑，具有良好工程应用前景。",
+          "evidence": [
+            {
+              "quote": "研究成果为航天及高端装备制造领域的智能装配规划、柔性抓取与认知决策提供了理论与原型系统支撑，具有良好工程应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3426,
+                "end_char": 3482
               },
               "version": "461e1251f6290582a47d"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1fd5ac426278",
-          "name": "装配知识分散智能性不足",
-          "desc": "装配知识分散、方案依赖人工经验、机器人装配智能性与灵活性不足",
+          "id": "item-3b432d01e6c8",
+          "name": "面向机电产品装配知识分散、装配方案依赖人工经验以及机器人装配智能性与灵活性不足等问题，本项目以空心杯电机/永磁同步电机为",
+          "desc": "面向机电产品装配知识分散、装配方案依赖人工经验以及机器人装配智能性与灵活性不足等问题，本项目以空心杯电机/永磁同步电机为对象，开展认知视域下机器人装配行为关键技术研究，形成“知识驱动—感知融合—认知决策—自学习进化”的智能装配技术体系。",
           "evidence": [
             {
-              "quote": "面向机电产品装配知识分散、装配方案依赖人工经验以及机器人装配智能性与灵活性不足等问题",
+              "quote": "面向机电产品装配知识分散、装配方案依赖人工经验以及机器人装配智能性与灵活性不足等问题，本项目以空心杯电机/永磁同步电机为对象，开展认知视域下机器人装配行为关键技术研究，形成“知识驱动—感知融合—认知决策—自学习进化”的智能装配技术体系。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2720,
-                "end_char": 2761
+                "end_char": 2837
               },
               "version": "461e1251f6290582a47d"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4ef0762af594",
-          "name": "装配知识图谱与大模型推理",
-          "desc": "构建电机装配知识图谱（Neo4j），结合装配约束规则与大语言模型推理生成装配序列",
+          "id": "item-fbf3373ce235",
+          "name": "装配知识层面，面向工艺文件、技术标准、专利与说明书等多源异构非结构化数据，构建电机装配领域数据集MAdata，提出P-t",
+          "desc": "装配知识层面，面向工艺文件、技术标准、专利与说明书等多源异构非结构化数据，构建电机装配领域数据集MAdata，提出P-tuning-MacBERT-Biaffine命名实体识别方法与CasRel联合抽取流程，建立装配本体与关系体系，构建并存储电机装配知识图谱（Neo4j），在此基础上结合装配约束、装配规则与大语言模型推理机制，实现装配关系理解、装配步骤推理与装配序列生成，研发空心杯电机装配序列智能推理原型系统并在企业场景完成验证。",
           "evidence": [
             {
-              "quote": "构建并存储电机装配知识图谱（Neo4j），在此基础上结合装配约束、装配规则与大语言模型推理机制，实现装配关系理解、装配步骤推理与装配序列生成",
+              "quote": "装配知识层面，面向工艺文件、技术标准、专利与说明书等多源异构非结构化数据，构建电机装配领域数据集MAdata，提出P-tuning-MacBERT-Biaffine命名实体识别方法与CasRel联合抽取流程，建立装配本体与关系体系，构建并存储电机装配知识图谱（Neo4j），在此基础上结合装配约束、装配规则与大语言模型推理机制，实现装配关系理解、装配步骤推理与装配序列生成，研发空心杯电机装配序列智能推理原型系统并在企业场景完成验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2954,
-                "end_char": 3023
+                "start_char": 2838,
+                "end_char": 3054
               },
               "version": "461e1251f6290582a47d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-916e4ca1dc4e",
-          "name": "多维感知融合两阶段抓取",
-          "desc": "改进Mask R-CNN检测分割、6D抓取姿态检测与MR-GPD优化实现自适应抓取",
+          "id": "item-c2e281530f99",
+          "name": "感知与操作层面，提出改进Mask R-CNN目标检测与分割方法，建立基于RGB-D点云的6D抓取姿态检测模型与MR-GP",
+          "desc": "感知与操作层面，提出改进Mask R-CNN目标检测与分割方法，建立基于RGB-D点云的6D抓取姿态检测模型与MR-GPD抓取优化方法，设计多维感知融合驱动的两阶段抓取策略，实现复杂非结构化场景下零件的高精度识别、位姿估计与自适应抓取，并搭建Baxter+ROS机器人灵活智能装配实验平台。",
           "evidence": [
             {
-              "quote": "提出改进Mask R-CNN目标检测与分割方法，建立基于RGB-D点云的6D抓取姿态检测模型与MR-GPD抓取优化方法，设计多维感知融合驱动的两阶段抓取策略",
+              "quote": "感知与操作层面，提出改进Mask R-CNN目标检测与分割方法，建立基于RGB-D点云的6D抓取姿态检测模型与MR-GPD抓取优化方法，设计多维感知融合驱动的两阶段抓取策略，实现复杂非结构化场景下零件的高精度识别、位姿估计与自适应抓取，并搭建Baxter+ROS机器人灵活智能装配实验平台。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3063,
-                "end_char": 3140
+                "start_char": 3055,
+                "end_char": 3199
               },
               "version": "461e1251f6290582a47d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,668 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8096a3dd20f3",
-          "name": "交互式强化学习技能进化",
-          "desc": "含模糊逻辑奖励与混合探索策略的交互式强化学习，推动装配技能持续学习进化",
+          "id": "item-2983296e3a02",
+          "name": "装配是机械制造中必不可少的环节，机械产品的装配工作量占其制造工作量的20%-70%。",
+          "desc": "装配是机械制造中必不可少的环节，机械产品的装配工作量占其制造工作量的20%-70%。",
           "evidence": [
             {
-              "quote": "提出交互式强化学习方法（含模糊逻辑奖励与混合探索策略），推动机器人装配技能持续学习与能力进化",
+              "quote": "装配是机械制造中必不可少的环节，机械产品的装配工作量占其制造工作量的20%-70%。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3307,
-                "end_char": 3352
+                "start_char": 633,
+                "end_char": 674
               },
               "version": "461e1251f6290582a47d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-9ac8215ec72d",
-          "name": "企业场景验证与论文专利",
-          "desc": "原型系统在企业场景完成验证，发表论文25篇（SCI 14篇），申请专利12项",
+          "id": "item-d1f7d0859341",
+          "name": "面向机电产品装配知识分散、装配方案依赖人工经验以及机器人装配智能性与灵活性不足等问题，本项目以空心杯电机/永磁同步电机为",
+          "desc": "面向机电产品装配知识分散、装配方案依赖人工经验以及机器人装配智能性与灵活性不足等问题，本项目以空心杯电机/永磁同步电机为对象，开展认知视域下机器人装配行为关键技术研究，形成“知识驱动—感知融合—认知决策—自学习进化”的智能装配技术体系。",
           "evidence": [
             {
-              "quote": "项目圆满完成任务书指标：发表论文25篇（SCI 14篇、EI 4篇），申请专利12项（授权发明6项），软件著作权4项",
+              "quote": "面向机电产品装配知识分散、装配方案依赖人工经验以及机器人装配智能性与灵活性不足等问题，本项目以空心杯电机/永磁同步电机为对象，开展认知视域下机器人装配行为关键技术研究，形成“知识驱动—感知融合—认知决策—自学习进化”的智能装配技术体系。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3354,
-                "end_char": 3411
+                "start_char": 2720,
+                "end_char": 2837
               },
               "version": "461e1251f6290582a47d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-998753dbc5f6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1fd5ac426278"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A multi-strategy enhanced northern goshawk optimization algorithm for global optimization and engineering design problems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16d33f780438",
+      "evidence": [
+        {
+          "quote": "A multi-strategy enhanced northern goshawk optimization algorithm for global optimization and engineering design problems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3508,
+            "end_char": 3628
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1fd5ac426278"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4ef0762af594"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于数字孪生的机械臂多目标轨迹规划方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fea17d81ab9f",
+      "evidence": [
+        {
+          "quote": "一种基于数字孪生的机械臂多目标轨迹规划方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3703,
+            "end_char": 3726
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1fd5ac426278"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-916e4ca1dc4e"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "20 M W级四象限级联中压变频调速装置关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef9dd4c3d585",
+      "evidence": [
+        {
+          "quote": "20 M W级四象限级联中压变频调速装置关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3742,
+            "end_char": 3768
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4ef0762af594"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9ac8215ec72d"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "火工品高可靠制造关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c0c4fe25e7a",
+      "evidence": [
+        {
+          "quote": "火工品高可靠制造关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3784,
+            "end_char": 3798
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-916e4ca1dc4e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8096a3dd20f3"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "柔性供应链协同的制造质量管控关键技术研究及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd5bdaa4233b",
+      "evidence": [
+        {
+          "quote": "柔性供应链协同的制造质量管控关键技术研究及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3846,
+            "end_char": 3868
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "通感融合服务的智慧专网高效传输与资源管控理论和方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5aca4bee971c",
+      "evidence": [
+        {
+          "quote": "通感融合服务的智慧专网高效传输与资源管控理论和方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3928,
+            "end_char": 3952
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于保守自适应采样的铲齿车刀磨损状态监测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57542f29490b",
+      "evidence": [
+        {
+          "quote": "一种基于保守自适应采样的铲齿车刀磨损状态监测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3983,
+            "end_char": 4006
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于离散沙猫群优化算法的焊接路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a15246bfa6b",
+      "evidence": [
+        {
+          "quote": "基于离散沙猫群优化算法的焊接路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4036,
+            "end_char": 4053
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "改进霜冰优化算法用于无人机三维路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0928b98d0d4",
+      "evidence": [
+        {
+          "quote": "改进霜冰优化算法用于无人机三维路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4083,
+            "end_char": 4101
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "改进YOLOv8轻量化轴孔检测算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aeb5d7e55b23",
+      "evidence": [
+        {
+          "quote": "改进YOLOv8轻量化轴孔检测算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4128,
+            "end_char": 4144
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Differential evolution with multi-strategies for UAV trajectory planning and point cloud registration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3147b2f78497",
+      "evidence": [
+        {
+          "quote": "Differential evolution with multi-strategies for UAV trajectory planning and point cloud registration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4166,
+            "end_char": 4266
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进A-DWA算法的移动机器人路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e6536cca3e35",
+      "evidence": [
+        {
+          "quote": "基于改进A-DWA算法的移动机器人路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4328,
+            "end_char": 4348
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进樽海鞘群算法的机械臂多目标轨迹规划研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4e0a03b16b6",
+      "evidence": [
+        {
+          "quote": "基于改进樽海鞘群算法的机械臂多目标轨迹规划研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4387,
+            "end_char": 4409
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Practical finite-/fixed-time improved command-filtered backstepping control for nonlinear systems via immersion and invariance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29965316e7ac",
+      "evidence": [
+        {
+          "quote": "Practical finite-/fixed-time improved command-filtered backstepping control for nonlinear systems via immersion and invariance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4443,
+            "end_char": 4568
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An improved sparrow search algorithm based on quantum computations and multi-strategy enhancement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0879770e76ad",
+      "evidence": [
+        {
+          "quote": "An improved sparrow search algorithm based on quantum computations and multi-strategy enhancement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4639,
+            "end_char": 4735
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度学习的三维重建方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-529c0b4186e5",
+      "evidence": [
+        {
+          "quote": "一种基于深度学习的三维重建方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4822,
+            "end_char": 4839
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "拆装机器人的自适应数字孪生控制与交互系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-44975fbe089f",
+      "evidence": [
+        {
+          "quote": "拆装机器人的自适应数字孪生控制与交互系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4875,
+            "end_char": 4894
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modified LSHADE-SPACMA with new mutation strategy and external archive mechanism for numerical optimization and point cloud registration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85257255426f",
+      "evidence": [
+        {
+          "quote": "Modified LSHADE-SPACMA with new mutation strategy and external archive mechanism for numerical optimization and point cloud registration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4932,
+            "end_char": 5067
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved dwarf mongoose optimization algorithm using novel nonlinear control and exploration strategies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-97d1e165caa2",
+      "evidence": [
+        {
+          "quote": "Improved dwarf mongoose optimization algorithm using novel nonlinear control and exploration strategies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5185,
+            "end_char": 5287
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "IMWMOTE: A novel oversampling technique for fault diagnosis in heterogeneous imbalanced data",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e86e48e51c9",
+      "evidence": [
+        {
+          "quote": "IMWMOTE: A novel oversampling technique for fault diagnosis in heterogeneous imbalanced data",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5365,
+            "end_char": 5456
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-strategy improved artificial rabbit optimization algorithm based on fusion centroid and elite guidance mechanisms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1fbf1d6525fe",
+      "evidence": [
+        {
+          "quote": "Multi-strategy improved artificial rabbit optimization algorithm based on fusion centroid and elite guidance mechanisms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5557,
+            "end_char": 5675
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "基于“一体两翼三融”的装备制造卓越人才培养改革与实践",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ec7206283bf",
+      "evidence": [
+        {
+          "quote": "基于“一体两翼三融”的装备制造卓越人才培养改革与实践",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5765,
+            "end_char": 5790
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "自适应分割的直方图均衡化处理图像增强算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-800522ce6e28",
+      "evidence": [
+        {
+          "quote": "自适应分割的直方图均衡化处理图像增强算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5807,
+            "end_char": 5826
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Grey wolf optimizer based on Aquila exploration method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd4a32255c3d",
+      "evidence": [
+        {
+          "quote": "Grey wolf optimizer based on Aquila exploration method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5868,
+            "end_char": 5921
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fusion prediction strategy-based dynamic multi-objective sparrow search algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6381e7439f99",
+      "evidence": [
+        {
+          "quote": "Fusion prediction strategy-based dynamic multi-objective sparrow search algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6002,
+            "end_char": 6082
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Novel imbalanced multi-class fault diagnosis method using transfer learning and oversampling strategies-based multi-layer support vector machines (ML-SVMs)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fbe7ecdec27e",
+      "evidence": [
+        {
+          "quote": "Novel imbalanced multi-class fault diagnosis method using transfer learning and oversampling strategies-based multi-layer support vector machines (ML-SVMs)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6187,
+            "end_char": 6341
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "智慧供应链的制造质量管控关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3eaff2abba69",
+      "evidence": [
+        {
+          "quote": "智慧供应链的制造质量管控关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6423,
+            "end_char": 6441
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向目标检测的改进轻量型YOLOX-nano模型及检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb0e5df94f3b",
+      "evidence": [
+        {
+          "quote": "面向目标检测的改进轻量型YOLOX-nano模型及检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6458,
+            "end_char": 6486
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MLLMs-MR: Multi-modal recognition based on multi-modal large language models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-93ca7f84e996",
+      "evidence": [
+        {
+          "quote": "MLLMs-MR: Multi-modal recognition based on multi-modal large language models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6531,
+            "end_char": 6606
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ISO: An improved snake optimizer with multi-strategy enhancement for engineering optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41548920599a",
+      "evidence": [
+        {
+          "quote": "ISO: An improved snake optimizer with multi-strategy enhancement for engineering optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6687,
+            "end_char": 6779
+          },
+          "version": "461e1251f6290582a47d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

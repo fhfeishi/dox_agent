@@ -2,15 +2,20 @@
   "doc_id": "4260b7d03cdfdb34f1ec",
   "version": "a5143f5d518d0eec1508",
   "source_hash": "7a7567bf052eb6b9a7fc7c296e0982c3fb48759c248310b8411b666654528c1d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:19.555554+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.112140+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9b9fb46395a9",
-          "name": "异构无人艇协同编队",
-          "desc": "海上无人艇编队协同控制与路径规划",
+          "id": "item-9542f8e2e3b5",
+          "name": "无人艇协同编队在管理海洋资源、维护海洋权益、保护海洋环境等方面具有很大的应用潜力。",
+          "desc": "无人艇协同编队在管理海洋资源、维护海洋权益、保护海洋环境等方面具有很大的应用潜力。",
           "evidence": [
             {
-              "quote": "本项目提出了一种基于多智能体系统框架的协同编队控制方案，结合群体智能与深度强化学习技术，来解决异构无人艇编队控制中的关键问题。",
+              "quote": "无人艇协同编队在管理海洋资源、维护海洋权益、保护海洋环境等方面具有很大的应用潜力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2945,
-                "end_char": 3007
+                "start_char": 654,
+                "end_char": 694
               },
               "version": "a5143f5d518d0eec1508"
             }
@@ -38,12 +43,34 @@
     },
     {
       "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-7fa069d188f6",
-          "name": "异构通信与避障挑战",
-          "desc": "异构性带来通信与控制设计困难、海洋环境带来规划避碰挑战",
+          "id": "item-afbcfe58121a",
+          "name": "本项目将在多智能体系统框架下，将群体智能与深度强化学习方法相融合，对异构无人艇协同编队控制问题进行研究：1）基于软件定义",
+          "desc": "本项目将在多智能体系统框架下，将群体智能与深度强化学习方法相融合，对异构无人艇协同编队控制问题进行研究：1）基于软件定义网络架构，建立异构无人艇编队系统的海上通信机制，并利用深度强化学习算法对通信网络进行优化；",
+          "evidence": [
+            {
+              "quote": "本项目将在多智能体系统框架下，将群体智能与深度强化学习方法相融合，对异构无人艇协同编队控制问题进行研究：1）基于软件定义网络架构，建立异构无人艇编队系统的海上通信机制，并利用深度强化学习算法对通信网络进行优化；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 775,
+                "end_char": 879
+              },
+              "version": "a5143f5d518d0eec1508"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b7074812a531",
+          "name": "但在实际海上无人艇编队系统中，各艇的异构性会给编队通信机制与控制方案的设计带来很大困难，而复杂的海洋环境也给编队系统路径",
+          "desc": "但在实际海上无人艇编队系统中，各艇的异构性会给编队通信机制与控制方案的设计带来很大困难，而复杂的海洋环境也给编队系统路径规划、避障与避碰策略的研究提出了新挑战。",
           "evidence": [
             {
               "quote": "但在实际海上无人艇编队系统中，各艇的异构性会给编队通信机制与控制方案的设计带来很大困难，而复杂的海洋环境也给编队系统路径规划、避障与避碰策略的研究提出了新挑战。",
@@ -54,61 +81,8 @@
               },
               "version": "a5143f5d518d0eec1508"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f4b1ce059d1e",
-          "name": "网络化协同控制模型",
-          "desc": "多智能体框架网络化模型与协同控制方案",
-          "evidence": [
-            {
-              "quote": "首先，针对编队协同控制问题，设计了一种网络化模型，并为编队系统提出了适配的协同控制方案，确保各艇之间的协调性与稳定性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3020,
-                "end_char": 3077
-              },
-              "version": "a5143f5d518d0eec1508"
-            }
-          ]
-        },
-        {
-          "id": "item-6cae522f4cbf",
-          "name": "改进A*编队路径规划",
-          "desc": "克服复杂海洋环境动态变化与不确定性",
-          "evidence": [
-            {
-              "quote": "其次，针对路径规划问题，提出了一种基于改进A*搜索算法的编队路径规划方法，克服了复杂海洋环境中的动态变化和不确定性因素",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3079,
-                "end_char": 3137
-              },
-              "version": "a5143f5d518d0eec1508"
-            }
-          ]
-        },
-        {
-          "id": "item-2319e5979e33",
-          "name": "强化学习避障避碰",
-          "desc": "深度强化学习编队避障避碰策略",
-          "evidence": [
-            {
-              "quote": "最后，针对避障与避碰问题，基于深度强化学习方法，提出了一种无人艇编队的避障和避碰策略，有效提高了编队任务的执行效率和安全性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3139,
-                "end_char": 3200
-              },
-              "version": "a5143f5d518d0eec1508"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +91,204 @@
       "state": "has",
       "items": [
         {
-          "id": "item-23b82db0c7de",
-          "name": "论文10篇",
-          "desc": "SCI 8篇、EI 2篇，含IEEE T-CYB与IEEE T-FS",
+          "id": "item-cce709338909",
+          "name": "无人艇协同编队在管理海洋资源、维护海洋权益、保护海洋环境等方面具有很大的应用潜力。",
+          "desc": "无人艇协同编队在管理海洋资源、维护海洋权益、保护海洋环境等方面具有很大的应用潜力。",
           "evidence": [
             {
-              "quote": "项目实施期间，共完成论文10篇，8篇为SCI收录论文，2篇为EI收录论文，其中两篇论文发表在国际控制领域权威刊物《IEEE Transactions on Cybernetics》和《IEEE Transactions on Fuzzy Systems》上。",
+              "quote": "无人艇协同编队在管理海洋资源、维护海洋权益、保护海洋环境等方面具有很大的应用潜力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3255,
-                "end_char": 3383
+                "start_char": 654,
+                "end_char": 694
               },
               "version": "a5143f5d518d0eec1508"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-74dadb0e83dd",
+          "name": "本项目提出了一种基于多智能体系统框架的协同编队控制方案，结合群体智能与深度强化学习技术，来解决异构无人艇编队控制中的关键",
+          "desc": "本项目提出了一种基于多智能体系统框架的协同编队控制方案，结合群体智能与深度强化学习技术，来解决异构无人艇编队控制中的关键问题。",
+          "evidence": [
+            {
+              "quote": "本项目提出了一种基于多智能体系统框架的协同编队控制方案，结合群体智能与深度强化学习技术，来解决异构无人艇编队控制中的关键问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2945,
+                "end_char": 3007
+              },
+              "version": "a5143f5d518d0eec1508"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9b9fb46395a9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7fa069d188f6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decentralized event-triggered adaptive control for interconnected nonlinear systems with actuator failures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-11deff231276",
+      "evidence": [
+        {
+          "quote": "Decentralized event-triggered adaptive control for interconnected nonlinear systems with actuator failures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3433,
+            "end_char": 3538
+          },
+          "version": "a5143f5d518d0eec1508"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7fa069d188f6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f4b1ce059d1e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive output feedback control for nonholonomic chained systems with integral input state stability inverse dynamics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-90e7d6a885a6",
+      "evidence": [
+        {
+          "quote": "Adaptive output feedback control for nonholonomic chained systems with integral input state stability inverse dynamics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3600,
+            "end_char": 3717
+          },
+          "version": "a5143f5d518d0eec1508"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7fa069d188f6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6cae522f4cbf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-triggered active disturbance rejection trajectory tracking control for a quadrotor unmanned aerial vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ac95aa18ba53",
+      "evidence": [
+        {
+          "quote": "Event-triggered active disturbance rejection trajectory tracking control for a quadrotor unmanned aerial vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3774,
+            "end_char": 3885
+          },
+          "version": "a5143f5d518d0eec1508"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7fa069d188f6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2319e5979e33"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhanced hybrid A path planning for unmanned surface vessels using integrated kalman filtering",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-88d1623e5513",
+      "evidence": [
+        {
+          "quote": "Enhanced hybrid A path planning for unmanned surface vessels using integrated kalman filtering",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3942,
+            "end_char": 4035
+          },
+          "version": "a5143f5d518d0eec1508"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2319e5979e33"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-23b82db0c7de"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decentralized adaptive tracking control for a class of interconnected nonlinear systems via dynamic high-gain technique",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cc8d76224176",
+      "evidence": [
+        {
+          "quote": "Decentralized adaptive tracking control for a class of interconnected nonlinear systems via dynamic high-gain technique",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4086,
+            "end_char": 4204
+          },
+          "version": "a5143f5d518d0eec1508"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6cae522f4cbf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-23b82db0c7de"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An improved VFH+ algorithm for real-time obstacle avoidance in unmanned surface vessel",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-acc6f8aa293f",
+      "evidence": [
+        {
+          "quote": "An improved VFH+ algorithm for real-time obstacle avoidance in unmanned surface vessel",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4268,
+            "end_char": 4353
+          },
+          "version": "a5143f5d518d0eec1508"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed active disturbance rejection formation tracking control for quadrotor UAVs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02e98f169f8f",
+      "evidence": [
+        {
+          "quote": "Distributed active disturbance rejection formation tracking control for quadrotor UAVs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4420,
+            "end_char": 4505
+          },
+          "version": "a5143f5d518d0eec1508"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

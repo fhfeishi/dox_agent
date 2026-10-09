@@ -2,15 +2,20 @@
   "doc_id": "f02f3cf29b8f7bbfa7fc",
   "version": "8b3e034f3d43fdda8027",
   "source_hash": "e2317b292dda7d6ebce32174d1daa0655f4f67fe3446fff58287f99d02d0e666",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:07:58.769326+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.825507+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0b5bfa5ddd28",
-          "name": "机器人腹腔镜自主运镜",
-          "desc": "机器人辅助智能腹腔镜手术，模仿专家持镜助手行为模式",
+          "id": "item-d5ba046a335b",
+          "name": "以机器人为载体的腹腔镜自主运镜方法是机器人辅助智能腹腔镜手术的发展趋势。",
+          "desc": "以机器人为载体的腹腔镜自主运镜方法是机器人辅助智能腹腔镜手术的发展趋势。",
           "evidence": [
             {
-              "quote": "本项目旨在通过揭示专家级持镜助手的“感知-理解-执行”行为模式，建立机器人自主运镜机制，以解决传统手术中视野不稳定、协作效率低及助手易疲劳等痛点",
+              "quote": "以机器人为载体的腹腔镜自主运镜方法是机器人辅助智能腹腔镜手术的发展趋势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2737,
-                "end_char": 2808
+                "start_char": 653,
+                "end_char": 688
+              },
+              "version": "8b3e034f3d43fdda8027"
+            }
+          ]
+        },
+        {
+          "id": "item-631c5760ee71",
+          "name": "本项目为手术机器人的智能化、自主化提供了理论与技术支撑，在国产手术机器人临床转化方面具有广阔的应用前景。",
+          "desc": "本项目为手术机器人的智能化、自主化提供了理论与技术支撑，在国产手术机器人临床转化方面具有广阔的应用前景。",
+          "evidence": [
+            {
+              "quote": "本项目为手术机器人的智能化、自主化提供了理论与技术支撑，在国产手术机器人临床转化方面具有广阔的应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3276,
+                "end_char": 3327
               },
               "version": "8b3e034f3d43fdda8027"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-896937c95c4d",
-          "name": "运镜偏好与意图领会缺失",
-          "desc": "现有方法无法根据手术流程调整运镜偏好、领会医生意图确立运镜时机",
+          "id": "item-c26c0ceb4879",
+          "name": "围绕两个关键科学问题，即如何通过意图解析实现对主刀医生操作实时预测、如何综合主刀医生评价生成机器人腹腔镜运镜策略，具体开",
+          "desc": "围绕两个关键科学问题，即如何通过意图解析实现对主刀医生操作实时预测、如何综合主刀医生评价生成机器人腹腔镜运镜策略，具体开展四方面工作：研究融合手术场景分析的医生操作意图预测方法，建立内蕴主刀医生评价的腹腔镜运镜策略学习机制，提出模仿持镜助手决策的最优运镜轨迹生成方法，并开展人因实验验证。",
           "evidence": [
             {
-              "quote": "然而当前研究存在以下问题：无法根据手术流程调整运镜偏好、无法领会医生意图确立运镜时机、腹腔镜视角不符合医生操作习惯",
+              "quote": "围绕两个关键科学问题，即如何通过意图解析实现对主刀医生操作实时预测、如何综合主刀医生评价生成机器人腹腔镜运镜策略，具体开展四方面工作：研究融合手术场景分析的医生操作意图预测方法，建立内蕴主刀医生评价的腹腔镜运镜策略学习机制，提出模仿持镜助手决策的最优运镜轨迹生成方法，并开展人因实验验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 689,
-                "end_char": 745
+                "start_char": 795,
+                "end_char": 938
               },
               "version": "8b3e034f3d43fdda8027"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fda911c3ce25",
-          "name": "APR-GMM意图解析预测",
-          "desc": "自适应模式识别实时捕获运动基元并动态修正参数，实现超1秒长期轨迹预测",
+          "id": "item-974fdb918519",
+          "name": "围绕两个关键科学问题，即如何通过意图解析实现对主刀医生操作实时预测、如何综合主刀医生评价生成机器人腹腔镜运镜策略，具体开",
+          "desc": "围绕两个关键科学问题，即如何通过意图解析实现对主刀医生操作实时预测、如何综合主刀医生评价生成机器人腹腔镜运镜策略，具体开展四方面工作：研究融合手术场景分析的医生操作意图预测方法，建立内蕴主刀医生评价的腹腔镜运镜策略学习机制，提出模仿持镜助手决策的最优运镜轨迹生成方法，并开展人因实验验证。",
           "evidence": [
             {
-              "quote": "提出APR-GMM算法。通过自适应模式识别实时捕获主刀医生的运动基元并动态修正参数，实现了超过1秒的长期轨迹准确预测",
+              "quote": "围绕两个关键科学问题，即如何通过意图解析实现对主刀医生操作实时预测、如何综合主刀医生评价生成机器人腹腔镜运镜策略，具体开展四方面工作：研究融合手术场景分析的医生操作意图预测方法，建立内蕴主刀医生评价的腹腔镜运镜策略学习机制，提出模仿持镜助手决策的最优运镜轨迹生成方法，并开展人因实验验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2861,
-                "end_char": 2918
+                "start_char": 795,
+                "end_char": 938
               },
               "version": "8b3e034f3d43fdda8027"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-28acc96bc836",
-          "name": "强化学习自适应接触控制",
-          "desc": "RLAC框架解决柔性组织形变雅可比矩阵估计难问题",
+          "id": "item-697803f3103f",
+          "name": "在自主运镜机制与人机交互方面，构建了RCM约束下的自主运镜控制框架，引入博弈论同理心意图推测策略。",
+          "desc": "在自主运镜机制与人机交互方面，构建了RCM约束下的自主运镜控制框架，引入博弈论同理心意图推测策略。",
           "evidence": [
             {
-              "quote": "开发了强化学习引导的自适应控制（RLAC）框架，解决了柔性组织形变雅可比矩阵估计难的问题",
+              "quote": "在自主运镜机制与人机交互方面，构建了RCM约束下的自主运镜控制框架，引入博弈论同理心意图推测策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3040,
-                "end_char": 3083
+                "start_char": 3121,
+                "end_char": 3169
               },
               "version": "8b3e034f3d43fdda8027"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,588 @@
       "state": "has",
       "items": [
         {
-          "id": "item-29fa2808489f",
-          "name": "自主运镜效率验证",
-          "desc": "经体外仿真、动物实验及人因评估验证，显著缩短手术任务时间并增强遥操作透明度",
+          "id": "item-304c796af0f3",
+          "name": "以机器人为载体的腹腔镜自主运镜方法是机器人辅助智能腹腔镜手术的发展趋势。",
+          "desc": "以机器人为载体的腹腔镜自主运镜方法是机器人辅助智能腹腔镜手术的发展趋势。",
           "evidence": [
             {
-              "quote": "项目通过体外仿真、动物实验及人因评估验证了所提机制的有效性。结果显示，自主运镜算法显著缩短了手术任务时间，并大幅增强了遥操作透明度",
+              "quote": "以机器人为载体的腹腔镜自主运镜方法是机器人辅助智能腹腔镜手术的发展趋势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3210,
-                "end_char": 3274
+                "start_char": 653,
+                "end_char": 688
               },
               "version": "8b3e034f3d43fdda8027"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-3e7eee8f4d72",
+          "name": "腹腔镜手术由于视野受限、人机协作不紧密等问题，对持镜助手的专业技能要求极高。",
+          "desc": "腹腔镜手术由于视野受限、人机协作不紧密等问题，对持镜助手的专业技能要求极高。",
+          "evidence": [
+            {
+              "quote": "腹腔镜手术由于视野受限、人机协作不紧密等问题，对持镜助手的专业技能要求极高。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2699,
+                "end_char": 2736
+              },
+              "version": "8b3e034f3d43fdda8027"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0b5bfa5ddd28"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-896937c95c4d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Surgical Region of Interest Detection from Laparoscopic Images Using Boundary Fuzziness",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d7cdc9c7c2e",
+      "evidence": [
+        {
+          "quote": "Surgical Region of Interest Detection from Laparoscopic Images Using Boundary Fuzziness",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3353,
+            "end_char": 3439
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-896937c95c4d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fda911c3ce25"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Knowledge-Driven Framework for Anatomical Landmark Annotation in Laparoscopic Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d6ca18fa0f6",
+      "evidence": [
+        {
+          "quote": "Knowledge-Driven Framework for Anatomical Landmark Annotation in Laparoscopic Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3524,
+            "end_char": 3608
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-896937c95c4d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-28acc96bc836"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于SAM的无监督手术器械图像分割方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c51ff590fb36",
+      "evidence": [
+        {
+          "quote": "一种基于SAM的无监督手术器械图像分割方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3670,
+            "end_char": 3693
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fda911c3ce25"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-29fa2808489f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Bimanual Manipulation of Deformable Objects Using Deep Reinforcement Learning Guided Adaptive Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3caa8b389db3",
+      "evidence": [
+        {
+          "quote": "Autonomous Bimanual Manipulation of Deformable Objects Using Deep Reinforcement Learning Guided Adaptive Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3731,
+            "end_char": 3842
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-28acc96bc836"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-29fa2808489f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vascular Centerline-Guided Autonomous Navigation Methods for Robot-Lead Endovascular Interventions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb216184b25b",
+      "evidence": [
+        {
+          "quote": "Vascular Centerline-Guided Autonomous Navigation Methods for Robot-Lead Endovascular Interventions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3908,
+            "end_char": 4005
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种语音控制的腹腔镜运镜方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-56dbd8ec4d21",
+      "evidence": [
+        {
+          "quote": "一种语音控制的腹腔镜运镜方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4056,
+            "end_char": 4072
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Teleoperated Surgical Robot with Adaptive Interactive Control Architecture for Tissue Identification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ebc088bcaef",
+      "evidence": [
+        {
+          "quote": "Teleoperated Surgical Robot with Adaptive Interactive Control Architecture for Tissue Identification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4114,
+            "end_char": 4213
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Like Robot Action Policy Through Game-Theoretic Intent Inference for Human-Robot Collaboration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eda1ff4ff8ae",
+      "evidence": [
+        {
+          "quote": "Human-Like Robot Action Policy Through Game-Theoretic Intent Inference for Human-Robot Collaboration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4282,
+            "end_char": 4381
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种结合导纳控制器的腹腔镜运镜方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-953f4fec7a78",
+      "evidence": [
+        {
+          "quote": "一种结合导纳控制器的腹腔镜运镜方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4448,
+            "end_char": 4467
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于手术操作区域的腹腔镜手术自动对焦方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84b8ae2e62fb",
+      "evidence": [
+        {
+          "quote": "基于手术操作区域的腹腔镜手术自动对焦方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4502,
+            "end_char": 4524
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Laparoscopic Image-based Critical Action Recognition and Anticipation with Explainable Features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f2de518e09e",
+      "evidence": [
+        {
+          "quote": "Laparoscopic Image-based Critical Action Recognition and Anticipation with Explainable Features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4567,
+            "end_char": 4661
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Graph-Based Spatial Reasoning for Tracking Landmarks in Dynamic Laparoscopic Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-529647b8b634",
+      "evidence": [
+        {
+          "quote": "Graph-Based Spatial Reasoning for Tracking Landmarks in Dynamic Laparoscopic Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4760,
+            "end_char": 4848
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sensor-Free Strategy for Estimating Guidewire/Catheter Shape and Contact Force in Endovascular Interventions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ecdeb2263b2",
+      "evidence": [
+        {
+          "quote": "Sensor-Free Strategy for Estimating Guidewire/Catheter Shape and Contact Force in Endovascular Interventions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4934,
+            "end_char": 5041
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "人体侧卧姿态识别的方法、装置及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd45ab542ff0",
+      "evidence": [
+        {
+          "quote": "人体侧卧姿态识别的方法、装置及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5093,
+            "end_char": 5111
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于追踪的腹腔镜手术操作区域回顾性推理方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7dd79b7fba2f",
+      "evidence": [
+        {
+          "quote": "基于追踪的腹腔镜手术操作区域回顾性推理方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5148,
+            "end_char": 5171
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "乳腺超声机器人自主扫查方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d839977eb49d",
+      "evidence": [
+        {
+          "quote": "乳腺超声机器人自主扫查方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5212,
+            "end_char": 5227
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种囊管自动标记方法、系统、终端设备及储存介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fdd0269eb852",
+      "evidence": [
+        {
+          "quote": "一种囊管自动标记方法、系统、终端设备及储存介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5258,
+            "end_char": 5280
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Task-Adaptive Analytical Affordance Estimation for Feature-Based Manipulation of Soft Tissues in Robotic Surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-27cc4b3ac866",
+      "evidence": [
+        {
+          "quote": "Task-Adaptive Analytical Affordance Estimation for Feature-Based Manipulation of Soft Tissues in Robotic Surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5323,
+            "end_char": 5434
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视线追踪的腹腔镜自动扶镜方法及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c5d1cf88432",
+      "evidence": [
+        {
+          "quote": "一种基于视线追踪的腹腔镜自动扶镜方法及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5501,
+            "end_char": 5521
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于视觉的机器人软组织多点接触形状控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-edfc3f9170ed",
+      "evidence": [
+        {
+          "quote": "基于视觉的机器人软组织多点接触形状控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5563,
+            "end_char": 5586
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Leveraging surgical activity grammar for primary intention prediction in laparoscopy procedures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-45425a9eac73",
+      "evidence": [
+        {
+          "quote": "Leveraging surgical activity grammar for primary intention prediction in laparoscopy procedures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5627,
+            "end_char": 5721
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CSAP-Assist: Instrument-Agent Dialogue Empowered Vision-Language Models for Collaborative Surgical Action Planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f50959fb1ae",
+      "evidence": [
+        {
+          "quote": "CSAP-Assist: Instrument-Agent Dialogue Empowered Vision-Language Models for Collaborative Surgical Action Planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5807,
+            "end_char": 5920
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种微创手术中器械操作的前向轨迹预测方法及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff7beea37ead",
+      "evidence": [
+        {
+          "quote": "一种微创手术中器械操作的前向轨迹预测方法及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5971,
+            "end_char": 5993
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种腹腔镜运镜模拟力引导手术训练方法及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e0a2f5a6062",
+      "evidence": [
+        {
+          "quote": "一种腹腔镜运镜模拟力引导手术训练方法及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6030,
+            "end_char": 6050
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robotic Systems Design in Endovascular Treatment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a91445618516",
+      "evidence": [
+        {
+          "quote": "Robotic Systems Design in Endovascular Treatment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6098,
+            "end_char": 6145
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于RCM约束的腹腔镜机器人拖动运镜方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c12dccc0e04",
+      "evidence": [
+        {
+          "quote": "一种基于RCM约束的腹腔镜机器人拖动运镜方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6197,
+            "end_char": 6221
+          },
+          "version": "8b3e034f3d43fdda8027"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 26,
+    "listed": 26,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 13,
+        "extracted": 13
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "7db27959d399844df7b3",
   "version": "a43265361da61bc86290",
   "source_hash": "b2b6b7d792f778fa0bce82187b761ef0bfb0e8d0cde58125c464672f519fc277",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:36.701856+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.633740+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,69 @@
       "state": "has",
       "items": [
         {
-          "id": "item-98825ef4df47",
-          "name": "人工肌肉软驱动机器人",
-          "desc": "高速大形变状态下软驱动器控制的机器人应用",
+          "id": "item-57018d77c37a",
+          "name": "在诸多面向机器人应用的驱动器中，“人工肌肉”软驱动器因其具有类似生物肌肉的能量密度高、响应速度快、能耗低且具有环境顺服性",
+          "desc": "在诸多面向机器人应用的驱动器中，“人工肌肉”软驱动器因其具有类似生物肌肉的能量密度高、响应速度快、能耗低且具有环境顺服性等优秀特性受到了广泛的关注。",
+          "evidence": [
+            {
+              "quote": "在诸多面向机器人应用的驱动器中，“人工肌肉”软驱动器因其具有类似生物肌肉的能量密度高、响应速度快、能耗低且具有环境顺服性等优秀特性受到了广泛的关注。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 724
+              },
+              "version": "a43265361da61bc86290"
+            }
+          ]
+        },
+        {
+          "id": "item-84df6619abed",
+          "name": "projectName: 面向机器人应用的“人工肌肉”软驱动器控制方法研究",
+          "desc": "projectName: 面向机器人应用的“人工肌肉”软驱动器控制方法研究",
+          "evidence": [
+            {
+              "quote": "projectName: 面向机器人应用的“人工肌肉”软驱动器控制方法研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 42,
+                "end_char": 78
+              },
+              "version": "a43265361da61bc86290"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0e1e70f2e10a",
+          "name": "11. [专利] 一种仿小脑网络的拮抗执行器可调柔顺控制系统及方法 — 任沁源;朱文欣",
+          "desc": "11. [专利] 一种仿小脑网络的拮抗执行器可调柔顺控制系统及方法 — 任沁源;朱文欣",
+          "evidence": [
+            {
+              "quote": "11. [专利] 一种仿小脑网络的拮抗执行器可调柔顺控制系统及方法 — 任沁源;朱文欣",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4739,
+                "end_char": 4781
+              },
+              "version": "a43265361da61bc86290"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-df9daeef917a",
+          "name": "本项目面向机器人应用，采用仿生的技术路线，模仿生物肌肉的控制方法，按层次对软驱动器控制核心问题，从个体软驱动器到多个软驱",
+          "desc": "本项目面向机器人应用，采用仿生的技术路线，模仿生物肌肉的控制方法，按层次对软驱动器控制核心问题，从个体软驱动器到多个软驱动器协调控制机器人运动展开研究。",
           "evidence": [
             {
               "quote": "本项目面向机器人应用，采用仿生的技术路线，模仿生物肌肉的控制方法，按层次对软驱动器控制核心问题，从个体软驱动器到多个软驱动器协调控制机器人运动展开研究。",
@@ -32,83 +97,8 @@
               },
               "version": "a43265361da61bc86290"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8140b6b20099",
-          "name": "时变强非线性控制难",
-          "desc": "时变含粘弹性强非线性，高速大形变下控制困难",
-          "evidence": [
-            {
-              "quote": "但是，这类软驱动器具有时变、包括材料粘弹性在内的强非线性运动特性，所以在机器人应用中（特别是驱动器运行在高速、大形变状态下），此类软驱动器的控制非常困难。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 725,
-                "end_char": 801
-              },
-              "version": "a43265361da61bc86290"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ac0cc99adb41",
-          "name": "McKibben与DE通用建模",
-          "desc": "两类软驱动器验证建模控制方法通用性",
-          "evidence": [
-            {
-              "quote": "使用介电弹性体（Dielectric Elastomer，简称DE）构建了一个软驱动器，并对提出的建模与控制方法在McKibben软驱动器和DE软驱动器上进行通用性分析。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2771,
-                "end_char": 2855
-              },
-              "version": "a43265361da61bc86290"
-            }
-          ]
-        },
-        {
-          "id": "item-9f55596b9014",
-          "name": "蘑菇体仿生协同控制",
-          "desc": "仿生控制方法解决多足软体机器人精确控制",
-          "evidence": [
-            {
-              "quote": "提出了基于蘑菇体的仿生控制方法，解决了多足软体机器人的精确控制问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3095,
-                "end_char": 3127
-              },
-              "version": "a43265361da61bc86290"
-            }
-          ]
-        },
-        {
-          "id": "item-496e2f92ff54",
-          "name": "元强化学习鲁棒控制",
-          "desc": "解决动态复杂不确定环境的精确控制挑战",
-          "evidence": [
-            {
-              "quote": "项目组提出使用元强化学习方法去解决软驱动器在动态、复杂、不确定的环境中的精确控制的挑战。这项成果以论文的形式发表在人工智能顶级会议ICML2024（CCF-A类）上。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3192,
-                "end_char": 3274
-              },
-              "version": "a43265361da61bc86290"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +107,292 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7e8d156d5a0d",
-          "name": "ICIEA最佳论文奖",
-          "desc": "变力跟踪对偶问题研究获IEEE ICIEA 2023最佳论文奖",
+          "id": "item-ac1260ecc379",
+          "name": "在诸多面向机器人应用的驱动器中，“人工肌肉”软驱动器因其具有类似生物肌肉的能量密度高、响应速度快、能耗低且具有环境顺服性",
+          "desc": "在诸多面向机器人应用的驱动器中，“人工肌肉”软驱动器因其具有类似生物肌肉的能量密度高、响应速度快、能耗低且具有环境顺服性等优秀特性受到了广泛的关注。",
           "evidence": [
             {
-              "quote": "这项研究成果以论文形式于2023年在领域权威会议IEEE ICIEA（CAA-A类会议）上发表，并获得当年的会议最佳论文奖（Best Paper Award）。",
+              "quote": "在诸多面向机器人应用的驱动器中，“人工肌肉”软驱动器因其具有类似生物肌肉的能量密度高、响应速度快、能耗低且具有环境顺服性等优秀特性受到了广泛的关注。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2975,
-                "end_char": 3054
+                "start_char": 651,
+                "end_char": 724
               },
               "version": "a43265361da61bc86290"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-7f4f456281b0",
-          "name": "Elsevier学术专著",
-          "desc": "形成专著《Motion Control of Soft Robots》在Elsevier出版",
+          "id": "item-cd628bb1404f",
+          "name": "本项目面向机器人应用，采用仿生的技术路线，模仿生物肌肉的控制方法，按层次对软驱动器控制核心问题，从个体软驱动器到多个软驱",
+          "desc": "本项目面向机器人应用，采用仿生的技术路线，模仿生物肌肉的控制方法，按层次对软驱动器控制核心问题，从个体软驱动器到多个软驱动器协调控制机器人运动展开研究。",
           "evidence": [
             {
-              "quote": "形成一本学术专著《Motion Control of Soft Robots》，并在国际科技出版社Elsevier出版，扩大了研究成果的影响力。",
+              "quote": "本项目面向机器人应用，采用仿生的技术路线，模仿生物肌肉的控制方法，按层次对软驱动器控制核心问题，从个体软驱动器到多个软驱动器协调控制机器人运动展开研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3342,
-                "end_char": 3413
+                "start_char": 2582,
+                "end_char": 2657
               },
               "version": "a43265361da61bc86290"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-98825ef4df47"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8140b6b20099"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Motion Control of Soft Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fdeb1ef4fbd9",
+      "evidence": [
+        {
+          "quote": "Motion Control of Soft Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3351,
+            "end_char": 3379
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8140b6b20099"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ac0cc99adb41"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Grasping of the Soft Prosthetic Hand via Tactile Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-425f2cf61b70",
+      "evidence": [
+        {
+          "quote": "Adaptive Grasping of the Soft Prosthetic Hand via Tactile Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3591,
+            "end_char": 3656
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8140b6b20099"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9f55596b9014"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Variable Force Tracking Control via Online Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5e4236eb193c",
+      "evidence": [
+        {
+          "quote": "Variable Force Tracking Control via Online Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3716,
+            "end_char": 3766
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8140b6b20099"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-496e2f92ff54"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GPTQT: Quantize Large Language Models Twice to Push the Efficiency",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57f595e3d9ae",
+      "evidence": [
+        {
+          "quote": "GPTQT: Quantize Large Language Models Twice to Push the Efficiency",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3817,
+            "end_char": 3882
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-496e2f92ff54"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7e8d156d5a0d"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "IEEE ICIEA 2023 “Best Paper Award”",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e6d5b7c843a",
+      "evidence": [
+        {
+          "quote": "IEEE ICIEA 2023 “Best Paper Award”",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3927,
+            "end_char": 3960
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9f55596b9014"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7f4f456281b0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control of Antagonistic McKibben Muscles via a Bio-inspired Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-508068aada5a",
+      "evidence": [
+        {
+          "quote": "Control of Antagonistic McKibben Muscles via a Bio-inspired Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4011,
+            "end_char": 4078
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time tracking control for state-constrained nonstrict-feedback systems without feasibility conditions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a18aedc57d2",
+      "evidence": [
+        {
+          "quote": "Fixed-time tracking control for state-constrained nonstrict-feedback systems without feasibility conditions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4149,
+            "end_char": 4255
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bio-inspired Control of a Rehabilitation Robot Actuated by Pneumatic Artificial Muscles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0087278ba2d5",
+      "evidence": [
+        {
+          "quote": "Bio-inspired Control of a Rehabilitation Robot Actuated by Pneumatic Artificial Muscles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4325,
+            "end_char": 4411
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Meta-Reinforcement Learning Robust to Distributional Shift via Performing Lifelong In-Context Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-764c8717728c",
+      "evidence": [
+        {
+          "quote": "Meta-Reinforcement Learning Robust to Distributional Shift via Performing Lifelong In-Context Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4460,
+            "end_char": 4561
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Variable Stiffness Control of a Soft Rehabilitation Robot with Sliding Mode Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5aa3be0779f",
+      "evidence": [
+        {
+          "quote": "Variable Stiffness Control of a Soft Rehabilitation Robot with Sliding Mode Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4607,
+            "end_char": 4688
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种仿小脑网络的拮抗执行器可调柔顺控制系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-602106f968e8",
+      "evidence": [
+        {
+          "quote": "一种仿小脑网络的拮抗执行器可调柔顺控制系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4748,
+            "end_char": 4771
+          },
+          "version": "a43265361da61bc86290"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

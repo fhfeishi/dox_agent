@@ -2,15 +2,20 @@
   "doc_id": "21068d73647e9bf78756",
   "version": "f3bb688ba71a36c58f5d",
   "source_hash": "7aa893e3e1447537a30b03b208e7766a32af60d9ddd005fdcc1de6c63134bcc8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:08:06.742665+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.791889+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-81712107523d",
-          "name": "血管介入机器人遥操作",
-          "desc": "血管介入手术机器人力触觉反馈",
+          "id": "item-b6a814994a98",
+          "name": "血管介入机器人辅助医生实施手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病，实施遥操作手术可以缓解医疗资源地域不",
+          "desc": "血管介入机器人辅助医生实施手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病，实施遥操作手术可以缓解医疗资源地域不平衡等问题。",
           "evidence": [
             {
-              "quote": "在心血管疾病治疗中，血管介入机器人辅助手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病等。",
+              "quote": "血管介入机器人辅助医生实施手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病，实施遥操作手术可以缓解医疗资源地域不平衡等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2989,
-                "end_char": 3037
+                "start_char": 652,
+                "end_char": 717
               },
               "version": "f3bb688ba71a36c58f5d"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c44b810975cb",
-          "name": "力触觉反馈缺乏",
-          "desc": "人机交互力触觉反馈缺乏影响操作精度与透明度",
+          "id": "item-e9faa482d0b2",
+          "name": "本项目针对当前手术机器人人机交互力触觉反馈缺乏的问题，通过研究导管弯曲扭转模型配准和位姿预测问题，提升血管介入机器人透明",
+          "desc": "本项目针对当前手术机器人人机交互力触觉反馈缺乏的问题，通过研究导管弯曲扭转模型配准和位姿预测问题，提升血管介入机器人透明度，进而提高医生的操作精度。",
           "evidence": [
             {
               "quote": "本项目针对当前手术机器人人机交互力触觉反馈缺乏的问题，通过研究导管弯曲扭转模型配准和位姿预测问题，提升血管介入机器人透明度，进而提高医生的操作精度。",
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-818dab078be2",
-          "name": "导管弯曲扭转模型配准",
-          "desc": "无监督学习随机梯度下降实现模型配准",
+          "id": "item-6bd6d46d64ef",
+          "name": "本研究基于导管前端柔软段前后端点位姿和多点接触力测量，提出以力触觉再现准确性为目标的力触觉渲染模型动态配准方法，并基于F",
+          "desc": "本研究基于导管前端柔软段前后端点位姿和多点接触力测量，提出以力触觉再现准确性为目标的力触觉渲染模型动态配准方法，并基于Fitts定律的两自由度协同操作时延估算和医学经验多元信息模糊融合，进行导管位姿预测。",
           "evidence": [
             {
-              "quote": "基于无监督学习的随机梯度下降法，以力触觉再现准确性为目标实现导管弯曲扭转模型配准。",
+              "quote": "本研究基于导管前端柔软段前后端点位姿和多点接触力测量，提出以力触觉再现准确性为目标的力触觉渲染模型动态配准方法，并基于Fitts定律的两自由度协同操作时延估算和医学经验多元信息模糊融合，进行导管位姿预测。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3254,
-                "end_char": 3294
+                "start_char": 813,
+                "end_char": 914
               },
               "version": "f3bb688ba71a36c58f5d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a3d766a5fa15",
-          "name": "Fitts定律时延位姿预测",
-          "desc": "时延估算与医学经验模糊融合预测导管位姿",
+          "id": "item-235fb84388b4",
+          "name": "项目拟针对影响其主-从系统透明度的主手端虚拟现实建模中导管-血管多点动态线接触展开，研究导管弯曲扭转模型配准和位姿预测问",
+          "desc": "项目拟针对影响其主-从系统透明度的主手端虚拟现实建模中导管-血管多点动态线接触展开，研究导管弯曲扭转模型配准和位姿预测问题。",
           "evidence": [
             {
-              "quote": "实现了基于Fitts定律的两自由度协同操作时延估算和医学经验多元信息模糊融合与导管位姿预测。",
+              "quote": "项目拟针对影响其主-从系统透明度的主手端虚拟现实建模中导管-血管多点动态线接触展开，研究导管弯曲扭转模型配准和位姿预测问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3348,
-                "end_char": 3393
+                "start_char": 751,
+                "end_char": 812
               },
               "version": "f3bb688ba71a36c58f5d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +108,204 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c34ceb65e573",
-          "name": "力触觉手术操作系统",
-          "desc": "建立血管介入机器人实验系统与安全性提醒操作系统",
+          "id": "item-9f187c810fd8",
+          "name": "血管介入机器人辅助医生实施手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病，实施遥操作手术可以缓解医疗资源地域不",
+          "desc": "血管介入机器人辅助医生实施手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病，实施遥操作手术可以缓解医疗资源地域不平衡等问题。",
           "evidence": [
             {
-              "quote": "本课题组建立了血管介入手术机器人实验系统，实现具有力触觉反馈手术安全性提醒效果的手术操作系统。",
+              "quote": "血管介入机器人辅助医生实施手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病，实施遥操作手术可以缓解医疗资源地域不平衡等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3112,
-                "end_char": 3158
+                "start_char": 652,
+                "end_char": 717
               },
               "version": "f3bb688ba71a36c58f5d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-b95bc961bee9",
+          "name": "在心血管疾病治疗中，血管介入机器人辅助手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病等。",
+          "desc": "在心血管疾病治疗中，血管介入机器人辅助手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病等。",
+          "evidence": [
+            {
+              "quote": "在心血管疾病治疗中，血管介入机器人辅助手术能够有效地避免X线辐射对医生的伤害，预防呼吸道传染病等。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2989,
+                "end_char": 3037
+              },
+              "version": "f3bb688ba71a36c58f5d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-81712107523d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c44b810975cb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-Based Bipartite Formation Control for MASs With External Disturbances Under Event-Triggered Scheme",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c35d24c7fcee",
+      "evidence": [
+        {
+          "quote": "Observer-Based Bipartite Formation Control for MASs With External Disturbances Under Event-Triggered Scheme",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3571,
+            "end_char": 3677
+          },
+          "version": "f3bb688ba71a36c58f5d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c44b810975cb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-818dab078be2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "异构多智能体时变编队的PI控制策略",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-86a1fef5ca85",
+      "evidence": [
+        {
+          "quote": "异构多智能体时变编队的PI控制策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3729,
+            "end_char": 3745
+          },
+          "version": "f3bb688ba71a36c58f5d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c44b810975cb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a3d766a5fa15"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fully Distributed Event-Triggered Bipartite Output Formation Control for Heterogeneous MASs With Directed Graphs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f8382052768",
+      "evidence": [
+        {
+          "quote": "Fully Distributed Event-Triggered Bipartite Output Formation Control for Heterogeneous MASs With Directed Graphs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3773,
+            "end_char": 3884
+          },
+          "version": "f3bb688ba71a36c58f5d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-818dab078be2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c34ceb65e573"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Indirect adaptive admittance control based on position synchronization of robot-assisted nasopharyngeal surgery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-87e968f9e369",
+      "evidence": [
+        {
+          "quote": "Indirect adaptive admittance control based on position synchronization of robot-assisted nasopharyngeal surgery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3942,
+            "end_char": 4052
+          },
+          "version": "f3bb688ba71a36c58f5d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a3d766a5fa15"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c34ceb65e573"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种水平面估计的水域环境视觉SLAM算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29bc99b2265f",
+      "evidence": [
+        {
+          "quote": "一种水平面估计的水域环境视觉SLAM算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4096,
+            "end_char": 4115
+          },
+          "version": "f3bb688ba71a36c58f5d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "改进Informed-RRT 的动态环境路径规划算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fdfecbf6a2a6",
+      "evidence": [
+        {
+          "quote": "改进Informed-RRT 的动态环境路径规划算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4147,
+            "end_char": 4172
+          },
+          "version": "f3bb688ba71a36c58f5d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Upper confident bound advantage function proximal policy optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc442f580a1a",
+      "evidence": [
+        {
+          "quote": "Upper confident bound advantage function proximal policy optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4200,
+            "end_char": 4268
+          },
+          "version": "f3bb688ba71a36c58f5d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

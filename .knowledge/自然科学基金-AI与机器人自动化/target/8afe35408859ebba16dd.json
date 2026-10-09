@@ -2,15 +2,20 @@
   "doc_id": "8afe35408859ebba16dd",
   "version": "5ee25d73972a85c326a8",
   "source_hash": "e1a932a011aed56c3fb7f1eeea897e9aae5ed75b15ad4821accee39c7d21797b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:49.025632+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.765002+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-97ee3c357fa3",
-          "name": "六足机器人人在环操控",
-          "desc": "野外救援等场景的六足机器人远程操控",
+          "id": "item-cc419ee445cb",
+          "name": "如何在满足系统可控性和适应性的前提下，确保对六足机器人操控时的稳定性和透明性，是六足机器人能够灵活执行全地形通过任务的关",
+          "desc": "如何在满足系统可控性和适应性的前提下，确保对六足机器人操控时的稳定性和透明性，是六足机器人能够灵活执行全地形通过任务的关键。",
           "evidence": [
             {
-              "quote": "能否对多足机器人进行有效的人在环操控（远程控制）则直接关系到相关科研及工程任务的成功。",
+              "quote": "如何在满足系统可控性和适应性的前提下，确保对六足机器人操控时的稳定性和透明性，是六足机器人能够灵活执行全地形通过任务的关键。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3048,
-                "end_char": 3090
+                "start_char": 668,
+                "end_char": 729
+              },
+              "version": "5ee25d73972a85c326a8"
+            }
+          ]
+        },
+        {
+          "id": "item-8e8f05621d4c",
+          "name": "多足机器人在地面移动机器人研究范畴内，其技术挑战性及应用扩展性占有重要席位，在野外救援、山地运输、星球探测及军事作战等领",
+          "desc": "多足机器人在地面移动机器人研究范畴内，其技术挑战性及应用扩展性占有重要席位，在野外救援、山地运输、星球探测及军事作战等领域蕴含丰富的潜力。",
+          "evidence": [
+            {
+              "quote": "多足机器人在地面移动机器人研究范畴内，其技术挑战性及应用扩展性占有重要席位，在野外救援、山地运输、星球探测及军事作战等领域蕴含丰富的潜力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2927,
+                "end_char": 2995
               },
               "version": "5ee25d73972a85c326a8"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a1cac31f6d88",
-          "name": "操控稳定性透明性不足",
-          "desc": "野外环境带来操控稳定性和透明性问题",
-          "evidence": [
-            {
-              "quote": "围绕由野外环境带来的六足机器人操控环节中的稳定性和透明性问题，本项目以系统无源性理论为研究视角",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3092,
-                "end_char": 3138
-              },
-              "version": "5ee25d73972a85c326a8"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-5904da2ca0d5",
-          "name": "波变换无源性补偿",
-          "desc": "波变换与时域无源性控制补偿时延与外扰",
+          "id": "item-87e00a7bc824",
+          "name": "考虑机体与单腿协调间的耦合效应，采用多边协同操控架构，融入共享控制策略，基于多目标复合约束条件在线修正权重因子，借鉴端口",
+          "desc": "考虑机体与单腿协调间的耦合效应，采用多边协同操控架构，融入共享控制策略，基于多目标复合约束条件在线修正权重因子，借鉴端口网络理论确定系统各子单元的无源控制律，构建“增益动态更新”+“模式柔顺切换”的结构实现各操控通道控制律的鲁棒自适应切换；",
           "evidence": [
             {
-              "quote": "设计了波变换和时域无源性控制相结合算法进行补偿",
+              "quote": "考虑机体与单腿协调间的耦合效应，采用多边协同操控架构，融入共享控制策略，基于多目标复合约束条件在线修正权重因子，借鉴端口网络理论确定系统各子单元的无源控制律，构建“增益动态更新”+“模式柔顺切换”的结构实现各操控通道控制律的鲁棒自适应切换；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3282,
-                "end_char": 3304
+                "start_char": 865,
+                "end_char": 984
               },
               "version": "5ee25d73972a85c326a8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d56073e86b85",
-          "name": "多边协同共享操控",
-          "desc": "增益动态更新与模式柔顺切换的控制器设计",
+          "id": "item-36a788bf8f37",
+          "name": "基于无源性理论，面向通信端时延及环境端外扰共同导致的系统有源性溢出问题，设计了波变换和时域无源性控制相结合算法进行补偿，",
+          "desc": "基于无源性理论，面向通信端时延及环境端外扰共同导致的系统有源性溢出问题，设计了波变换和时域无源性控制相结合算法进行补偿，针对足端滑移/位姿波动引起的机器人从端运动能力缺失的问题，通过引入半自主操控模式以规划足力优化分配算法提升六足机器人局部自主的控制能力。",
           "evidence": [
             {
-              "quote": "创建了“增益动态更新”+“模式柔顺切换”的控制器设计形式，借鉴端口网络理论调整控制率参数选取空间，保证了系统稳定性及透明性。",
+              "quote": "基于无源性理论，面向通信端时延及环境端外扰共同导致的系统有源性溢出问题，设计了波变换和时域无源性控制相结合算法进行补偿，针对足端滑移/位姿波动引起的机器人从端运动能力缺失的问题，通过引入半自主操控模式以规划足力优化分配算法提升六足机器人局部自主的控制能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3450,
-                "end_char": 3511
-              },
-              "version": "5ee25d73972a85c326a8"
-            }
-          ]
-        },
-        {
-          "id": "item-5bb1d6d087de",
-          "name": "足力优化分配",
-          "desc": "半自主操控模式规划足力优化分配提升局部自主",
-          "evidence": [
-            {
-              "quote": "通过引入半自主操控模式以规划足力优化分配算法提升六足机器人局部自主的控制能力。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3335,
+                "start_char": 3246,
                 "end_char": 3373
               },
               "version": "5ee25d73972a85c326a8"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +107,188 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fca275ad57cd",
-          "name": "崎岖地形操控改善",
-          "desc": "远程操控理论解决崎岖松软地形运动作业难题",
+          "id": "item-c1b1e118709a",
+          "name": "如何在满足系统可控性和适应性的前提下，确保对六足机器人操控时的稳定性和透明性，是六足机器人能够灵活执行全地形通过任务的关",
+          "desc": "如何在满足系统可控性和适应性的前提下，确保对六足机器人操控时的稳定性和透明性，是六足机器人能够灵活执行全地形通过任务的关键。",
           "evidence": [
             {
-              "quote": "本项目所提出的远程操控理论及方法较好地解决了六足机器人在崎岖松软地形下的运动作业难题，同时改善了系统操控性能（指令跟踪性、地形通过性以及感知透明性等）。",
+              "quote": "如何在满足系统可控性和适应性的前提下，确保对六足机器人操控时的稳定性和透明性，是六足机器人能够灵活执行全地形通过任务的关键。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3521,
-                "end_char": 3596
+                "start_char": 668,
+                "end_char": 729
               },
               "version": "5ee25d73972a85c326a8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-ec3a760b8ec3",
+          "name": "多足机器人在地面移动机器人研究范畴内，其技术挑战性及应用扩展性占有重要席位，在野外救援、山地运输、星球探测及军事作战等领",
+          "desc": "多足机器人在地面移动机器人研究范畴内，其技术挑战性及应用扩展性占有重要席位，在野外救援、山地运输、星球探测及军事作战等领域蕴含丰富的潜力。",
+          "evidence": [
+            {
+              "quote": "多足机器人在地面移动机器人研究范畴内，其技术挑战性及应用扩展性占有重要席位，在野外救援、山地运输、星球探测及军事作战等领域蕴含丰富的潜力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2927,
+                "end_char": 2995
+              },
+              "version": "5ee25d73972a85c326a8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-97ee3c357fa3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a1cac31f6d88"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于双操作者的野外六足机器人操控训练方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a06f0f6c549",
+      "evidence": [
+        {
+          "quote": "一种基于双操作者的野外六足机器人操控训练方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3751,
+            "end_char": 3772
+          },
+          "version": "5ee25d73972a85c326a8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a1cac31f6d88"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5904da2ca0d5"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种足式移动装备的人在环辅助决策操控系统架构及功能模块组成",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-792fee4e5c49",
+      "evidence": [
+        {
+          "quote": "一种足式移动装备的人在环辅助决策操控系统架构及功能模块组成",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3795,
+            "end_char": 3823
+          },
+          "version": "5ee25d73972a85c326a8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a1cac31f6d88"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d56073e86b85"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dual-Master/Single-Slave Haptic Teleoperation System for Semi-Autonomous Bilateral Control of Hexapod Robot Subject to Deformable Rough Terrain",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d3da6079b045",
+      "evidence": [
+        {
+          "quote": "Dual-Master/Single-Slave Haptic Teleoperation System for Semi-Autonomous Bilateral Control of Hexapod Robot Subject to Deformable Rough Terrain",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3856,
+            "end_char": 3998
+          },
+          "version": "5ee25d73972a85c326a8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a1cac31f6d88"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5bb1d6d087de"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向双操作者的六足机器人共享遥操作研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-920238a0eaac",
+      "evidence": [
+        {
+          "quote": "面向双操作者的六足机器人共享遥操作研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4086,
+            "end_char": 4104
+          },
+          "version": "5ee25d73972a85c326a8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d56073e86b85"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-fca275ad57cd"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A fuzzy variable admittance control method to ensure compliance motion of a cooperative robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e85651ca9021",
+      "evidence": [
+        {
+          "quote": "A fuzzy variable admittance control method to ensure compliance motion of a cooperative robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4135,
+            "end_char": 4227
+          },
+          "version": "5ee25d73972a85c326a8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5bb1d6d087de"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-fca275ad57cd"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gait planning and switching strategy of hexapod robot with single-leg failure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9695f8559f8",
+      "evidence": [
+        {
+          "quote": "Gait planning and switching strategy of hexapod robot with single-leg failure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4292,
+            "end_char": 4368
+          },
+          "version": "5ee25d73972a85c326a8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

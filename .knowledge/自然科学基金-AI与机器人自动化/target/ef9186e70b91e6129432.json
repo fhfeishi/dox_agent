@@ -2,15 +2,20 @@
   "doc_id": "ef9186e70b91e6129432",
   "version": "b7c9c10639940b7f7fbb",
   "source_hash": "d0ec8d14ff3d5cf20b47af77fdc9e1d166a2b6b9072b914f9b88650ab292cbc0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:52:47.558237+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.820869+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-271dc6436a8c",
-          "name": "脊柱手术机器人术中交互",
-          "desc": "机器人辅助脊柱手术中的环境感知与融合定位",
+          "id": "item-176eeb4a99c4",
+          "name": "脊柱疾病属于临床医学中的常见疾病，微创化、精准化的脊柱手术已成为主要趋势。",
+          "desc": "脊柱疾病属于临床医学中的常见疾病，微创化、精准化的脊柱手术已成为主要趋势。",
           "evidence": [
             {
               "quote": "脊柱疾病属于临床医学中的常见疾病，微创化、精准化的脊柱手术已成为主要趋势。",
@@ -33,82 +38,67 @@
               "version": "b7c9c10639940b7f7fbb"
             }
           ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
+        },
         {
-          "id": "item-4a78d7bb3ce4",
-          "name": "术区景深大人机交互壁垒",
-          "desc": "术野小、景深大、多模态数据异构、人机交互需求高",
+          "id": "item-6c181b3f5842",
+          "name": "研究成果已在 70 余例机器人辅助脊柱手术中初步应用，与医疗单位及企业达成产业化转化意向，符合国家健康产业与制造业发展政",
+          "desc": "研究成果已在 70 余例机器人辅助脊柱手术中初步应用，与医疗单位及企业达成产业化转化意向，符合国家健康产业与制造业发展政策，为脊柱手术微创化、精准化发展提供理论支撑与技术保障，具有广阔的临床推广价值和社会经济效益。",
           "evidence": [
             {
-              "quote": "在脊柱手术机器人辅助的脊柱手术中，医疗器械和管线构成复杂的层级空间，医护人员位置和行为具有高度随机性和不确定性，术中人机交互是手术机器人的主要技术壁垒。",
+              "quote": "研究成果已在 70 余例机器人辅助脊柱手术中初步应用，与医疗单位及企业达成产业化转化意向，符合国家健康产业与制造业发展政策，为脊柱手术微创化、精准化发展提供理论支撑与技术保障，具有广阔的临床推广价值和社会经济效益。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 697,
-                "end_char": 772
+                "start_char": 3306,
+                "end_char": 3412
               },
               "version": "b7c9c10639940b7f7fbb"
             }
           ]
         }
       ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-8106d569b7c9",
-          "name": "结构光变频条纹编码",
-          "desc": "景深驱动的结构光变频条纹编码方法获取高时空分辨率三维数据",
+          "id": "item-7af36f02d7d8",
+          "name": "项目采用理论研究与技术实现相结合的路径，通过 U-Net 等深度学习模型优化算法性能，搭建包含双目结构光跟踪定位相机系统",
+          "desc": "项目采用理论研究与技术实现相结合的路径，通过 U-Net 等深度学习模型优化算法性能，搭建包含双目结构光跟踪定位相机系统等的综合临床验证平台，完成 20 例仿真模型验证及 5 例临床实体手术验证（与北京积水潭医院合作）。",
           "evidence": [
             {
-              "quote": "提出景深驱动的结构光变频条纹编码方法，实现高时空分辨率三维数据获取",
+              "quote": "项目采用理论研究与技术实现相结合的路径，通过 U-Net 等深度学习模型优化算法性能，搭建包含双目结构光跟踪定位相机系统等的综合临床验证平台，完成 20 例仿真模型验证及 5 例临床实体手术验证（与北京积水潭医院合作）。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3011,
-                "end_char": 3043
+                "start_char": 3123,
+                "end_char": 3232
               },
               "version": "b7c9c10639940b7f7fbb"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d8c5e9445a74",
-          "name": "链式弱刚性融合定位",
-          "desc": "多模态异构影像融合定位模型解决配准偏差",
+          "id": "item-fed665eb89f8",
+          "name": "projectName: 面向脊柱手术机器人术中交互的环境感知与融合定位方法研究",
+          "desc": "projectName: 面向脊柱手术机器人术中交互的环境感知与融合定位方法研究",
           "evidence": [
             {
-              "quote": "建立多模态异构影像链式弱刚性融合定位模型，解决数据配准偏差问题，达成脊柱目标节段高精度定位",
+              "quote": "projectName: 面向脊柱手术机器人术中交互的环境感知与融合定位方法研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3045,
-                "end_char": 3089
+                "start_char": 42,
+                "end_char": 81
               },
               "version": "b7c9c10639940b7f7fbb"
             }
-          ]
-        },
-        {
-          "id": "item-3649ad638147",
-          "name": "虚实混合人机交互",
-          "desc": "多感知信息虚实非规则混合实时人机交互模型",
-          "evidence": [
-            {
-              "quote": "研发多感知信息虚实非规则混合实时人机交互模型，优化术者操作体验。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3091,
-                "end_char": 3122
-              },
-              "version": "b7c9c10639940b7f7fbb"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +107,128 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ae4556990fda",
-          "name": "临床指标显著提升",
-          "desc": "20例仿真与5例临床验证，螺钉置入准确率99%、辐射剂量降低60%、手术时间缩短30分钟",
+          "id": "item-f7133c825efa",
+          "name": "脊柱疾病属于临床医学中的常见疾病，微创化、精准化的脊柱手术已成为主要趋势。",
+          "desc": "脊柱疾病属于临床医学中的常见疾病，微创化、精准化的脊柱手术已成为主要趋势。",
           "evidence": [
             {
-              "quote": "完成 20 例仿真模型验证及 5 例临床实体手术验证（与北京积水潭医院合作）。成果显著提升了脊柱手术机器人的精确性、稳定性和友好性，临床应用中螺钉置入准确率达 99%，术中辐射剂量降低 60%，手术时间平均缩短 30 分钟。",
+              "quote": "脊柱疾病属于临床医学中的常见疾病，微创化、精准化的脊柱手术已成为主要趋势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3194,
-                "end_char": 3305
+                "start_char": 660,
+                "end_char": 696
               },
               "version": "b7c9c10639940b7f7fbb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-b3e961219e70",
-          "name": "70余例初步应用与产业化意向",
-          "desc": "成果已在70余例手术初步应用并达成产业化转化意向",
+          "id": "item-db16678477f9",
+          "name": "本项目聚焦 “面向脊柱手术机器人术中交互的环境感知与融合定位方法研究”，资助期限为 2023 年 1 月至 2025 年",
+          "desc": "本项目聚焦 “面向脊柱手术机器人术中交互的环境感知与融合定位方法研究”，资助期限为 2023 年 1 月至 2025 年 12 月。",
           "evidence": [
             {
-              "quote": "研究成果已在 70 余例机器人辅助脊柱手术中初步应用，与医疗单位及企业达成产业化转化意向",
+              "quote": "本项目聚焦 “面向脊柱手术机器人术中交互的环境感知与融合定位方法研究”，资助期限为 2023 年 1 月至 2025 年 12 月。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3306,
-                "end_char": 3349
+                "start_char": 2873,
+                "end_char": 2938
               },
               "version": "b7c9c10639940b7f7fbb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-271dc6436a8c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4a78d7bb3ce4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种荧光各向异性探测方法及其探测系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b58f2b9b19e",
+      "evidence": [
+        {
+          "quote": "一种荧光各向异性探测方法及其探测系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3435,
+            "end_char": 3452
+          },
+          "version": "b7c9c10639940b7f7fbb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4a78d7bb3ce4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8106d569b7c9"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Speed, high-fidelity SIM super-resolution reconstruction based on parallel computing architecture and GPU acceleration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0535017446ab",
+      "evidence": [
+        {
+          "quote": "Speed, high-fidelity SIM super-resolution reconstruction based on parallel computing architecture and GPU acceleration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3480,
+            "end_char": 3597
+          },
+          "version": "b7c9c10639940b7f7fbb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4a78d7bb3ce4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d8c5e9445a74"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4a78d7bb3ce4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3649ad638147"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d8c5e9445a74"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ae4556990fda"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3649ad638147"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b3e961219e70"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-fidelity CUDA-based 3DSIM parallel reconstruction method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-154458a66fd7",
+      "evidence": [
+        {
+          "quote": "High-fidelity CUDA-based 3DSIM parallel reconstruction method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3654,
+            "end_char": 3714
+          },
+          "version": "b7c9c10639940b7f7fbb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

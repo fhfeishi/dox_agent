@@ -2,15 +2,20 @@
   "doc_id": "734538e4a3b8c2e09dcb",
   "version": "b7205d900b0f83857720",
   "source_hash": "d067d3beebd5262fb2a3051aae98971f17abd7d1aa0bd289f43550dec0f3bde2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:29.341843+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.562030+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3a66746a5016",
-          "name": "煤矿煤岩界面识别",
-          "desc": "综采工作面智能截割与无人化作业",
+          "id": "item-38749ce8c082",
+          "name": "智能化开采是未来矿山开采的技术难题，研究采煤机煤岩界面动态精准识别理论和实验新方法，是实现煤矿智能化亟需开展基础性工作。",
+          "desc": "智能化开采是未来矿山开采的技术难题，研究采煤机煤岩界面动态精准识别理论和实验新方法，是实现煤矿智能化亟需开展基础性工作。",
           "evidence": [
             {
-              "quote": "煤矿综采工作面推进智能截割与无人化作业，核心在于煤岩界面的稳定识别，但井下低照度、粉尘水雾、截割冲击与温度扰动等因素叠加，容易导致识别信号波动、判别不稳等问题",
+              "quote": "智能化开采是未来矿山开采的技术难题，研究采煤机煤岩界面动态精准识别理论和实验新方法，是实现煤矿智能化亟需开展基础性工作。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 712
+              },
+              "version": "b7205d900b0f83857720"
+            }
+          ]
+        },
+        {
+          "id": "item-92a4eb854211",
+          "name": "煤矿综采工作面推进智能截割与无人化作业，核心在于煤岩界面的稳定识别，但井下低照度、粉尘水雾、截割冲击与温度扰动等因素叠加",
+          "desc": "煤矿综采工作面推进智能截割与无人化作业，核心在于煤岩界面的稳定识别，但井下低照度、粉尘水雾、截割冲击与温度扰动等因素叠加，容易导致识别信号波动、判别不稳等问题，围绕这一工程需求，本研究以“氢键响应机理—多光谱特征表征—多源融合判别—界面提取验证”为主线开展系统工作。",
+          "evidence": [
+            {
+              "quote": "煤矿综采工作面推进智能截割与无人化作业，核心在于煤岩界面的稳定识别，但井下低照度、粉尘水雾、截割冲击与温度扰动等因素叠加，容易导致识别信号波动、判别不稳等问题，围绕这一工程需求，本研究以“氢键响应机理—多光谱特征表征—多源融合判别—界面提取验证”为主线开展系统工作。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2743,
-                "end_char": 2821
+                "end_char": 2875
               },
               "version": "b7205d900b0f83857720"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-486fb5784814",
-          "name": "低照度多扰识别不稳",
-          "desc": "低照度粉尘水雾截割冲击温度扰动致判别不稳",
-          "evidence": [
-            {
-              "quote": "但井下低照度、粉尘水雾、截割冲击与温度扰动等因素叠加，容易导致识别信号波动、判别不稳等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2777,
-                "end_char": 2821
-              },
-              "version": "b7205d900b0f83857720"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-b42cd51e2491",
-          "name": "氢键红外敏感区段",
-          "desc": "216组光谱数据MSC-SPA-PLS建模确定敏感区段",
+          "id": "item-08e7990a195f",
+          "name": "建立煤岩截割参数-多光谱异质信号识辨-融合决策耦合模型，构建基于红外光谱异构信号源融合的煤岩界面一体化精准识别体系，对推",
+          "desc": "建立煤岩截割参数-多光谱异质信号识辨-融合决策耦合模型，构建基于红外光谱异构信号源融合的煤岩界面一体化精准识别体系，对推进矿山智能化采掘和灾害防治具有重要理论价值和意义。",
           "evidence": [
             {
-              "quote": "采用MSC预处理、SPA选波长、PLS建模并结合蒙特卡罗交叉验证剔除异常样品，校正集与预测集按2:1划分，确定氢键相关红外敏感区段并建立判别准则",
+              "quote": "建立煤岩截割参数-多光谱异质信号识辨-融合决策耦合模型，构建基于红外光谱异构信号源融合的煤岩界面一体化精准识别体系，对推进矿山智能化采掘和灾害防治具有重要理论价值和意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2993,
-                "end_char": 3064
+                "start_char": 962,
+                "end_char": 1046
               },
               "version": "b7205d900b0f83857720"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-26c78c9ca5e2",
-          "name": "LL-LSD界面拾取",
-          "desc": "自动拾取界面位置且检测速度约为原LSD方法10%",
+          "id": "item-28bbd9de726c",
+          "name": "采用工作面验证和综合分析相结合方法，将异构特征在全连接层进行融合，采用光彩色图像以及单通道光谱特征等多路通道输入，建立多",
+          "desc": "采用工作面验证和综合分析相结合方法，将异构特征在全连接层进行融合，采用光彩色图像以及单通道光谱特征等多路通道输入，建立多路卷积神经网络的煤岩界面识别，阐明煤岩界面与红外光谱识辨多源信息的耦合关系；",
           "evidence": [
             {
-              "quote": "界面识别方面提出LL-LSD自动拾取方法，在准确提取界面位置的同时，检测速度约为原LSD方法的10%",
+              "quote": "采用工作面验证和综合分析相结合方法，将异构特征在全连接层进行融合，采用光彩色图像以及单通道光谱特征等多路通道输入，建立多路卷积神经网络的煤岩界面识别，阐明煤岩界面与红外光谱识辨多源信息的耦合关系；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3217,
-                "end_char": 3266
+                "start_char": 864,
+                "end_char": 961
               },
               "version": "b7205d900b0f83857720"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,408 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4013ffb97cdf",
-          "name": "反射光谱库建立",
-          "desc": "9种典型煤系岩石400~3000nm反射光谱库",
+          "id": "item-295199f72929",
+          "name": "智能化开采是未来矿山开采的技术难题，研究采煤机煤岩界面动态精准识别理论和实验新方法，是实现煤矿智能化亟需开展基础性工作。",
+          "desc": "智能化开采是未来矿山开采的技术难题，研究采煤机煤岩界面动态精准识别理论和实验新方法，是实现煤矿智能化亟需开展基础性工作。",
           "evidence": [
             {
-              "quote": "进一步建立9种典型煤系岩石400~3000 nm反射光谱库，开展灰岩与煤1:1、1:2、1:3、1:4配比截割试验，获取不同配比条件下红外光谱随截割过程演化的规律性特征",
+              "quote": "智能化开采是未来矿山开采的技术难题，研究采煤机煤岩界面动态精准识别理论和实验新方法，是实现煤矿智能化亟需开展基础性工作。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3086,
-                "end_char": 3169
+                "start_char": 653,
+                "end_char": 712
               },
               "version": "b7205d900b0f83857720"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-4470711d4372",
-          "name": "粗糙界面追踪定位",
-          "desc": "一维高斯粗糙表面模型实现波组自动追踪与界面定位",
+          "id": "item-60318fd236b2",
+          "name": "煤矿综采工作面推进智能截割与无人化作业，核心在于煤岩界面的稳定识别，但井下低照度、粉尘水雾、截割冲击与温度扰动等因素叠加",
+          "desc": "煤矿综采工作面推进智能截割与无人化作业，核心在于煤岩界面的稳定识别，但井下低照度、粉尘水雾、截割冲击与温度扰动等因素叠加，容易导致识别信号波动、判别不稳等问题，围绕这一工程需求，本研究以“氢键响应机理—多光谱特征表征—多源融合判别—界面提取验证”为主线开展系统工作。",
           "evidence": [
             {
-              "quote": "针对粗糙界面建立一维高斯粗糙表面模型，以均方根高度与相关长度表征粗糙程度，实现波组自动追踪与界面定位。",
+              "quote": "煤矿综采工作面推进智能截割与无人化作业，核心在于煤岩界面的稳定识别，但井下低照度、粉尘水雾、截割冲击与温度扰动等因素叠加，容易导致识别信号波动、判别不稳等问题，围绕这一工程需求，本研究以“氢键响应机理—多光谱特征表征—多源融合判别—界面提取验证”为主线开展系统工作。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3303,
-                "end_char": 3353
+                "start_char": 2743,
+                "end_char": 2875
               },
               "version": "b7205d900b0f83857720"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3a66746a5016"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-486fb5784814"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A unified variational method for vibration of functionally graded porous beams with variable curvature under arbitrary boundary condition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-babe704bcb36",
+      "evidence": [
+        {
+          "quote": "A unified variational method for vibration of functionally graded porous beams with variable curvature under arbitrary boundary condition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3478,
+            "end_char": 3614
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-486fb5784814"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b42cd51e2491"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "煤矿智能综掘机器人化关键技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1207c5842792",
+      "evidence": [
+        {
+          "quote": "煤矿智能综掘机器人化关键技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3674,
+            "end_char": 3687
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-486fb5784814"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-26c78c9ca5e2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "叶轮磨损对浮选机叶轮脉动激励力的影响",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d9d43223b15d",
+      "evidence": [
+        {
+          "quote": "叶轮磨损对浮选机叶轮脉动激励力的影响",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3718,
+            "end_char": 3735
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b42cd51e2491"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4013ffb97cdf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Method for Ground Penetrating Radar Identification of Intercalated Gangue Layers during Complex Structure Coal Seam Tunneling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-48ed3d35b474",
+      "evidence": [
+        {
+          "quote": "Method for Ground Penetrating Radar Identification of Intercalated Gangue Layers during Complex Structure Coal Seam Tunneling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3768,
+            "end_char": 3892
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-26c78c9ca5e2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4470711d4372"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "千万吨级工作面高可靠性安全开采保障技术及装备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c5c2f7c9c535",
+      "evidence": [
+        {
+          "quote": "千万吨级工作面高可靠性安全开采保障技术及装备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3979,
+            "end_char": 4000
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种冲击预裂后的岩石裂化性能测试实验系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-685c770d52e3",
+      "evidence": [
+        {
+          "quote": "一种冲击预裂后的岩石裂化性能测试实验系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4065,
+            "end_char": 4084
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种隧道钻探自适应随钻探测装置、钻机及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-45d39fb20768",
+      "evidence": [
+        {
+          "quote": "一种隧道钻探自适应随钻探测装置、钻机及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4115,
+            "end_char": 4135
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第十四届青岛市青年科技奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-305de3dcc2bc",
+      "evidence": [
+        {
+          "quote": "第十四届青岛市青年科技奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4179,
+            "end_char": 4190
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Automatic picking method for smooth coal-rock interface GPR wave packets based on improved LSD",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-32bbf69931e5",
+      "evidence": [
+        {
+          "quote": "Automatic picking method for smooth coal-rock interface GPR wave packets based on improved LSD",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4207,
+            "end_char": 4300
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "分离式螺旋钻具截割与输送协同优化研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7efe93f1b63f",
+      "evidence": [
+        {
+          "quote": "分离式螺旋钻具截割与输送协同优化研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4408,
+            "end_char": 4425
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多源信息融合的煤岩识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-55c5b7929127",
+      "evidence": [
+        {
+          "quote": "一种多源信息融合的煤岩识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4456,
+            "end_char": 4470
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The coupling relationship analysis and control of the roadheader's cutting and supporting structures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16b1dd9da980",
+      "evidence": [
+        {
+          "quote": "The coupling relationship analysis and control of the roadheader's cutting and supporting structures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4512,
+            "end_char": 4611
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "融合雷达图像多域鲁棒特征与改进FCM算法的粗糙煤壁煤岩分界识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ceb6662359ea",
+      "evidence": [
+        {
+          "quote": "融合雷达图像多域鲁棒特征与改进FCM算法的粗糙煤壁煤岩分界识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4691,
+            "end_char": 4723
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Disturbance Observers-Based Nonlinear Control Scheme for Wire Rope Tension Control of Hoisting Systems with Backstepping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a818f5b54c61",
+      "evidence": [
+        {
+          "quote": "Multi-Disturbance Observers-Based Nonlinear Control Scheme for Wire Rope Tension Control of Hoisting Systems with Backstepping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4764,
+            "end_char": 4889
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "煤矿智能化开采煤岩识别技术综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4cf17a4bc123",
+      "evidence": [
+        {
+          "quote": "煤矿智能化开采煤岩识别技术综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4936,
+            "end_char": 4950
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on identification method of coal-rock interface based on ground penetrating radar in the driving face of soft coal seam",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a318b21c67ee",
+      "evidence": [
+        {
+          "quote": "Research on identification method of coal-rock interface based on ground penetrating radar in the driving face of soft coal seam",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4986,
+            "end_char": 5113
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "煤矿巷道边掘边锚快速掘进成套技术及装备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3a3e488580d",
+      "evidence": [
+        {
+          "quote": "煤矿巷道边掘边锚快速掘进成套技术及装备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5190,
+            "end_char": 5208
+          },
+          "version": "b7205d900b0f83857720"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "3e8c42b022409d160eed",
   "version": "db6950b978dc661a78bd",
   "source_hash": "1b17deee3c94e4095ab45c42a89ade9f28cf408ca83ee24eade0169e9639733f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:51:44.030662+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.079255+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-517fa83aa8ee",
-          "name": "侦察机器人手势遥操作",
-          "desc": "全天时复杂背景下地面侦察机器人遥操作",
+          "id": "item-3d4b9472d7c6",
+          "name": "本项目针对地面侦察机器人对视觉手势遥操作控制的现实需求，从目前研究现状中存在的亟待解决的关键问题着手，对全天时复杂背景下",
+          "desc": "本项目针对地面侦察机器人对视觉手势遥操作控制的现实需求，从目前研究现状中存在的亟待解决的关键问题着手，对全天时复杂背景下地面侦察机器人的视觉手势遥操作控制的核心问题展开理论研究。",
           "evidence": [
             {
-              "quote": "视觉手势遥操作控制技术对降低侦察机器人的操作复杂度，提升人机协作执行军事任务的效率，实现更自然的人机共融和人机协作具有重要意义。",
+              "quote": "本项目针对地面侦察机器人对视觉手势遥操作控制的现实需求，从目前研究现状中存在的亟待解决的关键问题着手，对全天时复杂背景下地面侦察机器人的视觉手势遥操作控制的核心问题展开理论研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2771,
-                "end_char": 2834
+                "start_char": 671,
+                "end_char": 759
+              },
+              "version": "db6950b978dc661a78bd"
+            }
+          ]
+        },
+        {
+          "id": "item-f18fca14cc29",
+          "name": "本项目提出的基于视觉手势的遥操瞄控制技术将会极大方便操作者对单兵协同作战侦察机器人的快速、自然、灵活的操控，尤其是自由度",
+          "desc": "本项目提出的基于视觉手势的遥操瞄控制技术将会极大方便操作者对单兵协同作战侦察机器人的快速、自然、灵活的操控，尤其是自由度较多的机器人系统（如搭载PTZ云台系统或者多自由机械臂的地面侦察机器人），在军用机器人的人机交互领域具有巨大的应用前景。",
+          "evidence": [
+            {
+              "quote": "本项目提出的基于视觉手势的遥操瞄控制技术将会极大方便操作者对单兵协同作战侦察机器人的快速、自然、灵活的操控，尤其是自由度较多的机器人系统（如搭载PTZ云台系统或者多自由机械臂的地面侦察机器人），在军用机器人的人机交互领域具有巨大的应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3395,
+                "end_char": 3514
               },
               "version": "db6950b978dc661a78bd"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f8d8ae88578c",
-          "name": "全天时复杂背景检测难",
-          "desc": "光照变化、颜色相似、遮挡纹理干扰下手势检测难",
+          "id": "item-244e53cd4498",
+          "name": "本项目针对地面侦察机器人对视觉手势遥操作控制的现实需求，从目前研究现状中存在的亟待解决的关键问题着手，对全天时复杂背景下",
+          "desc": "本项目针对地面侦察机器人对视觉手势遥操作控制的现实需求，从目前研究现状中存在的亟待解决的关键问题着手，对全天时复杂背景下地面侦察机器人的视觉手势遥操作控制的核心问题展开理论研究。",
           "evidence": [
             {
-              "quote": "首先研究可适应全天时复杂背景的视觉手势的实时鲁棒检测方法和手势姿态的最优估计方法，实现在光照变化、颜色相似、附着物遮挡和纹理干扰下的手势检测与位姿估计",
+              "quote": "本项目针对地面侦察机器人对视觉手势遥操作控制的现实需求，从目前研究现状中存在的亟待解决的关键问题着手，对全天时复杂背景下地面侦察机器人的视觉手势遥操作控制的核心问题展开理论研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 760,
-                "end_char": 834
+                "start_char": 671,
+                "end_char": 759
               },
               "version": "db6950b978dc661a78bd"
             }
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1e1efb114d7b",
-          "name": "错觉轮廓特征筛选",
-          "desc": "极度梯度提升分类器筛选最大区分度特征抗干扰",
+          "id": "item-8707c1f4b8b6",
+          "name": "针对手势姿态估计问题，提出了一种端到端学习基于双视角RGB图像和贝叶斯优化的深度集成学习算法实现了从2D视觉图像估计3D",
+          "desc": "针对手势姿态估计问题，提出了一种端到端学习基于双视角RGB图像和贝叶斯优化的深度集成学习算法实现了从2D视觉图像估计3D手势姿态，还设计了一种基于卡尔曼滤波虚实传感器数据融合的双视角手势姿态标注方法，解决视觉手势姿态数据集高精度标注的难题。",
           "evidence": [
             {
-              "quote": "然后基于极度梯度提升分类器设计了一种视觉手势最大区分度特征筛选方法，抑制了复杂背景中无关纹理对手势检测造成的干扰，解决了全天时复杂环境下的手势检测问题。",
+              "quote": "针对手势姿态估计问题，提出了一种端到端学习基于双视角RGB图像和贝叶斯优化的深度集成学习算法实现了从2D视觉图像估计3D手势姿态，还设计了一种基于卡尔曼滤波虚实传感器数据融合的双视角手势姿态标注方法，解决视觉手势姿态数据集高精度标注的难题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2910,
+                "start_char": 3102,
+                "end_char": 3221
+              },
+              "version": "db6950b978dc661a78bd"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6849b2ad1993",
+          "name": "针对视觉手势遥操作控制技术中的全天时复杂背景下的视觉手势检测问题，首先研究了人类的错觉轮廓视觉特性并设计了一种对光照颜色",
+          "desc": "针对视觉手势遥操作控制技术中的全天时复杂背景下的视觉手势检测问题，首先研究了人类的错觉轮廓视觉特性并设计了一种对光照颜色、纹理等干扰不敏感的视觉特征，然后基于极度梯度提升分类器设计了一种视觉手势最大区分度特征筛选方法，抑制了复杂背景中无关纹理对手势检测造成的干扰，解决了全天时复杂环境下的手势检测问题。",
+          "evidence": [
+            {
+              "quote": "针对视觉手势遥操作控制技术中的全天时复杂背景下的视觉手势检测问题，首先研究了人类的错觉轮廓视觉特性并设计了一种对光照颜色、纹理等干扰不敏感的视觉特征，然后基于极度梯度提升分类器设计了一种视觉手势最大区分度特征筛选方法，抑制了复杂背景中无关纹理对手势检测造成的干扰，解决了全天时复杂环境下的手势检测问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2835,
                 "end_char": 2985
               },
               "version": "db6950b978dc661a78bd"
             }
-          ]
-        },
-        {
-          "id": "item-fe64fb3e5e17",
-          "name": "双视角3D姿态估计",
-          "desc": "端到端深度集成学习从2D图像估计3D手势姿态",
-          "evidence": [
-            {
-              "quote": "提出了一种端到端学习基于双视角RGB图像和贝叶斯优化的深度集成学习算法实现了从2D视觉图像估计3D手势姿态",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3113,
-                "end_char": 3165
-              },
-              "version": "db6950b978dc661a78bd"
-            }
-          ]
-        },
-        {
-          "id": "item-b650ce19cc52",
-          "name": "自抗扰滑模遥操瞄",
-          "desc": "多模型观测器克服非均匀牵引颤振实现快速瞄准",
-          "evidence": [
-            {
-              "quote": "研究并设计了基于多模型观测器的自抗扰滑模控制器，能够使操作人员使用视觉手势快速控制侦察机器人实现对带有随机突变运动特性的机动目标的快速瞄准与跟踪",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3240,
-                "end_char": 3311
-              },
-              "version": "db6950b978dc661a78bd"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +124,348 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d9c97670b66d",
-          "name": "瞬时大残差遥操瞄实现",
-          "desc": "实现惯性冲击干扰瞬时大残差下的快速遥操瞄控制",
+          "id": "item-de19353eaf83",
+          "name": "本项目针对地面侦察机器人对视觉手势遥操作控制的现实需求，从目前研究现状中存在的亟待解决的关键问题着手，对全天时复杂背景下",
+          "desc": "本项目针对地面侦察机器人对视觉手势遥操作控制的现实需求，从目前研究现状中存在的亟待解决的关键问题着手，对全天时复杂背景下地面侦察机器人的视觉手势遥操作控制的核心问题展开理论研究。",
           "evidence": [
             {
-              "quote": "实现惯性冲击力干扰导致的瞬时大残差情况下的快速遥操瞄控制。",
+              "quote": "本项目针对地面侦察机器人对视觉手势遥操作控制的现实需求，从目前研究现状中存在的亟待解决的关键问题着手，对全天时复杂背景下地面侦察机器人的视觉手势遥操作控制的核心问题展开理论研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3366,
-                "end_char": 3394
+                "start_char": 671,
+                "end_char": 759
               },
               "version": "db6950b978dc661a78bd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-651611e66b8c",
+          "name": "视觉手势遥操作控制技术对降低侦察机器人的操作复杂度，提升人机协作执行军事任务的效率，实现更自然的人机共融和人机协作具有重",
+          "desc": "视觉手势遥操作控制技术对降低侦察机器人的操作复杂度，提升人机协作执行军事任务的效率，实现更自然的人机共融和人机协作具有重要意义。",
+          "evidence": [
+            {
+              "quote": "视觉手势遥操作控制技术对降低侦察机器人的操作复杂度，提升人机协作执行军事任务的效率，实现更自然的人机共融和人机协作具有重要意义。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2771,
+                "end_char": 2834
+              },
+              "version": "db6950b978dc661a78bd"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-517fa83aa8ee"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f8d8ae88578c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于可穿戴视觉的机器人视觉跟踪控制系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8740c24496a",
+      "evidence": [
+        {
+          "quote": "基于可穿戴视觉的机器人视觉跟踪控制系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3538,
+            "end_char": 3561
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f8d8ae88578c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1e1efb114d7b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Active Disturbance Rejection Terminal Sliding Mode Control for Tele-Aiming Robot System Using Multiple-Model Kalman Observers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3870ee01462d",
+      "evidence": [
+        {
+          "quote": "Active Disturbance Rejection Terminal Sliding Mode Control for Tele-Aiming Robot System Using Multiple-Model Kalman Observers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3597,
+            "end_char": 3721
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f8d8ae88578c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fe64fb3e5e17"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A 3D Hand Attitude Estimation Method for Fixed Hand Posture Based on Dual-View RGB Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24ac2f33272c",
+      "evidence": [
+        {
+          "quote": "A 3D Hand Attitude Estimation Method for Fixed Hand Posture Based on Dual-View RGB Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3789,
+            "end_char": 3877
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f8d8ae88578c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b650ce19cc52"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Terminal Traction Control of Teleoperation Manipulator With Random Jitter Disturbance Based on Active Disturbance Rejection Sliding Mode Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-656389ced8b8",
+      "evidence": [
+        {
+          "quote": "Terminal Traction Control of Teleoperation Manipulator With Random Jitter Disturbance Based on Active Disturbance Rejection Sliding Mode Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3952,
+            "end_char": 4095
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b650ce19cc52"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d9c97670b66d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gesture Position Detection Based on Generative Adversarial Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fdbc1442d16a",
+      "evidence": [
+        {
+          "quote": "Gesture Position Detection Based on Generative Adversarial Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4138,
+            "end_char": 4204
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fe64fb3e5e17"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d9c97670b66d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种非均匀牵引力机械臂末端牵引遥操作控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3cd2f8fd255a",
+      "evidence": [
+        {
+          "quote": "一种非均匀牵引力机械臂末端牵引遥操作控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4250,
+            "end_char": 4271
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于双目视觉的地面侦察机器人手势控制系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a806868d5d4",
+      "evidence": [
+        {
+          "quote": "基于双目视觉的地面侦察机器人手势控制系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4301,
+            "end_char": 4325
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多视角图像的手势姿态预测方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd62d4499e9c",
+      "evidence": [
+        {
+          "quote": "基于多视角图像的手势姿态预测方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4359,
+            "end_char": 4377
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于卡尔曼滤波和深度学习的手势姿态估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f8c5298f41e6",
+      "evidence": [
+        {
+          "quote": "一种基于卡尔曼滤波和深度学习的手势姿态估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4411,
+            "end_char": 4433
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tele-aiming control design for reconnaissance robot using a strong tracking multi-model extended super-twisting observer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eefccd16d0ce",
+      "evidence": [
+        {
+          "quote": "Tele-aiming control design for reconnaissance robot using a strong tracking multi-model extended super-twisting observer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4466,
+            "end_char": 4585
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于可穿戴设备的移动机器人控制系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b61527b120cc",
+      "evidence": [
+        {
+          "quote": "基于可穿戴设备的移动机器人控制系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4642,
+            "end_char": 4663
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "End-to-end training of convolutional neural network for 3D hand pose estimation in dual-view RGB image",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5dca62f9892",
+      "evidence": [
+        {
+          "quote": "End-to-end training of convolutional neural network for 3D hand pose estimation in dual-view RGB image",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4696,
+            "end_char": 4797
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sliding Mode Control of Manipulator Based on Improved Reaching Law and Sliding Surface",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-60c0ca4c8990",
+      "evidence": [
+        {
+          "quote": "Sliding Mode Control of Manipulator Based on Improved Reaching Law and Sliding Surface",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4846,
+            "end_char": 4931
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视觉特征的指尖检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6224bf35e676",
+      "evidence": [
+        {
+          "quote": "一种基于视觉特征的指尖检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4977,
+            "end_char": 4991
+          },
+          "version": "db6950b978dc661a78bd"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

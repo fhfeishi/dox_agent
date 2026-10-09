@@ -2,15 +2,20 @@
   "doc_id": "a8955746908c3eced1c2",
   "version": "4576577ffbc0cdc440e3",
   "source_hash": "83c8681304c48adfc0139f41b32af99cd993bc434565c14bbc4af52b178c94e3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:28:42.578762+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.140751+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-24497f232802",
-          "name": "无人机LiDAR点云解译",
-          "desc": "测量与制图、大规模城市场景重建等领域的高分辨率三维点云解译",
+          "id": "item-1b7194b31cdc",
+          "name": "无人机LiDAR系统获取的高分辨率三维点云，在测量与制图、大规模城市场景重建等领域具有越来越明显的优势。",
+          "desc": "无人机LiDAR系统获取的高分辨率三维点云，在测量与制图、大规模城市场景重建等领域具有越来越明显的优势。",
           "evidence": [
             {
-              "quote": "无人机LiDAR系统获取的高分辨率三维点云，在测量与制图、大规模城市场景重建等领域具有越来越明显的优势",
+              "quote": "无人机LiDAR系统获取的高分辨率三维点云，在测量与制图、大规模城市场景重建等领域具有越来越明显的优势。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 665,
-                "end_char": 715
+                "end_char": 716
+              },
+              "version": "4576577ffbc0cdc440e3"
+            }
+          ]
+        },
+        {
+          "id": "item-38c938cbba49",
+          "name": "本课题的研究成果有望为地图制图的智能化提供新的理论支撑，预期在基础测绘、智慧城市等领域将具有广泛的应用前景。",
+          "desc": "本课题的研究成果有望为地图制图的智能化提供新的理论支撑，预期在基础测绘、智慧城市等领域将具有广泛的应用前景。",
+          "evidence": [
+            {
+              "quote": "本课题的研究成果有望为地图制图的智能化提供新的理论支撑，预期在基础测绘、智慧城市等领域将具有广泛的应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 986,
+                "end_char": 1039
               },
               "version": "4576577ffbc0cdc440e3"
             }
@@ -38,93 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f1c555291dbb",
-          "name": "先验知识与深度学习耦合难",
-          "desc": "地物知识如何抽取、量化、推理，以及先验知识如何同点云深度学习相互耦合",
-          "evidence": [
-            {
-              "quote": "其关键问题在于地物知识如何抽取、量化、推理，以及先验知识如何同点云深度学习相互耦合",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 766,
-                "end_char": 806
-              },
-              "version": "4576577ffbc0cdc440e3"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-2bf524b7dbc6",
-          "name": "地物知识图谱构建",
-          "desc": "实现多维度先验关联的知识表达",
+          "id": "item-1df740847a4c",
+          "name": "为此，本项目拟重点研究多维度关联的地物知识图谱构建方法、融合知识图谱和深度学习的多尺度地物候选目标检测方法，基于可变图卷",
+          "desc": "为此，本项目拟重点研究多维度关联的地物知识图谱构建方法、融合知识图谱和深度学习的多尺度地物候选目标检测方法，基于可变图卷积的地物单体化语义分割方法，以及基于条件生成式对抗网络的地物轮廓提取方法。",
           "evidence": [
             {
-              "quote": "第一，构建地物知识图谱，实现多维度先验关联的知识表达",
+              "quote": "为此，本项目拟重点研究多维度关联的地物知识图谱构建方法、融合知识图谱和深度学习的多尺度地物候选目标检测方法，基于可变图卷积的地物单体化语义分割方法，以及基于条件生成式对抗网络的地物轮廓提取方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2760,
-                "end_char": 2785
+                "start_char": 808,
+                "end_char": 904
               },
               "version": "4576577ffbc0cdc440e3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3c123e1fdbd7",
-          "name": "三维超体素卷积网络",
-          "desc": "融合知识图谱实现地物候选目标的快速检测",
+          "id": "item-49ef6ded6154",
+          "name": "第二，设计三维超体素卷积网络，融合知识图谱实现地物候选目标的快速检测；",
+          "desc": "第二，设计三维超体素卷积网络，融合知识图谱实现地物候选目标的快速检测；",
           "evidence": [
             {
-              "quote": "第二，设计三维超体素卷积网络，融合知识图谱实现地物候选目标的快速检测",
+              "quote": "第二，设计三维超体素卷积网络，融合知识图谱实现地物候选目标的快速检测；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2787,
-                "end_char": 2820
+                "end_char": 2821
               },
               "version": "4576577ffbc0cdc440e3"
             }
-          ]
-        },
-        {
-          "id": "item-9802cb898750",
-          "name": "三维可变图卷积网络",
-          "desc": "实现典型地物单体化语义分割",
-          "evidence": [
-            {
-              "quote": "第三，设计三维可变图卷积网络，实现典型地物单体化语义分割",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2822,
-                "end_char": 2849
-              },
-              "version": "4576577ffbc0cdc440e3"
-            }
-          ]
-        },
-        {
-          "id": "item-10f6c9d25049",
-          "name": "3D-2D生成式对抗网络",
-          "desc": "实现建筑物、道路等典型地物外轮廓的自动提取",
-          "evidence": [
-            {
-              "quote": "第四，构建 3D-2D 生成式对抗网络，实现了建筑物、道路等典型地物外轮廓的自动提取",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2851,
-                "end_char": 2892
-              },
-              "version": "4576577ffbc0cdc440e3"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,80 +107,713 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c030b5cef42f",
-          "name": "学术论文27篇",
-          "desc": "发表学术论文27篇，其中SCI JCR一区9篇、二区3篇，获批发明专利3项",
+          "id": "item-c10579626e6d",
+          "name": "无人机LiDAR系统获取的高分辨率三维点云，在测量与制图、大规模城市场景重建等领域具有越来越明显的优势。",
+          "desc": "无人机LiDAR系统获取的高分辨率三维点云，在测量与制图、大规模城市场景重建等领域具有越来越明显的优势。",
           "evidence": [
             {
-              "quote": "研究成果发表了学术论文27篇（其中SCI JCR一区9篇，SCI JCR二区3篇），相关成果已经发表在遥感领域顶级国际期刊ISPRS JPRS、IEEE TGRS、JAG以及遥感国际会议IGARSS上。获批发明专利3项",
+              "quote": "无人机LiDAR系统获取的高分辨率三维点云，在测量与制图、大规模城市场景重建等领域具有越来越明显的优势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2894,
-                "end_char": 3002
+                "start_char": 665,
+                "end_char": 716
               },
               "version": "4576577ffbc0cdc440e3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-24497f232802"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f1c555291dbb"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Multiple Encoders Network for Stroke Lesion Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4bdac2ac35fc",
+      "evidence": [
+        {
+          "quote": "A Multiple Encoders Network for Stroke Lesion Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3121,
+            "end_char": 3178
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f1c555291dbb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2bf524b7dbc6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Unsupervised Cluster Guided Object Detection in Aerial Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1112bca0b5db",
+      "evidence": [
+        {
+          "quote": "Unsupervised Cluster Guided Object Detection in Aerial Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3270,
+            "end_char": 3330
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f1c555291dbb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3c123e1fdbd7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "HEAT: Incorporating hierarchical enhanced attention transformation into urban road detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0b71e940cb3",
+      "evidence": [
+        {
+          "quote": "HEAT: Incorporating hierarchical enhanced attention transformation into urban road detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3442,
+            "end_char": 3533
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9802cb898750"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c030b5cef42f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Point Cloud Semantic Segmentation Network Based on Multi-Scale Feature Fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f46bd5ef33f",
+      "evidence": [
+        {
+          "quote": "Point Cloud Semantic Segmentation Network Based on Multi-Scale Feature Fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3622,
+            "end_char": 3698
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-10f6c9d25049"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c030b5cef42f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Knowledge-Driven Network for Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9351027e5b51",
+      "evidence": [
+        {
+          "quote": "Knowledge-Driven Network for Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3806,
+            "end_char": 3850
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CAT: Using Cross Attention Transformation to Build Correlation of RGB-D for Road Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b10111480dd",
+      "evidence": [
+        {
+          "quote": "CAT: Using Cross Attention Transformation to Build Correlation of RGB-D for Road Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3954,
+            "end_char": 4043
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3-D HANet: A Flexible 3-D Heatmap Auxiliary Network for Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7237c564228d",
+      "evidence": [
+        {
+          "quote": "3-D HANet: A Flexible 3-D Heatmap Auxiliary Network for Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4143,
+            "end_char": 4214
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Remote sensing image registration based on local affine constraint with circle descriptor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-112456c3b929",
+      "evidence": [
+        {
+          "quote": "Remote sensing image registration based on local affine constraint with circle descriptor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4309,
+            "end_char": 4397
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "点云分类方法和装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5732edebf52b",
+      "evidence": [
+        {
+          "quote": "点云分类方法和装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4488,
+            "end_char": 4496
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-layer Pointpillars: Multi-layer Feature Abstraction for Object Detection from Point Cloud",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ec6d325c9e9",
+      "evidence": [
+        {
+          "quote": "Multi-layer Pointpillars: Multi-layer Feature Abstraction for Object Detection from Point Cloud",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4540,
+            "end_char": 4634
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种人体表面重建方法、终端设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2dc4cce22a9d",
+      "evidence": [
+        {
+          "quote": "一种人体表面重建方法、终端设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4731,
+            "end_char": 4750
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AAEE‐Net: Attention‐guided aggregation and error‐aware enhancement network for accurate and efficient stereo matching",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-962e002be5f0",
+      "evidence": [
+        {
+          "quote": "AAEE‐Net: Attention‐guided aggregation and error‐aware enhancement network for accurate and efficient stereo matching",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4789,
+            "end_char": 4905
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "目标检测方法和装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f4673610f2c",
+      "evidence": [
+        {
+          "quote": "目标检测方法和装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4965,
+            "end_char": 4973
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种三维人体语义分割方法、终端设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-122e46d0206d",
+      "evidence": [
+        {
+          "quote": "一种三维人体语义分割方法、终端设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5018,
+            "end_char": 5039
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SSA3D: Semantic Segmentation Assisted One-Stage Three-Dimensional Vehicle Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-42d5c35c68f9",
+      "evidence": [
+        {
+          "quote": "SSA3D: Semantic Segmentation Assisted One-Stage Three-Dimensional Vehicle Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5066,
+            "end_char": 5155
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An efficient tea quality classification algorithm based on near infrared spectroscopy and random Forest",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca9c860934c8",
+      "evidence": [
+        {
+          "quote": "An efficient tea quality classification algorithm based on near infrared spectroscopy and random Forest",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5236,
+            "end_char": 5338
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantic-guided 3D building reconstruction from triangle meshes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35fa942e0c48",
+      "evidence": [
+        {
+          "quote": "Semantic-guided 3D building reconstruction from triangle meshes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5412,
+            "end_char": 5474
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "FECC-Net: A Novel Feature Enhancement and Context Capture Network Based on Brain MRI Images for Lesion Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ff4e3d99fe5",
+      "evidence": [
+        {
+          "quote": "FECC-Net: A Novel Feature Enhancement and Context Capture Network Based on Brain MRI Images for Lesion Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5591,
+            "end_char": 5705
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Convolution without multiplication: A general speed up strategy for CNNs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c06efe4e68d",
+      "evidence": [
+        {
+          "quote": "Convolution without multiplication: A general speed up strategy for CNNs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5774,
+            "end_char": 5845
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "面向公共安全的城市高低空信息融合与增强现实防控系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c1cd551383d0",
+      "evidence": [
+        {
+          "quote": "面向公共安全的城市高低空信息融合与增强现实防控系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5957,
+            "end_char": 5981
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep 3D caricature face generation with identity and structure consistency",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d27a6e50fb68",
+      "evidence": [
+        {
+          "quote": "Deep 3D caricature face generation with identity and structure consistency",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6014,
+            "end_char": 6087
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Convertible Sparse Convolution for Point Cloud Instace Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed6404e31147",
+      "evidence": [
+        {
+          "quote": "Convertible Sparse Convolution for Point Cloud Instace Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6152,
+            "end_char": 6218
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GLE-Net: A Global and Local Ensemble Network for Aerial Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b056f7aa9b7",
+      "evidence": [
+        {
+          "quote": "GLE-Net: A Global and Local Ensemble Network for Aerial Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6286,
+            "end_char": 6357
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ResDLPS-Net: Joint residual-dense optimization for large-scale point cloud  semantic segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0352bbd4f088",
+      "evidence": [
+        {
+          "quote": "ResDLPS-Net: Joint residual-dense optimization for large-scale point cloud  semantic segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6440,
+            "end_char": 6536
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3DSAC: Size Adaptive Clustering for 3D object detection in point clouds",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a491b3faf34",
+      "evidence": [
+        {
+          "quote": "3DSAC: Size Adaptive Clustering for 3D object detection in point clouds",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6652,
+            "end_char": 6722
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Scale Cascade Guided Object Detection in Aerial Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-530bd69d0e7c",
+      "evidence": [
+        {
+          "quote": "Multi-Scale Cascade Guided Object Detection in Aerial Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6804,
+            "end_char": 6863
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "人体三维信息获取方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c3e4d05ad97",
+      "evidence": [
+        {
+          "quote": "人体三维信息获取方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6934,
+            "end_char": 6946
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust 3D reconstruction of building surfaces from point clouds based on structural and closed constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-89b549362d44",
+      "evidence": [
+        {
+          "quote": "Robust 3D reconstruction of building surfaces from point clouds based on structural and closed constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6977,
+            "end_char": 7082
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "面向边缘感知的轻量化三维数字底座及产业化应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-32c33d5ed213",
+      "evidence": [
+        {
+          "quote": "面向边缘感知的轻量化三维数字底座及产业化应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7203,
+            "end_char": 7224
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ground Camera Image and Large-Scale 3-D Image-Based Point Cloud Registration Based on Learning Domain Invariant Feature Descriptors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f3f29cce7ee3",
+      "evidence": [
+        {
+          "quote": "Ground Camera Image and Large-Scale 3-D Image-Based Point Cloud Registration Based on Learning Domain Invariant Feature Descriptors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7270,
+            "end_char": 7400
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种点云的语义分割方法、装置及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-56538f669716",
+      "evidence": [
+        {
+          "quote": "一种点云的语义分割方法、装置及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7520,
+            "end_char": 7538
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Connectivity-aware Graph: A planar topology for 3D building surface reconstruction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-753924a0e2bc",
+      "evidence": [
+        {
+          "quote": "Connectivity-aware Graph: A planar topology for 3D building surface reconstruction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7577,
+            "end_char": 7658
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "三维人体重建方法、装置、计算机设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8986d0b3b5da",
+      "evidence": [
+        {
+          "quote": "三维人体重建方法、装置、计算机设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7761,
+            "end_char": 7782
+          },
+          "version": "4576577ffbc0cdc440e3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 33,
+    "listed": 33,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

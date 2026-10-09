@@ -2,15 +2,20 @@
   "doc_id": "f91729dcf831e2fba29c",
   "version": "21e52268d455666610b2",
   "source_hash": "d46c384b0b0e6c79d14338a3f46a22991e3892c1d9daa650c293846827ae6fbb",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:29.421474+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.907363+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fbf65f15e7a4",
-          "name": "航空弱刚性结构装配",
-          "desc": "飞机构件弱刚性结构件装配的共融协作",
+          "id": "item-516b78e4e132",
+          "name": "飞机构件中弱刚性结构件的装配质量与装配效率直接影响飞行性能与研制周期。",
+          "desc": "飞机构件中弱刚性结构件的装配质量与装配效率直接影响飞行性能与研制周期。",
           "evidence": [
             {
-              "quote": "航空弱刚性结构件的装配是航空制造工业中的关键环节，其质量与效率直接影响飞行器的性能与研制成本。",
+              "quote": "飞机构件中弱刚性结构件的装配质量与装配效率直接影响飞行性能与研制周期。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2848,
-                "end_char": 2894
+                "start_char": 663,
+                "end_char": 697
               },
               "version": "21e52268d455666610b2"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f5c6f00904cb",
-          "name": "形变抑制难对准难",
-          "desc": "形变抑制难、对准难度大、装调效率低",
+          "id": "item-21a03580c388",
+          "name": "这类弱刚性结构件具有质量大、刚性低、易变形等特征，传统装配方式普遍面临形变抑制难、精准对位困难以及作业效率低下等挑战。",
+          "desc": "这类弱刚性结构件具有质量大、刚性低、易变形等特征，传统装配方式普遍面临形变抑制难、精准对位困难以及作业效率低下等挑战。",
           "evidence": [
             {
-              "quote": "针对弱刚性结构装配过程中存在的形变抑制难、对准难度大、装调效率低等问题，本项目创新地提出了一种融合人类智能与多机器人协作的人-多机共融协作范式。",
+              "quote": "这类弱刚性结构件具有质量大、刚性低、易变形等特征，传统装配方式普遍面临形变抑制难、精准对位困难以及作业效率低下等挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 698,
-                "end_char": 769
+                "start_char": 2895,
+                "end_char": 2953
               },
               "version": "21e52268d455666610b2"
             }
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-573b3178c9e5",
-          "name": "刚-柔-软共融协调模型",
-          "desc": "内外力交互机理建模与平稳顺应性协调策略",
+          "id": "item-fae83fe79aaf",
+          "name": "针对接触装配中多源力约束、轨迹及工艺要求等复杂条件，提出基于末端力感知的接触状态辨识方法与基于有限状态机的装配流程切换策",
+          "desc": "针对接触装配中多源力约束、轨迹及工艺要求等复杂条件，提出基于末端力感知的接触状态辨识方法与基于有限状态机的装配流程切换策略，进而通过对称式自适应变导纳内外环力位混合控制，达成多机器人的高效柔顺协调装配。",
           "evidence": [
             {
-              "quote": "首先剖析“多机器人（刚）-弱刚性结构（柔）-人（软）”这一复杂系统内外力交互机理，构建其共融协调模型；结合弱刚性结构件的运动动力学特性与人类牵引意图，设计“刚-柔-软”三者间的平稳顺应性协调策略",
+              "quote": "针对接触装配中多源力约束、轨迹及工艺要求等复杂条件，提出基于末端力感知的接触状态辨识方法与基于有限状态机的装配流程切换策略，进而通过对称式自适应变导纳内外环力位混合控制，达成多机器人的高效柔顺协调装配。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3021,
-                "end_char": 3117
-              },
-              "version": "21e52268d455666610b2"
-            }
-          ]
-        },
-        {
-          "id": "item-f3f52831c44f",
-          "name": "自适应变导纳力位混合",
-          "desc": "对称式自适应变导纳内外环力位混合控制",
-          "evidence": [
-            {
-              "quote": "进而通过对称式自适应变导纳内外环力位混合控制，达成多机器人的高效柔顺协调装配。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3210,
+                "start_char": 3148,
                 "end_char": 3248
               },
               "version": "21e52268d455666610b2"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0bc00dc4298c",
+          "name": "分析“多机器人（刚）-弱刚性结构（柔）-人（软）”系统复杂的共融协作关系，研究其力作用机理并构建共融协调模型；",
+          "desc": "分析“多机器人（刚）-弱刚性结构（柔）-人（软）”系统复杂的共融协作关系，研究其力作用机理并构建共融协调模型；",
+          "evidence": [
+            {
+              "quote": "分析“多机器人（刚）-弱刚性结构（柔）-人（软）”系统复杂的共融协作关系，研究其力作用机理并构建共融协调模型；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 770,
+                "end_char": 824
+              },
+              "version": "21e52268d455666610b2"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +108,332 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ae33132ede81",
-          "name": "xMate多机器人平台",
-          "desc": "搭建珞石xMate ER3 Pro多机器人实验平台实验验证",
+          "id": "item-a1d987c8f2d1",
+          "name": "飞机构件中弱刚性结构件的装配质量与装配效率直接影响飞行性能与研制周期。",
+          "desc": "飞机构件中弱刚性结构件的装配质量与装配效率直接影响飞行性能与研制周期。",
           "evidence": [
             {
-              "quote": "为验证所提方法的可行性，项目搭建了以珞石 xMate ER3 Pro为核心的多机器人实验平台，集成六维力传感器与柔性夹持单元，通过多组实验证明了该方法的有效性。",
+              "quote": "飞机构件中弱刚性结构件的装配质量与装配效率直接影响飞行性能与研制周期。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3249,
-                "end_char": 3328
+                "start_char": 663,
+                "end_char": 697
               },
               "version": "21e52268d455666610b2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-d1700802c0cc",
-          "name": "论文12篇专利3项",
-          "desc": "论文12篇（SCI 5、EI 5）、发明专利3项、论著2部",
+          "id": "item-264cf5a9c3b3",
+          "name": "航空弱刚性结构件的装配是航空制造工业中的关键环节，其质量与效率直接影响飞行器的性能与研制成本。",
+          "desc": "航空弱刚性结构件的装配是航空制造工业中的关键环节，其质量与效率直接影响飞行器的性能与研制成本。",
           "evidence": [
             {
-              "quote": "研究期间已发表论文12篇，其中期刊论文9篇（5篇SCI，2篇EI），会议论文3篇（EI收录），授权发明专利 3 项，出版论著2部",
+              "quote": "航空弱刚性结构件的装配是航空制造工业中的关键环节，其质量与效率直接影响飞行器的性能与研制成本。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3329,
-                "end_char": 3392
+                "start_char": 2848,
+                "end_char": 2894
               },
               "version": "21e52268d455666610b2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fbf65f15e7a4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f5c6f00904cb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于遥操机器人的医疗超声检测系统设计与实现",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e3ac86d2d0d",
+      "evidence": [
+        {
+          "quote": "基于遥操机器人的医疗超声检测系统设计与实现",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3482,
+            "end_char": 3502
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f5c6f00904cb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-573b3178c9e5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Aviation Plug Regrasping Strategy Fused with Prior Knowledge Perception for Dual-Arm Collaborative Assembly Task",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1314fa175b6e",
+      "evidence": [
+        {
+          "quote": "An Aviation Plug Regrasping Strategy Fused with Prior Knowledge Perception for Dual-Arm Collaborative Assembly Task",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3547,
+            "end_char": 3661
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f5c6f00904cb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f3f52831c44f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向协调类任务的双臂机器人主从统一导纳控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29a5372d4826",
+      "evidence": [
+        {
+          "quote": "一种面向协调类任务的双臂机器人主从统一导纳控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3753,
+            "end_char": 3777
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f3f52831c44f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ae33132ede81"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enabling Physical Human/Dual-Arm Collaboration to Resist Random Impacts: An Improved Shear-Thickening Fluid Controller(已录用,待发表)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a7f346f6218",
+      "evidence": [
+        {
+          "quote": "Enabling Physical Human/Dual-Arm Collaboration to Resist Random Impacts: An Improved Shear-Thickening Fluid Controller(已录用,待发表)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3819,
+            "end_char": 3945
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-573b3178c9e5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d1700802c0cc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A compliant teleoperation control method based on real-time dynamic impact force feedback and operator-sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0580543f1309",
+      "evidence": [
+        {
+          "quote": "A compliant teleoperation control method based on real-time dynamic impact force feedback and operator-sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4073,
+            "end_char": 4182
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robotic manipulation framework based on semantic keypoints for packing shoes of different sizes, shapes, and softness☆",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-00291b80d25e",
+      "evidence": [
+        {
+          "quote": "Robotic manipulation framework based on semantic keypoints for packing shoes of different sizes, shapes, and softness☆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4267,
+            "end_char": 4384
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An automatic robot polishing control method for compound surface comprising plane and curved surfaces",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f5c2342e18f",
+      "evidence": [
+        {
+          "quote": "An automatic robot polishing control method for compound surface comprising plane and curved surfaces",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4451,
+            "end_char": 4551
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Constant Force Tracking Strategy for Complex Surface Robots Fused with NURBS Speed Planning and Teaching/Learning Mode",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb083459b459",
+      "evidence": [
+        {
+          "quote": "A Constant Force Tracking Strategy for Complex Surface Robots Fused with NURBS Speed Planning and Teaching/Learning Mode",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4606,
+            "end_char": 4725
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于视/ 力多源信息融合的机器人精密装配研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3844c20ffa13",
+      "evidence": [
+        {
+          "quote": "基于视/ 力多源信息融合的机器人精密装配研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4816,
+            "end_char": 4837
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Experimental Study of Robotic Polishing Process for Complex Violin Surface",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-145f62530ad0",
+      "evidence": [
+        {
+          "quote": "Experimental Study of Robotic Polishing Process for Complex Violin Surface",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4879,
+            "end_char": 4952
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "拟人运动方法、基于拟人运动模型的拟人运动方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-60a38745d3ca",
+      "evidence": [
+        {
+          "quote": "拟人运动方法、基于拟人运动模型的拟人运动方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5019,
+            "end_char": 5040
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "机器人柔顺控制技术精解与工程实践",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-39668599b76a",
+      "evidence": [
+        {
+          "quote": "机器人柔顺控制技术精解与工程实践",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5073,
+            "end_char": 5088
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Controlling Robotic Contact Force on Curved and Complex Surfaces Based on an Online Identification Admittance Controller",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc0e0773b1c8",
+      "evidence": [
+        {
+          "quote": "Controlling Robotic Contact Force on Curved and Complex Surfaces Based on an Online Identification Admittance Controller",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5111,
+            "end_char": 5230
+          },
+          "version": "21e52268d455666610b2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

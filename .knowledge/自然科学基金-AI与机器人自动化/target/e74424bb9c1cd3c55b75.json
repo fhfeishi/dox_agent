@@ -2,15 +2,20 @@
   "doc_id": "e74424bb9c1cd3c55b75",
   "version": "b09fc9d7de8c04ecf340",
   "source_hash": "2573effbada4ff55db0eb4d603afadae182c5a78a394a52d4c9e0272c1d60f6f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:43:09.922705+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.748367+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-afef17a98135",
-          "name": "可视度受限机器人作业",
-          "desc": "复杂工业、灾难救援、地下探测、军事应用等高危作业场景",
+          "id": "item-63397485b081",
+          "name": "光照多变、烟/雾/霾/尘干扰等引起的可视度受限是复杂工业、灾难救援、地下探测、军事应用等机器人高危作业和特殊服役场景面临",
+          "desc": "光照多变、烟/雾/霾/尘干扰等引起的可视度受限是复杂工业、灾难救援、地下探测、军事应用等机器人高危作业和特殊服役场景面临的共性难题，机器人在上述环境中的鲁棒感知与安全作业面临极大挑战。",
           "evidence": [
             {
-              "quote": "光照多变、烟/雾/霾/尘干扰等引起的可视度受限是复杂工业、灾难救援、地下探测、军事应用等机器人高危作业和特殊服役场景面临的共性难题",
+              "quote": "光照多变、烟/雾/霾/尘干扰等引起的可视度受限是复杂工业、灾难救援、地下探测、军事应用等机器人高危作业和特殊服役场景面临的共性难题，机器人在上述环境中的鲁棒感知与安全作业面临极大挑战。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 667,
-                "end_char": 731
+                "end_char": 758
+              },
+              "version": "b09fc9d7de8c04ecf340"
+            }
+          ]
+        },
+        {
+          "id": "item-a6ff0fb763a8",
+          "name": ".本项目在跨光谱多模态信息自适应融合的移动机器人鲁棒定位、基于跨光谱多模态信息的目标识别、物体检测与场景理解、开放环境下",
+          "desc": ".本项目在跨光谱多模态信息自适应融合的移动机器人鲁棒定位、基于跨光谱多模态信息的目标识别、物体检测与场景理解、开放环境下的机器人增量与持续学习、复杂环境的多层次地图构建等方面提出了新的理论方法与关键技术，研究成果在可视度受限环境下的移动机器人巡检与导航、电力场景下的目标检测与识别等方面具有重要应用价值，同时也为具有持续学习能力的具身智能、恶劣天气下的无人驾驶等关键领域提供了较好的技术参考。",
+          "evidence": [
+            {
+              "quote": ".本项目在跨光谱多模态信息自适应融合的移动机器人鲁棒定位、基于跨光谱多模态信息的目标识别、物体检测与场景理解、开放环境下的机器人增量与持续学习、复杂环境的多层次地图构建等方面提出了新的理论方法与关键技术，研究成果在可视度受限环境下的移动机器人巡检与导航、电力场景下的目标检测与识别等方面具有重要应用价值，同时也为具有持续学习能力的具身智能、恶劣天气下的无人驾驶等关键领域提供了较好的技术参考。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3537,
+                "end_char": 3732
               },
               "version": "b09fc9d7de8c04ecf340"
             }
@@ -38,93 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-50a3fc5fe81c",
-          "name": "可视度受限感知难",
-          "desc": "可视度受限环境中机器人的鲁棒感知与安全作业面临极大挑战",
-          "evidence": [
-            {
-              "quote": "机器人在上述环境中的鲁棒感知与安全作业面临极大挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 733,
-                "end_char": 757
-              },
-              "version": "b09fc9d7de8c04ecf340"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-20223fb3a45d",
-          "name": "跨光谱紧耦合定位",
-          "desc": "在线自标定的跨光谱多传感器-惯导紧耦合的机器人运动估计理论方法",
+          "id": "item-f400dfb14ad7",
+          "name": "其次，针对跨光谱多传感信息的互补特性，设计了基于互信息的热成像与可见光跨光谱图像配准增强算法和基于跨模态互补学习的红外与",
+          "desc": "其次，针对跨光谱多传感信息的互补特性，设计了基于互信息的热成像与可见光跨光谱图像配准增强算法和基于跨模态互补学习的红外与可见光图像融合增强方法，以及基于可见光、红外和激光雷达的“环境-场景-目标”多层次语义信息识别与认知方法，并针对开放环境，提出了支持新模态在线学习的可扩展认知发育方法和基于批量自组织记忆神经网络的持续监督学习方法，实现了复杂、开放条件下的人-机协作环境理解与场景认知；",
           "evidence": [
             {
-              "quote": "建立了在线自标定的跨光谱多传感器-惯导紧耦合的机器人运动估计理论方法，对点、线、面特征的不确定性和位姿约束进行严格分析",
+              "quote": "其次，针对跨光谱多传感信息的互补特性，设计了基于互信息的热成像与可见光跨光谱图像配准增强算法和基于跨模态互补学习的红外与可见光图像融合增强方法，以及基于可见光、红外和激光雷达的“环境-场景-目标”多层次语义信息识别与认知方法，并针对开放环境，提出了支持新模态在线学习的可扩展认知发育方法和基于批量自组织记忆神经网络的持续监督学习方法，实现了复杂、开放条件下的人-机协作环境理解与场景认知；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3158,
-                "end_char": 3216
+                "start_char": 3265,
+                "end_char": 3458
               },
               "version": "b09fc9d7de8c04ecf340"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7d105391df30",
-          "name": "跨光谱融合增强",
-          "desc": "基于互信息的热成像与可见光跨光谱图像配准增强算法与跨模态互补学习融合方法",
+          "id": "item-f36d50ee525e",
+          "name": ".本项目在跨光谱多模态信息自适应融合的移动机器人鲁棒定位、基于跨光谱多模态信息的目标识别、物体检测与场景理解、开放环境下",
+          "desc": ".本项目在跨光谱多模态信息自适应融合的移动机器人鲁棒定位、基于跨光谱多模态信息的目标识别、物体检测与场景理解、开放环境下的机器人增量与持续学习、复杂环境的多层次地图构建等方面提出了新的理论方法与关键技术，研究成果在可视度受限环境下的移动机器人巡检与导航、电力场景下的目标检测与识别等方面具有重要应用价值，同时也为具有持续学习能力的具身智能、恶劣天气下的无人驾驶等关键领域提供了较好的技术参考。",
           "evidence": [
             {
-              "quote": "设计了基于互信息的热成像与可见光跨光谱图像配准增强算法和基于跨模态互补学习的红外与可见光图像融合增强方法",
+              "quote": ".本项目在跨光谱多模态信息自适应融合的移动机器人鲁棒定位、基于跨光谱多模态信息的目标识别、物体检测与场景理解、开放环境下的机器人增量与持续学习、复杂环境的多层次地图构建等方面提出了新的理论方法与关键技术，研究成果在可视度受限环境下的移动机器人巡检与导航、电力场景下的目标检测与识别等方面具有重要应用价值，同时也为具有持续学习能力的具身智能、恶劣天气下的无人驾驶等关键领域提供了较好的技术参考。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3284,
-                "end_char": 3335
+                "start_char": 3537,
+                "end_char": 3732
               },
               "version": "b09fc9d7de8c04ecf340"
             }
-          ]
-        },
-        {
-          "id": "item-cecf21b2d990",
-          "name": "多层次语义认知",
-          "desc": "基于可见光、红外和激光雷达的“环境-场景-目标”多层次语义信息识别与认知方法",
-          "evidence": [
-            {
-              "quote": "以及基于可见光、红外和激光雷达的“环境-场景-目标”多层次语义信息识别与认知方法，并针对开放环境，提出了支持新模态在线学习的可扩展认知发育方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3337,
-                "end_char": 3407
-              },
-              "version": "b09fc9d7de8c04ecf340"
-            }
-          ]
-        },
-        {
-          "id": "item-361948eb5f34",
-          "name": "多要素联合建图",
-          "desc": "“尺度-温度-语义”多要素信息联合优化的环境建图方法，构建多层次全局混合地图",
-          "evidence": [
-            {
-              "quote": "提出了“尺度-温度-语义”多要素信息联合优化的环境建图方法，构建了多层次全局混合地图",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3462,
-                "end_char": 3503
-              },
-              "version": "b09fc9d7de8c04ecf340"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,91 +107,1413 @@
       "state": "has",
       "items": [
         {
-          "id": "item-becbc28aae2c",
-          "name": "电力场景应用与省奖",
-          "desc": "成果在电力设施监控等场景开展应用，获省部级科技奖励3项",
+          "id": "item-9b874f0037ab",
+          "name": "光照多变、烟/雾/霾/尘干扰等引起的可视度受限是复杂工业、灾难救援、地下探测、军事应用等机器人高危作业和特殊服役场景面临",
+          "desc": "光照多变、烟/雾/霾/尘干扰等引起的可视度受限是复杂工业、灾难救援、地下探测、军事应用等机器人高危作业和特殊服役场景面临的共性难题，机器人在上述环境中的鲁棒感知与安全作业面临极大挑战。",
           "evidence": [
             {
-              "quote": "项目相关成果在电力设施监控等场景开展了应用，并获得省部级科技奖励3项",
+              "quote": "光照多变、烟/雾/霾/尘干扰等引起的可视度受限是复杂工业、灾难救援、地下探测、军事应用等机器人高危作业和特殊服役场景面临的共性难题，机器人在上述环境中的鲁棒感知与安全作业面临极大挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3733,
-                "end_char": 3766
+                "start_char": 667,
+                "end_char": 758
               },
               "version": "b09fc9d7de8c04ecf340"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-afef17a98135"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-50a3fc5fe81c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于语义嵌入的类间相似度原型的场景识别方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16578ae7c3f0",
+      "evidence": [
+        {
+          "quote": "基于语义嵌入的类间相似度原型的场景识别方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3791,
+            "end_char": 3814
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-50a3fc5fe81c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-20223fb3a45d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Single domain generalization in vibration damper detection using frequency domain attention and scale-invariant learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16e0b1ed0c20",
+      "evidence": [
+        {
+          "quote": "Single domain generalization in vibration damper detection using frequency domain attention and scale-invariant learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3854,
+            "end_char": 3973
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-50a3fc5fe81c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7d105391df30"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于Grounded SAM2和改进YOLOv11n-seg的蝴蝶兰组培苗夹取点分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd78890bf0f9",
+      "evidence": [
+        {
+          "quote": "基于Grounded SAM2和改进YOLOv11n-seg的蝴蝶兰组培苗夹取点分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4054,
+            "end_char": 4095
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-50a3fc5fe81c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cecf21b2d990"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Geometric characteristic learning R-CNN for shockproof hammer defect detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13f910ff79e9",
+      "evidence": [
+        {
+          "quote": "Geometric characteristic learning R-CNN for shockproof hammer defect detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4120,
+            "end_char": 4197
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-361948eb5f34"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-becbc28aae2c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Anti-vibration hammer defect detection based on structural knowledge representation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cfccf49e5a0e",
+      "evidence": [
+        {
+          "quote": "Anti-vibration hammer defect detection based on structural knowledge representation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4268,
+            "end_char": 4350
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7d105391df30"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-becbc28aae2c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Graph convolution detection method of transmission line fitting based on orientation reasoning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b96b53d27230",
+      "evidence": [
+        {
+          "quote": "Graph convolution detection method of transmission line fitting based on orientation reasoning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4437,
+            "end_char": 4530
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SIRN: an iterative reasoning network for transmission lines based on scene prior knowledge",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-016c4bf399e7",
+      "evidence": [
+        {
+          "quote": "SIRN: an iterative reasoning network for transmission lines based on scene prior knowledge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4606,
+            "end_char": 4695
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "YOLO-AFPN: marrying YOLO and AFPN for external damage detection of transmission lines",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-42cdfd74c490",
+      "evidence": [
+        {
+          "quote": "YOLO-AFPN: marrying YOLO and AFPN for external damage detection of transmission lines",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4782,
+            "end_char": 4866
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pointer type instrument reading method based on key point detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c7536914a981",
+      "evidence": [
+        {
+          "quote": "Pointer type instrument reading method based on key point detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4939,
+            "end_char": 5005
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自适应的视觉惯导里程计输出方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71a1b20ebcb3",
+      "evidence": [
+        {
+          "quote": "一种自适应的视觉惯导里程计输出方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5076,
+            "end_char": 5092
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed optimization for heterogeneous integrator chain multi-agent systems with mismatched disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c8eb1fd3434",
+      "evidence": [
+        {
+          "quote": "Distributed optimization for heterogeneous integrator chain multi-agent systems with mismatched disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5121,
+            "end_char": 5228
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种排管电缆机器人及其控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef935d00a44d",
+      "evidence": [
+        {
+          "quote": "一种排管电缆机器人及其控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5288,
+            "end_char": 5302
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-task feature decoupling network with clear division of labor for vehicle component detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-34f76055f605",
+      "evidence": [
+        {
+          "quote": "Multi-task feature decoupling network with clear division of labor for vehicle component detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5335,
+            "end_char": 5432
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于图像中小物体的六维位姿估计方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d532c7750c9f",
+      "evidence": [
+        {
+          "quote": "一种用于图像中小物体的六维位姿估计方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5531,
+            "end_char": 5552
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进MW-KECA算法的风电齿轮箱故障诊断研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a079b12dce2",
+      "evidence": [
+        {
+          "quote": "基于改进MW-KECA算法的风电齿轮箱故障诊断研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5577,
+            "end_char": 5601
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "应用于蝴蝶兰种苗切割的双臂切割装置及双臂切割方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9ac84a4d65f4",
+      "evidence": [
+        {
+          "quote": "应用于蝴蝶兰种苗切割的双臂切割装置及双臂切割方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5624,
+            "end_char": 5647
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "EASATrack: infrared object tracking based on edge activation and scale adaptive cross-correlation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-942a2bef4dde",
+      "evidence": [
+        {
+          "quote": "EASATrack: infrared object tracking based on edge activation and scale adaptive cross-correlation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5672,
+            "end_char": 5768
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PLVO:基于平面和直线融合的RGB-D视觉里程计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c45f0cf37a5a",
+      "evidence": [
+        {
+          "quote": "PLVO:基于平面和直线融合的RGB-D视觉里程计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5848,
+            "end_char": 5872
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "基于视觉大模型的输电线路精细化巡检关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f8b37eb592d3",
+      "evidence": [
+        {
+          "quote": "基于视觉大模型的输电线路精细化巡检关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5900,
+            "end_char": 5923
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于YOLOv8n-Aerolite的轻量化蝴蝶兰种苗目标检测算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-40f99187649b",
+      "evidence": [
+        {
+          "quote": "基于YOLOv8n-Aerolite的轻量化蝴蝶兰种苗目标检测算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5995,
+            "end_char": 6027
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "融合双重注意力与加权动态卷积的车辆损伤分类模型",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-70590815607b",
+      "evidence": [
+        {
+          "quote": "融合双重注意力与加权动态卷积的车辆损伤分类模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6066,
+            "end_char": 6088
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GAF-PCNN: a multisensor fusion navigation integrity monitoring method based on Gramian angular field and parallel CNN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ca02636af92",
+      "evidence": [
+        {
+          "quote": "GAF-PCNN: a multisensor fusion navigation integrity monitoring method based on Gramian angular field and parallel CNN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6123,
+            "end_char": 6239
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于SFM与3DGS的电力设备三维重建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c4265a1fdd4",
+      "evidence": [
+        {
+          "quote": "基于SFM与3DGS的电力设备三维重建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6305,
+            "end_char": 6325
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CGRM: A context-based graph reasoning model for fitting detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-afa6a27e590a",
+      "evidence": [
+        {
+          "quote": "CGRM: A context-based graph reasoning model for fitting detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6347,
+            "end_char": 6411
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Batch self-organizing memory neural network for continual supervised learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d4945b355d1",
+      "evidence": [
+        {
+          "quote": "Batch self-organizing memory neural network for continual supervised learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6513,
+            "end_char": 6589
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Latent knowledge reasoning incorporated for multi-fitting decoupling detection on electric transmission line",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d9c07ff89c6",
+      "evidence": [
+        {
+          "quote": "Latent knowledge reasoning incorporated for multi-fitting decoupling detection on electric transmission line",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6622,
+            "end_char": 6729
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于YOLOv7-EPAN的光伏板红外图像缺陷检测",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0791bc317ea",
+      "evidence": [
+        {
+          "quote": "基于YOLOv7-EPAN的光伏板红外图像缺陷检测",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6821,
+            "end_char": 6845
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "激光点云2D-3D双模态交互增强不规则电线检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8e4beea72a6d",
+      "evidence": [
+        {
+          "quote": "激光点云2D-3D双模态交互增强不规则电线检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6883,
+            "end_char": 6907
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于隐含空间知识融合的输电线路多金具检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-473bb85f2220",
+      "evidence": [
+        {
+          "quote": "基于隐含空间知识融合的输电线路多金具检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6937,
+            "end_char": 6958
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于视觉伺服的蝴蝶兰种苗切割系统设计与试验",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-538437c471ce",
+      "evidence": [
+        {
+          "quote": "基于视觉伺服的蝴蝶兰种苗切割系统设计与试验",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6995,
+            "end_char": 7015
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantic-embedded similarity prototype for scene recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e8d49767ddb",
+      "evidence": [
+        {
+          "quote": "Semantic-embedded similarity prototype for scene recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7052,
+            "end_char": 7111
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bridging the gap between semantics and geometry in SLAM: a semantic-geometric tight-coupling monocular visual object SLAM system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5aebc302bff",
+      "evidence": [
+        {
+          "quote": "Bridging the gap between semantics and geometry in SLAM: a semantic-geometric tight-coupling monocular visual object SLAM system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7165,
+            "end_char": 7292
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于全向轮的排管电缆巡检机器人建模及仿真",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c31e9ab17b6d",
+      "evidence": [
+        {
+          "quote": "基于全向轮的排管电缆巡检机器人建模及仿真",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7349,
+            "end_char": 7368
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RGB-IR YOLO combining modality-specific reconstruction and information integration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9845de12c29",
+      "evidence": [
+        {
+          "quote": "RGB-IR YOLO combining modality-specific reconstruction and information integration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7404,
+            "end_char": 7485
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于模糊推理的流式数据处理系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d5d6d8d60eb",
+      "evidence": [
+        {
+          "quote": "一种基于模糊推理的流式数据处理系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7542,
+            "end_char": 7561
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel method based on local region division using point clouds for place recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff80409531a0",
+      "evidence": [
+        {
+          "quote": "A novel method based on local region division using point clouds for place recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7587,
+            "end_char": 7672
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于控制屏障函数的分布式局部利普希茨算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f3709e1d75e7",
+      "evidence": [
+        {
+          "quote": "一种基于控制屏障函数的分布式局部利普希茨算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7727,
+            "end_char": 7748
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "改进RT-DETR的金属表面缺陷检测算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cf42b529af23",
+      "evidence": [
+        {
+          "quote": "改进RT-DETR的金属表面缺陷检测算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7776,
+            "end_char": 7795
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Skeleton-based action recognition with select-assemble-normalize graph convolutional networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-59dd5a898138",
+      "evidence": [
+        {
+          "quote": "Skeleton-based action recognition with select-assemble-normalize graph convolutional networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7835,
+            "end_char": 7927
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A weakly supervised instance segmentation approach for insulator thermal images incorporating sparse prior knowledge",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd882d71d4b1",
+      "evidence": [
+        {
+          "quote": "A weakly supervised instance segmentation approach for insulator thermal images incorporating sparse prior knowledge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7978,
+            "end_char": 8093
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Image enhancement of computational correlation imaging based on generative adversarial network at low sampling rates",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b7d0a65d1904",
+      "evidence": [
+        {
+          "quote": "Image enhancement of computational correlation imaging based on generative adversarial network at low sampling rates",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8174,
+            "end_char": 8289
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "智能化视觉全覆盖监控识别关键技术与工程应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f6c9e39ac4a3",
+      "evidence": [
+        {
+          "quote": "智能化视觉全覆盖监控识别关键技术与工程应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8335,
+            "end_char": 8355
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UPLP-SLAM: unified point-line-plane feature fusion for RGB-D visual SLAM",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc47f75d76f5",
+      "evidence": [
+        {
+          "quote": "UPLP-SLAM: unified point-line-plane feature fusion for RGB-D visual SLAM",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8399,
+            "end_char": 8470
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "BMW: bidirectionally memory bank rewriting for unsupervised person re-identification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aded55cdcda0",
+      "evidence": [
+        {
+          "quote": "BMW: bidirectionally memory bank rewriting for unsupervised person re-identification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8541,
+            "end_char": 8624
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SRRM: semantic region relation model for indoor scene recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30b89f930955",
+      "evidence": [
+        {
+          "quote": "SRRM: semantic region relation model for indoor scene recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8693,
+            "end_char": 8757
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Inter-object discriminative graph modeling for indoor scene recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f973db7ab3a3",
+      "evidence": [
+        {
+          "quote": "Inter-object discriminative graph modeling for indoor scene recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8793,
+            "end_char": 8863
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ORB-TEDM: an RGB-D SLAM approach fusing ORB triangulation estimates and depth measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ee6347ed1aaa",
+      "evidence": [
+        {
+          "quote": "ORB-TEDM: an RGB-D SLAM approach fusing ORB triangulation estimates and depth measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8908,
+            "end_char": 8997
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive soft encoding: a general unsupervised feature aggregation method for place recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13084d5af3c8",
+      "evidence": [
+        {
+          "quote": "Adaptive soft encoding: a general unsupervised feature aggregation method for place recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9057,
+            "end_char": 9151
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "VIDO: a robust and consistent monocular visual-inertial-depth odometry",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-63a3909076d9",
+      "evidence": [
+        {
+          "quote": "VIDO: a robust and consistent monocular visual-inertial-depth odometry",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9236,
+            "end_char": 9305
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DEYOLO: dual-feature-enhancement YOLO for cross-modality object detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-582dadd170af",
+      "evidence": [
+        {
+          "quote": "DEYOLO: dual-feature-enhancement YOLO for cross-modality object detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9378,
+            "end_char": 9450
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tension-path co-optimization of cable-driven manipulators based on a digital twin framework",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-631404cefe78",
+      "evidence": [
+        {
+          "quote": "Tension-path co-optimization of cable-driven manipulators based on a digital twin framework",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9543,
+            "end_char": 9633
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于跨模态互补学习的红外和可见光图像融合方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-733ba4b35755",
+      "evidence": [
+        {
+          "quote": "一种基于跨模态互补学习的红外和可见光图像融合方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9726,
+            "end_char": 9749
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "State-space-model-guided deep feature perception network for insulator defect detection in high-resolution aerial images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5cc830bb226",
+      "evidence": [
+        {
+          "quote": "State-space-model-guided deep feature perception network for insulator defect detection in high-resolution aerial images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9782,
+            "end_char": 9901
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于人工-真实样本度量学习的指针式仪表检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fbf9b76ff1cb",
+      "evidence": [
+        {
+          "quote": "基于人工-真实样本度量学习的指针式仪表检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9990,
+            "end_char": 10012
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SU-VPDN: a scene understanding method for vehicle part detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b1a1c8afddac",
+      "evidence": [
+        {
+          "quote": "SU-VPDN: a scene understanding method for vehicle part detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10042,
+            "end_char": 10105
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向模型参数优化的建模人员行为模型研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-32bbca9c0928",
+      "evidence": [
+        {
+          "quote": "面向模型参数优化的建模人员行为模型研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10206,
+            "end_char": 10224
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进YOLOv8的光伏组件缺陷红外图像检测算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0152256eff7b",
+      "evidence": [
+        {
+          "quote": "基于改进YOLOv8的光伏组件缺陷红外图像检测算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10253,
+            "end_char": 10277
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantic-guided modeling of spatial relation and object co-occurrence for indoor scene recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-78b4cc0d712d",
+      "evidence": [
+        {
+          "quote": "Semantic-guided modeling of spatial relation and object co-occurrence for indoor scene recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10307,
+            "end_char": 10404
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-level channel attention excitation network for human action recognition in videos",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-be852ad76ac4",
+      "evidence": [
+        {
+          "quote": "Multi-level channel attention excitation network for human action recognition in videos",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10449,
+            "end_char": 10535
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "NALO-VOM: navigation-oriented LiDAR-guided monocular visual odometry and mapping for unmanned ground vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b868942f6392",
+      "evidence": [
+        {
+          "quote": "NALO-VOM: navigation-oriented LiDAR-guided monocular visual odometry and mapping for unmanned ground vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10575,
+            "end_char": 10683
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RFIENet: RGB-thermal feature interactive enhancement network for semantic segmentation of insulator in backlight scenes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e86fc81c4fbf",
+      "evidence": [
+        {
+          "quote": "RFIENet: RGB-thermal feature interactive enhancement network for semantic segmentation of insulator in backlight scenes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10750,
+            "end_char": 10868
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A3RGB-D SLAM: active RGB-D SLAM with active exploration, adaptive TEB and active loop closure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-58dcab4c99e8",
+      "evidence": [
+        {
+          "quote": "A3RGB-D SLAM: active RGB-D SLAM with active exploration, adaptive TEB and active loop closure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10924,
+            "end_char": 11016
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向复杂场景的变电设备锈蚀检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7b0b3517a6f2",
+      "evidence": [
+        {
+          "quote": "面向复杂场景的变电设备锈蚀检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11076,
+            "end_char": 11092
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于前景区域对应模板特征的视觉跟踪方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e958c30ef76f",
+      "evidence": [
+        {
+          "quote": "基于前景区域对应模板特征的视觉跟踪方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11126,
+            "end_char": 11147
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-geometric reasoning network for insulator defect detection of electric transmission lines",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7da8f80489d8",
+      "evidence": [
+        {
+          "quote": "Multi-geometric reasoning network for insulator defect detection of electric transmission lines",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11173,
+            "end_char": 11267
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于交互式互补挖掘引擎的红外与可见光图像融合方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e3dfede5243",
+      "evidence": [
+        {
+          "quote": "基于交互式互补挖掘引擎的红外与可见光图像融合方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11337,
+            "end_char": 11360
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Thermal image based direct method visual-inertial odometry for robot navigation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c6cd79b4cad",
+      "evidence": [
+        {
+          "quote": "Thermal image based direct method visual-inertial odometry for robot navigation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11393,
+            "end_char": 11471
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于3D代价体注意力的实时立体匹配网络",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-234923334f2e",
+      "evidence": [
+        {
+          "quote": "基于3D代价体注意力的实时立体匹配网络",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11542,
+            "end_char": 11560
+          },
+          "version": "b09fc9d7de8c04ecf340"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 68,
+    "listed": 68,
+    "by_kind": {
+      "专利": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "期刊论文": {
+        "listed": 45,
+        "extracted": 45
+      },
+      "会议论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

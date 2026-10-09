@@ -2,15 +2,20 @@
   "doc_id": "a6377f6f672671f33ec2",
   "version": "78398b8d874e40ae6159",
   "source_hash": "2aea6d23faf791d8925a510a87828ef57d26b52b75b2cb3a4a3ea5e8327fa458",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:25.784463+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.115339+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,95 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ba6933ff92c2",
-          "name": "农用无人空气动力船作业",
-          "desc": "水田除草和施肥作业的智能农机",
+          "id": "item-97b96ae88150",
+          "name": "日本农机公司研发的遥控式农用无人空气动力船可以代替人力完成水田除草和施肥作业。",
+          "desc": "日本农机公司研发的遥控式农用无人空气动力船可以代替人力完成水田除草和施肥作业。",
+          "evidence": [
+            {
+              "quote": "日本农机公司研发的遥控式农用无人空气动力船可以代替人力完成水田除草和施肥作业。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 652,
+                "end_char": 690
+              },
+              "version": "78398b8d874e40ae6159"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7d336a2727a1",
+          "name": "本项目拟在原有研究积累的基础上，以农用无人空气动力船的复杂环境感知和避障控制方法研究为主线，研究无人空气动力船的非线性运",
+          "desc": "本项目拟在原有研究积累的基础上，以农用无人空气动力船的复杂环境感知和避障控制方法研究为主线，研究无人空气动力船的非线性运动模型在线构建方法，利用立体机器视觉系统，研究在非结构化复杂水田环境中障碍物的快速在线感知、识别与定位，并构建障碍物分类模型。",
+          "evidence": [
+            {
+              "quote": "本项目拟在原有研究积累的基础上，以农用无人空气动力船的复杂环境感知和避障控制方法研究为主线，研究无人空气动力船的非线性运动模型在线构建方法，利用立体机器视觉系统，研究在非结构化复杂水田环境中障碍物的快速在线感知、识别与定位，并构建障碍物分类模型。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 814,
+                "end_char": 936
+              },
+              "version": "78398b8d874e40ae6159"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7f27f7bacb0f",
+          "name": "利用立体机器视觉系统，基于Yolo算法和Deep SORT算法在非结构化复杂水田环境中实现了障碍物的快速在线感知、识别与",
+          "desc": "利用立体机器视觉系统，基于Yolo算法和Deep SORT算法在非结构化复杂水田环境中实现了障碍物的快速在线感知、识别与定位，并构建了田间障碍物（农人、家畜）分类模型。",
+          "evidence": [
+            {
+              "quote": "利用立体机器视觉系统，基于Yolo算法和Deep SORT算法在非结构化复杂水田环境中实现了障碍物的快速在线感知、识别与定位，并构建了田间障碍物（农人、家畜）分类模型。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2906,
+                "end_char": 2989
+              },
+              "version": "78398b8d874e40ae6159"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8abc13104863",
+          "name": "日本农机公司研发的遥控式农用无人空气动力船可以代替人力完成水田除草和施肥作业。",
+          "desc": "日本农机公司研发的遥控式农用无人空气动力船可以代替人力完成水田除草和施肥作业。",
+          "evidence": [
+            {
+              "quote": "日本农机公司研发的遥控式农用无人空气动力船可以代替人力完成水田除草和施肥作业。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 652,
+                "end_char": 690
+              },
+              "version": "78398b8d874e40ae6159"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-7c660edb548f",
+          "name": "农用无人空气动力船等智能农机可以代替人力完成水田除草和施肥作业。",
+          "desc": "农用无人空气动力船等智能农机可以代替人力完成水田除草和施肥作业。",
           "evidence": [
             {
               "quote": "农用无人空气动力船等智能农机可以代替人力完成水田除草和施肥作业。",
@@ -32,165 +123,156 @@
               },
               "version": "78398b8d874e40ae6159"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-0fe03251db3e",
-          "name": "GPS不稳与未知障碍避障缺失",
-          "desc": "GPS收信不稳定或未知障碍物时导航系统无法避障",
-          "evidence": [
-            {
-              "quote": "然而，当GPS收信不稳定或出现未知障碍物时，该导航系统无法进行避障控制。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 778,
-                "end_char": 813
-              },
-              "version": "78398b8d874e40ae6159"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-c2b54de75913",
-          "name": "非线性运动模型与自动控制",
-          "desc": "无人空气动力船非线性运动模型和自动控制方法",
-          "evidence": [
-            {
-              "quote": "研究了无人空气动力船的非线性运动模型和自动控制方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2880,
-                "end_char": 2904
-              },
-              "version": "78398b8d874e40ae6159"
-            }
-          ]
-        },
-        {
-          "id": "item-b42a1a2bb947",
-          "name": "Yolo+Deep SORT障碍感知",
-          "desc": "非结构化复杂水田环境障碍物快速在线感知识别定位",
-          "evidence": [
-            {
-              "quote": "基于Yolo算法和Deep SORT算法在非结构化复杂水田环境中实现了障碍物的快速在线感知、识别与定位，并构建了田间障碍物（农人、家畜）分类模型。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2917,
-                "end_char": 2989
-              },
-              "version": "78398b8d874e40ae6159"
-            }
-          ]
-        },
-        {
-          "id": "item-727425004a8e",
-          "name": "Double-DQN智能避障",
-          "desc": "基于会遇态势的强化学习避障模型",
-          "evidence": [
-            {
-              "quote": "建立了基于Double-DQN强化学习算法的农机智能避障模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3007,
-                "end_char": 3036
-              },
-              "version": "78398b8d874e40ae6159"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a4ff701b3d34",
-          "name": "自动导航安全性提升",
-          "desc": "智能避障模型提高自动导航安全性",
-          "evidence": [
-            {
-              "quote": "根据无人船与障碍物的不同会遇态势，建立了基于Double-DQN强化学习算法的农机智能避障模型，以提高自动导航的安全性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2990,
-                "end_char": 3049
-              },
-              "version": "78398b8d874e40ae6159"
-            }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ba6933ff92c2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0fe03251db3e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Obstacle avoidance method based on double DQN for agricultural robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aca49442ae86",
+      "evidence": [
+        {
+          "quote": "Obstacle avoidance method based on double DQN for agricultural robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3103,
+            "end_char": 3171
+          },
+          "version": "78398b8d874e40ae6159"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0fe03251db3e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c2b54de75913"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "AERODYNAMIC AQUATIC WEED REMOVAL AND DECONTAMINATION DEVICE AND DECONTAMINATION METHOD",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-80b0bd71f2b9",
+      "evidence": [
+        {
+          "quote": "AERODYNAMIC AQUATIC WEED REMOVAL AND DECONTAMINATION DEVICE AND DECONTAMINATION METHOD",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3235,
+            "end_char": 3320
+          },
+          "version": "78398b8d874e40ae6159"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0fe03251db3e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b42a1a2bb947"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "农用无人机及作物智慧管理技术与装备的创制和应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-270a30cbef74",
+      "evidence": [
+        {
+          "quote": "农用无人机及作物智慧管理技术与装备的创制和应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3418,
+            "end_char": 3440
+          },
+          "version": "78398b8d874e40ae6159"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0fe03251db3e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-727425004a8e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-Based Moving Obstacle Detection and Tracking in Paddy Field Using Improved Yolov3 and Deep SORT",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-584a2ad78481",
+      "evidence": [
+        {
+          "quote": "Vision-Based Moving Obstacle Detection and Tracking in Paddy Field Using Improved Yolov3 and Deep SORT",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3503,
+            "end_char": 3604
+          },
+          "version": "78398b8d874e40ae6159"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-727425004a8e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a4ff701b3d34"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "agricultural aircraft for spreading granular fertilizer and spreading method thereof",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-981569196707",
+      "evidence": [
+        {
+          "quote": "agricultural aircraft for spreading granular fertilizer and spreading method thereof",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3695,
+            "end_char": 3778
+          },
+          "version": "78398b8d874e40ae6159"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Crop Row Segmentation and Detection in Paddy Fields Based on Treble-Classification Otsu and Double-Dimensional Clustering Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b06a0d4c2a61",
+      "evidence": [
+        {
+          "quote": "Crop Row Segmentation and Detection in Paddy Fields Based on Treble-Classification Otsu and Double-Dimensional Clustering Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3866,
+            "end_char": 3993
+          },
+          "version": "78398b8d874e40ae6159"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

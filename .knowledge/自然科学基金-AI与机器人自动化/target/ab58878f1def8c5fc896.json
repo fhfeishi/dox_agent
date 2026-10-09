@@ -2,15 +2,20 @@
   "doc_id": "ab58878f1def8c5fc896",
   "version": "c8e442d214744f70eef2",
   "source_hash": "821cadd24b5197363e2bbcb5705834c23e8a9c43c921df9c6099cc0b5653bf6a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:11:23.186854+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.157270+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-06defdba2474",
-          "name": "仿蝠鲼机器人水下感知跟踪",
-          "desc": "以蝠鲼为仿生原型的水下视觉环境感知与智能跟踪控制",
+          "id": "item-d223222960c4",
+          "name": "水下自主无人系统的环境感知与智能控制是当前研究热点。",
+          "desc": "水下自主无人系统的环境感知与智能控制是当前研究热点。",
           "evidence": [
             {
-              "quote": "本项目以蝠鲼为仿生原型，研发了刚柔耦合一体化的仿蝠鲼机器人系统，实现了仿蝠鲼扑翼式运动",
+              "quote": "水下自主无人系统的环境感知与智能控制是当前研究热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3068,
-                "end_char": 3110
+                "start_char": 659,
+                "end_char": 684
               },
               "version": "c8e442d214744f70eef2"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-bf4e99c940d8",
-          "name": "水下视觉退化",
-          "desc": "弱光照、低透明度、色彩偏差等恶劣水下视觉环境",
-          "evidence": [
-            {
-              "quote": "研究了基于生成对抗网络的水下视觉实时自适应增强方法，实现了弱光照、低透明度、色彩偏差等恶劣水下视觉的实时自适应恢复",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3112,
-                "end_char": 3168
-              },
-              "version": "c8e442d214744f70eef2"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-a8a3a1121c5e",
-          "name": "GAN水下视觉自适应增强",
-          "desc": "基于生成对抗网络的水下视觉实时自适应增强方法",
+          "id": "item-6b0cf7c2a788",
+          "name": "在此基础上，研究基于深度强化学习的目标跟踪控制方法，构建系统动力学模型，通过跟环境不断交互与试错，完成模型更新与策略学习",
+          "desc": "在此基础上，研究基于深度强化学习的目标跟踪控制方法，构建系统动力学模型，通过跟环境不断交互与试错，完成模型更新与策略学习，实现对运动目标的三维跟踪。",
           "evidence": [
             {
-              "quote": "研究了基于生成对抗网络的水下视觉实时自适应增强方法，实现了弱光照、低透明度、色彩偏差等恶劣水下视觉的实时自适应恢复",
+              "quote": "在此基础上，研究基于深度强化学习的目标跟踪控制方法，构建系统动力学模型，通过跟环境不断交互与试错，完成模型更新与策略学习，实现对运动目标的三维跟踪。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3112,
-                "end_char": 3168
+                "start_char": 898,
+                "end_char": 971
               },
               "version": "c8e442d214744f70eef2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-23efc3f28094",
-          "name": "参考偏移检测时序网络",
-          "desc": "先验知识改良机制、双重改良检测网络与时序改良检测网络实现实时检测跟踪",
+          "id": "item-1ffcaa382fd1",
+          "name": "设计参考偏移检测框架，构建双重改良检测网络和双重时序改良网络，实现快速、高精度的水下时序目标检测识别；",
+          "desc": "设计参考偏移检测框架，构建双重改良检测网络和双重时序改良网络，实现快速、高精度的水下时序目标检测识别；",
           "evidence": [
             {
-              "quote": "提出了一种先验知识改良机制，构建了基于参考偏移检测的双重改良检测网络和时序改良检测网络，实现了水下目标实时检测跟踪",
+              "quote": "设计参考偏移检测框架，构建双重改良检测网络和双重时序改良网络，实现快速、高精度的水下时序目标检测识别；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3170,
-                "end_char": 3226
+                "start_char": 847,
+                "end_char": 897
               },
               "version": "c8e442d214744f70eef2"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,568 @@
       "state": "has",
       "items": [
         {
-          "id": "item-97fe46557a5a",
-          "name": "三维路径跟踪控制",
-          "desc": "视线导航滑模模糊控制与非奇异终端滑模实现三维路径跟踪与动态目标跟踪",
+          "id": "item-f9ae0ba2f827",
+          "name": "水下自主无人系统的环境感知与智能控制是当前研究热点。",
+          "desc": "水下自主无人系统的环境感知与智能控制是当前研究热点。",
           "evidence": [
             {
-              "quote": "提出了基于视线导航的滑模模糊控制方法，基于角度跟踪误差构建了滑模控制器以获取三维路径跟踪过程中所需的驱动力矩，实现了仿蝠鲼机器人的三维路径跟踪控制",
+              "quote": "水下自主无人系统的环境感知与智能控制是当前研究热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3228,
-                "end_char": 3300
+                "start_char": 659,
+                "end_char": 684
               },
               "version": "c8e442d214744f70eef2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-39a363928b82",
-          "name": "论文专利与国际奖项",
-          "desc": "发表论文24篇（SCI 16篇含IEEE汇刊11篇），获IEEE RCAR 2020最佳论文奖",
+          "id": "item-c061b9b797f5",
+          "name": "蝠鲼经过漫长进化形成的高性能游动方式为新型智能水下无人系统的研制提供了重要范例。",
+          "desc": "蝠鲼经过漫长进化形成的高性能游动方式为新型智能水下无人系统的研制提供了重要范例。",
           "evidence": [
             {
-              "quote": "本项目共发表学术论文24篇，其中SCI论文16篇，包括IEEE汇刊11篇，EI会议论文8篇",
+              "quote": "蝠鲼经过漫长进化形成的高性能游动方式为新型智能水下无人系统的研制提供了重要范例。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3450,
-                "end_char": 3494
+                "start_char": 685,
+                "end_char": 724
               },
               "version": "c8e442d214744f70eef2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-06defdba2474"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-bf4e99c940d8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-Based underwater target following control of an agile robotic manta with flexible pectoral fins",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd0be6f0c51e",
+      "evidence": [
+        {
+          "quote": "Vision-Based underwater target following control of an agile robotic manta with flexible pectoral fins",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3751,
+            "end_char": 3852
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bf4e99c940d8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a8a3a1121c5e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Line of sight strategy based path following system for a multi joint robotic fish",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-49538eecb25c",
+      "evidence": [
+        {
+          "quote": "Line of sight strategy based path following system for a multi joint robotic fish",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3924,
+            "end_char": 4004
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bf4e99c940d8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-23efc3f28094"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Marine autonomous navigation for biomimetic underwater robots based on deep stereo attention network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dd8959e0bc4c",
+      "evidence": [
+        {
+          "quote": "Marine autonomous navigation for biomimetic underwater robots based on deep stereo attention network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4070,
+            "end_char": 4169
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-23efc3f28094"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-97fe46557a5a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "绳牵引仿生机器鱼驱动装置及绳牵引仿生机器鱼",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e47bc5f69944",
+      "evidence": [
+        {
+          "quote": "绳牵引仿生机器鱼驱动装置及绳牵引仿生机器鱼",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4237,
+            "end_char": 4257
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a8a3a1121c5e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-39a363928b82"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-World learning control for autonomous exploration of a biomimetic robotic fish",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af11c7afefdc",
+      "evidence": [
+        {
+          "quote": "Real-World learning control for autonomous exploration of a biomimetic robotic fish",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4295,
+            "end_char": 4377
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Locomotion optimization of a tendon-driven robotic fish with variable passive tail fin",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-717bc9f40fd1",
+      "evidence": [
+        {
+          "quote": "Locomotion optimization of a tendon-driven robotic fish with variable passive tail fin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4459,
+            "end_char": 4544
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3-D Path Following Control for a Miniature Maneuverable Robotic Fish with Hybrid Actuators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df14e6eb8b54",
+      "evidence": [
+        {
+          "quote": "3-D Path Following Control for a Miniature Maneuverable Robotic Fish with Hybrid Actuators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4612,
+            "end_char": 4701
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "仿生鱼路径控制方法、装置及仿生鱼",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-edb5207454d6",
+      "evidence": [
+        {
+          "quote": "仿生鱼路径控制方法、装置及仿生鱼",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4763,
+            "end_char": 4778
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reaction-wheel-based roll stabilization for a robotic fish using neural network sliding mode control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4ff036894a7",
+      "evidence": [
+        {
+          "quote": "Reaction-wheel-based roll stabilization for a robotic fish using neural network sliding mode control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4810,
+            "end_char": 4909
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time digital video stabilization of bioinspired robotic fish using estimation-and-prediction framework",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-307bcb31596f",
+      "evidence": [
+        {
+          "quote": "Real-time digital video stabilization of bioinspired robotic fish using estimation-and-prediction framework",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4981,
+            "end_char": 5087
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Performance improvement of a high-speed swimming robot for fishlike leaping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7dabd294fea6",
+      "evidence": [
+        {
+          "quote": "Performance improvement of a high-speed swimming robot for fishlike leaping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5144,
+            "end_char": 5218
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Speed control of a biomimetic robotic fish based on Linear Active Disturbance Rejection control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0b35fefede1e",
+      "evidence": [
+        {
+          "quote": "Speed control of a biomimetic robotic fish based on Linear Active Disturbance Rejection control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5286,
+            "end_char": 5380
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic modeling and performance analysis for a wire-driven elastic robotic fish",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d4fd754c2f07",
+      "evidence": [
+        {
+          "quote": "Dynamic modeling and performance analysis for a wire-driven elastic robotic fish",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5429,
+            "end_char": 5508
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards a novel robotic manta with unique pectoral fins",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0f0a4f2def2",
+      "evidence": [
+        {
+          "quote": "Towards a novel robotic manta with unique pectoral fins",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5576,
+            "end_char": 5630
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "Biomimetic Robotic Manta Ray",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-91bf4ccb8c59",
+      "evidence": [
+        {
+          "quote": "Biomimetic Robotic Manta Ray",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5697,
+            "end_char": 5724
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Turning maneuverability analysis of a bionic gliding robotic dolphin",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-36d2db7476c7",
+      "evidence": [
+        {
+          "quote": "Turning maneuverability analysis of a bionic gliding robotic dolphin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5801,
+            "end_char": 5868
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of a whale shark-inspired gliding robotic fish with high maneuverability",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a71cb8a4f42",
+      "evidence": [
+        {
+          "quote": "Development of a whale shark-inspired gliding robotic fish with high maneuverability",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5925,
+            "end_char": 6008
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Barrier-Based adaptive line-of-sight 3-d path-following system for a multi-joint robotic fish with sideslip compensation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-173fcf931354",
+      "evidence": [
+        {
+          "quote": "Barrier-Based adaptive line-of-sight 3-d path-following system for a multi-joint robotic fish with sideslip compensation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6074,
+            "end_char": 6193
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于像素级自监督训练的水下图像合成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f3a81f4cb1e",
+      "evidence": [
+        {
+          "quote": "基于像素级自监督训练的水下图像合成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6258,
+            "end_char": 6276
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "胸鳍模块和仿生机器蝠鲼",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aeb0d31f27e1",
+      "evidence": [
+        {
+          "quote": "胸鳍模块和仿生机器蝠鲼",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6307,
+            "end_char": 6317
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "水下探索策略模型的训练方法及仿生机器鱼水下探索方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e2a25cc19e15",
+      "evidence": [
+        {
+          "quote": "水下探索策略模型的训练方法及仿生机器鱼水下探索方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6344,
+            "end_char": 6368
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Underwater target tracking control of an untethered robotic fish with a camera stabilizer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-09c473c07c77",
+      "evidence": [
+        {
+          "quote": "Underwater target tracking control of an untethered robotic fish with a camera stabilizer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6401,
+            "end_char": 6489
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Moving target tracking control of a biomimetic robotic fish",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66452c1bc114",
+      "evidence": [
+        {
+          "quote": "Moving target tracking control of a biomimetic robotic fish",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6563,
+            "end_char": 6621
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "仿生肌腱驱动的机器鱼系统及运行控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-799019675f7d",
+      "evidence": [
+        {
+          "quote": "仿生肌腱驱动的机器鱼系统及运行控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6696,
+            "end_char": 6714
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nonlinear model predictive position control for a tail-actuated robotic fish",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d85ed86f1927",
+      "evidence": [
+        {
+          "quote": "Nonlinear model predictive position control for a tail-actuated robotic fish",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6747,
+            "end_char": 6822
+          },
+          "version": "c8e442d214744f70eef2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 25,
+    "listed": 25,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

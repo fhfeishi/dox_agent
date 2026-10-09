@@ -2,15 +2,20 @@
   "doc_id": "8c6b8a47129e7576106f",
   "version": "006405a278a3aba8932f",
   "source_hash": "338278b18c329fea2d79babfaa2374f97c3426aad8fd07dd569abf389d892264",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:56.960562+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.793002+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bed44bbb3198",
-          "name": "机器人复杂动态场景识别",
-          "desc": "复杂动态工业或移动环境中实时可迁移地执行非固定场景识别任务",
+          "id": "item-ad9ef7d38f5e",
+          "name": "场景识别算法作为机器人场景感知和环境理解的首要环节，是机器人认知场景中物体、智能人机交互的重要支撑技术。",
+          "desc": "场景识别算法作为机器人场景感知和环境理解的首要环节，是机器人认知场景中物体、智能人机交互的重要支撑技术。",
           "evidence": [
             {
-              "quote": "本项目针对复杂动态工业或移动环境中实时可迁移地执行非固定场景识别任务的需求",
+              "quote": "场景识别算法作为机器人场景感知和环境理解的首要环节，是机器人认知场景中物体、智能人机交互的重要支撑技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2824,
-                "end_char": 2860
+                "start_char": 657,
+                "end_char": 708
+              },
+              "version": "006405a278a3aba8932f"
+            }
+          ]
+        },
+        {
+          "id": "item-989679c0c613",
+          "name": "通过本研究，对建立面向机器人的统一、有效的终身场景识别算法框架奠定了理论基础，同时对机器人终身认知研究及其实际应用具有重",
+          "desc": "通过本研究，对建立面向机器人的统一、有效的终身场景识别算法框架奠定了理论基础，同时对机器人终身认知研究及其实际应用具有重要推进作用。",
+          "evidence": [
+            {
+              "quote": "通过本研究，对建立面向机器人的统一、有效的终身场景识别算法框架奠定了理论基础，同时对机器人终身认知研究及其实际应用具有重要推进作用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 982,
+                "end_char": 1047
               },
               "version": "006405a278a3aba8932f"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e18e2079535c",
-          "name": "目标感知数据难标注",
-          "desc": "机器人目标感知中数据难以标注，多视角行为识别存在灾难性遗忘",
+          "id": "item-7737af9b456d",
+          "name": "相对于小范围、结构固定的作业场景，机器人识别系统在面对场景动态变化大且未知、识别任务非固定等问题时，仍存在实时性、可迁移",
+          "desc": "相对于小范围、结构固定的作业场景，机器人识别系统在面对场景动态变化大且未知、识别任务非固定等问题时，仍存在实时性、可迁移性等方面的挑战。",
           "evidence": [
             {
-              "quote": "针对机器人目标感知中数据难以标注的问题",
+              "quote": "相对于小范围、结构固定的作业场景，机器人识别系统在面对场景动态变化大且未知、识别任务非固定等问题时，仍存在实时性、可迁移性等方面的挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3086,
-                "end_char": 3104
+                "start_char": 709,
+                "end_char": 776
+              },
+              "version": "006405a278a3aba8932f"
+            }
+          ]
+        },
+        {
+          "id": "item-cdbc52e1e333",
+          "name": ".  在实际应用方面，本项目将部分终身学习成果和实际视觉场景应用相结合，1）针对机器人目标感知中数据难以标注的问题，构建",
+          "desc": ".  在实际应用方面，本项目将部分终身学习成果和实际视觉场景应用相结合，1）针对机器人目标感知中数据难以标注的问题，构建面向机器人无监督目标感知的终身机器学习算法，实现对新无监督感知任务的快速学习；",
+          "evidence": [
+            {
+              "quote": ".  在实际应用方面，本项目将部分终身学习成果和实际视觉场景应用相结合，1）针对机器人目标感知中数据难以标注的问题，构建面向机器人无监督目标感知的终身机器学习算法，实现对新无监督感知任务的快速学习；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3048,
+                "end_char": 3146
               },
               "version": "006405a278a3aba8932f"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c28f655d5896",
-          "name": "终身学习自动编码器框架",
-          "desc": "将自动编码器体系结构扩展到终身学习框架，稀疏约束保持任务间关系",
+          "id": "item-a493882f5875",
+          "name": "场景识别算法作为机器人场景感知和环境理解的首要环节，是机器人认知场景中物体、智能人机交互的重要支撑技术。",
+          "desc": "场景识别算法作为机器人场景感知和环境理解的首要环节，是机器人认知场景中物体、智能人机交互的重要支撑技术。",
           "evidence": [
             {
-              "quote": "本项目在将熟知的自动编码器体系结构扩展到终身学习框架，并通过稀疏约束进一步保持识别任务间关系",
+              "quote": "场景识别算法作为机器人场景感知和环境理解的首要环节，是机器人认知场景中物体、智能人机交互的重要支撑技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2919,
-                "end_char": 2964
+                "start_char": 657,
+                "end_char": 708
               },
               "version": "006405a278a3aba8932f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7d0cdbaf12ee",
-          "name": "终身视触融合谱聚类",
-          "desc": "面向机器人目标感知的多模态融合无监督快速学习",
+          "id": "item-b7aa1f25c25c",
+          "name": "优化上，利用凸估计实现对连续场景识别任务的优化，同时进一步实现对所提算法的技术验证。",
+          "desc": "优化上，利用凸估计实现对连续场景识别任务的优化，同时进一步实现对所提算法的技术验证。",
           "evidence": [
             {
-              "quote": "提出一种面向机器人目标感知的终身视触融合谱聚类算法",
+              "quote": "优化上，利用凸估计实现对连续场景识别任务的优化，同时进一步实现对所提算法的技术验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3171,
-                "end_char": 3195
+                "start_char": 940,
+                "end_char": 981
               },
               "version": "006405a278a3aba8932f"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +140,432 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cb8513d949bf",
-          "name": "终身学习系列论文",
-          "desc": "发表论文21篇，其中SCI 16篇、EI 5篇，含TPAMI 2篇、IROS 2篇",
+          "id": "item-1e4110437794",
+          "name": "场景识别算法作为机器人场景感知和环境理解的首要环节，是机器人认知场景中物体、智能人机交互的重要支撑技术。",
+          "desc": "场景识别算法作为机器人场景感知和环境理解的首要环节，是机器人认知场景中物体、智能人机交互的重要支撑技术。",
           "evidence": [
             {
-              "quote": "上述研究成果已经发表论文21篇，其中包括SCI论文16篇，EI论文5篇",
+              "quote": "场景识别算法作为机器人场景感知和环境理解的首要环节，是机器人认知场景中物体、智能人机交互的重要支撑技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3276,
-                "end_char": 3310
+                "start_char": 657,
+                "end_char": 708
               },
               "version": "006405a278a3aba8932f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-a0e4b77c9fae",
+          "name": ".  上述研究成果已经发表论文21篇，其中包括SCI论文16篇，EI论文5篇，其中包括IEEE Transactions",
+          "desc": ".  上述研究成果已经发表论文21篇，其中包括SCI论文16篇，EI论文5篇，其中包括IEEE Transactions论文13篇（人工智能顶级期刊IEEE Transactions on Pattern Analysis and Machine Intelligence 论文2篇），国际模式识别知名期刊Pattern Recognition 1篇，机器人顶级会议IROS 2篇。",
+          "evidence": [
+            {
+              "quote": ".  上述研究成果已经发表论文21篇，其中包括SCI论文16篇，EI论文5篇，其中包括IEEE Transactions论文13篇（人工智能顶级期刊IEEE Transactions on Pattern Analysis and Machine Intelligence 论文2篇），国际模式识别知名期刊Pattern Recognition 1篇，机器人顶级会议IROS 2篇。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3273,
+                "end_char": 3463
+              },
+              "version": "006405a278a3aba8932f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bed44bbb3198"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e18e2079535c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Class-Incremental Gesture Recognition Learning with Out-of-Distribution Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03fe0ca724ca",
+      "evidence": [
+        {
+          "quote": "Class-Incremental Gesture Recognition Learning with Out-of-Distribution Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3514,
+            "end_char": 3594
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e18e2079535c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c28f655d5896"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MedUCC: Medium-Driven Underwater Camera Calibration for Refractive 3-D Reconstruction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0ed7dace399",
+      "evidence": [
+        {
+          "quote": "MedUCC: Medium-Driven Underwater Camera Calibration for Refractive 3-D Reconstruction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3648,
+            "end_char": 3732
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c28f655d5896"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cb8513d949bf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Three Birds, One Stone: Unified Laser-Based 3-D Reconstruction Across Different Media",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ffd73f02aec8",
+      "evidence": [
+        {
+          "quote": "Three Birds, One Stone: Unified Laser-Based 3-D Reconstruction Across Different Media",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3815,
+            "end_char": 3899
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bed44bbb3198"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7d0cdbaf12ee"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optical Flow Estimation with Foreground Atention Guided Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f72e1b4d73bd",
+      "evidence": [
+        {
+          "quote": "Optical Flow Estimation with Foreground Atention Guided Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3943,
+            "end_char": 4005
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7d0cdbaf12ee"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cb8513d949bf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical Lifelong Machine Learning with “Watchdog”",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9dc5684cc872",
+      "evidence": [
+        {
+          "quote": "Hierarchical Lifelong Machine Learning with “Watchdog”",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4040,
+            "end_char": 4093
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多源数据的信息可信度检测与评价系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c69d1c7da654",
+      "evidence": [
+        {
+          "quote": "一种基于多源数据的信息可信度检测与评价系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4168,
+            "end_char": 4188
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data Poisoning Attacks on Federated Machine Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dfb498969f1d",
+      "evidence": [
+        {
+          "quote": "Data Poisoning Attacks on Federated Machine Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4212,
+            "end_char": 4263
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Proper Reuse of Features Extractor for Real-time Continual Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9bed6ca6437f",
+      "evidence": [
+        {
+          "quote": "Proper Reuse of Features Extractor for Real-time Continual Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4338,
+            "end_char": 4404
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "沈阳市高层次人才-C类",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5901cdb0e60f",
+      "evidence": [
+        {
+          "quote": "沈阳市高层次人才-C类",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4479,
+            "end_char": 4489
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "What and How: Generalized Lifelong Spectral Clustering via Dual Memory",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1551e0b1320c",
+      "evidence": [
+        {
+          "quote": "What and How: Generalized Lifelong Spectral Clustering via Dual Memory",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4507,
+            "end_char": 4576
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "L3DOC: Lifelong 3D Object Classification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dfdc6a331dfe",
+      "evidence": [
+        {
+          "quote": "L3DOC: Lifelong 3D Object Classification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4657,
+            "end_char": 4696
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多源数据可信度的智能推荐系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c7381167568",
+      "evidence": [
+        {
+          "quote": "一种基于多源数据可信度的智能推荐系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4772,
+            "end_char": 4789
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PFDN: Pyramid Feature Decoupling Network for Single Image Deraining",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-813881014f6b",
+      "evidence": [
+        {
+          "quote": "PFDN: Pyramid Feature Decoupling Network for Single Image Deraining",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4814,
+            "end_char": 4880
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Representative Task Self-Selection for Flexible Clustered Lifelong Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9855c61451a4",
+      "evidence": [
+        {
+          "quote": "Representative Task Self-Selection for Flexible Clustered Lifelong Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4938,
+            "end_char": 5012
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual–Tactile Fused Graph Learning for Object Clustering",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71572f2e7b0d",
+      "evidence": [
+        {
+          "quote": "Visual–Tactile Fused Graph Learning for Object Clustering",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5079,
+            "end_char": 5135
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "I3DOL: Incremental 3D Object Learning without Catastrophic Forgetting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-716778642a84",
+      "evidence": [
+        {
+          "quote": "I3DOL: Incremental 3D Object Learning without Catastrophic Forgetting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5190,
+            "end_char": 5258
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于共享点知识库的终身三维物体识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f65b21fe175",
+      "evidence": [
+        {
+          "quote": "一种基于共享点知识库的终身三维物体识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5324,
+            "end_char": 5344
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Lifelong Visual-Tactile Spectral Clustering for Robotic Object Perception",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f8cbbe75289",
+      "evidence": [
+        {
+          "quote": "Lifelong Visual-Tactile Spectral Clustering for Robotic Object Perception",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5373,
+            "end_char": 5445
+          },
+          "version": "006405a278a3aba8932f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

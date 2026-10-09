@@ -2,15 +2,20 @@
   "doc_id": "596f63261b4b5df4c895",
   "version": "119d784522979784172e",
   "source_hash": "27ad567caa8f1b0ed9ac47c7ff7ace62db60d3bee05a3b0d592079d305c14e53",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:08:08.168451+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.320226+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,95 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d4ce0ad9e14a",
-          "name": "行走障碍者助行机器人",
-          "desc": "膝关节机器人助力效能改善",
+          "id": "item-8677a688db21",
+          "name": "能为行走障碍者提供高效助力的助行机器人是国际学术前沿。",
+          "desc": "能为行走障碍者提供高效助力的助行机器人是国际学术前沿。",
+          "evidence": [
+            {
+              "quote": "能为行走障碍者提供高效助力的助行机器人是国际学术前沿。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 672,
+                "end_char": 698
+              },
+              "version": "119d784522979784172e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-40979a019dcd",
+          "name": "本项目拟通过探索膝关节肌群自调节机制，揭示自调节对自然步态的影响机理，优化机器人关节驱动设计，寻求改善助行机器人助力效能",
+          "desc": "本项目拟通过探索膝关节肌群自调节机制，揭示自调节对自然步态的影响机理，优化机器人关节驱动设计，寻求改善助行机器人助力效能的方法。",
+          "evidence": [
+            {
+              "quote": "本项目拟通过探索膝关节肌群自调节机制，揭示自调节对自然步态的影响机理，优化机器人关节驱动设计，寻求改善助行机器人助力效能的方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 753,
+                "end_char": 816
+              },
+              "version": "119d784522979784172e"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5670f7ed785f",
+          "name": "本项目通过探索膝关节肌群自调节机制，揭示了自调节对自然步态的影响机理，优化了机器人关节驱动设计，寻求出改善助行机器人助力",
+          "desc": "本项目通过探索膝关节肌群自调节机制，揭示了自调节对自然步态的影响机理，优化了机器人关节驱动设计，寻求出改善助行机器人助力效能的新方法。",
+          "evidence": [
+            {
+              "quote": "本项目通过探索膝关节肌群自调节机制，揭示了自调节对自然步态的影响机理，优化了机器人关节驱动设计，寻求出改善助行机器人助力效能的新方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2933,
+                "end_char": 2999
+              },
+              "version": "119d784522979784172e"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-928ef5e837f2",
+          "name": "能为行走障碍者提供高效助力的助行机器人是国际学术前沿。",
+          "desc": "能为行走障碍者提供高效助力的助行机器人是国际学术前沿。",
+          "evidence": [
+            {
+              "quote": "能为行走障碍者提供高效助力的助行机器人是国际学术前沿。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 672,
+                "end_char": 698
+              },
+              "version": "119d784522979784172e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-8e562a8b0e8b",
+          "name": "本项目针对目前为行走障碍者提供高效助力的助行机器人，其膝关节设计存在与人体关节相比，结构功能差异大、力学驱动不等效的不足",
+          "desc": "本项目针对目前为行走障碍者提供高效助力的助行机器人，其膝关节设计存在与人体关节相比，结构功能差异大、力学驱动不等效的不足，无法满足降低穿戴者代谢能耗、高效助力的需求。",
           "evidence": [
             {
               "quote": "本项目针对目前为行走障碍者提供高效助力的助行机器人，其膝关节设计存在与人体关节相比，结构功能差异大、力学驱动不等效的不足，无法满足降低穿戴者代谢能耗、高效助力的需求。",
@@ -32,176 +123,212 @@
               },
               "version": "119d784522979784172e"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8766f08e83ca",
-          "name": "膝关节设计力学不等效",
-          "desc": "结构功能差异大、驱动不等效致代谢能耗高助力低",
-          "evidence": [
-            {
-              "quote": "其膝关节设计存在与人体关节相比，结构功能差异大、力学驱动不等效的不足，无法满足降低穿戴者代谢能耗、高效助力的需求。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2876,
-                "end_char": 2932
-              },
-              "version": "119d784522979784172e"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-935ae43a9ea9",
-          "name": "膝关节数据采集与建模",
-          "desc": "医学影像与电生理采集获取骨骼运动肌群形态信息",
-          "evidence": [
-            {
-              "quote": "利用医学影像设备与体表电生理采集系统，获取了高精度人体膝关节实时骨骼运动、肌群形态、神经肌肉电生理等信息",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3003,
-                "end_char": 3054
-              },
-              "version": "119d784522979784172e"
-            }
-          ]
-        },
-        {
-          "id": "item-835e549663b6",
-          "name": "肌群协同量化识别",
-          "desc": "识别关键肌群及组件并量化协同作用",
-          "evidence": [
-            {
-              "quote": "识别出对行走步态起关键作用的肌群及组件，量化了靶向肌群间的协同作用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3088,
-                "end_char": 3120
-              },
-              "version": "119d784522979784172e"
-            }
-          ]
-        },
-        {
-          "id": "item-c2c2940ff1d7",
-          "name": "力-位设计优化驱动",
-          "desc": "优化关节驱动单元重现膝关节生物力学特性",
-          "evidence": [
-            {
-              "quote": "优化了机器人关节驱动单元的力-位设计，使助行机器人关节重现人体膝关节的生物力学运动特性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3122,
-                "end_char": 3164
-              },
-              "version": "119d784522979784172e"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6bfe2243f89f",
-          "name": "仿生代偿理论依据",
-          "desc": "为肌群自调节机制关节设计提供理论依据",
-          "evidence": [
-            {
-              "quote": "本项目的实施为基于人体关节肌群自调节机制的助行机器人关节设计提供理论依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3184,
-                "end_char": 3219
-              },
-              "version": "119d784522979784172e"
-            }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d4ce0ad9e14a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8766f08e83ca"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种囊式人工气动肌肉",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-78e4df8d56e2",
+      "evidence": [
+        {
+          "quote": "一种囊式人工气动肌肉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3277,
+            "end_char": 3286
+          },
+          "version": "119d784522979784172e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8766f08e83ca"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-935ae43a9ea9"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Compact Biomechanical Feedback Device for the Training of Hammer Throwers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71ee96fb5301",
+      "evidence": [
+        {
+          "quote": "A Compact Biomechanical Feedback Device for the Training of Hammer Throwers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3318,
+            "end_char": 3392
+          },
+          "version": "119d784522979784172e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8766f08e83ca"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-835e549663b6"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Lower Limb Exoskeleton Design Based on Knee Joint Assistance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c81049f6a571",
+      "evidence": [
+        {
+          "quote": "Lower Limb Exoskeleton Design Based on Knee Joint Assistance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3457,
+            "end_char": 3516
+          },
+          "version": "119d784522979784172e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8766f08e83ca"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c2c2940ff1d7"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Deep-Learning-Based Method for Gaining More Biomechanical Parameters with Fewer Sensors in Fast and Complex Movements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ce99131e47e",
+      "evidence": [
+        {
+          "quote": "A Deep-Learning-Based Method for Gaining More Biomechanical Parameters with Fewer Sensors in Fast and Complex Movements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3576,
+            "end_char": 3694
+          },
+          "version": "119d784522979784172e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-835e549663b6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6bfe2243f89f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A quantitative biomechanical study for precise orthopedic intervention in idiopathic scoliosis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-48ab0997699a",
+      "evidence": [
+        {
+          "quote": "A quantitative biomechanical study for precise orthopedic intervention in idiopathic scoliosis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3783,
+            "end_char": 3876
+          },
+          "version": "119d784522979784172e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c2c2940ff1d7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6bfe2243f89f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种超轻便准被动多自由度髋-膝关节助力机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1549fc2f59ac",
+      "evidence": [
+        {
+          "quote": "一种超轻便准被动多自由度髋-膝关节助力机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3955,
+            "end_char": 3976
+          },
+          "version": "119d784522979784172e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Review of State-of-the-arts Sensing Techniques for the Ultra-early Screening of Cerebral Palsy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9094f719da6",
+      "evidence": [
+        {
+          "quote": "A Review of State-of-the-arts Sensing Techniques for the Ultra-early Screening of Cerebral Palsy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4000,
+            "end_char": 4095
+          },
+          "version": "119d784522979784172e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Pilot Study on a Multimodal Wearable System by Applying a Two-Chain Biomechanical Model inthe Alpine Ski Slalom",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0fc79ecf9813",
+      "evidence": [
+        {
+          "quote": "A Pilot Study on a Multimodal Wearable System by Applying a Two-Chain Biomechanical Model inthe Alpine Ski Slalom",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4165,
+            "end_char": 4277
+          },
+          "version": "119d784522979784172e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种步行辅助外骨骼装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-87cc8e22648c",
+      "evidence": [
+        {
+          "quote": "一种步行辅助外骨骼装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4336,
+            "end_char": 4346
+          },
+          "version": "119d784522979784172e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

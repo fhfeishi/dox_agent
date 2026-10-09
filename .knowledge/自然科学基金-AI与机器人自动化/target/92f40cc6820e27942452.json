@@ -2,15 +2,20 @@
   "doc_id": "92f40cc6820e27942452",
   "version": "1a5c4fa6b3173b55ffd7",
   "source_hash": "d5a3e8a372976835ab637c51f36321a4bc10b467216b5ca201c2f603fe722925",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:43.597458+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.876720+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8e1f178c421f",
-          "name": "软体多指手抓持操作",
-          "desc": "具有柔性、顺应性和安全性特点的机器人学崭新方向",
+          "id": "item-36b40a27e3a3",
+          "name": "软体多指手是机器人学领域的崭新方向，具有柔性、顺应性和安全性的特点，在诸多领域具有广阔的应用前景。",
+          "desc": "软体多指手是机器人学领域的崭新方向，具有柔性、顺应性和安全性的特点，在诸多领域具有广阔的应用前景。",
           "evidence": [
             {
-              "quote": "软体多指手是机器人学领域的崭新方向，具有柔性、顺应性和安全性的特点，在诸多领域具有广阔的应用前景",
+              "quote": "软体多指手是机器人学领域的崭新方向，具有柔性、顺应性和安全性的特点，在诸多领域具有广阔的应用前景。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 673,
-                "end_char": 720
+                "end_char": 721
+              },
+              "version": "1a5c4fa6b3173b55ffd7"
+            }
+          ]
+        },
+        {
+          "id": "item-5493a62d3364",
+          "name": "随着社会经济和人类生活生产的需求不断提升，各种应用领域和场景中都对机器人多指灵巧手提出了迫切的需求，然后现有的技术并不能",
+          "desc": "随着社会经济和人类生活生产的需求不断提升，各种应用领域和场景中都对机器人多指灵巧手提出了迫切的需求，然后现有的技术并不能满足实际应用的要求。",
+          "evidence": [
+            {
+              "quote": "随着社会经济和人类生活生产的需求不断提升，各种应用领域和场景中都对机器人多指灵巧手提出了迫切的需求，然后现有的技术并不能满足实际应用的要求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2808,
+                "end_char": 2877
               },
               "version": "1a5c4fa6b3173b55ffd7"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-476e393a4a70",
-          "name": "交互机理与抓持规划缺失",
-          "desc": "柔性材质交互作用模式与机理尚未明确，更没有相应的抓持规划方法",
+          "id": "item-af487fd933ab",
+          "name": "针对这一阻碍软体多指手应用的关键因素，本项目拟通过研究软体手指主动刚度实现机理与抓持刚度模型、软体手指抓持目标的软指接触",
+          "desc": "针对这一阻碍软体多指手应用的关键因素，本项目拟通过研究软体手指主动刚度实现机理与抓持刚度模型、软体手指抓持目标的软指接触力学模型、软体多指手强力抓取过程中的刚度分配方法，提出软体多指手精细抓取刚度分配与操作规划方法及抓持动态稳定性评价方法，解决软体手指抓持刚度实时检测方法、目标抓持的力/力矩矩阵与软体多指手的抓持刚度矩阵映射机理、软体多指手精细操作的抓持刚度分配和主从抓持手指动态调度与控制切换等关键科学问题，建立适用于软体结构多指灵巧手",
           "evidence": [
             {
-              "quote": "其与操作对象的交互作用模式与机理尚未明确，更没有相应的抓持规划方法",
+              "quote": "针对这一阻碍软体多指手应用的关键因素，本项目拟通过研究软体手指主动刚度实现机理与抓持刚度模型、软体手指抓持目标的软指接触力学模型、软体多指手强力抓取过程中的刚度分配方法，提出软体多指手精细抓取刚度分配与操作规划方法及抓持动态稳定性评价方法，解决软体手指抓持刚度实时检测方法、目标抓持的力/力矩矩阵与软体多指手的抓持刚度矩阵映射机理、软体多指手精细操作的抓持刚度分配和主从抓持手指动态调度与控制切换等关键科学问题，建立适用于软体结构多指灵巧手",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 759,
-                "end_char": 791
+                "start_char": 793,
+                "end_char": 1012
               },
               "version": "1a5c4fa6b3173b55ffd7"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2dd1b4366e9e",
-          "name": "软指接触与刚度建模",
-          "desc": "基于微元积分方法的软指接触力分布模型与接触刚度矩阵",
+          "id": "item-e07474e957d6",
+          "name": "本项目的主要目标就是结合软体机器人的相关技术，融合人手的仿生抓持操作建模，建立机器人多指灵巧手操作规划的方法、控制策略和",
+          "desc": "本项目的主要目标就是结合软体机器人的相关技术，融合人手的仿生抓持操作建模，建立机器人多指灵巧手操作规划的方法、控制策略和稳定性评价。",
           "evidence": [
             {
-              "quote": "② 基于微元积分方法的软指接触力分布模型；③ 软指指尖接触力的线性等效方法",
+              "quote": "本项目的主要目标就是结合软体机器人的相关技术，融合人手的仿生抓持操作建模，建立机器人多指灵巧手操作规划的方法、控制策略和稳定性评价。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3204,
-                "end_char": 3240
+                "start_char": 2941,
+                "end_char": 3006
               },
               "version": "1a5c4fa6b3173b55ffd7"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8d5fea00bc77",
-          "name": "抓持刚度分配与稳定性评价",
-          "desc": "抓取刚度建模、抓取位置最优化规划与抓持稳定性评价方法",
+          "id": "item-692cfefa8c99",
+          "name": "针对这一阻碍软体多指手应用的关键因素，本项目拟通过研究软体手指主动刚度实现机理与抓持刚度模型、软体手指抓持目标的软指接触",
+          "desc": "针对这一阻碍软体多指手应用的关键因素，本项目拟通过研究软体手指主动刚度实现机理与抓持刚度模型、软体手指抓持目标的软指接触力学模型、软体多指手强力抓取过程中的刚度分配方法，提出软体多指手精细抓取刚度分配与操作规划方法及抓持动态稳定性评价方法，解决软体手指抓持刚度实时检测方法、目标抓持的力/力矩矩阵与软体多指手的抓持刚度矩阵映射机理、软体多指手精细操作的抓持刚度分配和主从抓持手指动态调度与控制切换等关键科学问题，建立适用于软体结构多指灵巧手",
           "evidence": [
             {
-              "quote": "① 建立接触刚度与关节刚度模型，② 抓持稳定性评价方法",
+              "quote": "针对这一阻碍软体多指手应用的关键因素，本项目拟通过研究软体手指主动刚度实现机理与抓持刚度模型、软体手指抓持目标的软指接触力学模型、软体多指手强力抓取过程中的刚度分配方法，提出软体多指手精细抓取刚度分配与操作规划方法及抓持动态稳定性评价方法，解决软体手指抓持刚度实时检测方法、目标抓持的力/力矩矩阵与软体多指手的抓持刚度矩阵映射机理、软体多指手精细操作的抓持刚度分配和主从抓持手指动态调度与控制切换等关键科学问题，建立适用于软体结构多指灵巧手",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3483,
-                "end_char": 3509
+                "start_char": 793,
+                "end_char": 1012
               },
               "version": "1a5c4fa6b3173b55ffd7"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,612 @@
       "state": "has",
       "items": [
         {
-          "id": "item-506515dfb4cd",
-          "name": "多型灵巧手设计与开发",
-          "desc": "软体五指灵巧手、全驱动无耦合仿生多指灵巧手、三指灵巧手",
+          "id": "item-b8f450fdae25",
+          "name": "软体多指手是机器人学领域的崭新方向，具有柔性、顺应性和安全性的特点，在诸多领域具有广阔的应用前景。",
+          "desc": "软体多指手是机器人学领域的崭新方向，具有柔性、顺应性和安全性的特点，在诸多领域具有广阔的应用前景。",
           "evidence": [
             {
-              "quote": "包括：（1）软体五指灵巧手，（2）全驱动无耦合仿生多指灵巧手，（3）三指灵巧手",
+              "quote": "软体多指手是机器人学领域的崭新方向，具有柔性、顺应性和安全性的特点，在诸多领域具有广阔的应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3312,
-                "end_char": 3350
+                "start_char": 673,
+                "end_char": 721
               },
               "version": "1a5c4fa6b3173b55ffd7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-4376dec0324a",
-          "name": "人手抓持机理新解释",
-          "desc": "从仿生角度解释人手抓持力学简约途径，为操作规划控制提供新方法",
+          "id": "item-fa6898c58b52",
+          "name": "随着社会经济和人类生活生产的需求不断提升，各种应用领域和场景中都对机器人多指灵巧手提出了迫切的需求，然后现有的技术并不能",
+          "desc": "随着社会经济和人类生活生产的需求不断提升，各种应用领域和场景中都对机器人多指灵巧手提出了迫切的需求，然后现有的技术并不能满足实际应用的要求。",
           "evidence": [
             {
-              "quote": "本项目从仿生的角度解释了人手抓持和复杂操作过程的力学简约实现途径和复杂操作过程的实现机制，映射到机器人多指灵巧手的力学分析和操作建模",
+              "quote": "随着社会经济和人类生活生产的需求不断提升，各种应用领域和场景中都对机器人多指灵巧手提出了迫切的需求，然后现有的技术并不能满足实际应用的要求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3512,
-                "end_char": 3577
+                "start_char": 2808,
+                "end_char": 2877
               },
               "version": "1a5c4fa6b3173b55ffd7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8e1f178c421f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-476e393a4a70"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种仿生软体驱动器的设计与弯曲建模研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-daf99a214447",
+      "evidence": [
+        {
+          "quote": "一种仿生软体驱动器的设计与弯曲建模研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3628,
+            "end_char": 3646
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-476e393a4a70"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2dd1b4366e9e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于机器人全驱动手指气动肌肉的张紧结构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6adf788c7014",
+      "evidence": [
+        {
+          "quote": "一种用于机器人全驱动手指气动肌肉的张紧结构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3677,
+            "end_char": 3697
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-476e393a4a70"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8d5fea00bc77"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "多模式人手动作分类识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-80abfa7fcffd",
+      "evidence": [
+        {
+          "quote": "多模式人手动作分类识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3734,
+            "end_char": 3746
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8d5fea00bc77"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-506515dfb4cd"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Fully Driven Bionic Dexterous Hand",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b365481b5fe9",
+      "evidence": [
+        {
+          "quote": "Fully Driven Bionic Dexterous Hand",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3780,
+            "end_char": 3813
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2dd1b4366e9e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4376dec0324a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "人手操作目标物体过程运动轨迹的规律研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-480d7e7571d6",
+      "evidence": [
+        {
+          "quote": "人手操作目标物体过程运动轨迹的规律研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3894,
+            "end_char": 3912
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "机器人多指灵巧手的研究现状、趋势与挑战",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5ca5b67fef6",
+      "evidence": [
+        {
+          "quote": "机器人多指灵巧手的研究现状、趋势与挑战",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3946,
+            "end_char": 3964
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Modeling of a novel Variable Stiffness mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24659da336e9",
+      "evidence": [
+        {
+          "quote": "Design and Modeling of a novel Variable Stiffness mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3998,
+            "end_char": 4056
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bending and Wrinkled Model Research of a Soft Robot Inspired by Octopus",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4248f19c9848",
+      "evidence": [
+        {
+          "quote": "Bending and Wrinkled Model Research of a Soft Robot Inspired by Octopus",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4105,
+            "end_char": 4175
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人装配姿态纠偏的刚软复合末端执行器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a0f2cdf48c1",
+      "evidence": [
+        {
+          "quote": "一种机器人装配姿态纠偏的刚软复合末端执行器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4233,
+            "end_char": 4253
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向软体多指手的指尖接触力学建模",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f2bbe0585490",
+      "evidence": [
+        {
+          "quote": "面向软体多指手的指尖接触力学建模",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4287,
+            "end_char": 4302
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sensor Embedded Soft Fingertip for Precise Manipulation and Softness Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96c69c37df30",
+      "evidence": [
+        {
+          "quote": "Sensor Embedded Soft Fingertip for Precise Manipulation and Softness Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4337,
+            "end_char": 4416
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "软体机器人气压驱动结构研究综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ef9f247bbf6",
+      "evidence": [
+        {
+          "quote": "软体机器人气压驱动结构研究综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4474,
+            "end_char": 4488
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "自适应抓持装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-43803ac5065e",
+      "evidence": [
+        {
+          "quote": "自适应抓持装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4528,
+            "end_char": 4534
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Full-Drive Decoupled Bionic Finger: Structure and Experimental Trials",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9ad88dc6bd8f",
+      "evidence": [
+        {
+          "quote": "Full-Drive Decoupled Bionic Finger: Structure and Experimental Trials",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4577,
+            "end_char": 4645
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进支持向量机的人手动作模式识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03816cd7f1cb",
+      "evidence": [
+        {
+          "quote": "基于改进支持向量机的人手动作模式识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4740,
+            "end_char": 4759
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于分数阶PID算法的磁流变液柔顺关节控制研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06e890f35770",
+      "evidence": [
+        {
+          "quote": "基于分数阶PID算法的磁流变液柔顺关节控制研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4794,
+            "end_char": 4816
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fabrication and Experiment of 3-DOF Pneumatic Flexible Actuator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a15b1ab5fc0",
+      "evidence": [
+        {
+          "quote": "Fabrication and Experiment of 3-DOF Pneumatic Flexible Actuator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4853,
+            "end_char": 4915
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Humanoid Pneumatic Soft Robot Hand",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ee0e26efb8f0",
+      "evidence": [
+        {
+          "quote": "Research on Humanoid Pneumatic Soft Robot Hand",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4988,
+            "end_char": 5033
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Soft robotics: academic insides and perspectives via bibliometric analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd90070a6086",
+      "evidence": [
+        {
+          "quote": "Soft robotics: academic insides and perspectives via bibliometric analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5093,
+            "end_char": 5166
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种腱传动仿人灵巧手的手指关节",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a8e328b10f1",
+      "evidence": [
+        {
+          "quote": "一种腱传动仿人灵巧手的手指关节",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5244,
+            "end_char": 5258
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Novel design method for multi-configuration dexterous hand based on a gesture primitives analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e979582f605b",
+      "evidence": [
+        {
+          "quote": "Novel design method for multi-configuration dexterous hand based on a gesture primitives analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5293,
+            "end_char": 5389
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trunk-like Soft Actuator: Design, Modeling, and Experiments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9fe7a590fdb",
+      "evidence": [
+        {
+          "quote": "Trunk-like Soft Actuator: Design, Modeling, and Experiments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5431,
+            "end_char": 5489
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Academic Review and Perspectives on Robotic Exoskeletons",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e86f15cbc16",
+      "evidence": [
+        {
+          "quote": "Academic Review and Perspectives on Robotic Exoskeletons",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5584,
+            "end_char": 5639
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pneumatic webbed soft gripper for unstructured grasping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a4582b08bb1",
+      "evidence": [
+        {
+          "quote": "Pneumatic webbed soft gripper for unstructured grasping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5727,
+            "end_char": 5781
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种腱传动全驱动仿人灵巧手",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3900dbebbf9b",
+      "evidence": [
+        {
+          "quote": "一种腱传动全驱动仿人灵巧手",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5844,
+            "end_char": 5856
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "机器人柔顺关节研究综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b6fae2ea0ef",
+      "evidence": [
+        {
+          "quote": "机器人柔顺关节研究综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5891,
+            "end_char": 5901
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人装配姿态纠偏的软体致动器控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1d9e92b795b",
+      "evidence": [
+        {
+          "quote": "一种机器人装配姿态纠偏的软体致动器控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5929,
+            "end_char": 5949
+          },
+          "version": "1a5c4fa6b3173b55ffd7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 28,
+    "listed": 28,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 15
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": false
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "85346c570aaed317faac",
   "version": "74f9ee9da026de6d8288",
   "source_hash": "fe72c02eb540462e0ae45ec68ec8cb78f3fa118e39a82fee28b22f43a3c60608",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:27.705353+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.700464+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6ab9b1b25d3f",
-          "name": "顺应康复外骨骼",
-          "desc": "人体关节结构运动特性分析支撑高度顺应的康复外骨骼设计与控制",
+          "id": "item-3699fc8c1695",
+          "name": "物理康复训练可以帮助运动功能损伤患者进行神经再生或重建，对于患者运动功能的恢复有着非常重要的作用。",
+          "desc": "物理康复训练可以帮助运动功能损伤患者进行神经再生或重建，对于患者运动功能的恢复有着非常重要的作用。",
           "evidence": [
             {
-              "quote": "本项目围绕人机顺应开展康复外骨骼机器人研究，旨在通过对人体主要关节的结构和运动特性分析及对不同关节的共性总结，实现人体结构和运动精确的数学表达，发展人性化机械-传感-驱动一体化设计和顺应控制方法",
+              "quote": "物理康复训练可以帮助运动功能损伤患者进行神经再生或重建，对于患者运动功能的恢复有着非常重要的作用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2839,
-                "end_char": 2935
+                "start_char": 651,
+                "end_char": 699
               },
               "version": "74f9ee9da026de6d8288"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-0b7186f7035d",
-          "name": "人机关节错位顺应不足",
-          "desc": "过度简化的关节设计在人机关节错位时造成人体不适和伤害",
-          "evidence": [
-            {
-              "quote": "该系统有效克服了过度简化的关节设计在人机关节错位时造成人体不适和伤害的局限",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3377,
-                "end_char": 3413
-              },
-              "version": "74f9ee9da026de6d8288"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-5a2d3b1d90d0",
-          "name": "关节特征参数化表达",
-          "desc": "基于外部有限测量观测人体内部力位信息，建立关节特征通用化参数化表达理论",
+          "id": "item-f33c10084fe1",
+          "name": "因此，本课题将通过对人体主要关节的结构和运动特性分析以及对不同关节的共性总结，提出高度顺应人体关节运动的外骨骼设计和控制",
+          "desc": "因此，本课题将通过对人体主要关节的结构和运动特性分析以及对不同关节的共性总结，提出高度顺应人体关节运动的外骨骼设计和控制方法，并以此为基础，通过研究人体运动多肢体协同和负载分配规律，实现以全身型康复外骨骼为中心的系统康复训练，并更好解决训练过程中外骨骼驱动顺应控制和人体参数在线测量等核心问题。",
           "evidence": [
             {
-              "quote": "提出了基于外部有限测量观测人体内部力位信息的方法，建立了关节特征通用化、参数化表达理论。基于关节模型提出了仿生顺应式外骨骼关节设计",
+              "quote": "因此，本课题将通过对人体主要关节的结构和运动特性分析以及对不同关节的共性总结，提出高度顺应人体关节运动的外骨骼设计和控制方法，并以此为基础，通过研究人体运动多肢体协同和负载分配规律，实现以全身型康复外骨骼为中心的系统康复训练，并更好解决训练过程中外骨骼驱动顺应控制和人体参数在线测量等核心问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3009,
-                "end_char": 3073
+                "start_char": 814,
+                "end_char": 960
               },
               "version": "74f9ee9da026de6d8288"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ad05b44af060",
-          "name": "机器学习步态进化策略",
-          "desc": "非对称外骨骼测量健肢运动指导患侧不同步态相位支撑与顺应，促进递进式步态康复",
+          "id": "item-0d4303668b23",
+          "name": "为实现科学高效的机器辅助训练并减少康复过程中的医疗人员和资源，本项目围绕人机顺应开展康复外骨骼机器人研究，旨在通过对人体",
+          "desc": "为实现科学高效的机器辅助训练并减少康复过程中的医疗人员和资源，本项目围绕人机顺应开展康复外骨骼机器人研究，旨在通过对人体主要关节的结构和运动特性分析及对不同关节的共性总结，实现人体结构和运动精确的数学表达，发展人性化机械-传感-驱动一体化设计和顺应控制方法，并形成具有更好人机相容性的外骨骼康复装备。",
           "evidence": [
             {
-              "quote": "设计了面向中风康复的非对称外骨骼（躯干及下肢），提出了基于机器学习的步态康复智能进化策略，通过测量健肢运动，指导患侧外骨骼在不同步态相位分别实现支撑和顺应，以促进递进式步态康复",
+              "quote": "为实现科学高效的机器辅助训练并减少康复过程中的医疗人员和资源，本项目围绕人机顺应开展康复外骨骼机器人研究，旨在通过对人体主要关节的结构和运动特性分析及对不同关节的共性总结，实现人体结构和运动精确的数学表达，发展人性化机械-传感-驱动一体化设计和顺应控制方法，并形成具有更好人机相容性的外骨骼康复装备。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3137,
-                "end_char": 3224
+                "start_char": 2808,
+                "end_char": 2957
               },
               "version": "74f9ee9da026de6d8288"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,852 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a32ed0922a18",
-          "name": "减重25%关节内力",
-          "desc": "系统可支撑44%体重并减少髋膝踝25%以上关节内力、力矩峰值，用于中风临床实验",
+          "id": "item-d65349eda20a",
+          "name": "物理康复训练可以帮助运动功能损伤患者进行神经再生或重建，对于患者运动功能的恢复有着非常重要的作用。",
+          "desc": "物理康复训练可以帮助运动功能损伤患者进行神经再生或重建，对于患者运动功能的恢复有着非常重要的作用。",
           "evidence": [
             {
-              "quote": "可支撑44%的体重并减少人体髋、膝、踝25%以上的关节内力、力矩峰值，并用于中风康复的临床实验",
+              "quote": "物理康复训练可以帮助运动功能损伤患者进行神经再生或重建，对于患者运动功能的恢复有着非常重要的作用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3415,
-                "end_char": 3461
+                "start_char": 651,
+                "end_char": 699
               },
               "version": "74f9ee9da026de6d8288"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-fae381f67c6e",
-          "name": "磁场分布式测量重构",
-          "desc": "融合磁场的嵌入式运动测量系统与分布式位移力阻抗测量重构平台",
+          "id": "item-553f4563402b",
+          "name": "物理康复训练能帮助运动功能损伤患者进行神经再生或重建，有助于患者运动功能的恢复。",
+          "desc": "物理康复训练能帮助运动功能损伤患者进行神经再生或重建，有助于患者运动功能的恢复。",
           "evidence": [
             {
-              "quote": "提出基于人机闭合运动链的人体关节运动观测方法，开发融合磁场的嵌入式运动测量系统，实现了人体运动/力状态和运动意图的实时感知",
+              "quote": "物理康复训练能帮助运动功能损伤患者进行神经再生或重建，有助于患者运动功能的恢复。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3075,
-                "end_char": 3135
+                "start_char": 2768,
+                "end_char": 2807
               },
               "version": "74f9ee9da026de6d8288"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6ab9b1b25d3f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0b7186f7035d"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "柔性构件:变形场分析、重构及其应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b25ad7463f1",
+      "evidence": [
+        {
+          "quote": "柔性构件:变形场分析、重构及其应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3486,
+            "end_char": 3502
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0b7186f7035d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5a2d3b1d90d0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spherical Wrist with Hybrid Motion-Impedance Control for Enhanced Robotic Manipulations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5797f2cc5957",
+      "evidence": [
+        {
+          "quote": "Spherical Wrist with Hybrid Motion-Impedance Control for Enhanced Robotic Manipulations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3524,
+            "end_char": 3610
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0b7186f7035d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ad05b44af060"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度相机Kinect的人体坐姿识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-73842dfc328f",
+      "evidence": [
+        {
+          "quote": "一种基于深度相机Kinect的人体坐姿识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3652,
+            "end_char": 3674
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ad05b44af060"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a32ed0922a18"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Soft Capacitive Wearable Sensing System for Lower-limb Motion Monitoring",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de0db3efa352",
+      "evidence": [
+        {
+          "quote": "A Soft Capacitive Wearable Sensing System for Lower-limb Motion Monitoring",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3696,
+            "end_char": 3769
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5a2d3b1d90d0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-fae381f67c6e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "步态评分方法、系统、计算机程序产品及可读存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51892ec85994",
+      "evidence": [
+        {
+          "quote": "步态评分方法、系统、计算机程序产品及可读存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3840,
+            "end_char": 3863
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2020 IEEE/ASME AIM Best Student Paper Finalist",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e40191dea44",
+      "evidence": [
+        {
+          "quote": "2020 IEEE/ASME AIM Best Student Paper Finalist",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3890,
+            "end_char": 3935
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种可测量人体下肢坐姿的可穿戴式外骨骼座椅装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f58051137e30",
+      "evidence": [
+        {
+          "quote": "一种可测量人体下肢坐姿的可穿戴式外骨骼座椅装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3986,
+            "end_char": 4008
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种个性化定制高顺应性膝关节外骨骼设计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8621bb2aa28",
+      "evidence": [
+        {
+          "quote": "一种个性化定制高顺应性膝关节外骨骼设计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4028,
+            "end_char": 4048
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于柔性霍尔压力传感器的动态足底监测足垫",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d58227574b1",
+      "evidence": [
+        {
+          "quote": "一种基于柔性霍尔压力传感器的动态足底监测足垫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4071,
+            "end_char": 4092
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-Based Digital Image Correlation for Noncontact Deformation Measurement of Strain Field and Mechanical Property",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13af94f172bb",
+      "evidence": [
+        {
+          "quote": "Model-Based Digital Image Correlation for Noncontact Deformation Measurement of Strain Field and Mechanical Property",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4119,
+            "end_char": 4234
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2020 IEEE/ASME AIM Best Paper Finalist",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2dac653b9a80",
+      "evidence": [
+        {
+          "quote": "2020 IEEE/ASME AIM Best Paper Finalist",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4283,
+            "end_char": 4320
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Strain-based Pose Estimation for a Flexonic Mobile Node with Field Sensing Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-64f7ad3459f3",
+      "evidence": [
+        {
+          "quote": "Strain-based Pose Estimation for a Flexonic Mobile Node with Field Sensing Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4381,
+            "end_char": 4461
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于霍尔效应的分布式柔性力位测量装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6132591d9ee",
+      "evidence": [
+        {
+          "quote": "一种基于霍尔效应的分布式柔性力位测量装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4510,
+            "end_char": 4529
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Digital Image Correlation Based on Primary Shear Band Model for Reconstructing Displacement, Strain, and Stress Fields in Orthogonal Cutting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ccd87c3fc05c",
+      "evidence": [
+        {
+          "quote": "Digital Image Correlation Based on Primary Shear Band Model for Reconstructing Displacement, Strain, and Stress Fields in Orthogonal Cutting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4556,
+            "end_char": 4695
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于步态相位自解锁的被动式体重支撑外骨骼装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-987c851c29de",
+      "evidence": [
+        {
+          "quote": "一种基于步态相位自解锁的被动式体重支撑外骨骼装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4755,
+            "end_char": 4778
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Inverse Models and Harmonics Compensation for Suppressing Torque Ripples of Multiphase Permanent Magnet Motor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8fbd78ab4f42",
+      "evidence": [
+        {
+          "quote": "Inverse Models and Harmonics Compensation for Suppressing Torque Ripples of Multiphase Permanent Magnet Motor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4801,
+            "end_char": 4909
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Articular Geometry Reconstruction for Knee Joint with a Wearable Compliant Device",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06a00499e1a6",
+      "evidence": [
+        {
+          "quote": "Articular Geometry Reconstruction for Knee Joint with a Wearable Compliant Device",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4981,
+            "end_char": 5061
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自带姿态传感的永磁球关节及其测量方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e914fe214a46",
+      "evidence": [
+        {
+          "quote": "一种自带姿态传感的永磁球关节及其测量方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5122,
+            "end_char": 5141
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Parameter Element Method for Design Analysis of Electrical Muscle Stimulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31cd6371b25f",
+      "evidence": [
+        {
+          "quote": "Distributed Parameter Element Method for Design Analysis of Electrical Muscle Stimulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5166,
+            "end_char": 5254
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "46届日内瓦国际发明展银奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cddcae128bd7",
+      "evidence": [
+        {
+          "quote": "46届日内瓦国际发明展银奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5312,
+            "end_char": 5324
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Physics-based Ankle Kinematics for Estimating Joint Internal Parameters",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-da917103d93d",
+      "evidence": [
+        {
+          "quote": "Physics-based Ankle Kinematics for Estimating Joint Internal Parameters",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5403,
+            "end_char": 5473
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analytical and Experimental Investigation of Temporal Interference for Selective Neuromuscular Activation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-86c860ffcb53",
+      "evidence": [
+        {
+          "quote": "Analytical and Experimental Investigation of Temporal Interference for Selective Neuromuscular Activation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5539,
+            "end_char": 5643
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于距离测量求解球关节三自由度姿态的装置及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5a08a82c6d5f",
+      "evidence": [
+        {
+          "quote": "一种基于距离测量求解球关节三自由度姿态的装置及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5687,
+            "end_char": 5711
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种减轻下肢关节负载及测量支撑力的外骨骼装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f331cea827c",
+      "evidence": [
+        {
+          "quote": "一种减轻下肢关节负载及测量支撑力的外骨骼装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5735,
+            "end_char": 5756
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Flexonics for Manufacturing and Robotics: Modeling, Design and Analysis Methods",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18a13d09b8c9",
+      "evidence": [
+        {
+          "quote": "Flexonics for Manufacturing and Robotics: Modeling, Design and Analysis Methods",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5777,
+            "end_char": 5855
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Permanent Magnet Spherical Motors: Model and Field Based Approaches for Design, Sensing and Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d80a66df9d5d",
+      "evidence": [
+        {
+          "quote": "Permanent Magnet Spherical Motors: Model and Field Based Approaches for Design, Sensing and Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5892,
+            "end_char": 5990
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reconfigurable Impedance Sensing System for Early Rehabilitation following Stroke Recovery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1cfa8494987b",
+      "evidence": [
+        {
+          "quote": "Reconfigurable Impedance Sensing System for Early Rehabilitation following Stroke Recovery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6026,
+            "end_char": 6115
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种具有肌力反馈功能的多模式肌力训练装",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b00920896ac0",
+      "evidence": [
+        {
+          "quote": "一种具有肌力反馈功能的多模式肌力训练装",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6174,
+            "end_char": 6192
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于传感驱动一体化的髋关节康复辅助装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-461cd45d822e",
+      "evidence": [
+        {
+          "quote": "一种基于传感驱动一体化的髋关节康复辅助装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6216,
+            "end_char": 6236
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Current-interference Scanning Method for Detection of Abnormal Tissues",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b4abb9e43625",
+      "evidence": [
+        {
+          "quote": "A Novel Current-interference Scanning Method for Detection of Abnormal Tissues",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6259,
+            "end_char": 6336
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种康复外骨骼机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba95a99344bd",
+      "evidence": [
+        {
+          "quote": "一种康复外骨骼机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6380,
+            "end_char": 6389
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Review of Anatomy-based Ankle–Foot Robotics for Mind, Motor and Motion Recovery Following Stroke: Design Considerations and Needs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-330b7d90f290",
+      "evidence": [
+        {
+          "quote": "Review of Anatomy-based Ankle–Foot Robotics for Mind, Motor and Motion Recovery Following Stroke: Design Considerations and Needs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6411,
+            "end_char": 6539
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于行走特征矢量图的步态识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f77d67f3cc9c",
+      "evidence": [
+        {
+          "quote": "基于行走特征矢量图的步态识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6594,
+            "end_char": 6609
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Harmonic Mode and Remedy Strategy of Multiphase PM Motor Under Open-Circuit Fault",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2cf3b66a4ece",
+      "evidence": [
+        {
+          "quote": "Harmonic Mode and Remedy Strategy of Multiphase PM Motor Under Open-Circuit Fault",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6672,
+            "end_char": 6752
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种轻量化下肢康复外骨骼",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-89e4de07e81f",
+      "evidence": [
+        {
+          "quote": "一种轻量化下肢康复外骨骼",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6822,
+            "end_char": 6833
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Feature-set Characterization for Target Detection Based on Artificial Color Contrast and Principal Component Analysis with Robotic Tealeaf Harvesting Applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f7276945a888",
+      "evidence": [
+        {
+          "quote": "Feature-set Characterization for Target Detection Based on Artificial Color Contrast and Principal Component Analysis with Robotic Tealeaf Harvesting Applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6859,
+            "end_char": 7020
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design Concept Development of a Variable Magnetization Motor with Improved Efficiency and Controllable Stiffness for Robotic Applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d70fe94a60a6",
+      "evidence": [
+        {
+          "quote": "Design Concept Development of a Variable Magnetization Motor with Improved Efficiency and Controllable Stiffness for Robotic Applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7066,
+            "end_char": 7202
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种可穿戴式智能外骨骼座椅装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-487d10ab5578",
+      "evidence": [
+        {
+          "quote": "一种可穿戴式智能外骨骼座椅装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7253,
+            "end_char": 7267
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prototype Development of a 3-DOF Pantographic Exoskeleton Joint with Embedded Motion Sensing System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-501ed9cb7a33",
+      "evidence": [
+        {
+          "quote": "Prototype Development of a 3-DOF Pantographic Exoskeleton Joint with Embedded Motion Sensing System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7290,
+            "end_char": 7388
+          },
+          "version": "74f9ee9da026de6d8288"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 40,
+    "listed": 40,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "专利": {
+        "listed": 16,
+        "extracted": 15
+      },
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": false
+  }
 }

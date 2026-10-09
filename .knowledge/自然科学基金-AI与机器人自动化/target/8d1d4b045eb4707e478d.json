@@ -2,15 +2,20 @@
   "doc_id": "8d1d4b045eb4707e478d",
   "version": "172aeee971f3f8659f5e",
   "source_hash": "92e4daf1183342637f4c1d4508af588b60deaee1dc9cf68b8769c88822b4b73e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:11.449195+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.797380+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4323220e974e",
-          "name": "六足仿生机器人步态规划",
-          "desc": "非结构环境下六足机器人步态与协调控制",
+          "id": "item-74dfa27b9b19",
+          "name": "六足机器人仍存在行走过于机械、不能灵活运动、地形适应能力欠佳，而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难",
+          "desc": "六足机器人仍存在行走过于机械、不能灵活运动、地形适应能力欠佳，而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难以获得理想的结果，本项目基于语义地图与稳定性评估研究三自由度单足机体椭圆布置的六足仿生机器人步态规划与协调控制，探索其特定地形下多位姿动稳定性分析方法、步态自适应策略、高效多足协调控制方法以及路线可通过性评估方法。",
           "evidence": [
             {
-              "quote": "本项目基于语义地图与稳定性评估研究三自由度单足机体椭圆布置的仿生六足机器人步态规划与协调控制，探索其特定地形下多位姿动稳定性分析方法、步态自适应策略、高效多足协调控制方法。",
+              "quote": "六足机器人仍存在行走过于机械、不能灵活运动、地形适应能力欠佳，而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难以获得理想的结果，本项目基于语义地图与稳定性评估研究三自由度单足机体椭圆布置的六足仿生机器人步态规划与协调控制，探索其特定地形下多位姿动稳定性分析方法、步态自适应策略、高效多足协调控制方法以及路线可通过性评估方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3602,
-                "end_char": 3687
+                "start_char": 661,
+                "end_char": 827
               },
               "version": "172aeee971f3f8659f5e"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-32c81dcd03fe",
-          "name": "步态轨迹稳定性割裂",
-          "desc": "非结构环境单一讨论步态轨迹或稳定性难获理想结果",
+          "id": "item-389a2f3a590a",
+          "name": ".  在自主运动规划方面，设计了一种将随机抽样一致性光流跟踪法和改进的特征点匹配法结合的视觉里程计，解决了光流跟踪法定位",
+          "desc": ".  在自主运动规划方面，设计了一种将随机抽样一致性光流跟踪法和改进的特征点匹配法结合的视觉里程计，解决了光流跟踪法定位精度不足、误差累积和特征点匹配法耗时久的问题；",
           "evidence": [
             {
-              "quote": "而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难以获得理想的结果",
+              "quote": ".  在自主运动规划方面，设计了一种将随机抽样一致性光流跟踪法和改进的特征点匹配法结合的视觉里程计，解决了光流跟踪法定位精度不足、误差累积和特征点匹配法耗时久的问题；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 692,
-                "end_char": 728
+                "start_char": 3971,
+                "end_char": 4053
               },
               "version": "172aeee971f3f8659f5e"
             }
@@ -63,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-85f3a7a44e51",
-          "name": "语义辅助激光SLAM",
-          "desc": "点云实时语义分割融合激光SLAM构建语义地图",
+          "id": "item-4e49630dc0d6",
+          "name": "将视觉感知和机身稳定性控制融入运动控制过程中，引入深层语义地图和虚拟模型，基于当前场景建立可通行性评估网络，实现有感知、",
+          "desc": "将视觉感知和机身稳定性控制融入运动控制过程中，引入深层语义地图和虚拟模型，基于当前场景建立可通行性评估网络，实现有感知、抗扰动的自适应步态，改进机身运动规划和多足协调性，得到更优的足端运动轨迹和机体运动路径。",
           "evidence": [
             {
-              "quote": "为提高机器人位姿估计的准确性，在前期激光点云实时语义分割方法基础上融合现有激光SLAM系统，构建语义辅助的激光SLAM系统",
+              "quote": "将视觉感知和机身稳定性控制融入运动控制过程中，引入深层语义地图和虚拟模型，基于当前场景建立可通行性评估网络，实现有感知、抗扰动的自适应步态，改进机身运动规划和多足协调性，得到更优的足端运动轨迹和机体运动路径。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 4104,
-                "end_char": 4164
+                "start_char": 871,
+                "end_char": 974
               },
               "version": "172aeee971f3f8659f5e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-84f66ce17ffc",
-          "name": "虚拟模型控制与导纳",
-          "desc": "3+3构型测试台架与虚拟机构驱动机器人运动控制",
+          "id": "item-329453950147",
+          "name": "六足机器人仍存在行走过于机械、不能灵活运动、地形适应能力欠佳，而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难",
+          "desc": "六足机器人仍存在行走过于机械、不能灵活运动、地形适应能力欠佳，而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难以获得理想的结果，本项目基于语义地图与稳定性评估研究三自由度单足机体椭圆布置的六足仿生机器人步态规划与协调控制，探索其特定地形下多位姿动稳定性分析方法、步态自适应策略、高效多足协调控制方法以及路线可通过性评估方法。",
           "evidence": [
             {
-              "quote": "为研究机器人机身与单腿之间的作用原理，设计了“3+3”构型测试台架，并提出了一种导纳控制策略，实现测试平台对单腿的力载荷功能，模拟出真实机身对单腿的力作用",
+              "quote": "六足机器人仍存在行走过于机械、不能灵活运动、地形适应能力欠佳，而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难以获得理想的结果，本项目基于语义地图与稳定性评估研究三自由度单足机体椭圆布置的六足仿生机器人步态规划与协调控制，探索其特定地形下多位姿动稳定性分析方法、步态自适应策略、高效多足协调控制方法以及路线可通过性评估方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3699,
-                "end_char": 3775
+                "start_char": 661,
+                "end_char": 827
               },
               "version": "172aeee971f3f8659f5e"
             }
-          ]
-        },
-        {
-          "id": "item-871981835d7f",
-          "name": "地形语义步态切换",
-          "desc": "依据地形语义信息切换至最优步态参数运动",
-          "evidence": [
-            {
-              "quote": "同时根据环境所获得的地形语义信息，使机器人在不同地形时切换至最优步态参数进行运动。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3930,
-                "end_char": 3970
-              },
-              "version": "172aeee971f3f8659f5e"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +108,404 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b4fbee2a9e2e",
-          "name": "改进双目VI-SLAM",
-          "desc": "非线性优化改进双目VI-SLAM解决惯性参数估计",
+          "id": "item-c007ae621b3f",
+          "name": "六足机器人仍存在行走过于机械、不能灵活运动、地形适应能力欠佳，而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难",
+          "desc": "六足机器人仍存在行走过于机械、不能灵活运动、地形适应能力欠佳，而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难以获得理想的结果，本项目基于语义地图与稳定性评估研究三自由度单足机体椭圆布置的六足仿生机器人步态规划与协调控制，探索其特定地形下多位姿动稳定性分析方法、步态自适应策略、高效多足协调控制方法以及路线可通过性评估方法。",
           "evidence": [
             {
-              "quote": "提出一种基于非线性优化的改进双目VI-SLAM算法，解决原有算法初始化阶段惯性参数估计不准确的问题。",
+              "quote": "六足机器人仍存在行走过于机械、不能灵活运动、地形适应能力欠佳，而且非结构化环境决定了单一讨论机器人步态、轨迹或稳定性都难以获得理想的结果，本项目基于语义地图与稳定性评估研究三自由度单足机体椭圆布置的六足仿生机器人步态规划与协调控制，探索其特定地形下多位姿动稳定性分析方法、步态自适应策略、高效多足协调控制方法以及路线可通过性评估方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 4054,
-                "end_char": 4103
+                "start_char": 661,
+                "end_char": 827
               },
               "version": "172aeee971f3f8659f5e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-b25a9d75da66",
+          "name": "六足机器人相较于其他轮式移动机器人，在非结构环境下具有较强的地形适应能力和良好的运动稳定性。",
+          "desc": "六足机器人相较于其他轮式移动机器人，在非结构环境下具有较强的地形适应能力和良好的运动稳定性。",
+          "evidence": [
+            {
+              "quote": "六足机器人相较于其他轮式移动机器人，在非结构环境下具有较强的地形适应能力和良好的运动稳定性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3556,
+                "end_char": 3601
+              },
+              "version": "172aeee971f3f8659f5e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4323220e974e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-32c81dcd03fe"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "微型光谱仪数据采集系统设计与标定",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ded8857904c",
+      "evidence": [
+        {
+          "quote": "微型光谱仪数据采集系统设计与标定",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4359,
+            "end_char": 4374
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-32c81dcd03fe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-85f3a7a44e51"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进DeepLabv3+网络的轻量级语义分割算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fbe2c035e7dd",
+      "evidence": [
+        {
+          "quote": "基于改进DeepLabv3+网络的轻量级语义分割算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4399,
+            "end_char": 4424
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-32c81dcd03fe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-84f66ce17ffc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "改进最佳缝合线的红外图像拼接方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-40cde8a9a42e",
+      "evidence": [
+        {
+          "quote": "改进最佳缝合线的红外图像拼接方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4448,
+            "end_char": 4463
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-32c81dcd03fe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-871981835d7f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于FPGA实现的双目视觉定位装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4050ee830682",
+      "evidence": [
+        {
+          "quote": "基于FPGA实现的双目视觉定位装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4486,
+            "end_char": 4502
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-85f3a7a44e51"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b4fbee2a9e2e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进RRT-Connect算法的移动机器人路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f03b33b98258",
+      "evidence": [
+        {
+          "quote": "基于改进RRT-Connect算法的移动机器人路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4531,
+            "end_char": 4557
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-84f66ce17ffc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b4fbee2a9e2e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于深度迁移网络 MobileNetV3 的地形识别",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8035c6684d21",
+      "evidence": [
+        {
+          "quote": "基于深度迁移网络 MobileNetV3 的地形识别",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4583,
+            "end_char": 4608
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于三维锥形栅格的激光点云语义分割方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18d5e9fa8286",
+      "evidence": [
+        {
+          "quote": "基于三维锥形栅格的激光点云语义分割方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4632,
+            "end_char": 4650
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于上下文注意力的室外点云语义分割方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e897e9790d4",
+      "evidence": [
+        {
+          "quote": "基于上下文注意力的室外点云语义分割方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4684,
+            "end_char": 4702
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "移动机器人多目标搜寻的D - 蚁群融合算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d1bdf7b93b5",
+      "evidence": [
+        {
+          "quote": "移动机器人多目标搜寻的D - 蚁群融合算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4728,
+            "end_char": 4748
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于颜色分离与形态特征分析的保护压板定位及状态识别研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9e54f343e44",
+      "evidence": [
+        {
+          "quote": "基于颜色分离与形态特征分析的保护压板定位及状态识别研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4779,
+            "end_char": 4805
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Effective Low-Contrast SF₆ Gas Leakage Detection Method for Infrared Imaging",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a347c77c5fbb",
+      "evidence": [
+        {
+          "quote": "An Effective Low-Contrast SF₆ Gas Leakage Detection Method for Infrared Imaging",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4834,
+            "end_char": 4912
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "仿生六足机器人虚拟模型控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6257c62e7e41",
+      "evidence": [
+        {
+          "quote": "仿生六足机器人虚拟模型控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4964,
+            "end_char": 4976
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于 ORB-LK 光流的 RGB-D SLAM 算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1ead721439d6",
+      "evidence": [
+        {
+          "quote": "基于 ORB-LK 光流的 RGB-D SLAM 算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4999,
+            "end_char": 5025
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "改进色差法的绝缘子图像分割方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-401a0c82f2ae",
+      "evidence": [
+        {
+          "quote": "改进色差法的绝缘子图像分割方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5050,
+            "end_char": 5064
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进D~算法的室内移动机器人路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d996b95fba52",
+      "evidence": [
+        {
+          "quote": "基于改进D~算法的室内移动机器人路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5091,
+            "end_char": 5110
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进跳点搜索策略的安全路径研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d4aed4dbb2c",
+      "evidence": [
+        {
+          "quote": "基于改进跳点搜索策略的安全路径研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5137,
+            "end_char": 5153
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于自适应权重的改进Census立体匹配算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e3957edd063c",
+      "evidence": [
+        {
+          "quote": "基于自适应权重的改进Census立体匹配算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5182,
+            "end_char": 5203
+          },
+          "version": "172aeee971f3f8659f5e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

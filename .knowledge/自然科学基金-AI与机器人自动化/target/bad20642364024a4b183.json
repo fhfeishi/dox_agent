@@ -2,15 +2,20 @@
   "doc_id": "bad20642364024a4b183",
   "version": "0b98cce3087362f1d661",
   "source_hash": "75614117f1315ee8f2538787b4f05f53bcfe1a7a6433e0a946081c0d002d63c0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:52:48.961728+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.292761+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-843bbfd1c9fb",
-          "name": "无人艇编队协同作业",
-          "desc": "维护海洋权益、管控水域资源的无人艇编队协同",
+          "id": "item-6a99130726c2",
+          "name": "编队控制是多智能体系统协同中的一个研究热点，被广泛应用于航天、军事、工业等多个领域。",
+          "desc": "编队控制是多智能体系统协同中的一个研究热点，被广泛应用于航天、军事、工业等多个领域。",
           "evidence": [
             {
-              "quote": "全自主无人艇编队协同技术在维护我国海洋权益、管控我国水域资源等方面发挥着重要作用",
+              "quote": "编队控制是多智能体系统协同中的一个研究热点，被广泛应用于航天、军事、工业等多个领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 687,
-                "end_char": 726
+                "start_char": 645,
+                "end_char": 686
               },
               "version": "0b98cce3087362f1d661"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d5804ab8831f",
-          "name": "非线性欠驱动与通讯受限",
-          "desc": "水域环境多变干扰众多，无人艇模型非线性强耦合欠驱动且通讯受限",
-          "evidence": [
-            {
-              "quote": "其理论与技术的难点在于实际水域环境形态多变、干扰众多，无人艇自身动力学模型具有非线性、强耦合、欠驱动等特性，且无人艇的通讯能力往往受限。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2289,
-                "end_char": 2356
-              },
-              "version": "0b98cce3087362f1d661"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-788f91881a1c",
-          "name": "编队构型自适应调控",
-          "desc": "模型预测控制轨迹跟踪与分布式轨迹状态估计",
+          "id": "item-669f45a9a701",
+          "name": "针对这些理论和技术难点，本项目在无人艇编队构型调控、协作探测、协同围捕和实际水域作业实验等方面开展了系统的研究，取得如下",
+          "desc": "针对这些理论和技术难点，本项目在无人艇编队构型调控、协作探测、协同围捕和实际水域作业实验等方面开展了系统的研究，取得如下5个主要研究进展：.（1）提出了一种无人艇编队构型自适应调控策略，构建了水流影响下的无人艇运动学和动力学模型，提出了基于模型预测控制的轨迹跟踪算法，实现了领导者对约束环境中的轨迹准确跟踪，提出了分布式轨迹状态估计算法，实现了跟随者准确跟踪估计的轨迹，并与领导者形成环境自适应的编队。",
           "evidence": [
             {
-              "quote": "提出了一种无人艇编队构型自适应调控策略，构建了水流影响下的无人艇运动学和动力学模型",
+              "quote": "针对这些理论和技术难点，本项目在无人艇编队构型调控、协作探测、协同围捕和实际水域作业实验等方面开展了系统的研究，取得如下5个主要研究进展：.（1）提出了一种无人艇编队构型自适应调控策略，构建了水流影响下的无人艇运动学和动力学模型，提出了基于模型预测控制的轨迹跟踪算法，实现了领导者对约束环境中的轨迹准确跟踪，提出了分布式轨迹状态估计算法，实现了跟随者准确跟踪估计的轨迹，并与领导者形成环境自适应的编队。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2430,
-                "end_char": 2470
+                "start_char": 2357,
+                "end_char": 2557
               },
               "version": "0b98cce3087362f1d661"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-6d3d25de90df",
-          "name": "间歇通讯协同控制协议",
-          "desc": "分布式事件触发机制降低通讯带宽要求",
+          "id": "item-01e00544945a",
+          "name": ".（2）发展了基于局部方位角信息的网络协同定位技术，提出了一种基于事件触发的方案来实现三维空间多智能体系统的方位定位，依",
+          "desc": ".（2）发展了基于局部方位角信息的网络协同定位技术，提出了一种基于事件触发的方案来实现三维空间多智能体系统的方位定位，依赖方位角刚度设计了一种事件触发的定位方法， 该方法在少数个体方位角已知的前提下，可以对集群网络中所有个体进行定位。",
           "evidence": [
             {
-              "quote": "设计了多智能体系统基于间歇通讯的协同控制协议，提出了不同类型的分布式事件触发机制，实现了不同通讯场景和要求下的异构多智能体系统的一致性/同步，有效降低了对网络通讯带宽的要求。",
+              "quote": ".（2）发展了基于局部方位角信息的网络协同定位技术，提出了一种基于事件触发的方案来实现三维空间多智能体系统的方位定位，依赖方位角刚度设计了一种事件触发的定位方法， 该方法在少数个体方位角已知的前提下，可以对集群网络中所有个体进行定位。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2679,
-                "end_char": 2765
+                "start_char": 2558,
+                "end_char": 2674
               },
               "version": "0b98cce3087362f1d661"
             }
-          ]
-        },
-        {
-          "id": "item-d2951179ce6f",
-          "name": "双层围捕控制器",
-          "desc": "顶层编队控制与底层运动控制框架实现动态目标围捕",
-          "evidence": [
-            {
-              "quote": "研制了一种基于局部信息的无人艇编队协同双层围捕控制器，搭建了包含顶层编队控制与底层运动控制的无人艇双层控制框架",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2770,
-                "end_char": 2824
-              },
-              "version": "0b98cce3087362f1d661"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +91,332 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e296c775bfef",
-          "name": "时变间断通讯协同围捕",
-          "desc": "实现对动态目标的协同围捕",
+          "id": "item-d42d84314702",
+          "name": "编队控制是多智能体系统协同中的一个研究热点，被广泛应用于航天、军事、工业等多个领域。",
+          "desc": "编队控制是多智能体系统协同中的一个研究热点，被广泛应用于航天、军事、工业等多个领域。",
           "evidence": [
             {
-              "quote": "实现了无人艇编队在时变间断通讯条件下对动态目标的协同围捕。",
+              "quote": "编队控制是多智能体系统协同中的一个研究热点，被广泛应用于航天、军事、工业等多个领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2843,
-                "end_char": 2871
+                "start_char": 645,
+                "end_char": 686
               },
               "version": "0b98cce3087362f1d661"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-132ff64b90c5",
-          "name": "室内与实际水域实验平台",
-          "desc": "室内无人船平台与实际水域无人机-艇协同作业实验",
+          "id": "item-fc02a7a092a2",
+          "name": "无人艇编队控制理论与技术对维护我国海洋权益、管控我国水域资源起着至关重要的作用，其理论与技术的难点在于实际水域环境形态多",
+          "desc": "无人艇编队控制理论与技术对维护我国海洋权益、管控我国水域资源起着至关重要的作用，其理论与技术的难点在于实际水域环境形态多变、干扰众多，无人艇自身动力学模型具有非线性、强耦合、欠驱动等特性，且无人艇的通讯能力往往受限。",
           "evidence": [
             {
-              "quote": "搭建了室内无人船平台和实际水域无人机-艇实验平台，基于团队自主研发的室内无人船和多型无人艇，开展了一系列无人艇编队和无人机-艇协同作业实验。",
+              "quote": "无人艇编队控制理论与技术对维护我国海洋权益、管控我国水域资源起着至关重要的作用，其理论与技术的难点在于实际水域环境形态多变、干扰众多，无人艇自身动力学模型具有非线性、强耦合、欠驱动等特性，且无人艇的通讯能力往往受限。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2876,
-                "end_char": 2945
+                "start_char": 2249,
+                "end_char": 2356
               },
               "version": "0b98cce3087362f1d661"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-843bbfd1c9fb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d5804ab8831f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种移动式水质监测浮标及其使用方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cbe0fdd79f45",
+      "evidence": [
+        {
+          "quote": "一种移动式水质监测浮标及其使用方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3031,
+            "end_char": 3047
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d5804ab8831f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-788f91881a1c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于模糊逻辑系统的非线性多智能体的自适应控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7348563d44f",
+      "evidence": [
+        {
+          "quote": "基于模糊逻辑系统的非线性多智能体的自适应控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3081,
+            "end_char": 3107
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d5804ab8831f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6d3d25de90df"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种水域清污装置、系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c56d1e0e23a",
+      "evidence": [
+        {
+          "quote": "一种水域清污装置、系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3131,
+            "end_char": 3144
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d5804ab8831f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d2951179ce6f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于可见光的车际网通信系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-719b27375eb9",
+      "evidence": [
+        {
+          "quote": "一种基于可见光的车际网通信系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3178,
+            "end_char": 3192
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d2951179ce6f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e296c775bfef"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Best Paper Award",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e012307424ba",
+      "evidence": [
+        {
+          "quote": "Best Paper Award",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3216,
+            "end_char": 3231
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-788f91881a1c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-132ff64b90c5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bearing-based localization of multi-agent system with event-triggered strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84d902452fe7",
+      "evidence": [
+        {
+          "quote": "Bearing-based localization of multi-agent system with event-triggered strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3290,
+            "end_char": 3367
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2021年研究生国家奖学金",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-67e9be913701",
+      "evidence": [
+        {
+          "quote": "2021年研究生国家奖学金",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3404,
+            "end_char": 3416
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "华中科技大学学术前沿青年团队",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a40115ecc62",
+      "evidence": [
+        {
+          "quote": "华中科技大学学术前沿青年团队",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3432,
+            "end_char": 3445
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2019中国光谷人工智能大会暨企业家高峰论坛最佳学生论文展示奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-23d97e5b7075",
+      "evidence": [
+        {
+          "quote": "2019中国光谷人工智能大会暨企业家高峰论坛最佳学生论文展示奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3469,
+            "end_char": 3499
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-triggered output synchronization of linear heterogeneous multi-agent systems via intermittent output communication",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-711fa025e90c",
+      "evidence": [
+        {
+          "quote": "Event-triggered output synchronization of linear heterogeneous multi-agent systems via intermittent output communication",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3535,
+            "end_char": 3654
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种有向非平衡图上的局部全约束优化问题的分布式离散时间算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e104fe78fa8a",
+      "evidence": [
+        {
+          "quote": "一种有向非平衡图上的局部全约束优化问题的分布式离散时间算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3714,
+            "end_char": 3742
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于逐帧识别生成原始点云的室内无人机编队飞行方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5281d6e0bd0f",
+      "evidence": [
+        {
+          "quote": "基于逐帧识别生成原始点云的室内无人机编队飞行方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3774,
+            "end_char": 3797
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多无人艇围捕方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-be956c0497ce",
+      "evidence": [
+        {
+          "quote": "一种多无人艇围捕方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3830,
+            "end_char": 3839
+          },
+          "version": "0b98cce3087362f1d661"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

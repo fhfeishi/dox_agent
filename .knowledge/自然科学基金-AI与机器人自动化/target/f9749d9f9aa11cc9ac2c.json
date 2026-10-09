@@ -2,15 +2,20 @@
   "doc_id": "f9749d9f9aa11cc9ac2c",
   "version": "c6f3c0f73ad5cb02416c",
   "source_hash": "3df11670811c8b1b75be5cdf2a1d5d78f701e3aebe593e00ed70eb8c2c883a12",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:28:43.730120+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.912463+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-309dc361208a",
-          "name": "GPS拒止空中机器人作业",
-          "desc": "面向GPS拒止条件下的空中旋翼机器人全自主作业（基础设施巡检等）",
+          "id": "item-e2a2ff72c75d",
+          "name": "在不具备全球定位系统的环境中，为支承空中机器人执行基础设施巡检等自主飞行任务，目前一般基于机载传感进行自主导航。",
+          "desc": "在不具备全球定位系统的环境中，为支承空中机器人执行基础设施巡检等自主飞行任务，目前一般基于机载传感进行自主导航。",
           "evidence": [
             {
-              "quote": "本项目面向GPS拒止条件下的空中旋翼机器人全自主作业任务，重点研制了鲁棒准确的地空协同定位系统",
+              "quote": "在不具备全球定位系统的环境中，为支承空中机器人执行基础设施巡检等自主飞行任务，目前一般基于机载传感进行自主导航。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2950,
-                "end_char": 2996
+                "start_char": 649,
+                "end_char": 704
+              },
+              "version": "c6f3c0f73ad5cb02416c"
+            }
+          ]
+        },
+        {
+          "id": "item-286dd576c957",
+          "name": "综上所述，本研究项目取得了预期成果，为空中机器人实现高效可靠的局部区域自主作业任务提供了理论及技术支持，同时通过应用示范",
+          "desc": "综上所述，本研究项目取得了预期成果，为空中机器人实现高效可靠的局部区域自主作业任务提供了理论及技术支持，同时通过应用示范验证了本研究的应用价值。",
+          "evidence": [
+            {
+              "quote": "综上所述，本研究项目取得了预期成果，为空中机器人实现高效可靠的局部区域自主作业任务提供了理论及技术支持，同时通过应用示范验证了本研究的应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3478,
+                "end_char": 3549
               },
               "version": "c6f3c0f73ad5cb02416c"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-34c6f9494efe",
-          "name": "机载传感负载制约敏捷性",
-          "desc": "机载传感器大幅增加负载，导致运动敏捷性与续航能力显著下降",
-          "evidence": [
-            {
-              "quote": "然而，机载传感器大幅增加了机器人负载，从而导致其运动敏捷性以及续航能力显著下降",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 705,
-                "end_char": 743
-              },
-              "version": "c6f3c0f73ad5cb02416c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-1d7e0b827513",
-          "name": "先验特征标记协同定位",
-          "desc": "面向协同定位的机器人先验特征标记方法与主动视觉系统",
+          "id": "item-4857c037677d",
+          "name": "项目首先设计了面向协同定位的机器人先验特征标记方法，建立了主动视觉系统以及欠驱动空中机器人运动模型，提出了综合考虑观测质",
+          "desc": "项目首先设计了面向协同定位的机器人先验特征标记方法，建立了主动视觉系统以及欠驱动空中机器人运动模型，提出了综合考虑观测质量和飞行效率的地空多机器人协同观测与运动规划方法。",
           "evidence": [
             {
-              "quote": "项目首先设计了面向协同定位的机器人先验特征标记方法，建立了主动视觉系统以及欠驱动空中机器人运动模型",
+              "quote": "项目首先设计了面向协同定位的机器人先验特征标记方法，建立了主动视觉系统以及欠驱动空中机器人运动模型，提出了综合考虑观测质量和飞行效率的地空多机器人协同观测与运动规划方法。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2998,
-                "end_char": 3046
+                "end_char": 3082
               },
               "version": "c6f3c0f73ad5cb02416c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-029dc734c9cf",
-          "name": "多目标飞行轨迹优化",
-          "desc": "以提升观测和定位质量为目标的多目标飞行轨迹优化与追踪方法",
+          "id": "item-39432472bd3d",
+          "name": "基于这一思路，本项目拟开展多地面机器人对空观测与协同运动规划研究，探索多主动视觉系统的协同观测与运动规划，面向最速飞行/",
+          "desc": "基于这一思路，本项目拟开展多地面机器人对空观测与协同运动规划研究，探索多主动视觉系统的协同观测与运动规划，面向最速飞行/最佳观测的多目标飞行轨迹优化，以及对应的多源信息融合/容错方法。",
           "evidence": [
             {
-              "quote": "提出了以提升观测和定位质量为目标的多目标飞行轨迹优化与追踪方法",
+              "quote": "基于这一思路，本项目拟开展多地面机器人对空观测与协同运动规划研究，探索多主动视觉系统的协同观测与运动规划，面向最速飞行/最佳观测的多目标飞行轨迹优化，以及对应的多源信息融合/容错方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3120,
-                "end_char": 3150
+                "start_char": 836,
+                "end_char": 927
               },
               "version": "c6f3c0f73ad5cb02416c"
             }
-          ]
-        },
-        {
-          "id": "item-5e1352aafbac",
-          "name": "多源信息滤波容错",
-          "desc": "多机器人主动观测系统多源信息滤波与自适应容错方法",
-          "evidence": [
-            {
-              "quote": "设计了多机器人主动观测系统多源信息滤波方法，构建异构多源信息质量评价准则，提出自适应容错以及稳定性分析方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3155,
-                "end_char": 3207
-              },
-              "version": "c6f3c0f73ad5cb02416c"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +107,668 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1b4084d08e54",
-          "name": "地空协同巡检机器人",
-          "desc": "开发全自主地空协同巡检机器人，并为浦江桥隧、国家电网开发自主巡检无人系统",
+          "id": "item-95680963871f",
+          "name": "在不具备全球定位系统的环境中，为支承空中机器人执行基础设施巡检等自主飞行任务，目前一般基于机载传感进行自主导航。",
+          "desc": "在不具备全球定位系统的环境中，为支承空中机器人执行基础设施巡检等自主飞行任务，目前一般基于机载传感进行自主导航。",
           "evidence": [
             {
-              "quote": "基于理论和技术研究成果，开发了全自主地空协同巡检机器人，支撑高效可靠的局部区域自主作业任务",
+              "quote": "在不具备全球定位系统的环境中，为支承空中机器人执行基础设施巡检等自主飞行任务，目前一般基于机载传感进行自主导航。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3244,
-                "end_char": 3288
+                "start_char": 649,
+                "end_char": 704
               },
               "version": "c6f3c0f73ad5cb02416c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-4677b82e9223",
-          "name": "学术论文33篇",
-          "desc": "发表33篇学术论文（SCI 22篇、EI会议11篇），申请3项核心技术专利",
+          "id": "item-8f76e7821672",
+          "name": "本项目面向GPS拒止条件下的空中旋翼机器人全自主作业任务，重点研制了鲁棒准确的地空协同定位系统。",
+          "desc": "本项目面向GPS拒止条件下的空中旋翼机器人全自主作业任务，重点研制了鲁棒准确的地空协同定位系统。",
           "evidence": [
             {
-              "quote": "项目执行期间，共发表33篇学术论文（SCI论文22篇，EI会议论文11篇），申请3项核心技术专利",
+              "quote": "本项目面向GPS拒止条件下的空中旋翼机器人全自主作业任务，重点研制了鲁棒准确的地空协同定位系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3347,
-                "end_char": 3394
+                "start_char": 2950,
+                "end_char": 2997
               },
               "version": "c6f3c0f73ad5cb02416c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-309dc361208a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-34c6f9494efe"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Efficient Egocentric Regulator for Continuous Targeting Problems of the Underactuated Quadrotor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dca19107033d",
+      "evidence": [
+        {
+          "quote": "An Efficient Egocentric Regulator for Continuous Targeting Problems of the Underactuated Quadrotor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3575,
+            "end_char": 3672
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-34c6f9494efe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1d7e0b827513"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An efficient method for collision-free and jerk-constrained trajectory generation with sparse desired way-points for a flying robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6b84fe0b4bd2",
+      "evidence": [
+        {
+          "quote": "An efficient method for collision-free and jerk-constrained trajectory generation with sparse desired way-points for a flying robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3744,
+            "end_char": 3874
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-34c6f9494efe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-029dc734c9cf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Behavior Prediction Based Trust Evaluation for Adaptive Consensus of Quadrotors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-902bbba21963",
+      "evidence": [
+        {
+          "quote": "Behavior Prediction Based Trust Evaluation for Adaptive Consensus of Quadrotors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3918,
+            "end_char": 3996
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-34c6f9494efe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5e1352aafbac"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Relative State Estimation with Observer-based Intermittent Kalman Filter and Radial Basis Function Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71ba93f1abe6",
+      "evidence": [
+        {
+          "quote": "Relative State Estimation with Observer-based Intermittent Kalman Filter and Radial Basis Function Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4039,
+            "end_char": 4151
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1d7e0b827513"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1b4084d08e54"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory Estimation of a Flying Robot With a Single Ranging Beacon and Derived Velocity Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca696c2e323b",
+      "evidence": [
+        {
+          "quote": "Trajectory Estimation of a Flying Robot With a Single Ranging Beacon and Derived Velocity Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4299
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5e1352aafbac"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4677b82e9223"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Computationally Efficient Moving Horizon Estimation for Flying Robots’ Localization Regarding a Single Anchor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4240f0089fb",
+      "evidence": [
+        {
+          "quote": "A Computationally Efficient Moving Horizon Estimation for Flying Robots’ Localization Regarding a Single Anchor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4358,
+            "end_char": 4468
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dragon Rider - An Integrated Unmanned Quadruped-Hexarotor System for Flight-Impeded Area Exploration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2bf523fb733b",
+      "evidence": [
+        {
+          "quote": "Dragon Rider - An Integrated Unmanned Quadruped-Hexarotor System for Flight-Impeded Area Exploration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4515,
+            "end_char": 4614
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficient Learning-based Trajectory Tacker for Quadrotor at High-speed Flight",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57609018362a",
+      "evidence": [
+        {
+          "quote": "Efficient Learning-based Trajectory Tacker for Quadrotor at High-speed Flight",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4697,
+            "end_char": 4773
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Computationally Efficient Trajectory Planning for High Speed Obstacle Avoidance of a Quadrotor With Active Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-098627f78776",
+      "evidence": [
+        {
+          "quote": "Computationally Efficient Trajectory Planning for High Speed Obstacle Avoidance of a Quadrotor With Active Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4822,
+            "end_char": 4935
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Visual Positioning of the UAV for the Under Bridge Inspection With a Ground Guided Vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f8665298609b",
+      "evidence": [
+        {
+          "quote": "Robust Visual Positioning of the UAV for the Under Bridge Inspection With a Ground Guided Vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5018,
+            "end_char": 5114
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hitchhiker: A Quadrotor Aggressively Perching on a Moving Inclined Surface Using Compliant Suction Cup Gripper",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c3f3a3e43cc9",
+      "evidence": [
+        {
+          "quote": "Hitchhiker: A Quadrotor Aggressively Perching on a Moving Inclined Surface Using Compliant Suction Cup Gripper",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5173,
+            "end_char": 5282
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A cooperative positioning approach of Unmanned Aerial Vehicles with Accuracy and Robustness",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ffd033785d92",
+      "evidence": [
+        {
+          "quote": "A cooperative positioning approach of Unmanned Aerial Vehicles with Accuracy and Robustness",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5344,
+            "end_char": 5434
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Artificially Weighted Spanning Tree Coverage Algorithm for Decentralized Flying Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5216d4ea6de",
+      "evidence": [
+        {
+          "quote": "An Artificially Weighted Spanning Tree Coverage Algorithm for Decentralized Flying Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5500,
+            "end_char": 5588
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Computationally Efficient Topological Mapping With Layered Spanning Trees",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c2928b07e795",
+      "evidence": [
+        {
+          "quote": "Computationally Efficient Topological Mapping With Layered Spanning Trees",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5658,
+            "end_char": 5730
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Aerial Grasping and Perching With Dual Elasticity Combined Suction Cup",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9bffffd45f6f",
+      "evidence": [
+        {
+          "quote": "Adaptive Aerial Grasping and Perching With Dual Elasticity Combined Suction Cup",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5806,
+            "end_char": 5884
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "运动目标识别以及实时定位与姿态解算方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cfa0b348c043",
+      "evidence": [
+        {
+          "quote": "运动目标识别以及实时定位与姿态解算方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5938,
+            "end_char": 5959
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dual-durometer combination of vacuum cup for aerial grasping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e87a3267edd",
+      "evidence": [
+        {
+          "quote": "Dual-durometer combination of vacuum cup for aerial grasping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5989,
+            "end_char": 6048
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-Performance Relative Localization Based on Key-node Seeking Considering Aerial Drags Using Range and Odometry Measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b7c715664b17",
+      "evidence": [
+        {
+          "quote": "High-Performance Relative Localization Based on Key-node Seeking Considering Aerial Drags Using Range and Odometry Measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6117,
+            "end_char": 6243
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "TRP-Controller: An Efficient Anti-Saturation Controller for Quadrotors Performing Yaw-low-priority Motions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e05bc3fc995d",
+      "evidence": [
+        {
+          "quote": "TRP-Controller: An Efficient Anti-Saturation Controller for Quadrotors Performing Yaw-low-priority Motions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6287,
+            "end_char": 6392
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Risk-aware Trajectory Sampling for Quadrotor Obstacle Avoidance in Dynamic Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd4136cf4f90",
+      "evidence": [
+        {
+          "quote": "Risk-aware Trajectory Sampling for Quadrotor Obstacle Avoidance in Dynamic Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6453,
+            "end_char": 6539
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "运动控制方法、运动装置及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31a1021c25d7",
+      "evidence": [
+        {
+          "quote": "运动控制方法、运动装置及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6594,
+            "end_char": 6609
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Active Sense and Avoid System for Flying Robots in Dynamic Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-caac0062832e",
+      "evidence": [
+        {
+          "quote": "An Active Sense and Avoid System for Flying Robots in Dynamic Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6635,
+            "end_char": 6708
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Agile Formation Control of Drone Flocking Enhanced With Active Vision-Based Relative Localization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-386715e427cb",
+      "evidence": [
+        {
+          "quote": "Agile Formation Control of Drone Flocking Enhanced With Active Vision-Based Relative Localization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6778,
+            "end_char": 6874
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "适用于无人机的无碰撞路径规划方法、系统及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bbe2634ba195",
+      "evidence": [
+        {
+          "quote": "适用于无人机的无碰撞路径规划方法、系统及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6919,
+            "end_char": 6940
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "What should be the input: Investigating the environment representations in sim-to-real transfer for navigation tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d63b4f43a88c",
+      "evidence": [
+        {
+          "quote": "What should be the input: Investigating the environment representations in sim-to-real transfer for navigation tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6965,
+            "end_char": 7080
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CTFF: An Efficient Strategy for Continuously Targeting Fire Fighting with Quadrotor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-590aad2db09c",
+      "evidence": [
+        {
+          "quote": "CTFF: An Efficient Strategy for Continuously Targeting Fire Fighting with Quadrotor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7161,
+            "end_char": 7243
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Unmanned Aerial Vehicle's State Estimation with Multiple Unmanned Ground Vehicles Cooperative Observation Based on Set-Membership Filter",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b79df447536a",
+      "evidence": [
+        {
+          "quote": "Unmanned Aerial Vehicle's State Estimation with Multiple Unmanned Ground Vehicles Cooperative Observation Based on Set-Membership Filter",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7300,
+            "end_char": 7435
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Continuous Occupancy Mapping in Dynamic Environments Using Particles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ffc632f06f48",
+      "evidence": [
+        {
+          "quote": "Continuous Occupancy Mapping in Dynamic Environments Using Particles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7485,
+            "end_char": 7552
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast Flight of the flying robot with Fuzzy Decision and Multimodal Control Tackling Uncertainties",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c21bddddf98",
+      "evidence": [
+        {
+          "quote": "Fast Flight of the flying robot with Fuzzy Decision and Multimodal Control Tackling Uncertainties",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7613,
+            "end_char": 7709
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Integrated Hierarchical Approach for Real-Time Mapping With Gaussian Mixture Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-097c3b624b98",
+      "evidence": [
+        {
+          "quote": "An Integrated Hierarchical Approach for Real-Time Mapping With Gaussian Mixture Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7769,
+            "end_char": 7853
+          },
+          "version": "c6f3c0f73ad5cb02416c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "会议论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "23fe32d79ae209861875",
   "version": "5dbd8b0a56992f1ca9a6",
   "source_hash": "d1a2503e057b9ddf4a582f5a22e476985e543ba1711fa8e845d5e22be01e7be3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:52.926462+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.819944+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a00e8e96dbfe",
-          "name": "柔性体自动操控",
-          "desc": "医疗机器人、家庭服务机器人及农业机器人领域关键共性技术",
+          "id": "item-3542257b4151",
+          "name": "基于视觉伺服的柔性体自动操控旨利用图像反馈信息实现机器人对柔性体的形变控制，能显著提升柔性体操控系统的智能化水平。",
+          "desc": "基于视觉伺服的柔性体自动操控旨利用图像反馈信息实现机器人对柔性体的形变控制，能显著提升柔性体操控系统的智能化水平。",
           "evidence": [
             {
-              "quote": "柔性体自动操控技术是医疗机器人、家庭服务机器人及农业机器人等领域亟待突破的关键共性技术",
+              "quote": "基于视觉伺服的柔性体自动操控旨利用图像反馈信息实现机器人对柔性体的形变控制，能显著提升柔性体操控系统的智能化水平。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2757,
-                "end_char": 2799
+                "start_char": 645,
+                "end_char": 701
+              },
+              "version": "5dbd8b0a56992f1ca9a6"
+            }
+          ]
+        },
+        {
+          "id": "item-1f1d486819a9",
+          "name": "所提出的理论方法为柔性体自动操控技术提供了系统的解决方案，对推动医疗、服务等领域高端机器人装备的智能化发展具有重要的科学",
+          "desc": "所提出的理论方法为柔性体自动操控技术提供了系统的解决方案，对推动医疗、服务等领域高端机器人装备的智能化发展具有重要的科学意义与应用价值。",
+          "evidence": [
+            {
+              "quote": "所提出的理论方法为柔性体自动操控技术提供了系统的解决方案，对推动医疗、服务等领域高端机器人装备的智能化发展具有重要的科学意义与应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3490,
+                "end_char": 3557
               },
               "version": "5dbd8b0a56992f1ca9a6"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5ed88ec2e3e2",
-          "name": "形变模型难获取与视觉受限",
-          "desc": "柔性体精确形变模型难获取，图像速度噪声与视场受限制约操控性能",
-          "evidence": [
-            {
-              "quote": "柔性体具有复杂的物理和几何特性，其精确形变模型难以获取；同时，视觉系统存在图像速度测量噪声、相机视场受限等因素，严重制约了基于视觉的柔性体操控性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2804,
-                "end_char": 2876
-              },
-              "version": "5dbd8b0a56992f1ca9a6"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-c0b8a6bfb9a0",
-          "name": "无源雅可比图像速度观测器",
-          "desc": "避免图像深度逆估计导致的系统奇异问题",
+          "id": "item-d95b9083aad9",
+          "name": "在此基础上，提出了不使用图像速度的柔性体形变控制策略，实现了在形变模型、相机模型及机械臂模型均未知情况下对柔性体形变轨迹",
+          "desc": "在此基础上，提出了不使用图像速度的柔性体形变控制策略，实现了在形变模型、相机模型及机械臂模型均未知情况下对柔性体形变轨迹的精确控制，显著提升了系统对图像噪声的鲁棒性。",
           "evidence": [
             {
-              "quote": "设计了基于无源雅可比矩阵的图像速度观测器，有效避免了传统方法中图像深度逆估计导致的系统奇异问题",
+              "quote": "在此基础上，提出了不使用图像速度的柔性体形变控制策略，实现了在形变模型、相机模型及机械臂模型均未知情况下对柔性体形变轨迹的精确控制，显著提升了系统对图像噪声的鲁棒性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2961,
-                "end_char": 3007
+                "start_char": 3009,
+                "end_char": 3091
               },
               "version": "5dbd8b0a56992f1ca9a6"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-790dbc62f24f",
-          "name": "约束模型在线估计",
-          "desc": "基于神经网络的末端执行器约束模型在线估计，突破模型完全未知瓶颈",
+          "id": "item-66c6cb335404",
+          "name": "（2）针对相机视场受限问题，借鉴非线性系统预定性能控制思想，创新性地构建了基于障碍函数的柔性体特征点图像位置约束方法。",
+          "desc": "（2）针对相机视场受限问题，借鉴非线性系统预定性能控制思想，创新性地构建了基于障碍函数的柔性体特征点图像位置约束方法。",
           "evidence": [
             {
-              "quote": "提出了基于神经网络的末端执行器约束模型在线估计方法，突破了约束面模型完全未知的技术瓶颈",
+              "quote": "（2）针对相机视场受限问题，借鉴非线性系统预定性能控制思想，创新性地构建了基于障碍函数的柔性体特征点图像位置约束方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3267,
-                "end_char": 3309
+                "start_char": 3092,
+                "end_char": 3150
               },
               "version": "5dbd8b0a56992f1ca9a6"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,364 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0e3746135bf1",
-          "name": "形变/接触力同步控制",
-          "desc": "无标定视觉伺服下实现柔性体形变与接触力同步精确调控",
+          "id": "item-71d83fa13e6c",
+          "name": "基于视觉伺服的柔性体自动操控旨利用图像反馈信息实现机器人对柔性体的形变控制，能显著提升柔性体操控系统的智能化水平。",
+          "desc": "基于视觉伺服的柔性体自动操控旨利用图像反馈信息实现机器人对柔性体的形变控制，能显著提升柔性体操控系统的智能化水平。",
           "evidence": [
             {
-              "quote": "设计了基于无标定视觉伺服的柔性体形变/接触力同步控制策略，实现了在控制柔性体形变的同时对接触力的精确调控",
+              "quote": "基于视觉伺服的柔性体自动操控旨利用图像反馈信息实现机器人对柔性体的形变控制，能显著提升柔性体操控系统的智能化水平。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3313,
-                "end_char": 3364
+                "start_char": 645,
+                "end_char": 701
               },
               "version": "5dbd8b0a56992f1ca9a6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-ff9afbaac218",
-          "name": "顶刊论文与专利",
-          "desc": "发表高水平SCI论文14篇（顶刊11篇），授权/申请发明专利3项",
+          "id": "item-8e8c8d410ff8",
+          "name": "柔性体自动操控技术是医疗机器人、家庭服务机器人及农业机器人等领域亟待突破的关键共性技术。",
+          "desc": "柔性体自动操控技术是医疗机器人、家庭服务机器人及农业机器人等领域亟待突破的关键共性技术。",
           "evidence": [
             {
-              "quote": "本项目共发表高水平SCI论文14篇，其中在IEEE T-AC、IEEE TIE、IEEE/ASME TMECH等控制与机器人领域顶级期刊发表论文11篇，授权/申请发明专利3项",
+              "quote": "柔性体自动操控技术是医疗机器人、家庭服务机器人及农业机器人等领域亟待突破的关键共性技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3389,
-                "end_char": 3475
+                "start_char": 2757,
+                "end_char": 2800
               },
               "version": "5dbd8b0a56992f1ca9a6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a00e8e96dbfe"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5ed88ec2e3e2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Separation Approach to Adaptive Control for Robot Manipulators Without Joint-Space and Task-Space Velocity Measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c9e34c7ab44",
+      "evidence": [
+        {
+          "quote": "Separation Approach to Adaptive Control for Robot Manipulators Without Joint-Space and Task-Space Velocity Measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3583,
+            "end_char": 3701
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5ed88ec2e3e2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c0b8a6bfb9a0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种具有预设性能约束的机械臂固定时间控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df482f599364",
+      "evidence": [
+        {
+          "quote": "一种具有预设性能约束的机械臂固定时间控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3769,
+            "end_char": 3790
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5ed88ec2e3e2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-790dbc62f24f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive tracking control for uncertain unmanned fire fighting robot with input saturation and full-state constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5140acbc5108",
+      "evidence": [
+        {
+          "quote": "Adaptive tracking control for uncertain unmanned fire fighting robot with input saturation and full-state constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3827,
+            "end_char": 3943
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-790dbc62f24f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0e3746135bf1"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种受限机械臂固定时间自适应参数辨识、控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-afb92c31e38e",
+      "evidence": [
+        {
+          "quote": "一种受限机械臂固定时间自适应参数辨识、控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4020,
+            "end_char": 4045
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c0b8a6bfb9a0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ff9afbaac218"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural networks-based composite learning control for robotic systems with predefined time error constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eaa968d4dce0",
+      "evidence": [
+        {
+          "quote": "Neural networks-based composite learning control for robotic systems with predefined time error constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4066,
+            "end_char": 4172
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive control for nonlinear systems with both tracking error constraints and full-state constraints: theory and experimental validation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-be76353e7404",
+      "evidence": [
+        {
+          "quote": "Adaptive control for nonlinear systems with both tracking error constraints and full-state constraints: theory and experimental validation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4253,
+            "end_char": 4390
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Composite learning-based unbiased control for nonholonomic mobile robots with sensor uncertainties",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0271feb83390",
+      "evidence": [
+        {
+          "quote": "Composite learning-based unbiased control for nonholonomic mobile robots with sensor uncertainties",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4469,
+            "end_char": 4566
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive visual servoing control of closed-architecture robots with both visibility constraints and tracking error constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f8daa1fd87d",
+      "evidence": [
+        {
+          "quote": "Adaptive visual servoing control of closed-architecture robots with both visibility constraints and tracking error constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4637,
+            "end_char": 4762
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive visual servoing of robotic systems with closed structure and limited image-space position measurement capacity",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33a45922b393",
+      "evidence": [
+        {
+          "quote": "Adaptive visual servoing of robotic systems with closed structure and limited image-space position measurement capacity",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4832,
+            "end_char": 4950
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Global composite learning fixed-time control of robotic systems with asymmetric tracking error constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-11cbdb10d874",
+      "evidence": [
+        {
+          "quote": "Global composite learning fixed-time control of robotic systems with asymmetric tracking error constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5023,
+            "end_char": 5128
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于复合学习的受限机械臂有限时间控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a049ea7e0b0",
+      "evidence": [
+        {
+          "quote": "一种基于复合学习的受限机械臂有限时间控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5174,
+            "end_char": 5195
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Finite-Time Parameter Estimation and Control for Constrained Robotic Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02cc01eb59a2",
+      "evidence": [
+        {
+          "quote": "Adaptive Finite-Time Parameter Estimation and Control for Constrained Robotic Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5217,
+            "end_char": 5301
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive neural network visual control of closed-architecture robots with prescribed-time constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aba92a6da483",
+      "evidence": [
+        {
+          "quote": "Adaptive neural network visual control of closed-architecture robots with prescribed-time constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5360,
+            "end_char": 5460
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Separation Property Based Adaptive Control for Robotic Manipulators With Safe Self-Adjustment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8af82b767f7c",
+      "evidence": [
+        {
+          "quote": "Separation Property Based Adaptive Control for Robotic Manipulators With Safe Self-Adjustment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5522,
+            "end_char": 5614
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive control for nonlinear systems with both tracking error constraints and full-state constraints: a universal constraint approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18685e642864",
+      "evidence": [
+        {
+          "quote": "Adaptive control for nonlinear systems with both tracking error constraints and full-state constraints: a universal constraint approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5685,
+            "end_char": 5819
+          },
+          "version": "5dbd8b0a56992f1ca9a6"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

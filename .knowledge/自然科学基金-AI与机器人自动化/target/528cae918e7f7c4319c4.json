@@ -2,15 +2,20 @@
   "doc_id": "528cae918e7f7c4319c4",
   "version": "3ff79c2b8884cb3a9eaa",
   "source_hash": "32c3a7167fe2b18626d9f6f2313df3ec8ae4b0bd399f2bb8699ed4382fcefc79",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:19.466826+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.251517+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,31 @@
       "state": "has",
       "items": [
         {
-          "id": "item-10a3517a23d4",
-          "name": "老年人步行髋关节助力",
-          "desc": "柔性外骨骼屈伸交替助力改善老年人步行",
+          "id": "item-c702a696e06b",
+          "name": "为改善下肢肌力衰退老年人的步行状态，提升其出行意愿，本项目提出一种屈伸交替助力方式的柔性外骨骼自适应优化方法。",
+          "desc": "为改善下肢肌力衰退老年人的步行状态，提升其出行意愿，本项目提出一种屈伸交替助力方式的柔性外骨骼自适应优化方法。",
+          "evidence": [
+            {
+              "quote": "为改善下肢肌力衰退老年人的步行状态，提升其出行意愿，本项目提出一种屈伸交替助力方式的柔性外骨骼自适应优化方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 668,
+                "end_char": 722
+              },
+              "version": "3ff79c2b8884cb3a9eaa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f0aa3f720a22",
+          "name": "本项目针对老年人步行助力，围绕“助力函数对辅助力矩的规律性影响”、“步态特征周期间的时空关联性”及“助力参数在线优化”三",
+          "desc": "本项目针对老年人步行助力，围绕“助力函数对辅助力矩的规律性影响”、“步态特征周期间的时空关联性”及“助力参数在线优化”三个关键科学问题，深入研究了柔性下肢外骨骼的自适应优化助力机制与协调控制方法。",
           "evidence": [
             {
               "quote": "本项目针对老年人步行助力，围绕“助力函数对辅助力矩的规律性影响”、“步态特征周期间的时空关联性”及“助力参数在线优化”三个关键科学问题，深入研究了柔性下肢外骨骼的自适应优化助力机制与协调控制方法。",
@@ -37,78 +64,42 @@
       ]
     },
     {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-73882251fecf",
-          "name": "步态差异与参数优化难",
-          "desc": "人体步态特征差异、周期间渐进变化与助力参数在线优化难",
-          "evidence": [
-            {
-              "quote": "为了解决人体步行周期间的渐进性变化问题，本项目构建了具备记忆性的深度时空网络，利用LSTM模型对步态特征周期进行预测。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3094,
-                "end_char": 3152
-              },
-              "version": "3ff79c2b8884cb3a9eaa"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-ca61a73ee25d",
-          "name": "生物力学助力策略",
-          "desc": "Opensim仿真与IMU信息分析设计屈伸助力函数",
+          "id": "item-7f6f4520ea5a",
+          "name": "本项目采用系统辨识方法构建了外骨骼力控系统的数学模型，设计了基于强化学习的自适应PID控制器。",
+          "desc": "本项目采用系统辨识方法构建了外骨骼力控系统的数学模型，设计了基于强化学习的自适应PID控制器。",
           "evidence": [
             {
-              "quote": "利用Opensim软件进行下肢生物力学仿真，结合IMU传感器捕捉到的髋关节角度和角速度信息，深入分析了人体运动策略，为外骨骼助力优化提供了科学依据。",
+              "quote": "本项目采用系统辨识方法构建了外骨骼力控系统的数学模型，设计了基于强化学习的自适应PID控制器。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2956,
-                "end_char": 3029
+                "start_char": 3308,
+                "end_char": 3354
               },
               "version": "3ff79c2b8884cb3a9eaa"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-12f7a60aff7e",
-          "name": "LSTM步态周期预测",
-          "desc": "自适应滑动窗口与强相关特征提高预测精度",
+          "id": "item-b42ab35b7725",
+          "name": "本项目针对老年人步行助力，围绕“助力函数对辅助力矩的规律性影响”、“步态特征周期间的时空关联性”及“助力参数在线优化”三",
+          "desc": "本项目针对老年人步行助力，围绕“助力函数对辅助力矩的规律性影响”、“步态特征周期间的时空关联性”及“助力参数在线优化”三个关键科学问题，深入研究了柔性下肢外骨骼的自适应优化助力机制与协调控制方法。",
           "evidence": [
             {
-              "quote": "从IMU传感器信号中提取了时域、频域和时频域特征，通过相关性分析筛选强相关特征作为LSTM网络的输入，显著提高了预测精度。",
+              "quote": "本项目针对老年人步行助力，围绕“助力函数对辅助力矩的规律性影响”、“步态特征周期间的时空关联性”及“助力参数在线优化”三个关键科学问题，深入研究了柔性下肢外骨骼的自适应优化助力机制与协调控制方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3227,
-                "end_char": 3287
+                "start_char": 2777,
+                "end_char": 2874
               },
               "version": "3ff79c2b8884cb3a9eaa"
             }
-          ]
-        },
-        {
-          "id": "item-072e5b24f6d8",
-          "name": "TD3自适应PID控制",
-          "desc": "强化学习动态调整PID参数实现不同地形精准力控",
-          "evidence": [
-            {
-              "quote": "通过TD3算法动态调整PID参数，实现了外骨骼在不同地形条件下的精准力控制。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3355,
-                "end_char": 3392
-              },
-              "version": "3ff79c2b8884cb3a9eaa"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +108,228 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f58ab1a119cd",
-          "name": "代谢功率显著降低",
-          "desc": "不同速度坡度下显著降低穿戴者净代谢功率",
+          "id": "item-999e3da087f1",
+          "name": "为改善下肢肌力衰退老年人的步行状态，提升其出行意愿，本项目提出一种屈伸交替助力方式的柔性外骨骼自适应优化方法。",
+          "desc": "为改善下肢肌力衰退老年人的步行状态，提升其出行意愿，本项目提出一种屈伸交替助力方式的柔性外骨骼自适应优化方法。",
           "evidence": [
             {
-              "quote": "实验结果显示，外骨骼在不同速度和坡度下均能显著降低穿戴者的净代谢功率和能量消耗，验证了优化参数的有效性和助力策略的合理性。",
+              "quote": "为改善下肢肌力衰退老年人的步行状态，提升其出行意愿，本项目提出一种屈伸交替助力方式的柔性外骨骼自适应优化方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3548,
-                "end_char": 3608
+                "start_char": 668,
+                "end_char": 722
               },
               "version": "3ff79c2b8884cb3a9eaa"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-f56c75c9a9f4",
-          "name": "样机与论文成果",
-          "desc": "SCI 2篇、EI 5篇、专利2项（授权1项）、样机1套",
+          "id": "item-d018a26beaeb",
+          "name": "本项目针对老年人步行助力，围绕“助力函数对辅助力矩的规律性影响”、“步态特征周期间的时空关联性”及“助力参数在线优化”三",
+          "desc": "本项目针对老年人步行助力，围绕“助力函数对辅助力矩的规律性影响”、“步态特征周期间的时空关联性”及“助力参数在线优化”三个关键科学问题，深入研究了柔性下肢外骨骼的自适应优化助力机制与协调控制方法。",
           "evidence": [
             {
-              "quote": "共发表SCI高水平检索论文2篇，EI会议收录研究成果5篇，申请发明专利2项（其中1项已授权），培养已毕业硕士生3名，并成功研制了屈伸交替髋关节助力外骨骼样机1套。",
+              "quote": "本项目针对老年人步行助力，围绕“助力函数对辅助力矩的规律性影响”、“步态特征周期间的时空关联性”及“助力参数在线优化”三个关键科学问题，深入研究了柔性下肢外骨骼的自适应优化助力机制与协调控制方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3618,
-                "end_char": 3698
+                "start_char": 2777,
+                "end_char": 2874
               },
               "version": "3ff79c2b8884cb3a9eaa"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-10a3517a23d4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-73882251fecf"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Convolutional neural network model for gait classification of flexible lower limb exoskeleton",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba3e2468ab47",
+      "evidence": [
+        {
+          "quote": "Convolutional neural network model for gait classification of flexible lower limb exoskeleton",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3723,
+            "end_char": 3815
+          },
+          "version": "3ff79c2b8884cb3a9eaa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-73882251fecf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ca61a73ee25d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Terrains Assistive Force Parameter Optimization Method for Soft Exoskeleton",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae79e56fc398",
+      "evidence": [
+        {
+          "quote": "Multi-Terrains Assistive Force Parameter Optimization Method for Soft Exoskeleton",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3849,
+            "end_char": 3929
+          },
+          "version": "3ff79c2b8884cb3a9eaa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-73882251fecf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-12f7a60aff7e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Assistive Force Cycle Prediction Method for Lower Limb Exoskeleton Based on Independent Attitude Processing Sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05647f4bdf0c",
+      "evidence": [
+        {
+          "quote": "Assistive Force Cycle Prediction Method for Lower Limb Exoskeleton Based on Independent Attitude Processing Sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3986,
+            "end_char": 4099
+          },
+          "version": "3ff79c2b8884cb3a9eaa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-73882251fecf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-072e5b24f6d8"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DH Detector: One-stage detection model with double-head detector and efficient convolution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20ab5ed27758",
+      "evidence": [
+        {
+          "quote": "DH Detector: One-stage detection model with double-head detector and efficient convolution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4141,
+            "end_char": 4230
+          },
+          "version": "3ff79c2b8884cb3a9eaa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-072e5b24f6d8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f58ab1a119cd"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Combined Rigid-Flexible Weight-Bearing Exoskeleton",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c385e4ee43ef",
+      "evidence": [
+        {
+          "quote": "Combined Rigid-Flexible Weight-Bearing Exoskeleton",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4263,
+            "end_char": 4312
+          },
+          "version": "3ff79c2b8884cb3a9eaa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-12f7a60aff7e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f56c75c9a9f4"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "FGNet: Faster Robotic Grasp Detection Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3af0426811dc",
+      "evidence": [
+        {
+          "quote": "FGNet: Faster Robotic Grasp Detection Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4347,
+            "end_char": 4391
+          },
+          "version": "3ff79c2b8884cb3a9eaa"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种双助力柔性下肢外骨骼系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ee96c2a5dd68",
+      "evidence": [
+        {
+          "quote": "一种双助力柔性下肢外骨骼系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4427,
+            "end_char": 4445
+          },
+          "version": "3ff79c2b8884cb3a9eaa"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于卷积神经网络的外骨骼机器人步态识别系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e76a358618b",
+      "evidence": [
+        {
+          "quote": "一种基于卷积神经网络的外骨骼机器人步态识别系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4476,
+            "end_char": 4501
+          },
+          "version": "3ff79c2b8884cb3a9eaa"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

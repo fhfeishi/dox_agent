@@ -2,15 +2,20 @@
   "doc_id": "cd3ab2ac2a3e74e46157",
   "version": "0c4ab92a201994ff90e1",
   "source_hash": "def5c6ac67beaf91037816ac00d60d42aa6582b26e6a961f772272b0462f5308",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:51:44.087383+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.500556+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,95 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b96cbab6e8af",
-          "name": "室外配送机器人感知",
-          "desc": "无人配送在室外复杂视觉条件下的运行",
+          "id": "item-e1e1ac6cc1ee",
+          "name": "在新冠疫情期间，无人配送方式得到公众的广泛关注，室外移动机器人可实现安全、稳定的无接触配送，同时也可缓解物流配送用工难的",
+          "desc": "在新冠疫情期间，无人配送方式得到公众的广泛关注，室外移动机器人可实现安全、稳定的无接触配送，同时也可缓解物流配送用工难的问题。",
+          "evidence": [
+            {
+              "quote": "在新冠疫情期间，无人配送方式得到公众的广泛关注，室外移动机器人可实现安全、稳定的无接触配送，同时也可缓解物流配送用工难的问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 657,
+                "end_char": 719
+              },
+              "version": "0c4ab92a201994ff90e1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f5a2677a5bf2",
+          "name": "本课题针对室外复杂视觉条件下的机器人感知和目标识别问题，具体研究：室外复杂视觉条件下的地图构建方法和鲁棒定位方法，基于视",
+          "desc": "本课题针对室外复杂视觉条件下的机器人感知和目标识别问题，具体研究：室外复杂视觉条件下的地图构建方法和鲁棒定位方法，基于视觉的2D目标识别方法、多传感器融合的3D目标识别方法，在公开数据集上验证所提出的感知和目标识别方法，搭建虚实结合的系统构造相关数据集并进一步测试，最后实现实际机器人系统的验证，根据感知所提供的信息进行决策规划，完成实际机器人的配送任务，来进一步验证所提出的感知和目标识别方法的鲁棒性和有效性。",
+          "evidence": [
+            {
+              "quote": "本课题针对室外复杂视觉条件下的机器人感知和目标识别问题，具体研究：室外复杂视觉条件下的地图构建方法和鲁棒定位方法，基于视觉的2D目标识别方法、多传感器融合的3D目标识别方法，在公开数据集上验证所提出的感知和目标识别方法，搭建虚实结合的系统构造相关数据集并进一步测试，最后实现实际机器人系统的验证，根据感知所提供的信息进行决策规划，完成实际机器人的配送任务，来进一步验证所提出的感知和目标识别方法的鲁棒性和有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 797,
+                "end_char": 1002
+              },
+              "version": "0c4ab92a201994ff90e1"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5f56d1a5c6df",
+          "name": "进一步提出了基于知识的宽度神经架构优化、基于注意力机制的视觉Transformer网络架构优化等多种方法，以适应实际机器",
+          "desc": "进一步提出了基于知识的宽度神经架构优化、基于注意力机制的视觉Transformer网络架构优化等多种方法，以适应实际机器人本体资源受限的要求。",
+          "evidence": [
+            {
+              "quote": "进一步提出了基于知识的宽度神经架构优化、基于注意力机制的视觉Transformer网络架构优化等多种方法，以适应实际机器人本体资源受限的要求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2958,
+                "end_char": 3028
+              },
+              "version": "0c4ab92a201994ff90e1"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-01307de07522",
+          "name": "在新冠疫情期间，无人配送方式得到公众的广泛关注，室外移动机器人可实现安全、稳定的无接触配送，同时也可缓解物流配送用工难的",
+          "desc": "在新冠疫情期间，无人配送方式得到公众的广泛关注，室外移动机器人可实现安全、稳定的无接触配送，同时也可缓解物流配送用工难的问题。",
+          "evidence": [
+            {
+              "quote": "在新冠疫情期间，无人配送方式得到公众的广泛关注，室外移动机器人可实现安全、稳定的无接触配送，同时也可缓解物流配送用工难的问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 657,
+                "end_char": 719
+              },
+              "version": "0c4ab92a201994ff90e1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-f257fbe90df3",
+          "name": "复杂室外视觉条件下的实时准确感知和目标识别，是实现机器人在室外各种场景下可靠运行的重要前提条件，其研究的难点在于环境要素",
+          "desc": "复杂室外视觉条件下的实时准确感知和目标识别，是实现机器人在室外各种场景下可靠运行的重要前提条件，其研究的难点在于环境要素的不确定性以及视觉条件的复杂性等。",
           "evidence": [
             {
               "quote": "复杂室外视觉条件下的实时准确感知和目标识别，是实现机器人在室外各种场景下可靠运行的重要前提条件，其研究的难点在于环境要素的不确定性以及视觉条件的复杂性等。",
@@ -32,166 +123,316 @@
               },
               "version": "0c4ab92a201994ff90e1"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-72a334438354",
-          "name": "复杂视觉条件感知难",
-          "desc": "夜间等复杂视觉条件下实时准确感知与识别难",
-          "evidence": [
-            {
-              "quote": "其研究的难点在于环境要素的不确定性以及视觉条件的复杂性等。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 768,
-                "end_char": 796
-              },
-              "version": "0c4ab92a201994ff90e1"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-88185118ac07",
-          "name": "自监督感知识别方法",
-          "desc": "联合图像增强器与深度估计器的自监督学习",
-          "evidence": [
-            {
-              "quote": "提出了联合图像增强器和深度估计器的自监督学习的室外复杂视觉条件下的机器人感知和目标识别方法等，包括夜间等多种视觉条件，在nuScenes, RobotCar , Semantic KITTI公开数据集进行验证达到了最先进的性能。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2844,
-                "end_char": 2957
-              },
-              "version": "0c4ab92a201994ff90e1"
-            }
-          ]
-        },
-        {
-          "id": "item-36b9938ba25b",
-          "name": "大语言模型指令跟随",
-          "desc": "长程指令跟随的多种大语言模型方法",
-          "evidence": [
-            {
-              "quote": "提出了长程指令跟随的多种大语言模型方法，在多种国际高水平测试平台验证了算法的优越性能。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3056,
-                "end_char": 3098
-              },
-              "version": "0c4ab92a201994ff90e1"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-3e260890b883",
-          "name": "ALFRED榜单第一",
-          "desc": "具身智能测试平台ALFRED榜单第一名",
-          "evidence": [
-            {
-              "quote": "高水平具身智能测试平台ALFRED榜单第一名1次。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3194,
-                "end_char": 3218
-              },
-              "version": "0c4ab92a201994ff90e1"
-            }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-9a0b2d0cf337",
-          "name": "论文13篇专著1本",
-          "desc": "论文13篇（优秀论文提名1篇）、专著1本、专利授权2项",
-          "evidence": [
-            {
-              "quote": "在权威国际期刊和国际会议上论文13篇（获优秀论文提名奖1篇），出版学术专著1本，申请发明专利3项，其中授权2项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3106,
-                "end_char": 3160
-              },
-              "version": "0c4ab92a201994ff90e1"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b96cbab6e8af"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-72a334438354"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ATV3D: 3D Object Detection from Attention-based Three-view Representation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a3c1ac6e9859",
+      "evidence": [
+        {
+          "quote": "ATV3D: 3D Object Detection from Attention-based Three-view Representation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3286,
+            "end_char": 3358
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-72a334438354"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-88185118ac07"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RoboGPT: An LLM-Based Long-Term Decision-Making Embodied Agent for Instruction Following Tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1b3fbaef91d",
+      "evidence": [
+        {
+          "quote": "RoboGPT: An LLM-Based Long-Term Decision-Making Embodied Agent for Instruction Following Tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3433,
+            "end_char": 3526
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-72a334438354"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-36b9938ba25b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SELU: Self-Learning Embodied Multimodal Large Language Models in Unknown Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c769c10e9af2",
+      "evidence": [
+        {
+          "quote": "SELU: Self-Learning Embodied Multimodal Large Language Models in Unknown Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3640,
+            "end_char": 3724
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-88185118ac07"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3e260890b883"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "网络架构搜索方法、图像分类方法、装置和电子设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cec3a0dc2035",
+      "evidence": [
+        {
+          "quote": "网络架构搜索方法、图像分类方法、装置和电子设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3813,
+            "end_char": 3835
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-36b9938ba25b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9a0b2d0cf337"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "BViT: Broad Attention-Based Vision Transformer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-17126dd5eb3e",
+      "evidence": [
+        {
+          "quote": "BViT: Broad Attention-Based Vision Transformer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3861,
+            "end_char": 3906
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive search for broad attention based vision transformers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-532e60c3d94e",
+      "evidence": [
+        {
+          "quote": "Adaptive search for broad attention based vision transformers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3987,
+            "end_char": 4047
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Common Sense Language-Guided Exploration and Hierarchical Dense Perception for Instruction Following Embodied Agents",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8fb7fc7121c3",
+      "evidence": [
+        {
+          "quote": "Common Sense Language-Guided Exploration and Hierarchical Dense Perception for Instruction Following Embodied Agents",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4095,
+            "end_char": 4210
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast Depth Estimation of Object via Neural Network Perspective Projection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5d4ddb0075e",
+      "evidence": [
+        {
+          "quote": "Fast Depth Estimation of Object via Neural Network Perspective Projection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4307,
+            "end_char": 4379
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stacked BNAS: Rethinking Broad Convolutional Neural Network for Neural Architecture Search",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a91a9f4ea3b4",
+      "evidence": [
+        {
+          "quote": "Stacked BNAS: Rethinking Broad Convolutional Neural Network for Neural Architecture Search",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4445,
+            "end_char": 4534
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向具身操作的视觉-语言-动作模型综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de7d74687dea",
+      "evidence": [
+        {
+          "quote": "面向具身操作的视觉-语言-动作模型综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4614,
+            "end_char": 4632
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dense Attention: A Densely Connected Attention Mechanism for Vision Transformer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0daa3051250",
+      "evidence": [
+        {
+          "quote": "Dense Attention: A Densely Connected Attention Mechanism for Vision Transformer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4678,
+            "end_char": 4756
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "动作预测模型的训练方法及动作预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f5ed469b6e81",
+      "evidence": [
+        {
+          "quote": "动作预测模型的训练方法及动作预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4803,
+            "end_char": 4820
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人的移动操作方法、装置、电子设备、存储介质和计算机程序产品",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9de644fc1c86",
+      "evidence": [
+        {
+          "quote": "机器人的移动操作方法、装置、电子设备、存储介质和计算机程序产品",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4844,
+            "end_char": 4874
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Videos are Sample-Efficient Supervisions: Behavior Cloning from Videos via Latent Representations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41e26a16929e",
+      "evidence": [
+        {
+          "quote": "Videos are Sample-Efficient Supervisions: Behavior Cloning from Videos via Latent Representations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4901,
+            "end_char": 4997
+          },
+          "version": "0c4ab92a201994ff90e1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

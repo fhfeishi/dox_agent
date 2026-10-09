@@ -2,15 +2,20 @@
   "doc_id": "9b29d57a8e17b6479402",
   "version": "bceba0f14984502d69bd",
   "source_hash": "0cb927baf0b3175309ce8e8c9801fbf3e7296840103dee99bd7fa96c330cf94d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:25.336789+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.938016+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6a0cb0229007",
-          "name": "多智能体协同探索",
-          "desc": "多智能体协作任务的协同探索机制",
+          "id": "item-9ff02756fe6e",
+          "name": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体",
+          "desc": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体间的交互信息，这也就使得多智能体系统难以实现协同探索，进而导致了策略学习缓慢、训练难收敛等问题，因此研究多智能体的协同探索机制是具有实际意义的。",
           "evidence": [
             {
-              "quote": "本项目面向多智能体协作任务，设计基于知识引导的多智能体协同探索机制，利用和改进多智能体强化学习算法获取协作策略。",
+              "quote": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体间的交互信息，这也就使得多智能体系统难以实现协同探索，进而导致了策略学习缓慢、训练难收敛等问题，因此研究多智能体的协同探索机制是具有实际意义的。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 771,
-                "end_char": 826
+                "start_char": 639,
+                "end_char": 770
+              },
+              "version": "bceba0f14984502d69bd"
+            }
+          ]
+        },
+        {
+          "id": "item-c3ac80277fe1",
+          "name": "本项目的开展有益于推动多智能体强化学习理论的发展，同时也可为强化学习算法在实际场景中的应用提供技术支持。",
+          "desc": "本项目的开展有益于推动多智能体强化学习理论的发展，同时也可为强化学习算法在实际场景中的应用提供技术支持。",
+          "evidence": [
+            {
+              "quote": "本项目的开展有益于推动多智能体强化学习理论的发展，同时也可为强化学习算法在实际场景中的应用提供技术支持。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 981,
+                "end_char": 1032
               },
               "version": "bceba0f14984502d69bd"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0c16d16770bf",
-          "name": "随机探索难收敛",
-          "desc": "噪声随机探索难获正向奖励致策略学习缓慢训练难收敛",
+          "id": "item-7d5ed8d59855",
+          "name": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体",
+          "desc": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体间的交互信息，这也就使得多智能体系统难以实现协同探索，进而导致了策略学习缓慢、训练难收敛等问题，因此研究多智能体的协同探索机制是具有实际意义的。",
           "evidence": [
             {
-              "quote": "基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体间的交互信息，这也就使得多智能体系统难以实现协同探索，进而导致了策略学习缓慢、训练难收敛等问题",
+              "quote": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体间的交互信息，这也就使得多智能体系统难以实现协同探索，进而导致了策略学习缓慢、训练难收敛等问题，因此研究多智能体的协同探索机制是具有实际意义的。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 664,
-                "end_char": 745
+                "start_char": 639,
+                "end_char": 770
               },
               "version": "bceba0f14984502d69bd"
             }
@@ -63,25 +84,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d001d30ed1b9",
-          "name": "知识引导探索范围",
-          "desc": "专家示教与协同逻辑规则动态调节探索范围",
-          "evidence": [
-            {
-              "quote": "项目首先研究基于专家示教数据和协同逻辑规则的探索范围构建方法，实现协同探索范围的动态调节。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 827,
-                "end_char": 871
-              },
-              "version": "bceba0f14984502d69bd"
-            }
-          ]
-        },
-        {
-          "id": "item-5a74cfa015e2",
-          "name": "反事实探索奖励",
-          "desc": "反事实信息评估探索效率并更新策略",
+          "id": "item-0b42fc30e22f",
+          "name": "为了有效评估多智能体系统的探索效率，研究基于反事实信息的协同探索奖励设计方法以及探索策略更新算法。",
+          "desc": "为了有效评估多智能体系统的探索效率，研究基于反事实信息的协同探索奖励设计方法以及探索策略更新算法。",
           "evidence": [
             {
               "quote": "为了有效评估多智能体系统的探索效率，研究基于反事实信息的协同探索奖励设计方法以及探索策略更新算法。",
@@ -92,7 +97,25 @@
               },
               "version": "bceba0f14984502d69bd"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-16874f31bac2",
+          "name": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体",
+          "desc": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体间的交互信息，这也就使得多智能体系统难以实现协同探索，进而导致了策略学习缓慢、训练难收敛等问题，因此研究多智能体的协同探索机制是具有实际意义的。",
+          "evidence": [
+            {
+              "quote": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体间的交互信息，这也就使得多智能体系统难以实现协同探索，进而导致了策略学习缓慢、训练难收敛等问题，因此研究多智能体的协同探索机制是具有实际意义的。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 639,
+                "end_char": 770
+              },
+              "version": "bceba0f14984502d69bd"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,289 @@
       "state": "has",
       "items": [
         {
-          "id": "item-319dd16d5b4d",
-          "name": "分层值分解学习框架",
-          "desc": "基于分层结构和值分解网络的多智能体强化学习框架",
+          "id": "item-0fdab9d5b5f7",
+          "name": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体",
+          "desc": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体间的交互信息，这也就使得多智能体系统难以实现协同探索，进而导致了策略学习缓慢、训练难收敛等问题，因此研究多智能体的协同探索机制是具有实际意义的。",
           "evidence": [
             {
-              "quote": "在上述探索策略的基础上，进一步考虑复杂任务场景下的多智能体协作问题，研究基于分层结构和值分解网络的多智能体强化学习框架。",
+              "quote": "随着多智能体规模的不断扩大以及协作任务的不断复杂，基于噪声的强化学习随机探索方式难以获得正向奖励，且探索过程未考虑智能体间的交互信息，这也就使得多智能体系统难以实现协同探索，进而导致了策略学习缓慢、训练难收敛等问题，因此研究多智能体的协同探索机制是具有实际意义的。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 921,
-                "end_char": 980
+                "start_char": 639,
+                "end_char": 770
               },
               "version": "bceba0f14984502d69bd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6a0cb0229007"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0c16d16770bf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GSFF-SLAM: 3D Semantic Gaussian Splatting SLAM via Feature Field",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0da645757eb9",
+      "evidence": [
+        {
+          "quote": "GSFF-SLAM: 3D Semantic Gaussian Splatting SLAM via Feature Field",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3214,
+            "end_char": 3277
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0c16d16770bf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d001d30ed1b9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于动作空间安全映射的赛车强化学习自动驾驶方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-980acbfa245a",
+      "evidence": [
+        {
+          "quote": "一种基于动作空间安全映射的赛车强化学习自动驾驶方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3345,
+            "end_char": 3369
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0c16d16770bf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5a74cfa015e2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DAOMAN: Decentralized Adaptive Computation Offloading and Multi-Agent Navigation for Satellite-Ground-Network Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e064568b7a97",
+      "evidence": [
+        {
+          "quote": "DAOMAN: Decentralized Adaptive Computation Offloading and Multi-Agent Navigation for Satellite-Ground-Network Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3398,
+            "end_char": 3513
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5a74cfa015e2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-319dd16d5b4d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Functionality-Verification Attack Framework Based on Reinforcement Learning Against Static Malware Detectors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c6ad5f966c7",
+      "evidence": [
+        {
+          "quote": "Functionality-Verification Attack Framework Based on Reinforcement Learning Against Static Malware Detectors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3571,
+            "end_char": 3678
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d001d30ed1b9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-319dd16d5b4d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning-Based Dynamic Beam Hopping and Power Allocation for RSMA-Assisted Constrained-Input Satellite System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e56728743c37",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning-Based Dynamic Beam Hopping and Power Allocation for RSMA-Assisted Constrained-Input Satellite System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3757,
+            "end_char": 3879
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal DoS Attack Energy Allocation in Cyber-Physical Systems Based on Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0afa3eca6b83",
+      "evidence": [
+        {
+          "quote": "Optimal DoS Attack Energy Allocation in Cyber-Physical Systems Based on Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3932,
+            "end_char": 4030
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Proximal Policy Optimization-based Reinforcement Learning for End-to-end Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3804ab32034",
+      "evidence": [
+        {
+          "quote": "Proximal Policy Optimization-based Reinforcement Learning for End-to-end Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4096,
+            "end_char": 4186
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于SafeRL的无人机辅助MEC系统的任务卸载与安全航行方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0b976d0918ab",
+      "evidence": [
+        {
+          "quote": "基于SafeRL的无人机辅助MEC系统的任务卸载与安全航行方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4215,
+            "end_char": 4245
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning-Based Multi-Unmanned Aerial Vehicle Optimal Control for Communication Services with Limited Endurance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d2723bbe409",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning-Based Multi-Unmanned Aerial Vehicle Optimal Control for Communication Services with Limited Endurance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4269,
+            "end_char": 4392
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning-Based Spectral Performance Optimization for UAV-Assisted MIMO Communication System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-858244a9cd37",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning-Based Spectral Performance Optimization for UAV-Assisted MIMO Communication System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4451,
+            "end_char": 4555
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning autonomous race driving with action mapping reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-caf2cc573602",
+      "evidence": [
+        {
+          "quote": "Learning autonomous race driving with action mapping reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4601,
+            "end_char": 4675
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RIS-Assisted Energy-Efficient UAV Data Collection Method Based on Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-27c63083dbee",
+      "evidence": [
+        {
+          "quote": "RIS-Assisted Energy-Efficient UAV Data Collection Method Based on Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4724,
+            "end_char": 4816
+          },
+          "version": "bceba0f14984502d69bd"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

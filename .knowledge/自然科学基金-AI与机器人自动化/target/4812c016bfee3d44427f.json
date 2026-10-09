@@ -2,15 +2,20 @@
   "doc_id": "4812c016bfee3d44427f",
   "version": "573797d9c14980d6d571",
   "source_hash": "6f567da1d108e3280770054245a3921ea0c201d016e08ceafe2a0ec0152bc627",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:44.894813+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.153632+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fed53e66860b",
-          "name": "无/弱卫星信号人机共融定位",
-          "desc": "面向无/弱卫星信号环境，人机协作利用环境泛在信号高精度定位",
+          "id": "item-863848788341",
+          "name": "位置信息是基于位置的服务的重要基础，然而，无/弱卫星信号场景面临着定位技术瓶颈或成本困境，至今没有开拓大规模商用基于位置",
+          "desc": "位置信息是基于位置的服务的重要基础，然而，无/弱卫星信号场景面临着定位技术瓶颈或成本困境，至今没有开拓大规模商用基于位置的服务。",
           "evidence": [
             {
-              "quote": "本项目面向无/弱卫星信号条件下的人机共融环境，重点研究了如何通过人机协作，充分利用环境中广泛存在的泛在信号，实现目标的稳定、高精度定位",
+              "quote": "位置信息是基于位置的服务的重要基础，然而，无/弱卫星信号场景面临着定位技术瓶颈或成本困境，至今没有开拓大规模商用基于位置的服务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3167,
-                "end_char": 3233
+                "start_char": 667,
+                "end_char": 730
+              },
+              "version": "573797d9c14980d6d571"
+            }
+          ]
+        },
+        {
+          "id": "item-163de431b763",
+          "name": "通过以上关键技术的突破，本项目建立了一套适用于无/弱卫星信号环境下的人机协同高精度定位框架，为推动该场景下基于位置的服务",
+          "desc": "通过以上关键技术的突破，本项目建立了一套适用于无/弱卫星信号环境下的人机协同高精度定位框架，为推动该场景下基于位置的服务走向大规模实际应用提供了理论支撑与技术基础。",
+          "evidence": [
+            {
+              "quote": "通过以上关键技术的突破，本项目建立了一套适用于无/弱卫星信号环境下的人机协同高精度定位框架，为推动该场景下基于位置的服务走向大规模实际应用提供了理论支撑与技术基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3580,
+                "end_char": 3661
               },
               "version": "573797d9c14980d6d571"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-157d09ce1912",
-          "name": "多模态数据不完整不均衡",
-          "desc": "环境信号数据存在不完整、不均衡等多模态问题",
+          "id": "item-d1b8c3344988",
+          "name": "重点突破以下技术瓶颈：a)针对多模态数据不完整与不均衡等问题，提出基于稀疏贝叶斯学习的数据恢复与基于深度典型相关分析的数",
+          "desc": "重点突破以下技术瓶颈：a)针对多模态数据不完整与不均衡等问题，提出基于稀疏贝叶斯学习的数据恢复与基于深度典型相关分析的数据融合算法。",
           "evidence": [
             {
-              "quote": "a) 多模态数据质量提升与融合，针对环境信号数据存在不完整、不均衡等多模态问题",
+              "quote": "重点突破以下技术瓶颈：a)针对多模态数据不完整与不均衡等问题，提出基于稀疏贝叶斯学习的数据恢复与基于深度典型相关分析的数据融合算法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3251,
-                "end_char": 3289
+                "start_char": 799,
+                "end_char": 864
+              },
+              "version": "573797d9c14980d6d571"
+            }
+          ]
+        },
+        {
+          "id": "item-a55ff19a5459",
+          "name": "项目攻克了以下几项关键技术瓶颈：a) 多模态数据质量提升与融合，针对环境信号数据存在不完整、不均衡等多模态问题，研究了基",
+          "desc": "项目攻克了以下几项关键技术瓶颈：a) 多模态数据质量提升与融合，针对环境信号数据存在不完整、不均衡等多模态问题，研究了基于稀疏恢复模型的数据恢复方法，并结合深度典型相关分析进行多源数据深度融合，构建更鲁棒的环境感知表征。",
+          "evidence": [
+            {
+              "quote": "项目攻克了以下几项关键技术瓶颈：a) 多模态数据质量提升与融合，针对环境信号数据存在不完整、不均衡等多模态问题，研究了基于稀疏恢复模型的数据恢复方法，并结合深度典型相关分析进行多源数据深度融合，构建更鲁棒的环境感知表征。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3235,
+                "end_char": 3344
               },
               "version": "573797d9c14980d6d571"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cfedce36064a",
-          "name": "稀疏恢复与深度典型相关融合",
-          "desc": "基于稀疏恢复模型的数据恢复与深度典型相关分析多源融合",
+          "id": "item-51967dc50e3e",
+          "name": "项目攻克了以下几项关键技术瓶颈：a) 多模态数据质量提升与融合，针对环境信号数据存在不完整、不均衡等多模态问题，研究了基",
+          "desc": "项目攻克了以下几项关键技术瓶颈：a) 多模态数据质量提升与融合，针对环境信号数据存在不完整、不均衡等多模态问题，研究了基于稀疏恢复模型的数据恢复方法，并结合深度典型相关分析进行多源数据深度融合，构建更鲁棒的环境感知表征。",
           "evidence": [
             {
-              "quote": "研究了基于稀疏恢复模型的数据恢复方法，并结合深度典型相关分析进行多源数据深度融合，构建更鲁棒的环境感知表征",
+              "quote": "项目攻克了以下几项关键技术瓶颈：a) 多模态数据质量提升与融合，针对环境信号数据存在不完整、不均衡等多模态问题，研究了基于稀疏恢复模型的数据恢复方法，并结合深度典型相关分析进行多源数据深度融合，构建更鲁棒的环境感知表征。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3291,
-                "end_char": 3343
+                "start_char": 3235,
+                "end_char": 3344
               },
               "version": "573797d9c14980d6d571"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c86fb72e27cc",
-          "name": "机器人基准增强定位系统",
-          "desc": "机器人视角深度信息推算人机相对距离，信息年龄指标与迁移学习动态更新",
+          "id": "item-c683e3ee7f09",
+          "name": "c)针对人机共融环境机器人可提供额外信息的优势，构建机器基准增强系统：提取机器人视角深度信息获取人机相对距离，融合模型与",
+          "desc": "c)针对人机共融环境机器人可提供额外信息的优势，构建机器基准增强系统：提取机器人视角深度信息获取人机相对距离，融合模型与视觉两方信息以校正定位结果，提出信息年龄指标判断模型时效性，提出基于多核最大均值差异的迁移学习来更新样本。",
           "evidence": [
             {
-              "quote": "通过提取机器人视角的深度信息推算人机相对距离，融合视觉信息与模型输出以校正定位结果，并引入信息年龄指标评估模型时效性",
+              "quote": "c)针对人机共融环境机器人可提供额外信息的优势，构建机器基准增强系统：提取机器人视角深度信息获取人机相对距离，融合模型与视觉两方信息以校正定位结果，提出信息年龄指标判断模型时效性，提出基于多核最大均值差异的迁移学习来更新样本。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3481,
-                "end_char": 3538
+                "start_char": 954,
+                "end_char": 1066
               },
               "version": "573797d9c14980d6d571"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +140,528 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6d6a238096e9",
-          "name": "人机协同高精度定位框架",
-          "desc": "建立适用于无/弱卫星信号环境下的人机协同高精度定位框架",
+          "id": "item-8d086a4d3de0",
+          "name": "位置信息是基于位置的服务的重要基础，然而，无/弱卫星信号场景面临着定位技术瓶颈或成本困境，至今没有开拓大规模商用基于位置",
+          "desc": "位置信息是基于位置的服务的重要基础，然而，无/弱卫星信号场景面临着定位技术瓶颈或成本困境，至今没有开拓大规模商用基于位置的服务。",
           "evidence": [
             {
-              "quote": "本项目建立了一套适用于无/弱卫星信号环境下的人机协同高精度定位框架，为推动该场景下基于位置的服务走向大规模实际应用提供了理论支撑与技术基础",
+              "quote": "位置信息是基于位置的服务的重要基础，然而，无/弱卫星信号场景面临着定位技术瓶颈或成本困境，至今没有开拓大规模商用基于位置的服务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3592,
-                "end_char": 3660
+                "start_char": 667,
+                "end_char": 730
               },
               "version": "573797d9c14980d6d571"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-a84a8b0fba4c",
+          "name": "在基于位置的服务中，精确的位置信息是实现各类应用的重要基础。",
+          "desc": "在基于位置的服务中，精确的位置信息是实现各类应用的重要基础。",
+          "evidence": [
+            {
+              "quote": "在基于位置的服务中，精确的位置信息是实现各类应用的重要基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3025,
+                "end_char": 3054
+              },
+              "version": "573797d9c14980d6d571"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fed53e66860b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-157d09ce1912"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "室内定位理论、技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ac7dcd233d6e",
+      "evidence": [
+        {
+          "quote": "室内定位理论、技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3685,
+            "end_char": 3696
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-157d09ce1912"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cfedce36064a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Indoor Localization Based on Least Squares Fuzzy Support Tensor Machine",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-38f62c5f62e7",
+      "evidence": [
+        {
+          "quote": "Indoor Localization Based on Least Squares Fuzzy Support Tensor Machine",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3728,
+            "end_char": 3798
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-157d09ce1912"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c86fb72e27cc"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于半张量积压缩感知的室内定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a55c0c49dc93",
+      "evidence": [
+        {
+          "quote": "一种基于半张量积压缩感知的室内定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3866,
+            "end_char": 3884
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c86fb72e27cc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6d6a238096e9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bayesian optimized indoor positioning algorithm based on dual clustering",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ed77805ab1c",
+      "evidence": [
+        {
+          "quote": "Bayesian optimized indoor positioning algorithm based on dual clustering",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3915,
+            "end_char": 3986
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cfedce36064a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6d6a238096e9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RIS-Aided Indoor Positioning System Based on Passive Reflective Elements Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c89088bad13d",
+      "evidence": [
+        {
+          "quote": "RIS-Aided Indoor Positioning System Based on Passive Reflective Elements Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4029,
+            "end_char": 4113
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Smartphone Photography Visual Localization Based on an Improved Siamese Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2498d5f8b16c",
+      "evidence": [
+        {
+          "quote": "Smartphone Photography Visual Localization Based on an Improved Siamese Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4214,
+            "end_char": 4299
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Direct Position Determination Algorithm Towards Coherent Signals in Low SNR Localization Scenarios",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-364d01b30148",
+      "evidence": [
+        {
+          "quote": "Direct Position Determination Algorithm Towards Coherent Signals in Low SNR Localization Scenarios",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4388,
+            "end_char": 4485
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于ARO算法的RIS反射单元优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05b1fda9c265",
+      "evidence": [
+        {
+          "quote": "一种基于ARO算法的RIS反射单元优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4576,
+            "end_char": 4596
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bayesian Meta-learning: Towards Fast Adaptation in Neural Network Positioning Techniques",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-87c93158f632",
+      "evidence": [
+        {
+          "quote": "Bayesian Meta-learning: Towards Fast Adaptation in Neural Network Positioning Techniques",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4627,
+            "end_char": 4714
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "KANet: Memory-Managed Recurrent Kolmogorov-Arnold Network for Indoor Inertial Navigation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ce55658ccf4",
+      "evidence": [
+        {
+          "quote": "KANet: Memory-Managed Recurrent Kolmogorov-Arnold Network for Indoor Inertial Navigation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4801,
+            "end_char": 4888
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Large Environment Indoor Localization Leveraging Semi-Tensor Product Compression Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10d9ab4592ce",
+      "evidence": [
+        {
+          "quote": "Large Environment Indoor Localization Leveraging Semi-Tensor Product Compression Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4941,
+            "end_char": 5028
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于模糊支持张量机对偶模型的定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b205e146ac0",
+      "evidence": [
+        {
+          "quote": "一种基于模糊支持张量机对偶模型的定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5134,
+            "end_char": 5153
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "光电智能感知关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ff61739cf16",
+      "evidence": [
+        {
+          "quote": "光电智能感知关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5182,
+            "end_char": 5194
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel RIS-Aided Indoor Localization in Single Access Point Scenarios via Generative AI",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52823dbabee0",
+      "evidence": [
+        {
+          "quote": "A Novel RIS-Aided Indoor Localization in Single Access Point Scenarios via Generative AI",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5229,
+            "end_char": 5316
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多阵列的高精度直接位置确定算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e85e5c904e7a",
+      "evidence": [
+        {
+          "quote": "一种基于多阵列的高精度直接位置确定算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5408,
+            "end_char": 5426
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度全局特征和局部特征联合学习的NetVLAD图像位置识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41375dd077eb",
+      "evidence": [
+        {
+          "quote": "基于深度全局特征和局部特征联合学习的NetVLAD图像位置识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5461,
+            "end_char": 5493
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于孪生宽度哈希网络的图像位置识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c534ffc5639",
+      "evidence": [
+        {
+          "quote": "一种基于孪生宽度哈希网络的图像位置识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5514,
+            "end_char": 5534
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Respiratory and Heartbeat Rate Estimation Based on Wi-Fi Beamforming Feedback Information",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-93da6f946b48",
+      "evidence": [
+        {
+          "quote": "Robust Respiratory and Heartbeat Rate Estimation Based on Wi-Fi Beamforming Feedback Information",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5563,
+            "end_char": 5658
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进对比学习和并行融合神经网络的室内WiFi定位算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-672904ac795a",
+      "evidence": [
+        {
+          "quote": "基于改进对比学习和并行融合神经网络的室内WiFi定位算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5718,
+            "end_char": 5745
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于改进GAN结合假设检验的Wi-Fi室内定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4dc625ca7e21",
+      "evidence": [
+        {
+          "quote": "一种基于改进GAN结合假设检验的Wi-Fi室内定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5777,
+            "end_char": 5803
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PaCNN-LSTM: A Localization Scheme Based on Improved Contrastive Learning and Parallel Fusion Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7257de7e27df",
+      "evidence": [
+        {
+          "quote": "PaCNN-LSTM: A Localization Scheme Based on Improved Contrastive Learning and Parallel Fusion Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5835,
+            "end_char": 5941
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于宽度学习系统的惯性导航定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a4be763086a",
+      "evidence": [
+        {
+          "quote": "一种基于宽度学习系统的惯性导航定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6031,
+            "end_char": 6049
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于格拉姆角场的指纹库构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b2e4ec8b862",
+      "evidence": [
+        {
+          "quote": "一种基于格拉姆角场的指纹库构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6070,
+            "end_char": 6086
+          },
+          "version": "573797d9c14980d6d571"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 9,
+        "extracted": 9
+      }
+    },
+    "consistent": true
+  }
 }

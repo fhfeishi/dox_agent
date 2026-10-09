@@ -2,15 +2,20 @@
   "doc_id": "31f89626d451fe860de9",
   "version": "d49ee590c57bc53312c3",
   "source_hash": "e2ce26492cd4fea241d96611a284944860eedc4409ff8884fb98f2a56efdcb9b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:52.881711+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.930980+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-83c203e2d0e7",
-          "name": "轮足复合特种机器人",
-          "desc": "无人作战、抢险救灾、资源勘探和残障服务等领域高性能移动需求",
+          "id": "item-603049194c7a",
+          "name": "无人作战、抢险救灾、资源勘探和残障服务等特定领域对机器人的运动性能提出了极高要求，这为具有轮足复合运动功能的特种机器人提",
+          "desc": "无人作战、抢险救灾、资源勘探和残障服务等特定领域对机器人的运动性能提出了极高要求，这为具有轮足复合运动功能的特种机器人提供了很好的发展契机。",
           "evidence": [
             {
-              "quote": "无人作战、抢险救灾、资源勘探和残障服务等特定领域对机器人的运动性能提出了极高要求，这为具有轮足复合运动功能的特种机器人提供了很好的发展契机",
+              "quote": "无人作战、抢险救灾、资源勘探和残障服务等特定领域对机器人的运动性能提出了极高要求，这为具有轮足复合运动功能的特种机器人提供了很好的发展契机。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 651,
-                "end_char": 719
+                "end_char": 720
               },
               "version": "d49ee590c57bc53312c3"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-91b1c394a6a8",
-          "name": "串联式足关节不足",
-          "desc": "通过Stewart并联平台解决串联式足关节的不足",
-          "evidence": [
-            {
-              "quote": "通过Stewart并联平台解决了串联式足关节的不足",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 828,
-                "end_char": 852
-              },
-              "version": "d49ee590c57bc53312c3"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-cf6efede42eb",
-          "name": "Stewart并联轮足机构设计",
-          "desc": "创新设计基于Stewart并联机构的轮足式机器人并研究驱动与稳定控制",
+          "id": "item-7e6de48c5fb5",
+          "name": "设计了多种的Stewart型足关节驱动与控制方法、足式行走稳定控制框架与控制方法、轮式及轮足协同稳定控制框架与控制方法、",
+          "desc": "设计了多种的Stewart型足关节驱动与控制方法、足式行走稳定控制框架与控制方法、轮式及轮足协同稳定控制框架与控制方法、机器人自主决策与规划框架，实现了机器人在重载和多种复杂地形下的稳定运动与自主控制。",
           "evidence": [
             {
-              "quote": "创新性设计了基于Stewart并联机构的轮足式机器人，研究其在大负载和复杂地形下的运动驱动与稳定控制方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2775,
-                "end_char": 2826
-              },
-              "version": "d49ee590c57bc53312c3"
-            }
-          ]
-        },
-        {
-          "id": "item-bf8464446784",
-          "name": "足式轮足协同控制框架",
-          "desc": "足关节驱动、足式稳定行走、轮足协同控制与自主决策规划框架",
-          "evidence": [
-            {
-              "quote": "设计了多种的Stewart型足关节驱动与控制方法、足式行走稳定控制框架与控制方法、轮式及轮足协同稳定控制框架与控制方法、机器人自主决策与规划框架",
+              "quote": "设计了多种的Stewart型足关节驱动与控制方法、足式行走稳定控制框架与控制方法、轮式及轮足协同稳定控制框架与控制方法、机器人自主决策与规划框架，实现了机器人在重载和多种复杂地形下的稳定运动与自主控制。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3000,
-                "end_char": 3071
+                "end_char": 3100
               },
               "version": "d49ee590c57bc53312c3"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ebae8fb8fa1c",
+          "name": "本项目的研究将解决Stewart型轮足式机器人的稳定运动控制问题，促进轮足式机器人设计理论与控制方法的发展，为高性能移动",
+          "desc": "本项目的研究将解决Stewart型轮足式机器人的稳定运动控制问题，促进轮足式机器人设计理论与控制方法的发展，为高性能移动机器人的发展提供新思路、新理论、新方法和新技术，进一步丰富移动机器人学的内涵；",
+          "evidence": [
+            {
+              "quote": "本项目的研究将解决Stewart型轮足式机器人的稳定运动控制问题，促进轮足式机器人设计理论与控制方法的发展，为高性能移动机器人的发展提供新思路、新理论、新方法和新技术，进一步丰富移动机器人学的内涵；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 904,
+                "end_char": 1002
+              },
+              "version": "d49ee590c57bc53312c3"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,86 +91,409 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4fab4c570c98",
-          "name": "两代北理哪吒样机",
-          "desc": "研制两代Stewart型电动并联式轮足机器人并多次参加竞赛展示",
+          "id": "item-3bc6486ceb2a",
+          "name": "无人作战、抢险救灾、资源勘探和残障服务等特定领域对机器人的运动性能提出了极高要求，这为具有轮足复合运动功能的特种机器人提",
+          "desc": "无人作战、抢险救灾、资源勘探和残障服务等特定领域对机器人的运动性能提出了极高要求，这为具有轮足复合运动功能的特种机器人提供了很好的发展契机。",
           "evidence": [
             {
-              "quote": "成功研制了两代Stewart型电动并联式轮足机器人，分别命名为“北理哪吒”一代和二代",
+              "quote": "无人作战、抢险救灾、资源勘探和残障服务等特定领域对机器人的运动性能提出了极高要求，这为具有轮足复合运动功能的特种机器人提供了很好的发展契机。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2917,
-                "end_char": 2958
+                "start_char": 651,
+                "end_char": 720
               },
               "version": "d49ee590c57bc53312c3"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1cb933858a47",
-          "name": "论文与授权专利",
-          "desc": "发表学术论文27篇（SCI 14篇），申报发明专利12项、授权9项",
-          "evidence": [
-            {
-              "quote": "共发表学术论文27篇，其中SCI论文14篇（高被引论文1篇，一区论文2篇，二区论文5篇），EI论文13篇，会议论文4篇；申报国家发明专利12项，已经授权9项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3126,
-                "end_char": 3203
-              },
-              "version": "d49ee590c57bc53312c3"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-83c203e2d0e7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-91b1c394a6a8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于异形Stewart平台的电动并联式六轮足机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d168ff7214a",
+      "evidence": [
+        {
+          "quote": "基于异形Stewart平台的电动并联式六轮足机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3609,
+            "end_char": 3633
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-91b1c394a6a8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cf6efede42eb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Flexible gait transition for six wheel-legged robot with unstructured terrains",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f422be9c919",
+      "evidence": [
+        {
+          "quote": "Flexible gait transition for six wheel-legged robot with unstructured terrains",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3670,
+            "end_char": 3747
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bf8464446784"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4fab4c570c98"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural fuzzy approximation enhanced autonomous tracking control of the wheel-legged robot under uncertain physical interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f47e1c074d0f",
+      "evidence": [
+        {
+          "quote": "Neural fuzzy approximation enhanced autonomous tracking control of the wheel-legged robot under uncertain physical interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3820,
+            "end_char": 3945
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cf6efede42eb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1cb933858a47"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种轮足机器人的隔振装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bf0d3440e1bd",
+      "evidence": [
+        {
+          "quote": "一种轮足机器人的隔振装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4023,
+            "end_char": 4034
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种轮足机器人四轮协同控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-491d5d18c44b",
+      "evidence": [
+        {
+          "quote": "一种轮足机器人四轮协同控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4065,
+            "end_char": 4079
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于速度矢量的电动并联式轮足机器人全方位步态切换方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41fe230194b5",
+      "evidence": [
+        {
+          "quote": "基于速度矢量的电动并联式轮足机器人全方位步态切换方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4112,
+            "end_char": 4137
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural Approximation-based Model Predictive Tracking Control of Non-holonomic Wheel-legged Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b020962f217a",
+      "evidence": [
+        {
+          "quote": "Neural Approximation-based Model Predictive Tracking Control of Non-holonomic Wheel-legged Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4166,
+            "end_char": 4262
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Road acceleration spectrum replication on Stewart platform with Three Variable Controller",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05ed481abf25",
+      "evidence": [
+        {
+          "quote": "Road acceleration spectrum replication on Stewart platform with Three Variable Controller",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4353,
+            "end_char": 4441
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Speed consensus control for a parallel six-wheel-legged robot on uneven terrain",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e3a50fed1653",
+      "evidence": [
+        {
+          "quote": "Speed consensus control for a parallel six-wheel-legged robot on uneven terrain",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4478,
+            "end_char": 4556
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coordinated Motion Control for a Wheel-Leg Robot with Speed Consensus Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33e6ac747319",
+      "evidence": [
+        {
+          "quote": "Coordinated Motion Control for a Wheel-Leg Robot with Speed Consensus Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4646,
+            "end_char": 4723
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "多信息反馈的电动并联轮足机器人行走控制方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bfb71ed3ca55",
+      "evidence": [
+        {
+          "quote": "多信息反馈的电动并联轮足机器人行走控制方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4804,
+            "end_char": 4827
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于并联式模块化结构的可重构轮足机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75615a26e9e3",
+      "evidence": [
+        {
+          "quote": "一种基于并联式模块化结构的可重构轮足机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4860,
+            "end_char": 4880
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control strategy of stable walking for a hexapod wheel-legged robot.",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e83edaca3689",
+      "evidence": [
+        {
+          "quote": "Control strategy of stable walking for a hexapod wheel-legged robot.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4917,
+            "end_char": 4984
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Deformable Configuration Planning Framework for a Parallel Wheel-Legged Robot Equipped with Lidar",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c5bd0b40f165",
+      "evidence": [
+        {
+          "quote": "A Deformable Configuration Planning Framework for a Parallel Wheel-Legged Robot Equipped with Lidar",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5095,
+            "end_char": 5193
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Control of An Electric Wheel-foot Robotic System based on Stewart Structure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8cbe5e3967c1",
+      "evidence": [
+        {
+          "quote": "Autonomous Control of An Electric Wheel-foot Robotic System based on Stewart Structure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5254,
+            "end_char": 5339
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Search-based Control Architecture for Wheel-quadruped Robot Obstacle Negotiation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f8d644dae24",
+      "evidence": [
+        {
+          "quote": "A Search-based Control Architecture for Wheel-quadruped Robot Obstacle Negotiation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5421,
+            "end_char": 5502
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Lateral Control Method for Wheel-Footed Robot Based on Sliding Mode Control and Steering Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05ffbbb6a9c9",
+      "evidence": [
+        {
+          "quote": "A Lateral Control Method for Wheel-Footed Robot Based on Sliding Mode Control and Steering Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5552,
+            "end_char": 5652
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Obstacle-negotiation performance on challenging terrain for a parallel leg-wheeled robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2e8c66b61be5",
+      "evidence": [
+        {
+          "quote": "Obstacle-negotiation performance on challenging terrain for a parallel leg-wheeled robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5704,
+            "end_char": 5791
+          },
+          "version": "d49ee590c57bc53312c3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

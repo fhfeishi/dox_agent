@@ -2,15 +2,20 @@
   "doc_id": "35c7eda29586ecf9882a",
   "version": "7e21a3c687e93e7a646c",
   "source_hash": "211dd82f0b6b7f01cb66afecb557ad52a5e555a2e0f1207399661b97d4e4e520",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:36.651938+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.016237+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7bf69023aacb",
-          "name": "城市级监控行人接力跟踪",
-          "desc": "摄像机网络中特定行人运动轨迹推送与接力跟踪",
+          "id": "item-938da58aec54",
+          "name": "随着智能监控应用的深入，研究城市级监控系统中特定行人运动轨迹跟踪方法（即：如何在摄像机网络中快速推送特定行人的运动轨迹并",
+          "desc": "随着智能监控应用的深入，研究城市级监控系统中特定行人运动轨迹跟踪方法（即：如何在摄像机网络中快速推送特定行人的运动轨迹并对其接力跟踪）成为视频跟踪的关键问题之一。",
           "evidence": [
             {
-              "quote": "复杂动态场景下的视频目标持续跟踪问题受到环境复杂性、长期部分遮挡、跨摄像头运动以及目标姿势变化等多方面因素的影响。",
+              "quote": "随着智能监控应用的深入，研究城市级监控系统中特定行人运动轨迹跟踪方法（即：如何在摄像机网络中快速推送特定行人的运动轨迹并对其接力跟踪）成为视频跟踪的关键问题之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2580,
-                "end_char": 2636
+                "start_char": 649,
+                "end_char": 729
               },
               "version": "7e21a3c687e93e7a646c"
             }
@@ -38,34 +43,34 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-828e0eacca73",
-          "name": "时空断续跟踪失效",
-          "desc": "特征相似性跟踪算法难适应非结构化未知环境",
-          "evidence": [
-            {
-              "quote": "因此，传统的基于特征相似性的跟踪算法无法较好的应用于非结构化的未知环境，难以实现时空断续条件下对运动目标的持续跟踪。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2637,
-                "end_char": 2694
-              },
-              "version": "7e21a3c687e93e7a646c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-c06ae40d789b",
-          "name": "四种跨域学习算法",
-          "desc": "流形保持、子空间对齐、注意力属性融合与子任务解耦",
+          "id": "item-7dbf9a133c39",
+          "name": "针对现存问题，本项目引入特征迁移机制和领域自适应的算法，结合视频中层语义特征抽取、标签漫游概率假设密度方法，重点研究了多",
+          "desc": "针对现存问题，本项目引入特征迁移机制和领域自适应的算法，结合视频中层语义特征抽取、标签漫游概率假设密度方法，重点研究了多摄像机视频监控网络下的行人持续跟踪方法的深层次问题。",
+          "evidence": [
+            {
+              "quote": "针对现存问题，本项目引入特征迁移机制和领域自适应的算法，结合视频中层语义特征抽取、标签漫游概率假设密度方法，重点研究了多摄像机视频监控网络下的行人持续跟踪方法的深层次问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2695,
+                "end_char": 2780
+              },
+              "version": "7e21a3c687e93e7a646c"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-13b976e4059c",
+          "name": "本项目提出四种高效的跨域学习算法：基于流行结构保持的判别式迁移学习算法、基于子空间对齐的判别式迁移学习算法、基于注意力机",
+          "desc": "本项目提出四种高效的跨域学习算法：基于流行结构保持的判别式迁移学习算法、基于子空间对齐的判别式迁移学习算法、基于注意力机制与属性融合的跨域行人重识别算法和子任务解耦的无监督分类算法。",
           "evidence": [
             {
               "quote": "本项目提出四种高效的跨域学习算法：基于流行结构保持的判别式迁移学习算法、基于子空间对齐的判别式迁移学习算法、基于注意力机制与属性融合的跨域行人重识别算法和子任务解耦的无监督分类算法。",
@@ -76,23 +81,8 @@
               },
               "version": "7e21a3c687e93e7a646c"
             }
-          ]
-        },
-        {
-          "id": "item-6f4427e14d05",
-          "name": "标签漫游PHD跟踪",
-          "desc": "标签漫游概率假设密度方法持续更新目标表观模型",
-          "evidence": [
-            {
-              "quote": "本项目引入特征迁移机制和领域自适应的算法，结合视频中层语义特征抽取、标签漫游概率假设密度方法，重点研究了多摄像机视频监控网络下的行人持续跟踪方法的深层次问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2702,
-                "end_char": 2780
-              },
-              "version": "7e21a3c687e93e7a646c"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,428 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e743841aa0e3",
-          "name": "公开数据集与真实测试验证",
-          "desc": "多数据集仿真与真实跨城市监控测试验证有效",
+          "id": "item-218c365a5eda",
+          "name": "随着智能监控应用的深入，研究城市级监控系统中特定行人运动轨迹跟踪方法（即：如何在摄像机网络中快速推送特定行人的运动轨迹并",
+          "desc": "随着智能监控应用的深入，研究城市级监控系统中特定行人运动轨迹跟踪方法（即：如何在摄像机网络中快速推送特定行人的运动轨迹并对其接力跟踪）成为视频跟踪的关键问题之一。",
           "evidence": [
             {
-              "quote": "通过在多个公开标准视频数据集上进行仿真实验，并在真实跨城市级监控视频数据上进行目标跟踪测试，其结果验证了所提算法的有效性。",
+              "quote": "随着智能监控应用的深入，研究城市级监控系统中特定行人运动轨迹跟踪方法（即：如何在摄像机网络中快速推送特定行人的运动轨迹并对其接力跟踪）成为视频跟踪的关键问题之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2986,
-                "end_char": 3046
+                "start_char": 649,
+                "end_char": 729
               },
               "version": "7e21a3c687e93e7a646c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-2daf73791fba",
+          "name": "复杂动态场景下的视频目标持续跟踪问题受到环境复杂性、长期部分遮挡、跨摄像头运动以及目标姿势变化等多方面因素的影响。",
+          "desc": "复杂动态场景下的视频目标持续跟踪问题受到环境复杂性、长期部分遮挡、跨摄像头运动以及目标姿势变化等多方面因素的影响。",
+          "evidence": [
+            {
+              "quote": "复杂动态场景下的视频目标持续跟踪问题受到环境复杂性、长期部分遮挡、跨摄像头运动以及目标姿势变化等多方面因素的影响。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2580,
+                "end_char": 2636
+              },
+              "version": "7e21a3c687e93e7a646c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7bf69023aacb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-828e0eacca73"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model Predictive Control for Constrained Image-Based Visual Servoing in Uncalibrated Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d16ae81dbda",
+      "evidence": [
+        {
+          "quote": "Model Predictive Control for Constrained Image-Based Visual Servoing in Uncalibrated Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3072,
+            "end_char": 3168
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-828e0eacca73"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c06ae40d789b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bi-direction Direct RGB-D Visual Odometry",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f521d65b7eca",
+      "evidence": [
+        {
+          "quote": "Bi-direction Direct RGB-D Visual Odometry",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3221,
+            "end_char": 3261
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-828e0eacca73"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6f4427e14d05"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于Dubins路径的A~算法的多无人机路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9fe300890fd2",
+      "evidence": [
+        {
+          "quote": "基于Dubins路径的A~算法的多无人机路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3310,
+            "end_char": 3333
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c06ae40d789b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e743841aa0e3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive convolutional layer selection based on historical retrospect for visual tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-239302873b7f",
+      "evidence": [
+        {
+          "quote": "Adaptive convolutional layer selection based on historical retrospect for visual tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3355,
+            "end_char": 3443
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6f4427e14d05"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e743841aa0e3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Convolutional features selection for visual tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a9105ed6fee",
+      "evidence": [
+        {
+          "quote": "Convolutional features selection for visual tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3531,
+            "end_char": 3582
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "多属性融合网络的行人重识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-da4ed8ece99f",
+      "evidence": [
+        {
+          "quote": "多属性融合网络的行人重识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3647,
+            "end_char": 3661
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于Fisher信息的室内主动SLAM",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a2c6b280a3f3",
+      "evidence": [
+        {
+          "quote": "基于Fisher信息的室内主动SLAM",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3683,
+            "end_char": 3701
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于原子特征袋模型的视频异常事件检测方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a3db7aa2fd0",
+      "evidence": [
+        {
+          "quote": "基于原子特征袋模型的视频异常事件检测方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3721,
+            "end_char": 3743
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust visual tracking based on spatial context pyramid",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16c2325ade87",
+      "evidence": [
+        {
+          "quote": "Robust visual tracking based on spatial context pyramid",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3774,
+            "end_char": 3828
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Direct RGB-D Visual Odometry Based on Hybrid Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d15420e2048c",
+      "evidence": [
+        {
+          "quote": "Direct RGB-D Visual Odometry Based on Hybrid Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3905,
+            "end_char": 3957
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于混成系统的全遮挡行人跟踪方法及其装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4523509381bd",
+      "evidence": [
+        {
+          "quote": "基于混成系统的全遮挡行人跟踪方法及其装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4023,
+            "end_char": 4042
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep feature tracking based on interactive multiple model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5224e74bf72",
+      "evidence": [
+        {
+          "quote": "Deep feature tracking based on interactive multiple model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4065,
+            "end_char": 4121
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "平流层飞艇分析理论与设计关键技术与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed1ce6d3398f",
+      "evidence": [
+        {
+          "quote": "平流层飞艇分析理论与设计关键技术与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4196,
+            "end_char": 4214
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Discriminative and Geometry-Aware Unsupervised Domain Adaptation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52221dc73a02",
+      "evidence": [
+        {
+          "quote": "Discriminative and Geometry-Aware Unsupervised Domain Adaptation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4285,
+            "end_char": 4348
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于深度度量学习的行人重识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dd65d75e8188",
+      "evidence": [
+        {
+          "quote": "基于深度度量学习的行人重识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4421,
+            "end_char": 4436
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多级联分类器的人脸动态捕捉与快速识别方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d610a1fd990b",
+      "evidence": [
+        {
+          "quote": "基于多级联分类器的人脸动态捕捉与快速识别方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4459,
+            "end_char": 4483
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory planning with mid-air collision avoidance for quadrotor unmanned aerial vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d1851ecde150",
+      "evidence": [
+        {
+          "quote": "Trajectory planning with mid-air collision avoidance for quadrotor unmanned aerial vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4509,
+            "end_char": 4599
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchy-Based Adaptive Generalized Predictive Control for Aerial Grasping of a Quadrotor Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e42098da37e7",
+      "evidence": [
+        {
+          "quote": "Hierarchy-Based Adaptive Generalized Predictive Control for Aerial Grasping of a Quadrotor Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4647,
+            "end_char": 4748
+          },
+          "version": "7e21a3c687e93e7a646c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

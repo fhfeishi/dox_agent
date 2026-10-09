@@ -2,15 +2,20 @@
   "doc_id": "f1ec213bf2094c493244",
   "version": "b5c373379bb9b9ed6c28",
   "source_hash": "eac16305f37abd3716b13400f49a6ea9f27c5764e99b6668e8e9bb82eaab4482",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:51:45.405761+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.833614+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,31 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e56bcd8d663e",
-          "name": "重载六足容错控制",
-          "desc": "非结构环境重载六足机器人腿部故障容错",
-          "evidence": [
-            {
-              "quote": "如何确保重载六足机器人在运动机能不完全、自主智能水平受制约情况下对环境仍具有鲁棒自适应性，是其保持续航能力的关键。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2770,
-                "end_char": 2826
-              },
-              "version": "b5c373379bb9b9ed6c28"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5607fd43a5f0",
-          "name": "运动机能缺失易倾翻",
-          "desc": "腿部故障与重载惯量加剧失稳倾翻可能",
+          "id": "item-9a83eedb77b3",
+          "name": "非结构环境下重载六足机器人易发生腿部故障，也易因局部障碍导致部分腿足运动机能暂时缺失，且重载机器人运动惯量大，加剧了失稳",
+          "desc": "非结构环境下重载六足机器人易发生腿部故障，也易因局部障碍导致部分腿足运动机能暂时缺失，且重载机器人运动惯量大，加剧了失稳顷翻的可能性。",
           "evidence": [
             {
               "quote": "非结构环境下重载六足机器人易发生腿部故障，也易因局部障碍导致部分腿足运动机能暂时缺失，且重载机器人运动惯量大，加剧了失稳顷翻的可能性。",
@@ -55,44 +38,67 @@
               "version": "b5c373379bb9b9ed6c28"
             }
           ]
+        },
+        {
+          "id": "item-e210f713ef62",
+          "name": "从研究结果角度看，本课题首次将机器人驱动腿足端接触力的阻抗控制闭环集成至六足机器人的步态生成器中，从而建立机器人的足端位",
+          "desc": "从研究结果角度看，本课题首次将机器人驱动腿足端接触力的阻抗控制闭环集成至六足机器人的步态生成器中，从而建立机器人的足端位置与各足间阻抗参数的实时联系，为应用二次规划模型进行机器人各足的阻抗参数优化提供了理论基础，且满足了单腿缺失六足机器人变化剧烈且分布极端的足端接触力跟踪需求。",
+          "evidence": [
+            {
+              "quote": "从研究结果角度看，本课题首次将机器人驱动腿足端接触力的阻抗控制闭环集成至六足机器人的步态生成器中，从而建立机器人的足端位置与各足间阻抗参数的实时联系，为应用二次规划模型进行机器人各足的阻抗参数优化提供了理论基础，且满足了单腿缺失六足机器人变化剧烈且分布极端的足端接触力跟踪需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2931,
+                "end_char": 3069
+              },
+              "version": "b5c373379bb9b9ed6c28"
+            }
+          ]
         }
       ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-e7ae1a199e74",
-          "name": "阻抗闭环CPG步态生成",
-          "desc": "足端接触力阻抗控制闭环集成至步态生成器",
+          "id": "item-2cfa02a2f239",
+          "name": "本课题在重载六足机器人腿部全状态运动能力缺失的行走机理解析、重载六足机器人容错步态规划与足力优化分配、容错运动模式下重载",
+          "desc": "本课题在重载六足机器人腿部全状态运动能力缺失的行走机理解析、重载六足机器人容错步态规划与足力优化分配、容错运动模式下重载六足机器人机体失稳恢复控制方法以及重载六足机器人容错步态的鲁棒切换策略四个方面展开研究。",
           "evidence": [
             {
-              "quote": "本课题首次将机器人驱动腿足端接触力的阻抗控制闭环集成至六足机器人的步态生成器中，从而建立机器人的足端位置与各足间阻抗参数的实时联系，为应用二次规划模型进行机器人各足的阻抗参数优化提供了理论基础",
+              "quote": "本课题在重载六足机器人腿部全状态运动能力缺失的行走机理解析、重载六足机器人容错步态规划与足力优化分配、容错运动模式下重载六足机器人机体失稳恢复控制方法以及重载六足机器人容错步态的鲁棒切换策略四个方面展开研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2940,
-                "end_char": 3035
+                "start_char": 2827,
+                "end_char": 2930
               },
               "version": "b5c373379bb9b9ed6c28"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ea5382e2f42f",
-          "name": "调整腿在线选择",
-          "desc": "考虑随机腿部故障及倾翻方向的有效调整腿选择",
+          "id": "item-0d4a05e44852",
+          "name": "16. [专利] 一种基于深度神经网络的六足机器人驾驶员决策模型分层训练方法 — 尤波;陈潇磊;李佳钰;董正",
+          "desc": "16. [专利] 一种基于深度神经网络的六足机器人驾驶员决策模型分层训练方法 — 尤波;陈潇磊;李佳钰;董正",
           "evidence": [
             {
-              "quote": "将机器人倾翻时的支撑轴线分为中轴倾翻边线和非中轴倾翻边线，提出了一种考虑随机性腿部故障及倾翻方向影响的有效调整腿在线选择方法",
+              "quote": "16. [专利] 一种基于深度神经网络的六足机器人驾驶员决策模型分层训练方法 — 尤波;陈潇磊;李佳钰;董正",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3106,
-                "end_char": 3167
+                "start_char": 5044,
+                "end_char": 5097
               },
               "version": "b5c373379bb9b9ed6c28"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,384 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0cfb5c8a759a",
-          "name": "失稳快速恢复",
-          "desc": "调整腿轨迹自适应调整使机器人迅速恢复稳定",
+          "id": "item-c1fec97b658c",
+          "name": "非结构环境下重载六足机器人易发生腿部故障，也易因局部障碍导致部分腿足运动机能暂时缺失，且重载机器人运动惯量大，加剧了失稳",
+          "desc": "非结构环境下重载六足机器人易发生腿部故障，也易因局部障碍导致部分腿足运动机能暂时缺失，且重载机器人运动惯量大，加剧了失稳顷翻的可能性。",
           "evidence": [
             {
-              "quote": "结果表明课题所提出的基于调整腿轨迹自适应调整失稳恢复方法，可以在随机性腿部故障后六足机器人发生倾翻失稳时，通过调整腿轨迹的合理调整，可使其迅速恢复至稳定状态",
+              "quote": "非结构环境下重载六足机器人易发生腿部故障，也易因局部障碍导致部分腿足运动机能暂时缺失，且重载机器人运动惯量大，加剧了失稳顷翻的可能性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3301,
-                "end_char": 3378
+                "start_char": 667,
+                "end_char": 733
               },
               "version": "b5c373379bb9b9ed6c28"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-a0e351c717d1",
+          "name": "如何确保重载六足机器人在运动机能不完全、自主智能水平受制约情况下对环境仍具有鲁棒自适应性，是其保持续航能力的关键。",
+          "desc": "如何确保重载六足机器人在运动机能不完全、自主智能水平受制约情况下对环境仍具有鲁棒自适应性，是其保持续航能力的关键。",
+          "evidence": [
+            {
+              "quote": "如何确保重载六足机器人在运动机能不完全、自主智能水平受制约情况下对环境仍具有鲁棒自适应性，是其保持续航能力的关键。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2770,
+                "end_char": 2826
+              },
+              "version": "b5c373379bb9b9ed6c28"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e56bcd8d663e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5607fd43a5f0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于几何与物理特征地图的六足机器人容错自由步态规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-355fada58bc7",
+      "evidence": [
+        {
+          "quote": "一种基于几何与物理特征地图的六足机器人容错自由步态规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3532,
+            "end_char": 3560
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5607fd43a5f0"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e7ae1a199e74"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度学习的无需深度信息的物体位姿预测算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a020fb495d93",
+      "evidence": [
+        {
+          "quote": "一种基于深度学习的无需深度信息的物体位姿预测算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3582,
+            "end_char": 3605
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5607fd43a5f0"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ea5382e2f42f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种载人足式移动平台的人机协同控制体系及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3bb247f8fa68",
+      "evidence": [
+        {
+          "quote": "一种载人足式移动平台的人机协同控制体系及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3628,
+            "end_char": 3649
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e7ae1a199e74"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0cfb5c8a759a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-robot collaborative decision method of hexapod robot based on prior knowledge and negotiation strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-171d4b725d59",
+      "evidence": [
+        {
+          "quote": "Human-robot collaborative decision method of hexapod robot based on prior knowledge and negotiation strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3678,
+            "end_char": 3785
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ea5382e2f42f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0cfb5c8a759a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于力矩平衡点与运动稳定性协同优化的六足机器人容错步态落足点规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e69e822af4f1",
+      "evidence": [
+        {
+          "quote": "一种基于力矩平衡点与运动稳定性协同优化的六足机器人容错步态落足点规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3848,
+            "end_char": 3883
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Contact Force Optimization to Enhance Fault-tolerant Motion Stability of a Hexapod Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3a8ca3a755d",
+      "evidence": [
+        {
+          "quote": "Contact Force Optimization to Enhance Fault-tolerant Motion Stability of a Hexapod Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3908,
+            "end_char": 3995
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Simultaneous Localization and Mapping System Using the Iterative Error State Kalman Filter Judgment Algorithm for Global Navigation Satellite System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9ae3e9c429d1",
+      "evidence": [
+        {
+          "quote": "A Simultaneous Localization and Mapping System Using the Iterative Error State Kalman Filter Judgment Algorithm for Global Navigation Satellite System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4067,
+            "end_char": 4216
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimization method for human-robot command combinations of hexapod robot based on multi-objective constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-062869f4f6d2",
+      "evidence": [
+        {
+          "quote": "Optimization method for human-robot command combinations of hexapod robot based on multi-objective constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4279,
+            "end_char": 4388
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种考虑随机腿部故障的六足机器人容错步态规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4da3bcb70703",
+      "evidence": [
+        {
+          "quote": "一种考虑随机腿部故障的六足机器人容错步态规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4431,
+            "end_char": 4454
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于驾驶员模型的六足机器人自主/协同决策",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-50b81bc1edb1",
+      "evidence": [
+        {
+          "quote": "基于驾驶员模型的六足机器人自主/协同决策",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4483,
+            "end_char": 4502
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于有限状态机的六足机器人人机协同指令优选方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4401cae92e0",
+      "evidence": [
+        {
+          "quote": "基于有限状态机的六足机器人人机协同指令优选方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4534,
+            "end_char": 4556
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-accuracy pose estimation algorithm with monocular camera based on residual network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71cd341520b1",
+      "evidence": [
+        {
+          "quote": "High-accuracy pose estimation algorithm with monocular camera based on residual network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4591,
+            "end_char": 4677
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hazard-constrained global-local path planning for fault-tolerant hexapod robots on unstructured terrain",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff303c42c8b1",
+      "evidence": [
+        {
+          "quote": "Hazard-constrained global-local path planning for fault-tolerant hexapod robots on unstructured terrain",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4719,
+            "end_char": 4821
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fault-tolerant motion planning for a hexapod robot with single-leg failure using a foot force control method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12fabafc71a5",
+      "evidence": [
+        {
+          "quote": "Fault-tolerant motion planning for a hexapod robot with single-leg failure using a foot force control method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4850,
+            "end_char": 4957
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于变波阻抗控制策略的六足机器人双边遥操作",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ab9cdd604c02",
+      "evidence": [
+        {
+          "quote": "基于变波阻抗控制策略的六足机器人双边遥操作",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5001,
+            "end_char": 5021
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度神经网络的六足机器人驾驶员决策模型分层训练方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3151df5af0f",
+      "evidence": [
+        {
+          "quote": "一种基于深度神经网络的六足机器人驾驶员决策模型分层训练方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5053,
+            "end_char": 5081
+          },
+          "version": "b5c373379bb9b9ed6c28"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "9b90372e644656719313",
   "version": "4afb1ae1220104d9386d",
   "source_hash": "039d6cd1ad71af4fbdeb383ee1377627b91b8c39a4b7d027564df95f39ee2b8b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:29.354446+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.956256+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e33f9ec07502",
-          "name": "低空无人机目标检测",
-          "desc": "无人机视觉数据中小目标占比多的检测任务",
+          "id": "item-630741325fec",
+          "name": "无人机视觉数据中，目标的绝对尺度和相对尺度更小。",
+          "desc": "无人机视觉数据中，目标的绝对尺度和相对尺度更小。",
           "evidence": [
             {
-              "quote": "在低空无人机视觉数据中，小目标占比更多，平均分辨率更低，绝对和相对尺度更小，检测难度更大。",
+              "quote": "无人机视觉数据中，目标的绝对尺度和相对尺度更小。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2880,
-                "end_char": 2924
+                "start_char": 631,
+                "end_char": 654
+              },
+              "version": "4afb1ae1220104d9386d"
+            }
+          ]
+        },
+        {
+          "id": "item-595acff5544c",
+          "name": "部署目标检测系统，推进无人机视觉应用的发展。",
+          "desc": "部署目标检测系统，推进无人机视觉应用的发展。",
+          "evidence": [
+            {
+              "quote": "部署目标检测系统，推进无人机视觉应用的发展。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1009,
+                "end_char": 1030
               },
               "version": "4afb1ae1220104d9386d"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-31265b7a1594",
-          "name": "小目标检测适配差",
-          "desc": "尺度缩放、特征提取、锚点匹配与分类难适配小目标",
+          "id": "item-36fffb36823c",
+          "name": "(2)针对浅层特征感知野小及表征力不足，而由深至浅增强浅层特征的方法往往反而削弱浅层特征表征能力的问题，提出多层级特征融",
+          "desc": "(2)针对浅层特征感知野小及表征力不足，而由深至浅增强浅层特征的方法往往反而削弱浅层特征表征能力的问题，提出多层级特征融合方法，在有效获取高分辨率特征的基础上保持语义类别信息，提高主干网络的小目标表征能力。",
           "evidence": [
             {
-              "quote": "深度学习在通用目标检测领域已取得卓著成效，但是，由于在图像尺度缩放、卷积特征提取、锚点匹配和目标分类等方面不能较好适配小目标，无人机视觉目标检测面临严峻挑战。",
+              "quote": "(2)针对浅层特征感知野小及表征力不足，而由深至浅增强浅层特征的方法往往反而削弱浅层特征表征能力的问题，提出多层级特征融合方法，在有效获取高分辨率特征的基础上保持语义类别信息，提高主干网络的小目标表征能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2925,
-                "end_char": 3003
+                "start_char": 3242,
+                "end_char": 3344
               },
               "version": "4afb1ae1220104d9386d"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d05c6cd10af5",
-          "name": "物距感知图像缩放",
-          "desc": "划分物距等级缩放裁剪缓解虚警与漏检",
+          "id": "item-51a2abfea46b",
+          "name": "研究热图检测框架，设计中心热图训练网络，回归目标中心及宽高，应对锚点匹配在模型泛化、小目标正样本多样性和小目标初始定位等",
+          "desc": "研究热图检测框架，设计中心热图训练网络，回归目标中心及宽高，应对锚点匹配在模型泛化、小目标正样本多样性和小目标初始定位等方面存在的不足；",
           "evidence": [
             {
-              "quote": "提出物距感知模型。划分物距等级进行图像缩放和裁剪，缓解目标尺度多样性引发的计算开销庞大、虚警过多等问题；基于尺度感知插值算法放大小目标，减少目标漏检。",
+              "quote": "研究热图检测框架，设计中心热图训练网络，回归目标中心及宽高，应对锚点匹配在模型泛化、小目标正样本多样性和小目标初始定位等方面存在的不足；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3167,
-                "end_char": 3241
+                "start_char": 856,
+                "end_char": 923
               },
               "version": "4afb1ae1220104d9386d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f20e34d3017c",
-          "name": "解耦动态滤波器DDF",
-          "desc": "解耦空间与通道动态滤波器减少参数提升性能",
+          "id": "item-86cbe6bb6a66",
+          "name": "研究硬件感知神经结构搜索方法，设计利于小目标检测的搜索空间及自动压缩/优化模型的算法。",
+          "desc": "研究硬件感知神经结构搜索方法，设计利于小目标检测的搜索空间及自动压缩/优化模型的算法。",
           "evidence": [
             {
-              "quote": "提出解耦动态滤波器(DDF)缓解CNN两大缺陷并显著提升网络性能。将深度动态滤波器解耦为空间动态滤波器和通道动态滤波器，模型参数量减少，且用DDF替换分类网络中的标准卷积，网络性能显著提升。",
+              "quote": "研究硬件感知神经结构搜索方法，设计利于小目标检测的搜索空间及自动压缩/优化模型的算法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3600,
-                "end_char": 3694
+                "start_char": 966,
+                "end_char": 1008
               },
               "version": "4afb1ae1220104d9386d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,448 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9ae9a76cfd9d",
-          "name": "论文19篇专利9件",
-          "desc": "顶刊会议论文19篇、发明专利9件、软著1个",
+          "id": "item-2106c399215f",
+          "name": "无人机视觉数据中，目标的绝对尺度和相对尺度更小。",
+          "desc": "无人机视觉数据中，目标的绝对尺度和相对尺度更小。",
           "evidence": [
             {
-              "quote": "目前在国内外顶级期刊和会议发表高水平学术论文19篇、获得国内发明专利9件，软件著作权1个。",
+              "quote": "无人机视觉数据中，目标的绝对尺度和相对尺度更小。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3072,
-                "end_char": 3116
+                "start_char": 631,
+                "end_char": 654
               },
               "version": "4afb1ae1220104d9386d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-8b1982cf58c8",
+          "name": "在低空无人机视觉数据中，小目标占比更多，平均分辨率更低，绝对和相对尺度更小，检测难度更大。",
+          "desc": "在低空无人机视觉数据中，小目标占比更多，平均分辨率更低，绝对和相对尺度更小，检测难度更大。",
+          "evidence": [
+            {
+              "quote": "在低空无人机视觉数据中，小目标占比更多，平均分辨率更低，绝对和相对尺度更小，检测难度更大。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2880,
+                "end_char": 2924
+              },
+              "version": "4afb1ae1220104d9386d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e33f9ec07502"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-31265b7a1594"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Small Target Augmentation for Urban Remote Sensing image Real-time segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-989203555f9c",
+      "evidence": [
+        {
+          "quote": "Small Target Augmentation for Urban Remote Sensing image Real-time segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3720,
+            "end_char": 3798
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-31265b7a1594"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d05c6cd10af5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Addressing Scale Imbalance for Small Object Detection with Dense Detector",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ee5c53e4d263",
+      "evidence": [
+        {
+          "quote": "Addressing Scale Imbalance for Small Object Detection with Dense Detector",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3819,
+            "end_char": 3891
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-31265b7a1594"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f20e34d3017c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vehicle-mounted Far-infrared Pedestrian Detection Using Multi-object Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-72056686f8af",
+      "evidence": [
+        {
+          "quote": "Vehicle-mounted Far-infrared Pedestrian Detection Using Multi-object Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3912,
+            "end_char": 3988
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d05c6cd10af5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9ae9a76cfd9d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decoupled Dynamic Filter Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2503318906e8",
+      "evidence": [
+        {
+          "quote": "Decoupled Dynamic Filter Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4009,
+            "end_char": 4041
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f20e34d3017c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9ae9a76cfd9d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于特征融合和上采样的航拍图像小目标检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75a540a8a8da",
+      "evidence": [
+        {
+          "quote": "一种基于特征融合和上采样的航拍图像小目标检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4060,
+            "end_char": 4083
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于头部特征的车载热成像行人检测RoIs提取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a922acefe692",
+      "evidence": [
+        {
+          "quote": "基于头部特征的车载热成像行人检测RoIs提取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4101,
+            "end_char": 4124
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SCNet: Scale-aware Coupling-structure Network for Efficient Video Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68c3fa478412",
+      "evidence": [
+        {
+          "quote": "SCNet: Scale-aware Coupling-structure Network for Efficient Video Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4144,
+            "end_char": 4225
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tracking objects with partial occlusion by background alignment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b387eaab795f",
+      "evidence": [
+        {
+          "quote": "Tracking objects with partial occlusion by background alignment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4246,
+            "end_char": 4308
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Discriminative Features Enhancement for Low-Altitude UAV Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31379f55caf8",
+      "evidence": [
+        {
+          "quote": "Discriminative Features Enhancement for Low-Altitude UAV Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4328,
+            "end_char": 4400
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Novel up-scale feature aggregation for object detection in aerial images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a0e5ce09cbe",
+      "evidence": [
+        {
+          "quote": "Novel up-scale feature aggregation for object detection in aerial images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4422,
+            "end_char": 4493
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于尺度等级的图像缩放裁剪方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9b2bb7c90952",
+      "evidence": [
+        {
+          "quote": "一种基于尺度等级的图像缩放裁剪方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4512,
+            "end_char": 4528
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Region-aware Feature Enhancement for Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e373dc40abe8",
+      "evidence": [
+        {
+          "quote": "Adaptive Region-aware Feature Enhancement for Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4550,
+            "end_char": 4611
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MCNet: Multi-level Correction Network for thermal image semantic segmentation of nighttime driving scene",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d1079d6a70e5",
+      "evidence": [
+        {
+          "quote": "MCNet: Multi-level Correction Network for thermal image semantic segmentation of nighttime driving scene",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4633,
+            "end_char": 4736
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning panoptic segmentation through feature discriminability",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a490b252d70b",
+      "evidence": [
+        {
+          "quote": "Learning panoptic segmentation through feature discriminability",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4758,
+            "end_char": 4820
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Complementarity-aware cross-modal feature fusion network for RGB-T semantic segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-25a7b167b6a3",
+      "evidence": [
+        {
+          "quote": "Complementarity-aware cross-modal feature fusion network for RGB-T semantic segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4841,
+            "end_char": 4928
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "小目标特征增强图像分割算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0ba75b51f05",
+      "evidence": [
+        {
+          "quote": "小目标特征增强图像分割算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4949,
+            "end_char": 4961
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向热成像行人检测的样本处理方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33c74f08c6f8",
+      "evidence": [
+        {
+          "quote": "一种面向热成像行人检测的样本处理方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4981,
+            "end_char": 4998
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MPSA: A multi-level pixel spatial attention network for thermal image segmentation based on Deeplabv3+architecture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b42dec2ef402",
+      "evidence": [
+        {
+          "quote": "MPSA: A multi-level pixel spatial attention network for thermal image segmentation based on Deeplabv3+architecture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5019,
+            "end_char": 5132
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Image captioning with semantic-enhanced features and extremely hard negative examples",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d763dc52471",
+      "evidence": [
+        {
+          "quote": "Image captioning with semantic-enhanced features and extremely hard negative examples",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5154,
+            "end_char": 5238
+          },
+          "version": "4afb1ae1220104d9386d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

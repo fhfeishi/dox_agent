@@ -2,15 +2,20 @@
   "doc_id": "0cf4fa026badd1875eab",
   "version": "55ec281ee6a432266f4f",
   "source_hash": "6ad38b55ba6061ce09f6ce139a5caadee48f56b69231f0d10cb9cb31f87fa9de",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:48.986232+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.605234+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dad83a6101ed",
-          "name": "中药制药过程质量控制",
-          "desc": "中药喷雾干燥过程的质量控制智能化",
+          "id": "item-dba72e0979d0",
+          "name": "项目针对传统中药制药过程中产品质量形成与传递规律不清楚、控制不精准的难题，提出一种基于数字孪生和深度学习技术的中药制药过",
+          "desc": "项目针对传统中药制药过程中产品质量形成与传递规律不清楚、控制不精准的难题，提出一种基于数字孪生和深度学习技术的中药制药过程质量控制智能化方法。",
+          "evidence": [
+            {
+              "quote": "项目针对传统中药制药过程中产品质量形成与传递规律不清楚、控制不精准的难题，提出一种基于数字孪生和深度学习技术的中药制药过程质量控制智能化方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 668,
+                "end_char": 738
+              },
+              "version": "55ec281ee6a432266f4f"
+            }
+          ]
+        },
+        {
+          "id": "item-efd6a295ef47",
+          "name": "研究建立了适合中药复杂体系和喷雾干燥工艺与设备的“机理+大数据”数字孪生模型，可以大大提升中药制药过程质量控制的智能化程",
+          "desc": "研究建立了适合中药复杂体系和喷雾干燥工艺与设备的“机理+大数据”数字孪生模型，可以大大提升中药制药过程质量控制的智能化程度，最终实现中药制药过程质量的精准调控问题，推动中药传统产业的技术升级转型，具有较大的推广应用前景。",
           "evidence": [
             {
               "quote": "研究建立了适合中药复杂体系和喷雾干燥工艺与设备的“机理+大数据”数字孪生模型，可以大大提升中药制药过程质量控制的智能化程度，最终实现中药制药过程质量的精准调控问题，推动中药传统产业的技术升级转型，具有较大的推广应用前景。",
@@ -38,12 +59,57 @@
     },
     {
       "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-8affffa644dd",
-          "name": "质量规律不清控制不精",
-          "desc": "传统中药制药产品质量形成与传递规律不清楚、控制不精准",
+          "id": "item-9bb6d9b240ee",
+          "name": "以中药制药干燥过程为研究对象，拟构建干燥过程数字孪生模型与优化控制方法，以干燥过程出口物料质量，如含水率为控制目标，基于",
+          "desc": "以中药制药干燥过程为研究对象，拟构建干燥过程数字孪生模型与优化控制方法，以干燥过程出口物料质量，如含水率为控制目标，基于来料属性和环境预测最优工艺参数，实现过程质量的自适应控制。",
+          "evidence": [
+            {
+              "quote": "以中药制药干燥过程为研究对象，拟构建干燥过程数字孪生模型与优化控制方法，以干燥过程出口物料质量，如含水率为控制目标，基于来料属性和环境预测最优工艺参数，实现过程质量的自适应控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 739,
+                "end_char": 827
+              },
+              "version": "55ec281ee6a432266f4f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a1b8cd2af5e3",
+          "name": "为此，首先采集中药提取物的相关物性数据，然后建立多相流机理模型，并基于过程工业大数据，通过数字孪生体对干燥过程进行建模及",
+          "desc": "为此，首先采集中药提取物的相关物性数据，然后建立多相流机理模型，并基于过程工业大数据，通过数字孪生体对干燥过程进行建模及深度学习、训练和验证，利用训练好的模型根据采集的实时数据来预测下一时刻的状态，通过前馈优化工艺参数，实现质量预测控制。",
+          "evidence": [
+            {
+              "quote": "为此，首先采集中药提取物的相关物性数据，然后建立多相流机理模型，并基于过程工业大数据，通过数字孪生体对干燥过程进行建模及深度学习、训练和验证，利用训练好的模型根据采集的实时数据来预测下一时刻的状态，通过前馈优化工艺参数，实现质量预测控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 828,
+                "end_char": 946
+              },
+              "version": "55ec281ee6a432266f4f"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-39f15d2bea76",
+          "name": "项目针对传统中药制药过程中产品质量形成与传递规律不清楚、控制不精准的难题，提出一种基于数字孪生和深度学习技术的中药制药过",
+          "desc": "项目针对传统中药制药过程中产品质量形成与传递规律不清楚、控制不精准的难题，提出一种基于数字孪生和深度学习技术的中药制药过程质量控制智能化方法。",
           "evidence": [
             {
               "quote": "项目针对传统中药制药过程中产品质量形成与传递规律不清楚、控制不精准的难题，提出一种基于数字孪生和深度学习技术的中药制药过程质量控制智能化方法。",
@@ -54,127 +120,231 @@
               },
               "version": "55ec281ee6a432266f4f"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
         {
-          "id": "item-29646a3a7f3d",
-          "name": "CFD机理孪生模型",
-          "desc": "计算流体力学与物理驱动的机理模型描述液滴干燥",
+          "id": "item-f7001e104b1a",
+          "name": "项目针对喷雾干燥过程的复杂性，从第一性原理出发，结合设备与工艺参数，采集物性参数，构建基于计算流体力学和物理驱动的机理模",
+          "desc": "项目针对喷雾干燥过程的复杂性，从第一性原理出发，结合设备与工艺参数，采集物性参数，构建基于计算流体力学和物理驱动的机理模型来解决过程建模、仿真、预测等问题，从而准确描述中药物料在喷雾干燥设备中的液滴干燥过程。",
           "evidence": [
             {
-              "quote": "构建基于计算流体力学和物理驱动的机理模型来解决过程建模、仿真、预测等问题，从而准确描述中药物料在喷雾干燥设备中的液滴干燥过程。",
+              "quote": "项目针对喷雾干燥过程的复杂性，从第一性原理出发，结合设备与工艺参数，采集物性参数，构建基于计算流体力学和物理驱动的机理模型来解决过程建模、仿真、预测等问题，从而准确描述中药物料在喷雾干燥设备中的液滴干燥过程。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2907,
+                "start_char": 2866,
                 "end_char": 2969
               },
               "version": "55ec281ee6a432266f4f"
             }
-          ]
-        },
-        {
-          "id": "item-51730ec5af83",
-          "name": "深度强化学习工艺优化",
-          "desc": "大数据联合深度强化学习获取最佳生产模式",
-          "evidence": [
-            {
-              "quote": "以条件参数和工艺参数作为模型输入，通过大数据联合深度强化学习模型获取最佳生产模式，并结合期望产品指标设定目标工艺。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3001,
-                "end_char": 3057
-              },
-              "version": "55ec281ee6a432266f4f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-e8510c8c288e",
-          "name": "论文30余篇与标准4项",
-          "desc": "发表论文30余篇，发布团体标准4项，硕博毕业14人",
-          "evidence": [
-            {
-              "quote": "共发表论文30余篇，发布团体标准4项，硕士研究生毕业11人，博士研究生毕业3人。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3127,
-                "end_char": 3166
-              },
-              "version": "55ec281ee6a432266f4f"
-            }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-dad83a6101ed"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8affffa644dd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel method for vacuum belt drying process optimization of licorice",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3cedaff66900",
+      "evidence": [
+        {
+          "quote": "A novel method for vacuum belt drying process optimization of licorice",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3301,
+            "end_char": 3370
+          },
+          "version": "55ec281ee6a432266f4f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8affffa644dd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-29646a3a7f3d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "中药制药工艺知识库构建方法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc4dc19a711c",
+      "evidence": [
+        {
+          "quote": "中药制药工艺知识库构建方法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3425,
+            "end_char": 3439
+          },
+          "version": "55ec281ee6a432266f4f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8affffa644dd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-51730ec5af83"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "以制药认知智能为核心的中药智能制造关键技术及其应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e701abae0f05",
+      "evidence": [
+        {
+          "quote": "以制药认知智能为核心的中药智能制造关键技术及其应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3473,
+            "end_char": 3497
+          },
+          "version": "55ec281ee6a432266f4f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-51730ec5af83"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e8510c8c288e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hyperspectral imaging combined with artificial intelligence techniques to explore the drying behavior of natural Lonicerae Japonicae Flos extracts",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2c18fe373945",
+      "evidence": [
+        {
+          "quote": "Hyperspectral imaging combined with artificial intelligence techniques to explore the drying behavior of natural Lonicerae Japonicae Flos extracts",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3555,
+            "end_char": 3700
+          },
+          "version": "55ec281ee6a432266f4f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-29646a3a7f3d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e8510c8c288e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "金银花颗粒在旋风分离器中的流场数值模拟分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d013e1370110",
+      "evidence": [
+        {
+          "quote": "金银花颗粒在旋风分离器中的流场数值模拟分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3788,
+            "end_char": 3808
+          },
+          "version": "55ec281ee6a432266f4f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "金银花提取液喷雾干燥过程的数值模拟",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-59fbaa9f27d0",
+      "evidence": [
+        {
+          "quote": "金银花提取液喷雾干燥过程的数值模拟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3840,
+            "end_char": 3856
+          },
+          "version": "55ec281ee6a432266f4f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于数字孪生的中药智能制药关键技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c76aca7e04e",
+      "evidence": [
+        {
+          "quote": "基于数字孪生的中药智能制药关键技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3892,
+            "end_char": 3908
+          },
+          "version": "55ec281ee6a432266f4f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An intelligent quality prediction and autonomous decision system for natural products manufacturing processes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9fd960796d8",
+      "evidence": [
+        {
+          "quote": "An intelligent quality prediction and autonomous decision system for natural products manufacturing processes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3932,
+            "end_char": 4040
+          },
+          "version": "55ec281ee6a432266f4f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Numerical simulation and optimization of Lonicerae Japonicae Flos extract spray drying process based on temperature field verification and deep reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d432083b4854",
+      "evidence": [
+        {
+          "quote": "Numerical simulation and optimization of Lonicerae Japonicae Flos extract spray drying process based on temperature field verification and deep reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4150,
+            "end_char": 4315
+          },
+          "version": "55ec281ee6a432266f4f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

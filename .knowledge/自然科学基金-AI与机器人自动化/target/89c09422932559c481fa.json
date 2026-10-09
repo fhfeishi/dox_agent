@@ -2,15 +2,20 @@
   "doc_id": "89c09422932559c481fa",
   "version": "625deb8a98a1d476beb5",
   "source_hash": "cfb5058b1a286faedbd84a32f2008bedbe62e3a03a8f5d0eb1f54395235192c9",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:19:59.335604+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.756527+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0808cee6a525",
-          "name": "车载视觉环境感知",
-          "desc": "复杂动态场景下自动驾驶视觉感知",
+          "id": "item-3bf8b27aafa6",
+          "name": "自动驾驶技术的核心在于替代驾驶员完成对复杂动态场景的感知并做出正确的判断，即通过搭载的多种传感器获取与驾驶相关的有效信息",
+          "desc": "自动驾驶技术的核心在于替代驾驶员完成对复杂动态场景的感知并做出正确的判断，即通过搭载的多种传感器获取与驾驶相关的有效信息。",
           "evidence": [
             {
               "quote": "自动驾驶技术的核心在于替代驾驶员完成对复杂动态场景的感知并做出正确的判断，即通过搭载的多种传感器获取与驾驶相关的有效信息。",
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f604b5f8a3db",
-          "name": "看不清多任务实时性",
-          "desc": "复杂天气看不清、多任务获取信息、资源受限实时性",
-          "evidence": [
-            {
-              "quote": "现有的车载视觉环境感知系统存在着以下技术难题：（1）复杂天气环境下的“看不清”问题；（2）视觉环境感知系统需实时获取多种与驾驶相关的有效信息，即“多任务”问题；（3）资源受限条件下的“实时性”问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 718,
-                "end_char": 816
-              },
-              "version": "625deb8a98a1d476beb5"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-8480bce76518",
-          "name": "可见光红外融合",
-          "desc": "多传感器融合深度学习网络应对复杂天气",
+          "id": "item-c93a205da31a",
+          "name": "本项目针对以上技术难题分别提出了相应的解决方案：针对“看不清”的技术难点，提出可见光与红外热传感器相融合，并构建多传感器",
+          "desc": "本项目针对以上技术难题分别提出了相应的解决方案：针对“看不清”的技术难点，提出可见光与红外热传感器相融合，并构建多传感器融合深度学习网络的解决方案；",
           "evidence": [
             {
-              "quote": "针对“看不清”的技术难点，提出可见光与红外热传感器相融合，并构建多传感器融合深度学习网络的解决方案",
+              "quote": "本项目针对以上技术难题分别提出了相应的解决方案：针对“看不清”的技术难点，提出可见光与红外热传感器相融合，并构建多传感器融合深度学习网络的解决方案；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 841,
-                "end_char": 889
+                "start_char": 817,
+                "end_char": 890
               },
               "version": "625deb8a98a1d476beb5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-484ccdf0bd1e",
-          "name": "共享特征层多任务网络",
-          "desc": "单一深度学习框架完成多项感知任务",
+          "id": "item-72c09891658f",
+          "name": "拟通过单一深度学习框架完成多传感器融合及车载视觉环境感知的多项任务，从而实现在资源受限条件下，适应复杂的天气及道路交通环",
+          "desc": "拟通过单一深度学习框架完成多传感器融合及车载视觉环境感知的多项任务，从而实现在资源受限条件下，适应复杂的天气及道路交通环境，实时、准确地为自动驾驶系统提供驾驶相关信息。",
           "evidence": [
             {
-              "quote": "针对“多任务”这一技术难点，提出建立共享图像特征层的多任务深度学习网络",
+              "quote": "拟通过单一深度学习框架完成多传感器融合及车载视觉环境感知的多项任务，从而实现在资源受限条件下，适应复杂的天气及道路交通环境，实时、准确地为自动驾驶系统提供驾驶相关信息。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 891,
-                "end_char": 925
+                "start_char": 968,
+                "end_char": 1051
               },
               "version": "625deb8a98a1d476beb5"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,289 @@
       "state": "has",
       "items": [
         {
-          "id": "item-282ab33a89d1",
-          "name": "交通图像库开源",
-          "desc": "建立车载可见光与近红外两个大型图像样本库并开源",
+          "id": "item-a883fc946168",
+          "name": "自动驾驶技术的核心在于替代驾驶员完成对复杂动态场景的感知并做出正确的判断，即通过搭载的多种传感器获取与驾驶相关的有效信息",
+          "desc": "自动驾驶技术的核心在于替代驾驶员完成对复杂动态场景的感知并做出正确的判断，即通过搭载的多种传感器获取与驾驶相关的有效信息。",
           "evidence": [
             {
-              "quote": "项目组建立两个大型中国交通图像数据库：车载视觉可见光图像样本库及车载视觉近红外图像样本库，并均已开源",
+              "quote": "自动驾驶技术的核心在于替代驾驶员完成对复杂动态场景的感知并做出正确的判断，即通过搭载的多种传感器获取与驾驶相关的有效信息。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3115,
-                "end_char": 3164
+                "start_char": 657,
+                "end_char": 717
               },
               "version": "625deb8a98a1d476beb5"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2294dd5e4eaf",
-          "name": "论文10篇与产业应用",
-          "desc": "SCI 9篇（IEEE Trans 2篇）、专利授权3项、智慧矿山系统应用",
-          "evidence": [
-            {
-              "quote": "共发表学术论文10篇，其中SCI检索论文9篇，IEEE Trans 期刊上发表论文2篇；申请国家发明专利4项，获授权专利3项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3313,
-                "end_char": 3374
-              },
-              "version": "625deb8a98a1d476beb5"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0808cee6a525"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f604b5f8a3db"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第七届中国创新挑战赛(扬州)优胜奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbef20b0857c",
+      "evidence": [
+        {
+          "quote": "第七届中国创新挑战赛(扬州)优胜奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3524,
+            "end_char": 3540
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f604b5f8a3db"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8480bce76518"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An effective framework using identification and image reconstruction algorithm for train component defect detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-955359678cda",
+      "evidence": [
+        {
+          "quote": "An effective framework using identification and image reconstruction algorithm for train component defect detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3557,
+            "end_char": 3671
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f604b5f8a3db"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-484ccdf0bd1e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deeply Supervised Z-Style Residual Network Devotes to Real-Time Environment Perception for Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e347c708b59",
+      "evidence": [
+        {
+          "quote": "Deeply Supervised Z-Style Residual Network Devotes to Real-Time Environment Perception for Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3710,
+            "end_char": 3818
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8480bce76518"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-282ab33a89d1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MWNet: object detection network applicable for different weather conditions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d0654ce1b8c",
+      "evidence": [
+        {
+          "quote": "MWNet: object detection network applicable for different weather conditions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3870,
+            "end_char": 3944
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-484ccdf0bd1e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2294dd5e4eaf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "TIRNet: Object detection in thermal infrared images for autonomous driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff1ae394c6ab",
+      "evidence": [
+        {
+          "quote": "TIRNet: Object detection in thermal infrared images for autonomous driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3968,
+            "end_char": 4041
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data augmentation for thermal infrared object detection with cascade pyramid generative adversarial network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a3f29fd21674",
+      "evidence": [
+        {
+          "quote": "Data augmentation for thermal infrared object detection with cascade pyramid generative adversarial network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4066,
+            "end_char": 4172
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第十六届中国研究生电子设计竞赛全国二等奖2",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-be2c4f0a7ef7",
+      "evidence": [
+        {
+          "quote": "第十六届中国研究生电子设计竞赛全国二等奖2",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4195,
+            "end_char": 4215
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "长距离皮带的长度修正与自动停机控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66745e027e32",
+      "evidence": [
+        {
+          "quote": "长距离皮带的长度修正与自动停机控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4240,
+            "end_char": 4258
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第十六届中国研究生电子设计竞赛全国二等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-22a3a204d5aa",
+      "evidence": [
+        {
+          "quote": "第十六届中国研究生电子设计竞赛全国二等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4195,
+            "end_char": 4214
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Synthetic region screening and adaptive feature fusion for constructing a flexible object detection database",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c3cfeaac39ad",
+      "evidence": [
+        {
+          "quote": "Synthetic region screening and adaptive feature fusion for constructing a flexible object detection database",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4325,
+            "end_char": 4432
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Synthetic data generation based on local-foreground generative adversarial networks for surface defect detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1a9eb6b5e23",
+      "evidence": [
+        {
+          "quote": "Synthetic data generation based on local-foreground generative adversarial networks for surface defect detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4454,
+            "end_char": 4565
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "计算机视觉 Python+TensorFlow+Keras深度学习实战",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-daece8c20d15",
+      "evidence": [
+        {
+          "quote": "计算机视觉 Python+TensorFlow+Keras深度学习实战",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4605,
+            "end_char": 4639
+          },
+          "version": "625deb8a98a1d476beb5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

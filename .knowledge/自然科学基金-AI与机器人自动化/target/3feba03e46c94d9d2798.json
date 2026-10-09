@@ -2,15 +2,20 @@
   "doc_id": "3feba03e46c94d9d2798",
   "version": "a9f91999d4617ef8565c",
   "source_hash": "3f2ab79b469a8bb95f38036d7d89730db4b02318b04427488e1a7876e33fdefc",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:44.856802+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.090461+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-59fb4324f67c",
-          "name": "半导体智能制造调度优化",
-          "desc": "多企业协作下半导体智能制造系统异构分布式调度",
+          "id": "item-d9cb93ad5c1b",
+          "name": "高性能智能制造系统调度优化是半导体智能制造的基础，全球化、专业化的多企业协作是半导体智能制造趋势。",
+          "desc": "高性能智能制造系统调度优化是半导体智能制造的基础，全球化、专业化的多企业协作是半导体智能制造趋势。",
           "evidence": [
             {
-              "quote": "在半导体智能制造领域，传统的集中式调度优化方法面临数据孤岛、隐私安全与系统异构性三大挑战",
+              "quote": "高性能智能制造系统调度优化是半导体智能制造的基础，全球化、专业化的多企业协作是半导体智能制造趋势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3060,
-                "end_char": 3103
+                "start_char": 665,
+                "end_char": 713
+              },
+              "version": "a9f91999d4617ef8565c"
+            }
+          ]
+        },
+        {
+          "id": "item-af87a1329a9e",
+          "name": "18. [期刊论文] 数字孪生在工业工程领域应用的热点和趋势分析 — 林国义;郭慧妍;冷杰武;赵 慧",
+          "desc": "18. [期刊论文] 数字孪生在工业工程领域应用的热点和趋势分析 — 林国义;郭慧妍;冷杰武;赵 慧",
+          "evidence": [
+            {
+              "quote": "18. [期刊论文] 数字孪生在工业工程领域应用的热点和趋势分析 — 林国义;郭慧妍;冷杰武;赵 慧",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 5810,
+                "end_char": 5859
               },
               "version": "a9f91999d4617ef8565c"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-23bf3fd31dcc",
-          "name": "数据孤岛与隐私安全",
-          "desc": "不同工厂产线设备数据因商业机密难以共享，硬件架构协议与算力差异显著",
-          "evidence": [
-            {
-              "quote": "不同工厂、产线及设备间的数据因商业机密和竞争关系难以共享，同时，其硬件架构、通信协议与计算能力存在显著差异，导致全局优化难度极大",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3105,
-                "end_char": 3168
-              },
-              "version": "a9f91999d4617ef8565c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-998d8eca5411",
-          "name": "联邦学习异构分布式调度框架",
-          "desc": "本地私有数据训练、模型参数安全聚合，保护隐私前提下跨异构知识协同",
+          "id": "item-5c1689f80abe",
+          "name": "本项目以半导体智能制造系统为对象，以联邦学习机制的多元数据和混合模型联合驱动方法为技术手段，深入开展异构分布式调度的安全",
+          "desc": "本项目以半导体智能制造系统为对象，以联邦学习机制的多元数据和混合模型联合驱动方法为技术手段，深入开展异构分布式调度的安全防护和效率优化研究。",
           "evidence": [
             {
-              "quote": "该框架不要求各参与方上传原始生产数据，而是在本地利用私有数据训练本地调度模型，仅定期上传模型参数（如梯度或权重）至一个中央服务器进行安全聚合，生成优化的全局调度模型后再分发至各节点",
+              "quote": "本项目以半导体智能制造系统为对象，以联邦学习机制的多元数据和混合模型联合驱动方法为技术手段，深入开展异构分布式调度的安全防护和效率优化研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3210,
-                "end_char": 3299
+                "start_char": 760,
+                "end_char": 829
               },
               "version": "a9f91999d4617ef8565c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3b638cd58a02",
-          "name": "自适应聚合与模型压缩",
-          "desc": "自适应客户端选择、异步聚合策略及轻量级模型压缩提升异构环境性能",
+          "id": "item-977e914c19b1",
+          "name": "项目预期成果将解决混合联邦学习安全防护与效率优化的内在竞合逻辑机理的科学问题，实现在基于联邦学习机制的半导体智能制造系统",
+          "desc": "项目预期成果将解决混合联邦学习安全防护与效率优化的内在竞合逻辑机理的科学问题，实现在基于联邦学习机制的半导体智能制造系统异构分布式调度优化的安全防护和效率性能提升，并实现两者一体化设计，支撑半导体智能制造系统在异构分布式调度优化中的应用。",
           "evidence": [
             {
-              "quote": "通过引入自适应客户端选择、异步聚合策略及轻量级模型压缩技术，有效提升了系统在异构环境下的整体性能与鲁棒性",
+              "quote": "项目预期成果将解决混合联邦学习安全防护与效率优化的内在竞合逻辑机理的科学问题，实现在基于联邦学习机制的半导体智能制造系统异构分布式调度优化的安全防护和效率性能提升，并实现两者一体化设计，支撑半导体智能制造系统在异构分布式调度优化中的应用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3465,
-                "end_char": 3516
+                "start_char": 946,
+                "end_char": 1064
               },
               "version": "a9f91999d4617ef8565c"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,468 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ea473faf2fd3",
-          "name": "关键绩效指标提升",
-          "desc": "作业完成时间、设备利用率、准时交付率分别提升约15.2%、8.7%、12.4%，通信开销降低30%",
+          "id": "item-a339e4f338c9",
+          "name": "高性能智能制造系统调度优化是半导体智能制造的基础，全球化、专业化的多企业协作是半导体智能制造趋势。",
+          "desc": "高性能智能制造系统调度优化是半导体智能制造的基础，全球化、专业化的多企业协作是半导体智能制造趋势。",
           "evidence": [
             {
-              "quote": "本系统在平均作业完成时间、设备利用率及订单准时交付率等关键绩效指标上分别提升了约15.2%、8.7%和12.4%。同时，系统成功将跨节点通信开销降低了约30%，并确保了各参与方敏感数据全程零泄露",
+              "quote": "高性能智能制造系统调度优化是半导体智能制造的基础，全球化、专业化的多企业协作是半导体智能制造趋势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3546,
-                "end_char": 3642
+                "start_char": 665,
+                "end_char": 713
               },
               "version": "a9f91999d4617ef8565c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-eec0dd14ab49",
+          "name": "在半导体智能制造领域，传统的集中式调度优化方法面临数据孤岛、隐私安全与系统异构性三大挑战。",
+          "desc": "在半导体智能制造领域，传统的集中式调度优化方法面临数据孤岛、隐私安全与系统异构性三大挑战。",
+          "evidence": [
+            {
+              "quote": "在半导体智能制造领域，传统的集中式调度优化方法面临数据孤岛、隐私安全与系统异构性三大挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3060,
+                "end_char": 3104
+              },
+              "version": "a9f91999d4617ef8565c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-59fb4324f67c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-23bf3fd31dcc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DDC-Chat: Achieving accurate distracted driver classification through instruction tuning of visual language model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-478b5739d962",
+      "evidence": [
+        {
+          "quote": "DDC-Chat: Achieving accurate distracted driver classification through instruction tuning of visual language model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3798,
+            "end_char": 3910
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-23bf3fd31dcc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-998d8eca5411"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UNISON framework of data-driven tripartite evolutionary game-based knowledge sharing decision for digital servitization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4675572949d2",
+      "evidence": [
+        {
+          "quote": "UNISON framework of data-driven tripartite evolutionary game-based knowledge sharing decision for digital servitization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3937,
+            "end_char": 4055
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-23bf3fd31dcc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3b638cd58a02"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-Driven Technology Roadmaps to Identify Potential Technology Opportunities for Hyperuricemia Drugs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e573d44fef50",
+      "evidence": [
+        {
+          "quote": "Data-Driven Technology Roadmaps to Identify Potential Technology Opportunities for Hyperuricemia Drugs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4089,
+            "end_char": 4190
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-998d8eca5411"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ea473faf2fd3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Survey of ADAS Perceptions with Development in China",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c856226f66d3",
+      "evidence": [
+        {
+          "quote": "A Survey of ADAS Perceptions with Development in China",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4250,
+            "end_char": 4303
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3b638cd58a02"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ea473faf2fd3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Supply and Demand Optimization of Agricultural Products in Game Theory: A State-of-the-Art Review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-95792ef7a190",
+      "evidence": [
+        {
+          "quote": "Supply and Demand Optimization of Agricultural Products in Game Theory: A State-of-the-Art Review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4381,
+            "end_char": 4477
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tracking and predicting technological knowledge interactions between artificial intelligence and wind power: Multimethod patent analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9375079c4064",
+      "evidence": [
+        {
+          "quote": "Tracking and predicting technological knowledge interactions between artificial intelligence and wind power: Multimethod patent analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4502,
+            "end_char": 4637
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "On Faster Convergence of Scaled Sign Gradient Descent",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3037472ec696",
+      "evidence": [
+        {
+          "quote": "On Faster Convergence of Scaled Sign Gradient Descent",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4698,
+            "end_char": 4750
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种碳排放快速检测系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06317d97b8d2",
+      "evidence": [
+        {
+          "quote": "一种碳排放快速检测系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4794,
+            "end_char": 4804
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种全视角巡检的高空抛物监测系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec7e58e44743",
+      "evidence": [
+        {
+          "quote": "一种全视角巡检的高空抛物监测系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4820,
+            "end_char": 4835
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向智能制造的 AGV 与柔性作业车间协同调度模型与算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c92dd42cfb1b",
+      "evidence": [
+        {
+          "quote": "面向智能制造的 AGV 与柔性作业车间协同调度模型与算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4854,
+            "end_char": 4881
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Innovation technology opportunity identification of civil aircraft mechanical connections based on generative topographic mapping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d5803e60882",
+      "evidence": [
+        {
+          "quote": "Innovation technology opportunity identification of civil aircraft mechanical connections based on generative topographic mapping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4912,
+            "end_char": 5040
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "《工业工程》首届优秀论文",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8066b1effd48",
+      "evidence": [
+        {
+          "quote": "《工业工程》首届优秀论文",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5090,
+            "end_char": 5101
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ensemble Learning Applications in Multiple Industries: A Review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f4b1b1801e53",
+      "evidence": [
+        {
+          "quote": "Ensemble Learning Applications in Multiple Industries: A Review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5131,
+            "end_char": 5193
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Identifying Promising Technologies of Electric Vehicles from the Perspective of Market and Technical Attributes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d88a0f13e1f0",
+      "evidence": [
+        {
+          "quote": "Identifying Promising Technologies of Electric Vehicles from the Perspective of Market and Technical Attributes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5222,
+            "end_char": 5332
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UNISON framework of model-based innovation for collaborative innovation of smart product-service system design",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-74bc45af89e4",
+      "evidence": [
+        {
+          "quote": "UNISON framework of model-based innovation for collaborative innovation of smart product-service system design",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5393,
+            "end_char": 5502
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mapping and comparing the technology evolution paths of scientific papers and patents: an integrated approach for forecasting technology trends",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8ad8f8a0d9f",
+      "evidence": [
+        {
+          "quote": "Mapping and comparing the technology evolution paths of scientific papers and patents: an integrated approach for forecasting technology trends",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5563,
+            "end_char": 5705
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于人体姿态识别的物流无人机及人机物流交互系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71b1b9c922ee",
+      "evidence": [
+        {
+          "quote": "一种基于人体姿态识别的物流无人机及人机物流交互系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5767,
+            "end_char": 5791
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "数字孪生在工业工程领域应用的热点和趋势分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30f9913beaf6",
+      "evidence": [
+        {
+          "quote": "数字孪生在工业工程领域应用的热点和趋势分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5821,
+            "end_char": 5841
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UNISON framework for user requirement elicitation and classification of smart product-service system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c60d25b324eb",
+      "evidence": [
+        {
+          "quote": "UNISON framework for user requirement elicitation and classification of smart product-service system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5872,
+            "end_char": 5971
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于动态分布式汇集的文本自动摘录系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2309ff58bef1",
+      "evidence": [
+        {
+          "quote": "一种基于动态分布式汇集的文本自动摘录系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6042,
+            "end_char": 6061
+          },
+          "version": "a9f91999d4617ef8565c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

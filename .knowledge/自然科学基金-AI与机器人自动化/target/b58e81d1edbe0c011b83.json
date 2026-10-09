@@ -2,15 +2,20 @@
   "doc_id": "b58e81d1edbe0c011b83",
   "version": "f2b6044112474e999f9a",
   "source_hash": "9fe8514d918b73ab78335632bd34ed699581e90bf7abcd2f28d9b64e87d31c94",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:10.028158+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.245774+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,37 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-65006e3f5a58",
-          "name": "火箭贮箱壁板镜像铣削",
-          "desc": "重型运载火箭贮箱壁板栅格等壁厚加工",
+          "id": "item-c3739139e6df",
+          "name": "重型运载火箭对结构轻量化和承载力要求的不断提高，使其贮箱壁板加工精度和表面质量成为制约其发展的主要因素，由于加工过程中局",
+          "desc": "重型运载火箭对结构轻量化和承载力要求的不断提高，使其贮箱壁板加工精度和表面质量成为制约其发展的主要因素，由于加工过程中局部壁板刚度将经历“刚性→弱刚性→柔性”的演变，又将其加工推向新的极端。",
           "evidence": [
             {
-              "quote": "本项目以重型火箭贮箱壁板栅格双混联机器人镜像铣削加工系统为研究对象，揭示了“混联加工机器人-工件-混联支撑机器人”之间的交互作用机理。",
+              "quote": "重型运载火箭对结构轻量化和承载力要求的不断提高，使其贮箱壁板加工精度和表面质量成为制约其发展的主要因素，由于加工过程中局部壁板刚度将经历“刚性→弱刚性→柔性”的演变，又将其加工推向新的极端。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2713,
-                "end_char": 2779
-              },
-              "version": "f2b6044112474e999f9a"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6e852d7cc0eb",
-          "name": "壁板刚度演变加工极端",
-          "desc": "局部壁板刚度经历刚性弱刚性柔性演变",
-          "evidence": [
-            {
-              "quote": "由于加工过程中局部壁板刚度将经历“刚性→弱刚性→柔性”的演变，又将其加工推向新的极端。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 717,
+                "start_char": 665,
                 "end_char": 759
               },
               "version": "f2b6044112474e999f9a"
@@ -59,40 +42,47 @@
       ]
     },
     {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-ed1a1598e331",
-          "name": "刀具-工件-支撑动力学",
-          "desc": "考虑材料去除与移动载荷建立动力学模型",
+          "id": "item-e36529d77848",
+          "name": "该研究旨在揭示“混联加工机器人-工件-混联支撑机器人”之间的交互作用机理，提出双机器人镜像铣削轨迹规划新方法和协同控制新",
+          "desc": "该研究旨在揭示“混联加工机器人-工件-混联支撑机器人”之间的交互作用机理，提出双机器人镜像铣削轨迹规划新方法和协同控制新技术，通过控制双混联机器人相对末端位姿，实现壁板栅格等壁厚镜像铣削。",
           "evidence": [
             {
-              "quote": "考虑材料去除量和移动载荷作用，建立了“刀具-工件-支撑”动力学模型，揭示了加工工艺参数对铣削力的影响规律",
+              "quote": "该研究旨在揭示“混联加工机器人-工件-混联支撑机器人”之间的交互作用机理，提出双机器人镜像铣削轨迹规划新方法和协同控制新技术，通过控制双混联机器人相对末端位姿，实现壁板栅格等壁厚镜像铣削。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2797,
-                "end_char": 2848
+                "start_char": 906,
+                "end_char": 999
               },
               "version": "f2b6044112474e999f9a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b13017b34698",
-          "name": "相对位姿测壁厚新思路",
-          "desc": "双混联机器人相对末端位姿在机实时测量壁厚",
+          "id": "item-2029c03e185c",
+          "name": "projectName: 重型运载火箭贮箱壁板双混联机器人镜像铣削轨迹规划与协同控制研究",
+          "desc": "projectName: 重型运载火箭贮箱壁板双混联机器人镜像铣削轨迹规划与协同控制研究",
           "evidence": [
             {
-              "quote": "提出了基于双混联机器人相对末端位姿在机实时测量工件壁厚的新思路，解决了两侧机器人路径生成、进给率规划以及协同控制问题",
+              "quote": "projectName: 重型运载火箭贮箱壁板双混联机器人镜像铣削轨迹规划与协同控制研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2965,
-                "end_char": 3022
+                "start_char": 42,
+                "end_char": 85
               },
               "version": "f2b6044112474e999f9a"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,324 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7ef7b3dbf1bd",
-          "name": "壁厚误差±0.1mm",
-          "desc": "控制双机器人相对位姿实现薄壁件等壁厚协同加工",
+          "id": "item-9ce0fa7e94ad",
+          "name": "重型运载火箭对结构轻量化和承载力要求的不断提高，使其贮箱壁板加工精度和表面质量成为制约其发展的主要因素，由于加工过程中局",
+          "desc": "重型运载火箭对结构轻量化和承载力要求的不断提高，使其贮箱壁板加工精度和表面质量成为制约其发展的主要因素，由于加工过程中局部壁板刚度将经历“刚性→弱刚性→柔性”的演变，又将其加工推向新的极端。",
           "evidence": [
             {
-              "quote": "最终，通过控制双机器人相对末端位姿，实现了薄壁件等壁厚协同加工，壁厚误差 ≤ ±0.1 mm。",
+              "quote": "重型运载火箭对结构轻量化和承载力要求的不断提高，使其贮箱壁板加工精度和表面质量成为制约其发展的主要因素，由于加工过程中局部壁板刚度将经历“刚性→弱刚性→柔性”的演变，又将其加工推向新的极端。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3056,
-                "end_char": 3102
+                "start_char": 665,
+                "end_char": 759
               },
               "version": "f2b6044112474e999f9a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-44338c285391",
-          "name": "论文20篇与发明一等奖",
-          "desc": "SCI 17篇EI 3篇、专利授权4项、中国机械工业联合会技术发明一等奖",
+          "id": "item-a811f40b1d2b",
+          "name": "重型运载火箭对结构轻量化和承载力要求的不断提高，使其贮箱壁板加工精度和表面质量成为制约其发展的主要因素。",
+          "desc": "重型运载火箭对结构轻量化和承载力要求的不断提高，使其贮箱壁板加工精度和表面质量成为制约其发展的主要因素。",
           "evidence": [
             {
-              "quote": "课题组在IEEE TRO，IEEE TIE，RCIM，MSSP，JMPT，JMP，SCTS等本领域国内外知名期刊发表论文20篇，其中SCI收录17篇，EI收录3篇；申请发明专利7项，软件著作权1项，其中授权发明专利4项",
+              "quote": "重型运载火箭对结构轻量化和承载力要求的不断提高，使其贮箱壁板加工精度和表面质量成为制约其发展的主要因素。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3169,
-                "end_char": 3277
+                "start_char": 2661,
+                "end_char": 2712
               },
               "version": "f2b6044112474e999f9a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-65006e3f5a58"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6e852d7cc0eb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于双混联机器人协同运动控制的薄壁件镜像铣削研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-411ffff1acf3",
+      "evidence": [
+        {
+          "quote": "基于双混联机器人协同运动控制的薄壁件镜像铣削研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3365,
+            "end_char": 3388
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6e852d7cc0eb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ed1a1598e331"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semi-analytical C3 corner toolpath generation containing spatial arc segments for 5-axis hybrid robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aeb2251b22f0",
+      "evidence": [
+        {
+          "quote": "Semi-analytical C3 corner toolpath generation containing spatial arc segments for 5-axis hybrid robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3421,
+            "end_char": 3521
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6e852d7cc0eb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b13017b34698"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A real-time trajectory generator with 3rd-order constraints satisfaction through velocity mode evolution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ab382b4a0b6",
+      "evidence": [
+        {
+          "quote": "A real-time trajectory generator with 3rd-order constraints satisfaction through velocity mode evolution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3584,
+            "end_char": 3687
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b13017b34698"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7ef7b3dbf1bd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A third-order constrained approximate time-optimal feedrate planning algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2be66876b876",
+      "evidence": [
+        {
+          "quote": "A third-order constrained approximate time-optimal feedrate planning algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3746,
+            "end_char": 3823
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ed1a1598e331"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-44338c285391"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向任务的机器人动作泛化研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d00b4206978b",
+      "evidence": [
+        {
+          "quote": "面向任务的机器人动作泛化研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3885,
+            "end_char": 3898
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Time optimal multi-base placement planning for mobile measuring manipulator considering reachable and non-singular constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-769d42ed9439",
+      "evidence": [
+        {
+          "quote": "Time optimal multi-base placement planning for mobile measuring manipulator considering reachable and non-singular constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3930,
+            "end_char": 4055
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vibration suppression of balls in different contact states during mirror milling of curved thin-walled parts based on magnetic follow-up support fixture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b43bd6de4c5",
+      "evidence": [
+        {
+          "quote": "Vibration suppression of balls in different contact states during mirror milling of curved thin-walled parts based on magnetic follow-up support fixture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4122,
+            "end_char": 4273
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep learning-based real-time precise pose estimation using differential magnetic signals in the dual-robot processing system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bf7ab62407e3",
+      "evidence": [
+        {
+          "quote": "Deep learning-based real-time precise pose estimation using differential magnetic signals in the dual-robot processing system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4363,
+            "end_char": 4487
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于灵敏度分析的混联机器人动力学参数辨识方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff0a579c2fc3",
+      "evidence": [
+        {
+          "quote": "一种基于灵敏度分析的混联机器人动力学参数辨识方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4556,
+            "end_char": 4579
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An online error compensation strategy for hybrid robot based on grating feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26fe26a437c4",
+      "evidence": [
+        {
+          "quote": "An online error compensation strategy for hybrid robot based on grating feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4613,
+            "end_char": 4692
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多参数校准与残差补偿的永磁体磁场建模系统、方法及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eae8d58b6216",
+      "evidence": [
+        {
+          "quote": "基于多参数校准与残差补偿的永磁体磁场建模系统、方法及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4780,
+            "end_char": 4807
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向双机器人镜像铣削的协同误差监测系统、方法及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-862e3981ef6a",
+      "evidence": [
+        {
+          "quote": "面向双机器人镜像铣削的协同误差监测系统、方法及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4847,
+            "end_char": 4871
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic characteristics and chatter prediction of thin-walled workpieces in dual-robot mirror milling based on surrogate model of support parameters",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d8f6f81e13a",
+      "evidence": [
+        {
+          "quote": "Dynamic characteristics and chatter prediction of thin-walled workpieces in dual-robot mirror milling based on surrogate model of support parameters",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4913,
+            "end_char": 5060
+          },
+          "version": "f2b6044112474e999f9a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "d4ed20ea0d63a223a499",
   "version": "e45eae354c9d3c2570db",
   "source_hash": "9f0b203ab8e21706893c3fd22b2f3a69fc3366290883b0d43ecc2c024cf9eae2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:54.182480+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.568162+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f1060f112502",
-          "name": "分布式能源系统协同控制",
-          "desc": "高比例可再生能源接入下多主体强耦合、模型不完备的分布式系统",
+          "id": "item-a20d935d68c4",
+          "name": "分布式工业系统规模大、节点总数多、过渡过程时间跨度大，使得常用的集中式控制方法和“准确模型”的研究手段难以利用。",
+          "desc": "分布式工业系统规模大、节点总数多、过渡过程时间跨度大，使得常用的集中式控制方法和“准确模型”的研究手段难以利用。",
           "evidence": [
             {
-              "quote": "随着高比例可再生能源接入，分布式能源系统呈现多主体强耦合、模型不完备、不确定扰动频繁、通信资源受限及工程约束并存等特征",
+              "quote": "分布式工业系统规模大、节点总数多、过渡过程时间跨度大，使得常用的集中式控制方法和“准确模型”的研究手段难以利用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2741,
-                "end_char": 2799
+                "start_char": 641,
+                "end_char": 696
+              },
+              "version": "e45eae354c9d3c2570db"
+            }
+          ]
+        },
+        {
+          "id": "item-d42ac4e8fc79",
+          "name": ".本项目从协同控制目标构建、智能优化方法设计到工程约束融合，形成系统的分布式智能协同优化控制理论与方法体系，科学上丰富了",
+          "desc": ".本项目从协同控制目标构建、智能优化方法设计到工程约束融合，形成系统的分布式智能协同优化控制理论与方法体系，科学上丰富了分布式协同控制与智能控制交叉领域研究，应用上为多微电网协同运行、储能系统安全管理及新型电力系统运行提供了可推广的技术路线与方法支撑。",
+          "evidence": [
+            {
+              "quote": ".本项目从协同控制目标构建、智能优化方法设计到工程约束融合，形成系统的分布式智能协同优化控制理论与方法体系，科学上丰富了分布式协同控制与智能控制交叉领域研究，应用上为多微电网协同运行、储能系统安全管理及新型电力系统运行提供了可推广的技术路线与方法支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3384,
+                "end_char": 3509
               },
               "version": "e45eae354c9d3c2570db"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b994b8967165",
-          "name": "集中式控制难以兼顾",
-          "desc": "传统集中式或强模型依赖型控制难以兼顾安全性、协同性与工程可实现性",
+          "id": "item-f028cce1a5a9",
+          "name": "因此近年来分布式协同优化控制受到科学技术界的广泛重视，但是有3个关键问题亟需解决：1.分布式优化控制难；",
+          "desc": "因此近年来分布式协同优化控制受到科学技术界的广泛重视，但是有3个关键问题亟需解决：1.分布式优化控制难；",
           "evidence": [
             {
-              "quote": "传统集中式或强模型依赖型控制方法难以兼顾安全性、协同性与工程可实现性",
+              "quote": "因此近年来分布式协同优化控制受到科学技术界的广泛重视，但是有3个关键问题亟需解决：1.分布式优化控制难；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2801,
-                "end_char": 2834
+                "start_char": 697,
+                "end_char": 748
               },
               "version": "e45eae354c9d3c2570db"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b01730102297",
-          "name": "多微电网统一协同建模",
-          "desc": "电气网络-控制网络-信息网络统一协同建模与包含型协同控制目标体系",
+          "id": "item-b909da8414e2",
+          "name": "因此，针对实际复杂工业大规模对象，本项目首先提出了单个智能体的高性能以及多智能体系统的协同，即实现分布式系统的智能自适应",
+          "desc": "因此，针对实际复杂工业大规模对象，本项目首先提出了单个智能体的高性能以及多智能体系统的协同，即实现分布式系统的智能自适应协同优化控制，这里提出了自适应动态规划方法; 其次，研究了基于大数据驱动的人工智能模型辨识机制; 再次，提出了随机非线性分布式系统协同最优控制策略以及协同容错优化控制方法; 另外，考虑到节点间的资源难以匹配，各个节点的工作效率将受到相邻节点的性能上限制约，影响系统高效运行，这里也提出了可有效避免Zeno行为以及设备固有",
           "evidence": [
             {
-              "quote": "构建多微电网“电气网络-控制网络-信息网络” 统一协同建模框架",
+              "quote": "因此，针对实际复杂工业大规模对象，本项目首先提出了单个智能体的高性能以及多智能体系统的协同，即实现分布式系统的智能自适应协同优化控制，这里提出了自适应动态规划方法; 其次，研究了基于大数据驱动的人工智能模型辨识机制; 再次，提出了随机非线性分布式系统协同最优控制策略以及协同容错优化控制方法; 另外，考虑到节点间的资源难以匹配，各个节点的工作效率将受到相邻节点的性能上限制约，影响系统高效运行，这里也提出了可有效避免Zeno行为以及设备固有",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2912,
-                "end_char": 2942
+                "start_char": 782,
+                "end_char": 1001
               },
               "version": "e45eae354c9d3c2570db"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-02871ac2000a",
-          "name": "事件触发协同控制机制",
-          "desc": "具有严格正最小触发间隔，降低通信与计算负担",
+          "id": "item-7052d237c67e",
+          "name": "面向模型不完备与不确定扰动，搭建融合分布式观测、自适应机制、神经网络的分布式智能协同控制框架，实现无精确模型依赖的协同控",
+          "desc": "面向模型不完备与不确定扰动，搭建融合分布式观测、自适应机制、神经网络的分布式智能协同控制框架，实现无精确模型依赖的协同控制与优化策略在线学习。",
           "evidence": [
             {
-              "quote": "提出具有严格正最小触发间隔的事件触发协同控制机制",
+              "quote": "面向模型不完备与不确定扰动，搭建融合分布式观测、自适应机制、神经网络的分布式智能协同控制框架，实现无精确模型依赖的协同控制与优化策略在线学习。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3113,
-                "end_char": 3136
+                "start_char": 3031,
+                "end_char": 3101
               },
               "version": "e45eae354c9d3c2570db"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,508 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b51e8202c655",
-          "name": "多微电网协同恢复",
-          "desc": "执行器故障、有向通信与负荷扰动并存下完成电压频率与有功功率协同恢复",
+          "id": "item-6b916cacfa25",
+          "name": "分布式工业系统规模大、节点总数多、过渡过程时间跨度大，使得常用的集中式控制方法和“准确模型”的研究手段难以利用。",
+          "desc": "分布式工业系统规模大、节点总数多、过渡过程时间跨度大，使得常用的集中式控制方法和“准确模型”的研究手段难以利用。",
           "evidence": [
             {
-              "quote": "在执行器故障、有向通信与负荷扰动并存下，完成电压、频率与有功功率协同恢复",
+              "quote": "分布式工业系统规模大、节点总数多、过渡过程时间跨度大，使得常用的集中式控制方法和“准确模型”的研究手段难以利用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3202,
-                "end_char": 3237
+                "start_char": 641,
+                "end_char": 696
               },
               "version": "e45eae354c9d3c2570db"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-4a9f94299081",
-          "name": "储能能量管理优化",
-          "desc": "动态能量平衡点概念与Q学习分布式自适应优化，抑制过充过放",
+          "id": "item-ee70bb82b239",
+          "name": "随着高比例可再生能源接入，分布式能源系统呈现多主体强耦合、模型不完备、不确定扰动频繁、通信资源受限及工程约束并存等特征，",
+          "desc": "随着高比例可再生能源接入，分布式能源系统呈现多主体强耦合、模型不完备、不确定扰动频繁、通信资源受限及工程约束并存等特征，传统集中式或强模型依赖型控制方法难以兼顾安全性、协同性与工程可实现性。",
           "evidence": [
             {
-              "quote": "提出“动态能量平衡点”概念与基于但评判网络Q学习的分布式自适应优化方法",
+              "quote": "随着高比例可再生能源接入，分布式能源系统呈现多主体强耦合、模型不完备、不确定扰动频繁、通信资源受限及工程约束并存等特征，传统集中式或强模型依赖型控制方法难以兼顾安全性、协同性与工程可实现性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3246,
-                "end_char": 3280
+                "start_char": 2741,
+                "end_char": 2835
               },
               "version": "e45eae354c9d3c2570db"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f1060f112502"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b994b8967165"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Fuzzy Tracking Control With Quantized Prescribed Performance for Nonlinear Systems Under Unknown Disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-955aa9b5442a",
+      "evidence": [
+        {
+          "quote": "Adaptive Fuzzy Tracking Control With Quantized Prescribed Performance for Nonlinear Systems Under Unknown Disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3535,
+            "end_char": 3652
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b994b8967165"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b01730102297"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "风光储能自适应事件触发强化学习控制方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b26f9b2c155",
+      "evidence": [
+        {
+          "quote": "风光储能自适应事件触发强化学习控制方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3705,
+            "end_char": 3726
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b994b8967165"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-02871ac2000a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于强化学习的微电网多目标区间优化调度方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1f3eb0ec89f1",
+      "evidence": [
+        {
+          "quote": "基于强化学习的微电网多目标区间优化调度方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3750,
+            "end_char": 3770
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b01730102297"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b51e8202c655"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed adaptive optimization for microgrids",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1be7865352fd",
+      "evidence": [
+        {
+          "quote": "Distributed adaptive optimization for microgrids",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3804,
+            "end_char": 3851
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-02871ac2000a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4a9f94299081"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Consensus Control Strategy for the Treatment of Tumour With Neuroadaptive Cellular Immunotherapy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e0d78ba64b6",
+      "evidence": [
+        {
+          "quote": "Consensus Control Strategy for the Treatment of Tumour With Neuroadaptive Cellular Immunotherapy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3885,
+            "end_char": 3980
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Preassigned Finite-Time Tracking Control for PDE-ODE Systems With Dead-Zone Input and Actuator Failures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8739a4b20c69",
+      "evidence": [
+        {
+          "quote": "Adaptive Preassigned Finite-Time Tracking Control for PDE-ODE Systems With Dead-Zone Input and Actuator Failures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4049,
+            "end_char": 4160
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Consensus-Fuzzy Ecological Joint Therapy for Multitumor Populations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b767fe8a24f",
+      "evidence": [
+        {
+          "quote": "Consensus-Fuzzy Ecological Joint Therapy for Multitumor Populations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4216,
+            "end_char": 4282
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "中国自动化学会青年科技奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b2bec54a56e0",
+      "evidence": [
+        {
+          "quote": "中国自动化学会青年科技奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4342,
+            "end_char": 4353
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Secondary Multi-Bus Voltage and Frequency Fault-Tolerant Regulation Control via Hierarchical Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d47844f84e6",
+      "evidence": [
+        {
+          "quote": "Secondary Multi-Bus Voltage and Frequency Fault-Tolerant Regulation Control via Hierarchical Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4371,
+            "end_char": 4472
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "工业负荷边端智能检测与源荷调控技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c47027ebf18f",
+      "evidence": [
+        {
+          "quote": "工业负荷边端智能检测与源荷调控技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4508,
+            "end_char": 4527
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于动态观测器的智能电网虚假数据攻击检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-418532c7465e",
+      "evidence": [
+        {
+          "quote": "基于动态观测器的智能电网虚假数据攻击检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4594,
+            "end_char": 4615
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂在役管道智能检测与评估关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84a985e263a9",
+      "evidence": [
+        {
+          "quote": "复杂在役管道智能检测与评估关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4643,
+            "end_char": 4662
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Constraint-Based Finite-Time Tracking Control for Intelligent Multivehicle Systems Considering Communication and Operation Restrictions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02480a1c8dd8",
+      "evidence": [
+        {
+          "quote": "Constraint-Based Finite-Time Tracking Control for Intelligent Multivehicle Systems Considering Communication and Operation Restrictions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4732,
+            "end_char": 4866
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Evolutionary Dynamics Optimal Research-Oriented Tumor Immunity Architecture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f5a6dd29e0d",
+      "evidence": [
+        {
+          "quote": "Evolutionary Dynamics Optimal Research-Oriented Tumor Immunity Architecture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4925,
+            "end_char": 4999
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "智能语言驱动的知识挖掘与人工智能教育",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6beae7a8cd68",
+      "evidence": [
+        {
+          "quote": "智能语言驱动的知识挖掘与人工智能教育",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5070,
+            "end_char": 5087
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Full Channel Multi-Chaotic-State Encryption Strategy and Error-Feedback-Boundary Output Constraint Method for Multiagent Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0f7252dfaeb",
+      "evidence": [
+        {
+          "quote": "Full Channel Multi-Chaotic-State Encryption Strategy and Error-Feedback-Boundary Output Constraint Method for Multiagent Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5130,
+            "end_char": 5257
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "介入脑机时效救治器械与智能康复关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e3ab6d24f69",
+      "evidence": [
+        {
+          "quote": "介入脑机时效救治器械与智能康复关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5313,
+            "end_char": 5334
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于磁悬浮电机及电涡流位移传感器的补偿装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec435611b407",
+      "evidence": [
+        {
+          "quote": "一种基于磁悬浮电机及电涡流位移传感器的补偿装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5389,
+            "end_char": 5411
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无功补偿装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85d13aab72cf",
+      "evidence": [
+        {
+          "quote": "一种无功补偿装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5493,
+            "end_char": 5500
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Critical Bus Voltage Regulation Control for Multimicrogrids With Positive Minimum Interevent Times",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a389e5334c4",
+      "evidence": [
+        {
+          "quote": "Distributed Critical Bus Voltage Regulation Control for Multimicrogrids With Positive Minimum Interevent Times",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5530,
+            "end_char": 5639
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Virotherapy Strategy for Organism With Constrained Input Using Medicine Dosage Regulation Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a21086aad8a5",
+      "evidence": [
+        {
+          "quote": "Adaptive Virotherapy Strategy for Organism With Constrained Input Using Medicine Dosage Regulation Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5677,
+            "end_char": 5784
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于包含控制的MMGS分布式临界母线电压控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d02015a8b1d5",
+      "evidence": [
+        {
+          "quote": "一种基于包含控制的MMGS分布式临界母线电压控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5843,
+            "end_char": 5868
+          },
+          "version": "e45eae354c9d3c2570db"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": false
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "f697e17984223565cbf0",
   "version": "850e68f29d915d8df66e",
   "source_hash": "44de8a58b194ab89d771a86e0a12ab1dfd81b27ed14e1e9545643f0dc058c079",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:43:11.143629+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.872149+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-538185881865",
-          "name": "地空物协同安防导航",
-          "desc": "大范围复杂动态环境下地面机器人、无人机及物联感知平台协同的安防任务",
+          "id": "item-cddf47318581",
+          "name": "移动安保机器人属于一种高度智能的技术集合体，具备环境感知、导航、任务规划、行为与技能、学习与自适应等多种技术特性。",
+          "desc": "移动安保机器人属于一种高度智能的技术集合体，具备环境感知、导航、任务规划、行为与技能、学习与自适应等多种技术特性。",
           "evidence": [
             {
-              "quote": "针对大范围复杂动态环境的安防任务，本项目采用地面移动机器人、无人机及物联感知平台等多视角的布局方式，针对密集车流、人流或郊区等复杂环境，进行语义感知、动态环境理解及地图构建等任务",
+              "quote": "移动安保机器人属于一种高度智能的技术集合体，具备环境感知、导航、任务规划、行为与技能、学习与自适应等多种技术特性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 823,
-                "end_char": 911
+                "start_char": 654,
+                "end_char": 710
               },
               "version": "850e68f29d915d8df66e"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-3abc7198e818",
-          "name": "单一信息源不足",
-          "desc": "大范围、多不确定要素、高动态场景下仅靠机器人单一信息源无法满足全域安防、快速响应、自主运维要求",
-          "evidence": [
-            {
-              "quote": "对于大范围、包含大量多不确定要素、高动态场景下的自主导航系统而言，仅靠移动机器人所载的单一信息源并不能满足全域安防、快速响应、自主运维等要求",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 714,
-                "end_char": 783
-              },
-              "version": "850e68f29d915d8df66e"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-0ab5dc1bc509",
-          "name": "图像理解与认知",
-          "desc": "基于深度学习的复杂环境图像信息理解与认知技术",
+          "id": "item-775bf88df134",
+          "name": "通过四年研究，本项目完成了移动安保机器人复杂环境地-空-物协同自主导航系统搭建，攻克了基于深度学习的复杂环境图像信息理解",
+          "desc": "通过四年研究，本项目完成了移动安保机器人复杂环境地-空-物协同自主导航系统搭建，攻克了基于深度学习的复杂环境图像信息理解与认知、基于多源传感器信息与地-空-物协同地图构建、移动安保机器人多源视觉信息环境感知的空间配准、移动安保机器人的高动态复杂环境运动规划与应急响应四项技术，分别完成了复杂场景目标检测及语义分割算法、交叉视角下地空协同定位算法、连续语义地图构建算法、移动安保机器人安全轨迹规划算法、多智能体应急响应与恢复算法等20余种算法",
           "evidence": [
             {
-              "quote": "攻克了基于深度学习的复杂环境图像信息理解与认知、基于多源传感器信息与地-空-物协同地图构建、移动安保机器人多源视觉信息环境感知的空间配准、移动安保机器人的高动态复杂环境运动规划与应急响应四项技术",
+              "quote": "通过四年研究，本项目完成了移动安保机器人复杂环境地-空-物协同自主导航系统搭建，攻克了基于深度学习的复杂环境图像信息理解与认知、基于多源传感器信息与地-空-物协同地图构建、移动安保机器人多源视觉信息环境感知的空间配准、移动安保机器人的高动态复杂环境运动规划与应急响应四项技术，分别完成了复杂场景目标检测及语义分割算法、交叉视角下地空协同定位算法、连续语义地图构建算法、移动安保机器人安全轨迹规划算法、多智能体应急响应与恢复算法等20余种算法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2854,
-                "end_char": 2950
+                "start_char": 2814,
+                "end_char": 3033
               },
               "version": "850e68f29d915d8df66e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-88c6080d3c2d",
-          "name": "地空协同定位建图",
-          "desc": "多源传感器信息与地-空-物协同地图构建、交叉视角下地空协同定位算法",
+          "id": "item-5cc243a901c1",
+          "name": "目标/障碍识别;环境感知;环境理解与认知;路径规划;多传感器融合",
+          "desc": "目标/障碍识别;环境感知;环境理解与认知;路径规划;多传感器融合",
           "evidence": [
             {
-              "quote": "分别完成了复杂场景目标检测及语义分割算法、交叉视角下地空协同定位算法、连续语义地图构建算法、移动安保机器人安全轨迹规划算法、多智能体应急响应与恢复算法等20余种算法开发",
+              "quote": "目标/障碍识别;环境感知;环境理解与认知;路径规划;多传感器融合",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2952,
-                "end_char": 3035
+                "start_char": 2727,
+                "end_char": 2758
               },
               "version": "850e68f29d915d8df66e"
             }
-          ]
-        },
-        {
-          "id": "item-801dc9dabc49",
-          "name": "应急响应规划",
-          "desc": "移动安保机器人高动态复杂环境运动规划与多智能体应急响应与恢复算法",
-          "evidence": [
-            {
-              "quote": "相关成果已在工厂物流配送系统、越野侦查运输系统、安保应急响应系统上进行应用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3057,
-                "end_char": 3093
-              },
-              "version": "850e68f29d915d8df66e"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +91,1652 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1fab79714fe3",
-          "name": "系统应用与国家奖",
-          "desc": "完成地-空-物协同自主导航系统搭建，成果在多系统应用，获国家科技进步奖一等奖",
+          "id": "item-b16fdb1d084e",
+          "name": "移动安保机器人属于一种高度智能的技术集合体，具备环境感知、导航、任务规划、行为与技能、学习与自适应等多种技术特性。",
+          "desc": "移动安保机器人属于一种高度智能的技术集合体，具备环境感知、导航、任务规划、行为与技能、学习与自适应等多种技术特性。",
           "evidence": [
             {
-              "quote": "通过四年研究，本项目完成了移动安保机器人复杂环境地-空-物协同自主导航系统搭建，攻克了基于深度学习的复杂环境图像信息理解与认知",
+              "quote": "移动安保机器人属于一种高度智能的技术集合体，具备环境感知、导航、任务规划、行为与技能、学习与自适应等多种技术特性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2814,
-                "end_char": 2876
+                "start_char": 654,
+                "end_char": 710
               },
               "version": "850e68f29d915d8df66e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-dfd7ca19a6ce",
+          "name": "通过四年研究，本项目完成了移动安保机器人复杂环境地-空-物协同自主导航系统搭建，攻克了基于深度学习的复杂环境图像信息理解",
+          "desc": "通过四年研究，本项目完成了移动安保机器人复杂环境地-空-物协同自主导航系统搭建，攻克了基于深度学习的复杂环境图像信息理解与认知、基于多源传感器信息与地-空-物协同地图构建、移动安保机器人多源视觉信息环境感知的空间配准、移动安保机器人的高动态复杂环境运动规划与应急响应四项技术，分别完成了复杂场景目标检测及语义分割算法、交叉视角下地空协同定位算法、连续语义地图构建算法、移动安保机器人安全轨迹规划算法、多智能体应急响应与恢复算法等20余种算法开发，分别在虚实平台上完成算法评测与演示验证，相关成果已在工厂物流配送系统、越野侦查运输系统、安保应急响应系统上进行应用。",
+          "evidence": [
+            {
+              "quote": "通过四年研究，本项目完成了移动安保机器人复杂环境地-空-物协同自主导航系统搭建，攻克了基于深度学习的复杂环境图像信息理解与认知、基于多源传感器信息与地-空-物协同地图构建、移动安保机器人多源视觉信息环境感知的空间配准、移动安保机器人的高动态复杂环境运动规划与应急响应四项技术，分别完成了复杂场景目标检测及语义分割算法、交叉视角下地空协同定位算法、连续语义地图构建算法、移动安保机器人安全轨迹规划算法、多智能体应急响应与恢复算法等20余种算法开发，分别在虚实平台上完成算法评测与演示验证，相关成果已在工厂物流配送系统、越野侦查运输系统、安保应急响应系统上进行应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2814,
+                "end_char": 3094
+              },
+              "version": "850e68f29d915d8df66e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-538185881865"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-3abc7198e818"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "陆上无人系统行驶空间自主导航",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-531836375c72",
+      "evidence": [
+        {
+          "quote": "陆上无人系统行驶空间自主导航",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3285,
+            "end_char": 3298
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-3abc7198e818"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0ab5dc1bc509"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Detection of Information Hiding at Anti-Copying 2D Barcodes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-27451f47d157",
+      "evidence": [
+        {
+          "quote": "Detection of Information Hiding at Anti-Copying 2D Barcodes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3323,
+            "end_char": 3381
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-3abc7198e818"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-88c6080d3c2d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint Structure and Parameter Optimization of Multiobjective Sparse Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2252726b8068",
+      "evidence": [
+        {
+          "quote": "Joint Structure and Parameter Optimization of Multiobjective Sparse Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3471,
+            "end_char": 3552
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-3abc7198e818"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-801dc9dabc49"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Radar Signal Retrieval for Multiple Measurement via Iterative Reweighted Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a50f0b7a0fcb",
+      "evidence": [
+        {
+          "quote": "Radar Signal Retrieval for Multiple Measurement via Iterative Reweighted Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3599,
+            "end_char": 3679
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-88c6080d3c2d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1fab79714fe3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SEE-CSOM: Sharp-Edged and Efficient Continuous Semantic Occupancy Mapping for Mobile Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a0bea2d42394",
+      "evidence": [
+        {
+          "quote": "SEE-CSOM: Sharp-Edged and Efficient Continuous Semantic Occupancy Mapping for Mobile Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3755,
+            "end_char": 3845
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0ab5dc1bc509"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1fab79714fe3"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "多管道排布方法及相关设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99c20797746a",
+      "evidence": [
+        {
+          "quote": "多管道排布方法及相关设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3912,
+            "end_char": 3923
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Convolutional Neural Network Compression via Coupled Tensor Decomposition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8e92c650f714",
+      "evidence": [
+        {
+          "quote": "Deep Convolutional Neural Network Compression via Coupled Tensor Decomposition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3960,
+            "end_char": 4037
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hybrid Model Compression for Multi-Task Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7452ed09a7a6",
+      "evidence": [
+        {
+          "quote": "Hybrid Model Compression for Multi-Task Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4106,
+            "end_char": 4152
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Generative Design of XingT, A Human-sized Heavy-duty Bipedal Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5e51c3be46ff",
+      "evidence": [
+        {
+          "quote": "Generative Design of XingT, A Human-sized Heavy-duty Bipedal Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4194,
+            "end_char": 4259
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vehicle Motion Prediction at Intersections Based on the Turning Intention and Prior Trajectories Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-65d724dd02a5",
+      "evidence": [
+        {
+          "quote": "Vehicle Motion Prediction at Intersections Based on the Turning Intention and Prior Trajectories Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4348,
+            "end_char": 4449
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Lightweight SAR: A Two-Bit Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c87c1335fb77",
+      "evidence": [
+        {
+          "quote": "Lightweight SAR: A Two-Bit Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4519,
+            "end_char": 4553
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decision-Making and Path Planning for Highway Autonomous Driving Based on Spatio-Temporal Lane-Change Gaps",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-227912bee2fe",
+      "evidence": [
+        {
+          "quote": "Decision-Making and Path Planning for Highway Autonomous Driving Based on Spatio-Temporal Lane-Change Gaps",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4615,
+            "end_char": 4720
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于可观测性优化的多相机视觉SLAM方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ce3a2c6332a4",
+      "evidence": [
+        {
+          "quote": "一种基于可观测性优化的多相机视觉SLAM方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4788,
+            "end_char": 4809
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Accurate and Efficient Matrix Completion Using Cascaded Deep Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a06b0e17d29b",
+      "evidence": [
+        {
+          "quote": "Accurate and Efficient Matrix Completion Using Cascaded Deep Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4844,
+            "end_char": 4918
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-UAVs Collaborative Path Planning in the Cramped Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2656d475c92e",
+      "evidence": [
+        {
+          "quote": "Multi-UAVs Collaborative Path Planning in the Cramped Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4987,
+            "end_char": 5051
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-View Robust Collaborative Localization in High Outlier Ratio Scenes Based on Semantic Features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d357ba14af76",
+      "evidence": [
+        {
+          "quote": "Multi-View Robust Collaborative Localization in High Outlier Ratio Scenes Based on Semantic Features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5122,
+            "end_char": 5221
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于LoRa的无人机载雷达数据传输装置及传输系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7d8ecbb24ac3",
+      "evidence": [
+        {
+          "quote": "基于LoRa的无人机载雷达数据传输装置及传输系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5299,
+            "end_char": 5322
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Registration Framework for Air-ground Point Cloud Maps",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8578d9f0108",
+      "evidence": [
+        {
+          "quote": "A Registration Framework for Air-ground Point Cloud Maps",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5363,
+            "end_char": 5418
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LiDAR-based vehicle localization on the satellite image via a neural network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-418532cf9d54",
+      "evidence": [
+        {
+          "quote": "LiDAR-based vehicle localization on the satellite image via a neural network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5495,
+            "end_char": 5570
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Image Stitching Techniques Applied to Plane or 3-D Models: A Review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-111d8c598485",
+      "evidence": [
+        {
+          "quote": "Image Stitching Techniques Applied to Plane or 3-D Models: A Review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5641,
+            "end_char": 5707
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Physical Layer Authentication With High Compatibility Using an Encoding Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae7c8e7dcaad",
+      "evidence": [
+        {
+          "quote": "Physical Layer Authentication With High Compatibility Using an Encoding Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5799,
+            "end_char": 5878
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stabilization Approaches for Reinforcement Learning-based End-To-End Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9e4ad47ac1d",
+      "evidence": [
+        {
+          "quote": "Stabilization Approaches for Reinforcement Learning-based End-To-End Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5974,
+            "end_char": 6060
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Convolutional De-Quantization Network for Harmonics Suppression in One-Bit SAR Imaging",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ce709ba86814",
+      "evidence": [
+        {
+          "quote": "A Convolutional De-Quantization Network for Harmonics Suppression in One-Bit SAR Imaging",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6140,
+            "end_char": 6227
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "HD-CCSOM: Hierarchical and Dense Collaborative Continuous Semantic Occupancy Mapping through Label Diffusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a888eaf842da",
+      "evidence": [
+        {
+          "quote": "HD-CCSOM: Hierarchical and Dense Collaborative Continuous Semantic Occupancy Mapping through Label Diffusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6279,
+            "end_char": 6386
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Physical-Layer Authentication Using Multiple Channel-Based Features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8cd05345bf16",
+      "evidence": [
+        {
+          "quote": "Physical-Layer Authentication Using Multiple Channel-Based Features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6444,
+            "end_char": 6510
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "One-Bit Target Detection in Collocated MIMO Radar and Performance Degradation Analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ac2d0d73459d",
+      "evidence": [
+        {
+          "quote": "One-Bit Target Detection in Collocated MIMO Radar and Performance Degradation Analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6556,
+            "end_char": 6641
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Target Reconstruction Against Deceptive Jamming for Single-Channel SAR: An Imagery Domain Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bf5c8c856dc4",
+      "evidence": [
+        {
+          "quote": "Target Reconstruction Against Deceptive Jamming for Single-Channel SAR: An Imagery Domain Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6722,
+            "end_char": 6819
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种基于地空视角信息融合的激光SLAM系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2537bdfbdc82",
+      "evidence": [
+        {
+          "quote": "一种基于地空视角信息融合的激光SLAM系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6892,
+            "end_char": 6912
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-agent Reinforcement Learning-based Twin-vehicle Fair Cooperative Driving in Dynamic Highway Scenarios",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-855385b71420",
+      "evidence": [
+        {
+          "quote": "Multi-agent Reinforcement Learning-based Twin-vehicle Fair Cooperative Driving in Dynamic Highway Scenarios",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6941,
+            "end_char": 7047
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Aerial-Ground Collaborative Continuous Risk Mapping for Autonomous Driving of Unmanned Ground Vehicle in Off-Road Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5606f0f58a1",
+      "evidence": [
+        {
+          "quote": "Aerial-Ground Collaborative Continuous Risk Mapping for Autonomous Driving of Unmanned Ground Vehicle in Off-Road Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7118,
+            "end_char": 7243
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Confidentiality-Preserving Edge-Based Wireless Communications for Contact Tracing Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35523b3fa176",
+      "evidence": [
+        {
+          "quote": "Confidentiality-Preserving Edge-Based Wireless Communications for Contact Tracing Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7305,
+            "end_char": 7393
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multiple Phase Noises Physical-Layer Authentication",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9b2bff71276",
+      "evidence": [
+        {
+          "quote": "Multiple Phase Noises Physical-Layer Authentication",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7465,
+            "end_char": 7515
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于目标检测与轨迹辨识的自动门控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-459e2f48320b",
+      "evidence": [
+        {
+          "quote": "一种基于目标检测与轨迹辨识的自动门控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7586,
+            "end_char": 7606
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于微波雷达的动作职别及智能交互终端",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c10ff3c864de",
+      "evidence": [
+        {
+          "quote": "基于微波雷达的动作职别及智能交互终端",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7637,
+            "end_char": 7654
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种室内移动机器人三维地图构建与维护方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-473b35610c38",
+      "evidence": [
+        {
+          "quote": "一种室内移动机器人三维地图构建与维护方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7688,
+            "end_char": 7707
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatial Semantic Graph Matching for Loop Closure Detection in Indoor Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b4481a4c8b2c",
+      "evidence": [
+        {
+          "quote": "Spatial Semantic Graph Matching for Loop Closure Detection in Indoor Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7736,
+            "end_char": 7816
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Risk-Aware Decision-Making and Planning Using Prediction-Guided Strategy Tree for the Uncontrolled Intersections",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-11083717a3e6",
+      "evidence": [
+        {
+          "quote": "Risk-Aware Decision-Making and Planning Using Prediction-Guided Strategy Tree for the Uncontrolled Intersections",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7885,
+            "end_char": 7996
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Spectral Analysis of Multi-Channel Sinusoidal Signals in Impulsive Noise Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12f1a108b5e8",
+      "evidence": [
+        {
+          "quote": "Robust Spectral Analysis of Multi-Channel Sinusoidal Signals in Impulsive Noise Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8045,
+            "end_char": 8136
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Road Extraction Assisted Offset Regression Method in Cross-view Image- based Geo-localization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4ea998d608c",
+      "evidence": [
+        {
+          "quote": "Road Extraction Assisted Offset Regression Method in Cross-view Image- based Geo-localization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8215,
+            "end_char": 8307
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Room Geometry Estimation Using the Multipath Delays",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a373a947e10",
+      "evidence": [
+        {
+          "quote": "Room Geometry Estimation Using the Multipath Delays",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8363,
+            "end_char": 8413
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Lightweight Recurrent Learning Network for Sustainable Compressed Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a503bf0ad234",
+      "evidence": [
+        {
+          "quote": "A Lightweight Recurrent Learning Network for Sustainable Compressed Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8464,
+            "end_char": 8538
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Aerial-Ground Robots Collaborative 3D Mapping in GNSS-Denied Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d9f1510c02bc",
+      "evidence": [
+        {
+          "quote": "Aerial-Ground Robots Collaborative 3D Mapping in GNSS-Denied Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8612,
+            "end_char": 8684
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进人工势场法双向规划的双机械臂避碰路径规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-548e93bab011",
+      "evidence": [
+        {
+          "quote": "基于改进人工势场法双向规划的双机械臂避碰路径规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8757,
+            "end_char": 8780
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Agent Reinforcement Learning-Based Decision Making for Twin-Vehicles Cooperative Driving in Stochastic Dynamic Highway Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20a00e61e078",
+      "evidence": [
+        {
+          "quote": "Multi-Agent Reinforcement Learning-Based Decision Making for Twin-Vehicles Cooperative Driving in Stochastic Dynamic Highway Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8811,
+            "end_char": 8947
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory Planning Based on Spatio-Temporal Map With Collision Avoidance Guaranteed by Safety Strip",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de6cc8bc069f",
+      "evidence": [
+        {
+          "quote": "Trajectory Planning Based on Spatio-Temporal Map With Collision Avoidance Guaranteed by Safety Strip",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9018,
+            "end_char": 9117
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种控制移动机器人与设备对接的方法和装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-93dc84ce9eee",
+      "evidence": [
+        {
+          "quote": "一种控制移动机器人与设备对接的方法和装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9185,
+            "end_char": 9204
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "复杂环境下基于多目标粒子群的DWA路径规划算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d6fd95e7dd47",
+      "evidence": [
+        {
+          "quote": "复杂环境下基于多目标粒子群的DWA路径规划算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9232,
+            "end_char": 9254
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint Optimization Methods for Gaussian Random Measurement Matrix Based on Column Coherence in Compressed Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e6ec5c9b6f2",
+      "evidence": [
+        {
+          "quote": "Joint Optimization Methods for Gaussian Random Measurement Matrix Based on Column Coherence in Compressed Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9285,
+            "end_char": 9397
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "State estimation for a class of artificial neural networks subject to mixed attacks: A set-membership method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33d063547227",
+      "evidence": [
+        {
+          "quote": "State estimation for a class of artificial neural networks subject to mixed attacks: A set-membership method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9445,
+            "end_char": 9552
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory Prediction-Based Local Spatio-Temporal Navigation Map for Autonomous Driving in Dynamic Highway Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b6cac9b877d",
+      "evidence": [
+        {
+          "quote": "Trajectory Prediction-Based Local Spatio-Temporal Navigation Map for Autonomous Driving in Dynamic Highway Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9582,
+            "end_char": 9700
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatio‐temporal decision‐making and trajectory planning framework with flexible constraints in closed‐loop dynamic traffic",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cdaf77660de3",
+      "evidence": [
+        {
+          "quote": "Spatio‐temporal decision‐making and trajectory planning framework with flexible constraints in closed‐loop dynamic traffic",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9770,
+            "end_char": 9891
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "混合干扰信号生成方法、装置、设备及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d21ed096d85",
+      "evidence": [
+        {
+          "quote": "混合干扰信号生成方法、装置、设备及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9947,
+            "end_char": 9965
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Accurate and Computational Efficient Joint Multiple Kronecker Pursuit for Tensor Data Recovery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-59956a02a99a",
+      "evidence": [
+        {
+          "quote": "Accurate and Computational Efficient Joint Multiple Kronecker Pursuit for Tensor Data Recovery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10006,
+            "end_char": 10099
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "自主导航技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5c46081b5b9",
+      "evidence": [
+        {
+          "quote": "自主导航技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10156,
+            "end_char": 10164
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decision-making and Planning Framework with Prediction-Guided Strategy Tree Search Algorithm for Uncontrolled Intersections",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-87e24e190416",
+      "evidence": [
+        {
+          "quote": "Decision-making and Planning Framework with Prediction-Guided Strategy Tree Search Algorithm for Uncontrolled Intersections",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10233,
+            "end_char": 10355
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Intelligent Reflecting Surface Aided Dual-Function Radar and Communication System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-572742c36746",
+      "evidence": [
+        {
+          "quote": "Intelligent Reflecting Surface Aided Dual-Function Radar and Communication System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10425,
+            "end_char": 10505
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "On Accurate Source Enumeration: A New Bayesian Information Criterion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a66b27699d7b",
+      "evidence": [
+        {
+          "quote": "On Accurate Source Enumeration: A New Bayesian Information Criterion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10615,
+            "end_char": 10682
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Learning-Based Non-synchronous Measurement for Broadband Sound Source Localization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ee8a447e5762",
+      "evidence": [
+        {
+          "quote": "Deep Learning-Based Non-synchronous Measurement for Broadband Sound Source Localization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10730,
+            "end_char": 10816
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Rank revealing-based tensor completion using improved generalized tensor multi-rank minimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e69cc3c17ff9",
+      "evidence": [
+        {
+          "quote": "Rank revealing-based tensor completion using improved generalized tensor multi-rank minimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10886,
+            "end_char": 10981
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Multi-Layer Drifting Controller for All-Wheel Drive Vehicles Beyond Driving Limits",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8810cd3775aa",
+      "evidence": [
+        {
+          "quote": "A Multi-Layer Drifting Controller for All-Wheel Drive Vehicles Beyond Driving Limits",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11026,
+            "end_char": 11109
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-camera visual SLAM for off-road navigation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-509a2baa7d08",
+      "evidence": [
+        {
+          "quote": "Multi-camera visual SLAM for off-road navigation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11183,
+            "end_char": 11230
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mean Squared Error Analysis of the One-Bit Signal Power Estimator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f806b3a4178",
+      "evidence": [
+        {
+          "quote": "Mean Squared Error Analysis of the One-Bit Signal Power Estimator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11310,
+            "end_char": 11374
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自主驾驶牵-拖系统及其运动控制方法、调度方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c497e3b372ad",
+      "evidence": [
+        {
+          "quote": "一种自主驾驶牵-拖系统及其运动控制方法、调度方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11419,
+            "end_char": 11442
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "One-bit DOA Estimation Using Robust Sparse Covariance Fitting in Non-uniform Noise",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b08a3bd7fa8",
+      "evidence": [
+        {
+          "quote": "One-bit DOA Estimation Using Robust Sparse Covariance Fitting in Non-uniform Noise",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11474,
+            "end_char": 11555
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AMSC: Adaptive Masking and Structure-Constraint Learning for Domain Adaptive Semantic Segmentation Under Adverse Conditions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e098dada24e9",
+      "evidence": [
+        {
+          "quote": "AMSC: Adaptive Masking and Structure-Constraint Learning for Domain Adaptive Semantic Segmentation Under Adverse Conditions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11639,
+            "end_char": 11761
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Two-Bit Quantization for Harmonic Suppression",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7323c76a6fbe",
+      "evidence": [
+        {
+          "quote": "Two-Bit Quantization for Harmonic Suppression",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11826,
+            "end_char": 11870
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于YOLOv3的改进行人检测算法研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fbe7ff01bc2c",
+      "evidence": [
+        {
+          "quote": "基于YOLOv3的改进行人检测算法研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11962,
+            "end_char": 11980
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint Learning of Image Deblurring and Depth Estimation Through Adversarial Multi-task Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2950a8779c7a",
+      "evidence": [
+        {
+          "quote": "Joint Learning of Image Deblurring and Depth Estimation Through Adversarial Multi-task Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12012,
+            "end_char": 12105
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory Prediction based on Constraints of Vehicle Kinematics and Social Interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d032a122a248",
+      "evidence": [
+        {
+          "quote": "Trajectory Prediction based on Constraints of Vehicle Kinematics and Social Interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12155,
+            "end_char": 12241
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-UGVs Collaborative Path Planning and Conflicts Eliminating in Emergent Situations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-55fdfeb05418",
+      "evidence": [
+        {
+          "quote": "Multi-UGVs Collaborative Path Planning and Conflicts Eliminating in Emergent Situations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12311,
+            "end_char": 12397
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Rethinking Point Cloud Registration as Masking and Reconstruction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-638af26fab5c",
+      "evidence": [
+        {
+          "quote": "Rethinking Point Cloud Registration as Masking and Reconstruction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12459,
+            "end_char": 12523
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于全域描述子的移动机器人重定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-38cdc4b44bb9",
+      "evidence": [
+        {
+          "quote": "一种基于全域描述子的移动机器人重定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12590,
+            "end_char": 12609
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sub-network Multi-objective Evolutionary Algorithm for Filter Pruning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-23082e06ba25",
+      "evidence": [
+        {
+          "quote": "Sub-network Multi-objective Evolutionary Algorithm for Filter Pruning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12638,
+            "end_char": 12706
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于网格变形的拖挂车动态环视拼接与稳定方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c1b632fab821",
+      "evidence": [
+        {
+          "quote": "一种基于网格变形的拖挂车动态环视拼接与稳定方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12760,
+            "end_char": 12782
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "数据重建方法、装置、存储介质及计算机设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-09b7beeb7ec9",
+      "evidence": [
+        {
+          "quote": "数据重建方法、装置、存储介质及计算机设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12813,
+            "end_char": 12832
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Unified Framework Integrating Decision Making and Trajectory Planning Based on Spatio-Temporal Voxels for Highway Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-964fab1fa90a",
+      "evidence": [
+        {
+          "quote": "A Unified Framework Integrating Decision Making and Trajectory Planning Based on Spatio-Temporal Voxels for Highway Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12870,
+            "end_char": 13003
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint Source Enumeration and Direction Finding without Eigendecomposition for Satellite Navigation Receiver",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbf48879612c",
+      "evidence": [
+        {
+          "quote": "Joint Source Enumeration and Direction Finding without Eigendecomposition for Satellite Navigation Receiver",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13086,
+            "end_char": 13192
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decision Making and Local Trajectory Planning for Autonomous Driving in Off-road Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-044a5da846c7",
+      "evidence": [
+        {
+          "quote": "Decision Making and Local Trajectory Planning for Autonomous Driving in Off-road Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13273,
+            "end_char": 13364
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fisheye object detection based on standard image datasets with 24-points regression strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f53571d7efd",
+      "evidence": [
+        {
+          "quote": "Fisheye object detection based on standard image datasets with 24-points regression strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13447,
+            "end_char": 13538
+          },
+          "version": "850e68f29d915d8df66e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 79,
+    "listed": 79,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 43,
+        "extracted": 43
+      },
+      "会议论文": {
+        "listed": 22,
+        "extracted": 22
+      },
+      "专利": {
+        "listed": 12,
+        "extracted": 12
+      }
+    },
+    "consistent": true
+  }
 }

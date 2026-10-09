@@ -2,15 +2,20 @@
   "doc_id": "2bdc98dbbda5e3c39542",
   "version": "aadad9f234d749a50290",
   "source_hash": "170510368f33adbae79a32f3458ce9650920e0a64a24b7f3c3c62ba4e69714d7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:16:41.840697+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.894218+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d08df2b97881",
-          "name": "水下移动作业机器人",
-          "desc": "复杂紊流、弱光照水下环境的自主感知、导航与智能作业控制",
+          "id": "item-de05a3ca1503",
+          "name": "本项目以水下目标的抓取作业为研究背景，深入分析复杂紊流、植被覆盖、岩礁散布、弱光照的水下环境中水下移动作业机器人环境自主",
+          "desc": "本项目以水下目标的抓取作业为研究背景，深入分析复杂紊流、植被覆盖、岩礁散布、弱光照的水下环境中水下移动作业机器人环境自主感知、定位与导航、运动控制、智能作业控制，研究系统设计、环境感知、运动控制、智能作业中面临的不确定性、非线性、动态、冗余、扰动、耦合等基础科学问题；",
           "evidence": [
             {
-              "quote": "本项目以水下目标的抓取作业为研究背景，深入分析复杂紊流、植被覆盖、岩礁散布、弱光照的水下环境中水下移动作业机器人环境自主感知、定位与导航、运动控制、智能作业控制",
+              "quote": "本项目以水下目标的抓取作业为研究背景，深入分析复杂紊流、植被覆盖、岩礁散布、弱光照的水下环境中水下移动作业机器人环境自主感知、定位与导航、运动控制、智能作业控制，研究系统设计、环境感知、运动控制、智能作业中面临的不确定性、非线性、动态、冗余、扰动、耦合等基础科学问题；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 657,
-                "end_char": 736
+                "end_char": 790
               },
               "version": "aadad9f234d749a50290"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-97c25ecd6073",
-          "name": "水下图像退化与定位难",
-          "desc": "水下图像增强、目标定位与位姿估计的不确定性非线性难题",
-          "evidence": [
-            {
-              "quote": "提出了一种改进型颜色保护多尺度Retinex的水下图像与视频增强算法；基于深度学习技术设计了实时轻量化的目标检测方法；采用折射光路追踪法实现了水下目标定位",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2440,
-                "end_char": 2516
-              },
-              "version": "aadad9f234d749a50290"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-7cb38e28bb7a",
-          "name": "Actor-Critic追踪控制",
-          "desc": "带有监督控制器的网络监督训练策略实现波动鳍推进机器人目标追踪控制",
+          "id": "item-d09eda1ff0a2",
+          "name": "采用Actor-Critic强化学习算法框架，给出了带有监督控制器的网络监督训练策略，实现了波动鳍推进水下作业机器人对作",
+          "desc": "采用Actor-Critic强化学习算法框架，给出了带有监督控制器的网络监督训练策略，实现了波动鳍推进水下作业机器人对作业目标物体的追踪控制。",
           "evidence": [
             {
-              "quote": "采用Actor-Critic强化学习算法框架，给出了带有监督控制器的网络监督训练策略，实现了波动鳍推进水下作业机器人对作业目标物体的追踪控制",
+              "quote": "采用Actor-Critic强化学习算法框架，给出了带有监督控制器的网络监督训练策略，实现了波动鳍推进水下作业机器人对作业目标物体的追踪控制。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2545,
-                "end_char": 2614
+                "end_char": 2615
               },
               "version": "aadad9f234d749a50290"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a7ac2d1e06b0",
-          "name": "LSTM地形预测跟随",
-          "desc": "长短时记忆网络与非线性预测模型实现未知水下地形实时预测与地形跟随控制",
+          "id": "item-c129230b216c",
+          "name": "结合长短时记忆网络和非线性预测模型，提出了未知水下地形的实时预测方法，并利用C/GMRES算法进行优化求解实现水下地形跟",
+          "desc": "结合长短时记忆网络和非线性预测模型，提出了未知水下地形的实时预测方法，并利用C/GMRES算法进行优化求解实现水下地形跟随控制。",
           "evidence": [
             {
-              "quote": "结合长短时记忆网络和非线性预测模型，提出了未知水下地形的实时预测方法，并利用C/GMRES算法进行优化求解实现水下地形跟随控制",
+              "quote": "结合长短时记忆网络和非线性预测模型，提出了未知水下地形的实时预测方法，并利用C/GMRES算法进行优化求解实现水下地形跟随控制。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2694,
-                "end_char": 2756
+                "end_char": 2757
               },
               "version": "aadad9f234d749a50290"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,708 @@
       "state": "has",
       "items": [
         {
-          "id": "item-66e6348b2867",
-          "name": "水下悬浮开门抓取作业",
-          "desc": "改进非奇异终端滑模控制实现水下悬浮开门及抓取物体的自主作业任务",
+          "id": "item-ded080a713cf",
+          "name": "本项目以水下目标的抓取作业为研究背景，深入分析复杂紊流、植被覆盖、岩礁散布、弱光照的水下环境中水下移动作业机器人环境自主",
+          "desc": "本项目以水下目标的抓取作业为研究背景，深入分析复杂紊流、植被覆盖、岩礁散布、弱光照的水下环境中水下移动作业机器人环境自主感知、定位与导航、运动控制、智能作业控制，研究系统设计、环境感知、运动控制、智能作业中面临的不确定性、非线性、动态、冗余、扰动、耦合等基础科学问题；",
           "evidence": [
             {
-              "quote": "针对水下仿生本体的自主作业任务，给出了一种改进的非奇异终端滑模控制方法，实现了波动鳍推进水下作业机器人的水下悬浮开门及抓取物体的自主作业任务",
+              "quote": "本项目以水下目标的抓取作业为研究背景，深入分析复杂紊流、植被覆盖、岩礁散布、弱光照的水下环境中水下移动作业机器人环境自主感知、定位与导航、运动控制、智能作业控制，研究系统设计、环境感知、运动控制、智能作业中面临的不确定性、非线性、动态、冗余、扰动、耦合等基础科学问题；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2758,
-                "end_char": 2827
+                "start_char": 657,
+                "end_char": 790
               },
               "version": "aadad9f234d749a50290"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-22b21e9a2325",
-          "name": "论文与专利",
-          "desc": "在IEEE Trans.等期刊发表SCI/EI论文40篇，申请9项国家发明专利",
+          "id": "item-d671f1e841b6",
+          "name": "本项目研究了仿生推进水下作业机器人的自主感知、导航与控制基础理论与关键技术。",
+          "desc": "本项目研究了仿生推进水下作业机器人的自主感知、导航与控制基础理论与关键技术。",
           "evidence": [
             {
-              "quote": "在本项目资助下，相关理论与方法在IEEE Trans.等期刊发表或在线发表SCI/EI论文40篇，申请9项国家发明专利",
+              "quote": "本项目研究了仿生推进水下作业机器人的自主感知、导航与控制基础理论与关键技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2895,
-                "end_char": 2953
+                "start_char": 2370,
+                "end_char": 2407
               },
               "version": "aadad9f234d749a50290"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d08df2b97881"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-97c25ecd6073"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven hydrodynamic modeling for a flippers-driven underwater vehicle-manipulator system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-482b99789179",
+      "evidence": [
+        {
+          "quote": "Data-driven hydrodynamic modeling for a flippers-driven underwater vehicle-manipulator system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3024,
+            "end_char": 3116
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-97c25ecd6073"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7cb38e28bb7a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "海产品抓取的双目视觉实时感知定位方法、系统、装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0b6c5b1af01",
+      "evidence": [
+        {
+          "quote": "海产品抓取的双目视觉实时感知定位方法、系统、装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3177,
+            "end_char": 3200
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-97c25ecd6073"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a7ac2d1e06b0"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Locomotion control of a hybrid propulsion biomimetic underwater vehicle via deep reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-22114376b91e",
+      "evidence": [
+        {
+          "quote": "Locomotion control of a hybrid propulsion biomimetic underwater vehicle via deep reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3231,
+            "end_char": 3333
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a7ac2d1e06b0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-66e6348b2867"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "仿豹鲂鮄鱼水下机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5d2e35938a2",
+      "evidence": [
+        {
+          "quote": "仿豹鲂鮄鱼水下机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3387,
+            "end_char": 3396
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7cb38e28bb7a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-22b21e9a2325"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Remote operation with haptic force and virtual proxy for an underwater vehicle-manipulator system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7832c60cc54c",
+      "evidence": [
+        {
+          "quote": "Remote operation with haptic force and virtual proxy for an underwater vehicle-manipulator system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3432,
+            "end_char": 3528
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development and control of an underwater vehicle-manipulator system propelled by flexible flippers for grasping marine organisms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed83ff1c5391",
+      "evidence": [
+        {
+          "quote": "Development and control of an underwater vehicle-manipulator system propelled by flexible flippers for grasping marine organisms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3576,
+            "end_char": 3703
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Study on underwater simultaneous localization and mapping based on different sensors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a9561989377",
+      "evidence": [
+        {
+          "quote": "Study on underwater simultaneous localization and mapping based on different sensors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3776,
+            "end_char": 3859
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-based autonomous hovering for the underwater biomimetic vehicle-manipulator system-RobCutt-II",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47234196caab",
+      "evidence": [
+        {
+          "quote": "Vision-based autonomous hovering for the underwater biomimetic vehicle-manipulator system-RobCutt-II",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3906,
+            "end_char": 4005
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development and motion control of biomimetic underwater robots: A survey",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4c84a429535",
+      "evidence": [
+        {
+          "quote": "Development and motion control of biomimetic underwater robots: A survey",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4066,
+            "end_char": 4137
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot motion planning method based on incremental high-dimensional mixture probabilistic model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5fb101abf3b9",
+      "evidence": [
+        {
+          "quote": "Robot motion planning method based on incremental high-dimensional mixture probabilistic model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4198,
+            "end_char": 4291
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "柔性仿生蹼水下运动控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bdbc59f55f5f",
+      "evidence": [
+        {
+          "quote": "柔性仿生蹼水下运动控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4364,
+            "end_char": 4379
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于强化学习的波动鳍推进水下作业机器人追踪控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1fe379f7424c",
+      "evidence": [
+        {
+          "quote": "基于强化学习的波动鳍推进水下作业机器人追踪控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4408,
+            "end_char": 4432
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and analysis of an underwater biomimetic vehicle-manipulator system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bf21015db785",
+      "evidence": [
+        {
+          "quote": "Modeling and analysis of an underwater biomimetic vehicle-manipulator system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4466,
+            "end_char": 4541
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Parameter estimation survey for multi-joint robot dynamic calibration case study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2367a53dec7a",
+      "evidence": [
+        {
+          "quote": "Parameter estimation survey for multi-joint robot dynamic calibration case study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4612,
+            "end_char": 4691
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Omnidirectional drift control of an underwater biomimetic vehicle-manipulator system via reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-058e147ec7bd",
+      "evidence": [
+        {
+          "quote": "Omnidirectional drift control of an underwater biomimetic vehicle-manipulator system via reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4752,
+            "end_char": 4862
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PSO-based optimal formation of multiple biomimetic underwater vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fd53e4336edf",
+      "evidence": [
+        {
+          "quote": "PSO-based optimal formation of multiple biomimetic underwater vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4915,
+            "end_char": 4984
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "机器人操作技能学习方法综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5aeb97b490a2",
+      "evidence": [
+        {
+          "quote": "机器人操作技能学习方法综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5041,
+            "end_char": 5053
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of a propeller with undulating fins and its characteristics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99a115e973e3",
+      "evidence": [
+        {
+          "quote": "Development of a propeller with undulating fins and its characteristics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5082,
+            "end_char": 5152
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic surface control for an underactuated underwater biomimetic vehicle-manipulator system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b321ca2cf2c",
+      "evidence": [
+        {
+          "quote": "Dynamic surface control for an underactuated underwater biomimetic vehicle-manipulator system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5205,
+            "end_char": 5297
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning the metric of task constraint manifolds for constrained motion planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13e21bfa11d7",
+      "evidence": [
+        {
+          "quote": "Learning the metric of task constraint manifolds for constrained motion planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5359,
+            "end_char": 5438
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "面向海产品打捞的水下作业机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fc3013d932ee",
+      "evidence": [
+        {
+          "quote": "面向海产品打捞的水下作业机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5515,
+            "end_char": 5529
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向地图构建的移动机器人局部路径自主规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-221ed9dd606e",
+      "evidence": [
+        {
+          "quote": "面向地图构建的移动机器人局部路径自主规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5560,
+            "end_char": 5579
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Disturbance observer based control for an underwater biomimetic vehicle-manipulator system with mismatched disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c7b9dc8823bd",
+      "evidence": [
+        {
+          "quote": "Disturbance observer based control for an underwater biomimetic vehicle-manipulator system with mismatched disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5604,
+            "end_char": 5722
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The exoskeleton balance assistance control strategy based on single step balance assessment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-662f201c46e0",
+      "evidence": [
+        {
+          "quote": "The exoskeleton balance assistance control strategy based on single step balance assessment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5792,
+            "end_char": 5882
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RobCutt: a framework of underwater biomimetic vehicle-manipulator system for autonomous interventions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-89090206cd5a",
+      "evidence": [
+        {
+          "quote": "RobCutt: a framework of underwater biomimetic vehicle-manipulator system for autonomous interventions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5959,
+            "end_char": 6059
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven locomotive strategies of the UVMS propelled by undulating fins",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f0d8f936acab",
+      "evidence": [
+        {
+          "quote": "Data-driven locomotive strategies of the UVMS propelled by undulating fins",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6120,
+            "end_char": 6193
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Switching control for 3-D  way-point tracking of a biomimetic underwater vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fde6a2186a41",
+      "evidence": [
+        {
+          "quote": "Switching control for 3-D  way-point tracking of a biomimetic underwater vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6267,
+            "end_char": 6346
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Position control of an underwater biomimetic vehicle-manipulator system via reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aae27801a5bc",
+      "evidence": [
+        {
+          "quote": "Position control of an underwater biomimetic vehicle-manipulator system via reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6407,
+            "end_char": 6504
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "鱼集群游动的节能机理研究综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f18fa26d719e",
+      "evidence": [
+        {
+          "quote": "鱼集群游动的节能机理研究综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6589,
+            "end_char": 6602
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hydrodynamics of a flexible flipper for an underwater vehicle-manipulator system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c2a8285af515",
+      "evidence": [
+        {
+          "quote": "Hydrodynamics of a flexible flipper for an underwater vehicle-manipulator system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6633,
+            "end_char": 6712
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coordinated control of underwater biomimetic vehicle-manipulator system for free floating autonomous manipulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c04428e519c8",
+      "evidence": [
+        {
+          "quote": "Coordinated control of underwater biomimetic vehicle-manipulator system for free floating autonomous manipulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6774,
+            "end_char": 6886
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Manipulation skill learning on multi-step complex task based on explicit and implicit curriculum learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eddf8d0097e3",
+      "evidence": [
+        {
+          "quote": "Manipulation skill learning on multi-step complex task based on explicit and implicit curriculum learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6948,
+            "end_char": 7052
+          },
+          "version": "aadad9f234d749a50290"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 32,
+    "listed": 32,
+    "by_kind": {
+      "会议论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      }
+    },
+    "consistent": true
+  }
 }

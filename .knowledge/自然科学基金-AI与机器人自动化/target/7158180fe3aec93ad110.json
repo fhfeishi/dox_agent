@@ -2,15 +2,20 @@
   "doc_id": "7158180fe3aec93ad110",
   "version": "42a260eb375e9d99e297",
   "source_hash": "fa962745406b28a7e399edd7585a489310631dab063b1df166903d6d329600a7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:25.243326+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.537505+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-60d441fd2370",
-          "name": "空间机器人自旋目标捕获",
-          "desc": "太空垃圾与失效航天器在轨捕获任务",
+          "id": "item-1acafb896de8",
+          "name": "实际在轨服务的对象为在轨故障卫星、空间垃圾等，可能处于自旋运动状态，这对目标捕获提出了巨大挑战。",
+          "desc": "实际在轨服务的对象为在轨故障卫星、空间垃圾等，可能处于自旋运动状态，这对目标捕获提出了巨大挑战。",
           "evidence": [
             {
-              "quote": "所需要捕获的太空垃圾可能处于自旋运动状态，这对目标捕获提出了巨大挑战。",
+              "quote": "实际在轨服务的对象为在轨故障卫星、空间垃圾等，可能处于自旋运动状态，这对目标捕获提出了巨大挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2264,
-                "end_char": 2298
+                "start_char": 647,
+                "end_char": 694
+              },
+              "version": "42a260eb375e9d99e297"
+            }
+          ]
+        },
+        {
+          "id": "item-63ee3a5b7f62",
+          "name": ".    课题的研究顺应了我国大力发展空间机器人在轨服务技术的大方向，对于未来开展空间机器人在轨维护、装配、援救等任务，",
+          "desc": ".    课题的研究顺应了我国大力发展空间机器人在轨服务技术的大方向，对于未来开展空间机器人在轨维护、装配、援救等任务，具有重要的理论研究意义和工程应用价值。",
+          "evidence": [
+            {
+              "quote": ".    课题的研究顺应了我国大力发展空间机器人在轨服务技术的大方向，对于未来开展空间机器人在轨维护、装配、援救等任务，具有重要的理论研究意义和工程应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 902,
+                "end_char": 980
               },
               "version": "42a260eb375e9d99e297"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-e086d4097d0f",
-          "name": "自旋捕获复合体失稳",
-          "desc": "末端负载剧变与碰撞力累积导致基座偏转系统失稳",
-          "evidence": [
-            {
-              "quote": "提出一种复合体系统稳定的协调规划方法，解决末端负载发生极大变化、目标存在初始运动及碰撞力累积作用下，基座姿态偏转，复合体系统失稳的问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2528,
-                "end_char": 2595
-              },
-              "version": "42a260eb375e9d99e297"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-2c2812b1a60e",
-          "name": "多阶段耦合动力学建模",
-          "desc": "抓捕前、接触碰撞、抓捕后各阶段运动学与动力学模型",
+          "id": "item-a71b29a4d729",
+          "name": ".通过该课题的开展，取得的重要结果是：建立了多臂空间机器人系统捕获自旋目标中各阶段的运动学方程和耦合动力学模型，为后续的",
+          "desc": ".通过该课题的开展，取得的重要结果是：建立了多臂空间机器人系统捕获自旋目标中各阶段的运动学方程和耦合动力学模型，为后续的规划和控制奠定基础；",
           "evidence": [
             {
-              "quote": "建立了多臂空间机器人系统捕获自旋目标中各阶段的运动学方程和耦合动力学模型，为后续的规划和控制奠定基础",
+              "quote": ".通过该课题的开展，取得的重要结果是：建立了多臂空间机器人系统捕获自旋目标中各阶段的运动学方程和耦合动力学模型，为后续的规划和控制奠定基础；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2424,
-                "end_char": 2473
+                "start_char": 2405,
+                "end_char": 2474
               },
               "version": "42a260eb375e9d99e297"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-db979bd8e6df",
-          "name": "平衡臂无奇异协调规划",
-          "desc": "利用平衡臂抵消任务臂干扰保持基座稳定",
+          "id": "item-0d10287d3766",
+          "name": "（3）提出复合体系统稳定的协调规划方法，解决末端负载发生极大变化、目标存在初始运动及碰撞力累积作用下，基座姿态偏转，复合",
+          "desc": "（3）提出复合体系统稳定的协调规划方法，解决末端负载发生极大变化、目标存在初始运动及碰撞力累积作用下，基座姿态偏转，复合体系统失稳的问题。",
           "evidence": [
             {
-              "quote": "提出一种保持基座稳定的无奇异多臂协调运动规划方法，利用平衡臂抵消任务臂运动对基座产生的干扰，保持基座稳定",
+              "quote": "（3）提出复合体系统稳定的协调规划方法，解决末端负载发生极大变化、目标存在初始运动及碰撞力累积作用下，基座姿态偏转，复合体系统失稳的问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2475,
-                "end_char": 2526
+                "start_char": 833,
+                "end_char": 901
               },
               "version": "42a260eb375e9d99e297"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,428 @@
       "state": "has",
       "items": [
         {
-          "id": "item-59d63c75ffc6",
-          "name": "实践二十一号卫星应用",
-          "desc": "成果部分应用于实践二十一号空间碎片减缓项目",
+          "id": "item-ce610e4329ba",
+          "name": "实际在轨服务的对象为在轨故障卫星、空间垃圾等，可能处于自旋运动状态，这对目标捕获提出了巨大挑战。",
+          "desc": "实际在轨服务的对象为在轨故障卫星、空间垃圾等，可能处于自旋运动状态，这对目标捕获提出了巨大挑战。",
           "evidence": [
             {
-              "quote": "所形成的研究成果部分应用到了我国“实践二十一号卫星”项目。实践二十一号卫星项目于2021年10月24日发射成功，主要用于空间碎片减缓技术试验验证。",
+              "quote": "实际在轨服务的对象为在轨故障卫星、空间垃圾等，可能处于自旋运动状态，这对目标捕获提出了巨大挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2661,
-                "end_char": 2733
+                "start_char": 647,
+                "end_char": 694
               },
               "version": "42a260eb375e9d99e297"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-5e12eb7b4759",
-          "name": "论文12篇与专利6项",
-          "desc": "SCI 5篇、EI会议7篇、授权发明专利6项",
+          "id": "item-50e5c7ea8837",
+          "name": "随着人类太空活动的不断增多，轨道上的人造物体也随之不断增多。",
+          "desc": "随着人类太空活动的不断增多，轨道上的人造物体也随之不断增多。",
           "evidence": [
             {
-              "quote": "包括发表SCI收录期刊5篇，EI收录国际会议7篇，授权发明专利6项，培养硕士研究生6名。",
+              "quote": "随着人类太空活动的不断增多，轨道上的人造物体也随之不断增多。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2617,
-                "end_char": 2660
+                "start_char": 2080,
+                "end_char": 2109
               },
               "version": "42a260eb375e9d99e297"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-60d441fd2370"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e086d4097d0f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种空间机器人的柔顺控制方法和地面实验验证系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1573e3bd79a9",
+      "evidence": [
+        {
+          "quote": "一种空间机器人的柔顺控制方法和地面实验验证系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2757,
+            "end_char": 2779
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e086d4097d0f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2c2812b1a60e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Force-free control for the flexible-joint robot in human-robot interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dd38ff57e295",
+      "evidence": [
+        {
+          "quote": "Force-free control for the flexible-joint robot in human-robot interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2816,
+            "end_char": 2889
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e086d4097d0f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-db979bd8e6df"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-task Control for a Quadruped Robot with Changeable Leg Configuration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20d7f9d3b858",
+      "evidence": [
+        {
+          "quote": "Multi-task Control for a Quadruped Robot with Changeable Leg Configuration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2970,
+            "end_char": 3043
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-db979bd8e6df"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-59d63c75ffc6"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人重构控制方法、系统及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7109034d3f75",
+      "evidence": [
+        {
+          "quote": "一种机器人重构控制方法、系统及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3105,
+            "end_char": 3122
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2c2812b1a60e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5e12eb7b4759"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control of an Underactuated Reusable Launch Vehicle by Partial Feedback Linearization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-419aa7d31106",
+      "evidence": [
+        {
+          "quote": "Control of an Underactuated Reusable Launch Vehicle by Partial Feedback Linearization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3162,
+            "end_char": 3246
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Touch-Inspired Material Recognition for Robotic Tactile Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51f7f29bef34",
+      "evidence": [
+        {
+          "quote": "Human-Touch-Inspired Material Recognition for Robotic Tactile Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3314,
+            "end_char": 3382
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "VLC-SE: Visual-Lengthwise Configuration Self-Estimator of Continuum Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a7986ed53dd",
+      "evidence": [
+        {
+          "quote": "VLC-SE: Visual-Lengthwise Configuration Self-Estimator of Continuum Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3445,
+            "end_char": 3518
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "多臂空间机器人协同精细操作地面实验系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35b263f52c7b",
+      "evidence": [
+        {
+          "quote": "多臂空间机器人协同精细操作地面实验系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3581,
+            "end_char": 3599
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Approximate Piecewise Constant Curvature Equivalent Model and Their Application to Continuum Robot Configuration Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a2502e06e56",
+      "evidence": [
+        {
+          "quote": "Approximate Piecewise Constant Curvature Equivalent Model and Their Application to Continuum Robot Configuration Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3636,
+            "end_char": 3758
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Configuration Estimation of Continuum Robots Using Piecewise Constant Curvature Generalized Epi-Polar Constraint Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9c611a8e39d",
+      "evidence": [
+        {
+          "quote": "Configuration Estimation of Continuum Robots Using Piecewise Constant Curvature Generalized Epi-Polar Constraint Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3816,
+            "end_char": 3933
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ResSANet: Learning Geometric Information for Point Cloud Processing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a594f7e37f4",
+      "evidence": [
+        {
+          "quote": "ResSANet: Learning Geometric Information for Point Cloud Processing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3991,
+            "end_char": 4057
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "路径规划、路径实时优化方法及装置、存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3b54c9685681",
+      "evidence": [
+        {
+          "quote": "路径规划、路径实时优化方法及装置、存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4124,
+            "end_char": 4144
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于椭圆形面接触的物体抓取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b89821a8c096",
+      "evidence": [
+        {
+          "quote": "一种基于椭圆形面接触的物体抓取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4180,
+            "end_char": 4196
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Grasp Quality Evaluation Network for Surface-to-Surface Contacts in Point Clouds",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-357f7c4fc8f2",
+      "evidence": [
+        {
+          "quote": "Grasp Quality Evaluation Network for Surface-to-Surface Contacts in Point Clouds",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4234,
+            "end_char": 4313
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机械臂抓取方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4eff5b79d1c7",
+      "evidence": [
+        {
+          "quote": "一种机械臂抓取方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4380,
+            "end_char": 4391
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Impact of the Electronic Skin Substrate on the Robotic Tactile Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a653f333e94f",
+      "evidence": [
+        {
+          "quote": "The Impact of the Electronic Skin Substrate on the Robotic Tactile Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4428,
+            "end_char": 4501
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning to Predict Friction and Classify Contact States by Tactile Sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-688f67b82005",
+      "evidence": [
+        {
+          "quote": "Learning to Predict Friction and Classify Contact States by Tactile Sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4566,
+            "end_char": 4639
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Anti-Windup Robust Backstepping Control for an Underactuated Reusable Launch Vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f5879cfd1bba",
+      "evidence": [
+        {
+          "quote": "Anti-Windup Robust Backstepping Control for an Underactuated Reusable Launch Vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4710,
+            "end_char": 4793
+          },
+          "version": "42a260eb375e9d99e297"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

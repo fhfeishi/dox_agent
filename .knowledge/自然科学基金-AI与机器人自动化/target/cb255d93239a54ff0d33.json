@@ -2,15 +2,20 @@
   "doc_id": "cb255d93239a54ff0d33",
   "version": "72f36205ec29cce5619a",
   "source_hash": "b17bae02507860ac9b62b4aebc98ba5c958d2f1901016cdb03c3ac0fef4ac075",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:03:23.900900+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.438562+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,31 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-295c5844e110",
-          "name": "毫米级管道快速检测",
-          "desc": "航空发动机等设备毫米级复杂管道探测",
-          "evidence": [
-            {
-              "quote": "在航空发动机和火箭推进器等复杂大型设备中，管道检测是确保这些机器安全运行的重要手段。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2895,
-                "end_char": 2936
-              },
-              "version": "72f36205ec29cce5619a"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b205ccef3f1e",
-          "name": "现有手段难满足毫米管道",
-          "desc": "毫米级管道数量多、路径复杂，检测需求难满足",
+          "id": "item-257c20d7e807",
+          "name": "航空发动机等设备的毫米级管道数量多、距离长且路径复杂，现有检测手段难以满足毫米级管道快速检测的需求。",
+          "desc": "航空发动机等设备的毫米级管道数量多、距离长且路径复杂，现有检测手段难以满足毫米级管道快速检测的需求。",
           "evidence": [
             {
               "quote": "航空发动机等设备的毫米级管道数量多、距离长且路径复杂，现有检测手段难以满足毫米级管道快速检测的需求。",
@@ -59,56 +42,47 @@
       ]
     },
     {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-8e6dd6c8af4d",
-          "name": "卷绕型介电弹性体驱动器",
-          "desc": "高功率密度长寿命制备工艺，碳纳米管电极抗击穿",
+          "id": "item-fd3732535a40",
+          "name": "在此基础上，进一步研究管道机器人多单元协同驱动策略及其运动学特性，建立管道环境耦合作用下的机器人动力学模型，基于共振驱动",
+          "desc": "在此基础上，进一步研究管道机器人多单元协同驱动策略及其运动学特性，建立管道环境耦合作用下的机器人动力学模型，基于共振驱动及模态调控的方法，实现机器人在复杂管道环境中的快速运动。",
           "evidence": [
             {
-              "quote": "项目开发了高功率密度、长寿命的卷绕型介电弹性体驱动器制备工艺",
+              "quote": "在此基础上，进一步研究管道机器人多单元协同驱动策略及其运动学特性，建立管道环境耦合作用下的机器人动力学模型，基于共振驱动及模态调控的方法，实现机器人在复杂管道环境中的快速运动。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3013,
-                "end_char": 3042
+                "start_char": 906,
+                "end_char": 993
               },
               "version": "72f36205ec29cce5619a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5243dc1e5b07",
-          "name": "锚固力可控锚固机构",
-          "desc": "智能复合微结构工艺与磁吸快速组装",
+          "id": "item-20ac6029b5f5",
+          "name": "projectName: 毫米级管道机器人刚柔软耦合设计与驱动方法研究",
+          "desc": "projectName: 毫米级管道机器人刚柔软耦合设计与驱动方法研究",
           "evidence": [
             {
-              "quote": "基于智能复合微结构加工工艺设计了锚固力可控的新型锚固机构，并基于磁吸的方式实现不同机器人组件的快速组装以适应不同类型的管道。",
+              "quote": "projectName: 毫米级管道机器人刚柔软耦合设计与驱动方法研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3047,
-                "end_char": 3108
+                "start_char": 42,
+                "end_char": 76
               },
               "version": "72f36205ec29cce5619a"
             }
-          ]
-        },
-        {
-          "id": "item-6831bec7e0c5",
-          "name": "共振驱动模态调控",
-          "desc": "调整激励电压频率相位实现快速水平垂直运动",
-          "evidence": [
-            {
-              "quote": "通过调整激励电压的频率和相位，所设计的管道机器人实现了在毫米级管道（直径为9.8毫米）中的快速水平和垂直运动",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3145,
-                "end_char": 3198
-              },
-              "version": "72f36205ec29cce5619a"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,136 +91,140 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6c2f8406707d",
-          "name": "2.2g机器人快速运动",
-          "desc": "水平56毫米/秒、垂直51毫米/秒的快速运动",
+          "id": "item-212562439f14",
+          "name": "航空发动机等设备的毫米级管道数量多、距离长且路径复杂，现有检测手段难以满足毫米级管道快速检测的需求。",
+          "desc": "航空发动机等设备的毫米级管道数量多、距离长且路径复杂，现有检测手段难以满足毫米级管道快速检测的需求。",
           "evidence": [
             {
-              "quote": "所设计的管道机器人实现了在毫米级管道（直径为9.8毫米）中的快速水平和垂直运动（水平：56毫米/秒，或1.19身长/秒；垂直：51毫米/秒，或1.08身长/秒）",
+              "quote": "航空发动机等设备的毫米级管道数量多、距离长且路径复杂，现有检测手段难以满足毫米级管道快速检测的需求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3160,
-                "end_char": 3239
+                "start_char": 648,
+                "end_char": 697
               },
               "version": "72f36205ec29cce5619a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-37dbcc4c18f6",
-          "name": "多管道多介质适应",
-          "desc": "变直径、L形、S形、螺旋管道及空气/油介质适应",
+          "id": "item-a267678b42e5",
+          "name": "在航空发动机和火箭推进器等复杂大型设备中，管道检测是确保这些机器安全运行的重要手段。",
+          "desc": "在航空发动机和火箭推进器等复杂大型设备中，管道检测是确保这些机器安全运行的重要手段。",
           "evidence": [
             {
-              "quote": "并能够在不同几何形状的管道（变直径管道、L形管道、S形曲线管道和螺旋形管道）以及填充有不同介质（空气或油）管道中的运动",
+              "quote": "在航空发动机和火箭推进器等复杂大型设备中，管道检测是确保这些机器安全运行的重要手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3241,
-                "end_char": 3299
+                "start_char": 2895,
+                "end_char": 2936
               },
               "version": "72f36205ec29cce5619a"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5d33d07e1df1",
-          "name": "Science Robotics等论文7篇",
-          "desc": "发表学术论文7篇，授权发明专利2项",
-          "evidence": [
-            {
-              "quote": "本项目共发表学术论文7篇，主要研究内容发表在Science Robotics、Advanced Functional Materials、Applied Energy等期刊，授权发明专利2项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3361,
-                "end_char": 3455
-              },
-              "version": "72f36205ec29cce5619a"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-295c5844e110"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b205ccef3f1e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhancing the energy conversion efficiency of dielectric elastomer generators via elastic energy storage and recovery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bb6cbe392bd3",
+      "evidence": [
+        {
+          "quote": "Enhancing the energy conversion efficiency of dielectric elastomer generators via elastic energy storage and recovery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3503,
+            "end_char": 3619
+          },
+          "version": "72f36205ec29cce5619a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b205ccef3f1e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8e6dd6c8af4d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A pipeline inspection robot for navigating tubular environments in the sub-centimeter scale",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-694c84e73203",
+      "evidence": [
+        {
+          "quote": "A pipeline inspection robot for navigating tubular environments in the sub-centimeter scale",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3737,
+            "end_char": 3827
+          },
+          "version": "72f36205ec29cce5619a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b205ccef3f1e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5243dc1e5b07"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Untethered Robotic Millipede Driven by Low-Pressure Microfluidic Actuators for Multi-Terrain Exploration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-28a3484a7bfa",
+      "evidence": [
+        {
+          "quote": "Untethered Robotic Millipede Driven by Low-Pressure Microfluidic Actuators for Multi-Terrain Exploration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3921,
+            "end_char": 4024
+          },
+          "version": "72f36205ec29cce5619a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b205ccef3f1e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6831bec7e0c5"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6831bec7e0c5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6c2f8406707d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5243dc1e5b07"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-37dbcc4c18f6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8e6dd6c8af4d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5d33d07e1df1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Soft Pocket Pump for Multi-Medium Transportation via an Active Tubular Diaphragm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9ae466a19af2",
+      "evidence": [
+        {
+          "quote": "Soft Pocket Pump for Multi-Medium Transportation via an Active Tubular Diaphragm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4115,
+            "end_char": 4194
+          },
+          "version": "72f36205ec29cce5619a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "72b93ae5cf19cdb89680",
   "version": "d263c5ad42dd06fb173f",
   "source_hash": "15a0fcfa40fc6ae397f564f94d65f40d78554293e229b42b3880a7ceb0e165e3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:56.983673+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.549548+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6190b4ae5f08",
-          "name": "移动机器人自主抓取",
-          "desc": "面向自主抓取任务的移动机器人视觉感知关键方法研究",
+          "id": "item-febc09ece1ee",
+          "name": "移动机器人在工业、农业、仓储、医疗、服务等行业有着广泛的应用前景，而且在搜索、救援、反恐、空间探索等有害或危险场合有非常",
+          "desc": "移动机器人在工业、农业、仓储、医疗、服务等行业有着广泛的应用前景，而且在搜索、救援、反恐、空间探索等有害或危险场合有非常重大的应用价值。",
           "evidence": [
             {
-              "quote": "本项目旨在开展面向自主抓取任务的移动机器人视觉感知关键方法研究",
+              "quote": "移动机器人在工业、农业、仓储、医疗、服务等行业有着广泛的应用前景，而且在搜索、救援、反恐、空间探索等有害或危险场合有非常重大的应用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3259,
-                "end_char": 3289
+                "start_char": 655,
+                "end_char": 722
               },
               "version": "d263c5ad42dd06fb173f"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-55290da9047e",
-          "name": "视觉感知是抓取关键瓶颈",
-          "desc": "场景三维信息获取、自主导航与目标检测等视觉感知方法是高效自主抓取的关键",
-          "evidence": [
-            {
-              "quote": "场景高质量三维信息的获取、基于视觉分析的自主导航和目标检测等视觉感知方法是移动机器人高效完成对目标自主抓取的关键",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 757,
-                "end_char": 812
-              },
-              "version": "d263c5ad42dd06fb173f"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-5a1fef6a8990",
-          "name": "异步语义SLAM建图",
-          "desc": "基于自适应运动掩膜的异步语义SLAM框架，兼顾实时性与动态环境鲁棒性",
+          "id": "item-49fb7706f7f8",
+          "name": "因此本项目将开展面向自主抓取任务的移动机器人视觉感知方法研究，研究结合立体视觉和深度相机技术的融合视觉系统，实现对场景的",
+          "desc": "因此本项目将开展面向自主抓取任务的移动机器人视觉感知方法研究，研究结合立体视觉和深度相机技术的融合视觉系统，实现对场景的高质量三维感知；",
           "evidence": [
             {
-              "quote": "本项目设计了一种基于自适应运动掩膜的异步语义SLAM新框架",
+              "quote": "因此本项目将开展面向自主抓取任务的移动机器人视觉感知方法研究，研究结合立体视觉和深度相机技术的融合视觉系统，实现对场景的高质量三维感知；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3462,
-                "end_char": 3490
+                "start_char": 814,
+                "end_char": 881
               },
               "version": "d263c5ad42dd06fb173f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-179d88b887a3",
-          "name": "深度强化学习联合推动与抓取",
-          "desc": "推动策略分离紧密堆叠物体，抓取策略实现已分离物体自主抓取",
+          "id": "item-7f2b5f581491",
+          "name": "在此基础上，研究基于视觉分析的移动机器人自主定位和地图构建方法，研究基于深度卷积神经网络的目标快速检测方法，研究基于视觉",
+          "desc": "在此基础上，研究基于视觉分析的移动机器人自主定位和地图构建方法，研究基于深度卷积神经网络的目标快速检测方法，研究基于视觉反馈的高精度机械臂轨迹规划方法，最终高效完成对目标的自主抓取。",
           "evidence": [
             {
-              "quote": "本项目进一步研究设计了基于深度强化学习的联合推动与抓取方法",
+              "quote": "在此基础上，研究基于视觉分析的移动机器人自主定位和地图构建方法，研究基于深度卷积神经网络的目标快速检测方法，研究基于视觉反馈的高精度机械臂轨迹规划方法，最终高效完成对目标的自主抓取。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3635,
-                "end_char": 3663
+                "start_char": 882,
+                "end_char": 972
               },
               "version": "d263c5ad42dd06fb173f"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,409 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1f9ea0ac2590",
-          "name": "堆叠场景抓取成功率提升",
-          "desc": "提高复杂堆叠场景下的目标抓取成功率",
+          "id": "item-756f6c3d4ec1",
+          "name": "移动机器人在工业、农业、仓储、医疗、服务等行业有着广泛的应用前景，而且在搜索、救援、反恐、空间探索等有害或危险场合有非常",
+          "desc": "移动机器人在工业、农业、仓储、医疗、服务等行业有着广泛的应用前景，而且在搜索、救援、反恐、空间探索等有害或危险场合有非常重大的应用价值。",
           "evidence": [
             {
-              "quote": "提高了复杂堆叠场景下的目标抓取成功率",
+              "quote": "移动机器人在工业、农业、仓储、医疗、服务等行业有着广泛的应用前景，而且在搜索、救援、反恐、空间探索等有害或危险场合有非常重大的应用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3704,
-                "end_char": 3721
+                "start_char": 655,
+                "end_char": 722
               },
               "version": "d263c5ad42dd06fb173f"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ffa29e36415e",
-          "name": "智能化理论与方法储备",
-          "desc": "取得原创性研究成果，为移动机器人智能化提供理论与方法储备",
-          "evidence": [
-            {
-              "quote": "取得了一些具有原创性的研究成果，为提高移动机器人的智能化水平提供了理论和方法上的储备",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3732,
-                "end_char": 3773
-              },
-              "version": "d263c5ad42dd06fb173f"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6190b4ae5f08"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-55290da9047e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An intelligent master–slave collaborative robot system for cafeteria service",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a38d91143934",
+      "evidence": [
+        {
+          "quote": "An intelligent master–slave collaborative robot system for cafeteria service",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3800,
+            "end_char": 3875
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-55290da9047e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5a1fef6a8990"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "旋转自适应的多特征融合多模板学习视觉跟踪算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5c10cb715b1",
+      "evidence": [
+        {
+          "quote": "旋转自适应的多特征融合多模板学习视觉跟踪算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3949,
+            "end_char": 3970
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5a1fef6a8990"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ffa29e36415e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DCS-SLAM: A Semantic SLAM with Moving Cluster towards Dynamic Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bce654251188",
+      "evidence": [
+        {
+          "quote": "DCS-SLAM: A Semantic SLAM with Moving Cluster towards Dynamic Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4003,
+            "end_char": 4076
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6190b4ae5f08"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-179d88b887a3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "FAMED-Net: A Fast and Accurate Multi-scale End-to-end Dehazing Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d76943656e6",
+      "evidence": [
+        {
+          "quote": "FAMED-Net: A Fast and Accurate Multi-scale End-to-end Dehazing Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4139,
+            "end_char": 4208
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-179d88b887a3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1f9ea0ac2590"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多机器人协作的自主探索建图系统及探索建图方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6bb5459ae351",
+      "evidence": [
+        {
+          "quote": "基于多机器人协作的自主探索建图系统及探索建图方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4243,
+            "end_char": 4266
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于LSTM 和变分自编码的移动机器人自主探索方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c35ed8e8669",
+      "evidence": [
+        {
+          "quote": "一种基于LSTM 和变分自编码的移动机器人自主探索方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4302,
+            "end_char": 4328
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Obstacle Detection and Avoidance System for Mobile Robot with a Laser Radar",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6f121f40a239",
+      "evidence": [
+        {
+          "quote": "An Obstacle Detection and Avoidance System for Mobile Robot with a Laser Radar",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4365,
+            "end_char": 4442
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CODON: On Orchestrating Cross-Domain Attentions for Depth Super-Resolution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c3507765a67",
+      "evidence": [
+        {
+          "quote": "CODON: On Orchestrating Cross-Domain Attentions for Depth Super-Resolution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4509,
+            "end_char": 4582
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于彩色分割指导的深度图插值方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb9834fa48d8",
+      "evidence": [
+        {
+          "quote": "一种基于彩色分割指导的深度图插值方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4637,
+            "end_char": 4654
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于彩色图引导的深度图超分辨率重建网络构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2822706d3a7b",
+      "evidence": [
+        {
+          "quote": "一种基于彩色图引导的深度图超分辨率重建网络构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4686,
+            "end_char": 4710
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Anchor Box Mechanism to Improve the Accuracy in the Object Detection System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4c00da28e8c",
+      "evidence": [
+        {
+          "quote": "Adaptive Anchor Box Mechanism to Improve the Accuracy in the Object Detection System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4744,
+            "end_char": 4827
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collaborative Pushing and Grasping of Tightly Stacked Objects via Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a58ac0f3827a",
+      "evidence": [
+        {
+          "quote": "Collaborative Pushing and Grasping of Tightly Stacked Objects via Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4886,
+            "end_char": 4978
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantic signatures for large-scale visual localization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-efce26863b7d",
+      "evidence": [
+        {
+          "quote": "Semantic signatures for large-scale visual localization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5050,
+            "end_char": 5104
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于注意力机制生成式网络的机械臂抓取参数估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-135f6071448f",
+      "evidence": [
+        {
+          "quote": "基于注意力机制生成式网络的机械臂抓取参数估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5163,
+            "end_char": 5186
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于RGB-D相机的卷积神经网络目标检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f8d7d9a7a5e",
+      "evidence": [
+        {
+          "quote": "一种基于RGB-D相机的卷积神经网络目标检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5223,
+            "end_char": 5246
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于注意力机制和非合理动作抑制的机械臂自主抓取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-89d991198ee5",
+      "evidence": [
+        {
+          "quote": "基于注意力机制和非合理动作抑制的机械臂自主抓取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5274,
+            "end_char": 5298
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Super-resolution of depth image based on color guided deep residual network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f3dfc84d0a7",
+      "evidence": [
+        {
+          "quote": "Super-resolution of depth image based on color guided deep residual network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5336,
+            "end_char": 5410
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于ROS的自主移动抓取系统与方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-25a9d7eceab4",
+      "evidence": [
+        {
+          "quote": "一种基于ROS的自主移动抓取系统与方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5474,
+            "end_char": 5492
+          },
+          "version": "d263c5ad42dd06fb173f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

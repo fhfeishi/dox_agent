@@ -2,15 +2,20 @@
   "doc_id": "021b84c4f5b369812e7d",
   "version": "82a77f1af1ea00d4f879",
   "source_hash": "2eec2deb73ca9a23afa9196ae2aa9223b93075ac3273be8e1df3a2ab5095c8cf",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:35.409221+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.535374+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5827824c878b",
-          "name": "自动驾驶完备态势感知",
-          "desc": "观测受限场景下道路风险感知与安全决策",
+          "id": "item-719c58febd77",
+          "name": "对道路环境的充分态势感知是自动驾驶车辆感知潜在道路风险并形成安全行为决策的关键。",
+          "desc": "对道路环境的充分态势感知是自动驾驶车辆感知潜在道路风险并形成安全行为决策的关键。",
           "evidence": [
             {
-              "quote": "对道路环境的充分态势感知是自动驾驶车辆感知潜在道路风险并形成安全行为决策的关键 。",
+              "quote": "对道路环境的充分态势感知是自动驾驶车辆感知潜在道路风险并形成安全行为决策的关键。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2925,
-                "end_char": 2965
+                "start_char": 657,
+                "end_char": 696
               },
               "version": "82a77f1af1ea00d4f879"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6f2546fb4939",
-          "name": "观测受限感知盲区",
-          "desc": "缺乏因果常识挖掘能力，观测受限场景存在感知盲区",
+          "id": "item-2dae9527ec4f",
+          "name": "传统道路环境感知方法缺乏挖掘和利用观测目标状态演变因果常识的能力，难以对观测受限目标进行持续感知，使得观测受限场景下态势",
+          "desc": "传统道路环境感知方法缺乏挖掘和利用观测目标状态演变因果常识的能力，难以对观测受限目标进行持续感知，使得观测受限场景下态势感知存在盲区，对行车安全构成了极大威胁。",
           "evidence": [
             {
               "quote": "传统道路环境感知方法缺乏挖掘和利用观测目标状态演变因果常识的能力，难以对观测受限目标进行持续感知，使得观测受限场景下态势感知存在盲区，对行车安全构成了极大威胁。",
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4f501d06b173",
-          "name": "因果知识模型",
-          "desc": "目标行为-可观测性演变因果知识模型",
+          "id": "item-0b7e4f0d2bef",
+          "name": "本项目旨在赋予自动驾驶系统“执因索果”的道路环境感知能力，从而突破现有态势感知方法需建立在场景完全观测上的限制，为牵引自",
+          "desc": "本项目旨在赋予自动驾驶系统“执因索果”的道路环境感知能力，从而突破现有态势感知方法需建立在场景完全观测上的限制，为牵引自动驾驶由相关性态势感知向推理性态势感知的发展提供理论支撑，对自动驾驶感知系统的创新设计与优化验证具有重要意义。",
           "evidence": [
             {
-              "quote": "首先建立目标行为-可观测性演变因果知识模型，获取观测受限场景演变特征和规律",
+              "quote": "本项目旨在赋予自动驾驶系统“执因索果”的道路环境感知能力，从而突破现有态势感知方法需建立在场景完全观测上的限制，为牵引自动驾驶由相关性态势感知向推理性态势感知的发展提供理论支撑，对自动驾驶感知系统的创新设计与优化验证具有重要意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 802,
-                "end_char": 838
+                "start_char": 939,
+                "end_char": 1053
               },
               "version": "82a77f1af1ea00d4f879"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-608361c56bf3",
-          "name": "动态因果与或图推理",
-          "desc": "非线性因果推理实现观测受限目标状态连续跟踪",
+          "id": "item-3b47e32bc203",
+          "name": "本项目旨在赋予自动驾驶系统“执因索果”的道路环境感知能力，从而突破现有态势感知方法需建立在场景完全观测上的限制，本项目的",
+          "desc": "本项目旨在赋予自动驾驶系统“执因索果”的道路环境感知能力，从而突破现有态势感知方法需建立在场景完全观测上的限制，本项目的顺利完成可为牵引自动驾驶由相关性态势感知向推理性态势感知的发展提供理论支撑，对自动驾驶感知系统的创新设计与优化验证具有重要意义。",
           "evidence": [
             {
-              "quote": "在因果知识驱动下，对非线性因果推理机制进行探索，建立动态化因果与或图模型，实现观测受限目标状态连续跟踪",
+              "quote": "本项目旨在赋予自动驾驶系统“执因索果”的道路环境感知能力，从而突破现有态势感知方法需建立在场景完全观测上的限制，本项目的顺利完成可为牵引自动驾驶由相关性态势感知向推理性态势感知的发展提供理论支撑，对自动驾驶感知系统的创新设计与优化验证具有重要意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 842,
-                "end_char": 892
+                "start_char": 3309,
+                "end_char": 3432
               },
               "version": "82a77f1af1ea00d4f879"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +108,288 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c40d180ae77e",
-          "name": "执因索果感知能力",
-          "desc": "突破场景完全观测限制，论文10篇、专利授权3项",
+          "id": "item-c21bba698b56",
+          "name": "对道路环境的充分态势感知是自动驾驶车辆感知潜在道路风险并形成安全行为决策的关键。",
+          "desc": "对道路环境的充分态势感知是自动驾驶车辆感知潜在道路风险并形成安全行为决策的关键。",
           "evidence": [
             {
-              "quote": "围绕上述研究内容，本项目共发表SCI、EI论文10篇，其中中科院一区TOP、二区TOP期刊论文3篇，CCF-A类会议1篇，授权发明专利3个，申请发明专利7个",
+              "quote": "对道路环境的充分态势感知是自动驾驶车辆感知潜在道路风险并形成安全行为决策的关键。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3208,
-                "end_char": 3285
+                "start_char": 657,
+                "end_char": 696
               },
               "version": "82a77f1af1ea00d4f879"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-309b1c632378",
+          "name": "对道路环境的充分态势感知是自动驾驶车辆感知潜在道路风险并形成安全行为决策的关键 。",
+          "desc": "对道路环境的充分态势感知是自动驾驶车辆感知潜在道路风险并形成安全行为决策的关键 。",
+          "evidence": [
+            {
+              "quote": "对道路环境的充分态势感知是自动驾驶车辆感知潜在道路风险并形成安全行为决策的关键 。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2925,
+                "end_char": 2965
+              },
+              "version": "82a77f1af1ea00d4f879"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5827824c878b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6f2546fb4939"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A comprehensive survey on multi-sensor information processing and fusion for BEV perception in autonomous vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5a83ee4dff2a",
+      "evidence": [
+        {
+          "quote": "A comprehensive survey on multi-sensor information processing and fusion for BEV perception in autonomous vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3458,
+            "end_char": 3571
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6f2546fb4939"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4f501d06b173"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "BEV-TinySpotter: A novel BEV perception method considering multi-dimensional feature fusion of small target",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1f0af957ed62",
+      "evidence": [
+        {
+          "quote": "BEV-TinySpotter: A novel BEV perception method considering multi-dimensional feature fusion of small target",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3655,
+            "end_char": 3761
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6f2546fb4939"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-608361c56bf3"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于目标分布态势分析的无人扫地车清扫方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-25f94d7e6a1d",
+      "evidence": [
+        {
+          "quote": "一种基于目标分布态势分析的无人扫地车清扫方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3827,
+            "end_char": 3848
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-608361c56bf3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c40d180ae77e"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "最佳具身智能技术前瞻奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b45d077387b5",
+      "evidence": [
+        {
+          "quote": "最佳具身智能技术前瞻奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3295,
+            "end_char": 3305
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4f501d06b173"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c40d180ae77e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Driving Risk Assessment Method based on Traffic Scene Understanding and Causal Reasoning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df2a215376ba",
+      "evidence": [
+        {
+          "quote": "A Novel Driving Risk Assessment Method based on Traffic Scene Understanding and Causal Reasoning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3912,
+            "end_char": 4007
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on the Cleaning Method of Unmanned Sweeper Based on Target Distribution Situation Analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b737d6916d32",
+      "evidence": [
+        {
+          "quote": "Research on the Cleaning Method of Unmanned Sweeper Based on Target Distribution Situation Analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4096,
+            "end_char": 4194
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种应对网络干扰的动态输出反馈汽车队列控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-69206671f1f0",
+      "evidence": [
+        {
+          "quote": "一种应对网络干扰的动态输出反馈汽车队列控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4270,
+            "end_char": 4292
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度学习的电力设备航拍图像超分辨率重建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae6b97f3d0c5",
+      "evidence": [
+        {
+          "quote": "基于深度学习的电力设备航拍图像超分辨率重建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4320,
+            "end_char": 4342
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ODFa2: Overall Defense Framework AgainstCyber-Attacks on Intelligent Connected Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-182ba0478b6f",
+      "evidence": [
+        {
+          "quote": "ODFa2: Overall Defense Framework AgainstCyber-Attacks on Intelligent Connected Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4374,
+            "end_char": 4460
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种强化小目标检测的自动驾驶车辆环境感知方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eeb39a3926e0",
+      "evidence": [
+        {
+          "quote": "一种强化小目标检测的自动驾驶车辆环境感知方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4524,
+            "end_char": 4545
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Electrical Equipment Status Diagnosis Method Based on Super-Resolution Reconstruction and Logical Reasoning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6556addb3b60",
+      "evidence": [
+        {
+          "quote": "A Novel Electrical Equipment Status Diagnosis Method Based on Super-Resolution Reconstruction and Logical Reasoning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4574,
+            "end_char": 4688
+          },
+          "version": "82a77f1af1ea00d4f879"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

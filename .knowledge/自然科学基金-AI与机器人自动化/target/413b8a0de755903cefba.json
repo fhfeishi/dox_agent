@@ -2,15 +2,20 @@
   "doc_id": "413b8a0de755903cefba",
   "version": "5430362595a262c464fd",
   "source_hash": "8403ae6ac15beab180b9fbbb08ae9645356b5d142ad5376e26f41075b14de4ac",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:30.771840+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.099105+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1e9c2b4e8189",
-          "name": "工业机器人RGB-D控制",
-          "desc": "工业机器人自主发现定位和操作目标",
+          "id": "item-65037b5a5021",
+          "name": "本项目以工业机器人智能控制为研究背景，在计算机视觉和人工智能相关领域科研成果的支撑下，研究基于计算机视觉引导的复杂组合行",
+          "desc": "本项目以工业机器人智能控制为研究背景，在计算机视觉和人工智能相关领域科研成果的支撑下，研究基于计算机视觉引导的复杂组合行为协同控制策略，以实现工业机器人可以自主的发现、定位和操作目标。",
           "evidence": [
             {
-              "quote": "本项目以工业机器人智能控制为背景，提出了“基于RGB-D数据的机器人复杂行为智能协同控制关键技术研究”研究任务，通过多场景智能感知、场景三维重建和行为策略决策等方面进行综合分析研究",
+              "quote": "本项目以工业机器人智能控制为研究背景，在计算机视觉和人工智能相关领域科研成果的支撑下，研究基于计算机视觉引导的复杂组合行为协同控制策略，以实现工业机器人可以自主的发现、定位和操作目标。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2569,
-                "end_char": 2658
+                "start_char": 663,
+                "end_char": 754
+              },
+              "version": "5430362595a262c464fd"
+            }
+          ]
+        },
+        {
+          "id": "item-3d172c58d52a",
+          "name": "项目组通过总结在深度图像分类与识别、工业机器人智能控制等方向上的成果，针对卫浴、汽车零部件加工等应用场景，开展了基于RG",
+          "desc": "项目组通过总结在深度图像分类与识别、工业机器人智能控制等方向上的成果，针对卫浴、汽车零部件加工等应用场景，开展了基于RGB-D的工业机器人智能打磨控制系统的应用示范。",
+          "evidence": [
+            {
+              "quote": "项目组通过总结在深度图像分类与识别、工业机器人智能控制等方向上的成果，针对卫浴、汽车零部件加工等应用场景，开展了基于RGB-D的工业机器人智能打磨控制系统的应用示范。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3169,
+                "end_char": 3251
               },
               "version": "5430362595a262c464fd"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cb988aba4e5e",
-          "name": "复杂行为协同控制难",
-          "desc": "需实现三维目标识别定位与复杂组合行为协调控制",
-          "evidence": [
-            {
-              "quote": "在基于RGB-D数据的三维空间目标识别与定位基础上，通过构建一组机器人行为原语模型，研究利用马尔科夫决策过程实现机器人复杂组合行为协调控制的过程",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 960,
-                "end_char": 1031
-              },
-              "version": "5430362595a262c464fd"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-9afa788981db",
-          "name": "分层注意力Transformer",
-          "desc": "扩展至RGB-D深度图像域提升分类性能",
+          "id": "item-a704614bd313",
+          "name": "本项目以工业机器人智能控制为背景，提出了“基于RGB-D数据的机器人复杂行为智能协同控制关键技术研究”研究任务，通过多场",
+          "desc": "本项目以工业机器人智能控制为背景，提出了“基于RGB-D数据的机器人复杂行为智能协同控制关键技术研究”研究任务，通过多场景智能感知、场景三维重建和行为策略决策等方面进行综合分析研究，构建基于RGB-D数据驱动的三维场景重建、三维目标识别与定位和复杂组合行为协同控制的相关模型，并通过虚拟平台和真实工业机器人对提出的模型进行验证。",
           "evidence": [
             {
-              "quote": "提出了基于分层注意力转换机制的视觉Transformer模型，提高了图像智能感知的能力",
+              "quote": "本项目以工业机器人智能控制为背景，提出了“基于RGB-D数据的机器人复杂行为智能协同控制关键技术研究”研究任务，通过多场景智能感知、场景三维重建和行为策略决策等方面进行综合分析研究，构建基于RGB-D数据驱动的三维场景重建、三维目标识别与定位和复杂组合行为协同控制的相关模型，并通过虚拟平台和真实工业机器人对提出的模型进行验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2813,
-                "end_char": 2855
+                "start_char": 2569,
+                "end_char": 2732
               },
               "version": "5430362595a262c464fd"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d5d5d48be3bc",
-          "name": "BiLSTM关节状态预测",
-          "desc": "电机电流数据驱动实现关节运动状态高精度预测",
+          "id": "item-94fdc9941ef6",
+          "name": "研究三维空间中对象的识别与定位，采用基于多层感知器的颜色特征和深度特征融合的深度学习框架，再结合注意力机制，探索基于图像",
+          "desc": "研究三维空间中对象的识别与定位，采用基于多层感知器的颜色特征和深度特征融合的深度学习框架，再结合注意力机制，探索基于图像特征约束的三维空间目标识别与分割，并通过目标的三维位置进行估计对三维空间中多个目标之间的位置关系进行理解。",
           "evidence": [
             {
-              "quote": "提出一种用于四轴工业机器人关节运动状态的双向长短期记忆神经网络模型，实现基于电机电流数据驱动下的工业机器人关节运动状态高精度预测",
+              "quote": "研究三维空间中对象的识别与定位，采用基于多层感知器的颜色特征和深度特征融合的深度学习框架，再结合注意力机制，探索基于图像特征约束的三维空间目标识别与分割，并通过目标的三维位置进行估计对三维空间中多个目标之间的位置关系进行理解。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3022,
-                "end_char": 3085
+                "start_char": 847,
+                "end_char": 959
               },
               "version": "5430362595a262c464fd"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,408 @@
       "state": "has",
       "items": [
         {
-          "id": "item-948fccc0adf3",
-          "name": "智能打磨系统应用",
-          "desc": "三维重建智能打磨系统实现视觉引导路径自动规划",
+          "id": "item-a129c78cef79",
+          "name": "本项目以工业机器人智能控制为研究背景，在计算机视觉和人工智能相关领域科研成果的支撑下，研究基于计算机视觉引导的复杂组合行",
+          "desc": "本项目以工业机器人智能控制为研究背景，在计算机视觉和人工智能相关领域科研成果的支撑下，研究基于计算机视觉引导的复杂组合行为协同控制策略，以实现工业机器人可以自主的发现、定位和操作目标。",
           "evidence": [
             {
-              "quote": "研发了基于三维模型重建的智能打磨系统，实现了基于视觉引导的工业机器人工作路径的自动规划",
+              "quote": "本项目以工业机器人智能控制为研究背景，在计算机视觉和人工智能相关领域科研成果的支撑下，研究基于计算机视觉引导的复杂组合行为协同控制策略，以实现工业机器人可以自主的发现、定位和操作目标。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3125,
-                "end_char": 3167
+                "start_char": 663,
+                "end_char": 754
               },
               "version": "5430362595a262c464fd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-9e4b365f725c",
-          "name": "卫浴汽车示范应用",
-          "desc": "卫浴、汽车零部件加工场景开展应用示范",
+          "id": "item-d94a63e0247f",
+          "name": "本项目以工业机器人智能控制为背景，提出了“基于RGB-D数据的机器人复杂行为智能协同控制关键技术研究”研究任务，通过多场",
+          "desc": "本项目以工业机器人智能控制为背景，提出了“基于RGB-D数据的机器人复杂行为智能协同控制关键技术研究”研究任务，通过多场景智能感知、场景三维重建和行为策略决策等方面进行综合分析研究，构建基于RGB-D数据驱动的三维场景重建、三维目标识别与定位和复杂组合行为协同控制的相关模型，并通过虚拟平台和真实工业机器人对提出的模型进行验证。",
           "evidence": [
             {
-              "quote": "针对卫浴、汽车零部件加工等应用场景，开展了基于RGB-D的工业机器人智能打磨控制系统的应用示范。",
+              "quote": "本项目以工业机器人智能控制为背景，提出了“基于RGB-D数据的机器人复杂行为智能协同控制关键技术研究”研究任务，通过多场景智能感知、场景三维重建和行为策略决策等方面进行综合分析研究，构建基于RGB-D数据驱动的三维场景重建、三维目标识别与定位和复杂组合行为协同控制的相关模型，并通过虚拟平台和真实工业机器人对提出的模型进行验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3204,
-                "end_char": 3251
+                "start_char": 2569,
+                "end_char": 2732
               },
               "version": "5430362595a262c464fd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1e9c2b4e8189"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cb988aba4e5e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Inter-Subject Domain Adaptation for CNN-Based Wrist Kinematics Estimation Using sEMG",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e919e6c0339e",
+      "evidence": [
+        {
+          "quote": "Inter-Subject Domain Adaptation for CNN-Based Wrist Kinematics Estimation Using sEMG",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3277,
+            "end_char": 3360
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cb988aba4e5e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9afa788981db"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Generating Video Animation from Single Still Image in Social Media Based on Intelligent Computing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-299c99b6a9bd",
+      "evidence": [
+        {
+          "quote": "Generating Video Animation from Single Still Image in Social Media Based on Intelligent Computing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3449,
+            "end_char": 3545
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cb988aba4e5e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d5d5d48be3bc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reconstruction of a fluttering flag from a single image",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6cc002f6fe5d",
+      "evidence": [
+        {
+          "quote": "Reconstruction of a fluttering flag from a single image",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3610,
+            "end_char": 3664
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9afa788981db"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-948fccc0adf3"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种工业机器人上下料夹持装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1771b94a7463",
+      "evidence": [
+        {
+          "quote": "一种工业机器人上下料夹持装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3702,
+            "end_char": 3715
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d5d5d48be3bc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9e4b365f725c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An adaptive stacked hourglass network with Kalman filter for estimating 2D human pose in video",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a51264dc927c",
+      "evidence": [
+        {
+          "quote": "An adaptive stacked hourglass network with Kalman filter for estimating 2D human pose in video",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3739,
+            "end_char": 3832
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于霍尔传感器的工业机器人轴电流监测研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3fbef85b1641",
+      "evidence": [
+        {
+          "quote": "基于霍尔传感器的工业机器人轴电流监测研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3893,
+            "end_char": 3912
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CNN Confidence Estimation for Rejection-Based Hand Gesture Classification in Myoelectric Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9cd0c1d2d089",
+      "evidence": [
+        {
+          "quote": "CNN Confidence Estimation for Rejection-Based Hand Gesture Classification in Myoelectric Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3943,
+            "end_char": 4038
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Detection of fault insulator of power transmission line based on region-CNN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c19b6cd2cbd3",
+      "evidence": [
+        {
+          "quote": "Detection of fault insulator of power transmission line based on region-CNN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4128,
+            "end_char": 4202
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "HAT A Visual Transformer Model for Image Recognition Based on Hierarchical Attention Transformation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c0777182eb6",
+      "evidence": [
+        {
+          "quote": "HAT A Visual Transformer Model for Image Recognition Based on Hierarchical Attention Transformation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4250,
+            "end_char": 4348
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Latency Aligning Task-Related Component Analysis Using Wave Propagation for Enhancing SSVEP-Based BCIs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c030f357dbb",
+      "evidence": [
+        {
+          "quote": "Latency Aligning Task-Related Component Analysis Using Wave Propagation for Enhancing SSVEP-Based BCIs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4409,
+            "end_char": 4510
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A CNN-LSTM Hybrid Model for Wrist Kinematics Estimation Using Surface Electromyography",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-684b929ef7ca",
+      "evidence": [
+        {
+          "quote": "A CNN-LSTM Hybrid Model for Wrist Kinematics Estimation Using Surface Electromyography",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4595,
+            "end_char": 4680
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Incorporating Neighboring Stimuli Data for Enhanced SSVEP-Based BCIs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41e9061be7c9",
+      "evidence": [
+        {
+          "quote": "Incorporating Neighboring Stimuli Data for Enhanced SSVEP-Based BCIs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4770,
+            "end_char": 4837
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种织锦织造定位装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a88d6491ef37",
+      "evidence": [
+        {
+          "quote": "一种织锦织造定位装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4943,
+            "end_char": 4952
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-Subject Transfer Method Based on Domain Generalization for Facilitating Calibration of SSVEP-Based BCIs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-244da8d4b292",
+      "evidence": [
+        {
+          "quote": "Cross-Subject Transfer Method Based on Domain Generalization for Facilitating Calibration of SSVEP-Based BCIs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4981,
+            "end_char": 5089
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于机器视觉的卫浴智能打磨系统及其打磨方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ebf319b1f6c3",
+      "evidence": [
+        {
+          "quote": "一种基于机器视觉的卫浴智能打磨系统及其打磨方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5183,
+            "end_char": 5205
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Visual Representation on Text Using Diverse Conditional GAN for Visual Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0bb8586d9c9e",
+      "evidence": [
+        {
+          "quote": "A Novel Visual Representation on Text Using Diverse Conditional GAN for Visual Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5234,
+            "end_char": 5323
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于Spark的菜品推荐系统的设计与实现",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9548bac30bbc",
+      "evidence": [
+        {
+          "quote": "基于Spark的菜品推荐系统的设计与实现",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5374,
+            "end_char": 5393
+          },
+          "version": "5430362595a262c464fd"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

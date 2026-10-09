@@ -2,15 +2,20 @@
   "doc_id": "7dbe43a66ebcbca7876e",
   "version": "dde1f633d17b31b410bc",
   "source_hash": "8d8fe8a94822aee8f6e49409d30d70106fdb1399adc7fe18ca53bc0605c76443",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:19.529639+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.638707+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,37 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0bc70ac89517",
-          "name": "拒止环境无人机蜂群",
-          "desc": "拒止环境下蜂群容错与自愈控制",
+          "id": "item-0ea60792945a",
+          "name": "可靠的容错性和自愈性是无人机蜂群在拒止环境下遂行既定任务的基础和前提，然而，复杂环境约束、多成员并发故障、战损以及模型不",
+          "desc": "可靠的容错性和自愈性是无人机蜂群在拒止环境下遂行既定任务的基础和前提，然而，复杂环境约束、多成员并发故障、战损以及模型不确定等因素使得容错与自愈控制面临严峻挑战。",
           "evidence": [
             {
-              "quote": "本项目针对无人机集群系统在复杂环境下的可靠性、容错性和抗毁性需求，围绕不确定环境、多源扰动以及节点失效等核心问题开展了系统性研究",
+              "quote": "可靠的容错性和自愈性是无人机蜂群在拒止环境下遂行既定任务的基础和前提，然而，复杂环境约束、多成员并发故障、战损以及模型不确定等因素使得容错与自愈控制面临严峻挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2983,
-                "end_char": 3046
-              },
-              "version": "dde1f633d17b31b410bc"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d01e2a79f99c",
-          "name": "并发故障战损失稳",
-          "desc": "多成员并发故障、战损及模型不确定使容错自愈面临挑战",
-          "evidence": [
-            {
-              "quote": "然而，复杂环境约束、多成员并发故障、战损以及模型不确定等因素使得容错与自愈控制面临严峻挑战。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 688,
+                "start_char": 653,
                 "end_char": 733
               },
               "version": "dde1f633d17b31b410bc"
@@ -59,40 +42,47 @@
       ]
     },
     {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-2d1f8b16c843",
-          "name": "仿鸽群弹性拓扑",
-          "desc": "递归编组分层网络与自组织蜂拥编队控制",
+          "id": "item-e8348e8f845f",
+          "name": "最后，针对成员故障、战损和强电干扰对蜂群构型造成的失稳和分散问题，研究基于梯度生成、扩散机制和分布式优化方法的蜂群构型自",
+          "desc": "最后，针对成员故障、战损和强电干扰对蜂群构型造成的失稳和分散问题，研究基于梯度生成、扩散机制和分布式优化方法的蜂群构型自修复与近似最优自愈控制策略，恢复系统固有的物理构型和功能，开发蜂群可连续快速自愈的能力，提高系统在拒止环境下的抗毁性。",
           "evidence": [
             {
-              "quote": "本项目提出了仿鸽群的弹性控制拓扑设计与自组织蜂拥编队控制方法，实现了集群的自主构型",
+              "quote": "最后，针对成员故障、战损和强电干扰对蜂群构型造成的失稳和分散问题，研究基于梯度生成、扩散机制和分布式优化方法的蜂群构型自修复与近似最优自愈控制策略，恢复系统固有的物理构型和功能，开发蜂群可连续快速自愈的能力，提高系统在拒止环境下的抗毁性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3078,
-                "end_char": 3118
+                "start_char": 869,
+                "end_char": 987
               },
               "version": "dde1f633d17b31b410bc"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b7d4587e510f",
-          "name": "自愈重构机制",
-          "desc": "一致性指标与自愈重构实现拓扑修复功能恢复",
+          "id": "item-e6779c92adb5",
+          "name": "同时，在模型不确定条件下，构建了基于数据驱动与最优化理论的分布式智能容错控制框架，使集群能够在未知模型参数条件下保持稳定",
+          "desc": "同时，在模型不确定条件下，构建了基于数据驱动与最优化理论的分布式智能容错控制框架，使集群能够在未知模型参数条件下保持稳定运行，保证了系统在并发故障情形下的容错性与自适应性。",
           "evidence": [
             {
-              "quote": "通过引入一致性指标与自愈重构机制，集群能够在节点损失比例较高的条件下迅速完成拓扑修复与功能恢复，确保编队结构完整性与任务执行的连续性。",
+              "quote": "同时，在模型不确定条件下，构建了基于数据驱动与最优化理论的分布式智能容错控制框架，使集群能够在未知模型参数条件下保持稳定运行，保证了系统在并发故障情形下的容错性与自适应性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3269,
-                "end_char": 3335
+                "start_char": 3145,
+                "end_char": 3230
               },
               "version": "dde1f633d17b31b410bc"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,312 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7565070cd425",
-          "name": "大集群自适应编队",
-          "desc": "实现大规模集群自适应自组织蜂拥编队并抑制失效分散",
+          "id": "item-83d51e594ccd",
+          "name": "可靠的容错性和自愈性是无人机蜂群在拒止环境下遂行既定任务的基础和前提，然而，复杂环境约束、多成员并发故障、战损以及模型不",
+          "desc": "可靠的容错性和自愈性是无人机蜂群在拒止环境下遂行既定任务的基础和前提，然而，复杂环境约束、多成员并发故障、战损以及模型不确定等因素使得容错与自愈控制面临严峻挑战。",
           "evidence": [
             {
-              "quote": "所提出的技术方法不仅实现了大规模无人机集群的自适应自组织蜂拥编队控制，还能够有效抑制大规模成员节点失效带来的编队分散与失稳现象，增强集群在复杂对抗环境下的持续作战能力与自组织协调能力。",
+              "quote": "可靠的容错性和自愈性是无人机蜂群在拒止环境下遂行既定任务的基础和前提，然而，复杂环境约束、多成员并发故障、战损以及模型不确定等因素使得容错与自愈控制面临严峻挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3348,
-                "end_char": 3439
+                "start_char": 653,
+                "end_char": 733
               },
               "version": "dde1f633d17b31b410bc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-1cdc21711de1",
+          "name": "本项目针对无人机集群系统在复杂环境下的可靠性、容错性和抗毁性需求，围绕不确定环境、多源扰动以及节点失效等核心问题开展了系",
+          "desc": "本项目针对无人机集群系统在复杂环境下的可靠性、容错性和抗毁性需求，围绕不确定环境、多源扰动以及节点失效等核心问题开展了系统性研究，提出了一系列能够提升集群系统鲁棒性与适应性的控制方法与策略。",
+          "evidence": [
+            {
+              "quote": "本项目针对无人机集群系统在复杂环境下的可靠性、容错性和抗毁性需求，围绕不确定环境、多源扰动以及节点失效等核心问题开展了系统性研究，提出了一系列能够提升集群系统鲁棒性与适应性的控制方法与策略。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2983,
+                "end_char": 3077
+              },
+              "version": "dde1f633d17b31b410bc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0bc70ac89517"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d01e2a79f99c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Recursive Grouping Based Fault Self-Healing of UAV Swarm With Individuals Failure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-56165e2b9ca9",
+      "evidence": [
+        {
+          "quote": "Distributed Recursive Grouping Based Fault Self-Healing of UAV Swarm With Individuals Failure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3465,
+            "end_char": 3557
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d01e2a79f99c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2d1f8b16c843"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于强化学习的火星无人机状态约束控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26a0fc033126",
+      "evidence": [
+        {
+          "quote": "基于强化学习的火星无人机状态约束控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3630,
+            "end_char": 3647
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d01e2a79f99c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b7d4587e510f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multilayer self‐organized aggregation control for large‐scale unmanned aerial vehicle swarms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c144d2d8c29c",
+      "evidence": [
+        {
+          "quote": "Multilayer self‐organized aggregation control for large‐scale unmanned aerial vehicle swarms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3677,
+            "end_char": 3768
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2d1f8b16c843"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7565070cd425"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "驾驶脑认知技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a2e5cefbd4c4",
+      "evidence": [
+        {
+          "quote": "驾驶脑认知技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3829,
+            "end_char": 3838
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b7d4587e510f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7565070cd425"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Level-Based Distributed Recursive Self-Healing Algorithm of Unmanned Aerial Vehicle Swarm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-522003aa79e0",
+      "evidence": [
+        {
+          "quote": "A Level-Based Distributed Recursive Self-Healing Algorithm of Unmanned Aerial Vehicle Swarm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3879,
+            "end_char": 3969
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种个体失效下的无人机集群自愈控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4abe85b3f2cb",
+      "evidence": [
+        {
+          "quote": "一种个体失效下的无人机集群自愈控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4029,
+            "end_char": 4047
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第七届全国集群智能与协同控制大会最佳论文奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01b87661df0a",
+      "evidence": [
+        {
+          "quote": "第七届全国集群智能与协同控制大会最佳论文奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4083,
+            "end_char": 4103
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "问题特性驱动的复杂系统协同控制与智能决策技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1402e29f8d7f",
+      "evidence": [
+        {
+          "quote": "问题特性驱动的复杂系统协同控制与智能决策技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4162,
+            "end_char": 4186
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于三维速度障碍模型和改进人工势场法的无人机编队防碰撞方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-efe045d2f294",
+      "evidence": [
+        {
+          "quote": "一种基于三维速度障碍模型和改进人工势场法的无人机编队防碰撞方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4254,
+            "end_char": 4284
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进人工势场法和自适应神经网络的共轴双旋翼无人机避障飞行控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1803ef471b3e",
+      "evidence": [
+        {
+          "quote": "基于改进人工势场法和自适应神经网络的共轴双旋翼无人机避障飞行控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4314,
+            "end_char": 4345
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "无人智能集群系统决策与控制研究进展",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-17ea3525112b",
+      "evidence": [
+        {
+          "quote": "无人智能集群系统决策与控制研究进展",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4375,
+            "end_char": 4391
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Distributed Recursive Self-Repairing Algorithm of UAV Swarm with Optimal Path",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c70ae0d9e369",
+      "evidence": [
+        {
+          "quote": "A Distributed Recursive Self-Repairing Algorithm of UAV Swarm with Optimal Path",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4425,
+            "end_char": 4503
+          },
+          "version": "dde1f633d17b31b410bc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

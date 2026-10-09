@@ -2,15 +2,20 @@
   "doc_id": "054354f6cbdf40cb363e",
   "version": "7cd843a675a7c7df3c00",
   "source_hash": "5c95a64d1a9077eb6dfb8b5be32ec911f2a206e17c28a4eebdeddfb11292725f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:08:06.649493+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.569488+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f896d5b17da2",
-          "name": "工业机器人三维目标抓取",
-          "desc": "复杂工业场景下三维目标分类与位姿估计",
+          "id": "item-c203cf1928eb",
+          "name": "基于视觉传感器实现工业机器人对三维目标的分类与位姿估计是进行目标抓取任务的基础研究。",
+          "desc": "基于视觉传感器实现工业机器人对三维目标的分类与位姿估计是进行目标抓取任务的基础研究。",
           "evidence": [
             {
               "quote": "基于视觉传感器实现工业机器人对三维目标的分类与位姿估计是进行目标抓取任务的基础研究。",
@@ -29,6 +34,22 @@
                 "basis": "parsed_text",
                 "start_char": 648,
                 "end_char": 689
+              },
+              "version": "7cd843a675a7c7df3c00"
+            }
+          ]
+        },
+        {
+          "id": "item-bfc3a47874c1",
+          "name": "本项目的开展对提升复杂工业场景下工业机器人三维感知与操作能力具有重要的借鉴意义，为工业场景下目标抓取、装配与智能交互等应",
+          "desc": "本项目的开展对提升复杂工业场景下工业机器人三维感知与操作能力具有重要的借鉴意义，为工业场景下目标抓取、装配与智能交互等应用提供了更好的技术支持。",
+          "evidence": [
+            {
+              "quote": "本项目的开展对提升复杂工业场景下工业机器人三维感知与操作能力具有重要的借鉴意义，为工业场景下目标抓取、装配与智能交互等应用提供了更好的技术支持。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3693,
+                "end_char": 3764
               },
               "version": "7cd843a675a7c7df3c00"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1d217c008e9b",
-          "name": "精度低实时性差数据缺",
-          "desc": "传统方法精度低、数据处理困难、实时性差，样本与标注制约",
+          "id": "item-13297ac92617",
+          "name": "（2）针对传统基于NeRF（Neural Radiance Fields）的方法重建结果语义缺失、几何表达隐式且难以编辑",
+          "desc": "（2）针对传统基于NeRF（Neural Radiance Fields）的方法重建结果语义缺失、几何表达隐式且难以编辑复用的问题，开展了融合语义先验与神经辐射场的显式三维资产重建方法研究，输出结构化、可编辑、可复用的三维几何资产，为下游姿态估计任务提供支撑。",
           "evidence": [
             {
-              "quote": "传统三维目标分类与位姿估计技术存在精度低、数据处理困难和实时性较差的问题。",
+              "quote": "（2）针对传统基于NeRF（Neural Radiance Fields）的方法重建结果语义缺失、几何表达隐式且难以编辑复用的问题，开展了融合语义先验与神经辐射场的显式三维资产重建方法研究，输出结构化、可编辑、可复用的三维几何资产，为下游姿态估计任务提供支撑。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 690,
-                "end_char": 726
+                "start_char": 3305,
+                "end_char": 3434
+              },
+              "version": "7cd843a675a7c7df3c00"
+            }
+          ]
+        },
+        {
+          "id": "item-bbed6aaee156",
+          "name": "围绕工业零件弱纹理、对称性强、几何细节复杂导致姿态估计精度与稳定性不足的问题，研究了基于三维点云几何表达的工业零件6D姿",
+          "desc": "围绕工业零件弱纹理、对称性强、几何细节复杂导致姿态估计精度与稳定性不足的问题，研究了基于三维点云几何表达的工业零件6D姿态估计目标特征提取网络，形成以几何结构建模为核心的技术路线。",
+          "evidence": [
+            {
+              "quote": "围绕工业零件弱纹理、对称性强、几何细节复杂导致姿态估计精度与稳定性不足的问题，研究了基于三维点云几何表达的工业零件6D姿态估计目标特征提取网络，形成以几何结构建模为核心的技术路线。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3435,
+                "end_char": 3524
               },
               "version": "7cd843a675a7c7df3c00"
             }
@@ -63,52 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9d672bec6e0a",
-          "name": "Isaac Sim合成数据标注",
-          "desc": "脚本化动态生成大规模精确标注数据",
+          "id": "item-2dc088103a40",
+          "name": "其次，从特征融合角度，建立多模型多特征融合的深度神经网络网络模型，为三维目标表征方法提供理论支撑和技术参考。",
+          "desc": "其次，从特征融合角度，建立多模型多特征融合的深度神经网络网络模型，为三维目标表征方法提供理论支撑和技术参考。",
           "evidence": [
             {
-              "quote": "提出了基于Isaac Sim的合成数据集自动标注算法，实现脚本化动态生成大规模精确标注数据，并通过遮挡关系建模与样本筛选提升标注有效性。",
+              "quote": "其次，从特征融合角度，建立多模型多特征融合的深度神经网络网络模型，为三维目标表征方法提供理论支撑和技术参考。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3144,
-                "end_char": 3211
+                "start_char": 912,
+                "end_char": 965
               },
               "version": "7cd843a675a7c7df3c00"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8cfcb0773b2a",
-          "name": "点云6D姿态估计网络",
-          "desc": "以几何结构建模为核心的目标特征提取网络",
+          "id": "item-960bceb4ee24",
+          "name": "进一步地，通过设计和优化深度目标分类和位姿估计方法框架，提高机器人在三维目标上的模型精度、鲁棒性与泛化性，最终解决在目标",
+          "desc": "进一步地，通过设计和优化深度目标分类和位姿估计方法框架，提高机器人在三维目标上的模型精度、鲁棒性与泛化性，最终解决在目标抓取任务中的应用问题。",
           "evidence": [
             {
-              "quote": "研究了基于三维点云几何表达的工业零件6D姿态估计目标特征提取网络，形成以几何结构建模为核心的技术路线。",
+              "quote": "进一步地，通过设计和优化深度目标分类和位姿估计方法框架，提高机器人在三维目标上的模型精度、鲁棒性与泛化性，最终解决在目标抓取任务中的应用问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3474,
-                "end_char": 3524
+                "start_char": 966,
+                "end_char": 1036
               },
               "version": "7cd843a675a7c7df3c00"
             }
-          ]
-        },
-        {
-          "id": "item-fbc83d88a867",
-          "name": "多层残差感知位姿估计",
-          "desc": "编-解码器结构与多尺度特征融合",
-          "evidence": [
-            {
-              "quote": "提出了基于多层残差感知的点云6D姿态估计方法，采用编-解码器结构与多尺度特征融合策略，实现更高精度与更快推理速度。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3546,
-                "end_char": 3602
-              },
-              "version": "7cd843a675a7c7df3c00"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +140,128 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b53fcf45b390",
-          "name": "论文4篇与发明专利2项",
-          "desc": "二区期刊1篇、会议3篇，发明专利2项授权",
+          "id": "item-241ba8f42cc5",
+          "name": "基于视觉传感器实现工业机器人对三维目标的分类与位姿估计是进行目标抓取任务的基础研究。",
+          "desc": "基于视觉传感器实现工业机器人对三维目标的分类与位姿估计是进行目标抓取任务的基础研究。",
           "evidence": [
             {
-              "quote": "本项目当前已发表论文4篇（中科院二区期刊论文1篇，发表期刊为IEEE Transactions on Intelligent Transportation Systems；会议论文3篇）。本项目共申请并受理中国发明专利2项，其中授权2项。",
+              "quote": "基于视觉传感器实现工业机器人对三维目标的分类与位姿估计是进行目标抓取任务的基础研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3765,
-                "end_char": 3883
+                "start_char": 648,
+                "end_char": 689
               },
               "version": "7cd843a675a7c7df3c00"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-5ea157796dee",
+          "name": "本项目针对复杂工业场景下工业机器人三维感知与交互任务中的关键问题进行了若干研究，主要围绕虚拟合成数据生成、三维点云目标特",
+          "desc": "本项目针对复杂工业场景下工业机器人三维感知与交互任务中的关键问题进行了若干研究，主要围绕虚拟合成数据生成、三维点云目标特征提取与姿态估计方向，对工业场景下机器人装配过程中存在的实际问题建立相应模型，完成相关任务，并提出了系列算法，如下：（1）针对真实工业场景下数据采集困难、人工标注成本高的问题，提出了基于Isaac Sim的合成数据集自动标注算法，实现脚本化动态生成大规模精确标注数据，并通过遮挡关系建模与样本筛选提升标注有效性。",
+          "evidence": [
+            {
+              "quote": "本项目针对复杂工业场景下工业机器人三维感知与交互任务中的关键问题进行了若干研究，主要围绕虚拟合成数据生成、三维点云目标特征提取与姿态估计方向，对工业场景下机器人装配过程中存在的实际问题建立相应模型，完成相关任务，并提出了系列算法，如下：（1）针对真实工业场景下数据采集困难、人工标注成本高的问题，提出了基于Isaac Sim的合成数据集自动标注算法，实现脚本化动态生成大规模精确标注数据，并通过遮挡关系建模与样本筛选提升标注有效性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2996,
+                "end_char": 3211
+              },
+              "version": "7cd843a675a7c7df3c00"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f896d5b17da2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1d217c008e9b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Polygon Mesh Recovery via Segmentation Priors and Neural Radiance Fields",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2499b4be9732",
+      "evidence": [
+        {
+          "quote": "Polygon Mesh Recovery via Segmentation Priors and Neural Radiance Fields",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3918,
+            "end_char": 3989
+          },
+          "version": "7cd843a675a7c7df3c00"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1d217c008e9b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9d672bec6e0a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Latent Dynamics for Autonomous Shape Control of Deformable Object",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ef44fbd678a",
+      "evidence": [
+        {
+          "quote": "Learning Latent Dynamics for Autonomous Shape Control of Deformable Object",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4034,
+            "end_char": 4107
+          },
+          "version": "7cd843a675a7c7df3c00"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1d217c008e9b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8cfcb0773b2a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1d217c008e9b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fbc83d88a867"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fbc83d88a867"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b53fcf45b390"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9d672bec6e0a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b53fcf45b390"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2024 lEEE Transactions on Fuzzy Systems Outstanding Paper Award",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0e51aefe996",
+      "evidence": [
+        {
+          "quote": "2024 lEEE Transactions on Fuzzy Systems Outstanding Paper Award",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4150,
+            "end_char": 4212
+          },
+          "version": "7cd843a675a7c7df3c00"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

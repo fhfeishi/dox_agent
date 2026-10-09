@@ -2,15 +2,20 @@
   "doc_id": "c18f6e06659166d9a7c5",
   "version": "409ff916bc1dc9bf11cc",
   "source_hash": "2904bf7081e22a63a84e05d5368b7b4cea16c605cc102ccf36caaf66cd040a77",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:24.336279+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.337091+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-51c610590037",
-          "name": "飞行器智能控制应用",
-          "desc": "空天工程复杂动力系统解析建模难、计算能耗高及随机环境干扰强",
+          "id": "item-b25f350f3036",
+          "name": "神经网络作为人工智能的核心，其模型和性能研究成为前沿和热点。",
+          "desc": "神经网络作为人工智能的核心，其模型和性能研究成为前沿和热点。",
           "evidence": [
             {
-              "quote": "本项目针对空天工程领域复杂动力系统面临的解析建模难、计算能耗高及随机环境干扰强等关键挑战，开展了基于生物启发机制的脉冲神经网络（SNN）模型构建、数据驱动的系统辨识以及飞行器智能化应用研究",
+              "quote": "神经网络作为人工智能的核心，其模型和性能研究成为前沿和热点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 680
+              },
+              "version": "409ff916bc1dc9bf11cc"
+            }
+          ]
+        },
+        {
+          "id": "item-d2f998515c0b",
+          "name": "本项目针对空天工程领域复杂动力系统面临的解析建模难、计算能耗高及随机环境干扰强等关键挑战，开展了基于生物启发机制的脉冲神",
+          "desc": "本项目针对空天工程领域复杂动力系统面临的解析建模难、计算能耗高及随机环境干扰强等关键挑战，开展了基于生物启发机制的脉冲神经网络（SNN）模型构建、数据驱动的系统辨识以及飞行器智能化应用研究。",
+          "evidence": [
+            {
+              "quote": "本项目针对空天工程领域复杂动力系统面临的解析建模难、计算能耗高及随机环境干扰强等关键挑战，开展了基于生物启发机制的脉冲神经网络（SNN）模型构建、数据驱动的系统辨识以及飞行器智能化应用研究。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2838,
-                "end_char": 2931
+                "end_char": 2932
               },
               "version": "409ff916bc1dc9bf11cc"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-65ce98980c3f",
-          "name": "样本量与噪声干扰",
-          "desc": "传统方法需大量样本且在强脉冲噪声干扰下辨识困难",
-          "evidence": [
-            {
-              "quote": "发展了小样本鲁棒稀疏辨识与流形降维预测方法，实现了在仅需传统方法20%-30%样本量及强脉冲噪声干扰下对系统漂移扩散项的精准重构",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3130,
-                "end_char": 3193
-              },
-              "version": "409ff916bc1dc9bf11cc"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4b66367cb62c",
-          "name": "混合SNN模型HySNN",
-          "desc": "结合稀疏性、兴奋-抑制平衡机制和自突触特性，构建兼顾表征能力与低能耗的混合SNN",
+          "id": "item-12ee4172715a",
+          "name": "本项目成果实现了“理论建模—数据驱动—工程应用”的深度融合，为复杂系统的智能化控制、故障诊断及结构优化设计提供了重要的理",
+          "desc": "本项目成果实现了“理论建模—数据驱动—工程应用”的深度融合，为复杂系统的智能化控制、故障诊断及结构优化设计提供了重要的理论支撑与算法工具。",
           "evidence": [
             {
-              "quote": "基于神经元的连续脉冲机制，结合神经元网络的稀疏性、兴奋 - 抑制平衡机制和自突触特性，构建了兼顾表征能力与低能耗特性的混合SNN模型（HySNN）",
+              "quote": "本项目成果实现了“理论建模—数据驱动—工程应用”的深度融合，为复杂系统的智能化控制、故障诊断及结构优化设计提供了重要的理论支撑与算法工具。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2953,
-                "end_char": 3025
+                "start_char": 3421,
+                "end_char": 3489
               },
               "version": "409ff916bc1dc9bf11cc"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5c1b486ddded",
-          "name": "信息池化与ADMM剪枝",
-          "desc": "集成信息池化模块及对称加速随机ADMM剪枝策略，实现高达355.9倍模型压缩",
+          "id": "item-84b0ee8510b1",
+          "name": "本项目将揭示MSNN模型高智能和高效能的性能机理和算法机制，为类脑智能的发展和新一代飞行器智能化控制的设计提供强有力的理",
+          "desc": "本项目将揭示MSNN模型高智能和高效能的性能机理和算法机制，为类脑智能的发展和新一代飞行器智能化控制的设计提供强有力的理论基础和应用支撑。",
           "evidence": [
             {
-              "quote": "提出了集成信息池化模块及对称加速随机ADMM剪枝策略，实现了LeNet-5等模型高达355.9倍的压缩比，构建了低能耗边缘计算架构",
+              "quote": "本项目将揭示MSNN模型高智能和高效能的性能机理和算法机制，为类脑智能的发展和新一代飞行器智能化控制的设计提供强有力的理论基础和应用支撑。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3195,
-                "end_char": 3259
+                "start_char": 980,
+                "end_char": 1048
               },
               "version": "409ff916bc1dc9bf11cc"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,524 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ab5def712138",
-          "name": "航天器故障诊断应用",
-          "desc": "实现空天航天器滚动轴承故障诊断和姿态动力学高精度低能耗辨识与预测",
+          "id": "item-a78c4e9acc00",
+          "name": "神经网络作为人工智能的核心，其模型和性能研究成为前沿和热点。",
+          "desc": "神经网络作为人工智能的核心，其模型和性能研究成为前沿和热点。",
           "evidence": [
             {
-              "quote": "结合HySNN模型与小样本辨识框架，实现了空天航天器滚动轴承故障诊断和姿态动力学高精度低能耗辨识与预测",
+              "quote": "神经网络作为人工智能的核心，其模型和性能研究成为前沿和热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3317,
-                "end_char": 3367
+                "start_char": 651,
+                "end_char": 680
               },
               "version": "409ff916bc1dc9bf11cc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-ac5b84d9a7c2",
-          "name": "柔性航天器容错控制",
-          "desc": "揭示能量采集系统首次穿越可靠性，发展具有振动抑制功能的柔性航天器容错姿态控制策略",
+          "id": "item-9b8f20f7e816",
+          "name": "本项目针对空天工程领域复杂动力系统面临的解析建模难、计算能耗高及随机环境干扰强等关键挑战，开展了基于生物启发机制的脉冲神",
+          "desc": "本项目针对空天工程领域复杂动力系统面临的解析建模难、计算能耗高及随机环境干扰强等关键挑战，开展了基于生物启发机制的脉冲神经网络（SNN）模型构建、数据驱动的系统辨识以及飞行器智能化应用研究。",
           "evidence": [
             {
-              "quote": "揭示了随机激励下飞行器能量采集系统的首次穿越可靠性，发展了具有振动抑制功能的柔性航天器容错姿态控制策略",
+              "quote": "本项目针对空天工程领域复杂动力系统面临的解析建模难、计算能耗高及随机环境干扰强等关键挑战，开展了基于生物启发机制的脉冲神经网络（SNN）模型构建、数据驱动的系统辨识以及飞行器智能化应用研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3369,
-                "end_char": 3419
+                "start_char": 2838,
+                "end_char": 2932
               },
               "version": "409ff916bc1dc9bf11cc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-51c610590037"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-65ce98980c3f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Effect of Wedge Duration and Electromagnetic Noise on Spiral Wave Dynamics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-054459ba0399",
+      "evidence": [
+        {
+          "quote": "Effect of Wedge Duration and Electromagnetic Noise on Spiral Wave Dynamics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3515,
+            "end_char": 3588
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-65ce98980c3f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4b66367cb62c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reweighted Alternating Direction Method of Multipliers for DNN Weight Pruning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-795662ccdf71",
+      "evidence": [
+        {
+          "quote": "Reweighted Alternating Direction Method of Multipliers for DNN Weight Pruning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3647,
+            "end_char": 3723
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-65ce98980c3f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5c1b486ddded"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reliability of the Bi-Stable Piezoelectric Energy Harvester under Random Excitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1611f410cad5",
+      "evidence": [
+        {
+          "quote": "Reliability of the Bi-Stable Piezoelectric Energy Harvester under Random Excitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3792,
+            "end_char": 3874
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4b66367cb62c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ab5def712138"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Advanced Thermal Performance of Blood-Integrated Tri-Hybrid Nanofluid: An Artificial Neural Network-Based Modeling and Simulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5a8ba3081f2",
+      "evidence": [
+        {
+          "quote": "Advanced Thermal Performance of Blood-Integrated Tri-Hybrid Nanofluid: An Artificial Neural Network-Based Modeling and Simulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3939,
+            "end_char": 4067
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5c1b486ddded"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ac5b84d9a7c2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Constrained Drift and Splitting Transition of Electromagnetically Regulated Spiral Waves",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-90024b76498f",
+      "evidence": [
+        {
+          "quote": "Constrained Drift and Splitting Transition of Electromagnetically Regulated Spiral Waves",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4142,
+            "end_char": 4229
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Biologically inspired information integration pooling module of spiking neural networks for rolling bearing fault diagnosis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20bb8e74f97c",
+      "evidence": [
+        {
+          "quote": "Biologically inspired information integration pooling module of spiking neural networks for rolling bearing fault diagnosis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4288,
+            "end_char": 4410
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prescribed Performance Synchronization of Neural Networks with Impulsive Effects",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d145661d1053",
+      "evidence": [
+        {
+          "quote": "Prescribed Performance Synchronization of Neural Networks with Impulsive Effects",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4464,
+            "end_char": 4543
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Few-Shot Identification Method for Stochastic Dynamical Systems Based on Residual Multipeaks Adaptive Sampling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d11d7e4815c2",
+      "evidence": [
+        {
+          "quote": "A Few-Shot Identification Method for Stochastic Dynamical Systems Based on Residual Multipeaks Adaptive Sampling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4610,
+            "end_char": 4721
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deterministic Analysis of Stochastic FHN Systems Based on Gaussian Decoupling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a09179dfe2c1",
+      "evidence": [
+        {
+          "quote": "Deterministic Analysis of Stochastic FHN Systems Based on Gaussian Decoupling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4805,
+            "end_char": 4881
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Asymptotic stability of a nonlinear energy harvester with mass disturbance undergoing Markovian jump",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7857717c0ed5",
+      "evidence": [
+        {
+          "quote": "Asymptotic stability of a nonlinear energy harvester with mass disturbance undergoing Markovian jump",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4950,
+            "end_char": 5049
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pattern transition and regulation in a subthalamopallidal network 2 under electromagnetic effect",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-78e014849615",
+      "evidence": [
+        {
+          "quote": "Pattern transition and regulation in a subthalamopallidal network 2 under electromagnetic effect",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5129,
+            "end_char": 5224
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive backward stepwise selection of fast sparse identification of nonlinear dynamics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec4dfd9ff81e",
+      "evidence": [
+        {
+          "quote": "Adaptive backward stepwise selection of fast sparse identification of nonlinear dynamics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5303,
+            "end_char": 5390
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Double-Edged Effect of Astrocyte in the Transition of Physiopathological States in Parkinson's Disease",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0487dcd47db3",
+      "evidence": [
+        {
+          "quote": "Double-Edged Effect of Astrocyte in the Transition of Physiopathological States in Parkinson's Disease",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5455,
+            "end_char": 5556
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Numerical Simulation of Magnetised Nanofluid Flow with Improved Finite Difference Method for Drug Delivery Application",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bef7c7c115e3",
+      "evidence": [
+        {
+          "quote": "Numerical Simulation of Magnetised Nanofluid Flow with Improved Finite Difference Method for Drug Delivery Application",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5624,
+            "end_char": 5741
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A density-based manifold learning framework for reconstructing high-dimensional dynamical systems with outliers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-afdc39ddd0fc",
+      "evidence": [
+        {
+          "quote": "A density-based manifold learning framework for reconstructing high-dimensional dynamical systems with outliers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5797,
+            "end_char": 5907
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Modelling and Performance Analysis of Deployable Telescopic Tubular Mast",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c2d1f9b9fdf",
+      "evidence": [
+        {
+          "quote": "Dynamic Modelling and Performance Analysis of Deployable Telescopic Tubular Mast",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5980,
+            "end_char": 6059
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Entropic Stochastic Resonance of Finite-Size Particles in Confined Brownian Transport",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9745444908b",
+      "evidence": [
+        {
+          "quote": "Entropic Stochastic Resonance of Finite-Size Particles in Confined Brownian Transport",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6121,
+            "end_char": 6205
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Regularized least absolute deviation-based sparse identification of dynamical systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4f19a55d5fa",
+      "evidence": [
+        {
+          "quote": "Regularized least absolute deviation-based sparse identification of dynamical systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6275,
+            "end_char": 6359
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Response Analysis of the Three-Degree-of-Freedom Vibroimpact System with an Uncertain Parameter",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-60cd84ddde5f",
+      "evidence": [
+        {
+          "quote": "Response Analysis of the Three-Degree-of-Freedom Vibroimpact System with an Uncertain Parameter",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6414,
+            "end_char": 6508
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "陕西省科学技术二等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb729d2989ad",
+      "evidence": [
+        {
+          "quote": "陕西省科学技术二等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6565,
+            "end_char": 6574
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Machine Learning-Integrated Computational Analysis on a Blood-Based Ternary Nanofluid Flow in a Stenosed Artery with the Artificial Neural Networks and Modified Finite Difference Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d2a563fbb62",
+      "evidence": [
+        {
+          "quote": "Machine Learning-Integrated Computational Analysis on a Blood-Based Ternary Nanofluid Flow in a Stenosed Artery with the Artificial Neural Networks and Modified Finite Difference Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6611,
+            "end_char": 6797
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prescribed performance projective synchronization for unknown complex networks with mismatched dimensions via event-triggered mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b107801c07d6",
+      "evidence": [
+        {
+          "quote": "Prescribed performance projective synchronization for unknown complex networks with mismatched dimensions via event-triggered mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6870,
+            "end_char": 7004
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Firing activities and magnetic stimulation effects in a Cortico-basal ganglia-thalamus neural network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e446e25e1957",
+      "evidence": [
+        {
+          "quote": "Firing activities and magnetic stimulation effects in a Cortico-basal ganglia-thalamus neural network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7076,
+            "end_char": 7176
+          },
+          "version": "409ff916bc1dc9bf11cc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 22,
+        "extracted": 22
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

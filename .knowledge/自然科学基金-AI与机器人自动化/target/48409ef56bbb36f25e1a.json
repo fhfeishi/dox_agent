@@ -2,15 +2,20 @@
   "doc_id": "48409ef56bbb36f25e1a",
   "version": "a90ae4952c2543ffae61",
   "source_hash": "7942c37e0bbf8202dad2cf965f0c3c78452835ef38dca8484275f830cec0aab7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:08:08.130147+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.157692+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5b418efc891f",
-          "name": "高速铁路入侵目标识别",
-          "desc": "自主驾驶智能高铁环境状态智能感知",
+          "id": "item-662a71deb078",
+          "name": "研发自主驾驶高速列车是世界铁路智能化的重要方向，也是落实我国交通强国战略的重要举措，以目标识别为基础的环境状态智能感知是",
+          "desc": "研发自主驾驶高速列车是世界铁路智能化的重要方向，也是落实我国交通强国战略的重要举措，以目标识别为基础的环境状态智能感知是自主驾驶的基础，也是国内外研究的热点。",
           "evidence": [
             {
-              "quote": "研发自主驾驶高速列车是世界铁路智能化的重要方向，也是落实我国交通强国战略的重要举措",
+              "quote": "研发自主驾驶高速列车是世界铁路智能化的重要方向，也是落实我国交通强国战略的重要举措，以目标识别为基础的环境状态智能感知是自主驾驶的基础，也是国内外研究的热点。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 655,
-                "end_char": 695
+                "end_char": 733
+              },
+              "version": "a90ae4952c2543ffae61"
+            }
+          ]
+        },
+        {
+          "id": "item-c665e0d43eda",
+          "name": "本项目的研究对提升既有高速铁路安全运营水平、加快我国研究自主驾驶智能高铁，持续保持高铁技术的世界引领地位具有重要的理论意",
+          "desc": "本项目的研究对提升既有高速铁路安全运营水平、加快我国研究自主驾驶智能高铁，持续保持高铁技术的世界引领地位具有重要的理论意义和工程应用价值。",
+          "evidence": [
+            {
+              "quote": "本项目的研究对提升既有高速铁路安全运营水平、加快我国研究自主驾驶智能高铁，持续保持高铁技术的世界引领地位具有重要的理论意义和工程应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 970,
+                "end_char": 1038
               },
               "version": "a90ae4952c2543ffae61"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-08a315b59b9a",
-          "name": "入侵样本少获取难检不准",
-          "desc": "高铁复杂环境入侵样本数量少、获取难、检不准",
-          "evidence": [
-            {
-              "quote": "本项目针对高速铁路复杂运行环境下入侵样本数量少、获取难、检不准的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2697,
-                "end_char": 2730
-              },
-              "version": "a90ae4952c2543ffae61"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-34b718766b09",
-          "name": "多源特征配准融合检测",
-          "desc": "红外、可见光与激光雷达配准及多层级特征融合",
+          "id": "item-4ca535b91e3a",
+          "name": "针对铁路场景下泥石流等入侵样本极度稀缺问题，提出了基于度量元学习的小样本目标识别模型，通过基于通道注意力机制的特征提取网",
+          "desc": "针对铁路场景下泥石流等入侵样本极度稀缺问题，提出了基于度量元学习的小样本目标识别模型，通过基于通道注意力机制的特征提取网络突出重要特征权重，通过基于类中心微调的网络用于类别中心的修正，并构建了中心相关损失函数用于小样本网络训练以提升特征空间中同类别特征分布的紧凑性，在铁路小样本目标识别中取得了较好效果。",
           "evidence": [
             {
-              "quote": "从而实现红外、可见光与激光雷达等多源特征信息配准，并基于配准信息多层级特征融合实现可靠目标检测",
+              "quote": "针对铁路场景下泥石流等入侵样本极度稀缺问题，提出了基于度量元学习的小样本目标识别模型，通过基于通道注意力机制的特征提取网络突出重要特征权重，通过基于类中心微调的网络用于类别中心的修正，并构建了中心相关损失函数用于小样本网络训练以提升特征空间中同类别特征分布的紧凑性，在铁路小样本目标识别中取得了较好效果。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2880,
-                "end_char": 2926
+                "start_char": 3024,
+                "end_char": 3175
               },
               "version": "a90ae4952c2543ffae61"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3802f18c565d",
-          "name": "生成对抗样本增强",
-          "desc": "改进生成对抗网络与姿态迁移生成入侵样本",
+          "id": "item-78fdb3d8cf82",
+          "name": "研究利用合成入侵样本、高铁场景知识图谱对入侵目标识别模型进行迁移优化的小样本目标识别方法；",
+          "desc": "研究利用合成入侵样本、高铁场景知识图谱对入侵目标识别模型进行迁移优化的小样本目标识别方法；",
           "evidence": [
             {
-              "quote": "提出了基于改进生成对抗网络的铁路入侵目标生成模型，特别针对入侵行人样本增强问题，提出了基于姿态迁移的铁路场景入侵行人生成模型，丰富了铁路场景入侵样本。",
+              "quote": "研究利用合成入侵样本、高铁场景知识图谱对入侵目标识别模型进行迁移优化的小样本目标识别方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2949,
-                "end_char": 3023
+                "start_char": 881,
+                "end_char": 925
               },
               "version": "a90ae4952c2543ffae61"
             }
-          ]
-        },
-        {
-          "id": "item-7f2036e942d2",
-          "name": "度量元学习小样本识别",
-          "desc": "通道注意力特征提取与类中心微调损失",
-          "evidence": [
-            {
-              "quote": "提出了基于度量元学习的小样本目标识别模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3046,
-                "end_char": 3065
-              },
-              "version": "a90ae4952c2543ffae61"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +107,268 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e4751f5b53aa",
-          "name": "边缘端实时检测部署",
-          "desc": "算法部署NVIDIA AGX Xavier并经TensorRT加速实现现场实时处理",
+          "id": "item-06ee00fa7d62",
+          "name": "研发自主驾驶高速列车是世界铁路智能化的重要方向，也是落实我国交通强国战略的重要举措，以目标识别为基础的环境状态智能感知是",
+          "desc": "研发自主驾驶高速列车是世界铁路智能化的重要方向，也是落实我国交通强国战略的重要举措，以目标识别为基础的环境状态智能感知是自主驾驶的基础，也是国内外研究的热点。",
           "evidence": [
             {
-              "quote": "通过将识别算法部署到NVIDIA AGX jetson Xavier上，利用TensorRT模型推理加速库对算法模型进行推理层面的加速，实现了现场边缘端实时处理。",
+              "quote": "研发自主驾驶高速列车是世界铁路智能化的重要方向，也是落实我国交通强国战略的重要举措，以目标识别为基础的环境状态智能感知是自主驾驶的基础，也是国内外研究的热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3434,
-                "end_char": 3514
+                "start_char": 655,
+                "end_char": 733
               },
               "version": "a90ae4952c2543ffae61"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-bceb4905a338",
+          "name": "本项目针对高速铁路复杂运行环境下入侵样本数量少、获取难、检不准的问题，重点开展基于铁路图像全景分割与场景要素关系辨识的铁",
+          "desc": "本项目针对高速铁路复杂运行环境下入侵样本数量少、获取难、检不准的问题，重点开展基于铁路图像全景分割与场景要素关系辨识的铁路场景理解模型构建，针对夜间、雨天等复杂环境下目标检测难题，提出了一种仅考虑平移和缩放的图像变换模型以减少配准参数，基于铁路轨道直线特征约束进行从粗到细的精确配准，并设计了一种基于边缘图的SSIM（结构相似性指数）来衡量多模态图像的变换模型精度，从而实现红外、可见光与激光雷达等多源特征信息配准，并基于配准信息多层级特征融合实现可靠目标检测；",
+          "evidence": [
+            {
+              "quote": "本项目针对高速铁路复杂运行环境下入侵样本数量少、获取难、检不准的问题，重点开展基于铁路图像全景分割与场景要素关系辨识的铁路场景理解模型构建，针对夜间、雨天等复杂环境下目标检测难题，提出了一种仅考虑平移和缩放的图像变换模型以减少配准参数，基于铁路轨道直线特征约束进行从粗到细的精确配准，并设计了一种基于边缘图的SSIM（结构相似性指数）来衡量多模态图像的变换模型精度，从而实现红外、可见光与激光雷达等多源特征信息配准，并基于配准信息多层级特征融合实现可靠目标检测；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2697,
+                "end_char": 2927
+              },
+              "version": "a90ae4952c2543ffae61"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5b418efc891f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-08a315b59b9a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向铁路周界防护的多源图像目标检测研究综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-560e769f0da4",
+      "evidence": [
+        {
+          "quote": "面向铁路周界防护的多源图像目标检测研究综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3540,
+            "end_char": 3560
+          },
+          "version": "a90ae4952c2543ffae61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-08a315b59b9a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-34b718766b09"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust IR-VIS image registration with different FOVs in railway intrusion detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ee38356a05a",
+      "evidence": [
+        {
+          "quote": "Robust IR-VIS image registration with different FOVs in railway intrusion detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3590,
+            "end_char": 3672
+          },
+          "version": "a90ae4952c2543ffae61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-08a315b59b9a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3802f18c565d"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "列车运行净空感知及远程瞭望关键技术和应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc82d566f8e5",
+      "evidence": [
+        {
+          "quote": "列车运行净空感知及远程瞭望关键技术和应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3749,
+            "end_char": 3768
+          },
+          "version": "a90ae4952c2543ffae61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-08a315b59b9a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7f2036e942d2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于度量元学习的铁路小样本入侵目标检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8a0597853fd",
+      "evidence": [
+        {
+          "quote": "基于度量元学习的铁路小样本入侵目标检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3819,
+            "end_char": 3839
+          },
+          "version": "a90ae4952c2543ffae61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7f2036e942d2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e4751f5b53aa"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于小样本学习的铁路场景不常见入侵目标识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b99905fd258e",
+      "evidence": [
+        {
+          "quote": "一种基于小样本学习的铁路场景不常见入侵目标识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3859,
+            "end_char": 3883
+          },
+          "version": "a90ae4952c2543ffae61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-34b718766b09"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e4751f5b53aa"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于姿势迁移的铁路行人入侵的图像序列生成方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7fe29584c942",
+      "evidence": [
+        {
+          "quote": "基于姿势迁移的铁路行人入侵的图像序列生成方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3913,
+            "end_char": 3937
+          },
+          "version": "a90ae4952c2543ffae61"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RailEINet: A novel scene segmentation network for automatic train operation based on feature alignment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-260033cf8782",
+      "evidence": [
+        {
+          "quote": "RailEINet: A novel scene segmentation network for automatic train operation based on feature alignment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3973,
+            "end_char": 4074
+          },
+          "version": "a90ae4952c2543ffae61"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Intrusion detection for high-speed railways based on unsupervised anomaly detection models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d69bb58ed381",
+      "evidence": [
+        {
+          "quote": "Intrusion detection for high-speed railways based on unsupervised anomaly detection models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4144,
+            "end_char": 4233
+          },
+          "version": "a90ae4952c2543ffae61"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于N3D_DIOU的图像与点云融合目标检测算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5967f9c145f9",
+      "evidence": [
+        {
+          "quote": "基于N3D_DIOU的图像与点云融合目标检测算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4277,
+            "end_char": 4300
+          },
+          "version": "a90ae4952c2543ffae61"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于激光与视觉融合的车辆自主定位与建图算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a48a857f6e5a",
+      "evidence": [
+        {
+          "quote": "基于激光与视觉融合的车辆自主定位与建图算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4323,
+            "end_char": 4343
+          },
+          "version": "a90ae4952c2543ffae61"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "136caf598f73bdd562ad",
   "version": "5ba34d1edf256ca18eda",
   "source_hash": "67fc222e1f4cf01cfef214f2ff32496f3f8e8bd257c3e5bbc750dd91cdd95d50",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:57.021503+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.677907+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6e590e6fcdf2",
-          "name": "软体机器人驱动传感一体化",
-          "desc": "软体机器人需兼具柔顺性与驱动传感功能的新结构",
+          "id": "item-88d7371eedfc",
+          "name": "软体机器人柔软的特性带来很多优势，但也导致传统的刚性传感以及执行器并不适用。",
+          "desc": "软体机器人柔软的特性带来很多优势，但也导致传统的刚性传感以及执行器并不适用。",
           "evidence": [
             {
-              "quote": "急需研制一种尽可能柔顺，且同时具备驱动与传感功能的新结构，推动软体机器人进一步发展",
+              "quote": "软体机器人柔软的特性带来很多优势，但也导致传统的刚性传感以及执行器并不适用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 744,
-                "end_char": 784
+                "start_char": 663,
+                "end_char": 700
+              },
+              "version": "5ba34d1edf256ca18eda"
+            }
+          ]
+        },
+        {
+          "id": "item-06f986ddf00c",
+          "name": "此外，设计了基于捻曲纤维和形状记忆合金拮抗配置的变刚度软体机械臂，通过闭环控制系统验证了其在重复定位精度上的优越性，并在",
+          "desc": "此外，设计了基于捻曲纤维和形状记忆合金拮抗配置的变刚度软体机械臂，通过闭环控制系统验证了其在重复定位精度上的优越性，并在机械臂末端集成三指抓手和内窥镜，展示了其在医疗场景中的应用潜力。",
+          "evidence": [
+            {
+              "quote": "此外，设计了基于捻曲纤维和形状记忆合金拮抗配置的变刚度软体机械臂，通过闭环控制系统验证了其在重复定位精度上的优越性，并在机械臂末端集成三指抓手和内窥镜，展示了其在医疗场景中的应用潜力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2697,
+                "end_char": 2788
               },
               "version": "5ba34d1edf256ca18eda"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1f4858ccb5b9",
-          "name": "附加组件限制独立驱动传感",
-          "desc": "已有方案需附加大量组件，软体机器人难以独立完成驱动与传感",
-          "evidence": [
-            {
-              "quote": "已有的解决方案，往往需要附加大量组件从而导致软体机器人难以独立的完成驱动与传感",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 701,
-                "end_char": 739
-              },
-              "version": "5ba34d1edf256ca18eda"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-88612d140a97",
-          "name": "导电捻曲纤维混合驱动",
-          "desc": "焦耳加热驱动特性结合减速电机设计混合驱动软体手指",
+          "id": "item-2dd033c347bc",
+          "name": "此外，设计了基于捻曲纤维和形状记忆合金拮抗配置的变刚度软体机械臂，通过闭环控制系统验证了其在重复定位精度上的优越性，并在",
+          "desc": "此外，设计了基于捻曲纤维和形状记忆合金拮抗配置的变刚度软体机械臂，通过闭环控制系统验证了其在重复定位精度上的优越性，并在机械臂末端集成三指抓手和内窥镜，展示了其在医疗场景中的应用潜力。",
           "evidence": [
             {
-              "quote": "结合减速电机设计混合驱动的软体手指",
+              "quote": "此外，设计了基于捻曲纤维和形状记忆合金拮抗配置的变刚度软体机械臂，通过闭环控制系统验证了其在重复定位精度上的优越性，并在机械臂末端集成三指抓手和内窥镜，展示了其在医疗场景中的应用潜力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2371,
-                "end_char": 2387
+                "start_char": 2697,
+                "end_char": 2788
               },
               "version": "5ba34d1edf256ca18eda"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5fcfbd8a1147",
-          "name": "形变-阻值本体感知映射",
-          "desc": "理论推导软体结构形变与捻曲纤维阻值变化的映射关系",
+          "id": "item-dddd56127170",
+          "name": "最后将驱动—传感一体化软体机器人设计方法用于软体机器人设计：基于捻曲纤维执行器本体感知软体模块研制了一款软体抓手，具备双",
+          "desc": "最后将驱动—传感一体化软体机器人设计方法用于软体机器人设计：基于捻曲纤维执行器本体感知软体模块研制了一款软体抓手，具备双向弯曲和传感功能。",
           "evidence": [
             {
-              "quote": "理论推导了软体结构形变与捻曲纤维阻值变化之间的映射关系",
+              "quote": "最后将驱动—传感一体化软体机器人设计方法用于软体机器人设计：基于捻曲纤维执行器本体感知软体模块研制了一款软体抓手，具备双向弯曲和传感功能。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2513,
-                "end_char": 2539
+                "start_char": 2578,
+                "end_char": 2646
               },
               "version": "5ba34d1edf256ca18eda"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,448 @@
       "state": "has",
       "items": [
         {
-          "id": "item-298e8cb6e60a",
-          "name": "本体感知软体抓手",
-          "desc": "具备双向弯曲和传感功能，可依电阻变化区分不同物体",
+          "id": "item-036c5564c20a",
+          "name": "软体机器人柔软的特性带来很多优势，但也导致传统的刚性传感以及执行器并不适用。",
+          "desc": "软体机器人柔软的特性带来很多优势，但也导致传统的刚性传感以及执行器并不适用。",
           "evidence": [
             {
-              "quote": "基于捻曲纤维执行器本体感知软体模块研制了一款软体抓手，具备双向弯曲和传感功能",
+              "quote": "软体机器人柔软的特性带来很多优势，但也导致传统的刚性传感以及执行器并不适用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2608,
-                "end_char": 2645
+                "start_char": 663,
+                "end_char": 700
               },
               "version": "5ba34d1edf256ca18eda"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-d67c778c3967",
-          "name": "变刚度软体机械臂",
-          "desc": "捻曲纤维与形状记忆合金拮抗配置，闭环验证重复定位精度优越性",
+          "id": "item-8c441c5481ef",
+          "name": "尽管软体机器人在研究中备受关注，由连续体结构和超弹性材料构成的软体机器人在传感和驱动方面仍然面临着重大挑战。",
+          "desc": "尽管软体机器人在研究中备受关注，由连续体结构和超弹性材料构成的软体机器人在传感和驱动方面仍然面临着重大挑战。",
           "evidence": [
             {
-              "quote": "设计了基于捻曲纤维和形状记忆合金拮抗配置的变刚度软体机械臂，通过闭环控制系统验证了其在重复定位精度上的优越性",
+              "quote": "尽管软体机器人在研究中备受关注，由连续体结构和超弹性材料构成的软体机器人在传感和驱动方面仍然面临着重大挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2700,
-                "end_char": 2753
+                "start_char": 2201,
+                "end_char": 2254
               },
               "version": "5ba34d1edf256ca18eda"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6e590e6fcdf2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1f4858ccb5b9"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Soft Actuator Based on Mini DC Motor and Supercoiled Polymer Artificial Muscle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8e2ffb246c56",
+      "evidence": [
+        {
+          "quote": "A Novel Soft Actuator Based on Mini DC Motor and Supercoiled Polymer Artificial Muscle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3068,
+            "end_char": 3153
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1f4858ccb5b9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-88612d140a97"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Novel Bionic Soft Robotic Hand With Dexterous Deformation and Reliable Grasping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85d23592cc3a",
+      "evidence": [
+        {
+          "quote": "Novel Bionic Soft Robotic Hand With Dexterous Deformation and Reliable Grasping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3241,
+            "end_char": 3319
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-88612d140a97"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d67c778c3967"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Self-Pumping Actuation Module and its Application in Untethered Soft Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ab3f77512a14",
+      "evidence": [
+        {
+          "quote": "Self-Pumping Actuation Module and its Application in Untethered Soft Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3422,
+            "end_char": 3496
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6e590e6fcdf2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5fcfbd8a1147"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Untethered Soft Robotic Gripper with Adjustable Grasping Modes and Force Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb62f6e2aeec",
+      "evidence": [
+        {
+          "quote": "An Untethered Soft Robotic Gripper with Adjustable Grasping Modes and Force Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3560,
+            "end_char": 3643
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5fcfbd8a1147"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-298e8cb6e60a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Proprioceptive Soft Robot Module Based on Supercoiled Polymer Artificial Muscle Strings",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fa0ca80fb0f2",
+      "evidence": [
+        {
+          "quote": "A Proprioceptive Soft Robot Module Based on Supercoiled Polymer Artificial Muscle Strings",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3727,
+            "end_char": 3815
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Quadrupedal Soft Robot Based on Kresling Origami Actuators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29c3a314bd64",
+      "evidence": [
+        {
+          "quote": "A Quadrupedal Soft Robot Based on Kresling Origami Actuators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3893,
+            "end_char": 3952
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于双层折纸结构和扭转折纸结构的软体两栖机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-56719beafc57",
+      "evidence": [
+        {
+          "quote": "一种基于双层折纸结构和扭转折纸结构的软体两栖机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4017,
+            "end_char": 4041
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Scaffold-Reinforced Actuator With Tunable Attitude Ability for Grasping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16ed918ae274",
+      "evidence": [
+        {
+          "quote": "A Novel Scaffold-Reinforced Actuator With Tunable Attitude Ability for Grasping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4064,
+            "end_char": 4142
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Implementation of a Two-Limbed 3T1R Haptic Device",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4439f29f603b",
+      "evidence": [
+        {
+          "quote": "Design and Implementation of a Two-Limbed 3T1R Haptic Device",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4235,
+            "end_char": 4294
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Dual-Mode Actuator for Soft Robotic Hand",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e29c7d3b86b",
+      "evidence": [
+        {
+          "quote": "A Dual-Mode Actuator for Soft Robotic Hand",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4341,
+            "end_char": 4382
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Three-Fingered Adaptive Gripper with Multiple Grasping Modes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ae35692b6b6",
+      "evidence": [
+        {
+          "quote": "A Three-Fingered Adaptive Gripper with Multiple Grasping Modes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4492,
+            "end_char": 4553
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于柔性腔道变形的力和本体位置反馈软体机器手指",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c9605dd2eae5",
+      "evidence": [
+        {
+          "quote": "基于柔性腔道变形的力和本体位置反馈软体机器手指",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4608,
+            "end_char": 4630
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Variable Stiffness and Tunable Bending Shape Soft Robotic Finger based on Thermoresponsive Polymers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16236d6620f1",
+      "evidence": [
+        {
+          "quote": "A Novel Variable Stiffness and Tunable Bending Shape Soft Robotic Finger based on Thermoresponsive Polymers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4658,
+            "end_char": 4764
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Soft Actuator with Programmable Design: Modeling, Prototyping, and Applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-87f23758c425",
+      "evidence": [
+        {
+          "quote": "Soft Actuator with Programmable Design: Modeling, Prototyping, and Applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4843,
+            "end_char": 4921
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Viko: An Adaptive Gecko Gripper with Vision-based Tactile Sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05b550ab7445",
+      "evidence": [
+        {
+          "quote": "Viko: An Adaptive Gecko Gripper with Vision-based Tactile Sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4999,
+            "end_char": 5062
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种本体感知扭转折纸结构的软体执行器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6afd13ef5c19",
+      "evidence": [
+        {
+          "quote": "一种本体感知扭转折纸结构的软体执行器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5155,
+            "end_char": 5172
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Soft Robotic Finger with Energy-Coupled Quadrastability",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1530adc7ef72",
+      "evidence": [
+        {
+          "quote": "Soft Robotic Finger with Energy-Coupled Quadrastability",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5197,
+            "end_char": 5251
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3D Printed Origami Actuators for a Multi-animal Inspired Soft Robot with Amphibious Locomotion and Tongue Hunting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-413f964b5727",
+      "evidence": [
+        {
+          "quote": "3D Printed Origami Actuators for a Multi-animal Inspired Soft Robot with Amphibious Locomotion and Tongue Hunting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5348,
+            "end_char": 5460
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向妇科检查的触觉感知软体机器手系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1edca216b732",
+      "evidence": [
+        {
+          "quote": "一种面向妇科检查的触觉感知软体机器手系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5523,
+            "end_char": 5542
+          },
+          "version": "5ba34d1edf256ca18eda"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

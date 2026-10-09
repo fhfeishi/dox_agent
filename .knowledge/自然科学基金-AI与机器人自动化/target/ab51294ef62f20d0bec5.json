@@ -2,15 +2,20 @@
   "doc_id": "ab51294ef62f20d0bec5",
   "version": "96e0ad86dad608a6d7a0",
   "source_hash": "67fd5f96e5edcfce76a412755b4b2289f1b851cc759d5b7261eaecfb9f7c63ac",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:43:11.155678+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.151758+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-560a4240f8dd",
-          "name": "柔性定制工业机器人",
-          "desc": "“大批次小批量多品种”柔性定制作业的工业机器人视觉感知与理解",
+          "id": "item-571f4d2dcaa3",
+          "name": "智能工业机器人已成为重要的研究热点，我国十三五规划提出要推动人工智能技术在工业机器人领域的应用。",
+          "desc": "智能工业机器人已成为重要的研究热点，我国十三五规划提出要推动人工智能技术在工业机器人领域的应用。",
           "evidence": [
             {
-              "quote": "本项目旨在研究面向柔性定制作业工业机器人的视觉感知与理解问题，针对三维重建、图像识别与语义理解、目标跟踪、缺陷检测、机器人抓取等任务",
+              "quote": "智能工业机器人已成为重要的研究热点，我国十三五规划提出要推动人工智能技术在工业机器人领域的应用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2983,
-                "end_char": 3048
+                "start_char": 673,
+                "end_char": 720
+              },
+              "version": "96e0ad86dad608a6d7a0"
+            }
+          ]
+        },
+        {
+          "id": "item-0825ee9b10ed",
+          "name": "机器视觉是实现智能化的核心技术之一，然而现有的视觉系统通常面向特定应用，无法满足柔性定制作业的需求。",
+          "desc": "机器视觉是实现智能化的核心技术之一，然而现有的视觉系统通常面向特定应用，无法满足柔性定制作业的需求。",
+          "evidence": [
+            {
+              "quote": "机器视觉是实现智能化的核心技术之一，然而现有的视觉系统通常面向特定应用，无法满足柔性定制作业的需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 765,
+                "end_char": 814
               },
               "version": "96e0ad86dad608a6d7a0"
             }
@@ -38,93 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d8c90fd441e5",
-          "name": "视觉系统难适配",
-          "desc": "现有视觉系统通常面向特定应用，无法满足柔性定制作业的需求",
-          "evidence": [
-            {
-              "quote": "机器视觉是实现智能化的核心技术之一，然而现有的视觉系统通常面向特定应用，无法满足柔性定制作业的需求",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 765,
-                "end_char": 813
-              },
-              "version": "96e0ad86dad608a6d7a0"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-0539a37b5a6b",
-          "name": "结构光CNN解码",
-          "desc": "利用卷积神经网络对空间二值结构光进行解码，提高三维重建精度和鲁棒性",
+          "id": "item-e536845b451d",
+          "name": "（2）提出浅层残差卷积循环神经网络模型，基于该模型实现快速目标识别与定位算法，并进一步研究基于循环神经网络的语义与场景理",
+          "desc": "（2）提出浅层残差卷积循环神经网络模型，基于该模型实现快速目标识别与定位算法，并进一步研究基于循环神经网络的语义与场景理解方法；",
           "evidence": [
             {
-              "quote": "研究三维重建，提出利用卷积神经网络对空间二值结构光进行解码的方法，提高三维重建的精度和鲁棒性",
+              "quote": "（2）提出浅层残差卷积循环神经网络模型，基于该模型实现快速目标识别与定位算法，并进一步研究基于循环神经网络的语义与场景理解方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3053,
-                "end_char": 3098
+                "start_char": 927,
+                "end_char": 990
               },
               "version": "96e0ad86dad608a6d7a0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-79968cdb4dd0",
-          "name": "深度特征提取识别",
-          "desc": "块残差神经网络模型、判别字典学习深度特征提取与特征交互语义对齐小样本学习",
+          "id": "item-8011a7525df7",
+          "name": "（4）针对动态目标检测与目标跟踪，提出融合时空信息与残差注意力机制的目标跟踪算法，提出基于对偶线性的结构化支持向量机与尺",
+          "desc": "（4）针对动态目标检测与目标跟踪，提出融合时空信息与残差注意力机制的目标跟踪算法，提出基于对偶线性的结构化支持向量机与尺度相关滤波器联合输出的判别式多尺度跟踪方法，提出基于多尺度扩张卷积神经网络，提出基于孪生卷积神经网络的目标跟踪方法，（5）研究了基于深度图的表面缺陷检测方法；",
           "evidence": [
             {
-              "quote": "研究图像特征属性分析与深度学习模型，提出块残差神经网络模型，提出基于判别字典学习的深度特征提取，提出基于加权的Schatten稀疏核范数正则化方法",
+              "quote": "（4）针对动态目标检测与目标跟踪，提出融合时空信息与残差注意力机制的目标跟踪算法，提出基于对偶线性的结构化支持向量机与尺度相关滤波器联合输出的判别式多尺度跟踪方法，提出基于多尺度扩张卷积神经网络，提出基于孪生卷积神经网络的目标跟踪方法，（5）研究了基于深度图的表面缺陷检测方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3103,
-                "end_char": 3175
+                "start_char": 3352,
+                "end_char": 3490
               },
               "version": "96e0ad86dad608a6d7a0"
             }
-          ]
-        },
-        {
-          "id": "item-53fd5be42d7c",
-          "name": "语义场景理解",
-          "desc": "p-拉普拉斯正则化逼近算法、自注意力混合嵌入模型与循环注意力语义关系检测",
-          "evidence": [
-            {
-              "quote": "研究图像语义与场景理解，提出p-拉普拉斯正则化逼近算法，提出自注意力混合嵌入模型，提出基于循环注意力机制的语义关系检测方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3202,
-                "end_char": 3262
-              },
-              "version": "96e0ad86dad608a6d7a0"
-            }
-          ]
-        },
-        {
-          "id": "item-e1aafcb02930",
-          "name": "目标跟踪与抓取",
-          "desc": "融合时空信息与残差注意力机制的目标跟踪算法及基于单张RGB图像的6D姿态估计",
-          "evidence": [
-            {
-              "quote": "针对动态目标检测与目标跟踪，提出融合时空信息与残差注意力机制的目标跟踪算法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3355,
-                "end_char": 3391
-              },
-              "version": "96e0ad86dad608a6d7a0"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,91 +107,1873 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3b83828fee31",
-          "name": "论文77篇与奖项",
-          "desc": "共发表学术论文77篇（SCI 54篇），申请专利25项，获云南省自然科学二等奖等奖项各1项",
+          "id": "item-070ee16ca17c",
+          "name": "智能工业机器人已成为重要的研究热点，我国十三五规划提出要推动人工智能技术在工业机器人领域的应用。",
+          "desc": "智能工业机器人已成为重要的研究热点，我国十三五规划提出要推动人工智能技术在工业机器人领域的应用。",
           "evidence": [
             {
-              "quote": "共发表学术论文77篇，其中SCI期刊论文54篇，申请专利25项。获得云南省自然科学二等奖、吴文俊人工智能技术发明二等奖和中国自动化学会技术发明二等奖各1项",
+              "quote": "智能工业机器人已成为重要的研究热点，我国十三五规划提出要推动人工智能技术在工业机器人领域的应用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3544,
-                "end_char": 3620
+                "start_char": 673,
+                "end_char": 720
               },
               "version": "96e0ad86dad608a6d7a0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-560a4240f8dd"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d8c90fd441e5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "TransNet: linkage recognition with contextual nexus for hard object",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-576c3ca2deff",
+      "evidence": [
+        {
+          "quote": "TransNet: linkage recognition with contextual nexus for hard object",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3647,
+            "end_char": 3713
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d8c90fd441e5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0539a37b5a6b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural Network Based Electronics Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e6a888395957",
+      "evidence": [
+        {
+          "quote": "Neural Network Based Electronics Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3777,
+            "end_char": 3821
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d8c90fd441e5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-79968cdb4dd0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "图像识别方法、装置、电子设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-109237820d3c",
+      "evidence": [
+        {
+          "quote": "图像识别方法、装置、电子设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3887,
+            "end_char": 3905
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d8c90fd441e5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-53fd5be42d7c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-Modality Compensation Convolutional Neural Networks for RGB-D Action Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f6210671f9c",
+      "evidence": [
+        {
+          "quote": "Cross-Modality Compensation Convolutional Neural Networks for RGB-D Action Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3938,
+            "end_char": 4023
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e1aafcb02930"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3b83828fee31"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "FIST-Toy: A Benchmark Dataset for Toy Component Classification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3adc2db9cfa9",
+      "evidence": [
+        {
+          "quote": "FIST-Toy: A Benchmark Dataset for Toy Component Classification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4098,
+            "end_char": 4159
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-79968cdb4dd0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3b83828fee31"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Global-Local Interplay in Semantic Alignment for Few-Shot Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9de21f04c29",
+      "evidence": [
+        {
+          "quote": "Global-Local Interplay in Semantic Alignment for Few-Shot Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4218,
+            "end_char": 4283
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep-Reinforcement Learning-Based Co-Evolution in a Predator-Prey System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-686baf6389f3",
+      "evidence": [
+        {
+          "quote": "Deep-Reinforcement Learning-Based Co-Evolution in a Predator-Prey System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4344,
+            "end_char": 4415
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ensemble p-Laplacian Regularization for Scene Image Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b63a659cfd96",
+      "evidence": [
+        {
+          "quote": "Ensemble p-Laplacian Regularization for Scene Image Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4461,
+            "end_char": 4523
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dual linear structured support vector machine tracking method via scale correlation filter",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c67664afc6f",
+      "evidence": [
+        {
+          "quote": "Dual linear structured support vector machine tracking method via scale correlation filter",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4581,
+            "end_char": 4670
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Approach for Construct Semantic Map with Scene Classification and Object Semantic Segmentatio",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e510c76c7f8",
+      "evidence": [
+        {
+          "quote": "An Approach for Construct Semantic Map with Scene Classification and Object Semantic Segmentatio",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4729,
+            "end_char": 4824
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种三维目标检测方法、装置及终端",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6fc81268a564",
+      "evidence": [
+        {
+          "quote": "一种三维目标检测方法、装置及终端",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4866,
+            "end_char": 4881
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "对象关系预测方法、装置、终端设备及可读存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26f192fe7cb3",
+      "evidence": [
+        {
+          "quote": "对象关系预测方法、装置、终端设备及可读存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4908,
+            "end_char": 4930
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "View Invariant Human Action Recognition Using 3D Geometric Features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2f755a987349",
+      "evidence": [
+        {
+          "quote": "View Invariant Human Action Recognition Using 3D Geometric Features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4967,
+            "end_char": 5033
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DSAGAN: A generative adversarial network based on dual-stream attention mechanism for anatomical and functional image fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8e20af24b580",
+      "evidence": [
+        {
+          "quote": "DSAGAN: A generative adversarial network based on dual-stream attention mechanism for anatomical and functional image fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5104,
+            "end_char": 5227
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast Depth and Mode Decision in Intra Prediction for Quality SHVC",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c122ae29768f",
+      "evidence": [
+        {
+          "quote": "Fast Depth and Mode Decision in Intra Prediction for Quality SHVC",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5279,
+            "end_char": 5343
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Cuboid CNN Model with an Attention Mechanism for Skeleton-based Action Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9e7b04a886f",
+      "evidence": [
+        {
+          "quote": "A Cuboid CNN Model with an Attention Mechanism for Skeleton-based Action Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5425,
+            "end_char": 5508
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A simple method to achieve full-field and real-scale reconstruction using a movable stereo rig",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e7fdbd0ae2ea",
+      "evidence": [
+        {
+          "quote": "A simple method to achieve full-field and real-scale reconstruction using a movable stereo rig",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5580,
+            "end_char": 5673
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "人体运动捕捉与体感交互关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-830da5c9c373",
+      "evidence": [
+        {
+          "quote": "人体运动捕捉与体感交互关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5728,
+            "end_char": 5745
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种检测金属锈蚀的方法及终端",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de7ae16bba26",
+      "evidence": [
+        {
+          "quote": "一种检测金属锈蚀的方法及终端",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5781,
+            "end_char": 5794
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human Action Recognition by Learning Spatio-Temporal Features With Deep Neural Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6881e06e7126",
+      "evidence": [
+        {
+          "quote": "Human Action Recognition by Learning Spatio-Temporal Features With Deep Neural Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5820,
+            "end_char": 5906
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantic Segmentation of Large-Scale Point Clouds based on Dilated Nearest-Neighbors Encoding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c3b3b4d273ef",
+      "evidence": [
+        {
+          "quote": "Semantic Segmentation of Large-Scale Point Clouds based on Dilated Nearest-Neighbors Encoding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5985,
+            "end_char": 6077
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "多相机联合标定方法、装置、终端设备及可读存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-00deb1c5bc17",
+      "evidence": [
+        {
+          "quote": "多相机联合标定方法、装置、终端设备及可读存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6141,
+            "end_char": 6164
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data Augmentation and Dense-LSTM for Human Activity Recognition using WiFi Signal",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c58f5195c561",
+      "evidence": [
+        {
+          "quote": "Data Augmentation and Dense-LSTM for Human Activity Recognition using WiFi Signal",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6194,
+            "end_char": 6274
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于场景认知的神经网络的训练方法、装置及终端设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-61c14331cbf7",
+      "evidence": [
+        {
+          "quote": "用于场景认知的神经网络的训练方法、装置及终端设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6368,
+            "end_char": 6391
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Color Transfer Pulse-coupled Neural Networks for Underwater Robotic Visual Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8fe34c5890d5",
+      "evidence": [
+        {
+          "quote": "Color Transfer Pulse-coupled Neural Networks for Underwater Robotic Visual Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6416,
+            "end_char": 6497
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhancing the Robustness of Neural Collaborative Filtering Systems Under Malicious Attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-643d2181ac10",
+      "evidence": [
+        {
+          "quote": "Enhancing the Robustness of Neural Collaborative Filtering Systems Under Malicious Attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6568,
+            "end_char": 6657
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Driving event-related potential-based speller by localized posterior activities: An offline study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30cc550de216",
+      "evidence": [
+        {
+          "quote": "Driving event-related potential-based speller by localized posterior activities: An offline study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6732,
+            "end_char": 6828
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "控制机器人的方法、装置及终端设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-951ae77cf7af",
+      "evidence": [
+        {
+          "quote": "控制机器人的方法、装置及终端设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6885,
+            "end_char": 6900
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hypergraph p-Laplacian Regularization for Remotely Sensed Image Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7bd9726101f4",
+      "evidence": [
+        {
+          "quote": "Hypergraph p-Laplacian Regularization for Remotely Sensed Image Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6938,
+            "end_char": 7012
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Random Cropping Ensemble Neural Network for Image Classification in a Robotic Arm Grasping System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ac1c5dfbc62b",
+      "evidence": [
+        {
+          "quote": "Random Cropping Ensemble Neural Network for Image Classification in a Robotic Arm Grasping System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7082,
+            "end_char": 7178
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Three-Layer Image Representation by an Enhanced Illumination-Based Image Fusion Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5ad545e45b5",
+      "evidence": [
+        {
+          "quote": "Three-Layer Image Representation by an Enhanced Illumination-Based Image Fusion Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7252,
+            "end_char": 7337
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "最佳学生论文奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c656d29f491",
+      "evidence": [
+        {
+          "quote": "最佳学生论文奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7384,
+            "end_char": 7390
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Video saliency detection based on low-level saliency fusion and saliency-aware geodesic",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc2868582858",
+      "evidence": [
+        {
+          "quote": "Video saliency detection based on low-level saliency fusion and saliency-aware geodesic",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7423,
+            "end_char": 7509
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Instance-Level Embedding Adaptation for Few-Shot Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-182b26cd444c",
+      "evidence": [
+        {
+          "quote": "Instance-Level Embedding Adaptation for Few-Shot Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7583,
+            "end_char": 7639
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3D object detection based on sparse convolution neural network and feature fusion for autonomous driving in smart cities",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4970dbff6586",
+      "evidence": [
+        {
+          "quote": "3D object detection based on sparse convolution neural network and feature fusion for autonomous driving in smart cities",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7699,
+            "end_char": 7818
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DMNet: A Network Architecture Using Dilated Convolution and Multiscale Mechanisms for Spatiotemporal Fusion of Remote Sensing Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8fe144dba98",
+      "evidence": [
+        {
+          "quote": "DMNet: A Network Architecture Using Dilated Convolution and Multiscale Mechanisms for Spatiotemporal Fusion of Remote Sensing Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7897,
+            "end_char": 8028
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "基于多传感器的人体动作识别研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a7cb956d52b",
+      "evidence": [
+        {
+          "quote": "基于多传感器的人体动作识别研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8090,
+            "end_char": 8104
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Attribute-Identity Embedding and Self-Supervised Learning for Scalable Person Re-Identification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-34051eea3977",
+      "evidence": [
+        {
+          "quote": "Attribute-Identity Embedding and Self-Supervised Learning for Scalable Person Re-Identification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8138,
+            "end_char": 8232
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Image Hallucination From Attribute Pairs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6dafaa6254b4",
+      "evidence": [
+        {
+          "quote": "Image Hallucination From Attribute Pairs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8295,
+            "end_char": 8334
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于轨迹相似性度量学习的多目标跟踪重定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-48604a5c5e22",
+      "evidence": [
+        {
+          "quote": "一种基于轨迹相似性度量学习的多目标跟踪重定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8401,
+            "end_char": 8424
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Integrated fusion framework based on semicoupled sparse tensor factorization for spatio-temporal-spectral fusion of remote sensing images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-447ce168409e",
+      "evidence": [
+        {
+          "quote": "Integrated fusion framework based on semicoupled sparse tensor factorization for spatio-temporal-spectral fusion of remote sensing images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8458,
+            "end_char": 8594
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Emotion Recognition Based on Multi-view Body Gestures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-76993108e080",
+      "evidence": [
+        {
+          "quote": "Emotion Recognition Based on Multi-view Body Gestures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8669,
+            "end_char": 8721
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "WiEnhance: Towards Data Augmentation in Human Activity Recognition using WiFi Signal",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c9a8bdb67ad7",
+      "evidence": [
+        {
+          "quote": "WiEnhance: Towards Data Augmentation in Human Activity Recognition using WiFi Signal",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8779,
+            "end_char": 8862
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Output Layer Multiplication for Class Imbalance Problem in Convolutional Neural Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c89577c4740d",
+      "evidence": [
+        {
+          "quote": "Output Layer Multiplication for Class Imbalance Problem in Convolutional Neural Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8938,
+            "end_char": 9025
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Phase-sensitive model for temporal action proposal generation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-90d21a33a4b0",
+      "evidence": [
+        {
+          "quote": "Phase-sensitive model for temporal action proposal generation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9102,
+            "end_char": 9162
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种三维重建方法、装置、设备及计算机存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f0978084a28",
+      "evidence": [
+        {
+          "quote": "一种三维重建方法、装置、设备及计算机存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9231,
+            "end_char": 9252
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ST-LSTM: spatio-temporal graph based long short-term memory network for vehicle trajectory predictio",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-678b09a0e2df",
+      "evidence": [
+        {
+          "quote": "ST-LSTM: spatio-temporal graph based long short-term memory network for vehicle trajectory predictio",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9281,
+            "end_char": 9380
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mixer-Based Semantic Spread for Few-Shot Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-992a002f1e10",
+      "evidence": [
+        {
+          "quote": "Mixer-Based Semantic Spread for Few-Shot Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9465,
+            "end_char": 9513
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "活塞杆检测机构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85434437fbf9",
+      "evidence": [
+        {
+          "quote": "活塞杆检测机构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9582,
+            "end_char": 9588
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A level set image segmentation method based on a cloud model as the priori contour",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0147e1825ab3",
+      "evidence": [
+        {
+          "quote": "A level set image segmentation method based on a cloud model as the priori contour",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9610,
+            "end_char": 9691
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Geographically and Temporally Weighted Regression Model for Spatial Downscaling of MODIS Land Surface Temperatures Over Urban Heterogeneous Regions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12571914cb49",
+      "evidence": [
+        {
+          "quote": "A Geographically and Temporally Weighted Regression Model for Spatial Downscaling of MODIS Land Surface Temperatures Over Urban Heterogeneous Regions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9736,
+            "end_char": 9884
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "视觉惯性里程计方法、视觉惯性里程计装置及移动设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-145075061420",
+      "evidence": [
+        {
+          "quote": "视觉惯性里程计方法、视觉惯性里程计装置及移动设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9939,
+            "end_char": 9962
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A flexible vehicle surround view camera system by central-around coordinate mapping model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cf6b09b95763",
+      "evidence": [
+        {
+          "quote": "A flexible vehicle surround view camera system by central-around coordinate mapping model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9988,
+            "end_char": 10076
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint learning of convolution neural networks for RGB-D-based human action recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c13af9bc709",
+      "evidence": [
+        {
+          "quote": "Joint learning of convolution neural networks for RGB-D-based human action recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10148,
+            "end_char": 10233
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-Time and Efficient 6-D Pose Estimation From a Single RGB Image",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e7badfdaea04",
+      "evidence": [
+        {
+          "quote": "Real-Time and Efficient 6-D Pose Estimation From a Single RGB Image",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10319,
+            "end_char": 10385
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Co-consistent regularization with discriminative feature for zero-shot learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-14cb2cb51dac",
+      "evidence": [
+        {
+          "quote": "Co-consistent regularization with discriminative feature for zero-shot learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10461,
+            "end_char": 10539
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RiFeGAN: Rich Feature Generation for Text-to-Image Synthesis from Prior Knowledge",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2e08377b3bde",
+      "evidence": [
+        {
+          "quote": "RiFeGAN: Rich Feature Generation for Text-to-Image Synthesis from Prior Knowledge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10623,
+            "end_char": 10703
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种实时高效的6D姿态估计网络、构建方法及估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d2ad80490178",
+      "evidence": [
+        {
+          "quote": "一种实时高效的6D姿态估计网络、构建方法及估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10770,
+            "end_char": 10794
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "图像的深度估计方法、装置、电子设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b30383330c4c",
+      "evidence": [
+        {
+          "quote": "图像的深度估计方法、装置、电子设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10818,
+            "end_char": 10839
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fusion of Medical Sensors Using Adaptive Cloud Model in Local Laplacian Pyramid Domain",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fe5da844ce02",
+      "evidence": [
+        {
+          "quote": "Fusion of Medical Sensors Using Adaptive Cloud Model in Local Laplacian Pyramid Domain",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10860,
+            "end_char": 10945
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Loop Closure Detection Based on Improved Hybrid Deep Learning Architecture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d80ad9758345",
+      "evidence": [
+        {
+          "quote": "Loop Closure Detection Based on Improved Hybrid Deep Learning Architecture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11005,
+            "end_char": 11078
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Domain-weighted Majority Voting for Crowdsourcing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca518956e3d8",
+      "evidence": [
+        {
+          "quote": "Domain-weighted Majority Voting for Crowdsourcing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11148,
+            "end_char": 11196
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hand gesture tracking and recognition based human-computer interaction system and its applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cbc8f190eb9b",
+      "evidence": [
+        {
+          "quote": "Hand gesture tracking and recognition based human-computer interaction system and its applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11264,
+            "end_char": 11361
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "核电厂多模态人机交互系统研究与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d553ebe846c6",
+      "evidence": [
+        {
+          "quote": "核电厂多模态人机交互系统研究与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11417,
+            "end_char": 11433
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种电路板缺陷的检测方法、装置、终端设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26f6c2ec4156",
+      "evidence": [
+        {
+          "quote": "一种电路板缺陷的检测方法、装置、终端设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11468,
+            "end_char": 11492
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards Query Efficient Black-box Attacks:An Input-free Perspective",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d9ba95c2f2e9",
+      "evidence": [
+        {
+          "quote": "Towards Query Efficient Black-box Attacks:An Input-free Perspective",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11517,
+            "end_char": 11583
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Binary Hashing CNN Features for Action Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-98af8d9071ad",
+      "evidence": [
+        {
+          "quote": "Binary Hashing CNN Features for Action Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11649,
+            "end_char": 11698
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online learning using projections onto shrinkage closed balls for adaptive brain-computer interface",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-903aa27fd30f",
+      "evidence": [
+        {
+          "quote": "Online learning using projections onto shrinkage closed balls for adaptive brain-computer interface",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11757,
+            "end_char": 11855
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Weighted ensemble networks for multiview based tiny object quality assessment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f0bb5d529081",
+      "evidence": [
+        {
+          "quote": "Weighted ensemble networks for multiview based tiny object quality assessment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11900,
+            "end_char": 11976
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Embedded Block Residual Network: A Recursive Restoration Model for Single-Image Super-Resolution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ac3fa4dacf5",
+      "evidence": [
+        {
+          "quote": "Embedded Block Residual Network: A Recursive Restoration Model for Single-Image Super-Resolution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12045,
+            "end_char": 12140
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "图像场景深度的估计方法、装置、终端设备和存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d2782652525",
+      "evidence": [
+        {
+          "quote": "图像场景深度的估计方法、装置、终端设备和存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12195,
+            "end_char": 12218
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Three-layer medical image fusion with tensor-based features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b58d974b0507",
+      "evidence": [
+        {
+          "quote": "Three-layer medical image fusion with tensor-based features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12243,
+            "end_char": 12301
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CAS-YNU Multi-modal Human Action Dataset",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-794301de7639",
+      "evidence": [
+        {
+          "quote": "CAS-YNU Multi-modal Human Action Dataset",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12350,
+            "end_char": 12389
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种图像深度估计方法、终端设备及计算机可读存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c36da6e09b8",
+      "evidence": [
+        {
+          "quote": "一种图像深度估计方法、终端设备及计算机可读存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12458,
+            "end_char": 12482
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UFSM_VO: Stereo Odometry Based on Uniformly Feature Selection and Strictly Correspondence Matching",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-11cfda506bd1",
+      "evidence": [
+        {
+          "quote": "UFSM_VO: Stereo Odometry Based on Uniformly Feature Selection and Strictly Correspondence Matching",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12519,
+            "end_char": 12616
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "EIP-VIO: Edge-Induced Points based Monocular Visual-Inertial Odometry",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d2ead276fbaf",
+      "evidence": [
+        {
+          "quote": "EIP-VIO: Edge-Induced Points based Monocular Visual-Inertial Odometry",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12669,
+            "end_char": 12737
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于注意力机制的点云语义分割方法、装置、设备及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f4410b2366f4",
+      "evidence": [
+        {
+          "quote": "基于注意力机制的点云语义分割方法、装置、设备及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12797,
+            "end_char": 12821
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collect and Select: Semantic Alignment Metric Learning for Few-shot Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68f214d1f161",
+      "evidence": [
+        {
+          "quote": "Collect and Select: Semantic Alignment Metric Learning for Few-shot Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12858,
+            "end_char": 12933
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint medical image fusion, denoising and enhancement via discriminative low-rank sparse dictionaries learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e68f57354e2a",
+      "evidence": [
+        {
+          "quote": "Joint medical image fusion, denoising and enhancement via discriminative low-rank sparse dictionaries learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13018,
+            "end_char": 13127
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatial Pyramid Pooling based Convolutional Autoencoder Network for Loop Closure Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-72b26458cedf",
+      "evidence": [
+        {
+          "quote": "Spatial Pyramid Pooling based Convolutional Autoencoder Network for Loop Closure Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13198,
+            "end_char": 13287
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A reinforcement learning-based predator-prey model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aeaf920c9b5e",
+      "evidence": [
+        {
+          "quote": "A reinforcement learning-based predator-prey model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13345,
+            "end_char": 13394
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "回环检测方法、回环检测装置及终端设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0b7ff7aec8fd",
+      "evidence": [
+        {
+          "quote": "回环检测方法、回环检测装置及终端设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13439,
+            "end_char": 13456
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-modality Learning for Human Action Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01dff35536bc",
+      "evidence": [
+        {
+          "quote": "Multi-modality Learning for Human Action Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13481,
+            "end_char": 13532
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mobile Cyber Physical Systems: Current Challenges and Future Networking Applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02bbce2e1199",
+      "evidence": [
+        {
+          "quote": "Mobile Cyber Physical Systems: Current Challenges and Future Networking Applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13607,
+            "end_char": 13690
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Discriminative Dictionary Learning-Based Multiple Component Decomposition for Detail-Preserving Noisy Image Fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77d061812837",
+      "evidence": [
+        {
+          "quote": "Discriminative Dictionary Learning-Based Multiple Component Decomposition for Detail-Preserving Noisy Image Fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13775,
+            "end_char": 13888
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual Relationship Detection with Recurrent Attention and Negative Sampling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e392d42d58f",
+      "evidence": [
+        {
+          "quote": "Visual Relationship Detection with Recurrent Attention and Negative Sampling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13967,
+            "end_char": 14042
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人标定方法及终端",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-457b1fd1968d",
+      "evidence": [
+        {
+          "quote": "一种机器人标定方法及终端",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14120,
+            "end_char": 14131
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于注意力机制的多模态信息融合识别方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a147022d3b93",
+      "evidence": [
+        {
+          "quote": "基于注意力机制的多模态信息融合识别方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14158,
+            "end_char": 14179
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mobile crowdsourcing based context-aware smart alarm sound for smart living",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c94558775db0",
+      "evidence": [
+        {
+          "quote": "Mobile crowdsourcing based context-aware smart alarm sound for smart living",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14212,
+            "end_char": 14286
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ensemble One-Dimensional Convolution Neural Networks for Skeleton-Based Action Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-42091df69ed8",
+      "evidence": [
+        {
+          "quote": "Ensemble One-Dimensional Convolution Neural Networks for Skeleton-Based Action Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14379,
+            "end_char": 14468
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "工装穿戴检测方法、装置、计算机设备和存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8027bb776b0",
+      "evidence": [
+        {
+          "quote": "工装穿戴检测方法、装置、计算机设备和存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14544,
+            "end_char": 14565
+          },
+          "version": "96e0ad86dad608a6d7a0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 91,
+    "listed": 91,
+    "by_kind": {
+      "会议论文": {
+        "listed": 20,
+        "extracted": 20
+      },
+      "专利": {
+        "listed": 21,
+        "extracted": 21
+      },
+      "期刊论文": {
+        "listed": 46,
+        "extracted": 46
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

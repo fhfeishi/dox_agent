@@ -2,15 +2,20 @@
   "doc_id": "e0e7b20693063a8cdaf9",
   "version": "a1bee6fca84c2d30ff2a",
   "source_hash": "7fa937719c8f267ae76da72d75d5b168c98f39be64f7f488dd3ec2db979347bf",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:25.313776+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.696532+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a934a6ee043e",
-          "name": "复杂海洋AUV智能控制",
-          "desc": "复杂海洋环境下海洋航行器高效安全运行",
+          "id": "item-80a9b14948f3",
+          "name": "水下机器人参与水下探测与作业自主任务需求增多，给自主水下航行器（AUV）动态建模与控制智能化带来挑战。",
+          "desc": "水下机器人参与水下探测与作业自主任务需求增多，给自主水下航行器（AUV）动态建模与控制智能化带来挑战。",
           "evidence": [
             {
-              "quote": "海洋航行器于复杂海洋环境中实现高效、安全运行，对海洋资源开发、海洋科学研究等关键领域起着举足轻重的作用",
+              "quote": "水下机器人参与水下探测与作业自主任务需求增多，给自主水下航行器（AUV）动态建模与控制智能化带来挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2860,
-                "end_char": 2910
+                "start_char": 652,
+                "end_char": 702
               },
               "version": "a1bee6fca84c2d30ff2a"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-634427f8de78",
-          "name": "建模跟踪安全三大短板",
-          "desc": "模型构建、跟踪控制与安全保障环节存在短板",
+          "id": "item-c349e7a7109a",
+          "name": "传统控制策略难以有效规避因强化学习缺乏约束而引发的航行风险，安全保障效能有待提升。",
+          "desc": "传统控制策略难以有效规避因强化学习缺乏约束而引发的航行风险，安全保障效能有待提升。",
           "evidence": [
             {
-              "quote": "具体体现为：难以构建出能够精准适配复杂动态海洋环境的模型，致使对航行器运动状态以及其与海洋环境交互关系的描述存在偏差；在复杂海况条件下，跟踪控制的精度与稳定性难以满足要求",
+              "quote": "传统控制策略难以有效规避因强化学习缺乏约束而引发的航行风险，安全保障效能有待提升。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2980,
-                "end_char": 3064
+                "start_char": 3086,
+                "end_char": 3126
               },
               "version": "a1bee6fca84c2d30ff2a"
             }
@@ -63,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2348b8cecc50",
-          "name": "高斯符号表征模型",
-          "desc": "状态模型与高斯过程混合的符号化精准表达",
+          "id": "item-b6253ef2f1a0",
+          "name": "然而，当前海洋航行器控制体系存在明显短板，在模型构建、跟踪控制以及安全保障等核心环节亟待优化。",
+          "desc": "然而，当前海洋航行器控制体系存在明显短板，在模型构建、跟踪控制以及安全保障等核心环节亟待优化。",
           "evidence": [
             {
-              "quote": "精心设计主部为状态模型、不确定性部分由高斯过程模型描述的混合模型，充分发挥状态模型在描述航行器主体运动方面的优势，以及高斯过程模型对不确定性的强大表征能力",
+              "quote": "然而，当前海洋航行器控制体系存在明显短板，在模型构建、跟踪控制以及安全保障等核心环节亟待优化。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3273,
-                "end_char": 3349
+                "start_char": 2933,
+                "end_char": 2979
               },
               "version": "a1bee6fca84c2d30ff2a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f082f2afebd5",
-          "name": "矢量场轨迹引导",
-          "desc": "航点曲线最近点优化逼近强化轨迹引导",
+          "id": "item-f48a2cf64360",
+          "name": "在安全保障方面，将强化学习与模型预测控制有机融合，借助模型预测控制的约束机制，有效避免强化学习不受约束而引发的航行风险，",
+          "desc": "在安全保障方面，将强化学习与模型预测控制有机融合，借助模型预测控制的约束机制，有效避免强化学习不受约束而引发的航行风险，切实保障海洋航行器的安全运行。",
           "evidence": [
             {
-              "quote": "提出航点曲线最近点优化逼近方法，将期望轨迹的直线或转弯转化为多种矢量场，强化对航行器的引导作用，大幅提升复杂海况下跟踪控制的精度与稳定性",
+              "quote": "在安全保障方面，将强化学习与模型预测控制有机融合，借助模型预测控制的约束机制，有效避免强化学习不受约束而引发的航行风险，切实保障海洋航行器的安全运行。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3525,
-                "end_char": 3592
-              },
-              "version": "a1bee6fca84c2d30ff2a"
-            }
-          ]
-        },
-        {
-          "id": "item-0375652c6bc4",
-          "name": "RL与MPC融合安全保障",
-          "desc": "模型预测控制约束机制规避强化学习航行风险",
-          "evidence": [
-            {
-              "quote": "将强化学习与模型预测控制有机融合，借助模型预测控制的约束机制，有效避免强化学习不受约束而引发的航行风险，切实保障海洋航行器的安全运行。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3620,
+                "start_char": 3612,
                 "end_char": 3686
               },
               "version": "a1bee6fca84c2d30ff2a"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +108,184 @@
       "state": "has",
       "items": [
         {
-          "id": "item-995264052b68",
-          "name": "三重环境验证",
-          "desc": "模拟环境、真实户外试验与公开数据集充分验证",
+          "id": "item-b13fe18341be",
+          "name": "水下机器人参与水下探测与作业自主任务需求增多，给自主水下航行器（AUV）动态建模与控制智能化带来挑战。",
+          "desc": "水下机器人参与水下探测与作业自主任务需求增多，给自主水下航行器（AUV）动态建模与控制智能化带来挑战。",
           "evidence": [
             {
-              "quote": "本项目所建立的控制体系在模拟海洋环境、真实户外试验以及公开的海洋航行器数据集中均得到了充分验证。",
+              "quote": "水下机器人参与水下探测与作业自主任务需求增多，给自主水下航行器（AUV）动态建模与控制智能化带来挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3739,
-                "end_char": 3786
+                "start_char": 652,
+                "end_char": 702
               },
               "version": "a1bee6fca84c2d30ff2a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-e4a1fab3f425",
+          "name": "海洋航行器于复杂海洋环境中实现高效、安全运行，对海洋资源开发、海洋科学研究等关键领域起着举足轻重的作用，故而其控制体系备",
+          "desc": "海洋航行器于复杂海洋环境中实现高效、安全运行，对海洋资源开发、海洋科学研究等关键领域起着举足轻重的作用，故而其控制体系备受学界与工业界的高度关注。",
+          "evidence": [
+            {
+              "quote": "海洋航行器于复杂海洋环境中实现高效、安全运行，对海洋资源开发、海洋科学研究等关键领域起着举足轻重的作用，故而其控制体系备受学界与工业界的高度关注。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2860,
+                "end_char": 2932
+              },
+              "version": "a1bee6fca84c2d30ff2a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a934a6ee043e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-634427f8de78"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Proximal policy optimization learning based control of congested freeway traffic",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8190091f34f",
+      "evidence": [
+        {
+          "quote": "Proximal policy optimization learning based control of congested freeway traffic",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3867,
+            "end_char": 3946
+          },
+          "version": "a1bee6fca84c2d30ff2a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-634427f8de78"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2348b8cecc50"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-based adaptive backstepping control for Mimo nonlinear systems with unknown hysteresis: a nonlinear gain feedback approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d4f8225f801",
+      "evidence": [
+        {
+          "quote": "Observer-based adaptive backstepping control for Mimo nonlinear systems with unknown hysteresis: a nonlinear gain feedback approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4039,
+            "end_char": 4169
+          },
+          "version": "a1bee6fca84c2d30ff2a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-634427f8de78"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f082f2afebd5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Finite-time-prescribed performance-based adaptive command filtering control for MIMO nonlinear systems with unknown hysteresis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d6a348685c7",
+      "evidence": [
+        {
+          "quote": "Finite-time-prescribed performance-based adaptive command filtering control for MIMO nonlinear systems with unknown hysteresis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4240,
+            "end_char": 4365
+          },
+          "version": "a1bee6fca84c2d30ff2a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-634427f8de78"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0375652c6bc4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Time-Optimal Path Planning of a Hybrid Autonomous Underwater Vehicle Based on Ocean Current Neural Point Grid",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-32fed83d19c5",
+      "evidence": [
+        {
+          "quote": "Time-Optimal Path Planning of a Hybrid Autonomous Underwater Vehicle Based on Ocean Current Neural Point Grid",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4435,
+            "end_char": 4543
+          },
+          "version": "a1bee6fca84c2d30ff2a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0375652c6bc4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-995264052b68"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vector field-based integral LOS path following and target tracking for underactuated unmanned surface vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-19816f5054dd",
+      "evidence": [
+        {
+          "quote": "Vector field-based integral LOS path following and target tracking for underactuated unmanned surface vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4630,
+            "end_char": 4738
+          },
+          "version": "a1bee6fca84c2d30ff2a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2348b8cecc50"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-995264052b68"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种风浪动态数据驱动的无人栈桥自主归位和对接控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-15f09e64711e",
+      "evidence": [
+        {
+          "quote": "一种风浪动态数据驱动的无人栈桥自主归位和对接控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4825,
+            "end_char": 4850
+          },
+          "version": "a1bee6fca84c2d30ff2a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

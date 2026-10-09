@@ -2,15 +2,20 @@
   "doc_id": "36faa3bced589e2f1754",
   "version": "46ae3c10545e1701ae2c",
   "source_hash": "79668c6e5125c8aa98d7b563461cf641283741b671d3385620c4753f65a1fea1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:18.095589+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.028288+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,95 @@
       "state": "has",
       "items": [
         {
-          "id": "item-75a72cf5c0b8",
-          "name": "复杂交通无人车运动控制",
-          "desc": "动态障碍物驾驶行为预测与无人车运动规划",
+          "id": "item-039e9e295111",
+          "name": "复杂场景中动态障碍物驾驶行为预测与运动控制问题对无人车安全性能至关重要。",
+          "desc": "复杂场景中动态障碍物驾驶行为预测与运动控制问题对无人车安全性能至关重要。",
+          "evidence": [
+            {
+              "quote": "复杂场景中动态障碍物驾驶行为预测与运动控制问题对无人车安全性能至关重要。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 656,
+                "end_char": 691
+              },
+              "version": "46ae3c10545e1701ae2c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-175f7af2b720",
+          "name": "再次，针对现有标称模型工况适应性差、参数扰动大、长时域预测精度低的问题，提出了基于轮廓控制的车辆纵向/侧向运动集成规划一",
+          "desc": "再次，针对现有标称模型工况适应性差、参数扰动大、长时域预测精度低的问题，提出了基于轮廓控制的车辆纵向/侧向运动集成规划一体化方法，实现了优化问题显式求解器的自动代码生成，提升了车辆规划与控制的实时性；",
+          "evidence": [
+            {
+              "quote": "再次，针对现有标称模型工况适应性差、参数扰动大、长时域预测精度低的问题，提出了基于轮廓控制的车辆纵向/侧向运动集成规划一体化方法，实现了优化问题显式求解器的自动代码生成，提升了车辆规划与控制的实时性；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3164,
+                "end_char": 3263
+              },
+              "version": "46ae3c10545e1701ae2c"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-919aee922d5e",
+          "name": "搭建了包括组合导航、激光雷达、整车CAN网络、TX2控制器在内的线控无人平台，对所提出的算法实时性进行了实车验证，结果表",
+          "desc": "搭建了包括组合导航、激光雷达、整车CAN网络、TX2控制器在内的线控无人平台，对所提出的算法实时性进行了实车验证，结果表明所提出的在线优化与求解方法能够实现实时求解时间<20ms。",
+          "evidence": [
+            {
+              "quote": "搭建了包括组合导航、激光雷达、整车CAN网络、TX2控制器在内的线控无人平台，对所提出的算法实时性进行了实车验证，结果表明所提出的在线优化与求解方法能够实现实时求解时间<20ms。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3322,
+                "end_char": 3411
+              },
+              "version": "46ae3c10545e1701ae2c"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a35d39ae4f3d",
+          "name": "复杂场景中动态障碍物驾驶行为预测与运动控制问题对无人车安全性能至关重要。",
+          "desc": "复杂场景中动态障碍物驾驶行为预测与运动控制问题对无人车安全性能至关重要。",
+          "evidence": [
+            {
+              "quote": "复杂场景中动态障碍物驾驶行为预测与运动控制问题对无人车安全性能至关重要。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 656,
+                "end_char": 691
+              },
+              "version": "46ae3c10545e1701ae2c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-81aa7c430c00",
+          "name": "动态障碍物驾驶行为预测与无人车运动规划是实现完全自动驾驶的核心模块。",
+          "desc": "动态障碍物驾驶行为预测与无人车运动规划是实现完全自动驾驶的核心模块。",
           "evidence": [
             {
               "quote": "动态障碍物驾驶行为预测与无人车运动规划是实现完全自动驾驶的核心模块。",
@@ -32,166 +123,176 @@
               },
               "version": "46ae3c10545e1701ae2c"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5da4f85d995b",
-          "name": "预测规划兼顾安全效率难",
-          "desc": "交通场景多样、多智能体博弈与行为不确定性带来挑战",
-          "evidence": [
-            {
-              "quote": "受交通场景多样性、多智能体动态博弈以及交通参与者行为不确定性等因素影响，兼顾安全与效率的驾驶行为预测和运动规划比特定环境下的移动机器人系统更富有挑战性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 692,
-                "end_char": 767
-              },
-              "version": "46ae3c10545e1701ae2c"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-3295276e0925",
-          "name": "图卷积轨迹预测",
-          "desc": "单目3D检测与融合周围信息的图卷积网络实时轨迹预测",
-          "evidence": [
-            {
-              "quote": "提出了融合周围信息的图卷积网络，实现了动态目标实时轨迹预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3063,
-                "end_char": 3091
-              },
-              "version": "46ae3c10545e1701ae2c"
-            }
-          ]
-        },
-        {
-          "id": "item-043a7b0119f5",
-          "name": "轮廓控制集成规划",
-          "desc": "纵向侧向运动集成规划一体化与显式求解器代码生成",
-          "evidence": [
-            {
-              "quote": "提出了基于轮廓控制的车辆纵向/侧向运动集成规划一体化方法，实现了优化问题显式求解器的自动代码生成，提升了车辆规划与控制的实时性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3200,
-                "end_char": 3262
-              },
-              "version": "46ae3c10545e1701ae2c"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-283e9c6f39cc",
-          "name": "侧向误差小于0.5m",
-          "desc": "3s预测时长下侧向轨迹预测误差小于0.5m，实车求解时间小于20ms",
-          "evidence": [
-            {
-              "quote": "项目所提出的方法能够实现在3s预测时长要求下，侧向轨迹预测误差小于0.5m",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3126,
-                "end_char": 3162
-              },
-              "version": "46ae3c10545e1701ae2c"
-            }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-afc1928b143f",
-          "name": "论文10篇与专著",
-          "desc": "SCI 4篇、EI 6篇，学术专著1部，培养研究生6人",
-          "evidence": [
-            {
-              "quote": "相继在Journal of Mechanical Science and Technology、兵工学报等领域高水平期刊上发表SCI论文4篇，EI论文6篇，出版学术专著1部。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3458,
-                "end_char": 3544
-              },
-              "version": "46ae3c10545e1701ae2c"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-75a72cf5c0b8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5da4f85d995b"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "智能汽车规划与控制技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d6646f5ad5f",
+      "evidence": [
+        {
+          "quote": "智能汽车规划与控制技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3609,
+            "end_char": 3619
+          },
+          "version": "46ae3c10545e1701ae2c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5da4f85d995b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3295276e0925"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于微分平坦的分层轨迹规划算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1311ce06d90f",
+      "evidence": [
+        {
+          "quote": "基于微分平坦的分层轨迹规划算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3645,
+            "end_char": 3659
+          },
+          "version": "46ae3c10545e1701ae2c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5da4f85d995b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-043a7b0119f5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path Planning Method for Automatic Parking Based on Hybrid A",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-00699418d59c",
+      "evidence": [
+        {
+          "quote": "Path Planning Method for Automatic Parking Based on Hybrid A",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3691,
+            "end_char": 3750
+          },
+          "version": "46ae3c10545e1701ae2c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3295276e0925"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-283e9c6f39cc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust control design for active suspension system with uncertain dynamics and actuator time delay",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5681c64b91f1",
+      "evidence": [
+        {
+          "quote": "Robust control design for active suspension system with uncertain dynamics and actuator time delay",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3815,
+            "end_char": 3912
+          },
+          "version": "46ae3c10545e1701ae2c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-043a7b0119f5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-afc1928b143f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Backstepping method based controller design for third-order truck platoon robust to dynamic uncertainty and external disturbance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68ce5196aa78",
+      "evidence": [
+        {
+          "quote": "Backstepping method based controller design for third-order truck platoon robust to dynamic uncertainty and external disturbance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3983,
+            "end_char": 4110
+          },
+          "version": "46ae3c10545e1701ae2c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Vehicle Active Steering Stability Control Based on Variable Time Domain Input and State Information Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8fc1983fd33",
+      "evidence": [
+        {
+          "quote": "Research on Vehicle Active Steering Stability Control Based on Variable Time Domain Input and State Information Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4183,
+            "end_char": 4304
+          },
+          "version": "46ae3c10545e1701ae2c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "自动泊车路径纯跟踪算法应用研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1730c1cdccc",
+      "evidence": [
+        {
+          "quote": "自动泊车路径纯跟踪算法应用研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4442,
+            "end_char": 4456
+          },
+          "version": "46ae3c10545e1701ae2c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

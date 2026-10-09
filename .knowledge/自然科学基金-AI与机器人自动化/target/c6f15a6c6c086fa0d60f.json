@@ -2,15 +2,20 @@
   "doc_id": "c6f15a6c6c086fa0d60f",
   "version": "ab89456526ce1960c592",
   "source_hash": "6af7081233bfa6723ac59d4d793f8724d782fed2cfe2eda7f5d8c0775d8a4a86",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:30.703366+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.400072+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dba448e9c05c",
-          "name": "广域空地协同物联网",
-          "desc": "无人机辅助的大规模设备接入与数据传输",
+          "id": "item-62d8ee90c7af",
+          "name": "针对未来广域物联网大规模设备接入、低时延、高流量的数据传输需求，考虑到无人机空间分布的灵活性和辅助数据传输的性能优势，本",
+          "desc": "针对未来广域物联网大规模设备接入、低时延、高流量的数据传输需求，考虑到无人机空间分布的灵活性和辅助数据传输的性能优势，本项目重点研究基于无人机辅助的空地协同物联网协作通信架构和数据传输方案，有效提升广域物联网的大规模设备接入效率和跨域间传输的连接性，降低数据传输时延。",
           "evidence": [
             {
-              "quote": "面向未来广域物联网大规模设备接入、低时延、高流量的数据传输需求，考虑无人机空间分布的灵活性和辅助数据传输的性能优势，本项目重点研究基于无人机辅助的空地协同物联网协作通信架构和数据传输方案",
+              "quote": "针对未来广域物联网大规模设备接入、低时延、高流量的数据传输需求，考虑到无人机空间分布的灵活性和辅助数据传输的性能优势，本项目重点研究基于无人机辅助的空地协同物联网协作通信架构和数据传输方案，有效提升广域物联网的大规模设备接入效率和跨域间传输的连接性，降低数据传输时延。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2794,
-                "end_char": 2886
+                "start_char": 661,
+                "end_char": 794
+              },
+              "version": "ab89456526ce1960c592"
+            }
+          ]
+        },
+        {
+          "id": "item-6409ba5435b1",
+          "name": "首先，围绕广域物联网在覆盖能力与负载调控方面的关键需求，构建了弹性灵活的多层次无人机辅助空地协同物联网通信架构，针对广域",
+          "desc": "首先，围绕广域物联网在覆盖能力与负载调控方面的关键需求，构建了弹性灵活的多层次无人机辅助空地协同物联网通信架构，针对广域物联网中节点分布不均、业务请求动态变化所引发的网络负载失衡问题，建立了无人机组网部署与协作通信的优化建模方法，提出了多无人机负载均衡（MULB）方案，通过动态调节无人机服务范围与协作方式，实现了对不同区域业务负载的自适应调控，并将负载均衡纳入联合优化框架，对用户关联、无人机轨迹及时隙分配进行协同设计，有效缓解了通信热点",
+          "evidence": [
+            {
+              "quote": "首先，围绕广域物联网在覆盖能力与负载调控方面的关键需求，构建了弹性灵活的多层次无人机辅助空地协同物联网通信架构，针对广域物联网中节点分布不均、业务请求动态变化所引发的网络负载失衡问题，建立了无人机组网部署与协作通信的优化建模方法，提出了多无人机负载均衡（MULB）方案，通过动态调节无人机服务范围与协作方式，实现了对不同区域业务负载的自适应调控，并将负载均衡纳入联合优化框架，对用户关联、无人机轨迹及时隙分配进行协同设计，有效缓解了通信热点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2995,
+                "end_char": 3214
               },
               "version": "ab89456526ce1960c592"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-362d1c66ecec",
-          "name": "负载失衡接入瓶颈",
-          "desc": "节点分布不均业务动态变化引发网络负载失衡",
-          "evidence": [
-            {
-              "quote": "针对广域物联网中节点分布不均、业务请求动态变化所引发的网络负载失衡问题，建立了无人机组网部署与协作通信的优化建模方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3051,
-                "end_char": 3108
-              },
-              "version": "ab89456526ce1960c592"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-f3f2ac1cd011",
-          "name": "MULB负载均衡方案",
-          "desc": "动态调节服务范围与协作方式自适应调控负载",
+          "id": "item-f3588f8af2e6",
+          "name": "最后，针对多区域并发传输条件下的跨区域干扰与资源耦合问题，提出了面向并发多跳数据传输的跨层协同优化方法，联合考虑网络层路",
+          "desc": "最后，针对多区域并发传输条件下的跨区域干扰与资源耦合问题，提出了面向并发多跳数据传输的跨层协同优化方法，联合考虑网络层路由路径选择、链路层资源分配以及无人机轨迹规划，设计了基于块坐标下降的联合迭代优化框架，并引入多智能体强化学习实现协作路由决策与干扰抑制，通过协同优化路由、资源与轨迹，实现了干扰受控条件下的多跳并发数据高效传输与系统性能提升。",
           "evidence": [
             {
-              "quote": "提出了多无人机负载均衡（MULB）方案，通过动态调节无人机服务范围与协作方式，实现了对不同区域业务负载的自适应调控，并将负载均衡纳入联合优化框架，对用户关联、无人机轨迹及时隙分配进行协同设计",
+              "quote": "最后，针对多区域并发传输条件下的跨区域干扰与资源耦合问题，提出了面向并发多跳数据传输的跨层协同优化方法，联合考虑网络层路由路径选择、链路层资源分配以及无人机轨迹规划，设计了基于块坐标下降的联合迭代优化框架，并引入多智能体强化学习实现协作路由决策与干扰抑制，通过协同优化路由、资源与轨迹，实现了干扰受控条件下的多跳并发数据高效传输与系统性能提升。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3110,
-                "end_char": 3204
+                "start_char": 3431,
+                "end_char": 3602
               },
               "version": "ab89456526ce1960c592"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2f5974ca2ff9",
-          "name": "NOMA中继传输",
-          "desc": "分数规划递推优化用户分组与资源分配",
+          "id": "item-836d562c599f",
+          "name": "首先，围绕广域物联网在覆盖能力与负载调控方面的关键需求，构建了弹性灵活的多层次无人机辅助空地协同物联网通信架构，针对广域",
+          "desc": "首先，围绕广域物联网在覆盖能力与负载调控方面的关键需求，构建了弹性灵活的多层次无人机辅助空地协同物联网通信架构，针对广域物联网中节点分布不均、业务请求动态变化所引发的网络负载失衡问题，建立了无人机组网部署与协作通信的优化建模方法，提出了多无人机负载均衡（MULB）方案，通过动态调节无人机服务范围与协作方式，实现了对不同区域业务负载的自适应调控，并将负载均衡纳入联合优化框架，对用户关联、无人机轨迹及时隙分配进行协同设计，有效缓解了通信热点",
           "evidence": [
             {
-              "quote": "构建了基于非正交多址接入（NOMA）的多用户无人机中继传输模型。针对联合NOMA传输场景中用户分组与资源分配之间的强耦合特性，引入数学变换与分数规划方法，设计了递推优化的用户动态分组与资源分配策略",
+              "quote": "首先，围绕广域物联网在覆盖能力与负载调控方面的关键需求，构建了弹性灵活的多层次无人机辅助空地协同物联网通信架构，针对广域物联网中节点分布不均、业务请求动态变化所引发的网络负载失衡问题，建立了无人机组网部署与协作通信的优化建模方法，提出了多无人机负载均衡（MULB）方案，通过动态调节无人机服务范围与协作方式，实现了对不同区域业务负载的自适应调控，并将负载均衡纳入联合优化框架，对用户关联、无人机轨迹及时隙分配进行协同设计，有效缓解了通信热点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3288,
-                "end_char": 3385
+                "start_char": 2995,
+                "end_char": 3214
               },
               "version": "ab89456526ce1960c592"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,108 +107,368 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4e8e4447d281",
-          "name": "跨层协同优化传输",
-          "desc": "块坐标下降联合迭代与多智能体RL实现多跳高效传输",
+          "id": "item-586f747b6537",
+          "name": "针对未来广域物联网大规模设备接入、低时延、高流量的数据传输需求，考虑到无人机空间分布的灵活性和辅助数据传输的性能优势，本",
+          "desc": "针对未来广域物联网大规模设备接入、低时延、高流量的数据传输需求，考虑到无人机空间分布的灵活性和辅助数据传输的性能优势，本项目重点研究基于无人机辅助的空地协同物联网协作通信架构和数据传输方案，有效提升广域物联网的大规模设备接入效率和跨域间传输的连接性，降低数据传输时延。",
           "evidence": [
             {
-              "quote": "提出了面向并发多跳数据传输的跨层协同优化方法，联合考虑网络层路由路径选择、链路层资源分配以及无人机轨迹规划，设计了基于块坐标下降的联合迭代优化框架，并引入多智能体强化学习实现协作路由决策与干扰抑制",
+              "quote": "针对未来广域物联网大规模设备接入、低时延、高流量的数据传输需求，考虑到无人机空间分布的灵活性和辅助数据传输的性能优势，本项目重点研究基于无人机辅助的空地协同物联网协作通信架构和数据传输方案，有效提升广域物联网的大规模设备接入效率和跨域间传输的连接性，降低数据传输时延。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3460,
-                "end_char": 3557
+                "start_char": 661,
+                "end_char": 794
               },
               "version": "ab89456526ce1960c592"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-e8b5dbd9f954",
-          "name": "论文10篇专利7项",
-          "desc": "期刊会议论文10篇（SCI 6）、发明专利7项授权1项",
+          "id": "item-a3acd39763a8",
+          "name": "面向未来广域物联网大规模设备接入、低时延、高流量的数据传输需求，考虑无人机空间分布的灵活性和辅助数据传输的性能优势，本项",
+          "desc": "面向未来广域物联网大规模设备接入、低时延、高流量的数据传输需求，考虑无人机空间分布的灵活性和辅助数据传输的性能优势，本项目重点研究基于无人机辅助的空地协同物联网协作通信架构和数据传输方案，分别从“无人机组网优化建模与协作负载均衡方案设计”、“无人机辅助广域大规模节点接入控制策略”、“无人机辅助广域物联网数据中继传输方案”等三方面内容开展相关研究工作，项目执行过程均按计划实施，已顺利完成项目研究目标。",
           "evidence": [
             {
-              "quote": "项目相关研究成果发表国际权威期刊和顶级学术会议论文10篇，其中，SCI期刊论文6篇；申请中国发明专利7项，现已授权1项。",
+              "quote": "面向未来广域物联网大规模设备接入、低时延、高流量的数据传输需求，考虑无人机空间分布的灵活性和辅助数据传输的性能优势，本项目重点研究基于无人机辅助的空地协同物联网协作通信架构和数据传输方案，分别从“无人机组网优化建模与协作负载均衡方案设计”、“无人机辅助广域大规模节点接入控制策略”、“无人机辅助广域物联网数据中继传输方案”等三方面内容开展相关研究工作，项目执行过程均按计划实施，已顺利完成项目研究目标。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3729,
-                "end_char": 3788
+                "start_char": 2794,
+                "end_char": 2994
               },
               "version": "ab89456526ce1960c592"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-dba448e9c05c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-362d1c66ecec"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "OCVC: An Overlapping-Enabled Cooperative Vehicular Fog Computing Protocol",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dff439a1d6c8",
+      "evidence": [
+        {
+          "quote": "OCVC: An Overlapping-Enabled Cooperative Vehicular Fog Computing Protocol",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3814,
+            "end_char": 3886
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-362d1c66ecec"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f3f2ac1cd011"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Depth Camera-LiDAR Fusion Based UAV Autonomous Navigation for Parcel Delivery in Complex Urban Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-552e377fa8c6",
+      "evidence": [
+        {
+          "quote": "Depth Camera-LiDAR Fusion Based UAV Autonomous Navigation for Parcel Delivery in Complex Urban Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3959,
+            "end_char": 4064
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-362d1c66ecec"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2f5974ca2ff9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "无人机飞行自组织网络路由拓扑优化方法、设备、介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-169fc2cb6830",
+      "evidence": [
+        {
+          "quote": "无人机飞行自组织网络路由拓扑优化方法、设备、介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4120,
+            "end_char": 4143
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-362d1c66ecec"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4e8e4447d281"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的低空物流多无人机协同配送方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3162d36ab105",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的低空物流多无人机协同配送方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4166,
+            "end_char": 4190
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f3f2ac1cd011"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4e8e4447d281"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Divide and Conquer: Advancing Large-Scale Multi-Agent Pathfinding With Hierarchical Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-111a928ed13c",
+      "evidence": [
+        {
+          "quote": "Divide and Conquer: Advancing Large-Scale Multi-Agent Pathfinding With Hierarchical Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4215,
+            "end_char": 4320
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2f5974ca2ff9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e8b5dbd9f954"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种支持移动起降的车辆-无人机协同配送方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-676f54ec91e2",
+      "evidence": [
+        {
+          "quote": "一种支持移动起降的车辆-无人机协同配送方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4391,
+            "end_char": 4414
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于无监督学习的无人机航拍图像配准方法、系统、设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1fd698d0844",
+      "evidence": [
+        {
+          "quote": "一种基于无监督学习的无人机航拍图像配准方法、系统、设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4436,
+            "end_char": 4467
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Meta-Knowledge-Driven Approach for Adaptive Security Provisioning in Industrial IoT",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e557186caa47",
+      "evidence": [
+        {
+          "quote": "A Meta-Knowledge-Driven Approach for Adaptive Security Provisioning in Industrial IoT",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4492,
+            "end_char": 4576
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "无人机控制深度强化学习网络模型构建方法、设备、介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-075f9ac60bbb",
+      "evidence": [
+        {
+          "quote": "无人机控制深度强化学习网络模型构建方法、设备、介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4645,
+            "end_char": 4669
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无人机飞行自组织网络路由与拓扑优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a673041ce38",
+      "evidence": [
+        {
+          "quote": "一种无人机飞行自组织网络路由与拓扑优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4693,
+            "end_char": 4713
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint UAV Trajectory Scheduling and Network Routing for FANETs: A Reinforcement Learning Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ade4e794131e",
+      "evidence": [
+        {
+          "quote": "Joint UAV Trajectory Scheduling and Network Routing for FANETs: A Reinforcement Learning Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4739,
+            "end_char": 4835
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种异构多车辆-多无人机协同配送调度方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eaa520375c71",
+      "evidence": [
+        {
+          "quote": "一种异构多车辆-多无人机协同配送调度方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4880,
+            "end_char": 4902
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint Uplink and Downlink NOMA for UAV Relaying Network With Multi-Pair Users",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eb5dbeba8eda",
+      "evidence": [
+        {
+          "quote": "Joint Uplink and Downlink NOMA for UAV Relaying Network With Multi-Pair Users",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4927,
+            "end_char": 5003
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Flexible Load Balancing Scheme in Multi-UAV-Enabled Wireless Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1e7b7fc8459",
+      "evidence": [
+        {
+          "quote": "A Flexible Load Balancing Scheme in Multi-UAV-Enabled Wireless Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5071,
+            "end_char": 5141
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Drone-Truck Collaborative Delivery with En Route Operations: A Hierarchical MARL-Based Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5f11ad1d9401",
+      "evidence": [
+        {
+          "quote": "Multi-Drone-Truck Collaborative Delivery with En Route Operations: A Hierarchical MARL-Based Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5214,
+            "end_char": 5314
+          },
+          "version": "ab89456526ce1960c592"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

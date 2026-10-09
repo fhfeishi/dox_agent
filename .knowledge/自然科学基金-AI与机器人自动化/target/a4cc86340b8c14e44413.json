@@ -2,15 +2,20 @@
   "doc_id": "a4cc86340b8c14e44413",
   "version": "13d18882821bff0fe2de",
   "source_hash": "62baa66d6181f785caa6cccb05dd8bdb5afd6b9039fbcb62793344bb69be3777",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:18.178120+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.107702+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f760b12bca0d",
-          "name": "自动驾驶场景语义分割",
-          "desc": "行车环境感知的图像视频实时语义分割",
+          "id": "item-2a7d7e264327",
+          "name": "自动驾驶场景中为车辆采集道路高清图像或视频信息，并通过场景语义分割获得所有物体位置、形状和类别信息，以感知行车环境。",
+          "desc": "自动驾驶场景中为车辆采集道路高清图像或视频信息，并通过场景语义分割获得所有物体位置、形状和类别信息，以感知行车环境。",
           "evidence": [
             {
-              "quote": "本项目以自动驾驶场景为应用背景，以深度学习的场景语义分割技术为研究对象，主要研究并提出了多种高清晰度的图像和视频的实时分割，提高实算法的预测精度",
+              "quote": "自动驾驶场景中为车辆采集道路高清图像或视频信息，并通过场景语义分割获得所有物体位置、形状和类别信息，以感知行车环境。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2562,
-                "end_char": 2633
+                "start_char": 641,
+                "end_char": 698
+              },
+              "version": "13d18882821bff0fe2de"
+            }
+          ]
+        },
+        {
+          "id": "item-8db328a5820f",
+          "name": "基于深度学习的场景语义分割技术仍然是视觉计算领域研究难点之一，具有重要的理论研究意义，并在无人驾驶、智能导航等领域具有重",
+          "desc": "基于深度学习的场景语义分割技术仍然是视觉计算领域研究难点之一，具有重要的理论研究意义，并在无人驾驶、智能导航等领域具有重要的应用价值。",
+          "evidence": [
+            {
+              "quote": "基于深度学习的场景语义分割技术仍然是视觉计算领域研究难点之一，具有重要的理论研究意义，并在无人驾驶、智能导航等领域具有重要的应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 699,
+                "end_char": 765
               },
               "version": "13d18882821bff0fe2de"
             }
@@ -38,12 +59,34 @@
     },
     {
       "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-8ace6fd66fa2",
-          "name": "小样本场景动态变化难",
-          "desc": "季节更迭、光照与天气变化引起的小样本场景难处理",
+          "id": "item-c3a4df14e0c9",
+          "name": "设计基于选择性迁移学习和多分支网络集成学习的场景语义分割域迁移算法。",
+          "desc": "设计基于选择性迁移学习和多分支网络集成学习的场景语义分割域迁移算法。",
+          "evidence": [
+            {
+              "quote": "设计基于选择性迁移学习和多分支网络集成学习的场景语义分割域迁移算法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 813,
+                "end_char": 846
+              },
+              "version": "13d18882821bff0fe2de"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-46b955e48118",
+          "name": "在骨干网络之外添加持续记忆单元对因季节更迭、早晚光照和天气变化引起的小样本场景进行记忆并动态更新以辅助决策的图像场景语义",
+          "desc": "在骨干网络之外添加持续记忆单元对因季节更迭、早晚光照和天气变化引起的小样本场景进行记忆并动态更新以辅助决策的图像场景语义分割方法。",
           "evidence": [
             {
               "quote": "在骨干网络之外添加持续记忆单元对因季节更迭、早晚光照和天气变化引起的小样本场景进行记忆并动态更新以辅助决策的图像场景语义分割方法。",
@@ -54,45 +97,8 @@
               },
               "version": "13d18882821bff0fe2de"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-dc732123e8f9",
-          "name": "实时分割与蒸馏",
-          "desc": "轻量级计算、知识蒸馏与协同学习自适应度量蒸馏",
-          "evidence": [
-            {
-              "quote": "主要研究并提出了多种高清晰度的图像和视频的实时分割，提高实算法的预测精度；提出了协同学习的自适应度量蒸馏方法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2598,
-                "end_char": 2652
-              },
-              "version": "13d18882821bff0fe2de"
-            }
-          ]
-        },
-        {
-          "id": "item-3d56058455d5",
-          "name": "跨模态感知方法体系",
-          "desc": "视觉-红外检索、视觉问答与3D车辆检测等拓展",
-          "evidence": [
-            {
-              "quote": "提出了模态协同互补的视觉-红外图像的人员检索方法；提出了单阶段无锚框的3D车辆检测方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2730,
-                "end_char": 2772
-              },
-              "version": "13d18882821bff0fe2de"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,328 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a39dbaf7ca32",
-          "name": "国际领先方法验证",
-          "desc": "代码实现与对比实验证明同期国际领先水平",
+          "id": "item-239249bcaead",
+          "name": "自动驾驶场景中为车辆采集道路高清图像或视频信息，并通过场景语义分割获得所有物体位置、形状和类别信息，以感知行车环境。",
+          "desc": "自动驾驶场景中为车辆采集道路高清图像或视频信息，并通过场景语义分割获得所有物体位置、形状和类别信息，以感知行车环境。",
           "evidence": [
             {
-              "quote": "本项目对所提出的解决方法进行了代码实现、实验分析、和同类先进方法对比，结果证明本项目所提出的方法在该领域同时期具有国际领先水平",
+              "quote": "自动驾驶场景中为车辆采集道路高清图像或视频信息，并通过场景语义分割获得所有物体位置、形状和类别信息，以感知行车环境。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2832,
-                "end_char": 2894
+                "start_char": 641,
+                "end_char": 698
               },
               "version": "13d18882821bff0fe2de"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-3fe671ab1a07",
+          "name": "本项目以自动驾驶场景为应用背景，以深度学习的场景语义分割技术为研究对象，主要研究并提出了多种高清晰度的图像和视频的实时分",
+          "desc": "本项目以自动驾驶场景为应用背景，以深度学习的场景语义分割技术为研究对象，主要研究并提出了多种高清晰度的图像和视频的实时分割，提高实算法的预测精度；",
+          "evidence": [
+            {
+              "quote": "本项目以自动驾驶场景为应用背景，以深度学习的场景语义分割技术为研究对象，主要研究并提出了多种高清晰度的图像和视频的实时分割，提高实算法的预测精度；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2562,
+                "end_char": 2634
+              },
+              "version": "13d18882821bff0fe2de"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f760b12bca0d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8ace6fd66fa2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modality Synergy Complement Learning with Cascaded Aggregation for Visible-Infrared Person Re-Identification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5b0e2b4b1d5",
+      "evidence": [
+        {
+          "quote": "Modality Synergy Complement Learning with Cascaded Aggregation for Visible-Infrared Person Re-Identification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2943,
+            "end_char": 3050
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8ace6fd66fa2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dc732123e8f9"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Self-Learning With Rectification Strategy for Human Parsing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2f7178455a16",
+      "evidence": [
+        {
+          "quote": "Self-Learning With Rectification Strategy for Human Parsing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3115,
+            "end_char": 3173
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8ace6fd66fa2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3d56058455d5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-Modality Person Re-Identification via Modality Confusion and Center Aggregation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ce82ebbbed3",
+      "evidence": [
+        {
+          "quote": "Cross-Modality Person Re-Identification via Modality Confusion and Center Aggregation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3247,
+            "end_char": 3331
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-dc732123e8f9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a39dbaf7ca32"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Fine-Grained Information with Capsule-Wise Attention for Salient Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1ab450a045f2",
+      "evidence": [
+        {
+          "quote": "Learning Fine-Grained Information with Capsule-Wise Attention for Salient Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3388,
+            "end_char": 3477
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3d56058455d5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a39dbaf7ca32"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visible-Infrared Person Re-Identification by Dual-Semantic Consistency Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dd99b6661ee1",
+      "evidence": [
+        {
+          "quote": "Visible-Infrared Person Re-Identification by Dual-Semantic Consistency Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3550,
+            "end_char": 3628
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Video person re-identification with global statistic pooling and self-attention distillation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2aac3f0cee72",
+      "evidence": [
+        {
+          "quote": "Video person re-identification with global statistic pooling and self-attention distillation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3693,
+            "end_char": 3784
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficient Light Deep Network for Street Scene Parsing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d284ce282305",
+      "evidence": [
+        {
+          "quote": "Efficient Light Deep Network for Street Scene Parsing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3836,
+            "end_char": 3888
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dual Attention Based Network with Hierarchical ConvLSTM for Video Object Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc2b3f45b13d",
+      "evidence": [
+        {
+          "quote": "Dual Attention Based Network with Hierarchical ConvLSTM for Video Object Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3955,
+            "end_char": 4039
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online Imitation Learning for Self-Driving Simulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2e9c62a31895",
+      "evidence": [
+        {
+          "quote": "Online Imitation Learning for Self-Driving Simulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4078,
+            "end_char": 4130
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度学习预测边缘的矿石物料图像分割方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5b522b86bd8",
+      "evidence": [
+        {
+          "quote": "一种基于深度学习预测边缘的矿石物料图像分割方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4166,
+            "end_char": 4188
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种实时的视频语义分割方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8919126aaa72",
+      "evidence": [
+        {
+          "quote": "一种实时的视频语义分割方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4212,
+            "end_char": 4224
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "One-Stage Anchor-Free 3D Vehicle Detection from LiDAR Sensors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c0b7f995fc1",
+      "evidence": [
+        {
+          "quote": "One-Stage Anchor-Free 3D Vehicle Detection from LiDAR Sensors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4255,
+            "end_char": 4315
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Interaction and Alignment for Visible-Infrared Person Re-Identification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35a4e4dde029",
+      "evidence": [
+        {
+          "quote": "Interaction and Alignment for Visible-Infrared Person Re-Identification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4388,
+            "end_char": 4458
+          },
+          "version": "13d18882821bff0fe2de"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

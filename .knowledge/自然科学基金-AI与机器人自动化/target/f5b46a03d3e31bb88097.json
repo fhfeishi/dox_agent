@@ -2,15 +2,20 @@
   "doc_id": "f5b46a03d3e31bb88097",
   "version": "a3888dc61213dd21e4c8",
   "source_hash": "d1cb29bc57311ea05cba166cef88451157bf7f7b6638775a9c7c0aca1a840fc7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:55.694149+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.850110+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f87e04310f76",
-          "name": "突发事件大规模人群疏散",
-          "desc": "以大规模人群疏散仿真为背景，基于知识的人群疏散路径导航",
+          "id": "item-7d2c257e9d0b",
+          "name": "面向突发事件下大规模人群疏散仿真，结合多Agent系统的架构及强化学习的算法，提出一种基于知识的人群疏散路径导航及仿真方",
+          "desc": "面向突发事件下大规模人群疏散仿真，结合多Agent系统的架构及强化学习的算法，提出一种基于知识的人群疏散路径导航及仿真方法。",
           "evidence": [
             {
-              "quote": "本项目以大规模人群疏散仿真作为应用背景，围绕突发事件下人群疏散的需求，开展了基于知识的人群疏散路径导航及仿真研究",
+              "quote": "面向突发事件下大规模人群疏散仿真，结合多Agent系统的架构及强化学习的算法，提出一种基于知识的人群疏散路径导航及仿真方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2817,
-                "end_char": 2872
+                "start_char": 641,
+                "end_char": 702
+              },
+              "version": "a3888dc61213dd21e4c8"
+            }
+          ]
+        },
+        {
+          "id": "item-7af4db82e306",
+          "name": ".  本项目以大规模人群疏散仿真作为应用背景，围绕突发事件下人群疏散的需求，开展了基于知识的人群疏散路径导航及仿真研究。",
+          "desc": ".  本项目以大规模人群疏散仿真作为应用背景，围绕突发事件下人群疏散的需求，开展了基于知识的人群疏散路径导航及仿真研究。",
+          "evidence": [
+            {
+              "quote": ".  本项目以大规模人群疏散仿真作为应用背景，围绕突发事件下人群疏散的需求，开展了基于知识的人群疏散路径导航及仿真研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2814,
+                "end_char": 2873
               },
               "version": "a3888dc61213dd21e4c8"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d0ee9f48d1c7",
-          "name": "出口拥堵与人员踩踏",
-          "desc": "人群恐慌情绪与从众心理易造成出口拥堵及人员踩踏",
-          "evidence": [
-            {
-              "quote": "由于对环境不熟悉产生的从众心理，容易造成出口拥堵及人员踩踏",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2725,
-                "end_char": 2753
-              },
-              "version": "a3888dc61213dd21e4c8"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-b388f12a576c",
-          "name": "多蜂群出口选择方法",
-          "desc": "兼顾出口拥挤度与距离的动态平衡，进行人群分组与出口选择",
+          "id": "item-ea7a5387741b",
+          "name": "该方法采用双层控制机制，上层结合多Agent技术及机器学习算法对疏散知识进行抽取、优化、更新，并通过文化算法的通信机制对",
+          "desc": "该方法采用双层控制机制，上层结合多Agent技术及机器学习算法对疏散知识进行抽取、优化、更新，并通过文化算法的通信机制对下层的人群疏散过程进行导航及控制。",
           "evidence": [
             {
-              "quote": "提出了一种多蜂群出口选择方法",
+              "quote": "该方法采用双层控制机制，上层结合多Agent技术及机器学习算法对疏散知识进行抽取、优化、更新，并通过文化算法的通信机制对下层的人群疏散过程进行导航及控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2957,
-                "end_char": 2970
+                "start_char": 703,
+                "end_char": 779
               },
               "version": "a3888dc61213dd21e4c8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8f71ae04c228",
-          "name": "经验共享多Agent深度强化学习",
-          "desc": "动态抽取、优化并更新路径规划知识",
+          "id": "item-e841f59378e6",
+          "name": "面向突发事件下大规模人群疏散仿真，结合多Agent系统的架构及强化学习的算法，提出一种基于知识的人群疏散路径导航及仿真方",
+          "desc": "面向突发事件下大规模人群疏散仿真，结合多Agent系统的架构及强化学习的算法，提出一种基于知识的人群疏散路径导航及仿真方法。",
           "evidence": [
             {
-              "quote": "设计了经验共享方式的多Agent深度强化学习方法，动态抽取、优化、并更新路径规划知识",
+              "quote": "面向突发事件下大规模人群疏散仿真，结合多Agent系统的架构及强化学习的算法，提出一种基于知识的人群疏散路径导航及仿真方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2975,
-                "end_char": 3016
+                "start_char": 641,
+                "end_char": 702
               },
               "version": "a3888dc61213dd21e4c8"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,428 @@
       "state": "has",
       "items": [
         {
-          "id": "item-233a27f256d2",
-          "name": "疏散导航论文与专利",
-          "desc": "发表论文19篇（SCI 14篇、EI 5篇），授权发明专利2项",
+          "id": "item-fea26dde7ed7",
+          "name": "面向突发事件下大规模人群疏散仿真，结合多Agent系统的架构及强化学习的算法，提出一种基于知识的人群疏散路径导航及仿真方",
+          "desc": "面向突发事件下大规模人群疏散仿真，结合多Agent系统的架构及强化学习的算法，提出一种基于知识的人群疏散路径导航及仿真方法。",
           "evidence": [
             {
-              "quote": "项目已经在国内外期刊及国际会议上发表论文19篇，其中SCI检索的期刊论文14篇，EI检索的国际会议论文5篇。授权发明专利2项。",
+              "quote": "面向突发事件下大规模人群疏散仿真，结合多Agent系统的架构及强化学习的算法，提出一种基于知识的人群疏散路径导航及仿真方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3160,
-                "end_char": 3222
+                "start_char": 641,
+                "end_char": 702
               },
               "version": "a3888dc61213dd21e4c8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-6b718ff1e52d",
+          "name": "近年来，随着城镇化进程的加快，大规模人群聚集的公共场所存在的潜在风险也随之增加，频发的自然灾害和人为事故给世界各地的人民",
+          "desc": "近年来，随着城镇化进程的加快，大规模人群聚集的公共场所存在的潜在风险也随之增加，频发的自然灾害和人为事故给世界各地的人民带来了巨大的生命财产损失，是威胁城市安全的重要来源之一。",
+          "evidence": [
+            {
+              "quote": "近年来，随着城镇化进程的加快，大规模人群聚集的公共场所存在的潜在风险也随之增加，频发的自然灾害和人为事故给世界各地的人民带来了巨大的生命财产损失，是威胁城市安全的重要来源之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2570,
+                "end_char": 2657
+              },
+              "version": "a3888dc61213dd21e4c8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f87e04310f76"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d0ee9f48d1c7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Knowledge and emotion dual-driven method for crowd evacuation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01865c710151",
+      "evidence": [
+        {
+          "quote": "Knowledge and emotion dual-driven method for crowd evacuation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3272,
+            "end_char": 3332
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d0ee9f48d1c7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b388f12a576c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Blockchain-based Crowd-sensing Trust Management Mechanism for Crowd Evacuation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0162f78b99c0",
+      "evidence": [
+        {
+          "quote": "Blockchain-based Crowd-sensing Trust Management Mechanism for Crowd Evacuation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3400,
+            "end_char": 3477
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b388f12a576c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-233a27f256d2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep deterministic policy gradient algorithm for crowd-evacuation path planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6792dd90c55c",
+      "evidence": [
+        {
+          "quote": "Deep deterministic policy gradient algorithm for crowd-evacuation path planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3535,
+            "end_char": 3613
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f87e04310f76"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8f71ae04c228"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Crowd evacuation simulation method combining the density field and social force model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a28d8015d8bb",
+      "evidence": [
+        {
+          "quote": "Crowd evacuation simulation method combining the density field and social force model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3664,
+            "end_char": 3748
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8f71ae04c228"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-233a27f256d2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Arch formation-based congestion alleviation for crowd evacuation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e5ecf70bf60",
+      "evidence": [
+        {
+          "quote": "Arch formation-based congestion alleviation for crowd evacuation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3782,
+            "end_char": 3845
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collaborative Teams Recruitment Based on Dual Constraints of Willingness and Trust for Crowd Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6093e89677c4",
+      "evidence": [
+        {
+          "quote": "Collaborative Teams Recruitment Based on Dual Constraints of Willingness and Trust for Crowd Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3888,
+            "end_char": 3987
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于用户行为数据的汽车运行状态识别方法、系统及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c5dc35200451",
+      "evidence": [
+        {
+          "quote": "基于用户行为数据的汽车运行状态识别方法、系统及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4057,
+            "end_char": 4081
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种结合Q-learning与多蜂群算法的疏散路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01a3d2e2b0e3",
+      "evidence": [
+        {
+          "quote": "一种结合Q-learning与多蜂群算法的疏散路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4100,
+            "end_char": 4128
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Intervention optimization for crowd emotional contagion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2739cd9e921f",
+      "evidence": [
+        {
+          "quote": "Intervention optimization for crowd emotional contagion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4148,
+            "end_char": 4202
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Federated Learning based Path Planning Method for Crowd Evacuation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d8ef5b4831c",
+      "evidence": [
+        {
+          "quote": "Federated Learning based Path Planning Method for Crowd Evacuation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4269,
+            "end_char": 4334
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-scale Attention Recalibration Network for crowd counting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d9d7d3d38422",
+      "evidence": [
+        {
+          "quote": "Multi-scale Attention Recalibration Network for crowd counting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4394,
+            "end_char": 4455
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Recurrent emotional contagion for the crowd evacuation of a cyber-physical society",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85d95ccdc812",
+      "evidence": [
+        {
+          "quote": "Recurrent emotional contagion for the crowd evacuation of a cyber-physical society",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4540,
+            "end_char": 4621
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "IoT-based Positive Emotional Contagion for Crowd Evacuation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-80ba690b5171",
+      "evidence": [
+        {
+          "quote": "IoT-based Positive Emotional Contagion for Crowd Evacuation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4689,
+            "end_char": 4747
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An evacuation simulation method based on an improved artificial bee colony algorithm and a social force model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-528a61e20ac7",
+      "evidence": [
+        {
+          "quote": "An evacuation simulation method based on an improved artificial bee colony algorithm and a social force model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4796,
+            "end_char": 4904
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An evacuation guidance model for pedestrians with limited vision",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a846e4d8c69",
+      "evidence": [
+        {
+          "quote": "An evacuation guidance model for pedestrians with limited vision",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4950,
+            "end_char": 5013
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-Driven Crowd Evacuation: A Reinforcement Learning Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-69c7235b2af0",
+      "evidence": [
+        {
+          "quote": "Data-Driven Crowd Evacuation: A Reinforcement Learning Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5057,
+            "end_char": 5117
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Personalized Crowd Emotional Contagion Coupling the Virtual and Physical Cyberspace",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f644bfce48d",
+      "evidence": [
+        {
+          "quote": "Personalized Crowd Emotional Contagion Coupling the Virtual and Physical Cyberspace",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5179,
+            "end_char": 5261
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-Driven Crowd Motion Modeling With Group Properties Analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c998a5be601",
+      "evidence": [
+        {
+          "quote": "Data-Driven Crowd Motion Modeling With Group Properties Analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5341,
+            "end_char": 5404
+          },
+          "version": "a3888dc61213dd21e4c8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "e42010242bc184edb9c8",
   "version": "d49fb4a86ae0b719c130",
   "source_hash": "3a6028750aee57fc68c755620ec808d67fc48531cc3124732f2937de9e3ac8c1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:55.737284+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.715961+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-794095f7593a",
-          "name": "野外复杂地形重载四足行走",
-          "desc": "足式机器人对崎岖地形适应能力强，重载四足机器人面临野外行走可靠性问题",
+          "id": "item-40ef1367b970",
+          "name": "面向国家高原山地作战及科学探测需求，为提升重载四足机器人在高原地形适应性和行走效率，本项目拟围绕多变地形特征的重载四足机",
+          "desc": "面向国家高原山地作战及科学探测需求，为提升重载四足机器人在高原地形适应性和行走效率，本项目拟围绕多变地形特征的重载四足机器人滑移抑制等问题展开研究。",
           "evidence": [
             {
-              "quote": "足式机器人凭借其对崎岖地形的卓越适应能力，在野外运输、救援及探测等任务中展现出重要应用价值",
+              "quote": "面向国家高原山地作战及科学探测需求，为提升重载四足机器人在高原地形适应性和行走效率，本项目拟围绕多变地形特征的重载四足机器人滑移抑制等问题展开研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2840,
-                "end_char": 2884
+                "start_char": 657,
+                "end_char": 730
               },
               "version": "d49fb4a86ae0b719c130"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-fb69d71650db",
-          "name": "足端滑移与支撑失稳",
-          "desc": "重载四足机器人在野外复杂地形中行走时普遍面临足端滑移、支撑失稳与姿态波动",
-          "evidence": [
-            {
-              "quote": "重载四足机器人在野外复杂地形中行走时，普遍面临足端滑移、支撑失稳与姿态波动的突出问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2889,
-                "end_char": 2930
-              },
-              "version": "d49fb4a86ae0b719c130"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-d72c69fc5c94",
-          "name": "足-地非线性接触力学统一建模",
-          "desc": "兼顾软/硬地形与滑移效应的接触力学统一建模与参数辨识方法",
+          "id": "item-d8d8d803143c",
+          "name": ".本项目突破了传统静态接触模型的局限，构建了融合滑移效应的足-地非线性力学统一描述方法，提出了基于状态估计与自适应优化的",
+          "desc": ".本项目突破了传统静态接触模型的局限，构建了融合滑移效应的足-地非线性力学统一描述方法，提出了基于状态估计与自适应优化的滑移抑制控制框架。",
           "evidence": [
             {
-              "quote": "首先构建兼顾软/硬地形与滑移效应的足-地非线性接触力学统一建模与参数辨识方法",
+              "quote": ".本项目突破了传统静态接触模型的局限，构建了融合滑移效应的足-地非线性力学统一描述方法，提出了基于状态估计与自适应优化的滑移抑制控制框架。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3031,
-                "end_char": 3068
+                "start_char": 3340,
+                "end_char": 3408
               },
               "version": "d49fb4a86ae0b719c130"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e71a37416cd2",
-          "name": "卡尔曼滤波在线状态估计",
-          "desc": "融合IMU、编码器与足端接触信息，实时判别滑移趋势与地形接触特征",
+          "id": "item-357da3471171",
+          "name": "本项目的科学意义在于揭示足-地纵/侧滑、滑移估计及抑制控制对重载四足机器人系统稳定性影响的内在机制和数学本质，为重载四足",
+          "desc": "本项目的科学意义在于揭示足-地纵/侧滑、滑移估计及抑制控制对重载四足机器人系统稳定性影响的内在机制和数学本质，为重载四足机器人在高原山地作战及物资输送的可靠应用提供理论基础及技术支持。",
           "evidence": [
             {
-              "quote": "融合IMU、编码器与足端接触信息，建立以卡尔曼滤波为核心的在线状态估计框架",
+              "quote": "本项目的科学意义在于揭示足-地纵/侧滑、滑移估计及抑制控制对重载四足机器人系统稳定性影响的内在机制和数学本质，为重载四足机器人在高原山地作战及物资输送的可靠应用提供理论基础及技术支持。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3106,
-                "end_char": 3142
+                "start_char": 961,
+                "end_char": 1052
               },
               "version": "d49fb4a86ae0b719c130"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,108 +91,388 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e5b0bf31acdd",
-          "name": "滑移抑制控制框架",
-          "desc": "基于状态估计与自适应优化的滑移抑制控制框架",
+          "id": "item-fd4a115a609b",
+          "name": "面向国家高原山地作战及科学探测需求，为提升重载四足机器人在高原地形适应性和行走效率，本项目拟围绕多变地形特征的重载四足机",
+          "desc": "面向国家高原山地作战及科学探测需求，为提升重载四足机器人在高原地形适应性和行走效率，本项目拟围绕多变地形特征的重载四足机器人滑移抑制等问题展开研究。",
           "evidence": [
             {
-              "quote": "提出了基于状态估计与自适应优化的滑移抑制控制框架",
+              "quote": "面向国家高原山地作战及科学探测需求，为提升重载四足机器人在高原地形适应性和行走效率，本项目拟围绕多变地形特征的重载四足机器人滑移抑制等问题展开研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3384,
-                "end_char": 3407
+                "start_char": 657,
+                "end_char": 730
               },
               "version": "d49fb4a86ae0b719c130"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-da0965a17d5f",
-          "name": "复杂地形适应能力提升",
-          "desc": "显著提升机器人在低附着路面、坡面及松软地形中的抗滑移能力与运动稳定性",
+          "id": "item-922f6b65bc44",
+          "name": "足式机器人凭借其对崎岖地形的卓越适应能力，在野外运输、救援及探测等任务中展现出重要应用价值。",
+          "desc": "足式机器人凭借其对崎岖地形的卓越适应能力，在野外运输、救援及探测等任务中展现出重要应用价值。",
           "evidence": [
             {
-              "quote": "显著提升了机器人在低附着路面、坡面及松软地形中的抗滑移能力、运动稳定性与地形适应性",
+              "quote": "足式机器人凭借其对崎岖地形的卓越适应能力，在野外运输、救援及探测等任务中展现出重要应用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3426,
-                "end_char": 3466
+                "start_char": 2840,
+                "end_char": 2885
               },
               "version": "d49fb4a86ae0b719c130"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-794095f7593a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fb69d71650db"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "移动机器人跨域跃质关键技术综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-375589e787e1",
+      "evidence": [
+        {
+          "quote": "移动机器人跨域跃质关键技术综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3567,
+            "end_char": 3581
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fb69d71650db"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d72c69fc5c94"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Blind walking control of a heavy-duty hexapod robot based on optimal force allocation for uneven and sloped terrains",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-919e14175562",
+      "evidence": [
+        {
+          "quote": "Blind walking control of a heavy-duty hexapod robot based on optimal force allocation for uneven and sloped terrains",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3621,
+            "end_char": 3736
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d72c69fc5c94"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e5b0bf31acdd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DT-Loong: A digital twin simulation framework for scalable data collection and training of humanoid robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0263e5c55fb0",
+      "evidence": [
+        {
+          "quote": "DT-Loong: A digital twin simulation framework for scalable data collection and training of humanoid robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3807,
+            "end_char": 3912
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-794095f7593a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fb69d71650db"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人通信方法、电子设备、存储介质及程序产品",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f4338b45c162",
+      "evidence": [
+        {
+          "quote": "机器人通信方法、电子设备、存储介质及程序产品",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3973,
+            "end_char": 3994
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fb69d71650db"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e71a37416cd2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trilateral teleoperation of a hexapod robot based on wave variable compensation and dynamic shared control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-532eb85a6d66",
+      "evidence": [
+        {
+          "quote": "Trilateral teleoperation of a hexapod robot based on wave variable compensation and dynamic shared control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4026,
+            "end_char": 4131
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e71a37416cd2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-da0965a17d5f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An overview of learning-based dexterous grasping: Recent advances and future directions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ddb1b51cbcd",
+      "evidence": [
+        {
+          "quote": "An overview of learning-based dexterous grasping: Recent advances and future directions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4285
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人训练场的设备维修控制方法、装置、设备及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-956b191c2e8b",
+      "evidence": [
+        {
+          "quote": "机器人训练场的设备维修控制方法、装置、设备及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4349,
+            "end_char": 4372
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人运动控制方法及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2373c6f5c2a7",
+      "evidence": [
+        {
+          "quote": "机器人运动控制方法及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4392,
+            "end_char": 4403
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "灵巧手及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b9552ebf2b3",
+      "evidence": [
+        {
+          "quote": "灵巧手及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4434,
+            "end_char": 4440
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and evaluation of a rigid-soft coupling anthropomorphic hand system for grasping performance enhancement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ccb95c6a8a0",
+      "evidence": [
+        {
+          "quote": "Design and evaluation of a rigid-soft coupling anthropomorphic hand system for grasping performance enhancement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4474,
+            "end_char": 4584
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "人形机器人的故障诊断方法、设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20876449e623",
+      "evidence": [
+        {
+          "quote": "人形机器人的故障诊断方法、设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4659,
+            "end_char": 4678
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on foot slippage suppression of mammal type legged robot based on optimal force allocation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8bacc8fc5030",
+      "evidence": [
+        {
+          "quote": "Research on foot slippage suppression of mammal type legged robot based on optimal force allocation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4711,
+            "end_char": 4809
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and analysis of stable contact states in the anthropomorphic robotic hand with soft materials and rigid structures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1562dfee4233",
+      "evidence": [
+        {
+          "quote": "Modeling and analysis of stable contact states in the anthropomorphic robotic hand with soft materials and rigid structures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4916,
+            "end_char": 5038
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人关节控制方法、电子设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68001d017b78",
+      "evidence": [
+        {
+          "quote": "机器人关节控制方法、电子设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5157,
+            "end_char": 5175
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Loong: An open-source platform for full-size universal humanoid robot toward better practicality",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5a23acbf9286",
+      "evidence": [
+        {
+          "quote": "Loong: An open-source platform for full-size universal humanoid robot toward better practicality",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5201,
+            "end_char": 5296
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于抓取刚度增强的刚软耦合仿人手设计与实验",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f2df97e15b2a",
+      "evidence": [
+        {
+          "quote": "基于抓取刚度增强的刚软耦合仿人手设计与实验",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5441,
+            "end_char": 5461
+          },
+          "version": "d49fb4a86ae0b719c130"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "e48a4adfc13b178f90ba",
   "version": "080134339d72d672972a",
   "source_hash": "4c0580314496d4c16e9f29a84da377b22563342338ab30040af4dba0d95a3c01",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:29.436600+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.725813+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,31 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9aa1a90be4d6",
-          "name": "水下复杂环境感知",
-          "desc": "海洋信息获取中目标探测与识别",
+          "id": "item-2a0e12a58ed9",
+          "name": "海洋信息的获取、传输、处理和融合，不仅在海洋科学研究、环境调查、资源开发、权益维护和安全范围中发挥重要的作用，也因其应用",
+          "desc": "海洋信息的获取、传输、处理和融合，不仅在海洋科学研究、环境调查、资源开发、权益维护和安全范围中发挥重要的作用，也因其应用环境的特殊性而成为信息科学研究的热点之一。",
           "evidence": [
             {
-              "quote": "海洋信息的获取、传输、处理和融合是当前信息科学研究的热点之一。复杂水下环境及目标的感知，即通过技术手段实现对目标的探测与识别，是对海洋信息处理的重要基础。",
+              "quote": "海洋信息的获取、传输、处理和融合，不仅在海洋科学研究、环境调查、资源开发、权益维护和安全范围中发挥重要的作用，也因其应用环境的特殊性而成为信息科学研究的热点之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2753,
-                "end_char": 2829
+                "start_char": 651,
+                "end_char": 731
               },
               "version": "080134339d72d672972a"
             }
           ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
+        },
         {
-          "id": "item-6955f873d245",
-          "name": "传统探测识别受挑战",
-          "desc": "环境复杂性与目标减震降噪进步使传统方法失效",
+          "id": "item-6533d81bd7a4",
+          "name": "由于海洋环境的复杂性，以及目标减震降噪技术的不断进步，传统目标探测与识别方法正面临极大的挑战，无法应对当前应用的需求。",
+          "desc": "由于海洋环境的复杂性，以及目标减震降噪技术的不断进步，传统目标探测与识别方法正面临极大的挑战，无法应对当前应用的需求。",
           "evidence": [
             {
               "quote": "由于海洋环境的复杂性，以及目标减震降噪技术的不断进步，传统目标探测与识别方法正面临极大的挑战，无法应对当前应用的需求。",
@@ -59,40 +58,64 @@
       ]
     },
     {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3a3f7cca0def",
+          "name": "针对由于目标数据的缺乏，形成的识别模型存在稳定性差的问题，基于相容性检测与迁移学习的机理，研究复杂水下环境目标识别稳定性",
+          "desc": "针对由于目标数据的缺乏，形成的识别模型存在稳定性差的问题，基于相容性检测与迁移学习的机理，研究复杂水下环境目标识别稳定性的新方法，增强目标识别的可信性;研究并提出一种态势信息空间模型，实现海洋环境信息、目标综合信息、水下监测网信息、互联网情报等信息的集成，为态势认知过程提供丰富的数据基础；",
+          "evidence": [
+            {
+              "quote": "针对由于目标数据的缺乏，形成的识别模型存在稳定性差的问题，基于相容性检测与迁移学习的机理，研究复杂水下环境目标识别稳定性的新方法，增强目标识别的可信性;研究并提出一种态势信息空间模型，实现海洋环境信息、目标综合信息、水下监测网信息、互联网情报等信息的集成，为态势认知过程提供丰富的数据基础；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 849,
+                "end_char": 993
+              },
+              "version": "080134339d72d672972a"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-9e49de96608b",
-          "name": "远程监督关系抽取",
-          "desc": "句子选择交互表示与强化学习噪音标签去除",
+          "id": "item-20d9574cd6f4",
+          "name": "本项目研究立足于目标探测与识别的需求，从复杂水下环境目标探测与识别，多源态势信息集成与关联两个方面着手，提出复杂水下环境",
+          "desc": "本项目研究立足于目标探测与识别的需求，从复杂水下环境目标探测与识别，多源态势信息集成与关联两个方面着手，提出复杂水下环境目标感知与信息处理的新技术和新方法。",
           "evidence": [
             {
-              "quote": "提出一种基于加权概率神经网络与要素匹配的实体抽取方法、一种基于句子选择和交互表示的远程监督关系抽取方法、一种基于强化学习的远程监督关系抽取噪音标签去除方法。",
+              "quote": "本项目研究立足于目标探测与识别的需求，从复杂水下环境目标探测与识别，多源态势信息集成与关联两个方面着手，提出复杂水下环境目标感知与信息处理的新技术和新方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3131,
-                "end_char": 3208
+                "start_char": 732,
+                "end_char": 809
               },
               "version": "080134339d72d672972a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b285123cf559",
-          "name": "水下目标识别网络",
-          "desc": "注意力CNN与负相关增量集成识别方法",
+          "id": "item-62955219a3f8",
+          "name": "以目标检测与识别为中心，提出一种基于目标的关联映射模型，为强化感知与识别的可靠性提供数据处理方法和手段.",
+          "desc": "以目标检测与识别为中心，提出一种基于目标的关联映射模型，为强化感知与识别的可靠性提供数据处理方法和手段.",
           "evidence": [
             {
-              "quote": "在目标识别方面，提出一种基于注意力的水下目标识别卷积神经网络，一种基于负相关增量的水下目标集成识别方法。",
+              "quote": "以目标检测与识别为中心，提出一种基于目标的关联映射模型，为强化感知与识别的可靠性提供数据处理方法和手段.",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3239,
-                "end_char": 3290
+                "start_char": 994,
+                "end_char": 1045
               },
               "version": "080134339d72d672972a"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,468 @@
       "state": "has",
       "items": [
         {
-          "id": "item-899740be8b64",
-          "name": "水声测试数据集",
-          "desc": "多处水域与静默水池采集水声样本构建数据集",
+          "id": "item-a0f21ad1bfc3",
+          "name": "海洋信息的获取、传输、处理和融合，不仅在海洋科学研究、环境调查、资源开发、权益维护和安全范围中发挥重要的作用，也因其应用",
+          "desc": "海洋信息的获取、传输、处理和融合，不仅在海洋科学研究、环境调查、资源开发、权益维护和安全范围中发挥重要的作用，也因其应用环境的特殊性而成为信息科学研究的热点之一。",
           "evidence": [
             {
-              "quote": "为验证本项目提出的上述方法的有效性，本项目在多处水域以及静默水池中采集了大量水声样本构建了测试数据集。实验结果表明本项目提出的方法及模型的有效性和可行性。",
+              "quote": "海洋信息的获取、传输、处理和融合，不仅在海洋科学研究、环境调查、资源开发、权益维护和安全范围中发挥重要的作用，也因其应用环境的特殊性而成为信息科学研究的热点之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3340,
-                "end_char": 3416
+                "start_char": 651,
+                "end_char": 731
               },
               "version": "080134339d72d672972a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-eeffe43a2c02",
+          "name": "海洋信息的获取、传输、处理和融合是当前信息科学研究的热点之一。",
+          "desc": "海洋信息的获取、传输、处理和融合是当前信息科学研究的热点之一。",
+          "evidence": [
+            {
+              "quote": "海洋信息的获取、传输、处理和融合是当前信息科学研究的热点之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2753,
+                "end_char": 2783
+              },
+              "version": "080134339d72d672972a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9aa1a90be4d6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6955f873d245"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于知识图谱的情报关联分析方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e20c280c8957",
+      "evidence": [
+        {
+          "quote": "基于知识图谱的情报关联分析方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3465,
+            "end_char": 3479
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6955f873d245"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9e49de96608b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向水下声音信号分类的迁移学习方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d68b5f5dd2b",
+      "evidence": [
+        {
+          "quote": "一种面向水下声音信号分类的迁移学习方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3527,
+            "end_char": 3545
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6955f873d245"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b285123cf559"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种类激活映射方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c92ad869476e",
+      "evidence": [
+        {
+          "quote": "一种类激活映射方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3596,
+            "end_char": 3604
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b285123cf559"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-899740be8b64"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "适用于水下目标识别的快速降维卷积模型",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9d4ebfe82c3",
+      "evidence": [
+        {
+          "quote": "适用于水下目标识别的快速降维卷积模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3644,
+            "end_char": 3661
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9e49de96608b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-899740be8b64"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adversarial sliced Wasserstein domain adaptation networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dfd0484f4e91",
+      "evidence": [
+        {
+          "quote": "Adversarial sliced Wasserstein domain adaptation networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3694,
+            "end_char": 3750
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Incremental integration algorithm based on incremental RLID3",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e495bd679cdc",
+      "evidence": [
+        {
+          "quote": "Incremental integration algorithm based on incremental RLID3",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3799,
+            "end_char": 3858
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向卷积神经网络分类结果的可视化算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a79b0ffc74ad",
+      "evidence": [
+        {
+          "quote": "一种面向卷积神经网络分类结果的可视化算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3926,
+            "end_char": 3945
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度学习的海上船舶时序数据的分析方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e9329c267b8",
+      "evidence": [
+        {
+          "quote": "一种基于深度学习的海上船舶时序数据的分析方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3996,
+            "end_char": 4017
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于理解深度学习模型决策机制的决策树生成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ea63d01a854",
+      "evidence": [
+        {
+          "quote": "一种用于理解深度学习模型决策机制的决策树生成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4048,
+            "end_char": 4071
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于卷积神经网络的水下目标特征提取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a42087fa527",
+      "evidence": [
+        {
+          "quote": "基于卷积神经网络的水下目标特征提取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3299,
+            "end_char": 3317
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于力引导的点布局优化算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1db0ef3e6b9",
+      "evidence": [
+        {
+          "quote": "基于力引导的点布局优化算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4157,
+            "end_char": 4169
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "EHP:Entity Hyperplane Projection for Knowledge Graph Embedding with Entity Descriptions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8f9eeab4d3d4",
+      "evidence": [
+        {
+          "quote": "EHP:Entity Hyperplane Projection for Knowledge Graph Embedding with Entity Descriptions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4223,
+            "end_char": 4309
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Information classification algorithm based on decision tree optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e2e2216a34bc",
+      "evidence": [
+        {
+          "quote": "Information classification algorithm based on decision tree optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4384,
+            "end_char": 4455
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Information space data modeling with context-awareness and complex semantic association",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fa3b0ce4d939",
+      "evidence": [
+        {
+          "quote": "Information space data modeling with context-awareness and complex semantic association",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4527,
+            "end_char": 4613
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于快速循环单元的水下目标探测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b61de15dc3a4",
+      "evidence": [
+        {
+          "quote": "一种基于快速循环单元的水下目标探测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3219,
+            "end_char": 3237
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Summarizing database schema based on graph partition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-38702c83c38c",
+      "evidence": [
+        {
+          "quote": "Summarizing database schema based on graph partition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4729,
+            "end_char": 4780
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Domain-Invariant and Discriminative Features for Homogeneous Unsupervised Domain AdaptationInspec keywordsOther keywordsKey words",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2302f2a7ee33",
+      "evidence": [
+        {
+          "quote": "Learning Domain-Invariant and Discriminative Features for Homogeneous Unsupervised Domain AdaptationInspec keywordsOther keywordsKey words",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4832,
+            "end_char": 4969
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于知识图谱的关系预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-210afbcf7f08",
+      "evidence": [
+        {
+          "quote": "一种基于知识图谱的关系预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5017,
+            "end_char": 5031
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "融合先验知识的深度学习模型快速训练方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1ef2dc85bf92",
+      "evidence": [
+        {
+          "quote": "融合先验知识的深度学习模型快速训练方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5085,
+            "end_char": 5103
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distant Supervision for Relation Extraction with Sentence Selection and Interaction Representation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a141bba6842",
+      "evidence": [
+        {
+          "quote": "Distant Supervision for Relation Extraction with Sentence Selection and Interaction Representation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5129,
+            "end_char": 5226
+          },
+          "version": "080134339d72d672972a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "专利": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

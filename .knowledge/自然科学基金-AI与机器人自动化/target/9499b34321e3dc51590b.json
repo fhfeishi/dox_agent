@@ -2,15 +2,20 @@
   "doc_id": "9499b34321e3dc51590b",
   "version": "57a72a660894b6071bff",
   "source_hash": "e3523d5b82473f16f5406ac6f7e07e2017f7ed497b4b68cd9b158b53d3d7a425",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:33:44.919915+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.885768+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e1f022041f56",
-          "name": "经食道超声机器人扫查",
-          "desc": "机器人辅助经食道超声扫查，避免操作者辐射暴露",
+          "id": "item-7fa0c1e8cbdb",
+          "name": "近年来，基于X光成像与经食道超声共同引导的微创介入手术已成为治疗相关心血管疾病的重要手段。",
+          "desc": "近年来，基于X光成像与经食道超声共同引导的微创介入手术已成为治疗相关心血管疾病的重要手段。",
           "evidence": [
             {
-              "quote": "机器人辅助下的经食道超声扫查可以避免操作者在辐射环境的暴露，优化手术流程，减少操作者对经验的依赖",
+              "quote": "近年来，基于X光成像与经食道超声共同引导的微创介入手术已成为治疗相关心血管疾病的重要手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3364,
-                "end_char": 3411
+                "start_char": 657,
+                "end_char": 701
               },
               "version": "57a72a660894b6071bff"
             }
@@ -38,93 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7f3794e62c37",
-          "name": "安全有效性不满足临床",
-          "desc": "现有解决方案无法满足临床实际使用过程中对于安全性和有效性的要求",
-          "evidence": [
-            {
-              "quote": "现有解决方案无法满足临床实际使用过程中对于安全性和有效性的要求",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3449,
-                "end_char": 3479
-              },
-              "version": "57a72a660894b6071bff"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-5d13a780269b",
-          "name": "多自由度灵巧操控机构",
-          "desc": "多自由度灵巧操控及多冗余度动力传递机构的设计方法",
+          "id": "item-ae6f931f8dad",
+          "name": "(5) 针对体内位置追踪方法，提出了基于软磁合金的无线非接触式末端位置追踪方法并开展了系统性的测试验证，实验表明平均位置",
+          "desc": "(5) 针对体内位置追踪方法，提出了基于软磁合金的无线非接触式末端位置追踪方法并开展了系统性的测试验证，实验表明平均位置估计误差约为5mm，且该系统在铁磁物体的磁干扰下具有较好鲁棒性，该方法为机器人的实时定位提供了新的原理框架和技术实现方案，其技术特点可适用于控制其它类型的经人体自然腔道介入机器人。",
           "evidence": [
             {
-              "quote": "提出了多自由度灵巧操控及多冗余度动力传递机构的设计方法，推进了经食道超声机器人的实用化临床应用",
+              "quote": "(5) 针对体内位置追踪方法，提出了基于软磁合金的无线非接触式末端位置追踪方法并开展了系统性的测试验证，实验表明平均位置估计误差约为5mm，且该系统在铁磁物体的磁干扰下具有较好鲁棒性，该方法为机器人的实时定位提供了新的原理框架和技术实现方案，其技术特点可适用于控制其它类型的经人体自然腔道介入机器人。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3549,
-                "end_char": 3595
+                "start_char": 3965,
+                "end_char": 4114
               },
               "version": "57a72a660894b6071bff"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bf1599ff9a1b",
-          "name": "数字孪生术前规划",
-          "desc": "基于数字孪生和多模图像融合的术前规划策略",
+          "id": "item-3f59ddd4f07d",
+          "name": "针对以上问题，本项目拟开展国内首例经食道超声机器人的相关研发工作，研究该机器人术前运动规划及术中人机交互的相关方法以使得",
+          "desc": "针对以上问题，本项目拟开展国内首例经食道超声机器人的相关研发工作，研究该机器人术前运动规划及术中人机交互的相关方法以使得操作者通过机器人技术实现对经食道超声有效且安全的远程控制。",
           "evidence": [
             {
-              "quote": "提出了基于数字孪生和多模图像融合的术前规划策略，有效减少了临床操作者对于经验的依赖",
+              "quote": "针对以上问题，本项目拟开展国内首例经食道超声机器人的相关研发工作，研究该机器人术前运动规划及术中人机交互的相关方法以使得操作者通过机器人技术实现对经食道超声有效且安全的远程控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3611,
-                "end_char": 3651
+                "start_char": 808,
+                "end_char": 896
               },
               "version": "57a72a660894b6071bff"
             }
-          ]
-        },
-        {
-          "id": "item-26f47727e6dc",
-          "name": "力反馈摇杆人机交互",
-          "desc": "绕固定点旋转力反馈摇杆与基于阻抗控制和远程通讯的实时人机交互方法",
-          "evidence": [
-            {
-              "quote": "研制了定制化的绕固定点旋转力反馈摇杆并提出了基于阻抗控制和远程通讯的实时人机交互方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3711,
-                "end_char": 3752
-              },
-              "version": "57a72a660894b6071bff"
-            }
-          ]
-        },
-        {
-          "id": "item-b4c3aaa227af",
-          "name": "软磁合金无线位置追踪",
-          "desc": "基于软磁合金的无线非接触式末端位置追踪方法",
-          "evidence": [
-            {
-              "quote": "提出了基于软磁合金的无线非接触式末端位置追踪方法并开展了系统性的测试验证",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3980,
-                "end_char": 4015
-              },
-              "version": "57a72a660894b6071bff"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,91 +91,608 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2e749dfec767",
-          "name": "全链条科研创新",
-          "desc": "围绕经食道超声机器人形成从基础原理、关键技术到样机系统的全链条创新",
+          "id": "item-afca3999b449",
+          "name": "近年来，基于X光成像与经食道超声共同引导的微创介入手术已成为治疗相关心血管疾病的重要手段。",
+          "desc": "近年来，基于X光成像与经食道超声共同引导的微创介入手术已成为治疗相关心血管疾病的重要手段。",
           "evidence": [
             {
-              "quote": "围绕经食道超声机器人形成了从基础原理、关键技术到样机系统的全链条科研创新",
+              "quote": "近年来，基于X光成像与经食道超声共同引导的微创介入手术已成为治疗相关心血管疾病的重要手段。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 4137,
-                "end_char": 4172
+                "start_char": 657,
+                "end_char": 701
               },
               "version": "57a72a660894b6071bff"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-fe13e937306b",
+          "name": "机器人辅助下的经食道超声扫查可以避免操作者在辐射环境的暴露，优化手术流程，减少操作者对经验的依赖。",
+          "desc": "机器人辅助下的经食道超声扫查可以避免操作者在辐射环境的暴露，优化手术流程，减少操作者对经验的依赖。",
+          "evidence": [
+            {
+              "quote": "机器人辅助下的经食道超声扫查可以避免操作者在辐射环境的暴露，优化手术流程，减少操作者对经验的依赖。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3364,
+                "end_char": 3412
+              },
+              "version": "57a72a660894b6071bff"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e1f022041f56"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7f3794e62c37"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Workspace Optimization of a 6-RSS Stewart-Gough Robotic Platform to Assist Ultrasound Diagnosis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f7ba534998c8",
+      "evidence": [
+        {
+          "quote": "Workspace Optimization of a 6-RSS Stewart-Gough Robotic Platform to Assist Ultrasound Diagnosis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4293
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7f3794e62c37"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5d13a780269b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "可全向弯曲的内窥镜蛇骨组件及内窥镜",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b277fa9ea9e4",
+      "evidence": [
+        {
+          "quote": "可全向弯曲的内窥镜蛇骨组件及内窥镜",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4343,
+            "end_char": 4359
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7f3794e62c37"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bf1599ff9a1b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于先验知识的超声扫描视觉导航方法、装置及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8584133b571d",
+      "evidence": [
+        {
+          "quote": "基于先验知识的超声扫描视觉导航方法、装置及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4379,
+            "end_char": 4401
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7f3794e62c37"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-26f47727e6dc"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "小型化超声诊疗机器人及超声诊疗系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b908c98865d2",
+      "evidence": [
+        {
+          "quote": "小型化超声诊疗机器人及超声诊疗系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4428,
+            "end_char": 4444
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b4c3aaa227af"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2e749dfec767"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robotic Intra-Operative Ultrasound: Virtual Environments and Parallel Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0857c4f5528b",
+      "evidence": [
+        {
+          "quote": "Robotic Intra-Operative Ultrasound: Virtual Environments and Parallel Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4474,
+            "end_char": 4550
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-26f47727e6dc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2e749dfec767"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards Standardized Acquisition With a Dual-Probe Ultrasound Robot for Fetal Imaging",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-73eed61354b1",
+      "evidence": [
+        {
+          "quote": "Towards Standardized Acquisition With a Dual-Probe Ultrasound Robot for Fetal Imaging",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4687,
+            "end_char": 4771
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of a Novel Haptic Joystick for the Teleoperation of Continuum-Mechanism-Based Medical Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd1516aaf646",
+      "evidence": [
+        {
+          "quote": "Design of a Novel Haptic Joystick for the Teleoperation of Continuum-Mechanism-Based Medical Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4935,
+            "end_char": 5033
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of Digital Fetal Heart Models with Virtual Ultrasound Function Based on Cardiovascular Casting and Computed Tomography Scan",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-131c097ce2b9",
+      "evidence": [
+        {
+          "quote": "Development of Digital Fetal Heart Models with Virtual Ultrasound Function Based on Cardiovascular Casting and Computed Tomography Scan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5083,
+            "end_char": 5217
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3-D Electromagnetic Position Estimation System Using High-Magnetic-Permeability Metal for Continuum Medical Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dcede5cc706f",
+      "evidence": [
+        {
+          "quote": "3-D Electromagnetic Position Estimation System Using High-Magnetic-Permeability Metal for Continuum Medical Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5344,
+            "end_char": 5457
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Digital Twin-based Skill Training with a Hands-on User Interaction Device to Assist in Manual and Robotic Ultrasound Scanning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20d4b33bde4b",
+      "evidence": [
+        {
+          "quote": "Digital Twin-based Skill Training with a Hands-on User Interaction Device to Assist in Manual and Robotic Ultrasound Scanning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5551,
+            "end_char": 5675
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种便携式可折叠床旁定位臂和医疗诊断装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9000bf29413",
+      "evidence": [
+        {
+          "quote": "一种便携式可折叠床旁定位臂和医疗诊断装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5757,
+            "end_char": 5776
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Contact Force Prediction for a Robotic Transesophageal Ultrasound Probe via Operating Torque Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d42756b2bc42",
+      "evidence": [
+        {
+          "quote": "Contact Force Prediction for a Robotic Transesophageal Ultrasound Probe via Operating Torque Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5799,
+            "end_char": 5898
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种柔性医疗设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-38ede54dde54",
+      "evidence": [
+        {
+          "quote": "一种柔性医疗设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6000,
+            "end_char": 6007
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "柔性医疗设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1eed2e72c9e1",
+      "evidence": [
+        {
+          "quote": "柔性医疗设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6002,
+            "end_char": 6007
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of a Low-Cost Miniature Robot to Assist the COVID-19 Nasopharyngeal Swab Sampling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e698c05bb2a",
+      "evidence": [
+        {
+          "quote": "Design of a Low-Cost Miniature Robot to Assist the COVID-19 Nasopharyngeal Swab Sampling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6064,
+            "end_char": 6151
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Electromagnetic Angular Position Sensing Using High-Magnetic-Permeability Materials",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b63e9491e69f",
+      "evidence": [
+        {
+          "quote": "Electromagnetic Angular Position Sensing Using High-Magnetic-Permeability Materials",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6243,
+            "end_char": 6325
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of a Miniaturized Bedside Robotic Wrist with Multifunctional Movement Capabilities: An Analysis Based on a Simulation Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d9854991b35",
+      "evidence": [
+        {
+          "quote": "Development of a Miniaturized Bedside Robotic Wrist with Multifunctional Movement Capabilities: An Analysis Based on a Simulation Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6380,
+            "end_char": 6520
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot-Assisted Trans-Esophageal Ultrasound and the Virtual Admittance-Based Master-Slave Control Method Thereof",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f2f0bc760a7b",
+      "evidence": [
+        {
+          "quote": "Robot-Assisted Trans-Esophageal Ultrasound and the Virtual Admittance-Based Master-Slave Control Method Thereof",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6589,
+            "end_char": 6699
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "System Design and Workspace Optimization of a Parallel Mechanism-Based Portable Robot for Remote Ultrasound",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cf1ebd8c4752",
+      "evidence": [
+        {
+          "quote": "System Design and Workspace Optimization of a Parallel Mechanism-Based Portable Robot for Remote Ultrasound",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6824,
+            "end_char": 6930
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards Autonomous Robotic Ultrasound Scanning Using the Reinforcement Learning-Based Volumetric Data Navigation Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-23e06d5c0372",
+      "evidence": [
+        {
+          "quote": "Towards Autonomous Robotic Ultrasound Scanning Using the Reinforcement Learning-Based Volumetric Data Navigation Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6995,
+            "end_char": 7113
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Virtual Ultrasonography Simulator for Skill Training Using Magnetic-Inertial Probe Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92920d7f5c72",
+      "evidence": [
+        {
+          "quote": "A Virtual Ultrasonography Simulator for Skill Training Using Magnetic-Inertial Probe Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7190,
+            "end_char": 7282
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "超声诊疗机器人及超声诊疗系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-55ab1e2fbbc8",
+      "evidence": [
+        {
+          "quote": "超声诊疗机器人及超声诊疗系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4431,
+            "end_char": 4444
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel IMU-Based 6-DOF Pose Tracking Method for Parallel-Mechanism-Based Ultrasound Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ecbc10b189f7",
+      "evidence": [
+        {
+          "quote": "A Novel IMU-Based 6-DOF Pose Tracking Method for Parallel-Mechanism-Based Ultrasound Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7414,
+            "end_char": 7503
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Ultrasound Robot with Force/torque Measurement and Control for Safe and Efficient Scanning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3460381728af",
+      "evidence": [
+        {
+          "quote": "A Novel Ultrasound Robot with Force/torque Measurement and Control for Safe and Efficient Scanning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7594,
+            "end_char": 7691
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SAPM: Self-Adaptive Parallel Manipulator With Pose and Force Adjustment for Robotic Ultrasonography",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b26d98138265",
+      "evidence": [
+        {
+          "quote": "SAPM: Self-Adaptive Parallel Manipulator With Pose and Force Adjustment for Robotic Ultrasonography",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7797,
+            "end_char": 7895
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Safety Joint with Passive Compliant and Manual Override Mechanisms for Medical Robotics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ce1c64c4c09",
+      "evidence": [
+        {
+          "quote": "A Safety Joint with Passive Compliant and Manual Override Mechanisms for Medical Robotics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8001,
+            "end_char": 8089
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Comparison of Differential Kinematics and Machine Learning Approaches in Motion Planning for Intra-operative Cardiac Ultrasound Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a0efa0b6c6e9",
+      "evidence": [
+        {
+          "quote": "A Comparison of Differential Kinematics and Machine Learning Approaches in Motion Planning for Intra-operative Cardiac Ultrasound Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8184,
+            "end_char": 8319
+          },
+          "version": "57a72a660894b6071bff"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 27,
+    "listed": 27,
+    "by_kind": {
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      }
+    },
+    "consistent": true
+  }
 }

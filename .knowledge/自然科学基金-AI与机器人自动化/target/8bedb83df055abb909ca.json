@@ -2,15 +2,20 @@
   "doc_id": "8bedb83df055abb909ca",
   "version": "b14b2c20151ef646874a",
   "source_hash": "9f909616ef78dde80768630a29a98e36d63fa9ac1628ec88ce22de4feeb1ce51",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:33:46.241857+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.778522+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cdec7e0b41e2",
-          "name": "高性能机器人软件平台",
-          "desc": "具有柔性的高性能工业机器人软件平台设计开发",
+          "id": "item-ec16f9daa294",
+          "name": "工业机器人的“柔”、“快”、“准、“稳”问题，是我国国产工业机器人落后于国外的关键所在。",
+          "desc": "工业机器人的“柔”、“快”、“准、“稳”问题，是我国国产工业机器人落后于国外的关键所在。",
           "evidence": [
             {
-              "quote": "本项目设计开发具有柔性的高性能工业机器人软件平台，并在此基础上开发特定应用定制系统",
+              "quote": "工业机器人的“柔”、“快”、“准、“稳”问题，是我国国产工业机器人落后于国外的关键所在。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2622,
-                "end_char": 2662
+                "start_char": 651,
+                "end_char": 694
               },
               "version": "b14b2c20151ef646874a"
             }
@@ -38,93 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-725d46a729a4",
-          "name": "自主编程与跟踪能力弱",
-          "desc": "提升工业机器人自主学习编程能力和轨迹跟踪能力的需求",
-          "evidence": [
-            {
-              "quote": "提升工业机器人自主学习编程能力和轨迹跟踪能力，使得机器人作业质量稳定高效，具有十分重要的意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 695,
-                "end_char": 740
-              },
-              "version": "b14b2c20151ef646874a"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-20f6378d1ce0",
-          "name": "视觉纠偏离线编程",
-          "desc": "基于机器视觉的特征纠偏系统与自主学习能力的仿真及离线编程平台",
+          "id": "item-8615f3291218",
+          "name": "采用基于动力学模型的Jerk 有界时间最优轨迹规划方法实现对机器人系统高速、高精、高稳定的控制；",
+          "desc": "采用基于动力学模型的Jerk 有界时间最优轨迹规划方法实现对机器人系统高速、高精、高稳定的控制；",
           "evidence": [
             {
-              "quote": "结合基于机器视觉的特征纠偏系统开发具有自主学习能力的仿真及离线编程平台，提升软件平台的柔性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2664,
-                "end_char": 2708
-              },
-              "version": "b14b2c20151ef646874a"
-            }
-          ]
-        },
-        {
-          "id": "item-720c4ae74250",
-          "name": "Jerk有界时间最优规划",
-          "desc": "基于动力学模型的Jerk有界时间最优轨迹规划方法",
-          "evidence": [
-            {
-              "quote": "采用基于动力学模型的Jerk 有界时间最优轨迹规划方法实现对机器人系统高速、高精、高稳定的控制",
+              "quote": "采用基于动力学模型的Jerk 有界时间最优轨迹规划方法实现对机器人系统高速、高精、高稳定的控制；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2710,
-                "end_char": 2756
+                "end_char": 2757
               },
               "version": "b14b2c20151ef646874a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-0f265038b3c2",
-          "name": "千兆硬实时通信",
-          "desc": "基于千兆实时工业以太网的硬实时、低抖动、高速高可靠通信平台",
+          "id": "item-498441663da5",
+          "name": "项目建立了基于千兆以太网的低抖动、硬实时机器人通信软件平台，解决了工业千兆以太网的硬实时性问题和网络节点之间的时钟同步两",
+          "desc": "项目建立了基于千兆以太网的低抖动、硬实时机器人通信软件平台，解决了工业千兆以太网的硬实时性问题和网络节点之间的时钟同步两大核心技术问题，研究了基于动力学模型的Jerk有界时间最优轨迹规划，成功开发了工业机器人运动控制器。",
           "evidence": [
             {
-              "quote": "建立一套基于千兆实时工业以太网通用化通信平台，满足机器人控制系统对通信平台的硬实时、低抖动性、高速高可靠需求",
+              "quote": "项目建立了基于千兆以太网的低抖动、硬实时机器人通信软件平台，解决了工业千兆以太网的硬实时性问题和网络节点之间的时钟同步两大核心技术问题，研究了基于动力学模型的Jerk有界时间最优轨迹规划，成功开发了工业机器人运动控制器。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2758,
-                "end_char": 2811
+                "start_char": 3052,
+                "end_char": 3161
               },
               "version": "b14b2c20151ef646874a"
             }
-          ]
-        },
-        {
-          "id": "item-6bf622960f0e",
-          "name": "NSGA-Ⅱ多目标规划",
-          "desc": "利用NSGA-Ⅱ对作业路径无碰撞、可达、平稳性、可操作性等多目标规划优化",
-          "evidence": [
-            {
-              "quote": "利用 NSGA-Ⅱ对作业路径无碰撞、可达、平稳性、可操作性等多目标规划问题进行优化",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2891,
-                "end_char": 2931
-              },
-              "version": "b14b2c20151ef646874a"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,91 +91,1348 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9b4bf66e3456",
-          "name": "运动控制器与论文专利",
-          "desc": "成功开发工业机器人运动控制器，发表相关论文31篇，申请发明专利49项",
+          "id": "item-8be86fc50ecf",
+          "name": "工业机器人的“柔”、“快”、“准、“稳”问题，是我国国产工业机器人落后于国外的关键所在。",
+          "desc": "工业机器人的“柔”、“快”、“准、“稳”问题，是我国国产工业机器人落后于国外的关键所在。",
           "evidence": [
             {
-              "quote": "项目发表相关论文31篇，申请发明专利49项，实用新型专利2项，登记软件著作权6项。",
+              "quote": "工业机器人的“柔”、“快”、“准、“稳”问题，是我国国产工业机器人落后于国外的关键所在。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3163,
-                "end_char": 3203
+                "start_char": 651,
+                "end_char": 694
               },
               "version": "b14b2c20151ef646874a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-104f264bce36",
+          "name": "本项目设计开发具有柔性的高性能工业机器人软件平台，并在此基础上开发特定应用定制系统。",
+          "desc": "本项目设计开发具有柔性的高性能工业机器人软件平台，并在此基础上开发特定应用定制系统。",
+          "evidence": [
+            {
+              "quote": "本项目设计开发具有柔性的高性能工业机器人软件平台，并在此基础上开发特定应用定制系统。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2622,
+                "end_char": 2663
+              },
+              "version": "b14b2c20151ef646874a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cdec7e0b41e2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-725d46a729a4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Path Correction Method Based on Global and Local Matching for Robotic Autonomous Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e50f401edf13",
+      "evidence": [
+        {
+          "quote": "A Path Correction Method Based on Global and Local Matching for Robotic Autonomous Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3229,
+            "end_char": 3318
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-725d46a729a4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-20f6378d1ce0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "结合视觉仿真的图像感兴趣区域截取方法、系统及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85fe0251530a",
+      "evidence": [
+        {
+          "quote": "结合视觉仿真的图像感兴趣区域截取方法、系统及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3393,
+            "end_char": 3418
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-725d46a729a4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-720c4ae74250"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and analysis of translational joints using corrugated flexural beams with conic curve segments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ce11427c090",
+      "evidence": [
+        {
+          "quote": "Design and analysis of translational joints using corrugated flexural beams with conic curve segments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3444,
+            "end_char": 3544
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-725d46a729a4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0f265038b3c2"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于结构光视觉传感器的焊缝轨迹离线校准方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-56da1572bb7c",
+      "evidence": [
+        {
+          "quote": "一种基于结构光视觉传感器的焊缝轨迹离线校准方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3606,
+            "end_char": 3628
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-720c4ae74250"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9b4bf66e3456"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "结合视觉仿真的自适应图像模板截取方法、系统及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66784b8350a6",
+      "evidence": [
+        {
+          "quote": "结合视觉仿真的自适应图像模板截取方法、系统及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3656,
+            "end_char": 3681
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6bf622960f0e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9b4bf66e3456"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种弧焊机器人焊缝纠偏系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84b841e2ab89",
+      "evidence": [
+        {
+          "quote": "一种弧焊机器人焊缝纠偏系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3705,
+            "end_char": 3720
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于可达性球的机器人路径中转点搜索方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b844e39ab63",
+      "evidence": [
+        {
+          "quote": "一种基于可达性球的机器人路径中转点搜索方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3740,
+            "end_char": 3760
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stiffness analysis of corrugated flexure beam using stiffness matrix method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b51bcf0ababb",
+      "evidence": [
+        {
+          "quote": "Stiffness analysis of corrugated flexure beam using stiffness matrix method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3786,
+            "end_char": 3860
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The recognition of grasping force using LDA",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-08528c61cf89",
+      "evidence": [
+        {
+          "quote": "The recognition of grasping force using LDA",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3916,
+            "end_char": 3958
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of dielectric elastomer grippers using Bezier curves",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-07dc0cc47f9b",
+      "evidence": [
+        {
+          "quote": "Design of dielectric elastomer grippers using Bezier curves",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4035,
+            "end_char": 4093
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人生产系统三维仿真模型的位姿调整方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-277792fa11f7",
+      "evidence": [
+        {
+          "quote": "一种机器人生产系统三维仿真模型的位姿调整方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4166,
+            "end_char": 4187
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "分层控制方法、系统、终端设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-909e30f40324",
+      "evidence": [
+        {
+          "quote": "分层控制方法、系统、终端设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4215,
+            "end_char": 4233
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A methodology for multi-goal trajectory planning in welding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8f05f0ba8ee",
+      "evidence": [
+        {
+          "quote": "A methodology for multi-goal trajectory planning in welding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4260,
+            "end_char": 4318
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于OCCT的将STEP文件转换为零件-装配体数据结构的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c67b0a721cf4",
+      "evidence": [
+        {
+          "quote": "基于OCCT的将STEP文件转换为零件-装配体数据结构的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4371,
+            "end_char": 4400
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimization of Translational Flexure Joints Using Corrugated Units Under Stress Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6b43cb73faf0",
+      "evidence": [
+        {
+          "quote": "Optimization of Translational Flexure Joints Using Corrugated Units Under Stress Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4430,
+            "end_char": 4521
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "工业通信方法、工业通信系统、设备和存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ccfbbb90481",
+      "evidence": [
+        {
+          "quote": "工业通信方法、工业通信系统、设备和存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4580,
+            "end_char": 4600
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Method for Welding Track Correction Based on Emulational Laser and Trajectory",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-370201ff5f33",
+      "evidence": [
+        {
+          "quote": "A Method for Welding Track Correction Based on Emulational Laser and Trajectory",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4626,
+            "end_char": 4704
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人手眼标定位姿选择方法、装置、机器人系统及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f723fe001d68",
+      "evidence": [
+        {
+          "quote": "机器人手眼标定位姿选择方法、装置、机器人系统及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4770,
+            "end_char": 4794
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DESIGN OF A MICRO-POSITIONING STAGE USING CORRUGATED FLEXURE BEAM WITH CUBIC BEZIER CURVE SEGMENTS",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fdbdb4f68029",
+      "evidence": [
+        {
+          "quote": "DESIGN OF A MICRO-POSITIONING STAGE USING CORRUGATED FLEXURE BEAM WITH CUBIC BEZIER CURVE SEGMENTS",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4821,
+            "end_char": 4918
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于带标志位分层搜索树的机器人在线焊接路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b42dc1f80048",
+      "evidence": [
+        {
+          "quote": "基于带标志位分层搜索树的机器人在线焊接路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4973,
+            "end_char": 4997
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Assistive Torque of Ankle Exoskeleton Based on a Simple Biomechanical Model and a Genetic Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-696fb967d459",
+      "evidence": [
+        {
+          "quote": "Assistive Torque of Ankle Exoskeleton Based on a Simple Biomechanical Model and a Genetic Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5028,
+            "end_char": 5126
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种弧焊机器人焊缝跟踪姿态调整方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-44936de4c509",
+      "evidence": [
+        {
+          "quote": "一种弧焊机器人焊缝跟踪姿态调整方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5190,
+            "end_char": 5206
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于分层搜索树实现工件自动布置的变位机路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-567e87b1e862",
+      "evidence": [
+        {
+          "quote": "基于分层搜索树实现工件自动布置的变位机路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5235,
+            "end_char": 5259
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of dielectric elastomer actuators using topology optimization on electrodes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f711146d86c2",
+      "evidence": [
+        {
+          "quote": "Design of dielectric elastomer actuators using topology optimization on electrodes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5290,
+            "end_char": 5371
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Analysis of Bistable Dielectric Elastomer Actuator with Buckling Beam",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-68c6d7466f12",
+      "evidence": [
+        {
+          "quote": "Design and Analysis of Bistable Dielectric Elastomer Actuator with Buckling Beam",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5436,
+            "end_char": 5515
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于结构光视觉的大转折焊缝轨迹离线校准方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c329ac06e87",
+      "evidence": [
+        {
+          "quote": "一种基于结构光视觉的大转折焊缝轨迹离线校准方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5580,
+            "end_char": 5602
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人的加工路径生成方法、设备和存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e92247ab46df",
+      "evidence": [
+        {
+          "quote": "机器人的加工路径生成方法、设备和存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5631,
+            "end_char": 5650
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "带可达性球分层搜索树的焊接机器人离线焊接路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3125539446ea",
+      "evidence": [
+        {
+          "quote": "带可达性球分层搜索树的焊接机器人离线焊接路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5675,
+            "end_char": 5700
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种通用串联机器人的交互式运动学建模方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-edf6845e9ed7",
+      "evidence": [
+        {
+          "quote": "一种通用串联机器人的交互式运动学建模方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5729,
+            "end_char": 5748
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human Gait Analysis Method Based on Kinect Sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-663c4112b6c3",
+      "evidence": [
+        {
+          "quote": "Human Gait Analysis Method Based on Kinect Sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5778,
+            "end_char": 5826
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Time-optimal Planning Within Constraints in Robots Operating Space",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7bbd1e96fb79",
+      "evidence": [
+        {
+          "quote": "Time-optimal Planning Within Constraints in Robots Operating Space",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5881,
+            "end_char": 5946
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Improved Model to Estimate Muscle-Tendon Mechanics and Energetics During Walking with a Passive Ankle Exoskeleton",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a751ef9d0824",
+      "evidence": [
+        {
+          "quote": "An Improved Model to Estimate Muscle-Tendon Mechanics and Energetics During Walking with a Passive Ankle Exoskeleton",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6007,
+            "end_char": 6122
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Integrated Design of Actuation and Mechanism of Dielectric Elastomers Using Topology Optimization Based on Fat Bezier Curves",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-36da345a39d7",
+      "evidence": [
+        {
+          "quote": "Integrated Design of Actuation and Mechanism of Dielectric Elastomers Using Topology Optimization Based on Fat Bezier Curves",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6178,
+            "end_char": 6301
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design, Kinematics, and Application of Axially and Radially Expandable Modular Soft Pneumatic Actuators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8eb903b56950",
+      "evidence": [
+        {
+          "quote": "Design, Kinematics, and Application of Axially and Radially Expandable Modular Soft Pneumatic Actuators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6376,
+            "end_char": 6478
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Exploration of Translational Joint Design Using Corrugated Flexure Units With Bezier Curve Segments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3b17058c528f",
+      "evidence": [
+        {
+          "quote": "Exploration of Translational Joint Design Using Corrugated Flexure Units With Bezier Curve Segments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6555,
+            "end_char": 6653
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于6R机器人仿真系统的机器人工作空间确定方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-346f2ccb6d31",
+      "evidence": [
+        {
+          "quote": "一种用于6R机器人仿真系统的机器人工作空间确定方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6716,
+            "end_char": 6740
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of dielectric elastomer actuator using topology optimization method based on genetic algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2f9c07bdd1de",
+      "evidence": [
+        {
+          "quote": "Design of dielectric elastomer actuator using topology optimization method based on genetic algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6763,
+            "end_char": 6863
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于工件检测的结构光传感器仿真激光线的生成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb54a1ec510b",
+      "evidence": [
+        {
+          "quote": "一种用于工件检测的结构光传感器仿真激光线的生成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6936,
+            "end_char": 6960
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于图像边缘检测的点云降采样方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-94e5a8214a61",
+      "evidence": [
+        {
+          "quote": "一种基于图像边缘检测的点云降采样方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6984,
+            "end_char": 7001
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于机器人生产系统仿真的三维场景管理与文件存储方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2f7d5cdb762c",
+      "evidence": [
+        {
+          "quote": "用于机器人生产系统仿真的三维场景管理与文件存储方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7026,
+            "end_char": 7050
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of Translational and Rotational Bistable Actuators Based on Dielectric Elastomer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62a3f96e1712",
+      "evidence": [
+        {
+          "quote": "Design of Translational and Rotational Bistable Actuators Based on Dielectric Elastomer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7080,
+            "end_char": 7166
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "可编程控制器变量强制方法、系统、设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b2fb3ecb0438",
+      "evidence": [
+        {
+          "quote": "可编程控制器变量强制方法、系统、设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7239,
+            "end_char": 7261
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Method to Deal with Recognition Deviation Based on Trajectory Estimation in Real-Time Seam Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-30a4b43d9f10",
+      "evidence": [
+        {
+          "quote": "A Method to Deal with Recognition Deviation Based on Trajectory Estimation in Real-Time Seam Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7286,
+            "end_char": 7386
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prescribed flexible orientation workspace and performance comparison of non-redundant 3-DOF planar parallel mechanisms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c97d2f418f29",
+      "evidence": [
+        {
+          "quote": "Prescribed flexible orientation workspace and performance comparison of non-redundant 3-DOF planar parallel mechanisms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7454,
+            "end_char": 7571
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of a rotary dielectric elastomer actuator using a topology optimization method based on pairs of curves",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-003321c830ce",
+      "evidence": [
+        {
+          "quote": "Design of a rotary dielectric elastomer actuator using a topology optimization method based on pairs of curves",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7636,
+            "end_char": 7745
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种生成大批量点云数据集的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff1b791af502",
+      "evidence": [
+        {
+          "quote": "一种生成大批量点云数据集的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7818,
+            "end_char": 7832
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "自动化螺丝装配设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad4d7b71ab72",
+      "evidence": [
+        {
+          "quote": "自动化螺丝装配设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7857,
+            "end_char": 7865
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于结构光视觉传感的弧焊机器人焊缝在线纠偏方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f90328e3388",
+      "evidence": [
+        {
+          "quote": "基于结构光视觉传感的弧焊机器人焊缝在线纠偏方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7893,
+            "end_char": 7915
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于机器人仿真系统的工件放置规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0c9138dd971",
+      "evidence": [
+        {
+          "quote": "一种用于机器人仿真系统的工件放置规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7944,
+            "end_char": 7963
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种从机器人装配体模型到仿真模型的自动生成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-597016493f4f",
+      "evidence": [
+        {
+          "quote": "一种从机器人装配体模型到仿真模型的自动生成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7984,
+            "end_char": 8006
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于结构光焊缝定位的多模板夹角分辨率计算方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c3291057a174",
+      "evidence": [
+        {
+          "quote": "一种用于结构光焊缝定位的多模板夹角分辨率计算方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8030,
+            "end_char": 8053
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A robust weld seam recognition method under heavy noise based on structured-light vision",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b97fdf25956d",
+      "evidence": [
+        {
+          "quote": "A robust weld seam recognition method under heavy noise based on structured-light vision",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8080,
+            "end_char": 8167
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Control of a Decoupled Micro-positioning Stage Using Corrugated Flexure Units",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c5d1a645cc13",
+      "evidence": [
+        {
+          "quote": "Design and Control of a Decoupled Micro-positioning Stage Using Corrugated Flexure Units",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8236,
+            "end_char": 8323
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种四自由度并联纠偏平台",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5ffb74afd53",
+      "evidence": [
+        {
+          "quote": "一种四自由度并联纠偏平台",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8410,
+            "end_char": 8421
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种针对机器人工作场景中提取障碍物运动信息的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d5cb27840395",
+      "evidence": [
+        {
+          "quote": "一种针对机器人工作场景中提取障碍物运动信息的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8442,
+            "end_char": 8465
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种常见工业机器人的交互式运动学建模方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a62132bca3da",
+      "evidence": [
+        {
+          "quote": "一种常见工业机器人的交互式运动学建模方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8490,
+            "end_char": 8509
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Study of an eccentric dielectric elastomer motor and its application for soft robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d73c11183b4",
+      "evidence": [
+        {
+          "quote": "Study of an eccentric dielectric elastomer motor and its application for soft robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8539,
+            "end_char": 8622
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于仿真模板匹配的焊缝定位方法、系统及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-50bb6c7356af",
+      "evidence": [
+        {
+          "quote": "基于仿真模板匹配的焊缝定位方法、系统及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8690,
+            "end_char": 8712
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于机器人仿真系统焊接应用的工件放置规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d1a88ae48e64",
+      "evidence": [
+        {
+          "quote": "一种用于机器人仿真系统焊接应用的工件放置规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8737,
+            "end_char": 8760
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种结构光视觉传感器仿真激光线生成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f5249ad6e34",
+      "evidence": [
+        {
+          "quote": "一种结构光视觉传感器仿真激光线生成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8789,
+            "end_char": 8807
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vibration Suppression of Flexible Systems by Velocity Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c96f339f3cab",
+      "evidence": [
+        {
+          "quote": "Vibration Suppression of Flexible Systems by Velocity Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8833,
+            "end_char": 8894
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种高精度仿真点云模型的生成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03e80ed6db7d",
+      "evidence": [
+        {
+          "quote": "一种高精度仿真点云模型的生成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8948,
+            "end_char": 8963
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "EtherCAT从站与从站同步通讯方法、控制系统、设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f93a72353812",
+      "evidence": [
+        {
+          "quote": "EtherCAT从站与从站同步通讯方法、控制系统、设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8988,
+            "end_char": 9019
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于线结构光传感器的焊接机器人离线扫描路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a7b7de5d52b",
+      "evidence": [
+        {
+          "quote": "基于线结构光传感器的焊接机器人离线扫描路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9050,
+            "end_char": 9074
+          },
+          "version": "b14b2c20151ef646874a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 64,
+    "listed": 64,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "专利": {
+        "listed": 37,
+        "extracted": 37
+      },
+      "会议论文": {
+        "listed": 11,
+        "extracted": 11
+      }
+    },
+    "consistent": true
+  }
 }

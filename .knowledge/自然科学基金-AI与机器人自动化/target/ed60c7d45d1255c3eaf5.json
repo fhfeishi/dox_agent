@@ -2,15 +2,20 @@
   "doc_id": "ed60c7d45d1255c3eaf5",
   "version": "b343910bb280ce1dec17",
   "source_hash": "d0b4c3a647fab68706ede71257d10a1f46054c64e7220106f225b60d170911f7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:48.936094+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.804014+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4a3d30f5c877",
-          "name": "高自由度机器人运动控制",
-          "desc": "高自由度复杂机器人系统的降维规划与仿生控制",
+          "id": "item-b1750d4bc949",
+          "name": "课题旨在提出并验证一种通用的高自由度系统神经控制和降维理论方法，具体内容包括：1）揭示中枢神经系统的运动调控机理和运动学",
+          "desc": "课题旨在提出并验证一种通用的高自由度系统神经控制和降维理论方法，具体内容包括：1）揭示中枢神经系统的运动调控机理和运动学习机制，提出系统化仿生中枢神经系统，有效融合大脑层运动协调、运动学习和脊髓层反射控制的机器人神经控制架构；",
           "evidence": [
             {
-              "quote": "本项目针对高自由度复杂机器人系统运动规划和控制难题，研究面向的高自由度系统和降维规划和仿生控制策略与方法",
+              "quote": "课题旨在提出并验证一种通用的高自由度系统神经控制和降维理论方法，具体内容包括：1）揭示中枢神经系统的运动调控机理和运动学习机制，提出系统化仿生中枢神经系统，有效融合大脑层运动协调、运动学习和脊髓层反射控制的机器人神经控制架构；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2748,
-                "end_char": 2799
+                "start_char": 659,
+                "end_char": 771
+              },
+              "version": "b343910bb280ce1dec17"
+            }
+          ]
+        },
+        {
+          "id": "item-b2e1e1d2a139",
+          "name": "将神经科学最新成果应用在机器人控制领域，基于生物体实现复杂运动调控的机理研究具有普适性的高自由度系统运动控制、规划和学习",
+          "desc": "将神经科学最新成果应用在机器人控制领域，基于生物体实现复杂运动调控的机理研究具有普适性的高自由度系统运动控制、规划和学习机制，使之不但可用在冗余、连续、仿生等柔性机器人上，也可以应用在刚性机器人及多机器人组成的复杂制造系统中，是本课题的核心价值和重要特征。",
+          "evidence": [
+            {
+              "quote": "将神经科学最新成果应用在机器人控制领域，基于生物体实现复杂运动调控的机理研究具有普适性的高自由度系统运动控制、规划和学习机制，使之不但可用在冗余、连续、仿生等柔性机器人上，也可以应用在刚性机器人及多机器人组成的复杂制造系统中，是本课题的核心价值和重要特征。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 927,
+                "end_char": 1054
               },
               "version": "b343910bb280ce1dec17"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-c29a0e423761",
-          "name": "高自由度规划控制难题",
-          "desc": "高自由度系统运动规划与控制难题",
-          "evidence": [
-            {
-              "quote": "本项目针对高自由度复杂机器人系统运动规划和控制难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2748,
-                "end_char": 2772
-              },
-              "version": "b343910bb280ce1dec17"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-f8e6c5c7f14c",
-          "name": "仿生神经控制架构",
-          "desc": "融合大脑层运动协调、运动学习和脊髓层反射控制",
+          "id": "item-0b370c86368d",
+          "name": "本项目针对高自由度复杂机器人系统运动规划和控制难题，研究面向的高自由度系统和降维规划和仿生控制策略与方法，具体内容包括：",
+          "desc": "本项目针对高自由度复杂机器人系统运动规划和控制难题，研究面向的高自由度系统和降维规划和仿生控制策略与方法，具体内容包括：1）通过对中枢神经系统的系统化仿生设计，提出了一种有效融合大脑层运动协调、运动学习和脊髓层反射控制的机器人神经控制架构；",
           "evidence": [
             {
-              "quote": "提出了一种有效融合大脑层运动协调、运动学习和脊髓层反射控制的机器人神经控制架构",
+              "quote": "本项目针对高自由度复杂机器人系统运动规划和控制难题，研究面向的高自由度系统和降维规划和仿生控制策略与方法，具体内容包括：1）通过对中枢神经系统的系统化仿生设计，提出了一种有效融合大脑层运动协调、运动学习和脊髓层反射控制的机器人神经控制架构；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2828,
-                "end_char": 2866
+                "start_char": 2748,
+                "end_char": 2867
               },
               "version": "b343910bb280ce1dec17"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3a0001940348",
-          "name": "协同元降维规划",
-          "desc": "基于肌肉协同假说的随机样本集协同元提取与降维方法",
+          "id": "item-b0470dd5f660",
+          "name": "3）以自由漂浮基座空间机械臂、24自由度绳驱动超冗余机械臂、多根PMA驱动的仿生机械手臂物理样机和全向移动式冗余自由度喷",
+          "desc": "3）以自由漂浮基座空间机械臂、24自由度绳驱动超冗余机械臂、多根PMA驱动的仿生机械手臂物理样机和全向移动式冗余自由度喷涂机器人等典型高冗余自由度系统为研究对象，对所提架构、策略和方法进行了验证，说明了模仿复杂肌群协同设计的高自由度系统运动控制、规划和学习机制具有良好的普适性，不但可用在冗余、连续、仿生等柔性机器人上，也可以应用在多关节刚性机器人及多机器人组成的复杂制造系统中。",
           "evidence": [
             {
-              "quote": "设计了一种基于协同元的高自由度系统降维规划策略，提出了基于随机样本集的协同元提取方法、基于协同元的高自由度系统降维方法和基于运动学习的轨迹规划方法",
+              "quote": "3）以自由漂浮基座空间机械臂、24自由度绳驱动超冗余机械臂、多根PMA驱动的仿生机械手臂物理样机和全向移动式冗余自由度喷涂机器人等典型高冗余自由度系统为研究对象，对所提架构、策略和方法进行了验证，说明了模仿复杂肌群协同设计的高自由度系统运动控制、规划和学习机制具有良好的普适性，不但可用在冗余、连续、仿生等柔性机器人上，也可以应用在多关节刚性机器人及多机器人组成的复杂制造系统中。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2881,
-                "end_char": 2953
+                "start_char": 2955,
+                "end_char": 3144
               },
               "version": "b343910bb280ce1dec17"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,352 @@
       "state": "has",
       "items": [
         {
-          "id": "item-84da4ff2eeb2",
-          "name": "飞机喷涂应用",
-          "desc": "成果应用于飞机整机机器人自动化喷涂并形成编程控制软件",
+          "id": "item-bdbf36b544e2",
+          "name": "课题旨在提出并验证一种通用的高自由度系统神经控制和降维理论方法，具体内容包括：1）揭示中枢神经系统的运动调控机理和运动学",
+          "desc": "课题旨在提出并验证一种通用的高自由度系统神经控制和降维理论方法，具体内容包括：1）揭示中枢神经系统的运动调控机理和运动学习机制，提出系统化仿生中枢神经系统，有效融合大脑层运动协调、运动学习和脊髓层反射控制的机器人神经控制架构；",
           "evidence": [
             {
-              "quote": "研究成果在飞机整机机器人自动化喷涂中得到了应用，建立了一套有效的机器人作业规划方法体系，有效提高了喷涂轨迹规划和冗余度机器人轨迹规划的自动化和智能化程度",
+              "quote": "课题旨在提出并验证一种通用的高自由度系统神经控制和降维理论方法，具体内容包括：1）揭示中枢神经系统的运动调控机理和运动学习机制，提出系统化仿生中枢神经系统，有效融合大脑层运动协调、运动学习和脊髓层反射控制的机器人神经控制架构；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3234,
-                "end_char": 3309
+                "start_char": 659,
+                "end_char": 771
               },
               "version": "b343910bb280ce1dec17"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-bba26cd93bbd",
+          "name": "本项目针对高自由度复杂机器人系统运动规划和控制难题，研究面向的高自由度系统和降维规划和仿生控制策略与方法，具体内容包括：",
+          "desc": "本项目针对高自由度复杂机器人系统运动规划和控制难题，研究面向的高自由度系统和降维规划和仿生控制策略与方法，具体内容包括：1）通过对中枢神经系统的系统化仿生设计，提出了一种有效融合大脑层运动协调、运动学习和脊髓层反射控制的机器人神经控制架构；",
+          "evidence": [
+            {
+              "quote": "本项目针对高自由度复杂机器人系统运动规划和控制难题，研究面向的高自由度系统和降维规划和仿生控制策略与方法，具体内容包括：1）通过对中枢神经系统的系统化仿生设计，提出了一种有效融合大脑层运动协调、运动学习和脊髓层反射控制的机器人神经控制架构；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2748,
+                "end_char": 2867
+              },
+              "version": "b343910bb280ce1dec17"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4a3d30f5c877"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c29a0e423761"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种关节位姿自感知的绳驱动超冗余机械臂及其控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-37a1fbb45f35",
+      "evidence": [
+        {
+          "quote": "一种关节位姿自感知的绳驱动超冗余机械臂及其控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3397,
+            "end_char": 3421
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c29a0e423761"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f8e6c5c7f14c"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "新型战机曲面复合涂层技术与装备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a91a5a6c63cc",
+      "evidence": [
+        {
+          "quote": "新型战机曲面复合涂层技术与装备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3451,
+            "end_char": 3465
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c29a0e423761"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3a0001940348"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "飞机部件高精高效数字化装配工艺与装备关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4e72432ba36",
+      "evidence": [
+        {
+          "quote": "飞机部件高精高效数字化装配工艺与装备关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3511,
+            "end_char": 3535
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3a0001940348"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-84da4ff2eeb2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-Precision Vision Localization System for Autonomous Guided Vehicles in Dusty Industrial Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7bcb6ed0f522",
+      "evidence": [
+        {
+          "quote": "High-Precision Vision Localization System for Autonomous Guided Vehicles in Dusty Industrial Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3603,
+            "end_char": 3707
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f8e6c5c7f14c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-84da4ff2eeb2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on internal positioning method of pipeline robot based on data fusion and point cloud registration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e354098f158",
+      "evidence": [
+        {
+          "quote": "Research on internal positioning method of pipeline robot based on data fusion and point cloud registration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3754,
+            "end_char": 3860
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "非规则管道内壁移动测量机器人及三维重建方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-86cf311c1450",
+      "evidence": [
+        {
+          "quote": "非规则管道内壁移动测量机器人及三维重建方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3899,
+            "end_char": 3922
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "制孔装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a89739798da",
+      "evidence": [
+        {
+          "quote": "制孔装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3958,
+            "end_char": 3961
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于刀轨文件批处理的多主轴并行加工方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a215232e1c6a",
+      "evidence": [
+        {
+          "quote": "基于刀轨文件批处理的多主轴并行加工方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4015,
+            "end_char": 4036
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "大尺寸表面喷涂的交界区涂层均匀性分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1fbaf5827a87",
+      "evidence": [
+        {
+          "quote": "大尺寸表面喷涂的交界区涂层均匀性分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4079,
+            "end_char": 4096
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种涂胶装置和涂胶方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4bc0abf35580",
+      "evidence": [
+        {
+          "quote": "一种涂胶装置和涂胶方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4127,
+            "end_char": 4137
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "多功能集成化航空装配制孔系统及其使用方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d1fdba59877a",
+      "evidence": [
+        {
+          "quote": "多功能集成化航空装配制孔系统及其使用方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4185,
+            "end_char": 4204
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于碰撞反馈的冗余机器人避障规划算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ddb5249f4fe",
+      "evidence": [
+        {
+          "quote": "基于碰撞反馈的冗余机器人避障规划算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4236,
+            "end_char": 4253
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种涂胶机器人及涂胶方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ce0f1e6fd045",
+      "evidence": [
+        {
+          "quote": "一种涂胶机器人及涂胶方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4288,
+            "end_char": 4299
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度强化学习的涂装轨迹智能规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-34cef0da09c3",
+      "evidence": [
+        {
+          "quote": "基于深度强化学习的涂装轨迹智能规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4345,
+            "end_char": 4363
+          },
+          "version": "b343910bb280ce1dec17"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

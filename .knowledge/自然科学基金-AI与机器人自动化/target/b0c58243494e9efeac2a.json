@@ -2,15 +2,20 @@
   "doc_id": "b0c58243494e9efeac2a",
   "version": "4d5141156a770cf4c439",
   "source_hash": "27362ef46c8ade7c0805660a3f45cddd396a7150e9c28b7831bd9cd59dd493ed",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:16:41.808012+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.194787+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b4362744f282",
-          "name": "康复机器人人机交互协同",
-          "desc": "面向医疗康复的人机交互与协同控制，构建理解意图与学习技能的康复机器人",
+          "id": "item-83fd56bf50c1",
+          "name": "针对当前康复机器人存在的患者意图理解能力、人机融合环境适应能力以及作业技巧性严重不足的问题，本项目聚焦基于神经解码的意图",
+          "desc": "针对当前康复机器人存在的患者意图理解能力、人机融合环境适应能力以及作业技巧性严重不足的问题，本项目聚焦基于神经解码的意图理解、面向现实场景的技能学习、人机融合行为规划与协同控制三方面科学问题。",
           "evidence": [
             {
-              "quote": "突破机器人应用于辅助康复的关键技术瓶颈，构建具备“理解患者意图”和“学习辅助技能”两方面核心能力的康复机器人系统，并完成试验测试",
+              "quote": "针对当前康复机器人存在的患者意图理解能力、人机融合环境适应能力以及作业技巧性严重不足的问题，本项目聚焦基于神经解码的意图理解、面向现实场景的技能学习、人机融合行为规划与协同控制三方面科学问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3252,
-                "end_char": 3315
+                "start_char": 665,
+                "end_char": 760
+              },
+              "version": "4d5141156a770cf4c439"
+            }
+          ]
+        },
+        {
+          "id": "item-cdd3d5d4d53f",
+          "name": "本项目研究面向医疗康复的实际需求，研究人机交互与协同控制的基础理论，突破机器人应用于辅助康复的关键技术瓶颈，构建具备“理",
+          "desc": "本项目研究面向医疗康复的实际需求，研究人机交互与协同控制的基础理论，突破机器人应用于辅助康复的关键技术瓶颈，构建具备“理解患者意图”和“学习辅助技能”两方面核心能力的康复机器人系统，并完成试验测试。",
+          "evidence": [
+            {
+              "quote": "本项目研究面向医疗康复的实际需求，研究人机交互与协同控制的基础理论，突破机器人应用于辅助康复的关键技术瓶颈，构建具备“理解患者意图”和“学习辅助技能”两方面核心能力的康复机器人系统，并完成试验测试。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3218,
+                "end_char": 3316
               },
               "version": "4d5141156a770cf4c439"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-909aee8bf910",
-          "name": "意图理解与技能学习不足",
-          "desc": "康复机器人患者意图理解能力、人机融合适应能力及作业技巧性严重不足",
+          "id": "item-89819b0f3e35",
+          "name": "针对当前康复机器人存在的患者意图理解能力、人机融合环境适应能力以及作业技巧性严重不足的问题，本项目聚焦基于神经解码的意图",
+          "desc": "针对当前康复机器人存在的患者意图理解能力、人机融合环境适应能力以及作业技巧性严重不足的问题，本项目聚焦基于神经解码的意图理解、面向现实场景的技能学习、人机融合行为规划与协同控制三方面科学问题。",
           "evidence": [
             {
-              "quote": "针对当前康复机器人存在的患者意图理解能力、人机融合环境适应能力以及作业技巧性严重不足的问题",
+              "quote": "针对当前康复机器人存在的患者意图理解能力、人机融合环境适应能力以及作业技巧性严重不足的问题，本项目聚焦基于神经解码的意图理解、面向现实场景的技能学习、人机融合行为规划与协同控制三方面科学问题。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 665,
-                "end_char": 709
+                "end_char": 760
               },
               "version": "4d5141156a770cf4c439"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-15ad6d82dce3",
-          "name": "脑肌电融合意图识别",
-          "desc": "跨个体情绪识别、偏有向相干图卷积疲劳检测与自适应混合分类模型",
+          "id": "item-ca6d61957f52",
+          "name": "在以上研究基础上，初步建立面向运动康复机器人的人机交互协同技术理论体系，研发上肢多关节康复机器人实验平台，设计针对典型康",
+          "desc": "在以上研究基础上，初步建立面向运动康复机器人的人机交互协同技术理论体系，研发上肢多关节康复机器人实验平台，设计针对典型康复训练的实验范式，系统验证提出的方法及技术的先进性与有效性。",
           "evidence": [
             {
-              "quote": "针对患者意图理解，提出基于迁移学习的跨个体情绪识别、基于偏有向相干图卷积网络的疲劳检测、自适应更新混合分类模型等一系列创新方法，提升意图理解的鲁棒性",
+              "quote": "在以上研究基础上，初步建立面向运动康复机器人的人机交互协同技术理论体系，研发上肢多关节康复机器人实验平台，设计针对典型康复训练的实验范式，系统验证提出的方法及技术的先进性与有效性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3317,
-                "end_char": 3390
+                "start_char": 927,
+                "end_char": 1016
               },
               "version": "4d5141156a770cf4c439"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-81515be76798",
-          "name": "视频行为识别演示编程",
-          "desc": "视频帧连贯三维姿态优化、显著性强化中心连接图卷积与隐式肌肉任务规划演示编程",
+          "id": "item-ff9ea8ec7ffe",
+          "name": "针对技能学习，为使康复机器人能像人一样，通过观看、模仿医师的动作学习到辅助技能，研究了基于视频的行为识别技术，提出基于视",
+          "desc": "针对技能学习，为使康复机器人能像人一样，通过观看、模仿医师的动作学习到辅助技能，研究了基于视频的行为识别技术，提出基于视频帧连贯信息的三维姿态优化估计、基于显著性图像特征强化的中心连接图卷积网络、基于隐式肌肉任务规划的演示编程等一系列创新方法，提升行为识别的精度和稳定性；",
           "evidence": [
             {
-              "quote": "研究了基于视频的行为识别技术，提出基于视频帧连贯信息的三维姿态优化估计、基于显著性图像特征强化的中心连接图卷积网络、基于隐式肌肉任务规划的演示编程等一系列创新方法",
+              "quote": "针对技能学习，为使康复机器人能像人一样，通过观看、模仿医师的动作学习到辅助技能，研究了基于视频的行为识别技术，提出基于视频帧连贯信息的三维姿态优化估计、基于显著性图像特征强化的中心连接图卷积网络、基于隐式肌肉任务规划的演示编程等一系列创新方法，提升行为识别的精度和稳定性；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3432,
-                "end_char": 3512
+                "start_char": 3392,
+                "end_char": 3527
               },
               "version": "4d5141156a770cf4c439"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,632 @@
       "state": "has",
       "items": [
         {
-          "id": "item-45fd3a8f7421",
-          "name": "多套康复样机集成",
-          "desc": "开发全身型外骨骼、便携式康复手、仿生灵巧手等样机，集成AR脑机接口与异步控制",
+          "id": "item-ceb4dd9be6cb",
+          "name": "针对当前康复机器人存在的患者意图理解能力、人机融合环境适应能力以及作业技巧性严重不足的问题，本项目聚焦基于神经解码的意图",
+          "desc": "针对当前康复机器人存在的患者意图理解能力、人机融合环境适应能力以及作业技巧性严重不足的问题，本项目聚焦基于神经解码的意图理解、面向现实场景的技能学习、人机融合行为规划与协同控制三方面科学问题。",
           "evidence": [
             {
-              "quote": "开发了全身型外骨骼康复机器人、便携式康复手系统、仿生灵巧手等多套实验样机，并集成基于增强现实的脑机接口、基于α波阻塞现象的异步控制、BCI结合操控质量的自适应控制等技术，验证了方法与技术的可行性",
+              "quote": "针对当前康复机器人存在的患者意图理解能力、人机融合环境适应能力以及作业技巧性严重不足的问题，本项目聚焦基于神经解码的意图理解、面向现实场景的技能学习、人机融合行为规划与协同控制三方面科学问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3533,
-                "end_char": 3629
+                "start_char": 665,
+                "end_char": 760
               },
               "version": "4d5141156a770cf4c439"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-22b21e9a2325",
-          "name": "论文与专利",
-          "desc": "发表学术论文28篇（SCI 18篇），申请/授权专利7项",
+          "id": "item-8ca24d857fab",
+          "name": "本项目研究面向医疗康复的实际需求，研究人机交互与协同控制的基础理论，突破机器人应用于辅助康复的关键技术瓶颈，构建具备“理",
+          "desc": "本项目研究面向医疗康复的实际需求，研究人机交互与协同控制的基础理论，突破机器人应用于辅助康复的关键技术瓶颈，构建具备“理解患者意图”和“学习辅助技能”两方面核心能力的康复机器人系统，并完成试验测试。",
           "evidence": [
             {
-              "quote": "总结研究成果，发表学术论文28篇，其中SCI论文18篇，申请/授权专利7项，培养博士研究生4名、硕士研究生生11名",
+              "quote": "本项目研究面向医疗康复的实际需求，研究人机交互与协同控制的基础理论，突破机器人应用于辅助康复的关键技术瓶颈，构建具备“理解患者意图”和“学习辅助技能”两方面核心能力的康复机器人系统，并完成试验测试。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3631,
-                "end_char": 3687
+                "start_char": 3218,
+                "end_char": 3316
               },
               "version": "4d5141156a770cf4c439"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b4362744f282"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-909aee8bf910"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Classification of motor imagery using multisource joint transfer learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-726ada907859",
+      "evidence": [
+        {
+          "quote": "Classification of motor imagery using multisource joint transfer learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3721,
+            "end_char": 3793
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-909aee8bf910"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-15ad6d82dce3"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Two-Steam Fully Connected Graph Convolutional Network for Skeleton-Based Action Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d72bf1736f84",
+      "evidence": [
+        {
+          "quote": "Two-Steam Fully Connected Graph Convolutional Network for Skeleton-Based Action Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3851,
+            "end_char": 3941
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-909aee8bf910"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-81515be76798"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "KVNet: An iterative 3D keypoints voting network for real-time 6-DoF object pose estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-776878cd8dbd",
+      "evidence": [
+        {
+          "quote": "KVNet: An iterative 3D keypoints voting network for real-time 6-DoF object pose estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3991,
+            "end_char": 4080
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-81515be76798"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-45fd3a8f7421"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "EEG Driving Fatigue Detection With PDC-Based Brain Functional Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-61b7a02f76d0",
+      "evidence": [
+        {
+          "quote": "EEG Driving Fatigue Detection With PDC-Based Brain Functional Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4161,
+            "end_char": 4229
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-15ad6d82dce3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-22b21e9a2325"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Asynchronous SSVEP-BCI for Intelligent Rehabilitation Exoskeleton Based on Alpha Rhythm-Detected CCA",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e4f28bc0716",
+      "evidence": [
+        {
+          "quote": "An Asynchronous SSVEP-BCI for Intelligent Rehabilitation Exoskeleton Based on Alpha Rhythm-Detected CCA",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4293,
+            "end_char": 4395
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多源传感器的搬运装配全身外骨骼系统及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-858fc501dac5",
+      "evidence": [
+        {
+          "quote": "基于多源传感器的搬运装配全身外骨骼系统及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4475,
+            "end_char": 4498
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于视频帧连贯信息的3维人体姿势优化估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ed444b1e9f8",
+      "evidence": [
+        {
+          "quote": "基于视频帧连贯信息的3维人体姿势优化估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4518,
+            "end_char": 4539
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "学术精要(2022年10-11月)高PCSI论文",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af6681013a62",
+      "evidence": [
+        {
+          "quote": "学术精要(2022年10-11月)高PCSI论文",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4563,
+            "end_char": 4586
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向全自动装车的袋装物码垛规划系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c1484a20c92d",
+      "evidence": [
+        {
+          "quote": "一种面向全自动装车的袋装物码垛规划系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4610,
+            "end_char": 4631
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于单目视觉引导的多模式手部康复系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05bee0ce0064",
+      "evidence": [
+        {
+          "quote": "一种基于单目视觉引导的多模式手部康复系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4656,
+            "end_char": 4678
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于梯度聚类的有序点云边缘优化提取方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a3813f2e130",
+      "evidence": [
+        {
+          "quote": "基于梯度聚类的有序点云边缘优化提取方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4712,
+            "end_char": 4730
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "TIM-SLR: a lightweight network for video isolated sign language recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad42e1f13c95",
+      "evidence": [
+        {
+          "quote": "TIM-SLR: a lightweight network for video isolated sign language recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4755,
+            "end_char": 4829
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种高精度装配的全身可穿戴外骨骼机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a2b4d25591f",
+      "evidence": [
+        {
+          "quote": "一种高精度装配的全身可穿戴外骨骼机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4880,
+            "end_char": 4898
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A portable SSVEP-BCI system for rehabilitation exoskeleton in augmented reality environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-204406f0b8c1",
+      "evidence": [
+        {
+          "quote": "A portable SSVEP-BCI system for rehabilitation exoskeleton in augmented reality environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4920,
+            "end_char": 5010
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Emotion recognition with convolutional neural network and EEG-based EFDMs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-86b3c68325c4",
+      "evidence": [
+        {
+          "quote": "Emotion recognition with convolutional neural network and EEG-based EFDMs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5077,
+            "end_char": 5149
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semi-autonomous Navigation Control System of Intelligent Wheelchair Based on Asynchronous SSVEP-BCI",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e3dd8ffa4f75",
+      "evidence": [
+        {
+          "quote": "Semi-autonomous Navigation Control System of Intelligent Wheelchair Based on Asynchronous SSVEP-BCI",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5246,
+            "end_char": 5344
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Diversity amplification and data generation of Chinese Sign Language based on Generative Adversarial Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ced39d0bf16e",
+      "evidence": [
+        {
+          "quote": "Diversity amplification and data generation of Chinese Sign Language based on Generative Adversarial Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5414,
+            "end_char": 5521
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-domain fusion deep graph convolution neural network for EEG emotion recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c10102cca49",
+      "evidence": [
+        {
+          "quote": "Multi-domain fusion deep graph convolution neural network for EEG emotion recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5578,
+            "end_char": 5662
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joining Force of Human Muscular Task Planning With Robot Robust and Delicate Manipulation for Programming by Demonstration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-720e7ad74cd8",
+      "evidence": [
+        {
+          "quote": "Joining Force of Human Muscular Task Planning With Robot Robust and Delicate Manipulation for Programming by Demonstration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5731,
+            "end_char": 5852
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Incremental Learning and Fault-Tolerant Classifier for Myoelectric Pattern Recognition Against Multiple Bursting Interferences",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-913b2fec8e6a",
+      "evidence": [
+        {
+          "quote": "Incremental Learning and Fault-Tolerant Classifier for Myoelectric Pattern Recognition Against Multiple Bursting Interferences",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5932,
+            "end_char": 6057
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A two-stage temporal proposal network for precise action localization in untrimmed video",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99eac3be98ec",
+      "evidence": [
+        {
+          "quote": "A two-stage temporal proposal network for precise action localization in untrimmed video",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6127,
+            "end_char": 6214
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LHFF‑Net: Local heterogeneous feature fusion network for 6DoF pose estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c513ae8dda92",
+      "evidence": [
+        {
+          "quote": "LHFF‑Net: Local heterogeneous feature fusion network for 6DoF pose estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6283,
+            "end_char": 6359
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CSCMOT: Multi-object tracking based on channel spatial cooperative attention mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2504e5638160",
+      "evidence": [
+        {
+          "quote": "CSCMOT: Multi-object tracking based on channel spatial cooperative attention mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6417,
+            "end_char": 6502
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度视觉识别的平板式货车全自动装卸车系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-63f41abf6d08",
+      "evidence": [
+        {
+          "quote": "基于深度视觉识别的平板式货车全自动装卸车系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6550,
+            "end_char": 6574
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An approach based on 1D fully convolutional network for continuous sign language recognition and labeling,",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f93b032dac05",
+      "evidence": [
+        {
+          "quote": "An approach based on 1D fully convolutional network for continuous sign language recognition and labeling,",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6603,
+            "end_char": 6708
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于单目视觉引导的气动康复手套装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de20d4ab1ca0",
+      "evidence": [
+        {
+          "quote": "一种基于单目视觉引导的气动康复手套装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6777,
+            "end_char": 6795
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Stiffness Estimation of Human Body Based on sEMG",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20cf47361391",
+      "evidence": [
+        {
+          "quote": "Dynamic Stiffness Estimation of Human Body Based on sEMG",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6829,
+            "end_char": 6884
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Augmented two stream network for robust action recognition adaptive to various action videos",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ede365eb862b",
+      "evidence": [
+        {
+          "quote": "Augmented two stream network for robust action recognition adaptive to various action videos",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6951,
+            "end_char": 7042
+          },
+          "version": "4d5141156a770cf4c439"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 28,
+    "listed": 28,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

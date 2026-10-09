@@ -2,15 +2,20 @@
   "doc_id": "5f36d35ea97ff317092a",
   "version": "9c9e8510a22689da5ac1",
   "source_hash": "70d8eb4f77a318ea3851075bfab94545cd3f630556acf95db06fa4ef5f141287",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:24.530534+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.366135+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-acf1afa19281",
-          "name": "建筑机器人定位与建图",
-          "desc": "建筑施工场景中移动机器人智能导航",
+          "id": "item-7ca59011edd5",
+          "name": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性，而定位的低",
+          "desc": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性，而定位的低鲁棒性与地图的不准确性问题仍是移动式建筑机器人目前亟需攻克的技术难题。",
           "evidence": [
             {
-              "quote": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性",
+              "quote": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性，而定位的低鲁棒性与地图的不准确性问题仍是移动式建筑机器人目前亟需攻克的技术难题。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 664,
-                "end_char": 717
+                "end_char": 758
+              },
+              "version": "9c9e8510a22689da5ac1"
+            }
+          ]
+        },
+        {
+          "id": "item-3c77daa9f1b5",
+          "name": "在复杂建筑场景中，基于雷达、标准相机与惯性测量单元的常规同步定位与建图（SLAM）融合算法难以满足需求，而事件相机凭借低",
+          "desc": "在复杂建筑场景中，基于雷达、标准相机与惯性测量单元的常规同步定位与建图（SLAM）融合算法难以满足需求，而事件相机凭借低延迟、高时间分辨率的优势，在弱光照、剧烈运动等场景中潜力显著，适合用于多源融合；",
+          "evidence": [
+            {
+              "quote": "在复杂建筑场景中，基于雷达、标准相机与惯性测量单元的常规同步定位与建图（SLAM）融合算法难以满足需求，而事件相机凭借低延迟、高时间分辨率的优势，在弱光照、剧烈运动等场景中潜力显著，适合用于多源融合；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2984,
+                "end_char": 3083
               },
               "version": "9c9e8510a22689da5ac1"
             }
@@ -41,15 +62,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6a6716c080b1",
-          "name": "定位鲁棒性与地图准确性不足",
-          "desc": "常规SLAM融合算法难以满足复杂建筑场景需求",
+          "id": "item-d966980cfd67",
+          "name": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性，而定位的低",
+          "desc": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性，而定位的低鲁棒性与地图的不准确性问题仍是移动式建筑机器人目前亟需攻克的技术难题。",
           "evidence": [
             {
-              "quote": "而定位的低鲁棒性与地图的不准确性问题仍是移动式建筑机器人目前亟需攻克的技术难题。",
+              "quote": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性，而定位的低鲁棒性与地图的不准确性问题仍是移动式建筑机器人目前亟需攻克的技术难题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 719,
+                "start_char": 664,
                 "end_char": 758
               },
               "version": "9c9e8510a22689da5ac1"
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-31c3055f8bd7",
-          "name": "LIE多源数据集",
-          "desc": "激光-惯性-事件数据集提供可重复实验条件",
+          "id": "item-f7324393a8ee",
+          "name": "本项目基于三维激光扫描仪与双目摄像头的多传感器融合数据，研究建立可以实现点、线、面等多种特征稳定提取的卷积神经网络架构，",
+          "desc": "本项目基于三维激光扫描仪与双目摄像头的多传感器融合数据，研究建立可以实现点、线、面等多种特征稳定提取的卷积神经网络架构，探讨多种特征在动态施工环境中实现定位与地图构建的机理。",
           "evidence": [
             {
-              "quote": "构建了激光-惯性-事件（LIE）数据集，为多源融合算法研究提供了可重复实验条件与测试数据。",
+              "quote": "本项目基于三维激光扫描仪与双目摄像头的多传感器融合数据，研究建立可以实现点、线、面等多种特征稳定提取的卷积神经网络架构，探讨多种特征在动态施工环境中实现定位与地图构建的机理。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3197,
-                "end_char": 3241
+                "start_char": 759,
+                "end_char": 845
               },
               "version": "9c9e8510a22689da5ac1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-188762851d6c",
-          "name": "FAST-LIEO融合里程计",
-          "desc": "四种传感器紧耦合的快速实时多传感器融合里程计",
+          "id": "item-a056d8d3aa53",
+          "name": "研究多种特征词袋模型的构建准则，定制化设计适用于回环检测的全局兼容分支限界方法，实现构成全局体素地图中子地图位姿累计误差",
+          "desc": "研究多种特征词袋模型的构建准则，定制化设计适用于回环检测的全局兼容分支限界方法，实现构成全局体素地图中子地图位姿累计误差的消除，最终提高定位的鲁棒性与半稠密地图构建的精准性。",
           "evidence": [
             {
-              "quote": "提出了快速实时多传感器融合里程计（FAST-LIEO）算法，实现了四种传感器的紧耦合",
+              "quote": "研究多种特征词袋模型的构建准则，定制化设计适用于回环检测的全局兼容分支限界方法，实现构成全局体素地图中子地图位姿累计误差的消除，最终提高定位的鲁棒性与半稠密地图构建的精准性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3257,
-                "end_char": 3298
+                "start_char": 937,
+                "end_char": 1023
               },
               "version": "9c9e8510a22689da5ac1"
             }
-          ]
-        },
-        {
-          "id": "item-3f5cb305535c",
-          "name": "点线特征回环检测",
-          "desc": "结合点线特性、基于图像外观的回环检测方法",
-          "evidence": [
-            {
-              "quote": "基于多特征回环检测，提出一种结合点线特性、基于图像外观的回环检测方法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3422,
-                "end_char": 3456
-              },
-              "version": "9c9e8510a22689da5ac1"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +124,128 @@
       "state": "has",
       "items": [
         {
-          "id": "item-06da8a806aaf",
-          "name": "复杂条件鲁棒性验证",
-          "desc": "公开数据集与LIE数据集测试在雷达退化、弱光照下鲁棒性良好",
+          "id": "item-1d5782f895bf",
+          "name": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性，而定位的低",
+          "desc": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性，而定位的低鲁棒性与地图的不准确性问题仍是移动式建筑机器人目前亟需攻克的技术难题。",
           "evidence": [
             {
-              "quote": "经公开数据集与LIE数据集测试，该方法在雷达退化、弱光照等复杂条件下鲁棒性良好。",
+              "quote": "精准的定位与地图构建是建筑施工场景中移动机器人智能导航的基础，关系着建筑机器人系统安全性、导航精度及其稳定性，而定位的低鲁棒性与地图的不准确性问题仍是移动式建筑机器人目前亟需攻克的技术难题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3350,
-                "end_char": 3389
+                "start_char": 664,
+                "end_char": 758
               },
               "version": "9c9e8510a22689da5ac1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-b303c09114e4",
-          "name": "昼夜视角变化回环有效",
-          "desc": "多数据集测试验证视觉回环场景有效性",
+          "id": "item-c919fe030c16",
+          "name": "在复杂建筑场景中，基于雷达、标准相机与惯性测量单元的常规同步定位与建图（SLAM）融合算法难以满足需求，而事件相机凭借低",
+          "desc": "在复杂建筑场景中，基于雷达、标准相机与惯性测量单元的常规同步定位与建图（SLAM）融合算法难以满足需求，而事件相机凭借低延迟、高时间分辨率的优势，在弱光照、剧烈运动等场景中潜力显著，适合用于多源融合；",
           "evidence": [
             {
-              "quote": "经多数据集测试，表明了本方法在昼夜、视角变化等视觉回环场景下的有效性",
+              "quote": "在复杂建筑场景中，基于雷达、标准相机与惯性测量单元的常规同步定位与建图（SLAM）融合算法难以满足需求，而事件相机凭借低延迟、高时间分辨率的优势，在弱光照、剧烈运动等场景中潜力显著，适合用于多源融合；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3500,
-                "end_char": 3533
+                "start_char": 2984,
+                "end_char": 3083
               },
               "version": "9c9e8510a22689da5ac1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-acf1afa19281"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6a6716c080b1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Automatic Extrinsic Calibration for Structured Light Camera and Repetive LiDARs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13ce4160cad1",
+      "evidence": [
+        {
+          "quote": "Automatic Extrinsic Calibration for Structured Light Camera and Repetive LiDARs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3593,
+            "end_char": 3671
+          },
+          "version": "9c9e8510a22689da5ac1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6a6716c080b1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-31c3055f8bd7"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DSCformer: A Dual-Branch Network Integrating Enhanced Dynamic Snake Convolution and SegFormer for Crack Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-903f6377ab43",
+      "evidence": [
+        {
+          "quote": "DSCformer: A Dual-Branch Network Integrating Enhanced Dynamic Snake Convolution and SegFormer for Crack Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3765,
+            "end_char": 3880
+          },
+          "version": "9c9e8510a22689da5ac1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6a6716c080b1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-188762851d6c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6a6716c080b1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3f5cb305535c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-188762851d6c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-06da8a806aaf"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3f5cb305535c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b303c09114e4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种移动式建筑质量检测机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-04297b24bad0",
+      "evidence": [
+        {
+          "quote": "一种移动式建筑质量检测机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3922,
+            "end_char": 3935
+          },
+          "version": "9c9e8510a22689da5ac1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

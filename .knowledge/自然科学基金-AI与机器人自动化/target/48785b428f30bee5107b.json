@@ -2,15 +2,20 @@
   "doc_id": "48785b428f30bee5107b",
   "version": "64648f840f3cb59beb1e",
   "source_hash": "ecb1543dc7e1ad650f10f4105a69b7a59d7d844dad5190298586b429b10fa2dd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:52.844585+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.162259+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8cecd19601dd",
-          "name": "焊接机器人自主作业",
-          "desc": "智能制造与高端装备领域，智能化水平决定焊接效率与柔性制造能力",
+          "id": "item-72bcc40cbfd0",
+          "name": "本项目针对现有焊接机器人智能化程度低、编程效率低、难以满足现代柔性定制化生产需求等问题，研究焊接机器人自动编程及自主作业",
+          "desc": "本项目针对现有焊接机器人智能化程度低、编程效率低、难以满足现代柔性定制化生产需求等问题，研究焊接机器人自动编程及自主作业方法。",
           "evidence": [
             {
-              "quote": "焊接机器人自主作业技术是智能制造与高端装备领域的重要研究方向，其智能化水平直接决定了焊接效率、精度与柔性制造能力",
+              "quote": "本项目针对现有焊接机器人智能化程度低、编程效率低、难以满足现代柔性定制化生产需求等问题，研究焊接机器人自动编程及自主作业方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2769,
-                "end_char": 2824
+                "start_char": 653,
+                "end_char": 715
+              },
+              "version": "64648f840f3cb59beb1e"
+            }
+          ]
+        },
+        {
+          "id": "item-5c696f2d96fb",
+          "name": "本项目的研究将为下一代自动编程及自主作业焊接机器人的研制提供理论基础和方法支撑，具有重要的学术意义和工程应用价值。",
+          "desc": "本项目的研究将为下一代自动编程及自主作业焊接机器人的研制提供理论基础和方法支撑，具有重要的学术意义和工程应用价值。",
+          "evidence": [
+            {
+              "quote": "本项目的研究将为下一代自动编程及自主作业焊接机器人的研制提供理论基础和方法支撑，具有重要的学术意义和工程应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 970,
+                "end_char": 1026
               },
               "version": "64648f840f3cb59beb1e"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-beba02d737f5",
-          "name": "焊接机器人智能化低",
-          "desc": "现有焊接机器人智能化程度低、编程效率低，难以满足柔性定制化生产",
+          "id": "item-62570210556d",
+          "name": "本项目针对现有焊接机器人智能化程度低、编程效率低、难以满足现代柔性定制化生产需求等问题，研究焊接机器人自动编程及自主作业",
+          "desc": "本项目针对现有焊接机器人智能化程度低、编程效率低、难以满足现代柔性定制化生产需求等问题，研究焊接机器人自动编程及自主作业方法。",
           "evidence": [
             {
-              "quote": "本项目针对现有焊接机器人智能化程度低、编程效率低、难以满足现代柔性定制化生产需求等问题",
+              "quote": "本项目针对现有焊接机器人智能化程度低、编程效率低、难以满足现代柔性定制化生产需求等问题，研究焊接机器人自动编程及自主作业方法。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 653,
-                "end_char": 695
+                "end_char": 715
               },
               "version": "64648f840f3cb59beb1e"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e7509cbb8a2c",
-          "name": "WeldNet焊缝识别导引",
-          "desc": "轻量化网络结构与中心盒标注策略实现高精度低延迟焊缝定位",
+          "id": "item-03467ef4a2f7",
+          "name": "在焊缝实时跟踪方面，提出了基于深度神经网络的复杂空间曲线焊缝关键点鲁棒提取与焊接姿态优化方法，设计了WeldDenois",
+          "desc": "在焊缝实时跟踪方面，提出了基于深度神经网络的复杂空间曲线焊缝关键点鲁棒提取与焊接姿态优化方法，设计了WeldDenoise去噪模型，有效克服了强弧光干扰下的特征退化问题，并结合三次B样条拟合与最近邻偏差补偿算法，实现了高动态焊接过程中的焊缝精准跟踪。",
           "evidence": [
             {
-              "quote": "提出基于WeldNet网络的焊缝类型自动识别与初始点导引方法",
+              "quote": "在焊缝实时跟踪方面，提出了基于深度神经网络的复杂空间曲线焊缝关键点鲁棒提取与焊接姿态优化方法，设计了WeldDenoise去噪模型，有效克服了强弧光干扰下的特征退化问题，并结合三次B样条拟合与最近邻偏差补偿算法，实现了高动态焊接过程中的焊缝精准跟踪。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2924,
-                "end_char": 2953
+                "start_char": 3089,
+                "end_char": 3213
               },
               "version": "64648f840f3cb59beb1e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-fac6c0d9fcb8",
-          "name": "焊缝关键点鲁棒提取",
-          "desc": "深度神经网络关键点提取与焊接姿态优化，WeldDenoise克服强弧光干扰",
+          "id": "item-e19a6bfb9868",
+          "name": "在焊接目标识别方面，提出基于WeldNet网络的焊缝类型自动识别与初始点导引方法，通过轻量化网络结构与中心盒标注策略，实",
+          "desc": "在焊接目标识别方面，提出基于WeldNet网络的焊缝类型自动识别与初始点导引方法，通过轻量化网络结构与中心盒标注策略，实现了高精度、低延迟的焊缝定位；",
           "evidence": [
             {
-              "quote": "提出了基于深度神经网络的复杂空间曲线焊缝关键点鲁棒提取与焊接姿态优化方法",
+              "quote": "在焊接目标识别方面，提出基于WeldNet网络的焊缝类型自动识别与初始点导引方法，通过轻量化网络结构与中心盒标注策略，实现了高精度、低延迟的焊缝定位；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3099,
-                "end_char": 3134
+                "start_char": 2914,
+                "end_char": 2988
               },
               "version": "64648f840f3cb59beb1e"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,408 @@
       "state": "has",
       "items": [
         {
-          "id": "item-83b7d2c6e7c0",
-          "name": "多模态复合视觉传感器",
-          "desc": "集成单目视觉、线结构光与编码结构光并搭建自主作业试验系统",
+          "id": "item-f4c745f4b512",
+          "name": "本项目针对现有焊接机器人智能化程度低、编程效率低、难以满足现代柔性定制化生产需求等问题，研究焊接机器人自动编程及自主作业",
+          "desc": "本项目针对现有焊接机器人智能化程度低、编程效率低、难以满足现代柔性定制化生产需求等问题，研究焊接机器人自动编程及自主作业方法。",
           "evidence": [
             {
-              "quote": "成功研制了集成单目视觉、线结构光与编码结构光的多模态复合视觉传感器，并搭建了基于该传感器的焊接机器人自主作业试验系统",
+              "quote": "本项目针对现有焊接机器人智能化程度低、编程效率低、难以满足现代柔性定制化生产需求等问题，研究焊接机器人自动编程及自主作业方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2855,
-                "end_char": 2912
+                "start_char": 653,
+                "end_char": 715
               },
               "version": "64648f840f3cb59beb1e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-5390da56c094",
-          "name": "强弧光去噪跟踪",
-          "desc": "WeldDenoise去噪模型克服强弧光干扰下特征退化，实现焊缝精准跟踪",
+          "id": "item-72cb792bc9ad",
+          "name": "焊接机器人自主作业技术是智能制造与高端装备领域的重要研究方向，其智能化水平直接决定了焊接效率、精度与柔性制造能力。",
+          "desc": "焊接机器人自主作业技术是智能制造与高端装备领域的重要研究方向，其智能化水平直接决定了焊接效率、精度与柔性制造能力。",
           "evidence": [
             {
-              "quote": "设计了WeldDenoise去噪模型，有效克服了强弧光干扰下的特征退化问题",
+              "quote": "焊接机器人自主作业技术是智能制造与高端装备领域的重要研究方向，其智能化水平直接决定了焊接效率、精度与柔性制造能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3136,
-                "end_char": 3172
+                "start_char": 2769,
+                "end_char": 2825
               },
               "version": "64648f840f3cb59beb1e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8cecd19601dd"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-beba02d737f5"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "人形机器人焊接位姿调整方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8e747767df54",
+      "evidence": [
+        {
+          "quote": "人形机器人焊接位姿调整方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3314,
+            "end_char": 3329
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-beba02d737f5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e7509cbb8a2c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of a Hybrid Vision Sensor and Its Application in Robotic Welding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5be4dfb8dd69",
+      "evidence": [
+        {
+          "quote": "Development of a Hybrid Vision Sensor and Its Application in Robotic Welding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3366,
+            "end_char": 3441
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-beba02d737f5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fac6c0d9fcb8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DeepKP: A Robust and Accurate Framework for Weld Seam Keypoint Extraction in Welding Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1f26d51573bc",
+      "evidence": [
+        {
+          "quote": "DeepKP: A Robust and Accurate Framework for Weld Seam Keypoint Extraction in Welding Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3520,
+            "end_char": 3610
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e7509cbb8a2c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-83b7d2c6e7c0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "人形机器人的焊接程序生成方法及相关设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7624860f8ffd",
+      "evidence": [
+        {
+          "quote": "人形机器人的焊接程序生成方法及相关设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3702,
+            "end_char": 3720
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fac6c0d9fcb8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5390da56c094"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Linear Gaussian bounding box representation and ring-shaped rotated convolution for oriented object detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d8bf4d3554d6",
+      "evidence": [
+        {
+          "quote": "Linear Gaussian bounding box representation and ring-shaped rotated convolution for oriented object detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3756,
+            "end_char": 3864
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pose Measurement and TCF Calibration for Automatic Cabin Docking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c407c4b6dca",
+      "evidence": [
+        {
+          "quote": "Pose Measurement and TCF Calibration for Automatic Cabin Docking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3945,
+            "end_char": 4008
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Structured Light Vision 3-D Reconstruction System for Different Media Considering Refraction: Design, Modeling, and Calibration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26b8b4648a2a",
+      "evidence": [
+        {
+          "quote": "Structured Light Vision 3-D Reconstruction System for Different Media Considering Refraction: Design, Modeling, and Calibration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4065,
+            "end_char": 4191
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reconstruction based Hand-Eye Calibration using Arbitrary Objects",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01d43215a352",
+      "evidence": [
+        {
+          "quote": "Reconstruction based Hand-Eye Calibration using Arbitrary Objects",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4278,
+            "end_char": 4342
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An efficient and robust complex weld seam feature point extraction method for seam tracking and posture adjustment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e64e6e95f7c9",
+      "evidence": [
+        {
+          "quote": "An efficient and robust complex weld seam feature point extraction method for seam tracking and posture adjustment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4389,
+            "end_char": 4502
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-Based Autonomous Robotic Arc Welding: State-of-the-Art Review and Perspectives",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef3a73cc5e73",
+      "evidence": [
+        {
+          "quote": "Vision-Based Autonomous Robotic Arc Welding: State-of-the-Art Review and Perspectives",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4600,
+            "end_char": 4684
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Efficient High Dynamic Range Structured Light 3-D Measurement System Based on Adaptive Brightness Control Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a7aeef6881df",
+      "evidence": [
+        {
+          "quote": "An Efficient High Dynamic Range Structured Light 3-D Measurement System Based on Adaptive Brightness Control Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4779,
+            "end_char": 4894
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "From Model to Reality: A Robust Framework for Automatic Generation of Welding Paths",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9aa44675855b",
+      "evidence": [
+        {
+          "quote": "From Model to Reality: A Robust Framework for Automatic Generation of Welding Paths",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4963,
+            "end_char": 5045
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "隐式问题推理模型的训练方法和隐式问题推理方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c56fc1faf442",
+      "evidence": [
+        {
+          "quote": "隐式问题推理模型的训练方法和隐式问题推理方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5123,
+            "end_char": 5144
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Maximum Allowable TCF Calibration Error for Robotic Pose Servoing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0954984ab662",
+      "evidence": [
+        {
+          "quote": "Maximum Allowable TCF Calibration Error for Robotic Pose Servoing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5181,
+            "end_char": 5245
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "WeldNet: A deep learning based method for weld seam type identification and initial point guidance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c3d6d1b31ee",
+      "evidence": [
+        {
+          "quote": "WeldNet: A deep learning based method for weld seam type identification and initial point guidance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5311,
+            "end_char": 5408
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High Dynamic Range Structured Light 3-D Measurement Based on Region Adaptive Fringe Brightness",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-61623c62d127",
+      "evidence": [
+        {
+          "quote": "High Dynamic Range Structured Light 3-D Measurement Based on Region Adaptive Fringe Brightness",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5488,
+            "end_char": 5581
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development, Calibration, and Image Processing of Underwater Structured Light Vision System: A Survey",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-993b45451503",
+      "evidence": [
+        {
+          "quote": "Development, Calibration, and Image Processing of Underwater Structured Light Vision System: A Survey",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5640,
+            "end_char": 5740
+          },
+          "version": "64648f840f3cb59beb1e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      }
+    },
+    "consistent": true
+  }
 }

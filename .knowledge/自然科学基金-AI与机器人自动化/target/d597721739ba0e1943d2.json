@@ -2,15 +2,20 @@
   "doc_id": "d597721739ba0e1943d2",
   "version": "00128723dda890c247fc",
   "source_hash": "625b43fbca60c5791c1db1ddd9bae3d2fe6f58fdfb5b8573c4e62c2dfd56fcc2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:11.411278+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.573069+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,37 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6602f108798e",
-          "name": "柔性定制焊接作业",
-          "desc": "柔性定制作业模式下焊接机器人自主作业",
+          "id": "item-0669a00b22ec",
+          "name": "现代制造业对柔性作业模式下焊接机器人的自主性和效率提出了更高的要求，但现有焊接机器人路径编程方法和学习能力无法满足柔性定",
+          "desc": "现代制造业对柔性作业模式下焊接机器人的自主性和效率提出了更高的要求，但现有焊接机器人路径编程方法和学习能力无法满足柔性定制作业模式高质量自主作业的需求。",
           "evidence": [
             {
-              "quote": "本项目针对柔性定制作业环境下焊接机器人路径编程和自学习方法进行深入研究",
+              "quote": "现代制造业对柔性作业模式下焊接机器人的自主性和效率提出了更高的要求，但现有焊接机器人路径编程方法和学习能力无法满足柔性定制作业模式高质量自主作业的需求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3040,
-                "end_char": 3074
-              },
-              "version": "00128723dda890c247fc"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1a6ecfe05ddf",
-          "name": "路径编程学习不满足",
-          "desc": "现有路径编程方法和学习能力无法满足高质量自主作业",
-          "evidence": [
-            {
-              "quote": "但现有焊接机器人路径编程方法和学习能力无法满足柔性定制作业模式高质量自主作业的需求。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 689,
+                "start_char": 655,
                 "end_char": 730
               },
               "version": "00128723dda890c247fc"
@@ -59,56 +42,47 @@
       ]
     },
     {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-7bc1750d6727",
-          "name": "先验知识三维路径编程",
-          "desc": "全局规划与局部定位实现焊接机器人路径编程",
+          "id": "item-c20ea94738d2",
+          "name": "本项目针对柔性定制作业环境的动态多变性、焊接目标和任务的多样性特点，对焊接机器人路径编程和自学习方法进行深入研究，具体内",
+          "desc": "本项目针对柔性定制作业环境的动态多变性、焊接目标和任务的多样性特点，对焊接机器人路径编程和自学习方法进行深入研究，具体内容包括：1.基于光栅投影系统进行焊接作业环境快速三维重建，设计混合深度神经网络模型完成焊接目标的特征提取，实现作业环境和焊接目标的多元信息快速精确感知。",
           "evidence": [
             {
-              "quote": "提出一种融合先验知识的焊接机器人三维路径自主编程方法，通过全局规划和局部定位，实现焊接机器人的路径编程",
+              "quote": "本项目针对柔性定制作业环境的动态多变性、焊接目标和任务的多样性特点，对焊接机器人路径编程和自学习方法进行深入研究，具体内容包括：1.基于光栅投影系统进行焊接作业环境快速三维重建，设计混合深度神经网络模型完成焊接目标的特征提取，实现作业环境和焊接目标的多元信息快速精确感知。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3083,
-                "end_char": 3133
+                "start_char": 731,
+                "end_char": 866
               },
               "version": "00128723dda890c247fc"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-da414ef1ede9",
-          "name": "双阶段联合检测感知",
-          "desc": "知识共享双支路融合网络克服不同信噪比识别",
+          "id": "item-93efbd2af485",
+          "name": "设计基于知识共享的双支路融合网络，通过全局语义和局部细节信息的联合表征，有效克服了基于特定损失的感知网络不能有效处理不同",
+          "desc": "设计基于知识共享的双支路融合网络，通过全局语义和局部细节信息的联合表征，有效克服了基于特定损失的感知网络不能有效处理不同信噪比的识别任务，增强了焊接机器人的感知能力。",
           "evidence": [
             {
-              "quote": "构造一种基于双阶段联合检测的感知算法，实现焊接目标多元信息提取；设计基于知识共享的双支路融合网络，通过全局语义和局部细节信息的联合表征，有效克服了基于特定损失的感知网络不能有效处理不同信噪比的识别任务",
+              "quote": "设计基于知识共享的双支路融合网络，通过全局语义和局部细节信息的联合表征，有效克服了基于特定损失的感知网络不能有效处理不同信噪比的识别任务，增强了焊接机器人的感知能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3135,
-                "end_char": 3234
+                "start_char": 3167,
+                "end_char": 3249
               },
               "version": "00128723dda890c247fc"
             }
-          ]
-        },
-        {
-          "id": "item-336d2ed5fd7b",
-          "name": "意图感知人机协同",
-          "desc": "融合意图感知算法灵活适应不同工作场景",
-          "evidence": [
-            {
-              "quote": "研究了融合意图感知的人机协同算法，使机器人能根灵活地适应不同工作场景，提高生产效率和产品质量。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3274,
-                "end_char": 3320
-              },
-              "version": "00128723dda890c247fc"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +91,393 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bc3a97e5b1fd",
-          "name": "焊接感知规划方法",
-          "desc": "为柔性焊接高质量高效率感知与规划提供科学方法",
+          "id": "item-111d94c50b05",
+          "name": "现代制造业对柔性作业模式下焊接机器人的自主性和效率提出了更高的要求，但现有焊接机器人路径编程方法和学习能力无法满足柔性定",
+          "desc": "现代制造业对柔性作业模式下焊接机器人的自主性和效率提出了更高的要求，但现有焊接机器人路径编程方法和学习能力无法满足柔性定制作业模式高质量自主作业的需求。",
           "evidence": [
             {
-              "quote": "通过本项目的研究，为柔性作业模式下焊接机器人高质量、高效率的感知和规划提供了有价值的科学方法和技术实现途径。",
+              "quote": "现代制造业对柔性作业模式下焊接机器人的自主性和效率提出了更高的要求，但现有焊接机器人路径编程方法和学习能力无法满足柔性定制作业模式高质量自主作业的需求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3321,
-                "end_char": 3374
+                "start_char": 655,
+                "end_char": 730
               },
               "version": "00128723dda890c247fc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6602f108798e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1a6ecfe05ddf"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2021中国智能自动化大会最佳学生应用论文奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-363cdddeb16d",
+      "evidence": [
+        {
+          "quote": "2021中国智能自动化大会最佳学生应用论文奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3398,
+            "end_char": 3419
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1a6ecfe05ddf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7bc1750d6727"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Inspection of Welding Defect Based on Multi-feature Fusion and a Convolutional Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cbdb657a84ac",
+      "evidence": [
+        {
+          "quote": "Inspection of Welding Defect Based on Multi-feature Fusion and a Convolutional Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3436,
+            "end_char": 3521
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1a6ecfe05ddf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-da414ef1ede9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于注意力融合的焊接缺陷检测方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4a84da72268",
+      "evidence": [
+        {
+          "quote": "基于注意力融合的焊接缺陷检测方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3577,
+            "end_char": 3595
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1a6ecfe05ddf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-336d2ed5fd7b"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "河南省教育厅优秀科技论文一等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ee02568186f",
+      "evidence": [
+        {
+          "quote": "河南省教育厅优秀科技论文一等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3634,
+            "end_char": 3648
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-da414ef1ede9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bc3a97e5b1fd"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Lightweight Dynamic Gesture Recognition Network with Spatio-Temporal Attention",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-744ced809909",
+      "evidence": [
+        {
+          "quote": "A Lightweight Dynamic Gesture Recognition Network with Spatio-Temporal Attention",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3669,
+            "end_char": 3748
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7bc1750d6727"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bc3a97e5b1fd"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "“兆易创新”第十六届中国研究生电子设计大赛华中分赛区二等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16e3188ac0dd",
+      "evidence": [
+        {
+          "quote": "“兆易创新”第十六届中国研究生电子设计大赛华中分赛区二等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3791,
+            "end_char": 3819
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A nondestructive automatic defect detection method with pixelwise segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec0d508330af",
+      "evidence": [
+        {
+          "quote": "A nondestructive automatic defect detection method with pixelwise segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3836,
+            "end_char": 3913
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A pixel-level deep segmentation network for automatic defect detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-acb58721b992",
+      "evidence": [
+        {
+          "quote": "A pixel-level deep segmentation network for automatic defect detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3977,
+            "end_char": 4046
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An automatic welding defect location algorithm based on deep learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5e7418c2dd7d",
+      "evidence": [
+        {
+          "quote": "An automatic welding defect location algorithm based on deep learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4108,
+            "end_char": 4176
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Automatic Defect Recognition Method of Aluminium Profile Surface Defects",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ee7a5bb1a37",
+      "evidence": [
+        {
+          "quote": "Automatic Defect Recognition Method of Aluminium Profile Surface Defects",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4248,
+            "end_char": 4319
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A deep segmentation network for crack detection with progressive and hierarchical context fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c41595fdec2",
+      "evidence": [
+        {
+          "quote": "A deep segmentation network for crack detection with progressive and hierarchical context fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4369,
+            "end_char": 4464
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于改进U-net的焊接缺陷检测方法、装置及终端设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7a9aad920fad",
+      "evidence": [
+        {
+          "quote": "基于改进U-net的焊接缺陷检测方法、装置及终端设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4522,
+            "end_char": 4547
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PAF-Net: A Progressive and Adaptive Fusion Network for Pavement Crack Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-54c5b306d7fd",
+      "evidence": [
+        {
+          "quote": "PAF-Net: A Progressive and Adaptive Fusion Network for Pavement Crack Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4589,
+            "end_char": 4670
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Image Denoising of Seam Images With Deep Learning for Laser Vision Seam Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c253b7a7baad",
+      "evidence": [
+        {
+          "quote": "Image Denoising of Seam Images With Deep Learning for Laser Vision Seam Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4742,
+            "end_char": 4821
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "“华为杯”第五届中国研究生人工智能创新大赛全国三等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a7ba9344c266",
+      "evidence": [
+        {
+          "quote": "“华为杯”第五届中国研究生人工智能创新大赛全国三等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4884,
+            "end_char": 4909
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Automatic Deep Segmentation Network for Pixel-Level Welding Defect Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-537ed442b046",
+      "evidence": [
+        {
+          "quote": "An Automatic Deep Segmentation Network for Pixel-Level Welding Defect Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4927,
+            "end_char": 5005
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel vision-based defect detection method for hot-rolled steel strips via multi-branch network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-86004cfb3fe2",
+      "evidence": [
+        {
+          "quote": "A novel vision-based defect detection method for hot-rolled steel strips via multi-branch network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5082,
+            "end_char": 5178
+          },
+          "version": "00128723dda890c247fc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

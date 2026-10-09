@@ -2,15 +2,20 @@
   "doc_id": "6e06594d311d1460f074",
   "version": "a6dba569efd5b99f094f",
   "source_hash": "dfcb97f8b7d4226dca9b928f36e3c8d67c93614eed63475747e3aa9e0f0a6fc8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:03:23.832306+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.497354+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-341ac01c4b37",
-          "name": "微创手术机器人组织夹持",
-          "desc": "手术机器人夹持器械与生物组织界面交互",
+          "id": "item-ae2e37c5f03c",
+          "name": "作为视觉外科的典型代表，微创手术机器人是当前外科手术领域的研究热点。",
+          "desc": "作为视觉外科的典型代表，微创手术机器人是当前外科手术领域的研究热点。",
           "evidence": [
             {
               "quote": "作为视觉外科的典型代表，微创手术机器人是当前外科手术领域的研究热点。",
@@ -38,12 +43,76 @@
     },
     {
       "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-7fd48e713a42",
-          "name": "缺乏力反馈致组织损伤",
-          "desc": "夹持力无负反馈调控导致异常力学接触、损伤或滑脱",
+          "id": "item-4a3adff8d225",
+          "name": "本项目以对组织的夹持操作为重点研究对象，以操作有效性约束下组织损伤最低为目标，基于接触力学基本理论，通过超弹性组织损伤模",
+          "desc": "本项目以对组织的夹持操作为重点研究对象，以操作有效性约束下组织损伤最低为目标，基于接触力学基本理论，通过超弹性组织损伤模型、线弹性界面生效模型及有限元仿真方法研究器械界面几何结构与组织损伤特征及操作力之间的耦合关系，揭示造成损伤的敏感因素及其作用规律，进而综合界面结构与不同组织在安全交互层面的适应性范围，构建满足临床服役性能需求的手术机器人器械界面设计及评估理论体系。",
+          "evidence": [
+            {
+              "quote": "本项目以对组织的夹持操作为重点研究对象，以操作有效性约束下组织损伤最低为目标，基于接触力学基本理论，通过超弹性组织损伤模型、线弹性界面生效模型及有限元仿真方法研究器械界面几何结构与组织损伤特征及操作力之间的耦合关系，揭示造成损伤的敏感因素及其作用规律，进而综合界面结构与不同组织在安全交互层面的适应性范围，构建满足临床服役性能需求的手术机器人器械界面设计及评估理论体系。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 773,
+                "end_char": 957
+              },
+              "version": "a6dba569efd5b99f094f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2493b5ef3bc7",
+          "name": "通过本项目研究，旨在进一步丰富和发展手术机器人器械与生物组织耦合系统研究的基础理论，促进和提高手术机器人的设计、制造水平",
+          "desc": "通过本项目研究，旨在进一步丰富和发展手术机器人器械与生物组织耦合系统研究的基础理论，促进和提高手术机器人的设计、制造水平，促进多学科间的交叉与融合。",
+          "evidence": [
+            {
+              "quote": "通过本项目研究，旨在进一步丰富和发展手术机器人器械与生物组织耦合系统研究的基础理论，促进和提高手术机器人的设计、制造水平，促进多学科间的交叉与融合。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 958,
+                "end_char": 1031
+              },
+              "version": "a6dba569efd5b99f094f"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d9f4502f9f36",
+          "name": "作为视觉外科的典型代表，微创手术机器人是当前外科手术领域的研究热点。",
+          "desc": "作为视觉外科的典型代表，微创手术机器人是当前外科手术领域的研究热点。",
+          "evidence": [
+            {
+              "quote": "作为视觉外科的典型代表，微创手术机器人是当前外科手术领域的研究热点。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 652,
+                "end_char": 685
+              },
+              "version": "a6dba569efd5b99f094f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-8f134fc72e19",
+          "name": "由于机器人手术操作缺乏力反馈，医生对器官组织受力状态的感知完全依靠视觉反馈，无法对器械夹持力形成精确负反馈调控，导致器械",
+          "desc": "由于机器人手术操作缺乏力反馈，医生对器官组织受力状态的感知完全依靠视觉反馈，无法对器械夹持力形成精确负反馈调控，导致器械-生物组织界面出现异常力学接触，出现组织损伤或者滑脱。",
           "evidence": [
             {
               "quote": "由于机器人手术操作缺乏力反馈，医生对器官组织受力状态的感知完全依靠视觉反馈，无法对器械夹持力形成精确负反馈调控，导致器械-生物组织界面出现异常力学接触，出现组织损伤或者滑脱。",
@@ -54,127 +123,176 @@
               },
               "version": "a6dba569efd5b99f094f"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6ee7a51c78d3",
-          "name": "组织损伤阈值量化",
-          "desc": "肠道组织夹持试验获得损伤压力与时间阈值",
-          "evidence": [
-            {
-              "quote": "通过对小型动物猪肠道组织进行夹持，夹持后对损伤进行量化，得到组织损伤的压力阈值和时间阈值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2926,
-                "end_char": 2969
-              },
-              "version": "a6dba569efd5b99f094f"
-            }
-          ]
-        },
-        {
-          "id": "item-cd4cfbf630cb",
-          "name": "树蛙微结构界面优化",
-          "desc": "借鉴湿粘附微结构设计5种微棱柱界面并评价生物相容性",
-          "evidence": [
-            {
-              "quote": "本研究通过借鉴湿粘附动物树蛙脚掌的微结构，设计了5种形状的微棱柱界面，采用浸提液法对界面进行了生物相容性评价，对器械界面进行优化。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2976,
-                "end_char": 3040
-              },
-              "version": "a6dba569efd5b99f094f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-08ae7beca5b5",
-          "name": "界面设计评估理论体系",
-          "desc": "构建满足临床服役性能需求的器械界面设计及评估体系",
-          "evidence": [
-            {
-              "quote": "构建满足临床服役性能需求的手术机器人器械界面设计及评估理论体系。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 926,
-                "end_char": 957
-              },
-              "version": "a6dba569efd5b99f094f"
-            }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-341ac01c4b37"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7fd48e713a42"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于吸持生物组织的亲水界面制造方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1fd6b8ff02dd",
+      "evidence": [
+        {
+          "quote": "用于吸持生物组织的亲水界面制造方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3157,
+            "end_char": 3176
+          },
+          "version": "a6dba569efd5b99f094f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7fd48e713a42"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6ee7a51c78d3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Comparison of the short‐term operative, Oncological, and Functional Outcomes between two types of robot‐assisted total mesorectal excision for rectal cancer: Da Vinci versus Micro Hand S surgical robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cf03776d4a4c",
+      "evidence": [
+        {
+          "quote": "Comparison of the short‐term operative, Oncological, and Functional Outcomes between two types of robot‐assisted total mesorectal excision for rectal cancer: Da Vinci versus Micro Hand S surgical robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3217,
+            "end_char": 3417
+          },
+          "version": "a6dba569efd5b99f094f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7fd48e713a42"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cd4cfbf630cb"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于吸持生物组织的亲水界面选取系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5daedf6c1a37",
+      "evidence": [
+        {
+          "quote": "用于吸持生物组织的亲水界面选取系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3470,
+            "end_char": 3489
+          },
+          "version": "a6dba569efd5b99f094f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cd4cfbf630cb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-08ae7beca5b5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The severity of postoperative complications after robotic versus laparoscopic surgery for rectal cancer: A systematic review, meta-analysis and meta-regression",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5e925d411ea4",
+      "evidence": [
+        {
+          "quote": "The severity of postoperative complications after robotic versus laparoscopic surgery for rectal cancer: A systematic review, meta-analysis and meta-regression",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3530,
+            "end_char": 3688
+          },
+          "version": "a6dba569efd5b99f094f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6ee7a51c78d3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-08ae7beca5b5"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "中南大学临床研究与医疗新技术成果奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec09b2b5d18a",
+      "evidence": [
+        {
+          "quote": "中南大学临床研究与医疗新技术成果奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3754,
+            "end_char": 3770
+          },
+          "version": "a6dba569efd5b99f094f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Evaluation of effect of robotic versus laparoscopic surgical technology on genitourinary function after total mesorectal excision for rectal cancer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aab237844ced",
+      "evidence": [
+        {
+          "quote": "Evaluation of effect of robotic versus laparoscopic surgical technology on genitourinary function after total mesorectal excision for rectal cancer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3802,
+            "end_char": 3948
+          },
+          "version": "a6dba569efd5b99f094f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Comparison of the short-term efficacy of two types of robotic total mesorectal excision for rectal cancer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7d5d87bd5439",
+      "evidence": [
+        {
+          "quote": "Comparison of the short-term efficacy of two types of robotic total mesorectal excision for rectal cancer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4052,
+            "end_char": 4156
+          },
+          "version": "a6dba569efd5b99f094f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

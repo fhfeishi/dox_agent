@@ -2,15 +2,20 @@
   "doc_id": "dae20ae7a78ad51fcabd",
   "version": "02a96e040eb7da486b63",
   "source_hash": "4815d19af1c35203a01e392219e3b2478bf07907e02aa54af6a4b14a10b9b0c4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:55.682297+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.617025+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ecbc1784c4bf",
-          "name": "航天器编队飞行协同控制",
-          "desc": "多航天器编队飞行轨迹自主规划与预设时间协同控制",
+          "id": "item-f3743486c747",
+          "name": "多航天器通过编队飞行协同完成空间科学、地球观测等复杂任务，是近年来空间技术的研究热点。",
+          "desc": "多航天器通过编队飞行协同完成空间科学、地球观测等复杂任务，是近年来空间技术的研究热点。",
           "evidence": [
             {
-              "quote": "本项目针对航天器集群在轨运行面临的时空约束避碰、大规模规划实时性、复杂扰动可靠协同等核心技术难题",
+              "quote": "多航天器通过编队飞行协同完成空间科学、地球观测等复杂任务，是近年来空间技术的研究热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2968,
-                "end_char": 3015
+                "start_char": 649,
+                "end_char": 691
+              },
+              "version": "02a96e040eb7da486b63"
+            }
+          ]
+        },
+        {
+          "id": "item-e9a9ed991e75",
+          "name": "部分研究成果服务于面向空间引力波探测任务的三星编队无拖曳航天器系统，满足了科学卫星平台控制系统快速性、精确性需求。",
+          "desc": "部分研究成果服务于面向空间引力波探测任务的三星编队无拖曳航天器系统，满足了科学卫星平台控制系统快速性、精确性需求。",
+          "evidence": [
+            {
+              "quote": "部分研究成果服务于面向空间引力波探测任务的三星编队无拖曳航天器系统，满足了科学卫星平台控制系统快速性、精确性需求。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3321,
+                "end_char": 3377
               },
               "version": "02a96e040eb7da486b63"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-229fd0c5dec4",
-          "name": "空间约束与系统不确定性",
-          "desc": "轨迹规划存在路径、边界等空间约束，动力学系统强非线性、多不确定性",
+          "id": "item-728f57830676",
+          "name": "在编队飞行中，航天器受深空环境、燃料消耗、载荷位置等影响，其轨迹规划存在路径、边界等多种空间约束问题，同时其动力学系统存",
+          "desc": "在编队飞行中，航天器受深空环境、燃料消耗、载荷位置等影响，其轨迹规划存在路径、边界等多种空间约束问题，同时其动力学系统存在强非线性、多种不确定性等问题，这导致已有方法难以实现轨迹自主规划，且无法满足系统快速、精准收敛的控制需求。",
           "evidence": [
             {
-              "quote": "其轨迹规划存在路径、边界等多种空间约束问题，同时其动力学系统存在强非线性、多种不确定性等问题",
+              "quote": "在编队飞行中，航天器受深空环境、燃料消耗、载荷位置等影响，其轨迹规划存在路径、边界等多种空间约束问题，同时其动力学系统存在强非线性、多种不确定性等问题，这导致已有方法难以实现轨迹自主规划，且无法满足系统快速、精准收敛的控制需求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 721,
-                "end_char": 766
+                "start_char": 692,
+                "end_char": 805
               },
               "version": "02a96e040eb7da486b63"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6fb5fd51b35a",
-          "name": "避碰最优轨迹规划模型",
-          "desc": "近似修正可达集建模与序列凸规划融合，神经网络规划架构实现状态到控制指令映射",
+          "id": "item-32ed618d2a84",
+          "name": "设计了基于离线训练与在线推理的神经网络规划架构，利用MLP与LSTM网络实现了状态到控制指令的高效映射；",
+          "desc": "设计了基于离线训练与在线推理的神经网络规划架构，利用MLP与LSTM网络实现了状态到控制指令的高效映射；",
           "evidence": [
             {
-              "quote": "提出了近似修正可达集建模与序列凸规划融合方案，构建了时空约束下的避碰最优轨迹规划模型",
+              "quote": "设计了基于离线训练与在线推理的神经网络规划架构，利用MLP与LSTM网络实现了状态到控制指令的高效映射；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3052,
-                "end_char": 3093
+                "start_char": 3095,
+                "end_char": 3146
               },
               "version": "02a96e040eb7da486b63"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c9a8d89dd464",
-          "name": "预设时间智能协同控制",
-          "desc": "非光滑协同观测与控制一体化、非奇异预设时间滑模控制等方法",
+          "id": "item-f12ac1eb5b60",
+          "name": "首先针对上述空间约束问题，采用相对轨道要素精确建立最优轨迹规划模型，并设计多航天器强化学习框架及深度神经网络结构，以提高",
+          "desc": "首先针对上述空间约束问题，采用相对轨道要素精确建立最优轨迹规划模型，并设计多航天器强化学习框架及深度神经网络结构，以提高航天器轨迹自主规划能力；",
           "evidence": [
             {
-              "quote": "提出了非光滑协同观测与控制一体化、非奇异预设时间滑模控制、预设时间智能协同控制等方法",
+              "quote": "首先针对上述空间约束问题，采用相对轨道要素精确建立最优轨迹规划模型，并设计多航天器强化学习框架及深度神经网络结构，以提高航天器轨迹自主规划能力；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3224,
-                "end_char": 3265
+                "start_char": 835,
+                "end_char": 906
               },
               "version": "02a96e040eb7da486b63"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,372 @@
       "state": "has",
       "items": [
         {
-          "id": "item-16037ce5f3d2",
-          "name": "引力波探测任务应用",
-          "desc": "成果服务于空间引力波探测任务三星编队无拖曳航天器系统",
+          "id": "item-efe01ec3ec63",
+          "name": "多航天器通过编队飞行协同完成空间科学、地球观测等复杂任务，是近年来空间技术的研究热点。",
+          "desc": "多航天器通过编队飞行协同完成空间科学、地球观测等复杂任务，是近年来空间技术的研究热点。",
           "evidence": [
             {
-              "quote": "部分研究成果服务于面向空间引力波探测任务的三星编队无拖曳航天器系统",
+              "quote": "多航天器通过编队飞行协同完成空间科学、地球观测等复杂任务，是近年来空间技术的研究热点。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3321,
-                "end_char": 3353
+                "start_char": 649,
+                "end_char": 691
               },
               "version": "02a96e040eb7da486b63"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-8fed24334593",
-          "name": "论文专著与发明专利",
-          "desc": "发表论文15篇，出版专著2部，申请国家发明专利3项",
+          "id": "item-c10c076b2494",
+          "name": "本项目针对航天器集群在轨运行面临的时空约束避碰、大规模规划实时性、复杂扰动可靠协同等核心技术难题，围绕编队飞行轨迹自主规",
+          "desc": "本项目针对航天器集群在轨运行面临的时空约束避碰、大规模规划实时性、复杂扰动可靠协同等核心技术难题，围绕编队飞行轨迹自主规划与协同控制方法开展系统性研究。",
           "evidence": [
             {
-              "quote": "项目负责人以第一/通讯作者发表论文15篇，其中Automatica、IEEE汇刊、中文核心期刊10篇；出版专著2部；申请国家发明专利3项",
+              "quote": "本项目针对航天器集群在轨运行面临的时空约束避碰、大规模规划实时性、复杂扰动可靠协同等核心技术难题，围绕编队飞行轨迹自主规划与协同控制方法开展系统性研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3435,
-                "end_char": 3502
+                "start_char": 2968,
+                "end_char": 3043
               },
               "version": "02a96e040eb7da486b63"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ecbc1784c4bf"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-229fd0c5dec4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种具有测量噪声任意抑制强度的航天器系统扰动估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e3df92e34a51",
+      "evidence": [
+        {
+          "quote": "一种具有测量噪声任意抑制强度的航天器系统扰动估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3588,
+            "end_char": 3613
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-229fd0c5dec4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6fb5fd51b35a"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Constrained Disturbance Rejection Control Design of Drag-Free Spacecraft for Test Mass Capture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52e15c394222",
+      "evidence": [
+        {
+          "quote": "Constrained Disturbance Rejection Control Design of Drag-Free Spacecraft for Test Mass Capture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3656,
+            "end_char": 3749
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6fb5fd51b35a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-16037ce5f3d2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nash Equilibrium Computation for Spacecraft Pursuit-evasion with Deep Reinforcement Learning Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02f37d896ad9",
+      "evidence": [
+        {
+          "quote": "Nash Equilibrium Computation for Spacecraft Pursuit-evasion with Deep Reinforcement Learning Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3836,
+            "end_char": 3934
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ecbc1784c4bf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c9a8d89dd464"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A variable-bandwidth extended state observer for nonlinear systems with measurement noise",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb3503cd794d",
+      "evidence": [
+        {
+          "quote": "A variable-bandwidth extended state observer for nonlinear systems with measurement noise",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3998,
+            "end_char": 4086
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c9a8d89dd464"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8fed24334593"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种应用于高密度环境下的航天器集群轨迹规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-667331d84ac2",
+      "evidence": [
+        {
+          "quote": "一种应用于高密度环境下的航天器集群轨迹规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4160,
+            "end_char": 4182
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "空间飞行器变结构控制与智能协同理论(自然科学一等奖)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-63dbfd692b63",
+      "evidence": [
+        {
+          "quote": "空间飞行器变结构控制与智能协同理论(自然科学一等奖)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4215,
+            "end_char": 4240
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "北京市科学技术协会青年人才托举工程",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d365177472ef",
+      "evidence": [
+        {
+          "quote": "北京市科学技术协会青年人才托举工程",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4269,
+            "end_char": 4285
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Distributed Impulsive Coordination of Multi-agent Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5962da408909",
+      "evidence": [
+        {
+          "quote": "Distributed Impulsive Coordination of Multi-agent Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4300,
+            "end_char": 4356
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prescribed-Time Consensus Control for Nonlinear Multi-Agent Systems With Output Constraint: A Bounded Time-Varying Gain-Based Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d35fb41fb1cd",
+      "evidence": [
+        {
+          "quote": "Prescribed-Time Consensus Control for Nonlinear Multi-Agent Systems With Output Constraint: A Bounded Time-Varying Gain-Based Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4404,
+            "end_char": 4535
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time fault-tolerant consensus control for high-order nonlinear multi-agent systems under directed topology",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-07caadf80c1f",
+      "evidence": [
+        {
+          "quote": "Fixed-time fault-tolerant consensus control for high-order nonlinear multi-agent systems under directed topology",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4602,
+            "end_char": 4713
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于DRL的航天器追逃博弈纳什均衡策略确定方法和装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8ea3794113be",
+      "evidence": [
+        {
+          "quote": "基于DRL的航天器追逃博弈纳什均衡策略确定方法和装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4776,
+            "end_char": 4801
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer based finite-time control for spacecraft reorientation with multiple constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae91f027fd05",
+      "evidence": [
+        {
+          "quote": "Observer based finite-time control for spacecraft reorientation with multiple constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4835,
+            "end_char": 4923
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-Time Neuroadaptive Backstepping Tracking Control for Uncertain Nonlinear Systems With Predictor Based Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db05c7c3ad69",
+      "evidence": [
+        {
+          "quote": "Fixed-Time Neuroadaptive Backstepping Tracking Control for Uncertain Nonlinear Systems With Predictor Based Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4984,
+            "end_char": 5099
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed prescribed-time fault-tolerant attitude tracking control for multiple rigid spacecraft",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-61cb3b78ef6a",
+      "evidence": [
+        {
+          "quote": "Distributed prescribed-time fault-tolerant attitude tracking control for multiple rigid spacecraft",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5168,
+            "end_char": 5265
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A forward propagation motion planning algorithm based on generative model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-94280da13420",
+      "evidence": [
+        {
+          "quote": "A forward propagation motion planning algorithm based on generative model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5322,
+            "end_char": 5394
+          },
+          "version": "02a96e040eb7da486b63"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

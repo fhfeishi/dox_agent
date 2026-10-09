@@ -2,15 +2,20 @@
   "doc_id": "4f354d72c62ef3fda4a1",
   "version": "dd19b4e250a442e8a12f",
   "source_hash": "f8a64afb8cb809175315e8f00c5e48854b9c92280008a96c1b03d1f524fe5e69",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:16:41.897508+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.228472+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5ab1b31c8238",
-          "name": "复杂非结构化智能车规划",
-          "desc": "复杂非结构化自动驾驶场景的精确避障与最优轨迹规划",
+          "id": "item-628dbb1e957d",
+          "name": "数值最优控制方法是求解复杂非结构化场景中智能车运动规划问题的典型方法，其核心在于求解一个非线性规划(Nonlinear",
+          "desc": "数值最优控制方法是求解复杂非结构化场景中智能车运动规划问题的典型方法，其核心在于求解一个非线性规划(Nonlinear Programming，NLP)命题，目前学术界普遍使用第三方通用NLP求解器，这容易造成NLP求解过程不透明、不易掌控、不稳定以及计算负担繁重等不良后果。",
           "evidence": [
             {
-              "quote": "智能车是汽车产业转型升级的重要载体，发展高效、可靠的运动规划方法对推动自动驾驶落地意义重大，尤其在有望更早落地的复杂非结构化自动驾驶场景更须精确避障与最优轨迹规划以便提升运载效率",
+              "quote": "数值最优控制方法是求解复杂非结构化场景中智能车运动规划问题的典型方法，其核心在于求解一个非线性规划(Nonlinear Programming，NLP)命题，目前学术界普遍使用第三方通用NLP求解器，这容易造成NLP求解过程不透明、不易掌控、不稳定以及计算负担繁重等不良后果。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2735,
-                "end_char": 2823
+                "start_char": 663,
+                "end_char": 800
               },
               "version": "dd19b4e250a442e8a12f"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cc379749f78d",
-          "name": "NLP求解不透明不稳定",
-          "desc": "第三方通用NLP求解器求解过程不透明、不易掌控、不稳定且计算负担重",
-          "evidence": [
-            {
-              "quote": "目前学术界普遍使用第三方通用NLP求解器，这容易造成NLP求解过程不透明、不易掌控、不稳定以及计算负担繁重等不良后果",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 742,
-                "end_char": 799
-              },
-              "version": "dd19b4e250a442e8a12f"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4eb5c8fe009d",
-          "name": "轻量化迭代优化分解",
-          "desc": "将大规模非凸NLP问题分解为仅含盒约束的可行子问题",
+          "id": "item-f6d0af77b0ca",
+          "name": "本项目首先提出轻量化迭代优化方法，将大规模非凸NLP问题分解为仅含盒约束的可行子问题，并配套研发多轮时序数据收敛监测与提",
+          "desc": "本项目首先提出轻量化迭代优化方法，将大规模非凸NLP问题分解为仅含盒约束的可行子问题，并配套研发多轮时序数据收敛监测与提前干预机制，能够实时识别迭代停滞苗头并快速切换至备用方案，包括平行缝合算法和自适应纯跟踪规划算法，以实现在复杂环境中高成功率、高效能和可解释的运动规划。",
           "evidence": [
             {
-              "quote": "本项目首先提出轻量化迭代优化方法，将大规模非凸NLP问题分解为仅含盒约束的可行子问题",
+              "quote": "本项目首先提出轻量化迭代优化方法，将大规模非凸NLP问题分解为仅含盒约束的可行子问题，并配套研发多轮时序数据收敛监测与提前干预机制，能够实时识别迭代停滞苗头并快速切换至备用方案，包括平行缝合算法和自适应纯跟踪规划算法，以实现在复杂环境中高成功率、高效能和可解释的运动规划。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3052,
-                "end_char": 3093
+                "end_char": 3187
               },
               "version": "dd19b4e250a442e8a12f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e17ba97d5de1",
-          "name": "收敛监测提前干预",
-          "desc": "多轮时序数据收敛监测与提前干预机制，实时识别迭代停滞并切换备用方案",
+          "id": "item-1a175807c12f",
+          "name": "在精炼的最优控制模型基础上，针对非结构化场景中运动规划任务实际特点设计轻量化、透明化的NLP求解方法，进而实现对于NLP",
+          "desc": "在精炼的最优控制模型基础上，针对非结构化场景中运动规划任务实际特点设计轻量化、透明化的NLP求解方法，进而实现对于NLP求解微观过程的观测与预测，并对收敛进展不利的情况及时介入干预。",
           "evidence": [
             {
-              "quote": "并配套研发多轮时序数据收敛监测与提前干预机制，能够实时识别迭代停滞苗头并快速切换至备用方案，包括平行缝合算法和自适应纯跟踪规划算法",
+              "quote": "在精炼的最优控制模型基础上，针对非结构化场景中运动规划任务实际特点设计轻量化、透明化的NLP求解方法，进而实现对于NLP求解微观过程的观测与预测，并对收敛进展不利的情况及时介入干预。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3095,
-                "end_char": 3159
+                "start_char": 886,
+                "end_char": 976
               },
               "version": "dd19b4e250a442e8a12f"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +91,572 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6e4a2ef1e6cb",
-          "name": "收敛成功率100%耗时0.9s",
-          "desc": "非结构化场景测试收敛成功率100%，平均耗时0.909s，99%分位耗时3.138s",
+          "id": "item-3ccbbcce68fe",
+          "name": "数值最优控制方法是求解复杂非结构化场景中智能车运动规划问题的典型方法，其核心在于求解一个非线性规划(Nonlinear",
+          "desc": "数值最优控制方法是求解复杂非结构化场景中智能车运动规划问题的典型方法，其核心在于求解一个非线性规划(Nonlinear Programming，NLP)命题，目前学术界普遍使用第三方通用NLP求解器，这容易造成NLP求解过程不透明、不易掌控、不稳定以及计算负担繁重等不良后果。",
           "evidence": [
             {
-              "quote": "在大量非结构化场景轨迹规划算例集测试中，本项目算法收敛成功率达100%，平均耗时仅0.909s，且99%分位耗时为3.138s",
+              "quote": "数值最优控制方法是求解复杂非结构化场景中智能车运动规划问题的典型方法，其核心在于求解一个非线性规划(Nonlinear Programming，NLP)命题，目前学术界普遍使用第三方通用NLP求解器，这容易造成NLP求解过程不透明、不易掌控、不稳定以及计算负担繁重等不良后果。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3216,
-                "end_char": 3278
+                "start_char": 663,
+                "end_char": 800
               },
               "version": "dd19b4e250a442e8a12f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-02067b4d5469",
-          "name": "平行缝合最优性损失19.72%",
-          "desc": "平行缝合算法最优性损失率仅19.72%，自适应纯跟踪平均规划耗时仅51ms",
+          "id": "item-5d42ae24f1bb",
+          "name": "智能车是汽车产业转型升级的重要载体，发展高效、可靠的运动规划方法对推动自动驾驶落地意义重大，尤其在有望更早落地的复杂非结",
+          "desc": "智能车是汽车产业转型升级的重要载体，发展高效、可靠的运动规划方法对推动自动驾驶落地意义重大，尤其在有望更早落地的复杂非结构化自动驾驶场景更须精确避障与最优轨迹规划以便提升运载效率。",
           "evidence": [
             {
-              "quote": "通过大量随机算例对平行缝合算法进行测试，其最优性损失率仅19.72%，显著优于经典缝合方案；另经大量算例评估验证了自适应纯跟踪规划对极端狭窄大曲率非结构化道路环境的高适应性，平均规划耗时仅51ms",
+              "quote": "智能车是汽车产业转型升级的重要载体，发展高效、可靠的运动规划方法对推动自动驾驶落地意义重大，尤其在有望更早落地的复杂非结构化自动驾驶场景更须精确避障与最优轨迹规划以便提升运载效率。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3330,
-                "end_char": 3427
+                "start_char": 2735,
+                "end_char": 2824
               },
               "version": "dd19b4e250a442e8a12f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5ab1b31c8238"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cc379749f78d"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "《控制与信息技术》期刊2022年度优秀审稿专家",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ccc160bb5c0",
+      "evidence": [
+        {
+          "quote": "《控制与信息技术》期刊2022年度优秀审稿专家",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3556,
+            "end_char": 3578
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cc379749f78d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4eb5c8fe009d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast and Optimal Trajectory Planning for Multiple Vehicles in a Nonconvex and Cluttered Environment: Benchmarks, Methodology, and Experiments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e6cb353d3c76",
+      "evidence": [
+        {
+          "quote": "Fast and Optimal Trajectory Planning for Multiple Vehicles in a Nonconvex and Cluttered Environment: Benchmarks, Methodology, and Experiments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3595,
+            "end_char": 3735
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cc379749f78d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e17ba97d5de1"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种具有不停车绕障功能的泊车轨迹重规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-149c2a08c46f",
+      "evidence": [
+        {
+          "quote": "一种具有不停车绕障功能的泊车轨迹重规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3819,
+            "end_char": 3839
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e17ba97d5de1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6e4a2ef1e6cb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory planning for an autonomous vehicle in spatially constrained environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f4b8c296e7b",
+      "evidence": [
+        {
+          "quote": "Trajectory planning for an autonomous vehicle in spatially constrained environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3871,
+            "end_char": 3953
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4eb5c8fe009d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-02067b4d5469"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sharing traffic priorities via cyber-physical-social intelligence: A lane-free autonomous intersection management method in metaverse",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-922a37b701ae",
+      "evidence": [
+        {
+          "quote": "Sharing traffic priorities via cyber-physical-social intelligence: A lane-free autonomous intersection management method in metaverse",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4023,
+            "end_char": 4155
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于半空间约束理论的自动泊车高性能轨迹优化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef8f40db933b",
+      "evidence": [
+        {
+          "quote": "基于半空间约束理论的自动泊车高性能轨迹优化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4249,
+            "end_char": 4271
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online trajectory replanning for sudden environmental changes during automated parking: A parallel stitching method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aff9598c7c77",
+      "evidence": [
+        {
+          "quote": "Online trajectory replanning for sudden environmental changes during automated parking: A parallel stitching method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4312,
+            "end_char": 4426
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Motion planning for autonomous driving: The state of the art and future perspectives",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-53006ec4dacf",
+      "evidence": [
+        {
+          "quote": "Motion planning for autonomous driving: The state of the art and future perspectives",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4507,
+            "end_char": 4590
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Toward Fair and Thrilling Autonomous Racing: Governance Rules and Performance Metrics for the Autonomous One",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1789f7a2f05a",
+      "evidence": [
+        {
+          "quote": "Toward Fair and Thrilling Autonomous Racing: Governance Rules and Performance Metrics for the Autonomous One",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4722,
+            "end_char": 4829
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "自动泊车运动规划方法综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8824240ee68f",
+      "evidence": [
+        {
+          "quote": "自动泊车运动规划方法综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4954,
+            "end_char": 4965
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimization-based maneuver planning for a tractor-trailer vehicle in a curvy tunnel: A weak reliance on sampling and search",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1496c26a1df8",
+      "evidence": [
+        {
+          "quote": "Optimization-based maneuver planning for a tractor-trailer vehicle in a curvy tunnel: A weak reliance on sampling and search",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4995,
+            "end_char": 5118
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "自动驾驶故障安全运动规划方法综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ee929adb647d",
+      "evidence": [
+        {
+          "quote": "自动驾驶故障安全运动规划方法综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5184,
+            "end_char": 5199
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous driving on curvy roads without reliance on Frenet frame: A Cartesian-based trajectory planning method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-df82c9ec4d99",
+      "evidence": [
+        {
+          "quote": "Autonomous driving on curvy roads without reliance on Frenet frame: A Cartesian-based trajectory planning method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5225,
+            "end_char": 5336
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mixed-integer and conditional trajectory planning for an autonomous mining truck in loading/dumping scenarios: A global optimization approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d2d7580886fd",
+      "evidence": [
+        {
+          "quote": "Mixed-integer and conditional trajectory planning for an autonomous mining truck in loading/dumping scenarios: A global optimization approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5390,
+            "end_char": 5530
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "《控制与信息技术》期刊第一届优秀青年编委奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-368e8d303eca",
+      "evidence": [
+        {
+          "quote": "《控制与信息技术》期刊第一届优秀青年编委奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5610,
+            "end_char": 5630
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimization-based trajectory planning for autonomous parking with irregularly placed obstacles: A lightweight iterative framework",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f2c83ec66933",
+      "evidence": [
+        {
+          "quote": "Optimization-based trajectory planning for autonomous parking with irregularly placed obstacles: A lightweight iterative framework",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5648,
+            "end_char": 5777
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Online competition of trajectory planning for automated parking: Benchmarks, achievements, learned lessons, and future perspectives",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bdc3deec5348",
+      "evidence": [
+        {
+          "quote": "Online competition of trajectory planning for automated parking: Benchmarks, achievements, learned lessons, and future perspectives",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5886,
+            "end_char": 6016
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A survey of trajectory planning methods for autonomous driving—Part I: Unstructured scenarios",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99b7765808d3",
+      "evidence": [
+        {
+          "quote": "A survey of trajectory planning methods for autonomous driving—Part I: Unstructured scenarios",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6105,
+            "end_char": 6197
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Down-sized initialization for optimization-based unstructured trajectory planning by only optimizing critical variables",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fcf82778c866",
+      "evidence": [
+        {
+          "quote": "Down-sized initialization for optimization-based unstructured trajectory planning by only optimizing critical variables",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6268,
+            "end_char": 6386
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "IEEE Transactions on Intelligent Vehicles期刊2022年度Best Associate Editor Award",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-14191d0cecdf",
+      "evidence": [
+        {
+          "quote": "IEEE Transactions on Intelligent Vehicles期刊2022年度Best Associate Editor Award",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6446,
+            "end_char": 6521
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Occlusion-aware path planning to promote infrared positioning accuracy for autonomous driving in a warehouse",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-755e0d12b467",
+      "evidence": [
+        {
+          "quote": "Occlusion-aware path planning to promote infrared positioning accuracy for autonomous driving in a warehouse",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6539,
+            "end_char": 6646
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Embodied footprints: A safety-guaranteed collision-avoidance model for numerical optimization-based trajectory planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4138420ce50b",
+      "evidence": [
+        {
+          "quote": "Embodied footprints: A safety-guaranteed collision-avoidance model for numerical optimization-based trajectory planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6704,
+            "end_char": 6822
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A survey of vehicle dynamics modeling methods for autonomous racing: Theoretical models, physical/virtual platforms, and perspectives",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9185fd29eabf",
+      "evidence": [
+        {
+          "quote": "A survey of vehicle dynamics modeling methods for autonomous racing: Theoretical models, physical/virtual platforms, and perspectives",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6928,
+            "end_char": 7060
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "湖南省组织部芙蓉计划湖湘青年英才",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fa5dee9e5343",
+      "evidence": [
+        {
+          "quote": "湖南省组织部芙蓉计划湖湘青年英才",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7143,
+            "end_char": 7158
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "自动驾驶决策规划技术理论实践",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75c0d537f395",
+      "evidence": [
+        {
+          "quote": "自动驾驶决策规划技术理论实践",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7174,
+            "end_char": 7187
+          },
+          "version": "dd19b4e250a442e8a12f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 25,
+    "listed": 25,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      }
+    },
+    "consistent": true
+  }
 }

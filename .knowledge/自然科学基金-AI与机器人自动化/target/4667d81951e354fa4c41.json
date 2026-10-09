@@ -2,15 +2,20 @@
   "doc_id": "4667d81951e354fa4c41",
   "version": "51c29cef24fbc037b723",
   "source_hash": "1d115f896887c4e2a11317e4275ce485bd0c81b0f1e172e83d518d7b9c3fee71",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:08:00.316991+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.145455+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c99681fbd371",
-          "name": "飞行机械臂物理交互作业",
-          "desc": "旋翼无人机与作业装置组成的AM实现与环境物理交互",
+          "id": "item-2c2eb7d2b795",
+          "name": "作业型飞行机器人(Aerial Manipulators)是指由飞行机器人与作业装置共同组成的具有主动作业能力的一种新型",
+          "desc": "作业型飞行机器人(Aerial Manipulators)是指由飞行机器人与作业装置共同组成的具有主动作业能力的一种新型机器人系统。",
           "evidence": [
             {
-              "quote": "飞行机械臂(Aerial Manipulator, AM)是指由旋翼无人机（Unmanned Aerial Vehicle, UAV）与作业装置组成的具有主动作业能力的一种新型机器人系统。AM可实现与环境的物理交互，弥补传统无人机仅具有观测能力的不足",
+              "quote": "作业型飞行机器人(Aerial Manipulators)是指由飞行机器人与作业装置共同组成的具有主动作业能力的一种新型机器人系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2501,
-                "end_char": 2625
+                "start_char": 643,
+                "end_char": 708
+              },
+              "version": "51c29cef24fbc037b723"
+            }
+          ]
+        },
+        {
+          "id": "item-2e2cca545f09",
+          "name": "研制的用于金属设施超声测厚的AM系统，成功实现了接触检测功能，验证了AM用于该类接触作业的可行性，在大型基础设施运维领域",
+          "desc": "研制的用于金属设施超声测厚的AM系统，成功实现了接触检测功能，验证了AM用于该类接触作业的可行性，在大型基础设施运维领域应用前景广阔。",
+          "evidence": [
+            {
+              "quote": "研制的用于金属设施超声测厚的AM系统，成功实现了接触检测功能，验证了AM用于该类接触作业的可行性，在大型基础设施运维领域应用前景广阔。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3162,
+                "end_char": 3228
               },
               "version": "51c29cef24fbc037b723"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b324850fdaca",
-          "name": "全自主控制难以实现",
-          "desc": "AM自身与外部作业环境复杂，全自主控制难以实现，操作员介入必不可少",
-          "evidence": [
-            {
-              "quote": "由于AM自身和外部作业环境的复杂性，全自主的控制方式很难实现，人类操作员的介入必不可少。如何有效融入操作员的智能来实现安全有效的遥操作控制，是AM研究中面临的难题之一",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2627,
-                "end_char": 2709
-              },
-              "version": "51c29cef24fbc037b723"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4fe5510fb351",
-          "name": "全驱动飞行平台与力位混合控制",
-          "desc": "旋翼固定倾斜全驱动无人机平台与定点接触作业力/位混合控制",
+          "id": "item-07fb7f85c55a",
+          "name": "我们针对稳定灵活的飞行与动作控制、安全有效的双边遥操作通道建立、以及易用高效的抓取作业方法等关键问题，提出了面向环境物理",
+          "desc": "我们针对稳定灵活的飞行与动作控制、安全有效的双边遥操作通道建立、以及易用高效的抓取作业方法等关键问题，提出了面向环境物理交互的AM系统模型设计方法、基于力反馈的AM接触作业双边遥操作控制模型、以及基于操作员意图识别的AM抓取作业遥操作控制方法。",
           "evidence": [
             {
-              "quote": "研制了一种旋翼固定倾斜的全驱动无人机作为AM飞行平台，基于该飞行平台进一步研制了面向定点接触作业与抓取作业的两种AM样机",
+              "quote": "我们针对稳定灵活的飞行与动作控制、安全有效的双边遥操作通道建立、以及易用高效的抓取作业方法等关键问题，提出了面向环境物理交互的AM系统模型设计方法、基于力反馈的AM接触作业双边遥操作控制模型、以及基于操作员意图识别的AM抓取作业遥操作控制方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2771,
-                "end_char": 2830
+                "start_char": 841,
+                "end_char": 962
               },
               "version": "51c29cef24fbc037b723"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b3d8253c4464",
-          "name": "触觉引导共享控制",
-          "desc": "末端执行器至目标物体距离与主端引导力的映射，实现高效遥操作抓取",
+          "id": "item-83855653cca3",
+          "name": "（4）设计了一种触觉引导的AM抓取作业共享控制框架，结合从端AM的视觉感知能力和主端人类操作员的决策能力，建立了末端执行",
+          "desc": "（4）设计了一种触觉引导的AM抓取作业共享控制框架，结合从端AM的视觉感知能力和主端人类操作员的决策能力，建立了末端执行器至目标物体距离与主端引导力的映射关系，实现了目标物体的高效遥操作抓取。",
           "evidence": [
             {
-              "quote": "设计了一种触觉引导的AM抓取作业共享控制框架，结合从端AM的视觉感知能力和主端人类操作员的决策能力，建立了末端执行器至目标物体距离与主端引导力的映射关系，实现了目标物体的高效遥操作抓取",
+              "quote": "（4）设计了一种触觉引导的AM抓取作业共享控制框架，结合从端AM的视觉感知能力和主端人类操作员的决策能力，建立了末端执行器至目标物体距离与主端引导力的映射关系，实现了目标物体的高效遥操作抓取。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2997,
-                "end_char": 3088
+                "start_char": 2994,
+                "end_char": 3089
               },
               "version": "51c29cef24fbc037b723"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,652 @@
       "state": "has",
       "items": [
         {
-          "id": "item-86be7d4f00bb",
-          "name": "金属壁面超声测厚",
-          "desc": "研制金属设施测厚AM系统，实现竖直壁面定点稳定接触和超声测厚",
+          "id": "item-93f4b6287d1e",
+          "name": "作业型飞行机器人(Aerial Manipulators)是指由飞行机器人与作业装置共同组成的具有主动作业能力的一种新型",
+          "desc": "作业型飞行机器人(Aerial Manipulators)是指由飞行机器人与作业装置共同组成的具有主动作业能力的一种新型机器人系统。",
           "evidence": [
             {
-              "quote": "提出了一种用于AM定点接触作业的力/位混合控制方法，研制了一套用于金属设施测厚的AM系统，实现了竖直金属壁面的定点稳定接触和超声测厚",
+              "quote": "作业型飞行机器人(Aerial Manipulators)是指由飞行机器人与作业装置共同组成的具有主动作业能力的一种新型机器人系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2835,
-                "end_char": 2900
+                "start_char": 643,
+                "end_char": 708
               },
               "version": "51c29cef24fbc037b723"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-a2597575a9c4",
-          "name": "RGB-D自主抓取",
-          "desc": "改进YOLOv5旋转目标检测与深度信息获得三维位置，实现任意方向自主抓取",
+          "id": "item-66ad7a745af1",
+          "name": "飞行机械臂(Aerial Manipulator, AM)是指由旋翼无人机（Unmanned Aerial Vehicl",
+          "desc": "飞行机械臂(Aerial Manipulator, AM)是指由旋翼无人机（Unmanned Aerial Vehicle, UAV）与作业装置组成的具有主动作业能力的一种新型机器人系统。",
           "evidence": [
             {
-              "quote": "提出了一种基于RGB-D图像信息的全驱动AM自主抓取控制方法，利用基于改进YOLOv5的旋转目标检测模型和深度信息获得目标物体的三维位置，实现了AM对任意方向目标物体的自主抓取",
+              "quote": "飞行机械臂(Aerial Manipulator, AM)是指由旋翼无人机（Unmanned Aerial Vehicle, UAV）与作业装置组成的具有主动作业能力的一种新型机器人系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2905,
-                "end_char": 2992
+                "start_char": 2501,
+                "end_char": 2594
               },
               "version": "51c29cef24fbc037b723"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c99681fbd371"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b324850fdaca"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂环境下无人系统智能探测关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2e0f5cb1c4cc",
+      "evidence": [
+        {
+          "quote": "复杂环境下无人系统智能探测关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3370,
+            "end_char": 3389
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b324850fdaca"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4fe5510fb351"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂约束环境下多模态感知信息融合关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e43d6f5206cc",
+      "evidence": [
+        {
+          "quote": "复杂约束环境下多模态感知信息融合关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3449,
+            "end_char": 3471
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b324850fdaca"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b3d8253c4464"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Transformable Leg-Wheel Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-97ec54763b7e",
+      "evidence": [
+        {
+          "quote": "A Novel Transformable Leg-Wheel Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3534,
+            "end_char": 3574
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4fe5510fb351"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-86be7d4f00bb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于手眼双模态人机接口的移动机器人编队共享控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-494865a8d962",
+      "evidence": [
+        {
+          "quote": "基于手眼双模态人机接口的移动机器人编队共享控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3684,
+            "end_char": 3706
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b3d8253c4464"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a2597575a9c4"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gaze-based Bilateral Teleoperation Framework for a Team of Mobile Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f36f1f5c47b5",
+      "evidence": [
+        {
+          "quote": "Gaze-based Bilateral Teleoperation Framework for a Team of Mobile Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3743,
+            "end_char": 3814
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于数字X射线成像的高压线探伤巡检机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d3c1c85be7e",
+      "evidence": [
+        {
+          "quote": "基于数字X射线成像的高压线探伤巡检机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3917,
+            "end_char": 3936
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LineSpyX: A Power Line Inspection Robot Based on Digital Radiography",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c2044537cf3d",
+      "evidence": [
+        {
+          "quote": "LineSpyX: A Power Line Inspection Robot Based on Digital Radiography",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3973,
+            "end_char": 4040
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Chattering suppression and hydrodynamic disturbance estimation of underwater manipulators using adaptive fuzzy sliding mode control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f7ee2feb0748",
+      "evidence": [
+        {
+          "quote": "Chattering suppression and hydrodynamic disturbance estimation of underwater manipulators using adaptive fuzzy sliding mode control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4125,
+            "end_char": 4255
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-based Autonomous Detecting and Grasping Framework for the Fully-actuated Aerial Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62aa9761be8f",
+      "evidence": [
+        {
+          "quote": "Vision-based Autonomous Detecting and Grasping Framework for the Fully-actuated Aerial Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4340,
+            "end_char": 4437
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Internal Defect Detection of Overhead Aluminum Conductor Composite Core Transmission Lines With an Inspection Robot and Computer Vision",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-36e737165a21",
+      "evidence": [
+        {
+          "quote": "Internal Defect Detection of Overhead Aluminum Conductor Composite Core Transmission Lines With an Inspection Robot and Computer Vision",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4530,
+            "end_char": 4664
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of a Lightweight Underwater Manipulator for Delicate Structural Repair Operations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-713df33fbf83",
+      "evidence": [
+        {
+          "quote": "Development of a Lightweight Underwater Manipulator for Delicate Structural Repair Operations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4757,
+            "end_char": 4849
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "全国高校黄大年式教师团队",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eff26bfbf164",
+      "evidence": [
+        {
+          "quote": "全国高校黄大年式教师团队",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4926,
+            "end_char": 4937
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种用于接触作业的全驱动旋翼飞行机械臂设计与实现",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d14dc4264376",
+      "evidence": [
+        {
+          "quote": "一种用于接触作业的全驱动旋翼飞行机械臂设计与实现",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4986,
+            "end_char": 5009
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "智能移动式碳纤维导线内部损伤现场实时检测技术及装备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e098ae619bcc",
+      "evidence": [
+        {
+          "quote": "智能移动式碳纤维导线内部损伤现场实时检测技术及装备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5040,
+            "end_char": 5064
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种双倾斜式全驱动六旋翼无人机的建模与控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-61b9fd98d187",
+      "evidence": [
+        {
+          "quote": "一种双倾斜式全驱动六旋翼无人机的建模与控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5129,
+            "end_char": 5149
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Control of a Snake Robot With a Gripper for Inspection and Maintenance in Narrow Spaces",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c42c76155ead",
+      "evidence": [
+        {
+          "quote": "Design and Control of a Snake Robot With a Gripper for Inspection and Maintenance in Narrow Spaces",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5181,
+            "end_char": 5278
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Implementation of an Inspection Robot for Non-Destructive Testing of Aluminum Conductor Composite Core Wires",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ac5b65d71c3b",
+      "evidence": [
+        {
+          "quote": "Design and Implementation of an Inspection Robot for Non-Destructive Testing of Aluminum Conductor Composite Core Wires",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5347,
+            "end_char": 5465
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种装载于无人机上的轻量化机械臂系统及其控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fbfebc6cc529",
+      "evidence": [
+        {
+          "quote": "一种装载于无人机上的轻量化机械臂系统及其控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5550,
+            "end_char": 5573
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于操作员意图识别的飞行机械臂抓取作业遥操作方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fda98c6261f2",
+      "evidence": [
+        {
+          "quote": "基于操作员意图识别的飞行机械臂抓取作业遥操作方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5604,
+            "end_char": 5627
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "适用于隧洞水下破损表面附着物的清理机器人及使用方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41873163b542",
+      "evidence": [
+        {
+          "quote": "适用于隧洞水下破损表面附着物的清理机器人及使用方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5657,
+            "end_char": 5681
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human Behavior Feature Representation and Recognition Based on Depth Video",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-372d460dcdd1",
+      "evidence": [
+        {
+          "quote": "Human Behavior Feature Representation and Recognition Based on Depth Video",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5716,
+            "end_char": 5789
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种输水隧洞水下检测与处置机器人及其使用方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-81e2d2a88250",
+      "evidence": [
+        {
+          "quote": "一种输水隧洞水下检测与处置机器人及其使用方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5835,
+            "end_char": 5856
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Semantic stereo visual SLAM toward outdoor dynamic environments based on ORB-SLAM2",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b500b5696dc",
+      "evidence": [
+        {
+          "quote": "Semantic stereo visual SLAM toward outdoor dynamic environments based on ORB-SLAM2",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5894,
+            "end_char": 5975
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "智慧电站巡检运维机器人运动、感知与控制技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9777dfa79585",
+      "evidence": [
+        {
+          "quote": "智慧电站巡检运维机器人运动、感知与控制技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6046,
+            "end_char": 6069
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于导线纹理的架空导线巡检机器人视觉定位",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c918deb4a768",
+      "evidence": [
+        {
+          "quote": "基于导线纹理的架空导线巡检机器人视觉定位",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6107,
+            "end_char": 6126
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于隧洞水下裂缝修补的止水针头半自主切割拆除方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-42d012f40a38",
+      "evidence": [
+        {
+          "quote": "用于隧洞水下裂缝修补的止水针头半自主切割拆除方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6159,
+            "end_char": 6182
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种四分裂导线检测机器人脱轨检测及防脱轨机构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16b46c70da2e",
+      "evidence": [
+        {
+          "quote": "一种四分裂导线检测机器人脱轨检测及防脱轨机构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6214,
+            "end_char": 6235
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于钢筋混凝土桥梁下部结构裂缝测深的飞行机械臂系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c73b4447165",
+      "evidence": [
+        {
+          "quote": "用于钢筋混凝土桥梁下部结构裂缝测深的飞行机械臂系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6277,
+            "end_char": 6301
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A fully actuated aerial manipulator system for industrial contact inspection applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ed47e141100",
+      "evidence": [
+        {
+          "quote": "A fully actuated aerial manipulator system for industrial contact inspection applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6343,
+            "end_char": 6431
+          },
+          "version": "51c29cef24fbc037b723"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 29,
+    "listed": 29,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

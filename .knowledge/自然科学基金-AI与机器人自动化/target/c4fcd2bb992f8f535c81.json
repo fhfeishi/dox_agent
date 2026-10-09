@@ -2,15 +2,20 @@
   "doc_id": "c4fcd2bb992f8f535c81",
   "version": "d2fab2032fea7b72bc0a",
   "source_hash": "9df7cd9848c84ec9c0e4a9073bc5ffebaf0f7c27c7bd596f23c0681a8cbba17d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:38:34.799597+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.386265+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1f7a3fbdb3a4",
-          "name": "智能工厂人机协作",
-          "desc": "面向智能工厂3C装配的人机协作型机器人柔性制造",
+          "id": "item-2942ce58af65",
+          "name": "人机协作型机器人是智能工厂柔性化制造系统中最具代表性的设备。",
+          "desc": "人机协作型机器人是智能工厂柔性化制造系统中最具代表性的设备。",
           "evidence": [
             {
-              "quote": "本项目面向智能工厂的实际应用需求，围绕人机协作型机器人的共性技术，针对3C行业实际生产过程中存在的环境适应性差、意图理解与交互难、协同控制能力弱，灵巧操作能力不足等缺点",
+              "quote": "人机协作型机器人是智能工厂柔性化制造系统中最具代表性的设备。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 688
+              },
+              "version": "d2fab2032fea7b72bc0a"
+            }
+          ]
+        },
+        {
+          "id": "item-6671877a450a",
+          "name": "本项目面向智能工厂的实际应用需求，围绕人机协作型机器人的共性技术，针对3C行业实际生产过程中存在的环境适应性差、意图理解",
+          "desc": "本项目面向智能工厂的实际应用需求，围绕人机协作型机器人的共性技术，针对3C行业实际生产过程中存在的环境适应性差、意图理解与交互难、协同控制能力弱，灵巧操作能力不足等缺点，研究半结构化动态场景机器人感知与环境建模、人机协作意图理解、人机协同柔顺控制、机器人智能抓取与灵巧操作等内容。",
+          "evidence": [
+            {
+              "quote": "本项目面向智能工厂的实际应用需求，围绕人机协作型机器人的共性技术，针对3C行业实际生产过程中存在的环境适应性差、意图理解与交互难、协同控制能力弱，灵巧操作能力不足等缺点，研究半结构化动态场景机器人感知与环境建模、人机协作意图理解、人机协同柔顺控制、机器人智能抓取与灵巧操作等内容。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2950,
-                "end_char": 3033
+                "end_char": 3089
               },
               "version": "d2fab2032fea7b72bc0a"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-556c68a0edeb",
-          "name": "协作机器人能力不足",
-          "desc": "环境适应性差、意图理解与交互难、协同控制能力弱、灵巧操作能力不足",
+          "id": "item-6a77da26e870",
+          "name": "针对当前协作机器人环境适应性、作业灵巧性及行为协同能力严重不足的问题，本项目聚焦动态场景感知与环境建模、人机协作意图理解",
+          "desc": "针对当前协作机器人环境适应性、作业灵巧性及行为协同能力严重不足的问题，本项目聚焦动态场景感知与环境建模、人机协作意图理解、人机协同分布式柔顺控制及机器人灵巧抓取四方面科学问题，开展具有原创性的理论与技术研究。",
           "evidence": [
             {
-              "quote": "针对3C行业实际生产过程中存在的环境适应性差、意图理解与交互难、协同控制能力弱，灵巧操作能力不足等缺点",
+              "quote": "针对当前协作机器人环境适应性、作业灵巧性及行为协同能力严重不足的问题，本项目聚焦动态场景感知与环境建模、人机协作意图理解、人机协同分布式柔顺控制及机器人灵巧抓取四方面科学问题，开展具有原创性的理论与技术研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2983,
-                "end_char": 3033
+                "start_char": 689,
+                "end_char": 792
               },
               "version": "d2fab2032fea7b72bc0a"
             }
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d2863ce95361",
-          "name": "多模态建图定位",
-          "desc": "融合激光、视觉和IMU的高精度建图与定位方法及注意力机制点云目标跟踪",
+          "id": "item-bc73163efef3",
+          "name": "提出了融合激光、视觉和IMU的高精度建图与定位方法、基于注意力机制的点云目标跟踪方法、基于导纳控制的平面任意训练轨迹自适",
+          "desc": "提出了融合激光、视觉和IMU的高精度建图与定位方法、基于注意力机制的点云目标跟踪方法、基于导纳控制的平面任意训练轨迹自适应力场实现方法、基于SPD流形的肌电手势识别方法、基于面部肌电的机械臂交互控制框架、基于马氏切换拓扑的多智能体系统协同控制方法、基于系统时滞依赖的李雅普诺夫泛函稳定性分析方法、基于动态记忆事件触发的多智能体系统容错协同控制方法、基于可分离注意力机制的目标抓取方法等一系列创新方法。",
           "evidence": [
             {
-              "quote": "提出了融合激光、视觉和IMU的高精度建图与定位方法、基于注意力机制的点云目标跟踪方法",
+              "quote": "提出了融合激光、视觉和IMU的高精度建图与定位方法、基于注意力机制的点云目标跟踪方法、基于导纳控制的平面任意训练轨迹自适应力场实现方法、基于SPD流形的肌电手势识别方法、基于面部肌电的机械臂交互控制框架、基于马氏切换拓扑的多智能体系统协同控制方法、基于系统时滞依赖的李雅普诺夫泛函稳定性分析方法、基于动态记忆事件触发的多智能体系统容错协同控制方法、基于可分离注意力机制的目标抓取方法等一系列创新方法。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3090,
-                "end_char": 3131
+                "end_char": 3289
               },
               "version": "d2fab2032fea7b72bc0a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7a287b151670",
-          "name": "肌电手势识别与交互",
-          "desc": "基于SPD流形的肌电手势识别方法与基于面部肌电的机械臂交互控制框架",
+          "id": "item-d94f37b4b8b1",
+          "name": "提出基于语义地图的层次化环境认知、融合多模感知的人机协作态势量化解析、基于事件触发机制的人机协同分布式优化控制、融合制造",
+          "desc": "提出基于语义地图的层次化环境认知、融合多模感知的人机协作态势量化解析、基于事件触发机制的人机协同分布式优化控制、融合制造云与深度学习的操作技巧自学习等一系列创新方法与技术，初步构建提升协作机器人自主认知与柔性协同能力的共性理论与技术体系。",
           "evidence": [
             {
-              "quote": "基于SPD流形的肌电手势识别方法、基于面部肌电的机械臂交互控制框架",
+              "quote": "提出基于语义地图的层次化环境认知、融合多模感知的人机协作态势量化解析、基于事件触发机制的人机协同分布式优化控制、融合制造云与深度学习的操作技巧自学习等一系列创新方法与技术，初步构建提升协作机器人自主认知与柔性协同能力的共性理论与技术体系。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3158,
-                "end_char": 3190
+                "start_char": 793,
+                "end_char": 911
               },
               "version": "d2fab2032fea7b72bc0a"
             }
-          ]
-        },
-        {
-          "id": "item-3db6ef64ae9e",
-          "name": "多智能体协同控制",
-          "desc": "基于马氏切换拓扑的多智能体协同控制与动态记忆事件触发容错协同控制",
-          "evidence": [
-            {
-              "quote": "基于马氏切换拓扑的多智能体系统协同控制方法、基于系统时滞依赖的李雅普诺夫泛函稳定性分析方法、基于动态记忆事件触发的多智能体系统容错协同控制方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3192,
-                "end_char": 3262
-              },
-              "version": "d2fab2032fea7b72bc0a"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +124,1088 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8264a5e209f9",
-          "name": "验证平台与3C应用",
-          "desc": "搭建桌面型智能臂手交互系统等综合验证系统与3C装配模拟生产环境",
+          "id": "item-52d407fbc2a9",
+          "name": "人机协作型机器人是智能工厂柔性化制造系统中最具代表性的设备。",
+          "desc": "人机协作型机器人是智能工厂柔性化制造系统中最具代表性的设备。",
           "evidence": [
             {
-              "quote": "在此基础上构建了面向智能工厂3C装配模拟生产环境，搭建了桌面型智能臂手交互系统、面向上肢运动的直接示教系统、协作机器人视觉引导抓取验证平台",
+              "quote": "人机协作型机器人是智能工厂柔性化制造系统中最具代表性的设备。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3290,
-                "end_char": 3358
+                "start_char": 659,
+                "end_char": 688
               },
               "version": "d2fab2032fea7b72bc0a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-ce5370106333",
-          "name": "论文48篇与专利25项",
-          "desc": "发表学术论文48篇（SCI 36篇），申请/授权发明专利25项，出版学术专著1本",
+          "id": "item-45b32401d5b2",
+          "name": "本项目面向智能工厂的实际应用需求，围绕人机协作型机器人的共性技术，针对3C行业实际生产过程中存在的环境适应性差、意图理解",
+          "desc": "本项目面向智能工厂的实际应用需求，围绕人机协作型机器人的共性技术，针对3C行业实际生产过程中存在的环境适应性差、意图理解与交互难、协同控制能力弱，灵巧操作能力不足等缺点，研究半结构化动态场景机器人感知与环境建模、人机协作意图理解、人机协同柔顺控制、机器人智能抓取与灵巧操作等内容。",
           "evidence": [
             {
-              "quote": "依托项目成果，共发表学术论文48篇，其中SCI期刊论文36篇，申请/授权发明专利25项，出版学术专著1本",
+              "quote": "本项目面向智能工厂的实际应用需求，围绕人机协作型机器人的共性技术，针对3C行业实际生产过程中存在的环境适应性差、意图理解与交互难、协同控制能力弱，灵巧操作能力不足等缺点，研究半结构化动态场景机器人感知与环境建模、人机协作意图理解、人机协同柔顺控制、机器人智能抓取与灵巧操作等内容。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3502,
-                "end_char": 3553
+                "start_char": 2950,
+                "end_char": 3089
               },
               "version": "d2fab2032fea7b72bc0a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1f7a3fbdb3a4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-556c68a0edeb"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于肌肉协同和深度学习的下肢连续运动估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cc32bbc5c37b",
+      "evidence": [
+        {
+          "quote": "基于肌肉协同和深度学习的下肢连续运动估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3639,
+            "end_char": 3660
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-556c68a0edeb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d2863ce95361"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Temporal Enhance and Spatial Gated Network for Group Activity Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5de9e88ba196",
+      "evidence": [
+        {
+          "quote": "Temporal Enhance and Spatial Gated Network for Group Activity Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3704,
+            "end_char": 3776
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-556c68a0edeb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7a287b151670"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "STTracker: Spatio-Temporal Tracker for 3D Single Object Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c95db885b8c",
+      "evidence": [
+        {
+          "quote": "STTracker: Spatio-Temporal Tracker for 3D Single Object Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3830,
+            "end_char": 3893
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-556c68a0edeb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3db6ef64ae9e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MMF-Track: Multi-Modal Multi-Level Fusion for 3D Single Object Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-240f7fd6feb5",
+      "evidence": [
+        {
+          "quote": "MMF-Track: Multi-Modal Multi-Level Fusion for 3D Single Object Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3938,
+            "end_char": 4008
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d2863ce95361"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8264a5e209f9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "BDNet: a method based on forward and backward convolutional networks for action recognition in videos",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a0af3c91eec",
+      "evidence": [
+        {
+          "quote": "BDNet: a method based on forward and backward convolutional networks for action recognition in videos",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4060,
+            "end_char": 4160
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7a287b151670"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ce5370106333"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Synergy-Based Neural Interface for Human Gait Tracking With Deep Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f29c3151962a",
+      "evidence": [
+        {
+          "quote": "Synergy-Based Neural Interface for Human Gait Tracking With Deep Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4243,
+            "end_char": 4315
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Intuitive Human-Robot-Environment Interaction with EMG Signals: A Review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f029192c4a40",
+      "evidence": [
+        {
+          "quote": "Intuitive Human-Robot-Environment Interaction with EMG Signals: A Review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4388,
+            "end_char": 4459
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Motion-to-Matching: A Mixed Paradigm for 3D Single Object Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8462a6d4105f",
+      "evidence": [
+        {
+          "quote": "Motion-to-Matching: A Mixed Paradigm for 3D Single Object Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4532,
+            "end_char": 4597
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Non-Euclidean Representations with SPD Manifold for Myoelectric Pattern Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-310d3d067077",
+      "evidence": [
+        {
+          "quote": "Learning Non-Euclidean Representations with SPD Manifold for Myoelectric Pattern Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4657,
+            "end_char": 4748
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dissipativity-Based Consensus Tracking Control of Nonlinear Multiagent Systems With Generally Uncertain Markovian Switching Topologies and Event-Triggered Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-218b30f634a2",
+      "evidence": [
+        {
+          "quote": "Dissipativity-Based Consensus Tracking Control of Nonlinear Multiagent Systems With Generally Uncertain Markovian Switching Topologies and Event-Triggered Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4822,
+            "end_char": 4984
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于事件的端到端视觉位置识别弱监督网络架构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5beecc38fc7",
+      "evidence": [
+        {
+          "quote": "基于事件的端到端视觉位置识别弱监督网络架构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5061,
+            "end_char": 5081
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PTT: Point-Track-Transformer Module for 3D Single Object Tracking in Point Clouds",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47e54947f9f7",
+      "evidence": [
+        {
+          "quote": "PTT: Point-Track-Transformer Module for 3D Single Object Tracking in Point Clouds",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5115,
+            "end_char": 5195
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于大尺度场景的自适应车辆定位系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c3bf1a0e672",
+      "evidence": [
+        {
+          "quote": "一种用于大尺度场景的自适应车辆定位系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5251,
+            "end_char": 5272
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Degradation Adaption Local-to-Global Transformer for Low-Dose CT Image Denoising",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c60c5141057a",
+      "evidence": [
+        {
+          "quote": "Degradation Adaption Local-to-Global Transformer for Low-Dose CT Image Denoising",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5313,
+            "end_char": 5392
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Saliency Detection via Absorbing Markov Chain with Multi-level Cues",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-304a5442df40",
+      "evidence": [
+        {
+          "quote": "Saliency Detection via Absorbing Markov Chain with Multi-level Cues",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5463,
+            "end_char": 5529
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于LiDAR-IMU-GNSS的高速大场景建图方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f03e58f9ee23",
+      "evidence": [
+        {
+          "quote": "一种基于LiDAR-IMU-GNSS的高速大场景建图方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5592,
+            "end_char": 5619
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多模态信息融合的三维单目标跟踪方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a15f7d0bd735",
+      "evidence": [
+        {
+          "quote": "一种基于多模态信息融合的三维单目标跟踪方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5654,
+            "end_char": 5674
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time 3D Single Object Tracking with Transformer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-281cbc93e1aa",
+      "evidence": [
+        {
+          "quote": "Real-time 3D Single Object Tracking with Transformer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5706,
+            "end_char": 5757
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Contact force estimation for terminal traction human-machine interaction based on sEMG",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec6fbb2674fb",
+      "evidence": [
+        {
+          "quote": "Contact force estimation for terminal traction human-machine interaction based on sEMG",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5815,
+            "end_char": 5900
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于对称正定流形特征的肌电手势识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d2f54a0307f",
+      "evidence": [
+        {
+          "quote": "基于对称正定流形特征的肌电手势识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5958,
+            "end_char": 5976
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于仿射Bessel-Legendre不等式和不确定转移率的神经网络稳定性",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bf88557b40f0",
+      "evidence": [
+        {
+          "quote": "基于仿射Bessel-Legendre不等式和不确定转移率的神经网络稳定性",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6021,
+            "end_char": 6057
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Novel Dynamic Event-Triggered Consensus Control of Multiagent Systems With Markovian Switching Topologies Under DoS Attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b53e06861109",
+      "evidence": [
+        {
+          "quote": "Novel Dynamic Event-Triggered Consensus Control of Multiagent Systems With Markovian Switching Topologies Under DoS Attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6087,
+            "end_char": 6209
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Face-Computer Interface (FCI): Intent Recognition Based on Facial Electromyography (fEMG) and Online Human-Computer Interface With Audiovisual Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b96d87ca15fe",
+      "evidence": [
+        {
+          "quote": "Face-Computer Interface (FCI): Intent Recognition Based on Facial Electromyography (fEMG) and Online Human-Computer Interface With Audiovisual Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6303,
+            "end_char": 6453
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于改进Cascade R-CNN的多物体抓取预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0a95264718a",
+      "evidence": [
+        {
+          "quote": "一种基于改进Cascade R-CNN的多物体抓取预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6530,
+            "end_char": 6558
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度置信网络的非完整运动想象脑电解码方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2aed48a4c236",
+      "evidence": [
+        {
+          "quote": "一种基于深度置信网络的非完整运动想象脑电解码方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6581,
+            "end_char": 6604
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于区域自注意力机制的三维点云单目标跟踪方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9df22eb796b3",
+      "evidence": [
+        {
+          "quote": "一种基于区域自注意力机制的三维点云单目标跟踪方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6632,
+            "end_char": 6655
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "FCOS-Lite: An Efficient Anchor-free Network for Real-time Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-342b6ba5b1eb",
+      "evidence": [
+        {
+          "quote": "FCOS-Lite: An Efficient Anchor-free Network for Real-time Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6687,
+            "end_char": 6760
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An End-to-End Localizer for Long-Term Topological Localization in Large-Scale Changing Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b494e3c2eb42",
+      "evidence": [
+        {
+          "quote": "An End-to-End Localizer for Long-Term Topological Localization in Large-Scale Changing Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6811,
+            "end_char": 6909
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种未知空间自主探索规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-59067560f5c6",
+      "evidence": [
+        {
+          "quote": "一种未知空间自主探索规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6954,
+            "end_char": 6967
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CMT-6D: a lightweight iterative 6DoF pose estimation network based on cross-modal Transformer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-797581cc89d7",
+      "evidence": [
+        {
+          "quote": "CMT-6D: a lightweight iterative 6DoF pose estimation network based on cross-modal Transformer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7003,
+            "end_char": 7095
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于四足机器人的未知空间自主探索系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-90da52ffb886",
+      "evidence": [
+        {
+          "quote": "一种基于四足机器人的未知空间自主探索系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7193,
+            "end_char": 7212
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于RGB-D相机的托盘检测与定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c336feaa9f48",
+      "evidence": [
+        {
+          "quote": "一种基于RGB-D相机的托盘检测与定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7267,
+            "end_char": 7287
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Intersection Is Also Needed: A Novel LiDAR-Based Road Intersection Dataset and Detection Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7e47dc9074e7",
+      "evidence": [
+        {
+          "quote": "Intersection Is Also Needed: A Novel LiDAR-Based Road Intersection Dataset and Detection Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7321,
+            "end_char": 7415
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Iterative attribute augmentation network for face image super resolution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1db421ca8a5",
+      "evidence": [
+        {
+          "quote": "Iterative attribute augmentation network for face image super resolution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7461,
+            "end_char": 7532
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-view information interaction and feedback network for face hallucination",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-73c69389938e",
+      "evidence": [
+        {
+          "quote": "Cross-view information interaction and feedback network for face hallucination",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7581,
+            "end_char": 7658
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种适用于欠驱动机器人的三维路径规划与导航方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd3f1e0af912",
+      "evidence": [
+        {
+          "quote": "一种适用于欠驱动机器人的三维路径规划与导航方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7727,
+            "end_char": 7749
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种输送带式AGV运输机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-17f7fbfb3434",
+      "evidence": [
+        {
+          "quote": "一种输送带式AGV运输机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7782,
+            "end_char": 7795
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向本体感假肢的运动电刺激反馈感知系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ccff4d436a2c",
+      "evidence": [
+        {
+          "quote": "一种面向本体感假肢的运动电刺激反馈感知系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7822,
+            "end_char": 7845
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "用于复杂大尺度室内场景的移动机器人高精度定位方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-39334bbff732",
+      "evidence": [
+        {
+          "quote": "用于复杂大尺度室内场景的移动机器人高精度定位方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7874,
+            "end_char": 7897
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Application of Sparse-Channel Lidar Sensors on Viewpoint-Invariant Loop Closing Task",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2719f077dc5a",
+      "evidence": [
+        {
+          "quote": "Application of Sparse-Channel Lidar Sensors on Viewpoint-Invariant Loop Closing Task",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7940,
+            "end_char": 8023
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于TS-TD3的动态环境端到端无地图导航方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-614b3bfac659",
+      "evidence": [
+        {
+          "quote": "基于TS-TD3的动态环境端到端无地图导航方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8070,
+            "end_char": 8092
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人位姿校正的方法、装置和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d6570d05cb1a",
+      "evidence": [
+        {
+          "quote": "一种机器人位姿校正的方法、装置和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8120,
+            "end_char": 8137
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Accurate and robust visual SLAM with a novel ray-to-ray line measurement model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e8473d2d9703",
+      "evidence": [
+        {
+          "quote": "Accurate and robust visual SLAM with a novel ray-to-ray line measurement model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8167,
+            "end_char": 8244
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "FE-Fusion-VPR: Attention-Based Multi-Scale Network Architecture for Visual Place Recognition by Fusing Frames and Events",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0268e093e60a",
+      "evidence": [
+        {
+          "quote": "FE-Fusion-VPR: Attention-Based Multi-Scale Network Architecture for Visual Place Recognition by Fusing Frames and Events",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8306,
+            "end_char": 8425
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Augmented two stream network for robust action recognition adaptive to various action videos",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ede365eb862b",
+      "evidence": [
+        {
+          "quote": "Augmented two stream network for robust action recognition adaptive to various action videos",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8510,
+            "end_char": 8601
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-VPR: End-to-End Weakly Supervised Deep Network Architecture for Visual Place Recognition using Event-based Vision Sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9992e3847d13",
+      "evidence": [
+        {
+          "quote": "Event-VPR: End-to-End Weakly Supervised Deep Network Architecture for Visual Place Recognition using Event-based Vision Sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8668,
+            "end_char": 8793
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Receptive-Fields Convolutional Network for Remote Sensing Images Super-Resolution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a264d167453f",
+      "evidence": [
+        {
+          "quote": "Multi-Receptive-Fields Convolutional Network for Remote Sensing Images Super-Resolution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8890,
+            "end_char": 8976
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Synchronization of Generally Uncertain Markovian Inertial Neural Networks With Random Connection Weight Strengths and Image Encryption Application",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0654ad7af4ed",
+      "evidence": [
+        {
+          "quote": "Synchronization of Generally Uncertain Markovian Inertial Neural Networks With Random Connection Weight Strengths and Image Encryption Application",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9048,
+            "end_char": 9193
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Structural Lines Aided Monocular Visual-Inertial-Wheel Odometry With Online IMU-Wheel Extrinsic Optimization on S2 Manifold",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-04cda6f97995",
+      "evidence": [
+        {
+          "quote": "Structural Lines Aided Monocular Visual-Inertial-Wheel Odometry With Online IMU-Wheel Extrinsic Optimization on S2 Manifold",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9271,
+            "end_char": 9393
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于注意力机制的深度强化学习机器人导航方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c5998794f07f",
+      "evidence": [
+        {
+          "quote": "一种基于注意力机制的深度强化学习机器人导航方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9454,
+            "end_char": 9476
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种在线去除点云地图动态痕迹的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f1452a3d70e",
+      "evidence": [
+        {
+          "quote": "一种在线去除点云地图动态痕迹的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9499,
+            "end_char": 9515
+          },
+          "version": "d2fab2032fea7b72bc0a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 51,
+    "listed": 51,
+    "by_kind": {
+      "专利": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 28,
+        "extracted": 28
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "719813ceb80fdbe95de6",
   "version": "63e8dc83b61ebfd7eeba",
   "source_hash": "511406fb910254b59390be4e1b8730cd0642493fb75b4343dff2c4517cce959a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:49.001770+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.541338+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c298e878119a",
-          "name": "接触丰富任务机器人操作",
-          "desc": "复杂操作与高精度装配中的视触觉感知技能学习",
+          "id": "item-93cb86b1dab3",
+          "name": "视触觉融合的机器人操作技能学习利用多模态信号提取表征进行决策，相比于单一模态信号，提高学习效果与鲁棒性。",
+          "desc": "视触觉融合的机器人操作技能学习利用多模态信号提取表征进行决策，相比于单一模态信号，提高学习效果与鲁棒性。",
           "evidence": [
             {
-              "quote": "面向复杂操作与高精度装配等接触丰富任务中机器人感知不充分、仿真—现实差异大、技能迁移困难等关键问题，本项目以提升机器人操作精度与鲁棒性为核心目标",
+              "quote": "视触觉融合的机器人操作技能学习利用多模态信号提取表征进行决策，相比于单一模态信号，提高学习效果与鲁棒性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2733,
-                "end_char": 2804
+                "start_char": 649,
+                "end_char": 700
+              },
+              "version": "63e8dc83b61ebfd7eeba"
+            }
+          ]
+        },
+        {
+          "id": "item-8a723d988544",
+          "name": "相关研究成果为机器人在复杂环境下实现高精度、强鲁棒性的操作与装配提供了重要的理论基础和技术支撑，具有良好的学术价值和应用",
+          "desc": "相关研究成果为机器人在复杂环境下实现高精度、强鲁棒性的操作与装配提供了重要的理论基础和技术支撑，具有良好的学术价值和应用前景。",
+          "evidence": [
+            {
+              "quote": "相关研究成果为机器人在复杂环境下实现高精度、强鲁棒性的操作与装配提供了重要的理论基础和技术支撑，具有良好的学术价值和应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3164,
+                "end_char": 3226
               },
               "version": "63e8dc83b61ebfd7eeba"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ac9d45958c62",
-          "name": "感知不足迁移困难",
-          "desc": "感知不充分、仿真现实差异大、技能迁移困难",
+          "id": "item-1d56609567f1",
+          "name": "针对现有方法需要大量现实交互数据以及固定视觉传感视角难以观测动态交互场景信息的问题，本项目受人类交互认知决策过程启发，研",
+          "desc": "针对现有方法需要大量现实交互数据以及固定视觉传感视角难以观测动态交互场景信息的问题，本项目受人类交互认知决策过程启发，研究基于仿真-现实的视触觉主动感知机器人操作技能学习，以减少对现实交互数据的依赖，提高观测效率和任务成功率。",
           "evidence": [
             {
-              "quote": "面向复杂操作与高精度装配等接触丰富任务中机器人感知不充分、仿真—现实差异大、技能迁移困难等关键问题",
+              "quote": "针对现有方法需要大量现实交互数据以及固定视觉传感视角难以观测动态交互场景信息的问题，本项目受人类交互认知决策过程启发，研究基于仿真-现实的视触觉主动感知机器人操作技能学习，以减少对现实交互数据的依赖，提高观测效率和任务成功率。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2733,
-                "end_char": 2781
+                "start_char": 701,
+                "end_char": 813
+              },
+              "version": "63e8dc83b61ebfd7eeba"
+            }
+          ]
+        },
+        {
+          "id": "item-9f42e6517fa4",
+          "name": ".在视觉感知方面，针对透明、高反光等复杂光学特性物体难以准确建模的问题，提出了基于光线追踪的主动双目三维视觉传感器仿真平",
+          "desc": ".在视觉感知方面，针对透明、高反光等复杂光学特性物体难以准确建模的问题，提出了基于光线追踪的主动双目三维视觉传感器仿真平台以及融合几何先验的仿真—现实联合学习三维重建方法，实现了复杂场景下高精度三维感知与六自由度位姿估计。",
+          "evidence": [
+            {
+              "quote": ".在视觉感知方面，针对透明、高反光等复杂光学特性物体难以准确建模的问题，提出了基于光线追踪的主动双目三维视觉传感器仿真平台以及融合几何先验的仿真—现实联合学习三维重建方法，实现了复杂场景下高精度三维感知与六自由度位姿估计。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2890,
+                "end_char": 3000
               },
               "version": "63e8dc83b61ebfd7eeba"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3da55764e4ba",
-          "name": "光线追踪双目仿真",
-          "desc": "主动双目三维视觉仿真平台与联合学习重建",
+          "id": "item-822d17075c3e",
+          "name": "为解决触觉感知中弹性体大变形与仿真精度不足的问题，构建了基于有限元方法与增量势能接触模型的通用触觉仿真平台与在线域适应迁",
+          "desc": "为解决触觉感知中弹性体大变形与仿真精度不足的问题，构建了基于有限元方法与增量势能接触模型的通用触觉仿真平台与在线域适应迁移框架，显著提升了触觉策略的仿真—现实迁移性能，在微米级间隙装配等高精度任务中实现了高成功率的零样本仿真到现实迁移。",
           "evidence": [
             {
-              "quote": "提出了基于光线追踪的主动双目三维视觉传感器仿真平台以及融合几何先验的仿真—现实联合学习三维重建方法，实现了复杂场景下高精度三维感知与六自由度位姿估计。",
+              "quote": "为解决触觉感知中弹性体大变形与仿真精度不足的问题，构建了基于有限元方法与增量势能接触模型的通用触觉仿真平台与在线域适应迁移框架，显著提升了触觉策略的仿真—现实迁移性能，在微米级间隙装配等高精度任务中实现了高成功率的零样本仿真到现实迁移。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2926,
-                "end_char": 3000
+                "start_char": 3001,
+                "end_char": 3118
               },
               "version": "63e8dc83b61ebfd7eeba"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-00feb0c85327",
-          "name": "有限元触觉仿真平台",
-          "desc": "增量势能接触模型与在线域适应迁移框架",
+          "id": "item-354ee48c14f3",
+          "name": "项目围绕三维视觉感知、触觉感知建模以及感知—决策协同优化等方面，构建了支撑高精度机器人操作的理论与方法体系。",
+          "desc": "项目围绕三维视觉感知、触觉感知建模以及感知—决策协同优化等方面，构建了支撑高精度机器人操作的理论与方法体系。",
           "evidence": [
             {
-              "quote": "构建了基于有限元方法与增量势能接触模型的通用触觉仿真平台与在线域适应迁移框架，显著提升了触觉策略的仿真—现实迁移性能",
+              "quote": "项目围绕三维视觉感知、触觉感知建模以及感知—决策协同优化等方面，构建了支撑高精度机器人操作的理论与方法体系。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3026,
-                "end_char": 3083
+                "start_char": 2836,
+                "end_char": 2889
               },
               "version": "63e8dc83b61ebfd7eeba"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +140,288 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8072fadafe50",
-          "name": "零样本Sim2Real迁移",
-          "desc": "微米级间隙装配等高精度任务实现零样本迁移",
+          "id": "item-3622f74137d2",
+          "name": "视触觉融合的机器人操作技能学习利用多模态信号提取表征进行决策，相比于单一模态信号，提高学习效果与鲁棒性。",
+          "desc": "视触觉融合的机器人操作技能学习利用多模态信号提取表征进行决策，相比于单一模态信号，提高学习效果与鲁棒性。",
           "evidence": [
             {
-              "quote": "在微米级间隙装配等高精度任务中实现了高成功率的零样本仿真到现实迁移。",
+              "quote": "视触觉融合的机器人操作技能学习利用多模态信号提取表征进行决策，相比于单一模态信号，提高学习效果与鲁棒性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3085,
-                "end_char": 3118
+                "start_char": 649,
+                "end_char": 700
               },
               "version": "63e8dc83b61ebfd7eeba"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-f059bad46120",
-          "name": "论文专利成果",
-          "desc": "发表多篇高水平SCI论文，申请并授权多项发明专利",
+          "id": "item-bb3e86c6e579",
+          "name": "面向复杂操作与高精度装配等接触丰富任务中机器人感知不充分、仿真—现实差异大、技能迁移困难等关键问题，本项目以提升机器人操",
+          "desc": "面向复杂操作与高精度装配等接触丰富任务中机器人感知不充分、仿真—现实差异大、技能迁移困难等关键问题，本项目以提升机器人操作精度与鲁棒性为核心目标，系统开展了基于仿真—现实的视触觉主动感知与操作技能学习研究。",
           "evidence": [
             {
-              "quote": "项目执行期间，完成了既定研究目标，发表多篇高水平 SCI 论文，申请并授权多项发明专利。",
+              "quote": "面向复杂操作与高精度装配等接触丰富任务中机器人感知不充分、仿真—现实差异大、技能迁移困难等关键问题，本项目以提升机器人操作精度与鲁棒性为核心目标，系统开展了基于仿真—现实的视触觉主动感知与操作技能学习研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3120,
-                "end_char": 3163
+                "start_char": 2733,
+                "end_char": 2835
               },
               "version": "63e8dc83b61ebfd7eeba"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c298e878119a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ac9d45958c62"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ThinTact: Thin Vision-Based Tactile Sensor by Lensless Imaging",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b31cbc541520",
+      "evidence": [
+        {
+          "quote": "ThinTact: Thin Vision-Based Tactile Sensor by Lensless Imaging",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3252,
+            "end_char": 3313
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ac9d45958c62"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3da55764e4ba"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GlassMolder: Transparent Object Reconstruction with Silhouette-Guided Object-Centric Diffusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6bf081922c17",
+      "evidence": [
+        {
+          "quote": "GlassMolder: Transparent Object Reconstruction with Silhouette-Guided Object-Centric Diffusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3376,
+            "end_char": 3469
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ac9d45958c62"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-00feb0c85327"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "先进飞机部件装配的智能高精测量控制技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1658981bf759",
+      "evidence": [
+        {
+          "quote": "先进飞机部件装配的智能高精测量控制技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3531,
+            "end_char": 3552
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-00feb0c85327"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8072fadafe50"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于鳍条效应结构的柔性视触觉手指、手爪及传感方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7a3ef386253",
+      "evidence": [
+        {
+          "quote": "基于鳍条效应结构的柔性视触觉手指、手爪及传感方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3610,
+            "end_char": 3633
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3da55764e4ba"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f059bad46120"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种深度学习主动双目视觉测量方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f669744c617",
+      "evidence": [
+        {
+          "quote": "一种深度学习主动双目视觉测量方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3655,
+            "end_char": 3673
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "北京市科学技术协会青年人才托举工程",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d365177472ef",
+      "evidence": [
+        {
+          "quote": "北京市科学技术协会青年人才托举工程",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3691,
+            "end_char": 3707
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Generalizable Force Estimation Based on Graph Networks for Thin Lensless Vision Based Tactile Sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0eb0a964aa1c",
+      "evidence": [
+        {
+          "quote": "Generalizable Force Estimation Based on Graph Networks for Thin Lensless Vision Based Tactile Sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3722,
+            "end_char": 3821
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AllTact Fin Ray: A Compliant Robot Gripper with Omni-Directional Tactile Sensing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a7992d1bfd1",
+      "evidence": [
+        {
+          "quote": "AllTact Fin Ray: A Compliant Robot Gripper with Omni-Directional Tactile Sensing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3864,
+            "end_char": 3943
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Volume-Based Multi-Surface 3D Measurement of Transparent Objects Using Fringe Projection Profilometry",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8da86e5941c",
+      "evidence": [
+        {
+          "quote": "Volume-Based Multi-Surface 3D Measurement of Transparent Objects Using Fringe Projection Profilometry",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4043,
+            "end_char": 4143
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Fusing Vision and Force : A Framework of Reinforcement Learning for Elastic Peg-in-Hole Assembly",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c67947cdc0f3",
+      "evidence": [
+        {
+          "quote": "Fusing Vision and Force : A Framework of Reinforcement Learning for Elastic Peg-in-Hole Assembly",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4193,
+            "end_char": 4288
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "新型飞机部件高精度智能装配技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ac1a67cf188",
+      "evidence": [
+        {
+          "quote": "新型飞机部件高精度智能装配技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4353,
+            "end_char": 4370
+          },
+          "version": "63e8dc83b61ebfd7eeba"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

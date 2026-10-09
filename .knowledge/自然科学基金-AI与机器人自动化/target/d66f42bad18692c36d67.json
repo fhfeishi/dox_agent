@@ -2,15 +2,20 @@
   "doc_id": "d66f42bad18692c36d67",
   "version": "67419af463b68c3cf08f",
   "source_hash": "39bc195536510454ab8b7f029a0b80a0258083bfb0a950e0bd25d52e3a19bbbd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:29.407673+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.580825+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cd2b85661eb2",
-          "name": "多机器人协作控制",
-          "desc": "复杂环境下多机器人系统自主协作",
+          "id": "item-3f8c325c5cb7",
+          "name": "随着多机器人系统在工业生产和军事领域的广泛应用，任务环境的复杂性、动态性和未知性使得多机器人系统不能完全依赖事先制定的控",
+          "desc": "随着多机器人系统在工业生产和军事领域的广泛应用，任务环境的复杂性、动态性和未知性使得多机器人系统不能完全依赖事先制定的控制方法进行合作，因此亟需发展具有自主学习能力的协作策略。",
           "evidence": [
             {
-              "quote": "然而深度强化学习算法在处理实际场景中的机器人控制任务时仍然面临着观测干扰和物理干扰、优化目标冲突、任务奖励稀疏、复杂安全约束等多种挑战。",
+              "quote": "随着多机器人系统在工业生产和军事领域的广泛应用，任务环境的复杂性、动态性和未知性使得多机器人系统不能完全依赖事先制定的控制方法进行合作，因此亟需发展具有自主学习能力的协作策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2877,
-                "end_char": 2944
+                "start_char": 655,
+                "end_char": 742
               },
               "version": "67419af463b68c3cf08f"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b20569c2cb20",
-          "name": "干扰冲突稀疏安全挑战",
-          "desc": "观测物理干扰、目标冲突、奖励稀疏与安全约束",
-          "evidence": [
-            {
-              "quote": "然而深度强化学习算法在处理实际场景中的机器人控制任务时仍然面临着观测干扰和物理干扰、优化目标冲突、任务奖励稀疏、复杂安全约束等多种挑战。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2877,
-                "end_char": 2944
-              },
-              "version": "67419af463b68c3cf08f"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-35a438d212d9",
-          "name": "鲁棒对抗强化学习",
-          "desc": "积分补偿策略梯度与时序耦合对抗干扰算法",
+          "id": "item-479358eaf8c5",
+          "name": "在上述通信策略基础之上，研究基于分层策略结构和值函数分解方法的多智能体强化学习算法，构建高效的多机器人系统协作策略。",
+          "desc": "在上述通信策略基础之上，研究基于分层策略结构和值函数分解方法的多智能体强化学习算法，构建高效的多机器人系统协作策略。",
           "evidence": [
             {
-              "quote": "提出了基于积分补偿确定性策略梯度算法的鲁棒强化学习控制算法和考虑时序耦合干扰的对抗性鲁棒强化学习控制算法，并在无人艇轨迹跟踪控制、无人机-无人艇协同控制以及多关节机器人控制等场景中进行了仿真和实验验证",
+              "quote": "在上述通信策略基础之上，研究基于分层策略结构和值函数分解方法的多智能体强化学习算法，构建高效的多机器人系统协作策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3048,
-                "end_char": 3147
+                "start_char": 923,
+                "end_char": 980
               },
               "version": "67419af463b68c3cf08f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c7d84ef00a52",
-          "name": "动作映射安全约束",
-          "desc": "状态依赖动作约束机制与数值计算方法",
+          "id": "item-8af12b389cae",
+          "name": "针对复杂安全约束的强化学习控制问题，提出了一种处理状态依赖动作约束的动作映射机制，并对动作映射的存在性、算法的收敛性以及",
+          "desc": "针对复杂安全约束的强化学习控制问题，提出了一种处理状态依赖动作约束的动作映射机制，并对动作映射的存在性、算法的收敛性以及策略的最优性进行了理论研究，进一步针对一般的非线性约束提出了动作映射函数的数值计算方法，并在考虑轮胎-路面摩擦力约束的赛车自动驾驶场景下进行了仿真验证。",
           "evidence": [
             {
-              "quote": "提出了一种处理状态依赖动作约束的动作映射机制，并对动作映射的存在性、算法的收敛性以及策略的最优性进行了理论研究，进一步针对一般的非线性约束提出了动作映射函数的数值计算方法，并在考虑轮胎-路面摩擦力约束的赛车自动驾驶场景下进行了仿真验证。",
+              "quote": "针对复杂安全约束的强化学习控制问题，提出了一种处理状态依赖动作约束的动作映射机制，并对动作映射的存在性、算法的收敛性以及策略的最优性进行了理论研究，进一步针对一般的非线性约束提出了动作映射函数的数值计算方法，并在考虑轮胎-路面摩擦力约束的赛车自动驾驶场景下进行了仿真验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3269,
+                "start_char": 3251,
                 "end_char": 3386
               },
               "version": "67419af463b68c3cf08f"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,328 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a07009f6a4d9",
-          "name": "包络值更新多目标框架",
-          "desc": "多目标深度强化学习与双流分层多智能体框架",
+          "id": "item-3579523438d7",
+          "name": "随着多机器人系统在工业生产和军事领域的广泛应用，任务环境的复杂性、动态性和未知性使得多机器人系统不能完全依赖事先制定的控",
+          "desc": "随着多机器人系统在工业生产和军事领域的广泛应用，任务环境的复杂性、动态性和未知性使得多机器人系统不能完全依赖事先制定的控制方法进行合作，因此亟需发展具有自主学习能力的协作策略。",
           "evidence": [
             {
-              "quote": "提出了基于包络值更新的多目标深度强化学习框架和具有双流结构的多智能体分层强化学习框架，并在密集人群环境下的机器人导航和多机器人协同导航任务中进行了仿真验证。",
+              "quote": "随着多机器人系统在工业生产和军事领域的广泛应用，任务环境的复杂性、动态性和未知性使得多机器人系统不能完全依赖事先制定的控制方法进行合作，因此亟需发展具有自主学习能力的协作策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3173,
-                "end_char": 3250
+                "start_char": 655,
+                "end_char": 742
               },
               "version": "67419af463b68c3cf08f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-0200a3f43f93",
+          "name": "机器人系统作为人工智能技术的重要应用载体，在多个领域发挥着关键作用。",
+          "desc": "机器人系统作为人工智能技术的重要应用载体，在多个领域发挥着关键作用。",
+          "evidence": [
+            {
+              "quote": "机器人系统作为人工智能技术的重要应用载体，在多个领域发挥着关键作用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2793,
+                "end_char": 2826
+              },
+              "version": "67419af463b68c3cf08f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cd2b85661eb2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b20569c2cb20"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "人群感知机器人的多目标强化学习导航方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c94fc7ba1ce",
+      "evidence": [
+        {
+          "quote": "人群感知机器人的多目标强化学习导航方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3531,
+            "end_char": 3549
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b20569c2cb20"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-35a438d212d9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous landing scene recognition based on transfer learning for drones",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d8cb41750a56",
+      "evidence": [
+        {
+          "quote": "Autonomous landing scene recognition based on transfer learning for drones",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3583,
+            "end_char": 3656
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b20569c2cb20"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c7d84ef00a52"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical multi-agent reinforcement learning for cooperative tasks with sparse rewards in continuous domain",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05c532fbf111",
+      "evidence": [
+        {
+          "quote": "Hierarchical multi-agent reinforcement learning for cooperative tasks with sparse rewards in continuous domain",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3710,
+            "end_char": 3819
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c7d84ef00a52"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a07009f6a4d9"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning with Safe Action Generation for Autonomous Racing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f8be1fe2b6eb",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning with Safe Action Generation for Autonomous Racing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3886,
+            "end_char": 3957
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-35a438d212d9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a07009f6a4d9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Discovering Latent Variables for the Tasks With Confounders in Multi-Agent Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de740eee410e",
+      "evidence": [
+        {
+          "quote": "Discovering Latent Variables for the Tasks With Confounders in Multi-Agent Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4014,
+            "end_char": 4110
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path Following Control for Unmanned Surface Vehicles: A Reinforcement Learning-Based Method With Experimental Validation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-608096020774",
+      "evidence": [
+        {
+          "quote": "Path Following Control for Unmanned Surface Vehicles: A Reinforcement Learning-Based Method With Experimental Validation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4180,
+            "end_char": 4299
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Action Mapping: A Reinforcement Learning Method for Constrained-Input Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ec0f0721d5d",
+      "evidence": [
+        {
+          "quote": "Action Mapping: A Reinforcement Learning Method for Constrained-Input Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4369,
+            "end_char": 4445
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cooperative USV–UAV Marine Search and Rescue with Visual Navigation and Reinforcement Learning-based Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-49e91102d5d3",
+      "evidence": [
+        {
+          "quote": "Cooperative USV–UAV Marine Search and Rescue with Visual Navigation and Reinforcement Learning-based Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4502,
+            "end_char": 4609
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于动作空间安全映射的赛车强化学习自动驾驶方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-980acbfa245a",
+      "evidence": [
+        {
+          "quote": "一种基于动作空间安全映射的赛车强化学习自动驾驶方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4668,
+            "end_char": 4692
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path Planning in Dynamic Environments through Trajectory Prediction and Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51aac6b103ad",
+      "evidence": [
+        {
+          "quote": "Path Planning in Dynamic Environments through Trajectory Prediction and Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4722,
+            "end_char": 4815
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Active Robust Adversarial Reinforcement Learning Under Temporally-Coupled Perturbations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-129b15c20a4f",
+      "evidence": [
+        {
+          "quote": "Active Robust Adversarial Reinforcement Learning Under Temporally-Coupled Perturbations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4869,
+            "end_char": 4955
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Transformer with Global and Local Interaction for Pedestrian Trajectory Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db442523fd31",
+      "evidence": [
+        {
+          "quote": "Transformer with Global and Local Interaction for Pedestrian Trajectory Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5025,
+            "end_char": 5106
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Autonomous Race Driving with Action Mapping Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-caf2cc573602",
+      "evidence": [
+        {
+          "quote": "Learning Autonomous Race Driving with Action Mapping Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5156,
+            "end_char": 5230
+          },
+          "version": "67419af463b68c3cf08f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

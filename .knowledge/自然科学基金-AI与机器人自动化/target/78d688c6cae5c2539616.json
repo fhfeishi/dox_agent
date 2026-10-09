@@ -2,15 +2,20 @@
   "doc_id": "78d688c6cae5c2539616",
   "version": "a7a10169aaeda9d293e4",
   "source_hash": "a4e825ef0aa47e2b065229530a40f26336519cee50fe434f81d39812893c62e2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:19:59.321636+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.607464+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-74976711fb4d",
-          "name": "小行星探测器运动控制",
-          "desc": "小行星复杂引力场下探测器的轨道设计与控制",
+          "id": "item-c1d3aeafb58e",
+          "name": "国际小行星探测任务从初期的近距飞越探测，发展到环绕着陆探测，再到采样与巡视探测。",
+          "desc": "国际小行星探测任务从初期的近距飞越探测，发展到环绕着陆探测，再到采样与巡视探测。",
           "evidence": [
             {
-              "quote": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下研究成果",
+              "quote": "国际小行星探测任务从初期的近距飞越探测，发展到环绕着陆探测，再到采样与巡视探测。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 641,
+                "end_char": 680
+              },
+              "version": "a7a10169aaeda9d293e4"
+            }
+          ]
+        },
+        {
+          "id": "item-1f1ef4bf2809",
+          "name": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下",
+          "desc": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下研究成果：.       利用深度神经网络拟合小行星复杂引力场，通过对深度神经网络的训练和测试，引力场拟合精度达到了99.5%以上，计算效率相比同等精度的多面体模型提高了三个数量级。",
+          "evidence": [
+            {
+              "quote": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下研究成果：.       利用深度神经网络拟合小行星复杂引力场，通过对深度神经网络的训练和测试，引力场拟合精度达到了99.5%以上，计算效率相比同等精度的多面体模型提高了三个数量级。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2748,
-                "end_char": 2811
+                "end_char": 2898
               },
               "version": "a7a10169aaeda9d293e4"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-637596cbd278",
-          "name": "引力场复杂不规则",
-          "desc": "引力场复杂不规则且多摄动力，动力学环境复杂",
+          "id": "item-2650ccbe9a67",
+          "name": "其次，小行星物理参数缺乏先验信息，不同小行星表面性质差异巨大，或为坚硬地表，或为松散砂砾，具有很大的不确定性，给着陆与巡",
+          "desc": "其次，小行星物理参数缺乏先验信息，不同小行星表面性质差异巨大，或为坚硬地表，或为松散砂砾，具有很大的不确定性，给着陆与巡视探测提出了巨大挑战；",
           "evidence": [
             {
-              "quote": "首先，小行星附近引力场复杂而不规则，同时受到太阳光压等多种摄动力影响，动力学环境十分复杂，因此，针对规则形状天体的开普勒轨道设计理论以及摄动理论不适用于小行星附近的轨道精确设计",
+              "quote": "其次，小行星物理参数缺乏先验信息，不同小行星表面性质差异巨大，或为坚硬地表，或为松散砂砾，具有很大的不确定性，给着陆与巡视探测提出了巨大挑战；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 702,
-                "end_char": 789
+                "start_char": 791,
+                "end_char": 861
               },
               "version": "a7a10169aaeda9d293e4"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e0fd109ffb40",
-          "name": "神经网络引力场拟合",
-          "desc": "拟合精度99.5%以上，计算效率提升三个数量级",
+          "id": "item-67b8b27a3881",
+          "name": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下",
+          "desc": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下研究成果：.       利用深度神经网络拟合小行星复杂引力场，通过对深度神经网络的训练和测试，引力场拟合精度达到了99.5%以上，计算效率相比同等精度的多面体模型提高了三个数量级。",
           "evidence": [
             {
-              "quote": "利用深度神经网络拟合小行星复杂引力场，通过对深度神经网络的训练和测试，引力场拟合精度达到了99.5%以上，计算效率相比同等精度的多面体模型提高了三个数量级。",
+              "quote": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下研究成果：.       利用深度神经网络拟合小行星复杂引力场，通过对深度神经网络的训练和测试，引力场拟合精度达到了99.5%以上，计算效率相比同等精度的多面体模型提高了三个数量级。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2821,
+                "start_char": 2748,
                 "end_char": 2898
               },
               "version": "a7a10169aaeda9d293e4"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-9efa5a05df52",
-          "name": "双同伦最优控制求解",
-          "desc": "模型-性能指标双同伦快速求解燃料最优着陆",
+          "id": "item-f40974911a37",
+          "name": "采用神经网络拟合小行星着陆问题的协态，小行星着陆轨迹快速规划的求解收敛率接近100%. 针对小行星着陆燃料最优控制，提出",
+          "desc": "采用神经网络拟合小行星着陆问题的协态，小行星着陆轨迹快速规划的求解收敛率接近100%. 针对小行星着陆燃料最优控制，提出了模型-性能指标双同伦快速求解小行星着陆燃料最优控制问题的方法。",
           "evidence": [
             {
-              "quote": "针对小行星着陆燃料最优控制，提出了模型-性能指标双同伦快速求解小行星着陆燃料最优控制问题的方法。",
+              "quote": "采用神经网络拟合小行星着陆问题的协态，小行星着陆轨迹快速规划的求解收敛率接近100%. 针对小行星着陆燃料最优控制，提出了模型-性能指标双同伦快速求解小行星着陆燃料最优控制问题的方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2943,
+                "start_char": 2899,
                 "end_char": 2990
               },
               "version": "a7a10169aaeda9d293e4"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,284 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e16f46aeb027",
-          "name": "着陆规划收敛率近100%",
-          "desc": "神经网络拟合协态使着陆轨迹快速规划收敛率接近100%",
+          "id": "item-5fc846941d6f",
+          "name": "国际小行星探测任务从初期的近距飞越探测，发展到环绕着陆探测，再到采样与巡视探测。",
+          "desc": "国际小行星探测任务从初期的近距飞越探测，发展到环绕着陆探测，再到采样与巡视探测。",
           "evidence": [
             {
-              "quote": "采用神经网络拟合小行星着陆问题的协态，小行星着陆轨迹快速规划的求解收敛率接近100%.",
+              "quote": "国际小行星探测任务从初期的近距飞越探测，发展到环绕着陆探测，再到采样与巡视探测。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2899,
-                "end_char": 2941
+                "start_char": 641,
+                "end_char": 680
               },
               "version": "a7a10169aaeda9d293e4"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-23afeefe0aff",
+          "name": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下",
+          "desc": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下研究成果：.       利用深度神经网络拟合小行星复杂引力场，通过对深度神经网络的训练和测试，引力场拟合精度达到了99.5%以上，计算效率相比同等精度的多面体模型提高了三个数量级。",
+          "evidence": [
+            {
+              "quote": "项目在小行星复杂引力场建模、小行星探测器训练环境构建、复杂场景适应与自主认知决策及其在典型航天任务中应用等方面，取得如下研究成果：.       利用深度神经网络拟合小行星复杂引力场，通过对深度神经网络的训练和测试，引力场拟合精度达到了99.5%以上，计算效率相比同等精度的多面体模型提高了三个数量级。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2748,
+                "end_char": 2898
+              },
+              "version": "a7a10169aaeda9d293e4"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-74976711fb4d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-637596cbd278"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Application of Topological Degree Theory to the Equilibrium Point in Irregular Gravitational Field",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d2e20ae64f20",
+      "evidence": [
+        {
+          "quote": "Application of Topological Degree Theory to the Equilibrium Point in Irregular Gravitational Field",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3408,
+            "end_char": 3505
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-637596cbd278"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e0fd109ffb40"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast Generation of Optimal Asteroid Landing Trajectories Using Deep Neural Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9e3a16a09f99",
+      "evidence": [
+        {
+          "quote": "Fast Generation of Optimal Asteroid Landing Trajectories Using Deep Neural Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3538,
+            "end_char": 3620
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-637596cbd278"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9efa5a05df52"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种可变形态、变刚度的小行星弹跳机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-329efc1fd605",
+      "evidence": [
+        {
+          "quote": "一种可变形态、变刚度的小行星弹跳机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3679,
+            "end_char": 3697
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e0fd109ffb40"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e16f46aeb027"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MultiTree Search for MultiSatellite Responsiveness Scheduling Considering Orbital Maneuvering",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7dbd9e1b7f7e",
+      "evidence": [
+        {
+          "quote": "MultiTree Search for MultiSatellite Responsiveness Scheduling Considering Orbital Maneuvering",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3724,
+            "end_char": 3816
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9efa5a05df52"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e16f46aeb027"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The dynamical environments analysis of surface particles for different shaped asteroids",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-91c6139b6ef0",
+      "evidence": [
+        {
+          "quote": "The dynamical environments analysis of surface particles for different shaped asteroids",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3886,
+            "end_char": 3972
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multiconstrained Real-Time Entry Guidance Using Deep Neural Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbe640289e07",
+      "evidence": [
+        {
+          "quote": "Multiconstrained Real-Time Entry Guidance Using Deep Neural Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4027,
+            "end_char": 4094
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-satellites imaging scheduling using individual reconfiguration based integer coding genetic algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc51cae96d08",
+      "evidence": [
+        {
+          "quote": "Multi-satellites imaging scheduling using individual reconfiguration based integer coding genetic algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4155,
+            "end_char": 4261
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "小行星2016 HO3表面动力学环境分析及采样挑战",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75bd1ade90d8",
+      "evidence": [
+        {
+          "quote": "小行星2016 HO3表面动力学环境分析及采样挑战",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4325,
+            "end_char": 4349
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "遥感卫星对区域目标可见窗口的半解析快速算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1add45136bfa",
+      "evidence": [
+        {
+          "quote": "遥感卫星对区域目标可见窗口的半解析快速算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4379,
+            "end_char": 4399
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An identifier-actor-optimizer policy learning architecture for optimal control of continuous-time nonlinear systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7fe56efbdf78",
+      "evidence": [
+        {
+          "quote": "An identifier-actor-optimizer policy learning architecture for optimal control of continuous-time nonlinear systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4429,
+            "end_char": 4543
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于切换系统的小推力轨迹优化协态初始化方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-181f9d4d71d4",
+      "evidence": [
+        {
+          "quote": "基于切换系统的小推力轨迹优化协态初始化方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4605,
+            "end_char": 4625
+          },
+          "version": "a7a10169aaeda9d293e4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

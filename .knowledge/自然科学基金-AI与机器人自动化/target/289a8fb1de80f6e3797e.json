@@ -2,15 +2,20 @@
   "doc_id": "289a8fb1de80f6e3797e",
   "version": "5492ea1d822b6539cefc",
   "source_hash": "bcbb9f982edf8bfe502f4e2a0aab397915f19ab8223ccbdc57a22f3574f7a727",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:30.742020+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.871500+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4fe9fa2e98f8",
-          "name": "水下无线光通信组网",
-          "desc": "海洋信息探测采集与传输的水下光通信网络",
+          "id": "item-bef911cf8f5a",
+          "name": "无线光通信是实现水下高速数据传输的核心技术。",
+          "desc": "无线光通信是实现水下高速数据传输的核心技术。",
           "evidence": [
             {
-              "quote": "无线光通信是实现水下高速数据传输的核心技术。能否在水下不确定性环境中动态维护网络拓扑，实时协调有限资源，搭建具有自组织、自愈能力的水下无线光通信网络，是支撑海洋信息探测、采集与传输的关键技术。",
+              "quote": "无线光通信是实现水下高速数据传输的核心技术。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 663,
-                "end_char": 758
+                "end_char": 684
               },
               "version": "5492ea1d822b6539cefc"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-33141eda02d4",
-          "name": "拓扑动态协同复杂",
-          "desc": "定向传输与水下不确定环境使拓扑动态强协同复杂",
-          "evidence": [
-            {
-              "quote": "由于光的定向传输特点，加之受到水下不确定性环境影响 ，无线光通信网络节点拓扑动态性强，分布式环境下节点之间协同行为复杂，使得现有技术无法直接应用。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3176,
-                "end_char": 3248
-              },
-              "version": "5492ea1d822b6539cefc"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-7ef0ffd92103",
-          "name": "柔性测度网络评价",
-          "desc": "不确定性环境下稳定网络拓扑构建方法",
+          "id": "item-745a8d44837e",
+          "name": "本项目首先设计基于柔性测度的网络结构评价模型，研究在不确定性环境下稳定网络拓扑构建方法；",
+          "desc": "本项目首先设计基于柔性测度的网络结构评价模型，研究在不确定性环境下稳定网络拓扑构建方法；",
           "evidence": [
             {
-              "quote": "本项目首先提出了基于柔性测度的网络结构评价模型，在不确定性环境下稳定网络拓扑构建方法",
+              "quote": "本项目首先设计基于柔性测度的网络结构评价模型，研究在不确定性环境下稳定网络拓扑构建方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3325,
-                "end_char": 3366
+                "start_char": 908,
+                "end_char": 951
               },
               "version": "5492ea1d822b6539cefc"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b450b1a3f30d",
-          "name": "主动式光通信智能体",
-          "desc": "多智能体强化学习的分布式部署与资源调度",
+          "id": "item-1fdb8e6721a3",
+          "name": "然后，设计基于多智能体强化学习的主动式光通信智能体，研发分布式环境下网络部署与动态节点接入方法，以及不确定性环境下资源调",
+          "desc": "然后，设计基于多智能体强化学习的主动式光通信智能体，研发分布式环境下网络部署与动态节点接入方法，以及不确定性环境下资源调度策略；",
           "evidence": [
             {
-              "quote": "然后，提出了基于多智能体强化学习的主动式光通信智能体，提出分布式环境下网络部署与动态节点接入方法，以及不确定性环境下资源调度策略",
+              "quote": "然后，设计基于多智能体强化学习的主动式光通信智能体，研发分布式环境下网络部署与动态节点接入方法，以及不确定性环境下资源调度策略；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3368,
-                "end_char": 3431
+                "start_char": 952,
+                "end_char": 1015
               },
               "version": "5492ea1d822b6539cefc"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,285 @@
       "state": "has",
       "items": [
         {
-          "id": "item-718bb3b81538",
-          "name": "浅海自组网原型",
-          "desc": "开发水下无线光通信自组网原型并浅海验证",
+          "id": "item-126680fb2389",
+          "name": "无线光通信是实现水下高速数据传输的核心技术。",
+          "desc": "无线光通信是实现水下高速数据传输的核心技术。",
           "evidence": [
             {
-              "quote": "最后，融合研究成果开发水下无 线光通信自组网原型，在实际浅海环境进行了有效性验证。",
+              "quote": "无线光通信是实现水下高速数据传输的核心技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3433,
-                "end_char": 3473
+                "start_char": 663,
+                "end_char": 684
               },
               "version": "5492ea1d822b6539cefc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4fe9fa2e98f8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-33141eda02d4"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Hybrid Particle Swarm Optimization based on Q-Learning for Multiobjective Distributed Flow-Shop Scheduling Problem",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d3029555739",
+      "evidence": [
+        {
+          "quote": "A Hybrid Particle Swarm Optimization based on Q-Learning for Multiobjective Distributed Flow-Shop Scheduling Problem",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3499,
+            "end_char": 3614
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-33141eda02d4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7ef0ffd92103"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Cooprative Hybrid Evolutionary Algorithm for Flexible Scheduling with AGVs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-abf23bf6d44c",
+      "evidence": [
+        {
+          "quote": "A Cooprative Hybrid Evolutionary Algorithm for Flexible Scheduling with AGVs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3659,
+            "end_char": 3734
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-33141eda02d4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b450b1a3f30d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fuzzy Resource Constrained Project Scheduling Optimization with Hybrid Multiobjective Genetic Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db481ef47eba",
+      "evidence": [
+        {
+          "quote": "Fuzzy Resource Constrained Project Scheduling Optimization with Hybrid Multiobjective Genetic Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3778,
+            "end_char": 3880
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b450b1a3f30d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-718bb3b81538"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint Resource Scheduling for UAV-Enabled Mobile Edge Computing System in Internet of Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12ffcc765f8a",
+      "evidence": [
+        {
+          "quote": "Joint Resource Scheduling for UAV-Enabled Mobile Edge Computing System in Internet of Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3934,
+            "end_char": 4027
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7ef0ffd92103"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-718bb3b81538"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Advances in hybrid evolutionary algorithms for fuzzy flexible job-shop scheduling: State-of-the-art survey",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aec500c8f2c8",
+      "evidence": [
+        {
+          "quote": "Advances in hybrid evolutionary algorithms for fuzzy flexible job-shop scheduling: State-of-the-art survey",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4095,
+            "end_char": 4200
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Video Compression Approach Based on Two-Stage Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c02ea3e07861",
+      "evidence": [
+        {
+          "quote": "A Novel Video Compression Approach Based on Two-Stage Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4293,
+            "end_char": 4354
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Evolutionary Algorithm-Based Neural Architecture Search for Feature Separation in Classification Problems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9506e8c654f6",
+      "evidence": [
+        {
+          "quote": "An Evolutionary Algorithm-Based Neural Architecture Search for Feature Separation in Classification Problems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4410,
+            "end_char": 4517
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cooperative Knowledge-Distillation-Based Tiny DNN for UAV-Assisted Mobile-Edge Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f482753021e3",
+      "evidence": [
+        {
+          "quote": "Cooperative Knowledge-Distillation-Based Tiny DNN for UAV-Assisted Mobile-Edge Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4577,
+            "end_char": 4662
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Cooperative Co-evolution Algorithm for Fuzzy Production Planning and Scheduling in Prefabricated Building Construction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29d600aa69d6",
+      "evidence": [
+        {
+          "quote": "A Cooperative Co-evolution Algorithm for Fuzzy Production Planning and Scheduling in Prefabricated Building Construction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4744,
+            "end_char": 4863
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-objective multi-mode resource-constrained project scheduling with fuzzy activity durations in prefabricated building construction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-261b9be2880c",
+      "evidence": [
+        {
+          "quote": "Multi-objective multi-mode resource-constrained project scheduling with fuzzy activity durations in prefabricated building construction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4918,
+            "end_char": 5052
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficient Joint Deployment of Multi-UAVs for Target Tracking in Traffic Big Data",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f21d73ec212",
+      "evidence": [
+        {
+          "quote": "Efficient Joint Deployment of Multi-UAVs for Target Tracking in Traffic Big Data",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5108,
+            "end_char": 5187
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Process Monitoring with Support of IoT in Prefabricated Building Construction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57989d038d32",
+      "evidence": [
+        {
+          "quote": "Process Monitoring with Support of IoT in Prefabricated Building Construction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5251,
+            "end_char": 5327
+          },
+          "version": "5492ea1d822b6539cefc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "20ed4d96e522f10e4b4e",
   "version": "12432a3eb45a78c5dedd",
   "source_hash": "5372b9c652c6e05ad481b46bacec5df634582c4e7c954c3442a2b58359c21f60",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:24.373893+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.787766+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0ff9f99b6b66",
-          "name": "异构无人艇编队协同",
-          "desc": "欠驱动航速航向耦合下的异构艇群控位调姿一体化协同",
+          "id": "item-19e51bb3b332",
+          "name": "全自主无人艇在民用和军事领域都有极广泛的应用前景，异构集群协作能显著增强其作业能力。",
+          "desc": "全自主无人艇在民用和军事领域都有极广泛的应用前景，异构集群协作能显著增强其作业能力。",
           "evidence": [
             {
-              "quote": "本项目以异构无人艇集群为研究对象，提出含时变不确定横漂的异构无人艇控位调姿一体化新方法，通过考虑异构艇群编队位置跟踪过程中的姿态调节",
+              "quote": "全自主无人艇在民用和军事领域都有极广泛的应用前景，异构集群协作能显著增强其作业能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3357,
-                "end_char": 3422
+                "start_char": 657,
+                "end_char": 698
               },
               "version": "12432a3eb45a78c5dedd"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6e1556c49e4d",
-          "name": "不确定横漂致超调抖振",
-          "desc": "风浪流强干扰产生大范围快速变化不确定横漂角，易致航向超调抖振",
-          "evidence": [
-            {
-              "quote": "恶劣海况下，异构艇群受到风浪流等复杂强干扰的影响，将产生大范围快速变化的不确定横漂角，在欠驱动高速运行下易导致航向超调、抖振等问题，严重影响编队控位和艇群调姿的动态稳定性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3266,
-                "end_char": 3350
-              },
-              "version": "12432a3eb45a78c5dedd"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-5949d3183c51",
-          "name": "区间分数阶协同建模",
-          "desc": "考虑区间分数阶特性的协同动力学建模与二维即时学习辨识算法",
+          "id": "item-e98d55ae91f0",
+          "name": ".    本项目以异构无人艇集群为研究对象，提出含时变不确定横漂的异构无人艇控位调姿一体化新方法，通过考虑异构艇群编队位",
+          "desc": ".    本项目以异构无人艇集群为研究对象，提出含时变不确定横漂的异构无人艇控位调姿一体化新方法，通过考虑异构艇群编队位置跟踪过程中的姿态调节，从三方面提高异构艇群编队协同控制精度和稳定性：1）提出考虑区间分数阶特性的异构艇群协同动力学建模方法，分析海空界面运行的分数阶动力学特性，构建考虑异构艇间交互响应的协同动力学模型，并设计二维即时学习辨识算法，精准地揭示欠驱动下航速航向、艇群动态协同交互的时变响应规律；",
           "evidence": [
             {
-              "quote": "提出考虑区间分数阶特性的异构艇群协同动力学建模方法，分析海空界面运行的分数阶动力学特性，构建考虑异构艇间交互响应的协同动力学模型，并设计二维即时学习辨识算法",
+              "quote": ".    本项目以异构无人艇集群为研究对象，提出含时变不确定横漂的异构无人艇控位调姿一体化新方法，通过考虑异构艇群编队位置跟踪过程中的姿态调节，从三方面提高异构艇群编队协同控制精度和稳定性：1）提出考虑区间分数阶特性的异构艇群协同动力学建模方法，分析海空界面运行的分数阶动力学特性，构建考虑异构艇间交互响应的协同动力学模型，并设计二维即时学习辨识算法，精准地揭示欠驱动下航速航向、艇群动态协同交互的时变响应规律；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3449,
-                "end_char": 3526
+                "start_char": 3352,
+                "end_char": 3557
               },
               "version": "12432a3eb45a78c5dedd"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-85850bc39ffc",
-          "name": "多尺度级联趋同调控",
-          "desc": "奇异摄动时间尺度分解与多虚拟领航艇位姿导引的级联趋同自趋优调控策略",
+          "id": "item-bcef66dbe67d",
+          "name": "为此，本项目提出含时变不确定横漂的异构无人艇控位调姿一体化新方法，实现艇群位置跟踪时的姿态调节，构建协同动力学分数阶建模",
+          "desc": "为此，本项目提出含时变不确定横漂的异构无人艇控位调姿一体化新方法，实现艇群位置跟踪时的姿态调节，构建协同动力学分数阶建模、多尺度级联趋同下自趋优位姿调控以及变时域抗扰预测下自适应横漂补偿机制，系统而深入地研究如下科学问题：航速航向耦合下的异构艇群控位调姿一体化编队协同；",
           "evidence": [
             {
-              "quote": "提出基于多尺度级联趋同的异构艇群自趋优位姿调控方法，利用奇异摄动对快变航速、慢变航向进行时间尺度分解，结合多虚拟领航艇位姿导引",
+              "quote": "为此，本项目提出含时变不确定横漂的异构无人艇控位调姿一体化新方法，实现艇群位置跟踪时的姿态调节，构建协同动力学分数阶建模、多尺度级联趋同下自趋优位姿调控以及变时域抗扰预测下自适应横漂补偿机制，系统而深入地研究如下科学问题：航速航向耦合下的异构艇群控位调姿一体化编队协同；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3560,
-                "end_char": 3622
+                "start_char": 844,
+                "end_char": 978
               },
               "version": "12432a3eb45a78c5dedd"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,649 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9610bf70ff31",
-          "name": "变时域横漂自适应补偿",
-          "desc": "非线性干扰观测器与模糊规则变时域预测，横漂在线修正柔顺自补偿保证高稳定性",
+          "id": "item-05f6ee90406e",
+          "name": "全自主无人艇在民用和军事领域都有极广泛的应用前景，异构集群协作能显著增强其作业能力。",
+          "desc": "全自主无人艇在民用和军事领域都有极广泛的应用前景，异构集群协作能显著增强其作业能力。",
           "evidence": [
             {
-              "quote": "提出基于变时域抗扰预测的异构艇群自适应横漂补偿方法，结合非线性干扰观测器和模糊规则对横漂响应进行变时域预测，构建横漂在线修正的柔顺自补偿机制，动态校正异构艇群航向角，保证高稳定性集群协同控制",
+              "quote": "全自主无人艇在民用和军事领域都有极广泛的应用前景，异构集群协作能显著增强其作业能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3668,
-                "end_char": 3762
+                "start_char": 657,
+                "end_char": 698
               },
               "version": "12432a3eb45a78c5dedd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0ff9f99b6b66"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6e1556c49e4d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于RRT算法的水面无人艇路径规划方法和装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e70df29ed60",
+      "evidence": [
+        {
+          "quote": "一种基于RRT算法的水面无人艇路径规划方法和装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3995,
+            "end_char": 4018
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6e1556c49e4d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5949d3183c51"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Curvature-Continuous RRT-based Path Planning with Enhanced Efficiency",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-76fe467221dc",
+      "evidence": [
+        {
+          "quote": "Curvature-Continuous RRT-based Path Planning with Enhanced Efficiency",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4066,
+            "end_char": 4134
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6e1556c49e4d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-85850bc39ffc"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多目标多步变时域预测的智能体运动控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-67404b00930d",
+      "evidence": [
+        {
+          "quote": "一种基于多目标多步变时域预测的智能体运动控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4200,
+            "end_char": 4223
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-85850bc39ffc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9610bf70ff31"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fractional robust finite time control of four-wheel-steering mobile robots subject to serious time-varying perturbations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e42a8b68b32f",
+      "evidence": [
+        {
+          "quote": "Fractional robust finite time control of four-wheel-steering mobile robots subject to serious time-varying perturbations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4252,
+            "end_char": 4371
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5949d3183c51"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9610bf70ff31"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Virtual Reference-Based Fuzzy Noncascade Speed Control for PMSM Systems With Unmatched Disturbances and Current Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-732299b390f3",
+      "evidence": [
+        {
+          "quote": "Virtual Reference-Based Fuzzy Noncascade Speed Control for PMSM Systems With Unmatched Disturbances and Current Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4460,
+            "end_char": 4582
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Q-learning-based Collision-free Path Planning for Mobile Robot in Unknown Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-490a96652c74",
+      "evidence": [
+        {
+          "quote": "Q-learning-based Collision-free Path Planning for Mobile Robot in Unknown Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4649,
+            "end_char": 4733
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种不确定性机器人系统状态估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed8fbec93343",
+      "evidence": [
+        {
+          "quote": "一种不确定性机器人系统状态估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4800,
+            "end_char": 4816
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "考虑非匹配扰动及执行器故障的机器人控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d9ddf9d75f3",
+      "evidence": [
+        {
+          "quote": "考虑非匹配扰动及执行器故障的机器人控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4847,
+            "end_char": 4870
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于语义分割的视觉里程计方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6da5f4144398",
+      "evidence": [
+        {
+          "quote": "一种基于语义分割的视觉里程计方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4900,
+            "end_char": 4918
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nonlinear Model Predictive Control of an Omnidirectional Mobile Robot with Self-tuned Prediction Horizon",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-12d40fe2aabb",
+      "evidence": [
+        {
+          "quote": "Nonlinear Model Predictive Control of an Omnidirectional Mobile Robot with Self-tuned Prediction Horizon",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4949,
+            "end_char": 5052
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Neural Consensus for Fractional-Order Multi-Agent Systems With Faults and Delays",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05c66ec64060",
+      "evidence": [
+        {
+          "quote": "Adaptive Neural Consensus for Fractional-Order Multi-Agent Systems With Faults and Delays",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5133,
+            "end_char": 5221
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "考虑环境扰动和多目标约束的无人艇路径规划方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-42fa55de7c2f",
+      "evidence": [
+        {
+          "quote": "考虑环境扰动和多目标约束的无人艇路径规划方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5289,
+            "end_char": 5313
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向非线性多智能体系统的预定性能一致性跟踪控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0189414aed5c",
+      "evidence": [
+        {
+          "quote": "一种面向非线性多智能体系统的预定性能一致性跟踪控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5348,
+            "end_char": 5377
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decoupled Fractional Super-Twisting Stabilization of Interconnected Mobile Robot Under Harsh Terrain Conditions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-40fcfbc8c39a",
+      "evidence": [
+        {
+          "quote": "Decoupled Fractional Super-Twisting Stabilization of Interconnected Mobile Robot Under Harsh Terrain Conditions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5409,
+            "end_char": 5519
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于序列预测与动态掩膜的机器人动态避障方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ddc42783818",
+      "evidence": [
+        {
+          "quote": "一种基于序列预测与动态掩膜的机器人动态避障方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5615,
+            "end_char": 5640
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种考虑时延的多移动机器人系统一致性控制方法、系统及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-70d0abfc8db0",
+      "evidence": [
+        {
+          "quote": "一种考虑时延的多移动机器人系统一致性控制方法、系统及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5668,
+            "end_char": 5695
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于强化学习的图像比对识别方法及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7d366d3bb14e",
+      "evidence": [
+        {
+          "quote": "一种基于强化学习的图像比对识别方法及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5723,
+            "end_char": 5742
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Mapless Navigation via Maximum Entropy Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cfb2c0b2a159",
+      "evidence": [
+        {
+          "quote": "Autonomous Mapless Navigation via Maximum Entropy Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5780,
+            "end_char": 5837
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modified Model Predictive Control of Wheeled Mobile Robot Using Adaptive Reference Point and Prediction Horizon",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-939a565d7bc2",
+      "evidence": [
+        {
+          "quote": "Modified Model Predictive Control of Wheeled Mobile Robot Using Adaptive Reference Point and Prediction Horizon",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5912,
+            "end_char": 6022
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种未知环境下移动机器人自主环境探索方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbb137be61b1",
+      "evidence": [
+        {
+          "quote": "一种未知环境下移动机器人自主环境探索方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6081,
+            "end_char": 6103
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "非质点化多智能体避碰路径规划方法及其规划系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-847300d9c9d4",
+      "evidence": [
+        {
+          "quote": "非质点化多智能体避碰路径规划方法及其规划系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6132,
+            "end_char": 6153
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AprilTag-Aided Pose Estimation Optimization of Landmark VSLAM",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-403deff31c5d",
+      "evidence": [
+        {
+          "quote": "AprilTag-Aided Pose Estimation Optimization of Landmark VSLAM",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6206,
+            "end_char": 6266
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Camera-Lidar Extrinsic Calibration via Traffic Signs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6cb70e2c6451",
+      "evidence": [
+        {
+          "quote": "Camera-Lidar Extrinsic Calibration via Traffic Signs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6328,
+            "end_char": 6379
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Review of Sensing Technologies for Indoor Autonomous Mobile Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-499c5e8bbc62",
+      "evidence": [
+        {
+          "quote": "A Review of Sensing Technologies for Indoor Autonomous Mobile Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6444,
+            "end_char": 6511
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于模型预测控制的机器人动态避障方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8cf4cb894b8f",
+      "evidence": [
+        {
+          "quote": "一种基于模型预测控制的机器人动态避障方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6581,
+            "end_char": 6603
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "非线性系统滑模控制方法、装置、电子设备及存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-31df77daf046",
+      "evidence": [
+        {
+          "quote": "非线性系统滑模控制方法、装置、电子设备及存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6638,
+            "end_char": 6661
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Obstacle-circumventing adaptive control of a four-wheeled mobile robot subjected to motion uncertainties",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-83519e5c205e",
+      "evidence": [
+        {
+          "quote": "Obstacle-circumventing adaptive control of a four-wheeled mobile robot subjected to motion uncertainties",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6716,
+            "end_char": 6819
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Visual Relocalization Optimization of Mobile Robot via Combining AprilTag with ORBSLAM3",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01b7f08f1308",
+      "evidence": [
+        {
+          "quote": "Visual Relocalization Optimization of Mobile Robot via Combining AprilTag with ORBSLAM3",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6896,
+            "end_char": 6982
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向跨视角场景的多特征位姿估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a79e07d38d9c",
+      "evidence": [
+        {
+          "quote": "一种面向跨视角场景的多特征位姿估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7039,
+            "end_char": 7057
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Reinforcement Learning-Based Mapless Navigation for Mobile Robot in Unknown Environment with Local Optima",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5080a3f9343a",
+      "evidence": [
+        {
+          "quote": "Deep Reinforcement Learning-Based Mapless Navigation for Mobile Robot in Unknown Environment with Local Optima",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7084,
+            "end_char": 7193
+          },
+          "version": "12432a3eb45a78c5dedd"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "专利": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

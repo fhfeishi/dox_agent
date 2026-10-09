@@ -2,15 +2,20 @@
   "doc_id": "57c6a61faffb37ad36a3",
   "version": "74e889966823428ca4a6",
   "source_hash": "23a5e90cb6c05de46e37a9bfa374463f29a8c8b1c22b6d52a01d5d39046f628e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:19.541677+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.307210+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7763eaf04bf4",
-          "name": "慢性病致病因素检测",
-          "desc": "以电子病历为基础的慢性病精准防控",
+          "id": "item-08e505063bec",
+          "name": "慢性疾病已经成为影响我国居民健康的重大公共卫生问题，精准有效的防控措施与方法亟待研究。",
+          "desc": "慢性疾病已经成为影响我国居民健康的重大公共卫生问题，精准有效的防控措施与方法亟待研究。",
           "evidence": [
             {
-              "quote": "慢性疾病已经成为影响我国居民健康的重大公共卫生问题，精准有效的防控措施与方法亟待研究。本项目以慢性病致病因素检测和干预为目标，以电子病历医疗数据为基础，采用深度神经网络技术，构建了一套慢性病致病因素检测模型。",
+              "quote": "慢性疾病已经成为影响我国居民健康的重大公共卫生问题，精准有效的防控措施与方法亟待研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2752,
-                "end_char": 2855
+                "start_char": 658,
+                "end_char": 700
+              },
+              "version": "74e889966823428ca4a6"
+            }
+          ]
+        },
+        {
+          "id": "item-ceafbeaa4931",
+          "name": "项目研究成果可以应用于慢性病防控医疗云服务平台，旨在构建社会共享型慢性病精准防控知识体系，为慢性病高危人群提供个性化的解",
+          "desc": "项目研究成果可以应用于慢性病防控医疗云服务平台，旨在构建社会共享型慢性病精准防控知识体系，为慢性病高危人群提供个性化的解决方案。",
+          "evidence": [
+            {
+              "quote": "项目研究成果可以应用于慢性病防控医疗云服务平台，旨在构建社会共享型慢性病精准防控知识体系，为慢性病高危人群提供个性化的解决方案。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 975,
+                "end_char": 1038
               },
               "version": "74e889966823428ca4a6"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-95a22f3258d9",
-          "name": "致病因素精准检测难",
-          "desc": "慢性病致病因素检测与个性化干预方案需求迫切",
-          "evidence": [
-            {
-              "quote": "项目研究成果可以应用于慢性病防控医疗云服务平台，为慢性病高危人群提供个性化的解决方案。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3025,
-                "end_char": 3067
-              },
-              "version": "74e889966823428ca4a6"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-6e104386aa00",
-          "name": "医疗实体识别模型",
-          "desc": "字词融合、半监督与多头注意力中文医疗实体识别",
+          "id": "item-c6d86db58181",
+          "name": "本项目的研究成果包括：（1）构建基于字词融合、半监督学习以及结合多头注意力机制和字词联合的中文医疗实体识别模型，对中文电",
+          "desc": "本项目的研究成果包括：（1）构建基于字词融合、半监督学习以及结合多头注意力机制和字词联合的中文医疗实体识别模型，对中文电子病历命名实体进行识别；",
           "evidence": [
             {
-              "quote": "构建基于字词融合、半监督学习以及结合多头注意力机制和字词联合的中文医疗实体识别模型，对中文电子病历命名实体进行识别",
+              "quote": "本项目的研究成果包括：（1）构建基于字词融合、半监督学习以及结合多头注意力机制和字词联合的中文医疗实体识别模型，对中文电子病历命名实体进行识别；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2870,
-                "end_char": 2926
+                "start_char": 2856,
+                "end_char": 2927
               },
               "version": "74e889966823428ca4a6"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d6efe2ef5b5c",
-          "name": "图卷积关系抽取",
-          "desc": "图卷积与指针网络融合关系注意力的实体关系抽取",
+          "id": "item-974980d0789a",
+          "name": "本项目以慢性病致病因素检测和干预为目标，以电子病历医疗数据为基础，采用深度神经网络技术，借鉴粗糙集理论和禁忌搜索算法，探",
+          "desc": "本项目以慢性病致病因素检测和干预为目标，以电子病历医疗数据为基础，采用深度神经网络技术，借鉴粗糙集理论和禁忌搜索算法，探索一套较为完整的慢性病致病因素检测模型。",
           "evidence": [
             {
-              "quote": "构建基于图卷积神经网络和指针网络、融合关系注意力和文本差异特征的中文医学实体关系抽取模型，对中文医学实体关系进行抽取",
+              "quote": "本项目以慢性病致病因素检测和干预为目标，以电子病历医疗数据为基础，采用深度神经网络技术，借鉴粗糙集理论和禁忌搜索算法，探索一套较为完整的慢性病致病因素检测模型。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2931,
-                "end_char": 2988
+                "start_char": 701,
+                "end_char": 780
               },
               "version": "74e889966823428ca4a6"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,225 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b1eeaa09bc60",
-          "name": "胶囊网络致病检测",
-          "desc": "基于胶囊网络的检测与文本分类模型实现致病因素检测",
+          "id": "item-a10e5ed57287",
+          "name": "慢性疾病已经成为影响我国居民健康的重大公共卫生问题，精准有效的防控措施与方法亟待研究。",
+          "desc": "慢性疾病已经成为影响我国居民健康的重大公共卫生问题，精准有效的防控措施与方法亟待研究。",
           "evidence": [
             {
-              "quote": "构建基于胶囊网络的检测和文本分类模型，对慢性病致病因素进行检测。",
+              "quote": "慢性疾病已经成为影响我国居民健康的重大公共卫生问题，精准有效的防控措施与方法亟待研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2993,
-                "end_char": 3024
+                "start_char": 658,
+                "end_char": 700
               },
               "version": "74e889966823428ca4a6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7763eaf04bf4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-95a22f3258d9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Chinese Medical Entity Relation Extraction Based on Syntactic Dependency Structure Information",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f4d54bd034d",
+      "evidence": [
+        {
+          "quote": "Research on Chinese Medical Entity Relation Extraction Based on Syntactic Dependency Structure Information",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3092,
+            "end_char": 3197
+          },
+          "version": "74e889966823428ca4a6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-95a22f3258d9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6e104386aa00"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "RoGraphER: Enhanced Extraction of Chinese Medical Entity Relationships Using RoFormer Pre-Trained Model and Weighted Graph Convolution",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c45caff71d37",
+      "evidence": [
+        {
+          "quote": "RoGraphER: Enhanced Extraction of Chinese Medical Entity Relationships Using RoFormer Pre-Trained Model and Weighted Graph Convolution",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3264,
+            "end_char": 3397
+          },
+          "version": "74e889966823428ca4a6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-95a22f3258d9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d6efe2ef5b5c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Medical Text Classification Based on Improved Capsule Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fe8e586bd39f",
+      "evidence": [
+        {
+          "quote": "Research on Medical Text Classification Based on Improved Capsule Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3503,
+            "end_char": 3575
+          },
+          "version": "74e889966823428ca4a6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d6efe2ef5b5c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b1eeaa09bc60"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Chinese Medical Entity Recognition Based on Multi-Neural Network Fusion and Improved Tri-Training Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed75433ec70e",
+      "evidence": [
+        {
+          "quote": "Research on Chinese Medical Entity Recognition Based on Multi-Neural Network Fusion and Improved Tri-Training Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3645,
+            "end_char": 3763
+          },
+          "version": "74e889966823428ca4a6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6e104386aa00"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b1eeaa09bc60"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Chinese Medical Entity Recognition Model Based on Character and Word Vector Fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f30e32fa5c6",
+      "evidence": [
+        {
+          "quote": "Chinese Medical Entity Recognition Model Based on Character and Word Vector Fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3821,
+            "end_char": 3902
+          },
+          "version": "74e889966823428ca4a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on named entity recognition of chinese electronic medical records based on multi-head attention mechanism and character-word information fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-609c499afc09",
+      "evidence": [
+        {
+          "quote": "Research on named entity recognition of chinese electronic medical records based on multi-head attention mechanism and character-word information fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3975,
+            "end_char": 4126
+          },
+          "version": "74e889966823428ca4a6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Intelligent extraction of medical entity relationship based on graph neural network and optimization strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9954478ea789",
+      "evidence": [
+        {
+          "quote": "Intelligent extraction of medical entity relationship based on graph neural network and optimization strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4307
+          },
+          "version": "74e889966823428ca4a6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "CONSTRUCTION METHOD FOR LUNG NODULE DETECTION MODEL",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35e2acb0fe11",
+      "evidence": [
+        {
+          "quote": "CONSTRUCTION METHOD FOR LUNG NODULE DETECTION MODEL",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4413,
+            "end_char": 4463
+          },
+          "version": "74e889966823428ca4a6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种鲁棒性图像分类模型的构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-505edb5418b8",
+      "evidence": [
+        {
+          "quote": "一种鲁棒性图像分类模型的构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4501,
+            "end_char": 4516
+          },
+          "version": "74e889966823428ca4a6"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

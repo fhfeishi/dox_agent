@@ -2,15 +2,20 @@
   "doc_id": "b8b776a004dccaedced1",
   "version": "c7cb0f7d3b9b34463ed8",
   "source_hash": "65e671f4175554d3eef85e36d1266b0ef8e2547f8538ebc3b6b14a4f57910e23",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:57.067479+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.266363+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a0b15594411f",
-          "name": "柔性康复机器人驱动控制",
-          "desc": "针对传统刚性连杆康复机器人强迫性伤害及驱动能力不足，开展半主动柔性驱动与控制研究",
+          "id": "item-dbf148412509",
+          "name": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究。",
+          "desc": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究。",
           "evidence": [
             {
-              "quote": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究",
+              "quote": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 655,
-                "end_char": 713
+                "end_char": 714
               },
               "version": "c7cb0f7d3b9b34463ed8"
             }
@@ -41,16 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6d7ea5e33c8a",
-          "name": "康复系统非线性与不确定性",
-          "desc": "柔性康复机器人系统存在非线性和模型不确定性",
+          "id": "item-c8bd2a76dca3",
+          "name": "在驱动系统输出稳定可靠的绳索张力基础上，针对柔性康复机器人系统存在的非线性和模型不确定性问题，提出基于径向基神经网络的不",
+          "desc": "在驱动系统输出稳定可靠的绳索张力基础上，针对柔性康复机器人系统存在的非线性和模型不确定性问题，提出基于径向基神经网络的不确定部分描述模型和基于患肢状态辨识的自适应控制方法，实现对不同状态患肢具有适应性的柔性康复机器人精确运动/力矢量控制，解决康复机器人缺乏适应性、控制精度不足等问题。",
           "evidence": [
             {
-              "quote": "针对柔性康复机器人系统存在的非线性和模型不确定性问题",
+              "quote": "在驱动系统输出稳定可靠的绳索张力基础上，针对柔性康复机器人系统存在的非线性和模型不确定性问题，提出基于径向基神经网络的不确定部分描述模型和基于患肢状态辨识的自适应控制方法，实现对不同状态患肢具有适应性的柔性康复机器人精确运动/力矢量控制，解决康复机器人缺乏适应性、控制精度不足等问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 922,
-                "end_char": 947
+                "start_char": 902,
+                "end_char": 1043
+              },
+              "version": "c7cb0f7d3b9b34463ed8"
+            }
+          ]
+        },
+        {
+          "id": "item-f9a90bdc30ce",
+          "name": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究。",
+          "desc": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究。",
+          "evidence": [
+            {
+              "quote": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 714
               },
               "version": "c7cb0f7d3b9b34463ed8"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cf63fd370658",
-          "name": "磁流变多源混合驱动",
-          "desc": "磁流变执行器、电机与绳索多源混合驱动及刚柔耦合动力学建模",
+          "id": "item-860b58ff7f1b",
+          "name": "在驱动系统输出稳定可靠的绳索张力基础上，针对柔性康复机器人系统存在的非线性和模型不确定性问题，提出基于径向基神经网络的不",
+          "desc": "在驱动系统输出稳定可靠的绳索张力基础上，针对柔性康复机器人系统存在的非线性和模型不确定性问题，提出基于径向基神经网络的不确定部分描述模型和基于患肢状态辨识的自适应控制方法，实现对不同状态患肢具有适应性的柔性康复机器人精确运动/力矢量控制，解决康复机器人缺乏适应性、控制精度不足等问题。",
           "evidence": [
             {
-              "quote": "探索磁流变执行器、电机与绳索多源混合驱动方法，并建立驱动系统的刚柔耦合动力学模型和逆动态模型",
+              "quote": "在驱动系统输出稳定可靠的绳索张力基础上，针对柔性康复机器人系统存在的非线性和模型不确定性问题，提出基于径向基神经网络的不确定部分描述模型和基于患肢状态辨识的自适应控制方法，实现对不同状态患肢具有适应性的柔性康复机器人精确运动/力矢量控制，解决康复机器人缺乏适应性、控制精度不足等问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 902,
+                "end_char": 1043
+              },
+              "version": "c7cb0f7d3b9b34463ed8"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-442f208f54a1",
+          "name": "探索磁流变执行器、电机与绳索多源混合驱动方法，并建立驱动系统的刚柔耦合动力学模型和逆动态模型。",
+          "desc": "探索磁流变执行器、电机与绳索多源混合驱动方法，并建立驱动系统的刚柔耦合动力学模型和逆动态模型。",
+          "evidence": [
+            {
+              "quote": "探索磁流变执行器、电机与绳索多源混合驱动方法，并建立驱动系统的刚柔耦合动力学模型和逆动态模型。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 715,
-                "end_char": 760
+                "end_char": 761
               },
               "version": "c7cb0f7d3b9b34463ed8"
             }
-          ]
-        },
-        {
-          "id": "item-86a0111d6c3c",
-          "name": "RBF神经网络自适应控制",
-          "desc": "基于径向基神经网络的不确定部分描述模型与患肢状态辨识自适应控制",
-          "evidence": [
-            {
-              "quote": "提出基于径向基神经网络的不确定部分描述模型和基于患肢状态辨识的自适应控制方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 949,
-                "end_char": 986
-              },
-              "version": "c7cb0f7d3b9b34463ed8"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,449 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c91dc073814f",
-          "name": "磁流变缆索驱动康复手研究",
-          "desc": "磁流变缆索驱动可穿戴手部康复机器人（期刊论文成果）",
+          "id": "item-5447956a6b73",
+          "name": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究。",
+          "desc": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究。",
           "evidence": [
             {
-              "quote": "Adjustable Rigid-Soft Wearable Hand Robot With Magnetorheological Cable-Driven Mechanism for Grasping Assistance",
+              "quote": "针对传统刚性连杆康复机器人易出现“强迫性”伤害及驱动能力不足等问题，开展基于磁流变执行器的半主动柔性驱动和控制方法研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3163,
-                "end_char": 3274
+                "start_char": 655,
+                "end_char": 714
               },
               "version": "c7cb0f7d3b9b34463ed8"
             }
           ],
-          "status": "原文未明确"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a0b15594411f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6d7ea5e33c8a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adjustable Rigid-Soft Wearable Hand Robot With Magnetorheological Cable-Driven Mechanism for Grasping Assistance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e1bb3dbecfa0",
+      "evidence": [
+        {
+          "quote": "Adjustable Rigid-Soft Wearable Hand Robot With Magnetorheological Cable-Driven Mechanism for Grasping Assistance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3163,
+            "end_char": 3274
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6d7ea5e33c8a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cf63fd370658"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design, Modeling and Evaluation of Lattice Structure Pneumatic Actuators (LSPAs) for Soft Wrist Rehabilitation Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0592548639fa",
+      "evidence": [
+        {
+          "quote": "Design, Modeling and Evaluation of Lattice Structure Pneumatic Actuators (LSPAs) for Soft Wrist Rehabilitation Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3387,
+            "end_char": 3502
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cf63fd370658"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c91dc073814f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多通道电肌触的神经肌肉闭环调控方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-72181c4ad415",
+      "evidence": [
+        {
+          "quote": "基于多通道电肌触的神经肌肉闭环调控方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3621,
+            "end_char": 3639
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a0b15594411f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-86a0111d6c3c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种可实现直线旋转独立力反馈的磁流变阻尼器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a8d29ba8ebe7",
+      "evidence": [
+        {
+          "quote": "一种可实现直线旋转独立力反馈的磁流变阻尼器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3663,
+            "end_char": 3683
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-86a0111d6c3c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c91dc073814f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Two-Layer Adaptive Assist-As-Needed Control Scheme for Rehabilitation Robotics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-723566b722bf",
+      "evidence": [
+        {
+          "quote": "A Two-Layer Adaptive Assist-As-Needed Control Scheme for Rehabilitation Robotics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3723,
+            "end_char": 3802
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Recognizing emotions induced by wearable haptic vibration using noninvasive electroencephalogram",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-920248358514",
+      "evidence": [
+        {
+          "quote": "Recognizing emotions induced by wearable haptic vibration using noninvasive electroencephalogram",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3858,
+            "end_char": 3953
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Comprehensive Control Method for Tendon–Sheath System Using Friction Model-Based Angle Estimation and Feedforward-Feedback Control in Time-Varying Configurations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a2234acad92a",
+      "evidence": [
+        {
+          "quote": "A Comprehensive Control Method for Tendon–Sheath System Using Friction Model-Based Angle Estimation and Feedforward-Feedback Control in Time-Varying Configurations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4053,
+            "end_char": 4215
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Evaluation of a Bidirectional Soft Glove for Hand Rehabilitation-Assistance Tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-277977760d4f",
+      "evidence": [
+        {
+          "quote": "Design and Evaluation of a Bidirectional Soft Glove for Hand Rehabilitation-Assistance Tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4295,
+            "end_char": 4386
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Characterization of a Novel Compact Hand Exoskeleton Robot for Telerehabilitation and Muscle Spasticity Assessment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6bfa6e2125e0",
+      "evidence": [
+        {
+          "quote": "Design and Characterization of a Novel Compact Hand Exoskeleton Robot for Telerehabilitation and Muscle Spasticity Assessment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4456,
+            "end_char": 4580
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2023年世界机器人大会十大技术创新成果",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-07274feda8ea",
+      "evidence": [
+        {
+          "quote": "2023年世界机器人大会十大技术创新成果",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4616,
+            "end_char": 4635
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "CABLE FORCE CONTROL METHOD APPLICABLE TO TIME-VARYING CONFIGURATION",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-846752ad4d74",
+      "evidence": [
+        {
+          "quote": "CABLE FORCE CONTROL METHOD APPLICABLE TO TIME-VARYING CONFIGURATION",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4666,
+            "end_char": 4732
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2022年日内瓦国际银奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3afd60de17fe",
+      "evidence": [
+        {
+          "quote": "2022年日内瓦国际银奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4756,
+            "end_char": 4767
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "多模态信息融合的神经肌肉状态AI实时定量评估方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7af7a198c44d",
+      "evidence": [
+        {
+          "quote": "多模态信息融合的神经肌肉状态AI实时定量评估方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4802,
+            "end_char": 4825
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Multimodal Confidence for Intention Recognition in Human-Robot Interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c88cf0cd7350",
+      "evidence": [
+        {
+          "quote": "Learning Multimodal Confidence for Intention Recognition in Human-Robot Interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4852,
+            "end_char": 4934
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种可用于时变配置的绳索力控方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b21e6b76e408",
+      "evidence": [
+        {
+          "quote": "一种可用于时变配置的绳索力控方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5026,
+            "end_char": 5041
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于绳索驱动的柔性手部康复外骨骼",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-64e617f685c9",
+      "evidence": [
+        {
+          "quote": "一种基于绳索驱动的柔性手部康复外骨骼",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5065,
+            "end_char": 5082
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于绳索驱动手部康复机器人的驱动装置及控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f68dafcb0d11",
+      "evidence": [
+        {
+          "quote": "一种用于绳索驱动手部康复机器人的驱动装置及控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5117,
+            "end_char": 5141
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design, Modeling, and Control of a Variable Stiffness Actuator With Dual-Motor Load Sharing for Elbow Exoskeletons",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c929af4f6696",
+      "evidence": [
+        {
+          "quote": "Design, Modeling, and Control of a Variable Stiffness Actuator With Dual-Motor Load Sharing for Elbow Exoskeletons",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5175,
+            "end_char": 5288
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Model-Based Linear Control of Nonlinear Pneumatic Soft Bending Actuators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f07ad0821854",
+      "evidence": [
+        {
+          "quote": "Model-Based Linear Control of Nonlinear Pneumatic Soft Bending Actuators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5345,
+            "end_char": 5416
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2023年度江苏省科学技术奖一等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e62a09e7a3d",
+      "evidence": [
+        {
+          "quote": "2023年度江苏省科学技术奖一等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5507,
+            "end_char": 5523
+          },
+          "version": "c7cb0f7d3b9b34463ed8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

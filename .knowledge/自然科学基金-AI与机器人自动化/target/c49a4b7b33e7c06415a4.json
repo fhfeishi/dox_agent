@@ -2,15 +2,20 @@
   "doc_id": "c49a4b7b33e7c06415a4",
   "version": "94ceaac65fbbaba4e264",
   "source_hash": "1b6894e104953b6fd15f385e3d0acd017a0369d72bafe6722f550fbb65e5904d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:19:58.069770+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.376329+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4d6392096e8c",
-          "name": "GPS缺失环境MWSN系统",
-          "desc": "室内、隧道、煤矿井下机器人与WSNs结合",
+          "id": "item-f1d4f67151cf",
+          "name": "鉴于室内、隧道与煤矿井下等环境中GPS信号缺失及无线传感网络WSNs普及应用，将移动机器人与WSNs结合发挥各自优势，能",
+          "desc": "鉴于室内、隧道与煤矿井下等环境中GPS信号缺失及无线传感网络WSNs普及应用，将移动机器人与WSNs结合发挥各自优势，能更好提升结合系统MWSN对实际环境的自适应性与可控性。",
+          "evidence": [
+            {
+              "quote": "鉴于室内、隧道与煤矿井下等环境中GPS信号缺失及无线传感网络WSNs普及应用，将移动机器人与WSNs结合发挥各自优势，能更好提升结合系统MWSN对实际环境的自适应性与可控性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 670,
+                "end_char": 756
+              },
+              "version": "94ceaac65fbbaba4e264"
+            }
+          ]
+        },
+        {
+          "id": "item-ce86bc6eb686",
+          "name": "鉴于室内、隧道与煤矿井下等场景下GPS信号缺失及无线传感网络WSNs普及应用，该项目将移动机器人与WSNs结合构成了移动",
+          "desc": "鉴于室内、隧道与煤矿井下等场景下GPS信号缺失及无线传感网络WSNs普及应用，该项目将移动机器人与WSNs结合构成了移动无线传感网络MWSN系统。",
           "evidence": [
             {
               "quote": "鉴于室内、隧道与煤矿井下等场景下GPS信号缺失及无线传感网络WSNs普及应用，该项目将移动机器人与WSNs结合构成了移动无线传感网络MWSN系统。",
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-385b3db01c71",
-          "name": "交互机制简易低效",
-          "desc": "机器人与WSNs交互机制简易无法满足高效鲁棒协作",
-          "evidence": [
-            {
-              "quote": "但当前机器人与WSNs间交互机制简易，无法满足MWSN在实际环境中高效鲁棒协作交互需求。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 757,
-                "end_char": 800
-              },
-              "version": "94ceaac65fbbaba4e264"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-6562f793badf",
-          "name": "动态事件触发感知调度",
-          "desc": "环境自适应节点调度降低电能通讯计算成本",
+          "id": "item-f118d95bbf49",
+          "name": "首先，本项目研究了高能效协同感知及信息交互模型，设计了动态事件触发机制和环境自适应传感节点调度及信息交互策略，在保证移动",
+          "desc": "首先，本项目研究了高能效协同感知及信息交互模型，设计了动态事件触发机制和环境自适应传感节点调度及信息交互策略，在保证移动机器人定位精度的前提下有效降低了整个MWSN系统的电能、通讯和计算成本。",
           "evidence": [
             {
-              "quote": "设计了动态事件触发机制和环境自适应传感节点调度及信息交互策略，在保证移动机器人定位精度的前提下有效降低了整个MWSN系统的电能、通讯和计算成本。",
+              "quote": "首先，本项目研究了高能效协同感知及信息交互模型，设计了动态事件触发机制和环境自适应传感节点调度及信息交互策略，在保证移动机器人定位精度的前提下有效降低了整个MWSN系统的电能、通讯和计算成本。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3121,
+                "start_char": 3097,
                 "end_char": 3192
               },
               "version": "94ceaac65fbbaba4e264"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2341a48497d4",
-          "name": "不确定性鲁棒融合估计",
-          "desc": "建模攻击等不确定性下的运动感测模型与融合估计",
+          "id": "item-0f8d6466406b",
+          "name": ".  因此，本项目将从高能效鲁棒协作定位和协同牵引运动控制两方面进行基础理论创新，研究高能效协同感知及信息交互模型，设计",
+          "desc": ".  因此，本项目将从高能效鲁棒协作定位和协同牵引运动控制两方面进行基础理论创新，研究高能效协同感知及信息交互模型，设计自适应动态事件触发机制；",
           "evidence": [
             {
-              "quote": "建立了不确定性下MWSN系统的运动、感测模型及信息鲁棒融合估计算法，提高了不确定性影响下移动机器人定位或状态估计的综合性能（精确性、稳定性、鲁棒性）。",
+              "quote": ".  因此，本项目将从高能效鲁棒协作定位和协同牵引运动控制两方面进行基础理论创新，研究高能效协同感知及信息交互模型，设计自适应动态事件触发机制；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3267,
-                "end_char": 3341
+                "start_char": 801,
+                "end_char": 872
               },
               "version": "94ceaac65fbbaba4e264"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,180 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9c9712e128b7",
-          "name": "协作定位实验平台",
-          "desc": "开发MWSN实验平台并完成验证与综合评估",
+          "id": "item-85e77b123cab",
+          "name": "鉴于室内、隧道与煤矿井下等环境中GPS信号缺失及无线传感网络WSNs普及应用，将移动机器人与WSNs结合发挥各自优势，能",
+          "desc": "鉴于室内、隧道与煤矿井下等环境中GPS信号缺失及无线传感网络WSNs普及应用，将移动机器人与WSNs结合发挥各自优势，能更好提升结合系统MWSN对实际环境的自适应性与可控性。",
           "evidence": [
             {
-              "quote": "开发了基于RSS的移动无线传感网络MWSN系统协作定位及牵引运动控制实验平台，基于此实验平台对鲁棒融合估计器和协同牵引运动控制器进行了实验验证和综合评估",
+              "quote": "鉴于室内、隧道与煤矿井下等环境中GPS信号缺失及无线传感网络WSNs普及应用，将移动机器人与WSNs结合发挥各自优势，能更好提升结合系统MWSN对实际环境的自适应性与可控性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3369,
-                "end_char": 3444
+                "start_char": 670,
+                "end_char": 756
               },
               "version": "94ceaac65fbbaba4e264"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-38ba44cb9fbe",
-          "name": "论文7篇",
-          "desc": "SCI 6篇（1区Top 2篇）EI 1篇、发明专利1项",
+          "id": "item-d2fa30348b3d",
+          "name": "鉴于室内、隧道与煤矿井下等场景下GPS信号缺失及无线传感网络WSNs普及应用，该项目将移动机器人与WSNs结合构成了移动",
+          "desc": "鉴于室内、隧道与煤矿井下等场景下GPS信号缺失及无线传感网络WSNs普及应用，该项目将移动机器人与WSNs结合构成了移动无线传感网络MWSN系统。",
           "evidence": [
             {
-              "quote": "共发表学术论文7篇，其中SCI收录6篇、EI收录1篇（包括2篇中科院1区Top期刊论文、1篇中科院2区Top期刊论文）；申请国家发明专利1项",
+              "quote": "鉴于室内、隧道与煤矿井下等场景下GPS信号缺失及无线传感网络WSNs普及应用，该项目将移动机器人与WSNs结合构成了移动无线传感网络MWSN系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3554,
-                "end_char": 3623
+                "start_char": 3024,
+                "end_char": 3096
               },
               "version": "94ceaac65fbbaba4e264"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4d6392096e8c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-385b3db01c71"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Dynamic Variance-Based Triggering Scheme for Distributed Cooperative State Estimation over Wireless Sensor Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9be53113b79",
+      "evidence": [
+        {
+          "quote": "A Dynamic Variance-Based Triggering Scheme for Distributed Cooperative State Estimation over Wireless Sensor Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3671,
+            "end_char": 3787
+          },
+          "version": "94ceaac65fbbaba4e264"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-385b3db01c71"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6562f793badf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trust-Based Distributed H∞ Diffusion Filtering for Target Tracking Under Cyber Attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-75a7ce36f844",
+      "evidence": [
+        {
+          "quote": "Trust-Based Distributed H∞ Diffusion Filtering for Target Tracking Under Cyber Attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3824,
+            "end_char": 3909
+          },
+          "version": "94ceaac65fbbaba4e264"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-385b3db01c71"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2341a48497d4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Recursive Robust Set-Membership Estimator for WSN-Assisted Moving Targets Tracking With UBB Anchor Location Uncertainty",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba3c17e95682",
+      "evidence": [
+        {
+          "quote": "A Recursive Robust Set-Membership Estimator for WSN-Assisted Moving Targets Tracking With UBB Anchor Location Uncertainty",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3983,
+            "end_char": 4103
+          },
+          "version": "94ceaac65fbbaba4e264"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2341a48497d4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9c9712e128b7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GMM-Based Distributed Kalman Filtering for Target Tracking Under Cyberattacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e80980e39016",
+      "evidence": [
+        {
+          "quote": "GMM-Based Distributed Kalman Filtering for Target Tracking Under Cyberattacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4173,
+            "end_char": 4249
+          },
+          "version": "94ceaac65fbbaba4e264"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6562f793badf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-38ba44cb9fbe"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Event-Driven Robust Set-Membership Estimation for Received-Signal-Strength-Based Moving Targets Localization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de68761eba1a",
+      "evidence": [
+        {
+          "quote": "Adaptive Event-Driven Robust Set-Membership Estimation for Received-Signal-Strength-Based Moving Targets Localization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4287,
+            "end_char": 4403
+          },
+          "version": "94ceaac65fbbaba4e264"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Environmentally Adaptive Event-Driven Robust Cubature Kalman Filter for RSS-Based Targets Tracking in Mobile Wireless Sensor Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-989d793e73c7",
+      "evidence": [
+        {
+          "quote": "Environmentally Adaptive Event-Driven Robust Cubature Kalman Filter for RSS-Based Targets Tracking in Mobile Wireless Sensor Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4449,
+            "end_char": 4580
+          },
+          "version": "94ceaac65fbbaba4e264"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "c347226091e0974075e4",
   "version": "ab89ae09af9d7db35619",
   "source_hash": "25303b09ab83d480488aac652b52815a323b1e4920b392c4b3090a0066de5cbf",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:52.857575+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.367288+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2d4855894a5c",
-          "name": "遥操作机器人精细力控",
-          "desc": "精细化作业遥操作对力触觉感知精度、动态刚度识别与时延处理要求苛刻",
+          "id": "item-1b6605e56a9b",
+          "name": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度，被操作对象的动态刚度精准识别，系统时延的处理等",
+          "desc": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度，被操作对象的动态刚度精准识别，系统时延的处理等方面有着苛刻要求。",
           "evidence": [
             {
-              "quote": "精细化作业下的遥操作控制对末端交互力触觉的感知精度、被操作对象的动态刚度精准识别、系统时延的处理等方面有着苛刻要求",
+              "quote": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度，被操作对象的动态刚度精准识别，系统时延的处理等方面有着苛刻要求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2850,
-                "end_char": 2906
+                "start_char": 655,
+                "end_char": 723
+              },
+              "version": "ab89ae09af9d7db35619"
+            }
+          ]
+        },
+        {
+          "id": "item-99352b48040b",
+          "name": "10. [期刊论文] 面向大规模交互数据空间划分的Voronoi图生成算法及应用 — 熊鹏文;周晓芸;熊宏锦;张婷婷",
+          "desc": "10. [期刊论文] 面向大规模交互数据空间划分的Voronoi图生成算法及应用 — 熊鹏文;周晓芸;熊宏锦;张婷婷",
+          "evidence": [
+            {
+              "quote": "10. [期刊论文] 面向大规模交互数据空间划分的Voronoi图生成算法及应用 — 熊鹏文;周晓芸;熊宏锦;张婷婷",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4649,
+                "end_char": 4706
               },
               "version": "ab89ae09af9d7db35619"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-e9ff4a5b5256",
-          "name": "力感知与力控稳定性不足",
-          "desc": "现有遥操作机器人无法满足精细化作业需求",
-          "evidence": [
-            {
-              "quote": "针对目前遥操作机器人的力感知精度及力控制稳定性无法满足精细化作业需求的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 724,
-                "end_char": 760
-              },
-              "version": "ab89ae09af9d7db35619"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-7c7bedf954af",
-          "name": "FBG多维微小力感知模型",
-          "desc": "具有温度补偿效果的力感知通用模型与多维力维间解耦方法",
+          "id": "item-0bbb440b436d",
+          "name": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度，被操作对象的动态刚度精准识别，系统时延的处理等",
+          "desc": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度，被操作对象的动态刚度精准识别，系统时延的处理等方面有着苛刻要求。",
           "evidence": [
             {
-              "quote": "以FBG作为传感载体构建了可测量多维微小力应变且具有温度补偿效果的力感知通用模型",
+              "quote": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度，被操作对象的动态刚度精准识别，系统时延的处理等方面有着苛刻要求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3086,
-                "end_char": 3125
+                "start_char": 655,
+                "end_char": 723
               },
               "version": "ab89ae09af9d7db35619"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7165fb84ac32",
-          "name": "主从机器人力分配机制",
-          "desc": "保证遥操作系统稳定性前提下提高系统透明度",
+          "id": "item-f27c14af9569",
+          "name": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度、被操作对象的动态刚度精准识别、系统时延的处理等",
+          "desc": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度、被操作对象的动态刚度精准识别、系统时延的处理等方面有着苛刻要求。",
           "evidence": [
             {
-              "quote": "提出人机交互下遥操作控制系统的主从机器人力分配机制",
+              "quote": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度、被操作对象的动态刚度精准识别、系统时延的处理等方面有着苛刻要求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3284,
-                "end_char": 3308
+                "start_char": 2839,
+                "end_char": 2907
               },
               "version": "ab89ae09af9d7db35619"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,488 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f9567c62a374",
-          "name": "多模态感知抓取力控",
-          "desc": "实现机器人多模态感知，解决环境干扰下抓取力精确控制",
+          "id": "item-f226466306d2",
+          "name": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度，被操作对象的动态刚度精准识别，系统时延的处理等",
+          "desc": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度，被操作对象的动态刚度精准识别，系统时延的处理等方面有着苛刻要求。",
           "evidence": [
             {
-              "quote": "实现了机器人多模态感知，提升了机器人的感知能力，解决了机器人抓取时环境干扰下抓取力的精确力控制问题",
+              "quote": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度，被操作对象的动态刚度精准识别，系统时延的处理等方面有着苛刻要求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3232,
-                "end_char": 3280
+                "start_char": 655,
+                "end_char": 723
               },
               "version": "ab89ae09af9d7db35619"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-1cb933858a47",
-          "name": "论文与授权专利",
-          "desc": "发表学术论文20篇，授权发明专利3项",
+          "id": "item-972f064a2c22",
+          "name": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度、被操作对象的动态刚度精准识别、系统时延的处理等",
+          "desc": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度、被操作对象的动态刚度精准识别、系统时延的处理等方面有着苛刻要求。",
           "evidence": [
             {
-              "quote": "在IEEE TII、SCIS、IEEE TMech、IEEE TIM、中国科学:信息科学等国内外高水平期刊和国际会议发表学术论文20篇，授权发明专利3项",
+              "quote": "与传统遥操作控制相比，精细化作业下的遥操作控制对末端交互力触觉的感知精度、被操作对象的动态刚度精准识别、系统时延的处理等方面有着苛刻要求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2983,
-                "end_char": 3058
+                "start_char": 2839,
+                "end_char": 2907
               },
               "version": "ab89ae09af9d7db35619"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2d4855894a5c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e9ff4a5b5256"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Scalable Gamma-Driven Multilayer Network for Brain Workload Detection Through Functional Near-Infrared Spectroscopy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ab57cf3ef70",
+      "evidence": [
+        {
+          "quote": "Scalable Gamma-Driven Multilayer Network for Brain Workload Detection Through Functional Near-Infrared Spectroscopy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3409,
+            "end_char": 3523
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e9ff4a5b5256"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7c7bedf954af"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deeply Supervised Subspace Learning for Cross-Modal Material Perception of Known and Unknown Objects",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba51c627a880",
+      "evidence": [
+        {
+          "quote": "Deeply Supervised Subspace Learning for Cross-Modal Material Perception of Known and Unknown Objects",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3644,
+            "end_char": 3743
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e9ff4a5b5256"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7165fb84ac32"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ROpenPose: A Rapider OpenPose Model for Astronaut Operation Attitude Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-11f589b0bac7",
+      "evidence": [
+        {
+          "quote": "ROpenPose: A Rapider OpenPose Model for Astronaut Operation Attitude Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3820,
+            "end_char": 3897
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7c7bedf954af"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f9567c62a374"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Sliding Mode Impedance Control for Dual Hand Master Single Slave Teleoperation Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-22be94497340",
+      "evidence": [
+        {
+          "quote": "Sliding Mode Impedance Control for Dual Hand Master Single Slave Teleoperation Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3983,
+            "end_char": 4068
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7165fb84ac32"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1cb933858a47"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于光纤布拉格光栅的精细化多维力触觉传感器结构设计与仿真研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e8a9812b38a4",
+      "evidence": [
+        {
+          "quote": "基于光纤布拉格光栅的精细化多维力触觉传感器结构设计与仿真研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4143,
+            "end_char": 4172
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向纹理识别的便携式触觉传感器设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d3969d57461",
+      "evidence": [
+        {
+          "quote": "面向纹理识别的便携式触觉传感器设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4204,
+            "end_char": 4220
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "FVSight: A Novel Multimodal Tactile Sensor for Robotic Object Perception",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3bbf1c475b4c",
+      "evidence": [
+        {
+          "quote": "FVSight: A Novel Multimodal Tactile Sensor for Robotic Object Perception",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4253,
+            "end_char": 4324
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path prediction of flexible needles based on Fokker-Planck equation and disjunctive Kriging model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2dcec7369f0d",
+      "evidence": [
+        {
+          "quote": "Path prediction of flexible needles based on Fokker-Planck equation and disjunctive Kriging model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4362,
+            "end_char": 4458
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robotic haptic adjective perception based on coupled sparse coding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a4702563d98",
+      "evidence": [
+        {
+          "quote": "Robotic haptic adjective perception based on coupled sparse coding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4531,
+            "end_char": 4596
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向大规模交互数据空间划分的Voronoi图生成算法及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a36daee32cf",
+      "evidence": [
+        {
+          "quote": "面向大规模交互数据空间划分的Voronoi图生成算法及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4660,
+            "end_char": 4688
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Detecting Dynamic Behavior of Brain Fatigue Through 3-D-CNN-LSTM",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33e7d39cf41d",
+      "evidence": [
+        {
+          "quote": "Detecting Dynamic Behavior of Brain Fatigue Through 3-D-CNN-LSTM",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4719,
+            "end_char": 4782
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于变分贝叶斯高斯混合噪声模型的机器人跨模态生成对抗网络",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5938f30897cc",
+      "evidence": [
+        {
+          "quote": "基于变分贝叶斯高斯混合噪声模型的机器人跨模态生成对抗网络",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4871,
+            "end_char": 4898
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种能够实时精密测量螺纹连接状态的螺纹孔结构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d82269f4966",
+      "evidence": [
+        {
+          "quote": "一种能够实时精密测量螺纹连接状态的螺纹孔结构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4927,
+            "end_char": 4948
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Exploratory-Procedure-Based Hybrid Measurement Fusion for Material Recognition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-758b43204d2c",
+      "evidence": [
+        {
+          "quote": "Human-Exploratory-Procedure-Based Hybrid Measurement Fusion for Material Recognition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4991,
+            "end_char": 5074
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vibrotactile Feedback System Based on Multiple Properties Modulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-298d2cec8926",
+      "evidence": [
+        {
+          "quote": "Vibrotactile Feedback System Based on Multiple Properties Modulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5162,
+            "end_char": 5229
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于自适应多核稀疏表示的机器人触觉物体感知研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b0c834b6951",
+      "evidence": [
+        {
+          "quote": "基于自适应多核稀疏表示的机器人触觉物体感知研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5277,
+            "end_char": 5299
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种能够实时精密测量压力的双头螺栓结构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-44563c9ca716",
+      "evidence": [
+        {
+          "quote": "一种能够实时精密测量压力的双头螺栓结构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5332,
+            "end_char": 5350
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Rendering of Visual Roughness Using Ultrasound Phased Array",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-72b4fd7a2469",
+      "evidence": [
+        {
+          "quote": "Rendering of Visual Roughness Using Ultrasound Phased Array",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5392,
+            "end_char": 5450
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于三维骨骼信息的动态手势识别",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03bc8aa8cfe4",
+      "evidence": [
+        {
+          "quote": "基于三维骨骼信息的动态手势识别",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5500,
+            "end_char": 5514
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robotic Multifinger Grasping State Recognition Based on Adaptive Multikernel Dictionary Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4d44232531e",
+      "evidence": [
+        {
+          "quote": "Robotic Multifinger Grasping State Recognition Based on Adaptive Multikernel Dictionary Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5543,
+            "end_char": 5638
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Backstepping controller for laser ray tracking of a target mobile robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02514d1f102e",
+      "evidence": [
+        {
+          "quote": "Backstepping controller for laser ray tracking of a target mobile robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5704,
+            "end_char": 5774
+          },
+          "version": "ab89ae09af9d7db35619"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 21,
+    "listed": 21,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

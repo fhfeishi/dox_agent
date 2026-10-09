@@ -2,15 +2,20 @@
   "doc_id": "bc809a9234b80cc4aae2",
   "version": "0cfd01251c9e1e8e5cfc",
   "source_hash": "981d3532b13f08f8c7fd4ad04264b19a04b7fdf681beed1d8e8747198f1f2cd3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:52:48.925041+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.296678+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,124 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3e0158b5d525",
-          "name": "球形水下机器人海洋观测",
-          "desc": "海洋开发和观测中的球形水下机器人能源自给",
+          "id": "item-7edfa0f30399",
+          "name": "水下机器人是我国海洋开发的重要装备，深海或远海环境下长期连续工作的迫切需求，给其自身能源供给带来新的挑战。",
+          "desc": "水下机器人是我国海洋开发的重要装备，深海或远海环境下长期连续工作的迫切需求，给其自身能源供给带来新的挑战。",
           "evidence": [
             {
-              "quote": "球形水下机器人在海洋开发和观测中有着重要应用，海洋环境下长期连续工作会给其自身能源供给带来困难。",
+              "quote": "水下机器人是我国海洋开发的重要装备，深海或远海环境下长期连续工作的迫切需求，给其自身能源供给带来新的挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2566,
-                "end_char": 2613
-              },
-              "version": "0cfd01251c9e1e8e5cfc"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5745d6f695b5",
-          "name": "重摆与姿态控制相互干扰",
-          "desc": "海洋能利用中重摆摆动与机器人姿态控制耦合干扰",
-          "evidence": [
-            {
-              "quote": "设计分级滑模结构和神经网络补偿算法，解决重摆的摆动与机器人姿态控制相互干扰问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 837,
-                "end_char": 875
-              },
-              "version": "0cfd01251c9e1e8e5cfc"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8b43e0a55751",
-          "name": "悬挂摆波浪能捕获策略",
-          "desc": "基于悬挂摆和差动螺旋桨推进的结构与波浪能捕获",
-          "evidence": [
-            {
-              "quote": "设计出一种基于悬挂摆和差动螺旋桨推进的球形水下机器人结构，依据其在海洋中运动形式提出一种波浪能捕获策略。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2649,
-                "end_char": 2700
+                "start_char": 649,
+                "end_char": 701
               },
               "version": "0cfd01251c9e1e8e5cfc"
             }
           ]
         },
         {
-          "id": "item-bf7912b39a32",
-          "name": "锚定状态动力学建模",
-          "desc": "分析绳索与波浪参数对捕能特性影响并总结发电规律",
-          "evidence": [
-            {
-              "quote": "建立球形水下机器人锚定状态下的动力学模型，分析绳索参数和波浪参数对捕能特性的影响并总结发电规律。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2706,
-                "end_char": 2753
-              },
-              "version": "0cfd01251c9e1e8e5cfc"
-            }
-          ]
-        },
-        {
-          "id": "item-99105f682493",
-          "name": "滑模变结构解耦控制",
-          "desc": "基于滑模变结构的重摆与姿态解耦控制方法",
-          "evidence": [
-            {
-              "quote": "为了实现重摆与姿态解耦控制，提出一种基于滑模变结构的控制方法，经过与传统控制方法对比，显示出新方法的优越性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2754,
-                "end_char": 2807
-              },
-              "version": "0cfd01251c9e1e8e5cfc"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6ef6ec80e7d8",
-          "name": "波浪能策略实验有效",
-          "desc": "滤波电路设计与实验验证策略有效性",
-          "evidence": [
-            {
-              "quote": "实验表明本项目提出的波浪能利用策略是有效的。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2841,
-                "end_char": 2862
-              },
-              "version": "0cfd01251c9e1e8e5cfc"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-d42768d24778",
-          "name": "SCI与EI论文多篇",
-          "desc": "发表多篇SCI和EI期刊论文",
+          "id": "item-635c33c2c67a",
+          "name": "在项目研究中取得的创新性成果，发表了多篇SCI和EI期刊论文，为球形水下机器人利用海洋能自给能源提供理论基础，在水下观测",
+          "desc": "在项目研究中取得的创新性成果，发表了多篇SCI和EI期刊论文，为球形水下机器人利用海洋能自给能源提供理论基础，在水下观测领域具有工程应用价值。",
           "evidence": [
             {
               "quote": "在项目研究中取得的创新性成果，发表了多篇SCI和EI期刊论文，为球形水下机器人利用海洋能自给能源提供理论基础，在水下观测领域具有工程应用价值。",
@@ -147,78 +53,402 @@
               },
               "version": "0cfd01251c9e1e8e5cfc"
             }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-710570486cdf",
+          "name": "同时，提出一种解耦控制方法，设计分级滑模结构和神经网络补偿算法，解决重摆的摆动与机器人姿态控制相互干扰问题；",
+          "desc": "同时，提出一种解耦控制方法，设计分级滑模结构和神经网络补偿算法，解决重摆的摆动与机器人姿态控制相互干扰问题；",
+          "evidence": [
+            {
+              "quote": "同时，提出一种解耦控制方法，设计分级滑模结构和神经网络补偿算法，解决重摆的摆动与机器人姿态控制相互干扰问题；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 823,
+                "end_char": 876
+              },
+              "version": "0cfd01251c9e1e8e5cfc"
+            }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-55f23ae8c10d",
+          "name": "球形水下机器人;耦合动力学;系统优化;神经网络滑模控制;海洋能利用",
+          "desc": "球形水下机器人;耦合动力学;系统优化;神经网络滑模控制;海洋能利用",
+          "evidence": [
+            {
+              "quote": "球形水下机器人;耦合动力学;系统优化;神经网络滑模控制;海洋能利用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2477,
+                "end_char": 2509
+              },
+              "version": "0cfd01251c9e1e8e5cfc"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-663bdfaa60ed",
+          "name": "水下机器人是我国海洋开发的重要装备，深海或远海环境下长期连续工作的迫切需求，给其自身能源供给带来新的挑战。",
+          "desc": "水下机器人是我国海洋开发的重要装备，深海或远海环境下长期连续工作的迫切需求，给其自身能源供给带来新的挑战。",
+          "evidence": [
+            {
+              "quote": "水下机器人是我国海洋开发的重要装备，深海或远海环境下长期连续工作的迫切需求，给其自身能源供给带来新的挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 649,
+                "end_char": 701
+              },
+              "version": "0cfd01251c9e1e8e5cfc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-eb98f718a34e",
+          "name": "球形水下机器人在海洋开发和观测中有着重要应用，海洋环境下长期连续工作会给其自身能源供给带来困难。",
+          "desc": "球形水下机器人在海洋开发和观测中有着重要应用，海洋环境下长期连续工作会给其自身能源供给带来困难。",
+          "evidence": [
+            {
+              "quote": "球形水下机器人在海洋开发和观测中有着重要应用，海洋环境下长期连续工作会给其自身能源供给带来困难。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2566,
+                "end_char": 2613
+              },
+              "version": "0cfd01251c9e1e8e5cfc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3e0158b5d525"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5745d6f695b5"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于独狼蚁群混合算法的移动机器人路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d751d76652e8",
+      "evidence": [
+        {
+          "quote": "一种基于独狼蚁群混合算法的移动机器人路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2957,
+            "end_char": 2980
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5745d6f695b5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8b43e0a55751"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于信息融合的栅格地图创建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc7e715faa8f",
+      "evidence": [
+        {
+          "quote": "一种基于信息融合的栅格地图创建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3002,
+            "end_char": 3018
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5745d6f695b5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bf7912b39a32"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analysis on the Influence of Mooring Rope Parameters of Spherical Underwater Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2183e0ce37a5",
+      "evidence": [
+        {
+          "quote": "Analysis on the Influence of Mooring Rope Parameters of Spherical Underwater Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3050,
+            "end_char": 3131
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5745d6f695b5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-99105f682493"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种带有变角度螺旋桨的球形水底移动机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ffbdf676a966",
+      "evidence": [
+        {
+          "quote": "一种带有变角度螺旋桨的球形水底移动机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3169,
+            "end_char": 3188
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8b43e0a55751"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6ef6ec80e7d8"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "给含有离子‑人工蜂群算法的移动机器人配置路径的方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71b0eadc24c8",
+      "evidence": [
+        {
+          "quote": "给含有离子‑人工蜂群算法的移动机器人配置路径的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3218,
+            "end_char": 3242
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-99105f682493"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d42768d24778"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "球形机器人水下系泊状态水流干扰运动分析",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bfc5d6e81e50",
+      "evidence": [
+        {
+          "quote": "球形机器人水下系泊状态水流干扰运动分析",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3273,
+            "end_char": 3291
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "含有激光SLAM的ODOM与DM地标组合移动机器人及导航方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d8c8b10ddeec",
+      "evidence": [
+        {
+          "quote": "含有激光SLAM的ODOM与DM地标组合移动机器人及导航方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3318,
+            "end_char": 3347
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于悬挂摆的球形水下机器人捕能方法与装置研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9513f7ac4b66",
+      "evidence": [
+        {
+          "quote": "基于悬挂摆的球形水下机器人捕能方法与装置研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3378,
+            "end_char": 3399
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Anti-disturbance Control of Vertical Pitch Attitude of Underwater Spherical Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77199c230a4d",
+      "evidence": [
+        {
+          "quote": "Anti-disturbance Control of Vertical Pitch Attitude of Underwater Spherical Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3431,
+            "end_char": 3511
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种模拟水底动态复杂环境的移动机器人实验平台",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0190350adf7",
+      "evidence": [
+        {
+          "quote": "一种模拟水底动态复杂环境的移动机器人实验平台",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3550,
+            "end_char": 3571
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于惯性摆的球形水下机器人波浪能捕获系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-925d22e87d0a",
+      "evidence": [
+        {
+          "quote": "一种基于惯性摆的球形水下机器人波浪能捕获系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3602,
+            "end_char": 3626
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel mobile robot navigation method based on deep reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa7a81213a42",
+      "evidence": [
+        {
+          "quote": "A novel mobile robot navigation method based on deep reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3665,
+            "end_char": 3739
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "小型球形水底观测机器人设计分析与实现",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-98f4a76e71bc",
+      "evidence": [
+        {
+          "quote": "小型球形水底观测机器人设计分析与实现",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3784,
+            "end_char": 3801
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "混响环境下移动机器人语音控制方法及系统实现",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3fc8af44964a",
+      "evidence": [
+        {
+          "quote": "混响环境下移动机器人语音控制方法及系统实现",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3824,
+            "end_char": 3844
+          },
+          "version": "0cfd01251c9e1e8e5cfc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

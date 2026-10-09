@@ -2,15 +2,20 @@
   "doc_id": "25dc6f6fd3db64d03921",
   "version": "3afb79f455863e698785",
   "source_hash": "6b72303a0c8e34315b5f4e91670ceaa3a4b9a515cd82cb3b3a2769d28829bc5a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:55.705990+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.843714+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3f5ffc3b0c27",
-          "name": "人机交互机器人轨迹规划",
-          "desc": "机器人需理解、预测人的运动并实时规划自身运动，实现安全友好人机交互",
+          "id": "item-000e8b4e49f2",
+          "name": "近年来，人机交互技术应用非常广泛，对其进行研究能够提高国家高端智能科学技术的竞争力，具有很大的实用价值和经济价值。",
+          "desc": "近年来，人机交互技术应用非常广泛，对其进行研究能够提高国家高端智能科学技术的竞争力，具有很大的实用价值和经济价值。",
           "evidence": [
             {
-              "quote": "实现高效、高质的人机交互的前提是机器人能够理解、预测人的运动并实时规划自身运动",
+              "quote": "近年来，人机交互技术应用非常广泛，对其进行研究能够提高国家高端智能科学技术的竞争力，具有很大的实用价值和经济价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 728,
-                "end_char": 766
+                "start_char": 667,
+                "end_char": 723
+              },
+              "version": "3afb79f455863e698785"
+            }
+          ]
+        },
+        {
+          "id": "item-31c4249257b3",
+          "name": "本项目圆满地完成了所有的研究内容，在我国机器人（人机交互）的应用前景上有着重要意义。",
+          "desc": "本项目圆满地完成了所有的研究内容，在我国机器人（人机交互）的应用前景上有着重要意义。",
+          "evidence": [
+            {
+              "quote": "本项目圆满地完成了所有的研究内容，在我国机器人（人机交互）的应用前景上有着重要意义。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3491,
+                "end_char": 3532
               },
               "version": "3afb79f455863e698785"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c48969650050",
-          "name": "人臂运动预测效率低",
-          "desc": "现有人机交互研究存在人臂运动预测效率低、准确性不高及拟人机械臂规划缺失问题",
+          "id": "item-80c71a261384",
+          "name": "现有人机交互的研究仍然存在人臂运动预测效率低且准确性不高、缺乏人机动态交互中拟人机械臂高效运动规划等问题。",
+          "desc": "现有人机交互的研究仍然存在人臂运动预测效率低且准确性不高、缺乏人机动态交互中拟人机械臂高效运动规划等问题。",
           "evidence": [
             {
-              "quote": "现有人机交互的研究仍然存在人臂运动预测效率低且准确性不高、缺乏人机动态交互中拟人机械臂高效运动规划等问题",
+              "quote": "现有人机交互的研究仍然存在人臂运动预测效率低且准确性不高、缺乏人机动态交互中拟人机械臂高效运动规划等问题。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 768,
-                "end_char": 819
+                "end_char": 820
               },
               "version": "3afb79f455863e698785"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1d570400da33",
-          "name": "人臂动作基元基元库",
-          "desc": "新人臂动作基元建模方法，包含十六种动作基元，解耦人臂冗余度",
+          "id": "item-fdbfc61bf07b",
+          "name": "针对上述问题，本项目拟创新性地将动作基元应用于人臂运动预测及拟人机械臂运动规划当中，重点突破人臂动作基元理论体系的建立、",
+          "desc": "针对上述问题，本项目拟创新性地将动作基元应用于人臂运动预测及拟人机械臂运动规划当中，重点突破人臂动作基元理论体系的建立、基于动作基元规律的人臂运动预测算法的创建、基于动作基元和运动预测的机械臂运动规划算法的研究等关键技术，搭建实验平台，验证和完善上述关键技术。",
           "evidence": [
             {
-              "quote": "提出了一种新的人臂动作基元建模方法，并基于此方法建模了包含有十六种人臂动作基元的基元库",
+              "quote": "针对上述问题，本项目拟创新性地将动作基元应用于人臂运动预测及拟人机械臂运动规划当中，重点突破人臂动作基元理论体系的建立、基于动作基元规律的人臂运动预测算法的创建、基于动作基元和运动预测的机械臂运动规划算法的研究等关键技术，搭建实验平台，验证和完善上述关键技术。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3116,
-                "end_char": 3158
+                "start_char": 821,
+                "end_char": 950
               },
               "version": "3afb79f455863e698785"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2715dc11a490",
-          "name": "基于动作基元的人臂运动预测",
-          "desc": "基于人臂运动模型和智能学习算法，建立人臂达点运动数据库与修正最小阶跃模型",
+          "id": "item-64aba9c00ead",
+          "name": "（2）完成了基于动作基元的人臂运动预测研究，提出了一种新的基于人臂运动模型和智能学习算法的人臂运动预测方法。",
+          "desc": "（2）完成了基于动作基元的人臂运动预测研究，提出了一种新的基于人臂运动模型和智能学习算法的人臂运动预测方法。",
           "evidence": [
             {
-              "quote": "提出了一种新的基于人臂运动模型和智能学习算法的人臂运动预测方法",
+              "quote": "（2）完成了基于动作基元的人臂运动预测研究，提出了一种新的基于人臂运动模型和智能学习算法的人臂运动预测方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3251,
-                "end_char": 3281
+                "start_char": 3229,
+                "end_char": 3282
               },
               "version": "3afb79f455863e698785"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,428 @@
       "state": "has",
       "items": [
         {
-          "id": "item-73129816734c",
-          "name": "角色动态分配人机协作控制策略",
-          "desc": "机械臂根据目标预测与模糊推理结果自主制定运动方式",
+          "id": "item-cc410cc28190",
+          "name": "近年来，人机交互技术应用非常广泛，对其进行研究能够提高国家高端智能科学技术的竞争力，具有很大的实用价值和经济价值。",
+          "desc": "近年来，人机交互技术应用非常广泛，对其进行研究能够提高国家高端智能科学技术的竞争力，具有很大的实用价值和经济价值。",
           "evidence": [
             {
-              "quote": "提出了一种基于目标预测和模糊推理的角色动态分配人-机协作运动控制策略",
+              "quote": "近年来，人机交互技术应用非常广泛，对其进行研究能够提高国家高端智能科学技术的竞争力，具有很大的实用价值和经济价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3351,
-                "end_char": 3384
+                "start_char": 667,
+                "end_char": 723
               },
               "version": "3afb79f455863e698785"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-cb7ebf62e8b2",
+          "name": "当前，人机交互技术应用广泛，对其展开研究能够提高国家高端智能科学技术的竞争力，具有较强的实用价值和经济价值。",
+          "desc": "当前，人机交互技术应用广泛，对其展开研究能够提高国家高端智能科学技术的竞争力，具有较强的实用价值和经济价值。",
+          "evidence": [
+            {
+              "quote": "当前，人机交互技术应用广泛，对其展开研究能够提高国家高端智能科学技术的竞争力，具有较强的实用价值和经济价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2908,
+                "end_char": 2961
+              },
+              "version": "3afb79f455863e698785"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3f5ffc3b0c27"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c48969650050"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Regions Identifying of Serial Redundant Robot's Workspace Constrained by Performance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-efcd8c03f2d1",
+      "evidence": [
+        {
+          "quote": "Regions Identifying of Serial Redundant Robot's Workspace Constrained by Performance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3558,
+            "end_char": 3641
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c48969650050"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1d570400da33"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Based on human-like variable admittance control for human–robot collaborative motion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3d84300536c",
+      "evidence": [
+        {
+          "quote": "Based on human-like variable admittance control for human–robot collaborative motion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3711,
+            "end_char": 3794
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1d570400da33"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-73129816734c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tree-Evolution: A novel approach for kinematic synthesis of serial robots under performance constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16710db40a8c",
+      "evidence": [
+        {
+          "quote": "Tree-Evolution: A novel approach for kinematic synthesis of serial robots under performance constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3832,
+            "end_char": 3934
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3f5ffc3b0c27"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2715dc11a490"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Designing Human-like Behaviors for Anthropomorphic Arm in Humanoid Robot NAO",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d88c37bb6c62",
+      "evidence": [
+        {
+          "quote": "Designing Human-like Behaviors for Anthropomorphic Arm in Humanoid Robot NAO",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4002,
+            "end_char": 4077
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2715dc11a490"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-73129816734c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "冗余度机械臂的自运动流形计算及关节轨迹规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1229b4834f03",
+      "evidence": [
+        {
+          "quote": "冗余度机械臂的自运动流形计算及关节轨迹规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4110,
+            "end_char": 4130
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot Motion Planning with Human-Like Motion Patterns based on Human Arm Movement Primitive Chains",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-021a888d2da4",
+      "evidence": [
+        {
+          "quote": "Robot Motion Planning with Human-Like Motion Patterns based on Human Arm Movement Primitive Chains",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4155,
+            "end_char": 4252
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于肘部自运动的主从异构7自由度机械臂运动映射及其几何逆解",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-497c76f6d732",
+      "evidence": [
+        {
+          "quote": "基于肘部自运动的主从异构7自由度机械臂运动映射及其几何逆解",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4298,
+            "end_char": 4326
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "预设性能控制算法对机械臂运动控制的改进",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-551025b80ce5",
+      "evidence": [
+        {
+          "quote": "预设性能控制算法对机械臂运动控制的改进",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4358,
+            "end_char": 4376
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于动作基元的人臂达点运动模式",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e2081dc03333",
+      "evidence": [
+        {
+          "quote": "基于动作基元的人臂达点运动模式",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4400,
+            "end_char": 4414
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Teleoperation Method Based on Posture Shared Control Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-22f8a7ff3077",
+      "evidence": [
+        {
+          "quote": "A Teleoperation Method Based on Posture Shared Control Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4444,
+            "end_char": 4506
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MMJM: A High-Precision Motion Model for Human Arm Reaching Motion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-812010547479",
+      "evidence": [
+        {
+          "quote": "MMJM: A High-Precision Motion Model for Human Arm Reaching Motion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4554,
+            "end_char": 4618
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于预设性能函数的机械臂快速无超调拟人运动控制算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-109b10323d27",
+      "evidence": [
+        {
+          "quote": "基于预设性能函数的机械臂快速无超调拟人运动控制算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4655,
+            "end_char": 4679
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Motion Planning Method of Redundant Dual-Chain Manipulator with Multiple Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7b0a6a44ead6",
+      "evidence": [
+        {
+          "quote": "Motion Planning Method of Redundant Dual-Chain Manipulator with Multiple Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4704,
+            "end_char": 4787
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human arm motion prediction in human-robot interaction based on a modified minimum jerk model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9063122eb721",
+      "evidence": [
+        {
+          "quote": "Human arm motion prediction in human-robot interaction based on a modified minimum jerk model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4851,
+            "end_char": 4943
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Task motion planning for anthropomorphic arms based on human arm movement primitives",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-98e800eb3ce5",
+      "evidence": [
+        {
+          "quote": "Task motion planning for anthropomorphic arms based on human arm movement primitives",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5016,
+            "end_char": 5099
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Role dynamic assignment of human-robot collaboration based on target prediction and fuzzy inference",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a7c552f1917",
+      "evidence": [
+        {
+          "quote": "Role dynamic assignment of human-robot collaboration based on target prediction and fuzzy inference",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5160,
+            "end_char": 5258
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-robot kinematics mapping method based on dynamic equivalent points",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0aba7b4e3d8a",
+      "evidence": [
+        {
+          "quote": "Human-robot kinematics mapping method based on dynamic equivalent points",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5297,
+            "end_char": 5368
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于接触状态模型和自适应阻抗控制的柔顺轴孔装配方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d89e33d01fd4",
+      "evidence": [
+        {
+          "quote": "基于接触状态模型和自适应阻抗控制的柔顺轴孔装配方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5424,
+            "end_char": 5448
+          },
+          "version": "3afb79f455863e698785"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

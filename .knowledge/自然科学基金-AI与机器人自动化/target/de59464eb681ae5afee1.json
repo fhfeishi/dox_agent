@@ -2,15 +2,20 @@
   "doc_id": "de59464eb681ae5afee1",
   "version": "9d344e2902cde59e1d01",
   "source_hash": "539516ee0352f917fe6714b0fcd6fe7cc3dc55d0237870868e5afe09b8826705",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:08:00.338636+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.662053+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-99e69a7cecf7",
-          "name": "微小型无人机自主导航",
-          "desc": "高速运动、光照变化和长期适应性挑战下的新型导航范式",
+          "id": "item-a93879225954",
+          "name": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难",
+          "desc": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
           "evidence": [
             {
-              "quote": "传统的微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题",
+              "quote": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2659,
-                "end_char": 2743
+                "start_char": 651,
+                "end_char": 735
               },
               "version": "9d344e2902cde59e1d01"
             }
@@ -41,16 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-671818d5f43c",
-          "name": "标准帧视觉运动模糊时延",
-          "desc": "标准帧视觉与CPU架构处理难以应对运动模糊、时延大等问题",
+          "id": "item-e0df5b3bf773",
+          "name": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难",
+          "desc": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
           "evidence": [
             {
-              "quote": "研究利用神经形态视觉、神经形态计算学和神经形态处理器来解决复杂环境中的自主导航问题",
+              "quote": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 761,
-                "end_char": 801
+                "start_char": 651,
+                "end_char": 735
+              },
+              "version": "9d344e2902cde59e1d01"
+            }
+          ]
+        },
+        {
+          "id": "item-cfdfe5f1dc75",
+          "name": "传统的微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，",
+          "desc": "传统的微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
+          "evidence": [
+            {
+              "quote": "传统的微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2659,
+                "end_char": 2744
               },
               "version": "9d344e2902cde59e1d01"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f98fd1dbc97f",
-          "name": "事件相机位姿估计",
-          "desc": "基于扩散模型的不确定性视觉里程计与二阶段由粗到精位姿估计",
+          "id": "item-724fbee877c3",
+          "name": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难",
+          "desc": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
           "evidence": [
             {
-              "quote": "提出了一种基于扩散模型的不确定性视觉里程计估计方法和二阶段由粗到精的位姿估计方法，使得机器人在高动态范围和快速运动的复杂环境中能够获得更加准确和鲁棒的位姿估计",
+              "quote": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2856,
-                "end_char": 2934
+                "start_char": 651,
+                "end_char": 735
               },
               "version": "9d344e2902cde59e1d01"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-deeec43e68f1",
-          "name": "全神经形态导航系统",
-          "desc": "事件相机+脉冲神经网络+神经形态处理器实现动态物体检测与异步感知避障",
+          "id": "item-eff7bf66977a",
+          "name": "传统的微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，",
+          "desc": "传统的微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
           "evidence": [
             {
-              "quote": "提出了结合事件相机、脉冲神经网络和神经形态处理器的动态物体检测与异步感知避障方法，实现了鲁棒、高能效的一整套全神经形态自主导航系统，验证了全神经形态自主导航范式的可能性",
+              "quote": "传统的微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3199,
-                "end_char": 3282
+                "start_char": 2659,
+                "end_char": 2744
               },
               "version": "9d344e2902cde59e1d01"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,508 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ccc0a98ae004",
-          "name": "极端场景视觉位置识别",
-          "desc": "运动模糊、炫光等极端场景下鲁棒精确的视觉位置识别与光流深度估计",
+          "id": "item-17a9a27f3beb",
+          "name": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难",
+          "desc": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
           "evidence": [
             {
-              "quote": "实现了在极端场景下（运动模糊、炫光）场景下鲁棒和精确的视觉位置识别。同时，开展了基于神经形态视觉的光流和深度估计研究，使得无人机能够较为精确地感知障碍物的距离和运动等信息",
+              "quote": "现有微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3013,
-                "end_char": 3097
+                "start_char": 651,
+                "end_char": 735
               },
               "version": "9d344e2902cde59e1d01"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-22b21e9a2325",
-          "name": "论文与专利",
-          "desc": "发表论文23篇（IEEE汇刊长文7篇、ICLR/ICRA/IROS 6篇），申请专利5项",
+          "id": "item-d78f9f4d1528",
+          "name": "传统的微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，",
+          "desc": "传统的微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
           "evidence": [
             {
-              "quote": "项目执行期间内依托本项目共正式发表论文23篇，其中国内外期刊论文17篇（含IEEE汇刊长文7篇，RA-L论文6篇），国际顶级会议6篇（ICLR、ICRA、IROS）。此外，申请国家发明专利5项",
+              "quote": "传统的微小型无人机自主导航系统，多采用标准帧视觉，基于滤波/优化或深度学习的导航方法，在CPU架构处理器上实现自主导航，难以解决高速运动、光照变化和长期适应性等挑战性问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3371,
-                "end_char": 3466
+                "start_char": 2659,
+                "end_char": 2744
               },
               "version": "9d344e2902cde59e1d01"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-99e69a7cecf7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-671818d5f43c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "4D-CS: Exploiting Cluster Prior for 4D Spatio-Temporal LiDAR Semantic Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0e7d4e0006a",
+      "evidence": [
+        {
+          "quote": "4D-CS: Exploiting Cluster Prior for 4D Spatio-Temporal LiDAR Semantic Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3505,
+            "end_char": 3586
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-671818d5f43c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f98fd1dbc97f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Exploiting More Information in Sparse Point Cloud for 3D Single Object Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a0d15c328b05",
+      "evidence": [
+        {
+          "quote": "Exploiting More Information in Sparse Point Cloud for 3D Single Object Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3643,
+            "end_char": 3721
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-671818d5f43c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-deeec43e68f1"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多传感器的无人机着陆区域识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c7436d08cd3",
+      "evidence": [
+        {
+          "quote": "一种基于多传感器的无人机着陆区域识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3785,
+            "end_char": 3804
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f98fd1dbc97f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ccc0a98ae004"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "FE-Fusion-VPR: Attention-Based Multi-Scale Network Architecture for Visual Place Recognition by Fusing Frames and Events",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0268e093e60a",
+      "evidence": [
+        {
+          "quote": "FE-Fusion-VPR: Attention-Based Multi-Scale Network Architecture for Visual Place Recognition by Fusing Frames and Events",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3847,
+            "end_char": 3966
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-deeec43e68f1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-22b21e9a2325"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vanishing Point Aided LiDAR-Visual-Inertial Estimator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d865ef818dbf",
+      "evidence": [
+        {
+          "quote": "Vanishing Point Aided LiDAR-Visual-Inertial Estimator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4050,
+            "end_char": 4102
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time 3D Single Object Tracking with Transformer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-281cbc93e1aa",
+      "evidence": [
+        {
+          "quote": "Real-time 3D Single Object Tracking with Transformer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4179,
+            "end_char": 4230
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neuro-Planner: A 3D Visual Navigation Method for MAV With Depth Camera Based on Neuromorphic Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f4e7d9106be",
+      "evidence": [
+        {
+          "quote": "Neuro-Planner: A 3D Visual Navigation Method for MAV With Depth Camera Based on Neuromorphic Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4287,
+            "end_char": 4401
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficient Doppler LiDAR Odometry using Scan Slicing and Vehicle Kinematics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f7310477d965",
+      "evidence": [
+        {
+          "quote": "Efficient Doppler LiDAR Odometry using Scan Slicing and Vehicle Kinematics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4485,
+            "end_char": 4558
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LM-mapping: Large-Scale and Multi-Session Point Cloud Consistent Mapping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2cf555677f1b",
+      "evidence": [
+        {
+          "quote": "LM-mapping: Large-Scale and Multi-Session Point Cloud Consistent Mapping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4623,
+            "end_char": 4694
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SeqTrack3D: Exploring Sequence Information for Robust 3D Point Cloud Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dce19adadd8c",
+      "evidence": [
+        {
+          "quote": "SeqTrack3D: Exploring Sequence Information for Robust 3D Point Cloud Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4764,
+            "end_char": 4840
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "OTD: an Online Dynamic Traces Removal Method Based on Observation Time Difference",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c699fb0f3e00",
+      "evidence": [
+        {
+          "quote": "OTD: an Online Dynamic Traces Removal Method Based on Observation Time Difference",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4893,
+            "end_char": 4973
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "EV-MGRFlowNet: Motion-Guided Recurrent Network for Unsupervised Event-Based Optical Flow with Hybrid Motion-Compensation Loss",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5675df8d556",
+      "evidence": [
+        {
+          "quote": "EV-MGRFlowNet: Motion-Guided Recurrent Network for Unsupervised Event-Based Optical Flow with Hybrid Motion-Compensation Loss",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5038,
+            "end_char": 5162
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多模态信息融合的三维单目标跟踪方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a15f7d0bd735",
+      "evidence": [
+        {
+          "quote": "一种基于多模态信息融合的三维单目标跟踪方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5244,
+            "end_char": 5264
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Structural Lines aided Monocular Visual-Inertial-Wheel Odometry with Online IMU-Wheel Extrinsic Optimization on S2 Manifold",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-04cda6f97995",
+      "evidence": [
+        {
+          "quote": "Structural Lines aided Monocular Visual-Inertial-Wheel Odometry with Online IMU-Wheel Extrinsic Optimization on S2 Manifold",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5296,
+            "end_char": 5418
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于事件的端到端视觉位置识别弱监督网络架构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a5beecc38fc7",
+      "evidence": [
+        {
+          "quote": "基于事件的端到端视觉位置识别弱监督网络架构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5482,
+            "end_char": 5502
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种未知空间自主探索规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-59067560f5c6",
+      "evidence": [
+        {
+          "quote": "一种未知空间自主探索规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5534,
+            "end_char": 5547
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "STTracker: Spatio-Temporal Tracker for 3D Single Object Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c95db885b8c",
+      "evidence": [
+        {
+          "quote": "STTracker: Spatio-Temporal Tracker for 3D Single Object Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5583,
+            "end_char": 5646
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PTT: Point-Track-Transformer Module for 3D Single Object Tracking in Point Clouds",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47e54947f9f7",
+      "evidence": [
+        {
+          "quote": "PTT: Point-Track-Transformer Module for 3D Single Object Tracking in Point Clouds",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5692,
+            "end_char": 5772
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Highly Robust and Accurate Multi-Sensor Fusion Localization System for Complex and Challenging Scenarios",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-179fa8f23a59",
+      "evidence": [
+        {
+          "quote": "Highly Robust and Accurate Multi-Sensor Fusion Localization System for Complex and Challenging Scenarios",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5830,
+            "end_char": 5933
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-VPR: End-to-End Weakly Supervised Deep Network Architecture for Visual Place Recognition using Event-based Vision Sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9992e3847d13",
+      "evidence": [
+        {
+          "quote": "Event-VPR: End-to-End Weakly Supervised Deep Network Architecture for Visual Place Recognition using Event-based Vision Sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5996,
+            "end_char": 6121
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "EventRPG: Event Data Augmentation with Relevance Propagation Guidance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c16f48beed2",
+      "evidence": [
+        {
+          "quote": "EventRPG: Event Data Augmentation with Relevance Propagation Guidance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6218,
+            "end_char": 6286
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "StreamMOS: Streaming Moving Object Segmentation with Multi-View Perception and Dual-Span Memory",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-733d7512614a",
+      "evidence": [
+        {
+          "quote": "StreamMOS: Streaming Moving Object Segmentation with Multi-View Perception and Dual-Span Memory",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6380,
+            "end_char": 6474
+          },
+          "version": "9d344e2902cde59e1d01"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

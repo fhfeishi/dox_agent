@@ -2,15 +2,20 @@
   "doc_id": "1bc238c58eb6c89b0b64",
   "version": "b1bf7c760f8c56c5b4c8",
   "source_hash": "c5fdb53dcfc656d065fb41b85275505668104d9cb19131b543039d49e8241d43",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:08:08.116779+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.747242+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2cdcfacc33a4",
-          "name": "自动驾驶非结构化路面感知",
-          "desc": "语义环境感知支撑运动规划、避障与自主导航",
+          "id": "item-c1b3e1eda8bf",
+          "name": "近年来，大量学者投入到自动驾驶技术的研究中。",
+          "desc": "近年来，大量学者投入到自动驾驶技术的研究中。",
           "evidence": [
             {
-              "quote": "语义环境感知是实现自动驾驶的核心技术之一，其结果为自动驾驶的下游任务，例如运动规划、避障、自主导航提供了必要的基础信息。",
+              "quote": "近年来，大量学者投入到自动驾驶技术的研究中。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2533,
-                "end_char": 2592
+                "start_char": 684,
+                "end_char": 705
+              },
+              "version": "b1bf7c760f8c56c5b4c8"
+            }
+          ]
+        },
+        {
+          "id": "item-a28ad3b91b69",
+          "name": "然而，非结构化路面环境负障碍物检测以及运动障碍物检测却较少受到关注，相关方法的检测性能仍然难以满足实际应用的需求，存在许",
+          "desc": "然而，非结构化路面环境负障碍物检测以及运动障碍物检测却较少受到关注，相关方法的检测性能仍然难以满足实际应用的需求，存在许多问题与挑战。",
+          "evidence": [
+            {
+              "quote": "然而，非结构化路面环境负障碍物检测以及运动障碍物检测却较少受到关注，相关方法的检测性能仍然难以满足实际应用的需求，存在许多问题与挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2647,
+                "end_char": 2713
               },
               "version": "b1bf7c760f8c56c5b4c8"
             }
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b1d522945780",
-          "name": "负障碍与运动障碍检测缺失",
-          "desc": "非结构化路面负障碍物与运动障碍物检测少受关注",
+          "id": "item-0178cb5cd94e",
+          "name": "然而，非结构化路面环境负障碍物检测以及运动障碍物检测却较少受到关注，相关方法的检测性能仍然难以满足实际应用的需求，存在许",
+          "desc": "然而，非结构化路面环境负障碍物检测以及运动障碍物检测却较少受到关注，相关方法的检测性能仍然难以满足实际应用的需求，存在许多问题与挑战。",
           "evidence": [
             {
               "quote": "然而，非结构化路面环境负障碍物检测以及运动障碍物检测却较少受到关注，相关方法的检测性能仍然难以满足实际应用的需求，存在许多问题与挑战。",
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-310cd65dc70f",
-          "name": "残差引导负障碍分割",
-          "desc": "多模态视觉语义分割路面负障碍物",
+          "id": "item-e304b5c8da5f",
+          "name": "语义环境感知是实现自动驾驶的核心技术之一，其结果为自动驾驶的下游任务，例如运动规划、避障、自主导航提供了必要的基础信息。",
+          "desc": "语义环境感知是实现自动驾驶的核心技术之一，其结果为自动驾驶的下游任务，例如运动规划、避障、自主导航提供了必要的基础信息。",
           "evidence": [
             {
-              "quote": "包括基于残差引导的路面负障碍物分割，以及基于稀疏张量的点云运动障碍物分割等。",
+              "quote": "语义环境感知是实现自动驾驶的核心技术之一，其结果为自动驾驶的下游任务，例如运动规划、避障、自主导航提供了必要的基础信息。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2774,
-                "end_char": 2811
+                "start_char": 2533,
+                "end_char": 2592
               },
               "version": "b1bf7c760f8c56c5b4c8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e8927de6c205",
-          "name": "稀疏张量运动障碍分割",
-          "desc": "三维激光点云端到端运动障碍物分割",
+          "id": "item-67f9ce8872c5",
+          "name": "随着人工智能技术的飞速发展，基于深度学习的语义环境感知吸引了大量学者的广泛关注，相关技术也取得了显著的进步。",
+          "desc": "随着人工智能技术的飞速发展，基于深度学习的语义环境感知吸引了大量学者的广泛关注，相关技术也取得了显著的进步。",
           "evidence": [
             {
-              "quote": "以及基于稀疏张量的点云运动障碍物分割等。",
+              "quote": "随着人工智能技术的飞速发展，基于深度学习的语义环境感知吸引了大量学者的广泛关注，相关技术也取得了显著的进步。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2792,
-                "end_char": 2811
+                "start_char": 2593,
+                "end_char": 2646
               },
               "version": "b1bf7c760f8c56c5b4c8"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,244 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1d7c09d341d7",
-          "name": "创新性分割研究工作",
-          "desc": "围绕多模态语义分割与点云语义分割提出创新性工作",
+          "id": "item-e7371bf313b4",
+          "name": "近年来，大量学者投入到自动驾驶技术的研究中。",
+          "desc": "近年来，大量学者投入到自动驾驶技术的研究中。",
           "evidence": [
             {
-              "quote": "本项目围绕多模态视觉语义分割以及点云语义分割，针对路面负障碍物分割和点云运动障碍物分割，提出了一些具有创新性的研究工作",
+              "quote": "近年来，大量学者投入到自动驾驶技术的研究中。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2714,
-                "end_char": 2772
+                "start_char": 684,
+                "end_char": 705
               },
               "version": "b1bf7c760f8c56c5b4c8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-08ad28dc4c5e",
+          "name": "语义环境感知是实现自动驾驶的核心技术之一，其结果为自动驾驶的下游任务，例如运动规划、避障、自主导航提供了必要的基础信息。",
+          "desc": "语义环境感知是实现自动驾驶的核心技术之一，其结果为自动驾驶的下游任务，例如运动规划、避障、自主导航提供了必要的基础信息。",
+          "evidence": [
+            {
+              "quote": "语义环境感知是实现自动驾驶的核心技术之一，其结果为自动驾驶的下游任务，例如运动规划、避障、自主导航提供了必要的基础信息。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2533,
+                "end_char": 2592
+              },
+              "version": "b1bf7c760f8c56c5b4c8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2cdcfacc33a4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b1d522945780"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PolarPoint-BEV: Bird-eye-view Perception in Polar Points for Explainable End-to-end Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c7d7ce0393d3",
+      "evidence": [
+        {
+          "quote": "PolarPoint-BEV: Bird-eye-view Perception in Polar Points for Explainable End-to-end Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2925,
+            "end_char": 3026
+          },
+          "version": "b1bf7c760f8c56c5b4c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b1d522945780"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-310cd65dc70f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CEKD: Cross-Modal Edge-Privileged Knowledge Distillation for Semantic Scene Understanding Using Only Thermal Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d2249dc970f",
+      "evidence": [
+        {
+          "quote": "CEKD: Cross-Modal Edge-Privileged Knowledge Distillation for Semantic Scene Understanding Using Only Thermal Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3064,
+            "end_char": 3178
+          },
+          "version": "b1bf7c760f8c56c5b4c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b1d522945780"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e8927de6c205"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive-Mask Fusion Network for Segmentation of Drivable Road and Negative Obstacle With Untrustworthy Features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3672e5c0b776",
+      "evidence": [
+        {
+          "quote": "Adaptive-Mask Fusion Network for Segmentation of Drivable Road and Negative Obstacle With Untrustworthy Features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3226,
+            "end_char": 3337
+          },
+          "version": "b1bf7c760f8c56c5b4c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-310cd65dc70f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1d7c09d341d7"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Place Recognition Network using Visual Sequences and LiDAR Point Clouds for Autonomous Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cf70ad7af378",
+      "evidence": [
+        {
+          "quote": "A Novel Place Recognition Network using Visual Sequences and LiDAR Point Clouds for Autonomous Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3397,
+            "end_char": 3499
+          },
+          "version": "b1bf7c760f8c56c5b4c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e8927de6c205"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1d7c09d341d7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "NLE-DM: Natural-Language Explanations for Decision Making of Autonomous Driving Based on Semantic Scene Understanding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eeb209e5c6db",
+      "evidence": [
+        {
+          "quote": "NLE-DM: Natural-Language Explanations for Decision Making of Autonomous Driving Based on Semantic Scene Understanding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3560,
+            "end_char": 3676
+          },
+          "version": "b1bf7c760f8c56c5b4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "S2G2: Semi-Supervised Semantic Bird-Eye-View Grid-Map Generation Using a Monocular Camera for Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5960a7183aec",
+      "evidence": [
+        {
+          "quote": "S2G2: Semi-Supervised Semantic Bird-Eye-View Grid-Map Generation Using a Monocular Camera for Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3722,
+            "end_char": 3833
+          },
+          "version": "b1bf7c760f8c56c5b4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PointMoSeg: Sparse Tensor-Based End-to-End Moving-Obstacle Segmentation in 3-D Lidar Point Clouds for Autonomous Driving",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2972f59e5824",
+      "evidence": [
+        {
+          "quote": "PointMoSeg: Sparse Tensor-Based End-to-End Moving-Obstacle Segmentation in 3-D Lidar Point Clouds for Autonomous Driving",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3881,
+            "end_char": 4000
+          },
+          "version": "b1bf7c760f8c56c5b4c8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CPKD: Channel and Position-Wise Knowledge Distillation for Segmentation of Road Negative Obstacles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8e58b0b14331",
+      "evidence": [
+        {
+          "quote": "CPKD: Channel and Position-Wise Knowledge Distillation for Segmentation of Road Negative Obstacles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4071,
+            "end_char": 4168
+          },
+          "version": "b1bf7c760f8c56c5b4c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Triplet-Graph: Global Metric Localization based on Semantic Triplet Graph for Autonomous Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f6d3d0385b3a",
+      "evidence": [
+        {
+          "quote": "Triplet-Graph: Global Metric Localization based on Semantic Triplet Graph for Autonomous Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4216,
+            "end_char": 4312
+          },
+          "version": "b1bf7c760f8c56c5b4c8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

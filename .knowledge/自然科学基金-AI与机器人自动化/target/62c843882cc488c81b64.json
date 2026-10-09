@@ -2,15 +2,20 @@
   "doc_id": "62c843882cc488c81b64",
   "version": "06faff9c7fd0db5f8e61",
   "source_hash": "88d87ffdf0cf0d6dbc629034010639ef2567fd7c13334beca1a48f3b80e22beb",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:48:16.630518+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.394074+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02ac6be666bf",
-          "name": "视觉自主导航认知模型",
-          "desc": "机器人与计算机视觉领域基于视觉的自主导航",
+          "id": "item-0be20e92a80e",
+          "name": "基于视觉的自主导航是机器人和计算机视觉领域的重要课题之一，尽管经历了数十年的研究，现有的算法在鲁棒性、泛化能力和适应性方",
+          "desc": "基于视觉的自主导航是机器人和计算机视觉领域的重要课题之一，尽管经历了数十年的研究，现有的算法在鲁棒性、泛化能力和适应性方面，仍然不及生物体所具备的导航策略。",
           "evidence": [
             {
-              "quote": "基于视觉的自主导航是机器人和计算机视觉领域的重要课题之一",
+              "quote": "基于视觉的自主导航是机器人和计算机视觉领域的重要课题之一，尽管经历了数十年的研究，现有的算法在鲁棒性、泛化能力和适应性方面，仍然不及生物体所具备的导航策略。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 632,
-                "end_char": 659
+                "end_char": 709
+              },
+              "version": "06faff9c7fd0db5f8e61"
+            }
+          ]
+        },
+        {
+          "id": "item-764098430cf5",
+          "name": "课题研究的相关成果，有助于推动真实场景下认知导航的理论与应用创新。",
+          "desc": "课题研究的相关成果，有助于推动真实场景下认知导航的理论与应用创新。",
+          "evidence": [
+            {
+              "quote": "课题研究的相关成果，有助于推动真实场景下认知导航的理论与应用创新。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 976,
+                "end_char": 1008
               },
               "version": "06faff9c7fd0db5f8e61"
             }
@@ -38,28 +59,76 @@
     },
     {
       "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-930b1fe2b24d",
-          "name": "动态环境干扰致导航不稳定",
-          "desc": "接近真实场景下认知导航模型易受动态因素影响，稳定性和可靠性差",
+          "id": "item-cfe76061b0e4",
+          "name": "而后，提出自模仿引导的策略梯度方法，避免了视觉语言模型特征生成的内部奖励性能下降问题，提高了视觉语言模型特征在强化学习任",
+          "desc": "而后，提出自模仿引导的策略梯度方法，避免了视觉语言模型特征生成的内部奖励性能下降问题，提高了视觉语言模型特征在强化学习任务中的性能表现。",
           "evidence": [
             {
-              "quote": "但目前认知导航模型在接近真实的场景下，容易受到环境中动态因素的影响，算法的稳定性和可靠性差。",
+              "quote": "而后，提出自模仿引导的策略梯度方法，避免了视觉语言模型特征生成的内部奖励性能下降问题，提高了视觉语言模型特征在强化学习任务中的性能表现。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 768,
-                "end_char": 813
+                "start_char": 2783,
+                "end_char": 2850
               },
               "version": "06faff9c7fd0db5f8e61"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c63fd772bebf",
-          "name": "强化学习探索效率低",
-          "desc": "动态变化环境中智能体探索能力与学习效率不足",
+          "id": "item-ba0626e9ca0f",
+          "name": "基于视觉的自主导航是机器人和计算机视觉领域的重要课题之一，尽管经历了数十年的研究，现有的算法在鲁棒性、泛化能力和适应性方",
+          "desc": "基于视觉的自主导航是机器人和计算机视觉领域的重要课题之一，尽管经历了数十年的研究，现有的算法在鲁棒性、泛化能力和适应性方面，仍然不及生物体所具备的导航策略。",
+          "evidence": [
+            {
+              "quote": "基于视觉的自主导航是机器人和计算机视觉领域的重要课题之一，尽管经历了数十年的研究，现有的算法在鲁棒性、泛化能力和适应性方面，仍然不及生物体所具备的导航策略。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 632,
+                "end_char": 709
+              },
+              "version": "06faff9c7fd0db5f8e61"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c2479988ee68",
+          "name": "基于视觉的自主导航是机器人和计算机视觉领域的重要课题之一，尽管经历了数十年的研究，现有的算法在鲁棒性、泛化能力和适应性方",
+          "desc": "基于视觉的自主导航是机器人和计算机视觉领域的重要课题之一，尽管经历了数十年的研究，现有的算法在鲁棒性、泛化能力和适应性方面，仍然不及生物体所具备的导航策略。",
+          "evidence": [
+            {
+              "quote": "基于视觉的自主导航是机器人和计算机视觉领域的重要课题之一，尽管经历了数十年的研究，现有的算法在鲁棒性、泛化能力和适应性方面，仍然不及生物体所具备的导航策略。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 632,
+                "end_char": 709
+              },
+              "version": "06faff9c7fd0db5f8e61"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-7dd8f1c23ded",
+          "name": "本项目的主要目标是充分利用智能体在过去积累的经验信息，提高其在动态变化环境中的探索能力，从而提高强化学习在视觉导航中的学",
+          "desc": "本项目的主要目标是充分利用智能体在过去积累的经验信息，提高其在动态变化环境中的探索能力，从而提高强化学习在视觉导航中的学习效率和模型性能。",
           "evidence": [
             {
               "quote": "本项目的主要目标是充分利用智能体在过去积累的经验信息，提高其在动态变化环境中的探索能力，从而提高强化学习在视觉导航中的学习效率和模型性能。",
@@ -70,171 +139,132 @@
               },
               "version": "06faff9c7fd0db5f8e61"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-65c700b7aa74",
-          "name": "高效回合记忆机制",
-          "desc": "缓解经验数据过拟合，提高程序生成环境探索效率",
-          "evidence": [
-            {
-              "quote": "首先，提出了高效回合记忆机制，缓解学习中对经验数据的过拟合问题，提高智能体在程序生成环境中的探索效率。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2648,
-                "end_char": 2698
-              },
-              "version": "06faff9c7fd0db5f8e61"
-            }
-          ]
-        },
-        {
-          "id": "item-b8b4b148b612",
-          "name": "专家数据经验回放",
-          "desc": "解决训练起始阶段学习效率低与模仿学习过拟合",
-          "evidence": [
-            {
-              "quote": "其次，提出含有专家数据的经验回放方法，解决智能体在训练起始阶段学习效率低并且模仿学习容易产生对专家数据过拟合的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2699,
-                "end_char": 2755
-              },
-              "version": "06faff9c7fd0db5f8e61"
-            }
-          ]
-        },
-        {
-          "id": "item-ca312668374e",
-          "name": "自适应探索调节机制",
-          "desc": "缓解探索利用平衡问题，提升稀疏奖励环境学习效率",
-          "evidence": [
-            {
-              "quote": "最后，设计自适应探索调节机制，缓解了学习过程中探索和利用的平衡问题，提高了智能体在稀疏奖励环境下的学习效率和性能表现。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2851,
-                "end_char": 2909
-              },
-              "version": "06faff9c7fd0db5f8e61"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5135fe8478df",
-          "name": "稀疏奖励环境学习效率提升",
-          "desc": "自适应探索机制提升学习效率与性能表现",
-          "evidence": [
-            {
-              "quote": "提高了智能体在稀疏奖励环境下的学习效率和性能表现。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2885,
-                "end_char": 2909
-              },
-              "version": "06faff9c7fd0db5f8e61"
-            }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-8ddd74dd4619",
-          "name": "程序生成环境探索效率提升",
-          "desc": "高效回合记忆机制提升探索效率",
-          "evidence": [
-            {
-              "quote": "提高智能体在程序生成环境中的探索效率。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2680,
-                "end_char": 2698
-              },
-              "version": "06faff9c7fd0db5f8e61"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-02ac6be666bf"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-930b1fe2b24d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stable Exploration via Imitating Highly-Scored Episode-Decayed Exploration Episodes in Procedurally-Generated Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b6c2d5a71f2a",
+      "evidence": [
+        {
+          "quote": "Stable Exploration via Imitating Highly-Scored Episode-Decayed Exploration Episodes in Procedurally-Generated Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2990,
+            "end_char": 3111
+          },
+          "version": "06faff9c7fd0db5f8e61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-930b1fe2b24d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-65c700b7aa74"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficient Policy Learning Based on Pretrained Vision-Language Model Representations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bcc4723d278f",
+      "evidence": [
+        {
+          "quote": "Efficient Policy Learning Based on Pretrained Vision-Language Model Representations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3169,
+            "end_char": 3251
+          },
+          "version": "06faff9c7fd0db5f8e61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-930b1fe2b24d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b8b4b148b612"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Boosting Policy Learning in Reinforcement Learning via Adaptive Intrinsic Reward Regulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-46f7c7e66a73",
+      "evidence": [
+        {
+          "quote": "Boosting Policy Learning in Reinforcement Learning via Adaptive Intrinsic Reward Regulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3304,
+            "end_char": 3394
+          },
+          "version": "06faff9c7fd0db5f8e61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c63fd772bebf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ca312668374e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modified Annealed Adversarial Bonus for Adversarially Guided Actor-Critic",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92a5bef1361f",
+      "evidence": [
+        {
+          "quote": "Modified Annealed Adversarial Bonus for Adversarially Guided Actor-Critic",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3436,
+            "end_char": 3508
+          },
+          "version": "06faff9c7fd0db5f8e61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-65c700b7aa74"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8ddd74dd4619"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ca312668374e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5135fe8478df"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improved Exploration with Demonstrations in Procedurally-generated Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-72fc34cc6ae0",
+      "evidence": [
+        {
+          "quote": "Improved Exploration with Demonstrations in Procedurally-generated Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3561,
+            "end_char": 3639
+          },
+          "version": "06faff9c7fd0db5f8e61"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

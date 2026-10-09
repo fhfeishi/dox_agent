@@ -2,15 +2,20 @@
   "doc_id": "252704b0e91349a3f8bc",
   "version": "41219eb7cbba2b135288",
   "source_hash": "ff41b7410d87f97cc33ff53f11e4facbcb99571db94b6e9aa8444e0cdb2ae987",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:11.481082+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.835349+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f92a5ae5814d",
-          "name": "大型装备深腔探测",
-          "desc": "大型精密设备复杂深腔探测与精准操作",
+          "id": "item-e33283d589fd",
+          "name": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求，为此，本",
+          "desc": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求，为此，本项目拟基于“异构融合、刚柔并济”的设计理念，在绳驱动构型基础上，融合仿生并联关节和记忆合金弹簧，研制一种刚-柔耦合的蛇形机械臂，采用深度强化学习方法和仿生进化算法进行多约束条件下的蛇形机械臂运动控制。",
           "evidence": [
             {
-              "quote": "本项目面向大型精密装备狭小非结构复杂环境深腔探测与精准操作任务需求，围绕超冗余蛇形机械臂机构设计、运动建模与运动控制展开研究",
+              "quote": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求，为此，本项目拟基于“异构融合、刚柔并济”的设计理念，在绳驱动构型基础上，融合仿生并联关节和记忆合金弹簧，研制一种刚-柔耦合的蛇形机械臂，采用深度强化学习方法和仿生进化算法进行多约束条件下的蛇形机械臂运动控制。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 655,
+                "end_char": 814
+              },
+              "version": "41219eb7cbba2b135288"
+            }
+          ]
+        },
+        {
+          "id": "item-32086c25c438",
+          "name": "本项目面向大型精密装备狭小非结构复杂环境深腔探测与精准操作任务需求，围绕超冗余蛇形机械臂机构设计、运动建模与运动控制展开",
+          "desc": "本项目面向大型精密装备狭小非结构复杂环境深腔探测与精准操作任务需求，围绕超冗余蛇形机械臂机构设计、运动建模与运动控制展开研究，主要成果如下：.①从大型精密装备深腔探测需求出发，设计了变尺度和驱动-测量一体化关节和和旋转式、模块化驱动单元，基于有限元分析和多目标优化方法对机构关键参数进行优化，获得了“离散式刚性连杆+柔顺绳索驱动”蛇形机械臂新构型；",
+          "evidence": [
+            {
+              "quote": "本项目面向大型精密装备狭小非结构复杂环境深腔探测与精准操作任务需求，围绕超冗余蛇形机械臂机构设计、运动建模与运动控制展开研究，主要成果如下：.①从大型精密装备深腔探测需求出发，设计了变尺度和驱动-测量一体化关节和和旋转式、模块化驱动单元，基于有限元分析和多目标优化方法对机构关键参数进行优化，获得了“离散式刚性连杆+柔顺绳索驱动”蛇形机械臂新构型；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2761,
-                "end_char": 2822
+                "end_char": 2934
               },
               "version": "41219eb7cbba2b135288"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-065d5ffe147b",
-          "name": "构型单一控制难度大",
-          "desc": "蛇形臂构型单一模型精度低控制难柔顺能力不强",
-          "evidence": [
-            {
-              "quote": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 655,
-                "end_char": 709
-              },
-              "version": "41219eb7cbba2b135288"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4d4e87259589",
-          "name": "RRT+A*多目标规划",
-          "desc": "快速拓展与代价寻优的多目标点全局路径规划",
+          "id": "item-f8b58bc94467",
+          "name": "②采用旋量理论和有限元方法来构建蛇形机械臂多模耦合模型，研究基于深度强化学习的复杂深腔环境下蛇形机械臂避障运动规划算法，",
+          "desc": "②采用旋量理论和有限元方法来构建蛇形机械臂多模耦合模型，研究基于深度强化学习的复杂深腔环境下蛇形机械臂避障运动规划算法，设计基于元胞自动机差分进化算法的主动柔顺控制策略。",
           "evidence": [
             {
-              "quote": "提出基于RRT+A*和相似度分析的“快速拓展+代价寻优”的多目标点全局路径规划策略，研究基于动态安全包络的极窄腔体局部路径规划算法，提出基于改进 FABRIK 的逆运动学求解算法，实现了多障碍物场景下蛇形机械臂自主路径规划和精准跟踪",
+              "quote": "②采用旋量理论和有限元方法来构建蛇形机械臂多模耦合模型，研究基于深度强化学习的复杂深腔环境下蛇形机械臂避障运动规划算法，设计基于元胞自动机差分进化算法的主动柔顺控制策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2936,
-                "end_char": 3051
+                "start_char": 890,
+                "end_char": 974
               },
               "version": "41219eb7cbba2b135288"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8871734fa626",
-          "name": "孪生系统分层控制",
-          "desc": "数字样机-物理样机孪生与感知-规划-执行分层框架",
+          "id": "item-3e2c0936d691",
+          "name": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求，为此，本",
+          "desc": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求，为此，本项目拟基于“异构融合、刚柔并济”的设计理念，在绳驱动构型基础上，融合仿生并联关节和记忆合金弹簧，研制一种刚-柔耦合的蛇形机械臂，采用深度强化学习方法和仿生进化算法进行多约束条件下的蛇形机械臂运动控制。",
           "evidence": [
             {
-              "quote": "研制了17自由度蛇形机械臂物理样机，建立了数字样机-物理样机孪生系统，构建了“环境感知-规划控制-运动执行”分层控制框架，在桁架、多障碍物、多孔板、环形腔体等典型场景完成自主运动和实际大型装备深腔探测试验。",
+              "quote": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求，为此，本项目拟基于“异构融合、刚柔并济”的设计理念，在绳驱动构型基础上，融合仿生并联关节和记忆合金弹簧，研制一种刚-柔耦合的蛇形机械臂，采用深度强化学习方法和仿生进化算法进行多约束条件下的蛇形机械臂运动控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3054,
-                "end_char": 3156
+                "start_char": 655,
+                "end_char": 814
               },
               "version": "41219eb7cbba2b135288"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,512 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bb4290dc03e4",
-          "name": "17自由度物理样机",
-          "desc": "研制17自由度蛇形机械臂并完成深腔探测试验",
+          "id": "item-1ffee995862b",
+          "name": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求，为此，本",
+          "desc": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求，为此，本项目拟基于“异构融合、刚柔并济”的设计理念，在绳驱动构型基础上，融合仿生并联关节和记忆合金弹簧，研制一种刚-柔耦合的蛇形机械臂，采用深度强化学习方法和仿生进化算法进行多约束条件下的蛇形机械臂运动控制。",
           "evidence": [
             {
-              "quote": "研制了17自由度蛇形机械臂物理样机，建立了数字样机-物理样机孪生系统",
+              "quote": "现有蛇形机械臂构型单一、模型精度低、控制难度大且自主柔顺运动能力不强，难以满足大型精密设备复杂深腔探测任务需求，为此，本项目拟基于“异构融合、刚柔并济”的设计理念，在绳驱动构型基础上，融合仿生并联关节和记忆合金弹簧，研制一种刚-柔耦合的蛇形机械臂，采用深度强化学习方法和仿生进化算法进行多约束条件下的蛇形机械臂运动控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3054,
-                "end_char": 3087
+                "start_char": 655,
+                "end_char": 814
               },
               "version": "41219eb7cbba2b135288"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-0b89a0524507",
-          "name": "论文8篇与竞赛一等奖",
-          "desc": "TMECH等论文8篇、专利授权3项、研究生机器人创新设计大赛一等奖2项",
+          "id": "item-adc8cbb4a99e",
+          "name": "本项目面向大型精密装备狭小非结构复杂环境深腔探测与精准操作任务需求，围绕超冗余蛇形机械臂机构设计、运动建模与运动控制展开",
+          "desc": "本项目面向大型精密装备狭小非结构复杂环境深腔探测与精准操作任务需求，围绕超冗余蛇形机械臂机构设计、运动建模与运动控制展开研究，主要成果如下：.①从大型精密装备深腔探测需求出发，设计了变尺度和驱动-测量一体化关节和和旋转式、模块化驱动单元，基于有限元分析和多目标优化方法对机构关键参数进行优化，获得了“离散式刚性连杆+柔顺绳索驱动”蛇形机械臂新构型；",
           "evidence": [
             {
-              "quote": "在IEEE TMECH (Top, IF: 6.1)、Robotica(IF: 1.9)、JMR (IF: 2.576)等发表论文8篇，申请国家发明专利4项（授权3项），授权软著5项。",
+              "quote": "本项目面向大型精密装备狭小非结构复杂环境深腔探测与精准操作任务需求，围绕超冗余蛇形机械臂机构设计、运动建模与运动控制展开研究，主要成果如下：.①从大型精密装备深腔探测需求出发，设计了变尺度和驱动-测量一体化关节和和旋转式、模块化驱动单元，基于有限元分析和多目标优化方法对机构关键参数进行优化，获得了“离散式刚性连杆+柔顺绳索驱动”蛇形机械臂新构型；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3237,
-                "end_char": 3328
+                "start_char": 2761,
+                "end_char": 2934
               },
               "version": "41219eb7cbba2b135288"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f92a5ae5814d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-065d5ffe147b"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "北京化工大学“博学”青年学者",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-175115e58a1d",
+      "evidence": [
+        {
+          "quote": "北京化工大学“博学”青年学者",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3435,
+            "end_char": 3448
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-065d5ffe147b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4d4e87259589"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种超冗余机械臂分段式动态避障方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ebcac9ea6a15",
+      "evidence": [
+        {
+          "quote": "一种超冗余机械臂分段式动态避障方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3542,
+            "end_char": 3558
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-065d5ffe147b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8871734fa626"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第二届“新工科”本科生毕业设计大赛优秀指导教师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3dd189d83c12",
+      "evidence": [
+        {
+          "quote": "第二届“新工科”本科生毕业设计大赛优秀指导教师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3581,
+            "end_char": 3603
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4d4e87259589"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bb4290dc03e4"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Control of a Mobile Cable-driven Manipulator with Experimental Validation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eae33a39a3f2",
+      "evidence": [
+        {
+          "quote": "Design and Control of a Mobile Cable-driven Manipulator with Experimental Validation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3620,
+            "end_char": 3703
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8871734fa626"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0b89a0524507"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "北京市科学技术协会青年人才托举工程",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d365177472ef",
+      "evidence": [
+        {
+          "quote": "北京市科学技术协会青年人才托举工程",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3751,
+            "end_char": 3767
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "ZB预研教育部联合基金(青年人才)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-49bd2fceccde",
+      "evidence": [
+        {
+          "quote": "ZB预研教育部联合基金(青年人才)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3782,
+            "end_char": 3798
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "北京化工大学优秀博士后一等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-45cdad6ec00c",
+      "evidence": [
+        {
+          "quote": "北京化工大学优秀博士后一等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3467,
+            "end_char": 3480
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "北京化工大学本科优秀毕业设计(论文)指导教师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52ba7370f991",
+      "evidence": [
+        {
+          "quote": "北京化工大学本科优秀毕业设计(论文)指导教师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3841,
+            "end_char": 3862
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "北京市课程思政教学名师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-70a770f4ab04",
+      "evidence": [
+        {
+          "quote": "北京市课程思政教学名师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3423,
+            "end_char": 3433
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "“申昊杯”第五届中国研究生机器人创新设计大赛一等奖 优秀指导老师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f8b6b90be056",
+      "evidence": [
+        {
+          "quote": "“申昊杯”第五届中国研究生机器人创新设计大赛一等奖 优秀指导老师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3903,
+            "end_char": 3934
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcement Learning-based Motion Control for Snake Robots in Complex Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c1ea56094ee9",
+      "evidence": [
+        {
+          "quote": "Reinforcement Learning-based Motion Control for Snake Robots in Complex Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3952,
+            "end_char": 4035
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "机械工业科学技术奖技术发明二等奖,面向复杂环境的高适应性自学习多足运载平台关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01e9104582d3",
+      "evidence": [
+        {
+          "quote": "机械工业科学技术奖技术发明二等奖,面向复杂环境的高适应性自学习多足运载平台关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4082,
+            "end_char": 4125
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "“申昊杯”第六届中国研究生机器人创新设计大赛一等奖 优秀指导老师",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-274f52141e63",
+      "evidence": [
+        {
+          "quote": "“申昊杯”第六届中国研究生机器人创新设计大赛一等奖 优秀指导老师",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4169,
+            "end_char": 4200
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DDPG-based path planning for cable-driven manipulators in multi-obstacle environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-015ea248f812",
+      "evidence": [
+        {
+          "quote": "DDPG-based path planning for cable-driven manipulators in multi-obstacle environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4218,
+            "end_char": 4302
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Rapid Object Detection and Localization Through R-tree Based  Multi-Sensor Fusion for Inspection Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd4183d880e7",
+      "evidence": [
+        {
+          "quote": "Rapid Object Detection and Localization Through R-tree Based  Multi-Sensor Fusion for Inspection Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4388,
+            "end_char": 4490
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第二届全国博士后创新创业大赛北京赛区优胜项目",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a28d8995a3dc",
+      "evidence": [
+        {
+          "quote": "第二届全国博士后创新创业大赛北京赛区优胜项目",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4540,
+            "end_char": 4561
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design, Modeling, and Kinematics Analysis of a Modular Cable-Driven Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f4c85a996b24",
+      "evidence": [
+        {
+          "quote": "Design, Modeling, and Kinematics Analysis of a Modular Cable-Driven Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4579,
+            "end_char": 4657
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Cosine Similarity Based Multitarget Path  Planning Algorithm for Cable-Driven  Manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c6e805c094f",
+      "evidence": [
+        {
+          "quote": "A Cosine Similarity Based Multitarget Path  Planning Algorithm for Cable-Driven  Manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4750,
+            "end_char": 4842
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于强化学习的仿蛇机器人运动规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c4818730292",
+      "evidence": [
+        {
+          "quote": "基于强化学习的仿蛇机器人运动规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4910,
+            "end_char": 4927
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "北京化工大学教学成果奖(研究生)一等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-17d0bb38517f",
+      "evidence": [
+        {
+          "quote": "北京化工大学教学成果奖(研究生)一等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4964,
+            "end_char": 4982
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A local collision-free motion planning strategy for hyper-redundant manipulators based on dynamic safety envelopes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d461a9a55962",
+      "evidence": [
+        {
+          "quote": "A local collision-free motion planning strategy for hyper-redundant manipulators based on dynamic safety envelopes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5016,
+            "end_char": 5129
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种模块化便拆卸蛇形机械臂",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26ebd8c5dee2",
+      "evidence": [
+        {
+          "quote": "一种模块化便拆卸蛇形机械臂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5184,
+            "end_char": 5196
+          },
+          "version": "41219eb7cbba2b135288"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 13,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": false
+  }
 }

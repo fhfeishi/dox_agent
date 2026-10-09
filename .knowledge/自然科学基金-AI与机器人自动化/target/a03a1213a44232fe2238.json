@@ -2,15 +2,20 @@
   "doc_id": "a03a1213a44232fe2238",
   "version": "013bf5c433f048fda99a",
   "source_hash": "cab870f4bef4a6c855c106d4854d9514908cf49790afd9b8eaa5ffd2100284a4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:43:09.894440+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.038229+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1694d21e53f0",
-          "name": "下肢康复外骨骼训练",
-          "desc": "针对运动神经系统损伤患者的下肢康复外骨骼机器人功能康复训练",
+          "id": "item-b92a6ef36a79",
+          "name": "由各种疾病和不良运动引起的人体下肢损伤呈现逐年增多的趋势。",
+          "desc": "由各种疾病和不良运动引起的人体下肢损伤呈现逐年增多的趋势。",
           "evidence": [
             {
-              "quote": "下肢康复外骨骼机器人是针对运动神经系统损伤患者进行功能康复训练的重要技术装备，通过辅助患者行走，有效促进神经系统恢复，从而达到治疗目的",
+              "quote": "由各种疾病和不良运动引起的人体下肢损伤呈现逐年增多的趋势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2943,
-                "end_char": 3009
+                "start_char": 647,
+                "end_char": 675
               },
               "version": "013bf5c433f048fda99a"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-670628d4d32e",
-          "name": "个体差异与人机交互难",
-          "desc": "康复训练患者个体差异性大、训练需求不同、人机自然交互与力位柔顺控制困难",
-          "evidence": [
-            {
-              "quote": "本项目针对康复训练患者个体差异性大，训练需求不同，人机自然交互，力位柔顺控制困难等关键技术问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3011,
-                "end_char": 3057
-              },
-              "version": "013bf5c433f048fda99a"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-b728ed526caf",
-          "name": "多传感交互力感知",
-          "desc": "多传感器融合的人机交互力与患者状态感知方法，将交互力从运动扭矩中分离",
+          "id": "item-994f9caa3f1c",
+          "name": "研究人体运动控制神经调节下自然、主动行走和助力应激反应规律、人机物理和信息交互机制，建立人-机-人体运动控制神经耦合模型",
+          "desc": "研究人体运动控制神经调节下自然、主动行走和助力应激反应规律、人机物理和信息交互机制，建立人-机-人体运动控制神经耦合模型，探索系统特性和控制方法；",
           "evidence": [
             {
-              "quote": "研究了多传感器融合的人机交互力与患者状态感知方法，将人机交互力从外骨骼运动扭矩中分离出来",
+              "quote": "研究人体运动控制神经调节下自然、主动行走和助力应激反应规律、人机物理和信息交互机制，建立人-机-人体运动控制神经耦合模型，探索系统特性和控制方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3117,
-                "end_char": 3160
+                "start_char": 820,
+                "end_char": 892
               },
               "version": "013bf5c433f048fda99a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-62a1b66ff5a1",
-          "name": "神经耦合建模",
-          "desc": "人体骨骼肌肉系统-运动神经控制系统模型与非简化三维多刚体动力学建模及参数在线辨识",
+          "id": "item-d7b964824e57",
+          "name": "其次，构建了人体骨骼肌肉系统-运动神经控制系统模型，并研究了外骨骼机器人的非简化三维多刚体动力学建模方法与动态参数在线辨",
+          "desc": "其次，构建了人体骨骼肌肉系统-运动神经控制系统模型，并研究了外骨骼机器人的非简化三维多刚体动力学建模方法与动态参数在线辨识方法，采用高斯回归研究了不同速度下的交互参数的变化规律，实现了理想的人机自然交互；",
           "evidence": [
             {
-              "quote": "构建了人体骨骼肌肉系统-运动神经控制系统模型，并研究了外骨骼机器人的非简化三维多刚体动力学建模方法与动态参数在线辨识方法",
+              "quote": "其次，构建了人体骨骼肌肉系统-运动神经控制系统模型，并研究了外骨骼机器人的非简化三维多刚体动力学建模方法与动态参数在线辨识方法，采用高斯回归研究了不同速度下的交互参数的变化规律，实现了理想的人机自然交互；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3190,
-                "end_char": 3249
+                "start_char": 3187,
+                "end_char": 3288
               },
               "version": "013bf5c433f048fda99a"
             }
-          ]
-        },
-        {
-          "id": "item-a56db8d3df9e",
-          "name": "鲁棒协调控制",
-          "desc": "面向不确定性的鲁棒协调控制方法，解决关节控制、双腿助力协调、时滞、颤振、饱和等问题",
-          "evidence": [
-            {
-              "quote": "开展了鲁棒协调控制方法研究，并从多智能体层面开展研究工作，解决关节控制、双腿助力协调、时滞、不确定、颤振、饱和、信号滤波等诸多理论与应用问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3313,
-                "end_char": 3382
-              },
-              "version": "013bf5c433f048fda99a"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +91,1388 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a110f7fd544d",
-          "name": "论文62篇与临床测试",
-          "desc": "发表SCI期刊论文62篇，申请专利14项，康复机器人产品在国内多个临床中心进行临床测试",
+          "id": "item-8d44bc218946",
+          "name": "由各种疾病和不良运动引起的人体下肢损伤呈现逐年增多的趋势。",
+          "desc": "由各种疾病和不良运动引起的人体下肢损伤呈现逐年增多的趋势。",
           "evidence": [
             {
-              "quote": "本项目共发表SCI期刊论文62篇，申请专利14项。康复机器人产品作为项目成果之一正在国内多个临床中心进行临床测试",
+              "quote": "由各种疾病和不良运动引起的人体下肢损伤呈现逐年增多的趋势。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3412,
-                "end_char": 3467
+                "start_char": 647,
+                "end_char": 675
               },
               "version": "013bf5c433f048fda99a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-27622c304f08",
+          "name": "下肢康复外骨骼机器人是针对运动神经系统损伤患者进行功能康复训练的重要技术装备，通过辅助患者行走，有效促进神经系统恢复，从",
+          "desc": "下肢康复外骨骼机器人是针对运动神经系统损伤患者进行功能康复训练的重要技术装备，通过辅助患者行走，有效促进神经系统恢复，从而达到治疗目的。",
+          "evidence": [
+            {
+              "quote": "下肢康复外骨骼机器人是针对运动神经系统损伤患者进行功能康复训练的重要技术装备，通过辅助患者行走，有效促进神经系统恢复，从而达到治疗目的。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2943,
+                "end_char": 3010
+              },
+              "version": "013bf5c433f048fda99a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1694d21e53f0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-670628d4d32e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于无人机搭载机械臂的采茶装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d305cf50843",
+      "evidence": [
+        {
+          "quote": "一种基于无人机搭载机械臂的采茶装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3524,
+            "end_char": 3540
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-670628d4d32e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b728ed526caf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "On bipartite consensus of linear MASs with input saturation over directed signed graphs: Fully distributed adaptive approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ddfac277f165",
+      "evidence": [
+        {
+          "quote": "On bipartite consensus of linear MASs with input saturation over directed signed graphs: Fully distributed adaptive approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3572,
+            "end_char": 3695
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-670628d4d32e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-62a1b66ff5a1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimal thrust control with magnitude and direction constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0d50e29b06d",
+      "evidence": [
+        {
+          "quote": "Optimal thrust control with magnitude and direction constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3730,
+            "end_char": 3792
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-670628d4d32e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a56db8d3df9e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Designing fully distributed adaptive event-triggered controllers for networked linear systems with matched uncertainties",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d028a3b4e74",
+      "evidence": [
+        {
+          "quote": "Designing fully distributed adaptive event-triggered controllers for networked linear systems with matched uncertainties",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3834,
+            "end_char": 3953
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a56db8d3df9e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a110f7fd544d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive attack-free protocol for consensus tracking with pure relative output information",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96ee3a632883",
+      "evidence": [
+        {
+          "quote": "Adaptive attack-free protocol for consensus tracking with pure relative output information",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3982,
+            "end_char": 4071
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b728ed526caf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a110f7fd544d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Variable stiffness control with strict frequency domain constraints for physical human-robot interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dd6f41e38142",
+      "evidence": [
+        {
+          "quote": "Variable stiffness control with strict frequency domain constraints for physical human-robot interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4115,
+            "end_char": 4218
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed H infinity robust control of multiagent systems with uncertain parameters: performance-region-based approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dca2cf4a724e",
+      "evidence": [
+        {
+          "quote": "Distributed H infinity robust control of multiagent systems with uncertain parameters: performance-region-based approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4268,
+            "end_char": 4387
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Performance-based fault detection and fault-tolerant control for nonlinear systems with T-S fuzzy implementation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ac7d91e37d7b",
+      "evidence": [
+        {
+          "quote": "Performance-based fault detection and fault-tolerant control for nonlinear systems with T-S fuzzy implementation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4436,
+            "end_char": 4547
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coherence of Noisy Double-Integrator Networks Without Velocity Measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a947454839d",
+      "evidence": [
+        {
+          "quote": "Coherence of Noisy Double-Integrator Networks Without Velocity Measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4592,
+            "end_char": 4666
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fully distributed containment control for multiple Euler-Lagrange systems over directed graphs: an event-triggered approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca409553bf9f",
+      "evidence": [
+        {
+          "quote": "Fully distributed containment control for multiple Euler-Lagrange systems over directed graphs: an event-triggered approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4694,
+            "end_char": 4816
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fully distributed consensus for general linear multi-agent systems with unknown external disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b02ea6be4d82",
+      "evidence": [
+        {
+          "quote": "Fully distributed consensus for general linear multi-agent systems with unknown external disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4852,
+            "end_char": 4952
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stability of a General Class of Power Control Algorithms With Single-Step Feedback in Wireless Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-120c2daf570f",
+      "evidence": [
+        {
+          "quote": "Stability of a General Class of Power Control Algorithms With Single-Step Feedback in Wireless Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4994,
+            "end_char": 5096
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust consensus for multi-agent systems communiting over stochastic uncertain networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-efd7a24c113f",
+      "evidence": [
+        {
+          "quote": "Robust consensus for multi-agent systems communiting over stochastic uncertain networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5133,
+            "end_char": 5219
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于倾转旋翼飞行器模态转换阶段的控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-97e0e305cec5",
+      "evidence": [
+        {
+          "quote": "基于倾转旋翼飞行器模态转换阶段的控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5246,
+            "end_char": 5265
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive obstacle detection for mobile robots in urban environments using downward-looking 2D LiDAR",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3245a70a93dd",
+      "evidence": [
+        {
+          "quote": "Adaptive obstacle detection for mobile robots in urban environments using downward-looking 2D LiDAR",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5309,
+            "end_char": 5407
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "护膝装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-78116e775384",
+      "evidence": [
+        {
+          "quote": "护膝装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5467,
+            "end_char": 5470
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed fixed-time coordination control for networked multiple Euler-Lagrange systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd867009d149",
+      "evidence": [
+        {
+          "quote": "Distributed fixed-time coordination control for networked multiple Euler-Lagrange systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5499,
+            "end_char": 5587
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed attitude synchronization control for multiple flexible spacecraft without modal variable measurement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1606ceb46f9d",
+      "evidence": [
+        {
+          "quote": "Distributed attitude synchronization control for multiple flexible spacecraft without modal variable measurement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5631,
+            "end_char": 5742
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bipartite consensus tracking for antagonistic topologies with leader's unknown input",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0326d3ba1fe4",
+      "evidence": [
+        {
+          "quote": "Bipartite consensus tracking for antagonistic topologies with leader's unknown input",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5779,
+            "end_char": 5862
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Linear quadratic optimal consensus of discrete-time multi-agent systems with optimal steady state: A distributed model predictive control approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5be876b1de96",
+      "evidence": [
+        {
+          "quote": "Linear quadratic optimal consensus of discrete-time multi-agent systems with optimal steady state: A distributed model predictive control approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5898,
+            "end_char": 6043
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Consensus disturbance rejection with event-triggered communications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc5a87d5cbfd",
+      "evidence": [
+        {
+          "quote": "Consensus disturbance rejection with event-triggered communications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6096,
+            "end_char": 6162
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed event-triggered tracking control with a dynamic leader for multiple Euler-Lagrange systems under directed networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9dfbffa12b1b",
+      "evidence": [
+        {
+          "quote": "Distributed event-triggered tracking control with a dynamic leader for multiple Euler-Lagrange systems under directed networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6192,
+            "end_char": 6317
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Active interactive genetic control for lower limb rehabilitation robots with uncertainties",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0ce96a60c57",
+      "evidence": [
+        {
+          "quote": "Active interactive genetic control for lower limb rehabilitation robots with uncertainties",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6362,
+            "end_char": 6451
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种端到端的分布式流量分配方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e07dbd908225",
+      "evidence": [
+        {
+          "quote": "一种端到端的分布式流量分配方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6486,
+            "end_char": 6500
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coordinated tracking control with asynchronous edge-based event-triggered communications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f6b5260cba1",
+      "evidence": [
+        {
+          "quote": "Coordinated tracking control with asynchronous edge-based event-triggered communications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6523,
+            "end_char": 6610
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed maximum correntropy unscented Kalman filtering with state equality constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-551198aa0dfb",
+      "evidence": [
+        {
+          "quote": "Distributed maximum correntropy unscented Kalman filtering with state equality constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6640,
+            "end_char": 6729
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Performance residual based fault detection for feedback control systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d68568c6847",
+      "evidence": [
+        {
+          "quote": "Performance residual based fault detection for feedback control systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6774,
+            "end_char": 6844
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-based distributed robust synchronization control for multiple Euler-Lagrange systems without relative velocity measurements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d5601a25c52",
+      "evidence": [
+        {
+          "quote": "Event-based distributed robust synchronization control for multiple Euler-Lagrange systems without relative velocity measurements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6880,
+            "end_char": 7008
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust bipartite consensus and tracking control of high-order multiagent systems with matching uncertainties and antagonistic interactions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-767a3c3b2ab6",
+      "evidence": [
+        {
+          "quote": "Robust bipartite consensus and tracking control of high-order multiagent systems with matching uncertainties and antagonistic interactions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7044,
+            "end_char": 7181
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed edge-based event-triggered formation control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb9fb9f287cd",
+      "evidence": [
+        {
+          "quote": "Distributed edge-based event-triggered formation control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7217,
+            "end_char": 7272
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cooperative output regulation of heterogeneous multi-agent systems with adaptive edge-event-triggered strategies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-99adc75cd437",
+      "evidence": [
+        {
+          "quote": "Cooperative output regulation of heterogeneous multi-agent systems with adaptive edge-event-triggered strategies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7308,
+            "end_char": 7419
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed continuous-time optimization with scalable adaptive event-based mechanisms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd5ce28f896c",
+      "evidence": [
+        {
+          "quote": "Distributed continuous-time optimization with scalable adaptive event-based mechanisms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7457,
+            "end_char": 7542
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tracking control for lower limb rehabilitation robots based on polynomial nonlinear uncertain models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-398460a05fb9",
+      "evidence": [
+        {
+          "quote": "Tracking control for lower limb rehabilitation robots based on polynomial nonlinear uncertain models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7583,
+            "end_char": 7682
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven process monitoring using structured joint sparse canonical correlation analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b1b906c63335",
+      "evidence": [
+        {
+          "quote": "Data-driven process monitoring using structured joint sparse canonical correlation analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7717,
+            "end_char": 7807
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "H-infinity mixed stabilization of nonlinear parameter-varying systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e7f59bc945c2",
+      "evidence": [
+        {
+          "quote": "H-infinity mixed stabilization of nonlinear parameter-varying systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7852,
+            "end_char": 7920
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LQ synchronization of discrete-time multiagent systems: a distributed optimization approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db23f4b56c79",
+      "evidence": [
+        {
+          "quote": "LQ synchronization of discrete-time multiagent systems: a distributed optimization approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7957,
+            "end_char": 8047
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于降维观测器的无人集群仿射编队控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1da910c4363f",
+      "evidence": [
+        {
+          "quote": "一种基于降维观测器的无人集群仿射编队控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8092,
+            "end_char": 8113
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control Performance-Based Fault-Tolerant Control Strategy for Singular Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8efeb93e89be",
+      "evidence": [
+        {
+          "quote": "Control Performance-Based Fault-Tolerant Control Strategy for Singular Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8140,
+            "end_char": 8217
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed adaptive consensus protocols for linear multi-agent systems over directed graphs with relative output information",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbf959a55fe5",
+      "evidence": [
+        {
+          "quote": "Distributed adaptive consensus protocols for linear multi-agent systems over directed graphs with relative output information",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8263,
+            "end_char": 8387
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive fault-tolerant PI tracking control for ship propulsion system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3ca808717a51",
+      "evidence": [
+        {
+          "quote": "Adaptive fault-tolerant PI tracking control for ship propulsion system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8422,
+            "end_char": 8491
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fully distributed event-triggered protocols for linear multiagent networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-be6c43d8a9cb",
+      "evidence": [
+        {
+          "quote": "Fully distributed event-triggered protocols for linear multiagent networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8544,
+            "end_char": 8617
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Some necessary and sufficient conditions for synchronization of second-order interconnected networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9229a8ee12e1",
+      "evidence": [
+        {
+          "quote": "Some necessary and sufficient conditions for synchronization of second-order interconnected networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8647,
+            "end_char": 8746
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A fault detection scheme for ship propulsion systems using randomized algorithm techniques",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-463333b0e045",
+      "evidence": [
+        {
+          "quote": "A fault detection scheme for ship propulsion systems using randomized algorithm techniques",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8790,
+            "end_char": 8879
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control performance-based fault detection and fault-tolerant control schemes for a class of nonlinear systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6e271edde821",
+      "evidence": [
+        {
+          "quote": "Control performance-based fault detection and fault-tolerant control schemes for a class of nonlinear systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8928,
+            "end_char": 9036
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "减速控制系统及减速机",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7ee430b2c25",
+      "evidence": [
+        {
+          "quote": "减速控制系统及减速机",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9080,
+            "end_char": 9089
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Consensus disturbance rejection control of directed multi-agent networks with extended state observer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02077d142512",
+      "evidence": [
+        {
+          "quote": "Consensus disturbance rejection control of directed multi-agent networks with extended state observer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9119,
+            "end_char": 9219
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fault-tolerant control for T-S fuzzy systems with sensor faults: Application to a ship propulsion system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dcf65d4dab03",
+      "evidence": [
+        {
+          "quote": "Fault-tolerant control for T-S fuzzy systems with sensor faults: Application to a ship propulsion system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9260,
+            "end_char": 9363
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "护膝装置及其检测机构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0ec37122714",
+      "evidence": [
+        {
+          "quote": "护膝装置及其检测机构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9392,
+            "end_char": 9401
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种四轮转向自动驾驶汽车横向鲁棒容错控制系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a58c1379fc27",
+      "evidence": [
+        {
+          "quote": "一种四轮转向自动驾驶汽车横向鲁棒容错控制系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9429,
+            "end_char": 9453
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "New controllability conditions for networked, identical LTI systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ad0fe2030f1f",
+      "evidence": [
+        {
+          "quote": "New controllability conditions for networked, identical LTI systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9480,
+            "end_char": 9546
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The guaranteed cost controller for nonlinear systems with time-varying parameters and input saturation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0b013c80688",
+      "evidence": [
+        {
+          "quote": "The guaranteed cost controller for nonlinear systems with time-varying parameters and input saturation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9590,
+            "end_char": 9691
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "On the domain of attraction and local stabilization of nonlinear parameter-varying systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-09119caae864",
+      "evidence": [
+        {
+          "quote": "On the domain of attraction and local stabilization of nonlinear parameter-varying systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9729,
+            "end_char": 9818
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Resilient state estimation for complex dynamic networks with system model perturbation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f7c95559ca89",
+      "evidence": [
+        {
+          "quote": "Resilient state estimation for complex dynamic networks with system model perturbation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9861,
+            "end_char": 9946
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed adaptive tracking control for Lur'e systems with event-triggered strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6fee77e91bba",
+      "evidence": [
+        {
+          "quote": "Distributed adaptive tracking control for Lur'e systems with event-triggered strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9989,
+            "end_char": 10073
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-based distributed tracking control for second-order multiagent systems with switching networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-55a99e18c1cd",
+      "evidence": [
+        {
+          "quote": "Event-based distributed tracking control for second-order multiagent systems with switching networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10109,
+            "end_char": 10208
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于无人机的两移一转的三自由度派件机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bb92184731d3",
+      "evidence": [
+        {
+          "quote": "基于无人机的两移一转的三自由度派件机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10253,
+            "end_char": 10272
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种动力模组",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-04c578da8903",
+      "evidence": [
+        {
+          "quote": "一种动力模组",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10302,
+            "end_char": 10307
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-triggered consensus of homogeneous and heterogeneous multiagent systems with jointly connected switching topologies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-66fb60b3abd4",
+      "evidence": [
+        {
+          "quote": "Event-triggered consensus of homogeneous and heterogeneous multiagent systems with jointly connected switching topologies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10336,
+            "end_char": 10456
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed model predictive control for linear-quadratic performance and consensus state optimization of multiagent systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-555572e4ede0",
+      "evidence": [
+        {
+          "quote": "Distributed model predictive control for linear-quadratic performance and consensus state optimization of multiagent systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10494,
+            "end_char": 10617
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast finite-time tracking control for multi-agent systems with mismatched disturbances under directed communication graphs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba51156a03b8",
+      "evidence": [
+        {
+          "quote": "Fast finite-time tracking control for multi-agent systems with mismatched disturbances under directed communication graphs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10670,
+            "end_char": 10791
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust control of uncertain robotic systems: An adaptive friction compensation approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-44d889e67275",
+      "evidence": [
+        {
+          "quote": "Robust control of uncertain robotic systems: An adaptive friction compensation approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10835,
+            "end_char": 10921
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-based fault detection for uncertain nonlinear systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-73ad64cb5bd0",
+      "evidence": [
+        {
+          "quote": "Observer-based fault detection for uncertain nonlinear systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10970,
+            "end_char": 11031
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Kalman filtering for uncertain dynamic systems with state constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a25e5665c7e",
+      "evidence": [
+        {
+          "quote": "Distributed Kalman filtering for uncertain dynamic systems with state constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11077,
+            "end_char": 11157
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种折叠按扣、带折叠按扣的绑带及护膝装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa6aef25c0e8",
+      "evidence": [
+        {
+          "quote": "一种折叠按扣、带折叠按扣的绑带及护膝装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11192,
+            "end_char": 11211
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Controllability of Kronecker product networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eeb2c8b4e7da",
+      "evidence": [
+        {
+          "quote": "Controllability of Kronecker product networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11239,
+            "end_char": 11283
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种抗通信延迟的智能电动车编队自适应鲁棒控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-240eaeacab4d",
+      "evidence": [
+        {
+          "quote": "一种抗通信延迟的智能电动车编队自适应鲁棒控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11327,
+            "end_char": 11350
+          },
+          "version": "013bf5c433f048fda99a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 66,
+    "listed": 66,
+    "by_kind": {
+      "专利": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "期刊论文": {
+        "listed": 52,
+        "extracted": 52
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

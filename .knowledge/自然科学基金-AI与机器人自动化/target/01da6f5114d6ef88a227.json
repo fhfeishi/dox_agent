@@ -2,15 +2,20 @@
   "doc_id": "01da6f5114d6ef88a227",
   "version": "0e609502fdd6e872b7dc",
   "source_hash": "9fc42e041772ac0a4d8cd7385139b7ac3530e42ed84168ea52b0f333099e0cc9",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:24.494116+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.527124+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2033a09f662d",
-          "name": "MR兼容软体手术机器人",
-          "desc": "面向临床微创手术核磁共振兼容需求的软体连续体机械臂",
+          "id": "item-f42fab6e878b",
+          "name": "气动软体机器人具有良好的柔顺性和高度的灵活性，为人体器官的形态和运动仿生提供了新方法。",
+          "desc": "气动软体机器人具有良好的柔顺性和高度的灵活性，为人体器官的形态和运动仿生提供了新方法。",
           "evidence": [
             {
-              "quote": "结合临床微创手术对核磁共振（MR）兼容性的迫切需求，项目组将研究对象拓展优化为基于折纸结构的Yoshimura软体连续体机械臂（YoMo）。",
+              "quote": "气动软体机器人具有良好的柔顺性和高度的灵活性，为人体器官的形态和运动仿生提供了新方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3098,
-                "end_char": 3167
+                "start_char": 644,
+                "end_char": 686
               },
               "version": "0e609502fdd6e872b7dc"
             }
@@ -41,16 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6beafa9b6d55",
-          "name": "软体机器人精确驱动控制",
-          "desc": "非结构化环境下软体结构强非线性与迟滞特性的精确驱动与控制",
+          "id": "item-de1fdb668484",
+          "name": "其中，仿胃软体机器人突破了传统仿胃机器人的局限性，能够模仿胃的形态，但是仍缺乏模仿胃轴向蠕动运动的驱动技术和控制方法，降",
+          "desc": "其中，仿胃软体机器人突破了传统仿胃机器人的局限性，能够模仿胃的形态，但是仍缺乏模仿胃轴向蠕动运动的驱动技术和控制方法，降低了其模拟消化过程的重复性和准确性，阻碍了仿胃软体机器人的应用。",
           "evidence": [
             {
-              "quote": "本项目针对软体机器人在非结构化环境下的精确驱动与控制难题，围绕软体结构的轴向驱动机理与非线性控制方法开展了深入研究。",
+              "quote": "其中，仿胃软体机器人突破了传统仿胃机器人的局限性，能够模仿胃的形态，但是仍缺乏模仿胃轴向蠕动运动的驱动技术和控制方法，降低了其模拟消化过程的重复性和准确性，阻碍了仿胃软体机器人的应用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3019,
-                "end_char": 3076
+                "start_char": 687,
+                "end_char": 778
+              },
+              "version": "0e609502fdd6e872b7dc"
+            }
+          ]
+        },
+        {
+          "id": "item-35b727d09c92",
+          "name": "本项目将围绕基于多径缩的轴向蠕动展开，针对轴向蠕动中软体机器人材料的迟滞非线性、多径缩之间的耦合以及胃腔内食物环境的干扰",
+          "desc": "本项目将围绕基于多径缩的轴向蠕动展开，针对轴向蠕动中软体机器人材料的迟滞非线性、多径缩之间的耦合以及胃腔内食物环境的干扰等难题，凝练出两个关键科学问题：a.基于多径缩的轴向蠕动动力学建模问题；",
+          "evidence": [
+            {
+              "quote": "本项目将围绕基于多径缩的轴向蠕动展开，针对轴向蠕动中软体机器人材料的迟滞非线性、多径缩之间的耦合以及胃腔内食物环境的干扰等难题，凝练出两个关键科学问题：a.基于多径缩的轴向蠕动动力学建模问题；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 779,
+                "end_char": 874
               },
               "version": "0e609502fdd6e872b7dc"
             }
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4002365fdee4",
-          "name": "Yoshimura折纸软体机械臂",
-          "desc": "气/线混合驱动，轴向折叠实现伸缩弯曲，天然MR兼容",
+          "id": "item-6f047e9ab0d1",
+          "name": "3）发展了基于LSTM-Attention网络和模型预测控制（MPC）的轨迹跟踪策略，实现了软体机械臂在受限空间内的高精",
+          "desc": "3）发展了基于LSTM-Attention网络和模型预测控制（MPC）的轨迹跟踪策略，实现了软体机械臂在受限空间内的高精度运动控制。",
           "evidence": [
             {
-              "quote": "设计了一种基于Yoshimura折纸构型的气/线混合驱动软体机械臂，阐明了其通过轴向折叠实现伸缩与弯曲的力学机理",
+              "quote": "3）发展了基于LSTM-Attention网络和模型预测控制（MPC）的轨迹跟踪策略，实现了软体机械臂在受限空间内的高精度运动控制。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3179,
-                "end_char": 3234
-              },
-              "version": "0e609502fdd6e872b7dc"
-            }
-          ]
-        },
-        {
-          "id": "item-c41cc6dc345c",
-          "name": "Koopman算子数据驱动建模",
-          "desc": "将非线性动力学映射为全局线性模型降低计算复杂度",
-          "evidence": [
-            {
-              "quote": "提出了基于Koopman算子的数据驱动建模方法，将非线性动力学映射为全局线性模型，有效解决了模型计算复杂度高的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3274,
-                "end_char": 3330
-              },
-              "version": "0e609502fdd6e872b7dc"
-            }
-          ]
-        },
-        {
-          "id": "item-f52ba64d7635",
-          "name": "LSTM-Attention+MPC跟踪",
-          "desc": "轨迹跟踪策略实现受限空间高精度运动控制",
-          "evidence": [
-            {
-              "quote": "发展了基于LSTM-Attention网络和模型预测控制（MPC）的轨迹跟踪策略，实现了软体机械臂在受限空间内的高精度运动控制。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3334,
+                "start_char": 3332,
                 "end_char": 3397
               },
               "version": "0e609502fdd6e872b7dc"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c2b7a8976886",
+          "name": "其中，仿胃软体机器人突破了传统仿胃机器人的局限性，能够模仿胃的形态，但是仍缺乏模仿胃轴向蠕动运动的驱动技术和控制方法，降",
+          "desc": "其中，仿胃软体机器人突破了传统仿胃机器人的局限性，能够模仿胃的形态，但是仍缺乏模仿胃轴向蠕动运动的驱动技术和控制方法，降低了其模拟消化过程的重复性和准确性，阻碍了仿胃软体机器人的应用。",
+          "evidence": [
+            {
+              "quote": "其中，仿胃软体机器人突破了传统仿胃机器人的局限性，能够模仿胃的形态，但是仍缺乏模仿胃轴向蠕动运动的驱动技术和控制方法，降低了其模拟消化过程的重复性和准确性，阻碍了仿胃软体机器人的应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 687,
+                "end_char": 778
+              },
+              "version": "0e609502fdd6e872b7dc"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +124,144 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3d6f9f15c234",
-          "name": "MR兼容穿刺手术系统",
-          "desc": "研制MR兼容软体穿刺手术机器人系统验证介入手术潜力",
+          "id": "item-5c383075c6ef",
+          "name": "气动软体机器人具有良好的柔顺性和高度的灵活性，为人体器官的形态和运动仿生提供了新方法。",
+          "desc": "气动软体机器人具有良好的柔顺性和高度的灵活性，为人体器官的形态和运动仿生提供了新方法。",
           "evidence": [
             {
-              "quote": "项目研制了MR兼容的软体穿刺手术机器人系统，验证了其在影像引导介入手术中的应用潜力。",
+              "quote": "气动软体机器人具有良好的柔顺性和高度的灵活性，为人体器官的形态和运动仿生提供了新方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3398,
-                "end_char": 3439
+                "start_char": 644,
+                "end_char": 686
               },
               "version": "0e609502fdd6e872b7dc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-ae4373312d66",
-          "name": "论文4篇与人才培养",
-          "desc": "发表学术论文4篇，培养博士1名、硕士1名",
+          "id": "item-2b8cc37f809f",
+          "name": "本项目针对软体机器人在非结构化环境下的精确驱动与控制难题，围绕软体结构的轴向驱动机理与非线性控制方法开展了深入研究。",
+          "desc": "本项目针对软体机器人在非结构化环境下的精确驱动与控制难题，围绕软体结构的轴向驱动机理与非线性控制方法开展了深入研究。",
           "evidence": [
             {
-              "quote": "项目发表学术论文4篇，培养博士研究生1名、硕士研究生1名。",
+              "quote": "本项目针对软体机器人在非结构化环境下的精确驱动与控制难题，围绕软体结构的轴向驱动机理与非线性控制方法开展了深入研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3440,
-                "end_char": 3468
+                "start_char": 3019,
+                "end_char": 3076
               },
               "version": "0e609502fdd6e872b7dc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2033a09f662d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6beafa9b6d55"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Active Modeling and Compensation Control of Yoshimura Manipulator Using Koopman Operator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5936aeb8972",
+      "evidence": [
+        {
+          "quote": "Active Modeling and Compensation Control of Yoshimura Manipulator Using Koopman Operator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3493,
+            "end_char": 3580
+          },
+          "version": "0e609502fdd6e872b7dc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6beafa9b6d55"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4002365fdee4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "YoMo: Yoshimura Continuum Manipulator for MR Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c4b83499c1a",
+      "evidence": [
+        {
+          "quote": "YoMo: Yoshimura Continuum Manipulator for MR Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3617,
+            "end_char": 3672
+          },
+          "version": "0e609502fdd6e872b7dc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6beafa9b6d55"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c41cc6dc345c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control-oriented Modeling of a Soft Manipulator Using the Learning-based Koopman Operator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e591e222984",
+      "evidence": [
+        {
+          "quote": "Control-oriented Modeling of a Soft Manipulator Using the Learning-based Koopman Operator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3704,
+            "end_char": 3792
+          },
+          "version": "0e609502fdd6e872b7dc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6beafa9b6d55"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f52ba64d7635"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4002365fdee4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3d6f9f15c234"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f52ba64d7635"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ae4373312d66"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Trajectory Tracking of Yoshimura-Origami Continuum Manipulator with LSTM-Attention Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9ce8fd62557",
+      "evidence": [
+        {
+          "quote": "Trajectory Tracking of Yoshimura-Origami Continuum Manipulator with LSTM-Attention Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3824,
+            "end_char": 3913
+          },
+          "version": "0e609502fdd6e872b7dc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

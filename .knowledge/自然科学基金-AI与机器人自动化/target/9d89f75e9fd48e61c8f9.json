@@ -2,15 +2,20 @@
   "doc_id": "9d89f75e9fd48e61c8f9",
   "version": "65d25c6d6115265640fd",
   "source_hash": "d8682a690211a95a1ba322b59b77b34b3685c090ceebe75f46655c24e401c46b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:22:24.362279+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.003791+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9b788d91a95d",
-          "name": "空间绳系系统建模控制",
-          "desc": "绳驱柔性动力学系统的智能化建模与复杂环境高精度控制",
+          "id": "item-823bbcd1cabe",
+          "name": "绳牵结构近年来在深空探索、机器人等领域得到广泛关注，也是解决大空间跨度下精准控制的有效途径之一。",
+          "desc": "绳牵结构近年来在深空探索、机器人等领域得到广泛关注，也是解决大空间跨度下精准控制的有效途径之一。",
           "evidence": [
             {
-              "quote": "项目针对绳驱柔性动力学系统的建模与动态控制，利用机器学习与现代控制理论的交叉优势，开展了从绳索基础理论、运动规划、鲁棒控制到工程验证的研究，旨在解决空间绳系系统在复杂环境下的高精度建模与控制难题",
+              "quote": "绳牵结构近年来在深空探索、机器人等领域得到广泛关注，也是解决大空间跨度下精准控制的有效途径之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3013,
-                "end_char": 3109
+                "start_char": 651,
+                "end_char": 698
+              },
+              "version": "65d25c6d6115265640fd"
+            }
+          ]
+        },
+        {
+          "id": "item-c9c428acaa49",
+          "name": "期望形成一套结合人工智能和绳牵柔性系统控制的理论方法体系，促进绳牵柔性结构的工程实用，开拓人工智能的应用新领域。",
+          "desc": "期望形成一套结合人工智能和绳牵柔性系统控制的理论方法体系，促进绳牵柔性结构的工程实用，开拓人工智能的应用新领域。",
+          "evidence": [
+            {
+              "quote": "期望形成一套结合人工智能和绳牵柔性系统控制的理论方法体系，促进绳牵柔性结构的工程实用，开拓人工智能的应用新领域。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 991,
+                "end_char": 1046
               },
               "version": "65d25c6d6115265640fd"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-27d22c9c30d9",
-          "name": "热致形变与非合作目标缺失",
-          "desc": "星载天线热致形变及非合作目标信息缺失导致建模瓶颈",
-          "evidence": [
-            {
-              "quote": "针对星载天线热致形变及非合作目标信息缺失问题，建立了考虑环境耦合效应的参数化演化模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3150,
-                "end_char": 3191
-              },
-              "version": "65d25c6d6115265640fd"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-10ff50e24872",
-          "name": "Transformer双分支融合感知",
-          "desc": "Transformer与Inception双分支特征融合网络及自监督三边感知算法",
+          "id": "item-3c2e037f4c59",
+          "name": "针对星载天线热致形变及非合作目标信息缺失问题，建立了考虑环境耦合效应的参数化演化模型，提出了基于Transformer与",
+          "desc": "针对星载天线热致形变及非合作目标信息缺失问题，建立了考虑环境耦合效应的参数化演化模型，提出了基于Transformer与Inception的双分支特征融合网络及自监督三边感知算法，实现了从视觉图像到绳驱系统动力学状态的高效映射。",
           "evidence": [
             {
-              "quote": "提出了基于Transformer与Inception的双分支特征融合网络及自监督三边感知算法，实现了从视觉图像到绳驱系统动力学状态的高效映射",
+              "quote": "针对星载天线热致形变及非合作目标信息缺失问题，建立了考虑环境耦合效应的参数化演化模型，提出了基于Transformer与Inception的双分支特征融合网络及自监督三边感知算法，实现了从视觉图像到绳驱系统动力学状态的高效映射。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3193,
-                "end_char": 3262
+                "start_char": 3150,
+                "end_char": 3263
               },
               "version": "65d25c6d6115265640fd"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-09a8c2f6fe78",
-          "name": "离线全局在线实时协同规划",
-          "desc": "预测-终端hp自适应伪谱法与NSGA-II多目标优化实现Pareto最优权衡",
+          "id": "item-d7fc1515601c",
+          "name": "其次研究机器学习方法在加减速曲线规划、轨迹规划中的应用，提出同时融合二者的在线轨迹优化算法；",
+          "desc": "其次研究机器学习方法在加减速曲线规划、轨迹规划中的应用，提出同时融合二者的在线轨迹优化算法；",
           "evidence": [
             {
-              "quote": "通过结合预测-终端hp自适应伪谱法与NSGA-II的多目标优化框架，实现了指向精度、绳索能耗与振动抑制的Pareto最优权衡",
+              "quote": "其次研究机器学习方法在加减速曲线规划、轨迹规划中的应用，提出同时融合二者的在线轨迹优化算法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3352,
-                "end_char": 3413
+                "start_char": 854,
+                "end_char": 899
               },
               "version": "65d25c6d6115265640fd"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,125 +107,652 @@
       "state": "has",
       "items": [
         {
-          "id": "item-58b28dbaa8e5",
-          "name": "能耗降低14%振动减少60%",
-          "desc": "在线能量最优切换MPC使牵引能耗降低约14.0%，末端柔性模态振动峰值减少约60.0%",
+          "id": "item-d98d969c22c0",
+          "name": "绳牵结构近年来在深空探索、机器人等领域得到广泛关注，也是解决大空间跨度下精准控制的有效途径之一。",
+          "desc": "绳牵结构近年来在深空探索、机器人等领域得到广泛关注，也是解决大空间跨度下精准控制的有效途径之一。",
           "evidence": [
             {
-              "quote": "实验表明，该策略在保证指向精度的前提下，使牵引能耗降低约14.0%，末端柔性模态振动峰值减少约60.0%",
+              "quote": "绳牵结构近年来在深空探索、机器人等领域得到广泛关注，也是解决大空间跨度下精准控制的有效途径之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3460,
-                "end_char": 3511
+                "start_char": 651,
+                "end_char": 698
               },
               "version": "65d25c6d6115265640fd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-0a3398aba887",
-          "name": "定位误差降低93%",
-          "desc": "索空间相对耦合同步控制使系统定位均方根误差降低93%以上",
+          "id": "item-feb6e60b6054",
+          "name": "项目针对绳驱柔性动力学系统的建模与动态控制，利用机器学习与现代控制理论的交叉优势，开展了从绳索基础理论、运动规划、鲁棒控",
+          "desc": "项目针对绳驱柔性动力学系统的建模与动态控制，利用机器学习与现代控制理论的交叉优势，开展了从绳索基础理论、运动规划、鲁棒控制到工程验证的研究，旨在解决空间绳系系统在复杂环境下的高精度建模与控制难题。",
           "evidence": [
             {
-              "quote": "提出了索空间相对耦合同步控制策略，有效抑制了多索驱动不同步引起的结构震荡，使系统定位均方根误差降低93%以上",
+              "quote": "项目针对绳驱柔性动力学系统的建模与动态控制，利用机器学习与现代控制理论的交叉优势，开展了从绳索基础理论、运动规划、鲁棒控制到工程验证的研究，旨在解决空间绳系系统在复杂环境下的高精度建模与控制难题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3612,
-                "end_char": 3665
+                "start_char": 3013,
+                "end_char": 3110
               },
               "version": "65d25c6d6115265640fd"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-fc6b4b175afc",
-          "name": "全链条物理样机验证",
-          "desc": "百米级环柱天线卫星刚柔耦合模型与绳驱运动控制平台完成全链条验证，成果62项",
-          "evidence": [
-            {
-              "quote": "自主研制了绳系轨道转移装置、动量隔离系统及高实时性绳驱运动控制平台，完成了从理论算法到物理样机的全链条验证",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3726,
-                "end_char": 3778
-              },
-              "version": "65d25c6d6115265640fd"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9b788d91a95d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-27d22c9c30d9"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Formation Satellites Positioning Based on Cubature Kalman Filtering and Factor Graph Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24f27dbb9921",
+      "evidence": [
+        {
+          "quote": "Formation Satellites Positioning Based on Cubature Kalman Filtering and Factor Graph Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3937,
+            "end_char": 4033
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-27d22c9c30d9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-10ff50e24872"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Secure Robot Learning Framework for Cyber Attack Scheduling and Countermeasure",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-530d35b291f1",
+      "evidence": [
+        {
+          "quote": "A Secure Robot Learning Framework for Cyber Attack Scheduling and Countermeasure",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4109,
+            "end_char": 4188
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-27d22c9c30d9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-09a8c2f6fe78"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "大型环状空间结构姿轨形一体化分布式控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-49dced637076",
+      "evidence": [
+        {
+          "quote": "大型环状空间结构姿轨形一体化分布式控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4275,
+            "end_char": 4295
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-09a8c2f6fe78"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-58b28dbaa8e5"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Fractional-Order Sliding Mode Control: Methodologies and Applications",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-abe450b47177",
+      "evidence": [
+        {
+          "quote": "Fractional-Order Sliding Mode Control: Methodologies and Applications",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4329,
+            "end_char": 4397
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-10ff50e24872"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0a3398aba887"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Non-singular Terminal Sliding Mode Tracking Control with Synchronization in the Cable Space for Cable-Driven Parallel Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2fb11478a388",
+      "evidence": [
+        {
+          "quote": "Non-singular Terminal Sliding Mode Tracking Control with Synchronization in the Cable Space for Cable-Driven Parallel Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4483,
+            "end_char": 4606
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-09a8c2f6fe78"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-fc6b4b175afc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-Based Prescribed Performance Speed Control for PMSMs: A Data-Driven RBF Neural Network Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-17f392051955",
+      "evidence": [
+        {
+          "quote": "Observer-Based Prescribed Performance Speed Control for PMSMs: A Data-Driven RBF Neural Network Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4664,
+            "end_char": 4767
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Diagnosis of PEM Fuel Cell System Based on Electrochemical Impedance Spectroscopy and Deep Learning Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c19b374ed0fe",
+      "evidence": [
+        {
+          "quote": "Diagnosis of PEM Fuel Cell System Based on Electrochemical Impedance Spectroscopy and Deep Learning Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4870,
+            "end_char": 4975
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于无模型强化学习的漂浮基空间机械臂末端位置控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-54025142d218",
+      "evidence": [
+        {
+          "quote": "基于无模型强化学习的漂浮基空间机械臂末端位置控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5065,
+            "end_char": 5090
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "空间大型天线卫星分布式主动拉索振动抑制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-edc7e7f3ca57",
+      "evidence": [
+        {
+          "quote": "空间大型天线卫星分布式主动拉索振动抑制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5119,
+            "end_char": 5137
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "大型环柱天线卫星姿轨一体化全推进系统设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b53799e205fb",
+      "evidence": [
+        {
+          "quote": "大型环柱天线卫星姿轨一体化全推进系统设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5163,
+            "end_char": 5182
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Observer-Based Fixed-Time Control for Permanent-Magnet Synchronous Motors With Parameter Uncertainties",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9ac0a159015a",
+      "evidence": [
+        {
+          "quote": "Observer-Based Fixed-Time Control for Permanent-Magnet Synchronous Motors With Parameter Uncertainties",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5219,
+            "end_char": 5320
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "空间大型环柱天线卫星动力学建模与姿态控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8fbedf0d2e49",
+      "evidence": [
+        {
+          "quote": "空间大型环柱天线卫星动力学建模与姿态控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5428,
+            "end_char": 5447
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A SELF-SUPERVISED METHOD FOR TRILATERAL SENSING: LOCALIZATION, ANGULAR MEASUREMENT, AND DEFECT DETECTION",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b80865376395",
+      "evidence": [
+        {
+          "quote": "A SELF-SUPERVISED METHOD FOR TRILATERAL SENSING: LOCALIZATION, ANGULAR MEASUREMENT, AND DEFECT DETECTION",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5479,
+            "end_char": 5582
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dynamic Modeling and Energy-Optimal Switching Model Predictive Control for Space Antenna Satellites",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8a3222dc9236",
+      "evidence": [
+        {
+          "quote": "Dynamic Modeling and Energy-Optimal Switching Model Predictive Control for Space Antenna Satellites",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5629,
+            "end_char": 5727
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "柔性环形空间天线动力学建模与能量优化控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-22e87ecfedda",
+      "evidence": [
+        {
+          "quote": "柔性环形空间天线动力学建模与能量优化控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5781,
+            "end_char": 5802
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Asynchronous Sliding Mode Control Under Round-Robin Protocol-Based Event-Triggered Communication",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c5ec620ca29",
+      "evidence": [
+        {
+          "quote": "Asynchronous Sliding Mode Control Under Round-Robin Protocol-Based Event-Triggered Communication",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5838,
+            "end_char": 5933
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的非合作航天器主动跟踪方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bcfd1797ff8a",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的非合作航天器主动跟踪方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6018,
+            "end_char": 6040
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于视觉测量的航天器短弧定轨方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-247ce17ef079",
+      "evidence": [
+        {
+          "quote": "一种基于视觉测量的航天器短弧定轨方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6072,
+            "end_char": 6089
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DFTI: Dual-Branch Fusion Network Based on Transformer and Inception for Space Noncooperative Objects",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fdbe3ec2547e",
+      "evidence": [
+        {
+          "quote": "DFTI: Dual-Branch Fusion Network Based on Transformer and Inception for Space Noncooperative Objects",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6130,
+            "end_char": 6229
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于绳系动量隔离的空间非合作目标轨道转移系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5aa169c0e96d",
+      "evidence": [
+        {
+          "quote": "一种基于绳系动量隔离的空间非合作目标轨道转移系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6297,
+            "end_char": 6323
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的四旋翼无人机自主视觉导航避障方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-774516b37fd0",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的四旋翼无人机自主视觉导航避障方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6358,
+            "end_char": 6384
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "大型环柱天线卫星分布式轨道保持策略",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-696fc1433065",
+      "evidence": [
+        {
+          "quote": "大型环柱天线卫星分布式轨道保持策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6418,
+            "end_char": 6434
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Replay Attack Detection of Satellite Formation Flying Systems Based on Physical Watermarking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ce6b3383a433",
+      "evidence": [
+        {
+          "quote": "Replay Attack Detection of Satellite Formation Flying Systems Based on Physical Watermarking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6468,
+            "end_char": 6559
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "复杂空间环境视觉操控关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd28d60e149f",
+      "evidence": [
+        {
+          "quote": "复杂空间环境视觉操控关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6627,
+            "end_char": 6643
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fractional-Order Lyapunov-Based Backstepping-Like Feedback Control of N-DOF Mechanical Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dec0617f5fc0",
+      "evidence": [
+        {
+          "quote": "Fractional-Order Lyapunov-Based Backstepping-Like Feedback Control of N-DOF Mechanical Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6689,
+            "end_char": 6782
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于动量碰撞的绳系卫星释放装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef5ecb8baa75",
+      "evidence": [
+        {
+          "quote": "一种基于动量碰撞的绳系卫星释放装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6854,
+            "end_char": 6870
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种星载天线的热致形变预测与优化控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24d5c6a54cc0",
+      "evidence": [
+        {
+          "quote": "一种星载天线的热致形变预测与优化控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6906,
+            "end_char": 6925
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "On Trajectory Homotopy to Explore and Penetrate Dynamically of Multi-UAV",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-72e062de6601",
+      "evidence": [
+        {
+          "quote": "On Trajectory Homotopy to Explore and Penetrate Dynamically of Multi-UAV",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6959,
+            "end_char": 7030
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Disturbance observer-based control for cable-driven parallel robots with external disturbance using deep reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3bc05cf443f4",
+      "evidence": [
+        {
+          "quote": "Disturbance observer-based control for cable-driven parallel robots with external disturbance using deep reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7088,
+            "end_char": 7214
+          },
+          "version": "65d25c6d6115265640fd"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 29,
+    "listed": 29,
+    "by_kind": {
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "专利": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "c4f9684babd7f5276ddd",
   "version": "71b9f592c79c1fe57361",
   "source_hash": "d1b09a353caf3cdd4cfbaf24936e3271a91c63c4198a7ca1cf2bf95273a09aa7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:55.645350+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.380227+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-98a6756eb814",
-          "name": "多智能体强化学习知识复用",
-          "desc": "围绕多智能体强化学习中的知识复用问题开展域适应方法研究",
+          "id": "item-868133cecb5f",
+          "name": "多智能体系强化学习是近年来人工智能领域的热点研究方向。",
+          "desc": "多智能体系强化学习是近年来人工智能领域的热点研究方向。",
           "evidence": [
             {
-              "quote": "围绕多智能体强化学习中的知识复用问题，项目组系统开展了基于域适应方法的理论与应用研究",
+              "quote": "多智能体系强化学习是近年来人工智能领域的热点研究方向。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2766,
-                "end_char": 2807
+                "start_char": 641,
+                "end_char": 667
+              },
+              "version": "71b9f592c79c1fe57361"
+            }
+          ]
+        },
+        {
+          "id": "item-5377d137f24c",
+          "name": "在小样本迁移方面，构建了一套面向数据匮乏场景的端到端域适应框架，融合细粒度、度量学习和对抗性三类迁移策略，实现了理论方法",
+          "desc": "在小样本迁移方面，构建了一套面向数据匮乏场景的端到端域适应框架，融合细粒度、度量学习和对抗性三类迁移策略，实现了理论方法到工程实践的有效转化。",
+          "evidence": [
+            {
+              "quote": "在小样本迁移方面，构建了一套面向数据匮乏场景的端到端域适应框架，融合细粒度、度量学习和对抗性三类迁移策略，实现了理论方法到工程实践的有效转化。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3139,
+                "end_char": 3209
               },
               "version": "71b9f592c79c1fe57361"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-98f9bd9a2b3b",
-          "name": "目标域数据匮乏",
-          "desc": "多智能体强化学习训练中目标域数据匮乏，训练数据获取成本高",
+          "id": "item-c454cf09aadb",
+          "name": "对于多智能体强化学习算法难以应对环境的微小变化、训练时间长、训练数据获取成本高等技术难题，近年来的研究表明迁移学习方法有",
+          "desc": "对于多智能体强化学习算法难以应对环境的微小变化、训练时间长、训练数据获取成本高等技术难题，近年来的研究表明迁移学习方法有望在不同层面解决这些问题。",
           "evidence": [
             {
-              "quote": "有效解决了目标域数据匮乏问题",
+              "quote": "对于多智能体强化学习算法难以应对环境的微小变化、训练时间长、训练数据获取成本高等技术难题，近年来的研究表明迁移学习方法有望在不同层面解决这些问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2927,
-                "end_char": 2940
+                "start_char": 668,
+                "end_char": 740
               },
               "version": "71b9f592c79c1fe57361"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-295967fbfb20",
-          "name": "生成对抗域适应数据增强",
-          "desc": "结合对抗攻击、能量模型和混合比三种机制的环境数据增强技术体系",
+          "id": "item-6b4dfa98bc52",
+          "name": "本项目注意到，如果能将域适应方法恰当地融合到多智能体强化学习框架中，通过开展基于生成对抗域适应方法的环境数据增强模型、基",
+          "desc": "本项目注意到，如果能将域适应方法恰当地融合到多智能体强化学习框架中，通过开展基于生成对抗域适应方法的环境数据增强模型、基于域适应方法的多智能体内参数迁移模型、智能体交互与联合优化下的域适应方法、端到端多智能体迁移框架等关键理论研究及算法设计，最终提出一种通用、鲁棒的多智能体迁移强化学习模型是具备可行性的。",
           "evidence": [
             {
-              "quote": "项目组开发了一套基于生成对抗域适应的环境数据增强技术体系",
+              "quote": "本项目注意到，如果能将域适应方法恰当地融合到多智能体强化学习框架中，通过开展基于生成对抗域适应方法的环境数据增强模型、基于域适应方法的多智能体内参数迁移模型、智能体交互与联合优化下的域适应方法、端到端多智能体迁移框架等关键理论研究及算法设计，最终提出一种通用、鲁棒的多智能体迁移强化学习模型是具备可行性的。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2852,
-                "end_char": 2879
+                "start_char": 789,
+                "end_char": 941
               },
               "version": "71b9f592c79c1fe57361"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-492948fb7667",
-          "name": "跨域智能体隐式通信",
-          "desc": "基于对抗域适应的两阶段框架与多粒度特征对齐，避免显式通信开销",
+          "id": "item-b2f8d86539d5",
+          "name": ".本项目通过对多智能体强化学习中域适应方法的多角度研究，取得了显著的研究成果，具体包括一套生成对抗域适应数据增强技术体系",
+          "desc": ".本项目通过对多智能体强化学习中域适应方法的多角度研究，取得了显著的研究成果，具体包括一套生成对抗域适应数据增强技术体系、基于分布式深度神经网络的轻量化决策网络架构、基于对抗域适应的跨域智能体隐式通信方法，以及基于源域优化的小样本域适应统一框架。",
           "evidence": [
             {
-              "quote": "开发了基于对抗域适应的跨域隐式通信方法",
+              "quote": ".本项目通过对多智能体强化学习中域适应方法的多角度研究，取得了显著的研究成果，具体包括一套生成对抗域适应数据增强技术体系、基于分布式深度神经网络的轻量化决策网络架构、基于对抗域适应的跨域智能体隐式通信方法，以及基于源域优化的小样本域适应统一框架。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3073,
-                "end_char": 3091
+                "start_char": 3210,
+                "end_char": 3332
               },
               "version": "71b9f592c79c1fe57361"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,368 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1ee81dbb9839",
-          "name": "轻量化决策网络架构",
-          "desc": "基于分布式深度神经网络、垂直分层设计与信息熵自适应机制的轻量化决策架构",
+          "id": "item-a8af01415722",
+          "name": "多智能体系强化学习是近年来人工智能领域的热点研究方向。",
+          "desc": "多智能体系强化学习是近年来人工智能领域的热点研究方向。",
           "evidence": [
             {
-              "quote": "基于分布式深度神经网络的轻量化决策网络架构",
+              "quote": "多智能体系强化学习是近年来人工智能领域的热点研究方向。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3271,
-                "end_char": 3291
+                "start_char": 641,
+                "end_char": 667
               },
               "version": "71b9f592c79c1fe57361"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-49a143e5dd8a",
-          "name": "小样本域适应统一框架",
-          "desc": "融合细粒度、度量学习和对抗性三类迁移策略的端到端域适应框架",
+          "id": "item-02fdb88575f3",
+          "name": "项目组按计划完成了预定研究内容并实现了预定研究目标。",
+          "desc": "项目组按计划完成了预定研究内容并实现了预定研究目标。",
           "evidence": [
             {
-              "quote": "以及基于源域优化的小样本域适应统一框架",
+              "quote": "项目组按计划完成了预定研究内容并实现了预定研究目标。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3313,
-                "end_char": 3331
+                "start_char": 2740,
+                "end_char": 2765
               },
               "version": "71b9f592c79c1fe57361"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-98a6756eb814"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-98f9bd9a2b3b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Towards Distributed Communication and Control in Real-World Multi-Agent Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6e6274c4755",
+      "evidence": [
+        {
+          "quote": "Towards Distributed Communication and Control in Real-World Multi-Agent Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3411,
+            "end_char": 3504
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-98f9bd9a2b3b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-295967fbfb20"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-Driven Estimation of Remaining Useful Lifetime and State of Charge for Lithium-Ion Battery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-23d63fb61c24",
+      "evidence": [
+        {
+          "quote": "Data-Driven Estimation of Remaining Useful Lifetime and State of Charge for Lithium-Ion Battery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3552,
+            "end_char": 3646
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-295967fbfb20"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-49a143e5dd8a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Uneven Bi-Classifier Learning for Domain Adaptation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26e5f4bf8999",
+      "evidence": [
+        {
+          "quote": "Uneven Bi-Classifier Learning for Domain Adaptation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3711,
+            "end_char": 3761
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-98a6756eb814"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-492948fb7667"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-Domain Communications Between Agents Via Adversarial-Based Domain Adaptation in Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c365deb26888",
+      "evidence": [
+        {
+          "quote": "Cross-Domain Communications Between Agents Via Adversarial-Based Domain Adaptation in Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3824,
+            "end_char": 3931
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-492948fb7667"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1ee81dbb9839"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "吴文俊人工智能科学技术奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-64ece58a965e",
+      "evidence": [
+        {
+          "quote": "吴文俊人工智能科学技术奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3973,
+            "end_char": 3984
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Divergence-Agnostic Unsupervised Domain Adaptation by Adversarial Attacks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d6b3f51b63e6",
+      "evidence": [
+        {
+          "quote": "Divergence-Agnostic Unsupervised Domain Adaptation by Adversarial Attacks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4024,
+            "end_char": 4096
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning Transferrable and Interpretable Representations for Domain Generalization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-16e7ad7ae369",
+      "evidence": [
+        {
+          "quote": "Learning Transferrable and Interpretable Representations for Domain Generalization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4175,
+            "end_char": 4256
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Energy-Based Domain Generalization for Face Anti-Spoofing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ecead0ceaeed",
+      "evidence": [
+        {
+          "quote": "Energy-Based Domain Generalization for Face Anti-Spoofing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4315,
+            "end_char": 4371
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Investigating the Bilateral Connections in Generative Zero-Shot Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d954129856b",
+      "evidence": [
+        {
+          "quote": "Investigating the Bilateral Connections in Generative Zero-Shot Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4429,
+            "end_char": 4500
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-Domain Adaptative Learning for Online Advertisement Customer Lifetime Value Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e3be168ab7b0",
+      "evidence": [
+        {
+          "quote": "Cross-Domain Adaptative Learning for Online Advertisement Customer Lifetime Value Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4569,
+            "end_char": 4660
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Transfer Learning-Based State of Charge and State  of Health Estimation for Li-Ion Batteries: A Review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4ead1377d09e",
+      "evidence": [
+        {
+          "quote": "Transfer Learning-Based State of Charge and State  of Health Estimation for Li-Ion Batteries: A Review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4721,
+            "end_char": 4822
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-Domain Gradient Discrepancy Minimization for Unsupervised Domain Adaptation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cbbcce94dcbc",
+      "evidence": [
+        {
+          "quote": "Cross-Domain Gradient Discrepancy Minimization for Unsupervised Domain Adaptation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4895,
+            "end_char": 4975
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-domain Mutual Information Adversarial Maximization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35b96cf410a5",
+      "evidence": [
+        {
+          "quote": "Cross-domain Mutual Information Adversarial Maximization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5036,
+            "end_char": 5091
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Domain adaptive state representation alignment for reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f7174b23dda",
+      "evidence": [
+        {
+          "quote": "Domain adaptive state representation alignment for reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5152,
+            "end_char": 5224
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adversarial Mixup Ratio Confusion for Unsupervised Domain Adaptation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-823dca8a1c59",
+      "evidence": [
+        {
+          "quote": "Adversarial Mixup Ratio Confusion for Unsupervised Domain Adaptation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5290,
+            "end_char": 5357
+          },
+          "version": "71b9f592c79c1fe57361"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "cd309d8bb6c3cc677283",
   "version": "fdee646fab3e6a666654",
   "source_hash": "223abc5a1e98e2f5fe549d8fa70ea7251d3693627796af445589bd344b145b39",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:55:00.429001+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.492071+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bad56e135bf0",
-          "name": "老年人助行下肢外骨骼",
-          "desc": "下肢外骨骼助力老年人助行，缓解照料护理压力",
+          "id": "item-cea968e9e956",
+          "name": "下肢外骨骼机器人在老年人助行方面应用前景广阔，是缓解我国老年人照料和护理压力的有利工具，目前其挑战在于人机交互机制和强耦",
+          "desc": "下肢外骨骼机器人在老年人助行方面应用前景广阔，是缓解我国老年人照料和护理压力的有利工具，目前其挑战在于人机交互机制和强耦合特性尚未得到充分研究，仍缺少对个体穿戴差异和运动习惯差异的主动适应性。",
           "evidence": [
             {
-              "quote": "下肢外骨骼机器人在老年人助行方面应用前景广阔，是缓解我国老年人照料和护理压力的有利工具",
+              "quote": "下肢外骨骼机器人在老年人助行方面应用前景广阔，是缓解我国老年人照料和护理压力的有利工具，目前其挑战在于人机交互机制和强耦合特性尚未得到充分研究，仍缺少对个体穿戴差异和运动习惯差异的主动适应性。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 681,
-                "end_char": 723
+                "end_char": 776
               },
               "version": "fdee646fab3e6a666654"
             }
@@ -41,16 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d6f5adeda14e",
-          "name": "个体穿戴差异适应性缺失",
-          "desc": "人机交互机制和强耦合特性研究不足，缺少对个体差异的主动适应",
+          "id": "item-d10147c5a6de",
+          "name": "本项目针对助行外骨骼普适性应用瓶颈，围绕“面向个体差异的人机交互机制和助行效能评估方法”、“面向变穿戴对象的自适应助行调",
+          "desc": "本项目针对助行外骨骼普适性应用瓶颈，围绕“面向个体差异的人机交互机制和助行效能评估方法”、“面向变穿戴对象的自适应助行调节机制和建模方法”两个关键科学问题，研究具有个体穿戴与行走差异自适应能力的外骨骼人机交互机制与助行控制方法。",
           "evidence": [
             {
-              "quote": "目前其挑战在于人机交互机制和强耦合特性尚未得到充分研究，仍缺少对个体穿戴差异和运动习惯差异的主动适应性",
+              "quote": "本项目针对助行外骨骼普适性应用瓶颈，围绕“面向个体差异的人机交互机制和助行效能评估方法”、“面向变穿戴对象的自适应助行调节机制和建模方法”两个关键科学问题，研究具有个体穿戴与行走差异自适应能力的外骨骼人机交互机制与助行控制方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 725,
-                "end_char": 775
+                "start_char": 777,
+                "end_char": 890
+              },
+              "version": "fdee646fab3e6a666654"
+            }
+          ]
+        },
+        {
+          "id": "item-736b39c11d61",
+          "name": "下肢外骨骼机器人在老年人助行方面应用前景广阔，是缓解我国老年人照料和护理压力的有利工具，目前其挑战在于人机交互机制和强耦",
+          "desc": "下肢外骨骼机器人在老年人助行方面应用前景广阔，是缓解我国老年人照料和护理压力的有利工具，目前其挑战在于人机交互机制和强耦合特性尚未得到充分研究，仍缺少对个体穿戴差异和运动习惯差异的主动适应性。",
+          "evidence": [
+            {
+              "quote": "下肢外骨骼机器人在老年人助行方面应用前景广阔，是缓解我国老年人照料和护理压力的有利工具，目前其挑战在于人机交互机制和强耦合特性尚未得到充分研究，仍缺少对个体穿戴差异和运动习惯差异的主动适应性。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 681,
+                "end_char": 776
               },
               "version": "fdee646fab3e6a666654"
             }
@@ -63,52 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7e08ca4a296f",
-          "name": "多模态传感实时同步采集",
-          "desc": "基于EtherCAT总线的可扩展多模态传感信息实时同步采集系统",
+          "id": "item-a2dd914e968c",
+          "name": "项目目前所搭建的传感控制系统以及节律运动意图识别和助力方法被应用于组内新研发的海洋外骨骼机器人系统中，并在青岛潜艇学院进",
+          "desc": "项目目前所搭建的传感控制系统以及节律运动意图识别和助力方法被应用于组内新研发的海洋外骨骼机器人系统中，并在青岛潜艇学院进行了水下外骨骼机器人的性能测试，降低了潜水员游动的耗氧量，获得了潜水员的认可。",
           "evidence": [
             {
-              "quote": "提出了基于EtherCAT总线可扩展的多模态传感信息实时同步采集系统，保证了表面肌电、IMU、足底压力等多模信息采集的同步性和可靠性",
+              "quote": "项目目前所搭建的传感控制系统以及节律运动意图识别和助力方法被应用于组内新研发的海洋外骨骼机器人系统中，并在青岛潜艇学院进行了水下外骨骼机器人的性能测试，降低了潜水员游动的耗氧量，获得了潜水员的认可。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3608,
-                "end_char": 3673
+                "start_char": 3933,
+                "end_char": 4031
               },
               "version": "fdee646fab3e6a666654"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8a2eaec9bd19",
-          "name": "自适应振荡节律意图识别",
-          "desc": "基于自适应振荡模型的人体节律运动意图识别和助力方法",
+          "id": "item-2406838c061b",
+          "name": "为解决人体个性化助力助行的问题，提出了一种基于Hill肌肉模型参数辨识和肌电助力的人体运动助力方法，设计了一种基于Ada",
+          "desc": "为解决人体个性化助力助行的问题，提出了一种基于Hill肌肉模型参数辨识和肌电助力的人体运动助力方法，设计了一种基于Adam优化的梯度下降参数辨识方法，实现了对不同对象的肌肉发力特性的正确估计。",
           "evidence": [
             {
-              "quote": "研究了一种基于自适应振荡模型的人体节律运动意图识别和助力方法",
+              "quote": "为解决人体个性化助力助行的问题，提出了一种基于Hill肌肉模型参数辨识和肌电助力的人体运动助力方法，设计了一种基于Adam优化的梯度下降参数辨识方法，实现了对不同对象的肌肉发力特性的正确估计。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3726,
-                "end_char": 3755
+                "start_char": 3782,
+                "end_char": 3877
               },
               "version": "fdee646fab3e6a666654"
             }
-          ]
-        },
-        {
-          "id": "item-494cb939bbf3",
-          "name": "Hill模型个性化助力控制",
-          "desc": "Hill肌肉模型参数辨识与导纳控制结合的个性化助力控制",
-          "evidence": [
-            {
-              "quote": "提出了一种基于Hill模型与导纳控制的外骨骼机器人个性化助力控制方法，实现了基于生物电信号的外骨骼机器人控制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3878,
-                "end_char": 3931
-              },
-              "version": "fdee646fab3e6a666654"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,86 +124,293 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9d4701575ef6",
-          "name": "三模式便携柔性外骨骼",
-          "desc": "髋关节伸展、屈曲及屈伸均助力三种模式的便携柔性下肢外骨骼",
+          "id": "item-01bdaea0f0f1",
+          "name": "下肢外骨骼机器人在老年人助行方面应用前景广阔，是缓解我国老年人照料和护理压力的有利工具，目前其挑战在于人机交互机制和强耦",
+          "desc": "下肢外骨骼机器人在老年人助行方面应用前景广阔，是缓解我国老年人照料和护理压力的有利工具，目前其挑战在于人机交互机制和强耦合特性尚未得到充分研究，仍缺少对个体穿戴差异和运动习惯差异的主动适应性。",
           "evidence": [
             {
-              "quote": "研制了一种具有髋关节伸展助力、髋关节屈曲助力和髋关节屈曲伸展均助力三种模式的便携式柔性下肢助力外骨骼",
+              "quote": "下肢外骨骼机器人在老年人助行方面应用前景广阔，是缓解我国老年人照料和护理压力的有利工具，目前其挑战在于人机交互机制和强耦合特性尚未得到充分研究，仍缺少对个体穿戴差异和运动习惯差异的主动适应性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3675,
-                "end_char": 3724
+                "start_char": 681,
+                "end_char": 776
               },
               "version": "fdee646fab3e6a666654"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-c6f2a2658d6a",
-          "name": "水下外骨骼性能测试",
-          "desc": "应用于海洋外骨骼系统并在青岛潜艇学院测试，降低潜水员耗氧量",
-          "evidence": [
-            {
-              "quote": "被应用于组内新研发的海洋外骨骼机器人系统中，并在青岛潜艇学院进行了水下外骨骼机器人的性能测试，降低了潜水员游动的耗氧量",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3962,
-                "end_char": 4020
-              },
-              "version": "fdee646fab3e6a666654"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bad56e135bf0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d6f5adeda14e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "适用于多种姿势的搬运助力外骨骼机器人控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-40884b44d001",
+      "evidence": [
+        {
+          "quote": "适用于多种姿势的搬运助力外骨骼机器人控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4055,
+            "end_char": 4079
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d6f5adeda14e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7e08ca4a296f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向下肢外骨骼穿戴者的步态预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e3ae04d33369",
+      "evidence": [
+        {
+          "quote": "一种面向下肢外骨骼穿戴者的步态预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4124,
+            "end_char": 4142
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8a2eaec9bd19"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9d4701575ef6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Power Spectrum Pattern Difference-Based Time-Frequency Sub-Band Selection Method for MI-EEG Classification",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-24c961e40885",
+      "evidence": [
+        {
+          "quote": "A Power Spectrum Pattern Difference-Based Time-Frequency Sub-Band Selection Method for MI-EEG Classification",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4178,
+            "end_char": 4285
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-494cb939bbf3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c6f2a2658d6a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "FSTA-Net: Motor Imagery EEG Decoding Based on Frequency–Spatial–Time Features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a9683338fdf2",
+      "evidence": [
+        {
+          "quote": "FSTA-Net: Motor Imagery EEG Decoding Based on Frequency–Spatial–Time Features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4389,
+            "end_char": 4465
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Iterative Outlier Removal Clustering Based Time-Frequency-Spatial Feature Selection for Binary EEG Motor Imagery Decoding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3dfa50d19827",
+      "evidence": [
+        {
+          "quote": "Iterative Outlier Removal Clustering Based Time-Frequency-Spatial Feature Selection for Binary EEG Motor Imagery Decoding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4555,
+            "end_char": 4675
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "人-机-环三元协同的智能外骨骼机器人关键技术及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4064da75494",
+      "evidence": [
+        {
+          "quote": "人-机-环三元协同的智能外骨骼机器人关键技术及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4756,
+            "end_char": 4780
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种动态形变下康复外骨骼的自平衡行走控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f03f06e2e12e",
+      "evidence": [
+        {
+          "quote": "一种动态形变下康复外骨骼的自平衡行走控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4829,
+            "end_char": 4850
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hardware Circuits Design and Performance Evaluation of a Soft Lower Limb Exoskeleton",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-680db17fa8cc",
+      "evidence": [
+        {
+          "quote": "Hardware Circuits Design and Performance Evaluation of a Soft Lower Limb Exoskeleton",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4897,
+            "end_char": 4980
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自平衡下肢外骨骼的三自由度髋关节结构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bac6396b5dce",
+      "evidence": [
+        {
+          "quote": "一种自平衡下肢外骨骼的三自由度髋关节结构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5047,
+            "end_char": 5066
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Human–Machine Interface Design Based on sEMG and Motor Imagery EEG for Lower Limb Exoskeleton Assistance System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41f1cfea393c",
+      "evidence": [
+        {
+          "quote": "The Human–Machine Interface Design Based on sEMG and Motor Imagery EEG for Lower Limb Exoskeleton Assistance System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5113,
+            "end_char": 5227
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pressure Pain Recognition for Lower Limb Exoskeleton Robot with Physiological Signals",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef6bc4b78803",
+      "evidence": [
+        {
+          "quote": "Pressure Pain Recognition for Lower Limb Exoskeleton Robot with Physiological Signals",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5323,
+            "end_char": 5407
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Three-Step Hill Neuromusculoskeletal Model Parameter Identification Method Based on Exoskeleton Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-099f92e8a798",
+      "evidence": [
+        {
+          "quote": "A Three-Step Hill Neuromusculoskeletal Model Parameter Identification Method Based on Exoskeleton Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5506,
+            "end_char": 5608
+          },
+          "version": "fdee646fab3e6a666654"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "5666b0c88c9e79820645",
   "version": "85d9238165dfc0b20fca",
   "source_hash": "179f102f87ca0893bc554cad58ba9611f2a12848c5e9b5d696692103a5d18ab3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:26.737952+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.291451+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9ca0adfe03b1",
-          "name": "遥操作机器人多约束作业",
-          "desc": "水下作业、灾难救援和远程医疗等遥操作场景",
+          "id": "item-58f09eddeb64",
+          "name": "遥操作机器人是一种操作者在近端操控远端机器人完成各种复杂任务的系统，目前已广泛应用于水下作业、灾难救援和远程医疗等领域。",
+          "desc": "遥操作机器人是一种操作者在近端操控远端机器人完成各种复杂任务的系统，目前已广泛应用于水下作业、灾难救援和远程医疗等领域。",
           "evidence": [
             {
-              "quote": "建模不确定性与多物理约束是实现遥操作机器人高性能作业的制约因素。鉴于此，本项目系统性地研究了遥操作机器人规划与控制一体化理论方法。",
+              "quote": "遥操作机器人是一种操作者在近端操控远端机器人完成各种复杂任务的系统，目前已广泛应用于水下作业、灾难救援和远程医疗等领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3049,
-                "end_char": 3113
+                "start_char": 641,
+                "end_char": 700
               },
               "version": "85d9238165dfc0b20fca"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0c9bea5c8060",
-          "name": "命令轨迹违反物理约束",
-          "desc": "主端命令轨迹可能违反速度加速度力矩约束致跟踪恶化失稳",
+          "id": "item-e5379f4f9c5a",
+          "name": "针对现有轨迹规划方法仅能处理以标称动力学为基础建立的动力学约束、规划周期长、难以严格证明规划与控制整体框架的稳定性等理论",
+          "desc": "针对现有轨迹规划方法仅能处理以标称动力学为基础建立的动力学约束、规划周期长、难以严格证明规划与控制整体框架的稳定性等理论挑战，本项目提出了融合在线时间最优轨迹规划与饱和非线性自适应鲁棒控制的规划控制一体化方法，从理论上严格证明了规划与控制一体化框架的稳定性，同时实现了快速瞬态与高精稳态的跟踪性能。",
           "evidence": [
             {
-              "quote": "主端操作者为从端在线生成的命令轨迹可能违反上述各类约束，进而引起从端控制器饱和，跟踪精度恶化，甚至系统失稳，最终影响遥操作系统的透明性、稳定性及安全性。",
+              "quote": "针对现有轨迹规划方法仅能处理以标称动力学为基础建立的动力学约束、规划周期长、难以严格证明规划与控制整体框架的稳定性等理论挑战，本项目提出了融合在线时间最优轨迹规划与饱和非线性自适应鲁棒控制的规划控制一体化方法，从理论上严格证明了规划与控制一体化框架的稳定性，同时实现了快速瞬态与高精稳态的跟踪性能。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 735,
-                "end_char": 810
+                "start_char": 3114,
+                "end_char": 3262
               },
               "version": "85d9238165dfc0b20fca"
             }
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f73e1a0070b1",
-          "name": "规划控制一体化方法",
-          "desc": "在线时间最优规划与饱和非线性自适应鲁棒控制融合",
+          "id": "item-6ba118ced674",
+          "name": "为此，本项目综合考虑从端机器人的各类约束，在主端研究引导操作者生成初步可行命令轨迹的智能人机交互算法，在从端设计兼具各类",
+          "desc": "为此，本项目综合考虑从端机器人的各类约束，在主端研究引导操作者生成初步可行命令轨迹的智能人机交互算法，在从端设计兼具各类算法特性的轨迹规划算法，进而构建主端智能人机交互与从端在线轨迹优化的双重规划框架。",
           "evidence": [
             {
-              "quote": "本项目提出了融合在线时间最优轨迹规划与饱和非线性自适应鲁棒控制的规划控制一体化方法，从理论上严格证明了规划与控制一体化框架的稳定性，同时实现了快速瞬态与高精稳态的跟踪性能。",
+              "quote": "为此，本项目综合考虑从端机器人的各类约束，在主端研究引导操作者生成初步可行命令轨迹的智能人机交互算法，在从端设计兼具各类算法特性的轨迹规划算法，进而构建主端智能人机交互与从端在线轨迹优化的双重规划框架。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3177,
-                "end_char": 3262
+                "start_char": 866,
+                "end_char": 966
               },
               "version": "85d9238165dfc0b20fca"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8eafac741e93",
-          "name": "偏离轨迹最短时间复原",
-          "desc": "基于轨迹重规划实现瞬时大干扰下最短时间复原",
+          "id": "item-f209141ce54a",
+          "name": "进一步地，基于轨迹规划与非线性控制的有机融合，设计从端机器人偏离轨迹最短时间复原算法。",
+          "desc": "进一步地，基于轨迹规划与非线性控制的有机融合，设计从端机器人偏离轨迹最短时间复原算法。",
           "evidence": [
             {
-              "quote": "本项目提出了基于轨迹重规划的偏离轨迹最短时间复原方法，实现了瞬时大干扰下机器人偏离轨迹的最短时间复原。",
+              "quote": "进一步地，基于轨迹规划与非线性控制的有机融合，设计从端机器人偏离轨迹最短时间复原算法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3490,
-                "end_char": 3540
+                "start_char": 967,
+                "end_char": 1009
               },
               "version": "85d9238165dfc0b20fca"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +108,288 @@
       "state": "has",
       "items": [
         {
-          "id": "item-70287e83edb6",
-          "name": "高原与南极场景应用",
-          "desc": "青藏高原科考站值守与遥操作南极中山站巡检应用",
+          "id": "item-3716ede49148",
+          "name": "遥操作机器人是一种操作者在近端操控远端机器人完成各种复杂任务的系统，目前已广泛应用于水下作业、灾难救援和远程医疗等领域。",
+          "desc": "遥操作机器人是一种操作者在近端操控远端机器人完成各种复杂任务的系统，目前已广泛应用于水下作业、灾难救援和远程医疗等领域。",
           "evidence": [
             {
-              "quote": "此外，本项目还研制了主从式移动遥操作机器人样机，并开展了青藏高原藏东南科考站站内机器人值守、天津遥操作南极中山站机器人巡检等场景应用研究。",
+              "quote": "遥操作机器人是一种操作者在近端操控远端机器人完成各种复杂任务的系统，目前已广泛应用于水下作业、灾难救援和远程医疗等领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3541,
-                "end_char": 3609
+                "start_char": 641,
+                "end_char": 700
               },
               "version": "85d9238165dfc0b20fca"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-43f85b504294",
+          "name": "建模不确定性与多物理约束是实现遥操作机器人高性能作业的制约因素。",
+          "desc": "建模不确定性与多物理约束是实现遥操作机器人高性能作业的制约因素。",
+          "evidence": [
+            {
+              "quote": "建模不确定性与多物理约束是实现遥操作机器人高性能作业的制约因素。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3049,
+                "end_char": 3080
+              },
+              "version": "85d9238165dfc0b20fca"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9ca0adfe03b1"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0c9bea5c8060"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度相机的机器人自主识别智能抓取方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb2b77b660d4",
+      "evidence": [
+        {
+          "quote": "基于深度相机的机器人自主识别智能抓取方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3633,
+            "end_char": 3655
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0c9bea5c8060"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f73e1a0070b1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "驱动约束下直线电机自适应鲁棒优化控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e6186cf5ce86",
+      "evidence": [
+        {
+          "quote": "驱动约束下直线电机自适应鲁棒优化控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3685,
+            "end_char": 3702
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0c9bea5c8060"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8eafac741e93"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "STUNS-Planner: a Spatiotemporal Motion Planner with Unbending and Consistency Awareness for Quadrotors in Unknown Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-302ed671ce2f",
+      "evidence": [
+        {
+          "quote": "STUNS-Planner: a Spatiotemporal Motion Planner with Unbending and Consistency Awareness for Quadrotors in Unknown Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3727,
+            "end_char": 3852
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f73e1a0070b1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-70287e83edb6"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robot-CT Scanning Oriented Synchronous Trajectory Planning of a Dual-Manipulator System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-468911bc4115",
+      "evidence": [
+        {
+          "quote": "Robot-CT Scanning Oriented Synchronous Trajectory Planning of a Dual-Manipulator System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3927,
+            "end_char": 4013
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8eafac741e93"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-70287e83edb6"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种考虑机械臂运动约束的三维重建中相机位姿估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18fb79a38774",
+      "evidence": [
+        {
+          "quote": "一种考虑机械臂运动约束的三维重建中相机位姿估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4067,
+            "end_char": 4091
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于在线规划调节的机器人轨迹复原控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-70af3d23d2e1",
+      "evidence": [
+        {
+          "quote": "一种基于在线规划调节的机器人轨迹复原控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4122,
+            "end_char": 4143
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Minimum-time Transient Response Guaranteed Control of Servo Motor Systems with Modeling Uncertainties and High-order Constraint",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-396d5c43db52",
+      "evidence": [
+        {
+          "quote": "Minimum-time Transient Response Guaranteed Control of Servo Motor Systems with Modeling Uncertainties and High-order Constraint",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4177,
+            "end_char": 4303
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Toward Fast Trajectory Recovery for Servo Motor Systems Under Instantaneous Large Disturbance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6e06ef15ecf0",
+      "evidence": [
+        {
+          "quote": "Toward Fast Trajectory Recovery for Servo Motor Systems Under Instantaneous Large Disturbance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4343,
+            "end_char": 4435
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stability and Fast Transient Performance Oriented Motion Control of a Direct-Drive System With Modeling Uncertainties, Velocity, and Input Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e72eab10075b",
+      "evidence": [
+        {
+          "quote": "Stability and Fast Transient Performance Oriented Motion Control of a Direct-Drive System With Modeling Uncertainties, Velocity, and Input Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4475,
+            "end_char": 4624
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "双目视觉辅助的激光惯导SLAM算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eebf8fff5cab",
+      "evidence": [
+        {
+          "quote": "双目视觉辅助的激光惯导SLAM算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4665,
+            "end_char": 4681
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "IR-VIO: Illumination-Robust Visual-Inertial Odometry Based on Adaptive Weighting Algorithm With Two-Layer Confidence Maximization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bf5d232362e1",
+      "evidence": [
+        {
+          "quote": "IR-VIO: Illumination-Robust Visual-Inertial Odometry Based on Adaptive Weighting Algorithm With Two-Layer Confidence Maximization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4710,
+            "end_char": 4838
+          },
+          "version": "85d9238165dfc0b20fca"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

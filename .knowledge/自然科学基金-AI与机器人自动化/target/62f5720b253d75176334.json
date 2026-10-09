@@ -2,15 +2,20 @@
   "doc_id": "62f5720b253d75176334",
   "version": "c77b71307b1354285816",
   "source_hash": "389593e91a9aa84818728d99217cf17ff01a65505ff3f515aa2129f92e1ea293",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:54.272038+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.398601+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f0946cab42b8",
-          "name": "介电弹性体人工肌肉",
-          "desc": "面向人形机器人、仿生四足机器人、机械手、智能假肢的人工肌肉",
+          "id": "item-d67fa9cbe35e",
+          "name": "高性能柔性人工肌肉可大幅提高机器人的运动能力和人机协作能力，介电弹性体能量密度大、响应速度快，是一类有前景的人工肌肉材料",
+          "desc": "高性能柔性人工肌肉可大幅提高机器人的运动能力和人机协作能力，介电弹性体能量密度大、响应速度快，是一类有前景的人工肌肉材料。",
           "evidence": [
             {
-              "quote": "人工肌肉技术有望在未来广泛应用于人形机器人、仿生四足机器人、机械手、智能假肢等领域",
+              "quote": "高性能柔性人工肌肉可大幅提高机器人的运动能力和人机协作能力，介电弹性体能量密度大、响应速度快，是一类有前景的人工肌肉材料。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2594,
-                "end_char": 2634
+                "start_char": 657,
+                "end_char": 717
+              },
+              "version": "c77b71307b1354285816"
+            }
+          ]
+        },
+        {
+          "id": "item-27cdcf76ca8b",
+          "name": "本项目预期将为介电弹性体人工肌肉在机器人领域的规模化应用奠定基础。",
+          "desc": "本项目预期将为介电弹性体人工肌肉在机器人领域的规模化应用奠定基础。",
+          "evidence": [
+            {
+              "quote": "本项目预期将为介电弹性体人工肌肉在机器人领域的规模化应用奠定基础。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1000,
+                "end_char": 1032
               },
               "version": "c77b71307b1354285816"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7446bb7000b5",
-          "name": "人工肌肉高负载高柔顺需求",
-          "desc": "机器人对人工肌肉提出高负载、高柔顺性、高稳定性、高可控性需求",
-          "evidence": [
-            {
-              "quote": "针对机器人对人工肌肉所提出的高负载、高柔顺性、高稳定性、高可控性等方面的需求",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2636,
-                "end_char": 2673
-              },
-              "version": "c77b71307b1354285816"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-7d78e2e71911",
-          "name": "仿生肌肉纤维束构型设计",
-          "desc": "对标生物肌肉纤维形态、结构和性能的人工肌肉纤维单元设计",
+          "id": "item-c7239648989b",
+          "name": "本项目针对目前介电弹性体驱动器输出负载低、构型欠柔顺、材料易击穿、使用寿命短等问题，提出一种基于高功率密度介电弹性体的柔",
+          "desc": "本项目针对目前介电弹性体驱动器输出负载低、构型欠柔顺、材料易击穿、使用寿命短等问题，提出一种基于高功率密度介电弹性体的柔性人工肌肉纤维束仿生设计，通过机械构型设计、材料优化、控制算法设计等多种研究手段，提高此类驱动器的负载、柔顺性、稳定性和可控性。",
           "evidence": [
             {
-              "quote": "设计了对标生物肌肉纤维的形态、结构和性能的人工肌肉纤维单元，获得了较高的能量密度和功率密度",
+              "quote": "本项目针对目前介电弹性体驱动器输出负载低、构型欠柔顺、材料易击穿、使用寿命短等问题，提出一种基于高功率密度介电弹性体的柔性人工肌肉纤维束仿生设计，通过机械构型设计、材料优化、控制算法设计等多种研究手段，提高此类驱动器的负载、柔顺性、稳定性和可控性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2754,
-                "end_char": 2798
+                "start_char": 718,
+                "end_char": 841
               },
               "version": "c77b71307b1354285816"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-004c73342228",
-          "name": "电极自清理与电容留存度",
-          "desc": "电极自清理效应保障寿命，电容留存度观测力位输出能力",
+          "id": "item-b7043ea25149",
+          "name": "针对机器人对人工肌肉所提出的高负载、高柔顺性、高稳定性、高可控性等方面的需求，本项目主要围绕人工肌肉的创新构型设计和制备",
+          "desc": "针对机器人对人工肌肉所提出的高负载、高柔顺性、高稳定性、高可控性等方面的需求，本项目主要围绕人工肌肉的创新构型设计和制备方法、抗击穿稳定性研究和人工肌肉的控制方法研究等方面开展基础理论和关键技术研究。",
           "evidence": [
             {
-              "quote": "探索了电极自清理效应在静电力致动的介电弹性体人工肌肉寿命保障中的作用，提出了利用电容留存度来观测人工肌肉力位输出能力的新方法",
+              "quote": "针对机器人对人工肌肉所提出的高负载、高柔顺性、高稳定性、高可控性等方面的需求，本项目主要围绕人工肌肉的创新构型设计和制备方法、抗击穿稳定性研究和人工肌肉的控制方法研究等方面开展基础理论和关键技术研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2853,
-                "end_char": 2914
+                "start_char": 2636,
+                "end_char": 2735
               },
               "version": "c77b71307b1354285816"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,125 +107,668 @@
       "state": "has",
       "items": [
         {
-          "id": "item-97271ce683e7",
-          "name": "多自由度仿生关节系统",
-          "desc": "集丝为束、集束为体，实现多自由度可控运动和力输出",
+          "id": "item-92e8e0bb2c2e",
+          "name": "高性能柔性人工肌肉可大幅提高机器人的运动能力和人机协作能力，介电弹性体能量密度大、响应速度快，是一类有前景的人工肌肉材料",
+          "desc": "高性能柔性人工肌肉可大幅提高机器人的运动能力和人机协作能力，介电弹性体能量密度大、响应速度快，是一类有前景的人工肌肉材料。",
           "evidence": [
             {
-              "quote": "构建了高度仿生的多自由度关节系统，实现了其多自由度的可控运动和力输出",
+              "quote": "高性能柔性人工肌肉可大幅提高机器人的运动能力和人机协作能力，介电弹性体能量密度大、响应速度快，是一类有前景的人工肌肉材料。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2812,
-                "end_char": 2845
+                "start_char": 657,
+                "end_char": 717
               },
               "version": "c77b71307b1354285816"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-2873a190ef38",
-          "name": "高水平论文",
-          "desc": "发表学术文16篇，含Science Robotics、IJRR等，3篇封面论文",
+          "id": "item-9a17babd6428",
+          "name": "人工肌肉技术有望在未来广泛应用于人形机器人、仿生四足机器人、机械手、智能假肢等领域。",
+          "desc": "人工肌肉技术有望在未来广泛应用于人形机器人、仿生四足机器人、机械手、智能假肢等领域。",
           "evidence": [
             {
-              "quote": "本项目共发表学术文16篇，其中包括1篇Science Robotics、1篇Advanced Functional Materials、2篇IEEE Transactions on Robotics (IEEE T-RO)、1篇International Journal of Robotics Research (IJRR)",
+              "quote": "人工肌肉技术有望在未来广泛应用于人形机器人、仿生四足机器人、机械手、智能假肢等领域。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2979,
-                "end_char": 3141
+                "start_char": 2594,
+                "end_char": 2635
               },
               "version": "c77b71307b1354285816"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-c70654bc6d9c",
-          "name": "国家发明专利",
-          "desc": "申请19项国家发明专利，已授权10项",
-          "evidence": [
-            {
-              "quote": "共申请19项国家发明专利，其中已授权10项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3155,
-                "end_char": 3175
-              },
-              "version": "c77b71307b1354285816"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f0946cab42b8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7446bb7000b5"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于介电弹性体的刚柔耦合驱动器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96716bd999d1",
+      "evidence": [
+        {
+          "quote": "基于介电弹性体的刚柔耦合驱动器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3240,
+            "end_char": 3254
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7446bb7000b5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7d78e2e71911"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于柔性光波导的姿态传感器及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-630b74f81520",
+      "evidence": [
+        {
+          "quote": "基于柔性光波导的姿态传感器及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3281,
+            "end_char": 3297
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7446bb7000b5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-004c73342228"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种驱动器制造方法,驱动器及多足机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8af148e79a37",
+      "evidence": [
+        {
+          "quote": "一种驱动器制造方法,驱动器及多足机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3321,
+            "end_char": 3339
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7d78e2e71911"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-97271ce683e7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Untethered Robotic Millipede Driven by Low-Pressure Microfluidic Actuators for Multi-Terrain Exploration",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-28a3484a7bfa",
+      "evidence": [
+        {
+          "quote": "Untethered Robotic Millipede Driven by Low-Pressure Microfluidic Actuators for Multi-Terrain Exploration",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3364,
+            "end_char": 3467
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7d78e2e71911"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2873a190ef38"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种分布式三轴柔性光波导传感器网络及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-80f9b246d1ae",
+      "evidence": [
+        {
+          "quote": "一种分布式三轴柔性光波导传感器网络及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3556,
+            "end_char": 3576
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-004c73342228"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c70654bc6d9c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "刚柔结合的抓手和具有其的机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a32c3d7247d0",
+      "evidence": [
+        {
+          "quote": "刚柔结合的抓手和具有其的机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3595,
+            "end_char": 3609
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Active-Cooling-in-the-Loop Controller Design and Implementation for an SMA-Driven Soft Robotic Tentacle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-21b82623af22",
+      "evidence": [
+        {
+          "quote": "Active-Cooling-in-the-Loop Controller Design and Implementation for an SMA-Driven Soft Robotic Tentacle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3635,
+            "end_char": 3737
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control and Implementation of a Fluidic Elastomer Actuator for Active Suppression of Hand Tremor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb800d032c18",
+      "evidence": [
+        {
+          "quote": "Control and Implementation of a Fluidic Elastomer Actuator for Active Suppression of Hand Tremor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3798,
+            "end_char": 3893
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "抑震控制方法、装置、计算机设备和存储介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d9df225442a7",
+      "evidence": [
+        {
+          "quote": "抑震控制方法、装置、计算机设备和存储介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3941,
+            "end_char": 3960
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "气动驱动器、机器人及机器人控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-25a419dbe0f2",
+      "evidence": [
+        {
+          "quote": "气动驱动器、机器人及机器人控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3985,
+            "end_char": 4001
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Conformable and Compact Multiaxis Tactile Sensor for Human and Robotic Grasping via Anisotropic Waveguides",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b77beca68876",
+      "evidence": [
+        {
+          "quote": "Conformable and Compact Multiaxis Tactile Sensor for Human and Robotic Grasping via Anisotropic Waveguides",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4028,
+            "end_char": 4133
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "光波导触觉传感器、传感系统、标定方法、及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96ced4fb4819",
+      "evidence": [
+        {
+          "quote": "光波导触觉传感器、传感系统、标定方法、及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4231,
+            "end_char": 4253
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "气动供压系统及其驱动方法、软体机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b5cd238401b",
+      "evidence": [
+        {
+          "quote": "气动供压系统及其驱动方法、软体机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4278,
+            "end_char": 4295
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhancing the Universality of a Pneumatic Gripper via Continuously Adjustable Initial Grasp Postures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc1067331a7a",
+      "evidence": [
+        {
+          "quote": "Enhancing the Universality of a Pneumatic Gripper via Continuously Adjustable Initial Grasp Postures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4322,
+            "end_char": 4421
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and implementation of an underactuated gripper with enhanced shape adaptability and lateral stiffness through semi-active multi-degree-of-freedom endoskeletons",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5537f9c3f84",
+      "evidence": [
+        {
+          "quote": "Design and implementation of an underactuated gripper with enhanced shape adaptability and lateral stiffness through semi-active multi-degree-of-freedom endoskeletons",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4497,
+            "end_char": 4662
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "可拉伸的电流变液变刚度器件及其制备方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa1000d25e71",
+      "evidence": [
+        {
+          "quote": "可拉伸的电流变液变刚度器件及其制备方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4742,
+            "end_char": 4760
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development of modular multi-degree-of-freedom hybrid joints and robotic flexible legs via fluidic elastomer actuators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-449ef2b9451e",
+      "evidence": [
+        {
+          "quote": "Development of modular multi-degree-of-freedom hybrid joints and robotic flexible legs via fluidic elastomer actuators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4787,
+            "end_char": 4904
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Soft Pocket Pump for Multi‐Medium Transportation via an Active Tubular Diaphragm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e11066b01428",
+      "evidence": [
+        {
+          "quote": "Soft Pocket Pump for Multi‐Medium Transportation via an Active Tubular Diaphragm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4968,
+            "end_char": 5047
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "阵列化光波导柔性触觉传感器的制备方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-475522cad725",
+      "evidence": [
+        {
+          "quote": "阵列化光波导柔性触觉传感器的制备方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5122,
+            "end_char": 5139
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "熊有伦智湖优秀青年学者奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b1f8d5a19269",
+      "evidence": [
+        {
+          "quote": "熊有伦智湖优秀青年学者奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5167,
+            "end_char": 5178
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Speeding up soft pneumatic actuators through pressure and flow dynamics modeling and optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a3045b495c1",
+      "evidence": [
+        {
+          "quote": "Speeding up soft pneumatic actuators through pressure and flow dynamics modeling and optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5197,
+            "end_char": 5293
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "麻省理工科技评论35岁以下精英榜(中国区)",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b205dd7edc2b",
+      "evidence": [
+        {
+          "quote": "麻省理工科技评论35岁以下精英榜(中国区)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5342,
+            "end_char": 5362
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "流体泵",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-807b8f3d0df5",
+      "evidence": [
+        {
+          "quote": "流体泵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5379,
+            "end_char": 5381
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "气动人工肌肉纤维和仿生机械臂",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4fb8091eeeae",
+      "evidence": [
+        {
+          "quote": "气动人工肌肉纤维和仿生机械臂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5409,
+            "end_char": 5422
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "关节和机械臂",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-74d242c4df51",
+      "evidence": [
+        {
+          "quote": "关节和机械臂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5447,
+            "end_char": 5452
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A pipeline inspection robot for navigating tubular environments in the sub-centimeter scale",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-694c84e73203",
+      "evidence": [
+        {
+          "quote": "A pipeline inspection robot for navigating tubular environments in the sub-centimeter scale",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5479,
+            "end_char": 5569
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于智能材料驱动的软体管道探测机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b2016b9c4783",
+      "evidence": [
+        {
+          "quote": "基于智能材料驱动的软体管道探测机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5662,
+            "end_char": 5679
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stretchable and conformable variable stiffness device through an electrorheological fluid",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c76f6fe3c75",
+      "evidence": [
+        {
+          "quote": "Stretchable and conformable variable stiffness device through an electrorheological fluid",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5713,
+            "end_char": 5801
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "双程SMA弹簧驱动的软体机器人弯曲模块及其控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bbb86fccd00b",
+      "evidence": [
+        {
+          "quote": "双程SMA弹簧驱动的软体机器人弯曲模块及其控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5848,
+            "end_char": 5872
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种软体机器人抓持装置及抓持方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2aeeb8564e28",
+      "evidence": [
+        {
+          "quote": "一种软体机器人抓持装置及抓持方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5892,
+            "end_char": 5907
+          },
+          "version": "c77b71307b1354285816"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "专利": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "d5ae4bd56f4b1fd6cbc2",
   "version": "e3db2244eed1c22650f9",
   "source_hash": "a534fdec2bbb0f0658caae97745d271539646aa59b5e02778a4bc12f3b8e36b5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:24.425405+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.577012+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bc087a450b0e",
-          "name": "狭窄空间蛇形臂作业",
-          "desc": "核电维护、航空制造、船舶焊接、电气检修等狭小作业场景",
+          "id": "item-5c4dc81322da",
+          "name": "具备狭窄空间作业能力的蛇形臂机器人系统在航空制造、核电维护、船舶焊接、电气检修等领域有着广泛的应用前景。",
+          "desc": "具备狭窄空间作业能力的蛇形臂机器人系统在航空制造、核电维护、船舶焊接、电气检修等领域有着广泛的应用前景。",
           "evidence": [
             {
               "quote": "具备狭窄空间作业能力的蛇形臂机器人系统在航空制造、核电维护、船舶焊接、电气检修等领域有着广泛的应用前景。",
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-133ee3149a09",
-          "name": "狭窄空间灵活性精度不足",
-          "desc": "需解决复合运动机构、空间避障规划、运动轨迹控制问题",
-          "evidence": [
-            {
-              "quote": "本项目以提高狭窄作业空间中机器人的运动灵活性和运动轨迹精度为出发点，主要解决复合运动机构、空间避障规划、运动轨迹控制等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2742,
-                "end_char": 2802
-              },
-              "version": "e3db2244eed1c22650f9"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4137852bf6ee",
-          "name": "旋转伸缩复合关节设计",
-          "desc": "旋转和伸缩相结合的运动方式关节设计方法",
+          "id": "item-703901464188",
+          "name": "本项目以提高狭窄作业空间中机器人的运动灵活性和轨迹控制精度为出发点，主要解决复合运动机构、空间避障规划、运动轨迹控制等问",
+          "desc": "本项目以提高狭窄作业空间中机器人的运动灵活性和轨迹控制精度为出发点，主要解决复合运动机构、空间避障规划、运动轨迹控制等问题，研究具有旋转和伸缩复合运动方式的关节设计方法，通过运动机构、驱动系统、推进平台的综合设计与优化，形成机器人机构整体解决方案；",
           "evidence": [
             {
-              "quote": "研究具有旋转和伸缩相结合的运动方式的关节设计方法",
+              "quote": "本项目以提高狭窄作业空间中机器人的运动灵活性和轨迹控制精度为出发点，主要解决复合运动机构、空间避障规划、运动轨迹控制等问题，研究具有旋转和伸缩复合运动方式的关节设计方法，通过运动机构、驱动系统、推进平台的综合设计与优化，形成机器人机构整体解决方案；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2804,
-                "end_char": 2827
+                "start_char": 713,
+                "end_char": 836
               },
               "version": "e3db2244eed1c22650f9"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2f3af0ed8663",
-          "name": "多约束关节空间轨迹规划",
-          "desc": "钢丝张力、避障、关节限制多约束下解决张力奇异与避障",
+          "id": "item-eb396781afd2",
+          "name": "通过本项目的研究，在多冗余度机器人的设计优化与控制方法上得到创新成果，形成合理的新型蛇形臂系统设计框架，为复杂狭窄环境中",
+          "desc": "通过本项目的研究，在多冗余度机器人的设计优化与控制方法上得到创新成果，形成合理的新型蛇形臂系统设计框架，为复杂狭窄环境中的机器人作业提供理论基础。",
           "evidence": [
             {
-              "quote": "研究带有钢丝张力、空间避障、关节限制等多约束条件的关节空间轨迹规划方法，解决冗余度机械臂动态过程的钢丝张力奇异问题和复杂环境的避障问题。",
+              "quote": "通过本项目的研究，在多冗余度机器人的设计优化与控制方法上得到创新成果，形成合理的新型蛇形臂系统设计框架，为复杂狭窄环境中的机器人作业提供理论基础。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2868,
-                "end_char": 2935
+                "start_char": 983,
+                "end_char": 1055
               },
               "version": "e3db2244eed1c22650f9"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,69 +91,268 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ac88c5959457",
-          "name": "新型蛇形臂设计框架",
-          "desc": "多冗余度机器人设计优化与控制创新成果及样机集成测试",
+          "id": "item-2763c73cda10",
+          "name": "具备狭窄空间作业能力的蛇形臂机器人系统在航空制造、核电维护、船舶焊接、电气检修等领域有着广泛的应用前景。",
+          "desc": "具备狭窄空间作业能力的蛇形臂机器人系统在航空制造、核电维护、船舶焊接、电气检修等领域有着广泛的应用前景。",
           "evidence": [
             {
-              "quote": "在多冗余度机器人的设计优化与控制方法上得到了创新成果，形成了新型蛇形臂系统设计框架，为复杂狭窄环境中的机器人作业提供了理论基础。",
+              "quote": "具备狭窄空间作业能力的蛇形臂机器人系统在航空制造、核电维护、船舶焊接、电气检修等领域有着广泛的应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2978,
-                "end_char": 3041
+                "start_char": 661,
+                "end_char": 712
               },
               "version": "e3db2244eed1c22650f9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-a96e42a42b2d",
+          "name": "本项目针对核电维护、航空制造、船舶焊接、电气检修等领域有着广泛的狭小作业场景，开展具备狭窄空间作业能力的蛇形臂机器人技术",
+          "desc": "本项目针对核电维护、航空制造、船舶焊接、电气检修等领域有着广泛的狭小作业场景，开展具备狭窄空间作业能力的蛇形臂机器人技术研究。",
+          "evidence": [
+            {
+              "quote": "本项目针对核电维护、航空制造、船舶焊接、电气检修等领域有着广泛的狭小作业场景，开展具备狭窄空间作业能力的蛇形臂机器人技术研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2679,
+                "end_char": 2741
+              },
+              "version": "e3db2244eed1c22650f9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bc087a450b0e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-133ee3149a09"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "低光照弱对比复杂环境下的深度相机视觉增强方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bf1a569d180e",
+      "evidence": [
+        {
+          "quote": "低光照弱对比复杂环境下的深度相机视觉增强方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3065,
+            "end_char": 3089
+          },
+          "version": "e3db2244eed1c22650f9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-133ee3149a09"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4137852bf6ee"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人多传感器融合感知与空间定位的方法、系统及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f77acd40756b",
+      "evidence": [
+        {
+          "quote": "机器人多传感器融合感知与空间定位的方法、系统及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3119,
+            "end_char": 3143
+          },
+          "version": "e3db2244eed1c22650f9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-133ee3149a09"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2f3af0ed8663"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "GIS腔体作业装置与GIS腔体作业方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4eb911434863",
+      "evidence": [
+        {
+          "quote": "GIS腔体作业装置与GIS腔体作业方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3173,
+            "end_char": 3191
+          },
+          "version": "e3db2244eed1c22650f9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2f3af0ed8663"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ac88c5959457"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "高冗余度蛇形机械臂的末端跟随运动控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8901123cff9",
+      "evidence": [
+        {
+          "quote": "高冗余度蛇形机械臂的末端跟随运动控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3221,
+            "end_char": 3243
+          },
+          "version": "e3db2244eed1c22650f9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "具有三自由度的蛇形机械臂主体模块和蛇形机械臂",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c170edf06c2",
+      "evidence": [
+        {
+          "quote": "具有三自由度的蛇形机械臂主体模块和蛇形机械臂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3273,
+            "end_char": 3294
+          },
+          "version": "e3db2244eed1c22650f9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design of a Dual-core Processor Based Controller with RTOS-GPOS Dual Operating System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-38c2956da5e2",
+      "evidence": [
+        {
+          "quote": "Design of a Dual-core Processor Based Controller with RTOS-GPOS Dual Operating System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3330,
+            "end_char": 3414
+          },
+          "version": "e3db2244eed1c22650f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "End-Effector Pose Estimation in Complex Environments Using Complementary Enhancement and Adaptive Fusion of Multisensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3fcf06729f34",
+      "evidence": [
+        {
+          "quote": "End-Effector Pose Estimation in Complex Environments Using Complementary Enhancement and Adaptive Fusion of Multisensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3479,
+            "end_char": 3597
+          },
+          "version": "e3db2244eed1c22650f9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "融合激光雷达和双目相机的深度估计方法、装置及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-90652ca5fdfd",
+      "evidence": [
+        {
+          "quote": "融合激光雷达和双目相机的深度估计方法、装置及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3657,
+            "end_char": 3680
+          },
+          "version": "e3db2244eed1c22650f9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "绳索驱动蛇形机械臂控制方法、装置和设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4234928780bc",
+      "evidence": [
+        {
+          "quote": "绳索驱动蛇形机械臂控制方法、装置和设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3707,
+            "end_char": 3725
+          },
+          "version": "e3db2244eed1c22650f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Environment Perception Technologies for Power Transmission Line Inspection Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85492e24467f",
+      "evidence": [
+        {
+          "quote": "Environment Perception Technologies for Power Transmission Line Inspection Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3759,
+            "end_char": 3839
+          },
+          "version": "e3db2244eed1c22650f9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

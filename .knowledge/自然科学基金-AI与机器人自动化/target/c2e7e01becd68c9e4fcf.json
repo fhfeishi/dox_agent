@@ -2,15 +2,20 @@
   "doc_id": "c2e7e01becd68c9e4fcf",
   "version": "072fdb90c7cbbc1ce22b",
   "source_hash": "e909c71a691b3d665965ce997b0937e08dfe01aa380b1e7d8f8325610b8b424c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:43.536052+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.362276+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-85906ace518f",
-          "name": "电力运维机器人视觉伺服",
-          "desc": "电力运维、复杂制造及高风险作业中机器人精细操作与自主交互",
+          "id": "item-df5bb9ca4e57",
+          "name": "机器人视觉伺服控制广泛应用于非结构化工作环境，其控制性能往往受到多种因素影响。",
+          "desc": "机器人视觉伺服控制广泛应用于非结构化工作环境，其控制性能往往受到多种因素影响。",
           "evidence": [
             {
-              "quote": "随着机器人在电力运维、复杂制造及高风险作业等领域的广泛应用，视觉伺服作为实现机器人精细操作与自主交互的关键技术，正面临不确定环境下性能与安全难以兼顾的挑战",
+              "quote": "机器人视觉伺服控制广泛应用于非结构化工作环境，其控制性能往往受到多种因素影响。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2793,
-                "end_char": 2869
+                "start_char": 649,
+                "end_char": 687
+              },
+              "version": "072fdb90c7cbbc1ce22b"
+            }
+          ]
+        },
+        {
+          "id": "item-c83f3aa41b40",
+          "name": "同时，面向工程应用中存在的视野约束和动态障碍等安全需求，项目将控制障碍函数等安全机制与模型预测控制相结合，实现了复杂约束",
+          "desc": "同时，面向工程应用中存在的视野约束和动态障碍等安全需求，项目将控制障碍函数等安全机制与模型预测控制相结合，实现了复杂约束条件下的安全视觉伺服与动态避障控制，并进一步探索了强化学习与预测控制相融合的学习增强策略，提升系统在非结构化环境中的自适应能力。",
+          "evidence": [
+            {
+              "quote": "同时，面向工程应用中存在的视野约束和动态障碍等安全需求，项目将控制障碍函数等安全机制与模型预测控制相结合，实现了复杂约束条件下的安全视觉伺服与动态避障控制，并进一步探索了强化学习与预测控制相融合的学习增强策略，提升系统在非结构化环境中的自适应能力。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3203,
+                "end_char": 3326
               },
               "version": "072fdb90c7cbbc1ce22b"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5b452de90557",
-          "name": "不确定性环境多约束",
-          "desc": "未知深度、模型不确定、测量时延、多速率采样及视野与执行器约束",
+          "id": "item-5424ca76bcde",
+          "name": "随着机器人在电力运维、复杂制造及高风险作业等领域的广泛应用，视觉伺服作为实现机器人精细操作与自主交互的关键技术，正面临不",
+          "desc": "随着机器人在电力运维、复杂制造及高风险作业等领域的广泛应用，视觉伺服作为实现机器人精细操作与自主交互的关键技术，正面临不确定环境下性能与安全难以兼顾的挑战。",
           "evidence": [
             {
-              "quote": "实际应用中，视觉伺服系统普遍存在未知深度、模型不确定、测量时延、多速率采样以及视野与执行器约束等问题，传统方法难以在复杂动态环境中同时保证稳定性、安全性与实时性",
+              "quote": "随着机器人在电力运维、复杂制造及高风险作业等领域的广泛应用，视觉伺服作为实现机器人精细操作与自主交互的关键技术，正面临不确定环境下性能与安全难以兼顾的挑战。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2793,
+                "end_char": 2870
+              },
+              "version": "072fdb90c7cbbc1ce22b"
+            }
+          ]
+        },
+        {
+          "id": "item-941d1559fdcb",
+          "name": "实际应用中，视觉伺服系统普遍存在未知深度、模型不确定、测量时延、多速率采样以及视野与执行器约束等问题，传统方法难以在复杂",
+          "desc": "实际应用中，视觉伺服系统普遍存在未知深度、模型不确定、测量时延、多速率采样以及视野与执行器约束等问题，传统方法难以在复杂动态环境中同时保证稳定性、安全性与实时性。",
+          "evidence": [
+            {
+              "quote": "实际应用中，视觉伺服系统普遍存在未知深度、模型不确定、测量时延、多速率采样以及视野与执行器约束等问题，传统方法难以在复杂动态环境中同时保证稳定性、安全性与实时性。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2871,
-                "end_char": 2950
+                "end_char": 2951
               },
               "version": "072fdb90c7cbbc1ce22b"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-141df36977f4",
-          "name": "多速率变时域鲁棒MPC",
-          "desc": "变时域优化与逐次线性化降低在线求解复杂度，实现高精度与实时性统一",
+          "id": "item-bdaa2d4291ed",
+          "name": "同时，面向工程应用中存在的视野约束和动态障碍等安全需求，项目将控制障碍函数等安全机制与模型预测控制相结合，实现了复杂约束",
+          "desc": "同时，面向工程应用中存在的视野约束和动态障碍等安全需求，项目将控制障碍函数等安全机制与模型预测控制相结合，实现了复杂约束条件下的安全视觉伺服与动态避障控制，并进一步探索了强化学习与预测控制相融合的学习增强策略，提升系统在非结构化环境中的自适应能力。",
           "evidence": [
             {
-              "quote": "提出了多速率变时域鲁棒模型预测控制方法，通过变时域优化与逐次线性化策略降低在线求解复杂度",
+              "quote": "同时，面向工程应用中存在的视野约束和动态障碍等安全需求，项目将控制障碍函数等安全机制与模型预测控制相结合，实现了复杂约束条件下的安全视觉伺服与动态避障控制，并进一步探索了强化学习与预测控制相融合的学习增强策略，提升系统在非结构化环境中的自适应能力。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3120,
-                "end_char": 3163
+                "start_char": 3203,
+                "end_char": 3326
               },
               "version": "072fdb90c7cbbc1ce22b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e3c4d0336264",
-          "name": "控制障碍函数安全避障",
-          "desc": "安全机制与模型预测控制结合，实现复杂约束下的安全视觉伺服与动态避障",
+          "id": "item-c9b56ffd9014",
+          "name": ".项目以视觉—运动耦合建模为基础，系统分析图像特征动态与机械臂运动之间的非线性映射关系，将未知深度、外部扰动和建模误差统",
+          "desc": ".项目以视觉—运动耦合建模为基础，系统分析图像特征动态与机械臂运动之间的非线性映射关系，将未知深度、外部扰动和建模误差统一纳入等效不确定项描述框架，构建了适用于预测控制与鲁棒分析的视觉伺服动态模型。",
           "evidence": [
             {
-              "quote": "项目将控制障碍函数等安全机制与模型预测控制相结合，实现了复杂约束条件下的安全视觉伺服与动态避障控制",
+              "quote": ".项目以视觉—运动耦合建模为基础，系统分析图像特征动态与机械臂运动之间的非线性映射关系，将未知深度、外部扰动和建模误差统一纳入等效不确定项描述框架，构建了适用于预测控制与鲁棒分析的视觉伺服动态模型。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3231,
-                "end_char": 3279
+                "start_char": 2989,
+                "end_char": 3087
               },
               "version": "072fdb90c7cbbc1ce22b"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +140,472 @@
       "state": "has",
       "items": [
         {
-          "id": "item-946cb68c79a6",
-          "name": "机器人系统实验验证",
-          "desc": "动态目标、扰动及障碍条件下轨迹跟踪精度、响应速度和安全性显著优于传统方法",
+          "id": "item-5c04a27c39f0",
+          "name": "机器人视觉伺服控制广泛应用于非结构化工作环境，其控制性能往往受到多种因素影响。",
+          "desc": "机器人视觉伺服控制广泛应用于非结构化工作环境，其控制性能往往受到多种因素影响。",
           "evidence": [
             {
-              "quote": "实验结果表明，在动态目标、外部扰动及障碍干扰条件下，所提出方法在轨迹跟踪精度、响应速度和安全性方面均显著优于传统视觉伺服策略",
+              "quote": "机器人视觉伺服控制广泛应用于非结构化工作环境，其控制性能往往受到多种因素影响。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3346,
-                "end_char": 3407
+                "start_char": 649,
+                "end_char": 687
               },
               "version": "072fdb90c7cbbc1ce22b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-409b30450790",
-          "name": "论文专利与成果转化",
-          "desc": "发表SCI论文9篇等，授权发明专利2项，成果转化经费55万元",
+          "id": "item-3cfcb8b41438",
+          "name": "随着机器人在电力运维、复杂制造及高风险作业等领域的广泛应用，视觉伺服作为实现机器人精细操作与自主交互的关键技术，正面临不",
+          "desc": "随着机器人在电力运维、复杂制造及高风险作业等领域的广泛应用，视觉伺服作为实现机器人精细操作与自主交互的关键技术，正面临不确定环境下性能与安全难以兼顾的挑战。",
           "evidence": [
             {
-              "quote": "项目执行期间共发表 SCI 论文9篇、EI 期刊论文2篇、EI 会议论文4篇，授权发明专利2项、受理发明专利3项，实现成果转化经费55万元",
+              "quote": "随着机器人在电力运维、复杂制造及高风险作业等领域的广泛应用，视觉伺服作为实现机器人精细操作与自主交互的关键技术，正面临不确定环境下性能与安全难以兼顾的挑战。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3409,
-                "end_char": 3477
+                "start_char": 2793,
+                "end_char": 2870
               },
               "version": "072fdb90c7cbbc1ce22b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-85906ace518f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5b452de90557"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safety-critical predictive control for dynamic visual servoing of robot manipulators with visibility constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5bfaa5a4c06b",
+      "evidence": [
+        {
+          "quote": "Safety-critical predictive control for dynamic visual servoing of robot manipulators with visibility constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3634,
+            "end_char": 3745
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5b452de90557"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-141df36977f4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的机械臂视觉伺服控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-033ca1392b99",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的机械臂视觉伺服控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3791,
+            "end_char": 3815
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5b452de90557"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e3c4d0336264"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time dynamic obstacle avoidance for robot manipulators based on cascaded nonlinear MPC with artificial potential field",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-04430279bd3a",
+      "evidence": [
+        {
+          "quote": "Real-time dynamic obstacle avoidance for robot manipulators based on cascaded nonlinear MPC with artificial potential field",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3846,
+            "end_char": 3968
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-141df36977f4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-946cb68c79a6"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的机械臂自主避障方法,设备及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e36f8e463e33",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的机械臂自主避障方法,设备及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4013,
+            "end_char": 4038
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e3c4d0336264"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-409b30450790"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Flexible active safety motion control for robotic obstacle avoidance: a CBF-guided MPC approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-608f87e78c57",
+      "evidence": [
+        {
+          "quote": "Flexible active safety motion control for robotic obstacle avoidance: a CBF-guided MPC approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4074,
+            "end_char": 4168
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safety-critical generalized predictive control for speed regulation of pmsm drives based on dynamic robust control barrier function",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-387ea217058e",
+      "evidence": [
+        {
+          "quote": "Safety-critical generalized predictive control for speed regulation of pmsm drives based on dynamic robust control barrier function",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4230,
+            "end_char": 4360
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Predictive observer-based dual-rate prescribed performance control for visual servoing of robot manipulators with view constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1bfd799ace91",
+      "evidence": [
+        {
+          "quote": "Predictive observer-based dual-rate prescribed performance control for visual servoing of robot manipulators with view constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4407,
+            "end_char": 4536
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3D point cloud denoising using optimised k-means clustering and gravitational feature functions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a7d4582b2788",
+      "evidence": [
+        {
+          "quote": "3D point cloud denoising using optimised k-means clustering and gravitational feature functions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4583,
+            "end_char": 4677
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A systematic trajectory tracking framework for robot manipulators: an observer-based nonsmooth control approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0e5aa1d3227",
+      "evidence": [
+        {
+          "quote": "A systematic trajectory tracking framework for robot manipulators: an observer-based nonsmooth control approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4731,
+            "end_char": 4841
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Self-optimization composite dynamic control for trajectory tracking of robot manipulators via deep reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f97170a4acc",
+      "evidence": [
+        {
+          "quote": "Self-optimization composite dynamic control for trajectory tracking of robot manipulators via deep reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4902,
+            "end_char": 5022
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "复合移动机器人自主导航系统实验平台设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96cd8119cdb1",
+      "evidence": [
+        {
+          "quote": "复合移动机器人自主导航系统实验平台设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5073,
+            "end_char": 5091
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于抗扰增强型广义预测控制的永磁同步电机伺服系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51a433e0054e",
+      "evidence": [
+        {
+          "quote": "基于抗扰增强型广义预测控制的永磁同步电机伺服系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5120,
+            "end_char": 5143
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LLM-MTMP: A large language model-based multi-agent task and motion planning framework for power inspection robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef8aa059ec80",
+      "evidence": [
+        {
+          "quote": "LLM-MTMP: A large language model-based multi-agent task and motion planning framework for power inspection robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5173,
+            "end_char": 5285
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time safe and smooth visual servoing for robot manipulators via reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db7e57045ef0",
+      "evidence": [
+        {
+          "quote": "Real-time safe and smooth visual servoing for robot manipulators via reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5341,
+            "end_char": 5431
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "动态环境下移动机器人主动安全控制实验设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84a6d3286399",
+      "evidence": [
+        {
+          "quote": "动态环境下移动机器人主动安全控制实验设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5486,
+            "end_char": 5505
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向电力机器人的视觉伺服控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-364b95f57d5e",
+      "evidence": [
+        {
+          "quote": "一种面向电力机器人的视觉伺服控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5535,
+            "end_char": 5552
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于采样预测器的机械臂约束视觉伺服控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bd32103abfa0",
+      "evidence": [
+        {
+          "quote": "一种基于采样预测器的机械臂约束视觉伺服控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5593,
+            "end_char": 5618
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "中国发明协会发明创业奖创新奖二等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62bc1553525e",
+      "evidence": [
+        {
+          "quote": "中国发明协会发明创业奖创新奖二等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5655,
+            "end_char": 5671
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Safe reinforcement learning-based dynamic obstacle avoidance for robotic manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2ac91815ab78",
+      "evidence": [
+        {
+          "quote": "Safe reinforcement learning-based dynamic obstacle avoidance for robotic manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5710,
+            "end_char": 5794
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Graph-optimized encoder-imu fusion for robust pipeline robot localization in confined spaces",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-038274f88748",
+      "evidence": [
+        {
+          "quote": "Graph-optimized encoder-imu fusion for robust pipeline robot localization in confined spaces",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5830,
+            "end_char": 5921
+          },
+          "version": "072fdb90c7cbbc1ce22b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

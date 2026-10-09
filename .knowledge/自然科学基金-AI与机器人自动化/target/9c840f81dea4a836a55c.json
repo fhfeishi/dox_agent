@@ -2,15 +2,20 @@
   "doc_id": "9c840f81dea4a836a55c",
   "version": "8cd93c6097f5cb81639e",
   "source_hash": "82c4294e6eeb64d4a03eaf220e96669cf317e5e60a895a4efc32a9b429088575",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:29.316003+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.969196+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-56e11aa80a23",
-          "name": "四足仿生机器人跳跃",
-          "desc": "星球探测、军事领域的高机动跳跃运动",
+          "id": "item-8344ef67c283",
+          "name": "四足机器人在星球探测、军事等领域具有广阔应用前景。",
+          "desc": "四足机器人在星球探测、军事等领域具有广阔应用前景。",
           "evidence": [
             {
-              "quote": "四足仿生机器人在星球探测、军事等领域具有广阔应用前景，四足机器人远未达到四足生物的高机动性。",
+              "quote": "四足机器人在星球探测、军事等领域具有广阔应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2999,
-                "end_char": 3044
+                "start_char": 653,
+                "end_char": 677
               },
               "version": "8cd93c6097f5cb81639e"
             }
@@ -38,12 +43,76 @@
     },
     {
       "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-d37d73a72dcf",
-          "name": "机动性远逊于生物",
-          "desc": "四足机器人未达四足生物高机动性",
+          "id": "item-6c64fbaeafeb",
+          "name": "④提出基于仿生腿跳跃足端等弹性势能分析的关节类生物刚度规划方法，获得仿生跳跃的足端刚度和关节刚度模型，突破仿生腿跳跃关节",
+          "desc": "④提出基于仿生腿跳跃足端等弹性势能分析的关节类生物刚度规划方法，获得仿生跳跃的足端刚度和关节刚度模型，突破仿生腿跳跃关节刚度规划、关节位置和刚度同步控制关键技术。",
+          "evidence": [
+            {
+              "quote": "④提出基于仿生腿跳跃足端等弹性势能分析的关节类生物刚度规划方法，获得仿生跳跃的足端刚度和关节刚度模型，突破仿生腿跳跃关节刚度规划、关节位置和刚度同步控制关键技术。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 878,
+                "end_char": 958
+              },
+              "version": "8cd93c6097f5cb81639e"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2a01561a7b09",
+          "name": ".（4）仿生腿跳跃的关节变刚度规划是实现柔顺跳跃的基础，提出基于仿生腿足端弹性势能分析的关节类生物刚度规划方法，获得仿生",
+          "desc": ".（4）仿生腿跳跃的关节变刚度规划是实现柔顺跳跃的基础，提出基于仿生腿足端弹性势能分析的关节类生物刚度规划方法，获得仿生跳跃的足端刚度模型，并由雅克比矩阵建立了关节与足端刚度模型的映射关系。",
+          "evidence": [
+            {
+              "quote": ".（4）仿生腿跳跃的关节变刚度规划是实现柔顺跳跃的基础，提出基于仿生腿足端弹性势能分析的关节类生物刚度规划方法，获得仿生跳跃的足端刚度模型，并由雅克比矩阵建立了关节与足端刚度模型的映射关系。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3434,
+                "end_char": 3528
+              },
+              "version": "8cd93c6097f5cb81639e"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6d2f13f49f33",
+          "name": "四足机器人在星球探测、军事等领域具有广阔应用前景。",
+          "desc": "四足机器人在星球探测、军事等领域具有广阔应用前景。",
+          "evidence": [
+            {
+              "quote": "四足机器人在星球探测、军事等领域具有广阔应用前景。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 653,
+                "end_char": 677
+              },
+              "version": "8cd93c6097f5cb81639e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-58a8556fb1af",
+          "name": "四足仿生机器人在星球探测、军事等领域具有广阔应用前景，四足机器人远未达到四足生物的高机动性。",
+          "desc": "四足仿生机器人在星球探测、军事等领域具有广阔应用前景，四足机器人远未达到四足生物的高机动性。",
           "evidence": [
             {
               "quote": "四足仿生机器人在星球探测、军事等领域具有广阔应用前景，四足机器人远未达到四足生物的高机动性。",
@@ -54,144 +123,360 @@
               },
               "version": "8cd93c6097f5cb81639e"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-82b025a0b6da",
-          "name": "气动肌纤维仿生机体",
-          "desc": "气动肌纤维束驱动多向灵活弯曲仿生机体",
-          "evidence": [
-            {
-              "quote": "开展了气动肌纤维和肌纤维束特性分析，采用气动肌纤维束驱动设计了四足机器人的多向灵活弯曲仿生机体。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3213,
-                "end_char": 3260
-              },
-              "version": "8cd93c6097f5cb81639e"
-            }
-          ]
-        },
-        {
-          "id": "item-c653bee79631",
-          "name": "类生物刚度规划",
-          "desc": "足端弹性势能分析获得足端与关节刚度映射模型",
-          "evidence": [
-            {
-              "quote": "提出基于仿生腿足端弹性势能分析的关节类生物刚度规划方法，获得仿生跳跃的足端刚度模型，并由雅克比矩阵建立了关节与足端刚度模型的映射关系。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3462,
-                "end_char": 3528
-              },
-              "version": "8cd93c6097f5cb81639e"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f5ab4cd1057b",
-          "name": "跳跃300mm距离400mm",
-          "desc": "多自由度仿生腿柔顺跳跃实验验证机理正确性",
-          "evidence": [
-            {
-              "quote": "完成了多自由度仿生腿的柔顺跳跃实验，跳跃高度达300mm，跳跃距离达400mm，验证四足生物仿生躯体动态弯曲和仿生腿变刚度跳跃机理分析的正确性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3624,
-                "end_char": 3695
-              },
-              "version": "8cd93c6097f5cb81639e"
-            }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e3ecf960e897",
-          "name": "改进Maxwell迟滞模型",
-          "desc": "迟滞模型实验验证构建气动人工肌肉精确力模型",
-          "evidence": [
-            {
-              "quote": "提出了改进的Maxwell迟滞模型，通过实验验证模型的准确性，构建气动人工肌肉的精确力模型，基于此建立仿生腿的刚柔耦合动力学模型。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3369,
-                "end_char": 3433
-              },
-              "version": "8cd93c6097f5cb81639e"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-56e11aa80a23"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d37d73a72dcf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and simulation of artificial fish lateral line",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d380f8d10632",
+      "evidence": [
+        {
+          "quote": "Design and simulation of artificial fish lateral line",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3787,
+            "end_char": 3839
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d37d73a72dcf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-82b025a0b6da"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tool wear predicting based on multi-domain feature fusion by deep convolutional neural network in milling operations",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9855abdf850e",
+      "evidence": [
+        {
+          "quote": "Tool wear predicting based on multi-domain feature fusion by deep convolutional neural network in milling operations",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3924,
+            "end_char": 4039
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d37d73a72dcf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c653bee79631"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tool Wear Monitoring with Vibration Signals Based on Short-Time Fourier Transform and Deep Convolutional Neural Network in Milling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb8d86d9c31d",
+      "evidence": [
+        {
+          "quote": "Tool Wear Monitoring with Vibration Signals Based on Short-Time Fourier Transform and Deep Convolutional Neural Network in Milling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4114,
+            "end_char": 4243
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c653bee79631"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f5ab4cd1057b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种双关节气动人工肌肉驱动的仿生跳跃腿",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d2ff4584e104",
+      "evidence": [
+        {
+          "quote": "一种双关节气动人工肌肉驱动的仿生跳跃腿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4300,
+            "end_char": 4318
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-82b025a0b6da"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e3ecf960e897"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Position Control of Bionic Knee Joint Mechanism Driven by Pneumatic Artificial Muscle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01570660f9f1",
+      "evidence": [
+        {
+          "quote": "Research on Position Control of Bionic Knee Joint Mechanism Driven by Pneumatic Artificial Muscle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4340,
+            "end_char": 4436
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hopping Planning of the Bionic Leg Mechanism Driven by PAMs with Biarticular Muscle.",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-08f24c37522f",
+      "evidence": [
+        {
+          "quote": "Hopping Planning of the Bionic Leg Mechanism Driven by PAMs with Biarticular Muscle.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4494,
+            "end_char": 4577
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于骨骼肌模型的许可伸长量测试方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1eb03f2f5146",
+      "evidence": [
+        {
+          "quote": "一种基于骨骼肌模型的许可伸长量测试方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4636,
+            "end_char": 4654
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "柔性穿戴式上肢康复机器人关节运动控制研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-47840bcde06d",
+      "evidence": [
+        {
+          "quote": "柔性穿戴式上肢康复机器人关节运动控制研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4680,
+            "end_char": 4699
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "仿生气动肌纤维静态特性建模与实验研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-805e081f1866",
+      "evidence": [
+        {
+          "quote": "仿生气动肌纤维静态特性建模与实验研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4729,
+            "end_char": 4746
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种采用气动串联弹性关节的仿生跳跃腿",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4cb25e499f8",
+      "evidence": [
+        {
+          "quote": "一种采用气动串联弹性关节的仿生跳跃腿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4775,
+            "end_char": 4792
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "四足机器人刚柔耦合仿生脊柱研究进展",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2f9199818758",
+      "evidence": [
+        {
+          "quote": "四足机器人刚柔耦合仿生脊柱研究进展",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4822,
+            "end_char": 4838
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "基于模块化体系结构的智能移动机器人关键技术及其应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c3358b5b0b1",
+      "evidence": [
+        {
+          "quote": "基于模块化体系结构的智能移动机器人关键技术及其应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4863,
+            "end_char": 4887
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "气动肌肉驱动力臂可变的双足跳跃机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-03cbfc5c26a4",
+      "evidence": [
+        {
+          "quote": "气动肌肉驱动力臂可变的双足跳跃机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4922,
+            "end_char": 4939
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种类生物肌纤维驱动的可变刚度仿生机体",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c32bd30a97cc",
+      "evidence": [
+        {
+          "quote": "一种类生物肌纤维驱动的可变刚度仿生机体",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4970,
+            "end_char": 4988
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and Dynamic Characteristic Analysis of a Ball Screw Feed Drive System Based on Receptance Couplinnufacturing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-83af9f43a24b",
+      "evidence": [
+        {
+          "quote": "Modeling and Dynamic Characteristic Analysis of a Ball Screw Feed Drive System Based on Receptance Couplinnufacturing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5022,
+            "end_char": 5138
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种气动驱动的柔性穿戴式上肢康复系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1569c75788e3",
+      "evidence": [
+        {
+          "quote": "一种气动驱动的柔性穿戴式上肢康复系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5200,
+            "end_char": 5217
+          },
+          "version": "8cd93c6097f5cb81639e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

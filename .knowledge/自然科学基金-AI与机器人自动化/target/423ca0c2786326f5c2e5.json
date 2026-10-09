@@ -2,15 +2,20 @@
   "doc_id": "423ca0c2786326f5c2e5",
   "version": "f1598224e417fce9feba",
   "source_hash": "cdc35a90f4a02fb96f666ed0e4a059328e51eb3684fd2babe4bde424cb9cb777",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T17:01:43.549138+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.107135+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b056b4e08620",
-          "name": "全海深AUV事故漂移预测",
-          "desc": "AUV发生灾难性事故后漂移航迹预测与打捞回收",
+          "id": "item-b00076f7c2a2",
+          "name": "AUV无人无缆工作于复杂的海洋环境中，安全性是其研究和应用中的关键问题之一。",
+          "desc": "AUV无人无缆工作于复杂的海洋环境中，安全性是其研究和应用中的关键问题之一。",
           "evidence": [
             {
-              "quote": "本项目研究全海深AUV发生灾难性事故后的漂移航迹预测问题",
+              "quote": "AUV无人无缆工作于复杂的海洋环境中，安全性是其研究和应用中的关键问题之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 894,
-                "end_char": 921
+                "start_char": 633,
+                "end_char": 670
               },
               "version": "f1598224e417fce9feba"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ba88a21b4df3",
-          "name": "海洋状态方程处理海况单一",
-          "desc": "失事AUV漂移跨越复杂高盐高温海况，现有海洋状态方程处理海况单一",
-          "evidence": [
-            {
-              "quote": "提出综合海洋状态方程，解决海洋状态方程处理海况单一的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2162,
-                "end_char": 2189
-              },
-              "version": "f1598224e417fce9feba"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-6ad71e5b2ad1",
-          "name": "DBASformer温跃层预测",
-          "desc": "双分支自适应注意力模型最大限度保留有用信息并抑制噪声",
+          "id": "item-e00eab42419a",
+          "name": "23. [专利] 一种基于非线性Kepler优化算法优化双向长短期记忆-时间变量注意力模型的AUV漂移轨迹预测方法 —",
+          "desc": "23. [专利] 一种基于非线性Kepler优化算法优化双向长短期记忆-时间变量注意力模型的AUV漂移轨迹预测方法 — 姚杰恩;张菁",
           "evidence": [
             {
-              "quote": "提出一种基于双分支自适应注意力的DBASformer模型，最大限度的保留有用信息，同时抑制不相关或噪声信息",
+              "quote": "23. [专利] 一种基于非线性Kepler优化算法优化双向长短期记忆-时间变量注意力模型的AUV漂移轨迹预测方法 — 姚杰恩;张菁",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2213,
-                "end_char": 2265
+                "start_char": 5195,
+                "end_char": 5260
               },
               "version": "f1598224e417fce9feba"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ce0305f4cf46",
-          "name": "GLoSyformer与BiFMNet",
-          "desc": "全局-局部协同增强与时变相关性学习、自适应双频率建模预测",
+          "id": "item-130061ba0c70",
+          "name": "24. [专利] 一种基于语义约束与多模态融合的机械臂抓取方法及系统 — 张菁;李丹;郭云鹏;高志航;陈彬",
+          "desc": "24. [专利] 一种基于语义约束与多模态融合的机械臂抓取方法及系统 — 张菁;李丹;郭云鹏;高志航;陈彬",
           "evidence": [
             {
-              "quote": "提出全局-局部协同增强模型GLoSyformer和时变相关性学习增强模型TVCorNet",
+              "quote": "24. [专利] 一种基于语义约束与多模态融合的机械臂抓取方法及系统 — 张菁;李丹;郭云鹏;高志航;陈彬",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2317,
-                "end_char": 2360
+                "start_char": 5262,
+                "end_char": 5314
               },
               "version": "f1598224e417fce9feba"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,668 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ee85e2ce6610",
-          "name": "预测精度达最好水平",
-          "desc": "预测精度实现项目目标，达到目前研究方法中的最好水平",
+          "id": "item-6d5982686548",
+          "name": "AUV无人无缆工作于复杂的海洋环境中，安全性是其研究和应用中的关键问题之一。",
+          "desc": "AUV无人无缆工作于复杂的海洋环境中，安全性是其研究和应用中的关键问题之一。",
           "evidence": [
             {
-              "quote": "通过实验和仿真结果验证，本项目方法的预测精度实现了项目提出的目标，到达目前研究方法中的最好水平",
+              "quote": "AUV无人无缆工作于复杂的海洋环境中，安全性是其研究和应用中的关键问题之一。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2418,
-                "end_char": 2464
+                "start_char": 633,
+                "end_char": 670
               },
               "version": "f1598224e417fce9feba"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-5cd004cf3f83",
+          "name": "本项目研究包括三个部分：综合海洋状态方程，温跃层海流特征模型，漂移轨迹预测模型。",
+          "desc": "本项目研究包括三个部分：综合海洋状态方程，温跃层海流特征模型，漂移轨迹预测模型。",
+          "evidence": [
+            {
+              "quote": "本项目研究包括三个部分：综合海洋状态方程，温跃层海流特征模型，漂移轨迹预测模型。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2081,
+                "end_char": 2120
+              },
+              "version": "f1598224e417fce9feba"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b056b4e08620"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ba88a21b4df3"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于三维重建的多功能图像采集设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c7129decde50",
+      "evidence": [
+        {
+          "quote": "一种用于三维重建的多功能图像采集设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2489,
+            "end_char": 2506
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ba88a21b4df3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6ad71e5b2ad1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prediction of Drift Trajectory in the Ocean Using Double-Branch Adaptive Span Attention",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a63c1f07493a",
+      "evidence": [
+        {
+          "quote": "Prediction of Drift Trajectory in the Ocean Using Double-Branch Adaptive Span Attention",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2531,
+            "end_char": 2617
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ba88a21b4df3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ce0305f4cf46"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于EC-UNet和EC-TNet网络的AUV经纬度轨迹预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-90cfe0bb2107",
+      "evidence": [
+        {
+          "quote": "一种基于EC-UNet和EC-TNet网络的AUV经纬度轨迹预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2680,
+            "end_char": 2713
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ce0305f4cf46"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ee85e2ce6610"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于量子卷积长短期记忆(QCNN-LSTM)模型的海上漂浮物轨迹预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d441828eb5b",
+      "evidence": [
+        {
+          "quote": "一种基于量子卷积长短期记忆(QCNN-LSTM)模型的海上漂浮物轨迹预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2736,
+            "end_char": 2773
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6ad71e5b2ad1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ee85e2ce6610"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于GAT-ABiGRU网络的AUV漂移轨迹预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c7a4f8a7cdb",
+      "evidence": [
+        {
+          "quote": "一种基于GAT-ABiGRU网络的AUV漂移轨迹预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2792,
+            "end_char": 2819
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ETMixer: An Enhanced Trend Modeling Approach to Multivariate Time Series Forecasting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-994d40f01959",
+      "evidence": [
+        {
+          "quote": "ETMixer: An Enhanced Trend Modeling Approach to Multivariate Time Series Forecasting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2840,
+            "end_char": 2923
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于 AWOA-DBiLSTM 模型的自主水下航行器(AUV)漂移轨迹预测",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c4a825c5d7e",
+      "evidence": [
+        {
+          "quote": "一种基于 AWOA-DBiLSTM 模型的自主水下航行器(AUV)漂移轨迹预测",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3010,
+            "end_char": 3048
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GAT-ABiGRU Based Prediction Model for AUV Trajectory",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a1cd9783001",
+      "evidence": [
+        {
+          "quote": "GAT-ABiGRU Based Prediction Model for AUV Trajectory",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3069,
+            "end_char": 3120
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "BiFMNet: A Bi-Frequency Modeling Network for Time Series Forecasting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9bd8c3ab3d4",
+      "evidence": [
+        {
+          "quote": "BiFMNet: A Bi-Frequency Modeling Network for Time Series Forecasting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3206,
+            "end_char": 3273
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Whale Optimization Algorithm–DBiLSTM for Autonomous Underwater Vehicle (AUV) Trajectory Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b4a8978c7046",
+      "evidence": [
+        {
+          "quote": "Adaptive Whale Optimization Algorithm–DBiLSTM for Autonomous Underwater Vehicle (AUV) Trajectory Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3365,
+            "end_char": 3471
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Method for Vessel's Trajectory Prediction Based on Encoder Decoder Architecture",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb52395ea34e",
+      "evidence": [
+        {
+          "quote": "A Method for Vessel's Trajectory Prediction Based on Encoder Decoder Architecture",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3523,
+            "end_char": 3603
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "LETCP: A Label-Efficient Transformer-Based Contrastive Pre-Training Method for Brain Tumor Segmentation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-19118002bb2d",
+      "evidence": [
+        {
+          "quote": "LETCP: A Label-Efficient Transformer-Based Contrastive Pre-Training Method for Brain Tumor Segmentation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3665,
+            "end_char": 3767
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Segmentation of Liver Tumors by Monai and PyTorch in CT Images with Deep Learning Techniques",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e4293c222800",
+      "evidence": [
+        {
+          "quote": "Segmentation of Liver Tumors by Monai and PyTorch in CT Images with Deep Learning Techniques",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3820,
+            "end_char": 3911
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Lagrange tracking-based long-term drift trajectory prediction method for Autonomous Underwater Vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c2d436d7ac4d",
+      "evidence": [
+        {
+          "quote": "Lagrange tracking-based long-term drift trajectory prediction method for Autonomous Underwater Vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3952,
+            "end_char": 4053
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于海深度量模型的AUV深度轨迹预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ba009f713fae",
+      "evidence": [
+        {
+          "quote": "一种基于海深度量模型的AUV深度轨迹预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4113,
+            "end_char": 4134
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于自主水下机器人轨迹预测的三维建模和渲染方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f659daa682eb",
+      "evidence": [
+        {
+          "quote": "一种基于自主水下机器人轨迹预测的三维建模和渲染方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4158,
+            "end_char": 4182
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Brain Tumor Image Segmentation Method Based on Quantum Entanglement and Wormhole Behaved Particle Swarm Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-29636b856a53",
+      "evidence": [
+        {
+          "quote": "A Brain Tumor Image Segmentation Method Based on Quantum Entanglement and Wormhole Behaved Particle Swarm Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4204,
+            "end_char": 4321
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AUV Drift Track Prediction Method Based on a Modified Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-65c1f56ca7ca",
+      "evidence": [
+        {
+          "quote": "AUV Drift Track Prediction Method Based on a Modified Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4394,
+            "end_char": 4461
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GLoSyformer: Global-Local Synergistic Enhanced Transformer for Multivariate Time Series Forecasting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2fe1ae95cc02",
+      "evidence": [
+        {
+          "quote": "GLoSyformer: Global-Local Synergistic Enhanced Transformer for Multivariate Time Series Forecasting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4509,
+            "end_char": 4607
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "BiPAZSL: A bidirectional progressive attention method for zero-shot learning domain shift mitigation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca38a163e957",
+      "evidence": [
+        {
+          "quote": "BiPAZSL: A bidirectional progressive attention method for zero-shot learning domain shift mitigation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4699,
+            "end_char": 4798
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "TVCorNet: Time-Variable Correlation Learning Enhancement Network for Multivariate Time Series Forecasting",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c5324735c03",
+      "evidence": [
+        {
+          "quote": "TVCorNet: Time-Variable Correlation Learning Enhancement Network for Multivariate Time Series Forecasting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4841,
+            "end_char": 4945
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel two phases Petri net image segmentation based on rough sets and roughness entropy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d53fb0f91954",
+      "evidence": [
+        {
+          "quote": "A novel two phases Petri net image segmentation based on rough sets and roughness entropy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5034,
+            "end_char": 5122
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于非线性Kepler优化算法优化双向长短期记忆-时间变量注意力模型的AUV漂移轨迹预测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5c6d6d063ec2",
+      "evidence": [
+        {
+          "quote": "一种基于非线性Kepler优化算法优化双向长短期记忆-时间变量注意力模型的AUV漂移轨迹预测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5204,
+            "end_char": 5251
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于语义约束与多模态融合的机械臂抓取方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-924f4a29bf6c",
+      "evidence": [
+        {
+          "quote": "一种基于语义约束与多模态融合的机械臂抓取方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5271,
+            "end_char": 5295
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "ABiLSTM Based Prediction Model for AUV Trajectory",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1b074af44b1",
+      "evidence": [
+        {
+          "quote": "ABiLSTM Based Prediction Model for AUV Trajectory",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5327,
+            "end_char": 5375
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多域转换和信心值估计的水下图像复原方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06187a7b29a0",
+      "evidence": [
+        {
+          "quote": "一种基于多域转换和信心值估计的水下图像复原方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5448,
+            "end_char": 5470
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于协同对齐与自适应融合的视觉语言导航方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9c96232c5bdb",
+      "evidence": [
+        {
+          "quote": "基于协同对齐与自适应融合的视觉语言导航方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5493,
+            "end_char": 5516
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Underwater Vehicle Trajectory Prediction with the Nonlinear Kepler Optimization Algorithm–Bidirectional Long Short-Term Memory–Time-Variable Attention Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb1c17a0e47c",
+      "evidence": [
+        {
+          "quote": "Autonomous Underwater Vehicle Trajectory Prediction with the Nonlinear Kepler Optimization Algorithm–Bidirectional Long Short-Term Memory–Time-Variable Attention Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5548,
+            "end_char": 5714
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Method of Emotion Recognition from Multi-Band EEG Topology Maps Based on ERENet",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a64fa1a81924",
+      "evidence": [
+        {
+          "quote": "A Novel Method of Emotion Recognition from Multi-Band EEG Topology Maps Based on ERENet",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5793,
+            "end_char": 5879
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于动态网格地图的视觉语言导航方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a46ff86948a4",
+      "evidence": [
+        {
+          "quote": "一种基于动态网格地图的视觉语言导航方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5932,
+            "end_char": 5953
+          },
+          "version": "f1598224e417fce9feba"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "专利": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

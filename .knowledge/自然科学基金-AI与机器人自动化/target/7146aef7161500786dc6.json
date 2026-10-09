@@ -2,15 +2,20 @@
   "doc_id": "7146aef7161500786dc6",
   "version": "90cab97e53dbb7f4f8da",
   "source_hash": "fb90e8def49fa83ca2821222f04e88ffefb2d78f50424a4c0dc8fa3ca4751922",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:43:09.944773+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.532558+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-561b7d2b5beb",
-          "name": "仿生上肢康复机器人",
-          "desc": "脑卒中后患肢运动不协调、痉挛等异常肌肉活动的康复训练",
+          "id": "item-a14a0c9dfb64",
+          "name": "脑卒中后患肢常伴有运动不协调、痉挛等异常肌肉活动, 导致康复效果不佳,存在人机对抗隐患。",
+          "desc": "脑卒中后患肢常伴有运动不协调、痉挛等异常肌肉活动, 导致康复效果不佳,存在人机对抗隐患。",
           "evidence": [
             {
-              "quote": "针对上肢康复机器人机械结构设计，本研究在康复医学理论的基础上，系统探讨了脑卒中的病理生理机制与神经重塑机制，旨在为脑卒中患者开发一款兼具安全性、舒适性与轻量化特点的仿生上肢康复机器人",
+              "quote": "脑卒中后患肢常伴有运动不协调、痉挛等异常肌肉活动, 导致康复效果不佳,存在人机对抗隐患。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3156,
-                "end_char": 3246
+                "start_char": 663,
+                "end_char": 706
+              },
+              "version": "90cab97e53dbb7f4f8da"
+            }
+          ]
+        },
+        {
+          "id": "item-592dcffcdc5f",
+          "name": "针对上肢运动功能评估问题，以脑卒中患者上肢运动功能障碍状态评估为背景，聚焦临床实际需求，以基于任务导向训练的上肢多模态特",
+          "desc": "针对上肢运动功能评估问题，以脑卒中患者上肢运动功能障碍状态评估为背景，聚焦临床实际需求，以基于任务导向训练的上肢多模态特征.融合评估方法为核心研究对象，系统开展了协同量化模型构建、多模态评估框架制定与自动化评估系统设计。",
+          "evidence": [
+            {
+              "quote": "针对上肢运动功能评估问题，以脑卒中患者上肢运动功能障碍状态评估为背景，聚焦临床实际需求，以基于任务导向训练的上肢多模态特征.融合评估方法为核心研究对象，系统开展了协同量化模型构建、多模态评估框架制定与自动化评估系统设计。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3763,
+                "end_char": 3872
               },
               "version": "90cab97e53dbb7f4f8da"
             }
@@ -38,93 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ed6ca675c491",
-          "name": "人机对抗二次损伤",
-          "desc": "脑卒中后患肢异常肌肉活动导致康复效果不佳，存在人机对抗隐患，容易造成患肢二次损伤",
-          "evidence": [
-            {
-              "quote": "脑卒中后患肢常伴有运动不协调、痉挛等异常肌肉活动, 导致康复效果不佳,存在人机对抗隐患",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 663,
-                "end_char": 705
-              },
-              "version": "90cab97e53dbb7f4f8da"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4e0767026bee",
-          "name": "耦合动力学建模",
-          "desc": "拉格朗日功能平衡法构建四自由度仿生上肢外骨骼动力学模型与上肢-机器人耦合动力学模型",
+          "id": "item-6689947dff9e",
+          "name": "针对此问题,根据神经可塑性原理和功能重塑机制,拟开展以下几方面研究:分析患肢骨骼运动特性和可达空间,提出具有张拉结构特性",
+          "desc": "针对此问题,根据神经可塑性原理和功能重塑机制,拟开展以下几方面研究:分析患肢骨骼运动特性和可达空间,提出具有张拉结构特性的仿生上肢康复机器人设计方法和系统模型;探寻生理信号与患肢主动运动意图之间的内在联系,提出多源信号特征融合方法,提高识别实时性和准确性;研究仿生上肢康复机器人参数变化规律,提出有限时间稳定性和鲁棒性判别准则,解决仿生上肢康复机器人系统稳定性分析根本性问题;提出康复训练模式柔性切换策略,给出人机交互控制器设计方法, 建立",
           "evidence": [
             {
-              "quote": "利用拉格朗日功能平衡法构建了四自由度仿生上肢外骨骼机器人的动力学模型，并建立了上肢-机器人耦合动力学模型",
+              "quote": "针对此问题,根据神经可塑性原理和功能重塑机制,拟开展以下几方面研究:分析患肢骨骼运动特性和可达空间,提出具有张拉结构特性的仿生上肢康复机器人设计方法和系统模型;探寻生理信号与患肢主动运动意图之间的内在联系,提出多源信号特征融合方法,提高识别实时性和准确性;研究仿生上肢康复机器人参数变化规律,提出有限时间稳定性和鲁棒性判别准则,解决仿生上肢康复机器人系统稳定性分析根本性问题;提出康复训练模式柔性切换策略,给出人机交互控制器设计方法, 建立",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3331,
-                "end_char": 3382
+                "start_char": 749,
+                "end_char": 968
               },
               "version": "90cab97e53dbb7f4f8da"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-90c04330981d",
-          "name": "ELMAN意图预测",
-          "desc": "基于ELMAN神经网络预测模型的上肢连续运动意图估计",
+          "id": "item-c0b9bb56df14",
+          "name": "针对上肢运动功能评估问题，以脑卒中患者上肢运动功能障碍状态评估为背景，聚焦临床实际需求，以基于任务导向训练的上肢多模态特",
+          "desc": "针对上肢运动功能评估问题，以脑卒中患者上肢运动功能障碍状态评估为背景，聚焦临床实际需求，以基于任务导向训练的上肢多模态特征.融合评估方法为核心研究对象，系统开展了协同量化模型构建、多模态评估框架制定与自动化评估系统设计。",
           "evidence": [
             {
-              "quote": "针对人体上肢连续运动意图估计问题，采用ELMAN神经网络预测模型，并开展上肢主动运动意图实验",
+              "quote": "针对上肢运动功能评估问题，以脑卒中患者上肢运动功能障碍状态评估为背景，聚焦临床实际需求，以基于任务导向训练的上肢多模态特征.融合评估方法为核心研究对象，系统开展了协同量化模型构建、多模态评估框架制定与自动化评估系统设计。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3484,
-                "end_char": 3529
+                "start_char": 3763,
+                "end_char": 3872
               },
               "version": "90cab97e53dbb7f4f8da"
             }
-          ]
-        },
-        {
-          "id": "item-2f05cf7f2bed",
-          "name": "ZND与ADZND控制",
-          "desc": "ZND和ADZND模型实时求解时变非线性系统与离散时间人机交互控制器",
-          "evidence": [
-            {
-              "quote": "基于人机耦合动力学模型与人体主动运动意图，提出ZND和ADZND模型用于实时求解时变非线性系统，并设计相应的离散时间人机交互控制器",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3571,
-                "end_char": 3635
-              },
-              "version": "90cab97e53dbb7f4f8da"
-            }
-          ]
-        },
-        {
-          "id": "item-912c5c49e52e",
-          "name": "NC-ADZND鲁棒控制",
-          "desc": "基于非凸激活函数NC-ADZND控制器应对有界与时变扰动",
-          "evidence": [
-            {
-              "quote": "提出基于非凸激活函数NC-ADZND控制器，以应对有界与时变扰动，通过李雅普诺夫理论证明了该控制系统的收敛性与鲁棒性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3704,
-                "end_char": 3761
-              },
-              "version": "90cab97e53dbb7f4f8da"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,91 +107,1072 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5b3587075849",
-          "name": "论文58篇与奖项",
-          "desc": "发表及录用学术论文58篇（SCI 35篇），授权发明专利3件，获中国自动化学会自然科学奖二等奖等奖项",
+          "id": "item-004088f23664",
+          "name": "脑卒中后患肢常伴有运动不协调、痉挛等异常肌肉活动, 导致康复效果不佳,存在人机对抗隐患。",
+          "desc": "脑卒中后患肢常伴有运动不协调、痉挛等异常肌肉活动, 导致康复效果不佳,存在人机对抗隐患。",
           "evidence": [
             {
-              "quote": "相关研究发表及录用学术论文58篇，其中SCI检索35篇，EI检索18篇，中科院1区16篇，2区13篇，TOP期刊14篇",
+              "quote": "脑卒中后患肢常伴有运动不协调、痉挛等异常肌肉活动, 导致康复效果不佳,存在人机对抗隐患。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3873,
-                "end_char": 3931
+                "start_char": 663,
+                "end_char": 706
               },
               "version": "90cab97e53dbb7f4f8da"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-798c5824cb01",
+          "name": "针对上肢康复机器人机械结构设计，本研究在康复医学理论的基础上，系统探讨了脑卒中的病理生理机制与神经重塑机制，旨在为脑卒中",
+          "desc": "针对上肢康复机器人机械结构设计，本研究在康复医学理论的基础上，系统探讨了脑卒中的病理生理机制与神经重塑机制，旨在为脑卒中患者开发一款兼具安全性、舒适性与轻量化特点的仿生上肢康复机器人。",
+          "evidence": [
+            {
+              "quote": "针对上肢康复机器人机械结构设计，本研究在康复医学理论的基础上，系统探讨了脑卒中的病理生理机制与神经重塑机制，旨在为脑卒中患者开发一款兼具安全性、舒适性与轻量化特点的仿生上肢康复机器人。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3156,
+                "end_char": 3247
+              },
+              "version": "90cab97e53dbb7f4f8da"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-561b7d2b5beb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ed6ca675c491"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Generalized zeroing neural dynamics model for online solving time-varying cube roots problem with various external disturbances in different domains",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51b2e3a7d7ac",
+      "evidence": [
+        {
+          "quote": "Generalized zeroing neural dynamics model for online solving time-varying cube roots problem with various external disturbances in different domains",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4081,
+            "end_char": 4228
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ed6ca675c491"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4e0767026bee"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Discrete-time Neural Dynamics for Trajectory Tracking and Dynamic Obstacle Avoidance of Omnidirectional Mobile Manipulator: A Model Predictive Control Approach with Guaranteed Performance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-085e13e512fc",
+      "evidence": [
+        {
+          "quote": "Discrete-time Neural Dynamics for Trajectory Tracking and Dynamic Obstacle Avoidance of Omnidirectional Mobile Manipulator: A Model Predictive Control Approach with Guaranteed Performance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4297,
+            "end_char": 4483
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ed6ca675c491"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-90c04330981d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Rehabilitation Path Planning Based on Human Motion Output and Ergonomic Index Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd67e158ca84",
+      "evidence": [
+        {
+          "quote": "Rehabilitation Path Planning Based on Human Motion Output and Ergonomic Index Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4566,
+            "end_char": 4655
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ed6ca675c491"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2f05cf7f2bed"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel discrete zeroing neural network for online solving time-varying nonlinear optimization problems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b39d6b2425a",
+      "evidence": [
+        {
+          "quote": "A novel discrete zeroing neural network for online solving time-varying nonlinear optimization problems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4736,
+            "end_char": 4838
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-912c5c49e52e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5b3587075849"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多模态特征融合的上肢功能评估方法与系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d63de4b78ee5",
+      "evidence": [
+        {
+          "quote": "基于多模态特征融合的上肢功能评估方法与系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4900,
+            "end_char": 4920
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2f05cf7f2bed"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5b3587075849"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种可调刚度的可重构非线性旋转串联弹性驱动器",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3a6bd6fdf615",
+      "evidence": [
+        {
+          "quote": "一种可调刚度的可重构非线性旋转串联弹性驱动器",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4968,
+            "end_char": 4989
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于多源信号的仿生假手机构设计与控制方法研究进展",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-240d931d2330",
+      "evidence": [
+        {
+          "quote": "基于多源信号的仿生假手机构设计与控制方法研究进展",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5032,
+            "end_char": 5055
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Zeroing neural network-based impedance learning controller: application to underactuated prosthesis hand",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d55774e2920",
+      "evidence": [
+        {
+          "quote": "Zeroing neural network-based impedance learning controller: application to underactuated prosthesis hand",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5077,
+            "end_char": 5180
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Feature Classification of Motor Imagery EEG Based on Deep Learning Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-58e6a1ab3587",
+      "evidence": [
+        {
+          "quote": "Feature Classification of Motor Imagery EEG Based on Deep Learning Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5256,
+            "end_char": 5330
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "sEMG data driven-based anti-disturbance control enables adaptive interaction of lower limb rehabilitation exoskeleton",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d94246b0fc99",
+      "evidence": [
+        {
+          "quote": "sEMG data driven-based anti-disturbance control enables adaptive interaction of lower limb rehabilitation exoskeleton",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5399,
+            "end_char": 5515
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nonconvex noise-tolerant neural model for repetitive motion of omnidirectional mobile manipulators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2de1b1440a37",
+      "evidence": [
+        {
+          "quote": "Nonconvex noise-tolerant neural model for repetitive motion of omnidirectional mobile manipulators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5594,
+            "end_char": 5691
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Noise-tolerant zeroing neural network control for a novel compliant actuator in lower-limb exoskeletons",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-740e097c70f4",
+      "evidence": [
+        {
+          "quote": "Noise-tolerant zeroing neural network control for a novel compliant actuator in lower-limb exoskeletons",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5754,
+            "end_char": 5856
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path Planning for Upper Limb Rehabilitation Based on Human Motion Feature Output",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0196b453aaea",
+      "evidence": [
+        {
+          "quote": "Path Planning for Upper Limb Rehabilitation Based on Human Motion Feature Output",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5943,
+            "end_char": 6022
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "非线性优化理论与最优控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4c4d7f155e2f",
+      "evidence": [
+        {
+          "quote": "非线性优化理论与最优控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6102,
+            "end_char": 6115
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Kinematics and Dynamics Analysis of Tensegrity Based Bionic Knee Joint Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f370389d1c96",
+      "evidence": [
+        {
+          "quote": "Kinematics and Dynamics Analysis of Tensegrity Based Bionic Knee Joint Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6148,
+            "end_char": 6227
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Error-Accumulation Improved Newton Algorithm in Model Predictive Control for Novel Compliant Actuator-Driven Upper-Limb Exoskeleton",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52a0929e2fa2",
+      "evidence": [
+        {
+          "quote": "Error-Accumulation Improved Newton Algorithm in Model Predictive Control for Novel Compliant Actuator-Driven Upper-Limb Exoskeleton",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6304,
+            "end_char": 6434
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Noise-suppression neural network for upper limb continuous motion prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f6f729b86f53",
+      "evidence": [
+        {
+          "quote": "Noise-suppression neural network for upper limb continuous motion prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6509,
+            "end_char": 6584
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Disturbance Observer Compensation Based on Sliding-Mode Approach for Solving Compliant Actuator Tracking Control Problems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-21cf64587e7c",
+      "evidence": [
+        {
+          "quote": "Disturbance Observer Compensation Based on Sliding-Mode Approach for Solving Compliant Actuator Tracking Control Problems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6656,
+            "end_char": 6776
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "sEMG-based multi-joints motion estimation of lower limb utilizing deep convolutional neural network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-37c331f9ea7f",
+      "evidence": [
+        {
+          "quote": "sEMG-based multi-joints motion estimation of lower limb utilizing deep convolutional neural network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6848,
+            "end_char": 6946
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一类可变刚度弹性驱动器的RBF神经网络鲁棒控制策略",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0afb7378d3b",
+      "evidence": [
+        {
+          "quote": "一类可变刚度弹性驱动器的RBF神经网络鲁棒控制策略",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7024,
+            "end_char": 7048
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于递归神经网络的人体下肢运动意图识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3bc659d54fbe",
+      "evidence": [
+        {
+          "quote": "基于递归神经网络的人体下肢运动意图识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7078,
+            "end_char": 7098
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于无源性理论的上肢康复机器人人机交互鲁棒控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7832a2384b56",
+      "evidence": [
+        {
+          "quote": "基于无源性理论的上肢康复机器人人机交互鲁棒控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7127,
+            "end_char": 7149
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An adaptive zeroing neural network model based on fuzzy factors for solving time-varying quadratic programming",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b6261acba857",
+      "evidence": [
+        {
+          "quote": "An adaptive zeroing neural network model based on fuzzy factors for solving time-varying quadratic programming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7176,
+            "end_char": 7285
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A noise suppression zeroing neural network for trajectory tracking with joint angle constraints of mobile manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c6194bd3203",
+      "evidence": [
+        {
+          "quote": "A noise suppression zeroing neural network for trajectory tracking with joint angle constraints of mobile manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7356,
+            "end_char": 7472
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design, modeling and optimal control of a novel compliant actuator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5169109194f",
+      "evidence": [
+        {
+          "quote": "Design, modeling and optimal control of a novel compliant actuator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7554,
+            "end_char": 7619
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Robot Interaction Force Control of Series Elastic Actuator-Driven Upper Limb Exoskeleton Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5f38349437a",
+      "evidence": [
+        {
+          "quote": "Human-Robot Interaction Force Control of Series Elastic Actuator-Driven Upper Limb Exoskeleton Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7690,
+            "end_char": 7789
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Robot Interaction-Based Model Predictive Control for Exoskeleton Robots Driven by Series Elastic Actuators",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8d676093aa4d",
+      "evidence": [
+        {
+          "quote": "Human-Robot Interaction-Based Model Predictive Control for Exoskeleton Robots Driven by Series Elastic Actuators",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7862,
+            "end_char": 7973
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Noise suppression zeroing neural network for online solving the time-varying inverse kinematics problem of four-wheel mobile manipulators with external disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0ca47c75697",
+      "evidence": [
+        {
+          "quote": "Noise suppression zeroing neural network for online solving the time-varying inverse kinematics problem of four-wheel mobile manipulators with external disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8024,
+            "end_char": 8187
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A vector-based end-effector tracking and obstacle avoidance control for wheeled mobile manipulators under multi-joint position and velocity constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-70e6289a16b8",
+      "evidence": [
+        {
+          "quote": "A vector-based end-effector tracking and obstacle avoidance control for wheeled mobile manipulators under multi-joint position and velocity constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8255,
+            "end_char": 8405
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Noise-tolerant zeroing neurodynamic algorithm for upper limb motion intention-based human–robot interaction control in non-ideal conditions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-584a21cff6e9",
+      "evidence": [
+        {
+          "quote": "Noise-tolerant zeroing neurodynamic algorithm for upper limb motion intention-based human–robot interaction control in non-ideal conditions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8479,
+            "end_char": 8617
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Quantitative Assessment of Upper Limb Multi-modal Feature Fusion Under Task-Oriented Movement",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ad3c17dd574",
+      "evidence": [
+        {
+          "quote": "Quantitative Assessment of Upper Limb Multi-modal Feature Fusion Under Task-Oriented Movement",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8686,
+            "end_char": 8778
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "基于神经动力学的多冗余机器人竞争-合作协同理论与方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9fac2f25c81c",
+      "evidence": [
+        {
+          "quote": "基于神经动力学的多冗余机器人竞争-合作协同理论与方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8874,
+            "end_char": 8899
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural Network-based Adaptive Sliding Mode Control for Upper Limb Rehabilitation with Disturbance Observer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f57d39d9ef59",
+      "evidence": [
+        {
+          "quote": "Neural Network-based Adaptive Sliding Mode Control for Upper Limb Rehabilitation with Disturbance Observer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8932,
+            "end_char": 9037
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Compliant Control of Lower Limb Rehabilitation Exoskeleton Robot Based on Flexible Transmission",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a47d680988df",
+      "evidence": [
+        {
+          "quote": "Compliant Control of Lower Limb Rehabilitation Exoskeleton Robot Based on Flexible Transmission",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9098,
+            "end_char": 9192
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "CosELU: An improved activation deep neural network for EEG signal recognition in stroke patients",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-44cf3dc2dfb6",
+      "evidence": [
+        {
+          "quote": "CosELU: An improved activation deep neural network for EEG signal recognition in stroke patients",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9255,
+            "end_char": 9350
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Advanced Bionic Knee Joint Mechanism With Neural Network Controller",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05816ec99296",
+      "evidence": [
+        {
+          "quote": "An Advanced Bionic Knee Joint Mechanism With Neural Network Controller",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9459,
+            "end_char": 9528
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Orthogonal Repetitive Motion and Obstacle Avoidance Scheme for Omnidirectional Mobile Robotic Arm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-427cfcd14c0e",
+      "evidence": [
+        {
+          "quote": "An Orthogonal Repetitive Motion and Obstacle Avoidance Scheme for Omnidirectional Mobile Robotic Arm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9611,
+            "end_char": 9710
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "上肢外骨骼康复机器人系统开发与应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fea144609729",
+      "evidence": [
+        {
+          "quote": "上肢外骨骼康复机器人系统开发与应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9792,
+            "end_char": 9808
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Noise-Suppression Zeroing Neural Network-Assisted Trajectory Tracking Scheme for Omni-Directional Redundant Manipulators With Physical Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f88987f32217",
+      "evidence": [
+        {
+          "quote": "Noise-Suppression Zeroing Neural Network-Assisted Trajectory Tracking Scheme for Omni-Directional Redundant Manipulators With Physical Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9871,
+            "end_char": 10016
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A zeroing neural network model for form-finding problems: A nonlinear optimization approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4e404a6a6657",
+      "evidence": [
+        {
+          "quote": "A zeroing neural network model for form-finding problems: A nonlinear optimization approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10089,
+            "end_char": 10179
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The dynamic relaxation form finding method aided with advanced recurrent neural network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7f9f01264538",
+      "evidence": [
+        {
+          "quote": "The dynamic relaxation form finding method aided with advanced recurrent neural network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10241,
+            "end_char": 10327
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nonconvex Activation Noise-Suppressing Neural Network for Time-Varying Quadratic Programming: Application to Omnidirectional Mobile Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e701c4b8d1df",
+      "evidence": [
+        {
+          "quote": "Nonconvex Activation Noise-Suppressing Neural Network for Time-Varying Quadratic Programming: Application to Omnidirectional Mobile Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10391,
+            "end_char": 10533
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Impedance Control of Upper Limb Exoskeleton Robot Based on Human Motion Data",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-63e02eabf413",
+      "evidence": [
+        {
+          "quote": "Adaptive Impedance Control of Upper Limb Exoskeleton Robot Based on Human Motion Data",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10605,
+            "end_char": 10689
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Classification of Motor Imagery EEG Signals Based on Channel Attention Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-607e59eca752",
+      "evidence": [
+        {
+          "quote": "Classification of Motor Imagery EEG Signals Based on Channel Attention Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10761,
+            "end_char": 10840
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Joint Drift-Free Scheme Aided With Allowed Nonconvex Noise-Resistant Neural Networks for Repetitive Motion of Omnidirectional Mobile Manipulator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7d098ad39861",
+      "evidence": [
+        {
+          "quote": "Joint Drift-Free Scheme Aided With Allowed Nonconvex Noise-Resistant Neural Networks for Repetitive Motion of Omnidirectional Mobile Manipulator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10907,
+            "end_char": 11050
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Trajectory Tracking Method Based on Robust Model Predictive Control for Bionic Ankle-Foot Aided with Tensegrity Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5a639ebce69f",
+      "evidence": [
+        {
+          "quote": "A Trajectory Tracking Method Based on Robust Model Predictive Control for Bionic Ankle-Foot Aided with Tensegrity Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11129,
+            "end_char": 11251
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Recurrent Neural Network Enabled Continuous Motion Estimation of Lower Limb Joints From Incomplete sEMG Signals",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18f2faec2226",
+      "evidence": [
+        {
+          "quote": "Recurrent Neural Network Enabled Continuous Motion Estimation of Lower Limb Joints From Incomplete sEMG Signals",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11325,
+            "end_char": 11435
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "张拉整体机器人构型与运动控制研究现状及进展",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c9e881352a4",
+      "evidence": [
+        {
+          "quote": "张拉整体机器人构型与运动控制研究现状及进展",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11532,
+            "end_char": 11552
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Impedance Control of Upper Limb Rehabilitation Robot Based on Series Elastic Actuator",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-87ee7fa1941f",
+      "evidence": [
+        {
+          "quote": "Impedance Control of Upper Limb Rehabilitation Robot Based on Series Elastic Actuator",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11594,
+            "end_char": 11678
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种末端可调节的仿生腕关节康复训练装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e8d0666a5ea1",
+      "evidence": [
+        {
+          "quote": "一种末端可调节的仿生腕关节康复训练装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11757,
+            "end_char": 11775
+          },
+          "version": "90cab97e53dbb7f4f8da"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 50,
+    "listed": 50,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 31,
+        "extracted": 31
+      },
+      "会议论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

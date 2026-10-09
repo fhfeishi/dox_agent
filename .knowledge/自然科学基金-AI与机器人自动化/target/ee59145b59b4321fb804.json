@@ -2,15 +2,20 @@
   "doc_id": "ee59145b59b4321fb804",
   "version": "a867d45ceb4ed636e6cb",
   "source_hash": "a3c603d1ad267b2fcc6e470ea3599d366a988f683bd4e98ed2b4465c3e6b24bc",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:52.407246+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.812633+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2e5e251f3ad4",
-          "name": "多介质多足软体机器人",
-          "desc": "水陆过渡多介质环境的软体机器人运动适应",
+          "id": "item-2db35d2722ee",
+          "name": "模仿柔性体动物的生理结构及运动机理，从仿生学原理出发研制的软体机器人，兼具机动灵活的运动能力与天然的隐蔽性和安全性，在医",
+          "desc": "模仿柔性体动物的生理结构及运动机理，从仿生学原理出发研制的软体机器人，兼具机动灵活的运动能力与天然的隐蔽性和安全性，在医疗、勘探、救援、侦察等领域有着重要而独特的应用价值。",
           "evidence": [
             {
-              "quote": "本项目针对多足软体机器人在多介质环境中的运动适应性问题，研究多足软体机器人的仿生结构设计及其在多介质环境中的运动机理。",
+              "quote": "模仿柔性体动物的生理结构及运动机理，从仿生学原理出发研制的软体机器人，兼具机动灵活的运动能力与天然的隐蔽性和安全性，在医疗、勘探、救援、侦察等领域有着重要而独特的应用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2746,
-                "end_char": 2804
+                "start_char": 661,
+                "end_char": 746
               },
               "version": "a867d45ceb4ed636e6cb"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7ab44127ea8a",
-          "name": "多介质环境运动适应",
-          "desc": "水、沙滩、泥淖等多介质环境运动适应性挑战",
-          "evidence": [
-            {
-              "quote": "本项目针对多足软体机器人在多介质环境中的运动适应性问题，研究多足软体机器人的仿生结构设计及其在多介质环境中的运动机理。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2746,
-                "end_char": 2804
-              },
-              "version": "a867d45ceb4ed636e6cb"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-daf35a63d7eb",
-          "name": "SMA人工肌肉单元",
-          "desc": "大柔性大输出力高频率响应高暴发性的人工肌肉",
+          "id": "item-e815086cb2fd",
+          "name": "首先在海星、章鱼等柔性体动物结构生理学、形态运动学等仿生学研究基础上，设计和制造基于形状记忆合金人工肌肉分布式耦合驱动和",
+          "desc": "首先在海星、章鱼等柔性体动物结构生理学、形态运动学等仿生学研究基础上，设计和制造基于形状记忆合金人工肌肉分布式耦合驱动和微流管道液体冷却的柔性仿生结构，建立软体机器人仿生结构的力/热/电耦合系统动力学模型和数值求解方法，探究仿生结构的SMA电阻自反馈变形控制原理和多模步态协调控制方法；",
           "evidence": [
             {
-              "quote": "设计研制了基于形状记忆合金（SMA）细丝束的SMA人工肌肉单元，进一步优化提升了SMA人工肌肉的电热驱动控制性能，使其兼具大柔性变形、大输出力、高频率响应、高暴发性等独特优点。",
+              "quote": "首先在海星、章鱼等柔性体动物结构生理学、形态运动学等仿生学研究基础上，设计和制造基于形状记忆合金人工肌肉分布式耦合驱动和微流管道液体冷却的柔性仿生结构，建立软体机器人仿生结构的力/热/电耦合系统动力学模型和数值求解方法，探究仿生结构的SMA电阻自反馈变形控制原理和多模步态协调控制方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2808,
-                "end_char": 2895
+                "start_char": 818,
+                "end_char": 960
               },
               "version": "a867d45ceb4ed636e6cb"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-55c4f98eaf5d",
-          "name": "分布式多肌耦合仿生结构",
-          "desc": "海星章鱼仿生的多足软体结构力热电耦合建模",
+          "id": "item-15b92fb1108b",
+          "name": "通过系统模型仿真和实验平台测试研究，阐明多足软体机器人的多介质环境运动适应性机制，为多足软体机器人的设计研究提供一条新思",
+          "desc": "通过系统模型仿真和实验平台测试研究，阐明多足软体机器人的多介质环境运动适应性机制，为多足软体机器人的设计研究提供一条新思路，推动软体机器人领域的研究进展。",
           "evidence": [
             {
-              "quote": "设计了基于分布式多肌耦合驱动的多足软体机器人仿生结构，并建立其运动仿真模型，分析主要设计参数对仿生结构性能的影响规律。",
+              "quote": "通过系统模型仿真和实验平台测试研究，阐明多足软体机器人的多介质环境运动适应性机制，为多足软体机器人的设计研究提供一条新思路，推动软体机器人领域的研究进展。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2932,
-                "end_char": 2990
+                "start_char": 961,
+                "end_char": 1037
               },
               "version": "a867d45ceb4ed636e6cb"
             }
-          ]
-        },
-        {
-          "id": "item-feed70fbd951",
-          "name": "多模步态协调控制",
-          "desc": "爬行游动攀附多模式步态增强环境适应性",
-          "evidence": [
-            {
-              "quote": "使得多足软体机器人具备在多环境介质下的爬行、游动、攀附等多模式运动步态，增强了软体机器人在多介质复杂环境中的适应性和机动性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3067,
-                "end_char": 3128
-              },
-              "version": "a867d45ceb4ed636e6cb"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +91,292 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3f619df6418d",
-          "name": "仿生设计新途径",
-          "desc": "为软体机器人仿生结构设计与制造提供新思路与技术途径",
+          "id": "item-5775a7ab01c0",
+          "name": "模仿柔性体动物的生理结构及运动机理，从仿生学原理出发研制的软体机器人，兼具机动灵活的运动能力与天然的隐蔽性和安全性，在医",
+          "desc": "模仿柔性体动物的生理结构及运动机理，从仿生学原理出发研制的软体机器人，兼具机动灵活的运动能力与天然的隐蔽性和安全性，在医疗、勘探、救援、侦察等领域有着重要而独特的应用价值。",
           "evidence": [
             {
-              "quote": "本项目为软体机器人的仿生结构设计与制造提供了新的思路和技术实现途径，推动软件机器人方向的研究和应用。",
+              "quote": "模仿柔性体动物的生理结构及运动机理，从仿生学原理出发研制的软体机器人，兼具机动灵活的运动能力与天然的隐蔽性和安全性，在医疗、勘探、救援、侦察等领域有着重要而独特的应用价值。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3129,
-                "end_char": 3178
+                "start_char": 661,
+                "end_char": 746
               },
               "version": "a867d45ceb4ed636e6cb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-a586d7f32c84",
+          "name": "模仿柔性体动物的生理结构及运动机理，从仿生学原理出发研制的多足软体机器人，兼具机动灵活的运动能力与天然的隐蔽性和安全性，",
+          "desc": "模仿柔性体动物的生理结构及运动机理，从仿生学原理出发研制的多足软体机器人，兼具机动灵活的运动能力与天然的隐蔽性和安全性，在医疗、勘探、救援、侦察等领域有着重要而独特的应用价值。",
+          "evidence": [
+            {
+              "quote": "模仿柔性体动物的生理结构及运动机理，从仿生学原理出发研制的多足软体机器人，兼具机动灵活的运动能力与天然的隐蔽性和安全性，在医疗、勘探、救援、侦察等领域有着重要而独特的应用价值。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2658,
+                "end_char": 2745
+              },
+              "version": "a867d45ceb4ed636e6cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2e5e251f3ad4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7ab44127ea8a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "具有柔性抓手的四旋翼飞行器设计与实现",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-db1f5411d1a3",
+      "evidence": [
+        {
+          "quote": "具有柔性抓手的四旋翼飞行器设计与实现",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3204,
+            "end_char": 3221
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7ab44127ea8a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-daf35a63d7eb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Smart and Hybrid Composite Finger with Biomimetic Tapping Motion for Soft Prosthetic Hand",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ebbc1a0f0719",
+      "evidence": [
+        {
+          "quote": "A Smart and Hybrid Composite Finger with Biomimetic Tapping Motion for Soft Prosthetic Hand",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3252,
+            "end_char": 3342
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7ab44127ea8a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-55c4f98eaf5d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A new robotic tactile sensor with bio-mimetic structural colour inspired by Morpho butterflies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1a232e4d51ca",
+      "evidence": [
+        {
+          "quote": "A new robotic tactile sensor with bio-mimetic structural colour inspired by Morpho butterflies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3390,
+            "end_char": 3483
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7ab44127ea8a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-feed70fbd951"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种光栅式触觉传感器及相关装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-25e8246688f0",
+      "evidence": [
+        {
+          "quote": "一种光栅式触觉传感器及相关装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3544,
+            "end_char": 3558
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-feed70fbd951"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3f619df6418d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Enhanced Artificial Muscle Module based on the Decussate Weaving Shape Memory Alloy Wires for Soft Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-86c9fe7dfaed",
+      "evidence": [
+        {
+          "quote": "An Enhanced Artificial Muscle Module based on the Decussate Weaving Shape Memory Alloy Wires for Soft Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3626,
+            "end_char": 3733
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-daf35a63d7eb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3f619df6418d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于形状记忆合金柔体智能数字复合结构的仿人灵巧手",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-658c72c9b1d4",
+      "evidence": [
+        {
+          "quote": "基于形状记忆合金柔体智能数字复合结构的仿人灵巧手",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3796,
+            "end_char": 3819
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Toshio Fukuda Best Paper Award in Mechatronics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bc9c7e8930ce",
+      "evidence": [
+        {
+          "quote": "Toshio Fukuda Best Paper Award in Mechatronics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3841,
+            "end_char": 3886
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Subtle vibration sensing and dimension measurement with a bio-inspired optical tactile sensor",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-39e80eaa905d",
+      "evidence": [
+        {
+          "quote": "Subtle vibration sensing and dimension measurement with a bio-inspired optical tactile sensor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3930,
+            "end_char": 4022
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Tunable smart digital structure (SDS) to modularly assemble soft actuators with layered adhesive bonding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f3d27685c3cd",
+      "evidence": [
+        {
+          "quote": "Tunable smart digital structure (SDS) to modularly assemble soft actuators with layered adhesive bonding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4076,
+            "end_char": 4179
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于SMA驱动模块的仿生水母机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-faa1dde07b9c",
+      "evidence": [
+        {
+          "quote": "基于SMA驱动模块的仿生水母机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4259,
+            "end_char": 4275
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Soft Gripper Design Based on the Integration of Flat Dry Adhesive, Soft Actuator, and Microspine",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-801231f8ed2d",
+      "evidence": [
+        {
+          "quote": "Soft Gripper Design Based on the Integration of Flat Dry Adhesive, Soft Actuator, and Microspine",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4307,
+            "end_char": 4402
+          },
+          "version": "a867d45ceb4ed636e6cb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": false
+  }
 }

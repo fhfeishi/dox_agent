@@ -2,15 +2,20 @@
   "doc_id": "e0cd4934350154c22928",
   "version": "6a8a627501fd35a979a4",
   "source_hash": "3e898fd74c667ac664c3fc4a57338f19e908d2024847f06216ae661c1bb25984",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:16:41.819022+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.692020+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-17256082ecc3",
-          "name": "特种无人机视觉自主导航",
-          "desc": "无线定位数据链中断情况下融合惯性导航与时空视觉信号的自主导航",
+          "id": "item-6871ab5ccdb9",
+          "name": "无人机自主导航在国防军事、应急救援等领域需求迫切，但基于无线数据链的导航存在易受干扰甚而完全失效的问题。",
+          "desc": "无人机自主导航在国防军事、应急救援等领域需求迫切，但基于无线数据链的导航存在易受干扰甚而完全失效的问题。",
           "evidence": [
             {
-              "quote": "基于计算机视觉的无人机自主导航力图在无线定位导航系统（如北斗、GPS、伽利略等）通信数据链中断情况下，融合惯性导航反馈与捕获的时空视觉信号，实现无人机的自主导航",
+              "quote": "无人机自主导航在国防军事、应急救援等领域需求迫切，但基于无线数据链的导航存在易受干扰甚而完全失效的问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2856,
-                "end_char": 2935
+                "start_char": 636,
+                "end_char": 687
               },
               "version": "6a8a627501fd35a979a4"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-c56dff451c79",
-          "name": "无线数据链易受干扰",
-          "desc": "传统基于无线数据链的定位系统在特殊情况下极易受干扰甚至完全失效",
-          "evidence": [
-            {
-              "quote": "传统上基于无线数据链的定位系统在特殊情况下极易受到干扰，甚至完全失效",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2937,
-                "end_char": 2970
-              },
-              "version": "6a8a627501fd35a979a4"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-819b86afadec",
-          "name": "先验4D轨迹视觉解读",
-          "desc": "制定满足任务需求的4D轨迹，构建典型时空特征库用于视觉信号解读判定",
+          "id": "item-dc2251e4932d",
+          "name": "5）研究联合时空视觉特征语义解析与惯性导航数据自适应解算的综合体系，建立精确度与计算复杂性随导航需求动态可调的理论与方法",
+          "desc": "5）研究联合时空视觉特征语义解析与惯性导航数据自适应解算的综合体系，建立精确度与计算复杂性随导航需求动态可调的理论与方法，充分利用各种低功耗并行计算平台如VPU/GPU等，并行化各种算法并依据硬件性能对算法进行裁剪，以构建适合大范围复杂对抗条件下无人机自主导航系统。",
           "evidence": [
             {
-              "quote": "收集整理无人机自主导航范围内显著视觉特征的先验知识，并根据导航需求制定无人机自主飞行的时空4D轨迹计划，用作后续视觉信号解读判定的先验依据特征",
+              "quote": "5）研究联合时空视觉特征语义解析与惯性导航数据自适应解算的综合体系，建立精确度与计算复杂性随导航需求动态可调的理论与方法，充分利用各种低功耗并行计算平台如VPU/GPU等，并行化各种算法并依据硬件性能对算法进行裁剪，以构建适合大范围复杂对抗条件下无人机自主导航系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3143,
-                "end_char": 3213
+                "start_char": 3475,
+                "end_char": 3607
               },
               "version": "6a8a627501fd35a979a4"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-6c6ec2789637",
-          "name": "时空贝叶斯轨迹连续性",
-          "desc": "时空贝叶斯模型分析四维轨迹相邻点序列连续性，避免局部视觉分析错误实现鲁棒导航",
+          "id": "item-d25f631df4fa",
+          "name": "通过与成都飞机工业集团合作，发展融合计算机视觉信息与惯性导航反馈信息的无人机自主导航理论与技术：首先研究如何结合地形或高",
+          "desc": "通过与成都飞机工业集团合作，发展融合计算机视觉信息与惯性导航反馈信息的无人机自主导航理论与技术：首先研究如何结合地形或高程先验知识，制定满足任务需求的4D轨迹，并构建确定轨迹的典型时空特征库；",
           "evidence": [
             {
-              "quote": "联合局部点分析与上下文轨迹分析，利用时空贝叶斯模型分析时空四维轨迹相邻点序列的连续性，避免局部视觉分析所导致的错误，实现无人机的鲁棒自主导航",
+              "quote": "通过与成都飞机工业集团合作，发展融合计算机视觉信息与惯性导航反馈信息的无人机自主导航理论与技术：首先研究如何结合地形或高程先验知识，制定满足任务需求的4D轨迹，并构建确定轨迹的典型时空特征库；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3404,
-                "end_char": 3473
+                "start_char": 688,
+                "end_char": 783
               },
               "version": "6a8a627501fd35a979a4"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,648 @@
       "state": "has",
       "items": [
         {
-          "id": "item-88e5cd46cc98",
-          "name": "自适应解算综合体系",
-          "desc": "精确度与计算复杂性随导航需求动态可调，VPU/GPU低功耗并行计算平台",
+          "id": "item-016a01e3884b",
+          "name": "无人机自主导航在国防军事、应急救援等领域需求迫切，但基于无线数据链的导航存在易受干扰甚而完全失效的问题。",
+          "desc": "无人机自主导航在国防军事、应急救援等领域需求迫切，但基于无线数据链的导航存在易受干扰甚而完全失效的问题。",
           "evidence": [
             {
-              "quote": "研究联合时空视觉特征语义解析与惯性导航数据自适应解算的综合体系，建立精确度与计算复杂性随导航需求动态可调的理论与方法，充分利用各种低功耗并行计算平台如VPU/GPU等",
+              "quote": "无人机自主导航在国防军事、应急救援等领域需求迫切，但基于无线数据链的导航存在易受干扰甚而完全失效的问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3477,
-                "end_char": 3559
+                "start_char": 636,
+                "end_char": 687
               },
               "version": "6a8a627501fd35a979a4"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-ddf97363241f",
+          "name": "基于计算机视觉的无人机自主导航力图在无线定位导航系统（如北斗、GPS、伽利略等）通信数据链中断情况下，融合惯性导航反馈与",
+          "desc": "基于计算机视觉的无人机自主导航力图在无线定位导航系统（如北斗、GPS、伽利略等）通信数据链中断情况下，融合惯性导航反馈与捕获的时空视觉信号，实现无人机的自主导航。",
+          "evidence": [
+            {
+              "quote": "基于计算机视觉的无人机自主导航力图在无线定位导航系统（如北斗、GPS、伽利略等）通信数据链中断情况下，融合惯性导航反馈与捕获的时空视觉信号，实现无人机的自主导航。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2856,
+                "end_char": 2936
+              },
+              "version": "6a8a627501fd35a979a4"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-17256082ecc3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c56dff451c79"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optical frequency and phase information-based fusion approach for image rotation symmetry detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-449a6ebe7bad",
+      "evidence": [
+        {
+          "quote": "Optical frequency and phase information-based fusion approach for image rotation symmetry detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3633,
+            "end_char": 3731
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c56dff451c79"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-819b86afadec"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于GPU的大型场景三维稠密重建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f48f1537291",
+      "evidence": [
+        {
+          "quote": "基于GPU的大型场景三维稠密重建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3789,
+            "end_char": 3806
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c56dff451c79"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6c6ec2789637"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gamma estimation method based on phase error coefficients vector in digital fringe projection system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3fd6f2d66b6a",
+      "evidence": [
+        {
+          "quote": "Gamma estimation method based on phase error coefficients vector in digital fringe projection system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3842,
+            "end_char": 3941
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6c6ec2789637"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-88e5cd46cc98"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A study of sparse representation-based classification for biometric verification based on both handcrafted and deep learning features",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7acb997c4769",
+      "evidence": [
+        {
+          "quote": "A study of sparse representation-based classification for biometric verification based on both handcrafted and deep learning features",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4028,
+            "end_char": 4160
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-819b86afadec"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-88e5cd46cc98"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A comprehensive survey: Image deraining and stereo-matching task-driven performance analysis",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-07b9bd959cb4",
+      "evidence": [
+        {
+          "quote": "A comprehensive survey: Image deraining and stereo-matching task-driven performance analysis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4237,
+            "end_char": 4328
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于卷积与K-SVD字典联合稀疏编码的图像分解方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d6d423a7113d",
+      "evidence": [
+        {
+          "quote": "基于卷积与K-SVD字典联合稀疏编码的图像分解方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4410,
+            "end_char": 4434
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于层级位姿图优化的实时室内三维重建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e6a2648c0ac3",
+      "evidence": [
+        {
+          "quote": "基于层级位姿图优化的实时室内三维重建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4468,
+            "end_char": 4487
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Gaussian Fusion: Accurate 3D Reconstruction via Geometry-Guided Displacement Interpolation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-892f363b8636",
+      "evidence": [
+        {
+          "quote": "Gaussian Fusion: Accurate 3D Reconstruction via Geometry-Guided Displacement Interpolation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4522,
+            "end_char": 4611
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Low-light image enhancement and denoising via dual-constrained Retinex model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62770b4fc596",
+      "evidence": [
+        {
+          "quote": "Low-light image enhancement and denoising via dual-constrained Retinex model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4679,
+            "end_char": 4754
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于黎曼几何约束的点云融合方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-76a20611adbb",
+      "evidence": [
+        {
+          "quote": "基于黎曼几何约束的点云融合方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4847,
+            "end_char": 4864
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast and High-quality Single-pixel Imaging",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-65663d4dc3e5",
+      "evidence": [
+        {
+          "quote": "Fast and High-quality Single-pixel Imaging",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4898,
+            "end_char": 4939
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于Retinex模型的低照度图像增强与去噪方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-563fec31530f",
+      "evidence": [
+        {
+          "quote": "基于Retinex模型的低照度图像增强与去噪方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5009,
+            "end_char": 5032
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An effective heuristic clustering algorithm for mining multiple critical nodes in complex networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c0a8d695c108",
+      "evidence": [
+        {
+          "quote": "An effective heuristic clustering algorithm for mining multiple critical nodes in complex networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5066,
+            "end_char": 5163
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于注意力平滑膨胀卷积的两阶段图像去雨方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-971c66e58306",
+      "evidence": [
+        {
+          "quote": "基于注意力平滑膨胀卷积的两阶段图像去雨方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5221,
+            "end_char": 5241
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于几何约束的深度学习单目深度估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-27b702dc256c",
+      "evidence": [
+        {
+          "quote": "基于几何约束的深度学习单目深度估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5273,
+            "end_char": 5291
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3D Object Detection Based on Feature Pyramid Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7bd24646c2ac",
+      "evidence": [
+        {
+          "quote": "3D Object Detection Based on Feature Pyramid Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5329,
+            "end_char": 5380
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cross-Domain Few-Shot Classification based on Lightweight Res2Net and Flexible GNN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9edce838e45d",
+      "evidence": [
+        {
+          "quote": "Cross-Domain Few-Shot Classification based on Lightweight Res2Net and Flexible GNN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5445,
+            "end_char": 5526
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "快速高质量傅里叶单像素成像系统与方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9d020e027bc9",
+      "evidence": [
+        {
+          "quote": "快速高质量傅里叶单像素成像系统与方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5615,
+            "end_char": 5632
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MARMVS: Matching Ambiguity Reduced Multiple View Stereo for Efficient Large Scale Scene Reconstruction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-599b21d3a512",
+      "evidence": [
+        {
+          "quote": "MARMVS: Matching Ambiguity Reduced Multiple View Stereo for Efficient Large Scale Scene Reconstruction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5659,
+            "end_char": 5760
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Spatial temporal Fourier single-pixel imaging",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-98ef6f38116c",
+      "evidence": [
+        {
+          "quote": "Spatial temporal Fourier single-pixel imaging",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5830,
+            "end_char": 5874
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "HGIM: Influence maximization in diffusion cascades from the perspective of heterogeneous graph",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4b27a2e43af",
+      "evidence": [
+        {
+          "quote": "HGIM: Influence maximization in diffusion cascades from the perspective of heterogeneous graph",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5943,
+            "end_char": 6036
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Rotating Objects Detection in Aerial Images via Attention Denoising and Angle Loss Refining",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1770d202ca21",
+      "evidence": [
+        {
+          "quote": "Rotating Objects Detection in Aerial Images via Attention Denoising and Angle Loss Refining",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6085,
+            "end_char": 6175
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-efficiency 3D shape measurement based on redesigned Gray code and aligned phase unwrapping method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-112392a4a701",
+      "evidence": [
+        {
+          "quote": "High-efficiency 3D shape measurement based on redesigned Gray code and aligned phase unwrapping method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6253,
+            "end_char": 6354
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Single-pixel imaging via adaptive Stockwell basis selection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9aa1fb8bee00",
+      "evidence": [
+        {
+          "quote": "Single-pixel imaging via adaptive Stockwell basis selection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6445,
+            "end_char": 6503
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A new image decomposition approach using pixel-wise analysis sparsity model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa3105648832",
+      "evidence": [
+        {
+          "quote": "A new image decomposition approach using pixel-wise analysis sparsity model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6572,
+            "end_char": 6646
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Identifying vital nodes for influence maximization in attributed networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b14da4c2c6b",
+      "evidence": [
+        {
+          "quote": "Identifying vital nodes for influence maximization in attributed networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6728,
+            "end_char": 6800
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time 3D reconstruction using point-dependent pose graph optimization framework",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b6722e32f379",
+      "evidence": [
+        {
+          "quote": "Real-time 3D reconstruction using point-dependent pose graph optimization framework",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6849,
+            "end_char": 6931
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "提高小样本、小目标识别准确率的深度学习训练方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6ca04436973e",
+      "evidence": [
+        {
+          "quote": "提高小样本、小目标识别准确率的深度学习训练方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6987,
+            "end_char": 7009
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种伽马因子获取方法、装置、设备及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d5f76397d4a",
+      "evidence": [
+        {
+          "quote": "一种伽马因子获取方法、装置、设备及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7041,
+            "end_char": 7059
+          },
+          "version": "6a8a627501fd35a979a4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 29,
+    "listed": 29,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "专利": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

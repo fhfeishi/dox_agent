@@ -2,15 +2,20 @@
   "doc_id": "1110ab049ab01b758ab5",
   "version": "ac78fbd424b40219c3c2",
   "source_hash": "42f1c08dc574f40212f2f6918498b2eccd805688d6d54624b638314f327a606b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:19:58.136919+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.649339+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-71657f4767c6",
-          "name": "上肢康复外骨骼训练",
-          "desc": "脑卒中等上肢功能障碍患者的康复训练",
+          "id": "item-a9c0fe96cc9b",
+          "name": "上肢外骨骼康复机器人可实现上肢部分功能代偿，并能针对上肢各关节完成多种类型的康复训练。",
+          "desc": "上肢外骨骼康复机器人可实现上肢部分功能代偿，并能针对上肢各关节完成多种类型的康复训练。",
+          "evidence": [
+            {
+              "quote": "上肢外骨骼康复机器人可实现上肢部分功能代偿，并能针对上肢各关节完成多种类型的康复训练。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 664,
+                "end_char": 706
+              },
+              "version": "ac78fbd424b40219c3c2"
+            }
+          ]
+        },
+        {
+          "id": "item-5b6ce2678532",
+          "name": "针对现有上肢康复机器人结构固定、柔顺性不足的问题，本研究面向脑卒中等具有上肢功能障碍患者的康复需求，提出并实现了一种基于",
+          "desc": "针对现有上肢康复机器人结构固定、柔顺性不足的问题，本研究面向脑卒中等具有上肢功能障碍患者的康复需求，提出并实现了一种基于多传感器的可重构模块化柔性上肢外骨骼康复机器人。",
           "evidence": [
             {
               "quote": "针对现有上肢康复机器人结构固定、柔顺性不足的问题，本研究面向脑卒中等具有上肢功能障碍患者的康复需求，提出并实现了一种基于多传感器的可重构模块化柔性上肢外骨骼康复机器人。",
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d108697c5dfd",
-          "name": "结构固定柔顺性不足",
-          "desc": "现有机器人缺乏可重构性、柔顺性与便携穿戴性差",
+          "id": "item-88f6a14e80e4",
+          "name": "然而现有上肢外骨骼康复机器人缺乏灵活的可重构性，难以满足多样化的患者对象与康复需求，且存在动作柔顺性不足、便携性与穿戴舒",
+          "desc": "然而现有上肢外骨骼康复机器人缺乏灵活的可重构性，难以满足多样化的患者对象与康复需求，且存在动作柔顺性不足、便携性与穿戴舒适性较差等问题。",
           "evidence": [
             {
               "quote": "然而现有上肢外骨骼康复机器人缺乏灵活的可重构性，难以满足多样化的患者对象与康复需求，且存在动作柔顺性不足、便携性与穿戴舒适性较差等问题。",
@@ -51,6 +72,22 @@
                 "basis": "parsed_text",
                 "start_char": 707,
                 "end_char": 774
+              },
+              "version": "ac78fbd424b40219c3c2"
+            }
+          ]
+        },
+        {
+          "id": "item-29221f676e80",
+          "name": "针对现有上肢康复机器人结构固定、柔顺性不足的问题，本研究面向脑卒中等具有上肢功能障碍患者的康复需求，提出并实现了一种基于",
+          "desc": "针对现有上肢康复机器人结构固定、柔顺性不足的问题，本研究面向脑卒中等具有上肢功能障碍患者的康复需求，提出并实现了一种基于多传感器的可重构模块化柔性上肢外骨骼康复机器人。",
+          "evidence": [
+            {
+              "quote": "针对现有上肢康复机器人结构固定、柔顺性不足的问题，本研究面向脑卒中等具有上肢功能障碍患者的康复需求，提出并实现了一种基于多传感器的可重构模块化柔性上肢外骨骼康复机器人。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3064,
+                "end_char": 3147
               },
               "version": "ac78fbd424b40219c3c2"
             }
@@ -63,36 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bc9716ab5be9",
-          "name": "肩肘腕协同构型",
-          "desc": "气动肌腱并联肩关节与纤维约束柔性腕驱动",
+          "id": "item-cf96daa8a495",
+          "name": "然后，构建智能感知系统，解决多模态感知信息融合问题，明晰柔顺动作与人机共融机理，规划柔顺动作并制定人机共融控制策略；",
+          "desc": "然后，构建智能感知系统，解决多模态感知信息融合问题，明晰柔顺动作与人机共融机理，规划柔顺动作并制定人机共融控制策略；",
           "evidence": [
             {
-              "quote": "创新设计了肩-肘与肘-腕两套康复机器人构型。肩关节采用并联气动肌腱驱动，以人体手臂为支撑主体，简化结构并提升穿戴相容性",
+              "quote": "然后，构建智能感知系统，解决多模态感知信息融合问题，明晰柔顺动作与人机共融机理，规划柔顺动作并制定人机共融控制策略；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3218,
-                "end_char": 3276
+                "start_char": 946,
+                "end_char": 1003
               },
               "version": "ac78fbd424b40219c3c2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c1490dbdd4f8",
-          "name": "模型前馈PID控制",
-          "desc": "联合仿真验证正弦斜坡跟踪误差小于1.5°与1°",
+          "id": "item-7c445746be55",
+          "name": ".本研究不仅为柔性康复机器人提供了可重构、高柔顺的设计范式，而且通过多传感融合与智能控制策略，提升了人机交互的安全性与适",
+          "desc": ".本研究不仅为柔性康复机器人提供了可重构、高柔顺的设计范式，而且通过多传感融合与智能控制策略，提升了人机交互的安全性与适应性，为个性化、精准化上肢康复治疗提供了新的技术解决方案。",
           "evidence": [
             {
-              "quote": "建立了系统运动学与动力学模型，提出了基于模型前馈的PID闭环控制策略，并通过Adams-Simulink联合仿真验证了其轨迹跟踪的有效性，正弦与斜坡跟踪误差分别小于1.5°与1°。",
+              "quote": ".本研究不仅为柔性康复机器人提供了可重构、高柔顺的设计范式，而且通过多传感融合与智能控制策略，提升了人机交互的安全性与适应性，为个性化、精准化上肢康复治疗提供了新的技术解决方案。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3408,
-                "end_char": 3497
+                "start_char": 3692,
+                "end_char": 3780
               },
               "version": "ac78fbd424b40219c3c2"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +140,224 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ac0ab46c99ed",
-          "name": "关节精度5°以内",
-          "desc": "康复动作完成良好，肌电证实康复有效性",
+          "id": "item-582504cae200",
+          "name": "上肢外骨骼康复机器人可实现上肢部分功能代偿，并能针对上肢各关节完成多种类型的康复训练。",
+          "desc": "上肢外骨骼康复机器人可实现上肢部分功能代偿，并能针对上肢各关节完成多种类型的康复训练。",
           "evidence": [
             {
-              "quote": "所设计系统能够较好地完成预期康复动作，关节控制精度保持在5°以内，肌电信号分析显示患者相关肌群激活显著，证实了其康复有效性。",
+              "quote": "上肢外骨骼康复机器人可实现上肢部分功能代偿，并能针对上肢各关节完成多种类型的康复训练。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3630,
-                "end_char": 3691
+                "start_char": 664,
+                "end_char": 706
               },
               "version": "ac78fbd424b40219c3c2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-15da05cec215",
+          "name": "针对现有上肢康复机器人结构固定、柔顺性不足的问题，本研究面向脑卒中等具有上肢功能障碍患者的康复需求，提出并实现了一种基于",
+          "desc": "针对现有上肢康复机器人结构固定、柔顺性不足的问题，本研究面向脑卒中等具有上肢功能障碍患者的康复需求，提出并实现了一种基于多传感器的可重构模块化柔性上肢外骨骼康复机器人。",
+          "evidence": [
+            {
+              "quote": "针对现有上肢康复机器人结构固定、柔顺性不足的问题，本研究面向脑卒中等具有上肢功能障碍患者的康复需求，提出并实现了一种基于多传感器的可重构模块化柔性上肢外骨骼康复机器人。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3064,
+                "end_char": 3147
+              },
+              "version": "ac78fbd424b40219c3c2"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-71657f4767c6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d108697c5dfd"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种全驱二指节五指灵巧手及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5e0cf5d54733",
+      "evidence": [
+        {
+          "quote": "一种全驱二指节五指灵巧手及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3803,
+            "end_char": 3818
+          },
+          "version": "ac78fbd424b40219c3c2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d108697c5dfd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bc9716ab5be9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向复杂环境的人机协作装配意图识别方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-69c6b4a8e973",
+      "evidence": [
+        {
+          "quote": "面向复杂环境的人机协作装配意图识别方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3843,
+            "end_char": 3861
+          },
+          "version": "ac78fbd424b40219c3c2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d108697c5dfd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c1490dbdd4f8"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于关节解耦策略的腕肘协同柔性康复机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cad340199d68",
+      "evidence": [
+        {
+          "quote": "一种基于关节解耦策略的腕肘协同柔性康复机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3893,
+            "end_char": 3914
+          },
+          "version": "ac78fbd424b40219c3c2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c1490dbdd4f8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ac0ab46c99ed"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The improved force/position hybrid control system for multi joint humanoid multi fingered dexterous hand",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-616fab9a0c93",
+      "evidence": [
+        {
+          "quote": "The improved force/position hybrid control system for multi joint humanoid multi fingered dexterous hand",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3940,
+            "end_char": 4043
+          },
+          "version": "ac78fbd424b40219c3c2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bc9716ab5be9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ac0ab46c99ed"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on configuration design and intelligent compliance control of reconfigurable modular flexible upper limb rehabilitation robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cf3b62c3f19d",
+      "evidence": [
+        {
+          "quote": "Research on configuration design and intelligent compliance control of reconfigurable modular flexible upper limb rehabilitation robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4071,
+            "end_char": 4204
+          },
+          "version": "ac78fbd424b40219c3c2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive memetic differential evolution-back propagation-fuzzy neural network algorithm for robot control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-49268046ad42",
+      "evidence": [
+        {
+          "quote": "Adaptive memetic differential evolution-back propagation-fuzzy neural network algorithm for robot control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4244,
+            "end_char": 4348
+          },
+          "version": "ac78fbd424b40219c3c2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种模块化可快拆的柔性上肢康复机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6807bd5e53fe",
+      "evidence": [
+        {
+          "quote": "一种模块化可快拆的柔性上肢康复机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4409,
+            "end_char": 4426
+          },
+          "version": "ac78fbd424b40219c3c2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Autonomous Obstacle Avoidance and Trajectory Planning for Mobile Robot Based on Dual-Loop Trajectory Tracking Control and Improved Artificial Potential Field Method",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc30bd98ab20",
+      "evidence": [
+        {
+          "quote": "Autonomous Obstacle Avoidance and Trajectory Planning for Mobile Robot Based on Dual-Loop Trajectory Tracking Control and Improved Artificial Potential Field Method",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4452,
+            "end_char": 4615
+          },
+          "version": "ac78fbd424b40219c3c2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "86b7c913022e21cc6678",
   "version": "0082b1fc31e7744037c0",
   "source_hash": "f36068b82815bc34e8918e437a7bc73cf6e49b98859afddc20298ede3b573028",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:03:23.806937+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.718972+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4132c70c5c28",
-          "name": "膝上截肢者助力行走",
-          "desc": "融合智能下肢假肢的外骨骼机器人",
+          "id": "item-8c97fa0d9540",
+          "name": "外骨骼机器人在单兵作战、背负重物及帮助残疾人等方面应用广泛，但现有外骨骼机器人均适用于双腿健在的人群。",
+          "desc": "外骨骼机器人在单兵作战、背负重物及帮助残疾人等方面应用广泛，但现有外骨骼机器人均适用于双腿健在的人群。",
           "evidence": [
             {
               "quote": "外骨骼机器人在单兵作战、背负重物及帮助残疾人等方面应用广泛，但现有外骨骼机器人均适用于双腿健在的人群。",
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1242da7c51bb",
-          "name": "外骨骼不适用截肢患者",
-          "desc": "针对膝上截肢患者助力行走需求融合假肢与外骨骼",
-          "evidence": [
-            {
-              "quote": "针对膝上截肢患者实现助力行走功能的需求，将外骨骼机器人与智能下肢假肢的研究结合起来",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 715,
-                "end_char": 755
-              },
-              "version": "0082b1fc31e7744037c0"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-41a8a634b9f5",
-          "name": "人机耦合动力学建模",
-          "desc": "动力学模型与人机耦合模型、磁流变阻尼器实验建模",
+          "id": "item-f03fcb78a6fe",
+          "name": "基于模糊推理方法对外骨骼性能进行了评价，搭建了人体步态数据测量系统并进行了步态规划与运动意图模式识别研究。",
+          "desc": "基于模糊推理方法对外骨骼性能进行了评价，搭建了人体步态数据测量系统并进行了步态规划与运动意图模式识别研究。",
           "evidence": [
             {
-              "quote": "建立了新型外骨骼机器人动力学模型与人机耦合模型，设计了磁流变阻尼器并进行了实验建模。",
+              "quote": "基于模糊推理方法对外骨骼性能进行了评价，搭建了人体步态数据测量系统并进行了步态规划与运动意图模式识别研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2872,
-                "end_char": 2913
-              },
-              "version": "0082b1fc31e7744037c0"
-            }
-          ]
-        },
-        {
-          "id": "item-35c7b1540183",
-          "name": "多类阻抗控制方法",
-          "desc": "基于位置、修正位置与改进阻抗关系的阻抗控制",
-          "evidence": [
-            {
-              "quote": "进行了新型外骨骼机器人人机交互控制方法研究，包括基于位置的阻抗控制方法、基于修正位置的自适应阻抗控制方法以及基于改进阻抗关系的阻抗控制方法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3079,
-                "end_char": 3148
-              },
-              "version": "0082b1fc31e7744037c0"
-            }
-          ]
-        },
-        {
-          "id": "item-3c89009d5bde",
-          "name": "步态感知意图识别",
-          "desc": "步态数据测量、步态规划与运动意图模式识别",
-          "evidence": [
-            {
-              "quote": "搭建了人体步态数据测量系统并进行了步态规划与运动意图模式识别研究。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2985,
+                "start_char": 2965,
                 "end_char": 3017
               },
               "version": "0082b1fc31e7744037c0"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a84ea3ef441f",
+          "name": "对比分析了新型外骨骼机器人基于计算力矩的PD位置控制、采用重力补偿优化的位置控制以及采用自适应鲁棒控制优化的位置控制方法",
+          "desc": "对比分析了新型外骨骼机器人基于计算力矩的PD位置控制、采用重力补偿优化的位置控制以及采用自适应鲁棒控制优化的位置控制方法。",
+          "evidence": [
+            {
+              "quote": "对比分析了新型外骨骼机器人基于计算力矩的PD位置控制、采用重力补偿优化的位置控制以及采用自适应鲁棒控制优化的位置控制方法。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3018,
+                "end_char": 3078
+              },
+              "version": "0082b1fc31e7744037c0"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +91,185 @@
       "state": "has",
       "items": [
         {
-          "id": "item-38ba44cb9fbe",
-          "name": "论文7篇",
-          "desc": "基于项目研究成果发表学术论文7篇",
+          "id": "item-4d8e7f0c5143",
+          "name": "外骨骼机器人在单兵作战、背负重物及帮助残疾人等方面应用广泛，但现有外骨骼机器人均适用于双腿健在的人群。",
+          "desc": "外骨骼机器人在单兵作战、背负重物及帮助残疾人等方面应用广泛，但现有外骨骼机器人均适用于双腿健在的人群。",
           "evidence": [
             {
-              "quote": "基于项目研究成果，发表学术论文7篇。",
+              "quote": "外骨骼机器人在单兵作战、背负重物及帮助残疾人等方面应用广泛，但现有外骨骼机器人均适用于双腿健在的人群。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3178,
-                "end_char": 3195
+                "start_char": 664,
+                "end_char": 714
               },
               "version": "0082b1fc31e7744037c0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4132c70c5c28"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1242da7c51bb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prediction of Limb Joint Angles Based on Multi-Source Signals by GS-GRNN for Exoskeleton Wearer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af66167b6ebb",
+      "evidence": [
+        {
+          "quote": "Prediction of Limb Joint Angles Based on Multi-Source Signals by GS-GRNN for Exoskeleton Wearer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3274,
+            "end_char": 3368
+          },
+          "version": "0082b1fc31e7744037c0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1242da7c51bb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-41a8a634b9f5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "柔性印刷线路板LED缺陷检测方法的研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1b633f7bf431",
+      "evidence": [
+        {
+          "quote": "柔性印刷线路板LED缺陷检测方法的研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3426,
+            "end_char": 3444
+          },
+          "version": "0082b1fc31e7744037c0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1242da7c51bb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-35c7b1540183"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling of Magnetorheological Damper and Fuzzy PID Control of Intelligent Bionic Leg with Meniscus",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7ab7502d47e5",
+      "evidence": [
+        {
+          "quote": "Modeling of Magnetorheological Damper and Fuzzy PID Control of Intelligent Bionic Leg with Meniscus",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3469,
+            "end_char": 3567
+          },
+          "version": "0082b1fc31e7744037c0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1242da7c51bb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3c89009d5bde"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Structure Design and Dynamics Simulation of a New Exoskeleton Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-398808ab9227",
+      "evidence": [
+        {
+          "quote": "The Structure Design and Dynamics Simulation of a New Exoskeleton Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3612,
+            "end_char": 3682
+          },
+          "version": "0082b1fc31e7744037c0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-35c7b1540183"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-38ba44cb9fbe"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A new virtual-real gravity compensated inverted pendulum model and ADAMS simulation for biped robot with heterogeneous legs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9635680ec67a",
+      "evidence": [
+        {
+          "quote": "A new virtual-real gravity compensated inverted pendulum model and ADAMS simulation for biped robot with heterogeneous legs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3723,
+            "end_char": 3845
+          },
+          "version": "0082b1fc31e7744037c0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3c89009d5bde"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-38ba44cb9fbe"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bionics Design of Artificial Leg and Experimental Modeling Research of Pneumatic Artificial Muscles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fc6afabf05ac",
+      "evidence": [
+        {
+          "quote": "Bionics Design of Artificial Leg and Experimental Modeling Research of Pneumatic Artificial Muscles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3914,
+            "end_char": 4012
+          },
+          "version": "0082b1fc31e7744037c0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Joint-Angle Prediction Based on Artiﬁcial Neural Network for Above-Knee Amputees",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b09a60513c1c",
+      "evidence": [
+        {
+          "quote": "Research on Joint-Angle Prediction Based on Artiﬁcial Neural Network for Above-Knee Amputees",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4055,
+            "end_char": 4146
+          },
+          "version": "0082b1fc31e7744037c0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "83c642a3702785951875",
   "version": "9a16edb8f7b1624b3c89",
   "source_hash": "22d83c22c5dc0e0095108d520bc1eef326845822ba950409e3ef79ec60a9856f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:33:46.183026+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.678669+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-47c738701010",
-          "name": "软体机械臂应用",
-          "desc": "医疗康复、助老助残、空间在轨操作、复杂环境监测探测等领域的软体机械臂",
+          "id": "item-a8bcf0e056ac",
+          "name": "作为软体机器人的一个重要分支，软体机械臂在外科手术、在轨操作、内窥镜、助老助力、外骨骼、捕获抓持、高危极端环境检测、侦察",
+          "desc": "作为软体机器人的一个重要分支，软体机械臂在外科手术、在轨操作、内窥镜、助老助力、外骨骼、捕获抓持、高危极端环境检测、侦察探测等领域具有广阔的应用前景。",
           "evidence": [
             {
-              "quote": "其中软体机械臂以其优异的适应能力，在医疗康复、助老助残、外骨骼、连续操作、复杂环境监测探测、空间在轨操作等众多领域具有广阔的应用前景",
+              "quote": "作为软体机器人的一个重要分支，软体机械臂在外科手术、在轨操作、内窥镜、助老助力、外骨骼、捕获抓持、高危极端环境检测、侦察探测等领域具有广阔的应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2726,
-                "end_char": 2791
+                "start_char": 641,
+                "end_char": 715
               },
               "version": "9a16edb8f7b1624b3c89"
             }
@@ -38,93 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-affb4a49c469",
-          "name": "软体基础理论缺失",
-          "desc": "长臂式软体结构的运动学、动力学和可变刚度模型及振动产生机理等科学问题待突破",
-          "evidence": [
-            {
-              "quote": "本项目主要聚焦长臂式软体结构的运动学、动力学和可变刚度模型，软体机械臂的振动产生机理及其抑制方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2793,
-                "end_char": 2840
-              },
-              "version": "9a16edb8f7b1624b3c89"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-79b17d57fd4f",
-          "name": "新型气动软体驱动器",
-          "desc": "通用材料和方法制作、成本低、成品率高的气动软体驱动器，最大伸长率257%",
+          "id": "item-bcc5ffe31ead",
+          "name": "拟提炼设计软体机械臂的通用结构模型，建立运动学方程和动力学模型，提出可变刚度模型及其控制方法，探明该类机器人振动形成机理",
+          "desc": "拟提炼设计软体机械臂的通用结构模型，建立运动学方程和动力学模型，提出可变刚度模型及其控制方法，探明该类机器人振动形成机理并提出相应的抑制方法，建立目标路径的形态逼近和避障方法，攻克振动抑制、多节运动、负载支持等耦合任务需求的刚度动态协调与控制等关键技术，研制软体机械臂样机系统。",
           "evidence": [
             {
-              "quote": "所研发的气动软体驱动器采用通用材料和方法制作，加工调试过程方便、成本低、成品率高",
+              "quote": "拟提炼设计软体机械臂的通用结构模型，建立运动学方程和动力学模型，提出可变刚度模型及其控制方法，探明该类机器人振动形成机理并提出相应的抑制方法，建立目标路径的形态逼近和避障方法，攻克振动抑制、多节运动、负载支持等耦合任务需求的刚度动态协调与控制等关键技术，研制软体机械臂样机系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2948,
-                "end_char": 2987
+                "start_char": 844,
+                "end_char": 982
               },
               "version": "9a16edb8f7b1624b3c89"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-53765ef08ccc",
-          "name": "刚柔耦合柔性机械臂",
-          "desc": "已形成产品化样机的刚柔耦合柔性机械臂",
+          "id": "item-695f64384e3b",
+          "name": "本项目主要聚焦长臂式软体结构的运动学、动力学和可变刚度模型，软体机械臂的振动产生机理及其抑制方法，面向复杂目标工作环境路",
+          "desc": "本项目主要聚焦长臂式软体结构的运动学、动力学和可变刚度模型，软体机械臂的振动产生机理及其抑制方法，面向复杂目标工作环境路径的形态逼近方法，面向振动抑制、多节运动、负载支持等耦合任务需求的刚度动态协调与控制等科学问题，开展了软体机械臂本体结构设计、数学建模、振动抑制、环境自适应运动规划和可变刚度控制等研究工作。",
           "evidence": [
             {
-              "quote": "刚柔耦合柔性机械臂已经形成产品化样机",
+              "quote": "本项目主要聚焦长臂式软体结构的运动学、动力学和可变刚度模型，软体机械臂的振动产生机理及其抑制方法，面向复杂目标工作环境路径的形态逼近方法，面向振动抑制、多节运动、负载支持等耦合任务需求的刚度动态协调与控制等科学问题，开展了软体机械臂本体结构设计、数学建模、振动抑制、环境自适应运动规划和可变刚度控制等研究工作。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3155,
-                "end_char": 3172
+                "start_char": 2793,
+                "end_char": 2947
               },
               "version": "9a16edb8f7b1624b3c89"
             }
-          ]
-        },
-        {
-          "id": "item-32802701f358",
-          "name": "振动抑制方法",
-          "desc": "利用动力学模型与等效关节力矩模型进行振动抑制",
-          "evidence": [
-            {
-              "quote": "利用动力学模型与等效关节力矩模型进行振动抑制，振动持续时间减少42.5%，最大振幅减少56.67%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3389,
-                "end_char": 3437
-              },
-              "version": "9a16edb8f7b1624b3c89"
-            }
-          ]
-        },
-        {
-          "id": "item-ac7d077b35d8",
-          "name": "可变刚度协调控制",
-          "desc": "可变刚度关节序列控制与弯曲运动控制结合实现非结构化复杂环境运动",
-          "evidence": [
-            {
-              "quote": "通过可变刚度关节序列控制和软体机械臂的弯曲运动控制，结合底座的直线运动，可变刚度软体机械臂可以实现在非结构化复杂环境中运动的能力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3439,
-                "end_char": 3502
-              },
-              "version": "9a16edb8f7b1624b3c89"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,91 +91,1028 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4433b9a5d052",
-          "name": "原理样机研制",
-          "desc": "研制气动软体机械臂、可变刚连续臂、刚柔耦合柔性机械臂等原理样机并验证可行性",
+          "id": "item-9f0c4f615a16",
+          "name": "作为软体机器人的一个重要分支，软体机械臂在外科手术、在轨操作、内窥镜、助老助力、外骨骼、捕获抓持、高危极端环境检测、侦察",
+          "desc": "作为软体机器人的一个重要分支，软体机械臂在外科手术、在轨操作、内窥镜、助老助力、外骨骼、捕获抓持、高危极端环境检测、侦察探测等领域具有广阔的应用前景。",
           "evidence": [
             {
-              "quote": "研制了气动软体机械臂、可变刚连续臂、刚柔耦合柔性机械臂等原理样机，初步的实验验证了设计的可行性",
+              "quote": "作为软体机器人的一个重要分支，软体机械臂在外科手术、在轨操作、内窥镜、助老助力、外骨骼、捕获抓持、高危极端环境检测、侦察探测等领域具有广阔的应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3076,
-                "end_char": 3122
+                "start_char": 641,
+                "end_char": 715
               },
               "version": "9a16edb8f7b1624b3c89"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-82ec7424230f",
+          "name": "软体机器人是近年来机器人研究领域最热门的方向之一。",
+          "desc": "软体机器人是近年来机器人研究领域最热门的方向之一。",
+          "evidence": [
+            {
+              "quote": "软体机器人是近年来机器人研究领域最热门的方向之一。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2701,
+                "end_char": 2725
+              },
+              "version": "9a16edb8f7b1624b3c89"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-47c738701010"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-affb4a49c469"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel pneumatic soft actuator with mechanical variable stiffness",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7177ce6e9ed",
+      "evidence": [
+        {
+          "quote": "A novel pneumatic soft actuator with mechanical variable stiffness",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3587,
+            "end_char": 3652
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-affb4a49c469"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-79b17d57fd4f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Application of Flexible Resistive Tactile Sensor Based on Short-Circuit Effect",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-085a4efb314a",
+      "evidence": [
+        {
+          "quote": "Design and Application of Flexible Resistive Tactile Sensor Based on Short-Circuit Effect",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3721,
+            "end_char": 3809
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-affb4a49c469"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-32802701f358"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种喷气式水蛇机器人的喷气模块",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c2a644f336e3",
+      "evidence": [
+        {
+          "quote": "一种喷气式水蛇机器人的喷气模块",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3870,
+            "end_char": 3884
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-affb4a49c469"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ac7d077b35d8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development and Evaluation of a Lumbar Assisted Exoskeleton with Mixed Lifting Tasks by Various Postures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b3ff818902f4",
+      "evidence": [
+        {
+          "quote": "Development and Evaluation of a Lumbar Assisted Exoskeleton with Mixed Lifting Tasks by Various Postures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3910,
+            "end_char": 4013
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-79b17d57fd4f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4433b9a5d052"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A 3-D Force Sensor Based on Combination of Magnetic and Piezoresistive Transduction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-045a757ec4d9",
+      "evidence": [
+        {
+          "quote": "A 3-D Force Sensor Based on Combination of Magnetic and Piezoresistive Transduction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4105,
+            "end_char": 4187
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-53765ef08ccc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4433b9a5d052"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于人体手腕滑膜原理的刚柔耦合腕关节",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84c325864d3f",
+      "evidence": [
+        {
+          "quote": "一种基于人体手腕滑膜原理的刚柔耦合腕关节",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4237,
+            "end_char": 4256
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Modular Soft Pipe-Climbing Robot with High Maneuverability",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-797cd9a7a6bd",
+      "evidence": [
+        {
+          "quote": "A Modular Soft Pipe-Climbing Robot with High Maneuverability",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4286,
+            "end_char": 4345
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种具有物理密封结构的人工肌肉",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-490445606f48",
+      "evidence": [
+        {
+          "quote": "一种具有物理密封结构的人工肌肉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4442,
+            "end_char": 4456
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种喷气式水蛇机器人的机体骨架及喷气式水蛇机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1df7b7c8ff6c",
+      "evidence": [
+        {
+          "quote": "一种喷气式水蛇机器人的机体骨架及喷气式水蛇机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4480,
+            "end_char": 4503
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Locomotion control of a rigid-soft coupled snake robot in multiple environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-433c541cb030",
+      "evidence": [
+        {
+          "quote": "Locomotion control of a rigid-soft coupled snake robot in multiple environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4530,
+            "end_char": 4608
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种气动球形腕关节",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cc2b095e2b3f",
+      "evidence": [
+        {
+          "quote": "一种气动球形腕关节",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4692,
+            "end_char": 4700
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Rehabilitation Training of Spinal Cord Injured Individuals by a Self-Balancing Exoskeleton Robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0a1d9573863c",
+      "evidence": [
+        {
+          "quote": "Rehabilitation Training of Spinal Cord Injured Individuals by a Self-Balancing Exoskeleton Robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4746,
+            "end_char": 4841
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Control of Rigid-Soft-Coupled Continuum Arm Driven by Pneumatic Muscles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f6785282ab74",
+      "evidence": [
+        {
+          "quote": "Control of Rigid-Soft-Coupled Continuum Arm Driven by Pneumatic Muscles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4926,
+            "end_char": 4996
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven estimation for uphill continuous rehabilitation motion at different slopes using sEMG",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6d50102ab32",
+      "evidence": [
+        {
+          "quote": "Data-driven estimation for uphill continuous rehabilitation motion at different slopes using sEMG",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5081,
+            "end_char": 5177
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种刚柔耦合交互臂",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85a8192bdfeb",
+      "evidence": [
+        {
+          "quote": "一种刚柔耦合交互臂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5261,
+            "end_char": 5269
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Human–Machine Interface Design Based on sEMG and Motor Imagery EEG for Lower Limb Exoskeleton Assistance System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41f1cfea393c",
+      "evidence": [
+        {
+          "quote": "The Human–Machine Interface Design Based on sEMG and Motor Imagery EEG for Lower Limb Exoskeleton Assistance System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5296,
+            "end_char": 5410
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Digital twin rehabilitation system based on self-balancing lower limb exoskeleton",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c4a35595eb10",
+      "evidence": [
+        {
+          "quote": "Digital twin rehabilitation system based on self-balancing lower limb exoskeleton",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5506,
+            "end_char": 5586
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种气囊模具",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f99aefde31cd",
+      "evidence": [
+        {
+          "quote": "一种气囊模具",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5661,
+            "end_char": 5666
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Pneumatic-Actuated Flexible Robotic Arm with Rigid Backbone for High-Precision and Safe Manipulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1f5ab04a45d6",
+      "evidence": [
+        {
+          "quote": "A Pneumatic-Actuated Flexible Robotic Arm with Rigid Backbone for High-Precision and Safe Manipulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5693,
+            "end_char": 5794
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stable Walking Feedback Control for a Self-Balanced Lower Limb Exoskeleton for Paraplegics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e2ce2c27aac",
+      "evidence": [
+        {
+          "quote": "Stable Walking Feedback Control for a Self-Balanced Lower Limb Exoskeleton for Paraplegics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5839,
+            "end_char": 5928
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ultralong Stretchable Soft Actuator (US2A)- Design, Modeling and Application",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d1f6e73e6b88",
+      "evidence": [
+        {
+          "quote": "Ultralong Stretchable Soft Actuator (US2A)- Design, Modeling and Application",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6006,
+            "end_char": 6081
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Visual Footsteps Planning System for Exoskeleton Robots Under Complex Terrain",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-22a8aa3c3888",
+      "evidence": [
+        {
+          "quote": "The Visual Footsteps Planning System for Exoskeleton Robots Under Complex Terrain",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6142,
+            "end_char": 6222
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于气压拮抗结构的变刚度弯曲关节",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-076deacab46f",
+      "evidence": [
+        {
+          "quote": "基于气压拮抗结构的变刚度弯曲关节",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6273,
+            "end_char": 6288
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Preliminary study of online real-time control system for lower extremity exoskeletons based on EEG and sEMG fusion",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f8db14ae172f",
+      "evidence": [
+        {
+          "quote": "Preliminary study of online real-time control system for lower extremity exoskeletons based on EEG and sEMG fusion",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6315,
+            "end_char": 6428
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A High-Efficient Reinforcement Learning Approach for Dexterous Manipulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-34c4e6a0e3ce",
+      "evidence": [
+        {
+          "quote": "A High-Efficient Reinforcement Learning Approach for Dexterous Manipulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6508,
+            "end_char": 6582
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种刚柔耦合气动肌肉",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0de75dc881c7",
+      "evidence": [
+        {
+          "quote": "一种刚柔耦合气动肌肉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6680,
+            "end_char": 6689
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Abnormal Data Cleaning for Wind Turbines by Image Segmentation Based on Active Shape Model and Class Uncertainty",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8e38fc3391c",
+      "evidence": [
+        {
+          "quote": "Abnormal Data Cleaning for Wind Turbines by Image Segmentation Based on Active Shape Model and Class Uncertainty",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6716,
+            "end_char": 6827
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Structure Design and its Application of Novel-Anti-deflection Continuous Robot Skeleton",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-74269642d9d9",
+      "evidence": [
+        {
+          "quote": "Structure Design and its Application of Novel-Anti-deflection Continuous Robot Skeleton",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6903,
+            "end_char": 6989
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Vision-Guided Object Recognition and 6D Pose Estimation System Based on Deep Neural Network for Unmanned Aerial Vehicles towards Intelligent Logistics",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8cd06e7d3bca",
+      "evidence": [
+        {
+          "quote": "Vision-Guided Object Recognition and 6D Pose Estimation System Based on Deep Neural Network for Unmanned Aerial Vehicles towards Intelligent Logistics",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7099,
+            "end_char": 7248
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种刚柔耦合驱动关节",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-85e60259b079",
+      "evidence": [
+        {
+          "quote": "一种刚柔耦合驱动关节",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7323,
+            "end_char": 7332
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种自适应调整关节旋转中心的髋关节辅助外骨骼机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1e32b2f57dbe",
+      "evidence": [
+        {
+          "quote": "一种自适应调整关节旋转中心的髋关节辅助外骨骼机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7368,
+            "end_char": 7392
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Different Height Stairs Climbing Pattern Generation for Humanoids",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d77101715014",
+      "evidence": [
+        {
+          "quote": "Different Height Stairs Climbing Pattern Generation for Humanoids",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7426,
+            "end_char": 7490
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种刚柔耦合机械臂及机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f702f5cd6d47",
+      "evidence": [
+        {
+          "quote": "一种刚柔耦合机械臂及机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7579,
+            "end_char": 7591
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimum Thresholding for Medical Brain Images Based on Tsallis Entropy and Bayesian Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d49cd6cf37a",
+      "evidence": [
+        {
+          "quote": "Optimum Thresholding for Medical Brain Images Based on Tsallis Entropy and Bayesian Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7618,
+            "end_char": 7711
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种气动肌肉驱动的柔性连续型关节",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-20c38479f227",
+      "evidence": [
+        {
+          "quote": "一种气动肌肉驱动的柔性连续型关节",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7772,
+            "end_char": 7787
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种面向刚柔耦合双臂机器人的控制方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c2d2ecc42b7",
+      "evidence": [
+        {
+          "quote": "一种面向刚柔耦合双臂机器人的控制方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7812,
+            "end_char": 7832
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Expectation-Maximization-Based Estimation Algorithm for AOA Target Tracking with Non-Gaussian Measurement Noises",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-63923de1dc13",
+      "evidence": [
+        {
+          "quote": "An Expectation-Maximization-Based Estimation Algorithm for AOA Target Tracking with Non-Gaussian Measurement Noises",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7863,
+            "end_char": 7977
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种软体机器人抗扭骨架及软体机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-72e7be05706b",
+      "evidence": [
+        {
+          "quote": "一种软体机器人抗扭骨架及软体机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8028,
+            "end_char": 8044
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于MRAC与PID的冗余自由度连续臂控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0d7e9c8fc9a",
+      "evidence": [
+        {
+          "quote": "一种基于MRAC与PID的冗余自由度连续臂控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8069,
+            "end_char": 8093
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种通用的关节运动中心跟随装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0b81907cfa95",
+      "evidence": [
+        {
+          "quote": "一种通用的关节运动中心跟随装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8137,
+            "end_char": 8151
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A New Dynamic Routing Network for Monocular Depth Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-40ff270056fa",
+      "evidence": [
+        {
+          "quote": "A New Dynamic Routing Network for Monocular Depth Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8197,
+            "end_char": 8256
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Walking Control for a Self-Balancing Exoskeleton on Flat Ground",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-898e9ef59b69",
+      "evidence": [
+        {
+          "quote": "Walking Control for a Self-Balancing Exoskeleton on Flat Ground",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8315,
+            "end_char": 8377
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Experiment of Super Redundant Continuous Arm Driven by Pneumatic Muscle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a55e5b5840ab",
+      "evidence": [
+        {
+          "quote": "Design and Experiment of Super Redundant Continuous Arm Driven by Pneumatic Muscle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8453,
+            "end_char": 8534
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人运动控制方法、设备及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cb6ef8d5a2a0",
+      "evidence": [
+        {
+          "quote": "机器人运动控制方法、设备及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8607,
+            "end_char": 8621
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multiple Sensor Fusion-Based Positioning Robot for Steam Generator Inspection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-43f10d6b7e23",
+      "evidence": [
+        {
+          "quote": "Multiple Sensor Fusion-Based Positioning Robot for Steam Generator Inspection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8654,
+            "end_char": 8730
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种爬管机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-891d5076d7fa",
+      "evidence": [
+        {
+          "quote": "一种爬管机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8788,
+            "end_char": 8794
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种级联式通讯的通用主从控制器系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-74c82b500a57",
+      "evidence": [
+        {
+          "quote": "一种级联式通讯的通用主从控制器系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8819,
+            "end_char": 8835
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机械臂末端执行器快换装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d7d3ea864f45",
+      "evidence": [
+        {
+          "quote": "一种机械臂末端执行器快换装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8864,
+            "end_char": 8877
+          },
+          "version": "9a16edb8f7b1624b3c89"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 48,
+    "listed": 48,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "专利": {
+        "listed": 21,
+        "extracted": 21
+      },
+      "会议论文": {
+        "listed": 10,
+        "extracted": 10
+      }
+    },
+    "consistent": true
+  }
 }

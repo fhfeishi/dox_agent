@@ -2,15 +2,20 @@
   "doc_id": "ad4f37eff1048c13ea11",
   "version": "6eb6784bf04e153d7b29",
   "source_hash": "0e9d6398b33ea74e8f72f1c13d213dc5c1ed3f7d5c2b35c47ce4a3b0e775a46a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:53:48.802774+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.169710+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cf46258721fa",
-          "name": "机器人辅助创伤性骨折愈合",
-          "desc": "应力刺激精准调控加速骨愈合，应对延迟愈合与骨不连",
+          "id": "item-352b78cb7f15",
+          "name": "创伤性骨折愈合周期漫长，易出现骨折延迟愈合和骨不连，后续治疗难度和代价激增。",
+          "desc": "创伤性骨折愈合周期漫长，易出现骨折延迟愈合和骨不连，后续治疗难度和代价激增。",
           "evidence": [
             {
               "quote": "创伤性骨折愈合周期漫长，易出现骨折延迟愈合和骨不连，后续治疗难度和代价激增。",
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-56a2f4c5b69e",
-          "name": "骨愈合量化指标与刺激力模型缺失",
-          "desc": "缺乏适用的骨愈合量化指标和精准的刺激力动态模型",
+          "id": "item-7c453edaaf8b",
+          "name": "依据Wolff定律、牵张成骨等力生物学理论，机器人施加应力刺激可以精准调控并加速骨愈合，但目前还缺乏适用的骨愈合量化指标",
+          "desc": "依据Wolff定律、牵张成骨等力生物学理论，机器人施加应力刺激可以精准调控并加速骨愈合，但目前还缺乏适用的骨愈合量化指标和精准的刺激力动态模型，临床应用面临巨大挑战。",
           "evidence": [
             {
               "quote": "依据Wolff定律、牵张成骨等力生物学理论，机器人施加应力刺激可以精准调控并加速骨愈合，但目前还缺乏适用的骨愈合量化指标和精准的刺激力动态模型，临床应用面临巨大挑战。",
@@ -51,6 +56,22 @@
                 "basis": "parsed_text",
                 "start_char": 712,
                 "end_char": 794
+              },
+              "version": "6eb6784bf04e153d7b29"
+            }
+          ]
+        },
+        {
+          "id": "item-57175babd9ab",
+          "name": "本项目以实现机器人辅助创伤性骨折快速精准愈合为目标，针对跨时间空间尺度的骨愈合状态综合量化表征、分区域个性化应力刺激骨愈",
+          "desc": "本项目以实现机器人辅助创伤性骨折快速精准愈合为目标，针对跨时间空间尺度的骨愈合状态综合量化表征、分区域个性化应力刺激骨愈合动态调控机制等关键科学问题，通过多模态影像分析和骨弯曲刚度在线测量，建立从骨微观强度、生理微环境到宏观弯曲刚度的骨愈合状态综合表征方法；",
+          "evidence": [
+            {
+              "quote": "本项目以实现机器人辅助创伤性骨折快速精准愈合为目标，针对跨时间空间尺度的骨愈合状态综合量化表征、分区域个性化应力刺激骨愈合动态调控机制等关键科学问题，通过多模态影像分析和骨弯曲刚度在线测量，建立从骨微观强度、生理微环境到宏观弯曲刚度的骨愈合状态综合表征方法；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 795,
+                "end_char": 923
               },
               "version": "6eb6784bf04e153d7b29"
             }
@@ -63,25 +84,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5906ef61d40a",
-          "name": "力学-生物学耦合仿真模型",
-          "desc": "涵盖血供、细胞迁移分化的骨折愈合仿真模型，阐明力学载荷与组织演化关联",
-          "evidence": [
-            {
-              "quote": "项目构建了多因素耦合的骨折愈合力学-生物学仿真模型，涵盖血供、细胞迁移分化等关键过程，阐明了力学载荷与组织演化的内在关联。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2881,
-                "end_char": 2941
-              },
-              "version": "6eb6784bf04e153d7b29"
-            }
-          ]
-        },
-        {
-          "id": "item-a8a5074a3f03",
-          "name": "物理信息神经网络有限元模型",
-          "desc": "融合物理信息神经网络的二维有限元模型实现愈合过程高效仿真",
+          "id": "item-9044e933cc9f",
+          "name": "进一步建立了融合物理信息神经网络的二维有限元模型，实现了动态力刺激下愈合过程的高效仿真，为治疗优化提供了快速预测工具。",
+          "desc": "进一步建立了融合物理信息神经网络的二维有限元模型，实现了动态力刺激下愈合过程的高效仿真，为治疗优化提供了快速预测工具。",
           "evidence": [
             {
               "quote": "进一步建立了融合物理信息神经网络的二维有限元模型，实现了动态力刺激下愈合过程的高效仿真，为治疗优化提供了快速预测工具。",
@@ -92,23 +97,25 @@
               },
               "version": "6eb6784bf04e153d7b29"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-fd19f8153ff1",
-          "name": "振动分析愈合评估指标",
-          "desc": "基于振动分析的骨折愈合量化评估指标实现客观表征",
+          "id": "item-8e15ced71e79",
+          "name": "本项目针对创伤性骨折后易发生的延迟愈合与骨不连问题，聚焦机器人辅助应力刺激促进骨愈合的关键科学与技术瓶颈，围绕骨愈合状态",
+          "desc": "本项目针对创伤性骨折后易发生的延迟愈合与骨不连问题，聚焦机器人辅助应力刺激促进骨愈合的关键科学与技术瓶颈，围绕骨愈合状态量化表征、力生物学建模与动态调控机制展开系统研究。",
           "evidence": [
             {
-              "quote": "同时，创新性提出了基于振动分析的骨折愈合量化评估指标，实现了愈合阶段的客观表征。",
+              "quote": "本项目针对创伤性骨折后易发生的延迟愈合与骨不连问题，聚焦机器人辅助应力刺激促进骨愈合的关键科学与技术瓶颈，围绕骨愈合状态量化表征、力生物学建模与动态调控机制展开系统研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3064,
-                "end_char": 3103
+                "start_char": 2796,
+                "end_char": 2880
               },
               "version": "6eb6784bf04e153d7b29"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +124,148 @@
       "state": "has",
       "items": [
         {
-          "id": "item-059505ed08c8",
-          "name": "个性化力刺激方案",
-          "desc": "基于生物学机理的个性化方案相比固定载荷愈合效果显著提升",
+          "id": "item-967cb0cc93d6",
+          "name": "创伤性骨折愈合周期漫长，易出现骨折延迟愈合和骨不连，后续治疗难度和代价激增。",
+          "desc": "创伤性骨折愈合周期漫长，易出现骨折延迟愈合和骨不连，后续治疗难度和代价激增。",
           "evidence": [
             {
-              "quote": "通过正交试验与仿真分析，揭示了力刺激对愈合的调控规律，提出基于生物学机理的个性化力刺激方案，相比固定载荷方案愈合效果显著提升。",
+              "quote": "创伤性骨折愈合周期漫长，易出现骨折延迟愈合和骨不连，后续治疗难度和代价激增。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2942,
-                "end_char": 3004
+                "start_char": 674,
+                "end_char": 711
               },
               "version": "6eb6784bf04e153d7b29"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-e92973d43655",
-          "name": "完整方法体系",
-          "desc": "形成状态感知、机理建模到刺激调控的完整方法体系",
+          "id": "item-e01a403c6208",
+          "name": "本项目针对创伤性骨折后易发生的延迟愈合与骨不连问题，聚焦机器人辅助应力刺激促进骨愈合的关键科学与技术瓶颈，围绕骨愈合状态",
+          "desc": "本项目针对创伤性骨折后易发生的延迟愈合与骨不连问题，聚焦机器人辅助应力刺激促进骨愈合的关键科学与技术瓶颈，围绕骨愈合状态量化表征、力生物学建模与动态调控机制展开系统研究。",
           "evidence": [
             {
-              "quote": "项目形成了从状态感知、机理建模到刺激调控的完整方法体系，为机器人精准调控骨愈合奠定了理论和技术基础",
+              "quote": "本项目针对创伤性骨折后易发生的延迟愈合与骨不连问题，聚焦机器人辅助应力刺激促进骨愈合的关键科学与技术瓶颈，围绕骨愈合状态量化表征、力生物学建模与动态调控机制展开系统研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3104,
-                "end_char": 3152
+                "start_char": 2796,
+                "end_char": 2880
               },
               "version": "6eb6784bf04e153d7b29"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cf46258721fa"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-56a2f4c5b69e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Finite Element Analysis of Dynamic Loading Effects on Fracture Healing Across Cellular and Bone Regions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9db86c588bd4",
+      "evidence": [
+        {
+          "quote": "Finite Element Analysis of Dynamic Loading Effects on Fracture Healing Across Cellular and Bone Regions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3202,
+            "end_char": 3304
+          },
+          "version": "6eb6784bf04e153d7b29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-56a2f4c5b69e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5906ef61d40a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Computer-Assisted Automatic Preoperative Path Planning Method for Pelvic Fracture Reduction Surgery Based on Enlarged RRT ∗ Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c400e26fb1d9",
+      "evidence": [
+        {
+          "quote": "Computer-Assisted Automatic Preoperative Path Planning Method for Pelvic Fracture Reduction Surgery Based on Enlarged RRT ∗ Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3363,
+            "end_char": 3495
+          },
+          "version": "6eb6784bf04e153d7b29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-56a2f4c5b69e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a8a5074a3f03"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于动态应力刺激调控骨愈合的建模方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d8db56506c7",
+      "evidence": [
+        {
+          "quote": "一种用于动态应力刺激调控骨愈合的建模方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3580,
+            "end_char": 3602
+          },
+          "version": "6eb6784bf04e153d7b29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-56a2f4c5b69e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fd19f8153ff1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5906ef61d40a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-059505ed08c8"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fd19f8153ff1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e92973d43655"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-Time Muscle Biomechanical Modeling with Physics-Informed Neural Networks for Strain-Constrained Path Planning in Robot-assisted Pelvic Fracture Reduction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-969a91f98c21",
+      "evidence": [
+        {
+          "quote": "Real-Time Muscle Biomechanical Modeling with Physics-Informed Neural Networks for Strain-Constrained Path Planning in Robot-assisted Pelvic Fracture Reduction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3627,
+            "end_char": 3784
+          },
+          "version": "6eb6784bf04e153d7b29"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

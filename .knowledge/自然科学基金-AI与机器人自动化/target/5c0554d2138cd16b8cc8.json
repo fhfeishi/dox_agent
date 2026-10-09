@@ -2,15 +2,20 @@
   "doc_id": "5c0554d2138cd16b8cc8",
   "version": "e87cc5cc8dbd59a1a9e5",
   "source_hash": "9c195e331ff464c829813c46cc01b5b598d61372654048bd6d26dbd34be2559a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:19.491781+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.337465+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-947a02a23360",
-          "name": "卫星拒止无人机导航",
-          "desc": "复杂电磁环境下无人机仿生自主导航",
+          "id": "item-b31edbe5a65f",
+          "name": "针对复杂电磁环境等恶劣条件下的无人机应用，探索研究不依赖于卫星和无线电导航的新型自主导航方法需求迫切。",
+          "desc": "针对复杂电磁环境等恶劣条件下的无人机应用，探索研究不依赖于卫星和无线电导航的新型自主导航方法需求迫切。",
           "evidence": [
             {
-              "quote": "本项目借鉴信鸽自主导航机理，凝练了一种基于“航向约束+环境感知+学习推断”架构的无人机仿生导航模式",
+              "quote": "针对复杂电磁环境等恶劣条件下的无人机应用，探索研究不依赖于卫星和无线电导航的新型自主导航方法需求迫切。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2564,
-                "end_char": 2612
+                "start_char": 681,
+                "end_char": 731
               },
               "version": "e87cc5cc8dbd59a1a9e5"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a7c39e38e3f8",
-          "name": "卫星拒止导航受限",
-          "desc": "卫星拒止条件下自主导航成为制约无人机发展的难点",
-          "evidence": [
-            {
-              "quote": "现在大多数无人机主要依赖于卫星导航实现高精度定位。卫星拒止条件下的自主导航已成为制约无人机发展的难点之一。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2511,
-                "end_char": 2563
-              },
-              "version": "e87cc5cc8dbd59a1a9e5"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-9d2666473705",
-          "name": "光磁电复合罗盘",
-          "desc": "偏振光/地磁复合定向实现0.3°定向精度",
+          "id": "item-c921704386d5",
+          "name": "深入研究了基于“航向约束+环境感知+学习推断”架构的无人机仿生导航算法，针对长航时无人机应用，在2000米-3000米飞",
+          "desc": "深入研究了基于“航向约束+环境感知+学习推断”架构的无人机仿生导航算法，针对长航时无人机应用，在2000米-3000米飞行高度典型飞行条件下自主定位精度优于100米；",
           "evidence": [
             {
-              "quote": "设计并实现了一种基于微惯性的偏振光/地磁复合定向方法，研制了小型化光磁电复合罗盘样机，在典型环境下开展了无人机飞行搭载、车载实验，在晴天、多云等天气条件下定向精度0.3°",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2645,
-                "end_char": 2729
-              },
-              "version": "e87cc5cc8dbd59a1a9e5"
-            }
-          ]
-        },
-        {
-          "id": "item-9216200d53b2",
-          "name": "仿生导航算法体系",
-          "desc": "航向约束+环境感知+学习推断架构导航算法",
-          "evidence": [
-            {
-              "quote": "深入研究了基于“航向约束+环境感知+学习推断”架构的无人机仿生导航算法",
+              "quote": "深入研究了基于“航向约束+环境感知+学习推断”架构的无人机仿生导航算法，针对长航时无人机应用，在2000米-3000米飞行高度典型飞行条件下自主定位精度优于100米；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2731,
-                "end_char": 2765
+                "end_char": 2813
               },
               "version": "e87cc5cc8dbd59a1a9e5"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-84cc222e1d36",
+          "name": "projectName: 基于航向约束/环境感知/学习推断架构的无人机仿生导航方法研究",
+          "desc": "projectName: 基于航向约束/环境感知/学习推断架构的无人机仿生导航方法研究",
+          "evidence": [
+            {
+              "quote": "projectName: 基于航向约束/环境感知/学习推断架构的无人机仿生导航方法研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 42,
+                "end_char": 84
+              },
+              "version": "e87cc5cc8dbd59a1a9e5"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,328 @@
       "state": "has",
       "items": [
         {
-          "id": "item-27ae3d2b0008",
-          "name": "拒止条件定位精度",
-          "desc": "长航时优于100米、小型无人机城市环境优于10米",
+          "id": "item-d95252a907b2",
+          "name": "针对复杂电磁环境等恶劣条件下的无人机应用，探索研究不依赖于卫星和无线电导航的新型自主导航方法需求迫切。",
+          "desc": "针对复杂电磁环境等恶劣条件下的无人机应用，探索研究不依赖于卫星和无线电导航的新型自主导航方法需求迫切。",
           "evidence": [
             {
-              "quote": "针对长航时无人机应用，在2000米-3000米飞行高度典型飞行条件下自主定位精度优于100米；针对小型无人机应用，典型城市条件下自主定位精度优于10米，可满足卫星拒止条件下无人机自主导航要求。",
+              "quote": "针对复杂电磁环境等恶劣条件下的无人机应用，探索研究不依赖于卫星和无线电导航的新型自主导航方法需求迫切。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2767,
-                "end_char": 2862
+                "start_char": 681,
+                "end_char": 731
               },
               "version": "e87cc5cc8dbd59a1a9e5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-47e9f74f610a",
+          "name": "现在大多数无人机主要依赖于卫星导航实现高精度定位。",
+          "desc": "现在大多数无人机主要依赖于卫星导航实现高精度定位。",
+          "evidence": [
+            {
+              "quote": "现在大多数无人机主要依赖于卫星导航实现高精度定位。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2511,
+                "end_char": 2535
+              },
+              "version": "e87cc5cc8dbd59a1a9e5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-947a02a23360"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a7c39e38e3f8"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Improving UAV Localization Accuracy by Tracking Visual Features in A Georeferenced Map",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f510236b966b",
+      "evidence": [
+        {
+          "quote": "Improving UAV Localization Accuracy by Tracking Visual Features in A Georeferenced Map",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2923,
+            "end_char": 3008
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a7c39e38e3f8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9d2666473705"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "OMC-VINS: A Bionic Skylight Orientation and Vision-Based Metric Constrains Proposal for Vehicle Location in Challenging Environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-45a9c016fa53",
+      "evidence": [
+        {
+          "quote": "OMC-VINS: A Bionic Skylight Orientation and Vision-Based Metric Constrains Proposal for Vehicle Location in Challenging Environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3066,
+            "end_char": 3196
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a7c39e38e3f8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9216200d53b2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Map Aided Visual-Inertial Integrated Navigation for Long Range UAVs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84d0a6e84d2d",
+      "evidence": [
+        {
+          "quote": "Map Aided Visual-Inertial Integrated Navigation for Long Range UAVs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3292,
+            "end_char": 3358
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9216200d53b2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-27ae3d2b0008"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种偏振视觉自适应增强的无人平台运动估计方法和装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d1e152de3ef2",
+      "evidence": [
+        {
+          "quote": "一种偏振视觉自适应增强的无人平台运动估计方法和装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3423,
+            "end_char": 3447
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9d2666473705"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-27ae3d2b0008"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "惯性/视觉/激光雷达SLAM技术综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b5ae55ecc6ea",
+      "evidence": [
+        {
+          "quote": "惯性/视觉/激光雷达SLAM技术综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3484,
+            "end_char": 3501
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多源视觉辅助的无人机自主导航方法与系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-775c8a26d25d",
+      "evidence": [
+        {
+          "quote": "一种基于多源视觉辅助的无人机自主导航方法与系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3531,
+            "end_char": 3553
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Bionic orientation method based on polarization imaging in HDR scenes",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b835b2bd5b2a",
+      "evidence": [
+        {
+          "quote": "Bionic orientation method based on polarization imaging in HDR scenes",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3595,
+            "end_char": 3663
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于偏振定向误差补偿的自主导航方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c90dd81bbe8",
+      "evidence": [
+        {
+          "quote": "一种基于偏振定向误差补偿的自主导航方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3778,
+            "end_char": 3796
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Bio-Inspired Multi-Sensor System for Robust Orientation and Position Estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b1b5e3449508",
+      "evidence": [
+        {
+          "quote": "A Bio-Inspired Multi-Sensor System for Robust Orientation and Position Estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3835,
+            "end_char": 3915
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Augmenting object detection in adverse conditions with polarization-encoded images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c393d2f563c",
+      "evidence": [
+        {
+          "quote": "Augmenting object detection in adverse conditions with polarization-encoded images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4009,
+            "end_char": 4090
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "自监督学习的固态激光雷达三维语义建图方法与装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-392feb7b3fa1",
+      "evidence": [
+        {
+          "quote": "自监督学习的固态激光雷达三维语义建图方法与装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4161,
+            "end_char": 4183
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "C2VIR-SLAM: Centralized Collaborative Visual-Inertial-Range Simultaneous Localization and Mapping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-984d3c96642d",
+      "evidence": [
+        {
+          "quote": "C2VIR-SLAM: Centralized Collaborative Visual-Inertial-Range Simultaneous Localization and Mapping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4236,
+            "end_char": 4332
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A 2D Georeferenced Map Aided Visual-Inertial System for Precise UAV Localization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1c8ac7f23006",
+      "evidence": [
+        {
+          "quote": "A 2D Georeferenced Map Aided Visual-Inertial System for Precise UAV Localization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4400,
+            "end_char": 4479
+          },
+          "version": "e87cc5cc8dbd59a1a9e5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

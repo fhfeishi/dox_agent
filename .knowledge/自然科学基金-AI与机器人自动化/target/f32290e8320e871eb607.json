@@ -2,15 +2,20 @@
   "doc_id": "f32290e8320e871eb607",
   "version": "d9b8327501beaa14d2cf",
   "source_hash": "6b06d840ba651f6fbdf8def1ec12b6b19102cf472ba8b5304864bb09c0e3d355",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:25.823529+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.842070+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ec942c442cbd",
-          "name": "开放式场景多智能体训练",
-          "desc": "环境动态开放、对手多样变化的智能体训练",
+          "id": "item-364ee51fbeef",
+          "name": "在环境动态开放、对手多样变化的开放式复杂场景中进行智能体训练时，需要不断调整适应其水平的新对手，以实现智能体训练水平的稳",
+          "desc": "在环境动态开放、对手多样变化的开放式复杂场景中进行智能体训练时，需要不断调整适应其水平的新对手，以实现智能体训练水平的稳定提升。",
           "evidence": [
             {
               "quote": "在环境动态开放、对手多样变化的开放式复杂场景中进行智能体训练时，需要不断调整适应其水平的新对手，以实现智能体训练水平的稳定提升。",
@@ -33,82 +38,67 @@
               "version": "d9b8327501beaa14d2cf"
             }
           ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
+        },
         {
-          "id": "item-d03f62a73161",
-          "name": "对手选择不自动不多样",
-          "desc": "自对弈方法无法实现自动且多样化的对手选择",
+          "id": "item-6b7048790f25",
+          "name": "项目成果为处理开放式博弈场景中不可预测的策略演化提供了一条新颖且高效的技术途径，拓展了多智能体强化学习在大型复杂系统和跨",
+          "desc": "项目成果为处理开放式博弈场景中不可预测的策略演化提供了一条新颖且高效的技术途径，拓展了多智能体强化学习在大型复杂系统和跨模态任务中的应用前景，具有重要的学术价值和实际意义。",
           "evidence": [
             {
-              "quote": "现有的自对弈方法，通过历史平均策略或人工规划的方式来挑选对手，因此无法实现自动且多样化的对手选择",
+              "quote": "项目成果为处理开放式博弈场景中不可预测的策略演化提供了一条新颖且高效的技术途径，拓展了多智能体强化学习在大型复杂系统和跨模态任务中的应用前景，具有重要的学术价值和实际意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 706,
-                "end_char": 753
+                "start_char": 3077,
+                "end_char": 3162
               },
               "version": "d9b8327501beaa14d2cf"
             }
           ]
         }
       ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-0eeeae0e6f27",
-          "name": "策略空间博弈映射",
-          "desc": "原始博弈映射到高维参数化策略空间结合低维表示学习",
+          "id": "item-099cb7c92bb3",
+          "name": "在算法方面，项目实现了可并行部署的大规模训练框架，并在真实或高保真模拟环境中进行了多轮实验验证，涵盖人机协作、多机路径规",
+          "desc": "在算法方面，项目实现了可并行部署的大规模训练框架，并在真实或高保真模拟环境中进行了多轮实验验证，涵盖人机协作、多机路径规划和大语言模型推断等开放式场景。",
           "evidence": [
             {
-              "quote": "本项目将多智能体原始博弈映射到高维参数化策略空间，并结合低维表示学习与博弈动力学分析，实现了在快速增长的策略池中高效发现并维持多样性最优对手。",
+              "quote": "在算法方面，项目实现了可并行部署的大规模训练框架，并在真实或高保真模拟环境中进行了多轮实验验证，涵盖人机协作、多机路径规划和大语言模型推断等开放式场景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2607,
-                "end_char": 2677
+                "start_char": 2862,
+                "end_char": 2937
               },
               "version": "d9b8327501beaa14d2cf"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-6dbceb5a86a5",
-          "name": "多项式时间策略池筛选",
-          "desc": "多样性度量技术降低冗余策略计算负担",
+          "id": "item-55f130e7e429",
+          "name": "本项目将构建一套自动化的策略空间博弈分析框架，为将多智能体深度强化学习应用到开放式复杂环境中提供一种新的方法。",
+          "desc": "本项目将构建一套自动化的策略空间博弈分析框架，为将多智能体深度强化学习应用到开放式复杂环境中提供一种新的方法。",
           "evidence": [
             {
-              "quote": "项目引入多样性度量技术，在多项式时间内完成大规模策略池的筛选与聚合",
+              "quote": "本项目将构建一套自动化的策略空间博弈分析框架，为将多智能体深度强化学习应用到开放式复杂环境中提供一种新的方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2690,
-                "end_char": 2722
+                "start_char": 961,
+                "end_char": 1015
               },
               "version": "d9b8327501beaa14d2cf"
             }
-          ]
-        },
-        {
-          "id": "item-780283a04c7c",
-          "name": "异步并行与离线强化学习",
-          "desc": "提升高维环境训练效率与对手适应能力",
-          "evidence": [
-            {
-              "quote": "通过异步并行策略扩展与离线强化学习相结合，有效提升了在高维环境中的训练效率与对手适应能力。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2760,
-                "end_char": 2804
-              },
-              "version": "d9b8327501beaa14d2cf"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +107,204 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b044706fbd69",
-          "name": "零样本协作鲁棒泛化",
-          "desc": "应对复杂对手与零样本协作具备较强鲁棒性和泛化性能",
+          "id": "item-b9ad9a289c2c",
+          "name": "在环境动态开放、对手多样变化的开放式复杂场景中进行智能体训练时，需要不断调整适应其水平的新对手，以实现智能体训练水平的稳",
+          "desc": "在环境动态开放、对手多样变化的开放式复杂场景中进行智能体训练时，需要不断调整适应其水平的新对手，以实现智能体训练水平的稳定提升。",
           "evidence": [
             {
-              "quote": "实验结果显示，基于策略空间博弈的方法在应对复杂对手以及零样本协作时具备较强鲁棒性和泛化性能。",
+              "quote": "在环境动态开放、对手多样变化的开放式复杂场景中进行智能体训练时，需要不断调整适应其水平的新对手，以实现智能体训练水平的稳定提升。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2938,
-                "end_char": 2983
+                "start_char": 642,
+                "end_char": 705
               },
               "version": "d9b8327501beaa14d2cf"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-7efdfd45e9a1",
-          "name": "顶会论文与专利",
-          "desc": "JAIR期刊1篇、ICML等CCF-A会议8篇，发明专利3项",
+          "id": "item-b36bc9bcecb5",
+          "name": "本项目聚焦多智能体深度强化学习在开放式场景下的应用，针对复杂对手、动态博弈与高计算成本等核心挑战，提出了基于策略空间博弈",
+          "desc": "本项目聚焦多智能体深度强化学习在开放式场景下的应用，针对复杂对手、动态博弈与高计算成本等核心挑战，提出了基于策略空间博弈的分解与分析方法。",
           "evidence": [
             {
-              "quote": "项目执行期间共发表高水平期刊论文1篇（JAIR）和国际顶级会议论文8篇（包括ICML、NeurIPS、AAAI等CCF-A类会议），申请发明专利3项",
+              "quote": "本项目聚焦多智能体深度强化学习在开放式场景下的应用，针对复杂对手、动态博弈与高计算成本等核心挑战，提出了基于策略空间博弈的分解与分析方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2984,
-                "end_char": 3057
+                "start_char": 2514,
+                "end_char": 2582
               },
               "version": "d9b8327501beaa14d2cf"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ec942c442cbd"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d03f62a73161"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Alphazero-like tree-search can guide large language model decoding and training",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d65d7b89165",
+      "evidence": [
+        {
+          "quote": "Alphazero-like tree-search can guide large language model decoding and training",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3187,
+            "end_char": 3265
+          },
+          "version": "d9b8327501beaa14d2cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d03f62a73161"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0eeeae0e6f27"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Zsc-eval: An evaluation toolkit and benchmark for multi-agent zero-shot coordination",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d6ac26e1b77",
+      "evidence": [
+        {
+          "quote": "Zsc-eval: An evaluation toolkit and benchmark for multi-agent zero-shot coordination",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3365,
+            "end_char": 3448
+          },
+          "version": "d9b8327501beaa14d2cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d03f62a73161"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6dbceb5a86a5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Critic-Guided Decision Transformer for Offline Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-418efc19149e",
+      "evidence": [
+        {
+          "quote": "Critic-Guided Decision Transformer for Offline Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3546,
+            "end_char": 3614
+          },
+          "version": "d9b8327501beaa14d2cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d03f62a73161"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-780283a04c7c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多智能体的大规模卫星协同观测任务规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4226a46d4389",
+      "evidence": [
+        {
+          "quote": "一种基于多智能体的大规模卫星协同观测任务规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3672,
+            "end_char": 3695
+          },
+          "version": "d9b8327501beaa14d2cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0eeeae0e6f27"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b044706fbd69"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于策略空间响应先知的课程学习方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8826ff500dbd",
+      "evidence": [
+        {
+          "quote": "一种基于策略空间响应先知的课程学习方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3718,
+            "end_char": 3736
+          },
+          "version": "d9b8327501beaa14d2cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-780283a04c7c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7efdfd45e9a1"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Reinforcing LLM Agents via Policy Optimization with Action Decomposition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e46dde5d78fa",
+      "evidence": [
+        {
+          "quote": "Reinforcing LLM Agents via Policy Optimization with Action Decomposition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3757,
+            "end_char": 3828
+          },
+          "version": "d9b8327501beaa14d2cf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "GEAR: A GPU-Centric Experience Replay System for Large Reinforcement Learning Models",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c6e25a727cf0",
+      "evidence": [
+        {
+          "quote": "GEAR: A GPU-Centric Experience Replay System for Large Reinforcement Learning Models",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3893,
+            "end_char": 3976
+          },
+          "version": "d9b8327501beaa14d2cf"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

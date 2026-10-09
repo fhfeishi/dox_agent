@@ -2,15 +2,20 @@
   "doc_id": "ff3da8e2decbfd46403c",
   "version": "32ce0311ac4c8bf0444a",
   "source_hash": "ba27e9ebef6910a79c41a0f9280d1afd1b558ae7c4ceaf546969c88bf6e6f3ee",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:11:48.973610+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:20.035121+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,95 @@
       "state": "has",
       "items": [
         {
-          "id": "item-62a2d2da9b3d",
-          "name": "CSCNT术后全上肢康复",
-          "desc": "健侧颈7神经移位术后患者的全上肢外骨骼康复",
+          "id": "item-0b42e2ac1cce",
+          "name": "针对中风导致的上肢运动功能障碍,线驱动外骨骼机器人在康复训练中具有柔顺性与安全性高等优势。",
+          "desc": "针对中风导致的上肢运动功能障碍,线驱动外骨骼机器人在康复训练中具有柔顺性与安全性高等优势。",
+          "evidence": [
+            {
+              "quote": "针对中风导致的上肢运动功能障碍,线驱动外骨骼机器人在康复训练中具有柔顺性与安全性高等优势。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 656,
+                "end_char": 700
+              },
+              "version": "32ce0311ac4c8bf0444a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-6ed652f8f8d7",
+          "name": "基于sEMG构建人机共融刚度模型,设计变刚度柔顺控制策略,解决柔顺性和刚度之间的平衡问题；",
+          "desc": "基于sEMG构建人机共融刚度模型,设计变刚度柔顺控制策略,解决柔顺性和刚度之间的平衡问题；",
+          "evidence": [
+            {
+              "quote": "基于sEMG构建人机共融刚度模型,设计变刚度柔顺控制策略,解决柔顺性和刚度之间的平衡问题；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 822,
+                "end_char": 866
+              },
+              "version": "32ce0311ac4c8bf0444a"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0ebec43d3047",
+          "name": "人机协同训练方法方面，进行了全上肢康复外骨骼变刚度驱动器设计，开展了肌肉刚度与痉挛模型研究，完成了基于改进DMP算法的健",
+          "desc": "人机协同训练方法方面，进行了全上肢康复外骨骼变刚度驱动器设计，开展了肌肉刚度与痉挛模型研究，完成了基于改进DMP算法的健患侧协同训练方法研究。",
+          "evidence": [
+            {
+              "quote": "人机协同训练方法方面，进行了全上肢康复外骨骼变刚度驱动器设计，开展了肌肉刚度与痉挛模型研究，完成了基于改进DMP算法的健患侧协同训练方法研究。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3246,
+                "end_char": 3316
+              },
+              "version": "32ce0311ac4c8bf0444a"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8602a0165700",
+          "name": "针对中风导致的上肢运动功能障碍,线驱动外骨骼机器人在康复训练中具有柔顺性与安全性高等优势。",
+          "desc": "针对中风导致的上肢运动功能障碍,线驱动外骨骼机器人在康复训练中具有柔顺性与安全性高等优势。",
+          "evidence": [
+            {
+              "quote": "针对中风导致的上肢运动功能障碍,线驱动外骨骼机器人在康复训练中具有柔顺性与安全性高等优势。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 656,
+                "end_char": 700
+              },
+              "version": "32ce0311ac4c8bf0444a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-6cde5e30d1ad",
+          "name": "为实现线驱动外骨骼机器人在中风患者经健侧颈7神经移位(CSCNT)术后康复中涉及的机构设计、变刚度控制、康复训练与康复评",
+          "desc": "为实现线驱动外骨骼机器人在中风患者经健侧颈7神经移位(CSCNT)术后康复中涉及的机构设计、变刚度控制、康复训练与康复评价等重要的基础和迫切解决的关键理论与技术问题。",
           "evidence": [
             {
               "quote": "为实现线驱动外骨骼机器人在中风患者经健侧颈7神经移位(CSCNT)术后康复中涉及的机构设计、变刚度控制、康复训练与康复评价等重要的基础和迫切解决的关键理论与技术问题。",
@@ -32,149 +123,172 @@
               },
               "version": "32ce0311ac4c8bf0444a"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ac1f06fe1b98",
-          "name": "柔顺与刚度平衡难题",
-          "desc": "机构设计、柔顺控制、训练与评价存在较大改进空间",
-          "evidence": [
-            {
-              "quote": "基于sEMG构建人机共融刚度模型,设计变刚度柔顺控制策略,解决柔顺性和刚度之间的平衡问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 822,
-                "end_char": 865
-              },
-              "version": "32ce0311ac4c8bf0444a"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5ec701aaa855",
-          "name": "可互换全上肢外骨骼",
-          "desc": "并-串联-线驱动结构与被动补偿机构设计",
-          "evidence": [
-            {
-              "quote": "进行了上肢康复外骨骼全线驱动设计，开展了可互换的全上肢康复外骨骼机构设计研究，结合并-串联-线驱动结构与被动补偿机构保证上肢外骨骼辅助康复性能。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3174,
-                "end_char": 3245
-              },
-              "version": "32ce0311ac4c8bf0444a"
-            }
-          ]
-        },
-        {
-          "id": "item-38219b038f68",
-          "name": "健患侧协同训练",
-          "desc": "变刚度驱动器设计与改进DMP算法协同训练",
-          "evidence": [
-            {
-              "quote": "进行了全上肢康复外骨骼变刚度驱动器设计，开展了肌肉刚度与痉挛模型研究，完成了基于改进DMP算法的健患侧协同训练方法研究。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3257,
-                "end_char": 3316
-              },
-              "version": "32ce0311ac4c8bf0444a"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b2a5d22e59f9",
-          "name": "康复平台实验验证",
-          "desc": "搭建康复平台验证变刚度控制与协同训练方法效果",
-          "evidence": [
-            {
-              "quote": "进行了上肢康复外骨骼康复平台搭建，通过实验对变刚度控制与协同训练方法效果进行验证。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3395,
-                "end_char": 3435
-              },
-              "version": "32ce0311ac4c8bf0444a"
-            }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-62a2d2da9b3d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ac1f06fe1b98"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A novel deep learning method for motion assessment in upper limb rehabilitation grasping test",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2f033668a56a",
+      "evidence": [
+        {
+          "quote": "A novel deep learning method for motion assessment in upper limb rehabilitation grasping test",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3553,
+            "end_char": 3645
+          },
+          "version": "32ce0311ac4c8bf0444a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ac1f06fe1b98"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5ec701aaa855"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development and Test of a Spasm Sensor for Hand Rehabilitation Exoskeleton",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9b7ba8b1f5c",
+      "evidence": [
+        {
+          "quote": "Development and Test of a Spasm Sensor for Hand Rehabilitation Exoskeleton",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3700,
+            "end_char": 3773
+          },
+          "version": "32ce0311ac4c8bf0444a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ac1f06fe1b98"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-38219b038f68"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Differentiable spatial regression: a novel method for 3D hand pose estimation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2c1d24d2cc34",
+      "evidence": [
+        {
+          "quote": "Differentiable spatial regression: a novel method for 3D hand pose estimation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3816,
+            "end_char": 3892
+          },
+          "version": "32ce0311ac4c8bf0444a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5ec701aaa855"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b2a5d22e59f9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-Time Robotic Multigrasp Detection Using Anchor-Free Fully Convolutional Grasp Detector",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f1663f61e45e",
+      "evidence": [
+        {
+          "quote": "Real-Time Robotic Multigrasp Detection Using Anchor-Free Fully Convolutional Grasp Detector",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3933,
+            "end_char": 4023
+          },
+          "version": "32ce0311ac4c8bf0444a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-38219b038f68"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b2a5d22e59f9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and modeling of a hybrid soft-rigid hand exoskeleton for poststroke rehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-409ef2ca976d",
+      "evidence": [
+        {
+          "quote": "Design and modeling of a hybrid soft-rigid hand exoskeleton for poststroke rehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4070,
+            "end_char": 4158
+          },
+          "version": "32ce0311ac4c8bf0444a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于绳索驱动的模块化肩部外骨骼康复机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-153b52a6d37d",
+      "evidence": [
+        {
+          "quote": "一种基于绳索驱动的模块化肩部外骨骼康复机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4210,
+            "end_char": 4231
+          },
+          "version": "32ce0311ac4c8bf0444a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Portable Device for Hand Rehabilitation With Force Cognition: Design, Interaction, and Experiment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3af507c67677",
+      "evidence": [
+        {
+          "quote": "A Portable Device for Hand Rehabilitation With Force Cognition: Design, Interaction, and Experiment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4260,
+            "end_char": 4358
+          },
+          "version": "32ce0311ac4c8bf0444a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

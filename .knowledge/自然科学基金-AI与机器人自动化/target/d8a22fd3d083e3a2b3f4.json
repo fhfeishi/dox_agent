@@ -2,15 +2,20 @@
   "doc_id": "d8a22fd3d083e3a2b3f4",
   "version": "e3e2d56a299a3c407c30",
   "source_hash": "5b7a198cfe009d2a1a45e8137a20da8227e33ed7d5284735831d896f2e0cac80",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:29:57.036918+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.595169+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-80d28ae53fd5",
-          "name": "能源互联网能量管控",
-          "desc": "“双碳”目标下能源产业改革与能源信息化、智能化转型",
+          "id": "item-c63385684631",
+          "name": "能源互联网是我国“双碳”目标下实现能源产业改革以及能源信息化、智能化转型的关键举措，传统的机理建模能流分析和集中式能量管",
+          "desc": "能源互联网是我国“双碳”目标下实现能源产业改革以及能源信息化、智能化转型的关键举措，传统的机理建模能流分析和集中式能量管控方法难以满足能源互联网对能源大数据深度利用以及自主、高效、实时、灵活的能量调度诉求。",
           "evidence": [
             {
-              "quote": "能源互联网是我国“双碳”目标下实现能源产业改革以及能源信息化、智能化转型的关键举措",
+              "quote": "能源互联网是我国“双碳”目标下实现能源产业改革以及能源信息化、智能化转型的关键举措，传统的机理建模能流分析和集中式能量管控方法难以满足能源互联网对能源大数据深度利用以及自主、高效、实时、灵活的能量调度诉求。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 653,
-                "end_char": 693
+                "end_char": 755
+              },
+              "version": "e3e2d56a299a3c407c30"
+            }
+          ]
+        },
+        {
+          "id": "item-762da48db3a1",
+          "name": "（3）分布式能量管控与自主决策方法：面向系统分布式、自主化运行需求，研究基于多智能体强化学习的市场决策、事件触发调度以及",
+          "desc": "（3）分布式能量管控与自主决策方法：面向系统分布式、自主化运行需求，研究基于多智能体强化学习的市场决策、事件触发调度以及微网功率分配等协同优化与自主控制策略。",
+          "evidence": [
+            {
+              "quote": "（3）分布式能量管控与自主决策方法：面向系统分布式、自主化运行需求，研究基于多智能体强化学习的市场决策、事件触发调度以及微网功率分配等协同优化与自主控制策略。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3234,
+                "end_char": 3312
               },
               "version": "e3e2d56a299a3c407c30"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2a6251c103de",
-          "name": "传统机理建模难以满足调度诉求",
-          "desc": "集中式方法难以满足能源大数据深度利用及自主、高效、实时、灵活的能量调度诉求",
+          "id": "item-33576a2c92d2",
+          "name": "本项目围绕能源互联网发展中的关键科学问题，即系统异构复杂、供需双侧不确定、传统集中式方法难以适用等挑战，系统开展了“建模",
+          "desc": "本项目围绕能源互联网发展中的关键科学问题，即系统异构复杂、供需双侧不确定、传统集中式方法难以适用等挑战，系统开展了“建模-分析-管控”一体化的理论与方法研究。",
           "evidence": [
             {
-              "quote": "传统的机理建模能流分析和集中式能量管控方法难以满足能源互联网对能源大数据深度利用以及自主、高效、实时、灵活的能量调度诉求",
+              "quote": "本项目围绕能源互联网发展中的关键科学问题，即系统异构复杂、供需双侧不确定、传统集中式方法难以适用等挑战，系统开展了“建模-分析-管控”一体化的理论与方法研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 695,
-                "end_char": 754
+                "start_char": 2976,
+                "end_char": 3054
               },
               "version": "e3e2d56a299a3c407c30"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-979126fb6d37",
-          "name": "元学习耦合特性表征",
-          "desc": "元学习方法实现未知环境中新场景多能耦合特性实时表征建模",
+          "id": "item-e0c0cfa02a13",
+          "name": "在建模方面，提出了考虑混氢天然气的异构能源网络优化调度模型，构建了基于分布式事件触发一致性的多微网经济调度方法，并设计了",
+          "desc": "在建模方面，提出了考虑混氢天然气的异构能源网络优化调度模型，构建了基于分布式事件触发一致性的多微网经济调度方法，并设计了储能设备SOC-SOH协同估计与平衡控制算法。",
           "evidence": [
             {
-              "quote": "采用元学习方法，研究未知环境中新场景的耦合特性实时表征建模",
+              "quote": "在建模方面，提出了考虑混氢天然气的异构能源网络优化调度模型，构建了基于分布式事件触发一致性的多微网经济调度方法，并设计了储能设备SOC-SOH协同估计与平衡控制算法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 827,
-                "end_char": 855
+                "start_char": 3328,
+                "end_char": 3410
               },
               "version": "e3e2d56a299a3c407c30"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bbf0b158ff83",
-          "name": "多智能体强化学习分布式管控",
-          "desc": "基于双向拍卖的分布式能量管控体系与最优均衡选择的多智能体强化学习",
+          "id": "item-aa221bce706b",
+          "name": "（3）分布式能量管控与自主决策方法：面向系统分布式、自主化运行需求，研究基于多智能体强化学习的市场决策、事件触发调度以及",
+          "desc": "（3）分布式能量管控与自主决策方法：面向系统分布式、自主化运行需求，研究基于多智能体强化学习的市场决策、事件触发调度以及微网功率分配等协同优化与自主控制策略。",
           "evidence": [
             {
-              "quote": "构建了基于双向拍卖的分布式能量管控体系，并提出最优均衡选择的多智能体强化学习方法",
+              "quote": "（3）分布式能量管控与自主决策方法：面向系统分布式、自主化运行需求，研究基于多智能体强化学习的市场决策、事件触发调度以及微网功率分配等协同优化与自主控制策略。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 985,
-                "end_char": 1024
+                "start_char": 3234,
+                "end_char": 3312
               },
               "version": "e3e2d56a299a3c407c30"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,284 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f381d65dc9f3",
-          "name": "异构能源网络调度模型",
-          "desc": "考虑混氢天然气的优化调度模型与多微网经济调度方法",
+          "id": "item-5b50c2d821f7",
+          "name": "能源互联网是我国“双碳”目标下实现能源产业改革以及能源信息化、智能化转型的关键举措，传统的机理建模能流分析和集中式能量管",
+          "desc": "能源互联网是我国“双碳”目标下实现能源产业改革以及能源信息化、智能化转型的关键举措，传统的机理建模能流分析和集中式能量管控方法难以满足能源互联网对能源大数据深度利用以及自主、高效、实时、灵活的能量调度诉求。",
           "evidence": [
             {
-              "quote": "提出了考虑混氢天然气的异构能源网络优化调度模型，构建了基于分布式事件触发一致性的多微网经济调度方法",
+              "quote": "能源互联网是我国“双碳”目标下实现能源产业改革以及能源信息化、智能化转型的关键举措，传统的机理建模能流分析和集中式能量管控方法难以满足能源互联网对能源大数据深度利用以及自主、高效、实时、灵活的能量调度诉求。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3334,
-                "end_char": 3382
+                "start_char": 653,
+                "end_char": 755
               },
               "version": "e3e2d56a299a3c407c30"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-474442b9cea4",
-          "name": "非侵入式负荷监测新方法",
-          "desc": "基于生成对抗网络与多长度动态Shapelets，显著提升负荷辨识精度",
+          "id": "item-3efc2e349ef8",
+          "name": "本项目围绕能源互联网发展中的关键科学问题，即系统异构复杂、供需双侧不确定、传统集中式方法难以适用等挑战，系统开展了“建模",
+          "desc": "本项目围绕能源互联网发展中的关键科学问题，即系统异构复杂、供需双侧不确定、传统集中式方法难以适用等挑战，系统开展了“建模-分析-管控”一体化的理论与方法研究。",
           "evidence": [
             {
-              "quote": "创新性地提出了基于生成对抗网络与多长度动态Shapelets的非侵入式负荷监测新方法，显著提升了负荷辨识精度",
+              "quote": "本项目围绕能源互联网发展中的关键科学问题，即系统异构复杂、供需双侧不确定、传统集中式方法难以适用等挑战，系统开展了“建模-分析-管控”一体化的理论与方法研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3420,
-                "end_char": 3473
+                "start_char": 2976,
+                "end_char": 3054
               },
               "version": "e3e2d56a299a3c407c30"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-80d28ae53fd5"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2a6251c103de"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Fuzzy Logic-Based Adaptive PID Control Method for Voltage Regulation in Wireless Power Transfer Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-daad5d7c89b6",
+      "evidence": [
+        {
+          "quote": "A Fuzzy Logic-Based Adaptive PID Control Method for Voltage Regulation in Wireless Power Transfer Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3807,
+            "end_char": 3911
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2a6251c103de"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-979126fb6d37"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nonsingular Fixed-time Fault-tolerant Sliding Mode Control of Robot Manipulator With Disturbance Observer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b006d072a15f",
+      "evidence": [
+        {
+          "quote": "Nonsingular Fixed-time Fault-tolerant Sliding Mode Control of Robot Manipulator With Disturbance Observer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3994,
+            "end_char": 4098
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-979126fb6d37"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f381d65dc9f3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "SOC-SOH Estimation and Balance Control Based on Event-Triggered Distributed Optimal Kalman Consensus Filter",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5d18b9aec705",
+      "evidence": [
+        {
+          "quote": "SOC-SOH Estimation and Balance Control Based on Event-Triggered Distributed Optimal Kalman Consensus Filter",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4160,
+            "end_char": 4266
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-80d28ae53fd5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bbf0b158ff83"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Layer Energy Management and Strategy Learning for Microgrids: A Proximal Policy Optimization Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-52ce4461d2cc",
+      "evidence": [
+        {
+          "quote": "Multi-Layer Energy Management and Strategy Learning for Microgrids: A Proximal Policy Optimization Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4311,
+            "end_char": 4417
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bbf0b158ff83"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-474442b9cea4"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Economic Scheduling of Multi-microgrid Systems Based on Distributed Event-triggered Consensus Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57a9237d525c",
+      "evidence": [
+        {
+          "quote": "Economic Scheduling of Multi-microgrid Systems Based on Distributed Event-triggered Consensus Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4484,
+            "end_char": 4585
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Objective Optimization and Economic Operation Strategy of Hybrid Energy Storage System for Industrial Load-Side",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-60b023f3fc98",
+      "evidence": [
+        {
+          "quote": "Multi-Objective Optimization and Economic Operation Strategy of Hybrid Energy Storage System for Industrial Load-Side",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4633,
+            "end_char": 4749
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Asynchronous dynamic event‐triggered control for network systems with dual triggers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a46e804d1a2d",
+      "evidence": [
+        {
+          "quote": "Asynchronous dynamic event‐triggered control for network systems with dual triggers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4783,
+            "end_char": 4865
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-Length Dynamic Shapelets Approach for Non-Intrusive Load Monitoring via Generative Adversarial Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c1c29e31c7ad",
+      "evidence": [
+        {
+          "quote": "Multi-Length Dynamic Shapelets Approach for Non-Intrusive Load Monitoring via Generative Adversarial Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4912,
+            "end_char": 5020
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Stackelberg Game Model for Optimal Dispatching of Electricity Consumption for Community Microgrid Considering Demand Response Mechanism",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3db02d6be7a6",
+      "evidence": [
+        {
+          "quote": "Stackelberg Game Model for Optimal Dispatching of Electricity Consumption for Community Microgrid Considering Demand Response Mechanism",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5100,
+            "end_char": 5234
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimization Strategies for Hydrogen Mixing Scheduling in Natural Gas Networks in Integrated Energy Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cd4ecc44d323",
+      "evidence": [
+        {
+          "quote": "Optimization Strategies for Hydrogen Mixing Scheduling in Natural Gas Networks in Integrated Energy Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5278,
+            "end_char": 5384
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time pricing method through market auction based on multi-agent reinforcement learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b062590a912d",
+      "evidence": [
+        {
+          "quote": "Real-time pricing method through market auction based on multi-agent reinforcement learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5433,
+            "end_char": 5523
+          },
+          "version": "e3e2d56a299a3c407c30"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "16c9b7f2bf2842fde6a9",
   "version": "3e7ee7b474d9ea5d6cc5",
   "source_hash": "f516be71aade59774ed560fbb030997f2f04001e776942554c7acc048c4d8649",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:26.857360+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.705818+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,69 @@
       "state": "has",
       "items": [
         {
-          "id": "item-df5cb54b7e27",
-          "name": "无人集群边缘联邦学习",
-          "desc": "高机动弱连接资源受限强对抗环境的无人集群",
+          "id": "item-3cd39c0df1d1",
+          "name": "随着无人系统不断的发展与进步，各类无人集群系统在国防和民用等重点领域得到了广泛应用。",
+          "desc": "随着无人系统不断的发展与进步，各类无人集群系统在国防和民用等重点领域得到了广泛应用。",
+          "evidence": [
+            {
+              "quote": "随着无人系统不断的发展与进步，各类无人集群系统在国防和民用等重点领域得到了广泛应用。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 651,
+                "end_char": 692
+              },
+              "version": "3e7ee7b474d9ea5d6cc5"
+            }
+          ]
+        },
+        {
+          "id": "item-4e5cd8af2bfa",
+          "name": "因此，本项目在边缘计算和无人集群系统背景下应用联邦学习机制，从而充分保证无人终端在联邦学习系统中能够进行高效、安全和隐私",
+          "desc": "因此，本项目在边缘计算和无人集群系统背景下应用联邦学习机制，从而充分保证无人终端在联邦学习系统中能够进行高效、安全和隐私保护的智能决策服务。",
+          "evidence": [
+            {
+              "quote": "因此，本项目在边缘计算和无人集群系统背景下应用联邦学习机制，从而充分保证无人终端在联邦学习系统中能够进行高效、安全和隐私保护的智能决策服务。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 774,
+                "end_char": 843
+              },
+              "version": "3e7ee7b474d9ea5d6cc5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3cc8b497d1db",
+          "name": "在体系架构方面，构建了云–边–端协同的边缘联邦学习框架，提出多模态数据融合方法、微服务可靠性增强部署策略以及端–边–云协",
+          "desc": "在体系架构方面，构建了云–边–端协同的边缘联邦学习框架，提出多模态数据融合方法、微服务可靠性增强部署策略以及端–边–云协同决策机制，实现弱连接条件下的稳定训练与高效智能决策。",
+          "evidence": [
+            {
+              "quote": "在体系架构方面，构建了云–边–端协同的边缘联邦学习框架，提出多模态数据融合方法、微服务可靠性增强部署策略以及端–边–云协同决策机制，实现弱连接条件下的稳定训练与高效智能决策。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2905,
+                "end_char": 2991
+              },
+              "version": "3e7ee7b474d9ea5d6cc5"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-25f663ebb4fe",
+          "name": "本项目围绕“面向无人集群系统的边缘联邦学习安全机制”这一核心目标，针对无人集群在高机动、弱连接、资源受限和强对抗环境下的",
+          "desc": "本项目围绕“面向无人集群系统的边缘联邦学习安全机制”这一核心目标，针对无人集群在高机动、弱连接、资源受限和强对抗环境下的智能化需求，系统开展了体系架构构建、安全接入与认证、模型安全机制以及隐私保护技术等研究工作。",
           "evidence": [
             {
               "quote": "本项目围绕“面向无人集群系统的边缘联邦学习安全机制”这一核心目标，针对无人集群在高机动、弱连接、资源受限和强对抗环境下的智能化需求，系统开展了体系架构构建、安全接入与认证、模型安全机制以及隐私保护技术等研究工作。",
@@ -32,67 +97,8 @@
               },
               "version": "3e7ee7b474d9ea5d6cc5"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-9d1dc698b71f",
-          "name": "数据不均算力受限",
-          "desc": "数据分布不均衡、无人设备计算能力有限等问题",
-          "evidence": [
-            {
-              "quote": "由于无人集群系统所处环境具有高机动和弱连接等特点，传统的网络体系架构和智能学习模型应用于无人集群系统时会面临数据分布不均衡、无人设备计算能力有限等诸多问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 696,
-                "end_char": 773
-              },
-              "version": "3e7ee7b474d9ea5d6cc5"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-fe35774de3c2",
-          "name": "云边端联邦架构",
-          "desc": "多模态融合与微服务可靠性部署实现弱连接稳定训练",
-          "evidence": [
-            {
-              "quote": "构建了云–边–端协同的边缘联邦学习框架，提出多模态数据融合方法、微服务可靠性增强部署策略以及端–边–云协同决策机制，实现弱连接条件下的稳定训练与高效智能决策。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2913,
-                "end_char": 2991
-              },
-              "version": "3e7ee7b474d9ea5d6cc5"
-            }
-          ]
-        },
-        {
-          "id": "item-ba821492c8e8",
-          "name": "区块链aSVC轻量认证",
-          "desc": "区块链与PUF双向认证降低资源受限设备认证开销",
-          "evidence": [
-            {
-              "quote": "提出基于区块链与 aSVC 的轻量级动态认证方案和基于 PUF 的双向认证协议，构建跨域可信身份体系，显著降低资源受限设备的认证开销并提升系统安全性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3000,
-                "end_char": 3074
-              },
-              "version": "3e7ee7b474d9ea5d6cc5"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +107,328 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3a1119613883",
-          "name": "论文11篇与专利7项",
-          "desc": "论文11篇（SCI 7）、授权发明专利7项，博士3名硕士5名",
+          "id": "item-a92efc48363f",
+          "name": "随着无人系统不断的发展与进步，各类无人集群系统在国防和民用等重点领域得到了广泛应用。",
+          "desc": "随着无人系统不断的发展与进步，各类无人集群系统在国防和民用等重点领域得到了广泛应用。",
           "evidence": [
             {
-              "quote": "项目共发表论文 11篇（其中 SCI 期刊 7 篇），授权发明专利 7 项，培养博士研究生 3 名、硕士研究生 5 名。",
+              "quote": "随着无人系统不断的发展与进步，各类无人集群系统在国防和民用等重点领域得到了广泛应用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3322,
-                "end_char": 3381
+                "start_char": 651,
+                "end_char": 692
               },
               "version": "3e7ee7b474d9ea5d6cc5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-c7757755b378",
+          "name": "本项目围绕“面向无人集群系统的边缘联邦学习安全机制”这一核心目标，针对无人集群在高机动、弱连接、资源受限和强对抗环境下的",
+          "desc": "本项目围绕“面向无人集群系统的边缘联邦学习安全机制”这一核心目标，针对无人集群在高机动、弱连接、资源受限和强对抗环境下的智能化需求，系统开展了体系架构构建、安全接入与认证、模型安全机制以及隐私保护技术等研究工作。",
+          "evidence": [
+            {
+              "quote": "本项目围绕“面向无人集群系统的边缘联邦学习安全机制”这一核心目标，针对无人集群在高机动、弱连接、资源受限和强对抗环境下的智能化需求，系统开展了体系架构构建、安全接入与认证、模型安全机制以及隐私保护技术等研究工作。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2799,
+                "end_char": 2904
+              },
+              "version": "3e7ee7b474d9ea5d6cc5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-df5cb54b7e27"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9d1dc698b71f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Lightweight and Dynamic Authentication Scheme Based on Blockchain and aSVC for UAV Swarm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-450d779f72a6",
+      "evidence": [
+        {
+          "quote": "A Lightweight and Dynamic Authentication Scheme Based on Blockchain and aSVC for UAV Swarm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3491,
+            "end_char": 3580
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9d1dc698b71f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fe35774de3c2"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "音频模态数据异构联邦学习方法、系统、设备及介质",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2c0c60c56cf5",
+      "evidence": [
+        {
+          "quote": "音频模态数据异构联邦学习方法、系统、设备及介质",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3632,
+            "end_char": 3654
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9d1dc698b71f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ba821492c8e8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Performance Analysis of Reconnaissance Coverage for HUAV Swarms under Communication Interference Based on Different Architectures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6be079e6b1b",
+      "evidence": [
+        {
+          "quote": "Performance Analysis of Reconnaissance Coverage for HUAV Swarms under Communication Interference Based on Different Architectures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3678,
+            "end_char": 3806
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fe35774de3c2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3a1119613883"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "DefMPA: Defending Model Poisoning Attacks in Federated Learning via Model Update Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-328d2a8b64d1",
+      "evidence": [
+        {
+          "quote": "DefMPA: Defending Model Poisoning Attacks in Federated Learning via Model Update Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3884,
+            "end_char": 3974
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ba821492c8e8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3a1119613883"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Toward Online Reliability-Enhanced Microservice Deployment With Layer Sharing in Edge Computing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d73762125bd4",
+      "evidence": [
+        {
+          "quote": "Toward Online Reliability-Enhanced Microservice Deployment With Layer Sharing in Edge Computing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4030,
+            "end_char": 4124
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "节点可信度共识方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ae983e53cf8d",
+      "evidence": [
+        {
+          "quote": "节点可信度共识方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4184,
+            "end_char": 4192
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PIAFGNN: Property Inference Attacks against Federated Graph Neural Networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c33b4db3eba8",
+      "evidence": [
+        {
+          "quote": "PIAFGNN: Property Inference Attacks against Federated Graph Neural Networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4216,
+            "end_char": 4290
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cooperative reconnaissance coverage for heterogeneous unmanned aerial vehicle swarm in unknown communication interference environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bfbcc7de2fd2",
+      "evidence": [
+        {
+          "quote": "Cooperative reconnaissance coverage for heterogeneous unmanned aerial vehicle swarm in unknown communication interference environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4356,
+            "end_char": 4489
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "主机入侵检测方法和装置、存储介质和电子设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2968212907e9",
+      "evidence": [
+        {
+          "quote": "主机入侵检测方法和装置、存储介质和电子设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4565,
+            "end_char": 4585
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于端边云架构的分布式联邦学习的安全防御方法及应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4b1d6106b1f7",
+      "evidence": [
+        {
+          "quote": "基于端边云架构的分布式联邦学习的安全防御方法及应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4607,
+            "end_char": 4631
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Edge-based Protection Against Malicious Poisoning for Distributed Federated Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-93575cf6dd90",
+      "evidence": [
+        {
+          "quote": "Edge-based Protection Against Malicious Poisoning for Distributed Federated Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4655,
+            "end_char": 4738
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MBS: A Modality-Balanced Strategy for Multimodal Sample Selection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-958165a27ada",
+      "evidence": [
+        {
+          "quote": "MBS: A Modality-Balanced Strategy for Multimodal Sample Selection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4791,
+            "end_char": 4855
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于TCN和注意力机制的工业时序数据异常检测方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-169aa8c2fe47",
+      "evidence": [
+        {
+          "quote": "基于TCN和注意力机制的工业时序数据异常检测方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4932,
+            "end_char": 4955
+          },
+          "version": "3e7ee7b474d9ea5d6cc5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

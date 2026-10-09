@@ -2,15 +2,20 @@
   "doc_id": "0de26c9a770a40a05ac6",
   "version": "7dca406ffcd707797f5a",
   "source_hash": "d0d1d8ec5a67a37dcf3a9a0a2bf4e9b8980924f7aae6e95a7dd0063d8cc26b70",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:25.354539+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.613336+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6f8748f7d101",
-          "name": "无人机集群目标搜索跟踪",
-          "desc": "规模化无人机集群协同的目标搜索与跟踪",
+          "id": "item-139de4343a9a",
+          "name": "以无人机为代表的智能无人系统逐渐成为科技发展主流方向和战略新兴产业，在军事和民生领域都有着广泛的应用前景。",
+          "desc": "以无人机为代表的智能无人系统逐渐成为科技发展主流方向和战略新兴产业，在军事和民生领域都有着广泛的应用前景。",
           "evidence": [
             {
-              "quote": "最后，面向目标搜索和跟踪典型场景，构建规模化无人机集群虚实结合仿真实验平台，验证所提出的方法。",
+              "quote": "以无人机为代表的智能无人系统逐渐成为科技发展主流方向和战略新兴产业，在军事和民生领域都有着广泛的应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2840,
-                "end_char": 2886
+                "start_char": 655,
+                "end_char": 707
               },
               "version": "7dca406ffcd707797f5a"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8d55f2c3dc5f",
-          "name": "信息冗余协同固化",
-          "desc": "全连接或预设通信造成信息冗余与协同关系固化",
-          "evidence": [
-            {
-              "quote": "目前，无人机集群的信息共享通常以全连接通信或预设通信机制，易造成信息冗余和协同关系固化等缺陷。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2739,
-                "end_char": 2785
-              },
-              "version": "7dca406ffcd707797f5a"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-c10d55ab1b51",
-          "name": "自适应信息共享模型",
-          "desc": "部分可观测马尔科夫模型与门控预通信拓扑",
+          "id": "item-db72e80db1e0",
+          "name": "本项目结合无人机集群协同特点，建立了自适应信息共享模型，并在此基础上，设计实现了无人机集群协同行为管控机制，最后，面向目",
+          "desc": "本项目结合无人机集群协同特点，建立了自适应信息共享模型，并在此基础上，设计实现了无人机集群协同行为管控机制，最后，面向目标搜索和跟踪典型场景，构建规模化无人机集群虚实结合仿真实验平台，验证所提出的方法。",
           "evidence": [
             {
-              "quote": "建立了包括无人集群环境的部分可观测的马尔科夫模型，自适应控制通信模块和自适应构建通信拓扑模块在内的无人机集群自适应信息共享的模型。",
+              "quote": "本项目结合无人机集群协同特点，建立了自适应信息共享模型，并在此基础上，设计实现了无人机集群协同行为管控机制，最后，面向目标搜索和跟踪典型场景，构建规模化无人机集群虚实结合仿真实验平台，验证所提出的方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2901,
-                "end_char": 2965
+                "start_char": 2786,
+                "end_char": 2886
               },
               "version": "7dca406ffcd707797f5a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ba2fdbc842d5",
-          "name": "虚实结合仿真平台",
-          "desc": "Gazebo结合DJI M100与自组网模块构建平台",
+          "id": "item-7fc3ae9bd5b5",
+          "name": "（2）设计实现了基于历史经验的智能体协同行为策略管控，基于历史经验和信息对相关性的协同策略优化和基于面向无人机集群特性的",
+          "desc": "（2）设计实现了基于历史经验的智能体协同行为策略管控，基于历史经验和信息对相关性的协同策略优化和基于面向无人机集群特性的自适应路由转发机制的协同行为管控方法；",
           "evidence": [
             {
-              "quote": "基于Gazebo仿真平台，结合DJI M100无人机，NexFi MF5800自组网模块，构建了虚实结合仿真实验平台",
+              "quote": "（2）设计实现了基于历史经验的智能体协同行为策略管控，基于历史经验和信息对相关性的协同策略优化和基于面向无人机集群特性的自适应路由转发机制的协同行为管控方法；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3090,
-                "end_char": 3147
+                "start_char": 3008,
+                "end_char": 3086
               },
               "version": "7dca406ffcd707797f5a"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,288 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5788d861ba45",
-          "name": "通信冗余降30-60%",
-          "desc": "通信冗余降低30%-60%，协同效率提升56%-70%",
+          "id": "item-fe8cc4d986b9",
+          "name": "以无人机为代表的智能无人系统逐渐成为科技发展主流方向和战略新兴产业，在军事和民生领域都有着广泛的应用前景。",
+          "desc": "以无人机为代表的智能无人系统逐渐成为科技发展主流方向和战略新兴产业，在军事和民生领域都有着广泛的应用前景。",
           "evidence": [
             {
-              "quote": "实验结果表明无人机集群通信冗余降低30%-60%，协同效率提升56%-70%，协同成果率提升17%-31%。",
+              "quote": "以无人机为代表的智能无人系统逐渐成为科技发展主流方向和战略新兴产业，在军事和民生领域都有着广泛的应用前景。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3179,
-                "end_char": 3232
+                "start_char": 655,
+                "end_char": 707
               },
               "version": "7dca406ffcd707797f5a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-f9a40419c984",
+          "name": "信息共享是无人机集群协同行为管控的基础，如何通过制定自适应信息共享策略以提升集群协同效率，是该问题的关键。",
+          "desc": "信息共享是无人机集群协同行为管控的基础，如何通过制定自适应信息共享策略以提升集群协同效率，是该问题的关键。",
+          "evidence": [
+            {
+              "quote": "信息共享是无人机集群协同行为管控的基础，如何通过制定自适应信息共享策略以提升集群协同效率，是该问题的关键。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2686,
+                "end_char": 2738
+              },
+              "version": "7dca406ffcd707797f5a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6f8748f7d101"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8d55f2c3dc5f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Decentralized Velocity-Aware Motion Planning for Multi-agent Coordination",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2a9d3a5d94d0",
+      "evidence": [
+        {
+          "quote": "Decentralized Velocity-Aware Motion Planning for Multi-agent Coordination",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3314,
+            "end_char": 3386
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8d55f2c3dc5f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c10d55ab1b51"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A bidirectional graph neural network for traveling salesman problems on arbitrary symmetric graphs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-926d2a8ebf9a",
+      "evidence": [
+        {
+          "quote": "A bidirectional graph neural network for traveling salesman problems on arbitrary symmetric graphs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3432,
+            "end_char": 3529
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8d55f2c3dc5f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ba2fdbc842d5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time Evaluation Method and Implementation of Multi-sensor Dynamic Ranging Capability for UAV",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-01d49fa35334",
+      "evidence": [
+        {
+          "quote": "Real-time Evaluation Method and Implementation of Multi-sensor Dynamic Ranging Capability for UAV",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3613,
+            "end_char": 3709
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c10d55ab1b51"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5788d861ba45"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Power Control Identification: A Novel Sybil Attack Detection Scheme in VANETs Using RSSI",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1977dbdfcaf7",
+      "evidence": [
+        {
+          "quote": "Power Control Identification: A Novel Sybil Attack Detection Scheme in VANETs Using RSSI",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3799,
+            "end_char": 3886
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ba2fdbc842d5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5788d861ba45"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Work in Progress: Role-based Deep Reinforcement Learning with Information Sharing for Intelligent Unmanned Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ea296fbcba66",
+      "evidence": [
+        {
+          "quote": "Work in Progress: Role-based Deep Reinforcement Learning with Information Sharing for Intelligent Unmanned Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3962,
+            "end_char": 4075
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-time Scheduling of embedded GPU energy consumption optimization for UAV edge computing server",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-76e9b0dcd941",
+      "evidence": [
+        {
+          "quote": "Real-time Scheduling of embedded GPU energy consumption optimization for UAV edge computing server",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4143,
+            "end_char": 4240
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "3D multi-UAV cooperative velocity-aware motion planning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f589d4d511bb",
+      "evidence": [
+        {
+          "quote": "3D multi-UAV cooperative velocity-aware motion planning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4334,
+            "end_char": 4388
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and Implementation of Task Description Language for UAV Swarms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ee2e00bd078c",
+      "evidence": [
+        {
+          "quote": "Design and Implementation of Task Description Language for UAV Swarms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4443,
+            "end_char": 4511
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Real-Time Cache-Aided Route Planning Based on Mobile Edge Computing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2c43fa0779c1",
+      "evidence": [
+        {
+          "quote": "Real-Time Cache-Aided Route Planning Based on Mobile Edge Computing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4587,
+            "end_char": 4653
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Spatio-Temporal Event Model for Unmanned System Swarm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ffa01c3de0c",
+      "evidence": [
+        {
+          "quote": "A Spatio-Temporal Event Model for Unmanned System Swarm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4727,
+            "end_char": 4781
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种多机器人协同任务的确定方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f66112fb0936",
+      "evidence": [
+        {
+          "quote": "一种多机器人协同任务的确定方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4836,
+            "end_char": 4853
+          },
+          "version": "7dca406ffcd707797f5a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

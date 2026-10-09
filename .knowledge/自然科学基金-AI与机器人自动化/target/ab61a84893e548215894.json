@@ -2,15 +2,20 @@
   "doc_id": "ab61a84893e548215894",
   "version": "1d24995a02e08018f0f6",
   "source_hash": "3f08c8865321c6060e05363a8ecad38512bdbbb1882fbbcc7fd3dafc4d6e1648",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:23:35.382751+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.162074+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ed53b474aa48",
-          "name": "AUV自主学习与控制",
-          "desc": "预规划预编程局限下的AUV自主性提升",
+          "id": "item-fee9a4c86bf3",
+          "name": "现存的AUV通常不具备很好的自主性，普遍局限于预规划或预编程任务模式。",
+          "desc": "现存的AUV通常不具备很好的自主性，普遍局限于预规划或预编程任务模式。",
           "evidence": [
             {
               "quote": "现存的AUV通常不具备很好的自主性，普遍局限于预规划或预编程任务模式。",
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-9f0d3e67b6b0",
-          "name": "传统强化学习样本需求大",
-          "desc": "传统RL需大量样本学习缓慢，示范学习不能提升自主性",
-          "evidence": [
-            {
-              "quote": "研究表明，传统强化学习方法可以通过在线自主学习提高AUV的自主性，但需要大量的样本且学习速度缓慢。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 692,
-                "end_char": 740
-              },
-              "version": "1d24995a02e08018f0f6"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-a4fd160288c5",
-          "name": "深度交互强化学习",
-          "desc": "人的经验以奖赏信号离线训练加速自主学习",
+          "id": "item-b61aee66039e",
+          "name": "本项目研究采用最新的深度交互强化学习方法，将设计者和非技术人员的经验知识以奖赏信号的形式离线训练AUV，加速AUV自主学",
+          "desc": "本项目研究采用最新的深度交互强化学习方法，将设计者和非技术人员的经验知识以奖赏信号的形式离线训练AUV，加速AUV自主学习，通过处理人的奖赏延迟特性并进行非线性建模，充分提取奖赏信号中的有用信息，进一步加快AUV学习速度，最后将人的奖赏信号与传统强化学习中的环境奖赏信号结合，并采用基于双神经网络的强化学习技术通过在线自主学习改进 AUV控制策略，以应对海洋环境的不确定性。",
           "evidence": [
             {
-              "quote": "本项目研究采用最新的深度交互强化学习方法，将设计者和非技术人员的经验知识以奖赏信号的形式离线训练AUV，加速AUV自主学习",
+              "quote": "本项目研究采用最新的深度交互强化学习方法，将设计者和非技术人员的经验知识以奖赏信号的形式离线训练AUV，加速AUV自主学习，通过处理人的奖赏延迟特性并进行非线性建模，充分提取奖赏信号中的有用信息，进一步加快AUV学习速度，最后将人的奖赏信号与传统强化学习中的环境奖赏信号结合，并采用基于双神经网络的强化学习技术通过在线自主学习改进 AUV控制策略，以应对海洋环境的不确定性。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2805,
-                "end_char": 2865
-              },
-              "version": "1d24995a02e08018f0f6"
-            }
-          ]
-        },
-        {
-          "id": "item-5f7187dcd2c1",
-          "name": "双奖赏信号融合",
-          "desc": "人的奖赏与环境奖赏结合双神经网络在线改进策略",
-          "evidence": [
-            {
-              "quote": "最后将人的奖赏信号与传统强化学习中的环境奖赏信号结合，并采用基于双神经网络的强化学习技术通过在线自主学习改进 AUV控制策略，以应对海洋环境的不确定性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2916,
                 "end_char": 2991
               },
               "version": "1d24995a02e08018f0f6"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-bed053b36a02",
+          "name": "本项目拟采用最新的交互强化学习方法，将设计者和非技术人员的经验知识以奖赏信号的形式离线训练AUV，加速AUV自主学习；",
+          "desc": "本项目拟采用最新的交互强化学习方法，将设计者和非技术人员的经验知识以奖赏信号的形式离线训练AUV，加速AUV自主学习；",
+          "evidence": [
+            {
+              "quote": "本项目拟采用最新的交互强化学习方法，将设计者和非技术人员的经验知识以奖赏信号的形式离线训练AUV，加速AUV自主学习；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 812,
+                "end_char": 870
+              },
+              "version": "1d24995a02e08018f0f6"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,269 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c99c108e927b",
-          "name": "Gazebo仿真验证",
-          "desc": "交互RL更快获得良好策略且更好适应新任务环境",
+          "id": "item-f0bece796fe5",
+          "name": "现存的AUV通常不具备很好的自主性，普遍局限于预规划或预编程任务模式。",
+          "desc": "现存的AUV通常不具备很好的自主性，普遍局限于预规划或预编程任务模式。",
           "evidence": [
             {
-              "quote": "实验结果表明与传统强化学习方法相比，深度交互强化学习方法可以使AUV更快地获得良好的控制策略，结合人的奖赏与环境奖赏可以进一步提高控制策略的收敛速度。",
+              "quote": "现存的AUV通常不具备很好的自主性，普遍局限于预规划或预编程任务模式。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3042,
-                "end_char": 3116
+                "start_char": 657,
+                "end_char": 691
               },
               "version": "1d24995a02e08018f0f6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ed53b474aa48"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9f0d3e67b6b0"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Shaping Progressive Net of Reinforcement Learning for Policy Transfer with Human Evaluative Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-279b6450f096",
+      "evidence": [
+        {
+          "quote": "Shaping Progressive Net of Reinforcement Learning for Policy Transfer with Human Evaluative Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3254,
+            "end_char": 3353
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9f0d3e67b6b0"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a4fd160288c5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Review on Interactive Reinforcement Learning From Human Social Feedback",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-45d6281d8bf6",
+      "evidence": [
+        {
+          "quote": "A Review on Interactive Reinforcement Learning From Human Social Feedback",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3450,
+            "end_char": 3522
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9f0d3e67b6b0"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5f7187dcd2c1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Navnet: AUV Navigation Through Deep Sequential Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e54cbef12b82",
+      "evidence": [
+        {
+          "quote": "Navnet: AUV Navigation Through Deep Sequential Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3605,
+            "end_char": 3659
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a4fd160288c5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c99c108e927b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Facial Feedback for Reinforcement Learning: A Case Study and O line Analysis Using the TAMER Framework",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-62a96160f873",
+      "evidence": [
+        {
+          "quote": "Facial Feedback for Reinforcement Learning: A Case Study and O line Analysis Using the TAMER Framework",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3735,
+            "end_char": 3836
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5f7187dcd2c1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c99c108e927b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Interactive Reinforcement Learning for Path Following of Autonomous Underwater Vehicle",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e83bc5be7262",
+      "evidence": [
+        {
+          "quote": "Deep Interactive Reinforcement Learning for Path Following of Autonomous Underwater Vehicle",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3910,
+            "end_char": 4000
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Facial feedback for reinforcement learning: a case study and offline analysis using the TAMER framework",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-97082aaa20f1",
+      "evidence": [
+        {
+          "quote": "Facial feedback for reinforcement learning: a case study and offline analysis using the TAMER framework",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4068,
+            "end_char": 4170
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path planning and obstacle avoidance for AUV: A review",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e5c31afe006",
+      "evidence": [
+        {
+          "quote": "Path planning and obstacle avoidance for AUV: A review",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4244,
+            "end_char": 4297
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种结合TAMER框架和面部表情反馈的交互强化学习方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9523f432a237",
+      "evidence": [
+        {
+          "quote": "一种结合TAMER框架和面部表情反馈的交互强化学习方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4352,
+            "end_char": 4378
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human Social Feedback for Efficient Interactive Reinforcement Agent Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18f8c35397e6",
+      "evidence": [
+        {
+          "quote": "Human Social Feedback for Efficient Interactive Reinforcement Agent Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4410,
+            "end_char": 4485
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "交互强化学习方法在水下机器人中的应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-eb1cc190672f",
+      "evidence": [
+        {
+          "quote": "交互强化学习方法在水下机器人中的应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4571,
+            "end_char": 4588
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Centered Reinforcement Learning: A Survey",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a73e292d1a84",
+      "evidence": [
+        {
+          "quote": "Human-Centered Reinforcement Learning: A Survey",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4621,
+            "end_char": 4667
+          },
+          "version": "1d24995a02e08018f0f6"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

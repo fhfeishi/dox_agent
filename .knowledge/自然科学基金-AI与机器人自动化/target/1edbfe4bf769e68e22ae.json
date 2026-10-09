@@ -2,15 +2,20 @@
   "doc_id": "1edbfe4bf769e68e22ae",
   "version": "d4b84423fa2a37953d6f",
   "source_hash": "e448264405b6bdcc203780d261c4a8b53506afff9ed17a468cc4212fb61c58d6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:48:15.263193+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.770075+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ebd50ad73db1",
-          "name": "越野环境无人车任务执行",
-          "desc": "能量补给不足条件下无人车在越野环境高效执行任务",
+          "id": "item-7b747defc27c",
+          "name": "随着对无人车在越野环境执行任务的需求增加，为了使无人车在能量补给不足的情况下更高效地执行更多的任务，降低运动过程中的能耗",
+          "desc": "随着对无人车在越野环境执行任务的需求增加，为了使无人车在能量补给不足的情况下更高效地执行更多的任务，降低运动过程中的能耗变得尤为重要。",
           "evidence": [
             {
               "quote": "随着对无人车在越野环境执行任务的需求增加，为了使无人车在能量补给不足的情况下更高效地执行更多的任务，降低运动过程中的能耗变得尤为重要。",
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-9f80d22cad28",
-          "name": "能耗与规划效率双重需求",
-          "desc": "路径规划需同时降低能耗并保证规划效率",
-          "evidence": [
-            {
-              "quote": "考虑到无人车对降低能耗和路径规划效率两方面的需求，本项目提出了基于启发式搜索的能耗最优路径规划方法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2526,
-                "end_char": 2575
-              },
-              "version": "d4b84423fa2a37953d6f"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-16b7993bf815",
-          "name": "动力学能耗模型",
-          "desc": "构建无人车动力学模型并建立运动过程能耗模型",
+          "id": "item-4690de472984",
+          "name": "重点开展了基于无人车动力学分析的能耗模型构建、基于运动学约束和能耗模型的优化轨迹簇生成及基于启发式搜索的能耗最优路径规划",
+          "desc": "重点开展了基于无人车动力学分析的能耗模型构建、基于运动学约束和能耗模型的优化轨迹簇生成及基于启发式搜索的能耗最优路径规划方法研究。",
           "evidence": [
             {
-              "quote": "分析无人车在运动过程中的运动速度、地面阻力及重力与驱动电机输出扭矩、车轮转动速度之间的数学关联，构建无人车的动力学模型，并据此建立无人车在运动过程中的能耗模型。",
+              "quote": "重点开展了基于无人车动力学分析的能耗模型构建、基于运动学约束和能耗模型的优化轨迹簇生成及基于启发式搜索的能耗最优路径规划方法研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 760,
-                "end_char": 839
+                "start_char": 2576,
+                "end_char": 2640
               },
               "version": "d4b84423fa2a37953d6f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-41ac9d163749",
-          "name": "启发式搜索能耗最优规划",
-          "desc": "轨迹能耗融入估价函数，基于轨迹库在线规划",
+          "id": "item-b3497ed2cd81",
+          "name": "在本项目实验过程中，分别构建了大量离线栅格地图和虚拟仿真场景对所提出的规划算法进行测试，测试结果表明所生成的路径总能耗相",
+          "desc": "在本项目实验过程中，分别构建了大量离线栅格地图和虚拟仿真场景对所提出的规划算法进行测试，测试结果表明所生成的路径总能耗相比距离最优路径的总能耗平均降低约28%，从而验证了算法的有效性，为解决能耗约束下的最优路径规划问题提出了新思路和新方法。",
           "evidence": [
             {
-              "quote": "通过将轨迹能耗融入启发式搜索算法的估价函数，提出基于启发式搜索的能耗最优路径规划方法，根据轨迹库中的节点连接关系和环境地图进行在线规划，以获得能耗最优的路径。",
+              "quote": "在本项目实验过程中，分别构建了大量离线栅格地图和虚拟仿真场景对所提出的规划算法进行测试，测试结果表明所生成的路径总能耗相比距离最优路径的总能耗平均降低约28%，从而验证了算法的有效性，为解决能耗约束下的最优路径规划问题提出了新思路和新方法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 918,
-                "end_char": 996
+                "start_char": 2641,
+                "end_char": 2760
               },
               "version": "d4b84423fa2a37953d6f"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,69 +91,189 @@
       "state": "has",
       "items": [
         {
-          "id": "item-74e46ac45c35",
-          "name": "路径能耗平均降低28%",
-          "desc": "仿真测试验证能耗最优路径有效性",
+          "id": "item-6eedb9826bc1",
+          "name": "随着对无人车在越野环境执行任务的需求增加，为了使无人车在能量补给不足的情况下更高效地执行更多的任务，降低运动过程中的能耗",
+          "desc": "随着对无人车在越野环境执行任务的需求增加，为了使无人车在能量补给不足的情况下更高效地执行更多的任务，降低运动过程中的能耗变得尤为重要。",
           "evidence": [
             {
-              "quote": "测试结果表明所生成的路径总能耗相比距离最优路径的总能耗平均降低约28%，从而验证了算法的有效性，为解决能耗约束下的最优路径规划问题提出了新思路和新方法。",
+              "quote": "随着对无人车在越野环境执行任务的需求增加，为了使无人车在能量补给不足的情况下更高效地执行更多的任务，降低运动过程中的能耗变得尤为重要。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2685,
-                "end_char": 2760
+                "start_char": 644,
+                "end_char": 710
               },
               "version": "d4b84423fa2a37953d6f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ebd50ad73db1"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9f80d22cad28"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种机器人运动基元确定方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f77a69ec19cc",
+      "evidence": [
+        {
+          "quote": "一种机器人运动基元确定方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2783,
+            "end_char": 2798
+          },
+          "version": "d4b84423fa2a37953d6f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9f80d22cad28"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-16b7993bf815"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust Fault-Tolerant Control for Under-Actuated Takeoff and Landing UAVs",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ef2a7460d3d6",
+      "evidence": [
+        {
+          "quote": "Robust Fault-Tolerant Control for Under-Actuated Takeoff and Landing UAVs",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2831,
+            "end_char": 2903
+          },
+          "version": "d4b84423fa2a37953d6f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9f80d22cad28"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-41ac9d163749"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于人在回路的地面无人平台仿真系统设计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e30b081558f1",
+      "evidence": [
+        {
+          "quote": "基于人在回路的地面无人平台仿真系统设计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2935,
+            "end_char": 2953
+          },
+          "version": "d4b84423fa2a37953d6f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-41ac9d163749"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-74e46ac45c35"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Simulation System for Testing Robotic Navigation Based on CoppeliaSim and ROS",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-267bae06960a",
+      "evidence": [
+        {
+          "quote": "A Simulation System for Testing Robotic Navigation Based on CoppeliaSim and ROS",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2979,
+            "end_char": 3057
+          },
+          "version": "d4b84423fa2a37953d6f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Consensus of Second-Order Multi- Vehicle Systems with Heterogeneous and Unavailable Inertia Matrices",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-360ee0e63c1c",
+      "evidence": [
+        {
+          "quote": "Distributed Consensus of Second-Order Multi- Vehicle Systems with Heterogeneous and Unavailable Inertia Matrices",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3098,
+            "end_char": 3209
+          },
+          "version": "d4b84423fa2a37953d6f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Coordinated Formation Control of Heterogeneous Vertical Takeoff and Landing UAVs Subject to Parametric Uncertainties",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-377121fb2a81",
+      "evidence": [
+        {
+          "quote": "Adaptive Coordinated Formation Control of Heterogeneous Vertical Takeoff and Landing UAVs Subject to Parametric Uncertainties",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3251,
+            "end_char": 3375
+          },
+          "version": "d4b84423fa2a37953d6f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A survey of energy-efficient motion planning for wheeled mobile robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2341b27ef1d5",
+      "evidence": [
+        {
+          "quote": "A survey of energy-efficient motion planning for wheeled mobile robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3417,
+            "end_char": 3486
+          },
+          "version": "d4b84423fa2a37953d6f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "6f90aaa2cdee163dcc08",
   "version": "a847c9de9e0d0eb7adec",
   "source_hash": "77efdd43d443228ac4a5ced403e681d72a51dae25ccbf1fc2dd703dabfc90884",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:58:52.869118+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.511881+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-894859cd8d5b",
-          "name": "月面巡视机器人协同控制",
-          "desc": "基于深度强化学习理论的月面巡视机器人协同运动控制",
+          "id": "item-3bc82b44dc3c",
+          "name": "我国正在开展载人登月重大专项论证工作，面向月面任务迫切需要研究能够与复杂环境、航天员以及多机器人协同共融的月面巡视机器人",
+          "desc": "我国正在开展载人登月重大专项论证工作，面向月面任务迫切需要研究能够与复杂环境、航天员以及多机器人协同共融的月面巡视机器人（器载机械臂），以应对未知环境下的作业任务。",
           "evidence": [
             {
-              "quote": "本项目以月面巡视机器人作为研究对象，基于深度强化学习理论对月面巡视机器人协同运动控制策略开展研究",
+              "quote": "我国正在开展载人登月重大专项论证工作，面向月面任务迫切需要研究能够与复杂环境、航天员以及多机器人协同共融的月面巡视机器人（器载机械臂），以应对未知环境下的作业任务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2902,
-                "end_char": 2949
+                "start_char": 671,
+                "end_char": 752
+              },
+              "version": "a847c9de9e0d0eb7adec"
+            }
+          ]
+        },
+        {
+          "id": "item-07a7ffa23c6f",
+          "name": "同时在上述关键技术研究的基础上，针对巡视机器人单体智能控制技术、多巡视机器人协同智能控制策略、天地大回路全任务周期协同融",
+          "desc": "同时在上述关键技术研究的基础上，针对巡视机器人单体智能控制技术、多巡视机器人协同智能控制策略、天地大回路全任务周期协同融合技术的验证需求，完成了天地协同下月面巡视机器人任务规划、机器人自主抓取、强化学习步态迁移等的地面实验平台关键技术验证与应用示范，完成了从算法设计、仿真训练、算法移植到机器人实物运行的全部验证。",
+          "evidence": [
+            {
+              "quote": "同时在上述关键技术研究的基础上，针对巡视机器人单体智能控制技术、多巡视机器人协同智能控制策略、天地大回路全任务周期协同融合技术的验证需求，完成了天地协同下月面巡视机器人任务规划、机器人自主抓取、强化学习步态迁移等的地面实验平台关键技术验证与应用示范，完成了从算法设计、仿真训练、算法移植到机器人实物运行的全部验证。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3425,
+                "end_char": 3581
               },
               "version": "a847c9de9e0d0eb7adec"
             }
@@ -41,16 +62,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-209b5f32015f",
-          "name": "航天任务不确定性强",
-          "desc": "航天环境和任务不确定性强、机器人学习适应能力弱、智能系统智力不足",
+          "id": "item-163a9239dbc8",
+          "name": "本项目通过上述几方面的研究工作，综合解决了航天环境和任务不确定性强、机器人学习和适应能力较弱、智能系统普遍存在着“能力有",
+          "desc": "本项目通过上述几方面的研究工作，综合解决了航天环境和任务不确定性强、机器人学习和适应能力较弱、智能系统普遍存在着“能力有余，智力不足”等一些问题。",
           "evidence": [
             {
-              "quote": "航天环境和任务不确定性强、机器人学习和适应能力较弱、智能系统普遍存在着“能力有余，智力不足”等一些问题",
+              "quote": "本项目通过上述几方面的研究工作，综合解决了航天环境和任务不确定性强、机器人学习和适应能力较弱、智能系统普遍存在着“能力有余，智力不足”等一些问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3603,
-                "end_char": 3653
+                "start_char": 3582,
+                "end_char": 3654
               },
               "version": "a847c9de9e0d0eb7adec"
             }
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1a7942a8a41a",
-          "name": "深度学习感知与解译",
-          "desc": "搭建深度学习感知模型，实现不同场景环境及障碍条件下的自主感知与解译",
+          "id": "item-dee5b6e76c47",
+          "name": "同时在上述关键技术研究的基础上，针对巡视机器人单体智能控制技术、多巡视机器人协同智能控制策略、天地大回路全任务周期协同融",
+          "desc": "同时在上述关键技术研究的基础上，针对巡视机器人单体智能控制技术、多巡视机器人协同智能控制策略、天地大回路全任务周期协同融合技术的验证需求，完成了天地协同下月面巡视机器人任务规划、机器人自主抓取、强化学习步态迁移等的地面实验平台关键技术验证与应用示范，完成了从算法设计、仿真训练、算法移植到机器人实物运行的全部验证。",
           "evidence": [
             {
-              "quote": "开展了深度学习感知模型的搭建，实现了机器人对不同场景环境及不同障碍条件下的自主感知与解译",
+              "quote": "同时在上述关键技术研究的基础上，针对巡视机器人单体智能控制技术、多巡视机器人协同智能控制策略、天地大回路全任务周期协同融合技术的验证需求，完成了天地协同下月面巡视机器人任务规划、机器人自主抓取、强化学习步态迁移等的地面实验平台关键技术验证与应用示范，完成了从算法设计、仿真训练、算法移植到机器人实物运行的全部验证。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3087,
-                "end_char": 3130
+                "start_char": 3425,
+                "end_char": 3581
               },
               "version": "a847c9de9e0d0eb7adec"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a2954d0d63c5",
-          "name": "数字模拟-迁移学习-实景训练",
-          "desc": "小样本、泛化、高效学习方法完成强化学习模型迁移与样机移植",
+          "id": "item-e37bf8971dde",
+          "name": "基于非合作探测目标、非确知地形环境的认知辨识与场景解译，完成了巡视机器人对不同场景环境、不同障碍条件下的同步定位与建图，",
+          "desc": "基于非合作探测目标、非确知地形环境的认知辨识与场景解译，完成了巡视机器人对不同场景环境、不同障碍条件下的同步定位与建图，完成了以稳定裕度、能耗、运动速度加权为优化目标函数的深度强化学习算法模型的设计、训练及样机验证；",
           "evidence": [
             {
-              "quote": "通过“数字模拟-迁移学习-实景训练”相结合的方式训练策略，完成了月面巡视机器人深度强化学习模型的迁移和样机移植",
+              "quote": "基于非合作探测目标、非确知地形环境的认知辨识与场景解译，完成了巡视机器人对不同场景环境、不同障碍条件下的同步定位与建图，完成了以稳定裕度、能耗、运动速度加权为优化目标函数的深度强化学习算法模型的设计、训练及样机验证；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3288,
-                "end_char": 3342
+                "start_char": 3132,
+                "end_char": 3239
               },
               "version": "a847c9de9e0d0eb7adec"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +124,452 @@
       "state": "has",
       "items": [
         {
-          "id": "item-157976328104",
-          "name": "地面验证与应用示范",
-          "desc": "完成天地协同下月面巡视机器人任务规划、自主抓取、步态迁移等全链路验证",
+          "id": "item-8b35cb311b5b",
+          "name": "我国正在开展载人登月重大专项论证工作，面向月面任务迫切需要研究能够与复杂环境、航天员以及多机器人协同共融的月面巡视机器人",
+          "desc": "我国正在开展载人登月重大专项论证工作，面向月面任务迫切需要研究能够与复杂环境、航天员以及多机器人协同共融的月面巡视机器人（器载机械臂），以应对未知环境下的作业任务。",
           "evidence": [
             {
-              "quote": "完成了天地协同下月面巡视机器人任务规划、机器人自主抓取、强化学习步态迁移等的地面实验平台关键技术验证与应用示范，完成了从算法设计、仿真训练、算法移植到机器人实物运行的全部验证",
+              "quote": "我国正在开展载人登月重大专项论证工作，面向月面任务迫切需要研究能够与复杂环境、航天员以及多机器人协同共融的月面巡视机器人（器载机械臂），以应对未知环境下的作业任务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3494,
-                "end_char": 3580
+                "start_char": 671,
+                "end_char": 752
               },
               "version": "a847c9de9e0d0eb7adec"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-cc1da8009eba",
+          "name": "本项目以月面巡视机器人作为研究对象，基于深度强化学习理论对月面巡视机器人协同运动控制策略开展研究，一方面，并行推进单智能",
+          "desc": "本项目以月面巡视机器人作为研究对象，基于深度强化学习理论对月面巡视机器人协同运动控制策略开展研究，一方面，并行推进单智能体、多智能体学习技术在实际系统的原理探究和系统协同运动控制策略的应用创新；",
+          "evidence": [
+            {
+              "quote": "本项目以月面巡视机器人作为研究对象，基于深度强化学习理论对月面巡视机器人协同运动控制策略开展研究，一方面，并行推进单智能体、多智能体学习技术在实际系统的原理探究和系统协同运动控制策略的应用创新；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2902,
+                "end_char": 2998
+              },
+              "version": "a847c9de9e0d0eb7adec"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-894859cd8d5b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-209b5f32015f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "C2AM Loss: Chasing a Better Decision Boundary for Long-Tail Object Detection",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3f5ecfa1a14a",
+      "evidence": [
+        {
+          "quote": "C2AM Loss: Chasing a Better Decision Boundary for Long-Tail Object Detection",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3680,
+            "end_char": 3755
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-209b5f32015f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1a7942a8a41a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on obstacle detection and path planning based on visual navigation for mobile robot",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13f6412a918f",
+      "evidence": [
+        {
+          "quote": "Research on obstacle detection and path planning based on visual navigation for mobile robot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3849,
+            "end_char": 3940
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-209b5f32015f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a2954d0d63c5"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于欠状态空间下的足式机器人智能自主行走方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35f5ef2ef008",
+      "evidence": [
+        {
+          "quote": "一种基于欠状态空间下的足式机器人智能自主行走方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4005,
+            "end_char": 4028
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a2954d0d63c5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-157976328104"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于深度强化学习的双星近距离智能博弈轨迹规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b044a81fa2ba",
+      "evidence": [
+        {
+          "quote": "基于深度强化学习的双星近距离智能博弈轨迹规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4072,
+            "end_char": 4095
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1a7942a8a41a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-157976328104"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Nonlinear Dynamic Modeling of Joints between Solar Panels on Spacecraft",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0e7635ebf5a3",
+      "evidence": [
+        {
+          "quote": "Nonlinear Dynamic Modeling of Joints between Solar Panels on Spacecraft",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4123,
+            "end_char": 4193
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度强化学习的航天器在轨服务运动的规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-48614a08d90b",
+      "evidence": [
+        {
+          "quote": "基于深度强化学习的航天器在轨服务运动的规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4265,
+            "end_char": 4287
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Design and experimental validation of a disturbing force application unit for simulating spacecraft separation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41d192669ae2",
+      "evidence": [
+        {
+          "quote": "Design and experimental validation of a disturbing force application unit for simulating spacecraft separation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4321,
+            "end_char": 4430
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An advanced multiple outlier detection algorithm for 3D similarity datum transformation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9806c26c681",
+      "evidence": [
+        {
+          "quote": "An advanced multiple outlier detection algorithm for 3D similarity datum transformation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4492,
+            "end_char": 4578
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种四足机器人运动控制自生成和实物迁移方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a314a691727",
+      "evidence": [
+        {
+          "quote": "一种四足机器人运动控制自生成和实物迁移方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4626,
+            "end_char": 4646
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Force-transmission characteristics of a cable-driven mechanism with high initial velocity for spacecraft separation in ground tests",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8e0f3002d57c",
+      "evidence": [
+        {
+          "quote": "Force-transmission characteristics of a cable-driven mechanism with high initial velocity for spacecraft separation in ground tests",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4685,
+            "end_char": 4815
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on the configuration of cable-driven parallel robots for vibration suppression of spatial flexible structures",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b696cb1f0660",
+      "evidence": [
+        {
+          "quote": "Research on the configuration of cable-driven parallel robots for vibration suppression of spatial flexible structures",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4878,
+            "end_char": 4995
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度强化学习的四足机器人适应性步态自主生成方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bfa9704e3f0b",
+      "evidence": [
+        {
+          "quote": "基于深度强化学习的四足机器人适应性步态自主生成方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5056,
+            "end_char": 5080
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Approach on Visual Detecting Multi-Targets in the Unstructured and Complex Scenes Based on RGB-D Images",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-80ad522d78ef",
+      "evidence": [
+        {
+          "quote": "An Approach on Visual Detecting Multi-Targets in the Unstructured and Complex Scenes Based on RGB-D Images",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5116,
+            "end_char": 5221
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "单机任务场景信息获取及单智能体运动控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13b2bc918480",
+      "evidence": [
+        {
+          "quote": "单机任务场景信息获取及单智能体运动控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5296,
+            "end_char": 5316
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于置信度上界的移动机器人信息路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-105fd6d0b774",
+      "evidence": [
+        {
+          "quote": "基于置信度上界的移动机器人信息路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5349,
+            "end_char": 5369
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "中国外观设计金奖证书 火星车",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b7b03fb0b77",
+      "evidence": [
+        {
+          "quote": "中国外观设计金奖证书 火星车",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5394,
+            "end_char": 5407
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Comparative Analysis on Few Typical Algorithms of Gesture Recognition for Human-robot Interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9237822474d",
+      "evidence": [
+        {
+          "quote": "Comparative Analysis on Few Typical Algorithms of Gesture Recognition for Human-robot Interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5455,
+            "end_char": 5551
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Multi-satellite Scheduling Method for Emergency Observation Mission Based on Hierarchical Planning Strategy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-794a767b5431",
+      "evidence": [
+        {
+          "quote": "A Multi-satellite Scheduling Method for Emergency Observation Mission Based on Hierarchical Planning Strategy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5628,
+            "end_char": 5736
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于样本相似度信息挖掘的人体姿态估计",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-67e7cf8461eb",
+      "evidence": [
+        {
+          "quote": "基于样本相似度信息挖掘的人体姿态估计",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5797,
+            "end_char": 5814
+          },
+          "version": "a847c9de9e0d0eb7adec"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

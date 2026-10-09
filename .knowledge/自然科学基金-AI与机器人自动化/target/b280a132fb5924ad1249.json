@@ -2,15 +2,20 @@
   "doc_id": "b280a132fb5924ad1249",
   "version": "f2a72a7c5dabcd1d194d",
   "source_hash": "cb4351ce2fbde450e5f287c164f386c54197896be8f261627d85436b4e27099b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:08:08.090850+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.207573+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a452d02142e9",
-          "name": "弱刚度零部件柔性装配",
-          "desc": "3C、家电等行业复合材料部件、柔性电路板等装配",
+          "id": "item-144128f681b8",
+          "name": "在3C、家电等消费类行业中常见的弱刚度零部件（如复合材料部件、柔性电路板、塑料外壳等）具有易变形、弯折、损坏等特性，装配",
+          "desc": "在3C、家电等消费类行业中常见的弱刚度零部件（如复合材料部件、柔性电路板、塑料外壳等）具有易变形、弯折、损坏等特性，装配过程中面临着柔性装配状态描述困难、装配过程操作复杂、装配成功率低等问题，现有工业机器人装配算法主要面向刚性部件，且装配工艺相对固定，难以适应弱刚度部件装配作业需求，无法保证装配效率和装配质量。",
           "evidence": [
             {
-              "quote": "在3C、家电等消费类行业中常见的弱刚度零部件（如复合材料部件、柔性电路板、塑料外壳等）具有易变形、弯折、损坏等特性",
+              "quote": "在3C、家电等消费类行业中常见的弱刚度零部件（如复合材料部件、柔性电路板、塑料外壳等）具有易变形、弯折、损坏等特性，装配过程中面临着柔性装配状态描述困难、装配过程操作复杂、装配成功率低等问题，现有工业机器人装配算法主要面向刚性部件，且装配工艺相对固定，难以适应弱刚度部件装配作业需求，无法保证装配效率和装配质量。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 655,
-                "end_char": 711
+                "end_char": 810
               },
               "version": "f2a72a7c5dabcd1d194d"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b18549ae2d58",
-          "name": "装配算法面向刚性部件",
-          "desc": "装配状态描述难、成功率低，现有算法难适应弱刚度部件",
+          "id": "item-09b4b74c11ee",
+          "name": "在3C、家电等消费类行业中常见的弱刚度零部件（如复合材料部件、柔性电路板、塑料外壳等）具有易变形、弯折、损坏等特性，装配",
+          "desc": "在3C、家电等消费类行业中常见的弱刚度零部件（如复合材料部件、柔性电路板、塑料外壳等）具有易变形、弯折、损坏等特性，装配过程中面临着柔性装配状态描述困难、装配过程操作复杂、装配成功率低等问题，现有工业机器人装配算法主要面向刚性部件，且装配工艺相对固定，难以适应弱刚度部件装配作业需求，无法保证装配效率和装配质量。",
           "evidence": [
             {
-              "quote": "装配过程中面临着柔性装配状态描述困难、装配过程操作复杂、装配成功率低等问题，现有工业机器人装配算法主要面向刚性部件，且装配工艺相对固定，难以适应弱刚度部件装配作业需求",
+              "quote": "在3C、家电等消费类行业中常见的弱刚度零部件（如复合材料部件、柔性电路板、塑料外壳等）具有易变形、弯折、损坏等特性，装配过程中面临着柔性装配状态描述困难、装配过程操作复杂、装配成功率低等问题，现有工业机器人装配算法主要面向刚性部件，且装配工艺相对固定，难以适应弱刚度部件装配作业需求，无法保证装配效率和装配质量。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 713,
-                "end_char": 795
+                "start_char": 655,
+                "end_char": 810
               },
               "version": "f2a72a7c5dabcd1d194d"
             }
@@ -63,41 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f622d7c4a6b9",
-          "name": "PID力控制柔顺装配",
-          "desc": "增强机械臂柔顺性防止大接触力",
+          "id": "item-560e2ae9b8b5",
+          "name": "研究了基于经验融合近端策略优化算法，采取新旧数据结合对模型进行更新从而提高数据的利用效率。",
+          "desc": "研究了基于经验融合近端策略优化算法，采取新旧数据结合对模型进行更新从而提高数据的利用效率。",
           "evidence": [
             {
-              "quote": "研究了基于PID控制的力控制方法，可以增强机械臂的柔顺性并可以有效防止大接触力的产生。",
+              "quote": "研究了基于经验融合近端策略优化算法，采取新旧数据结合对模型进行更新从而提高数据的利用效率。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3211,
-                "end_char": 3253
+                "start_char": 3287,
+                "end_char": 3331
               },
               "version": "f2a72a7c5dabcd1d194d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-21121a59df6b",
-          "name": "先验知识强化学习技能自学习",
-          "desc": "实现机器人柔性装配技能自学习",
-          "evidence": [
-            {
-              "quote": "研究了基于先验知识的强化学习方法，实现机器人柔性装配技能的自学习。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3254,
-                "end_char": 3286
-              },
-              "version": "f2a72a7c5dabcd1d194d"
-            }
-          ]
-        },
-        {
-          "id": "item-bdd71eee83f7",
-          "name": "策略融合迁移",
-          "desc": "实现不同轴孔装配知识迁移与更快模型收敛",
+          "id": "item-246741ac625b",
+          "name": "研究了策略融合迁移算法，实现了不同轴孔装配知识的迁移和更好的模型收敛速度。",
+          "desc": "研究了策略融合迁移算法，实现了不同轴孔装配知识的迁移和更好的模型收敛速度。",
           "evidence": [
             {
               "quote": "研究了策略融合迁移算法，实现了不同轴孔装配知识的迁移和更好的模型收敛速度。",
@@ -108,7 +98,8 @@
               },
               "version": "f2a72a7c5dabcd1d194d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,91 +108,265 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ef41f46070e9",
-          "name": "仿真与物理实验平台",
-          "desc": "搭建轴孔及弱刚度零部件装配仿真环境与实验平台",
+          "id": "item-5736351adf0a",
+          "name": "在3C、家电等消费类行业中常见的弱刚度零部件（如复合材料部件、柔性电路板、塑料外壳等）具有易变形、弯折、损坏等特性，装配",
+          "desc": "在3C、家电等消费类行业中常见的弱刚度零部件（如复合材料部件、柔性电路板、塑料外壳等）具有易变形、弯折、损坏等特性，装配过程中面临着柔性装配状态描述困难、装配过程操作复杂、装配成功率低等问题，现有工业机器人装配算法主要面向刚性部件，且装配工艺相对固定，难以适应弱刚度部件装配作业需求，无法保证装配效率和装配质量。",
           "evidence": [
             {
-              "quote": "搭建了轴孔及弱刚度零部件装配仿真环境以及物理实验平台。",
+              "quote": "在3C、家电等消费类行业中常见的弱刚度零部件（如复合材料部件、柔性电路板、塑料外壳等）具有易变形、弯折、损坏等特性，装配过程中面临着柔性装配状态描述困难、装配过程操作复杂、装配成功率低等问题，现有工业机器人装配算法主要面向刚性部件，且装配工艺相对固定，难以适应弱刚度部件装配作业需求，无法保证装配效率和装配质量。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3403,
-                "end_char": 3429
+                "start_char": 655,
+                "end_char": 810
               },
               "version": "f2a72a7c5dabcd1d194d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a452d02142e9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b18549ae2d58"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "FPC-BTB detection and positioning system based on optimized YOLOv5",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5d5e38d1b49",
+      "evidence": [
+        {
+          "quote": "FPC-BTB detection and positioning system based on optimized YOLOv5",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3532,
+            "end_char": 3597
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b18549ae2d58"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f622d7c4a6b9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于激光雷达和双目相机数据融合的衬板装配系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0f9bb9cf1c9",
+      "evidence": [
+        {
+          "quote": "基于激光雷达和双目相机数据融合的衬板装配系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3664,
+            "end_char": 3688
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b18549ae2d58"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-21121a59df6b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "多约束条件下机器人柔性装配技能自学习",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0ba97ddec58b",
+      "evidence": [
+        {
+          "quote": "多约束条件下机器人柔性装配技能自学习",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3723,
+            "end_char": 3740
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b18549ae2d58"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bdd71eee83f7"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于多约束条件的机器人抓取模式选择方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-724f84766bd0",
+      "evidence": [
+        {
+          "quote": "基于多约束条件的机器人抓取模式选择方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3766,
+            "end_char": 3787
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-21121a59df6b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ef41f46070e9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于tph-yolov5深度学习的FPC-BTB接口检测定位方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-875c0ea01e96",
+      "evidence": [
+        {
+          "quote": "基于tph-yolov5深度学习的FPC-BTB接口检测定位方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3817,
+            "end_char": 3851
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f622d7c4a6b9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ef41f46070e9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于特征自适应迁移强化学习的机器人装配方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d2b77267aba",
+      "evidence": [
+        {
+          "quote": "基于特征自适应迁移强化学习的机器人装配方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3882,
+            "end_char": 3905
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Deterministic Policy Gradient with Reward Function Based on Fuzzy Logic for Robotic Peg-in-Hole Assembly Tasks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ebfe6e22c126",
+      "evidence": [
+        {
+          "quote": "Deep Deterministic Policy Gradient with Reward Function Based on Fuzzy Logic for Robotic Peg-in-Hole Assembly Tasks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3941,
+            "end_char": 4055
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于多约束条件的机器人抓取策略学习方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5bf6d38adc24",
+      "evidence": [
+        {
+          "quote": "基于多约束条件的机器人抓取策略学习方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4130,
+            "end_char": 4148
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于过程建模的机器人分阶引导装配方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c50dfcc56ed2",
+      "evidence": [
+        {
+          "quote": "基于过程建模的机器人分阶引导装配方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4176,
+            "end_char": 4193
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于分层强化学习与分布式学习的多轴孔装配方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bb8c1f5df4b9",
+      "evidence": [
+        {
+          "quote": "基于分层强化学习与分布式学习的多轴孔装配方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4221,
+            "end_char": 4245
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度强化学习的机器人分阶力引导装配方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b9169b14c0c3",
+      "evidence": [
+        {
+          "quote": "基于深度强化学习的机器人分阶力引导装配方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4280,
+            "end_char": 4303
+          },
+          "version": "f2a72a7c5dabcd1d194d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

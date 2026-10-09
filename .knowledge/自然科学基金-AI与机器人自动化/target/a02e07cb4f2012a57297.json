@@ -2,15 +2,20 @@
   "doc_id": "a02e07cb4f2012a57297",
   "version": "264feb4886169761ab48",
   "source_hash": "3be8a41d27d687d87f4bfa2deccf32949bca0bfa967736aa69620ca058587803",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T16:02:30.690268+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.032147+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cef78ad4edc7",
-          "name": "蔬果采摘机器人示教",
-          "desc": "温室番茄等开放农业场景的采摘作业",
+          "id": "item-171a3c297d27",
+          "name": "高温高湿高强度的农业生产环境对蔬果采摘机器换人提出强烈需求,但预编程的机器人难以应对开放场景下灵巧作业技术挑战,自主采收",
+          "desc": "高温高湿高强度的农业生产环境对蔬果采摘机器换人提出强烈需求,但预编程的机器人难以应对开放场景下灵巧作业技术挑战,自主采收成功率低、现场部署困难。",
           "evidence": [
             {
-              "quote": "开放动态、多扰动的农业场景对蔬果采摘机器人自主作业提出了挑战，传统依赖预编程范式开发的系统成功率和可靠性差，而深度强化学习与大模型方法虽具潜力，但过度依赖高成本真实数据。",
+              "quote": "高温高湿高强度的农业生产环境对蔬果采摘机器换人提出强烈需求,但预编程的机器人难以应对开放场景下灵巧作业技术挑战,自主采收成功率低、现场部署困难。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3272,
-                "end_char": 3356
+                "start_char": 655,
+                "end_char": 726
               },
               "version": "264feb4886169761ab48"
             }
@@ -41,9 +46,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-58a7f7a48ccd",
-          "name": "预编程成功率低",
-          "desc": "预编程机器人难应对开放场景自主采收成功率低",
+          "id": "item-db8587443145",
+          "name": "【研究内容】(1)针对传统蔬果采摘机器人难以高效承载人类经验、示教迁移成本高、环境适应性不足的问题，设计并研发了面向人机",
+          "desc": "【研究内容】(1)针对传统蔬果采摘机器人难以高效承载人类经验、示教迁移成本高、环境适应性不足的问题，设计并研发了面向人机自然交互的采摘机器人系统，建立了支持示教迁移与自主学习的分层控制与策略建模框架，使机器人在统一计算范式下实现示教与自主作业的协同；",
+          "evidence": [
+            {
+              "quote": "【研究内容】(1)针对传统蔬果采摘机器人难以高效承载人类经验、示教迁移成本高、环境适应性不足的问题，设计并研发了面向人机自然交互的采摘机器人系统，建立了支持示教迁移与自主学习的分层控制与策略建模框架，使机器人在统一计算范式下实现示教与自主作业的协同；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3422,
+                "end_char": 3546
+              },
+              "version": "264feb4886169761ab48"
+            }
+          ]
+        },
+        {
+          "id": "item-13b3ca3fce67",
+          "name": "高温高湿高强度的农业生产环境对蔬果采摘机器换人提出强烈需求,但预编程的机器人难以应对开放场景下灵巧作业技术挑战,自主采收",
+          "desc": "高温高湿高强度的农业生产环境对蔬果采摘机器换人提出强烈需求,但预编程的机器人难以应对开放场景下灵巧作业技术挑战,自主采收成功率低、现场部署困难。",
           "evidence": [
             {
               "quote": "高温高湿高强度的农业生产环境对蔬果采摘机器换人提出强烈需求,但预编程的机器人难以应对开放场景下灵巧作业技术挑战,自主采收成功率低、现场部署困难。",
@@ -63,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5d2238d290db",
-          "name": "自然示教策略学习",
-          "desc": "人机自然示教与策略学习方法结构化表达经验",
+          "id": "item-3d2b45f00789",
+          "name": "(1)揭示人工蔬果选采行为形成机制, 研究基于构效关系的运动谱重现和端到端采摘策略建模方法,优化设计能够承载人类知识经验",
+          "desc": "(1)揭示人工蔬果选采行为形成机制, 研究基于构效关系的运动谱重现和端到端采摘策略建模方法,优化设计能够承载人类知识经验共融型蔬果采摘机器人、生成机器人自主策略;(2)研究蔬果采摘专家示教样本获取方式与表征机理,提出易于全景数据快速富集的自然示教方法,建立场景-行为联合概率分布描述的专家策略;(3)研究机器人自主策略与专家策略差异的表征方法、回报网络构建方法,建立人机策略梯度驱动的深度逆强化策略学习模型,实现动态场景复杂任务的自主学习,",
           "evidence": [
             {
-              "quote": "设计并提出了一套面向采摘任务的人机自然示教与策略学习方法",
+              "quote": "(1)揭示人工蔬果选采行为形成机制, 研究基于构效关系的运动谱重现和端到端采摘策略建模方法,优化设计能够承载人类知识经验共融型蔬果采摘机器人、生成机器人自主策略;(2)研究蔬果采摘专家示教样本获取方式与表征机理,提出易于全景数据快速富集的自然示教方法,建立场景-行为联合概率分布描述的专家策略;(3)研究机器人自主策略与专家策略差异的表征方法、回报网络构建方法,建立人机策略梯度驱动的深度逆强化策略学习模型,实现动态场景复杂任务的自主学习,",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3672,
-                "end_char": 3699
+                "start_char": 761,
+                "end_char": 980
               },
               "version": "264feb4886169761ab48"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-1419471d660e",
-          "name": "安全可解释逆强化学习",
-          "desc": "同时刻画任务目标、安全约束与人类经验",
+          "id": "item-1940f523cf98",
+          "name": "【科学意义】项目成果阐明了面向自然示教的农业机器人控制系统设计原理、构建了高效赋能示教学习机制，形成较为完备的系统性理论",
+          "desc": "【科学意义】项目成果阐明了面向自然示教的农业机器人控制系统设计原理、构建了高效赋能示教学习机制，形成较为完备的系统性理论技术解决方案，有助于建立安全、高效的人机混合增强智能方法、更加和谐的人机共融系统，为我国采摘机器人技术和产业发展提供创新思路与科学支撑。",
           "evidence": [
             {
-              "quote": "针对复杂农业采摘任务中奖励函数难以同时刻画任务目标、安全约束与人类经验的问题，设计了面向采摘作业的安全、可解释的逆强化学习算法。",
+              "quote": "【科学意义】项目成果阐明了面向自然示教的农业机器人控制系统设计原理、构建了高效赋能示教学习机制，形成较为完备的系统性理论技术解决方案，有助于建立安全、高效的人机混合增强智能方法、更加和谐的人机共融系统，为我国采摘机器人技术和产业发展提供创新思路与科学支撑。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3706,
-                "end_char": 3769
+                "start_char": 3961,
+                "end_char": 4088
               },
               "version": "264feb4886169761ab48"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +124,268 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1b65f3006a0f",
-          "name": "采摘成功率89.4%",
-          "desc": "温室番茄单果平均9.2s，50次任务碰撞0.28次",
+          "id": "item-33e5c698fae8",
+          "name": "高温高湿高强度的农业生产环境对蔬果采摘机器换人提出强烈需求,但预编程的机器人难以应对开放场景下灵巧作业技术挑战,自主采收",
+          "desc": "高温高湿高强度的农业生产环境对蔬果采摘机器换人提出强烈需求,但预编程的机器人难以应对开放场景下灵巧作业技术挑战,自主采收成功率低、现场部署困难。",
           "evidence": [
             {
-              "quote": "实验结果表明逆强化策略在温室栽培番茄采收场景下实现89.4%的采摘成功率，单果采摘时间达到平均9.2s，平均50次任务与障碍物发生碰撞0.28次。",
+              "quote": "高温高湿高强度的农业生产环境对蔬果采摘机器换人提出强烈需求,但预编程的机器人难以应对开放场景下灵巧作业技术挑战,自主采收成功率低、现场部署困难。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3834,
-                "end_char": 3906
+                "start_char": 655,
+                "end_char": 726
               },
               "version": "264feb4886169761ab48"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-d922deae3622",
-          "name": "两台机器人样机",
-          "desc": "开发类人型、协作双臂型蔬果采摘机器人2台套",
+          "id": "item-1922ad50e7ca",
+          "name": "【研究背景】开放动态、多扰动的农业场景对蔬果采摘机器人自主作业提出了挑战，传统依赖预编程范式开发的系统成功率和可靠性差，",
+          "desc": "【研究背景】开放动态、多扰动的农业场景对蔬果采摘机器人自主作业提出了挑战，传统依赖预编程范式开发的系统成功率和可靠性差，而深度强化学习与大模型方法虽具潜力，但过度依赖高成本真实数据。",
           "evidence": [
             {
-              "quote": "开发了类人型、协作双臂型蔬果采摘机器人2台套，建立了支持人机交互与强化学习的农业机器人强化学习仿真环境。",
+              "quote": "【研究背景】开放动态、多扰动的农业场景对蔬果采摘机器人自主作业提出了挑战，传统依赖预编程范式开发的系统成功率和可靠性差，而深度强化学习与大模型方法虽具潜力，但过度依赖高成本真实数据。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3776,
-                "end_char": 3827
+                "start_char": 3266,
+                "end_char": 3356
               },
               "version": "264feb4886169761ab48"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cef78ad4edc7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-58a7f7a48ccd"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "刚柔耦合农业采摘机械臂关节",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7060a15c00ac",
+      "evidence": [
+        {
+          "quote": "刚柔耦合农业采摘机械臂关节",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4112,
+            "end_char": 4124
+          },
+          "version": "264feb4886169761ab48"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-58a7f7a48ccd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5d2238d290db"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "机器人末端姿态跟踪预测控制方法及系统和机器人",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-115e0f771e57",
+      "evidence": [
+        {
+          "quote": "机器人末端姿态跟踪预测控制方法及系统和机器人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4176,
+            "end_char": 4197
+          },
+          "version": "264feb4886169761ab48"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-58a7f7a48ccd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1419471d660e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Workspace decomposition based path planning for fruit-picking robot in complex greenhouse environment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d17c481835b",
+      "evidence": [
+        {
+          "quote": "Workspace decomposition based path planning for fruit-picking robot in complex greenhouse environment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4230,
+            "end_char": 4330
+          },
+          "version": "264feb4886169761ab48"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1419471d660e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1b65f3006a0f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "果实采摘机器人测试机构",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9365e2818e23",
+      "evidence": [
+        {
+          "quote": "果实采摘机器人测试机构",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4450,
+            "end_char": 4460
+          },
+          "version": "264feb4886169761ab48"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5d2238d290db"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d922deae3622"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "设施蔬菜优质高产高效智能化生产关键技术及成套装备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-161e6cee82dc",
+      "evidence": [
+        {
+          "quote": "设施蔬菜优质高产高效智能化生产关键技术及成套装备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4493,
+            "end_char": 4516
+          },
+          "version": "264feb4886169761ab48"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于历史经验复用的蔬果采摘云机器人路径规划方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2878bf7e12e4",
+      "evidence": [
+        {
+          "quote": "基于历史经验复用的蔬果采摘云机器人路径规划方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4586,
+            "end_char": 4611
+          },
+          "version": "264feb4886169761ab48"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dual-Arm Coordination of a Tomato Harvesting Robot with Subtask Decoupling and Synthesizing",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b83d265fc4a7",
+      "evidence": [
+        {
+          "quote": "Dual-Arm Coordination of a Tomato Harvesting Robot with Subtask Decoupling and Synthesizing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4647,
+            "end_char": 4737
+          },
+          "version": "264feb4886169761ab48"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Simulation of Real-time Collision-Free Path Planning Method with Deep Policy Network in Human-Robot Interaction Scenario",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8318f88df4ca",
+      "evidence": [
+        {
+          "quote": "Simulation of Real-time Collision-Free Path Planning Method with Deep Policy Network in Human-Robot Interaction Scenario",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4855,
+            "end_char": 4974
+          },
+          "version": "264feb4886169761ab48"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "蔬果采摘机器人路径规划方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e04dcf00a4c2",
+      "evidence": [
+        {
+          "quote": "蔬果采摘机器人路径规划方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5035,
+            "end_char": 5050
+          },
+          "version": "264feb4886169761ab48"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Integrated in Situ Image Acquisition and Annotation Scheme for Instance Segmentation Models in Open Scenes With a Human–Robot Interaction Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-33a9ddbf80e4",
+      "evidence": [
+        {
+          "quote": "An Integrated in Situ Image Acquisition and Annotation Scheme for Instance Segmentation Models in Open Scenes With a Human–Robot Interaction Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5091,
+            "end_char": 5239
+          },
+          "version": "264feb4886169761ab48"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

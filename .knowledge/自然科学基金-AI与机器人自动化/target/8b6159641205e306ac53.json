@@ -2,15 +2,20 @@
   "doc_id": "8b6159641205e306ac53",
   "version": "da1bfa81d96041b00695",
   "source_hash": "b73f8ba934e477b307f8a1377ba605649a7ba3162579b1ef50774d35c699f73f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:11.398767+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.772922+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,36 @@
       "state": "has",
       "items": [
         {
-          "id": "item-edd74af8332b",
-          "name": "人机协作任务规划",
-          "desc": "有人监督下机器人发育学习与人机协作规划",
+          "id": "item-40ca19b3ec62",
+          "name": "本项目面向人机协作任务规划问题，借鉴人的认知发展和学习机制，提出一种有人监督下的机器人发育学习架构，融合了符号层的任务规",
+          "desc": "本项目面向人机协作任务规划问题，借鉴人的认知发展和学习机制，提出一种有人监督下的机器人发育学习架构，融合了符号层的任务规划和亚符号层的感知运动学习。",
+          "evidence": [
+            {
+              "quote": "本项目面向人机协作任务规划问题，借鉴人的认知发展和学习机制，提出一种有人监督下的机器人发育学习架构，融合了符号层的任务规划和亚符号层的感知运动学习。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 663,
+                "end_char": 736
+              },
+              "version": "da1bfa81d96041b00695"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "未提及",
+      "items": []
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-66bf14d54cae",
+          "name": "本项目提出了一种跨层次的人机互理解认知行为模型，基于“信念-愿望-意图（BDI）”模型和马氏决策（MDP）模型，提出了融",
+          "desc": "本项目提出了一种跨层次的人机互理解认知行为模型，基于“信念-愿望-意图（BDI）”模型和马氏决策（MDP）模型，提出了融合推理和学习的机器认知发展架构，设计了融合符号逻辑系统和策略学习的COG-DQN算法。",
           "evidence": [
             {
               "quote": "本项目提出了一种跨层次的人机互理解认知行为模型，基于“信念-愿望-意图（BDI）”模型和马氏决策（MDP）模型，提出了融合推理和学习的机器认知发展架构，设计了融合符号逻辑系统和策略学习的COG-DQN算法。",
@@ -32,83 +64,25 @@
               },
               "version": "da1bfa81d96041b00695"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a6d8c82f75a8",
-          "name": "动态任务协作模式缺失",
-          "desc": "需实现可观察可预测可干预的人机协作新模式",
-          "evidence": [
-            {
-              "quote": "“认知发展、任务规划、感知运动学习”三者相互支撑，实现了面向动态任务的可观察、可预测、可干预的人机协作新模式。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 947,
-                "end_char": 1001
-              },
-              "version": "da1bfa81d96041b00695"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-14a3374fa5dc",
-          "name": "COG-DQN认知架构",
-          "desc": "BDI与MDP融合推理和学习的机器认知发展架构",
-          "evidence": [
-            {
-              "quote": "基于“信念-愿望-意图（BDI）”模型和马氏决策（MDP）模型，提出了融合推理和学习的机器认知发展架构，设计了融合符号逻辑系统和策略学习的COG-DQN算法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2626,
-                "end_char": 2704
-              },
-              "version": "da1bfa81d96041b00695"
-            }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a8d201a9acb7",
-          "name": "HATP混合任务规划",
-          "desc": "时间能力规则约束下自动分解为原子任务",
+          "id": "item-eb493b01c967",
+          "name": "其中，MACACER算法解决连续动作空间中的有人机/无人机群混合编队协调控制问题，基于卷积神经网络和注意力机制的SEMP",
+          "desc": "其中，MACACER算法解决连续动作空间中的有人机/无人机群混合编队协调控制问题，基于卷积神经网络和注意力机制的SEMP模块可以将变长维度的输入编码为固定维度的特征向量，从而处理可变规模多机器人系统的协同学习和决策问题。",
           "evidence": [
             {
-              "quote": "采用基于智能体的HATP人机混合任务规划系统，提出了时间、能力、规则等约束条件下的人机混合任务规划方法，将任务自动分解至可由人/机器人单独执行或人机协同执行的原子任务，得到层次化的任务分解树和协同任务行动流",
+              "quote": "其中，MACACER算法解决连续动作空间中的有人机/无人机群混合编队协调控制问题，基于卷积神经网络和注意力机制的SEMP模块可以将变长维度的输入编码为固定维度的特征向量，从而处理可变规模多机器人系统的协同学习和决策问题。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2708,
-                "end_char": 2810
+                "start_char": 2873,
+                "end_char": 2982
               },
               "version": "da1bfa81d96041b00695"
             }
-          ]
-        },
-        {
-          "id": "item-dd78d969bf2c",
-          "name": "MACACER混合编队",
-          "desc": "SEMP模块处理可变规模多机器人协同决策",
-          "evidence": [
-            {
-              "quote": "MACACER算法解决连续动作空间中的有人机/无人机群混合编队协调控制问题，基于卷积神经网络和注意力机制的SEMP模块可以将变长维度的输入编码为固定维度的特征向量",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2876,
-                "end_char": 2956
-              },
-              "version": "da1bfa81d96041b00695"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +91,428 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a57e2a2c9b9b",
-          "name": "有人机无人机群验证",
-          "desc": "在人机/无人机群协同任务中应用和验证",
+          "id": "item-3969bcd9f9e0",
+          "name": "本项目面向人机协作任务规划问题，借鉴人的认知发展和学习机制，提出一种有人监督下的机器人发育学习架构，融合了符号层的任务规",
+          "desc": "本项目面向人机协作任务规划问题，借鉴人的认知发展和学习机制，提出一种有人监督下的机器人发育学习架构，融合了符号层的任务规划和亚符号层的感知运动学习。",
           "evidence": [
             {
-              "quote": "在有人机/无人机群协同任务中进行了应用和验证。",
+              "quote": "本项目面向人机协作任务规划问题，借鉴人的认知发展和学习机制，提出一种有人监督下的机器人发育学习架构，融合了符号层的任务规划和亚符号层的感知运动学习。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2812,
-                "end_char": 2834
+                "start_char": 663,
+                "end_char": 736
               },
               "version": "da1bfa81d96041b00695"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-c2011bad997f",
-          "name": "PID-RL快速降落",
-          "desc": "融合经验干预实现旋翼无人机运动车辆快速降落",
+          "id": "item-30d91c6f97b7",
+          "name": "本项目提出了一种跨层次的人机互理解认知行为模型，基于“信念-愿望-意图（BDI）”模型和马氏决策（MDP）模型，提出了融",
+          "desc": "本项目提出了一种跨层次的人机互理解认知行为模型，基于“信念-愿望-意图（BDI）”模型和马氏决策（MDP）模型，提出了融合推理和学习的机器认知发展架构，设计了融合符号逻辑系统和策略学习的COG-DQN算法。",
           "evidence": [
             {
-              "quote": "提出了融合PID控制与深度强化学习的控制方法，并引入人的经验与干预，加速PID参数的自主学习过程，实现了旋翼无人机在运动无人车上的快速自主降落策略学习。",
+              "quote": "本项目提出了一种跨层次的人机互理解认知行为模型，基于“信念-愿望-意图（BDI）”模型和马氏决策（MDP）模型，提出了融合推理和学习的机器认知发展架构，设计了融合符号逻辑系统和策略学习的COG-DQN算法。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2986,
-                "end_char": 3061
+                "start_char": 2602,
+                "end_char": 2704
               },
               "version": "da1bfa81d96041b00695"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-edd74af8332b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a6d8c82f75a8"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Monitoring the Performance of a Multi-UAV Operator Through Eye Tracking",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e2cdeb41d78",
+      "evidence": [
+        {
+          "quote": "Monitoring the Performance of a Multi-UAV Operator Through Eye Tracking",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3087,
+            "end_char": 3157
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a6d8c82f75a8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-14a3374fa5dc"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Flocking and Collision Avoidance for a Dynamic Squad of Fixed-Wing UAVs Using Deep Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7634355f6b30",
+      "evidence": [
+        {
+          "quote": "Flocking and Collision Avoidance for a Dynamic Squad of Fixed-Wing UAVs Using Deep Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3217,
+            "end_char": 3321
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a6d8c82f75a8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a8d201a9acb7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-Wing UAVs flocking in continuous spaces: A deep reinforcement learning approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6958c986e24d",
+      "evidence": [
+        {
+          "quote": "Fixed-Wing UAVs flocking in continuous spaces: A deep reinforcement learning approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3378,
+            "end_char": 3462
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a6d8c82f75a8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dd78d969bf2c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Mixed-initiative Manned-Unmanned Teamwork Using Coactive Design and Graph Neural Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1a89263116f",
+      "evidence": [
+        {
+          "quote": "Mixed-initiative Manned-Unmanned Teamwork Using Coactive Design and Graph Neural Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3510,
+            "end_char": 3597
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a8d201a9acb7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a57e2a2c9b9b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于深度强化学习的固定翼无人机编队协调控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4d3399a6dea6",
+      "evidence": [
+        {
+          "quote": "基于深度强化学习的固定翼无人机编队协调控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3646,
+            "end_char": 3668
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-dd78d969bf2c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c2011bad997f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于深度强化学习的固定翼无人机群集控制避碰方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-51230b461408",
+      "evidence": [
+        {
+          "quote": "基于深度强化学习的固定翼无人机群集控制避碰方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3693,
+            "end_char": 3718
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "多智能体深度强化学习及其可扩展性与可迁移性研究综述",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-39debbd25cb2",
+      "evidence": [
+        {
+          "quote": "多智能体深度强化学习及其可扩展性与可迁移性研究综述",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3757,
+            "end_char": 3781
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "PASCAL: PopulAtion-Specific Curriculum-based MADRL for collision-free flocking with large-scale fixed-wing UAV swarms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a4289d41bf8a",
+      "evidence": [
+        {
+          "quote": "PASCAL: PopulAtion-Specific Curriculum-based MADRL for collision-free flocking with large-scale fixed-wing UAV swarms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3815,
+            "end_char": 3931
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Deep Reinforcement Learning with Corrective Feedback for Autonomous UAV Landing on a Mobile Platform",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3c1ad6abc616",
+      "evidence": [
+        {
+          "quote": "Deep Reinforcement Learning with Corrective Feedback for Autonomous UAV Landing on a Mobile Platform",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4020,
+            "end_char": 4119
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于强化学习的固定翼无人机群集控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-be2c7daf521a",
+      "evidence": [
+        {
+          "quote": "一种基于强化学习的固定翼无人机群集控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4181,
+            "end_char": 4201
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "融合认知行为模型的深度强化学习框架及算法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-91353204e9d3",
+      "evidence": [
+        {
+          "quote": "融合认知行为模型的深度强化学习框架及算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4241,
+            "end_char": 4260
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Coactive design of explainable agent-based task planning and deep reinforcement learning for human-UAVs teamwork",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb3a0f8006dc",
+      "evidence": [
+        {
+          "quote": "Coactive design of explainable agent-based task planning and deep reinforcement learning for human-UAVs teamwork",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4295,
+            "end_char": 4406
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UAV Path Planning in Multi-task Environments with Risks through Natural Language Understanding",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ec62668ad6a3",
+      "evidence": [
+        {
+          "quote": "UAV Path Planning in Multi-task Environments with Risks through Natural Language Understanding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4481,
+            "end_char": 4574
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Collision-Avoiding Flocking with Multiple Fixed-Wing UAVs in Obstacle-Cluttered Environments: A Task-Specific Curriculum-based MADRL Approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-700256957333",
+      "evidence": [
+        {
+          "quote": "Collision-Avoiding Flocking with Multiple Fixed-Wing UAVs in Obstacle-Cluttered Environments: A Task-Specific Curriculum-based MADRL Approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4660,
+            "end_char": 4800
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于无人机侦察与模型仿真的人机协同毁伤评估",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6979f0b51a55",
+      "evidence": [
+        {
+          "quote": "基于无人机侦察与模型仿真的人机协同毁伤评估",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4896,
+            "end_char": 4916
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的大规模无人机集群飞行方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96198320802e",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的大规模无人机集群飞行方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4943,
+            "end_char": 4965
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Evaluation of the Control Interface of Multiple Cooperative UAVs Based on Extracted Eye Movement Patterns",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5829240b530",
+      "evidence": [
+        {
+          "quote": "Evaluation of the Control Interface of Multiple Cooperative UAVs Based on Extracted Eye Movement Patterns",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5003,
+            "end_char": 5107
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于深度强化学习的固定翼无人机群集控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3416744f5b1b",
+      "evidence": [
+        {
+          "quote": "一种基于深度强化学习的固定翼无人机群集控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5153,
+            "end_char": 5175
+          },
+          "version": "da1bfa81d96041b00695"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "8c1a1dc51852510ee017",
   "version": "b4de33f82b3124038517",
   "source_hash": "62136c1e5b696bfb41ae68ef36d9e70d3ffa384e8ab2cec4a1cb48e9fc332645",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:52:47.523268+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.783115+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,15 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5ac9e3b1e6bb",
-          "name": "空间非合作目标在轨服务",
-          "desc": "故障卫星、失效航天器及轨道垃圾的接近观测与3D建模",
+          "id": "item-acbfbf401c80",
+          "name": "航天器由于故障、完全失效或任务结束而被放弃后，停留在空间将成为太空垃圾，不但占用了宝贵的轨道资源，还可能危及其它航天器的",
+          "desc": "航天器由于故障、完全失效或任务结束而被放弃后，停留在空间将成为太空垃圾，不但占用了宝贵的轨道资源，还可能危及其它航天器的安全，对故障卫星、失效航天器及轨道垃圾等空间非合作目标的在轨服务需求变得越来越迫切。",
           "evidence": [
             {
-              "quote": "对故障卫星、失效航天器及轨道垃圾等空间非合作目标的在轨服务需求变得越来越迫切。",
+              "quote": "航天器由于故障、完全失效或任务结束而被放弃后，停留在空间将成为太空垃圾，不但占用了宝贵的轨道资源，还可能危及其它航天器的安全，对故障卫星、失效航天器及轨道垃圾等空间非合作目标的在轨服务需求变得越来越迫切。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 719,
+                "start_char": 656,
                 "end_char": 757
               },
               "version": "b4de33f82b3124038517"
@@ -38,45 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f1101e0ed00c",
-          "name": "非合作目标动态性与环境剧变",
-          "desc": "高动态性、大实体性和空间环境剧烈变化制约接近观测和3D建模",
-          "evidence": [
-            {
-              "quote": "而非合作目标的高动态性、大实体性和空间环境剧烈变化成为制约接近观测和3D建模发展的重要瓶颈。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 788,
-                "end_char": 833
-              },
-              "version": "b4de33f82b3124038517"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-7e4afb0908c4",
-          "name": "避障接近观测多任务协同规划",
-          "desc": "快速避障和接近观测多任务协同三维运动规划",
+          "id": "item-8efa88491698",
+          "name": "本项目以空间非合作目标的接近观测与3D建模为背景，重点围绕空间非合作目标的快速避障和接近观测多任务协同三维运动规划、局部",
+          "desc": "本项目以空间非合作目标的接近观测与3D建模为背景，重点围绕空间非合作目标的快速避障和接近观测多任务协同三维运动规划、局部观测的激光和图像多点云融合高效3D建模和非合作目标的绕飞观测与3D建模全流程闭环演示三方面开展深入研究，突破传统运动规划和3D建模方法性能受目标特性和空间环境剧烈变化的限制，为空间非合作目标在轨接近观测和3D建模的实现提供基础理论和关键技术支撑。",
           "evidence": [
             {
-              "quote": "重点围绕空间非合作目标的快速避障和接近观测多任务协同三维运动规划、局部观测的激光和图像多点云融合高效3D建模和非合作目标的绕飞观测与3D建模全流程闭环演示三方面开展深入研究",
+              "quote": "本项目以空间非合作目标的接近观测与3D建模为背景，重点围绕空间非合作目标的快速避障和接近观测多任务协同三维运动规划、局部观测的激光和图像多点云融合高效3D建模和非合作目标的绕飞观测与3D建模全流程闭环演示三方面开展深入研究，突破传统运动规划和3D建模方法性能受目标特性和空间环境剧烈变化的限制，为空间非合作目标在轨接近观测和3D建模的实现提供基础理论和关键技术支撑。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 859,
-                "end_char": 944
+                "start_char": 834,
+                "end_char": 1016
               },
               "version": "b4de33f82b3124038517"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-38bc71fbc2b2",
+          "name": "智能自主系统感知与认知;智能自主系统实现技术;无人机;无人系统;机器人",
+          "desc": "智能自主系统感知与认知;智能自主系统实现技术;无人机;无人系统;机器人",
+          "evidence": [
+            {
+              "quote": "智能自主系统感知与认知;智能自主系统实现技术;无人机;无人系统;机器人",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2701,
+                "end_char": 2735
+              },
+              "version": "b4de33f82b3124038517"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +91,189 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ff3d5494f037",
-          "name": "运动规划与3D建模基础理论",
-          "desc": "结题摘要与立项摘要一致，未给出量化成果，预期突破传统方法性能限制",
+          "id": "item-5e9e18115c51",
+          "name": "航天器由于故障、完全失效或任务结束而被放弃后，停留在空间将成为太空垃圾，不但占用了宝贵的轨道资源，还可能危及其它航天器的",
+          "desc": "航天器由于故障、完全失效或任务结束而被放弃后，停留在空间将成为太空垃圾，不但占用了宝贵的轨道资源，还可能危及其它航天器的安全，对故障卫星、失效航天器及轨道垃圾等空间非合作目标的在轨服务需求变得越来越迫切。",
           "evidence": [
             {
-              "quote": "突破传统运动规划和3D建模方法性能受目标特性和空间环境剧烈变化的限制，为空间非合作目标在轨接近观测和3D建模的实现提供基础理论和关键技术支撑。",
+              "quote": "航天器由于故障、完全失效或任务结束而被放弃后，停留在空间将成为太空垃圾，不但占用了宝贵的轨道资源，还可能危及其它航天器的安全，对故障卫星、失效航天器及轨道垃圾等空间非合作目标的在轨服务需求变得越来越迫切。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 946,
-                "end_char": 1016
+                "start_char": 656,
+                "end_char": 757
               },
               "version": "b4de33f82b3124038517"
             }
           ],
-          "status": "原文未明确"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5ac9e3b1e6bb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f1101e0ed00c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed Estimation of a Layered Architecture for Collaborative Air-Ground Target Geolocation in Outdoor Environments",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-06865f8db57f",
+      "evidence": [
+        {
+          "quote": "Distributed Estimation of a Layered Architecture for Collaborative Air-Ground Target Geolocation in Outdoor Environments",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3179,
+            "end_char": 3298
+          },
+          "version": "b4de33f82b3124038517"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f1101e0ed00c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7e4afb0908c4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于小型国产计算设备的协同计算系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-35fcd12fafee",
+      "evidence": [
+        {
+          "quote": "一种基于小型国产计算设备的协同计算系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3357,
+            "end_char": 3378
+          },
+          "version": "b4de33f82b3124038517"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7e4afb0908c4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ff3d5494f037"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "MGG: Monocular Global Geolocation for Outdoor Long-Range Targets",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2f30050119b2",
+      "evidence": [
+        {
+          "quote": "MGG: Monocular Global Geolocation for Outdoor Long-Range Targets",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3406,
+            "end_char": 3469
+          },
+          "version": "b4de33f82b3124038517"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "北京理工大学优秀博士后",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c67e4d88eb42",
+      "evidence": [
+        {
+          "quote": "北京理工大学优秀博士后",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3542,
+            "end_char": 3552
+          },
+          "version": "b4de33f82b3124038517"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种空间飞行器的神经辐射场重建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9747fd3d6b19",
+      "evidence": [
+        {
+          "quote": "一种空间飞行器的神经辐射场重建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3568,
+            "end_char": 3584
+          },
+          "version": "b4de33f82b3124038517"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "第八届中国科协青年人才托举工程",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0cfdc49bc6c",
+      "evidence": [
+        {
+          "quote": "第八届中国科协青年人才托举工程",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3616,
+            "end_char": 3630
+          },
+          "version": "b4de33f82b3124038517"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于多目视觉的广视场高速运动体速度测算与轨迹绘制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1ae7ab1a381d",
+      "evidence": [
+        {
+          "quote": "一种基于多目视觉的广视场高速运动体速度测算与轨迹绘制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3646,
+            "end_char": 3673
+          },
+          "version": "b4de33f82b3124038517"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

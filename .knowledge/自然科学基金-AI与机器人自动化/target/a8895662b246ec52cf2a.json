@@ -2,15 +2,20 @@
   "doc_id": "a8895662b246ec52cf2a",
   "version": "e351bb6ed9ec03a6e947",
   "source_hash": "81efc5ef5dbf66686ebb68085091d6ad744cd18ea1ba9c760c6f7c28a2ea3c60",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:58:25.836789+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:19.135846+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b2a90a26d29c",
-          "name": "多智能体强化学习评估",
-          "desc": "分布式MARL算法的标准评估体系建设",
+          "id": "item-fd61e050e24a",
+          "name": "多智能体深度强化学习是研究“群体智能学习”的新一代重要理论与方法，是近年来新兴的深度强化学习与历史悠久的博弈论交叉形成的",
+          "desc": "多智能体深度强化学习是研究“群体智能学习”的新一代重要理论与方法，是近年来新兴的深度强化学习与历史悠久的博弈论交叉形成的新研究方向。",
           "evidence": [
             {
-              "quote": "本项目针对分布式多智能体深度强化学习面临的评估环境缺乏统一标准、对手策略单一及评估效率低等关键问题，从标准化环境构建、多样化策略生成及高效采样评估三个维度，在多个细分领域开展了系统性研究。",
+              "quote": "多智能体深度强化学习是研究“群体智能学习”的新一代重要理论与方法，是近年来新兴的深度强化学习与历史悠久的博弈论交叉形成的新研究方向。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2230,
-                "end_char": 2323
+                "start_char": 656,
+                "end_char": 721
+              },
+              "version": "e351bb6ed9ec03a6e947"
+            }
+          ]
+        },
+        {
+          "id": "item-2eeef648f6cf",
+          "name": "面向复杂经济系统仿真需求，研发了支持万级智能体交互的TaxAI经济仿真器，实现复杂经济行为的精细化模拟；",
+          "desc": "面向复杂经济系统仿真需求，研发了支持万级智能体交互的TaxAI经济仿真器，实现复杂经济行为的精细化模拟；",
+          "evidence": [
+            {
+              "quote": "面向复杂经济系统仿真需求，研发了支持万级智能体交互的TaxAI经济仿真器，实现复杂经济行为的精细化模拟；",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2380,
+                "end_char": 2431
               },
               "version": "e351bb6ed9ec03a6e947"
             }
@@ -41,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f0f91f14cc91",
-          "name": "评估环境对手采样三难题",
-          "desc": "评估环境难统一、对手策略难选取、对局采样复杂度高",
+          "id": "item-ed85ed1a7bf7",
+          "name": "分布式多智能体深度强化学习算法的评估主要涉及评估环境、对手策略、对局采样三个方面，其中分别存在着评估环境难以统一、对手策",
+          "desc": "分布式多智能体深度强化学习算法的评估主要涉及评估环境、对手策略、对局采样三个方面，其中分别存在着评估环境难以统一、对手策略难以选取、对局采样复杂度高等亟需解决的重要问题。",
           "evidence": [
             {
               "quote": "分布式多智能体深度强化学习算法的评估主要涉及评估环境、对手策略、对局采样三个方面，其中分别存在着评估环境难以统一、对手策略难以选取、对局采样复杂度高等亟需解决的重要问题。",
@@ -51,6 +72,22 @@
                 "basis": "parsed_text",
                 "start_char": 783,
                 "end_char": 867
+              },
+              "version": "e351bb6ed9ec03a6e947"
+            }
+          ]
+        },
+        {
+          "id": "item-223d8b7d6ad0",
+          "name": "尽管多智能体深度强化学习正不断取得新的研究进展，一个重要的基本问题却尚未解决，即分布式多智能体深度强化学习算法的评估问题",
+          "desc": "尽管多智能体深度强化学习正不断取得新的研究进展，一个重要的基本问题却尚未解决，即分布式多智能体深度强化学习算法的评估问题。",
+          "evidence": [
+            {
+              "quote": "尽管多智能体深度强化学习正不断取得新的研究进展，一个重要的基本问题却尚未解决，即分布式多智能体深度强化学习算法的评估问题。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 722,
+                "end_char": 782
               },
               "version": "e351bb6ed9ec03a6e947"
             }
@@ -63,52 +100,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e5b5efff1729",
-          "name": "TaxAI经济仿真器",
-          "desc": "支持万级智能体交互的复杂经济行为精细模拟",
+          "id": "item-69881efcb19b",
+          "name": "针对零样本人机合作场景，提出了高效端到端训练方法E3T，通过混合队友策略构建与队友建模模块，在不依赖人类数据的情况下，实",
+          "desc": "针对零样本人机合作场景，提出了高效端到端训练方法E3T，通过混合队友策略构建与队友建模模块，在不依赖人类数据的情况下，实现了优于主流基线的合作返回性能；",
           "evidence": [
             {
-              "quote": "研发了支持万级智能体交互的TaxAI经济仿真器，实现复杂经济行为的精细化模拟",
+              "quote": "针对零样本人机合作场景，提出了高效端到端训练方法E3T，通过混合队友策略构建与队友建模模块，在不依赖人类数据的情况下，实现了优于主流基线的合作返回性能；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2393,
-                "end_char": 2430
+                "start_char": 2621,
+                "end_char": 2696
               },
               "version": "e351bb6ed9ec03a6e947"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f4432f77bdbe",
-          "name": "种群自博弈进化训练",
-          "desc": "针对谷歌足球环境演化复杂团队战术",
+          "id": "item-6caa96973be6",
+          "name": "本项目计划从基于知识与数据的环境维度挖掘与环境集构建、基于多样性度量与策略池最简化的代表性对手策略池生成算法、基于低秩矩",
+          "desc": "本项目计划从基于知识与数据的环境维度挖掘与环境集构建、基于多样性度量与策略池最简化的代表性对手策略池生成算法、基于低秩矩阵填充和置信区间上界算法的对局策略采样算法三个方面入手解决该问题，目标是构建该研究领域的标准评估体系，从而达到类似ImageNet之于计算机视觉和深度学习的研究促进效果，推动多智能体深度强化学习算法更好更快地发展。",
           "evidence": [
             {
-              "quote": "提出了基于种群自博弈的进化训练框架，可有效演化出复杂团队战术",
+              "quote": "本项目计划从基于知识与数据的环境维度挖掘与环境集构建、基于多样性度量与策略池最简化的代表性对手策略池生成算法、基于低秩矩阵填充和置信区间上界算法的对局策略采样算法三个方面入手解决该问题，目标是构建该研究领域的标准评估体系，从而达到类似ImageNet之于计算机视觉和深度学习的研究促进效果，推动多智能体深度强化学习算法更好更快地发展。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2590,
-                "end_char": 2619
+                "start_char": 868,
+                "end_char": 1034
               },
               "version": "e351bb6ed9ec03a6e947"
             }
-          ]
-        },
-        {
-          "id": "item-2bbbdc663220",
-          "name": "PIE自注意力排名算法",
-          "desc": "解决循环博弈挑战与团队贡献分配难题",
-          "evidence": [
-            {
-              "quote": "设计了基于自注意力机制的PIE排名算法，解决了循环博弈挑战和团队中贡献分配的难题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2842,
-                "end_char": 2882
-              },
-              "version": "e351bb6ed9ec03a6e947"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,108 +140,184 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a3d9279429b1",
-          "name": "E3T零样本人机合作",
-          "desc": "不依赖人类数据实现优于主流基线的合作返回性能",
+          "id": "item-0894a763d7df",
+          "name": "多智能体深度强化学习是研究“群体智能学习”的新一代重要理论与方法，是近年来新兴的深度强化学习与历史悠久的博弈论交叉形成的",
+          "desc": "多智能体深度强化学习是研究“群体智能学习”的新一代重要理论与方法，是近年来新兴的深度强化学习与历史悠久的博弈论交叉形成的新研究方向。",
           "evidence": [
             {
-              "quote": "提出了高效端到端训练方法E3T，通过混合队友策略构建与队友建模模块，在不依赖人类数据的情况下，实现了优于主流基线的合作返回性能",
+              "quote": "多智能体深度强化学习是研究“群体智能学习”的新一代重要理论与方法，是近年来新兴的深度强化学习与历史悠久的博弈论交叉形成的新研究方向。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2633,
-                "end_char": 2695
+                "start_char": 656,
+                "end_char": 721
               },
               "version": "e351bb6ed9ec03a6e947"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-56b7547e9a2a",
-          "name": "国际竞赛评估体系验证",
-          "desc": "联合AAMAS、IJCAI及CCF举办竞赛，数百队伍策略样本验证评估体系鲁棒性",
+          "id": "item-7563845e3e6f",
+          "name": "本项目针对分布式多智能体深度强化学习面临的评估环境缺乏统一标准、对手策略单一及评估效率低等关键问题，从标准化环境构建、多",
+          "desc": "本项目针对分布式多智能体深度强化学习面临的评估环境缺乏统一标准、对手策略单一及评估效率低等关键问题，从标准化环境构建、多样化策略生成及高效采样评估三个维度，在多个细分领域开展了系统性研究。",
           "evidence": [
             {
-              "quote": "联合AAMAS、IJCAI及CCF成功举办了多场国内外竞赛，收集了全球数百支队伍的策略样本，验证了包含环境、算法及评估方法在内的评估体系的鲁棒性。",
+              "quote": "本项目针对分布式多智能体深度强化学习面临的评估环境缺乏统一标准、对手策略单一及评估效率低等关键问题，从标准化环境构建、多样化策略生成及高效采样评估三个维度，在多个细分领域开展了系统性研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2892,
-                "end_char": 2964
+                "start_char": 2230,
+                "end_char": 2323
               },
               "version": "e351bb6ed9ec03a6e947"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b2a90a26d29c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f0f91f14cc91"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Offline Pre-trained Multi-agent Decision Transformer",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-055e8ecda6d3",
+      "evidence": [
+        {
+          "quote": "Offline Pre-trained Multi-agent Decision Transformer",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3059,
+            "end_char": 3110
+          },
+          "version": "e351bb6ed9ec03a6e947"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f0f91f14cc91"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e5b5efff1729"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Efficient End-to-End Training Approach for Zero-Shot Human-AI Coordination",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d9ee7428db1",
+      "evidence": [
+        {
+          "quote": "An Efficient End-to-End Training Approach for Zero-Shot Human-AI Coordination",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3247,
+            "end_char": 3323
+          },
+          "version": "e351bb6ed9ec03a6e947"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f0f91f14cc91"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f4432f77bdbe"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning to Discuss Strategically: A Case Study on One Night Ultimate Werewolf",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-100545f6992e",
+      "evidence": [
+        {
+          "quote": "Learning to Discuss Strategically: A Case Study on One Night Ultimate Werewolf",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3401,
+            "end_char": 3478
+          },
+          "version": "e351bb6ed9ec03a6e947"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f0f91f14cc91"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2bbbdc663220"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "TaxAI: A Dynamic Economic Simulator and Benchmark for Multi-Agent Reinforcement Learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e0f81ee814bf",
+      "evidence": [
+        {
+          "quote": "TaxAI: A Dynamic Economic Simulator and Benchmark for Multi-Agent Reinforcement Learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3555,
+            "end_char": 3642
+          },
+          "version": "e351bb6ed9ec03a6e947"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f4432f77bdbe"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a3d9279429b1"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "AI-Olympics: Exploring the Generalization of Agents through Open Competitions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f84bb34f7210",
+      "evidence": [
+        {
+          "quote": "AI-Olympics: Exploring the Generalization of Agents through Open Competitions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3719,
+            "end_char": 3795
+          },
+          "version": "e351bb6ed9ec03a6e947"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2bbbdc663220"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-56b7547e9a2a"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Boosting Studies of Multi-Agent Reinforcement Learning on Google Research Football Environment: the Past, Present, and Future",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-1d24ba0642aa",
+      "evidence": [
+        {
+          "quote": "Boosting Studies of Multi-Agent Reinforcement Learning on Google Research Football Environment: the Past, Present, and Future",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3878,
+            "end_char": 4002
+          },
+          "version": "e351bb6ed9ec03a6e947"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

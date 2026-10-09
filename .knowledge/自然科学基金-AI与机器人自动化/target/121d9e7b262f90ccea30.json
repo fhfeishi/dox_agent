@@ -2,15 +2,20 @@
   "doc_id": "121d9e7b262f90ccea30",
   "version": "6786a20b0fd84f1e518c",
   "source_hash": "7ce278ad7a2335909031b464e50de6f094832d74def38edd0306329b3f1f405d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:38:36.069303+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.663537+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-aa31cad3b859",
-          "name": "脑卒中偏瘫康复",
-          "desc": "面向脑卒中偏瘫卧床患者的运动功能康复与神经肌肉功能重建",
+          "id": "item-e027e68eadd3",
+          "name": "偏瘫是脑卒中的主要后遗症，严重影响患者的生活质量。",
+          "desc": "偏瘫是脑卒中的主要后遗症，严重影响患者的生活质量。",
           "evidence": [
             {
-              "quote": "本项目面向脑卒中偏瘫患者，研究了康复干预过程中的神经肌肉血管耦合机制，发展了多物理场协同的康复方法，开发了主动式智能康复机器人系统",
+              "quote": "偏瘫是脑卒中的主要后遗症，严重影响患者的生活质量。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3103,
-                "end_char": 3167
+                "start_char": 675,
+                "end_char": 699
+              },
+              "version": "6786a20b0fd84f1e518c"
+            }
+          ]
+        },
+        {
+          "id": "item-731a5859e147",
+          "name": "研究成果不仅丰富了脑卒中后脑功能重塑的理论体系，为理解运动功能障碍的神经机制提供了新视角，更提供了一系列兼具特异性与实用",
+          "desc": "研究成果不仅丰富了脑卒中后脑功能重塑的理论体系，为理解运动功能障碍的神经机制提供了新视角，更提供了一系列兼具特异性与实用性的客观评估指标和标准化技术流程，可直接应用于临床脑卒中康复效果评估、方案优化等场景，同时为相关康复设备研发提供理论支撑。",
+          "evidence": [
+            {
+              "quote": "研究成果不仅丰富了脑卒中后脑功能重塑的理论体系，为理解运动功能障碍的神经机制提供了新视角，更提供了一系列兼具特异性与实用性的客观评估指标和标准化技术流程，可直接应用于临床脑卒中康复效果评估、方案优化等场景，同时为相关康复设备研发提供理论支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3457,
+                "end_char": 3577
               },
               "version": "6786a20b0fd84f1e518c"
             }
@@ -38,77 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d943ec84540f",
-          "name": "神经肌肉供氧不足",
-          "desc": "偏瘫患者活动受限导致神经肌肉功能减退、心肺功能下降、供氧不足，限制康复效果",
-          "evidence": [
-            {
-              "quote": "偏瘫患者因活动受限，不仅会导致神经肌肉功能减退，还会引起心肺功能下降、血液循环不畅，造成神经肌肉供氧不足，这可能是限制患者运动功能康复效果的重要原因之一",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3026,
-                "end_char": 3101
-              },
-              "version": "6786a20b0fd84f1e518c"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-d098a135e42c",
-          "name": "多模信号同步采集",
-          "desc": "一体化无创/微创的电生理信号与血氧信号同步采集系统",
+          "id": "item-eb4a4a4705d0",
+          "name": "在康复机器人系统方面，探索了人体上肢冗余控制规律并提出类人致动辅助结构，通过建立可穿戴外骨骼机构的运动学及动力学模型，提",
+          "desc": "在康复机器人系统方面，探索了人体上肢冗余控制规律并提出类人致动辅助结构，通过建立可穿戴外骨骼机构的运动学及动力学模型，提出兼顾人体运动意图识别、训练轨迹在线规划、干预水平自适应调节的“患者在环中”的普适性康复辅助策略，并验证了智能康复系统在神经肌肉功能重建中的临床有效性。",
           "evidence": [
             {
-              "quote": "构建了一体化无创/微创的电生理信号与血氧信号同步采集系统，实现肌电/肌氧、脑电/脑氧信息的时-空同步（同时间、同位置）获取",
+              "quote": "在康复机器人系统方面，探索了人体上肢冗余控制规律并提出类人致动辅助结构，通过建立可穿戴外骨骼机构的运动学及动力学模型，提出兼顾人体运动意图识别、训练轨迹在线规划、干预水平自适应调节的“患者在环中”的普适性康复辅助策略，并验证了智能康复系统在神经肌肉功能重建中的临床有效性。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3179,
-                "end_char": 3239
+                "start_char": 3578,
+                "end_char": 3713
               },
               "version": "6786a20b0fd84f1e518c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-93efe37d1f6a",
-          "name": "多物理场协同康复",
-          "desc": "联合任务导向型运动训练、功能电刺激等手段的多物理场协同康复干预方法",
+          "id": "item-b83d085c370a",
+          "name": "研究成果不仅丰富了脑卒中后脑功能重塑的理论体系，为理解运动功能障碍的神经机制提供了新视角，更提供了一系列兼具特异性与实用",
+          "desc": "研究成果不仅丰富了脑卒中后脑功能重塑的理论体系，为理解运动功能障碍的神经机制提供了新视角，更提供了一系列兼具特异性与实用性的客观评估指标和标准化技术流程，可直接应用于临床脑卒中康复效果评估、方案优化等场景，同时为相关康复设备研发提供理论支撑。",
           "evidence": [
             {
-              "quote": "联合任务导向型运动训练、功能电刺激等手段，发展了多物理场协同康复干预方法和技术",
+              "quote": "研究成果不仅丰富了脑卒中后脑功能重塑的理论体系，为理解运动功能障碍的神经机制提供了新视角，更提供了一系列兼具特异性与实用性的客观评估指标和标准化技术流程，可直接应用于临床脑卒中康复效果评估、方案优化等场景，同时为相关康复设备研发提供理论支撑。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3287,
-                "end_char": 3325
+                "start_char": 3457,
+                "end_char": 3577
               },
               "version": "6786a20b0fd84f1e518c"
             }
-          ]
-        },
-        {
-          "id": "item-d8b1bdd3c88b",
-          "name": "患者在环康复策略",
-          "desc": "兼顾运动意图识别、轨迹在线规划、干预自适应调节的“患者在环中”康复辅助策略",
-          "evidence": [
-            {
-              "quote": "提出兼顾人体运动意图识别、训练轨迹在线规划、干预水平自适应调节的“患者在环中”的普适性康复辅助策略",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3637,
-                "end_char": 3685
-              },
-              "version": "6786a20b0fd84f1e518c"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,80 +107,893 @@
       "state": "has",
       "items": [
         {
-          "id": "item-13e7adbbceda",
-          "name": "多维评估指标体系",
-          "desc": "建立包含电生理、血氧代谢、网络连接及跨模态耦合的多维度评估指标体系",
+          "id": "item-4d6497a7cf17",
+          "name": "偏瘫是脑卒中的主要后遗症，严重影响患者的生活质量。",
+          "desc": "偏瘫是脑卒中的主要后遗症，严重影响患者的生活质量。",
           "evidence": [
             {
-              "quote": "建立了包含电生理、血氧代谢、网络连接及跨模态耦合的多维度评估指标体系，填补了单一模态评估难以全面反映脑功能状态的空白",
+              "quote": "偏瘫是脑卒中的主要后遗症，严重影响患者的生活质量。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3398,
-                "end_char": 3455
+                "start_char": 675,
+                "end_char": 699
               },
               "version": "6786a20b0fd84f1e518c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-aa31cad3b859"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d943ec84540f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于电生理与血液微循环信息的神经肌肉功能评估初步研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a4ffb19f89b",
+      "evidence": [
+        {
+          "quote": "基于电生理与血液微循环信息的神经肌肉功能评估初步研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3784,
+            "end_char": 3809
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d943ec84540f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d098a135e42c"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Brain Rhythmic Activity and Hemodynamic Response During Wrist Extension Induced by Functional Electrical Stimulation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bab814a467a4",
+      "evidence": [
+        {
+          "quote": "Brain Rhythmic Activity and Hemodynamic Response During Wrist Extension Induced by Functional Electrical Stimulation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3852,
+            "end_char": 3967
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d943ec84540f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-93efe37d1f6a"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Forward Kinematics Analysis of 6-PUS Parallel Mechanism based on Optimized BP-NR Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-af0da2f22192",
+      "evidence": [
+        {
+          "quote": "Forward Kinematics Analysis of 6-PUS Parallel Mechanism based on Optimized BP-NR Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4049,
+            "end_char": 4138
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d8b1bdd3c88b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-13e7adbbceda"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A compound-structured piezoelectret system and its applications in wearable health monitoring",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9091bde43e0b",
+      "evidence": [
+        {
+          "quote": "A compound-structured piezoelectret system and its applications in wearable health monitoring",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4196,
+            "end_char": 4288
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d098a135e42c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-13e7adbbceda"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Simulation and Fabrication of PMN-PT Single Crystals Phased Array Ultrasonic Transducer Based on Alternating and Direct Current Poling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a1c80d8a97a7",
+      "evidence": [
+        {
+          "quote": "Simulation and Fabrication of PMN-PT Single Crystals Phased Array Ultrasonic Transducer Based on Alternating and Direct Current Poling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4362,
+            "end_char": 4495
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Air-Borne Ultrasonic Transducers Based on Cross-Linked Polypropylene Ferro/Piezoelectrets",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c8fb0c4898bf",
+      "evidence": [
+        {
+          "quote": "Air-Borne Ultrasonic Transducers Based on Cross-Linked Polypropylene Ferro/Piezoelectrets",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4584,
+            "end_char": 4672
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "运动功能障碍程度评价模型、评价装置及评价系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f63e3c12dce",
+      "evidence": [
+        {
+          "quote": "运动功能障碍程度评价模型、评价装置及评价系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4781,
+            "end_char": 4802
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于肌电与肌氧复合阵列信息的腰背痛识别系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6c76e3e0fc59",
+      "evidence": [
+        {
+          "quote": "基于肌电与肌氧复合阵列信息的腰背痛识别系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4832,
+            "end_char": 4855
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Graded Assessment System for Parkinson’s Upper-Limb Bradykinesia Based on a Temporal Convolutional Network Model",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-648c4dc57249",
+      "evidence": [
+        {
+          "quote": "A Graded Assessment System for Parkinson’s Upper-Limb Bradykinesia Based on a Temporal Convolutional Network Model",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4884,
+            "end_char": 4997
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Restoration of Tactile Sensation for Prosthetic Users by Non-Invasive Electrical Stimulation and Assessment with EEG",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3e2a7e32b5f5",
+      "evidence": [
+        {
+          "quote": "Restoration of Tactile Sensation for Prosthetic Users by Non-Invasive Electrical Stimulation and Assessment with EEG",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5069,
+            "end_char": 5184
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于电刺激的疼痛缓解装置及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3af35d2866fc",
+      "evidence": [
+        {
+          "quote": "一种基于电刺激的疼痛缓解装置及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5311,
+            "end_char": 5327
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Evaluation of Neurovascular Coupling Behaviors for FES-Induced Wrist Movements Based on Synchronized EEG-fNIRS Signals",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-65789c86680b",
+      "evidence": [
+        {
+          "quote": "Evaluation of Neurovascular Coupling Behaviors for FES-Induced Wrist Movements Based on Synchronized EEG-fNIRS Signals",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5357,
+            "end_char": 5474
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "康复机器人主动训练柔性控制方法及装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7daae8ee0111",
+      "evidence": [
+        {
+          "quote": "康复机器人主动训练柔性控制方法及装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5567,
+            "end_char": 5584
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development and Control of an Upper-Limb Exoskeleton CASIA-EXO for Motor Learning in Post-Stroke Rehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-568dc719e39e",
+      "evidence": [
+        {
+          "quote": "Development and Control of an Upper-Limb Exoskeleton CASIA-EXO for Motor Learning in Post-Stroke Rehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5613,
+            "end_char": 5723
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Recent advances in wearable electromechanical sensors—Moving towards machine learning-assisted wearable sensing systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-187a2a4a3e9c",
+      "evidence": [
+        {
+          "quote": "Recent advances in wearable electromechanical sensors—Moving towards machine learning-assisted wearable sensing systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5773,
+            "end_char": 5891
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "目标对象的连带反应程度的确定方法、装置及设备",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ffbd5d4d4c52",
+      "evidence": [
+        {
+          "quote": "目标对象的连带反应程度的确定方法、装置及设备",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5966,
+            "end_char": 5987
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Performance Characterization and Application Assessment for a Type of 3-D-Printed Microneedle Array Electrodes Toward High-Quality Electrophysiological Recording",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c7f2e610d140",
+      "evidence": [
+        {
+          "quote": "Performance Characterization and Application Assessment for a Type of 3-D-Printed Microneedle Array Electrodes Toward High-Quality Electrophysiological Recording",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6016,
+            "end_char": 6176
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Preliminary Study on the Functional Coupling between Nerve and Blood Microcirculation for Applications in Rehabilitation Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b463e18e4695",
+      "evidence": [
+        {
+          "quote": "A Preliminary Study on the Functional Coupling between Nerve and Blood Microcirculation for Applications in Rehabilitation Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6261,
+            "end_char": 6389
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Microneedle Array Electrodes Fabricated With 3D Printing Technology for High-Quality Electrophysiological Acquisition",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2b65bebb5d4d",
+      "evidence": [
+        {
+          "quote": "Microneedle Array Electrodes Fabricated With 3D Printing Technology for High-Quality Electrophysiological Acquisition",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6572,
+            "end_char": 6688
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于电生理与血液微循环信号的脑功能耦合分析方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a11cc333727a",
+      "evidence": [
+        {
+          "quote": "一种基于电生理与血液微循环信号的脑功能耦合分析方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6810,
+            "end_char": 6834
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Motion Classification Based on the Fusion of EEG and fNIRS Signals for Human-Machine Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8b7e666cfcf8",
+      "evidence": [
+        {
+          "quote": "Motion Classification Based on the Fusion of EEG and fNIRS Signals for Human-Machine Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6882,
+            "end_char": 6973
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "sEMG-Based Gesture Recognition Method for Coal Mine Inspection Manipulator Using Multistream CNN",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9b8b760ccc2",
+      "evidence": [
+        {
+          "quote": "sEMG-Based Gesture Recognition Method for Coal Mine Inspection Manipulator Using Multistream CNN",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7088,
+            "end_char": 7183
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "一种基于生成对抗网络的运动想象脑电数据增强方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-155915872f72",
+      "evidence": [
+        {
+          "quote": "一种基于生成对抗网络的运动想象脑电数据增强方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7255,
+            "end_char": 7277
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种用于远程操作的人机交互方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-2d25ed30a17d",
+      "evidence": [
+        {
+          "quote": "一种用于远程操作的人机交互方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7312,
+            "end_char": 7329
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Graph-Based Multimodal Fusion Framework for Assessment of Freezing of Gait in Parkinson's Disease",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7578496cf456",
+      "evidence": [
+        {
+          "quote": "A Graph-Based Multimodal Fusion Framework for Assessment of Freezing of Gait in Parkinson's Disease",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7369,
+            "end_char": 7467
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种电生理信号与血液微循环信号同步检测装置",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-04d0a7b390ab",
+      "evidence": [
+        {
+          "quote": "一种电生理信号与血液微循环信号同步检测装置",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7563,
+            "end_char": 7583
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Continuous grip force estimation from surface electromyography using generalized regression neural network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ddde5e8e2b1b",
+      "evidence": [
+        {
+          "quote": "Continuous grip force estimation from surface electromyography using generalized regression neural network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7618,
+            "end_char": 7723
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Simultaneous estimation of grip force and wrist angles by surface electromyography and acceleration signals",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c77889b4665",
+      "evidence": [
+        {
+          "quote": "Simultaneous estimation of grip force and wrist angles by surface electromyography and acceleration signals",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7817,
+            "end_char": 7923
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Approach for EEG Data Augmentation Based on Deep Convolutional Generative Adversarial Network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-84d2611d7474",
+      "evidence": [
+        {
+          "quote": "An Approach for EEG Data Augmentation Based on Deep Convolutional Generative Adversarial Network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7995,
+            "end_char": 8090
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "融合多模信息与感觉反馈的智能健康监测与预警技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-44bc1221b691",
+      "evidence": [
+        {
+          "quote": "融合多模信息与感觉反馈的智能健康监测与预警技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8220,
+            "end_char": 8242
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Easy-to-Use Assessment System for Spasticity Severity Quantification in Post-Stroke Rehabilitation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c33573b0c6c0",
+      "evidence": [
+        {
+          "quote": "An Easy-to-Use Assessment System for Spasticity Severity Quantification in Post-Stroke Rehabilitation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8278,
+            "end_char": 8378
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于脑电微状态和表面肌电观察重复经颅磁刺激对脑卒中后右侧偏瘫患者上肢运动功能的影响",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-44b3ed5b6a5a",
+      "evidence": [
+        {
+          "quote": "基于脑电微状态和表面肌电观察重复经颅磁刺激对脑卒中后右侧偏瘫患者上肢运动功能的影响",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8448,
+            "end_char": 8488
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于人机交互的沉浸式训练系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-15b504581d0c",
+      "evidence": [
+        {
+          "quote": "一种基于人机交互的沉浸式训练系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8526,
+            "end_char": 8541
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cluster-based Muscle Synergy Analysis Scheme for Assessing Crawling Motor Function in Children with Cerebral Palsy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-56b693918342",
+      "evidence": [
+        {
+          "quote": "Cluster-based Muscle Synergy Analysis Scheme for Assessing Crawling Motor Function in Children with Cerebral Palsy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8577,
+            "end_char": 8690
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Evoking and Evaluation of Non-invasive Sensory Feedback for Applications in Neural Rehabilitation: A Pilot Study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ff9e29bec40f",
+      "evidence": [
+        {
+          "quote": "Evoking and Evaluation of Non-invasive Sensory Feedback for Applications in Neural Rehabilitation: A Pilot Study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8767,
+            "end_char": 8878
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Effect of repetitive transcranial magnetic stimulation on upper limb motor function in stroke patients with right hemiplegia based on EEG microstates and EMG",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9a0375d95179",
+      "evidence": [
+        {
+          "quote": "Effect of repetitive transcranial magnetic stimulation on upper limb motor function in stroke patients with right hemiplegia based on EEG microstates and EMG",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8981,
+            "end_char": 9137
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Preparation, characterization, and application assessment for a compound-structure piezoelectret combining polypropylene and fluorinated polymers",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f5d55958ebd",
+      "evidence": [
+        {
+          "quote": "Preparation, characterization, and application assessment for a compound-structure piezoelectret combining polypropylene and fluorinated polymers",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9226,
+            "end_char": 9370
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analysis of Disease-Induced Changes in Human Locomotor Patterns Through the Co-Joint Synergistic Attention Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3d257161d5d1",
+      "evidence": [
+        {
+          "quote": "Analysis of Disease-Induced Changes in Human Locomotor Patterns Through the Co-Joint Synergistic Attention Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9492,
+            "end_char": 9607
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Performance Characterization of a Type of Microneedle Array Electrode and Its Application in Muscle Fatigue Assessment: A Preliminary Study",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-fb85fdcf3f5a",
+      "evidence": [
+        {
+          "quote": "Performance Characterization of a Type of Microneedle Array Electrode and Its Application in Muscle Fatigue Assessment: A Preliminary Study",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9703,
+            "end_char": 9841
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive Adjustment of FES Profiles Using Norm-Optimal Iterative Learning Control for Foot Drop Correction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0c415736ed3d",
+      "evidence": [
+        {
+          "quote": "Adaptive Adjustment of FES Profiles Using Norm-Optimal Iterative Learning Control for Foot Drop Correction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9925,
+            "end_char": 10030
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Double-Hurdle Quantification Model for Freezing of Gait of Parkinson's Patients",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3018fabefecd",
+      "evidence": [
+        {
+          "quote": "A Double-Hurdle Quantification Model for Freezing of Gait of Parkinson's Patients",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10118,
+            "end_char": 10198
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Modeling and Assessing Hip-Knee Joint Coordination Based on Cyclograms Using a Portable Motion Capture System",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a6c96d16e533",
+      "evidence": [
+        {
+          "quote": "Modeling and Assessing Hip-Knee Joint Coordination Based on Cyclograms Using a Portable Motion Capture System",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10296,
+            "end_char": 10404
+          },
+          "version": "6786a20b0fd84f1e518c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 42,
+    "listed": 42,
+    "by_kind": {
+      "会议论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "期刊论文": {
+        "listed": 22,
+        "extracted": 22
+      },
+      "专利": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

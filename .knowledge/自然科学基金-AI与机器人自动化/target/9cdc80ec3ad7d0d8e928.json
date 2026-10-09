@@ -2,15 +2,20 @@
   "doc_id": "9cdc80ec3ad7d0d8e928",
   "version": "3779c55ccff289794087",
   "source_hash": "251e9a29cb76436482192f3789dbd363b94863bb8d24eb2935e92a0188980663",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:16:41.884310+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.973609+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-553b5ba11a93",
-          "name": "月球探测移动机械臂遥操作",
-          "desc": "探月工程对移动机械臂高效、安全遥操作的迫切需求",
+          "id": "item-5dc8bf2c9480",
+          "name": "面向我国探月工程需求，为提升移动机械臂在遥操作过程中的效率、精准性及安全性，本项目拟围绕移动机械臂遥操作系统的稳定性及透",
+          "desc": "面向我国探月工程需求，为提升移动机械臂在遥操作过程中的效率、精准性及安全性，本项目拟围绕移动机械臂遥操作系统的稳定性及透明性等问题展开研究。",
           "evidence": [
             {
-              "quote": "面向我国探月工程对移动机械臂高效、安全遥操作的迫切需求，针对松软崎岖地形上车轮滑转、动力学耦合及多操作者协同等难题",
+              "quote": "面向我国探月工程需求，为提升移动机械臂在遥操作过程中的效率、精准性及安全性，本项目拟围绕移动机械臂遥操作系统的稳定性及透明性等问题展开研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2930,
-                "end_char": 2986
+                "start_char": 663,
+                "end_char": 732
               },
               "version": "3779c55ccff289794087"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d591745c433d",
-          "name": "车轮滑转与多操作者协同",
-          "desc": "车轮纵向/侧向滑动导致传统运动学遥操作方法失效，多操作者协同复杂",
+          "id": "item-89b3b37697bd",
+          "name": ".其次，针对机械臂遥操作在大工作空间覆盖与高精度定点操作之间难以兼顾的问题，提出了基于“大–小双比例”的多尺度运动映射遥",
+          "desc": ".其次，针对机械臂遥操作在大工作空间覆盖与高精度定点操作之间难以兼顾的问题，提出了基于“大–小双比例”的多尺度运动映射遥操作框架，引入双操作者协同机制，阐明了不同尺度下协同遥操作机理，并设计了自适应力反馈策略、双臂机器人人机柔性协同遥操作技术与基于操作者意图引导的人机共享控制策略，提升机械臂遥操作的精度与自主性，减轻操作者负担。",
           "evidence": [
             {
-              "quote": "针对车轮纵向/侧向滑动导致传统运动学遥操作方法失效难题，建立了考虑车轮滑转效应的无人车动力学模型，刻画了滑动参数对双边遥操作稳定性与透明性的影响规律",
+              "quote": ".其次，针对机械臂遥操作在大工作空间覆盖与高精度定点操作之间难以兼顾的问题，提出了基于“大–小双比例”的多尺度运动映射遥操作框架，引入双操作者协同机制，阐明了不同尺度下协同遥操作机理，并设计了自适应力反馈策略、双臂机器人人机柔性协同遥操作技术与基于操作者意图引导的人机共享控制策略，提升机械臂遥操作的精度与自主性，减轻操作者负担。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3056,
-                "end_char": 3129
+                "start_char": 3220,
+                "end_char": 3384
               },
               "version": "3779c55ccff289794087"
             }
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9a924d168920",
-          "name": "时域无源性双边遥操作",
-          "desc": "前馈补偿与时域无源控制融合，构建透明稳定的月球车双边动力学遥操作",
+          "id": "item-483dc158782d",
+          "name": "融合前馈补偿与时域无源控制方法，构建了透明、稳定的月球车双边动力学遥操作技术，并结合自主导航、势场约束协同遥操作及增量式",
+          "desc": "融合前馈补偿与时域无源控制方法，构建了透明、稳定的月球车双边动力学遥操作技术，并结合自主导航、势场约束协同遥操作及增量式偏好学习机制，实现了具备高效人机协同的无人车移动作业系统。",
           "evidence": [
             {
-              "quote": "融合前馈补偿与时域无源控制方法，构建了透明、稳定的月球车双边动力学遥操作技术，并结合自主导航、势场约束协同遥操作及增量式偏好学习机制",
+              "quote": "融合前馈补偿与时域无源控制方法，构建了透明、稳定的月球车双边动力学遥操作技术，并结合自主导航、势场约束协同遥操作及增量式偏好学习机制，实现了具备高效人机协同的无人车移动作业系统。",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3131,
-                "end_char": 3196
+                "end_char": 3219
               },
               "version": "3779c55ccff289794087"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-df6a6456d52e",
-          "name": "大-小双比例多尺度映射",
-          "desc": "基于大-小双比例的多尺度运动映射框架与双操作者协同机制",
+          "id": "item-1464396fd8db",
+          "name": ".其次，针对机械臂遥操作在大工作空间覆盖与高精度定点操作之间难以兼顾的问题，提出了基于“大–小双比例”的多尺度运动映射遥",
+          "desc": ".其次，针对机械臂遥操作在大工作空间覆盖与高精度定点操作之间难以兼顾的问题，提出了基于“大–小双比例”的多尺度运动映射遥操作框架，引入双操作者协同机制，阐明了不同尺度下协同遥操作机理，并设计了自适应力反馈策略、双臂机器人人机柔性协同遥操作技术与基于操作者意图引导的人机共享控制策略，提升机械臂遥操作的精度与自主性，减轻操作者负担。",
           "evidence": [
             {
-              "quote": "提出了基于“大–小双比例”的多尺度运动映射遥操作框架，引入双操作者协同机制，阐明了不同尺度下协同遥操作机理",
+              "quote": ".其次，针对机械臂遥操作在大工作空间覆盖与高精度定点操作之间难以兼顾的问题，提出了基于“大–小双比例”的多尺度运动映射遥操作框架，引入双操作者协同机制，阐明了不同尺度下协同遥操作机理，并设计了自适应力反馈策略、双臂机器人人机柔性协同遥操作技术与基于操作者意图引导的人机共享控制策略，提升机械臂遥操作的精度与自主性，减轻操作者负担。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3258,
-                "end_char": 3310
+                "start_char": 3220,
+                "end_char": 3384
               },
               "version": "3779c55ccff289794087"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +108,532 @@
       "state": "has",
       "items": [
         {
-          "id": "item-df64f2b575ec",
-          "name": "多边遥操作系统集成",
-          "desc": "统一多边遥操作系统框架与多模态遥操作系统一体化集成及多构型实验平台验证",
+          "id": "item-fa202745cd84",
+          "name": "面向我国探月工程需求，为提升移动机械臂在遥操作过程中的效率、精准性及安全性，本项目拟围绕移动机械臂遥操作系统的稳定性及透",
+          "desc": "面向我国探月工程需求，为提升移动机械臂在遥操作过程中的效率、精准性及安全性，本项目拟围绕移动机械臂遥操作系统的稳定性及透明性等问题展开研究。",
           "evidence": [
             {
-              "quote": "面向复杂不确定环境中移动机械臂多操作者协同作业需求，构建了统一的多边遥操作系统框架，开展了移动单臂与移动双臂机器人多操作者协同遥操作研究",
+              "quote": "面向我国探月工程需求，为提升移动机械臂在遥操作过程中的效率、精准性及安全性，本项目拟围绕移动机械臂遥操作系统的稳定性及透明性等问题展开研究。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3390,
-                "end_char": 3457
+                "start_char": 663,
+                "end_char": 732
               },
               "version": "3779c55ccff289794087"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-798b9cf3bcf0",
-          "name": "操作者意图共享控制",
-          "desc": "自适应力反馈策略与基于操作者意图引导的人机共享控制策略提升精度减轻负担",
+          "id": "item-8f356e3534cd",
+          "name": "面向我国探月工程对移动机械臂高效、安全遥操作的迫切需求，针对松软崎岖地形上车轮滑转、动力学耦合及多操作者协同等难题，本项",
+          "desc": "面向我国探月工程对移动机械臂高效、安全遥操作的迫切需求，针对松软崎岖地形上车轮滑转、动力学耦合及多操作者协同等难题，本项目围绕移动机械臂遥操作的稳定性、透明性与人机高效协同开展了系统研究，构建了适用于复杂动态接触作业的多边遥操作理论与方法体系。",
           "evidence": [
             {
-              "quote": "设计了自适应力反馈策略、双臂机器人人机柔性协同遥操作技术与基于操作者意图引导的人机共享控制策略，提升机械臂遥操作的精度与自主性，减轻操作者负担",
+              "quote": "面向我国探月工程对移动机械臂高效、安全遥操作的迫切需求，针对松软崎岖地形上车轮滑转、动力学耦合及多操作者协同等难题，本项目围绕移动机械臂遥操作的稳定性、透明性与人机高效协同开展了系统研究，构建了适用于复杂动态接触作业的多边遥操作理论与方法体系。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3313,
-                "end_char": 3383
+                "start_char": 2930,
+                "end_char": 3051
               },
               "version": "3779c55ccff289794087"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-553b5ba11a93"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d591745c433d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于YOLO的动态障碍物快速点云剔除方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5273f787e000",
+      "evidence": [
+        {
+          "quote": "一种基于YOLO的动态障碍物快速点云剔除方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3746,
+            "end_char": 3770
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d591745c433d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9a924d168920"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fuzzy-Based Variable Impedance Control for Human-Robot Compliant Interaction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-32aea204422a",
+      "evidence": [
+        {
+          "quote": "Fuzzy-Based Variable Impedance Control for Human-Robot Compliant Interaction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3802,
+            "end_char": 3877
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d591745c433d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-df6a6456d52e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on autonomous positioning and adaptive compliant plugging strategies of intelligent charging robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d56a249bbc56",
+      "evidence": [
+        {
+          "quote": "Research on autonomous positioning and adaptive compliant plugging strategies of intelligent charging robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3950,
+            "end_char": 4057
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-df6a6456d52e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-798b9cf3bcf0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Driver Preview Model with Dual Far-near Points for Autonomous Vehicles",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-461f0fdaa85e",
+      "evidence": [
+        {
+          "quote": "Driver Preview Model with Dual Far-near Points for Autonomous Vehicles",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4147,
+            "end_char": 4216
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9a924d168920"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-df64f2b575ec"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Enhanced B-RRT With Discretized Collision Detection Model for Manipulator in Joint Space",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0928f1d5eb7d",
+      "evidence": [
+        {
+          "quote": "Enhanced B-RRT With Discretized Collision Detection Model for Manipulator in Joint Space",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4303,
+            "end_char": 4390
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Teleoperation of Wheeled Mobile Robot With Dynamic Longitudinal Slippage",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9f8f97fef310",
+      "evidence": [
+        {
+          "quote": "Teleoperation of Wheeled Mobile Robot With Dynamic Longitudinal Slippage",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4466,
+            "end_char": 4537
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于两点预瞄的路径跟踪控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d0c521dca930",
+      "evidence": [
+        {
+          "quote": "一种基于两点预瞄的路径跟踪控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4620,
+            "end_char": 4636
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "High-Fidelity Dynamic Modeling and Simulation of Planetary Rovers Using Single-Input-Multi-Output Joints With Terrain Property Mapping",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aead4d6c048f",
+      "evidence": [
+        {
+          "quote": "High-Fidelity Dynamic Modeling and Simulation of Planetary Rovers Using Single-Input-Multi-Output Joints With Terrain Property Mapping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4673,
+            "end_char": 4806
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Human-Machine Collaborative Teleoperation Controller for Autonomous Vehicles Based on Fusion Weight Function",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-605c5ab6caea",
+      "evidence": [
+        {
+          "quote": "Human-Machine Collaborative Teleoperation Controller for Autonomous Vehicles Based on Fusion Weight Function",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4929,
+            "end_char": 5036
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于工业相机和多线激光雷达的半挂车定位方法及系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a228da40a1da",
+      "evidence": [
+        {
+          "quote": "一种基于工业相机和多线激光雷达的半挂车定位方法及系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5108,
+            "end_char": 5133
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Time Domain Passivity Controller for Teleoperation of Four Wheeled Differential Mobile Robot on Slippery Surface",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bbffe16a7e27",
+      "evidence": [
+        {
+          "quote": "A Time Domain Passivity Controller for Teleoperation of Four Wheeled Differential Mobile Robot on Slippery Surface",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5172,
+            "end_char": 5285
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "More Precise and Faster: Dual-Scale Teleoperation for Manipulator in Large Workspace",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-57491c8375c7",
+      "evidence": [
+        {
+          "quote": "More Precise and Faster: Dual-Scale Teleoperation for Manipulator in Large Workspace",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5353,
+            "end_char": 5436
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "月球车地面遥操作技术发展现状与未来展望",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b65a544b7319",
+      "evidence": [
+        {
+          "quote": "月球车地面遥操作技术发展现状与未来展望",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5527,
+            "end_char": 5545
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "UGV Navigation in Complex Environment: An Approach Integrating Security Detection and Obstacle Avoidance Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c1a260a7a8e3",
+      "evidence": [
+        {
+          "quote": "UGV Navigation in Complex Environment: An Approach Integrating Security Detection and Obstacle Avoidance Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5575,
+            "end_char": 5686
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Shared-Control Teleoperation System Based on Potential-Field-Constraint Prediction",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f38475c4a037",
+      "evidence": [
+        {
+          "quote": "A Shared-Control Teleoperation System Based on Potential-Field-Constraint Prediction",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5779,
+            "end_char": 5862
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "复杂地形环境下的多传感器融合SLAM技术",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-032157e2ea95",
+      "evidence": [
+        {
+          "quote": "复杂地形环境下的多传感器融合SLAM技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5960,
+            "end_char": 5979
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Path Tracking and Local Obstacle Avoidance for Automated Vehicle Based on Improved Artificial Potential Field",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18b238f09b8b",
+      "evidence": [
+        {
+          "quote": "Path Tracking and Local Obstacle Avoidance for Automated Vehicle Based on Improved Artificial Potential Field",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6015,
+            "end_char": 6123
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Slippage Estimation via Few-Shot Learning Based on Wheel-Ruts Images for Wheeled Robots on Loose Soil",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-77c3613eab88",
+      "evidence": [
+        {
+          "quote": "Slippage Estimation via Few-Shot Learning Based on Wheel-Ruts Images for Wheeled Robots on Loose Soil",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6237,
+            "end_char": 6337
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Two-Stage Proprioceptive State Estimation with Stability Guarantee for Legged Robots",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-d2ede2dfa35f",
+      "evidence": [
+        {
+          "quote": "Two-Stage Proprioceptive State Estimation with Stability Guarantee for Legged Robots",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6453,
+            "end_char": 6536
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "非结构化环境下无人车遥操作理论与应用研究",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-805562c4b152",
+      "evidence": [
+        {
+          "quote": "非结构化环境下无人车遥操作理论与应用研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6603,
+            "end_char": 6622
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Teleoperation of wheeled mobile robots subject to longitudinal slipping and lateral sliding by time-domain passivity controller",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-377b3e007c17",
+      "evidence": [
+        {
+          "quote": "Teleoperation of wheeled mobile robots subject to longitudinal slipping and lateral sliding by time-domain passivity controller",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6656,
+            "end_char": 6782
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Obstacle Avoidance of Manipulator Based on Artificial Potential Field in Joint Space",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c389c53fa7bc",
+      "evidence": [
+        {
+          "quote": "Obstacle Avoidance of Manipulator Based on Artificial Potential Field in Joint Space",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6866,
+            "end_char": 6949
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fast automatic docking control for electric tractors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-102c7db640a4",
+      "evidence": [
+        {
+          "quote": "Fast automatic docking control for electric tractors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7007,
+            "end_char": 7058
+          },
+          "version": "3779c55ccff289794087"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

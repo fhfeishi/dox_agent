@@ -2,15 +2,20 @@
   "doc_id": "274d1e3c6e86e0871661",
   "version": "56b8166a4588f9ef52e9",
   "source_hash": "eb1123f19b960b2b180140e337a3d57aec4c20fcb291f7728b21e2445c6db2d7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-29T00:43:09.970742+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.857963+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5fb04aeea290",
-          "name": "无人机编队容错控制",
-          "desc": "基于多智能体技术的非线性无人机编队智能容错控制及路径规划",
+          "id": "item-03734f2b097e",
+          "name": "基于多智能体技术的非线性无人机编队中，无人机之间彼此间分工合作、协调协作，克服单一无人机存在的性能不足，完成多重复杂的编",
+          "desc": "基于多智能体技术的非线性无人机编队中，无人机之间彼此间分工合作、协调协作，克服单一无人机存在的性能不足，完成多重复杂的编队任务。",
           "evidence": [
             {
-              "quote": "本项目针对无人机编队控制系统，建立了一套较为完整的基于多智能体技术的智能容错控制与路径规划理论研究框架，并将部分理论成果应用到了四旋翼编队容错控制实验平台",
+              "quote": "基于多智能体技术的非线性无人机编队中，无人机之间彼此间分工合作、协调协作，克服单一无人机存在的性能不足，完成多重复杂的编队任务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2594,
-                "end_char": 2670
+                "start_char": 665,
+                "end_char": 728
               },
               "version": "56b8166a4588f9ef52e9"
             }
@@ -38,77 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5e892a1a4f61",
-          "name": "故障传播性能下降",
-          "desc": "执行器、传感器及通信拓扑故障经信息交互网络传播扩散，破坏单个智能体功能并造成整个系统性能下降",
-          "evidence": [
-            {
-              "quote": "故障经信息交互网络进一步在编队系统中传播和扩散，不仅可以破坏单个智能体的功能，而且造成整个系统的性能下降，这给协同编队控制带来了新的挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 780,
-                "end_char": 847
-              },
-              "version": "56b8166a4588f9ef52e9"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-32d9effd4652",
-          "name": "智能容错编队控制",
-          "desc": "基于神经网络的智能容错编队控制器并引入固定时间和预设时间理论",
+          "id": "item-a43d249bd85b",
+          "name": "本项目针对非线性无人机编队的智能容错控制及其路径规划问题，以实现故障下的任务为目标，研究智能容错编队和路径规划新方法，将",
+          "desc": "本项目针对非线性无人机编队的智能容错控制及其路径规划问题，以实现故障下的任务为目标，研究智能容错编队和路径规划新方法，将通信技术、最优化方法、人工智能技术和容错控制理论相结合，建立有效的容错控制和路径规划新方案，保证故障下无人机编队系统能够完成预期的任务。",
           "evidence": [
             {
-              "quote": "构建基于神经网络的智能容错编队控制器，并引入固定时间和预设时间理论，减小无人机编队收敛时间",
+              "quote": "本项目针对非线性无人机编队的智能容错控制及其路径规划问题，以实现故障下的任务为目标，研究智能容错编队和路径规划新方法，将通信技术、最优化方法、人工智能技术和容错控制理论相结合，建立有效的容错控制和路径规划新方案，保证故障下无人机编队系统能够完成预期的任务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2778,
-                "end_char": 2822
+                "start_char": 849,
+                "end_char": 976
               },
               "version": "56b8166a4588f9ef52e9"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-cd27bb540ff4",
-          "name": "协同避障路径规划",
-          "desc": "面向多约束下无人机编队系统的多无人机协同避障容错路径规划算法",
+          "id": "item-7c94d19a0156",
+          "name": "本项目针对无人机编队控制系统，建立了一套较为完整的基于多智能体技术的智能容错控制与路径规划理论研究框架，并将部分理论成果",
+          "desc": "本项目针对无人机编队控制系统，建立了一套较为完整的基于多智能体技术的智能容错控制与路径规划理论研究框架，并将部分理论成果应用到了四旋翼编队容错控制实验平台。",
           "evidence": [
             {
-              "quote": "针对多约束下无人机编队系统的路径规划问题，研究避障带来的影响，设计多无人机协同避障容错路径规划算法",
+              "quote": "本项目针对无人机编队控制系统，建立了一套较为完整的基于多智能体技术的智能容错控制与路径规划理论研究框架，并将部分理论成果应用到了四旋翼编队容错控制实验平台。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2827,
-                "end_char": 2875
+                "start_char": 2594,
+                "end_char": 2671
               },
               "version": "56b8166a4588f9ef52e9"
             }
-          ]
-        },
-        {
-          "id": "item-a5152752744c",
-          "name": "故障注入实验验证",
-          "desc": "四旋翼编队飞行平台搭建、故障注入和算法部署，实现容错控制实验验证",
-          "evidence": [
-            {
-              "quote": "完成四旋翼编队飞行的平台搭建、故障注入和算法部署，实现了四旋翼无人机编队容错控制的实验验证",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2880,
-                "end_char": 2924
-              },
-              "version": "56b8166a4588f9ef52e9"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,80 +91,1412 @@
       "state": "has",
       "items": [
         {
-          "id": "item-aed46d288714",
-          "name": "论文69篇与省一等奖",
-          "desc": "发表学术论文69篇（SCI 38篇），授权国家发明专利13项，负责人获江苏省科学技术一等奖",
+          "id": "item-c6acc05f2810",
+          "name": "基于多智能体技术的非线性无人机编队中，无人机之间彼此间分工合作、协调协作，克服单一无人机存在的性能不足，完成多重复杂的编",
+          "desc": "基于多智能体技术的非线性无人机编队中，无人机之间彼此间分工合作、协调协作，克服单一无人机存在的性能不足，完成多重复杂的编队任务。",
           "evidence": [
             {
-              "quote": "项目组共发表了学术论文69篇，其中被SCI检索的国际期刊论文38篇（Automatica和IEEE汇刊论文24篇",
+              "quote": "基于多智能体技术的非线性无人机编队中，无人机之间彼此间分工合作、协调协作，克服单一无人机存在的性能不足，完成多重复杂的编队任务。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2936,
-                "end_char": 2991
+                "start_char": 665,
+                "end_char": 728
               },
               "version": "56b8166a4588f9ef52e9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
+        },
+        {
+          "id": "item-4d9ec63265d5",
+          "name": "本项目针对无人机编队控制系统，建立了一套较为完整的基于多智能体技术的智能容错控制与路径规划理论研究框架，并将部分理论成果",
+          "desc": "本项目针对无人机编队控制系统，建立了一套较为完整的基于多智能体技术的智能容错控制与路径规划理论研究框架，并将部分理论成果应用到了四旋翼编队容错控制实验平台。",
+          "evidence": [
+            {
+              "quote": "本项目针对无人机编队控制系统，建立了一套较为完整的基于多智能体技术的智能容错控制与路径规划理论研究框架，并将部分理论成果应用到了四旋翼编队容错控制实验平台。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2594,
+                "end_char": 2671
+              },
+              "version": "56b8166a4588f9ef52e9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5fb04aeea290"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5e892a1a4f61"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于固定时间技术的固定翼无人机姿态同步容错控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e5e10235b2cb",
+      "evidence": [
+        {
+          "quote": "基于固定时间技术的固定翼无人机姿态同步容错控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3395,
+            "end_char": 3419
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5e892a1a4f61"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-32d9effd4652"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于直接参数化方法的小型无人直升机编队通信控制系统及方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f82a1beca020",
+      "evidence": [
+        {
+          "quote": "一种基于直接参数化方法的小型无人直升机编队通信控制系统及方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3445,
+            "end_char": 3474
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5e892a1a4f61"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cd27bb540ff4"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time fault-tolerant control of quadrotor formation with sensor faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f381ee229f01",
+      "evidence": [
+        {
+          "quote": "Fixed-time fault-tolerant control of quadrotor formation with sensor faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3498,
+            "end_char": 3572
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a5152752744c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-aed46d288714"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Predefined-time fault estimation and fault-tolerant formation control for multiple unmanned helicopters with deferred asymmetric output-constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-3fb74efb9301",
+      "evidence": [
+        {
+          "quote": "Predefined-time fault estimation and fault-tolerant formation control for multiple unmanned helicopters with deferred asymmetric output-constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3631,
+            "end_char": 3777
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-32d9effd4652"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-aed46d288714"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time fault-tolerant formation control for a cooperative heterogeneous multi-agent system with prescribed performance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c99cf0564012",
+      "evidence": [
+        {
+          "quote": "Fixed-time fault-tolerant formation control for a cooperative heterogeneous multi-agent system with prescribed performance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3821,
+            "end_char": 3942
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Unknown input observer-based distributed fault estimation of discrete-time nonlinear interconnected systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-104b55e0b991",
+      "evidence": [
+        {
+          "quote": "Unknown input observer-based distributed fault estimation of discrete-time nonlinear interconnected systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3989,
+            "end_char": 4095
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于策略集合MADDPG多无人机协同攻防对抗方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-164eb22fa55d",
+      "evidence": [
+        {
+          "quote": "基于策略集合MADDPG多无人机协同攻防对抗方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4139,
+            "end_char": 4162
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Practical prescribed-time active fault-tolerant control for mixed-order heterogeneous multiagent systems: A fully actuated system approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b8a4147e3f2d",
+      "evidence": [
+        {
+          "quote": "Practical prescribed-time active fault-tolerant control for mixed-order heterogeneous multiagent systems: A fully actuated system approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4186,
+            "end_char": 4323
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive fault-tolerant control of heterogeneous multi-agent systems with actuator faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6a6215876fe7",
+      "evidence": [
+        {
+          "quote": "Adaptive fault-tolerant control of heterogeneous multi-agent systems with actuator faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4367,
+            "end_char": 4455
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed adaptive fixed-time fault estimation for synchronization of complex networks",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-13820209d5f7",
+      "evidence": [
+        {
+          "quote": "Distributed adaptive fixed-time fault estimation for synchronization of complex networks",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4506,
+            "end_char": 4593
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time observer-based sliding mode fault-tolerant control for multiple quadrotor UAVs with actuator faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-40d866fd01e8",
+      "evidence": [
+        {
+          "quote": "Fixed-time observer-based sliding mode fault-tolerant control for multiple quadrotor UAVs with actuator faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4640,
+            "end_char": 4749
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural-network-based adaptive fault-tolerant control for nonlinear systems: A fully actuated system approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cfbf63724b4f",
+      "evidence": [
+        {
+          "quote": "Neural-network-based adaptive fault-tolerant control for nonlinear systems: A fully actuated system approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4793,
+            "end_char": 4900
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Incremental fully actuated system approach based fault-tolerant control design and fight implementation of unmanned helicopters",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b84089fae19c",
+      "evidence": [
+        {
+          "quote": "Incremental fully actuated system approach based fault-tolerant control design and fight implementation of unmanned helicopters",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4973,
+            "end_char": 5099
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Synergistic Feature Fusion With Deep Convolutional GAN for Fault Diagnosis in Imbalanced Rotating Machinery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f4c3c261baee",
+      "evidence": [
+        {
+          "quote": "Synergistic Feature Fusion With Deep Convolutional GAN for Fault Diagnosis in Imbalanced Rotating Machinery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5171,
+            "end_char": 5277
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Intelligent decision-making for maintenance assurance throughout the lifetime of helicopter swarms",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-65d659439d55",
+      "evidence": [
+        {
+          "quote": "Intelligent decision-making for maintenance assurance throughout the lifetime of helicopter swarms",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5320,
+            "end_char": 5417
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Few-shot aero-engine bearings fault diagnosis based on reconstructed meta ensemble learning under varying working conditions",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b6144ff14a83",
+      "evidence": [
+        {
+          "quote": "Few-shot aero-engine bearings fault diagnosis based on reconstructed meta ensemble learning under varying working conditions",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5462,
+            "end_char": 5585
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multi-aircrafts Trajectory Planning Using Enhanced Multi-population Gray Wolf Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca37047548d3",
+      "evidence": [
+        {
+          "quote": "Multi-aircrafts Trajectory Planning Using Enhanced Multi-population Gray Wolf Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5627,
+            "end_char": 5716
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于全驱系统方法的时变拓扑下无人直升机编队容错方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a63139ac73a7",
+      "evidence": [
+        {
+          "quote": "一种基于全驱系统方法的时变拓扑下无人直升机编队容错方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5759,
+            "end_char": 5785
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time optimal fault-tolerant formation control with prescribed performance for fixed-wing UAVs under dual faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c7b3b6609315",
+      "evidence": [
+        {
+          "quote": "Fixed-time optimal fault-tolerant formation control with prescribed performance for fixed-wing UAVs under dual faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5813,
+            "end_char": 5929
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种全驱异构多智能系统预设时间协同容错方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-96f92efa54ab",
+      "evidence": [
+        {
+          "quote": "一种全驱异构多智能系统预设时间协同容错方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5969,
+            "end_char": 5989
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于神经网络的固定翼无人机有限时间编队容错控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cf2fbda42786",
+      "evidence": [
+        {
+          "quote": "基于神经网络的固定翼无人机有限时间编队容错控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6012,
+            "end_char": 6036
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural-based fault-tolerant control using fully actuated system approach and intelligent safe planning for helicopter formation",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-bfd0db53d382",
+      "evidence": [
+        {
+          "quote": "Neural-based fault-tolerant control using fully actuated system approach and intelligent safe planning for helicopter formation",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6075,
+            "end_char": 6201
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neuroadaptive cooperative fault-tolerant control of heterogeneous multiagent systems based on fully actuated system approaches",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-de176cb2a6a4",
+      "evidence": [
+        {
+          "quote": "Neuroadaptive cooperative fault-tolerant control of heterogeneous multiagent systems based on fully actuated system approaches",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6273,
+            "end_char": 6398
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fully actuated system approach based prescribed-time fault-tolerant formation control for unmanned helicopters under fixed and switching topologies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-10a670c4fbb2",
+      "evidence": [
+        {
+          "quote": "Fully actuated system approach based prescribed-time fault-tolerant formation control for unmanned helicopters under fixed and switching topologies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6443,
+            "end_char": 6589
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于层级结构的无人机编队自适应容错控制与避碰方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7fc666b73406",
+      "evidence": [
+        {
+          "quote": "一种基于层级结构的无人机编队自适应容错控制与避碰方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6629,
+            "end_char": 6654
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于健康度的网络节点重要度评估方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-894729717421",
+      "evidence": [
+        {
+          "quote": "一种基于健康度的网络节点重要度评估方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6676,
+            "end_char": 6694
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于预设时间方法的多无人直升机高阶全驱容错控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4009b294c697",
+      "evidence": [
+        {
+          "quote": "基于预设时间方法的多无人直升机高阶全驱容错控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6726,
+            "end_char": 6750
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prescribed-time fault-tolerant control for fully actuated heterogeneous multiagent systems: A hierarchical design approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ce147f7a7041",
+      "evidence": [
+        {
+          "quote": "Prescribed-time fault-tolerant control for fully actuated heterogeneous multiagent systems: A hierarchical design approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6779,
+            "end_char": 6900
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed fault diagnosis with data-based balanced weighted federated learning",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-9ce01631d086",
+      "evidence": [
+        {
+          "quote": "Distributed fault diagnosis with data-based balanced weighted federated learning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6945,
+            "end_char": 7024
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种无人机编队智能容错控制及路径规划方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8feddf981e36",
+      "evidence": [
+        {
+          "quote": "一种无人机编队智能容错控制及路径规划方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7065,
+            "end_char": 7084
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种切换拓扑下空-地异构编队系统的容错控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a185c4712f6",
+      "evidence": [
+        {
+          "quote": "一种切换拓扑下空-地异构编队系统的容错控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7125,
+            "end_char": 7147
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prescribed-time fault-tolerant formation control for collision-free unmanned helicopters: A high-order fully actuated system approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b506b92df25d",
+      "evidence": [
+        {
+          "quote": "Prescribed-time fault-tolerant formation control for collision-free unmanned helicopters: A high-order fully actuated system approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7172,
+            "end_char": 7304
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Zero-sum differential game-based optimal fault-tolerant control for interconnected systems with actuator faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7c2767cc80b6",
+      "evidence": [
+        {
+          "quote": "Zero-sum differential game-based optimal fault-tolerant control for interconnected systems with actuator faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7358,
+            "end_char": 7468
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Neural observer-based intelligent fault-tolerant control of multi-helicopters under actuator faults: A fully actuated system approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5b93710ef0fa",
+      "evidence": [
+        {
+          "quote": "Neural observer-based intelligent fault-tolerant control of multi-helicopters under actuator faults: A fully actuated system approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7513,
+            "end_char": 7645
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hyper-heuristic multi-QoS UAV-BSs 3D deployment algorithm based on exact potential game",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f9fb462a72e1",
+      "evidence": [
+        {
+          "quote": "Hyper-heuristic multi-QoS UAV-BSs 3D deployment algorithm based on exact potential game",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7704,
+            "end_char": 7790
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Re-planning of reconnaissance missions for multi-UAV systems under potential faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-70d1b620fbfe",
+      "evidence": [
+        {
+          "quote": "Re-planning of reconnaissance missions for multi-UAV systems under potential faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7834,
+            "end_char": 7916
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种姿态同步控制系统的自适应固定时间故障估计方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-83e64fbf2b70",
+      "evidence": [
+        {
+          "quote": "一种姿态同步控制系统的自适应固定时间故障估计方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7958,
+            "end_char": 7981
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "无人直升机集群协同维修智能决策优化",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dcbb1db44175",
+      "evidence": [
+        {
+          "quote": "无人直升机集群协同维修智能决策优化",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8006,
+            "end_char": 8022
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed fault-tolerant time-varying formation control of heterogeneous multi-agent systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-02dddccae127",
+      "evidence": [
+        {
+          "quote": "Distributed fault-tolerant time-varying formation control of heterogeneous multi-agent systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8047,
+            "end_char": 8140
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种全驱异构多智能体系统指定性能容错控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f51e730bf673",
+      "evidence": [
+        {
+          "quote": "一种全驱异构多智能体系统指定性能容错控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8203,
+            "end_char": 8224
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "非匹配干扰下的空地固定时间协同容错编队控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e9849767b430",
+      "evidence": [
+        {
+          "quote": "非匹配干扰下的空地固定时间协同容错编队控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8247,
+            "end_char": 8269
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "不确定环境下基于区间直觉模糊信息的多无人机任务分配方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e13db0b92ae4",
+      "evidence": [
+        {
+          "quote": "不确定环境下基于区间直觉模糊信息的多无人机任务分配方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8292,
+            "end_char": 8318
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning-based fixed-time fault-tolerant control with input quantization for multiple satellite",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f0bae27ef249",
+      "evidence": [
+        {
+          "quote": "Learning-based fixed-time fault-tolerant control with input quantization for multiple satellite",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8344,
+            "end_char": 8438
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Practical fixed-time distributed adaptive fault estimation for attitude synchronization control systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c5fce042c066",
+      "evidence": [
+        {
+          "quote": "Practical fixed-time distributed adaptive fault estimation for attitude synchronization control systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8499,
+            "end_char": 8601
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Small-gain-based fixed-time faulty parameter estimation for the interconnected fuzzy systems with multiple time-varying delays",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-968801810844",
+      "evidence": [
+        {
+          "quote": "Small-gain-based fixed-time faulty parameter estimation for the interconnected fuzzy systems with multiple time-varying delays",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8648,
+            "end_char": 8773
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "四旋翼飞行姿态控制实验平台开发及教学应用",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed3e9eb3eaaa",
+      "evidence": [
+        {
+          "quote": "四旋翼飞行姿态控制实验平台开发及教学应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8818,
+            "end_char": 8837
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于宽度神经网络的直升机预设时间容错控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-923f35895f6b",
+      "evidence": [
+        {
+          "quote": "基于宽度神经网络的直升机预设时间容错控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8860,
+            "end_char": 8879
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Hierarchical structure-based fixed-time optimal fault-tolerant time-varying output formation control for heterogeneous multiagent systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-749e823dfe75",
+      "evidence": [
+        {
+          "quote": "Hierarchical structure-based fixed-time optimal fault-tolerant time-varying output formation control for heterogeneous multiagent systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8908,
+            "end_char": 9044
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time and predefined-time distributed fault estimation of complex networks based on disturbance decoupling",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-389535c31b9b",
+      "evidence": [
+        {
+          "quote": "Fixed-time and predefined-time distributed fault estimation of complex networks based on disturbance decoupling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9092,
+            "end_char": 9202
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于预设性能的空-地协同固定时间容错控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b2280bbc11bd",
+      "evidence": [
+        {
+          "quote": "一种基于预设性能的空-地协同固定时间容错控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9247,
+            "end_char": 9270
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Continuous fixed-time fault-tolerant formation control for heterogeneous multiagent systems under fixed and switching topologies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f95fc88fac6d",
+      "evidence": [
+        {
+          "quote": "Continuous fixed-time fault-tolerant formation control for heterogeneous multiagent systems under fixed and switching topologies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9299,
+            "end_char": 9426
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time differentiator-based fault-tolerant incremental nonlinear dynamic inversion control of helicopter with faulty swash plate",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4a96b061fd6e",
+      "evidence": [
+        {
+          "quote": "Fixed-time differentiator-based fault-tolerant incremental nonlinear dynamic inversion control of helicopter with faulty swash plate",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9474,
+            "end_char": 9605
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time fault estimation and prescribed performance fault-tolerant control for interconnected systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0f51e3b2b2c0",
+      "evidence": [
+        {
+          "quote": "Fixed-time fault estimation and prescribed performance fault-tolerant control for interconnected systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9665,
+            "end_char": 9768
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "Neural-network-based adaptive fault-tolerant control for nonlinear systems: A fully actuated system approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-08abbfc7e81c",
+      "evidence": [
+        {
+          "quote": "Neural-network-based adaptive fault-tolerant control for nonlinear systems: A fully actuated system approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4793,
+            "end_char": 4900
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Parameter-Adjustable Distributed Nonlinear Fault Observer Design for Nonlinear Multi-agent System with Disturbance",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5164bb795e66",
+      "evidence": [
+        {
+          "quote": "Parameter-Adjustable Distributed Nonlinear Fault Observer Design for Nonlinear Multi-agent System with Disturbance",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9991,
+            "end_char": 10104
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time fault estimation observer design for interconnected systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dcbae7dba101",
+      "evidence": [
+        {
+          "quote": "Fixed-time fault estimation observer design for interconnected systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10164,
+            "end_char": 10233
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Prescribed-time fault-tolerant containment control of fully actuated heterogeneous multiagent systems without estimations of fault parameters",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f962e55e9f3f",
+      "evidence": [
+        {
+          "quote": "Prescribed-time fault-tolerant containment control of fully actuated heterogeneous multiagent systems without estimations of fault parameters",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10291,
+            "end_char": 10431
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time fault-tolerant formation-containment control for unmanned helicopters via a fully actuated system approach",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-74cc81b8f4e0",
+      "evidence": [
+        {
+          "quote": "Fixed-time fault-tolerant formation-containment control for unmanned helicopters via a fully actuated system approach",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10476,
+            "end_char": 10592
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Optimized fault-tolerant formation control based on streamlined reinforcement learning for unmanned helicopters",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ed2bfb98b27b",
+      "evidence": [
+        {
+          "quote": "Optimized fault-tolerant formation control based on streamlined reinforcement learning for unmanned helicopters",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10648,
+            "end_char": 10758
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time and prescribed-time fault-tolerant optimal tracking control for heterogeneous multiagent systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a82331f07718",
+      "evidence": [
+        {
+          "quote": "Fixed-time and prescribed-time fault-tolerant optimal tracking control for heterogeneous multiagent systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10811,
+            "end_char": 10917
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time formation tracking for heterogeneous multi-agent systems under actuator faults and directed topologies",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-18ae819b8a7e",
+      "evidence": [
+        {
+          "quote": "Fixed-time formation tracking for heterogeneous multi-agent systems under actuator faults and directed topologies",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10965,
+            "end_char": 11077
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed adaptive fixed-time fault-tolerant formation control for heterogeneous multiagent systems with a leader of unknown input",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-93753aa630ac",
+      "evidence": [
+        {
+          "quote": "Distributed adaptive fixed-time fault-tolerant formation control for heterogeneous multiagent systems with a leader of unknown input",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11140,
+            "end_char": 11271
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Practical prescribed time fault-tolerant tracking control for a quadrotor UAV: A solution based on FASA",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dc0bee76cd12",
+      "evidence": [
+        {
+          "quote": "Practical prescribed time fault-tolerant tracking control for a quadrotor UAV: A solution based on FASA",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11319,
+            "end_char": 11421
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Command-filter-based fixed-time fault-tolerant formation control for multiple quadrotors",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-41f0facfe4a2",
+      "evidence": [
+        {
+          "quote": "Command-filter-based fixed-time fault-tolerant formation control for multiple quadrotors",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11466,
+            "end_char": 11553
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time attitude cooperative fault-tolerant control with prescribed performance for heterogeneous multiple satellite",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-285dcc2aa803",
+      "evidence": [
+        {
+          "quote": "Fixed-time attitude cooperative fault-tolerant control with prescribed performance for heterogeneous multiple satellite",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11613,
+            "end_char": 11731
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Incremental fully actuated system approach-based prescribed-time fault-tolerant formation control of helicopters under multiple faults",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-27cc4448557f",
+      "evidence": [
+        {
+          "quote": "Incremental fully actuated system approach-based prescribed-time fault-tolerant formation control of helicopters under multiple faults",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11788,
+            "end_char": 11921
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于层级结构的空-地协同预设时间最优容错控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-dbfd340ea775",
+      "evidence": [
+        {
+          "quote": "基于层级结构的空-地协同预设时间最优容错控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11967,
+            "end_char": 11988
+          },
+          "version": "56b8166a4588f9ef52e9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 67,
+    "listed": 67,
+    "by_kind": {
+      "专利": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "会议论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "期刊论文": {
+        "listed": 31,
+        "extracted": 31
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

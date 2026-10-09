@@ -2,15 +2,20 @@
   "doc_id": "919423695d147f56c685",
   "version": "ded29f9b46d52432c120",
   "source_hash": "94db17b019e6de14bba1114f24c397da1013f75ee1b7631a860a1d5f8bf15176",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:47:26.836418+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.857689+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4695239de6bb",
-          "name": "无人机编队快速容错",
-          "desc": "任务约束下故障无人机编队自主任务能力",
+          "id": "item-f5b730cc5abe",
+          "name": "多容错相关技术的融通是提升无人机编队容错能力的保证，对系统安全有效飞行具有重要意义。",
+          "desc": "多容错相关技术的融通是提升无人机编队容错能力的保证，对系统安全有效飞行具有重要意义。",
           "evidence": [
             {
-              "quote": "考虑预设任务要求、环境干扰及故障等问题，研究安全稳定的无人机控制策略具有重要意义。基于此，本项目综合观测器设计技术、任务规划技术和鲁棒控制技术对无人机快速容错方法开展研究",
+              "quote": "多容错相关技术的融通是提升无人机编队容错能力的保证，对系统安全有效飞行具有重要意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2804,
-                "end_char": 2888
+                "start_char": 645,
+                "end_char": 686
+              },
+              "version": "ded29f9b46d52432c120"
+            }
+          ]
+        },
+        {
+          "id": "item-3c2670f90fa8",
+          "name": "本项目瞄准国际前沿，研究成果将有效提升故障无人机编队的自主任务能力，为未来工程应用提供理论支撑。",
+          "desc": "本项目瞄准国际前沿，研究成果将有效提升故障无人机编队的自主任务能力，为未来工程应用提供理论支撑。",
+          "evidence": [
+            {
+              "quote": "本项目瞄准国际前沿，研究成果将有效提升故障无人机编队的自主任务能力，为未来工程应用提供理论支撑。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 997,
+                "end_char": 1044
               },
               "version": "ded29f9b46d52432c120"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cafac55c49dc",
-          "name": "缺乏任务导向快速容错",
-          "desc": "现有研究侧重单项技术缺乏面向任务的快速自主容错",
-          "evidence": [
-            {
-              "quote": "而现有研究多侧重于对单项技术的研究，使系统缺乏面向任务的快速自主容错能力。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 687,
-                "end_char": 723
-              },
-              "version": "ded29f9b46d52432c120"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-098a229acbec",
-          "name": "固定时间观测器与控制器",
-          "desc": "超螺旋等观测器快速估计故障与固定时间协同控制",
+          "id": "item-0f3c7193377f",
+          "name": "基于此，本项目综合观测器设计技术、任务规划技术和鲁棒控制技术对无人机快速容错方法开展研究，取得如下创新性成果。",
+          "desc": "基于此，本项目综合观测器设计技术、任务规划技术和鲁棒控制技术对无人机快速容错方法开展研究，取得如下创新性成果。",
           "evidence": [
             {
-              "quote": "提出了固定时间超螺旋观测器/扩张状态观测器/未知输入观测器设计方法，降低了设计保守性，实现了对故障/干扰的快速估计；完成了无人机编队的位置环/姿态环固定时间控制器设计及系统综合稳定性分析",
+              "quote": "基于此，本项目综合观测器设计技术、任务规划技术和鲁棒控制技术对无人机快速容错方法开展研究，取得如下创新性成果。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2911,
-                "end_char": 3003
+                "start_char": 2845,
+                "end_char": 2899
               },
               "version": "ded29f9b46d52432c120"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-157f66bc26a1",
-          "name": "容错轨迹规划",
-          "desc": "改进粒子群、伪谱法与多项式的快速轨迹规划",
+          "id": "item-7a5b80d23c39",
+          "name": "在此基础上，为提升编队的任务应用能力，综合群智能方法和数值优化方法，提出无人机快速高精度航迹规划算法，实现对故障机的飞行",
+          "desc": "在此基础上，为提升编队的任务应用能力，综合群智能方法和数值优化方法，提出无人机快速高精度航迹规划算法，实现对故障机的飞行能力评判，并完成剩余编队的目标分配；",
           "evidence": [
             {
-              "quote": "提出了基于改进粒子群优化算法的无人机协同航线规划方法、基于改进伪谱法/数值法的无人机轨迹规划方法、基于多项式的快速轨迹规划方法以及考虑故障的无人机容错轨迹生成方法",
+              "quote": "在此基础上，为提升编队的任务应用能力，综合群智能方法和数值优化方法，提出无人机快速高精度航迹规划算法，实现对故障机的飞行能力评判，并完成剩余编队的目标分配；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3082,
-                "end_char": 3162
+                "start_char": 830,
+                "end_char": 907
               },
               "version": "ded29f9b46d52432c120"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,408 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e21e17845bb6",
-          "name": "论文23篇与飞行实验",
-          "desc": "论文23篇（SCI 8），四旋翼平台多机自主飞行实验",
+          "id": "item-32139d747efa",
+          "name": "多容错相关技术的融通是提升无人机编队容错能力的保证，对系统安全有效飞行具有重要意义。",
+          "desc": "多容错相关技术的融通是提升无人机编队容错能力的保证，对系统安全有效飞行具有重要意义。",
           "evidence": [
             {
-              "quote": "项目执行至今，共录用/发表学术论文23篇，其中SCI检索期刊论文8篇，EI检索期刊论文2篇，EI检索会议论文5篇；申请发明专利1项。",
+              "quote": "多容错相关技术的融通是提升无人机编队容错能力的保证，对系统安全有效飞行具有重要意义。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3281,
-                "end_char": 3346
+                "start_char": 645,
+                "end_char": 686
               },
               "version": "ded29f9b46d52432c120"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-e6963b9a8de9",
-          "name": "多机协同容错探索",
-          "desc": "基于目标重分配探索严重故障下多机协同容错",
+          "id": "item-7e906e83598b",
+          "name": "随着新技术发展和新需求涌现，无人机在军事活动和社会生活中发挥了越来越重要的作用。",
+          "desc": "随着新技术发展和新需求涌现，无人机在军事活动和社会生活中发挥了越来越重要的作用。",
           "evidence": [
             {
-              "quote": "并基于目标重分配，对严重故障下多机协同容错进行了探索。",
+              "quote": "随着新技术发展和新需求涌现，无人机在军事活动和社会生活中发挥了越来越重要的作用。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3205,
-                "end_char": 3231
+                "start_char": 2764,
+                "end_char": 2803
               },
               "version": "ded29f9b46d52432c120"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4695239de6bb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cafac55c49dc"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed Time Robust Trajectory Tracking Control for Quadrotor UAV with Disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f88629f8670e",
+      "evidence": [
+        {
+          "quote": "Fixed Time Robust Trajectory Tracking Control for Quadrotor UAV with Disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3434,
+            "end_char": 3514
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cafac55c49dc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-098a229acbec"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于时间分段的四旋翼无人机多项式轨迹规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-a7c49d948215",
+      "evidence": [
+        {
+          "quote": "基于时间分段的四旋翼无人机多项式轨迹规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3562,
+            "end_char": 3581
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cafac55c49dc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-157f66bc26a1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "动力学参数未知的四旋翼无人机预定性能控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-e03848eddc8e",
+      "evidence": [
+        {
+          "quote": "动力学参数未知的四旋翼无人机预定性能控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3606,
+            "end_char": 3625
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-098a229acbec"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e21e17845bb6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Efficient Trajectory Planning for UAVs Using Hierarchical Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-0d5ea04c4719",
+      "evidence": [
+        {
+          "quote": "Efficient Trajectory Planning for UAVs Using Hierarchical Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3659,
+            "end_char": 3728
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-157f66bc26a1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e6963b9a8de9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Fixed-time robust trajectory tracking control for quadrotor UAV with disturbances",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-71aaf2d513ac",
+      "evidence": [
+        {
+          "quote": "Fixed-time robust trajectory tracking control for quadrotor UAV with disturbances",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3792,
+            "end_char": 3872
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Robust fixed-time formation control for quadrotor unmanned aerial vehicles with directed topology",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b24a7b3c3eaf",
+      "evidence": [
+        {
+          "quote": "Robust fixed-time formation control for quadrotor unmanned aerial vehicles with directed topology",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3933,
+            "end_char": 4029
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Adaptive Sliding Mode Dynamic Surface Tracking Control Method for Uncertain QUAV",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-4f201f405e71",
+      "evidence": [
+        {
+          "quote": "An Adaptive Sliding Mode Dynamic Surface Tracking Control Method for Uncertain QUAV",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4080,
+            "end_char": 4162
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进DPSO的故障下多无人机协同任务规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-690d45c76e83",
+      "evidence": [
+        {
+          "quote": "基于改进DPSO的故障下多无人机协同任务规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4209,
+            "end_char": 4230
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进高斯伪谱法的多无人机协同轨迹规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-897223fb23ff",
+      "evidence": [
+        {
+          "quote": "基于改进高斯伪谱法的多无人机协同轨迹规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4256,
+            "end_char": 4275
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "故障条件下无人机集群的飞行控制方法和系统",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-73c4bac3f292",
+      "evidence": [
+        {
+          "quote": "故障条件下无人机集群的飞行控制方法和系统",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4302,
+            "end_char": 4321
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A New Method of Solving UAV Trajectory Planning Under Obstacles and Multi-Constraint",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-5ff370294a9b",
+      "evidence": [
+        {
+          "quote": "A New Method of Solving UAV Trajectory Planning Under Obstacles and Multi-Constraint",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4348,
+            "end_char": 4431
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Distributed reconnaissance task planning for multi-UAV system",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b0899d9f80f4",
+      "evidence": [
+        {
+          "quote": "Distributed reconnaissance task planning for multi-UAV system",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4490,
+            "end_char": 4550
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "考虑执行器故障的四旋翼无人机轨迹规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-aa1cdebc448e",
+      "evidence": [
+        {
+          "quote": "考虑执行器故障的四旋翼无人机轨迹规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4595,
+            "end_char": 4612
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于改进粒子群优化的多无人机协同航迹规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca12f534e628",
+      "evidence": [
+        {
+          "quote": "基于改进粒子群优化的多无人机协同航迹规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4638,
+            "end_char": 4657
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "基于扰动观测器的时变负载四旋翼无人机自适应有限时间控制",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-773fe774b7a6",
+      "evidence": [
+        {
+          "quote": "基于扰动观测器的时变负载四旋翼无人机自适应有限时间控制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4685,
+            "end_char": 4711
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "面向多目标侦察任务的无人机航线规划",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-70d590029e95",
+      "evidence": [
+        {
+          "quote": "面向多目标侦察任务的无人机航线规划",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4745,
+            "end_char": 4761
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Adaptive prescribed performance dynamic surface control for the uncertain QUAVs with unknown parameters",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-19ccb4ed0358",
+      "evidence": [
+        {
+          "quote": "Adaptive prescribed performance dynamic surface control for the uncertain QUAVs with unknown parameters",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4790,
+            "end_char": 4892
+          },
+          "version": "ded29f9b46d52432c120"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

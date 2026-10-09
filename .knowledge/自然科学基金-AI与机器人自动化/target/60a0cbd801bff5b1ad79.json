@@ -2,15 +2,20 @@
   "doc_id": "60a0cbd801bff5b1ad79",
   "version": "d2286864d8366cf20ace",
   "source_hash": "b43e238fbcdf9906074a39613b971be73bc3011213b09f14c516ad743c553516",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:55:11.437317+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:18.374454+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9e81c9269d3a",
-          "name": "电解铝天车遥操作",
-          "desc": "有色冶金极端工况下天车机器人安全稳定作业",
+          "id": "item-6d8fa8e5a92c",
+          "name": "本项目源于电解铝天车机器人工程实际，将双边遥操作控制和力觉交互控制引入天车机器人系统以改善其作业性能。",
+          "desc": "本项目源于电解铝天车机器人工程实际，将双边遥操作控制和力觉交互控制引入天车机器人系统以改善其作业性能。",
           "evidence": [
             {
-              "quote": "本项目面向有色冶金等极端工况下遥操作天车机器人的安全稳定作业需求，围绕“强磁场等多物理场扰动—复杂通信环境（带宽受限、时变时延、丢包）—接触作业柔顺交互”这一主线",
+              "quote": "本项目源于电解铝天车机器人工程实际，将双边遥操作控制和力觉交互控制引入天车机器人系统以改善其作业性能。",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 659,
+                "end_char": 709
+              },
+              "version": "d2286864d8366cf20ace"
+            }
+          ]
+        },
+        {
+          "id": "item-79e391f12e86",
+          "name": "本项目面向有色冶金等极端工况下遥操作天车机器人的安全稳定作业需求，围绕“强磁场等多物理场扰动—复杂通信环境（带宽受限、时",
+          "desc": "本项目面向有色冶金等极端工况下遥操作天车机器人的安全稳定作业需求，围绕“强磁场等多物理场扰动—复杂通信环境（带宽受限、时变时延、丢包）—接触作业柔顺交互”这一主线，系统开展了多物理场耦合动力学建模、事件触发通信下的主从稳定交互控制、时变约束与时变时延条件下的有限时间位置同步控制，以及自适应滑模柔顺/自适应迭代柔顺与神经网络自适应变阻抗等关键方法研究；",
+          "evidence": [
+            {
+              "quote": "本项目面向有色冶金等极端工况下遥操作天车机器人的安全稳定作业需求，围绕“强磁场等多物理场扰动—复杂通信环境（带宽受限、时变时延、丢包）—接触作业柔顺交互”这一主线，系统开展了多物理场耦合动力学建模、事件触发通信下的主从稳定交互控制、时变约束与时变时延条件下的有限时间位置同步控制，以及自适应滑模柔顺/自适应迭代柔顺与神经网络自适应变阻抗等关键方法研究；",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3031,
-                "end_char": 3111
+                "end_char": 3206
               },
               "version": "d2286864d8366cf20ace"
             }
@@ -38,61 +59,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d4afd9287f48",
-          "name": "强磁场扰动通信受限",
-          "desc": "强电磁耦合、复杂通信与工况模型不确定降低协同精度",
-          "evidence": [
-            {
-              "quote": "应用双边控制系统会面临强电磁场对机器人耦合作用、电磁环境下复杂通信条件、多变非结构交互对象、操作者操作行为差异、复杂工况下系统模型不确定等因素，并导致协同控制精度和力觉交互控制性能降低，甚至会极大削弱系统稳定性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 710,
-                "end_char": 815
-              },
-              "version": "d2286864d8366cf20ace"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-fc771fb470db",
-          "name": "事件触发有限时间同步",
-          "desc": "时变约束与时变时延下的有限时间位置同步控制",
+          "id": "item-9f3b630f5b97",
+          "name": "本项目围绕上述问题，拟开展复杂通信条件下耦合磁场力天车机器人遥操作系统动力学模型构建、融合事件触发与通信自适应平滑的有限",
+          "desc": "本项目围绕上述问题，拟开展复杂通信条件下耦合磁场力天车机器人遥操作系统动力学模型构建、融合事件触发与通信自适应平滑的有限时间协同控制方法研究和融合自适应变阻抗控制与操作辅助力的智能力觉交互控制方法研究，重点解决电解铝天车机器人电磁场耦合动力学模型构建优化问题和天车遥操作系统协同控制与力觉交互控制的稳定机理问题，并通过构建的实验系统对模型和提出的新方法进行验证分析。",
           "evidence": [
             {
-              "quote": "系统开展了多物理场耦合动力学建模、事件触发通信下的主从稳定交互控制、时变约束与时变时延条件下的有限时间位置同步控制，以及自适应滑模柔顺/自适应迭代柔顺与神经网络自适应变阻抗等关键方法研究",
+              "quote": "本项目围绕上述问题，拟开展复杂通信条件下耦合磁场力天车机器人遥操作系统动力学模型构建、融合事件触发与通信自适应平滑的有限时间协同控制方法研究和融合自适应变阻抗控制与操作辅助力的智能力觉交互控制方法研究，重点解决电解铝天车机器人电磁场耦合动力学模型构建优化问题和天车遥操作系统协同控制与力觉交互控制的稳定机理问题，并通过构建的实验系统对模型和提出的新方法进行验证分析。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3113,
-                "end_char": 3205
+                "start_char": 816,
+                "end_char": 998
               },
               "version": "d2286864d8366cf20ace"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-49f7f368898f",
-          "name": "自适应变阻抗力觉交互",
-          "desc": "自适应滑模/迭代柔顺与神经网络变阻抗方法",
+          "id": "item-94b91da2122e",
+          "name": "项目研究成果将进一步丰富遥操作机器人力觉交互控制理论，为后续天车机器人智能系统研发提供坚实理论基础与技术保障。",
+          "desc": "项目研究成果将进一步丰富遥操作机器人力觉交互控制理论，为后续天车机器人智能系统研发提供坚实理论基础与技术保障。",
           "evidence": [
             {
-              "quote": "以及自适应滑模柔顺/自适应迭代柔顺与神经网络自适应变阻抗等关键方法研究；同步完成1套实验系统与1套仿真系统建设，并进一步搭建基于Kinova Gen3等设备的第2套遥操作实验平台，对关键控制策略进行仿真与实物验证。",
+              "quote": "项目研究成果将进一步丰富遥操作机器人力觉交互控制理论，为后续天车机器人智能系统研发提供坚实理论基础与技术保障。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3171,
-                "end_char": 3277
+                "start_char": 999,
+                "end_char": 1053
               },
               "version": "d2286864d8366cf20ace"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,97 +107,268 @@
       "state": "has",
       "items": [
         {
-          "id": "item-216b5e99cf22",
-          "name": "两套实验平台验证",
-          "desc": "完成实验与仿真系统建设及第二套遥操作平台实物验证",
+          "id": "item-6569acb85cb8",
+          "name": "本项目源于电解铝天车机器人工程实际，将双边遥操作控制和力觉交互控制引入天车机器人系统以改善其作业性能。",
+          "desc": "本项目源于电解铝天车机器人工程实际，将双边遥操作控制和力觉交互控制引入天车机器人系统以改善其作业性能。",
           "evidence": [
             {
-              "quote": "同步完成1套实验系统与1套仿真系统建设，并进一步搭建基于Kinova Gen3等设备的第2套遥操作实验平台，对关键控制策略进行仿真与实物验证。",
+              "quote": "本项目源于电解铝天车机器人工程实际，将双边遥操作控制和力觉交互控制引入天车机器人系统以改善其作业性能。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3207,
-                "end_char": 3277
+                "start_char": 659,
+                "end_char": 709
               },
               "version": "d2286864d8366cf20ace"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         },
         {
-          "id": "item-2d18840fc8e7",
-          "name": "论文11篇与专利",
-          "desc": "期刊7篇会议4篇（SCIE 5、EI 3），授权发明专利1项",
+          "id": "item-46f661725a3f",
+          "name": "本项目面向有色冶金等极端工况下遥操作天车机器人的安全稳定作业需求，围绕“强磁场等多物理场扰动—复杂通信环境（带宽受限、时",
+          "desc": "本项目面向有色冶金等极端工况下遥操作天车机器人的安全稳定作业需求，围绕“强磁场等多物理场扰动—复杂通信环境（带宽受限、时变时延、丢包）—接触作业柔顺交互”这一主线，系统开展了多物理场耦合动力学建模、事件触发通信下的主从稳定交互控制、时变约束与时变时延条件下的有限时间位置同步控制，以及自适应滑模柔顺/自适应迭代柔顺与神经网络自适应变阻抗等关键方法研究；",
           "evidence": [
             {
-              "quote": "项目期内共发表期刊论文7篇、会议论文4篇（其中SCIE/SSCI 5篇、EI 3篇），授权中国发明专利1项",
+              "quote": "本项目面向有色冶金等极端工况下遥操作天车机器人的安全稳定作业需求，围绕“强磁场等多物理场扰动—复杂通信环境（带宽受限、时变时延、丢包）—接触作业柔顺交互”这一主线，系统开展了多物理场耦合动力学建模、事件触发通信下的主从稳定交互控制、时变约束与时变时延条件下的有限时间位置同步控制，以及自适应滑模柔顺/自适应迭代柔顺与神经网络自适应变阻抗等关键方法研究；",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3278,
-                "end_char": 3330
+                "start_char": 3031,
+                "end_char": 3206
               },
               "version": "d2286864d8366cf20ace"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9e81c9269d3a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d4afd9287f48"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An APF Path Planning Method for Multi-agent Systems Under Butterfly Algorithm Optimization",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-05a59fc84ab8",
+      "evidence": [
+        {
+          "quote": "An APF Path Planning Method for Multi-agent Systems Under Butterfly Algorithm Optimization",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3507,
+            "end_char": 3596
+          },
+          "version": "d2286864d8366cf20ace"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d4afd9287f48"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fc771fb470db"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Adaptive Finite-Time Position Tracking Control Strategy for Teleoperation System with Varying Communication Delays",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-7b8f7cafdd7a",
+      "evidence": [
+        {
+          "quote": "A Novel Adaptive Finite-Time Position Tracking Control Strategy for Teleoperation System with Varying Communication Delays",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3651,
+            "end_char": 3772
+          },
+          "version": "d2286864d8366cf20ace"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d4afd9287f48"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-49f7f368898f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于事件触发与有限时间控制的遥操作机器人控制方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-448e7d857901",
+      "evidence": [
+        {
+          "quote": "基于事件触发与有限时间控制的遥操作机器人控制方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3819,
+            "end_char": 3842
+          },
+          "version": "d2286864d8366cf20ace"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fc771fb470db"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-216b5e99cf22"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel P + d Control Scheme for Time-Delayed Telerobotic Systems with Damping Adjustment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-617ba621e9ee",
+      "evidence": [
+        {
+          "quote": "A Novel P + d Control Scheme for Time-Delayed Telerobotic Systems with Damping Adjustment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3892,
+            "end_char": 3980
+          },
+          "version": "d2286864d8366cf20ace"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-49f7f368898f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2d18840fc8e7"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel Synchronization Control Scheme for Time-Delayed SMDS Teleoperation System with Damping Adjustment",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-92527cd9055f",
+      "evidence": [
+        {
+          "quote": "A Novel Synchronization Control Scheme for Time-Delayed SMDS Teleoperation System with Damping Adjustment",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4053,
+            "end_char": 4157
+          },
+          "version": "d2286864d8366cf20ace"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Novel FTP plus d Control Approach With Event-Driven Communication for Time-Delayed Bilateral Teleoperation Systems",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-209c762060e8",
+      "evidence": [
+        {
+          "quote": "A Novel FTP plus d Control Approach With Event-Driven Communication for Time-Delayed Bilateral Teleoperation Systems",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4282,
+            "end_char": 4397
+          },
+          "version": "d2286864d8366cf20ace"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "An Adaptive Finite-time Control Approach for Telerobotic Systems with Time-varying Output Constraints",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-60c36a0653e6",
+      "evidence": [
+        {
+          "quote": "An Adaptive Finite-time Control Approach for Telerobotic Systems with Time-varying Output Constraints",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4508,
+            "end_char": 4608
+          },
+          "version": "d2286864d8366cf20ace"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Research on Position Tracking Control of Single-Master Multi-Slave Telerobotics Based on Adaptive Robust Control",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-21e881446743",
+      "evidence": [
+        {
+          "quote": "Research on Position Tracking Control of Single-Master Multi-Slave Telerobotics Based on Adaptive Robust Control",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4704,
+            "end_char": 4815
+          },
+          "version": "d2286864d8366cf20ace"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Multidimensional Force Sensor Dynamic Compensation Based on Multistrategy Improved Sparrow Search Algorithm",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8853fbce4495",
+      "evidence": [
+        {
+          "quote": "Multidimensional Force Sensor Dynamic Compensation Based on Multistrategy Improved Sparrow Search Algorithm",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4916,
+            "end_char": 5022
+          },
+          "version": "d2286864d8366cf20ace"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Event-triggered Cascade Predictor for A Class of Nonlinear MIMO Systems with Large Communication Delays",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-f82be01ffa82",
+      "evidence": [
+        {
+          "quote": "Event-triggered Cascade Predictor for A Class of Nonlinear MIMO Systems with Large Communication Delays",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5066,
+            "end_char": 5168
+          },
+          "version": "d2286864d8366cf20ace"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

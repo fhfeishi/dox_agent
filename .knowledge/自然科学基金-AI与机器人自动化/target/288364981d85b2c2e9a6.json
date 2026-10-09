@@ -2,15 +2,20 @@
   "doc_id": "288364981d85b2c2e9a6",
   "version": "d922e513320db9baa340",
   "source_hash": "a4525aee74645ea41b3748f3c32731717c25764ba606728f67cafb10115205fd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T15:15:18.120991+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T14:42:17.867387+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-697b383596a7",
-          "name": "机器人辅助自主康复训练",
-          "desc": "运动障碍患者依据运动意图的自主康复",
+          "id": "item-c142ffbf62fa",
+          "name": "随着人口老龄化，运动障碍患者急剧增加。",
+          "desc": "随着人口老龄化，运动障碍患者急剧增加。",
           "evidence": [
             {
-              "quote": "机器人辅助患者自主康复训练是最有效的康复手段。本项目从人体运动和康复机理出发，采集人体sEMG、加速度信号、阵列触觉信号",
+              "quote": "随着人口老龄化，运动障碍患者急剧增加。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 668,
-                "end_char": 727
+                "start_char": 649,
+                "end_char": 667
               },
               "version": "d922e513320db9baa340"
             }
@@ -38,61 +43,46 @@
     },
     {
       "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-bfb061bd9bd8",
-          "name": "康复训练依赖患者意图",
-          "desc": "需解码人体运动意图实现人机同步康复训练",
-          "evidence": [
-            {
-              "quote": "完全根据患者的运动意图进行康复训练。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 892,
-                "end_char": 909
-              },
-              "version": "d922e513320db9baa340"
-            }
-          ]
-        }
-      ]
+      "state": "未提及",
+      "items": []
     },
     {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-9231d7661c51",
-          "name": "改进Hill肌肉运动估计",
-          "desc": "多信号特征融合与闭环预测估计关节连续运动",
+          "id": "item-6a042d4a500c",
+          "name": "提出融合多生物信号与视觉虚拟现实、触觉反馈的模糊神经网络控制器，将自主康复训练机器人与人体关节两个原本相互独立的控制系统",
+          "desc": "提出融合多生物信号与视觉虚拟现实、触觉反馈的模糊神经网络控制器，将自主康复训练机器人与人体关节两个原本相互独立的控制系统通过人体多生物运动信息解码和视觉触觉反馈重新构建起基于模糊神经网络控制器的人体闭环控制系统，实现人体多关节-康复机器人的人机交互，建立自主康复系统。",
           "evidence": [
             {
-              "quote": "结合改进的Hill肌肉模型关节连续运动估计，通过闭环预测算法对人体关节连续运动进行估计，解码人体ADLs和多关节的连续运动角度、速度、加速度等信息",
+              "quote": "提出融合多生物信号与视觉虚拟现实、触觉反馈的模糊神经网络控制器，将自主康复训练机器人与人体关节两个原本相互独立的控制系统通过人体多生物运动信息解码和视觉触觉反馈重新构建起基于模糊神经网络控制器的人体闭环控制系统，实现人体多关节-康复机器人的人机交互，建立自主康复系统。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2626,
-                "end_char": 2698
+                "start_char": 910,
+                "end_char": 1043
               },
               "version": "d922e513320db9baa340"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7bc47f10f0f1",
-          "name": "模糊神经网络人机闭环",
-          "desc": "多生物信号与视觉触觉反馈重构人体闭环控制",
+          "id": "item-4fb6da68cb5a",
+          "name": "本项目从人体运动和康复机理出发，采集人体sEMG、加速度信号、阵列触觉信号，经滤波、消噪、放大等预处理后，提取各路信号的",
+          "desc": "本项目从人体运动和康复机理出发，采集人体sEMG、加速度信号、阵列触觉信号，经滤波、消噪、放大等预处理后，提取各路信号的ADL和关节运动特征，进行多信号特征选择、特征融合，结合改进的Hill肌肉模型创新提出一种关节连续运动估计模型，通过闭环预测算法对人体关节连续运动进行估计，解码人体ADL和多关节的连续运动角度、速度、加速度等信息，将解码结果转化为相应的运动控制指令，控制康复机器人执行人体同步运动，完全根据患者的运动意图进行康复训练。",
           "evidence": [
             {
-              "quote": "将自主康复训练机器人与人体关节两个原本相互独立的控制系统通过人体多生物运动信息解码和视觉触觉反馈构建了人体闭环控制系统，实现了人体多关节-康复机器人的人机交互。",
+              "quote": "本项目从人体运动和康复机理出发，采集人体sEMG、加速度信号、阵列触觉信号，经滤波、消噪、放大等预处理后，提取各路信号的ADL和关节运动特征，进行多信号特征选择、特征融合，结合改进的Hill肌肉模型创新提出一种关节连续运动估计模型，通过闭环预测算法对人体关节连续运动进行估计，解码人体ADL和多关节的连续运动角度、速度、加速度等信息，将解码结果转化为相应的运动控制指令，控制康复机器人执行人体同步运动，完全根据患者的运动意图进行康复训练。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2782,
-                "end_char": 2861
+                "start_char": 691,
+                "end_char": 909
               },
               "version": "d922e513320db9baa340"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,80 +91,249 @@
       "state": "has",
       "items": [
         {
-          "id": "item-98845f5df926",
-          "name": "人机交互康复系统实现",
-          "desc": "实现人体多关节-康复机器人的人机交互自主康复",
+          "id": "item-f4d5d9c5ae2a",
+          "name": "随着人口老龄化，运动障碍患者急剧增加。",
+          "desc": "随着人口老龄化，运动障碍患者急剧增加。",
           "evidence": [
             {
-              "quote": "实现了人体多关节-康复机器人的人机交互。",
+              "quote": "随着人口老龄化，运动障碍患者急剧增加。",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2842,
-                "end_char": 2861
+                "start_char": 649,
+                "end_char": 667
               },
               "version": "d922e513320db9baa340"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": true
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-697b383596a7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-bfb061bd9bd8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analysis of corticomuscular-cortical functional network based on time-delayed maximal information spectral coefficient",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-961dba62d989",
+      "evidence": [
+        {
+          "quote": "Analysis of corticomuscular-cortical functional network based on time-delayed maximal information spectral coefficient",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2887,
+            "end_char": 3004
+          },
+          "version": "d922e513320db9baa340"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bfb061bd9bd8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9231d7661c51"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Effects of transcranial direct current stimulation on brain network connectivity and complexity in motor imagery",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-6d46271f3005",
+      "evidence": [
+        {
+          "quote": "Effects of transcranial direct current stimulation on brain network connectivity and complexity in motor imagery",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3083,
+            "end_char": 3194
+          },
+          "version": "d922e513320db9baa340"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bfb061bd9bd8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7bc47f10f0f1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Influence of neuromuscular electrical stimulation pulse waveform on corticomuscular coupling and the brain functional connectivity network",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-481d9927f1d3",
+      "evidence": [
+        {
+          "quote": "Influence of neuromuscular electrical stimulation pulse waveform on corticomuscular coupling and the brain functional connectivity network",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3292,
+            "end_char": 3429
+          },
+          "version": "d922e513320db9baa340"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7bc47f10f0f1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-98845f5df926"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Cortico-muscular functional network: an exploration of cortico-muscular coupling in hand movements",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-c62818a9014f",
+      "evidence": [
+        {
+          "quote": "Cortico-muscular functional network: an exploration of cortico-muscular coupling in hand movements",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3508,
+            "end_char": 3605
+          },
+          "version": "d922e513320db9baa340"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9231d7661c51"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-98845f5df926"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Quantification of body ownership awareness induced by the visual movement illusion of the lower limbs: a study of electroencephalogram and surface electromyography",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-8c65ac839869",
+      "evidence": [
+        {
+          "quote": "Quantification of body ownership awareness induced by the visual movement illusion of the lower limbs: a study of electroencephalogram and surface electromyography",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3693,
+            "end_char": 3855
+          },
+          "version": "d922e513320db9baa340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于改进时延最大信息系数的脑肌耦合及脑网络分析方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-cc5284c00d44",
+      "evidence": [
+        {
+          "quote": "基于改进时延最大信息系数的脑肌耦合及脑网络分析方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3921,
+            "end_char": 3945
+          },
+          "version": "d922e513320db9baa340"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "一种基于相位传递熵的音乐感知下脑网络构建方法",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-746deed23379",
+      "evidence": [
+        {
+          "quote": "一种基于相位传递熵的音乐感知下脑网络构建方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3979,
+            "end_char": 4000
+          },
+          "version": "d922e513320db9baa340"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "万吨级生物质气化关键技术、装备及其产业化",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-ca1b9de5dfc5",
+      "evidence": [
+        {
+          "quote": "万吨级生物质气化关键技术、装备及其产业化",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4041,
+            "end_char": 4060
+          },
+          "version": "d922e513320db9baa340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Analysis of functional corticomuscular coupling based on multiscale transfer spectral entropy",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-600610ec233e",
+      "evidence": [
+        {
+          "quote": "Analysis of functional corticomuscular coupling based on multiscale transfer spectral entropy",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4134,
+            "end_char": 4226
+          },
+          "version": "d922e513320db9baa340"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Delay estimation for cortical-muscular interaction with wavelet coherence time lag",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-b299bafc2907",
+      "evidence": [
+        {
+          "quote": "Delay estimation for cortical-muscular interaction with wavelet coherence time lag",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4321,
+            "end_char": 4402
+          },
+          "version": "d922e513320db9baa340"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

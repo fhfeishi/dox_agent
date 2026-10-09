@@ -2,15 +2,20 @@
   "doc_id": "f5903ba81c445ede6873",
   "version": "41f103bd41c487614463",
   "source_hash": "45cbdb7458728af1f46cf1756c61544a55dd0ea59c475e449896fadcbdb5ebda",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:48:28.364582+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:58:17.406096+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 10,
+      "total": 10,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3ebccec458da",
-          "name": "鞍山式铁矿区生态恢复",
-          "desc": "鞍山式铁矿在我国铁矿资源中占50%以上，大规模开发已造成植被覆盖率下降、尾矿粉尘污染严重。",
+          "id": "item-805e17a3f973",
+          "name": "鞍山式铁矿区生态恢复监测",
+          "desc": "矿区大规模开发造成植被覆盖率下降与尾矿粉尘污染需实时科学有效监测",
           "evidence": [
             {
-              "quote": "鞍山式铁矿在我国铁矿资源中占50%以上，其大规模开发已造成植被覆盖率下降、尾矿粉尘污染严重",
+              "quote": "其大规模开发已造成植被覆盖率下降、尾矿粉尘污染严重，严重破坏了矿区及周边城市的生态环境",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,16 +40,16 @@
           ]
         },
         {
-          "id": "item-642160a196be",
-          "name": "绿色矿山与生态文明建设",
-          "desc": "以实现铁矿区植被修复机制的矿区生态恢复为目标，促进区域生态文明和绿色矿山建设。",
+          "id": "item-2a802c3c4d88",
+          "name": "绿色矿山建设",
+          "desc": "为我国矿区生态修复的科学监测和评估提供关键技术支撑",
           "evidence": [
             {
-              "quote": "本项目以实现基于铁矿区植被修复机制的矿区生态恢复为目标，研究创建铁矿区生态恢复新机制和模式，以此促进区域生态文明和绿色矿山建设。",
+              "quote": "为我国矿区生态修复的科学监测和评估提供了关键技术支撑",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "ce5427b349aaca225496176fc9a520d356fb8e4b"
+                "page": 4,
+                "chunk_id": "2a9638e97fe2fbacd162bc1aa93e02a104ee85ef"
               },
               "version": "41f103bd41c487614463"
             }
@@ -57,12 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b0a8afcb0724",
-          "name": "矿区生态时序恶化",
-          "desc": "铁矿开发严重破坏矿区及周边城市生态环境，已形成生态环境时序恶化趋势。",
+          "id": "item-db39fece916e",
+          "name": "生态环境时序恶化",
+          "desc": "矿区开发已形成生态环境时序恶化的趋势",
           "evidence": [
             {
-              "quote": "严重破坏了矿区及周边城市的生态环境，已形成生态环境时序恶化的趋势。",
+              "quote": "已形成生态环境时序恶化的趋势",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -73,12 +78,12 @@
           ]
         },
         {
-          "id": "item-137d81a7116d",
-          "name": "生态恢复监测手段不足",
-          "desc": "如何以生态系统服务机制为导向对矿区生态恢复进行实时、科学有效监测是矿山生态恢复的关键问题。",
+          "id": "item-52f650566eb8",
+          "name": "生态恢复实时监测缺乏",
+          "desc": "如何以生态系统服务机制为导向对矿区生态恢复进行实时科学有效监测成为关键问题",
           "evidence": [
             {
-              "quote": "如何以生态系统服务机制为导向，对矿区生态恢复进行实时、科学有效地监测已成为矿山生态恢复的关键问题。",
+              "quote": "如何以生态系统服务机制为导向，对矿区生态恢复进行实时、科学有效地监测已成为矿山生态恢复的关键问题",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -95,66 +100,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2f765f29da25",
-          "name": "遥感时序深度学习变化检测",
-          "desc": "提出用于矿区典型地物变化自动提取的深度学习模型如RATT-UNet、IRDE-Net等，构建矿区地物变化检测新方法。",
+          "id": "item-79ac7c0c021f",
+          "name": "矿区地物变化检测模型群",
+          "desc": "提出RATT-UNet、FADC-VIS、CNN-WOA-TELM等矿区地物变化自动提取深度学习模型",
           "evidence": [
             {
-              "quote": "提出了用于矿区典型地物变化自动提取的深度学习模型，例如RATT-UNet、FADC-VIS、CNN-WOA-TELM、IRDE-Net、RS-ELM、GAF-D CNN等，构建了矿区地物变化检测新方法。",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "8a477d1281458b7e08dec51860bf8b0d78978eb6"
-              },
-              "version": "41f103bd41c487614463"
-            }
-          ]
-        },
-        {
-          "id": "item-4d5b57c4261a",
-          "name": "高光谱土壤反演模型",
-          "desc": "以高光谱遥感技术为核心采集可见-近红外与热红外光谱数据，提出一系列土壤反演模型提升土壤成分检测精度。",
-          "evidence": [
-            {
-              "quote": "以高光谱遥感技术为核心，采集可见-近红外与热红外光谱数据，并提出一系列模型",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "8a477d1281458b7e08dec51860bf8b0d78978eb6"
-              },
-              "version": "41f103bd41c487614463"
-            }
-          ]
-        },
-        {
-          "id": "item-e965ccb3b670",
-          "name": "多源遥感植被识别与景观分析",
-          "desc": "利用GEE与Landsat多时相数据研究矿区土地利用与景观格局变化，基于三维LiDAR点云提出LPFE-Net实现露天矿区道路提取。",
-          "evidence": [
-            {
-              "quote": "利用Goog1e Earth Engine（GEE）和Landsat多时相数据，研究矿区土地利用与景观格局变化",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 4,
-                "chunk_id": "2a9638e97fe2fbacd162bc1aa93e02a104ee85ef"
-              },
-              "version": "41f103bd41c487614463"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-544f94d44a32",
-          "name": "大范围高精度分布反演",
-          "desc": "利用模型获取土壤重金属及理化特性的大范围分布，成功实现大范围高精度分布反演。",
-          "evidence": [
-            {
-              "quote": "利用模型获取土壤重金属及理化特性的大范围分布，成功实现了大范围高精度分布反演",
+              "quote": "提出了用于矿区典型地物变化自动提取的深度学习模型，例如RATT-UNet、FADC-VIS、CNN-WOA-TELM、IRDE-Net、RS-ELM、GAF-D CNN等",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -163,12 +114,52 @@
               "version": "41f103bd41c487614463"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-d2a904e8f0e9",
-          "name": "33篇论文与4项专利",
-          "desc": "发表国内外学术期刊论文33篇，申请发明专利4项，培养研究生22名。",
+          "id": "item-2b04d1f4a7b6",
+          "name": "高光谱土壤成分反演模型群",
+          "desc": "提出CNN-GRC-ELM、LU-TELM-SOA等模型实现大范围高精度分布反演",
+          "evidence": [
+            {
+              "quote": "并提出一系列模型，例如CNN-GRC-ELM、LU-TELM-SOA、SNV-PCA-BPNN、MSC-ELM、RVIPSO-MELM、TSVD-IVTELM、MIELM-AE、MTSVD-TGJO-ELM等",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "8a477d1281458b7e08dec51860bf8b0d78978eb6"
+              },
+              "version": "41f103bd41c487614463"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-884d7dbcd805",
+          "name": "GEE多时相与LiDAR道路提取",
+          "desc": "利用GEE与Landsat多时相数据揭示植被退化并提出LPFE-Net提取矿区道路",
+          "evidence": [
+            {
+              "quote": "利用Goog1e Earth Engine（GEE）和Landsat多时相数据，研究矿区土地利用与景观格局变化，结合动态景观分析技术揭示植被退化趋势",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "2a9638e97fe2fbacd162bc1aa93e02a104ee85ef"
+              },
+              "version": "41f103bd41c487614463"
+            }
+          ],
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f45a2c81c895",
+          "name": "论文33篇与专利4项",
+          "desc": "发表国内外学术期刊论文33篇，申请发明专利4项，培养研究生22名",
           "evidence": [
             {
               "quote": "项目组共发表国内外学术期刊论文33篇，申请发明专利4项，培养研究生22名",
@@ -180,24 +171,28 @@
               "version": "41f103bd41c487614463"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "共发表国内外学术期刊论文33篇",
+          "self_reported": false
         },
         {
-          "id": "item-835aa41c5a10",
-          "name": "植被退化趋势揭示",
-          "desc": "结合动态景观分析技术揭示植被退化趋势。",
+          "id": "item-544f94d44a32",
+          "name": "大范围高精度分布反演",
+          "desc": "利用模型获取土壤重金属及理化特性大范围分布并实现大范围高精度反演",
           "evidence": [
             {
-              "quote": "结合动态景观分析技术揭示植被退化趋势",
+              "quote": "利用模型获取土壤重金属及理化特性的大范围分布，成功实现了大范围高精度分布反演",
               "locator": {
                 "basis": "pdf_page",
-                "page": 4,
-                "chunk_id": "2a9638e97fe2fbacd162bc1aa93e02a104ee85ef"
+                "page": 2,
+                "chunk_id": "8a477d1281458b7e08dec51860bf8b0d78978eb6"
               },
               "version": "41f103bd41c487614463"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "成功实现了",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +200,143 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-2b04d1f4a7b6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-52f650566eb8"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "如何以生态系统服务机制为导向，对矿区生态恢复进行实时、科学有效地监测已成为矿山生态恢复的关键问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "ce5427b349aaca225496176fc9a520d356fb8e4b"
+          },
+          "version": "41f103bd41c487614463"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-79ac7c0c021f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-db39fece916e"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "其大规模开发已造成植被覆盖率下降、尾矿粉尘污染严重",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "ce5427b349aaca225496176fc9a520d356fb8e4b"
+          },
+          "version": "41f103bd41c487614463"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-884d7dbcd805"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-79ac7c0c021f"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "利用Goog1e Earth Engine（GEE）和Landsat多时相数据，研究矿区土地利用与景观格局变化",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "2a9638e97fe2fbacd162bc1aa93e02a104ee85ef"
+          },
+          "version": "41f103bd41c487614463"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-3ebccec458da"
+        "item_id": "item-805e17a3f973"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-b0a8afcb0724"
+        "item_id": "item-db39fece916e"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "严重破坏了矿区及周边城市的生态环境，已形成生态环境时序恶化的趋势",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "ce5427b349aaca225496176fc9a520d356fb8e4b"
+          },
+          "version": "41f103bd41c487614463"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-137d81a7116d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2f765f29da25"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4d5b57c4261a"
-      },
-      "to": {
         "dimension": "成果",
         "item_id": "item-544f94d44a32"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e965ccb3b670"
-      },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-835aa41c5a10"
+        "dimension": "技术",
+        "item_id": "item-2b04d1f4a7b6"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "成功实现了大范围高精度分布反演",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "8a477d1281458b7e08dec51860bf8b0d78978eb6"
+          },
+          "version": "41f103bd41c487614463"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "申请",
+      "title": "矿区生态遥感监测相关发明专利",
+      "status_raw": "申请发明专利4项",
+      "identifiers": {},
+      "id": "out-e6180ff918e4",
+      "evidence": [
+        {
+          "quote": "申请发明专利4项",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "2a9638e97fe2fbacd162bc1aa93e02a104ee85ef"
+          },
+          "version": "41f103bd41c487614463"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

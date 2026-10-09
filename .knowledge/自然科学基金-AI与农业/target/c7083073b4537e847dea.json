@@ -2,15 +2,20 @@
   "doc_id": "c7083073b4537e847dea",
   "version": "34e82d0a0077765acea3",
   "source_hash": "48a6ce7fa0d12a59e1ea6a217a728392feba09e0e4a8376c3007729b5014e850",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:48:27.351292+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:58:17.400862+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 7,
+      "total": 7,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1525b86c20dd",
-          "name": "新疆棉花生产机械化作业",
-          "desc": "针对新疆棉花生产各环节对作业精度要求高的现实需求。",
+          "id": "item-e70992908148",
+          "name": "棉花生产机械高精度自动导航",
+          "desc": "针对新疆棉花生产各环节对作业精度要求高的现实需求实现农机自动导航与控制",
           "evidence": [
             {
-              "quote": "针对新疆棉花生产各环节对作业精度要求高的现实需求",
+              "quote": "针对新疆棉花生产各环节对作业精度要求高的现实需求，采用全球卫星导航系统、惯性测量单元和机器视觉相结合的方法",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,12 +40,12 @@
           ]
         },
         {
-          "id": "item-741cc63ef46b",
-          "name": "棉田播种管理收获环节",
-          "desc": "实现棉田播种、田间管理和收获等作业环节的农机高精度自动导航与控制。",
+          "id": "item-7647583a0dc8",
+          "name": "其他作物机械化导航借鉴",
+          "desc": "成果也可为其他作物机械化生产中的农机导航控制提供借鉴",
           "evidence": [
             {
-              "quote": "实现棉田播种、田间管理和收获等作业环节的农机高精度自动导航与控制",
+              "quote": "项目研究成果也可为其他作物机械化生产中的农机导航控制提供借鉴",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -57,12 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1909c2642b3a",
-          "name": "GNSS高精度定位易受干扰",
-          "desc": "GNSS高精度定位易受干扰，影响导航系统可靠性。",
+          "id": "item-808d78483b2f",
+          "name": "GNSS定位易受干扰",
+          "desc": "针对GNSS高精度定位易受干扰的问题需提升抗干扰能力",
           "evidence": [
             {
-              "quote": "针对GNSS高精度定位易受干扰的问题，融合GNSS/IMU信息",
+              "quote": "针对GNSS高精度定位易受干扰的问题，融合GNSS/IMU信息，构建了扩展卡尔曼滤波模型和无迹卡尔曼滤波模型，提高了系统对GNSS短时定位漂移的抗干扰能力",
               "locator": {
                 "basis": "pdf_page",
                 "page": 4,
@@ -75,7 +80,7 @@
         {
           "id": "item-c60a38c444e9",
           "name": "采棉机对行困难",
-          "desc": "采棉机存在对行困难问题，且棉田存在作物行直线度不高、缺行断垄等场景。",
+          "desc": "针对采棉机对行困难的问题需适应缺行断垄等场景",
           "evidence": [
             {
               "quote": "针对采棉机对行困难的问题，创新研究设计了一种感测棉株茎秆位置的机械对行传感装置",
@@ -97,10 +102,10 @@
         {
           "id": "item-ef9444d1e5dd",
           "name": "DeepLabV3+作物行语义分割",
-          "desc": "基于DeepLabV3+的棉田作物行语义分割模型，实现CCD图像中棉花作物行与土壤背景的准确分割。",
+          "desc": "基于车载单目CCD与DeepLabV3+实现作物行与土壤背景准确分割",
           "evidence": [
             {
-              "quote": "基于DeepLabV3+的棉田作物行语义分割模型，实现了CCD图像中棉花作物行与土壤背景的准确分割",
+              "quote": "采用车载单目彩色CCD摄像机方式，基于DeepLabV3+的棉田作物行语义分割模型，实现了CCD图像中棉花作物行与土壤背景的准确分割",
               "locator": {
                 "basis": "pdf_page",
                 "page": 4,
@@ -108,12 +113,30 @@
               },
               "version": "34e82d0a0077765acea3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-66ec0ae6e460",
-          "name": "卡尔曼滤波多源融合导航",
-          "desc": "融合GNSS与IMU信息构建扩展卡尔曼滤波与无迹卡尔曼滤波模型，提高抗GNSS短时定位漂移能力。",
+          "id": "item-07d91d30571d",
+          "name": "无人机影像组合算法模型",
+          "desc": "形成图像预处理、特征点识别聚类分割与基准线拟合的组合算法模型",
+          "evidence": [
+            {
+              "quote": "形成包括棉田作物行的图像预处理方法、棉花作物行特征点识别方法、特征点聚类分割方法、导航基准线拟合方法和基于RTK-GNSS的定位精度检验方法等在内的组合算法模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "60c0c8937cbbe509ab418f74e03aac01fcb2abec"
+              },
+              "version": "34e82d0a0077765acea3"
+            }
+          ],
+          "role": "配套-验证"
+        },
+        {
+          "id": "item-09fdda36850e",
+          "name": "GNSS/IMU卡尔曼滤波融合",
+          "desc": "融合GNSS/IMU构建扩展与无迹卡尔曼滤波模型提升抗干扰能力",
           "evidence": [
             {
               "quote": "融合GNSS/IMU信息，构建了扩展卡尔曼滤波模型和无迹卡尔曼滤波模型，提高了系统对GNSS短时定位漂移的抗干扰能力",
@@ -124,28 +147,13 @@
               },
               "version": "34e82d0a0077765acea3"
             }
-          ]
-        },
-        {
-          "id": "item-70b48b072bcd",
-          "name": "机械间隙补偿模糊PID转向控制器",
-          "desc": "设计带有机械间隙补偿的模糊PID控制算法转向控制器，实现轮式拖拉机转向轮角精确控制。",
-          "evidence": [
-            {
-              "quote": "研究设计了一种带有机械间隙补偿的模糊PID控制算法转向控制器",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 4,
-                "chunk_id": "60c0c8937cbbe509ab418f74e03aac01fcb2abec"
-              },
-              "version": "34e82d0a0077765acea3"
-            }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-2d74c714d2e9",
           "name": "LQR与DDQN路径跟踪控制器",
-          "desc": "基于最优控制理论设计LQR控制器，基于深度强化学习理论设计DDQN控制器。",
+          "desc": "基于最优控制理论设计LQR控制器并基于深度强化学习设计DDQN控制器",
           "evidence": [
             {
               "quote": "基于最优控制理论，设计了基于LQR的轮式农机路径跟踪控制器；基于深度强化学习理论，设计了基于DDQN的轮式农机路径跟踪控制器",
@@ -156,7 +164,8 @@
               },
               "version": "34e82d0a0077765acea3"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -165,9 +174,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7635f42684a0",
-          "name": "导航基准线识别精度0.03m与2°",
-          "desc": "导航基准线识别定位横向偏差精度达到0.03m以内，航向偏差精度达到2°以内。",
+          "id": "item-e7f3e3baeb27",
+          "name": "导航基准线识别精度",
+          "desc": "横向偏差精度达0.03m以内、航向偏差2°以内",
           "evidence": [
             {
               "quote": "导航基准线识别定位横向偏差精度达到0.03m以内，航向偏差精度达到2°以内",
@@ -179,32 +188,17 @@
               "version": "34e82d0a0077765acea3"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-d2e99c4d29ee",
-          "name": "作物行识别横向偏差小于3cm",
-          "desc": "基于无人机航拍影像的作物行识别定位横向偏差平均值小于3cm，有效避免光照阴影与缺行断垄影响。",
-          "evidence": [
-            {
-              "quote": "作物行识别定位的横向偏差平均值小于3cm，有效避免光照方向、阴影以及棉株缺行断垄对识别精度的影响",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 4,
-                "chunk_id": "60c0c8937cbbe509ab418f74e03aac01fcb2abec"
-              },
-              "version": "34e82d0a0077765acea3"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "达到0.03m以内",
+          "self_reported": false
         },
         {
           "id": "item-10283519e699",
           "name": "直线路径跟踪误差小于2.5cm",
-          "desc": "构建棉花生产机械路径跟踪控制模型并提出群智能优化参数整定方法，直线路径跟踪误差小于2.5cm。",
+          "desc": "提出基于群智能优化理论的参数整定方法使直线路径跟踪误差小于2.5cm",
           "evidence": [
             {
-              "quote": "直线路径跟踪误差小于2.5cm",
+              "quote": "提出了基于群智能优化理论的控制参数优化整定方法，提高了模型对棉花生产机械不同作业速度的适应性，直线路径跟踪误差小于2.5cm",
               "locator": {
                 "basis": "pdf_page",
                 "page": 4,
@@ -213,7 +207,9 @@
               "version": "34e82d0a0077765acea3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "小于2.5cm",
+          "self_reported": false
         }
       ]
     }
@@ -221,36 +217,49 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-1525b86c20dd"
+        "dimension": "技术",
+        "item_id": "item-09fdda36850e"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-1909c2642b3a"
+        "item_id": "item-808d78483b2f"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对GNSS高精度定位易受干扰的问题，融合GNSS/IMU信息，构建了扩展卡尔曼滤波模型和无迹卡尔曼滤波模型",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "60c0c8937cbbe509ab418f74e03aac01fcb2abec"
+          },
+          "version": "34e82d0a0077765acea3"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-07d91d30571d"
+      },
+      "to": {
         "dimension": "问题",
         "item_id": "item-c60a38c444e9"
       },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-66ec0ae6e460"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ef9444d1e5dd"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7635f42684a0"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对采棉机对行困难的问题，创新研究设计了一种感测棉株茎秆位置的机械对行传感装置",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "60c0c8937cbbe509ab418f74e03aac01fcb2abec"
+          },
+          "version": "34e82d0a0077765acea3"
+        }
+      ]
     },
     {
       "from": {
@@ -258,10 +267,93 @@
         "item_id": "item-2d74c714d2e9"
       },
       "to": {
+        "dimension": "技术",
+        "item_id": "item-ef9444d1e5dd"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "实现了CCD图像中棉花作物行与土壤背景的准确分割，导航基准线识别定位横向偏差精度达到0.03m以内",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "60c0c8937cbbe509ab418f74e03aac01fcb2abec"
+          },
+          "version": "34e82d0a0077765acea3"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-e70992908148"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-808d78483b2f"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对新疆棉花生产各环节对作业精度要求高的现实需求",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "780d8945fa7c3c479a26f3452dca4351666ec0f6"
+          },
+          "version": "34e82d0a0077765acea3"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "成果",
         "item_id": "item-10283519e699"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2d74c714d2e9"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "直线路径跟踪误差小于2.5cm",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "60c0c8937cbbe509ab418f74e03aac01fcb2abec"
+          },
+          "version": "34e82d0a0077765acea3"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "棉田作物行识别组合算法模型",
+      "status_raw": "形成了",
+      "identifiers": {},
+      "id": "out-33b4ea8d3edc",
+      "evidence": [
+        {
+          "quote": "形成包括棉田作物行的图像预处理方法、棉花作物行特征点识别方法、特征点聚类分割方法、导航基准线拟合方法和基于RTK-GNSS的定位精度检验方法等在内的组合算法模型",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "60c0c8937cbbe509ab418f74e03aac01fcb2abec"
+          },
+          "version": "34e82d0a0077765acea3"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

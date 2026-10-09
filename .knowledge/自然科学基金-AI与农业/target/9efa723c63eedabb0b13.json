@@ -2,15 +2,20 @@
   "doc_id": "9efa723c63eedabb0b13",
   "version": "30ffa56ae483d4729ef7",
   "source_hash": "bb7fb88023d76079cd417ba703083bdbbd20210fec11bc0e1ab056313eac0bf7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:48:55.819017+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:58:17.416630+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 28,
+      "total": 28,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f68171ce2199",
-          "name": "遥感大数据时代信息提取",
-          "desc": "快速精确地从海量遥感数据中提取信息是遥感大数据时代面临的重要任务。",
+          "id": "item-8d288f39bfe1",
+          "name": "小麦植被参量高光谱遥感反演",
+          "desc": "以小麦为示范对象研究高光谱遥感数据驱动的植被参量反演深度学习网络模型",
           "evidence": [
             {
-              "quote": "快速、精确地从海量遥感数据中提取信息是遥感大数据时代面临的重要任务",
+              "quote": "选取小麦作为研究示范的依托对象，研究高光谱遥感数据驱动的小麦植被参量反演的深度学习网络模型",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,16 +40,16 @@
           ]
         },
         {
-          "id": "item-a431d6d250f4",
-          "name": "小麦植被参量反演示范",
-          "desc": "以高光谱遥感为主要信息源，选取小麦作为研究示范的依托对象。",
+          "id": "item-c696d7ebb99e",
+          "name": "农业植被参量精准监测",
+          "desc": "为遥感大数据时代的农业植被参量精准监测提供理论支撑与技术方法",
           "evidence": [
             {
-              "quote": "以高光谱遥感为主要遥感信息源，选取小麦作为研究示范的依托对象",
+              "quote": "为遥感大数据时代的农业植被参量精准监测提供了理论支撑与技术方法",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "950fe888483a051db0c255088a55ea66dc5f0924"
+                "page": 2,
+                "chunk_id": "a4e70c4ce3c0072a2556ddd0efaf294032087459"
               },
               "version": "30ffa56ae483d4729ef7"
             }
@@ -57,28 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b160235eeff7",
-          "name": "统计学模型普适性差",
-          "desc": "传统统计学模型普适性较差，难以满足大数据时代信息提取的效率与精度兼顾需求。",
+          "id": "item-2a6f684b5698",
+          "name": "传统统计与物理模型局限",
+          "desc": "传统统计学模型普适性较差，物理模型存在先验知识不足与病态反演问题",
           "evidence": [
             {
-              "quote": "传统统计学模型普适性较差",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "950fe888483a051db0c255088a55ea66dc5f0924"
-              },
-              "version": "30ffa56ae483d4729ef7"
-            }
-          ]
-        },
-        {
-          "id": "item-996b987f1e6d",
-          "name": "物理模型病态反演",
-          "desc": "物理学模型普遍存在先验知识获取不足、数据处理过程复杂和模型病态反演等问题。",
-          "evidence": [
-            {
-              "quote": "而物理学模型也普遍存在先验知识获取不足、数据处理过程复杂和模型病态反演等问题",
+              "quote": "传统统计学模型普适性较差，而物理学模型也普遍存在先验知识获取不足、数据处理过程复杂和模型病态反演等问题",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -91,7 +80,7 @@
         {
           "id": "item-45737ee87eae",
           "name": "数据时空不一致与机理可解释性不足",
-          "desc": "小麦植被参量高光谱反演存在数据时空不一致、影像质量受限、机理可解释性不足等关键问题。",
+          "desc": "针对小麦植被参量高光谱反演中数据时空不一致、影像质量受限、机理可解释性不足等问题",
           "evidence": [
             {
               "quote": "针对小麦植被参量高光谱反演中数据时空不一致、影像质量受限、机理可解释性不足等关键问题",
@@ -111,12 +100,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b364275bc981",
-          "name": "天空地一体化协同观测框架",
-          "desc": "构建地面-无人机-卫星协同观测框架，获取天空地一体化多源高光谱遥感数据。",
+          "id": "item-f19a4315c86f",
+          "name": "星地多源协同观测框架",
+          "desc": "构建地面-无人机-卫星协同观测框架并发展边窗高斯滤波配准与物候引导时序迁移",
           "evidence": [
             {
-              "quote": "获取了天空地一体化多源高光谱遥感等数据",
+              "quote": "构建了\"地面-无人机-卫星\"协同观测框架，获取了天空地一体化多源高光谱遥感等数据",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -124,28 +113,13 @@
               },
               "version": "30ffa56ae483d4729ef7"
             }
-          ]
+          ],
+          "role": "配套-数据"
         },
         {
-          "id": "item-aeb67dfc9733",
-          "name": "时空-空谱协同增强理论",
-          "desc": "提出高光谱遥感时空-空谱协同增强理论，构建多尺度时序融合模型与无监督预训练空谱融合策略。",
-          "evidence": [
-            {
-              "quote": "提出了高光谱遥感时空-空谱协同增强理论，构建了多尺度时序融合模型与无监督预训练空谱融合策略",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "a4e70c4ce3c0072a2556ddd0efaf294032087459"
-              },
-              "version": "30ffa56ae483d4729ef7"
-            }
-          ]
-        },
-        {
-          "id": "item-5f8551c098ff",
-          "name": "高光谱基础大模型SpectralGPT",
-          "desc": "研发高光谱基础大模型SpectralGPT，显著提升卫星高光谱数据的时空连续性与空间分辨率。",
+          "id": "item-6c42a0b2a29f",
+          "name": "SpectralGPT高光谱基础大模型",
+          "desc": "研发高光谱基础大模型提升卫星数据时空连续性与空间分辨率",
           "evidence": [
             {
               "quote": "研发了高光谱基础大模型SpectralGPT，显著提升了卫星高光谱数据的时空连续性与空间分辨率",
@@ -156,37 +130,16 @@
               },
               "version": "30ffa56ae483d4729ef7"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8a350654ceda",
-          "name": "系列深度学习反演模型",
-          "desc": "创建面向植株密度、植被覆盖度、叶面积指数、叶绿素含量及产量的系列深度学习模型。",
+          "id": "item-d8a8d79353aa",
+          "name": "多尺度时序融合深度学习模型群",
+          "desc": "创建Transformer增强网络、物理引导混合模型等系列深度学习反演模型",
           "evidence": [
             {
-              "quote": "创建了面向植株密度、植被覆盖度、叶面积指数、叶绿素含量及产量的系列深度学习模型",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "a4e70c4ce3c0072a2556ddd0efaf294032087459"
-              },
-              "version": "30ffa56ae483d4729ef7"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-96b70facd620",
-          "name": "数据模型机理融合新范式",
-          "desc": "形成数据、模型、机理融合的小麦植被参量高光谱遥感反演新范式。",
-          "evidence": [
-            {
-              "quote": "形成了\"数据-模型-机理\"融合的小麦植被参量高光谱遥感反演新范式",
+              "quote": "创建了面向植株密度、植被覆盖度、叶面积指数、叶绿素含量及产量的系列深度学习模型，包括Tran sformer增强网络、物理引导混合模型、样本自适应优选网络及多尺度时空协同预测模型",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -195,12 +148,35 @@
               "version": "30ffa56ae483d4729ef7"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-5e3519d0bc5f",
-          "name": "46篇论文与8项专利",
-          "desc": "发表论文46篇（其中本项目第一资助论文37篇），授权发明专利8项，培养研究生14名。",
+          "id": "item-4cfdd758ca57",
+          "name": "辐射传输机理耦合可解释框架",
+          "desc": "构建辐射传输机理与深度学习耦合的可解释性分析框架",
+          "evidence": [
+            {
+              "quote": "构建了辐射传输机理与深度学习耦合的可解释性分析框架，揭示了模型反演背后的光谱学与作物生理学基础",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "a4e70c4ce3c0072a2556ddd0efaf294032087459"
+              },
+              "version": "30ffa56ae483d4729ef7"
+            }
+          ],
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2b5fe14ff9f4",
+          "name": "论文46篇与专利8项",
+          "desc": "发表论文46篇（第一资助37篇），授权发明专利8项，培养研究生14名",
           "evidence": [
             {
               "quote": "发表论文46篇（其中本项目第一资助论文37篇），授权发明专利8项，培养研究生14名",
@@ -212,15 +188,17 @@
               "version": "30ffa56ae483d4729ef7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "发表论文46篇",
+          "self_reported": false
         },
         {
-          "id": "item-a16ebfb43fc6",
-          "name": "可解释性分析框架",
-          "desc": "构建辐射传输机理与深度学习耦合的可解释性分析框架，揭示模型反演背后的光谱学与作物生理学基础。",
+          "id": "item-b47757ef9a8e",
+          "name": "SpectralGPT大模型",
+          "desc": "研发高光谱基础大模型SpectralGPT提升数据连续性与分辨率",
           "evidence": [
             {
-              "quote": "构建了辐射传输机理与深度学习耦合的可解释性分析框架",
+              "quote": "研发了高光谱基础大模型SpectralGPT，显著提升了卫星高光谱数据的时空连续性与空间分辨率",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -229,7 +207,9 @@
               "version": "30ffa56ae483d4729ef7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "研发了",
+          "self_reported": false
         }
       ]
     }
@@ -237,47 +217,186 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-d8a8d79353aa"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2a6f684b5698"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "传统统计学模型普适性较差，而物理学模型也普遍存在先验知识获取不足、数据处理过程复杂和模型病态反演等问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "950fe888483a051db0c255088a55ea66dc5f0924"
+          },
+          "version": "30ffa56ae483d4729ef7"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-6c42a0b2a29f"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-45737ee87eae"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对小麦植被参量高光谱反演中数据时空不一致、影像质量受限、机理可解释性不足等关键问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a4e70c4ce3c0072a2556ddd0efaf294032087459"
+          },
+          "version": "30ffa56ae483d4729ef7"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f19a4315c86f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d8a8d79353aa"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "在数据基础层面，构建了\"地面-无人机-卫星\"协同观测框架",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a4e70c4ce3c0072a2556ddd0efaf294032087459"
+          },
+          "version": "30ffa56ae483d4729ef7"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-4cfdd758ca57"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-d8a8d79353aa"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "在机理解析层面，阐明了不同生育期光谱可分性机制、敏感波段物候迁移规律及冠层结构-光谱响应关系",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a4e70c4ce3c0072a2556ddd0efaf294032087459"
+          },
+          "version": "30ffa56ae483d4729ef7"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-f68171ce2199"
+        "item_id": "item-8d288f39bfe1"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-b160235eeff7"
+        "item_id": "item-2a6f684b5698"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "快速、精确地从海量遥感数据中提取信息是遥感大数据时代面临的重要任务",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "950fe888483a051db0c255088a55ea66dc5f0924"
+          },
+          "version": "30ffa56ae483d4729ef7"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-996b987f1e6d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8a350654ceda"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-aeb67dfc9733"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-96b70facd620"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b364275bc981"
+        "item_id": "item-b47757ef9a8e"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-a16ebfb43fc6"
+        "dimension": "技术",
+        "item_id": "item-6c42a0b2a29f"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "研发了高光谱基础大模型SpectralGPT，显著提升了卫星高光谱数据的时空连续性与空间分辨率",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a4e70c4ce3c0072a2556ddd0efaf294032087459"
+          },
+          "version": "30ffa56ae483d4729ef7"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "SpectralGPT高光谱基础大模型",
+      "status_raw": "研发了",
+      "identifiers": {},
+      "id": "out-374a9237fdf1",
+      "evidence": [
+        {
+          "quote": "研发了高光谱基础大模型SpectralGPT",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a4e70c4ce3c0072a2556ddd0efaf294032087459"
+          },
+          "version": "30ffa56ae483d4729ef7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "植被参量反演相关发明专利",
+      "status_raw": "授权发明专利8项",
+      "identifiers": {},
+      "id": "out-aafd22ba2378",
+      "evidence": [
+        {
+          "quote": "授权发明专利8项",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a4e70c4ce3c0072a2556ddd0efaf294032087459"
+          },
+          "version": "30ffa56ae483d4729ef7"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }
